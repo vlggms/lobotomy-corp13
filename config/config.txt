@@ -15,16 +15,19 @@ $include resources.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-# SERVERNAME tgstation
+SERVERNAME Fulpstation
+
+## Server Caption: Shows next to the server name in the BYOND hub.
+SERVERCAPTION All the Good Players Are Taken
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation
 
 ## Station name: The name of the station as it is referred to in-game. If commented out, the game will generate a random name instead.
-STATIONNAME Space Station 13
+# STATIONNAME Space Station 13
 
 ## Put on byond hub: Uncomment this to put your server on the byond hub.
-#HUB
+HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
 LOBBY_COUNTDOWN 120
@@ -58,7 +61,7 @@ ENABLE_LOCALHOST_RANK
 #USE_AGE_RESTRICTION_FOR_JOBS
 
 ## Uncomment this to have the job system use the player's account creation date, rather than the when they first joined the server for job timers.
-#USE_ACCOUNT_AGE_FOR_JOBS
+USE_ACCOUNT_AGE_FOR_JOBS
 
 ## Unhash this to track player playtime in the database. Requires database to be enabled.
 #USE_EXP_TRACKING
@@ -136,7 +139,7 @@ LOG_MANIFEST
 # LOG_PICTURES
 
 ## log mecha actions
-# LOG_MECHA
+LOG_MECHA
 
 ## log virus and actions
 LOG_VIRUS
@@ -151,13 +154,13 @@ LOG_SHUTTLE
 PICTURE_LOGGING_CAMERA
 
 ## period of time in seconds for players to be considered inactive
-# INACTIVITY_PERIOD 300
+INACTIVITY_PERIOD 300
 
 ## period of time in seconds for players to be considered afk and kickable
-# AFK_PERIOD 600
+AFK_PERIOD 600
 
 ## disconnect players who are considered afk
-# KICK_INACTIVE
+KICK_INACTIVE
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
 ALLOW_ADMIN_OOCCOLOR
@@ -181,7 +184,7 @@ ID_CONSOLE_JOBSLOT_DELAY 30
 VOTE_DELAY 6000
 
 ## time period (deciseconds) which voting session will last (default 1 minute)
-VOTE_PERIOD 600
+VOTE_PERIOD 900
 
 ## prevents dead players from voting or starting votes
 # NO_DEAD_VOTE
@@ -193,7 +196,7 @@ VOTE_PERIOD 600
 NORESPAWN
 
 ## set a hosted by name for unix platforms
-HOSTEDBY Yournamehere
+HOSTEDBY EgorDinamit
 
 ## Uncomment this to stop people connecting to your server without a registered ckey. (i.e. guest-* are all blocked from connecting)
 GUEST_BAN
@@ -239,7 +242,10 @@ CHECK_RANDOMIZER
 # RULESURL http://www.tgstation13.org/wiki/Rules
 
 ## Github address
-# GITHUBURL https://www.github.com/tgstation/tgstation
+GITHUBURL https://www.github.com/vlggms/fulpstation
+
+##Discord address
+DISCORDURL https://discord.gg/SVu782A
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()
@@ -268,7 +274,7 @@ CHECK_RANDOMIZER
 # LOAD_JOBS_FROM_TXT
 
 ## Uncomment this to forbid admins from possessing the singularity.
-#FORBID_SINGULO_POSSESSION
+FORBID_SINGULO_POSSESSION
 
 ## Uncomment to show a popup 'reply to' window to every non-admin that receives an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
@@ -295,7 +301,7 @@ TICKLAG 0.5
 #AUTOMUTE_ON
 
 ## Uncomment this to let players see their own notes (they can still be set by admins only)
-#SEE_OWN_NOTES
+SEE_OWN_NOTES
 
 ### Comment these two out to prevent notes fading out over time for admins.
 ## Notes older then this will start fading out.
@@ -306,19 +312,19 @@ NOTE_STALE_DAYS 365.2422
 ##Note: all population caps can be used with each other if desired.
 
 ## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
-#SOFT_POPCAP 100
+SOFT_POPCAP 60
 
 ## Message for soft cap
 SOFT_POPCAP_MESSAGE Be warned that the server is currently serving a high number of users, consider using alternative game servers.
 
 ## Uncomment for 'hard' population caps, players will not be allowed to spawn if the living crew exceeds the listed number, though they may still observe or wait for the living crew to decrease in size.
-#HARD_POPCAP 150
+#HARD_POPCAP 80
 
 ## Message for hard cap
 HARD_POPCAP_MESSAGE The server is currently serving a high number of users, You cannot currently join. You may wait for the number of living crew to decline, observe, or find alternative servers.
 
 ## Uncomment for 'extreme' population caps, players will not be allowed to join the server if living crew exceeds the listed number.
-#EXTREME_POPCAP 200
+#EXTREME_POPCAP 100
 
 ## Message for extreme cap
 EXTREME_POPCAP_MESSAGE The server is currently serving a high number of users, find alternative servers.
@@ -357,7 +363,7 @@ NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
 #PANIC_SERVER_NAME [Put the name here]
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
-#AGGRESSIVE_CHANGELOG
+AGGRESSIVE_CHANGELOG
 
 ## Comment this out if you've used the mass conversion sql proc for notes or want to stop converting notes
 AUTOCONVERT_NOTES
@@ -366,7 +372,7 @@ AUTOCONVERT_NOTES
 ANNOUNCE_ADMIN_LOGOUT
 
 ## Uncomment to have an admin message sent anytime an admin connects to a round in play, you can edit the messages in admin.dm
-#ANNOUNCE_ADMIN_LOGIN
+ANNOUNCE_ADMIN_LOGIN
 
 ## Map rotation
 ## You should edit maps.txt to match your configuration when you enable this.
@@ -389,12 +395,12 @@ AUTOADMIN_RANK Game Master
 #AUTO_DEADMIN_PLAYERS
 
 ## Uncomment to automatically deadmin antagonists when they gain the role.
-#AUTO_DEADMIN_ANTAGONISTS
+AUTO_DEADMIN_ANTAGONISTS
 
 ## Uncomment to automatically deadmin specific role sets when a player joins the game.
-#AUTO_DEADMIN_HEADS
-#AUTO_DEADMIN_SECURITY
-#AUTO_DEADMIN_SILICONS
+AUTO_DEADMIN_HEADS
+AUTO_DEADMIN_SECURITY
+AUTO_DEADMIN_SILICONS
 
 
 ## CLIENT VERSION CONTROL
@@ -415,9 +421,9 @@ CLIENT_ERROR_BUILD 1421
 ## Admins are exempt from these limits.
 ## Hitting the minute limit notifies admins.
 ## Set to 0 or comment out to disable.
-SECOND_TOPIC_LIMIT 10
+SECOND_TOPIC_LIMIT 15
 
-MINUTE_TOPIC_LIMIT 100
+MINUTE_TOPIC_LIMIT 300
 
 
 ## CLICK RATE LIMITING
@@ -426,9 +432,9 @@ MINUTE_TOPIC_LIMIT 100
 ## Admins are exempt from these limits.
 ## Hitting the minute limit notifies admins.
 ## Set to 0 to disable.
-SECOND_CLICK_LIMIT 15
+SECOND_CLICK_LIMIT 20
 
-MINUTE_CLICK_LIMIT 400
+MINUTE_CLICK_LIMIT 600
 
 ##Error handling related options
 ## The "cooldown" time for each occurence of a unique error
