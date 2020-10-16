@@ -32,4 +32,7 @@
 /datum/mutation/human/telekinesis/proc/on_ranged_attack(datum/source, atom/target)
 	SIGNAL_HANDLER
 
+	if(owner.mind.has_martialart(MARTIALART_STARTERSITH)) //FULPSTATION Chaplain Starter Sith PR by Surrealistik Jan 2020; no stacking with Force Move.
+		return
+
 	INVOKE_ASYNC(target, /atom.proc/attack_tk, owner)

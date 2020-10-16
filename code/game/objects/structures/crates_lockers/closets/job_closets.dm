@@ -68,6 +68,8 @@
 	new /obj/item/clothing/shoes/galoshes(src)
 	new /obj/item/watertank/janitor(src)
 	new /obj/item/storage/belt/janitor(src)
+	if(prob(20))
+		new /obj/item/book/granter/language_book/draconic(src) //FULP
 
 
 /obj/structure/closet/lawcloset
@@ -109,6 +111,8 @@
 	new /obj/item/storage/backpack/cultpack(src)
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
+	if(prob(10))
+		new /obj/item/book/granter/language_book/narsian(src) //FULP
 	return
 
 /obj/structure/closet/wardrobe/red
@@ -310,4 +314,5 @@
 	new /obj/item/clothing/under/rank/civilian/curator/treasure_hunter(src)
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/storage/backpack/satchel/explorer(src)
-
+	if(prob(50))
+		new /obj/item/book/granter/language_book/common(src) //FULP

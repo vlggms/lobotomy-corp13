@@ -85,6 +85,27 @@
 	//building time adjustment coefficient (1 -> 0.8 -> 0.6)
 	T = -1
 	for(var/obj/item/stock_parts/manipulator/Ml in component_parts)
+		// FULPSTATION: Tiered part sets
+		part_sets = list(
+								"Cyborg", "Cyborg Upgrade Modules", "Misc", "Control Interfaces"
+								)
+		if( Ml.rating >= 2)
+			part_sets += list(
+								"Exosuit Equipment", "Clarke", "Ripley", "Implants"
+								)
+		if (Ml.rating >= 3)
+			part_sets += list(
+								"Odysseus", "Cybernetics"
+								)
+		if (Ml.rating >= 4)
+			part_sets += list(
+								"Durand","H.O.N.K","Gygax", "Exosuit Ammunition"
+								)
+		if (Ml.rating >= 5)
+			part_sets += list(
+								"Phazon"
+								)
+		// END FULPSTATION: Tiered part sets
 		T += Ml.rating
 	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)
 

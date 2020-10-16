@@ -800,7 +800,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
 		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = TRUE
+			should_be_squished = digisuit_icon_check(H.w_uniform) //FULP
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -843,6 +843,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.horns_list[H.dna.features["horns"]]
 				if("ears")
 					S = GLOB.ears_list[H.dna.features["ears"]]
+				if("beefeyes") // FULP
+					if (H.getorganslot(ORGAN_SLOT_EYES)) // Only draw eyes if we got em
+						S = GLOB.eyes_beefman[H.dna.features["beefeyes"]]
+				if("beefmouth") // FULP
+					S = GLOB.mouths_beefman[H.dna.features["beefmouth"]]
 				if("body_markings")
 					S = GLOB.body_markings_list[H.dna.features["body_markings"]]
 				if("wings")
@@ -994,9 +999,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(ITEM_SLOT_FEET)
 			if(H.num_legs < 2)
 				return FALSE
-			if(DIGITIGRADE in species_traits)
+			if((DIGITIGRADE in species_traits) == !(I.flags_inv & FULL_DIGITIGRADE)) //fulp change
 				if(!disable_warning)
-					to_chat(H, "<span class='warning'>The footwear around here isn't compatible with your feet!</span>")
+					to_chat(H, "<span class='warning'>These shoes aren't compatible with your feet!</span>") //fulp change
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_BELT)
@@ -1619,7 +1624,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/handle_environment(datum/gas_mixture/environment, mob/living/carbon/human/H)
 	var/areatemp = H.get_temperature(environment)
 
-	if(H.stat != DEAD) // If you are dead your body does not stabilize naturally
+	if(H.stat != DEAD && !HAS_TRAIT(H, TRAIT_COLDBLOODED)) // If you are dead your body does not stabilize naturally // FULPSTATION: Or if you're cold blooded
 		natural_bodytemperature_stabilization(environment, H)
 
 	if(!H.on_fire || areatemp > H.bodytemperature) // If we are not on fire or the area is hotter

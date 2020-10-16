@@ -12,6 +12,8 @@
 					/obj/item/wrench/medical = 1,
 					/obj/item/reagent_containers/pill/patch/libital = 5,
 					/obj/item/reagent_containers/pill/patch/aiuri = 5,
+					/obj/item/reagent_containers/pill/patch/stypticpowder = 5,	//FULP
+					/obj/item/reagent_containers/pill/patch/silversulfadiazine = 5,	//FULP
 					/obj/item/reagent_containers/syringe/convermol = 2,
 					/obj/item/reagent_containers/pill/insulin = 5,
 					/obj/item/reagent_containers/glass/bottle/multiver = 2,
@@ -36,6 +38,8 @@
 						/obj/item/storage/box/gum/happiness = 3,
 						/obj/item/storage/box/hug/medical = 1)
 	premium = list(/obj/item/reagent_containers/medigel/synthflesh = 2,
+					/obj/item/reagent_containers/medigel/stypticpowder = 5,	//FULP
+					/obj/item/reagent_containers/medigel/silversulfadiazine = 5,	//FULP
 					/obj/item/storage/pill_bottle/psicodine = 2,
 					/obj/item/reagent_containers/hypospray/medipen = 3,
 					/obj/item/storage/belt/medical = 3,
