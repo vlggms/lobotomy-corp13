@@ -1,5 +1,6 @@
-<!-- Most valid html will work in here, excluding images. -->
+<h1>Welcome to the Fulpstation!</h1>
+<i>This server is running a customized /tg/station 13 Git build.</i>
 
-<h1>Welcome to Space Station 13!</h1>
-
-<i>This server is running a /tg/station 13 Git build.</i>
+<h1><a href="https://fulpstation.com/showthread.php?tid=844"><b>[CLICK HERE TO READ THE RULES]</b></a></h1>
+<h2><a href="http://discord.gg/SVu782A"><b>[CLICK HERE TO JOIN THE DISCORD]</b></a></h2>
+<h2>Greytiding, antag murderboning, and griefing <b>WILL</b> net you a ban. Plus, the regulars are prepared to narc on you in a heartbeat.</h2>
