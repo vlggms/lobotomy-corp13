@@ -81,3 +81,63 @@
 			This is a cheap knockoff Space-China budget version that holds 2 charges, and regains 1 charge every 30 seconds."
 	item = /obj/item/card/emag/budget
 	cost = 6
+
+////////////// INFILTRATION GAMEMODE ITEMS //////////////
+
+/datum/uplink_item/role_restricted/cybersunsuit
+	name = "Cybersun Hardsuit"
+	desc = "A long forgotten hardsuit made by Cybersun industries. \
+			Offers ROBUST protection against laser-based weapons, while giving quite bad chances \
+			to survive assault from a toolbox or shotgun. \
+			Not to mention, it doesn't slow you down and contains an integrated jetpack that runs on standard tanks."
+	item = /obj/item/clothing/suit/space/hardsuit/cybersun
+	cost = 10
+	restricted_roles = list("Cybersun Infiltrator")
+	cant_discount = FALSE
+
+/datum/uplink_item/role_restricted/glovesplus
+	name = "Combat Gloves Plus"
+	desc = "A pair of gloves that are fireproof and electrically insulated, however unlike the regular Combat Gloves these use nanotechnology \
+			to teach the martial art of krav maga to the wearer."
+	item = /obj/item/clothing/gloves/krav_maga/combatglovesplus
+	cost = 5 //Same as nuke ops.
+	restricted_roles = list("Gorlex Infiltrator")
+	cant_discount = FALSE
+
+/datum/uplink_item/role_restricted/flukeop
+	name = "Nuclear Operative Bundle"
+	desc = "A starting kit for wannabe nuclear operatives. \
+	Comes with a tactical duffelbag filled with: \
+	blood-red hardsuit, micro-bomb implant, night vision googles, bowman headset, combat gloves and Makarov pistol."
+	item = /obj/item/storage/backpack/duffelbag/syndie/flukeop
+	cost = 16
+	restricted_roles = list("Gorlex Infiltrator")
+
+/datum/uplink_item/role_restricted/tiger/macrobomb
+	name = "Macrobomb Implant"
+	desc = "An implant injected into the body, and later activated either manually or automatically upon death. \
+			Upon death, releases a massive explosion that will wipe out everything nearby."
+	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
+	cost = 20
+	restricted_roles = list("Tiger Co. Infiltrator")
+
+/datum/uplink_item/role_restricted/tiger/manhacks
+	name = "Viscerator Delivery Grenade"
+	desc = "A unique grenade that deploys a swarm of viscerators upon activation, which will chase down and shred \
+			any non-operatives in the area."
+	item = /obj/item/grenade/spawnergrenade/manhacks
+	cost = 6
+	restricted_roles = list("Tiger Co. Infiltrator")
+	cant_discount = FALSE
+
+/datum/uplink_item/stealthy_tools/adv_mulligan
+	name = "Advanced Mulligan"
+	desc = "An advanced form of toxin created in one of the Tiger Cooperative laboratories using \
+	technology that was made with help of their 'supervisors'. \
+	This item allows you to change your appearance, race and DNA to completely different one. \
+	To use it - stab someone with it and then inject yourself, you will transform into that person. \n \
+	Be aware that it can't be used more than once on yourself."
+	item = /obj/item/adv_mulligan
+	cost = 5
+	surplus = 18
+	include_modes = list(/datum/game_mode/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
