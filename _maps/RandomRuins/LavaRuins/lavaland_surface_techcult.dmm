@@ -43,10 +43,6 @@
 /obj/machinery/mecha_part_fabricator,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/robotics)
-"aj" = (
-/obj/machinery/computer/rdconsole/production,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/mechanicus/robotics)
 "ak" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/robotics)
@@ -340,7 +336,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/vault)
 "aX" = (
-/obj/machinery/computer/rdconsole/production,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
@@ -990,7 +985,7 @@ aa
 aa
 be
 ae
-aj
+ak
 ak
 ak
 aA

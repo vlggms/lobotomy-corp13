@@ -1,6 +1,6 @@
-//Special access levels, starting from 400 so I won't fuck up anything else in the future.
-#define ACCESS_MECHANICUS_BASIC 400
-#define ACCESS_MECHANICUS_LEADER 401
+//Special access levels, starting from 220 so I won't fuck up anything else in the future.
+#define ACCESS_MECHANICUS_BASIC 220
+#define ACCESS_MECHANICUS_LEADER 221
 /////////////////////////////////////
 
 /***************** ID *****************/
@@ -335,7 +335,6 @@
 	description = "A complicated technology, used by Marsian scientists and soldiers alike."
 	boost_item_paths = list(/obj/item/gun/energy/sniper, /obj/item/gun/energy/sniper/pin, /obj/item/organ/heart/cybernetic/tier4, /obj/item/organ/lungs/cybernetic/tier4, /obj/item/organ/cyberimp/chest/reviver/plus, /obj/item/organ/cyberimp/arm/surgery/plus)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-	export_price = 10000
 	hidden = TRUE
 
 //Sniper Rifle - Tech
@@ -346,7 +345,6 @@
 	prereq_ids = list("adv_beam_weapons", "mars_tech")
 	design_ids = list("energysniper")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	export_price = 5000
 
 /datum/design/energysniper
 	name = "Energy Sniper Rifle"
@@ -367,7 +365,6 @@
 	prereq_ids = list("cyber_organs_upgraded", "mars_tech")
 	design_ids = list("cybernetic_heart_tier4", "cybernetic_lungs_tier4")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	export_price = 5000
 
 /datum/design/cybernetic_heart/tier4
 	name = "Quadro-Cybernetic Heart"
@@ -393,7 +390,6 @@
 	prereq_ids = list("combat_cyber_implants", "mars_tech")
 	design_ids = list("ci-reviver-plus", "ci-surgery-plus")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
-	export_price = 5000
 
 /datum/design/cyberimp_reviver_plus
 	name = "Reviver Implant PLUS"
@@ -481,43 +477,43 @@
 
 /obj/item/organ/cyberimp/chest/reviver/plus/on_life()
 	if(reviving)
-		if(owner.stat == UNCONSCIOUS)
-			addtimer(CALLBACK(src, .proc/heal), 10) //Fast
-		else
-			cooldown = revive_cost + world.time
-			reviving = FALSE
-			to_chat(owner, "<span class='notice'>Your reviver implant shuts down and starts recharging. It will be ready again in [DisplayTimeText(revive_cost)].</span>")
+		switch(owner.stat)
+			if(UNCONSCIOUS, HARD_CRIT)
+				addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
+			else
+				COOLDOWN_START(src, reviver_cooldown, revive_cost)
+				reviving = FALSE
+				to_chat(owner, "<span class='notice'>Your reviver implant shuts down and starts recharging. It will be ready again in [DisplayTimeText(revive_cost)].</span>")
 		return
 
-	if(cooldown > world.time)
-		return
-	if(owner.stat != UNCONSCIOUS)
-		return
-	if(owner.suiciding)
+	if(!COOLDOWN_FINISHED(src, reviver_cooldown) || owner.suiciding)
 		return
 
-	revive_cost = 0
-	reviving = TRUE
-	to_chat(owner, "<span class='notice'>You feel a faint buzzing as your reviver implant starts patching your wounds...</span>")
+	switch(owner.stat)
+		if(UNCONSCIOUS, HARD_CRIT)
+			revive_cost = 0
+			reviving = TRUE
+			to_chat(owner, "<span class='notice'>You feel a faint buzzing as your reviver implant starts patching your wounds...</span>")
 
 /obj/item/organ/cyberimp/chest/reviver/plus/heal()
 	var/list/parts = owner.get_damaged_bodyparts(TRUE, TRUE, status = BODYPART_ROBOTIC)
-	if(owner.getOxyLoss())
-		owner.adjustOxyLoss(-10, TRUE) //REAL fast
-		revive_cost += 5
-	if(owner.getBruteLoss())
-		owner.adjustBruteLoss(-5, TRUE)
-		revive_cost += 50
-	if(owner.getFireLoss())
-		owner.adjustFireLoss(-5, TRUE)
-		revive_cost += 50
 	if(owner.getToxLoss())
 		owner.adjustToxLoss(-3, TRUE)
 		revive_cost += 30
+	if(owner.getOxyLoss())
+		owner.adjustOxyLoss(-10, TRUE) //REAL fast
+		revive_cost += 5
 	if(parts.len > 0)
 		for(var/obj/item/bodypart/L in parts)
 			L.heal_damage(2, 2, null, BODYPART_ROBOTIC)
-			revive_cost += 10
+			revive_cost += 20
+	if(!parts.len)
+		if(owner.getBruteLoss())
+			owner.adjustBruteLoss(-5, TRUE)
+			revive_cost += 50
+		if(owner.getFireLoss())
+			owner.adjustFireLoss(-5, TRUE)
+			revive_cost += 50
 
 //Advanced Surgical Toolset Implant
 /obj/item/organ/cyberimp/arm/surgery/plus
