@@ -736,6 +736,7 @@
 #include "code\FulpstationCode\fulp_husk_fix\fulp_husk_fix.dm"
 #include "code\FulpstationCode\fulp_medborg\fulp_medborg_updates.dm"
 #include "code\FulpstationCode\fulp_medborg\medborg_holobed.dm"
+#include "code\FulpstationCode\fulp_mobs\chaos_marine.dm"
 #include "code\FulpstationCode\fulp_starter_gear\fulp_starter_gear.dm"
 #include "code\FulpstationCode\fulp_syndiborg_files\fulp_syndicate_medborg.dm"
 #include "code\FulpstationCode\Fulp_traitor_items\deadly_laser_tag.dm"
