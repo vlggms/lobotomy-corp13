@@ -624,6 +624,7 @@
 
 /obj/effect/mob_spawn/human/syndicatespace/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.mind.add_antag_datum(/datum/antagonist/cybersun)
 	var/policy = get_policy(assignedrole)
 	if(policy)
 		to_chat(new_spawn, "<span class='bold'>[policy]</span>")
@@ -635,6 +636,9 @@
 	important_info = "Protect the ship and secret documents in your backpack with your own life."
 	outfit = /datum/outfit/syndicatespace/syndicaptain
 	assignedrole = ROLE_SYNDICATE_CYBERSUN_CAPTAIN
+
+/obj/effect/mob_spawn/human/syndicatespace/captain/special(mob/living/new_spawn)
+	new_spawn.mind.add_antag_datum(/datum/antagonist/cybersun/captain)
 
 /datum/outfit/syndicatespace/syndicaptain/post_equip(mob/living/carbon/human/H)
 	H.faction |= ROLE_SYNDICATE
@@ -658,20 +662,16 @@
 	id = /obj/item/card/id/syndicate_command/crew_id
 	implants = list(/obj/item/implant/weapons_auth)
 
-/datum/outfit/syndicatespace/syndicaptain
+/datum/outfit/syndicatespace/syndicrew/syndicaptain
 	name = "Syndicate Ship Captain"
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
 	head = /obj/item/clothing/head/hos/beret/syndicate
 	ears = /obj/item/radio/headset/syndicate/alt/leader
-	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
-	back = /obj/item/storage/backpack
+	l_pocket = /obj/item/door_remote/syndicate
 	r_pocket = /obj/item/kitchen/knife/combat/survival
-	belt = /obj/item/storage/belt/military/assault
 	id = /obj/item/card/id/syndicate_command/captain_id
-	implants = list(/obj/item/implant/weapons_auth)
-	backpack_contents = list(/obj/item/documents/syndicate/red, /obj/item/paper/fluff/ruins/forgottenship/password, /obj/item/gun/ballistic/automatic/pistol/aps)
+	backpack_contents = list(/obj/item/documents/syndicate, /obj/item/paper/fluff/ruins/forgottenship/password, /obj/item/gun/ballistic/automatic/pistol/aps)
 
 /obj/effect/mob_spawn/human/beach/alive
 	death = FALSE

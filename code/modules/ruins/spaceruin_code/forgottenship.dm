@@ -90,13 +90,18 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	desc = "A box full of special syndicate firing pins which allow only syndicate operatives to use weapons with those firing pins."
 
 /obj/item/storage/box/firingpins/syndicate/PopulateContents()
-	for(var/i in 1 to 5)
+	for(var/i in 1 to 7)
 		new /obj/item/firing_pin/implant/pindicate(src)
 
 /obj/item/reagent_containers/glass/bottle/virusfood
 	name = "virus food bottle"
 	desc = "A small bottle of low-potency virus mutagenic."
 	list_reagents = list(/datum/reagent/consumable/virus_food = 30)
+
+/obj/item/door_remote/syndicate
+	name = "syndicate door remote"
+	icon_state = "gangtool-red"
+	region_access = 8
 
 ///////////	AI Laws
 
@@ -139,7 +144,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	icon_state = "cybersun"
 	inhand_icon_state = "cybersun"
 	hardsuit_type = "cybersun"
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 100, "rad" = 80, "fire" = 50, "acid" = 60)
+	armor = list("melee" = 25, "bullet" = 30, "laser" = 60, "energy" = 70, "bomb" = 30, "bio" = 100, "rad" = 80, "fire" = 50, "acid" = 60)
 	actions_types = list()
 
 /obj/item/clothing/suit/space/hardsuit/cybersun
@@ -148,7 +153,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	hardsuit_type = "cybersun"
 	name = "Cybersun hardsuit"
 	desc = "Prototype hardsuit with experimental armor plates, protecting from laser-based weapons very well, while giving limited protection against anything else."
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 100, "rad" = 80, "fire" = 50, "acid" = 60)
+	armor = list("melee" = 25, "bullet" = 30, "laser" = 60, "energy" = 70, "bomb" = 30, "bio" = 100, "rad" = 80, "fire" = 50, "acid" = 60)
 	slowdown = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/cybersun
@@ -221,8 +226,8 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 /obj/effect/spawner/lootdrop/armory_contraband/cybersun
 	loot = list(/obj/item/gun/ballistic/automatic/pistol = 20,
-				/obj/item/gun/ballistic/revolver = 12,
-				/obj/item/gun/medbeam = 6,
+				/obj/item/gun/ballistic/revolver = 16,
+				/obj/item/gun/medbeam = 12,
 				/obj/item/seeds/gatfruit = 2
 
 				)
@@ -239,7 +244,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 		/obj/item/healthanalyzer/advanced,
 		/obj/item/borg/apparatus/beaker,
 		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/syringe/bluespace,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/surgical_drapes,
 		/obj/item/scalpel/advanced,
 		/obj/item/retractor/advanced,
@@ -249,9 +254,8 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 		/obj/item/stack/medical/gauze/cyborg,
 		/obj/item/gun/medbeam/cyborg,
 		/obj/item/organ_storage,
-		/obj/item/screwdriver/cyborg, //For surgery on augmented people
-		/obj/item/wrench/cyborg,
-		/obj/item/multitool/cyborg)
+		/obj/item/weldingtool/experimental,
+		/obj/item/stack/cable_coil/cyborg)
 
 	cyborg_base_icon = "synd_medical"
 	moduleselect_icon = "malf"
@@ -271,13 +275,13 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 /obj/item/borg/upgrade/syndifaction
 	name = "syndicate override module"
-	desc = "Used to override machinery codes of a cyborg, making syndicate turrets and operatives ignore it."
+	desc = "Used to override machinery codes of a cyborg, making syndicate operatives ignore it. Sadly, doesn't affect turrets, in most cases."
 	icon_state = "cyborg_upgrade3"
 	one_use = TRUE
 
 /obj/item/borg/upgrade/syndifaction/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
-	R.faction = list(ROLE_SYNDICATE) //Experimental. It removes ALL faction, except for Syndicate.
+	R.faction |= ROLE_SYNDICATE
 
 //Disk for autolathe
 
