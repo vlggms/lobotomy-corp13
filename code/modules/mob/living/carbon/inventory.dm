@@ -175,6 +175,8 @@
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(!CanReach(C))
 			continue
+		if(!C.can_hold_items())
+			continue
 		var/obj/screen/alert/give/G = C.throw_alert("[src]", /obj/screen/alert/give)
 		if(!G)
 			continue

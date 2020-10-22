@@ -249,7 +249,7 @@
 
 /turf/closed/wall/r_wall/syndicate/nodiagonal
 	icon = 'icons/turf/walls/plastitanium_wall.dmi'
-	//icon_state = "map-shuttle_nd" //This shit is broken
+	icon_state = "map-shuttle_nd"
 	base_icon_state = "plastitanium_wall"
 	smoothing_flags = SMOOTH_BITMASK
 
