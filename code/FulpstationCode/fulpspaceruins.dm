@@ -8,6 +8,8 @@ FSS goes like this : Areas, Objects,Code., ETC
 
 FSS1: Space shower
 FSS2: Prototype Station
+FSS3: DND Mansion
+FSS4: Bio-Sphere
 
 DATU: Datums for map templates
 */
@@ -185,6 +187,8 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	new /obj/item/stack/cable_coil(src)
 	new /obj/item/circuitboard/computer/solar_control(src)
 
+// FSS3 : DND
+
 /obj/effect/mob_spawn/human/Dndplayer
     name = "DnD player"
     roundstart = FALSE
@@ -236,6 +240,42 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	belt = /obj/item/storage/belt/chameleon
 	id = /obj/item/card/id/syndicate/anyone
 
+//FSS4: Bio Sphere
+
+/obj/item/card/id/away/biosphere
+	name = "Security ID"
+	desc = "Basic security ID used to access most of facilities inside the sphere."
+	access = list(203)
+
+/obj/effect/mob_spawn/human/biospheresec
+	name = "\improper Bio-Sphere Security Officer"
+	outfit = /datum/outfit/biospheresecurity
+
+/datum/outfit/biospheresecurity
+	name = "Bio-Sphere Security Corpse"
+	uniform = /obj/item/clothing/under/rank/security/officer/formal
+	suit = /obj/item/clothing/suit/security/officer
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/color/black
+	ears = /obj/item/radio/headset
+	mask = /obj/item/clothing/mask/gas/sechailer
+	back = /obj/item/storage/backpack/security
+	id = /obj/item/card/id/away/biosphere
+
+//FSS4 Areas
+
+/area/ruin/space/has_grav/powered/biosphere
+	name = "Bio Sphere"
+	ambientsounds = list('sound/ambience/ambitech2.ogg', 'sound/ambience/ambitech3.ogg', 'sound/ambience/aurora_caelus_short.ogg')
+
+/area/ruin/space/has_grav/powered/biosphere/dorm_m
+	name = "Bio Sphere Male Dormitories"
+	icon_state = "dorms_male"
+
+/area/ruin/space/has_grav/powered/biosphere/dorm_f
+	name = "Bio Sphere Female Dormitories"
+	icon_state = "dorms_female"
+
 //DATU
 
 /datum/map_template/ruin/space/fulp_asteroid
@@ -269,3 +309,9 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	placement_weight = 0
 	unpickable = TRUE
 	description = "A rich guy hired a bunch of nerds so he can watch you play dnd. That nerd is you. have fun."
+
+/datum/map_template/ruin/space/smallsphere
+	id = "smallsphere"
+	suffix = "smallsphere.dmm"
+	name = "Bio Sphere"
+	description = "Nanotrasen holding facility, rumored to be the MOST humane in the entire galaxy! Is it though?"
