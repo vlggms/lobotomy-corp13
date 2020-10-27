@@ -1,0 +1,2614 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/open/space/basic,
+/area/space)
+"ab" = (
+/turf/closed/wall/r_wall,
+/area/space)
+"ac" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"ad" = (
+/obj/effect/spawner/structure/window/reinforced/tinted,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/powered/biosphere)
+"ae" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/space/has_grav/powered/biosphere)
+"af" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"ag" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/pill/paxpsych{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/pill/paxpsych{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/pill/paxpsych{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"ah" = (
+/turf/closed/wall/mineral/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"ai" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"aj" = (
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"ak" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"al" = (
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"am" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"an" = (
+/obj/machinery/light_switch{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"ao" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"ap" = (
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"aq" = (
+/obj/machinery/door/airlock/wood{
+	name = "Bedroom"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"ar" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"as" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/syndicate/blue{
+	desc = "Has a dirty tag on it: Property of Syndicate. Something makes you think it is not."
+	},
+/obj/item/clothing/head/helmet/space/syndicate/blue{
+	desc = "Has a dirty tag on it: Property of Syndicate. Something makes you think it is not."
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+"at" = (
+/obj/machinery/door/airlock/wood{
+	name = "Bedroom"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"au" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+"av" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/store/cheesewheel,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aw" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/cakebatter,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"ax" = (
+/obj/structure/sink{
+	pixel_y = 26
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"ay" = (
+/obj/structure/sink{
+	pixel_y = 26
+	},
+/obj/structure/mirror{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"az" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/canned/beans{
+	layer = 3.001;
+	pixel_x = 2;
+	pixel_y = 0
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"aA" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aB" = (
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aC" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aD" = (
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"aE" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aF" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/spiderling{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aG" = (
+/obj/structure/chair{
+	icon_state = "chair";
+	dir = 8
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aH" = (
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aI" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/sodawater{
+	pixel_x = 3;
+	pixel_y = -11
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/tinychocolate{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aJ" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aK" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aL" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aM" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aN" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aO" = (
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aP" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/plate,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aQ" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aR" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/bag/tray,
+/obj/item/reagent_containers/food/snacks/badrecipe,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aS" = (
+/obj/machinery/door/airlock{
+	name = "Cafeteria"
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aT" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aU" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aV" = (
+/obj/structure/flora/ausbushes/leafybush,
+/mob/living/simple_animal/butterfly,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aW" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"aX" = (
+/obj/structure/table,
+/obj/item/food/candy/bronx,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aY" = (
+/obj/machinery/microwave,
+/obj/structure/table,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"aZ" = (
+/obj/machinery/processor,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"ba" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"bb" = (
+/obj/machinery/light/dim,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"bc" = (
+/turf/closed/wall,
+/area/ruin/space/has_grav/powered/biosphere)
+"bd" = (
+/obj/machinery/door/airlock{
+	name = "Shower"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"be" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/powered/biosphere)
+"bf" = (
+/obj/machinery/door/airlock/security{
+	name = "Security Office";
+	req_access_txt = "203"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bg" = (
+/obj/structure/table/wood,
+/obj/item/toy/cards/deck{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/storage/crayons{
+	pixel_x = 3;
+	pixel_y = -10
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bh" = (
+/obj/structure/closet,
+/obj/item/clothing/under/syndicate/tacticool{
+	desc = "A cheap copy of tactical turtleneck. You can almost see 'NT' label on it.";
+	name = "tactical turtleneck"
+	},
+/obj/item/clothing/shoes/sandal,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bi" = (
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	req_access_txt = "600"
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bj" = (
+/obj/structure/kitchenspike,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bk" = (
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bl" = (
+/obj/machinery/gibber,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bm" = (
+/obj/structure/table,
+/obj/item/soap/syndie{
+	desc = "Generic bar of soap with 'syndicate' badly written on it."
+	},
+/obj/item/bikehorn/rubberducky,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bn" = (
+/mob/living/simple_animal/hostile/butcher,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bo" = (
+/obj/machinery/door/window/northright,
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bp" = (
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bq" = (
+/obj/machinery/door/airlock{
+	name = "Kitchen";
+	req_access_txt = "203"
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"br" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "HSA-5";
+	req_access_txt = "204"
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"bs" = (
+/obj/structure/chair/office,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bt" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+"bu" = (
+/obj/effect/mob_spawn/human/biospheresec,
+/turf/open/space/basic,
+/area/space)
+"bv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+"bw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+"bx" = (
+/obj/structure/closet/secure_closet/freezer/fridge{
+	req_access = list(600)
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"by" = (
+/obj/machinery/computer/crew{
+	icon_state = "computer";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bz" = (
+/obj/machinery/computer/med_data{
+	icon_state = "computer";
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bA" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bC" = (
+/obj/structure/table,
+/obj/item/kitchen/knife/butcher{
+	layer = 3.001
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/kitchen/rollingpin{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"bD" = (
+/obj/structure/rack,
+/obj/item/melee/classic_baton{
+	layer = 3.001
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bE" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bF" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"bG" = (
+/obj/structure/table,
+/obj/machinery/light,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"bH" = (
+/obj/machinery/light/dim{
+	icon_state = "tube";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"bI" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/machinery/light/dim,
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"bJ" = (
+/obj/machinery/light/dim{
+	icon_state = "tube";
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"bK" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/machinery/light/dim{
+	icon_state = "tube";
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"bL" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bM" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bN" = (
+/obj/structure/table/wood,
+/obj/item/storage/pill_bottle/happinesspsych{
+	pixel_x = -6;
+	pixel_y = 14
+	},
+/obj/item/storage/pill_bottle/lsdpsych{
+	pixel_x = 2;
+	pixel_y = 13
+	},
+/obj/item/paper,
+/obj/item/pen,
+/obj/item/reagent_containers/syringe/contraband/crank{
+	pixel_x = -8;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bO" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bP" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bQ" = (
+/obj/structure/sink{
+	pixel_y = 26
+	},
+/obj/structure/mirror{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bR" = (
+/obj/structure/sink{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bS" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bT" = (
+/obj/machinery/door/airlock{
+	name = "Toilet cabin"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bU" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bV" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bW" = (
+/obj/machinery/door/airlock{
+	name = "Toilet cabin"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bX" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"bY" = (
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"bZ" = (
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"ca" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cb" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cc" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cd" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"ce" = (
+/obj/machinery/door/airlock/wood{
+	name = "Dormitories M"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cf" = (
+/obj/machinery/door/airlock/wood{
+	name = "Dormitories F"
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cg" = (
+/obj/structure/rack,
+/obj/item/gun/energy/disabler{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/gun/energy/disabler{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"ch" = (
+/obj/structure/table,
+/obj/item/gps/spaceruin,
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"ci" = (
+/obj/structure/table/wood,
+/obj/item/paper{
+	pixel_x = 6
+	},
+/obj/item/pen{
+	pixel_x = 6
+	},
+/obj/item/storage/pill_bottle/happinesspsych{
+	pixel_x = -7;
+	pixel_y = 7
+	},
+/obj/item/storage/pill_bottle/lsdpsych{
+	pixel_x = -8;
+	pixel_y = -4
+	},
+/obj/item/storage/pill_bottle/psicodine{
+	pixel_x = 2;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/pill/happinesspsych{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"ck" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/regular{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/medical{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cl" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/rack,
+/obj/item/storage/firstaid/brute{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cm" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cn" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/obj/item/reagent_containers/pill/cyanide{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/pill/floorpill{
+	pixel_x = 11;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/pill/morphine{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/syringe/contraband/krokodil{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"co" = (
+/obj/machinery/door/airlock{
+	name = "Toilet cabin"
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	icon_state = "blood1";
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cp" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cq" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/swat{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/head/helmet/swat{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cr" = (
+/obj/structure/table,
+/obj/item/gun/ballistic/automatic/pistol/m1911{
+	layer = 3.001
+	},
+/obj/item/ammo_box/magazine/m45,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cs" = (
+/obj/structure/closet/secure_closet/freezer/kitchen{
+	req_access = list(600)
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"ct" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/anxiety{
+	desc = "A small bottle. Label says 'Medicine'.";
+	name = "medicine bottle";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/glass/bottle/sodium_thiopental{
+	desc = "A small bottle. Contains 'medicine'.";
+	name = "night-time medicine bottle";
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/reagent_containers/pill/patch/aiuri{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/pill/patch/libital{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/storage/bag/tray{
+	layer = 2.999;
+	pixel_y = 2
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_m)
+"cu" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bottle/anxiety{
+	desc = "A small bottle. Label says 'Medicine'.";
+	name = "medicine bottle";
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/glass/bottle/sodium_thiopental{
+	desc = "A small bottle. Contains 'medicine'.";
+	name = "night-time medicine bottle";
+	pixel_x = 4;
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/pill/lsd{
+	pixel_x = -2;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/pill/neurine{
+	pixel_x = -10
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cv" = (
+/obj/structure/toilet{
+	icon_state = "toilet00";
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/storage/fancy/cigarettes/cigpack_mindbreaker{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/syringe/contraband/space_drugs{
+	pixel_x = 4;
+	pixel_y = 12
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cw" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/item/switchblade{
+	pixel_x = -8;
+	pixel_y = -3
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cx" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "HSA-5";
+	req_access_txt = "203"
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"cy" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/donkpocket{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/snacks/donkpocket{
+	pixel_x = -8;
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cz" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/burrito{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"cA" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/grown/cannabis{
+	pixel_x = 3;
+	pixel_y = 17
+	},
+/obj/item/clothing/mask/cigarette/rollie/cannabis{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/item/clothing/mask/cigarette/rollie/mindbreaker{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/storage/pill_bottle/mannitol{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/obj/item/storage/pill_bottle/neurine{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/turf/open/floor/wood,
+/area/ruin/space/has_grav/powered/biosphere/dorm_f)
+"cB" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/reagent_containers/food/drinks/ice/prison{
+	pixel_x = -10;
+	pixel_y = 8
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"cC" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"cD" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/hotdog{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/open/floor/plastic,
+/area/ruin/space/has_grav/powered/biosphere)
+"cF" = (
+/obj/machinery/light/dim{
+	icon_state = "tube";
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/ruin/space/has_grav/powered/biosphere)
+"cG" = (
+/obj/structure/closet/secure_closet/security{
+	req_access = list(203)
+	},
+/obj/item/clothing/under/rank/security/officer/formal,
+/obj/item/clothing/suit/security/officer,
+/obj/item/clothing/shoes/jackboots{
+	pixel_y = -6
+	},
+/obj/item/clothing/head/beret/sec/navyofficer{
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cH" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/ruin/space/has_grav/powered/biosphere)
+"cI" = (
+/obj/machinery/stasis,
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = 32
+	},
+/obj/effect/mob_spawn/human/biospheresec,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cJ" = (
+/obj/machinery/door/window/brigdoor/northright{
+	req_access_txt = "203"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/powered/biosphere)
+"cK" = (
+/obj/machinery/door/airlock/vault{
+	name = "Entrance";
+	req_access_txt = "203"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/powered/biosphere)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+af
+af
+af
+af
+aA
+aB
+aB
+cF
+aB
+aB
+aJ
+aB
+bc
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+af
+cn
+af
+bS
+af
+aB
+aJ
+aB
+aB
+aB
+aK
+aB
+aW
+bc
+bc
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+af
+af
+co
+af
+bT
+af
+bJ
+aB
+aB
+aB
+aU
+aM
+aB
+bb
+bc
+bc
+bc
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+ad
+ad
+af
+af
+ax
+cp
+bU
+bU
+af
+aB
+aK
+aC
+aB
+aV
+aB
+aB
+aB
+bc
+bh
+bm
+bc
+ad
+ad
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ad
+af
+af
+af
+ay
+bU
+bU
+ca
+af
+aB
+aB
+aB
+aD
+aD
+aD
+aD
+aD
+bd
+ar
+ar
+bo
+bc
+ad
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+af
+af
+af
+af
+af
+af
+bY
+af
+af
+aC
+aL
+aB
+aD
+aW
+aB
+aM
+aL
+be
+be
+be
+be
+be
+be
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+af
+ai
+aj
+af
+az
+ct
+aj
+aj
+af
+aB
+aM
+aQ
+aD
+aB
+aB
+aB
+aB
+be
+cg
+aD
+bp
+bB
+cr
+ad
+aa
+aa
+ab
+bu
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+af
+aj
+aj
+af
+bL
+bL
+aj
+aj
+af
+aB
+aN
+aB
+aD
+aB
+aB
+aK
+aO
+be
+bD
+aD
+cJ
+bs
+by
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ac
+ac
+ad
+af
+ak
+aj
+aq
+aj
+aj
+aj
+cb
+af
+bK
+aO
+aB
+aD
+aB
+aL
+aB
+bI
+be
+cq
+aD
+bp
+aD
+bz
+ad
+ac
+ac
+ab
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+af
+al
+aj
+af
+bM
+bM
+aj
+aj
+af
+aB
+aB
+aA
+aD
+aB
+aB
+aA
+aB
+be
+aD
+bA
+be
+be
+be
+be
+be
+be
+be
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+af
+ai
+aj
+af
+bg
+ci
+aj
+aj
+ce
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+be
+aD
+aD
+be
+bt
+bt
+bv
+as
+as
+be
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+bf
+aD
+aD
+cK
+bt
+bt
+bt
+bt
+bt
+cK
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ah
+cw
+ap
+ah
+cu
+bN
+ap
+ap
+cf
+aD
+bH
+aD
+aD
+aD
+bH
+aD
+aD
+be
+aD
+aD
+be
+bt
+bt
+bw
+au
+as
+be
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ah
+an
+ap
+ah
+bO
+bO
+ap
+ap
+ah
+bc
+bc
+bc
+aS
+bc
+bc
+bc
+bc
+be
+aD
+bA
+be
+be
+be
+be
+be
+be
+be
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ac
+ac
+ad
+ah
+ao
+ap
+at
+ap
+ap
+ap
+cc
+ah
+aE
+aE
+aE
+aH
+aH
+aE
+aE
+aE
+be
+cG
+aD
+cl
+cm
+ck
+ad
+ac
+ac
+ab
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ah
+ap
+ap
+ah
+bP
+bP
+ap
+ap
+ah
+aF
+aX
+cz
+aH
+aH
+ch
+cC
+bG
+be
+cG
+aD
+cJ
+aD
+aD
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ah
+am
+ap
+ah
+cy
+cA
+ap
+ap
+ah
+aI
+cB
+cD
+aH
+aH
+aG
+aG
+aG
+be
+cG
+aD
+bp
+bE
+cI
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ah
+ah
+ah
+ah
+ah
+ah
+bZ
+ah
+ah
+aG
+aG
+aG
+aH
+bc
+bc
+bc
+bc
+be
+be
+br
+be
+be
+be
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+ad
+ad
+ah
+ah
+ah
+bQ
+bV
+bV
+cd
+ah
+aH
+aH
+aH
+aH
+bc
+aw
+bC
+av
+be
+bi
+bk
+cH
+be
+ad
+ad
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+ad
+ad
+ah
+ah
+bR
+bV
+bV
+bV
+ah
+aH
+aH
+aH
+aH
+bc
+ag
+aH
+aH
+be
+bj
+bn
+bk
+ad
+ad
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+ah
+ah
+bW
+ah
+bW
+ah
+bF
+aP
+aR
+aT
+bc
+aY
+aH
+aH
+cx
+bk
+bk
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+ah
+bX
+ah
+cv
+ah
+aH
+aH
+aH
+aH
+bq
+aH
+aH
+aH
+be
+bl
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+ah
+ah
+ah
+ah
+bx
+bx
+cs
+cs
+bc
+aZ
+ba
+ba
+be
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bu
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
