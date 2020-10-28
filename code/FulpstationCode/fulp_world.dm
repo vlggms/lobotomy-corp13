@@ -37,7 +37,7 @@
 	s += ")<br>"
 
 	// Fulp Description
-	s += "<br>Beginner Station: <b>Learn to play SS13!</b>"
+	s += "<br><b>Updated Fulpstation codebase</b>"
 	s += "<br>Roleplay: \[<b>Medium</b>\]"
 	if(GLOB.master_mode)
 		s += "<br>Mode: \[<b>" + (GLOB.master_mode == "secret_extended" ? "secret" : GLOB.master_mode) + "</b>"//\]" // FULPSTATION: What's the point in making it secret if it's going to just say the actual mode (extended)?
