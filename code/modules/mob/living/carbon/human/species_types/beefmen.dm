@@ -181,10 +181,10 @@
 
 	// Step 2) Bleed out those juices by warmth, minus burn damage. If we are salted - bleed more
 	if (dehydrate > 0)
-		H.adjust_bl_all("=", clamp((H.bodytemperature - 275) / 20 - searJuices, 2, 8))
+		H.adjust_bl_all("=", clamp((H.bodytemperature - bodytemp_normal) / 20 - searJuices, 2, 12))
 		dehydrate -= 0.5
 	else
-		H.adjust_bl_all("=", clamp((H.bodytemperature - 275) / 20 - searJuices, 0, 4))
+		H.adjust_bl_all("=", clamp((H.bodytemperature - bodytemp_normal) / 20 - searJuices, 0, 6))
 
 	// Replenish Blood Faster! (But only if you actually make blood)
 	var/bleed_rate = 0
