@@ -19,9 +19,13 @@
 	cut_overlays()
 	if(reagents.reagent_list.len)
 		var/datum/reagent/R = reagents.get_master_reagent()
+		icon = initial(icon)
 		if(!renamedByPlayer)
 			name = R.glass_name
 			desc = R.glass_desc
+		if(R.glass_tegu)
+			icon = 'icons/Fulpicons/fulpitems.dmi'
+
 		if(R.glass_icon_state)
 			icon_state = R.glass_icon_state
 		else
