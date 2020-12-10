@@ -15,7 +15,7 @@ $include resources.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-SERVERNAME Fulpstation
+SERVERNAME TeguStation
 
 ## Server Caption: Shows next to the server name in the BYOND hub.
 SERVERCAPTION All the Good Players Are Taken
