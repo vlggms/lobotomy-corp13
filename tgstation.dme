@@ -729,6 +729,7 @@
 #include "code\FulpstationCode\body_camera_files\body_camera_procs.dm"
 #include "code\FulpstationCode\borg_radio_files\borg_radio.dm"
 #include "code\FulpstationCode\fulp_airlock_electroadaptive\fulp_airlock_electroadaptive_procs.dm"
+#include "code\FulpstationCode\fulp_chemistry_drinks\drinks.dm"
 #include "code\FulpstationCode\fulp_cyborgs\cyborg_upgrades.dm"
 #include "code\FulpstationCode\fulp_disco_elysium\fulp_disco_elysium.dm"
 #include "code\FulpstationCode\fulp_husk_fix\fulp_husk_fix.dm"
