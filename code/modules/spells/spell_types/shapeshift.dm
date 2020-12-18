@@ -151,8 +151,8 @@
 		shape.blood_volume = stored.blood_volume;
 
 	stored.RegisterSignal(src, COMSIG_PARENT_QDELETING, .proc/shape_death)
-	stored.RegisterSignal(shape, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/shape_death)
-	shape.RegisterSignal(stored, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/shape_death)
+	stored.RegisterSignal(shape, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH), .proc/shape_death)
+	shape.RegisterSignal(stored, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH), .proc/shape_death)
 
 /obj/shapeshift_holder/Destroy()
 	if(!restoring)
