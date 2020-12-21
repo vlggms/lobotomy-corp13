@@ -78,7 +78,9 @@
 /area/shuttle/sbc/fighter1)
 "i" = (
 /obj/machinery/computer/security{
+	desc = "Used to access the camera in front of the fighter shuttle.";
 	dir = 8;
+	name = "shuttle camera console";
 	network = list("SBC_Fighter1")
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -87,10 +89,6 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/multitool,
-/obj/machinery/light/small{
-	brightness = 3;
-	dir = 8
-	},
 /obj/machinery/power/apc{
 	dir = 2;
 	pixel_y = -28

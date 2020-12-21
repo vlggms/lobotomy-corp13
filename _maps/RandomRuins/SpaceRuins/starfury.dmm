@@ -87,11 +87,15 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/starfury)
 "an" = (
-/obj/structure/window/reinforced{
-	icon_state = "rwindow";
+/obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/machinery/computer/message_monitor,
+/obj/item/paper/monitorkey,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/starfury)
 "ao" = (
@@ -664,6 +668,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "bF" = (
@@ -793,24 +798,20 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/frame/computer{
+	anchored = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/starfury)
 "bW" = (
-/mob/living/simple_animal/bot/medbot{
-	damage_coeff = list("brute" = 1, "fire" = 1, "toxin" = 1, "clone" = 0, "stamina" = 0, "oxygen" = 1);
-	declare_crit = 1;
-	desc = "A medical bot of syndicate origins. Probably plots about how to stab you full of toxins in its free time.";
-	faction = list("neutral","silicon","turret","syndicate");
-	heal_amount = 10;
-	heal_threshold = 5;
-	locked = 0;
-	name = "Syndicate Medibot";
-	radio_channel = "Syndicate";
-	radio_key = /obj/item/encryptionkey/syndicate;
-	skin = "bezerk"
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/shuttle/sbc/med)
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/sbc/starfury)
 "bX" = (
 /obj/effect/turf_decal/trimline/yellow/line{
 	icon_state = "trimline";
@@ -1378,6 +1379,7 @@
 "di" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/ammo_box/magazine/sniper_rounds,
+/obj/item/ammo_box/magazine/sniper_rounds,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "dj" = (
@@ -1455,31 +1457,23 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/sbc/med)
 "dt" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
+/obj/machinery/computer/camera_advanced/syndie{
+	dir = 2;
+	name = "cruiser camera console";
+	networks = list("starfurybc_cam")
 	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/machinery/computer/message_monitor,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plating,
 /area/shuttle/sbc/starfury)
 "du" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "starfurybcsupermatter"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/item/tank/internals/plasma/full,
-/turf/open/floor/plating,
-/area/shuttle/sbc/supermatter)
-"dv" = (
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	rad_insulation = 100
+	rad_insulation = 0.1
 	},
 /area/shuttle/sbc/crew)
+"dv" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
+/area/shuttle/sbc/armory)
 "dw" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -1548,15 +1542,9 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/sbc/bay)
 "dG" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "starfurybcsupermatter"
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
 	},
-/obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 8
-	},
-/obj/item/tank/internals/plasma/full,
-/turf/open/floor/plating,
 /area/shuttle/sbc/supermatter)
 "dH" = (
 /obj/effect/turf_decal/stripes/line{
@@ -1716,9 +1704,9 @@
 /area/shuttle/sbc/engi)
 "ea" = (
 /obj/machinery/door/poddoor/shutters/preopen{
-	id = "starfurybcsupermatter"
+	id = "starfurybcsupermatter";
+	rad_insulation = 0.3
 	},
-/obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -1726,12 +1714,10 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc/supermatter)
 "eb" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	icon_state = "scrub_map-2";
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/shuttle/sbc/supermatter)
+/obj/structure/grille,
+/obj/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/shuttle/sbc/engi)
 "ec" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
@@ -2074,7 +2060,9 @@
 /area/shuttle/sbc/engi)
 "eL" = (
 /obj/structure/cable,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "eM" = (
 /obj/effect/turf_decal/delivery,
@@ -2319,6 +2307,10 @@
 	desc = "If you can't prevent plasma fires, create them!";
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	icon_state = "pipe11-3";
+	dir = 4
+	},
 /turf/open/floor/engine,
 /area/shuttle/sbc/supermatter)
 "fj" = (
@@ -2451,12 +2443,13 @@
 	icon_state = "pipe11-3";
 	dir = 5
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "fw" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/sbc/starfury)
 "fx" = (
 /obj/structure/cable,
@@ -2813,6 +2806,8 @@
 	},
 /obj/item/clothing/under/syndicate,
 /obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
+/obj/item/shield/riot/tele,
 /turf/open/floor/carpet,
 /area/shuttle/sbc/crew)
 "gf" = (
@@ -2908,11 +2903,13 @@
 /turf/open/floor/engine,
 /area/shuttle/sbc/engi)
 "gs" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
+/obj/machinery/atmospherics/pipe/simple/green/visible{
 	icon_state = "pipe11-3";
-	dir = 6
+	dir = 10
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "gt" = (
 /obj/effect/turf_decal/stripes/line{
@@ -3040,9 +3037,11 @@
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	icon_state = "pipe11-3";
-	dir = 9
+	dir = 6
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "gG" = (
 /obj/structure/cable,
@@ -3065,11 +3064,13 @@
 /turf/open/floor/engine,
 /area/shuttle/sbc/engi)
 "gJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible{
+/obj/machinery/atmospherics/pipe/simple/orange/visible{
 	icon_state = "pipe11-3";
-	dir = 10
+	dir = 9
 	},
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "gK" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
@@ -3157,10 +3158,17 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/sbc/engi)
 "gU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "starfurybcsupermatter";
+	rad_insulation = 0.3
+	},
+/obj/effect/turf_decal/stripes/line{
+	icon_state = "warningline";
+	dir = 8
+	},
+/obj/item/tank/internals/plasma/full,
 /turf/open/floor/plating,
-/area/shuttle/sbc/engi)
+/area/shuttle/sbc/supermatter)
 "gV" = (
 /obj/effect/turf_decal/stripes/line{
 	icon_state = "warningline";
@@ -3536,7 +3544,10 @@
 /turf/open/floor/engine,
 /area/shuttle/sbc/supermatter)
 "hI" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/closed/wall/r_wall/syndicate/nodiagonal{
+	rad_insulation = 0.1
+	},
 /area/shuttle/sbc/supermatter)
 "hJ" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
@@ -3675,10 +3686,17 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/armory)
 "hZ" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal{
-	rad_insulation = 100
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "starfurybcsupermatter";
+	rad_insulation = 0.3
 	},
-/area/shuttle/sbc/armory)
+/obj/structure/cable,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/tank/internals/plasma/full,
+/turf/open/floor/plating,
+/area/shuttle/sbc/supermatter)
 "ia" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -3854,8 +3872,9 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/engi)
 "iy" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/closed/wall/r_wall/syndicate/nodiagonal{
-	rad_insulation = 100
+	rad_insulation = 0.1
 	},
 /area/shuttle/sbc/supermatter)
 "iz" = (
@@ -4034,6 +4053,7 @@
 	pixel_x = 4;
 	pixel_y = -8
 	},
+/obj/item/ammo_box/magazine/sniper_rounds,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/armory)
 "iR" = (
@@ -4164,6 +4184,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "jd" = (
@@ -4351,10 +4372,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/shuttle/sbc/engi)
-"jA" = (
-/obj/machinery/atmospherics/pipe/simple/green/visible,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/shuttle/sbc/supermatter)
 "jB" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -4410,7 +4427,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/docking_port/stationary{
 	dir = 1;
-	dwidth = 4;
+	dwidth = 5;
 	height = 6;
 	id = "sbccorvette_BAY";
 	name = "Battle Cruiser Corvette Dock";
@@ -4602,10 +4619,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/sbc/armory)
-"jY" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/shuttle/sbc/supermatter)
 "jZ" = (
 /obj/structure/sign/poster/contraband/c20r{
 	pixel_y = -32
@@ -4846,14 +4859,25 @@
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/sbc/engi)
 "kz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/computer/camera_advanced/syndie{
-	dir = 4;
-	name = "cruiser camera console";
-	networks = list("starfurybc_cam")
+/mob/living/simple_animal/bot/medbot{
+	damage_coeff = list("brute" = 1, "fire" = 1, "toxin" = 1, "clone" = 0, "stamina" = 0, "oxygen" = 1);
+	declare_crit = 1;
+	desc = "A medical bot of syndicate origins. Probably plots about how to stab you full of toxins in its free time.";
+	faction = list("neutral","turret","Syndicate");
+	heal_amount = 20;
+	heal_threshold = 5;
+	health = 100;
+	locked = 0;
+	maxHealth = 100;
+	name = "Syndicate Medibot";
+	radio_channel = "Syndicate";
+	radio_key = /obj/item/encryptionkey/syndicate;
+	skin = "bezerk";
+	speed = 2;
+	window_name = "Cybersun Medical Unit v1.2"
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/sbc/starfury)
+/turf/open/floor/plasteel,
+/area/shuttle/sbc/med)
 "kA" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/effect/turf_decal/bot,
@@ -5289,6 +5313,15 @@
 	icon_state = "trimline_warn";
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/computer/security{
+	desc = "Used to access the camera in front of the fighter shuttle.";
+	dir = 2;
+	name = "shuttle camera console";
+	network = list("sbcfighter_SBC_Fighter1")
+	},
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "lp" = (
@@ -5422,9 +5455,8 @@
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "lB" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/high_volume{
-	icon_state = "vent_map-2";
-	dir = 8
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4
 	},
 /turf/open/floor/engine,
 /area/shuttle/sbc/supermatter)
@@ -5486,9 +5518,12 @@
 	icon_state = "trimline_warn";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 6
+/obj/machinery/light/floor,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "lJ" = (
@@ -5521,6 +5556,7 @@
 	icon_state = "pipe11-2";
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "lM" = (
@@ -5635,11 +5671,10 @@
 	icon_state = "trimline_warn";
 	dir = 1
 	},
-/obj/machinery/light/floor,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
 "mb" = (
@@ -5649,14 +5684,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/sbc/med)
-"md" = (
+"mc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/computer/camera_advanced/syndie{
 	dir = 2;
 	name = "cruiser camera console";
 	networks = list("starfurybc_cam")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/starfury)
+"md" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/ammo_box/c9mm,
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
+"me" = (
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin/carbon,
+/obj/item/pen/fountain/captain,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/sbc/starfury)
+"mf" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	icon_state = "trimline_warn";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
 "mg" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -5687,6 +5749,28 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel,
 /area/shuttle/sbc/med)
+"mm" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shuttle/sbc/bay)
+"mn" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	icon_state = "trimline_warn";
+	dir = 1
+	},
+/obj/machinery/computer/shuttle{
+	desc = "A shuttle control computer, to recall the shuttle at any time.";
+	icon_keyboard = "syndie_key";
+	icon_screen = "syndishuttle";
+	light_color = "#FA8282";
+	name = "Syndicate Fighter Recall Console";
+	possible_destinations = "sbcfighter_BAY";
+	req_access = 150;
+	shuttleId = "sbcfighter"
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
 "mo" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/bedsheet/syndie,
@@ -5775,6 +5859,33 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/sbc/starfury)
+"mx" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	icon_state = "trimline_warn";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/computer/shuttle/syndicate{
+	desc = "A shuttle control computer, to recall the shuttle at any time.";
+	dir = 2;
+	icon_state = "computer";
+	name = "Syndicate Corvette Recall Console";
+	possible_destinations = "sbccorvette_BAY";
+	shuttleId = "sbccorvette"
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
+"my" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	icon_state = "trimline_warn";
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
 "mz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-3";
@@ -5877,6 +5988,24 @@
 /obj/item/binoculars,
 /turf/open/floor/pod/light,
 /area/shuttle/sbc/bay)
+"mL" = (
+/obj/effect/turf_decal/trimline/red/warning{
+	icon_state = "trimline_warn";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/computer/security{
+	desc = "Used to access the camera inside of the syndicate corvette.";
+	dir = 2;
+	name = "shuttle camera console";
+	network = list("sbccorvette_SBC_Corvette1")
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/sbc/bay)
 "mM" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/ammo_box/magazine/m556,
@@ -5951,6 +6080,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/sbc/med)
+"mY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/high_volume{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/shuttle/sbc/supermatter)
 "mZ" = (
 /obj/machinery/light{
 	dir = 8
@@ -6134,7 +6269,7 @@ aa
 mT
 mT
 hV
-md
+dt
 it
 mS
 mS
@@ -6625,7 +6760,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 mW
 mF
 lt
@@ -6695,7 +6830,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 nd
 kK
 kq
@@ -6765,7 +6900,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 nd
 kK
 kq
@@ -6784,7 +6919,7 @@ bu
 bu
 bu
 bB
-iT
+lo
 lu
 lD
 mC
@@ -6809,7 +6944,7 @@ cQ
 cQ
 iE
 cQ
-cU
+cQ
 kR
 kT
 kU
@@ -6835,7 +6970,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 hp
 mG
 bT
@@ -6904,8 +7039,8 @@ hJ
 hJ
 hJ
 hJ
-nb
-nb
+fw
+fw
 hK
 mH
 bT
@@ -6924,7 +7059,7 @@ bu
 bu
 bu
 bB
-lo
+mn
 dg
 bX
 di
@@ -6994,7 +7129,7 @@ bv
 bv
 bv
 bD
-lo
+my
 dg
 mC
 mC
@@ -7014,7 +7149,7 @@ dT
 at
 at
 at
-dv
+du
 de
 dr
 dZ
@@ -7084,12 +7219,12 @@ dT
 at
 ge
 ht
-dv
-hI
 du
+dG
 ea
-du
-hI
+hZ
+ea
+dG
 ff
 ft
 eN
@@ -7154,8 +7289,8 @@ fF
 at
 gf
 hu
-dv
-iy
+du
+dG
 dx
 dx
 dx
@@ -7224,14 +7359,14 @@ fH
 ir
 gg
 iU
-dv
-iy
+du
+dG
 dy
 ei
 ei
 fv
 eL
-hI
+dG
 fi
 lX
 gH
@@ -7294,18 +7429,18 @@ fL
 at
 gg
 gg
-dv
-iy
-lB
-lB
-lB
-gJ
+du
+dG
+mY
+mY
+mY
+gs
 gW
-jA
+hI
 fu
 lX
 gH
-gU
+eb
 hg
 ie
 ie
@@ -7324,7 +7459,7 @@ dC
 ak
 aP
 mJ
-kz
+mc
 kN
 bb
 kJ
@@ -7344,7 +7479,7 @@ bu
 bu
 bu
 bB
-ma
+lI
 lu
 mC
 mC
@@ -7364,8 +7499,8 @@ fS
 at
 gh
 iW
-dv
-iy
+du
+dG
 dB
 eH
 dB
@@ -7375,7 +7510,7 @@ nf
 fN
 lX
 gH
-gU
+eb
 lP
 id
 id
@@ -7389,7 +7524,7 @@ gT
 (21,1,1) = {"
 aa
 hJ
-dt
+an
 dD
 al
 aQ
@@ -7413,7 +7548,7 @@ bu
 bu
 bu
 bu
-bB
+mm
 bE
 lu
 lD
@@ -7434,18 +7569,18 @@ fX
 eq
 eq
 eq
-hZ
-iy
-eb
-eb
-eb
-gs
+dv
+dG
+lB
+lB
+lB
+gF
 hH
-jY
+iy
 fx
 lX
 gH
-gU
+eb
 lQ
 kb
 kb
@@ -7464,8 +7599,8 @@ aK
 am
 bm
 bS
-an
-an
+me
+bW
 kE
 aq
 ao
@@ -7487,7 +7622,7 @@ bB
 bE
 lu
 mC
-dp
+md
 dp
 mC
 mC
@@ -7504,14 +7639,14 @@ lb
 iJ
 eR
 eR
-hZ
-iy
+dv
+dG
 ed
 gp
 gp
-gF
+gJ
 eL
-hI
+dG
 ka
 lX
 gH
@@ -7540,7 +7675,7 @@ kq
 aq
 aq
 bP
-bW
+kz
 mU
 jS
 aq
@@ -7554,11 +7689,11 @@ bu
 bu
 bu
 jH
-bE
+mx
 lu
 mC
 mC
-dp
+md
 mC
 mC
 mE
@@ -7574,8 +7709,8 @@ fZ
 eS
 eS
 kp
-hZ
-iy
+dv
+dG
 dx
 dx
 dx
@@ -7624,7 +7759,7 @@ bu
 bu
 bu
 bB
-bE
+mL
 lu
 bX
 mC
@@ -7644,12 +7779,12 @@ lv
 iK
 iM
 ja
-hZ
-hI
+dv
 dG
+gU
+gU
+gU
 dG
-dG
-hI
 fm
 fy
 fT
@@ -7714,7 +7849,7 @@ lc
 eq
 eq
 eq
-hZ
+dv
 gL
 dH
 fs
@@ -7744,8 +7879,8 @@ hJ
 hJ
 hJ
 hJ
-nb
-nb
+fw
+fw
 kG
 hK
 aq
@@ -7763,7 +7898,7 @@ bu
 bu
 bu
 bu
-bB
+mm
 lL
 jv
 jy
@@ -7815,7 +7950,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 kI
 hM
 aq
@@ -7834,7 +7969,7 @@ bu
 bu
 bu
 bB
-lI
+ma
 lM
 lO
 lU
@@ -7885,7 +8020,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 kq
 nd
 nd
@@ -7904,7 +8039,7 @@ bu
 bu
 bu
 bB
-iT
+mf
 lu
 bX
 mC
@@ -7955,7 +8090,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 ax
 kM
 kv
@@ -7974,7 +8109,7 @@ bv
 bv
 bv
 bD
-iT
+mf
 bX
 cf
 cf
@@ -8025,7 +8160,7 @@ aa
 aa
 aa
 aa
-fw
+hJ
 mW
 mW
 kl
@@ -8514,7 +8649,7 @@ aa
 mT
 mT
 hV
-md
+dt
 hw
 mT
 mT

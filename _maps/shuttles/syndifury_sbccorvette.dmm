@@ -26,6 +26,7 @@
 	pixel_y = -28
 	},
 /obj/structure/cable,
+/obj/machinery/light/small,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/sbc/corvette)
 "g" = (
@@ -133,6 +134,7 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/sbc/corvette)
 "u" = (
@@ -169,6 +171,18 @@
 	name = "Syndicate Corvette";
 	preferred_direction = 2;
 	width = 12
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/sbc/corvette)
+"z" = (
+/obj/machinery/camera/xray{
+	c_tag = "Corvette";
+	dir = 1;
+	icon_state = "xraycamera";
+	name = "shuttle camera";
+	network = list("SBC_Corvette1");
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/shuttle/sbc/corvette)
@@ -234,14 +248,14 @@ b
 q
 v
 e
-d
+z
 g
 "}
 (9,1,1) = {"
 c
 k
 v
-e
+v
 t
 a
 "}

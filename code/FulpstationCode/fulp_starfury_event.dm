@@ -6,7 +6,7 @@
 	name = "Starfury Battle Cruiser"
 	placement_weight = 0
 	unpickable = TRUE
-	description = "Starfury in motion, king of the universe, he was made to rule the seven seas. \
+	description = "Starfury in motion, king of the universe, one of the kind. \
 	Absolute terror of all Nanotrasen personnel."
 
 /datum/map_template/shuttle/syndifury //Starfury Battle Cruiser event shuttles
@@ -31,8 +31,6 @@
 	name = "Syndicate Battle Cruiser Bridge"
 	icon_state = "bridge"
 	ambientsounds = list('sound/ambience/signal.ogg')
-	mood_bonus = 8
-	mood_message = "<span class='nicegreen'>I love this place!\n</span>"
 
 /area/shuttle/sbc/med
 	name = "Syndicate Battle Cruiser Medbay"
@@ -159,7 +157,7 @@
 //Eyepatch
 /obj/item/clothing/glasses/hud/eyepatch/admiral
 	name = "syndicate thermal eyepatch"
-	desc = "An eyepatch with built-in thermal and night-vision optics."
+	desc = "An eyepatch with built-in thermal, night-vision optics and security HUD."
 	icon_state = "eyepatch"
 	inhand_icon_state = "eyepatch"
 	vision_flags = SEE_MOBS

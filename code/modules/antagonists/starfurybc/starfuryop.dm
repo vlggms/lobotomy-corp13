@@ -44,7 +44,7 @@
 	. = ..()
 
 /datum/team/starfuryop
-	name = "Starfury battlecruiser operatives"
+	name = "Starfury Battle Cruiser Operatives"
 
 /datum/team/starfuryop/proc/add_objective(datum/objective/O, needs_target = FALSE)
 	O.team = src

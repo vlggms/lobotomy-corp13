@@ -15,7 +15,7 @@
 		if(M.client)
 			deadMobs++
 	if(deadMobs < round(GLOB.player_list/9))
-		message_admins("Syndicate Battle Cruiser attempted to spawn, but there were only [deadMobs]/[round(GLOB.player_list/8)] ghosts.")
+		message_admins("Syndicate Battle Cruiser attempted to spawn, but there was only [deadMobs]/[round(GLOB.player_list/9)] ghosts.")
 		return EVENT_CANT_RUN
 	return ..()
 
@@ -30,6 +30,7 @@
 	priority_announce("Unidentified ship detected on long range scanners. ETA [round((rand(-30,70) + startWhen)/30)] minutes.")
 	if(fake)
 		return
+	deadchat_broadcast("Starfury Battle Cruiser will arrive in [round(startWhen/30)] minutes!", message_type=DEADCHAT_ANNOUNCEMENT)
 	started = TRUE
 
 /datum/round_event_control/starfurybc/debug
@@ -43,28 +44,6 @@
 
 /datum/round_event/starfurybc/start()
 	spawn_shuttle()
-
-/*
-/datum/round_event/starfurybc/process()
-	if(started && SSshuttle.emergency.mode == SHUTTLE_CALL)
-		started = FALSE
-		var/cursetime = 7200
-		var/timer = SSshuttle.emergency.timeLeft(1) + cursetime
-		var/security_num = seclevel2num(get_security_level())
-		var/set_coefficient = 1
-		switch(security_num)
-			if(SEC_LEVEL_GREEN)
-				set_coefficient = 2
-			if(SEC_LEVEL_BLUE)
-				set_coefficient = 1
-			else
-				set_coefficient = 0.5
-		var/surplus = timer - (SSshuttle.emergencyCallTime * set_coefficient)
-		SSshuttle.emergency.setTimer(timer)
-		if(surplus > 0)
-			SSshuttle.block_recall(surplus)
-		priority_announce("Due to hostile activities on your station shuttle will be delayed for 12 minutes.", "System Failure", 'sound/misc/notice1.ogg')
-*/
 
 /datum/round_event/starfurybc/proc/spawn_shuttle()
 	shuttle_spawned = TRUE
@@ -98,6 +77,6 @@
 		for(var/obj/docking_port/stationary/dock in A)
 			dock.load_roundstart()
 
-	announcetime += rand(2 MINUTES, 4 MINUTES)
+	announcetime += rand(1 MINUTES, 2 MINUTES)
 	sleep(announcetime)
 	priority_announce("Heavily armed ship, identified as Syndicate Battle Cruiser Starfury, has been detected in nearby sector. Brace for impact.", sound = 'sound/machines/alarm.ogg')
