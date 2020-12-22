@@ -4400,7 +4400,8 @@
 /turf/open/floor/plating,
 /area/shuttle/sbc/engi)
 "jA" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/visible{
+	icon_state = "pipe11-3";
 	dir = 10
 	},
 /turf/open/floor/plasteel,
