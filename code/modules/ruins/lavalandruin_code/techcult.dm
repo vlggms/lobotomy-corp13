@@ -96,10 +96,11 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
+	var/suit_faction = "Mechanicus"
 
 /obj/item/clothing/suit/hooded/techpriest/armor/lead/Initialize()
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE, ITEM_SLOT_OCLOTHING)
+	AddComponent(/datum/component/anti_magic, TRUE, TRUE, FALSE, ITEM_SLOT_OCLOTHING, INFINITY, FALSE)
 
 /obj/item/clothing/head/hooded/techpriest/armor/lead
 	name = "blessed tech hood"
@@ -110,14 +111,10 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	transparent_protection = HIDEMASK
 
-/obj/item/clothing/head/hooded/techpriest/armor/lead/Initialize()
-	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, TRUE, TRUE, ITEM_SLOT_OCLOTHING)
-
 //Only the chosen ones can use it!
 /obj/item/clothing/suit/hooded/techpriest/armor/lead/equipped(mob/living/user, slot)
 	..()
-	if(!("Mechanicus" in user.faction))
+	if(!(suit_faction in user.faction))
 		to_chat(user, "<span class='warning'>The machine god will never allow this!</span>")
 		user.dropItemToGround(src, TRUE)
 		user.Paralyze(60)

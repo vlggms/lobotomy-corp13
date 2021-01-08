@@ -18,7 +18,6 @@
 	hide = TRUE
 	shift_underlay_only = FALSE
 
-	var/id_tag = null
 	var/pump_direction = RELEASING
 
 	var/pressure_checks = EXT_BOUND
@@ -36,9 +35,9 @@
 	pipe_state = "uvent"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/New()
-	..()
 	if(!id_tag)
-		id_tag = assign_uid_vents()
+		id_tag = SSnetworks.assign_random_name()
+	. = ..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/Destroy()
 	var/area/vent_area = get_area(src)
@@ -164,7 +163,7 @@
 	if(!GLOB.air_vent_names[id_tag])
 		// If we do not have a name, assign one.
 		// Produces names like "Port Quarter Solar vent pump hZ2l6".
-		name = "\proper [vent_area.name] vent pump [assign_random_name()]"
+		name = "\proper [vent_area.name] vent pump [id_tag]"
 		GLOB.air_vent_names[id_tag] = name
 
 	vent_area.air_vent_info[id_tag] = signal.data
@@ -391,9 +390,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/healium_output
 	name = "healium tank output inlet"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_HEALIUM
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/hexane_output
-	name = "hexane tank output inlet"
-	id_tag = ATMOS_GAS_MONITOR_OUTPUT_HEXANE
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/hydrogen_output
 	name = "hydrogen tank output inlet"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_H2
@@ -424,6 +420,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/zauker_output
 	name = "zauker tank output inlet"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_ZAUKER
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/helium_output
+	name = "helium tank output inlet"
+	id_tag = ATMOS_GAS_MONITOR_OUTPUT_HELIUM
+/obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/antinoblium_output
+	name = "antinoblium tank output inlet"
+	id_tag = ATMOS_GAS_MONITOR_OUTPUT_ANTINOBLIUM
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/incinerator_output
 	name = "incinerator chamber output inlet"
 	id_tag = ATMOS_GAS_MONITOR_OUTPUT_INCINERATOR

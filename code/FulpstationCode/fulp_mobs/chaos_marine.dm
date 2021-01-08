@@ -247,7 +247,7 @@
 	addtimer(CALLBACK(src, .proc/blood_dash_2, dir_to_target, 0), (5 * dash_mod))
 	playsound(src,'sound/effects/meteorimpact.ogg', 200, 1)
 
-/mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/blood_dash_2(var/move_dir, var/times_ran)
+/mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/blood_dash_2(move_dir, times_ran)
 	if(times_ran >= dash_num)
 		charging = FALSE
 		return

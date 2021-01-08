@@ -29,6 +29,8 @@
 // MARTIAL ARTS
 #define MARTIALART_HUNTER "hunter-fu"
 
+// KEYBINDS
+#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_mentor_msay_down"
 
 // MISSING REF
 /obj/item/circuitboard/machine/vr_sleeper

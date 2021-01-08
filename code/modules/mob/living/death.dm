@@ -62,7 +62,6 @@
 /mob/living/proc/spawn_dust(just_ash = FALSE)
 	new /obj/effect/decal/cleanable/ash(loc)
 
-
 /*
  * Called when the mob dies. Can also be called manually to kill a mob.
  *
@@ -70,21 +69,15 @@
  * * gibbed - Was the mob gibbed?
 */
 /mob/living/proc/death(gibbed)
-	var/was_dead_before = stat == DEAD
 	set_stat(DEAD)
 	unset_machine()
 	timeofdeath = world.time
 	tod = station_time_timestamp()
 	var/turf/T = get_turf(src)
-	for(var/obj/item/I in contents)
-		I.on_mob_death(src, gibbed)
 	if(mind && mind.name && mind.active && !istype(T.loc, /area/ctf))
 		deadchat_broadcast(" has died at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
 	if(mind)
 		mind.store_memory("Time of death: [tod]", 0)
-	remove_from_alive_mob_list()
-	if(!gibbed && !was_dead_before)
-		add_to_dead_mob_list()
 	set_drugginess(0)
 	set_disgust(0)
 	SetSleeping(0, 0)

@@ -1,19 +1,224 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/closed/mineral/random/no_caves,/area/ruin/unpowered)
-"c" = (/turf/closed/mineral/random/low_chance,/area/ruin/unpowered)
-"d" = (/turf/closed/mineral/bscrystal,/area/ruin/unpowered)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/mineral/random,
+/area/ruin/unpowered)
+"c" = (
+/turf/closed/mineral/random/low_chance,
+/area/ruin/unpowered)
+"d" = (
+/turf/closed/mineral/bscrystal,
+/area/ruin/unpowered)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaa
-aaaabbbbbaaaaaa
-aaabbbbbbbaaaaa
-aaabbbbbbbbaaaa
-aaabbbbcccbaaaa
-aaaabbbcdcbaaaa
-aaaaaabcccbbaaa
-aaaaaabbbbbbaaa
-aaaaaaaabbbbbaa
-aaaaaaaaaabbbba
-aaaaaaaaaaaabba
-aaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+b
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+b
+c
+d
+c
+b
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+b
+b
+c
+c
+c
+b
+b
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

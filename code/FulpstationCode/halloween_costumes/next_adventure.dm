@@ -34,14 +34,14 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 4
 	STR.set_holdable(list(
-		/obj/item/reagent_containers/food/snacks/grown/carrot
+		/obj/item/food/grown/carrot
 		))
 
 /obj/item/storage/belt/nextadventure_belt/full/PopulateContents()
-	new /obj/item/reagent_containers/food/snacks/grown/carrot(src)
-	new /obj/item/reagent_containers/food/snacks/grown/carrot(src)
-	new /obj/item/reagent_containers/food/snacks/grown/carrot(src)
-	new /obj/item/reagent_containers/food/snacks/grown/carrot(src)
+	new /obj/item/food/grown/carrot(src)
+	new /obj/item/food/grown/carrot(src)
+	new /obj/item/food/grown/carrot(src)
+	new /obj/item/food/grown/carrot(src)
 
 /obj/item/storage/backpack/nextadventure_fairy
 	name = "Ribbon"

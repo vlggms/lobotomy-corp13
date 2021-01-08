@@ -46,7 +46,7 @@
 					/obj/item/storage/box/matches = 12,
 					/obj/item/storage/fancy/cigarettes/cigars = 12,
 					/obj/item/reagent_containers/food/drinks/coffee = 12,
-					/obj/item/reagent_containers/food/snacks/donut = 12)
+					/obj/item/food/donut = 12)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
 					  /obj/item/storage/fancy/donut_box = 2)
 	premium = list(/obj/item/storage/belt/security/webbing = 5,
@@ -62,10 +62,10 @@
 	extra_price = 100
 	payment_department = ACCOUNT_SEC
 
-/obj/machinery/vending/dic/pre_throw(obj/item/I)
+/obj/machinery/vending/security/pre_throw(obj/item/I)
 	if(istype(I, /obj/item/grenade))
 		var/obj/item/grenade/G = I
-		G.preprime()
+		G.arm_grenade()
 	else if(istype(I, /obj/item/flashlight))
 		var/obj/item/flashlight/F = I
 		F.on = TRUE
@@ -77,12 +77,11 @@
 
 
 //Here we replace that insanely cluttered closet with a vendor.
-/obj/structure/closet/secure_closet/detective/Initialize()
-	..()
+/obj/structure/closet/secure_closet/detective/Initialize(mapload)
+	. = ..()
 	var/turf/T = get_turf(src)
 	new /obj/machinery/vending/dic(T)
 	qdel(src)
-
 
 /datum/supply_pack/security/vending/detective
 	name = "DicTech Supply Crate"

@@ -12,7 +12,7 @@
 
 	addtimer(CALLBACK(src, /obj/item/clothing/under/rank/security.proc/auto_register_bodycam, null, ITEM_SLOT_ICLOTHING), SEC_BODY_CAM_REG_DELAY)
 
-/obj/item/clothing/under/rank/security/proc/auto_register_bodycam(mob/user, slot)
+/obj/item/clothing/under/rank/security/proc/auto_register_bodycam(mob/living/user, slot)
 	if(!builtInCamera)
 		return
 	if(slot != ITEM_SLOT_ICLOTHING)

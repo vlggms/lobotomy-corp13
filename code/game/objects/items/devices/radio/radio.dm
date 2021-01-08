@@ -33,7 +33,7 @@
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
 
-///makes anyone who is talking through this anonymous.
+	///makes anyone who is talking through this anonymous.
 	var/anonymize = FALSE
 
 	// Encryption key handling
@@ -104,7 +104,7 @@
 
 /obj/item/radio/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
+	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))
@@ -408,21 +408,18 @@
 				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-			if(deactivate_integrated_borg_key(user)) //FULPSTATION Borg Radio PR by Surrealistik Jan 2020; we delete all borg type encryption keys.
-				return
 
 			if(keyslot)
 				var/turf/T = get_turf(user)
 				if(T)
 					keyslot.forceMove(T)
 					keyslot = null
-				to_chat(user, "<span class='notice'>You pop out the encryption key in the radio.</span>") //FULPSTATION
 
 			recalculateChannels()
 			to_chat(user, "<span class='notice'>You pop out the encryption key in the radio.</span>")
 
 		else
-			reactivate_integrated_borg_key(user) //FULPSTATION Borg Radio PR by Surrealistik Jan 2020; we activate any borg type encryption keys if there are no existing keys.
+			to_chat(user, "<span class='warning'>This radio doesn't have any encryption keys!</span>")
 
 	else if(istype(W, /obj/item/encryptionkey/))
 		if(keyslot)

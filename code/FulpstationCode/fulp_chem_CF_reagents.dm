@@ -6,25 +6,26 @@
 /datum/reagent/medicine/CF
 	harmful = FALSE
 
-var/bic1 = FALSE
-var/bic2 = FALSE
-var/kel1 = FALSE
-var/kel2 = FALSE
-var/tox1 = FALSE
-var/tox2 = FALSE
-var/tri1 = FALSE
-var/tri2 = FALSE
-var/chr1 = FALSE
+	var/bic1 = FALSE
+	var/bic2 = FALSE
+	var/kel1 = FALSE
+	var/kel2 = FALSE
+	var/tox1 = FALSE
+	var/tox2 = FALSE
+	var/tri1 = FALSE
+	var/tri2 = FALSE
+	var/chr1 = FALSE
 
-var/bicarHeal = 2
-var/keloHeal = 2
-var/toxHeal = 2
-var/tricHeal = 2
+	var/bicarHeal = 2
+	var/keloHeal = 2
+	var/toxHeal = 2
+	var/tricHeal = 2
 
-var/synthBicarHeal = 1
-var/synthKeloHeal = 1
-var/synthToxHeal = 1
-var/synthTricHeal = 1
+	var/synthBicarHeal = 1
+	var/synthKeloHeal = 1
+	var/synthToxHeal = 1
+	var/synthTricHeal = 1
+
 //Trekkie Chems :  Uses discarded recipes with new lock-reagent to keep it T4/5
 //Bicaridine (Brute Heal)
 /datum/reagent/medicine/CF/bicaridine
@@ -423,33 +424,33 @@ var/synthTricHeal = 1
 
 //Silver Sulfadiazine (Burn Heal) Retains old recipe
 /datum/reagent/medicine/CF/silver_sulfadiazine
-    name = "Silver Sulfadiazine"
-    description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
-    reagent_state = LIQUID
-    color = "#C8A5DC"
-    overdose_threshold = 45
+	name = "Silver Sulfadiazine"
+	description = "If used in touch-based applications, immediately restores burn wounds as well as restoring more over time. If ingested through other means or overdosed, deals minor toxin damage."
+	reagent_state = LIQUID
+	color = "#C8A5DC"
+	overdose_threshold = 45
 
 /datum/reagent/medicine/CF/silver_sulfadiazine/expose_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-    if(iscarbon(M) && M.stat != DEAD)
-        if(method in list(INGEST, VAPOR, INJECT))
-            M.adjustToxLoss(0.5*reac_volume)
-            if(show_message)
-                to_chat(M, "<span class='warning'>You don't feel so good...</span>")
-        else if(M.getFireLoss())
-            M.adjustFireLoss(-reac_volume)
-            if(show_message)
-                to_chat(M, "<span class='danger'>You feel your burns healing! It stings like hell!</span>")
-            M.emote("scream")
-            SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
-    ..()
+	if(iscarbon(M) && M.stat != DEAD)
+		if(method in list(INGEST, VAPOR, INJECT))
+			M.adjustToxLoss(0.5*reac_volume)
+			if(show_message)
+				to_chat(M, "<span class='warning'>You don't feel so good...</span>")
+		else if(M.getFireLoss())
+			M.adjustFireLoss(-reac_volume)
+			if(show_message)
+				to_chat(M, "<span class='danger'>You feel your burns healing! It stings like hell!</span>")
+			M.emote("scream")
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
+	..()
 
 /datum/reagent/medicine/CF/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
-    M.adjustFireLoss(-2*REMF, 0)
-    ..()
-    . = 1
+	M.adjustFireLoss(-2*REMF, 0)
+	..()
+	. = 1
 
 /datum/reagent/medicine/CF/silver_sulfadiazine/overdose_process(mob/living/M)
-    M.adjustFireLoss(2.5*REMF, 0)
-    M.adjustToxLoss(0.5, 0)
-    ..()
-    . = 1
+	M.adjustFireLoss(2.5*REMF, 0)
+	M.adjustToxLoss(0.5, 0)
+	..()
+	. = 1

@@ -20,9 +20,8 @@
 	sexes = FALSE
 	default_color = "e73f4e"
 	species_traits = list( NOEYESPRITES, NO_UNDERWEAR, DYNCOLORS, AGENDER, EYECOLOR) // EYECOLOR
-	mutant_bodyparts = list("beefmouth", "beefeyes")
+	mutant_bodyparts = list("beefmouth" = "Smile 1", "beefeyes" = "Olives")
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_EASYDISMEMBER, TRAIT_COLDBLOODED, TRAIT_SLEEPIMMUNE ) // , TRAIT_LIMBATTACHMENT)
-	default_features = list("beefcolor" = "e73f4e","beefmouth" = "Smile 1", "beefeyes" = "Olives")
 	offset_features = list(OFFSET_UNIFORM = list(0,2), OFFSET_ID = list(0,2), OFFSET_GLOVES = list(0,-4), OFFSET_GLASSES = list(0,3), OFFSET_EARS = list(0,3), OFFSET_SHOES = list(0,0), \
 						   OFFSET_S_STORE = list(0,2), OFFSET_FACEMASK = list(0,3), OFFSET_HEAD = list(0,3), OFFSET_FACE = list(0,3), OFFSET_BELT = list(0,3), OFFSET_BACK = list(0,2), \
 						   OFFSET_SUIT = list(0,2), OFFSET_NECK = list(0,3))
@@ -55,7 +54,7 @@
 	cellulardamage_desc = "meat degradation"
 
 
-/proc/proof_beefman_features(var/list/inFeatures)
+/proc/proof_beefman_features(list/inFeatures)
 	// Missing Defaults in DNA? Randomize!
 	if (inFeatures["beefcolor"] == null || inFeatures["beefcolor"] == "")
 		inFeatures["beefcolor"] = GLOB.color_list_beefman[pick(GLOB.color_list_beefman)]
@@ -64,7 +63,7 @@
 	if (inFeatures["beefmouth"] == null || inFeatures["beefmouth"] == "")
 		inFeatures["beefmouth"] = pick(GLOB.mouths_beefman)
 
-/mob/living/carbon/human/proc/adjust_bl_all(var/type = "add", var/amount)
+/mob/living/carbon/human/proc/adjust_bl_all(type = "add", amount)
 	for(var/i in bodyparts)
 		var/obj/item/bodypart/BP = i
 		switch(type)
@@ -181,10 +180,10 @@
 
 	// Step 2) Bleed out those juices by warmth, minus burn damage. If we are salted - bleed more
 	if (dehydrate > 0)
-		H.adjust_bl_all("=", clamp((H.bodytemperature - bodytemp_normal) / 20 - searJuices, 2, 12))
+		H.adjust_bl_all("=", clamp((H.bodytemperature - (bodytemp_normal + 18)) / 20 - searJuices, 2, 12))
 		dehydrate -= 0.5
 	else
-		H.adjust_bl_all("=", clamp((H.bodytemperature - bodytemp_normal) / 20 - searJuices, 0, 6))
+		H.adjust_bl_all("=", clamp((H.bodytemperature - (bodytemp_normal + 18)) / 20 - searJuices, 0, 6))
 
 	// Replenish Blood Faster! (But only if you actually make blood)
 	var/bleed_rate = 0
@@ -321,7 +320,7 @@
 
 			// Pry it off...
 			user.visible_message("[user] grabs onto [p_their()] own [affecting.name] and pulls.", \
-					 	 "<span class='notice'>You grab hold of your [affecting.name] and yank hard.</span>")
+			"<span class='notice'>You grab hold of your [affecting.name] and yank hard.</span>")
 			if (!do_mob(user,target))
 				return TRUE
 
@@ -352,10 +351,10 @@
 		if ((target_zone in allowedList))
 			if (user == H)
 				user.visible_message("[user] begins mashing [I] into [H]'s torso.", \
-						 	 "<span class='notice'>You begin mashing [I] into your torso.</span>")
+				"<span class='notice'>You begin mashing [I] into your torso.</span>")
 			else
 				user.visible_message("[user] begins mashing [I] into [H]'s torso.", \
-						 	 "<span class='notice'>You begin mashing [I] into [H]'s torso.</span>")
+				"<span class='notice'>You begin mashing [I] into [H]'s torso.</span>")
 
 			// Leave Melee Chain (so deleting the meat doesn't throw an error) <--- aka, deleting the meat that called this very proc.
 			spawn(1)

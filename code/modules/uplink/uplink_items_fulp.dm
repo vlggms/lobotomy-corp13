@@ -74,6 +74,16 @@
 	item = /obj/structure/closet/crate/laser_tag_partypack_blue
 	cost = 50
 
+/datum/uplink_item/race_restricted/diginoslip
+	name = "No-Slip Digitigrade Shoes"
+	desc = "Simple as that - Robust shoes for lizardmen aiming to control the galaxy. \
+		Now nothing can stop you, our friend. \
+		No longer the soap will ruin your villainous plans. \
+		No longer the clown will HONK you with banana by-products!"
+	cost = 2
+	item = /obj/item/clothing/shoes/digicombat/noslip
+	restricted_species = list("lizard")
+
 ////////////// INFILTRATION GAMEMODE ITEMS //////////////
 
 /datum/uplink_item/role_restricted/cybersunsuit

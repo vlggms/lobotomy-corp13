@@ -1484,7 +1484,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/starfury)
 "dx" = (
-/obj/machinery/power/rad_collector/anchored/delta,
+/obj/machinery/power/rad_collector/anchored,
 /obj/structure/cable,
 /turf/open/floor/circuit/green,
 /area/shuttle/sbc/supermatter)

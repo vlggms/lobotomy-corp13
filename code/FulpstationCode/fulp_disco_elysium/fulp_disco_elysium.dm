@@ -61,7 +61,6 @@
 	inhand_icon_state = "aerostatic_gloves_held"
 	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
 	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
-	can_be_cut = FALSE
 
 /obj/item/clothing/neck/tie/detective/disco_necktie
 	name = "horrific necktie"

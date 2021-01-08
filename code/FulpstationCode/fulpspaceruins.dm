@@ -17,10 +17,10 @@ DATU: Datums for map templates
 // FSS1 : Space Shower
 
 /obj/item/paper/crumpled/bloody/Newshowers
-    name = "note"
-    info = {"I certainly did not expect this<br>
+	name = "note"
+	info = {"I certainly did not expect this<br>
 	much blood from a simple shower-tile test.<br>
-    Oh well, we have so many test subjects."}
+	Oh well, we have so many test subjects."}
 
 /turf/open/floor/noslip/airless
 	initial_gas_mix = AIRLESS_ATMOS
@@ -108,7 +108,7 @@ DATU: Datums for map templates
 <strong><li>Launch - Day 1.</li></strong>
 				I can barely write after a day like this. Launch was early and the verifications took hours. The station was in orbit around the asteroid as planned. A few of the solars had minimal damage, but otherwise this station was perfect. Getting to know my crewmates was the real highlight of the day.<br>
 <br>
-Captain Sonador is the son of one of centcomm's top officers. He's harsh, focused, and clearly an unloved child. He seems to be a fair leader so long as you know your shit and pull your weight. He knows about everything there is to know about plasma energy and seems to know a lot beyond that as well. There's also Shirley Greene; expert botanist, nutritionist, and part-time chemist. She's clearly terrified of the mission, I don't understand her. She should be exited!<br><br>
+Captain Sonador is the son of one of Centcom's top officers. He's harsh, focused, and clearly an unloved child. He seems to be a fair leader so long as you know your shit and pull your weight. He knows about everything there is to know about plasma energy and seems to know a lot beyond that as well. There's also Shirley Greene; expert botanist, nutritionist, and part-time chemist. She's clearly terrified of the mission, I don't understand her. She should be exited!<br><br>
 Our first day has been full of busy work like activating the gravity generator, testing each vent, and other forms of monotony. Tomorrow we're scheduled to set foot on the asteroid for the first time.
 <ol></ol>
 <strong><li>The boring day - Day 3.</li></strong>
@@ -190,16 +190,16 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 // FSS3 : DND
 
 /obj/effect/mob_spawn/human/Dndplayer
-    name = "DnD player"
-    roundstart = FALSE
-    death = FALSE
-    random = TRUE
-    icon = 'icons/obj/machines/sleeper.dmi'
-    icon_state = "sleeper_s"
-    short_desc = "You are a very avid DnD player."
-    flavour_text = "You volunteered to go around in a specialised ship, playing DnD until you die."
-    important_info = "It is forbidden to attack other players."
-    outfit = /datum/outfit/spacebartender
+	name = "DnD player"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	short_desc = "You are a very avid DnD player."
+	flavour_text = "You volunteered to go around in a specialised ship, playing DnD until you die."
+	important_info = "It is forbidden to attack other players."
+	outfit = /datum/outfit/spacebartender
 
 /datum/outfit/spacebartender
 	name = "DnD player"
@@ -215,16 +215,16 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	id = /obj/item/card/id/syndicate/anyone
 
 /obj/effect/mob_spawn/human/DnDMaster
-    name = "DnD Master"
-    roundstart = FALSE
-    death = FALSE
-    random = TRUE
-    icon = 'icons/obj/machines/sleeper.dmi'
-    icon_state = "sleeper_s"
-    short_desc = "You are a very avid DnD Master"
-    flavour_text = "You volunteered to go around in a specialised ship, animating DnD sessions until you die."
-    important_info = "It is forbidden to attack other players."
-    outfit = /datum/outfit/spacebartenderDm
+	name = "DnD Master"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	short_desc = "You are a very avid DnD Master"
+	flavour_text = "You volunteered to go around in a specialised ship, animating DnD sessions until you die."
+	important_info = "It is forbidden to attack other players."
+	outfit = /datum/outfit/spacebartenderDm
 
 /datum/outfit/spacebartenderDm
 	name = "DnD Master"

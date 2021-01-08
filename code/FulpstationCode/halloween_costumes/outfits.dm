@@ -178,5 +178,5 @@ datum/outfit/halloween/viking
 
 datum/outfit/halloween/witch
 	name = "Costume: Witch"
-	head = /obj/item/clothing/mask/witch_hat
+	mask = /obj/item/clothing/mask/witch_hat
 	suit = /obj/item/clothing/suit/witch

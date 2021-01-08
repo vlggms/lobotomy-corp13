@@ -95,14 +95,15 @@
 	if(usr.incapacitated())
 		return
 
-	var/obj/item/card/id/I = usr.get_idcard(TRUE)
+	var/mob/living/usrl = usr
+	var/obj/item/card/id/I = usrl.get_idcard(TRUE)
 
 	if(!I || !check_access(I))
-		to_chat(usr, "<span class='warning'>Inadequate security clearance. Access denied.</span>")
+		to_chat(usrl, "<span class='warning'>Inadequate security clearance. Access denied.</span>")
 		playsound(loc, SEC_RADIO_SCAN_SOUND_DENY, get_clamped_volume(), TRUE, -1)
 		return
 
-	to_chat(usr, "<span class='warning'>You purge the scanner's logs.</span>")
+	to_chat(usrl, "<span class='warning'>You purge the scanner's logs.</span>")
 	log = list()
 	playsound(loc, SEC_BODY_CAM_SOUND, get_clamped_volume(), TRUE, -1)
 
@@ -114,7 +115,7 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
-/obj/item/detective_scanner/attackby(obj/item/W, mob/user, params)
+/obj/item/detective_scanner/attackby(obj/item/W, mob/living/user, params)
 	if(!istype(W, /obj/item/disk/forensic))
 		return
 	var/obj/item/disk/forensic/F = W

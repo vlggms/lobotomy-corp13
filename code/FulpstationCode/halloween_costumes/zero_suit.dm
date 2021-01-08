@@ -19,7 +19,6 @@
 	cold_protection = null
 	heat_protection = null
 	slowdown = 0
-	toggle_helmet_sound = 'sound/fulp_sounds/plastic_close.ogg'
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/toy
 
 /obj/item/clothing/suit/space/hardsuit/toy/varia

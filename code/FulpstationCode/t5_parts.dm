@@ -188,7 +188,7 @@
 
 ///T5 Motorized wheelchair code///
 
-/obj/vehicle/ridden/wheelchair/motorized/proc/RunOver(var/mob/living/carbon/H)
+/obj/vehicle/ridden/wheelchair/motorized/proc/RunOver(mob/living/carbon/H)
 	var/bloodiness = 0
 	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")
 	H.visible_message("<span class='danger'>[src] runs [H] over!</span>", "<span class='userdanger'>[src] runs you over!</span>")
