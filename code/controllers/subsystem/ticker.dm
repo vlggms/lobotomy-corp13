@@ -659,7 +659,7 @@ SUBSYSTEM_DEF(ticker)
 	update_everything_flag_in_db()
 	if(!round_end_sound)
 		round_end_sound = pick(\
-		'sound/roundend/bannedonfulp.ogg',
+		'sound/roundend/bannedonfulpstation.ogg',
 		'sound/roundend/imaghoul.ogg',
 		'sound/roundend/newroundsexy.ogg',
 		'sound/roundend/apcdestroyed.ogg',
