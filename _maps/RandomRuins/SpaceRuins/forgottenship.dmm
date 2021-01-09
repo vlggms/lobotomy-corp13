@@ -1,12 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/open/space/basic,
-/area/space)
-"ab" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/ruin/unpowered/no_grav)
 "ac" = (
 /obj/machinery/porta_turret/syndicate/energy{
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100);
@@ -20,16 +12,16 @@
 "ad" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -55,16 +47,16 @@
 "ah" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/item/ai_module/core/full/cybersun,
 /turf/open/floor/plasteel/dark,
@@ -77,12 +69,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "aj" = (
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
@@ -94,12 +86,12 @@
 	start_showpiece_type = /obj/item/gun/ballistic/automatic/pistol/deagle/camo
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -112,12 +104,12 @@
 	},
 /obj/structure/table,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/item/reagent_containers/glass/bottle/formaldehyde{
@@ -184,8 +176,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ax" = (
 /obj/effect/turf_decal/loading_area/red{
-	icon_state = "loadingarea_red";
-	dir = 8
+	dir = 8;
+	icon_state = "loadingarea_red"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -207,12 +199,12 @@
 /obj/item/storage/box/firingpins/syndicate,
 /obj/item/storage/box/firingpins/syndicate,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -239,8 +231,8 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -263,16 +255,16 @@
 	},
 /obj/effect/spawner/lootdrop/armory_contraband/cybersun,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -300,8 +292,8 @@
 	req_one_access_txt = "150"
 	},
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 9
+	dir = 9;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -314,12 +306,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "aI" = (
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -380,8 +372,8 @@
 /obj/structure/chair/stool/bar,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -408,8 +400,8 @@
 	req_one_access_txt = "150"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	icon_state = "airlock_cyclelink_helper";
-	dir = 1
+	dir = 1;
+	icon_state = "airlock_cyclelink_helper"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -429,8 +421,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "aX" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 9
+	dir = 9;
+	icon_state = "warningline"
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -438,8 +430,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "aY" = (
-/turf/open/space/basic,
-/area/ruin/unpowered/no_grav)
+/turf/template_noop,
+/area/template_noop)
 "aZ" = (
 /turf/closed/indestructible/syndicate,
 /area/ruin/space/has_grav/powered/syndicate_forgotten_vault)
@@ -475,8 +467,8 @@
 "be" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -489,8 +481,8 @@
 	screen_loc = ""
 	},
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -524,8 +516,8 @@
 /obj/item/storage/box/stockparts/deluxe,
 /obj/item/storage/box/beakers,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -553,8 +545,8 @@
 /obj/item/pickaxe/drill,
 /obj/item/mining_scanner,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -578,15 +570,15 @@
 "bo" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bp" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 10
+	dir = 10;
+	icon_state = "warningline"
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mineral/plastitanium,
@@ -599,8 +591,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 5
+	dir = 5;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -613,15 +605,15 @@
 /area/ruin/unpowered/no_grav)
 "bt" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 10
+	dir = 10;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "bu" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 9
+	dir = 9;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -665,8 +657,8 @@
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/structure/closet/crate/hydroponics,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 8
+	dir = 8;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -699,13 +691,13 @@
 /obj/item/borg/upgrade/transform/cybersun,
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -738,24 +730,24 @@
 /obj/item/toy/sword,
 /obj/item/toy/balloon/syndicate,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 5
+	dir = 5;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bD" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -773,12 +765,12 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -793,12 +785,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bG" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -815,8 +807,8 @@
 "bJ" = (
 /obj/structure/closet/crate/solarpanel_small,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 6
+	dir = 6;
+	icon_state = "warningline"
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mineral/plastitanium,
@@ -844,8 +836,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -853,7 +845,7 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/cable,
 /turf/open/space/basic,
-/area/space/nearstation)
+/area/template_noop)
 "bO" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "fscremate"
@@ -889,8 +881,8 @@
 "bU" = (
 /obj/machinery/ore_silo,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 10
+	dir = 10;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -900,16 +892,16 @@
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -918,12 +910,12 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -933,12 +925,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "bY" = (
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -947,12 +939,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ca" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -972,12 +964,12 @@
 	},
 /obj/item/ammo_box/c9mm,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -987,12 +979,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cd" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -1008,19 +1000,19 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cf" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -1033,12 +1025,12 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/decal/cleanable/dirt,
@@ -1049,12 +1041,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -1073,8 +1065,8 @@
 	screen_loc = ""
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
@@ -1085,8 +1077,8 @@
 	},
 /obj/item/switchblade,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 6
+	dir = 6;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -1094,25 +1086,25 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cm" = (
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1124,28 +1116,28 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 8
+	dir = 8;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cp" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 8
+	dir = 8;
+	icon_state = "warninglinecorner"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1154,12 +1146,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cq" = (
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden{
-	icon_state = "manifold-3";
-	dir = 8
+	dir = 8;
+	icon_state = "manifold-3"
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	icon_state = "manifold-2";
-	dir = 8
+	dir = 8;
+	icon_state = "manifold-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1179,8 +1171,8 @@
 	req_one_access_txt = "150"
 	},
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 5
+	dir = 5;
+	icon_state = "warningline"
 	},
 /obj/item/multitool,
 /obj/item/multitool,
@@ -1199,8 +1191,8 @@
 "cu" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
@@ -1224,8 +1216,8 @@
 "cy" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	icon_state = "scrub_map_on-2";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-2"
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1242,16 +1234,16 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cB" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -1267,8 +1259,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1282,16 +1274,16 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cE" = (
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	icon_state = "manifold-2";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-2"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1301,8 +1293,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1318,8 +1310,8 @@
 "cH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1329,8 +1321,8 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1354,16 +1346,16 @@
 	req_one_access_txt = "150"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	icon_state = "airlock_cyclelink_helper";
-	dir = 1
+	dir = 1;
+	icon_state = "airlock_cyclelink_helper"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cL" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -1380,12 +1372,12 @@
 "cN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -1396,8 +1388,8 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1407,12 +1399,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cQ" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -1438,8 +1430,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1449,8 +1441,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1471,8 +1463,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	icon_state = "manifold-2";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1488,13 +1480,13 @@
 "cY" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1514,8 +1506,8 @@
 	req_one_access_txt = "150"
 	},
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 1
+	dir = 1;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1524,8 +1516,8 @@
 	dir = 1
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1534,8 +1526,8 @@
 	dir = 1
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1577,8 +1569,8 @@
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/under/syndicate/skirt,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 9
+	dir = 9;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1587,12 +1579,12 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1624,8 +1616,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel/dark,
@@ -1643,8 +1635,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1665,8 +1657,8 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1700,13 +1692,13 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1714,13 +1706,13 @@
 /obj/machinery/atmospherics/pipe/manifold/supplymain/hidden,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1733,8 +1725,8 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
@@ -1746,25 +1738,25 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /mob/living/simple_animal/hostile/nanotrasen/elite,
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "du" = (
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warninglinecorner"
 	},
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warninglinecorner"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1792,8 +1784,8 @@
 	},
 /obj/item/clothing/head/hos/syndicate,
 /obj/effect/turf_decal/stripes/end{
-	icon_state = "warn_end";
-	dir = 4
+	dir = 4;
+	icon_state = "warn_end"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1813,48 +1805,48 @@
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/under/syndicate/skirt,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 10
+	dir = 10;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dx" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 6
+	dir = 6;
+	icon_state = "warningline"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dy" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dz" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dA" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1867,31 +1859,31 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dC" = (
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/light{
 	dir = 8
@@ -1900,8 +1892,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dD" = (
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/light{
@@ -1923,12 +1915,12 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1950,13 +1942,13 @@
 /obj/item/ammo_box/magazine/m9mm,
 /obj/item/ammo_box/magazine/m9mm,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1970,8 +1962,8 @@
 /obj/effect/mob_spawn/human/syndicatespace,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1980,8 +1972,8 @@
 /obj/item/paper/fluff/ruins/forgottenship/missionobj,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1990,8 +1982,8 @@
 /obj/item/ammo_box/c9mm,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -1999,45 +1991,45 @@
 /obj/effect/mob_spawn/human/syndicatespace,
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dM" = (
 /obj/machinery/vending/medical/syndicate_access/cybersun,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dN" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dO" = (
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2055,8 +2047,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2065,17 +2057,17 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2085,16 +2077,16 @@
 "dT" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -2108,12 +2100,12 @@
 	screen_loc = ""
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/decal/cleanable/blood/old,
@@ -2136,12 +2128,12 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -2149,8 +2141,8 @@
 "dX" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -2162,12 +2154,12 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -2206,8 +2198,8 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2222,12 +2214,12 @@
 	secure = 1
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2237,8 +2229,8 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2255,20 +2247,20 @@
 /obj/item/ammo_box/c9mm,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eh" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
@@ -2277,12 +2269,12 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2294,8 +2286,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ek" = (
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/plastitanium,
@@ -2326,8 +2318,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/critter,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 8
+	dir = 8;
+	icon_state = "bulb"
 	},
 /mob/living/simple_animal/cow{
 	desc = "Known for their milk and long story of crimes.";
@@ -2338,22 +2330,22 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eo" = (
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warninglinecorner"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "ep" = (
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warninglinecorner"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "eq" = (
 /obj/effect/turf_decal/stripes/corner{
-	icon_state = "warninglinecorner";
-	dir = 8
+	dir = 8;
+	icon_state = "warninglinecorner"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
@@ -2363,8 +2355,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
 "es" = (
 /obj/effect/turf_decal/loading_area/red{
-	icon_state = "loadingarea_red";
-	dir = 8
+	dir = 8;
+	icon_state = "loadingarea_red"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/xray{
@@ -2384,8 +2376,8 @@
 "eu" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -2492,8 +2484,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2506,8 +2498,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2565,12 +2557,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eQ" = (
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 4
+	dir = 4;
+	icon_state = "tile_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/button/door{
@@ -2632,12 +2624,12 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eT" = (
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 1
+	dir = 1;
+	icon_state = "tile_corner"
 	},
 /obj/effect/turf_decal/tile/blue{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/machinery/button/door{
 	id = "fswindow4";
@@ -2671,8 +2663,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2680,8 +2672,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2691,8 +2683,8 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2703,8 +2695,8 @@
 "fb" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
-	icon_state = "tile_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "tile_corner"
 	},
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -2714,8 +2706,8 @@
 "fc" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	icon_state = "scrub_map_on-2";
-	dir = 1
+	dir = 1;
+	icon_state = "scrub_map_on-2"
 	},
 /mob/living/simple_animal/hostile/nanotrasen/ranged/assault,
 /turf/open/floor/mineral/plastitanium/red,
@@ -2723,20 +2715,16 @@
 "fd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	icon_state = "scrub_map_on-2";
-	dir = 1
+	dir = 1;
+	icon_state = "scrub_map_on-2"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "fe" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	icon_state = "scrub_map_on-1";
-	dir = 4
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	icon_state = "scrub_map_on-2";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map_on-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2749,8 +2737,8 @@
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "fg" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	icon_state = "scrub_map_on-2";
-	dir = 1
+	dir = 1;
+	icon_state = "scrub_map_on-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2760,13 +2748,13 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
-	icon_state = "warningline";
-	dir = 1
+	dir = 1;
+	icon_state = "warningline"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2803,87 +2791,90 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
+"NC" = (
+/turf/template_noop,
+/area/ruin/unpowered/no_grav)
 
 (1,1,1) = {"
-aa
-aa
+aY
+aY
 ap
 ap
 as
-aa
-aa
+aY
+aY
 ap
 ap
 as
-aa
-aa
+aY
+aY
 ap
 ap
 as
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (2,1,1) = {"
-aa
-aa
+aY
+aY
 ap
 ap
 ap
-aa
-aa
+aY
+aY
 ap
 ap
 ap
-aa
-aa
+aY
+aY
 ap
 ap
 ap
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 bT
 bT
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (3,1,1) = {"
-aa
+aY
 af
 aL
 aL
@@ -2899,30 +2890,32 @@ aL
 aL
 aL
 af
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 dS
 bq
 bq
 ba
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (4,1,1) = {"
-aa
+aY
+aL
+aL
 bZ
 bZ
 bZ
@@ -2934,31 +2927,29 @@ bZ
 bZ
 bZ
 bZ
-bZ
-bZ
-bZ
-bZ
-aa
-aa
-aa
-aa
-aa
-aa
+aL
+aL
+aY
+aY
+aY
+aY
+aY
+aY
 bq
 bq
 bq
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (5,1,1) = {"
 ac
@@ -2978,26 +2969,26 @@ fj
 ev
 aL
 ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (6,1,1) = {"
 bZ
@@ -3017,26 +3008,26 @@ at
 ax
 at
 bZ
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
 dS
 ba
-aa
+aY
 "}
 (7,1,1) = {"
 bZ
@@ -3056,20 +3047,20 @@ bZ
 bZ
 bZ
 bZ
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
-aa
-aa
-aa
+aY
+aY
+aY
 dS
 ba
 bq
@@ -3095,21 +3086,21 @@ ez
 ez
 eR
 aL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 ba
 ba
 bq
@@ -3134,29 +3125,29 @@ ez
 ez
 aL
 aL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
 dS
 bq
 bT
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 dS
 bq
 ba
 ba
 "}
 (10,1,1) = {"
-aa
+aY
 eL
 eD
 eA
@@ -3172,30 +3163,30 @@ fe
 ez
 ez
 eM
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 bq
 bq
 bT
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
 ba
 dS
-aa
+aY
 "}
 (11,1,1) = {"
-aa
+aY
 eL
 eE
 eA
@@ -3211,30 +3202,30 @@ eY
 ez
 ez
 eM
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 bq
 bT
 bT
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (12,1,1) = {"
-aa
+aY
 eL
 eF
 eA
@@ -3250,27 +3241,27 @@ ff
 ez
 ez
 eM
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 bq
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (13,1,1) = {"
 ac
@@ -3290,26 +3281,26 @@ ez
 eB
 aL
 ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (14,1,1) = {"
 aL
@@ -3329,26 +3320,26 @@ ez
 ez
 eR
 aL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (15,1,1) = {"
 aL
@@ -3368,26 +3359,26 @@ bZ
 bZ
 bZ
 aL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aY
 aY
 aY
 aY
 aY
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (16,1,1) = {"
 aL
@@ -3407,12 +3398,12 @@ dC
 dE
 aL
 bZ
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
 aY
 aY
 aY
@@ -3421,12 +3412,12 @@ bq
 ba
 aY
 aY
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (17,1,1) = {"
 bZ
@@ -3446,11 +3437,11 @@ bI
 eS
 dI
 eN
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3461,11 +3452,11 @@ bq
 ba
 aY
 aY
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 "}
 (18,1,1) = {"
 bZ
@@ -3485,10 +3476,10 @@ bI
 cP
 dJ
 eN
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3500,11 +3491,11 @@ aZ
 bq
 ba
 aY
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 "}
 (19,1,1) = {"
 bZ
@@ -3524,9 +3515,9 @@ bI
 cP
 dK
 eN
-aa
-aa
-aa
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3539,11 +3530,11 @@ aZ
 aZ
 ba
 aY
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 "}
 (20,1,1) = {"
 aL
@@ -3563,9 +3554,9 @@ bI
 dF
 dL
 eN
-aa
-aa
-aa
+aY
+aY
+aY
 aY
 ba
 ba
@@ -3579,10 +3570,10 @@ aZ
 ba
 aY
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (21,1,1) = {"
 ac
@@ -3602,9 +3593,9 @@ dD
 dG
 aL
 ac
-aa
-aa
-aa
+aY
+aY
+aY
 aY
 ba
 bq
@@ -3618,13 +3609,13 @@ aZ
 ba
 bq
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (22,1,1) = {"
-aa
+aY
 aL
 bZ
 bZ
@@ -3640,10 +3631,10 @@ bZ
 bZ
 bZ
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3658,12 +3649,12 @@ ba
 ba
 aY
 aY
-aa
-aa
-aa
+aY
+aY
+aY
 "}
 (23,1,1) = {"
-aa
+aY
 aL
 ad
 eT
@@ -3679,10 +3670,10 @@ at
 cZ
 db
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 ba
 ba
@@ -3698,11 +3689,11 @@ ba
 ba
 aY
 aY
-aa
-aa
+aY
+aY
 "}
 (24,1,1) = {"
-aa
+aY
 eO
 aj
 ar
@@ -3718,10 +3709,10 @@ dH
 bZ
 bZ
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 ba
 ba
@@ -3737,11 +3728,11 @@ ba
 ba
 ba
 aY
-aa
-aa
+aY
+aY
 "}
 (25,1,1) = {"
-aa
+aY
 eO
 am
 cj
@@ -3757,10 +3748,10 @@ at
 cZ
 dc
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3776,8 +3767,8 @@ ba
 aY
 aY
 aY
-aa
-aa
+aY
+aY
 "}
 (26,1,1) = {"
 ac
@@ -3797,10 +3788,10 @@ bZ
 bZ
 bZ
 ac
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 ba
 ba
@@ -3815,8 +3806,8 @@ aY
 aY
 aY
 aY
-aa
-aa
+aY
+aY
 "}
 (27,1,1) = {"
 eP
@@ -3836,10 +3827,10 @@ bZ
 al
 bn
 el
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -3854,8 +3845,8 @@ ba
 ba
 ba
 aY
-aa
-aa
+aY
+aY
 "}
 (28,1,1) = {"
 bZ
@@ -3875,11 +3866,11 @@ bZ
 al
 bn
 bZ
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 aY
 aY
 bR
@@ -3893,8 +3884,8 @@ ba
 ba
 aY
 aY
-aa
-aa
+aY
+aY
 "}
 (29,1,1) = {"
 ae
@@ -3919,8 +3910,8 @@ bN
 bN
 bN
 bN
-ab
-ab
+bN
+bN
 bF
 bo
 bh
@@ -3931,9 +3922,9 @@ bq
 ba
 aY
 aY
-aa
-aa
-aa
+aY
+aY
+aY
 "}
 (30,1,1) = {"
 bZ
@@ -3953,11 +3944,11 @@ an
 al
 aJ
 bZ
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 aY
 aY
 bX
@@ -3969,10 +3960,10 @@ dr
 ba
 ba
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (31,1,1) = {"
 eP
@@ -3992,10 +3983,10 @@ bZ
 al
 bn
 el
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -4008,10 +3999,10 @@ dr
 ba
 ba
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (32,1,1) = {"
 ac
@@ -4031,10 +4022,10 @@ bZ
 bL
 aL
 ac
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 aY
 ba
 ba
@@ -4047,13 +4038,13 @@ bq
 ba
 bq
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (33,1,1) = {"
-aa
+aY
 bZ
 aL
 bZ
@@ -4069,11 +4060,11 @@ bZ
 bZ
 aL
 bZ
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 aY
 aY
 ba
@@ -4084,17 +4075,17 @@ bq
 bq
 ba
 ba
+NC
 aY
 aY
-aa
-aa
-aa
-aa
+aY
+aY
+aY
 "}
 (34,1,1) = {"
-aa
-aa
-aa
+aY
+aY
+aY
 aq
 aE
 cb
@@ -4106,29 +4097,29 @@ ch
 ee
 eg
 bZ
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aY
 aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+NC
 bq
 ba
 ba
 ba
 ba
 ba
+NC
+NC
 aY
 aY
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
 "}
 (35,1,1) = {"
 aL
@@ -4148,26 +4139,26 @@ aL
 aL
 bZ
 aL
-aa
-aa
-aa
-aa
-aa
-aa
 aY
 aY
 aY
 aY
 aY
 aY
+NC
+NC
+NC
+NC
+NC
+NC
+NC
+NC
 aY
 aY
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 "}
 (36,1,1) = {"
 bZ
@@ -4187,25 +4178,25 @@ aL
 df
 dw
 bZ
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 "}
 (37,1,1) = {"
@@ -4226,24 +4217,24 @@ da
 du
 dx
 aL
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
 dS
-aa
+aY
 dS
 ba
 "}
@@ -4265,19 +4256,19 @@ aL
 dv
 aL
 ac
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 ba
 bq
@@ -4287,7 +4278,7 @@ ba
 dS
 "}
 (39,1,1) = {"
-aa
+aY
 bZ
 aL
 aL
@@ -4303,19 +4294,19 @@ eu
 aL
 aL
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 dS
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 ba
 ba
@@ -4323,11 +4314,11 @@ bq
 bq
 bq
 dS
-aa
+aY
 "}
 (40,1,1) = {"
-aa
-aa
+aY
+aY
 bZ
 bZ
 bW
@@ -4341,33 +4332,33 @@ ef
 ei
 bZ
 bZ
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
 dS
 ba
 ba
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 dS
 dS
-aa
-aa
-aa
+aY
+aY
+aY
 "}
 (41,1,1) = {"
-aa
-aa
-aa
+aY
+aY
+aY
 ac
 au
 au
@@ -4379,105 +4370,105 @@ au
 au
 au
 ac
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
 dS
 bq
 ba
 dS
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (42,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 bq
 bq
 bq
 ba
 ba
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}
 (43,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 dS
 bq
 ba
 dS
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
+aY
 "}

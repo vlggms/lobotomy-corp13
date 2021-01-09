@@ -110,8 +110,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/wood,
 /area/ruin/has_grav/prototype/Captain)
@@ -181,8 +181,8 @@
 	dir = 8
 	},
 /obj/machinery/light/small/built{
-	icon_state = "bulb-empty";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -334,8 +334,8 @@
 "bc" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/carp{
-	icon_state = "base";
-	dir = 8
+	dir = 8;
+	icon_state = "base"
 	},
 /turf/open/floor/plasteel/airless/cafeteria,
 /area/ruin/has_grav/prototype/kitchen)
@@ -386,8 +386,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/medsci)
@@ -396,8 +396,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/has_grav/prototype/brig)
@@ -464,8 +464,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/wood,
 /area/ruin/has_grav/prototype/Captain)
@@ -556,8 +556,8 @@
 "bJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/medsci)
@@ -657,8 +657,8 @@
 	dir = 8
 	},
 /obj/machinery/light/small/built{
-	icon_state = "bulb-empty";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -718,8 +718,8 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	icon_state = "manifold-2";
-	dir = 8
+	dir = 8;
+	icon_state = "manifold-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -753,8 +753,8 @@
 "cj" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/engineering)
@@ -813,16 +813,16 @@
 "cu" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "cv" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/engineering)
@@ -845,8 +845,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/hallway)
@@ -859,12 +859,12 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/hallway)
@@ -872,8 +872,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2,
@@ -888,8 +888,8 @@
 "cD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -944,12 +944,12 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -982,8 +982,8 @@
 "cR" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 1
+	dir = 1;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/hallway)
@@ -1056,13 +1056,13 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -1142,12 +1142,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-3";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-3"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1161,8 +1161,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1170,8 +1170,8 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -1191,8 +1191,8 @@
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/built{
-	icon_state = "bulb-empty";
-	dir = 1
+	dir = 1;
+	icon_state = "bulb-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/dorms)
@@ -1223,8 +1223,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -1236,14 +1236,14 @@
 /area/ruin/has_grav/prototype/medsci)
 "dE" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/structure/cable,
 /obj/structure/closet/crate/solarpanel_medium,
 /obj/machinery/light/small{
-	icon_state = "bulb";
-	dir = 8
+	dir = 8;
+	icon_state = "bulb"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/engineering)
@@ -1327,12 +1327,12 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-3";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1349,8 +1349,8 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
@@ -1372,13 +1372,13 @@
 /area/ruin/has_grav/prototype/hallway)
 "dU" = (
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-3";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1483,8 +1483,8 @@
 /area/ruin/space/has_grav/powered)
 "ek" = (
 /obj/structure/shuttle/engine/heater{
-	icon_state = "heater";
-	dir = 4
+	dir = 4;
+	icon_state = "heater"
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/powered)
@@ -1494,8 +1494,8 @@
 /area/ruin/has_grav/prototype/engineering)
 "em" = (
 /obj/machinery/atmospherics/pipe/layer_manifold/visible{
-	icon_state = "manifoldlayer";
-	dir = 4
+	dir = 4;
+	icon_state = "manifoldlayer"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1511,8 +1511,8 @@
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	icon_state = "manifold-3";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-3"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1561,8 +1561,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1574,8 +1574,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -1595,8 +1595,8 @@
 /area/ruin/has_grav/prototype/dorms)
 "ez" = (
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -1615,8 +1615,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/dorms)
@@ -1628,12 +1628,10 @@
 "eD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	icon_state = "manifold-2";
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	icon_state = "manifold-2";
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
@@ -1647,8 +1645,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/dorms)
@@ -1694,16 +1692,16 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
 "eN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
-	icon_state = "pipe11-3";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1739,8 +1737,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
@@ -1754,8 +1752,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1812,8 +1810,8 @@
 "eW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/trinary/filter/flipped{
-	icon_state = "filter_off-0_f";
-	dir = 1
+	dir = 1;
+	icon_state = "filter_off-0_f"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1842,8 +1840,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -1861,8 +1859,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-3";
-	dir = 4
+	dir = 4;
+	icon_state = "vent_map-3"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1877,24 +1875,24 @@
 	pixel_y = -32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "ff" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
 "fg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/has_grav/prototype/brig)
@@ -1904,8 +1902,8 @@
 	amount = 2
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/wood,
 /area/ruin/has_grav/prototype/Captain)
@@ -1913,8 +1911,8 @@
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -1946,8 +1944,8 @@
 "fm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/layer2{
-	icon_state = "scrub_map-2";
-	dir = 4
+	dir = 4;
+	icon_state = "scrub_map-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
@@ -1980,8 +1978,8 @@
 /area/ruin/has_grav/prototype/engineering)
 "fr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-3";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map-3"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -2002,30 +2000,30 @@
 "fu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-3";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-3"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
 "fv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 4
+	dir = 4;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
 "fw" = (
 /obj/structure/shuttle/engine/propulsion/burst{
-	icon_state = "propulsion";
-	dir = 4
+	dir = 4;
+	icon_state = "propulsion"
 	},
 /turf/open/space/basic,
 /area/ruin/space/has_grav/powered)
 "fx" = (
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 1
+	dir = 1;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
@@ -2059,8 +2057,8 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -2088,8 +2086,8 @@
 "fG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -2100,8 +2098,8 @@
 "fI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -2120,8 +2118,8 @@
 "fL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/arrivals)
@@ -2134,8 +2132,8 @@
 "fQ" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/carp{
-	icon_state = "base";
-	dir = 8
+	dir = 8;
+	icon_state = "base"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -2143,8 +2141,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/box/stockparts/basic,
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 4
+	dir = 4;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
@@ -2223,8 +2221,8 @@
 /area/ruin/has_grav/prototype/arrivals)
 "gh" = (
 /obj/effect/decal/cleanable/blood/footprints{
-	icon_state = "blood1";
-	dir = 8
+	dir = 8;
+	icon_state = "blood1"
 	},
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg3"
@@ -2267,8 +2265,8 @@
 "gq" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/carp{
-	icon_state = "base";
-	dir = 8
+	dir = 8;
+	icon_state = "base"
 	},
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/medsci)
@@ -2301,8 +2299,8 @@
 /area/ruin/has_grav/prototype/botany)
 "gv" = (
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 4
+	dir = 4;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plating,
 /area/ruin/has_grav/prototype/botany)
@@ -2325,8 +2323,8 @@
 /area/ruin/has_grav/prototype/botany)
 "gy" = (
 /mob/living/simple_animal/hostile/carp{
-	icon_state = "base";
-	dir = 8
+	dir = 8;
+	icon_state = "base"
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -2339,8 +2337,8 @@
 	pixel_y = -4
 	},
 /obj/machinery/light{
-	icon_state = "tube";
-	dir = 8
+	dir = 8;
+	icon_state = "tube"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -2384,8 +2382,8 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/built{
-	icon_state = "tube-empty";
-	dir = 1
+	dir = 1;
+	icon_state = "tube-empty"
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
