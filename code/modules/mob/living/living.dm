@@ -1,5 +1,6 @@
 /mob/living/Initialize()
 	. = ..()
+	create_reagents(1000)
 	register_init_signals()
 	if(unique_name)
 		set_name()

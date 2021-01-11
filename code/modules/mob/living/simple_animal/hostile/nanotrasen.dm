@@ -31,6 +31,11 @@
 	dodging = TRUE
 	footstep_type = FOOTSTEP_MOB_SHOE
 
+/mob/living/simple_animal/hostile/nanotrasen/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_their(TRUE)] armor is too tough!</span>")
+	return FALSE
+
 /mob/living/simple_animal/hostile/nanotrasen/screaming
 	icon_state = "nanotrasen"
 	icon_living = "nanotrasen"

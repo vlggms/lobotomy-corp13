@@ -11,8 +11,8 @@
 	create_reagents(50, NO_REACT)
 
 /obj/projectile/bullet/dart/on_hit(atom/target, blocked = FALSE)
-	if(iscarbon(target))
-		var/mob/living/carbon/M = target
+	if(isliving(target))
+		var/mob/living/M = target
 		if(blocked != 100) // not completely blocked
 			if(M.can_inject(null, FALSE, def_zone, piercing)) // Pass the hit zone to see if it can inject by whether it hit the head or the body.
 				..()

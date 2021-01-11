@@ -14,7 +14,7 @@
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose_threshold = 30
 
-/datum/reagent/drug/space_drugs/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/space_drugs/on_mob_life(mob/living/M)
 	M.set_drugginess(15)
 	if(isturf(M.loc) && !isspaceturf(M.loc))
 		if(!HAS_TRAIT(M, TRAIT_IMMOBILIZED))
@@ -51,7 +51,7 @@
 		mytray.adjustToxic(round(chems.get_reagent_amount(type)))
 		mytray.adjustPests(-rand(1,2))
 
-/datum/reagent/drug/nicotine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/nicotine/on_mob_life(mob/living/M)
 	if(prob(1))
 		var/smoke_message = pick("You feel relaxed.", "You feel calmed.","You feel alert.","You feel rugged.")
 		to_chat(M, "<span class='notice'>[smoke_message]</span>")
@@ -78,7 +78,7 @@
 	overdose_threshold = 20
 	addiction_threshold = 10
 
-/datum/reagent/drug/crank/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/crank/on_mob_life(mob/living/M)
 	if(prob(5))
 		var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
 		to_chat(M, "<span class='notice'>[high_message]</span>")
@@ -128,7 +128,7 @@
 	addiction_threshold = 15
 
 
-/datum/reagent/drug/krokodil/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/krokodil/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel calm.", "You feel collected.", "You feel like you need to relax.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
@@ -187,7 +187,7 @@
 	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/methamphetamine)
 	..()
 
-/datum/reagent/drug/methamphetamine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/methamphetamine/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel hyper.", "You feel like you need to go faster.", "You feel like you can run the world.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
@@ -280,7 +280,7 @@
 		QDEL_NULL(rage)
 	..()
 
-/datum/reagent/drug/bath_salts/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/bath_salts/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
@@ -360,7 +360,7 @@
 	reagent_state = LIQUID
 	color = "#78FFF0"
 
-/datum/reagent/drug/aranesp/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/aranesp/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
@@ -391,10 +391,12 @@
 	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "happiness_drug")
 	..()
 
-/datum/reagent/drug/happiness/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/happiness/on_mob_life(mob/living/M)
 	M.jitteriness = 0
 	M.set_confusion(0)
-	M.disgust = 0
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.disgust = 0
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
 	..()
 	. = 1
@@ -465,7 +467,7 @@
 	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
 	..()
 
-/datum/reagent/drug/pumpup/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/pumpup/on_mob_life(mob/living/M)
 	M.Jitter(5)
 
 	if(prob(5))
@@ -535,7 +537,7 @@
 	addiction_threshold = 6
 	can_synth = TRUE
 
-/datum/reagent/drug/maint/powder/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/maint/powder/on_mob_life(mob/living/M)
 	. = ..()
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN,0.1)
 	// 5x if you want to OD, you can potentially go higher, but good luck managing the brain damage.
@@ -567,7 +569,7 @@
 	. = ..()
 	ADD_TRAIT(L,TRAIT_HARDLY_WOUNDED,type)
 
-/datum/reagent/drug/maint/sludge/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/maint/sludge/on_mob_life(mob/living/M)
 	. = ..()
 	M.adjustToxLoss(0.5)
 
@@ -595,7 +597,7 @@
 	addiction_threshold = 10
 	can_synth = TRUE
 
-/datum/reagent/drug/maint/tar/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/maint/tar/on_mob_life(mob/living/M)
 	. = ..()
 
 	M.AdjustStun(-10)

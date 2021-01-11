@@ -49,7 +49,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/bicaridine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/bicaridine/on_mob_life(mob/living/M)
 	if(bic1 == TRUE)
 		M.adjustBruteLoss(-bicarHeal*REMF, 0)
 	. = ..()
@@ -81,7 +81,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/synth_bicaridine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/synth_bicaridine/on_mob_life(mob/living/M)
 	if(bic2 == TRUE)
 		M.adjustBruteLoss(-synthBicarHeal*REMF, 0)
 	. = ..()
@@ -113,7 +113,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/kelotane/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/kelotane/on_mob_life(mob/living/M)
 	if(kel1 == TRUE)
 		M.adjustFireLoss(-keloHeal*REMF, 0)
 	. = ..()
@@ -145,7 +145,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/synth_kelotane/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/synth_kelotane/on_mob_life(mob/living/M)
 	if(kel2 == TRUE)
 		M.adjustFireLoss(-synthKeloHeal*REMF, 0)
 	. = ..()
@@ -178,7 +178,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/antitoxin/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/antitoxin/on_mob_life(mob/living/M)
 	if(tox1 == TRUE)
 		M.adjustToxLoss(-toxHeal*REMF, 0)
 	. = ..()
@@ -210,7 +210,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/synth_antitoxin/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/synth_antitoxin/on_mob_life(mob/living/M)
 	if(tox2 == TRUE)
 		M.adjustToxLoss(-synthToxHeal*REMF, 0)
 	. = ..()
@@ -244,7 +244,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/tricordrazine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/tricordrazine/on_mob_life(mob/living/M)
 	if(tri1 == TRUE)
 		M.adjustBruteLoss(-tricHeal*REMF, 0)
 		M.adjustFireLoss(-tricHeal*REMF, 0)
@@ -283,7 +283,7 @@
 	..()
 	. = 1
 
-/datum/reagent/medicine/CF/synth_tricordrazine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/synth_tricordrazine/on_mob_life(mob/living/M)
 	if(tri2 == TRUE)
 		M.adjustBruteLoss(-synthTricHeal*REMF, 0)
 		M.adjustFireLoss(-synthTricHeal*REMF, 0)
@@ -326,7 +326,7 @@
 	..()
 	return TRUE
 
-/datum/reagent/medicine/CF/charcoal/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/charcoal/on_mob_life(mob/living/M)
 	M.adjustToxLoss(-2.0*REMF, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != /datum/reagent/medicine/CF/charcoal)
@@ -411,7 +411,7 @@
 				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
-/datum/reagent/medicine/CF/styptic/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/styptic/on_mob_life(mob/living/M)
 	M.adjustBruteLoss(-2*REMF, 0)
 	..()
 	.=1
@@ -444,7 +444,7 @@
 			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	..()
 
-/datum/reagent/medicine/CF/silver_sulfadiazine/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/CF/silver_sulfadiazine/on_mob_life(mob/living/M)
 	M.adjustFireLoss(-2*REMF, 0)
 	..()
 	. = 1

@@ -28,6 +28,10 @@
 	if(world.time > life_span)
 		death()
 
+/mob/living/simple_animal/hostile/illusion/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] ghost-like!</span>")
+	return FALSE
 
 /mob/living/simple_animal/hostile/illusion/proc/Copy_Parent(mob/living/original, life = 50, hp = 100, damage = 0, replicate = 0 )
 	appearance = original.appearance
