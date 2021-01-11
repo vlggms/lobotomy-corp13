@@ -19,7 +19,7 @@
 	say_mod = "gurgles"
 	sexes = FALSE
 	default_color = "e73f4e"
-	species_traits = list( NOEYESPRITES, NO_UNDERWEAR, DYNCOLORS, AGENDER, EYECOLOR) // EYECOLOR
+	species_traits = list( NOEYESPRITES, NO_UNDERWEAR, DYNCOLORS, AGENDER, EYECOLOR, LIPS, HAS_FLESH, HAS_BONE) // EYECOLOR
 	mutant_bodyparts = list("beefmouth" = "Smile 1", "beefeyes" = "Olives")
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_EASYDISMEMBER, TRAIT_COLDBLOODED, TRAIT_SLEEPIMMUNE ) // , TRAIT_LIMBATTACHMENT)
 	offset_features = list(OFFSET_UNIFORM = list(0,2), OFFSET_ID = list(0,2), OFFSET_GLOVES = list(0,-4), OFFSET_GLASSES = list(0,3), OFFSET_EARS = list(0,3), OFFSET_SHOES = list(0,0), \
