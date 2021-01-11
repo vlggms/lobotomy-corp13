@@ -42,6 +42,11 @@
 	. = ..()
 	deathmessage = "[src] blows apart!"
 
+/mob/living/simple_animal/hostile/hivebot/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] too tough!</span>")
+	return FALSE
+
 /mob/living/simple_animal/hostile/hivebot/Aggro()
 	. = ..()
 	a_intent_change(INTENT_HARM)

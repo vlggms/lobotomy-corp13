@@ -30,6 +30,11 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 
+/mob/living/simple_animal/hostile/russian/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_their(TRUE)] armor is too tough!</span>")
+	return FALSE
+
 /mob/living/simple_animal/hostile/russian/ranged
 	icon_state = "russianranged"
 	icon_living = "russianranged"

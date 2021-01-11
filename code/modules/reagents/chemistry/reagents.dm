@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	return SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_TURF, exposed_turf, reac_volume)
 
 /// Called from [/datum/reagents/proc/metabolize]
-/datum/reagent/proc/on_mob_life(mob/living/carbon/M)
+/datum/reagent/proc/on_mob_life(mob/living/M)
 	current_cycle++
 	if(length(reagent_removal_skip_list))
 		return

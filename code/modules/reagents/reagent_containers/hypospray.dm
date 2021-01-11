@@ -28,7 +28,7 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return FALSE
-	if(!iscarbon(M))
+	if(!isliving(M))
 		return FALSE
 
 	//Always log attemped injects for admins

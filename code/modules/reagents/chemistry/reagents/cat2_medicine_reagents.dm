@@ -16,7 +16,7 @@
 	var/helbent = FALSE
 	var/reaping = FALSE
 
-/datum/reagent/medicine/c2/helbital/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/helbital/on_mob_life(mob/living/M)
 	. = TRUE
 	var/death_is_coming = (M.getToxLoss() + M.getOxyLoss() + M.getFireLoss() + M.getBruteLoss())
 	var/thou_shall_heal = 0
@@ -85,7 +85,7 @@
 	taste_description = "bitter with a hint of alcohol"
 	reagent_state = SOLID
 
-/datum/reagent/medicine/c2/libital/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/libital/on_mob_life(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.3*REM)
 	M.adjustBruteLoss(-3*REM)
 	..()
@@ -98,7 +98,7 @@
 	color = "#FFFF6B"
 	overdose_threshold = 20
 
-/datum/reagent/medicine/c2/probital/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/probital/on_mob_life(mob/living/M)
 	M.adjustBruteLoss(-2.25*REM, FALSE)
 	var/ooo_youaregettingsleepy = 3.5
 	switch(round(M.getStaminaLoss()))
@@ -142,7 +142,7 @@
 	var/resetting_probability = 0
 	var/spammer = 0
 
-/datum/reagent/medicine/c2/lenturi/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/lenturi/on_mob_life(mob/living/M)
 	M.adjustFireLoss(-3 * REM)
 	M.adjustOrganLoss(ORGAN_SLOT_STOMACH, 0.4 * REM)
 	..()
@@ -164,7 +164,7 @@
 	var/resetting_probability = 0
 	var/message_cd = 0
 
-/datum/reagent/medicine/c2/aiuri/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/aiuri/on_mob_life(mob/living/M)
 	M.adjustFireLoss(-2*REM)
 	M.adjustOrganLoss(ORGAN_SLOT_EYES,0.25*REM)
 	..()
@@ -178,7 +178,7 @@
 	overdose_threshold = 25
 	reagent_weight = 0.6
 
-/datum/reagent/medicine/c2/hercuri/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/hercuri/on_mob_life(mob/living/M)
 	if(M.getFireLoss() > 50)
 		M.adjustFireLoss(-2*REM, FALSE)
 	else
@@ -192,7 +192,7 @@
 	..()
 	. = TRUE
 
-/datum/reagent/medicine/c2/hercuri/expose_mob(mob/living/carbon/exposed_mob, methods=VAPOR, reac_volume)
+/datum/reagent/medicine/c2/hercuri/expose_mob(mob/living/exposed_mob, methods=VAPOR, reac_volume)
 	. = ..()
 	if(!(methods & VAPOR))
 		return
@@ -269,7 +269,7 @@
 	description = "A medicine that shifts functionality based on temperature. Colder temperatures incurs radiation removal while hotter temperatures promote antitoxicity. Damages the heart." //CHEM HOLDER TEMPS, NOT AIR TEMPS
 	var/radbonustemp = (T0C - 100) //being below this number gives you 10% off rads.
 
-/datum/reagent/medicine/c2/seiver/on_mob_metabolize(mob/living/carbon/human/M)
+/datum/reagent/medicine/c2/seiver/on_mob_metabolize(mob/living/M)
 	. = ..()
 	radbonustemp = rand(radbonustemp - 50, radbonustemp + 50) // Basically this means 50K and below will always give the percent heal, and upto 150K could. Calculated once.
 
@@ -355,7 +355,7 @@
 	C.reagents.add_reagent(/datum/reagent/medicine/c2/musiver, conversion_amount)
 	..()
 
-/datum/reagent/medicine/c2/syriniver/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/syriniver/on_mob_life(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.8)
 	M.adjustToxLoss(-1*REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
@@ -382,7 +382,7 @@
 	overdose_threshold = 25
 	var/datum/brain_trauma/mild/muscle_weakness/U
 
-/datum/reagent/medicine/c2/musiver/on_mob_life(mob/living/carbon/M)
+/datum/reagent/medicine/c2/musiver/on_mob_life(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER, 0.1)
 	M.adjustToxLoss(-1*REM, 0)
 	for(var/datum/reagent/R in M.reagents.reagent_list)

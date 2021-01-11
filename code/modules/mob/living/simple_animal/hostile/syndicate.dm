@@ -48,6 +48,11 @@
 	rapid_melee = 2
 	footstep_type = FOOTSTEP_MOB_SHOE
 
+/mob/living/simple_animal/hostile/syndicate/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_their(TRUE)] armor is too tough!</span>")
+	return FALSE
+
 ///////////////Melee////////////
 
 /mob/living/simple_animal/hostile/syndicate/space

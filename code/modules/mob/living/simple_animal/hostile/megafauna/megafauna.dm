@@ -68,6 +68,11 @@
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
 
+/mob/living/simple_animal/hostile/megafauna/can_inject(mob/user, error_msg)
+	if(error_msg)
+		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] too tough!</span>")
+	return FALSE
+
 /mob/living/simple_animal/hostile/megafauna/Moved()
 	if(nest && nest.parent && get_dist(nest.parent, src) > nest_range)
 		var/turf/closest = get_turf(nest.parent)
