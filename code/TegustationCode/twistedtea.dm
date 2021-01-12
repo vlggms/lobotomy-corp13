@@ -44,11 +44,11 @@
 		return
 	
 	if(broken)
-		to_chat(usr, "<span class='warning'>\The [src]'s igniter has been used and is no longer functional.</span>")
+		to_chat(usr, "<span class='warning'>The [src]'s igniter has been used and is no longer functional.</span>")
 		return
 	
 	if (src.reagents.total_volume < max_water) // Just in case we somehow get rid of the water
-		to_chat(usr, "<span class='warning'>\The [src] does not contain enough water!</span>")
+		to_chat(usr, "<span class='warning'>The [src] does not contain enough water!</span>")
 		return
 	
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
