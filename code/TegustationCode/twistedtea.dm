@@ -51,11 +51,17 @@
 
 
 
+
+
+//Throws broken item away
 /obj/item/melee/twistedtea/attack_self(mob/user)
 	if(!broken)
 		return
 	to_chat(usr, "<span class='warning'>You crumple up and throw away the [src].</span>")
 	qdel(src)
+
+
+
 
 
 /obj/item/melee/twistedtea/attack(mob/living/target, mob/living/user)
@@ -115,6 +121,8 @@
 		attack_verb_simple = attack_verb_simple_broken
 
 
+
+
 //Particle movement loop
 /obj/item/melee/twistedtea/proc/move_particles(list/particles, repetition=0)
 	//Check if there's anything in here first
@@ -139,11 +147,15 @@
 
 
 
+
+
 /obj/item/melee/twistedtea/examine(mob/user)
 	. = ..()
 
 	if(broken)
 		. += "It has already been used and no longer functions."
+
+
 
 
 
@@ -173,6 +185,10 @@
 
 
 
+
+
+//Crafting recipes
+
 /datum/crafting_recipe/twistedtea
 	name = "Twisted Tea"
 	result = /obj/item/melee/twistedtea
@@ -183,6 +199,28 @@
 	time = 15
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+
+
+
+//Uplink data
+
+/datum/uplink_item/dangerous/spacelubetea
+	name = "SpaceLube Tea"
+	desc = "A special twisted tea filled with a pressurized space lube payload."
+	cost = 2
+	item = /obj/item/melee/twistedtea/clownops
+	surplus = 0
+	include_modes = list(/datum/game_mode/nuclear/clown_ops)
+
+
+/datum/uplink_item/dangerous/incendiarytea
+	name = "Incendiary Tea"
+	desc = "A special twisted tea filled with a pressurized phlogiston payload."
+	cost = 2
+	item = /obj/item/melee/twistedtea/incendiary
+	surplus = 0
+
 
 //***********************************************************
 //**** Twisted Tea - Glubtok, Jan 2021 - END
