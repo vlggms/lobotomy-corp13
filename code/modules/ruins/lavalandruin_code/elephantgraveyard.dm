@@ -70,13 +70,6 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "puddle-oil"
 	dispensedreagent = /datum/reagent/fuel/oil
-    
-/obj/structure/sink/oil_well/water
-	name = "oil well"
-	desc = "A bubbling pool of oil. This would probably be valuable, had bluespace technology not destroyed the need for fossil fuels 200 years ago."
-	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "puddle-oil"
-	dispensedreagent = /datum/reagent/fuel/oil
 
 /obj/structure/sink/oil_well/Initialize()
 	.=..()
