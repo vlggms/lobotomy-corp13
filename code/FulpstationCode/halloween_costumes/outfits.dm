@@ -68,7 +68,7 @@
 	suit = /obj/item/clothing/suit/zombie_rider
 	plasma_compatible = TRUE
 
-datum/outfit/halloween/alien_green
+/datum/outfit/halloween/alien_green
 	name = "Costume: Green Alien"
 	head = /obj/item/clothing/head/green_head
 	suit = /obj/item/clothing/suit/green_alien

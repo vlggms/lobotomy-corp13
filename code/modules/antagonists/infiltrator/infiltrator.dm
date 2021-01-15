@@ -15,8 +15,7 @@
 /datum/antagonist/traitor/infiltrator/event
 	name = "Infiltrator (Event)"
 	should_give_codewords = TRUE //There is a pretty good chance that infiltrator will spawn in Traitors round, so why not?
-	hijack_chance = 0 //Normal mid-round infiltrators will not interrupt the ongoing round with hjiack, \
-	unless they get lucky with faction.
+	hijack_chance = 0 //Normal mid-round infiltrators will not interrupt the ongoing round with hjiack, unless they get lucky with faction.
 	dagd_chance = 0
 
 /datum/antagonist/traitor/infiltrator/event/move_to_spawnpoint() //Mid-round infiltrators are moved on spawn by event.
@@ -40,8 +39,7 @@
 	owner.current.forceMove(pick(emergency_locs))
 
 
-	owner.current.reagents.add_reagent(/datum/reagent/medicine/leporazine, 30) //Fool-Proof: They won't just die in space \
-	due to thermal regulator being turned off.
+	owner.current.reagents.add_reagent(/datum/reagent/medicine/leporazine, 30) //Fool-Proof: They won't just die in space due to thermal regulator being turned off.
 
 /datum/antagonist/traitor/infiltrator/proc/equip_agent()
 	var/mob/living/carbon/human/H = owner.current
