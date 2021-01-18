@@ -262,7 +262,6 @@ Doesn't work on other aliens/AI.*/
 		"resin membrane" = /obj/structure/alien/resin/membrane,
 		"resin door" = /obj/structure/mineral_door/resin,
 		"resin nest" = /obj/structure/bed/nest)
-		"resin door" = /obj/structure/mineral_door/resin)
 
 	action_icon_state = "alien_resin"
 
