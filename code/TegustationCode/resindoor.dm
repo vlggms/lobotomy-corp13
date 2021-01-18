@@ -7,7 +7,7 @@
 	closeSound = 'sound/Fulpsounds/alien_resin_move1.ogg'
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
-	if(isliving(user))
+	if(!isliving(user))
 		return
 	var/mob/living/M = user
 	if(M.getorgan(/obj/item/organ/alien/hivenode))
