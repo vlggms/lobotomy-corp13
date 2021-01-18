@@ -29,10 +29,6 @@ Stabilized extracts:
 		humanfound = loc
 	if(ishuman(loc.loc)) //Check if in backpack.
 		humanfound = (loc.loc)
-	if(ishuman(loc.loc.loc)) //Check if in a box in backpack. #TEGU_CHANGE
-		humanfound = (loc.loc.loc)
-	if(ishuman(loc.loc.loc.loc)) //Check if in a box in backpack in bag of holding. #TEGU_CHANGE
-		humanfound = (loc.loc.loc.loc)
 	if(!humanfound)
 		return
 	var/mob/living/carbon/human/H = humanfound
