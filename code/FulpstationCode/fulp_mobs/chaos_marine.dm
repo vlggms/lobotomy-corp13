@@ -436,7 +436,7 @@
 	var/mob/living/carbon/C = loc
 	if(istype(C) && prob(4))
 		if(prob(25))
-			C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 100)
+			C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 60)
 			to_chat(C, "<span class='danger'>[pick("Voices... Voices everywhere", "Your mind shatters.", "Voices echo inside your head.")].</span>")
 		SEND_SOUND(C, sound(pick('sound/hallucinations/over_here3.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/magic/exit_blood.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg')))
 
