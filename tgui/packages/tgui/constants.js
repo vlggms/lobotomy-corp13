@@ -21,6 +21,8 @@ export const COLORS = {
     engineering: '#f1c40f',
     cargo: '#f39c12',
     centcom: '#00c100',
+    syndicate: '#8c2e2e',
+    terragov: '#27db93',
     other: '#c38312',
   },
   // Damage type colors

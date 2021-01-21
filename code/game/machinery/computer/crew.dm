@@ -73,6 +73,24 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// ANYTHING ELSE = UNKNOWN_JOB_ID, Unknowns/custom jobs will appear after civilians, and before assistants
 		"Assistant" = 999,
 
+		// TEGU stuff; 150 - 200
+		// TerraGov goes from 150 to 159
+		"TerraGov Official" = 150,
+
+		// TEGU: Syndicate; 160 - 199
+		"Syndicate Overlord" = 160,
+		"Syndicate Mastermind" = 161,
+		"Syndicate Commander" = 162,
+		"Syndicate Admiral" = 170,
+		"Syndicate Official" = 171,
+		"Syndicate Captain" = 180,
+		"Syndicate Assault Operative" = 181,
+		"Syndicate Medical Doctor" = 182,
+		"Syndicate Engineer" = 183,
+		"Syndicate Ship Captain" = 190,
+		"Syndicate Operative" = 191,
+		"Syndicate" = 192,
+
 		// 200-229: Centcom
 		"Admiral" = 200,
 		"CentCom Commander" = 210,

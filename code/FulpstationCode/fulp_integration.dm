@@ -42,14 +42,14 @@
 	//var/job_icon = 'icons/obj/card.dmi' // This is now stored on the job.
 
 /obj/item/card/id/proc/return_icon_job()
-	if (assignment in list("Deputy", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "Syndicate Overlord", "Syndicate Mastermind", "Syndicate Admiral", "Syndicate Official", "Syndicate", "Syndicate Commander", "Syndicate Ship Captain"))
+	if (assignment in GLOB.fulp_jobs)
 		return 'icons/Fulpicons/cards.dmi'
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/obj/card.dmi'
 	return initial(linkedJobType.id_icon)
 
 /obj/item/card/id/proc/return_icon_hud()
-	if (assignment in list("Deputy", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "Syndicate Overlord", "Syndicate Mastermind", "Syndicate Admiral", "Syndicate Official", "Syndicate", "Syndicate Commander", "Syndicate Ship Captain"))
+	if (assignment in GLOB.fulp_jobs)
 		return 'icons/Fulpicons/fulphud.dmi' //Couldn't think of better solution
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/mob/hud.dmi'
