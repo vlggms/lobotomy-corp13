@@ -80,7 +80,7 @@
 /obj/structure/closet/secure_closet/detective/Initialize(mapload)
 	var/turf/T = get_turf(src)
 	new /obj/machinery/vending/dic(T)
-	return INITIALIZE_HINT_QDEL
+	INITIALIZE_HINT_QDEL
 
 /datum/supply_pack/security/vending/detective
 	name = "DicTech Supply Crate"
