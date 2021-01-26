@@ -78,9 +78,13 @@
 
 //Here we replace that insanely cluttered closet with a vendor.
 /obj/structure/closet/secure_closet/detective/Initialize(mapload)
+	. = ..()
 	var/turf/T = get_turf(src)
 	new /obj/machinery/vending/dic(T)
-	INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_QDEL
+
+/obj/structure/closet/secure_closet/detective/PopulateContents()
+	return //So it doesn't spawn anything.
 
 /datum/supply_pack/security/vending/detective
 	name = "DicTech Supply Crate"
