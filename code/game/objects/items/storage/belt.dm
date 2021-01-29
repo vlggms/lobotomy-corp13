@@ -193,7 +193,6 @@
 		))
 
 /obj/item/storage/belt/medical/surgeryfilled/PopulateContents()
-	new /obj/item/healthanalyzer(src)
 	new /obj/item/scalpel(src)
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)
