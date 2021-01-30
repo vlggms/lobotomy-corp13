@@ -66,7 +66,7 @@
 	build_path = /obj/item/food/monkeycube
 	category = list("initial","Food")
 
-/datum/design/strange_seeds
+/datum/design/strange_seeds // Tegu edit
 	name = "Pack of Strange Seeds"
 	id = "random"
 	build_type = BIOGENERATOR
