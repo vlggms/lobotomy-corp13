@@ -192,6 +192,14 @@
 		/obj/item/stack/sticky_tape //surgical tape
 		))
 
+/obj/item/storage/belt/medical/surgeryfilled/PopulateContents() // Tegu edit
+	new /obj/item/scalpel(src)
+	new /obj/item/hemostat(src)
+	new /obj/item/retractor(src)
+	new /obj/item/circular_saw(src)
+	new /obj/item/cautery(src)
+	new /obj/item/surgical_drapes(src)
+
 /obj/item/storage/belt/medical/paramedic/PopulateContents()
 	new /obj/item/sensor_device(src)
 	new /obj/item/pinpointer/crew/prox(src)
