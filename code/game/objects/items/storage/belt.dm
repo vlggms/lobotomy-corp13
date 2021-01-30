@@ -192,7 +192,7 @@
 		/obj/item/stack/sticky_tape //surgical tape
 		))
 
-/obj/item/storage/belt/medical/surgeryfilled/PopulateContents()
+/obj/item/storage/belt/medical/surgeryfilled/PopulateContents() // Tegu edit
 	new /obj/item/scalpel(src)
 	new /obj/item/hemostat(src)
 	new /obj/item/retractor(src)
