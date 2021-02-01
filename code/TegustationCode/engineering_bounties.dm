@@ -35,3 +35,8 @@
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/machinery/chem_dispenser)
 
+//overwrites because fuck zauker
+/datum/bounty/item/engineering/gas/zauker_tank
+/datum/bounty/item/engineering/gas/hydrogen_tank
+/datum/bounty/item/engineering/gas/nitryl_tank
+/datum/bounty/item/engineering/gas/freon_tank
