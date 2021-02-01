@@ -65,3 +65,5 @@
 /datum/bounty/item/engineering/chemical_dispenser
 	name = "Portable Chemical Dispenser"
 	description = "Our team are trying to figure out why your Chemistry labs keep exploding, and we think it's a fault with the dispensers. Our last one exploded, mind sending us another?"
+	reward = CARGO_CRATE_VALUE * 6
+	wanted_types = list(/obj/machinery/chemical_dispenser)
