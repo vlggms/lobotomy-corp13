@@ -6,7 +6,7 @@
 	tegu_item = TRUE
 	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_laceups"
-	worn_icon = 'icons/mob/feet_tegu.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_laceups"
 
 /obj/item/clothing/shoes/workboots/digitigrade
@@ -16,7 +16,7 @@
 	tegu_item = TRUE
 	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_workboots"
-	worn_icon = 'icons/mob/feet_tegu.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_workboots"
 
 /obj/item/clothing/shoes/digicombat
@@ -48,7 +48,7 @@
 	desc = "Shoes of the sort made famous by acclaimed lizardman clown Pies-The-Janitor. Ctrl-click to toggle waddle dampeners."
 	flags_inv = FULL_DIGITIGRADE
 	tegu_item = TRUE
-	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi.dmi'
+	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_clown"
 	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_clown"
@@ -58,7 +58,7 @@
 	desc = "Snugly fitting sandals for smugly dressed lizardfolk."
 	flags_inv = FULL_DIGITIGRADE
 	tegu_item = TRUE
-	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi.dmi'
+	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_wizard"
 	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_wizard"
@@ -68,7 +68,7 @@
 	desc = "A pair of digitigrade brown shoes. Shame they don't come in more colours."
 	flags_inv = FULL_DIGITIGRADE
 	tegu_item = TRUE
-	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi.dmi'
+	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_brown"
 	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_brown"
@@ -79,7 +79,7 @@
 //	desc = "A custom-made variant set of magnetic boots, intended to ensure lizardfolk can safely perform EVA."
 //	flags_inv = FULL_DIGITIGRADE
 //	tegu_item = TRUE
-//	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi.dmi'
+//	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 //	icon_state = "digi_magboots0"
 //	alternate_worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 //	item_state = "digi_magboots0"
@@ -89,7 +89,7 @@
 	desc = "For the quiestest of lizardfolk."
 	flags_inv = FULL_DIGITIGRADE
 	tegu_item = TRUE
-	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi.dmi'
+	icon = 'ModularTegustation/teguicons/shoes_tegu.dmi'
 	icon_state = "digi_mime"
 	worn_icon = 'ModularTegustation/Teguicons/feet_tegu.dmi'
 	inhand_icon_state = "digi_mime"
