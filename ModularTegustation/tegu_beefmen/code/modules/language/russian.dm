@@ -1,5 +1,3 @@
-//currently only exists for admins and language books, will be more implemented later//
-
 /datum/language/russian
 	name = "Space Russian"
 	desc = "An archaic terrestrial language still spoken in Space Russia."
@@ -11,3 +9,9 @@
 	icon_state = "commie"
 	default_priority = 90
 	flags = TONGUELESS_SPEECH
+
+/datum/language_holder/russian
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/russian = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/russian = list(LANGUAGE_ATOM))
