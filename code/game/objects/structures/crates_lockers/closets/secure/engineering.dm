@@ -26,8 +26,8 @@
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/ce(src)
 	new /obj/item/storage/box/skillchips/engineering(src)
-	new /obj/item/clothing/shoes/workboots/digitigrade(src) // tegu
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering/head(src) // [TEGU] [PNX] [PAPRITO]
+	new /obj/item/clothing/shoes/workboots/digitigrade(src) // Tegustation digitigrade edit
+	new /obj/item/clothing/suit/hooded/wintercoat/engineering/head(src) // Tegustation Wintercoat edit
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"

@@ -8,7 +8,7 @@ Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to preven
 
 Sitation: WHEN ADDING ONTO TG CODE
 
-Practice: Add a note saying '// Tegustation [PR name] edit: (reason for edit)'
+Practice: Add a note saying '// Tegustation [PR name] edit: (reason for edit)' (Dont forget to write at the bottom of this README the name and what the PR is)
 
 Reason: So we can find all code used for a specific PR when needed to rework/maintain/read/remove it.
 
@@ -93,3 +93,24 @@ List of things to be done:
 - Fix bodycams (Are they broken?)
 - Find out what the hell TerraGov comms are (Remove if useless)
 - Fix Haunted dice (Curator only traitor item, it's supposed to ask ghosts a question, but it doesnt let ghosts actually answer it)
+
+List of all PRs:
+
+// Tegustation Deputy - Deputies
+// Tegustation Beefmen - Beefmen
+// Tegustation Infiltration - Infiltrators
+// Tegustation TerraGov - TerraGov events + encryption keys
+// Tegustation Mentorhelp - Mentors/Mentorhelp
+// Tegustation Security Updates - Security gear updates
+// Tegustation Detective Kit - Improved detective gear
+// Tegustation Sith - Curator/Chaplain sith kit
+// Tegustation digitigrade - Lizard digitigrade support
+// Tegustation Wintercoat - Wintercoats
+// Tegustation CMO updates - Improved CMO gear
+// Tegustation Mediborg Improvements - Mediborg improvements
+// Tegustation Bodycameras - Security bodycameras
+// Tegustation Secborg - Secborg changes
+// Tegustation Husking - Tend wound unhusking
+// Tegustation Languages - Language books
+// Tegustation T5 parts - T5 parts
+// Tegustation Clothing - Vending machine clothes

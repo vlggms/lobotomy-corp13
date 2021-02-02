@@ -10,7 +10,7 @@
 	antag_flag = ROLE_INFILTRATOR
 	antag_datum = /datum/antagonist/traitor/infiltrator
 	minimum_required_age = 7
-	restricted_roles = list("AI", "Cyborg", "Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("AI", "Cyborg", "Prisoner","Security Officer", "Warden", "Detective", "Head of Security", "Head of Personnel", "Captain")
 	required_candidates = 1
 	weight = 4
 	cost = 10

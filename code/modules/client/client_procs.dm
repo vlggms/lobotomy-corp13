@@ -102,8 +102,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 
 	// Mentor PM
-	if (mentor_client_procs(href_list)) // TEGU
-		return //ALSO TEGU
+	if (mentor_client_procs(href_list)) // Tegustation Mentorhelp edit
+		return
 
 	switch(href_list["_src_"])
 		if("holder")

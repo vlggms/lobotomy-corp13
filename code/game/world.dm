@@ -278,7 +278,7 @@ GLOBAL_VAR(restart_counter)
 
 /world/proc/update_status()
 
-	status = update_status_tegu()  // TEGUSTATION Use our code and bail!
+	status = update_status_tegu()  // Tegustation Edit
 
 	/*
 	var/list/features = list()

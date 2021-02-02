@@ -71,14 +71,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Lawyer" = 69,
 		"Psychologist" = 71,
 		// ANYTHING ELSE = UNKNOWN_JOB_ID, Unknowns/custom jobs will appear after civilians, and before assistants
-		"Deputy" = 101, // Tegustation Deputy edit: Add all tegu-only jobs here!
 		"Assistant" = 999,
 
-		// TEGU stuff; 150 - 200
-		// TerraGov goes from 150 to 159
-		"TerraGov Official" = 150,
+		// Tegustation Roles; 150 - 200
+		"TerraGov Official" = 150, // Tegustation TerraGov edit
+		"Deputy" = 151, // Tegustation Deputy edit: Add all tegu-only jobs here!
 
-		// TEGU: Syndicate; 160 - 199
+		// Tegustation Syndicate roles; 160 - 199
 		"Syndicate Overlord" = 160,
 		"Syndicate Mastermind" = 161,
 		"Syndicate Commander" = 162,

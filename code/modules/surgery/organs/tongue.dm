@@ -77,7 +77,7 @@
 	modifies_speech = TRUE
 
 /obj/item/organ/tongue/lizard/handle_speech(datum/source, list/speech_args)
-	if(speech_args[SPEECH_LANGUAGE] == /datum/language/draconic) // TEGU
+	if(speech_args[SPEECH_LANGUAGE] == /datum/language/draconic) // Tegustation Languages
 		return
 	var/static/regex/lizard_hiss = new("s+", "g")
 	var/static/regex/lizard_hiSS = new("S+", "g")

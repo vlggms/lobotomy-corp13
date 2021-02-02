@@ -95,8 +95,8 @@
 	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/cmo(src)
-	new /obj/item/clothing/shoes/sneakers/brown/digitigrade(src) // tegu
-	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src) // [TEGU] [PNX] [PAPRITO]
+	new /obj/item/clothing/shoes/sneakers/brown/digitigrade(src) // Tegustation digitigrade edit
+	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src) // Tegustation Wintercoat edit
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
