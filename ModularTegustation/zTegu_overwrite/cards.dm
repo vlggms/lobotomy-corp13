@@ -1,5 +1,5 @@
 
-// Overwrites the update_overlays on cards.dm to ensure fulp jobs get their icons.
+// Overwrites the update_overlays on cards.dm to ensure tegu jobs get their icons.
 
 /obj/item/card/id/update_overlays()
 	. = ..()
