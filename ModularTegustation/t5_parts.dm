@@ -92,7 +92,7 @@
 	name = "Quantum Capacitor"
 	desc = "A capacitor engineered with a mix of bluespace and quantum technologies."
 	icon_state = "quantumcap"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	rating = 5
 	custom_materials = list(/datum/material/iron =225, /datum/material/glass =180, /datum/material/gold =135, /datum/material/diamond = 90)
 
@@ -100,7 +100,7 @@
 	name = "quantum field scanning module"
 	desc = "A special scanning module using a mix of bluespace and quantum tech to scan even sub-atomic materials."
 	icon_state = "quantumscan"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	rating = 5
 	custom_materials = list(/datum/material/iron= 225, /datum/material/glass = 180, /datum/material/diamond = 54, /datum/material/bluespace = 54)
 
@@ -108,7 +108,7 @@
 	name = "quantum field manipulator"
 	desc = "A strange, almost intangible manipulator that uses bluespace tech to manipulate and fold quantum states."
 	icon_state = "quantummanip"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	rating = 5
 	custom_materials = list(/datum/material/iron= 180, /datum/material/diamond = 27, /datum/material/titanium = 27, /datum/material/uranium = 27)
 
@@ -116,7 +116,7 @@
 	name = "quantum micro-laser"
 	desc = "A modified quadultra micro-laser designed to make use of newly discovered quantum tech."
 	icon_state = "quantumlaser"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	rating = 5
 	custom_materials = list(/datum/material/iron= 180, /datum/material/glass = 180, /datum/material/uranium = 90, /datum/material/diamond = 90)
 
@@ -124,7 +124,7 @@
 	name = "quantum entangled matter bin"
 	desc = "A bluespace matter bin that makes use of entangled particles to store states of materials as energy."
 	icon_state = "quantumbin"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	rating = 5
 	custom_materials = list(/datum/material/iron= 225, /datum/material/diamond = 90, /datum/material/bluespace = 135)
 
@@ -132,7 +132,7 @@
 	name = "quantum entangled beaker"
 	desc = "A quantum entangled beaker, capable of holding a massive 400 units of any reagent."
 	icon_state = "quantumbeaker"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	custom_materials = list(/datum/material/iron = 500, /datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1500, /datum/material/bluespace = 1500)
 	volume = 400
 	amount_per_transfer_from_this = 10
@@ -142,7 +142,7 @@
 	name = "quantum power cell"
 	desc = "A rechargeable, entangled power cell."
 	icon_state = "quantumcell"
-	icon = 'ModularTegustation/Teguicons/quantumcell.dmi'
+	icon = 'ModularTegustation/Teguicons/t5_parts/quantumcell.dmi'
 	maxcharge = 50000
 	custom_materials = list(/datum/material/iron = 1000, /datum/material/glass = 5500, /datum/material/plasma = 3500, /datum/material/diamond = 1000, /datum/material/bluespace = 1000)
 	chargerate = 5000

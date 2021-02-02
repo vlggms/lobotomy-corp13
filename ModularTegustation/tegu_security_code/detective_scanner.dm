@@ -1,5 +1,5 @@
 #define HEALTH_SCANNER_RANGE 1
-
+#define SEC_RADIO_SCAN_SOUND_DENY list('sound/machines/buzz-two.ogg')
 
 /obj/item/detective_scanner/proc/bio_scan(mob/user, mob/living/M)
 

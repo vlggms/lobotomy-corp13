@@ -167,7 +167,7 @@
 	name = "\improper Geneticist's winter coat"
 	desc = "This winter coat is made out of a comfortable material and dyed to the geneticist's color scheme."
 	icon = 'ModularTegustation/Teguicons/Penguins_cove/Winter_Coat_Pile/wintercoats_icons.dmi'
-	worn_icon = 'ModularTegustation/Teguicons/conPenguins_cove/Winter_Coat_Pile/wintercoats.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Penguins_cove/Winter_Coat_Pile/wintercoats.dmi'
 	icon_state = "wintercoat_gen"
 	inhand_icon_state = "wintercoat_gen"
 	lefthand_file = 'ModularTegustation/Teguicons/Penguins_cove/Winter_Coat_Pile/wintercoat_lefthand.dmi'

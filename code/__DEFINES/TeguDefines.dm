@@ -1,5 +1,6 @@
 // TRAITS
 #define TRAIT_COLDBLOODED		"coldblooded"	// Your body is literal room temperature. Does not make you immune to the temp.
+#define TRAIT_NOMARROW			"nomarrow"		// You don't make blood.
 
 // RECIPES
 #define CAT_STRUCTURE	"Structures"

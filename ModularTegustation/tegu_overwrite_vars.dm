@@ -91,58 +91,6 @@
 //SEC BODY CAMS by Surrealistik Oct 2019 ENDS
 //******************************************************
 
-//***********************************************************************
-//** TEGU PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 BEGINS
-//**---------------------------------------------------------------------
-//** Borgs now have access to appropriate secure radio channels
-//***********************************************************************
-
-
-/obj/item/robot_module/medical/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_MEDICAL)
-
-
-/obj/item/robot_module/engineering/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_ENGINEERING)
-
-
-/obj/item/robot_module/security/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SECURITY)
-
-/obj/item/robot_module/peacekeeper/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SECURITY)
-
-
-/obj/item/robot_module/miner/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SUPPLY)
-
-/obj/item/robot_module/clown/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SERVICE)
-
-/obj/item/robot_module/standard/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SERVICE)
-
-/obj/item/robot_module/janitor/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SERVICE)
-
-/obj/item/robot_module/butler/do_transform_delay()
-	..()
-	borg_set_radio(RADIO_CHANNEL_SERVICE)
-
-
-//***********************************************************************
-//** TEGU PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 ENDS
-//**---------------------------------------------------------------------
-//** Borgs now have access to appropriate secure radio channels
-//***********************************************************************
 
 //***************************************************************************
 //** TEGUSTATION MEDBORG CHANGES by Surrealistik Nov 2019-Feb 2020 BEGINS
@@ -272,28 +220,6 @@
 //---------------------------------------------------------------------------
 //** Adds Sith Starter Kit traitor bundle for the Chaplain
 //***************************************************************************
-
-//***************************************************************************
-//** TEGUSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 BEGINS
-//---------------------------------------------------------------------------
-//** Lets medical and engineering syndiborgs choose a disguise from a list.
-//** Also tweaks the medical syndiborg, removing emag and granting more med items
-//***************************************************************************
-/obj/item/borg_chameleon //List of available disguises
-	var/disguise_text //for feedback
-	var/default_name //Where we store our initial name.
-	var/buffer_name //for RA2 spy style scan of other borgs.
-	var/buffer_disguise //for RA2 spy style scan of other borgs.
-	var/buffer_disguise_text //for RA2 spy style scan of other borgs.
-	actions_types = list(/datum/action/item_action/borg_chameleon)
-
-//***************************************************************************
-//** TEGUSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 ENDS
-//---------------------------------------------------------------------------
-//** Lets medical and engineering syndiborgs choose a disguise from a list.
-//** Also tweaks the medical syndiborg, removing emag and granting more med items
-//***************************************************************************
-
 
 
 //************************************************************
