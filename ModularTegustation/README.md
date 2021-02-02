@@ -21,8 +21,8 @@ var/list/whatever = list(/obj/item/tg_item1,
 -turns into-
 var/list/whatever = list(/obj/item/tg_item1,
                       /obj/item/tg_item2,
-                      /obj/item/tegu_item1,   // TEGU
-                      /obj/item/tegu_item2,   // TEGU
+                      /obj/item/tegu_item1,   // Tegustation Clothing edit: Adding the clothing to vending machines
+                      /obj/item/tegu_item2,   // Tegustation Clothing edit: adding the clothing to vending machines
                       /obj/item/tg_item3)
 
 
