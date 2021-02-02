@@ -110,17 +110,15 @@ Example:
 
 List of things to be done:
 - Maintain or remove SalChems (I only left it in so it doesnt mess with Mediborgs, but I do want them gone)
-- Change Tegu-only Medical code (I'd like unhusking to be moved from Tend Wound surgery -> Its own surgery)
+- Change Tegu-only Medical code (I'd like unhusking to be moved || Tend Wound surgery unhusks -> Unhusk Surgery)
 - Remove Tegu-only borg things (Dont do this yet, there will likely have a vote on the Discord on whether these changes should happen!)
 - Balance or remove T5 parts
-- Maintain or remove medal boxes (CMO's medalbox, not sure about the others)
 - Import the new Halloween costumes
-- Fix bodycams (Are they broken?)
-- Find out what the hell TerraGov comms are (Remove if useless)
+- Fix bodycams (Are they even broken?)
+- Modularize or remove TerraGov comms (Why do they even exist when CentCom channel is a thing?)
 - Fix Haunted dice (Curator only traitor item, it's supposed to ask ghosts a question, but it doesnt let ghosts actually answer it)
-- Modularize Wintercoats/Vending machines/Digitigrade shoes
 
-List of all PRs:
+Codewords to search PRs by:
 
 // Tegustation Deputy - Deputies
 // Tegustation Beefmen - Beefmen
@@ -134,7 +132,7 @@ List of all PRs:
 // Tegustation Mediborg Improvements - Mediborg improvements
 // Tegustation Bodycameras - Security bodycameras
 // Tegustation Secborg - Secborg changes
-// Tegustation Husking - Tend wound unhusking
+// Tegustation Husking - Tend wound unhusking (Set to be removed, read the text above for more!)
 // Tegustation Languages - Language books
 // Tegustation T5 parts - T5 parts
 // Tegustation Clothing - Vending machine clothes
