@@ -5,6 +5,8 @@ Keep edits in the TegustationModular folder as MUCH AS POSSIBLE.
 
 
 //Note to help against merge conflicts://
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Situation: WHEN ADDING TO A LIST (lockers, etc)
 
 Practice: Don't add it to the very end of the list. Add it second to last whenever possible.
@@ -24,8 +26,28 @@ var/list/whatever = list(/obj/item/tg_item1,
                       /obj/item/tegu_item1,   // Tegustation Clothing edit: Adding the clothing to vending machines
                       /obj/item/tegu_item2,   // Tegustation Clothing edit: adding the clothing to vending machines
                       /obj/item/tg_item3)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Situation: WHEN REPLACING TG CODE (How something should act, starting gear, ect)
 
+Practice: Comment out the TG code, then have your code under it, with the '// Tegustation edit' note'
 
+Reason: If TG goes back to edit it, it will edit the commented out code, rather than your own
+This way, it won't conflict with what we've changed.
+
+Example:
+
+/datum/outfit/job/cmo
+	id = /obj/item/card/id/silver
+	belt = /obj/item/pda/heads/cmo
+
+-turns into-
+/datum/outfit/job/cmo
+	id = /obj/item/card/id/silver
+//	belt = /obj/item/pda/heads/cmo
+	belt = /obj/item/storage/belt/medical/surgeryfilled // Tegustation CMO updates edit: Gives them a filled surgery belt
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 List of things to be done:
 - Maintain or remove SalChems (I only left it in so it doesnt mess with Mediborgs, but I do want them gone)
