@@ -3322,7 +3322,6 @@
 #include "ModularTegustation\tegu_dynamic_rulesets.dm"
 #include "ModularTegustation\tegu_global_vars.dm"
 #include "ModularTegustation\tegu_integration.dm"
-#include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
 #include "ModularTegustation\tegu_procs.dm"
 #include "ModularTegustation\tegu_spaceruins.dm"
 #include "ModularTegustation\tegu_starfury_event.dm"
@@ -3380,4 +3379,5 @@
 #include "ModularTegustation\tegu_traitor_code\tegu_traitor_items.dm"
 #include "ModularTegustation\tegu_traitor_code\traitor_chaplain.dm"
 #include "ModularTegustation\tegu_traitor_code\uplink_items_tegu.dm"
+#include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
 // END_INCLUDE
