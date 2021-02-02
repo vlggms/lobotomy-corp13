@@ -1,5 +1,4 @@
 #define SEC_RADIO_SCAN_SOUND_ACCEPT list('sound/machines/beep.ogg')
-#define SEC_RADIO_SCAN_SOUND_DENY list('sound/machines/buzz-two.ogg')
 #define SEC_RADIO_SCAN_COOLDOWN 2 SECONDS
 
 /obj/item/storage/belt/security/tegu_starter_full/PopulateContents()
