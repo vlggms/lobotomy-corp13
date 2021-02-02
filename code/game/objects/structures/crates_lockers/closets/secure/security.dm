@@ -33,7 +33,6 @@
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/captain(src)
-	new /obj/item/clothing/shoes/digicombat(src) // Tegustation digitigrade edit: Adding the shoes to the locker
 
 /obj/structure/closet/secure_closet/hop
 	name = "\proper head of personnel's locker"
@@ -63,8 +62,6 @@
 	new /obj/item/circuitboard/machine/techfab/department/service(src)
 	new /obj/item/storage/photo_album/hop(src)
 	new /obj/item/storage/lockbox/medal/hop(src)
-	new /obj/item/clothing/shoes/laceup/digitigrade(src) // Tegustation digitigrade edit: Adding the shoes to the locker
-	new /obj/item/clothing/suit/hooded/wintercoat/captain/hop(src) // Tegustation Wintercoat edit: Adding the coat to the locker
 
 
 /obj/structure/closet/secure_closet/hos
@@ -100,8 +97,6 @@
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
 	new /obj/item/storage/photo_album/hos(src)
-	new /obj/item/clothing/shoes/digicombat(src) // Tegustation digitigrade edit: Adding the shoes to the locker
-	new /obj/item/clothing/suit/hooded/wintercoat/security/head(src) // Tegustation Wintercoat edit: Adding the coat to the locker
 
 /obj/structure/closet/secure_closet/warden
 	name = "\proper warden's locker"
@@ -127,7 +122,6 @@
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
-	new /obj/item/clothing/shoes/digicombat(src) // Tegustation digitigrade edit: Adding the shoes to the locker
 
 /obj/structure/closet/secure_closet/security
 	name = "security officer's locker"

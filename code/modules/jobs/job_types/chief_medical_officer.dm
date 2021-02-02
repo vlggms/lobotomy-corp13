@@ -33,12 +33,10 @@
 	jobtype = /datum/job/cmo
 
 	id = /obj/item/card/id/silver
-//	belt = /obj/item/pda/heads/cmo
-	belt = /obj/item/storage/belt/medical/surgeryfilled // Tegustation CMO updates edit: Gives them a filled surgery belt
-	r_pocket = /obj/item/pda/heads/cmo // Tegustation CMO updates edit: Moved the PDA to the pocket to fit the belt
+	belt = /obj/item/pda/heads/cmo
+	belt = /obj/item/storage/belt/medical/surgeryfilled
 	l_pocket = /obj/item/pinpointer/crew
 	ears = /obj/item/radio/headset/heads/cmo
-	glasses = /obj/item/clothing/glasses/sunglasses/chemical // Tegustation CMO updates edit: Gives them Science sunglasses
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo

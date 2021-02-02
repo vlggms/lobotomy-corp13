@@ -38,7 +38,32 @@ Example:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Situation: WHEN ADDING TO A LIST (lockers, etc)
+Situation: WHEN ADDING AN ITEM TO A VENDING MACHINE/LOCKER
+
+Practice: Initialize the Vending Machine/Locker in a separate Tegu file, adding it onto there.
+
+Reason: It adds it to the locker/vending machine without the need to touch the TG file itself
+
+Example:
+/obj/structure/closet/secure_closet/chief_medical/PopulateContents()
+	..()
+	new /obj/item/clothing/neck/cloak/cmo(src)
+	new /obj/item/insert_tegu_item_here
+	new /obj/item/clothing/suit/bio_suit/cmo(src)
+
+-turns into-
+
+/obj/structure/closet/secure_closet/chief_medical/PopulateContents()
+	..()
+	new /obj/item/clothing/neck/cloak/cmo(src)
+>On a separate file in ModularTegustation called something to the like of 'CMO_buffs.dm'
+/obj/structure/closet/secure_closet/chief_medical/Initialize()
+    new /obj/item/insert_tegu_item_here
+    . = ..()
+
+===================================================
+===> IF THIS IS NOT POSSIBLE DUE TO /TG/ ALREADY USING THE POPULATECONTENTS PROC, USE THE EXAMPLE BELOW <===
+===================================================
 
 Practice: Don't add it to the very end of the list. Add it second to last whenever possible.
 
@@ -93,6 +118,7 @@ List of things to be done:
 - Fix bodycams (Are they broken?)
 - Find out what the hell TerraGov comms are (Remove if useless)
 - Fix Haunted dice (Curator only traitor item, it's supposed to ask ghosts a question, but it doesnt let ghosts actually answer it)
+- Modularize Wintercoats/Vending machines/Digitigrade shoes
 
 List of all PRs:
 
@@ -105,8 +131,6 @@ List of all PRs:
 // Tegustation Detective Kit - Improved detective gear
 // Tegustation Sith - Curator/Chaplain sith kit
 // Tegustation digitigrade - Lizard digitigrade support
-// Tegustation Wintercoat - Wintercoats
-// Tegustation CMO updates - Improved CMO gear
 // Tegustation Mediborg Improvements - Mediborg improvements
 // Tegustation Bodycameras - Security bodycameras
 // Tegustation Secborg - Secborg changes

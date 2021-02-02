@@ -95,8 +95,6 @@
 	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/cmo(src)
-	new /obj/item/clothing/shoes/sneakers/brown/digitigrade(src) // Tegustation digitigrade edit: Adding the shoes to the locker
-	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src) // Tegustation Wintercoat edit: Adding the coat to the locker
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"
