@@ -28,8 +28,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
 	new /obj/item/storage/photo_album/rd(src)
 	new /obj/item/storage/box/skillchips/science(src)
-	new /obj/item/clothing/shoes/laceup/digitigrade(src) // Tegustation digitigrade edit
-	new /obj/item/clothing/suit/hooded/wintercoat/science/head(src) // Tegustation Wintercoat edit
+	new /obj/item/clothing/shoes/laceup/digitigrade(src) // Tegustation digitigrade edit: Adding the shoes to the locker
+	new /obj/item/clothing/suit/hooded/wintercoat/science/head(src) // Tegustation Wintercoat edit: Adding the coat to the locker
 
 
 /obj/structure/closet/secure_closet/cytology

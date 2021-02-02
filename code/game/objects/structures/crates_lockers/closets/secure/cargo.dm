@@ -23,5 +23,5 @@
 	new /obj/item/storage/photo_album/qm(src)
 	new /obj/item/circuitboard/machine/ore_silo(src)
 	new /obj/item/card/id/departmental_budget/car(src)
-	new /obj/item/clothing/shoes/sneakers/brown/digitigrade // Tegustation digitigrade edit
-	new /obj/item/clothing/suit/hooded/wintercoat/cargo/head(src) // Tegustation Wintercoat edit
+	new /obj/item/clothing/shoes/sneakers/brown/digitigrade  // Tegustation digitigrade edit: Adding the shoes to the locker
+	new /obj/item/clothing/suit/hooded/wintercoat/cargo/head(src) // Tegustation Wintercoat edit: Adding the coat to the locker
