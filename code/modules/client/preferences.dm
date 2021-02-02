@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
 
-			if(istype(pref_species, /datum/species/beefman)) // Tegustation Beefman
+			if(istype(pref_species, /datum/species/beefman)) // Tegustation Beefmen
 				if(!use_skintones)
 					dat += APPEARANCE_CATEGORY_COLUMN
 				// Fill Empties
@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Mouth</h3>"
 				dat += "<a href='?_src_=prefs;preference=mouth_beef;task=input'>[features["beefmouth"]]</a><BR>"
 
-			if((EYECOLOR in pref_species.species_traits)) // Tegustation Beefman: If we want Eye Color, let it show eye color. Maybe we want eye color to affect something else? (Beef Eyes) && !(NOEYESPRITES in pref_species.species_traits))
+			if((EYECOLOR in pref_species.species_traits)) // Tegu Edit  If we want Eye Color, let it show eye color. Maybe we want eye color to affect something else? (Beef Eyes) && !(NOEYESPRITES in pref_species.species_traits))
 
 				if(!use_skintones && !mutant_colors)
 					dat += APPEARANCE_CATEGORY_COLUMN

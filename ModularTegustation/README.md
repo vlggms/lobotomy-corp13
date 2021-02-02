@@ -32,7 +32,6 @@ List of things to be done:
 - Change Tegu-only Medical code (I'd like unhusking to be moved from Tend Wound surgery -> Its own surgery)
 - Remove Tegu-only borg things (Dont do this yet, there will likely have a vote on the Discord on whether these changes should happen!)
 - Balance or remove T5 parts
-- Modularize Beefmen (Dont forget russian.dm!) / Alternatively, Update with latest Fulp
 - Maintain or remove medal boxes (CMO's medalbox, not sure about the others)
 - Import the new Halloween costumes
 - Fix bodycams (Are they broken?)

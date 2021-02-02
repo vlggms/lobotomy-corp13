@@ -435,12 +435,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
-	if(!features["beefcolor"] || features["beefcolor"] == "") // Tegustation Beefman
+	if(!features["beefcolor"] || features["beefcolor"] == "") // Tegustation Beefmen
 		features["beefcolor"] = GLOB.color_list_beefman[pick(GLOB.color_list_beefman)]
-	if(!features["beefeyes"] || features["beefeyes"] == "") // Tegustation Beefman
+	if(!features["beefeyes"] || features["beefeyes"] == "")
 		features["beefeyes"] = pick(GLOB.eyes_beefman)
-	if(!features["beefmouth"] || features["beefmouth"] == "") // Tegustation Beefman
-		features["beefmouth"] = pick(GLOB.mouths_beefman)
+	if(!features["beefmouth"] || features["beefmouth"] == "")
+		features["beefmouth"] = pick(GLOB.mouths_beefman) // Tegustation Beefmen
 
 
 	randomise = SANITIZE_LIST(randomise)
@@ -548,9 +548,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_moth_wings"]			, features["moth_wings"])
 	WRITE_FILE(S["feature_moth_antennae"]			, features["moth_antennae"])
 	WRITE_FILE(S["feature_moth_markings"]		, features["moth_markings"])
-	WRITE_FILE(S["feature_beefcolor"]			, "e73f4e")
-	WRITE_FILE(S["feature_beefeyes"]			, "Olives")
-	WRITE_FILE(S["feature_beefmouth"]			, "Smile1")
+	WRITE_FILE(S["feature_beefcolor"]					, features["beefcolor"]) // Tegustation Beefmen
+	WRITE_FILE(S["feature_beefeyes"]					, features["beefeyes"])
+	WRITE_FILE(S["feature_beefmouth"]					, features["beefmouth"]) // Tegustation Beefmen
 	WRITE_FILE(S["persistent_scars"]			, persistent_scars)
 
 	//Custom names

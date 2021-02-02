@@ -33,7 +33,7 @@
 	punchdamagelow = 1       //lowest possible punch damage. if this is set to 0, punches will always miss
 	punchdamagehigh = 5 // 10      //highest possible punch damage
 	siemens_coeff = 0.7 // Due to lack of density.   //base electrocution coefficient
-	deathsound = '_ModularTegustation/tegu_beefmen/sounds/beef_die.ogg'
+	deathsound = 'ModularTegustation/tegu_beefmen/sounds/beef_die.ogg'
 	attack_sound = 'ModularTegustation/tegu_beefmen/sounds/beef_hit.ogg'
 	special_step_sounds = list('ModularTegustation/tegu_beefmen/sounds/footstep_splat1.ogg','ModularTegustation/tegu_beefmen/sounds/footstep_splat2.ogg','ModularTegustation/tegu_beefmen/sounds/footstep_splat3.ogg','ModularTegustation/tegu_beefmen/sounds/footstep_splat4.ogg')//Sounds to override barefeet walkng
 	grab_sound = 'ModularTegustation/tegu_beefmen/sounds/beef_grab.ogg'//Special sound for grabbing
