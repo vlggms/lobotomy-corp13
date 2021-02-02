@@ -181,7 +181,7 @@
 	speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C], [assignment]</b> in <b>[location]</b>.", radio_channel)
 	if(weapons_violation || id_violation || record_violation || harm_violation) //Report arrest criteria if we have any violations.
 		speak("Reasons for arrest:[weapons_violation][harm_violation][id_violation][record_violation]", radio_channel)
-	arrest_security_record(C, arrest_type, threat, location, assignment) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019; this makes a record of the arrest, including timestamp and location.
+	arrest_security_record(C, arrest_type, threat, location, assignment) // TEGUSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019; this makes a record of the arrest, including timestamp and location.
 
 
 /mob/living/simple_animal/bot/secbot/proc/secbot_declare_arrest_attempt(mob/living/carbon/C, threatlevel)
@@ -212,7 +212,7 @@
 	speak("Responding to <b>[user.name], [assignment]</b> summon at <b>[get_area(user)]</b>. Currently at <b>[get_area(src)]</b>. En route.", radio_channel)
 
 
-/mob/living/carbon/human/proc/assess_threat_fulp(judgement_criteria, mob/living/simple_animal/bot/secbot/S, harm_bot = FALSE, lasercolor = "", datum/callback/weaponcheck=null)
+/mob/living/carbon/human/proc/assess_threat_tegu(judgement_criteria, mob/living/simple_animal/bot/secbot/S, harm_bot = FALSE, lasercolor = "", datum/callback/weaponcheck=null)
 	if(judgement_criteria & JUDGE_EMAGGED)
 		return 10 //Everyone is a criminal!
 

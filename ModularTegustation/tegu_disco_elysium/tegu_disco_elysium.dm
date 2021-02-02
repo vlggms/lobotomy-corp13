@@ -1,12 +1,12 @@
 /obj/item/clothing/suit/det_suit/disco
 	name = "disco-ass blazer"
 	desc = "Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "jamrock_blazer"
 	inhand_icon_state = "jamrock_blazer_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 
 /obj/item/clothing/suit/det_suit/disco/aerostatic
 	name = "aerostatic bomber jacket"
@@ -17,12 +17,12 @@
 /obj/item/clothing/under/rank/security/detective/disco
 	name = "jamrock suit"
 	desc = "An 'interesting' looking ensemble consisting of golden-brown flare cut trousers and an obviously hard worn white satin shirt."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "jamrock_suit"
 	inhand_icon_state = "jamrock_suit_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/security/detective/disco/aerostatic
@@ -35,42 +35,42 @@
 /obj/item/clothing/shoes/sneakers/disco
 	name = "green lizardskin shoes"
 	desc = "Though depleted of lustre with the passage of time, these well-worn green lizard leather shoes fit almost perfectly."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "lizardskin_shoes"
 	inhand_icon_state = "lizardskin_shoes_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 
 /obj/item/clothing/shoes/jackboots/aerostatic
 	name = "aerostatic boots"
 	desc = "Sharp and comfortable looking boots crafted from tough brown leather."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "aerostatic_boots"
 	inhand_icon_state = "aerostatic_boots_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 
 /obj/item/clothing/gloves/color/black/aerostatic_gloves
 	name = "aerostatic gloves"
 	desc = "Vivid red gloves that exude a mysterious style."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "aerostatic_gloves"
 	inhand_icon_state = "aerostatic_gloves_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 
 /obj/item/clothing/neck/tie/detective/disco_necktie
 	name = "horrific necktie"
 	desc = "The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You will betray it if you change it for some boring scarf."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "eldritch_tie"
 	inhand_icon_state = "eldritch_tie_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
 	var/possessed
 
 /obj/item/clothing/neck/tie/detective/disco_necktie/relaymove(mob/user)
@@ -142,9 +142,9 @@
 /obj/item/clothing/glasses/sunglasses/disco
 	name = "binoclard lenses"
 	desc = "Stylish round lenses subtly shaded for your protection and criminal discomfort."
-	worn_icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium_worn.dmi'
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "binoclard_lenses"
 	inhand_icon_state = "binoclard_lenses_held"
-	lefthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
-	righthand_file = 'icons/Fulpicons/Surreal_stuff/disco_elysium_inhand_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium_inhand_right.dmi'

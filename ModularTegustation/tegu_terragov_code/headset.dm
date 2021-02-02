@@ -1,7 +1,7 @@
 /obj/item/radio/headset/terragov
 	name = "\improper TerraGov Offical's headset"
 	desc = "A TerraGov Official's headset."
-	icon = 'icons/Fulpicons/radio.dmi'
+	icon = 'ModularTegustation/Teguicons/radio.dmi'
 	icon_state = "terragov_headset"
 	keyslot = new /obj/item/encryptionkey/terragov
 

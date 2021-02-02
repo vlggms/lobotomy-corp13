@@ -3,7 +3,7 @@
 	display_name = "Cyborg Upgrades: Medical"
 	description = "Medical upgrades for cyborgs."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer", "borg_upgrade_surgicalprocessor", "borg_upgrade_beakerapp", "borg_upgrade_medbeam") //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer", "borg_upgrade_surgicalprocessor", "borg_upgrade_beakerapp", "borg_upgrade_medbeam") //TEGUSTATION MEDBORG UPGRADES by Surrealistik March 2020
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
 	export_price = 5000*/
 
@@ -96,7 +96,7 @@
 	name = "secondary medicine storage apparatus"
 	desc = "A special apparatus for carrying beakers, medicines and medicine containers without spilling the contents. Alt-Z or right-click to drop its contents."
 
-/mob/living/silicon/robot/proc/fulp_borg_unbuckle(mob/living/M) //Allows borgs to unbuckle people via loading them.
+/mob/living/silicon/robot/proc/tegu_borg_unbuckle(mob/living/M) //Allows borgs to unbuckle people via loading them.
 	if(!M.buckled)
 		return
 	if(M.has_buckled_mobs())
@@ -105,7 +105,7 @@
 
 /mob/living/silicon/robot/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE) //Qualify of life; puts beaker in manipulator
 	. = ..()
-	var/obj/item/borg/apparatus/E = locate() in module.modules //FULPSTATION MEDBORG CHANGES -Surrealistik Feb 2020
+	var/obj/item/borg/apparatus/E = locate() in module.modules // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
 	if(!E)
 		return
 	E.pre_attack(I, src)

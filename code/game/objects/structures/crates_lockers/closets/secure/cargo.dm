@@ -23,5 +23,5 @@
 	new /obj/item/storage/photo_album/qm(src)
 	new /obj/item/circuitboard/machine/ore_silo(src)
 	new /obj/item/card/id/departmental_budget/car(src)
-	new /obj/item/clothing/shoes/sneakers/brown/digitigrade //fulp
-	new /obj/item/clothing/suit/hooded/wintercoat/cargo/head(src) // [FULP] [PNX] [PAPRITO]
+	new /obj/item/clothing/shoes/sneakers/brown/digitigrade // Tegu
+	new /obj/item/clothing/suit/hooded/wintercoat/cargo/head(src) // [TEGU] [PNX] [PAPRITO]

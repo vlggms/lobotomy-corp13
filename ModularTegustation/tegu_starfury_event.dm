@@ -95,9 +95,9 @@
 /obj/item/crowbar/combat
 	name = "combat crowbar"
 	desc = "An advanced crowbar 'borrowed' from the combined union."
-	icon = 'icons/Fulpicons/starfury.dmi'
-	lefthand_file = 'icons/Fulpicons/fulpitems_hold_left.dmi'
-	righthand_file = 'icons/Fulpicons/fulpitems_hold_right.dmi'
+	icon = 'ModularTegustation/Teguicons/starfury.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguitems_hold_right.dmi'
 	icon_state = "crowbar_combat"
 	inhand_icon_state = "crowbar_combat"
 	attack_verb_simple = list("devastate", "brutalize", "crowbar")
@@ -169,7 +169,7 @@
 
 //Decals
 /obj/effect/turf_decal/starfury
-	icon = 'icons/Fulpicons/starfury.dmi'
+	icon = 'ModularTegustation/Teguicons/starfury.dmi'
 
 /obj/effect/turf_decal/starfury/one
 	icon_state = "SBC1"

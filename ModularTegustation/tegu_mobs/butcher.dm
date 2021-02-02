@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/butcher
 	name = "The Butcher"
 	desc = "A delusional man, pursuing the taste of human meat."
-	icon = 'icons/Fulpicons/fulpmobs.dmi'
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "butcher"
 	icon_living = "butcher"
 	icon_dead = "syndicate_dead"

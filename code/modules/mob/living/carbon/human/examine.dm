@@ -185,7 +185,7 @@
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor [dna.species.bruising_desc].\n"	// FULP: Species Descriptors
+				msg += "[t_He] [t_has] minor [dna.species.bruising_desc].\n"	// TEGU: Species Descriptors
 			else if(temp < 50)
 				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.bruising_desc]!\n"
 			else
@@ -194,7 +194,7 @@
 		temp = getFireLoss()
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor [dna.species.burns_desc].\n"	// FULP: Species Descriptors
+				msg += "[t_He] [t_has] minor [dna.species.burns_desc].\n"	// TEGU: Species Descriptors
 			else if (temp < 50)
 				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.burns_desc]!\n"
 			else
@@ -203,7 +203,7 @@
 		temp = getCloneLoss()
 		if(temp)
 			if(temp < 25)
-				msg += "[t_He] [t_has] minor [dna.species.cellulardamage_desc].\n"	 // FULP: Species Descriptors
+				msg += "[t_He] [t_has] minor [dna.species.cellulardamage_desc].\n"	 // TEGU: Species Descriptors
 			else if(temp < 50)
 				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.cellulardamage_desc]!\n"
 			else

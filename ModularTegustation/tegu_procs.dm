@@ -1,12 +1,12 @@
 
 
 // Called from sound.dm to find a track to play
-/client/proc/returncreditsmusic() // FULPSTATION
+/client/proc/returncreditsmusic() // TEGUSTATION
 	if (prob(15))
-		return 'sound/Fulpsounds/Fulp_Uhoh_Stinky.ogg'
+		return 'ModularTegustation/tegusounds/Uhoh_Stinky.ogg'
 	if (prob(5))
-		return 'sound/Fulpsounds/Fulp_Piano_Old.ogg'
-	return 'sound/Fulpsounds/Fulp_Piano.ogg'
+		return 'ModularTegustation/tegusounds/Tegu_Piano_Old.ogg'
+	return 'ModularTegustation/tegusounds/Tegu_Piano.ogg'
 
 
 // Can someone see the turf indicated? //
@@ -56,7 +56,7 @@
 
 // Return a xeno_spawn location in an area - use for additional jobspawns
 //
-/proc/get_fulp_spawn(area/dept)
+/proc/get_tegu_spawn(area/dept)
 	for(var/obj/effect/landmark/S in GLOB.xeno_spawn)
 		if(get_area(S) == dept)
 			return S
@@ -65,7 +65,7 @@
 /client/proc/playcreditsmusic(vol = 85)
 	set waitfor = FALSE
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		SEND_SOUND(src, sound(returncreditsmusic(), repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // FULPSTATION: Play end music! SO SAD!
+		SEND_SOUND(src, sound(returncreditsmusic(), repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // TEGUSTATION: Play end music! SO SAD!
 
 /mob/living/carbon/proc/getBruteLoss_nonProsthetic()
 	var/amount = 0

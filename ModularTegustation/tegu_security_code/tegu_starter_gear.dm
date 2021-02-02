@@ -2,7 +2,7 @@
 #define SEC_RADIO_SCAN_SOUND_DENY list('sound/machines/buzz-two.ogg')
 #define SEC_RADIO_SCAN_COOLDOWN 2 SECONDS
 
-/obj/item/storage/belt/security/fulp_starter_full/PopulateContents()
+/obj/item/storage/belt/security/tegu_starter_full/PopulateContents()
 	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/radio/off/security(src)
@@ -19,7 +19,7 @@
 
 /obj/item/radio/off/security
 	name = "security station bounced radio"
-	icon = 'icons/Fulpicons/Surreal_stuff/sec_radio.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/sec_radio.dmi'
 	icon_state = "sec_radio"
 	desc = "A sophisticated full range station bounced radio. Preconfigured with a radio frequency for emergency security use in the event of telecom disruption. You can use a Security ID to reset its frequency to the emergency security channel."
 	freerange = TRUE //Can access the full spectrum

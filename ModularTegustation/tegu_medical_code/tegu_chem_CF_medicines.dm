@@ -1,4 +1,4 @@
-////Fulp SalChems (T5 Trekkie Chems and Comebacks Rework)
+//// Tegu SalChems (T5 Trekkie Chems and Comebacks Rework)
 //@Author: Saliferous
 
 //**BRUTE**

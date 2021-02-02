@@ -1,7 +1,7 @@
 /obj/item/book/granter/language_book
 	var/language_name = null
 	var/learnable_language = null
-	icon = 'icons/obj/library_fulp.dmi'
+	icon = 'ModularTegustation/Teguicons/library_tegu.dmi'
 
 /obj/item/book/granter/language_book/already_known(mob/user)
 	if(!user.has_language(learnable_language))

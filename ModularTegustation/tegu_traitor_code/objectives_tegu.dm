@@ -102,8 +102,12 @@
 				return TRUE
 	return FALSE
 
-/datum/objective_item/steal/lamarr
+/datum/objective_item/steal/lamarr // Might require maintaining if Xeno rework is merged
 	name = "Lamarr The subject of study by the research director."
 	targetitem = /obj/item/clothing/mask/facehugger/lamarr
 	difficulty = 40
 	excludefromjob = list("Research Director")
+
+/datum/objective/escape/escape_with_identity/infiltrator/New() //For infiltrators, so they get mulligan
+	..()
+	give_special_equipment(list(/obj/item/adv_mulligan))

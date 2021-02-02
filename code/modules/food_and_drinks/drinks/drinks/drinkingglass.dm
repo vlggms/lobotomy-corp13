@@ -38,7 +38,7 @@
 
 	var/datum/reagent/largest_reagent = reagents.get_master_reagent()
 	if(largest_reagent.glass_tegu)
-		icon = 'icons/Fulpicons/fulpitems.dmi' //Tegu, obviously.
+		icon = 'ModularTegustation/Teguicons/teguitems.dmi' //Tegu, obviously.
 	if(largest_reagent.glass_icon_state)
 		icon_state = largest_reagent.glass_icon_state
 	return NONE

@@ -87,7 +87,7 @@
 /obj/structure/bed/holobed
 	name = "holo bed"
 	desc = "A bed formed from hard light. Looks surprisingly comfortable."
-	icon = 'icons/Fulpicons/holobed.dmi'
+	icon = 'ModularTegustation/Teguicons/holobed.dmi'
 	icon_state = "holobed_unbuckled"
 	anchored = FALSE
 	buildstacktype = null

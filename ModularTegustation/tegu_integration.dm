@@ -28,7 +28,7 @@
 
 /obj/item/clothing
 
-	var/fulp_item = FALSE
+	var/tegu_item = FALSE
 
 	// icon =  'icons/mob/uniforms.dmi'   <--- This already exists! This is for the item on the floor, NOT the sprite.
 	//var/worn_icon = 'icon/mob/clothing/under/default.dmi' // 'icons/mob/uniform.dmi'  // We created this to add to the sprite! (human/update_icons.dm)
@@ -42,15 +42,15 @@
 	//var/job_icon = 'icons/obj/card.dmi' // This is now stored on the job.
 
 /obj/item/card/id/proc/return_icon_job()
-	if (assignment in GLOB.fulp_jobs)
-		return 'icons/Fulpicons/cards.dmi'
+	if (assignment in GLOB.tegu_jobs)
+		return 'ModularTegustation/Teguicons/cards.dmi'
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/obj/card.dmi'
 	return initial(linkedJobType.id_icon)
 
 /obj/item/card/id/proc/return_icon_hud()
-	if (assignment in GLOB.fulp_jobs)
-		return 'icons/Fulpicons/fulphud.dmi' //Couldn't think of better solution
+	if (assignment in GLOB.tegu_jobs)
+		return 'ModularTegustation/Teguicons/teguhud.dmi' //Couldn't think of better solution
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/mob/hud.dmi'
 	return initial(linkedJobType.hud_icon)

@@ -1,5 +1,5 @@
 
-//This is varied code for many random space ruins for Fulpstation
+//This is varied code for many random space ruins for Tegustation
 /*
 
 Search and find code with this to help you port things:
@@ -278,9 +278,9 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 
 //DATU
 
-/datum/map_template/ruin/space/fulp_asteroid
+/datum/map_template/ruin/space/tegu_asteroid
 	id = "bluespaceasteroid"
-	suffix = "fulp_asteroid.dmm"
+	suffix = "tegu_asteroid.dmm"
 	name = "Blue space asteroid"
 	description = "Giant rock with candy inside!"
 

@@ -1,4 +1,4 @@
-fulp_dbz
+tegu_dbz
 
 /obj/item/clothing/under/costume/saiyan
 	name = "saiyan"

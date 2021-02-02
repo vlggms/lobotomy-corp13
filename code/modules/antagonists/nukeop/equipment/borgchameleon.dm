@@ -29,7 +29,7 @@
 
 /obj/item/borg_chameleon/Initialize()
 	. = ..()
-	default_name = pick(GLOB.ai_names) //We store our default name. FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+	default_name = pick(GLOB.ai_names) //We store our default name. TEGUSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
 
 /obj/item/borg_chameleon/Destroy()
 	listeningTo = null
@@ -61,7 +61,7 @@
 		if(animation_playing)
 			to_chat(user, "<span class='notice'>\the [src] is recharging.</span>")
 			return
-		if(!fulp_borg_chameleon_menu(user)) //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+		if(!tegu_borg_chameleon_menu(user)) // TEGUSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
 			return
 		animation_playing = TRUE
 		to_chat(user, "<span class='notice'>You activate \the [src].</span>")
@@ -69,7 +69,7 @@
 		apply_wibbly_filters(user)
 		if (do_after(user, 50, target=user) && user.cell.use(activationCost))
 			playsound(src, 'sound/effects/bamf.ogg', 100, TRUE, -6)
-			to_chat(user, "<span class='notice'>You are now disguised as the <b>[disguise_text]</b> borg <b>[friendlyName]</b>. </span>")  //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+			to_chat(user, "<span class='notice'>You are now disguised as the <b>[disguise_text]</b> borg <b>[friendlyName]</b>. </span>")  // TEGUSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
 			activate(user)
 		else
 			to_chat(user, "<span class='warning'>The chameleon field fizzles.</span>")

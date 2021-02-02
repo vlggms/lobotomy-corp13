@@ -1,6 +1,6 @@
 
 /*
-		WELCOME TO THE FULPSTATION CODE Z-LEVEL!
+		WELCOME TO THE TEGUSTATION CODE Z-LEVEL!
 
 
 	Any time we want to outright overwrite a variable that is already given a value in a previously defined atom or datum, we
@@ -50,7 +50,7 @@
 	//var/toggle_helmet_sound = 'sound/mecha/mechmove03.ogg'
 
 //*************************************************************************
-//** FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019 BEGINS
+//** TEGUSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019 BEGINS
 //**-----------------------------------------------------------------------
 //** -Adds security levels to the security record computer.
 //** -Adds arrest logging for security bots.
@@ -64,7 +64,7 @@
 	var/harm_violation
 
 //*************************************************************************
-//** FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019 ENDS
+//** TEGUSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019 ENDS
 //**-----------------------------------------------------------------------
 //** -Adds security levels to the security record computer.
 //** -Adds arrest logging for security bots.
@@ -92,7 +92,7 @@
 //******************************************************
 
 //***********************************************************************
-//** FULP PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 BEGINS
+//** TEGU PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 BEGINS
 //**---------------------------------------------------------------------
 //** Borgs now have access to appropriate secure radio channels
 //***********************************************************************
@@ -139,13 +139,13 @@
 
 
 //***********************************************************************
-//** FULP PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 ENDS
+//** TEGU PROPER RADIO CHANNELS FOR BORGS by Surrealistik Nov 2019 ENDS
 //**---------------------------------------------------------------------
 //** Borgs now have access to appropriate secure radio channels
 //***********************************************************************
 
 //***************************************************************************
-//** FULPSTATION MEDBORG CHANGES by Surrealistik Nov 2019-Feb 2020 BEGINS
+//** TEGUSTATION MEDBORG CHANGES by Surrealistik Nov 2019-Feb 2020 BEGINS
 //---------------------------------------------------------------------------
 //** Adds no-collision holobeds to the medborg. Support for handheld versions
 //***************************************************************************
@@ -156,7 +156,7 @@
 
 
 //***************************************************************************
-//** FULPSTATION MEDBORG CHANGES by Surrealistik Nov 2019-Feb 2020 ENDS
+//** TEGUSTATION MEDBORG CHANGES by Surrealistik Nov 2019-Feb 2020 ENDS
 //---------------------------------------------------------------------------
 //** Adds no-collision holobeds to the medborg. Support for handheld versions
 //***************************************************************************
@@ -177,7 +177,7 @@
 //************************************************************************
 
 //***************************************************************************
-//** FULPSTATION SECBORG MODULE UPDATE by Surrealistik Jan 2020 BEGINS
+//* TEGUSTATION SECBORG MODULE UPDATE by Surrealistik Jan 2020 BEGINS
 //---------------------------------------------------------------------------
 //** Expands the Secborg's module items and upgrades.
 //***************************************************************************
@@ -201,7 +201,7 @@
 
 
 //***************************************************************************
-//** FULPSTATION SECBORG MODULE UPDATE by Surrealistik Jan 2020 BEGINS
+//** TEGUSTATION SECBORG MODULE UPDATE by Surrealistik Jan 2020 BEGINS
 //---------------------------------------------------------------------------
 //** Expands the Secborg's module items and upgrades.
 //***************************************************************************
@@ -259,7 +259,7 @@
 //*****************************************************************************
 
 //***************************************************************************
-//** FULPSTATION SITH STARTER KIT by Surrealistik Jan 2020 BEGINS
+//** TEGUSTATION SITH STARTER KIT by Surrealistik Jan 2020 BEGINS
 //---------------------------------------------------------------------------
 //** Adds Sith Starter Kit traitor bundle for the Chaplain
 //***************************************************************************
@@ -268,13 +268,13 @@
 	var/datum/effect_system/spark_spread/spark_system
 
 //***************************************************************************
-//** FULPSTATION SITH STARTER KIT by Surrealistik Jan 2020 ENDS
+//** TEGUSTATION SITH STARTER KIT by Surrealistik Jan 2020 ENDS
 //---------------------------------------------------------------------------
 //** Adds Sith Starter Kit traitor bundle for the Chaplain
 //***************************************************************************
 
 //***************************************************************************
-//** FULPSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 BEGINS
+//** TEGUSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 BEGINS
 //---------------------------------------------------------------------------
 //** Lets medical and engineering syndiborgs choose a disguise from a list.
 //** Also tweaks the medical syndiborg, removing emag and granting more med items
@@ -288,7 +288,7 @@
 	actions_types = list(/datum/action/item_action/borg_chameleon)
 
 //***************************************************************************
-//** FULPSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 ENDS
+//** TEGUSTATION SYNDIBORG DISGUISE MENU by Surrealistik March 2020 ENDS
 //---------------------------------------------------------------------------
 //** Lets medical and engineering syndiborgs choose a disguise from a list.
 //** Also tweaks the medical syndiborg, removing emag and granting more med items
@@ -302,7 +302,7 @@
 /datum/outfit/job/security
 	backpack_contents = list() //Start with stun baton in belt.
 	r_pocket = /obj/item/pda/security
-	belt = /obj/item/storage/belt/security/fulp_starter_full
+	belt = /obj/item/storage/belt/security/tegu_starter_full
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	box = /obj/item/storage/box/survival/security/improved
 	pda_slot = ITEM_SLOT_RPOCKET
@@ -310,14 +310,14 @@
 /datum/outfit/job/warden
 	backpack_contents = list() //Start with stun baton in belt.
 	r_pocket = /obj/item/pda/security
-	belt = /obj/item/storage/belt/security/fulp_starter_full
+	belt = /obj/item/storage/belt/security/tegu_starter_full
 	box = /obj/item/storage/box/survival/security/improved
 	pda_slot = ITEM_SLOT_RPOCKET
 
 /datum/outfit/job/hos
 	backpack_contents = list() //Start with stun baton in belt.
 	r_pocket = /obj/item/pda/security
-	belt = /obj/item/storage/belt/security/fulp_starter_full
+	belt = /obj/item/storage/belt/security/tegu_starter_full
 	box = /obj/item/storage/box/survival/security/improved
 	pda_slot = ITEM_SLOT_RPOCKET
 
@@ -348,7 +348,7 @@
 	desc = "Used to remotely scan objects and biomass for DNA and fingerprints, and has an integrated health and reagent analyzer. Can print a report of its findings."
 
 /obj/item/detective_scanner
-	icon = 'icons/Fulpicons/Surreal_stuff/detective_obs.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/detective_obs.dmi'
 	icon_state = "forensicnew-0"
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS) //Checked when trying to purge laws or use data disks with the scanner.
 	var/mode

@@ -435,11 +435,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(!features["ethcolor"] || features["ethcolor"] == "#000")
 		features["ethcolor"] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 
-	if(!features["beefcolor"] || features["beefcolor"] == "") // FULP
+	if(!features["beefcolor"] || features["beefcolor"] == "") // Tegustation Beefman
 		features["beefcolor"] = GLOB.color_list_beefman[pick(GLOB.color_list_beefman)]
-	if(!features["beefeyes"] || features["beefeyes"] == "") // FULP
+	if(!features["beefeyes"] || features["beefeyes"] == "") // Tegustation Beefman
 		features["beefeyes"] = pick(GLOB.eyes_beefman)
-	if(!features["beefmouth"] || features["beefmouth"] == "") // FULP
+	if(!features["beefmouth"] || features["beefmouth"] == "") // Tegustation Beefman
 		features["beefmouth"] = pick(GLOB.mouths_beefman)
 
 
@@ -474,9 +474,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	playtime_reward_cloak = sanitize_integer(playtime_reward_cloak)
 	features["mcolor"]	= sanitize_hexcolor(features["mcolor"], 3, 0)
 	features["ethcolor"]	= copytext_char(features["ethcolor"], 1, 7)
-	features["beefcolor"]	= copytext_char(features["beefcolor"], 1, 7) // FULP
-	features["beefeyes"]	= sanitize_inlist(features["beefeyes"], GLOB.eyes_beefman) // FULP
-	features["beefmouth"]	= sanitize_inlist(features["beefmouth"], GLOB.mouths_beefman) // FULP
+	features["beefcolor"]	= copytext_char(features["beefcolor"], 1, 7) // Tegustation Beefman
+	features["beefeyes"]	= sanitize_inlist(features["beefeyes"], GLOB.eyes_beefman) // Tegustation Beefman
+	features["beefmouth"]	= sanitize_inlist(features["beefmouth"], GLOB.mouths_beefman) // Tegustation Beefman
 	features["tail_lizard"]	= sanitize_inlist(features["tail_lizard"], GLOB.tails_list_lizard)
 	features["tail_human"] 	= sanitize_inlist(features["tail_human"], GLOB.tails_list_human, "None")
 	features["snout"]	= sanitize_inlist(features["snout"], GLOB.snouts_list)

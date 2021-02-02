@@ -28,8 +28,8 @@
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
 	new /obj/item/storage/photo_album/rd(src)
 	new /obj/item/storage/box/skillchips/science(src)
-	new /obj/item/clothing/shoes/laceup/digitigrade(src) //fulp
-	new /obj/item/clothing/suit/hooded/wintercoat/science/head(src) // [FULP] [PNX] [PAPRITO]
+	new /obj/item/clothing/shoes/laceup/digitigrade(src) // tegu
+	new /obj/item/clothing/suit/hooded/wintercoat/science/head(src) // [TEGU] [PNX] [PAPRITO]
 
 
 /obj/structure/closet/secure_closet/cytology

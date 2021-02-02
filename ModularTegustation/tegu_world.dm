@@ -1,11 +1,11 @@
 
 
-/world/proc/update_status_fulp()
+/world/proc/update_status_tegu()
 
 	var/list/features = list()
 
 	//if(GLOB.master_mode)
-	//	features += GLOB.master_mode	// FULP REMOVE: This is done below
+	//	features += GLOB.master_mode	// TEGU REMOVE: This is done below
 
 	if (!GLOB.enter_allowed)
 		features += "closed"
@@ -15,7 +15,7 @@
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
-			s += "<b>[server_name]</b>\] &#8212; " // Fulpstation: added "\]" so we close the name with a ]  This looks clean!
+			s += "<b>[server_name]</b>\] &#8212; " // Tegustation: added "\]" so we close the name with a ]  This looks clean!
 		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
 		if(CONFIG_GET(flag/allow_vote_mode))
 			features += "vote"
@@ -24,7 +24,7 @@
 		hostedby = CONFIG_GET(string/hostedby)
 
 	var/server_caption = CONFIG_GET(string/servercaption)
-	s+= "<b>[server_caption]</b>" // SSETH FANS WELCOME! // "<b>The Problems of the Future, <i>Today!</i></b>"  // "<b>[station_name()]</b>";	// FULPSTATION: We don't display the name of the Station anymore
+	s+= "<b>[server_caption]</b>" // SSETH FANS WELCOME! // "<b>The Problems of the Future, <i>Today!</i></b>"  // "<b>[station_name()]</b>";	// TEGUSTATION: We don't display the name of the Station anymore
 	s += " ("
 	//s += "<a href=\"[CONFIG_GET(string/forumurl)]\">"//Change this to wherever you want the hub to link to.
 	//	s += "[game_version]"
@@ -36,11 +36,11 @@
 	s += "</a>"
 	s += ")<br>"
 
-	// Fulp Description
+	// Tegu Description
 	s += "<br><b>Updated Fulpstation codebase</b>"
 	s += "<br>Roleplay: \[<b>Medium</b>\]"
 	if(GLOB.master_mode)
-		s += "<br>Mode: \[<b>" + (GLOB.master_mode == "secret_extended" ? "secret" : GLOB.master_mode) + "</b>"//\]" // FULPSTATION: What's the point in making it secret if it's going to just say the actual mode (extended)?
+		s += "<br>Mode: \[<b>" + (GLOB.master_mode == "secret_extended" ? "secret" : GLOB.master_mode) + "</b>"//\]" // TEGUSTATION: What's the point in making it secret if it's going to just say the actual mode (extended)?
 		// NOTE: If this is the LAST THING to be added to the description, then it'll end with a ] anyway. So don't include it here
 
 	var/players = GLOB.clients.len

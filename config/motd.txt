@@ -1,6 +1,5 @@
-<h1>Welcome to the Fulpstation!</h1>
+<h1>Welcome to the Tegustation!</h1>
 <i>This server is running a customized /tg/station 13 Git build.</i>
 
-<h1><a href="https://fulpstation.com/showthread.php?tid=844"><b>[CLICK HERE TO READ THE RULES]</b></a></h1>
-<h2><a href="http://discord.gg/SVu782A"><b>[CLICK HERE TO JOIN THE DISCORD]</b></a></h2>
-<h2>Greytiding, antag murderboning, and griefing <b>WILL</b> net you a ban. Plus, the regulars are prepared to narc on you in a heartbeat.</h2>
+<h1><a href="https://docs.google.com/document/d/1YhvfqbDzUj5UChz6BbHCcwVsxJQs4JBLPVL8DKB-luY"><b>[CLICK HERE TO READ THE RULES]</b></a></h1>
+<h2><a href="https://discord.gg/yq35xVdTBg"><b>[CLICK HERE TO JOIN THE DISCORD]</b></a></h2>

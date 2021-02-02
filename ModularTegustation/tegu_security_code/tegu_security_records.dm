@@ -1,10 +1,10 @@
-/mob/living/simple_animal/bot/secbot/proc/fulp_threat_assess_carbon_filter(mob/living/carbon/C, judgement_criteria) //We check whether the target is carbon and threat assess appropriately
+/mob/living/simple_animal/bot/secbot/proc/tegu_threat_assess_carbon_filter(mob/living/carbon/C, judgement_criteria) //We check whether the target is carbon and threat assess appropriately
 	if(!C) //Sanity
 		return
 
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		threatlevel = H.assess_threat_fulp(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+		threatlevel = H.assess_threat_tegu(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
 		return
 
 	threatlevel = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))

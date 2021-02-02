@@ -28,7 +28,7 @@
 		/datum/language/sylvan,
 		/datum/language/shadowtongue,
 		/datum/language/terrum,
-		/datum/language/russian, // FULP
+		/datum/language/russian, // TEGU
 		/datum/language/nekomimetic
 	))
 

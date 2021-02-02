@@ -40,10 +40,10 @@
 	punchdamagehigh = 5 // 10      //highest possible punch damage
 	siemens_coeff = 0.7 // Due to lack of density.   //base electrocution coefficient
 	inert_mutation = MUTATE // in DNA.dm
-	deathsound = 'sound/Fulpsounds/beef_die.ogg'
-	attack_sound = 'sound/Fulpsounds/beef_hit.ogg'
-	special_step_sounds = list('sound/Fulpsounds/footstep_splat1.ogg','sound/Fulpsounds/footstep_splat2.ogg','sound/Fulpsounds/footstep_splat3.ogg','sound/Fulpsounds/footstep_splat4.ogg')//Sounds to override barefeet walkng
-	grab_sound = 'sound/Fulpsounds/beef_grab.ogg'//Special sound for grabbing
+	deathsound = 'ModularTegustation/tegusounds/beef_die.ogg'
+	attack_sound = 'ModularTegustation/tegusounds/beef_hit.ogg'
+	special_step_sounds = list('ModularTegustation/tegusounds/footstep_splat1.ogg','ModularTegustation/tegusounds/footstep_splat2.ogg','ModularTegustation/tegusounds/footstep_splat3.ogg','ModularTegustation/tegusounds/footstep_splat4.ogg')//Sounds to override barefeet walkng
+	grab_sound = 'ModularTegustation/tegusounds/beef_grab.ogg'//Special sound for grabbing
 
 	var/dehydrate = 0
 	    // list( /datum/brain_trauma/mild/phobia/strangers, /datum/brain_trauma/mild/phobia/doctors, /datum/brain_trauma/mild/phobia/authority )
@@ -325,7 +325,7 @@
 				return TRUE
 
 			user.visible_message("[user]'s [affecting.name] comes right off in their hand.", "<span class='notice'>Your [affecting.name] pops right off.</span>")
-			playsound(get_turf(user), 'sound/Fulpsounds/beef_hit.ogg', 40, 1)
+			playsound(get_turf(user), 'ModularTegustation/tegusounds/beef_hit.ogg', 40, 1)
 
 			// Destroy Limb, Drop Meat, Pick Up
 			var/obj/item/I = affecting.drop_limb() //  <--- This will return a meat vis drop_meat(), even if only Beefman limbs return anything. If this was another species' limb, it just comes off.
@@ -365,7 +365,7 @@
 				H.visible_message("The meat sprouts digits and becomes [H]'s new [newBP.name]!", "<span class='notice'>The meat sprouts digits and becomes your new [newBP.name]!</span>")
 				newBP.attach_limb(H)
 				newBP.give_meat(H, I)
-				playsound(get_turf(H), 'sound/Fulpsounds/beef_grab.ogg', 50, 1)
+				playsound(get_turf(H), 'ModularTegustation/tegusounds/beef_grab.ogg', 50, 1)
 
 			return TRUE // True CANCELS the sequence.
 
@@ -551,16 +551,16 @@
 	//QDEL_IN(src,1) // Delete later. If we do it now, we screw up the "attack chain" that called this meat to attack the Beefman's stump.
 
 /obj/item/bodypart/head/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 
 /obj/item/bodypart/chest/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 /obj/item/bodypart/chest/beef/drop_limb(special) // from dismemberment.dm
@@ -570,9 +570,9 @@
 	return drop_meat(owner_cache)
 
 /obj/item/bodypart/r_arm/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 /obj/item/bodypart/r_arm/beef/drop_limb(special) // from dismemberment.dm
@@ -582,9 +582,9 @@
 	return drop_meat(owner_cache)
 
 /obj/item/bodypart/l_arm/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 /obj/item/bodypart/l_arm/beef/drop_limb(special) // from dismemberment.dm
@@ -594,9 +594,9 @@
 	return drop_meat(owner_cache)
 
 /obj/item/bodypart/r_leg/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 /obj/item/bodypart/r_leg/beef/drop_limb(special) // from dismemberment.dm
@@ -606,9 +606,9 @@
 	return drop_meat(owner_cache)
 
 /obj/item/bodypart/l_leg/beef
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale = 'icons/Fulpicons/fulp_bodyparts.dmi'
-	icon_greyscale_robotic = 'icons/Fulpicons/fulp_bodyparts_robotic.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
+	icon_greyscale_robotic = 'ModularTegustation/Teguicons/tegu_bodyparts_robotic.dmi'
 	heavy_brute_msg = "mincemeat"
 	heavy_burn_msg = "burned to a crisp"
 /obj/item/bodypart/l_leg/beef/drop_limb(special) // from dismemberment.dm
@@ -639,7 +639,7 @@
 //GLOBAL_LIST_INIT(eyes_beefman, list( "Peppercorns", "Capers", "Olives" ))
 //GLOBAL_LIST_INIT(mouths_beefman, list( "Smile1", "Smile2", "Frown1", "Frown2", "Grit1", "Grit2" ))
 /datum/sprite_accessory/beef/
-	icon = 'icons/Fulpicons/fulp_bodyparts.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_bodyparts.dmi'
 
 	// please make sure they're sorted alphabetically and, where needed, categorized
 	// try to capitalize the names please~
@@ -690,13 +690,13 @@
 /obj/item/clothing/under/bodysash/
 	name = "body sash"
 	desc = "A simple body sash, slung from shoulder to hip."
-	icon = 'icons/Fulpicons/fulpclothing.dmi' // item icon
-	worn_icon =  'icons/Fulpicons/fulpclothing_worn.dmi' // mob worn icon
+	icon = 'ModularTegustation/Teguicons/teguclothing.dmi' // item icon
+	worn_icon =  'ModularTegustation/Teguicons/teguclothing_worn.dmi' // mob worn icon
 	icon_state = "assistant" // Inventory Icon
 	//item_color = "assistant" // The worn item Icon
 	body_parts_covered = CHEST // |GROIN|ARMS
-	lefthand_file = 'icons/Fulpicons/fulpclothing_hold_left.dmi'
-	righthand_file = 'icons/Fulpicons/fulpclothing_hold_right.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
 	inhand_icon_state = "sash" // In-hand Icon
 
 /obj/item/clothing/under/bodysash/security
@@ -828,7 +828,7 @@
 	/*light_color = "#FF88AA"
 	light_range = 2
 	light_power = 2*/
-	image_icon = 'icons/Fulpicons/fulp_effects.dmi'
+	image_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	image_state = "phobetor_tear"
 	image_layer = ABOVE_LIGHTING_LAYER // Place this above shadows so it always glows.
 	var/exist_length = 500

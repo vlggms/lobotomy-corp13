@@ -1,8 +1,8 @@
-//Fulp SalChems (T5 Trekkie Chems and Comebacks Rework)
+// Tegu SalChems (T5 Trekkie Chems and Comebacks Rework)
 //@Author: Saliferous
 #define REMF REAGENTS_EFFECT_MULTIPLIER
 
-//FulpChem rework/addition of old chems to fix the potatofarm that is tg development -Love, Saliferous
+// TeguChem rework/addition of old chems to fix the potatofarm that is tg development -Love, Saliferous
 /datum/reagent/medicine/CF
 	harmful = FALSE
 

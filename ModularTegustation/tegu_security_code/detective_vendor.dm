@@ -2,7 +2,7 @@
 	name = "\improper DicTech"
 	desc = "A fashion and essentials vendor for the discerning detective."
 	product_ads = "Just one more question: Are you ready to look swag?; Upgrade your LA Noir threads today!;Evidence bags? Cigs? Matches? We got it all!;Get your fix of cheap cigs and burnt coffee!;Stogies here to complete that classic noir look!;Stylish apparel here! Crack your case in style!;Fedoras for her tipping pleasure.;Why not have a donut?"
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "det"
 	icon_deny = "det-deny"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
@@ -72,7 +72,7 @@
 		F.update_brightness()
 
 /obj/item/vending_refill/detective
-	icon = 'icons/Fulpicons/Surreal_stuff/disco_elysium.dmi'
+	icon = 'ModularTegustation/Teguicons/Surreal_stuff/disco_elysium.dmi'
 	icon_state = "refill_det"
 
 

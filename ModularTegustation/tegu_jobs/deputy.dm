@@ -21,21 +21,21 @@
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
-	// FULP Integration Vars
-	id_icon = 'icons/fulpicons/cards.dmi'	// Overlay on your ID
-	hud_icon = 'icons/fulpicons/fulphud.dmi'		 	// Sec Huds see this
+	// TEGU Integration Vars
+	id_icon = 'ModularTegustation/Teguicons/cards.dmi'	// Overlay on your ID
+	hud_icon = 'ModularTegustation/Teguicons/teguhud.dmi'		 	// Sec Huds see this
 
 
 /obj/item/clothing/under/rank/security/mallcop
 	name = "deputy shirt"
 	desc = "An awe-inspiring tactical shirt-and-pants combo; because safety never takes a holiday."
-	worn_icon = 'icons/fulpicons/mith_stash/clothing/under_worn.dmi' //will be sharing a DMI with digisuits
-	icon = 'icons/fulpicons/mith_stash/clothing/under_icons.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/under_worn.dmi' //will be sharing a DMI with digisuits
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/under_icons.dmi'
 	icon_state = "mallcop"
 	strip_delay = 50
 	sensor_mode = SENSOR_COORDS
 	random_sensor = FALSE
-	fulp_item = TRUE
+	tegu_item = TRUE
 	mutantrace_variation = MUTANTRACE_VARIATION
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -50,41 +50,41 @@
 /obj/item/clothing/head/beret/sec/engineering
 	name = "engineering deputy beret"
 	desc = "Perhaps the only thing standing between the supermatter and a station-wide explosive sabotage."
-	worn_icon = 'icons/fulpicons/mith_stash/clothing/head_worn.dmi'
-	icon = 'icons/fulpicons/mith_stash/clothing/head_icons.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_engi"
-	fulp_item = TRUE
+	tegu_item = TRUE
 
 /obj/item/clothing/head/beret/sec/medical
 	name = "medical deputy beret"
 	desc = "This proud white-blue beret is a welcome sight when the greytide descends on chemistry."
-	worn_icon = 'icons/fulpicons/mith_stash/clothing/head_worn.dmi'
-	icon = 'icons/fulpicons/mith_stash/clothing/head_icons.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_medbay"
-	fulp_item = TRUE
+	tegu_item = TRUE
 
 /obj/item/clothing/head/beret/sec/science
 	name = "science deputy beret"
 	desc = "This loud purple beret screams 'Dont mess with his matter manipulator!'"
-	worn_icon = 'icons/fulpicons/mith_stash/clothing/head_worn.dmi'
-	icon = 'icons/fulpicons/mith_stash/clothing/head_icons.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_science"
-	fulp_item = TRUE
+	tegu_item = TRUE
 
 /obj/item/clothing/head/beret/sec/supply
 	name = "supply deputy beret"
 	desc = "The headwear for only the most eagle-eyed Deputy, able to watch both Cargo and Mining."
-	worn_icon = 'icons/fulpicons/mith_stash/clothing/head_worn.dmi'
-	icon = 'icons/fulpicons/mith_stash/clothing/head_icons.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/mith_stash/clothing/head_icons.dmi'
 	icon_state = "beret_supply"
-	fulp_item = TRUE
+	tegu_item = TRUE
 
 /datum/outfit/job/deputy
 	name = "Deputy"
 	jobtype = /datum/job/deputy
 
 	head = /obj/item/clothing/head/beret/sec
-	belt = /obj/item/storage/belt/security/fulp_starter_full
+	belt = /obj/item/storage/belt/security/tegu_starter_full
 	ears = /obj/item/radio/headset/headset_sec
 	uniform = /obj/item/clothing/under/rank/security/mallcop
 	accessory = /obj/item/clothing/accessory/armband/deputy
@@ -134,28 +134,28 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/cargo
 			dep_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION)
 			destination = /area/security/checkpoint/supply
-			spawn_point = get_fulp_spawn(destination)
+			spawn_point = get_tegu_spawn(destination)
 		if(SEC_DEPT_ENGINEERING)
 			ears = /obj/item/radio/headset/headset_sec/department/engi
 			head = /obj/item/clothing/head/beret/sec/engineering
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 			dep_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS)
 			destination = /area/security/checkpoint/engineering
-			spawn_point = get_fulp_spawn(destination)
+			spawn_point = get_tegu_spawn(destination)
 		if(SEC_DEPT_MEDICAL)
 			ears = /obj/item/radio/headset/headset_sec/department/med
 			head = /obj/item/clothing/head/beret/sec/medical
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/medical
 			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_GENETICS, ACCESS_CHEMISTRY) // ACCESS_CLONING
 			destination = /area/security/checkpoint/medical
-			spawn_point = get_fulp_spawn(destination)
+			spawn_point = get_tegu_spawn(destination)
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/department/sci
 			head = /obj/item/clothing/head/beret/sec/science
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/science
 			dep_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE)
 			destination = /area/security/checkpoint/science
-			spawn_point = get_fulp_spawn(destination)
+			spawn_point = get_tegu_spawn(destination)
 
 	if(ears)
 		if(H.ears)
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 	var/obj/item/card/id/W = H.wear_id
 	W.access |= dep_access
 	// SWAIN: Cards now link to their job, which contains id_icon and hud_icon (see above in Deputy's vars). We don't have to assign it here anymore <3
-	//W.job_icon = 'icons/fulpicons/cards.dmi'
+	//W.job_icon = 'ModularTegustation/Teguicons/cards.dmi'
 	//W.update_icon()
 
 	var/teleport = 0

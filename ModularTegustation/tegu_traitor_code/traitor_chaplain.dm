@@ -55,7 +55,7 @@
 
 ///Triggers on COMSIG_MOB_ATTACK_RANGED. Usually handles stuff like picking up items at range.
 /datum/martial_art/starter_sith/proc/on_ranged_attack(datum/source, atom/target)
-	if(owner.dna.check_mutation(TK)) //FULPSTATION Chaplain Starter Sith PR by Surrealistik Jan 2020; no stacking with Telekinesis
+	if(owner.dna.check_mutation(TK)) // TEGUSTATION Chaplain Starter Sith PR by Surrealistik Jan 2020; no stacking with Telekinesis
 		return
 	target.attack_tk(owner)
 

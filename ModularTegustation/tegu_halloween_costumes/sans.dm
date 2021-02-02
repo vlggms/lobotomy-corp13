@@ -1,8 +1,8 @@
 /obj/item/clothing/under/costume/sans
 	name = "a skeleton\'s hoodie"
 	desc = "A baggy, comfortable combination of a hoodie, tee and shorts. You can tell if you wear this you're gonna have a good time."
-	icon = 'icons/fulpicons/halloween_costumes/sans_icon.dmi'
-	worn_icon = 'icons/fulpicons/halloween_costumes/sans_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/halloween_costumes/sans_icon.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/halloween_costumes/sans_worn.dmi'
 	icon_state = "sans"
 	fitted = NO_FEMALE_UNIFORM
 	can_adjust = FALSE
@@ -10,8 +10,8 @@
 /obj/item/clothing/head/hardhat/sans
 	name = "massive foam skull"
 	desc = "What's this guy's name again? Sand? Sailsbury?"
-	icon = 'icons/fulpicons/halloween_costumes/sans_icon.dmi'
-	worn_icon = 'icons/fulpicons/halloween_costumes/sans_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/halloween_costumes/sans_icon.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/halloween_costumes/sans_worn.dmi'
 	icon_state = "hardhat0_sans"
 	light_power = 1
 	on = FALSE

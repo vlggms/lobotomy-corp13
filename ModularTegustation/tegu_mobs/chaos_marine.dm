@@ -5,7 +5,7 @@
 	maxHealth = 2000
 	icon_state = "chaos_marine"
 	icon_living = "chaos_marine"
-	icon = 'icons/Fulpicons/megafauna.dmi'
+	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
 	faction = list("chaos")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = "#FFFFFF"
@@ -419,8 +419,8 @@
 	cell = /obj/item/stock_parts/cell/hyper
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/berserker/chaos
 	icon_state = "hardsuit-chaos"
-	icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
-	worn_icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/berserker/chaos
 	name = "berserker's helmet"
@@ -428,8 +428,8 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	icon_state = "hardsuit0-chaos"
-	icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
-	worn_icon = 'icons/Fulpicons/fulpclothing_worn.dmi'
+	icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/teguclothing_worn.dmi'
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos/process()
 	. = ..()

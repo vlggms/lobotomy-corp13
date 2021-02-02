@@ -1,10 +1,10 @@
 /obj/structure/mineral_door/resin
 	name = "resin door"
-	icon = 'icons/Fulpicons/xenodoors.dmi'
+	icon = 'ModularTegustation/Teguicons/xenodoors.dmi'
 	icon_state = "resin"
 	CanAtmosPass = ATMOS_PASS_NO
-	openSound = 'sound/Fulpsounds/alien_resin_move1.ogg'
-	closeSound = 'sound/Fulpsounds/alien_resin_move1.ogg'
+	openSound = 'ModularTegustation/tegusounds/alien_resin_move1.ogg'
+	closeSound = 'ModularTegustation/tegusounds/alien_resin_move1.ogg'
 	close_delay = 5 SECONDS
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
