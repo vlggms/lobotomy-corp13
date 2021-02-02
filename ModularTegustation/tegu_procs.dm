@@ -53,14 +53,6 @@
 			return FALSE
 	return TRUE
 
-
-// Return a xeno_spawn location in an area - use for additional jobspawns
-//
-/proc/get_tegu_spawn(area/dept)
-	for(var/obj/effect/landmark/S in GLOB.xeno_spawn)
-		if(get_area(S) == dept)
-			return S
-
 // Called for round-end music
 /client/proc/playcreditsmusic(vol = 85)
 	set waitfor = FALSE

@@ -1,12 +1,43 @@
                 --=[PLEASE KEEP YOUR CODE AS MODULAR AS POSSIBLE]=--
-Keep edits in the TegustationModular folder as MUCH AS POSSIBLE.
-==> If not possible, please put a '// Tegustation [PR name] edit: (reason for edit)' so we can find it when required. <==
+Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to prevent merge conflicts when we update with /TG/.
 
-
-
-//Note to help against merge conflicts://
+							//Note to help against merge conflicts:\\
+							
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Sitation: WHEN ADDING ONTO TG CODE
+
+Practice: Add a note saying '// Tegustation [PR name] edit: (reason for edit)'
+
+Reason: So we can find all code used for a specific PR when needed to rework/maintain/read/remove it.
+
+Example: 
+
+load_mentors()
+
+-turns into-
+load_mentors() // Tegustation Mentorhelp edit: Load the mentors!
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Situation: WHEN ADDING SOMETHING ON TOP OF TEGU-ONLY CODE ON TG FILES THAT ALREADY HAS A NOTE
+
+Practice: Add a note saying it is also used in your PR as well
+
+Reason: We can easily search up both PRs in case we need to go back to maintain/read/remove a specific part of it
+
+Example:
+
+// Tegustation Deputies edit: Adds huds
+
+-turns into-
+// Tegustation Deputies edit: + // Tegustation Brig Doc edit: Adds huds
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Situation: WHEN ADDING TO A LIST (lockers, etc)
 
 Practice: Don't add it to the very end of the list. Add it second to last whenever possible.
@@ -26,8 +57,10 @@ var/list/whatever = list(/obj/item/tg_item1,
                       /obj/item/tegu_item1,   // Tegustation Clothing edit: Adding the clothing to vending machines
                       /obj/item/tegu_item2,   // Tegustation Clothing edit: adding the clothing to vending machines
                       /obj/item/tg_item3)
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Situation: WHEN REPLACING TG CODE (How something should act, starting gear, ect)
 
 Practice: Comment out the TG code, then have your code under it, with the '// Tegustation edit' note'
@@ -46,6 +79,7 @@ Example:
 	id = /obj/item/card/id/silver
 //	belt = /obj/item/pda/heads/cmo
 	belt = /obj/item/storage/belt/medical/surgeryfilled // Tegustation CMO updates edit: Gives them a filled surgery belt
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

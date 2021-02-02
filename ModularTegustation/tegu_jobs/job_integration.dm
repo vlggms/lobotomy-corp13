@@ -1,5 +1,5 @@
 /*
- *	This file is for any additions related to jobs to make fulp-only jobs
+ *	This file is for any additions related to jobs to make tegu-only jobs
  *	functional with little conflict.
  *
  *
@@ -14,8 +14,8 @@
 
 // Used in overwrites to assign the ID card's icon.
 /obj/item/card/id/proc/return_icon_job()
-	if (!linkedJobType || assignment == "Brig Physician") // Using the global list here breaks Fulp Job's ID Card Overlays.
-		return 'fulp_modules/jobs/cards.dmi'
+	if (!linkedJobType || assignment == "Deputy") // Using the global list here breaks Tegu Job's ID Card Overlays.
+		return 'ModularTegustation/teguicons/cards.dmi'
 
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/obj/card.dmi'
@@ -24,8 +24,8 @@
 
 // Used to assign the HUD icon linked to the job ID Card.
 /obj/item/card/id/proc/return_icon_hud()
-	if (assignment in GLOB.fulp_job_assignments)
-		return 'fulp_modules/jobs/huds.dmi'
+	if (assignment in GLOB.tegu_job_assignments)
+		return 'ModularTegustation/teguicons/teguhud.dmi'
 
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/mob/hud.dmi'
@@ -39,15 +39,15 @@
 	var/id_icon = 'icons/obj/card.dmi'	// Overlay on your ID
 	var/hud_icon = 'icons/mob/hud.dmi'	// Sec Huds see this
 
-/datum/job/fulp
-	var/fulp_spawn = null //give it a room's type path to spawn there
+/datum/job/tegu
+	var/tegu_spawn = null //give it a room's type path to spawn there
 
-/datum/job/fulp/after_spawn(mob/living/H, mob/M, latejoin)
-	if(!latejoin && fulp_spawn)
-		var/turf/T = get_fulp_spawn(fulp_spawn)
+/datum/job/tegu/after_spawn(mob/living/H, mob/M, latejoin)
+	if(!latejoin && tegu_spawn)
+		var/turf/T = get_tegu_spawn(tegu_spawn)
 		H.Move(T)
 
-/proc/get_fulp_spawn(area/room) // Reworked to find any empty tile
+/proc/get_tegu_spawn(area/room) // Reworked to find any empty tile
 	for(var/turf/T in shuffle(get_area_turfs(room)))
 		if(!T.is_blocked_turf(TRUE))
 			return T

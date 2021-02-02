@@ -1,4 +1,4 @@
-/datum/job/deputy
+/datum/job/tegu/deputy
 	title = "Deputy"
 	auto_deadmin_role_flags = DEADMIN_POSITION_SECURITY
 	department_head = list("Head of Security")
@@ -7,9 +7,11 @@
 	spawn_positions = 4 //ditto
 	supervisors = "the head of security, and the head of your assigned department"
 	selection_color = "#ffeeee"
-	minimal_player_age = 1
+	minimal_player_age = 14
 	exp_requirements = 50
 	exp_type = EXP_TYPE_CREW
+	id_icon = 'ModularTegustation/Teguicons/cards.dmi'
+	hud_icon = 'ModularTegustation/Teguicons/teguhud.dmi'
 
 	outfit = /datum/outfit/job/deputy
 
@@ -20,11 +22,7 @@
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
-
-	// TEGU Integration Vars
-	id_icon = 'ModularTegustation/Teguicons/cards.dmi'	// Overlay on your ID
-	hud_icon = 'ModularTegustation/Teguicons/teguhud.dmi'		 	// Sec Huds see this
-
+	bounty_types = CIV_JOB_SEC
 
 /obj/item/clothing/under/rank/security/mallcop
 	name = "deputy shirt"
@@ -217,10 +215,3 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 /obj/item/radio/headset/headset_sec/department/sci
 	keyslot = new /obj/item/encryptionkey/headset_sec
 	keyslot2 = new /obj/item/encryptionkey/headset_sci
-
-// Return a xeno_spawn location in an area - use for additional jobspawns
-//
-proc/get_tegu_spawn(area/dept)
-	for(var/obj/effect/landmark/S in GLOB.xeno_spawn)
-		if(get_area(S) == dept)
-			return S

@@ -71,7 +71,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Lawyer" = 69,
 		"Psychologist" = 71,
 		// ANYTHING ELSE = UNKNOWN_JOB_ID, Unknowns/custom jobs will appear after civilians, and before assistants
-		"Deputy" = 100, // Tegustation Deputies edit: Add all tegu-only jobs here!
+		"Deputy" = 101, // Tegustation Deputies edit: Add all tegu-only jobs here!
 		"Assistant" = 999,
 
 		// TEGU stuff; 150 - 200
