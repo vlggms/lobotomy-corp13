@@ -294,7 +294,7 @@
 	if(registered_name && registered_name != "Captain")
 		. += mutable_appearance(icon, "assigned")
 	if(job)
-		. += mutable_appearance(return_icon_job(), "id[job]") // TEGUSTATION: Temporarily using a return proc that points to your job's icon. Was "job_icon", but this is moved to the job itself as "id_icon"
+		. += mutable_appearance(return_icon_job(), "id[job]") // Tegustation Deputies edit: Temporarily using a return proc that points to your job's icon. Was "job_icon", but this is moved to the job itself as "id_icon"
 
 /obj/item/card/id/proc/update_in_wallet()
 	SIGNAL_HANDLER
