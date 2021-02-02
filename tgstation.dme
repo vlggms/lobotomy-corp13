@@ -3353,6 +3353,7 @@
 #include "ModularTegustation\tegu_medical_code\tegu_chem_CF_reagent_containers.dm"
 #include "ModularTegustation\tegu_medical_code\tegu_chem_CF_reagents.dm"
 #include "ModularTegustation\tegu_medical_code\tegu_husk_fix.dm"
+#include "ModularTegustation\tegu_medical_code\tegu_medical.dm"
 #include "ModularTegustation\tegu_mentorhelp\ahelp-reject.dm"
 #include "ModularTegustation\tegu_mentorhelp\follow.dm"
 #include "ModularTegustation\tegu_mentorhelp\mentor.dm"
