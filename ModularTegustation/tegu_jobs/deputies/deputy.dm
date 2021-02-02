@@ -10,10 +10,10 @@
 	minimal_player_age = 14
 	exp_requirements = 50
 	exp_type = EXP_TYPE_CREW
-	id_icon = 'ModularTegustation/Teguicons/cards.dmi'
+	id_icon = 'ModularTegustation/Teguicons/tegu_cards.dmi'
 	hud_icon = 'ModularTegustation/Teguicons/teguhud.dmi'
 
-	outfit = /datum/outfit/job/deputy
+	outfit = /datum/outfit/job/tegu/deputy
 
 	access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_WEAPONS)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_SEC_DOORS)
@@ -79,7 +79,7 @@
 
 /datum/outfit/job/deputy
 	name = "Deputy"
-	jobtype = /datum/job/deputy
+	jobtype = /datum/job/tegu/deputy
 
 	head = /obj/item/clothing/head/beret/sec
 	belt = /obj/item/storage/belt/security/tegu_starter_full
@@ -100,14 +100,14 @@
 	implants = list(/obj/item/implant/mindshield)
 
 
-/datum/job/deputy/get_access()
+/datum/job/tegu/deputy/get_access()
 	var/list/L = list()
 	L |= ..()
 	return L
 
 GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
-/datum/job/deputy/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/tegu/deputy/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	// Assign dept
 	var/department
@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 	var/obj/item/card/id/W = H.wear_id
 	W.access |= dep_access
 	// SWAIN: Cards now link to their job, which contains id_icon and hud_icon (see above in Deputy's vars). We don't have to assign it here anymore <3
-	//W.job_icon = 'ModularTegustation/Teguicons/cards.dmi'
+	//W.job_icon = 'ModularTegustation/Teguicons/tegu_cards.dmi'
 	//W.update_icon()
 
 	var/teleport = 0

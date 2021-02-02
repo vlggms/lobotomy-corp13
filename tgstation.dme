@@ -3348,7 +3348,7 @@
 #include "ModularTegustation\tegu_halloween_costumes\_event.dm"
 #include "ModularTegustation\tegu_halloween_costumes\halloween_costumes.dm"
 #include "ModularTegustation\tegu_halloween_costumes\outfits.dm"
-#include "ModularTegustation\tegu_jobs\card.dm"
+#include "ModularTegustation\zTegu_overwrite\cards.dm"
 #include "ModularTegustation\tegu_jobs\gamemode_overwrite.dm"
 #include "ModularTegustation\tegu_jobs\huds.dm"
 #include "ModularTegustation\tegu_jobs\job_integration.dm"
