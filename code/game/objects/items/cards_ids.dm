@@ -294,7 +294,8 @@
 	if(registered_name && registered_name != "Captain")
 		. += mutable_appearance(icon, "assigned")
 	if(job)
-		add_overlays += mutable_appearance(icon, "id[job]")
+		. += mutable_appearance(icon, "id[job]")
+
 /obj/item/card/id/proc/update_in_wallet()
 	SIGNAL_HANDLER
 

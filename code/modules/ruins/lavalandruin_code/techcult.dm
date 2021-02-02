@@ -9,7 +9,7 @@
 	name = "tech cult identification card"
 	desc = "An ID card used by religious group praising misterious machine god."
 	access = list(ACCESS_MECHANICUS_BASIC, ACCESS_ROBOTICS)
-	icon = 'ModularTegustation/Teguicons/tegu_cards.dmi'
+	icon = 'ModularTegustation/Teguicons/cards.dmi'
 	icon_state = "techcult"
 	uses_overlays = FALSE
 	registered_age = null

@@ -3385,7 +3385,7 @@
 #include "ModularTegustation\tegu_traitor_code\tegu_traitor_items.dm"
 #include "ModularTegustation\tegu_traitor_code\traitor_chaplain.dm"
 #include "ModularTegustation\tegu_traitor_code\uplink_items_tegu.dm"
+#include "ModularTegustation\zTegu_overwrite\cards.dm"
 #include "ModularTegustation\zTegu_overwrite\huds.dm"
-#include "ModularTegustation\ZTegu_overwrite\cards.dm"
 #include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
 // END_INCLUDE

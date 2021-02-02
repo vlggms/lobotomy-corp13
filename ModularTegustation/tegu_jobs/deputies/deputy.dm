@@ -10,10 +10,11 @@
 	minimal_player_age = 14
 	exp_requirements = 50
 	exp_type = EXP_TYPE_CREW
-	id_icon = 'ModularTegustation/Teguicons/tegu_cards.dmi'
+	id_icon = 'ModularTegustation/Teguicons/cards.dmi'
 	hud_icon = 'ModularTegustation/Teguicons/teguhud.dmi'
+	tegu_spawn = /obj/effect/landmark/start/deputy
 
-	outfit = /datum/outfit/job/tegu/deputy
+	outfit = /datum/outfit/job/deputy
 
 	access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_SEC_DOORS, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_WEAPONS)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_BRIG, ACCESS_SEC_DOORS)
@@ -99,21 +100,15 @@
 
 	implants = list(/obj/item/implant/mindshield)
 
-
-/datum/job/tegu/deputy/get_access()
-	var/list/L = list()
-	L |= ..()
-	return L
-
 GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY))
 
 /datum/job/tegu/deputy/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	// Assign dept
+	// Assign department
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_security_department
-		if(!LAZYLEN(GLOB.available_deputy_depts)) //shouldn't ever get called, unless the HoP/admins bump the numbers up: 4 depts, 4 deputies
+		if(!LAZYLEN(GLOB.available_deputy_depts))
 			return
 		else if(department in GLOB.available_deputy_depts)
 			LAZYREMOVE(GLOB.available_deputy_depts, department)
@@ -121,10 +116,11 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 			department = pick_n_take(GLOB.available_deputy_depts)
 	var/ears = null
 	var/head = null
+	var/head_p = null
+	var/accessory = null
 	var/list/dep_access = null
 	var/destination = null
 	var/spawn_point = null
-	var/head_p
 	switch(department)
 		if(SEC_DEPT_SUPPLY)
 			ears = /obj/item/radio/headset/headset_sec/department/supply
@@ -132,29 +128,35 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/cargo
 			dep_access = list(ACCESS_AUX_BASE, ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION)
 			destination = /area/security/checkpoint/supply
-			spawn_point = get_tegu_spawn(destination)
+			spawn_point = locate(/obj/effect/landmark/start/depsec/supply)
+			accessory = /obj/item/clothing/accessory/armband/cargo
 		if(SEC_DEPT_ENGINEERING)
-			ears = /obj/item/radio/headset/headset_sec/department/engi
+			ears = /obj/item/radio/headset/headset_sec/alt/department/engi
 			head = /obj/item/clothing/head/beret/sec/engineering
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/engineering
 			dep_access = list(ACCESS_AUX_BASE, ACCESS_MINING_STATION, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS)
 			destination = /area/security/checkpoint/engineering
-			spawn_point = get_tegu_spawn(destination)
+			spawn_point = locate(/obj/effect/landmark/start/depsec/engineering)
+			accessory = /obj/item/clothing/accessory/armband/engine
 		if(SEC_DEPT_MEDICAL)
-			ears = /obj/item/radio/headset/headset_sec/department/med
+			ears = /obj/item/radio/headset/headset_sec/alt/department/med
 			head = /obj/item/clothing/head/beret/sec/medical
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/medical
 			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_MECH_MEDICAL, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_PHARMACY)
 			destination = /area/security/checkpoint/medical
-			spawn_point = get_tegu_spawn(destination)
+			spawn_point = locate(/obj/effect/landmark/start/depsec/medical)
+			accessory =  /obj/item/clothing/accessory/armband/medblue
 		if(SEC_DEPT_SCIENCE)
-			ears = /obj/item/radio/headset/headset_sec/department/sci
+			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
 			head = /obj/item/clothing/head/beret/sec/science
 			head_p = /obj/item/clothing/head/helmet/space/plasmaman/science
-			dep_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_GENETICS, ACCESS_ROBOTICS)
+			dep_access = list(ACCESS_RESEARCH, ACCESS_RND, ACCESS_XENOBIOLOGY, ACCESS_MECH_SCIENCE, ACCESS_TOXINS, ACCESS_TOXINS_STORAGE, ACCESS_GENETICS, ACCESS_ROBOTICS)
 			destination = /area/security/checkpoint/science
-			spawn_point = get_tegu_spawn(destination)
-
+			spawn_point = locate(/obj/effect/landmark/start/depsec/science)
+			accessory = /obj/item/clothing/accessory/armband/science
+	if(accessory)
+		var/obj/item/clothing/under/U = H.w_uniform
+		U.attach_accessory(new accessory)
 	if(ears)
 		if(H.ears)
 			qdel(H.ears)
@@ -168,9 +170,6 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 
 	var/obj/item/card/id/W = H.wear_id
 	W.access |= dep_access
-	// SWAIN: Cards now link to their job, which contains id_icon and hud_icon (see above in Deputy's vars). We don't have to assign it here anymore <3
-	//W.job_icon = 'ModularTegustation/Teguicons/tegu_cards.dmi'
-	//W.update_icon()
 
 	var/teleport = 0
 	if(!CONFIG_GET(flag/sec_start_brig))
@@ -189,10 +188,7 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 				if (H.Move(target))
 					break
 				possible_turfs.Cut(I,I+1)
-	if(department)
-		to_chat(M, "<b>You have been assigned to [department]!</b>")
-	else
-		to_chat(M, "<b>You have not been assigned to any department. Patrol the halls and help where needed.</b>")
+	to_chat(M, "<b>You have been assigned to [department]!</b>")
 
 /obj/item/radio/headset/headset_sec/department/Initialize()
 	. = ..()
@@ -215,3 +211,12 @@ GLOBAL_LIST_INIT(available_deputy_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MED
 /obj/item/radio/headset/headset_sec/department/sci
 	keyslot = new /obj/item/encryptionkey/headset_sec
 	keyslot2 = new /obj/item/encryptionkey/headset_sci
+
+/obj/effect/landmark/start/deputy
+	name = "Deputy"
+	icon_state = "Security Officer"
+
+/obj/effect/landmark/start/security_officer/Initialize()
+	. = ..()
+	var/turf/T = get_turf(src)
+	new /obj/effect/landmark/start/deputy(T)
