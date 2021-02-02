@@ -144,8 +144,8 @@
 		if("Mime")
 			O = new /datum/outfit/plasmaman/mime
 
-		if("Deputy")									// Tegustation Deputy
-			O = new /datum/outfit/plasmaman/security	// Tegustation Deputy - put your other jobs between Mime and Clown
+		if("Deputy")									// Tegustation Deputy edit: Gives plasmamen clothes
+			O = new /datum/outfit/plasmaman/security
 
 		if("Clown")
 			O = new /datum/outfit/plasmaman/clown

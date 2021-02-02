@@ -206,6 +206,8 @@
 			newSash = new /obj/item/clothing/under/bodysash/security()
 		if("Detective")
 			newSash = new /obj/item/clothing/under/bodysash/detective()
+		if("Deputy") // Tegustation Deputies Edit: Gives Beefmen clothes
+			newSash = new /obj/item/clothing/under/bodysash/security()
 
 		// Medical
 		if("Chief Medical Officer")
