@@ -3322,7 +3322,7 @@
 #include "ModularTegustation\tegu_dynamic_rulesets.dm"
 #include "ModularTegustation\tegu_global_vars.dm"
 #include "ModularTegustation\tegu_integration.dm"
-#include "ModularTegustation\tegu_overwrite_vars.dm"
+#include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
 #include "ModularTegustation\tegu_procs.dm"
 #include "ModularTegustation\tegu_spaceruins.dm"
 #include "ModularTegustation\tegu_starfury_event.dm"
