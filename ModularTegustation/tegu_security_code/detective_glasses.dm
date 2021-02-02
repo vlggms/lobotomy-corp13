@@ -34,7 +34,6 @@
 	clothing_flags = SCAN_REAGENTS //You can see reagents while wearing detective glasses
 	resistance_flags = ACID_PROOF
 	glass_colour_type = /datum/client_colour/glass_colour/red
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 25, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/glasses/detective/Initialize()
 	. = ..()
@@ -78,7 +77,6 @@
 	medsensor.add_hud_to(user)
 	diagsensor.add_hud_to(user)
 
-
 /obj/item/clothing/glasses/detective/emp_act(severity)
 	. = ..()
 	if(. & EMP_PROTECT_SELF)
@@ -98,7 +96,6 @@
 	emped = TRUE
 	addtimer(CALLBACK(src, /obj/item/clothing/glasses/detective/.proc/emp_recover), rand(100*severity, 200*severity))
 
-
 /obj/item/clothing/glasses/detective/proc/emp_recover(slot)
 	emped = FALSE
 	if(!ishuman(src.loc))
@@ -107,8 +104,6 @@
 	if(H.glasses == src)
 		to_chat(H, "<span class='notice'>[src]' hud elements flicker and shutter back into view as its interface reboots.</span>")
 		add_sensors(H, ITEM_SLOT_EYES)
-
-
 
 /obj/item/clothing/glasses/detective/Destroy()
 	remove_sensors()
