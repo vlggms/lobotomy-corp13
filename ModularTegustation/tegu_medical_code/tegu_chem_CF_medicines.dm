@@ -58,12 +58,6 @@
 	required_temp = 400
 	mix_message = "The solution burns into a black, chalky substance.... oh it's just charcoal."
 
-/datum/chemical_reaction/synthflesh
-	//name = "Synthflesh"
-	//id = /datum/reagent/medicine/CF/synthflesh
-	results = list(/datum/reagent/medicine/CF/synthflesh = 3)
-	required_reagents = list(/datum/reagent/blood = 1, /datum/reagent/medicine/CF/styptic = 1, /datum/reagent/medicine/CF/silver_sulfadiazine = 1)
-
 /datum/chemical_reaction/styptic
 	//name = "Styptic Powder"
 	//id = /datum/reagent/medicine/CF/styptic

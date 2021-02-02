@@ -96,7 +96,7 @@
 	icon_state = "winterhood_hop"
 
 /obj/item/clothing/suit/hooded/wintercoat/cargo/head
-	name = "\improper Quarter Master's cargo winter coat"
+	name = "\improper Quartermaster's cargo winter coat"
 	desc = "It's just a regular cargo winter coat... it seems the Quarter Master still isn't a head of staff..."
 
 /* Commented out for now. This'll go into the QM's locker on Halloween or something.
