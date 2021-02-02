@@ -1,15 +1,6 @@
 // TEGU SalChems (T5 Trekkie Chems and Comebacks Rework)
 //@Author: Saliferous
 
-//Pills
-
-/obj/item/reagent_containers/pill/charcoal	// TEGU [Saliferous]
-	name = "charcoal pill"	// TEGU
-	desc = "Purges chemicals and toxins"	// TEGU
-	icon_state = "pill17"	// TEGU
-	list_reagents = list(/datum/reagent/medicine/CF/charcoal = 10)	// TEGU
-	rename_with_volume = TRUE	// TEGU
-
 //Patches
 
 /obj/item/reagent_containers/pill/patch/stypticpowder
@@ -24,18 +15,6 @@
 	list_reagents = list(/datum/reagent/medicine/CF/silver_sulfadiazine = 15)
 	icon_state = "bandaid_burn"
 
-/obj/item/reagent_containers/pill/patch/synthflesh
-	name = "Synthflesh"
-	desc = "Heals Bruises and Burns"
-	list_reagents = list(/datum/reagent/medicine/CF/synthflesh = 15)
-
-//Bottles
-
-/obj/item/reagent_containers/glass/bottle/charcoal
-	name = "Charcoal bottle"
-	desc = "A small bottle of charcoal, which removes toxins and other chemicals from the bloodstream."
-	list_reagents = list(/datum/reagent/medicine/CF/charcoal = 30)
-
 //Medigel
 
 /obj/item/reagent_containers/medigel/stypticpowder
@@ -49,12 +28,6 @@
 	desc = "Heals burns"
 	list_reagents = list(/datum/reagent/medicine/CF/silver_sulfadiazine = 60)
 	icon_state = "burngel"
-
-/obj/item/reagent_containers/medigel/synthflesh
-	name = "Synthflesh"
-	desc = "Heals Bruises and Burns"
-	list_reagents = list(/datum/reagent/medicine/CF/synthflesh = 60)
-	icon_state = "synthgel"
 
 //Syringes
 

@@ -28,17 +28,6 @@
 	required_reagents = list(/datum/reagent/nitrogen = 1, /datum/reagent/silicon = 1, /datum/reagent/potassium = 1, /datum/reagent/medicine/CF/trekamol = 1)
 	mix_message = "The solution warps and turns into a green, space-worthy liquid."
 
-//**OXY**
-//Commented out as convermol is just perfluoro with a new name
-/*/datum/chemical_reaction/perfluorodecalin
-	name = "Perfluorodecalin"
-	id = /datum/reagent/medicine/CF/perfluorodecalin
-	results = list(/datum/reagent/medicine/CF/perfluorodecalin = 3)
-	required_reagents = list(/datum/reagent/oil = 1, /datum/reagent/fluorine = 1, /datum/reagent/hydrogen = 1)
-	required_temp = 370
-	mix_message = "The solution boils into a thick, red liquid."
-*/
-
 //**ALL**
 
 /datum/chemical_reaction/tricordrazine
@@ -49,14 +38,6 @@
 	mix_message = "The solution warps into a superior gold, space-worthy liquid."
 
 //**Additional Chems (not T5)
-
-/datum/chemical_reaction/charcoal
-	//name = "Charcoal"
-	//id = /datum/reagent/medicine/CF/charcoal
-	results = list(/datum/reagent/medicine/CF/charcoal = 3)
-	required_reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/ash = 1, /datum/reagent/carbon = 2)
-	required_temp = 400
-	mix_message = "The solution burns into a black, chalky substance.... oh it's just charcoal."
 
 /datum/chemical_reaction/styptic
 	//name = "Styptic Powder"

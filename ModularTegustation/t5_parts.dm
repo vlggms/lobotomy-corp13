@@ -1,4 +1,4 @@
-//T5 DESIGNS[XEON]
+// Tegustation T5 parts DESGNS
 /datum/design/quantum_cap
 	name = "Quantum Capacitor"
 	desc = "A capacitor engineered with a mix of bluespace and quantum technologies."
@@ -76,7 +76,7 @@
 	lathe_time_factor = 0.2
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
-//T5 PARTS TECHWEB [XEON]
+// TECHWEB [XEON]
 /datum/techweb_node/quantum_tech
 	id = "quantum_tech"
 	starting_node = FALSE
@@ -86,7 +86,25 @@
 	prereq_ids = list("micro_bluespace")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
 
-//T5 OBJECT [XEON]
+/datum/techweb_node/quantum_tech_power
+	id = "quantum_tech_power"
+	starting_node = FALSE
+	display_name = "Quantum Power Technology"
+	description = "Quantum based power technologies, making apt use of newly discovered Bluespace Folds and Quantum Tears"
+	design_ids = list("quantumcap","quantumcell")
+	prereq_ids = list("bluespace_power")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
+/datum/techweb_node/quantum_tech_laser
+	id = "quantum_tech_laser"
+	starting_node = FALSE
+	display_name = "Integrated Quantum Laser Theory"
+	description = "Improved quantum technologies that shake the foundations of the focal sciences. How far is too far?"
+	design_ids = list("quantumlaser")
+	prereq_ids = list("emp_super")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+
+// OBJECT [XEON]
 
 /obj/item/stock_parts/capacitor/quantumcap
 	name = "Quantum Capacitor"
@@ -153,7 +171,7 @@
 	charge = 0
 	update_icon()
 
-///T5 RPED
+/// RPED
 /obj/item/storage/part_replacer/bluespace/tier5
 
 /obj/item/storage/part_replacer/bluespace/tier5/PopulateContents()
@@ -164,27 +182,6 @@
 		new /obj/item/stock_parts/micro_laser/quantumlaser(src)
 		new /obj/item/stock_parts/matter_bin/quantumbin(src)
 		new /obj/item/reagent_containers/glass/beaker/quantum(src)
-
-////9/18/19 BUGFIX/ADDITIONS BELOW////
-/datum/techweb_node/quantum_tech_power
-	id = "quantum_tech_power"
-	starting_node = FALSE
-	display_name = "Quantum Power Technology"
-	description = "Quantum based power technologies, making apt use of newly discovered Bluespace Folds and Quantum Tears"
-	design_ids = list("quantumcap","quantumcell")
-	prereq_ids = list("bluespace_power")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-
-/datum/techweb_node/quantum_tech_laser //Renamed 10/3/19, fixed a spelling mistake -Xeon
-	id = "quantum_tech_laser"
-	starting_node = FALSE
-	display_name = "Integrated Quantum Laser Theory"
-	description = "Improved quantum technologies that shake the foundations of the focal sciences. How far is too far?"
-	design_ids = list("quantumlaser")
-	prereq_ids = list("emp_super")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
-
-///10/3/19 Update BELOW///
 
 ///T5 Motorized wheelchair code///
 
