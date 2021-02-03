@@ -37,6 +37,8 @@
 
 //overwrites because fuck zauker
 /datum/bounty/item/engineering/gas/zauker_tank
-/datum/bounty/item/engineering/gas/hydrogen_tank
+	return
 /datum/bounty/item/engineering/gas/nitryl_tank
+	return
 /datum/bounty/item/engineering/gas/freon_tank
+	return
