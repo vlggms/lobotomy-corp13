@@ -21,6 +21,7 @@
 #define FORCETRAINING_BLOCKCHANCE	30
 
 #define MARTIALART_STARTERSITH "starter sith"
+#define MARTIALART_VELVETFU "velvet-fu"
 
 //MEDBORG UPDATE -Surrealistik Feb 2020
 // Tegustation Mediborg Improvements
