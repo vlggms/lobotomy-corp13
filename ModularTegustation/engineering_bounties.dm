@@ -34,14 +34,3 @@
 	description = "Our team are trying to figure out why your Chemistry labs keep exploding, and we think it's a fault with the dispensers. Our last one exploded, mind sending us another?"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/machinery/chem_dispenser)
-
-//overwrites because fuck zauker
-/datum/bounty/item/engineering/gas/zauker_tank
-
-	return
-/datum/bounty/item/engineering/gas/nitryl_tank
-
-	return
-/datum/bounty/item/engineering/gas/freon_tank
-
-	return
