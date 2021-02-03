@@ -34,3 +34,9 @@
 	description = "Our team are trying to figure out why your Chemistry labs keep exploding, and we think it's a fault with the dispensers. Our last one exploded, mind sending us another?"
 	reward = CARGO_CRATE_VALUE * 6
 	wanted_types = list(/obj/machinery/chem_dispenser)
+
+/datum/bounty/item/engineering/pacman
+	name = "PACMAN Power Generator"
+	description = "A neighbouring outpost recently lost their Supermatter and are in need of some PACMANs for temporary power generator"
+	reward = CARGO_CRATE_VALUE * 4
+	wanted_types = list(/obj/machinery/power/port_gen/pacman)
