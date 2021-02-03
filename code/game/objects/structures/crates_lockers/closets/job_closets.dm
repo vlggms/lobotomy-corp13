@@ -69,7 +69,7 @@
 	new /obj/item/watertank/janitor(src)
 	new /obj/item/storage/belt/janitor(src)
 	if(prob(20))
-		new /obj/item/book/granter/language_book/draconic(src) //FULP
+		new /obj/item/book/granter/language_book/draconic(src) // Tegustation languages edit: So people can learn draconic!
 
 
 /obj/structure/closet/lawcloset
@@ -112,7 +112,7 @@
 	new /obj/item/storage/fancy/candle_box(src)
 	new /obj/item/storage/fancy/candle_box(src)
 	if(prob(10))
-		new /obj/item/book/granter/language_book/narsian(src) //FULP
+		new /obj/item/book/granter/language_book/narsian(src) // Tegustation languages edit: So people can learn Nar'Sian!
 	return
 
 /obj/structure/closet/wardrobe/red
@@ -315,4 +315,4 @@
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/storage/backpack/satchel/explorer(src)
 	if(prob(50))
-		new /obj/item/book/granter/language_book/common(src) //FULP
+		new /obj/item/book/granter/language_book/common(src) // Tegustation languages edit: So people can learn galactic common!

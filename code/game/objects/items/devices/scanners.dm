@@ -414,7 +414,7 @@ GENE SCANNER
 			render_list += "<span class='notice ml-2'>[cyberimp_detect]</span>\n"
 
 	SEND_SIGNAL(M, COMSIG_NANITE_SCAN, user, FALSE)
-	var/health_report = jointext(render_list, "") //FULPSTATION EXPANDED DETECTIVE KIT by Surrealistik Mar 2020
+	var/health_report = jointext(render_list, "") // Tegustation Detective Kit Edit
 	to_chat(user, health_report, trailing_newline = FALSE) // we handled the last <br> so we don't need handholding
 
 /proc/chemscan(mob/living/user, mob/living/M)

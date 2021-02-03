@@ -109,7 +109,7 @@
 	. = ..()
 	if(. && active && sword_color)
 		icon_state = "sword[sword_color]"
-	spark_setup() //FULPSTATION Chaplain Starter Sith PR by Surrealistik Jan 2020; cool spark SFX if it deflects.
+	spark_setup() // Tegustation Sith edit: cool spark SFX if it deflects.
 
 /obj/item/melee/transforming/energy/sword/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(active)

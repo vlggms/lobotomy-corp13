@@ -218,7 +218,7 @@
 	for(var/client/C in GLOB.clients)
 		if(!C.credits)
 			C.RollCredits()
-		C.playcreditsmusic(40)//playtitlemusic(40) // FULPSTATION: Play end music, NOT lobby music!
+		C.playcreditsmusic(40)//playtitlemusic(40) // Tegustation Music edit
 		if(speed_round)
 			C.give_award(/datum/award/achievement/misc/speed_round, C.mob)
 		HandleRandomHardcoreScore(C)

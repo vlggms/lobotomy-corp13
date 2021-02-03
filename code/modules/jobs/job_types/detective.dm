@@ -38,10 +38,10 @@
 	backpack_contents = list(/obj/item/storage/box/evidence=1,
 	/obj/item/detective_scanner=1,
 	/obj/item/melee/classic_baton=1,
-	/obj/item/taperecorder=1, //FULPSTATION EXPANDED DETECTIVE KIT by Surrealistik Mar 2020
-	/obj/item/camera/detective=1, //FULPSTATION EXPANDED DETECTIVE KIT by Surrealistik Mar 2020
-	/obj/item/sensor_device=1, //FULPSTATION EXPANDED DETECTIVE KIT by Surrealistik Mar 2020
-	/obj/item/pinpointer/crew=1) //FULPSTATION EXPANDED DETECTIVE KIT by Surrealistik Mar 2020
+	/obj/item/taperecorder=1, // Tegustation Detective Kit edit
+	/obj/item/camera/detective=1, // Tegustation Detective Kit edit
+	/obj/item/sensor_device=1, // Tegustation Detective Kit edit
+	/obj/item/pinpointer/crew=1) // Tegustation Detective Kit edit
 	mask = /obj/item/clothing/mask/cigarette
 
 	implants = list(/obj/item/implant/mindshield)

@@ -243,7 +243,7 @@ CHECK_RANDOMIZER
 # RULESURL http://www.tgstation13.org/wiki/Rules
 
 ## Github address
-GITHUBURL https://www.github.com/vlggms/fulpstation
+GITHUBURL https://www.github.com/vlggms/tegustation
 
 ##Discord address
 DISCORDURL https://discord.gg/SVu782A

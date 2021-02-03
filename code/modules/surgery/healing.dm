@@ -79,7 +79,7 @@
 		umsg += " as best as you can while they have clothing on"
 		tmsg += " as best as they can while [target] has clothing on"
 	target.heal_bodypart_damage(urhealedamt_brute,urhealedamt_burn)
-	remove_husking(target) //FULPSTATION MEDBORG CHANGES -Surrealistik Feb 2020
+	remove_husking(target) // Tegustation Husking edit
 	display_results(user, target, "<span class='notice'>[umsg].</span>",
 		"[tmsg].",
 		"[tmsg].")
