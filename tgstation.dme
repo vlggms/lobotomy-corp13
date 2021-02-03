@@ -3409,6 +3409,7 @@
 #include "code\modules\zombie\items.dm"
 #include "code\modules\zombie\organs.dm"
 #include "code\TegustationCode\encryption_keys.dm"
+#include "code\TegustationCode\engineering_bounties.dm"
 #include "code\TegustationCode\headset.dm"
 #include "code\TegustationCode\resindoor.dm"
 #include "code\TegustationCode\twistedtea.dm"
