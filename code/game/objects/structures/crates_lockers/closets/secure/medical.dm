@@ -95,8 +95,6 @@
 	new /obj/item/wallframe/defib_mount(src)
 	new /obj/item/circuitboard/machine/techfab/department/medical(src)
 	new /obj/item/storage/photo_album/cmo(src)
-	new /obj/item/clothing/shoes/sneakers/brown/digitigrade(src) //fulp
-	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src) // [FULP] [PNX] [PAPRITO]
 
 /obj/structure/closet/secure_closet/animal
 	name = "animal control"

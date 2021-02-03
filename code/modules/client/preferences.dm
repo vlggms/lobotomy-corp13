@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
 
-			if(istype(pref_species, /datum/species/beefman)) // FULP yeah we did the same as Ethereal so sue us
+			if(istype(pref_species, /datum/species/beefman)) // Tegustation Beefmen edit
 				if(!use_skintones)
 					dat += APPEARANCE_CATEGORY_COLUMN
 				// Fill Empties
@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Mouth</h3>"
 				dat += "<a href='?_src_=prefs;preference=mouth_beef;task=input'>[features["beefmouth"]]</a><BR>"
 
-			if((EYECOLOR in pref_species.species_traits)) // FULP Edit: If we want Eye Color, let it show eye color. Maybe we want eye color to affect something else? (Beef Eyes) && !(NOEYESPRITES in pref_species.species_traits))
+			if((EYECOLOR in pref_species.species_traits)) // Tegustation Beefmen Edit: If we want Eye Color, let it show eye color. Maybe we want eye color to affect something else? (Beef Eyes) && !(NOEYESPRITES in pref_species.species_traits))
 
 				if(!use_skintones && !mutant_colors)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -1425,15 +1425,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_etherealcolor)
 						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]
 
-				if("color_beef") // FULP We are copying Ethereal
+				if("color_beef") // Tegustation Beefman edit
 					var/new_beefcolor = input(user, "Select your doneness:", "Character Preference") as null|anything in GLOB.color_list_beefman
 					if(new_beefcolor)
 						features["beefcolor"] = GLOB.color_list_beefman[new_beefcolor]
-				if("eyes_beef")
+				if("eyes_beef") // Tegustation Beefman edit
 					var/new_eyes = input(user, "Choose your Eyes:", "Character Preference")  as null|anything in GLOB.eyes_beefman
 					if(new_eyes)
 						features["beefeyes"] = new_eyes
-				if("mouth_beef")
+				if("mouth_beef") // Tegustation Beefman edit
 					var/new_mouth = input(user, "Choose your Mouth:", "Character Preference")  as null|anything in GLOB.mouths_beefman
 					if(new_mouth)
 						features["beefmouth"] = new_mouth

@@ -294,7 +294,7 @@
 	if(registered_name && registered_name != "Captain")
 		. += mutable_appearance(icon, "assigned")
 	if(job)
-		. += mutable_appearance(return_icon_job(), "id[job]") //FULP: Temporarily using a return proc that points to your job's icon. Was "job_icon", but this is moved to the job itself as "id_icon"
+		. += mutable_appearance(icon, "id[job]")
 
 /obj/item/card/id/proc/update_in_wallet()
 	SIGNAL_HANDLER
@@ -472,7 +472,7 @@ update_label()
 	registered_name = "Syndicate"
 	assignment = "Syndicate Ship Captain"
 	icon_state = "syndie"
-	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER, ACCESS_ROBOTICS) //FULP, syndicate leader access
+	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER, ACCESS_ROBOTICS) // Tegustation edit: Cybersun Leader
 	uses_overlays = FALSE
 
 /obj/item/card/id/captains_spare

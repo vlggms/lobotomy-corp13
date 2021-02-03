@@ -33,11 +33,10 @@
 	jobtype = /datum/job/cmo
 
 	id = /obj/item/card/id/silver
+	belt = /obj/item/pda/heads/cmo
 	belt = /obj/item/storage/belt/medical/surgeryfilled
-	r_pocket = /obj/item/pda/heads/cmo
 	l_pocket = /obj/item/pinpointer/crew
 	ears = /obj/item/radio/headset/heads/cmo
-	glasses = /obj/item/clothing/glasses/sunglasses/chemical
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	suit = /obj/item/clothing/suit/toggle/labcoat/cmo

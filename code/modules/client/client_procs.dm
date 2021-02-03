@@ -102,8 +102,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		return
 
 	// Mentor PM
-	if (mentor_client_procs(href_list)) //FULP
-		return //ALSO FULP
+	if (mentor_client_procs(href_list)) // Tegustation Mentorhelp edit
+		return
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -460,7 +460,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		var/announce_join = mob.client?.prefs?.broadcast_login_logout
 		if (!stealth_admin)
 			deadchat_broadcast(" has disconnected.", "<b>[mob][mob.get_realname_string()]</b>", follow_target = mob, turf_target = get_turf(mob), message_type = DEADCHAT_LOGIN_LOGOUT, admin_only=!announce_join)
-	
+
 	GLOB.clients -= src
 	GLOB.directory -= ckey
 	log_access("Logout: [key_name(src)]")

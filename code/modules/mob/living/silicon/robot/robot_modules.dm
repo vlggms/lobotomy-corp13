@@ -234,11 +234,11 @@
 
 /obj/item/robot_module/medical
 	name = "Medical"
-	basic_modules = list( //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+	basic_modules = list( // Tegustation Mediborg Improvements edit
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/borghypo,
-		/obj/item/borg/apparatus/beaker/medical, //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+		/obj/item/borg/apparatus/beaker/medical, // Tegustation Mediborg Improvements edit
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/surgical_drapes,
@@ -249,14 +249,14 @@
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
 		/obj/item/bonesetter,
-		/obj/item/shockpaddles/cyborg, //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+		/obj/item/shockpaddles/cyborg, // Tegustation Mediborg Improvements edit
 		/obj/item/extinguisher/mini,
-		/obj/item/holobed_projector/robot, //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+		/obj/item/holobed_projector/robot, // Tegustation Mediborg Improvements edit
 		/obj/item/borg/cyborghug/medical,
 		/obj/item/stack/medical/gauze,
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/organ_storage,
-		/obj/item/soap/nanotrasen, //FULPSTATION MEDBORG UPGRADES by Surrealistik March 2020
+		/obj/item/soap/nanotrasen, // Tegustation Mediborg Improvements edit
 		/obj/item/borg/lollipop)
 	radio_channels = list(RADIO_CHANNEL_MEDICAL)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
@@ -572,12 +572,12 @@
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/borghypo/syndicate,
-		/obj/item/reagent_containers/borghypo, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+		/obj/item/reagent_containers/borghypo, // Tegustation Mediborg Improvements edit
 		/obj/item/shockpaddles/syndicate/cyborg,
 		/obj/item/healthanalyzer,
-		/obj/item/borg/apparatus/beaker, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
-		/obj/item/reagent_containers/dropper, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
-		/obj/item/reagent_containers/syringe, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+		/obj/item/borg/apparatus/beaker, // Tegustation Mediborg Improvements edit
+		/obj/item/reagent_containers/dropper, // Tegustation Mediborg Improvements edit
+		/obj/item/reagent_containers/syringe, // Tegustation Mediborg Improvements edit
 		/obj/item/surgical_drapes,
 		/obj/item/retractor,
 		/obj/item/hemostat,
@@ -585,15 +585,15 @@
 		/obj/item/surgicaldrill,
 		/obj/item/scalpel,
 		/obj/item/melee/transforming/energy/sword/cyborg/saw,
-		/obj/item/holobed_projector/robot, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
+		/obj/item/holobed_projector/robot, // Tegustation Mediborg Improvements edit
 		/obj/item/crowbar/cyborg,
 		/obj/item/extinguisher/mini,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/stack/medical/gauze,
 		/obj/item/gun/medbeam,
-		/obj/item/borg/cyborghug/medical, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
-		/obj/item/borg/lollipop, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020
-		/obj/item/borg_chameleon, //FULPSTATION SYNDICATE MEDBORG UPDATE by Surrealistik March 2020,
+		/obj/item/borg/cyborghug/medical, // Tegustation Mediborg Improvements edit
+		/obj/item/borg/lollipop, // Tegustation Mediborg Improvements edit
+		/obj/item/borg_chameleon, // Tegustation Mediborg Improvements edit
 		/obj/item/organ_storage)
 
 	cyborg_base_icon = "synd_medical"

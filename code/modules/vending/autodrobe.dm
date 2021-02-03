@@ -116,10 +116,10 @@
 					/obj/item/clothing/under/costume/sailor = 1,
 					/obj/item/clothing/head/delinquent = 1,
 					/obj/item/clothing/head/wig/random = 3,
-					/obj/item/clothing/head/zepellihat = 1, //fulp
-					/obj/item/clothing/shoes/clown_shoes/digitigrade = 1, //fulp
-					/obj/item/clothing/shoes/sneakers/mime/digitigrade = 1, //fulp
-					/obj/item/clothing/under/costume/saiyan = 1, //fulp
+					/obj/item/clothing/head/zepellihat = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
+					/obj/item/clothing/shoes/clown_shoes/digitigrade = 1, // Tegustation digitigrade edit: Adding the clothing to vending machines
+					/obj/item/clothing/shoes/sneakers/mime/digitigrade = 1, // Tegustation digitigrade edit: Adding the clothing to vending machines
+					/obj/item/clothing/under/costume/saiyan = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
 					/obj/item/clothing/head/shrine_wig = 1,
 					/obj/item/clothing/suit/shrine_maiden = 1,
 					/obj/item/clothing/suit/changshan_red = 1,
@@ -132,11 +132,11 @@
 					  /obj/item/gun/magic/wand/nothing = 2,
 					  /obj/item/clothing/glasses/sunglasses/garb = 2,
 					  /obj/item/clothing/glasses/blindfold = 1,
-					  /obj/item/clothing/under/costume/diojumpsuit = 1, //FULP
-					  /obj/item/clothing/suit/diojacket = 1, //FULP
-					  /obj/item/clothing/shoes/dioshoes = 1, //FULP
-					  /obj/item/clothing/head/dioband = 1, //FULP
-					  /obj/item/clothing/gloves/diowristbands = 1, //FULP
+					  /obj/item/clothing/under/costume/diojumpsuit = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
+					  /obj/item/clothing/suit/diojacket = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
+					  /obj/item/clothing/shoes/dioshoes = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
+					  /obj/item/clothing/head/dioband = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
+					  /obj/item/clothing/gloves/diowristbands = 1, // Tegustation Clothing edit: Adding the clothing to vending machines
 					  /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 				   /obj/item/clothing/head/pirate/captain = 2,

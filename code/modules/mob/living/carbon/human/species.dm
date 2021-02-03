@@ -796,16 +796,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(!H.dna.features["ears"] || H.dna.features["ears"] == "None" || H.head && (H.head.flags_inv & HIDEHAIR) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEHAIR)) || !HD || HD.status == BODYPART_ROBOTIC)
 			bodyparts_to_add -= "ears"
 
-	// Beefmen
-	if(mutant_bodyparts["beefeyes"])
-		if(!H.dna.features["beefeyes"] || H.dna.features["beefeyes"] == "None" || H.head && (H.head.flags_inv & HIDEEYES) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEEYES)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "beefeyes"
-
-	if(mutant_bodyparts["beefmouth"])
-		if(!H.dna.features["beefmouth"] || H.dna.features["beefmouth"] == "None" || H.head && (H.head.flags_inv & HIDEFACE) || (H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || !HD || HD.status == BODYPART_ROBOTIC)
-			bodyparts_to_add -= "beefmouth"
-	// Beefmen - END
-
 	if(mutant_bodyparts["wings"])
 		if(!H.dna.features["wings"] || H.dna.features["wings"] == "None" || (H.wear_suit && (H.wear_suit.flags_inv & HIDEJUMPSUIT) && (!H.wear_suit.species_exception || !is_type_in_list(src, H.wear_suit.species_exception))))
 			bodyparts_to_add -= "wings"
@@ -832,7 +822,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			species_traits += DIGITIGRADE
 		var/should_be_squished = FALSE
 		if(H.wear_suit && ((H.wear_suit.flags_inv & HIDEJUMPSUIT) || (H.wear_suit.body_parts_covered & LEGS)) || (H.w_uniform && (H.w_uniform.body_parts_covered & LEGS)))
-			should_be_squished = digisuit_icon_check(H.w_uniform) // TEGU
+			should_be_squished = digisuit_icon_check(H.w_uniform) // Tegustation digitigrade edit
 		if(O.use_digitigrade == FULL_DIGITIGRADE && should_be_squished)
 			O.use_digitigrade = SQUISHED_DIGITIGRADE
 			update_needed = TRUE
@@ -875,6 +865,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.horns_list[H.dna.features["horns"]]
 				if("ears")
 					S = GLOB.ears_list[H.dna.features["ears"]]
+				if("beefeyes") // Tegustation Beefmen edit
+					if (H.getorganslot(ORGAN_SLOT_EYES)) // Only draw eyes if we got em
+						S = GLOB.eyes_beefman[H.dna.features["beefeyes"]]
+				if("beefmouth") // Tegustation Beefmen edit
+					S = GLOB.mouths_beefman[H.dna.features["beefmouth"]]
 				if("body_markings")
 					S = GLOB.body_markings_list[H.dna.features["body_markings"]]
 				if("wings")
@@ -1026,9 +1021,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(ITEM_SLOT_FEET)
 			if(H.num_legs < 2)
 				return FALSE
-			if((DIGITIGRADE in species_traits) == !(I.flags_inv & FULL_DIGITIGRADE)) //fulp
+			if((DIGITIGRADE in species_traits) == !(I.flags_inv & FULL_DIGITIGRADE)) // Tegustation digitigrade edit
 				if(!disable_warning)
-					to_chat(H, "<span class='warning'>These shoes aren't compatible with your feet!</span>") //fulp
+					to_chat(H, "<span class='warning'>These shoes aren't compatible with your feet!</span>") // Tegustation digitigrade edit
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(ITEM_SLOT_BELT)

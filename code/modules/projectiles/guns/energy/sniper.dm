@@ -3,9 +3,9 @@
 	desc = "An advanced piece of weaponry forged on Mars in 40th Millenia."
 	icon_state = "sniper"
 	inhand_icon_state = "sniper"
-	icon = 'icons/Fulpicons/energy_sniper.dmi'
-	//lefthand_file = 'icons/Fulpicons/energy_sniper_l.dmi'
-	//righthand_file = 'icons/Fulpicons/energy_sniper_r.dmi'
+	icon = 'ModularTegustation/Teguicons/energy_sniper.dmi'
+	//lefthand_file = 'ModularTegustation/Teguicons/energy_sniper_l.dmi'
+	//righthand_file = 'ModularTegustation/Teguicons/energy_sniper_r.dmi'
 	fire_sound = 'sound/weapons/laser3.ogg'
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
@@ -38,7 +38,7 @@
 	damage = 80
 	speed = 0.4
 	name = "energy bullet"
-	icon = 'icons/Fulpicons/energy_sniper.dmi'
+	icon = 'ModularTegustation/Teguicons/energy_sniper.dmi'
 	icon_state = "blue_bullet"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = LIGHT_COLOR_BLUE

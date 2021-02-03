@@ -50,7 +50,7 @@ GLOBAL_VAR(restart_counter)
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	load_admins()
-	load_mentors() // TeguStation - Mentors
+	load_mentors() // Tegustation Mentorhelp edit: Load the mentors!
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -278,7 +278,7 @@ GLOBAL_VAR(restart_counter)
 
 /world/proc/update_status()
 
-	status = update_status_fulp()  // FULPSTATION Use our code and bail!
+	status = update_status_tegu()  // Tegustation Edit
 
 	/*
 	var/list/features = list()
