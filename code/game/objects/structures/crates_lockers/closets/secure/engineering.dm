@@ -26,8 +26,6 @@
 	new /obj/item/extinguisher/advanced(src)
 	new /obj/item/storage/photo_album/ce(src)
 	new /obj/item/storage/box/skillchips/engineering(src)
-	new /obj/item/clothing/shoes/workboots/digitigrade(src) //fulp
-	new /obj/item/clothing/suit/hooded/wintercoat/engineering/head(src) // [FULP] [PNX] [PAPRITO]
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies locker"

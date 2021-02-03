@@ -6,7 +6,7 @@
 /obj/item/poster
 	name = "poorly coded poster"
 	desc = "You probably shouldn't be holding this."
-	icon = 'icons/Fulpicons/fulpcontraband.dmi' // take from fulpstation posters file
+	icon = 'ModularTegustation/Teguicons/tegucontraband.dmi' // take from tegustation posters file
 	force = 0
 	resistance_flags = FLAMMABLE
 	var/poster_type
@@ -48,7 +48,7 @@
 	name = "poster"
 	var/original_name
 	desc = "A large piece of space-resistant printed paper."
-	icon = 'icons/Fulpicons/fulpcontraband.dmi' // take from fulpstation posters file
+	icon = 'ModularTegustation/Teguicons/tegucontraband.dmi' // take from tegustation posters file
 	anchored = TRUE
 	buildable_sign = FALSE //Cannot be unwrenched from a wall.
 	var/ruined = FALSE

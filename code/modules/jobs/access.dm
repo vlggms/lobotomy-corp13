@@ -188,7 +188,7 @@
 			return list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_QM, ACCESS_VAULT)
 		if(7) //command
 			return list(ACCESS_HEADS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_VAULT)
-		if(8) //syndicate -- FULP
+		if(8) //syndicate -- TEGU
 			return get_all_syndicate_access()
 
 /proc/get_region_accesses_name(code)
@@ -209,7 +209,7 @@
 			return "Supply"
 		if(7) //command
 			return "Command"
-		if(8) //syndicate -- FULP
+		if(8) //syndicate -- TEGU
 			return "Spinward Syndicate"
 
 /proc/get_access_desc(A)
@@ -375,7 +375,7 @@
 /proc/get_all_jobs()
 	return list("Assistant", "Captain", "Head of Personnel", "Bartender", "Cook", "Botanist", "Quartermaster", "Cargo Technician",
 				"Shaft Miner", "Clown", "Mime", "Janitor", "Curator", "Lawyer", "Chaplain", "Chief Engineer", "Station Engineer",
-				"Deputy", //FULP - this line for fulp jobs
+				"Deputy", // Tegustation Deputy edit: Add all Tegu-only jobs here!
 				"Atmospheric Technician", "Chief Medical Officer", "Medical Doctor", "Paramedic", "Chemist", "Geneticist", "Virologist", "Psychologist",
 				"Research Director", "Scientist", "Roboticist", "Head of Security", "Warden", "Detective", "Security Officer", "Prisoner")
 

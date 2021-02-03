@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
-	"Deputy", //FULP
+	"Deputy", // Tegustation Deupty edit: Adds them as a Security job
 	"Security Officer"))
 
 

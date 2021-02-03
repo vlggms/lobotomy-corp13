@@ -121,7 +121,7 @@ There are several things that need to be remembered:
 			target_overlay = "[target_overlay]_d"
 		else if(U.adjusted == DIGITIGRADE_STYLE)
 			target_overlay = "[target_overlay]_l"
-			digisuit_icon_update(U) // TEGU
+			digisuit_icon_update(U) // Tegustation digitigrade edit
 
 
 		var/mutable_appearance/uniform_overlay

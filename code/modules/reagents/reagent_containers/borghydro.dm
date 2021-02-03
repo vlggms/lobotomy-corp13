@@ -27,7 +27,7 @@ Borg Hypospray
 	var/bypass_protection = 0 //If the hypospray can go through armor or thick material
 
 	var/list/datum/reagents/reagent_list = list()
-	var/list/reagent_ids = list(/datum/reagent/medicine/c2/convermol, /datum/reagent/medicine/c2/libital, /datum/reagent/medicine/c2/multiver, /datum/reagent/medicine/c2/aiuri,/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/spaceacillin, /datum/reagent/medicine/CF/synth_bicaridine, /datum/reagent/medicine/CF/synth_kelotane, /datum/reagent/medicine/CF/synth_antitoxin, /datum/reagent/medicine/CF/synth_tricordrazine, /datum/reagent/medicine/salglu_solution)	//FULP
+	var/list/reagent_ids = list(/datum/reagent/medicine/c2/convermol, /datum/reagent/medicine/c2/libital, /datum/reagent/medicine/c2/multiver, /datum/reagent/medicine/c2/aiuri,/datum/reagent/medicine/epinephrine, /datum/reagent/medicine/spaceacillin, /datum/reagent/medicine/CF/synth_bicaridine, /datum/reagent/medicine/CF/synth_kelotane, /datum/reagent/medicine/CF/synth_antitoxin, /datum/reagent/medicine/CF/synth_tricordrazine, /datum/reagent/medicine/salglu_solution)	// Tegustation Mediborg Improvements edit
 	var/accepts_reagent_upgrades = TRUE //If upgrades can increase number of reagents dispensed.
 	var/list/modes = list() //Basically the inverse of reagent_ids. Instead of having numbers as "keys" and strings as values it has strings as keys and numbers as values.
 								//Used as list for input() in shakers.

@@ -456,7 +456,7 @@ What a mess.*/
 //RECORD DELETE
 			if("Delete All Records")
 				temp = ""
-				temp = delete_allrecords_feedback() //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+				temp = delete_allrecords_feedback() // Tegustation Security Updates edit
 				/*
 				temp += "Are you sure you wish to delete all Security records?<br>"
 				temp += "<a href='?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
@@ -484,7 +484,7 @@ What a mess.*/
 
 			if("Delete Record (ALL)")
 				if(active1)
-					delete_record_feedback("ALL") //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+					delete_record_feedback("ALL") // Tegustation Security Updates edit
 					/*
 					temp = "<h5>Are you sure you wish to delete the record (ALL)?</h5>"
 					temp += "<a href='?src=[REF(src)];choice=Delete Record (ALL) Execute'>Yes</a><br>"
@@ -493,7 +493,7 @@ What a mess.*/
 
 			if("Delete Record (Security)")
 				if(active2)
-					delete_record_feedback() //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+					delete_record_feedback() // Tegustation Security Updates edit
 					/*
 					temp = "<h5>Are you sure you wish to delete the record (Security Portion Only)?</h5>"
 					temp += "<a href='?src=[REF(src)];choice=Delete Record (Security) Execute'>Yes</a><br>"
@@ -572,7 +572,7 @@ What a mess.*/
 				switch(href_list["field"])
 					if("name")
 						if(istype(active1, /datum/data/record) || istype(active2, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 
@@ -585,7 +585,7 @@ What a mess.*/
 								active2.fields["name"] = t1
 					if("id")
 						if(istype(active2, /datum/data/record) || istype(active1, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 
@@ -598,7 +598,7 @@ What a mess.*/
 								active2.fields["id"] = t1
 					if("fingerprint")
 						if(istype(active1, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 
@@ -608,7 +608,7 @@ What a mess.*/
 							active1.fields["fingerprint"] = t1
 					if("gender")
 						if(istype(active1, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 
@@ -620,7 +620,7 @@ What a mess.*/
 								active1.fields["gender"] = "Male"
 					if("age")
 						if(istype(active1, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 
@@ -634,7 +634,7 @@ What a mess.*/
 							active1.fields["age"] = t1
 					if("species")
 						if(istype(active1, /datum/data/record))
-							if(!check_input_clearance(usr)) //FULPSTATION IMPROVED RECORD SECURITY PR -Surrealistik Oct 2019
+							if(!check_input_clearance(usr)) // Tegustation Security Updates edit
 								alert(usr, "[SEC_RECORD_BAD_CLEARANCE]")
 								return
 

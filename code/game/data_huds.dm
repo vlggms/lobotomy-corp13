@@ -242,11 +242,8 @@ Security HUDs! Basic mode shows only the job.
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon_state = "hudno_id"
-	holder.icon =  'icons/mob/hud.dmi'  					// FULP: Reset to default icon, in case you swapped to a FULP .dmi but we need to restore it.  **THIS IS TEMPORARY**
 	if(wear_id?.GetID())
-		var/obj/item/card/id/our_id = wear_id.GetID()
 		holder.icon_state = "hud[ckey(wear_id.GetJobName())]"
-		holder.icon = our_id.return_icon_hud()   	// FULP ADDITION - This asks the ID to ask its associated Job what icon to use.
 	sec_hud_set_security_status()
 
 /mob/living/proc/sec_hud_set_implants()

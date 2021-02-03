@@ -85,7 +85,7 @@
 	//building time adjustment coefficient (1 -> 0.8 -> 0.6)
 	T = -1
 	for(var/obj/item/stock_parts/manipulator/Ml in component_parts)
-		// FULPSTATION: Tiered part sets
+		// Tegustation T5 parts
 		part_sets = list(
 								"Cyborg", "Cyborg Upgrade Modules", "Misc", "Control Interfaces"
 								)
@@ -105,7 +105,7 @@
 			part_sets += list(
 								"Phazon"
 								)
-		// END FULPSTATION: Tiered part sets
+		// Tegustation T5 parts
 		T += Ml.rating
 	time_coeff = round(initial(time_coeff) - (initial(time_coeff)*(T))/5,0.01)
 
