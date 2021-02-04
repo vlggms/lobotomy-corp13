@@ -159,7 +159,7 @@
 	log_combat(A, D, "minor iris (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] slashes [D] rapidly and repeatedly!</span>", \
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You swiftly and repteadly slash at [D], truly a master attack!</span>")
+	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
 	D.apply_damage(50, BRUTE)
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
