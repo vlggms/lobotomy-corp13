@@ -74,6 +74,7 @@
 			H.mind.martial_art.streak = "receding_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
+			H.mind.martial_art.streak = ""
 			return
 
 /datum/martial_art/velvetfu/proc/receding_stance(mob/living/carbon/human/A)
@@ -101,6 +102,7 @@
 			H.mind.martial_art.streak = "twisted_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] untwists himself.</i></b>")
+			H.mind.martial_art.streak = ""
 			return
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/human/A)
@@ -117,7 +119,7 @@
 	A.adjustStaminaLoss(20)
 	D.apply_damage(10, BRUTE)
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
-	var/datum/wound/slash/moderate/crit_wound = new
+	var/datum/wound/slash/severe/crit_wound = new
 	crit_wound.apply_wound(bodypart)
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
@@ -131,7 +133,7 @@
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
 	D.apply_damage(8, BRUTE)
-	D.Stun(5 SECONDS)
+	D.Stun(3 SECONDS)
 	A.apply_damage(15, BRUTE)
 	A.adjustStaminaLoss(40)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
@@ -161,9 +163,9 @@
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
-	D.apply_damage(50, BRUTE)
+	D.apply_damage(40, BRUTE)
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
-	var/datum/wound/slash/severe/crit_wound = new
+	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(bodypart)
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return TRUE
@@ -176,7 +178,7 @@
 		return TRUE
 	log_combat(A, D, "harmed (Velvet-Fu)")
 	A.do_attack_animation(D)
-	var/picked_hit_type = pick("silken wrist")
+	var/picked_hit_type = "silken wrist"
 	var/bonus_damage = 10
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
@@ -196,7 +198,7 @@
 		return TRUE
 	log_combat(A, D, "grabbed (Velvet-Fu)")
 	A.do_attack_animation(D)
-	var/picked_hit_type = pick("ascending claw")
+	var/picked_hit_type = pick("ascending claw", "descending claw")
 	var/bonus_damage = 10
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
@@ -216,7 +218,7 @@
 		return TRUE
 	log_combat(A, D, "disarmed (Velvet-Fu)")
 	A.do_attack_animation(D)
-	var/picked_hit_type = pick("side kick")
+	var/picked_hit_type = "side kick"
 	var/bonus_damage = 10
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
