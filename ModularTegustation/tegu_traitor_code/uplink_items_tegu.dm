@@ -1,3 +1,11 @@
+/datum/uplink_item/stealthy_weapons/velvetfu
+	name = "Velvet-Fu cassette"
+	desc = "A cassette that teaches YOU, the secrets of Velvet-Fu!"
+	item = /obj/item/book/granter/martial/velvetfu
+	cost = 8
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/role_restricted/bag_of_encounters
 	name = "Bag of Encounters"
 	desc = "An inconspicious bag of dice, recovered from a Space Wizard's dungeon. Each dice within will summon a challenge for the crew: 1d4 Bears, 1d6 Space Carp or 1d20 angry Bees!\
@@ -6,7 +14,6 @@
 	cost = 8
 	restricted_roles = list("Curator")
 	limited_stock = 1 //for testing at least
-
 
 /datum/uplink_item/badass/balloongold
 	name = "Golden Syndicate Balloons"
