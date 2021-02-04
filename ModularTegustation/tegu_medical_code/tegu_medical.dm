@@ -1,5 +1,5 @@
 /obj/item/storage/belt/medical/surgeryfilled
-	name = "\improper Chief Medical Officers's surgerybelt"
+	name = "\improper Chief Medical Officers's Medical belt"
 	desc = "a toolbelt full of surgery tools."
 
 /obj/item/storage/belt/medical/surgeryfilled/PopulateContents()
