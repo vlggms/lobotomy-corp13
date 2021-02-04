@@ -161,7 +161,7 @@
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly and repteadly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
-	D.apply_damage(40, BRUTE, armour_penetration = 100)
+	D.apply_damage(50, BRUTE)
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
 	var/datum/wound/slash/severe/crit_wound = new
 	crit_wound.apply_wound(bodypart)
