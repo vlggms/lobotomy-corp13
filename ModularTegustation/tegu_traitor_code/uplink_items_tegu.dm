@@ -1,6 +1,8 @@
 /datum/uplink_item/stealthy_weapons/velvetfu
 	name = "Velvet-Fu cassette"
-	desc = "A cassette that teaches YOU, the secrets of Velvet-Fu!"
+	desc = "Velvet-Fu is a knock-off Martial Art straight from Hollywood.\
+			'A cassette that teaches YOU, the secrets of Velvet-Fu!' \
+			Now specially modified to beam its knowledge to beam directly into your brain, removing the need for a TV."
 	item = /obj/item/book/granter/martial/velvetfu
 	cost = 8
 	surplus = 0
