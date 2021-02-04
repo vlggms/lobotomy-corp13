@@ -124,7 +124,7 @@
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 40 Stamina.
+//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 40 Stamina and deals some Brute.
 /datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
