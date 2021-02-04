@@ -239,21 +239,6 @@
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Swapping away bullets. Stolen directly from Sleeping carp, because otherwise it can get destroyed by a single Disabler.
-/datum/martial_art/velvetfu/on_projectile_hit(mob/living/carbon/human/A, obj/projectile/P, def_zone)
-	. = ..()
-	if(A.incapacitated(FALSE, TRUE)) //NO STUN
-		return BULLET_ACT_HIT
-	if(!(A.mobility_flags & MOBILITY_USE)) //NO UNABLE TO USE
-		return BULLET_ACT_HIT
-	if(!isturf(A.loc)) //NO MOTHERFLIPPIN MECHS!
-		return BULLET_ACT_HIT
-	A.visible_message("<span class='danger'>[A] kicks the bullet away!</span>", "<span class='userdanger'>You Goat kick the bullet away!</span>")
-	playsound(get_turf(A), pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, TRUE)
-	P.firer = A
-	P.setAngle(rand(0, 360))//SHING
-	return BULLET_ACT_FORCE_PIERCE
-
 /mob/living/carbon/human/proc/velvetfu_help()
 	set name = "Recall Teachings"
 	set desc = "Remember the martial techniques of Velvet-Fu."
