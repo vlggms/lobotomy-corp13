@@ -1,6 +1,6 @@
-#define FLYING_AXEKICK_COMBO "HD" //Flying Axe Kick - Deals Brute and causes bleeding. Costs 20 Stamina.
-#define GOAT_HEADBUTT_COMBO "DG" //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 40 Stamina.
-#define FULL_THRUST_COMBO "GH" //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 50 Stamina.
+#define FLYING_AXEKICK_COMBO "HD" //Flying Axe Kick - Deals Brute and causes bleeding. Costs 40 Stamina.
+#define GOAT_HEADBUTT_COMBO "DG" //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 50 Stamina and deals some Brute.
+#define FULL_THRUST_COMBO "GH" //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 60 Stamina.
 #define MINOR_IRIS_COMBO "HHH" //Minor Iris - Deals a ton of armor penetrating slash brute. Costs 80 Stamina.
 
 /datum/martial_art/velvetfu
@@ -60,7 +60,7 @@
 
 /datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated..</span>")
+		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.mind.martial_art.streak == "receding_stance")
@@ -70,7 +70,7 @@
 		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
 		if(do_after(H, 3 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
-			H.adjustStaminaLoss(-30)
+			H.adjustStaminaLoss(-40)
 			H.mind.martial_art.streak = "receding_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
@@ -88,7 +88,7 @@
 
 /datum/action/twisted_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated..</span>")
+		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.mind.martial_art.streak == "twisted_stance")
@@ -97,8 +97,8 @@
 	else
 		if(do_after(H, 0.1 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your ultimate stance is done!</b>")
-			H.adjustStaminaLoss(-60)
-			H.apply_damage(16, BRUTE)
+			H.adjustStaminaLoss(-50)
+			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST)
 			H.mind.martial_art.streak = "twisted_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] untwists himself.</i></b>")
@@ -108,7 +108,7 @@
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/human/A)
 	A.mind.martial_art.streak = ""
 
-//Flying Axe Kick - Deals Brute and causes bleeding. Costs 20 Stamina.
+//Flying Axe Kick - Deals Brute and causes bleeding. Costs 40 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -116,15 +116,15 @@
 	D.visible_message("<span class='danger'>[A] flying kicked [D], such skill!</span>", \
 					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
-	A.adjustStaminaLoss(20)
+	A.adjustStaminaLoss(40)
 	D.apply_damage(10, BRUTE)
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
-	var/datum/wound/slash/severe/crit_wound = new
+	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(bodypart)
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 40 Stamina and deals some Brute.
+//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 50 Stamina and deals some Brute.
 /datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -132,14 +132,14 @@
 	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
-	D.apply_damage(8, BRUTE)
-	D.Stun(3 SECONDS)
+	D.apply_damage(10, BRUTE)
+	D.Stun(4 SECONDS)
 	A.apply_damage(15, BRUTE)
-	A.adjustStaminaLoss(40)
+	A.adjustStaminaLoss(50)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 50 Stamina.
+//Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 60 Stamina.
 /datum/martial_art/velvetfu/proc/fullThrust(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -147,10 +147,10 @@
 	D.visible_message("<span class='danger'>[A] thrusted into [D]!</span>", \
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
-	A.adjustStaminaLoss(40)
+	A.adjustStaminaLoss(60)
 	D.apply_damage(20, BRUTE)
 	if(prob(50))
-		D.Knockdown(20)
+		D.Knockdown(30)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -170,6 +170,7 @@
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return TRUE
 
+//Intents
 /datum/martial_art/velvetfu/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -190,7 +191,11 @@
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
-/datum/martial_art/velvetfu/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D) // No grabbing in Velvet-Fu!
+	if(A.dna.check_mutation(HULK))
+		return FALSE
+	if(HAS_TRAIT(A, TRAIT_PACIFISM))
+		return FALSE
 	if(!can_use(A))
 		return FALSE
 	add_to_streak("G",D)
@@ -210,7 +215,11 @@
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
-/datum/martial_art/velvetfu/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D) // No shoving in Velvet-Fu!
+	if(A.dna.check_mutation(HULK))
+		return FALSE
+	if(HAS_TRAIT(A, TRAIT_PACIFISM))
+		return FALSE
 	if(!can_use(A))
 		return FALSE
 	add_to_streak("D",D)
@@ -219,7 +228,7 @@
 	log_combat(A, D, "disarmed (Velvet-Fu)")
 	A.do_attack_animation(D)
 	var/picked_hit_type = "side kick"
-	var/bonus_damage = 10
+	var/bonus_damage = 15 // Kicking deals more damage
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
@@ -230,17 +239,32 @@
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
+//Swapping away bullets. Stolen directly from Sleeping carp, because otherwise it can get destroyed by a single Disabler.
+/datum/martial_art/velvetfu/on_projectile_hit(mob/living/carbon/human/A, obj/projectile/P, def_zone)
+	. = ..()
+	if(A.incapacitated(FALSE, TRUE)) //NO STUN
+		return BULLET_ACT_HIT
+	if(!(A.mobility_flags & MOBILITY_USE)) //NO UNABLE TO USE
+		return BULLET_ACT_HIT
+	if(!isturf(A.loc)) //NO MOTHERFLIPPIN MECHS!
+		return BULLET_ACT_HIT
+	A.visible_message("<span class='danger'>[A] kicks the bullet away!</span>", "<span class='userdanger'>You Goat kick the bullet away!</span>")
+	playsound(get_turf(A), pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, TRUE)
+	P.firer = A
+	P.setAngle(rand(0, 360))//SHING
+	return BULLET_ACT_FORCE_PIERCE
+
 /mob/living/carbon/human/proc/velvetfu_help()
 	set name = "Recall Teachings"
 	set desc = "Remember the martial techniques of Velvet-Fu."
-	set category = "Velvet-Fu"
+	set category = "VelvetFu"
 
 	to_chat(usr, "<b><i>You try to remember the VHS tapes of Velvet-Fu...</i></b>\n\
 
-	<span class='notice'>Iron Hoof</span>: Disarm/Grab/Harm while opponent is down.\n\
-	<span class='notice'>Flying Axe Kick</span>: Harm Disarm. Deals damage and causes bleeding. Costs 20 Stamina.\n\
-	<span class='notice'>Goat Headbutt</span>: Disarm Grab. Deals brute while stunning your opponent, but hurts you. Costs 40 Stamina.\n\
-	<span class='notice'>Full Thrust</span>: Grab Harm. Deals brute and has a chance to knock your opponent down. Costs 50 Stamina.\n\
+	<span class='notice'>Iron Hoof</span>: Disarm/Grab/Harm while opponent is down, though Disarm works best.\n\
+	<span class='notice'>Flying Axe Kick</span>: Harm Disarm. Deals damage and causes bleeding. Costs 40 Stamina.\n\
+	<span class='notice'>Goat Headbutt</span>: Disarm Grab. Deals brute while stunning your opponent, but hurts you. Costs 50 Stamina.\n\
+	<span class='notice'>Full Thrust</span>: Grab Harm. Deals brute and has a chance to knock your opponent down. Costs 60 Stamina.\n\
 	<span class='notice'>Minor Iris</span>: Harm Harm Harm. Devastatingly slashes your opponent. Costs 80 Stamina.\n\
 
 	<span class='notice'>Receding Stance</span>: Regenerates 30 Stamina. Requires standing still.\n\
