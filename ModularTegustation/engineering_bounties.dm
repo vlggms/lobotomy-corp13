@@ -31,5 +31,23 @@
 /datum/bounty/item/engineering/gas/bz_can
 	name = "Full Tank of BZ"
 	description = "Station 45 has been having some issues with changelings and wants some BZ to help out. Send them a can."
-	wanted_types = list(/datum/gas/bz)
+	wanted_types = /datum/gas/bz)
 	reward = CARGO_CRATE_VALUE * 10
+
+/datum/bounty/item/engineering/microwave
+	name = "Microwave"
+	description = "The ERT commanders have gotten themselves an unhealthy addiction to microwave-able donk pockets. Send one of yours so we can feed them faster."
+	wanted_types = list(/obj/machinery/microwave)
+	reward = CARGO_CRATE_VALUE * 3
+
+/datum/bounty/item/engineering/foodprocessor
+	name = "Food Processor"
+	description = "We want meatballs. Send us the meatball machine."
+	wanted_types = list(/obj/machinery/processor)
+	reward = CARGO_CRATE_VALUE * 3
+
+/datum/bounty/item/engineering/smartfridge
+	name = "Smartfridge"
+	description = "We're running out of places to store all the rotted organs your medical team keeps sending us. Ship over a smartfridge."
+	wanted_types = list(/obj/machinery/smartfridge)
+	reward = CARGO_CRATE_VALUE * 3
