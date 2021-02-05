@@ -31,7 +31,7 @@
 /datum/bounty/item/engineering/gas/bz_can
 	name = "Full Tank of BZ"
 	description = "Station 45 has been having some issues with changelings and wants some BZ to help out. Send them a can."
-	wanted_types = /datum/gas/bz)
+	wanted_types = /datum/gas/bz
 	reward = CARGO_CRATE_VALUE * 10
 
 /datum/bounty/item/engineering/microwave
