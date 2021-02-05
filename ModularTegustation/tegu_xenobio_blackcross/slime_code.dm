@@ -1,5 +1,4 @@
 /mob/living/simple_animal/slime
-	..()
 // Transformative extract effects - get passed down
 	var/transformeffects = SLIME_EFFECT_DEFAULT
 	var/effectsapplied = 0 //for use in the slime scanner
