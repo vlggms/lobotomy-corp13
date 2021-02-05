@@ -39,3 +39,9 @@
 	description = "We want meatballs. Send us the meatball machine."
 	wanted_types = list(/obj/machinery/processor)
 	reward = CARGO_CRATE_VALUE * 4
+
+/datum/bounty/item/engineering/smartfridge
+	name = "Smartfridge"
+	description = "We're running out of places to store all the rotted organs your medical team keeps sending us. Ship over a smartfridge."
+	wanted_types = list(/obj/machinery/smartfridge)
+	reward = CARGO_CRATE_VALUE * 3
