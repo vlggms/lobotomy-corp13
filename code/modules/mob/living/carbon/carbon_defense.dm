@@ -212,6 +212,9 @@
 				if (prob(stunprob) && M.powerlevel >= 8)
 					adjustFireLoss(M.powerlevel * rand(6,10))
 					updatehealth()
+				if (M.transformeffects & SLIME_EFFECT_ORANGE) // TEGU EDIT
+					adjust_fire_stacks(2)
+					IgniteMob()
 		return 1
 
 /mob/living/carbon/proc/dismembering_strike(mob/living/attacker, dam_zone)
