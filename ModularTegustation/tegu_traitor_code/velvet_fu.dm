@@ -98,7 +98,7 @@
 		if(do_after(H, 0.1 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your ultimate stance is done!</b>")
 			H.adjustStaminaLoss(-50)
-			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST)
+			H.apply_damage(16, BRUTE, BODY_ZONE_CHEST)
 			H.mind.martial_art.streak = "twisted_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] untwists himself.</i></b>")
@@ -117,7 +117,7 @@
 					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
 	A.adjustStaminaLoss(40)
-	D.apply_damage(10, BRUTE)
+	D.apply_damage(10, BRUTE) // Slash!
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
 	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(bodypart)
@@ -132,7 +132,7 @@
 	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
-	D.apply_damage(10, BRUTE)
+	D.apply_damage(10, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	D.Stun(4 SECONDS)
 	A.apply_damage(15, BRUTE)
 	A.adjustStaminaLoss(50)
@@ -148,7 +148,7 @@
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
 	A.adjustStaminaLoss(60)
-	D.apply_damage(20, BRUTE)
+	D.apply_damage(15, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	if(prob(50))
 		D.Knockdown(30)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
@@ -163,7 +163,7 @@
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
-	D.apply_damage(40, BRUTE)
+	D.apply_damage(30, BRUTE) // Slash!
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
 	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(bodypart)
@@ -184,7 +184,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, BRUTE)
+	D.apply_damage(bonus_damage, A.dna.species.attack_type)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
@@ -208,7 +208,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, BRUTE)
+	D.apply_damage(bonus_damage, A.dna.species.attack_type)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
@@ -232,7 +232,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, BRUTE)
+	D.apply_damage(bonus_damage, A.dna.species.attack_type)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
