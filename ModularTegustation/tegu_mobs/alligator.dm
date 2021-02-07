@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/gator
-	name = "Aligator"
-	desc = "Thats a aligator. Probably shouldn't wrestle it."
+	name = "alligator"
+	desc = "Thats an alligator. Probably shouldn't wrestle it."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "gator"
 	icon_living = "gator"
@@ -27,7 +27,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/gator/atlas
 	name = "Atlas"
-	desc = "The captain's trustworthy alligator, although you are not sure if it is one."
+	desc = "The captain's trustworthy alligator, although you are not sure if it should be one."
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
