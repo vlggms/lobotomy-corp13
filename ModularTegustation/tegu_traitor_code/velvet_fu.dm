@@ -1,6 +1,6 @@
-#define FLYING_AXEKICK_COMBO "HD" //Flying Axe Kick - Deals Brute and causes bleeding. Costs 40 Stamina.
-#define GOAT_HEADBUTT_COMBO "DG" //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 50 Stamina and deals some Brute.
-#define FULL_THRUST_COMBO "GH" //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 60 Stamina.
+#define FLYING_AXEKICK_COMBO "HD" //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
+#define GOAT_HEADBUTT_COMBO "DG" //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 60 Stamina and deals some Brute.
+#define FULL_THRUST_COMBO "GH" //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 70 Stamina.
 #define MINOR_IRIS_COMBO "HHH" //Minor Iris - Deals a ton of armor penetrating slash brute. Costs 80 Stamina.
 
 /datum/martial_art/velvetfu
@@ -92,23 +92,23 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	if(H.mind.martial_art.streak == "twisted_stance")
-		owner.visible_message("<span class='danger'>[owner] untwists himself.</i></b>")
+		owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
 		H.mind.martial_art.streak = ""
 	else
 		if(do_after(H, 0.1 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your ultimate stance is done!</b>")
-			H.adjustStaminaLoss(-50)
-			H.apply_damage(16, BRUTE, BODY_ZONE_CHEST)
+			H.adjustStaminaLoss(-40)
+			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST)
 			H.mind.martial_art.streak = "twisted_stance"
 		else
-			owner.visible_message("<span class='danger'>[owner] untwists himself.</i></b>")
+			owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
 			H.mind.martial_art.streak = ""
 			return
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/human/A)
 	A.mind.martial_art.streak = ""
 
-//Flying Axe Kick - Deals Brute and causes bleeding. Costs 40 Stamina.
+//Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -116,7 +116,7 @@
 	D.visible_message("<span class='danger'>[A] flying kicked [D], such skill!</span>", \
 					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
-	A.adjustStaminaLoss(40)
+	A.adjustStaminaLoss(50)
 	D.apply_damage(10, BRUTE) // Slash!
 	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
 	var/datum/wound/slash/moderate/crit_wound = new
@@ -124,7 +124,7 @@
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 50 Stamina and deals some Brute.
+//Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 60 Stamina and deals some Brute.
 /datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -135,11 +135,11 @@
 	D.apply_damage(10, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	D.Stun(4 SECONDS)
 	A.apply_damage(15, BRUTE)
-	A.adjustStaminaLoss(50)
+	A.adjustStaminaLoss(60)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
 
-//Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 60 Stamina.
+//Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 70 Stamina.
 /datum/martial_art/velvetfu/proc/fullThrust(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!can_use(A))
 		return FALSE
@@ -147,7 +147,7 @@
 	D.visible_message("<span class='danger'>[A] thrusted into [D]!</span>", \
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
-	A.adjustStaminaLoss(60)
+	A.adjustStaminaLoss(70)
 	D.apply_damage(15, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	if(prob(50))
 		D.Knockdown(30)
@@ -239,6 +239,8 @@
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
+
+//Help and Granters
 /mob/living/carbon/human/proc/velvetfu_help()
 	set name = "Recall Teachings"
 	set desc = "Remember the martial techniques of Velvet-Fu."
@@ -247,13 +249,13 @@
 	to_chat(usr, "<b><i>You try to remember the VHS tapes of Velvet-Fu...</i></b>\n\
 
 	<span class='notice'>Iron Hoof</span>: Disarm/Grab/Harm while opponent is down, though Disarm works best.\n\
-	<span class='notice'>Flying Axe Kick</span>: Harm Disarm. Deals damage and causes bleeding. Costs 40 Stamina.\n\
-	<span class='notice'>Goat Headbutt</span>: Disarm Grab. Deals brute while stunning your opponent, but hurts you. Costs 50 Stamina.\n\
-	<span class='notice'>Full Thrust</span>: Grab Harm. Deals brute and has a chance to knock your opponent down. Costs 60 Stamina.\n\
+	<span class='notice'>Flying Axe Kick</span>: Harm Disarm. Deals damage and causes bleeding. Costs 50 Stamina.\n\
+	<span class='notice'>Goat Headbutt</span>: Disarm Grab. Deals brute while stunning your opponent, but hurts you. Costs 60 Stamina.\n\
+	<span class='notice'>Full Thrust</span>: Grab Harm. Deals brute and has a chance to knock your opponent down. Costs 70 Stamina.\n\
 	<span class='notice'>Minor Iris</span>: Harm Harm Harm. Devastatingly slashes your opponent. Costs 80 Stamina.\n\
 
-	<span class='notice'>Receding Stance</span>: Regenerates 30 Stamina. Requires standing still.\n\
-	<span class='notice'>Twisted Stance</span>: Regenerates 60 Stamina. Deals brute damage.</span>")
+	<span class='notice'>Receding Stance</span>: Regenerates 40 Stamina. Requires standing still.\n\
+	<span class='notice'>Twisted Stance</span>: Regenerates 40 Stamina. Deals brute damage.</span>")
 
 /obj/item/book/granter/martial/velvetfu
 	martial = /datum/martial_art/velvetfu
