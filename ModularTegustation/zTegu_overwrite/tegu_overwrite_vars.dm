@@ -106,7 +106,7 @@
 
 
 /obj/item/borg/upgrade/pinpointer //Sec borg can now install the crew monitor/pinpointer module.
-	module_type = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical, /obj/item/robot_module/security)
+	model_type = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical, /obj/item/robot_module/security)
 
 
 //***************************************************************************

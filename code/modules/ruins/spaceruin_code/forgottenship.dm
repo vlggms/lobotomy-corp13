@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 
 //Hugbox syndicate mediborg
 
-/obj/item/robot_module/med_cybersun
+/obj/item/robot_model/med_cybersun
 	name = "Cybersun Medical"
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
@@ -261,7 +261,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	moduleselect_icon = "malf"
 	hat_offset = 3
 
-/mob/living/silicon/robot/modules/medical/cybersun
+/mob/living/silicon/robot/model/medical/cybersun
 	icon_state = "synd_medical"
 	set_module = /obj/item/robot_module/med_cybersun
 
@@ -269,7 +269,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	name = "borg module picker (Cybersun)"
 	desc = "Allows you to to change module of cyborg to Cybersun medical variant."
 	icon_state = "cyborg_upgrade3"
-	new_module = /obj/item/robot_module/med_cybersun
+	new_module = /obj/item/robot_model/med_cybersun
 
 //Cyborg module to set syndicate faction
 
