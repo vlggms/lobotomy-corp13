@@ -111,6 +111,9 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
+## log uplink purchases
+LOG_UPLINK
+
 ## log telecomms messages
 LOG_TELECOMMS
 
@@ -247,6 +250,9 @@ GITHUBURL https://www.github.com/vlggms/tegustation
 
 ##Discord address
 DISCORDURL https://discord.gg/SVu782A
+
+## Discord bot command prefix, if the discord bot is used
+# DISCORDBOTCOMMANDPREFIX ?
 
 ## Discord bot command prefix, if the discord bot is used
 # DISCORDBOTCOMMANDPREFIX ?

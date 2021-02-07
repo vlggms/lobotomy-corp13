@@ -262,8 +262,6 @@ function tag_pr($payload, $opened) {
 			$tags[] = $tag;
 
 	check_tag_and_replace($payload, '[dnm]', 'Do Not Merge', $tags);
-	if(!check_tag_and_replace($payload, '[wip]', 'Work In Progress', $tags) && check_tag_and_replace($payload, '[ready]', 'Work In Progress', $remove))
-		$tags[] = 'Needs Review';
 
 	return array($tags, $remove);
 }
@@ -287,6 +285,7 @@ function get_reviews($payload){
 	return json_decode(github_apisend($payload['pull_request']['url'] . '/reviews'), true);
 }
 
+<<<<<<< HEAD
 function check_ready_for_review($payload, $labels = null, $remove = array()){
 	$r4rlabel = 'Needs Review';
 	$labels_which_should_not_be_ready = array('Do Not Merge', 'Work In Progress', 'Merge Conflict');
@@ -357,11 +356,13 @@ function check_ready_for_review($payload, $labels = null, $remove = array()){
 	return $returned;
 }
 
+=======
+>>>>>>> tg-merge-1
 function check_dismiss_changelog_review($payload){
-	global $require_changelog;
+	global $require_changelogs;
 	global $no_changelog;
 
-	if(!$require_changelog)
+	if(!$require_changelogs)
 		return;
 
 	if(!$no_changelog)
@@ -406,8 +407,6 @@ function handle_pr($payload) {
 			check_dismiss_changelog_review($payload);
 		case 'synchronize':
 			list($labels, $remove) = tag_pr($payload, false);
-			if($payload['action'] == 'synchronize')
-				list($labels, $remove) = check_ready_for_review($payload, $labels, $remove);
 			set_labels($payload, $labels, $remove);
 			return;
 		case 'reopened':
@@ -819,6 +818,8 @@ function checkchangelog($payload, $compile = true) {
 		}
 
 		if (!strlen($firstword)) {
+			if (count($currentchangelogblock) <= 0)
+				continue;
 			$currentchangelogblock[count($currentchangelogblock)-1]['body'] .= "\n";
 			continue;
 		}
