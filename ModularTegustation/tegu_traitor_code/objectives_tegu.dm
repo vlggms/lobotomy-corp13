@@ -30,30 +30,6 @@
 					return TRUE
 	return FALSE
 
-/datum/objective_item/steal/poly
-	name = "Poly, the Chief Engineer's pet parrot, alive"
-	targetitem = /obj/item/pet_carrier
-	difficulty = 30
-	excludefromjob = list("Chief Engineer")
-	altitems = list(/obj/item/clothing/head/mob_holder)
-
-/datum/objective_item/steal/poly/New()
-	special_equipment += /obj/item/lazarus_injector
-	..()
-
-/datum/objective_item/steal/poly/check_special_completion(obj/item/B)
-	if(istype(B, /obj/item/pet_carrier))
-		var/obj/item/pet_carrier/A = B
-		for(var/mob/living/simple_animal/parrot/poly/D in A)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	if(istype(B, /obj/item/clothing/head/mob_holder))
-		var/obj/item/clothing/head/mob_holder/A = B
-		for(var/mob/living/simple_animal/parrot/poly/D in A)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	return FALSE
-
 /datum/objective_item/steal/runtimecat
 	name = "Runtime, the Chief Medical Officer's pet, alive."
 	targetitem = /obj/item/pet_carrier
@@ -74,30 +50,6 @@
 	if(istype(H, /obj/item/clothing/head/mob_holder))
 		var/obj/item/clothing/head/mob_holder/T = H
 		for(var/mob/living/simple_animal/pet/cat/runtime/D in T)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	return FALSE
-
-/datum/objective_item/steal/renaultfox
-	name = "Renault, the Captain's prized fox, alive!"
-	targetitem = /obj/item/pet_carrier
-	difficulty = 20
-	excludefromjob = list("Captain")
-	altitems = list(/obj/item/clothing/head/mob_holder)
-
-/datum/objective_item/steal/renaultfox/New()
-	special_equipment += /obj/item/lazarus_injector
-	..()
-
-/datum/objective_item/steal/renaultfox/check_special_completion(obj/item/K)
-	if(istype(K, /obj/item/pet_carrier))
-		var/obj/item/pet_carrier/G = K
-		for(var/mob/living/simple_animal/pet/fox/renault/D in G)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	if(istype(K, /obj/item/clothing/head/mob_holder))
-		var/obj/item/clothing/head/mob_holder/G = K
-		for(var/mob/living/simple_animal/pet/fox/renault/D in G)
 			if(D.stat != DEAD)//checks if pet is alive.
 				return TRUE
 	return FALSE

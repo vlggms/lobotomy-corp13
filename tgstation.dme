@@ -3369,6 +3369,7 @@
 #include "ModularTegustation\tegu_mentorhelp\mentorhelp.dm"
 #include "ModularTegustation\tegu_mentorhelp\mentorpm.dm"
 #include "ModularTegustation\tegu_mentorhelp\mentorsay.dm"
+#include "ModularTegustation\tegu_mobs\alligator.dm"
 #include "ModularTegustation\tegu_mobs\butcher.dm"
 #include "ModularTegustation\tegu_mobs\chaos_marine.dm"
 #include "ModularTegustation\tegu_security_code\body_cameras.dm"
