@@ -6,6 +6,7 @@
 /obj/structure/closet/secure_closet/engineering_chief/Initialize()
 	new /obj/item/clothing/shoes/workboots/digitigrade(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/engineering/head(src)
+	new /obj/item/gun/energy/disabler/head(src)
 	. = ..()
 
 /obj/structure/closet/secure_closet/chief_medical/Initialize()
@@ -13,11 +14,13 @@
 	new /obj/item/clothing/glasses/sunglasses/chemical(src)
 	new /obj/item/clothing/shoes/sneakers/brown/digitigrade(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src)
+	new /obj/item/gun/energy/disabler/head(src)
 	. = ..()
 
 /obj/structure/closet/secure_closet/research_director/Initialize()
 	new /obj/item/clothing/shoes/laceup/digitigrade(src)
 	new /obj/item/clothing/suit/hooded/wintercoat/science/head(src)
+	new /obj/item/gun/energy/disabler/head(src)
 	. = ..()
 
 /obj/structure/closet/secure_closet/captains/Initialize()
