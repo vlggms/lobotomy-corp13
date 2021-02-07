@@ -91,7 +91,7 @@
 //** Expands the Secborg's module items and upgrades.
 //***************************************************************************
 
-/obj/item/robot_module/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
+/obj/item/robot_model/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -121,7 +121,7 @@
 //** electronics which can be upgraded to hold stock parts and circuitboards
 //*****************************************************************************
 
-/obj/item/robot_module/engineering
+/obj/item/robot_model/engineering
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,

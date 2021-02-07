@@ -27,14 +27,14 @@
 	. = ..()
 	if(.)
 		var/obj/item/gun/medbeam/cyborg/MB = new(R.model)
-		R.model.basic_models += MB
-		R.model.add_model(MB, FALSE, TRUE)
+		R.model.basic_modules += MB
+		R.model.add_module(MB, FALSE, TRUE)
 
 /obj/item/borg/upgrade/medbeam/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
 		var/obj/item/gun/medbeam/cyborg/MB = locate() in R.model
-		R.model.remove_model(MB, TRUE)
+		R.model.remove_module(MB, TRUE)
 
 /obj/item/gun/medbeam/cyborg
 	name = "Integrated Medical Beamgun"
@@ -105,7 +105,7 @@
 
 /mob/living/silicon/robot/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE) //Qualify of life; puts beaker in manipulator
 	. = ..()
-	var/obj/item/borg/apparatus/E = locate() in model.models // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
+	var/obj/item/borg/apparatus/E = locate() in model.modules // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
 	if(!E)
 		return
 	E.pre_attack(I, src)

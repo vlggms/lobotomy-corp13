@@ -71,21 +71,21 @@
 /obj/item/borg/upgrade/sec_holobarrier/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.model
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
 		if(E)
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
 		E = new(R.model)
-		R.model.basic_models += E
-		R.model.add_model(E, FALSE, TRUE)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
 
 /obj/item/borg/upgrade/sec_holobarrier/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.models
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
 		if (E)
-			R.model.remove_model(E, TRUE)
+			R.model.remove_module(E, TRUE)
 
 /obj/item/holosign_creator/security/cyborg
 	name = "Security Holobarrier Projector"
@@ -156,21 +156,21 @@
 /obj/item/borg/upgrade/e_bola/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
 		if(E)
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
 		E = new(R.model)
-		R.model.basic_models += E
-		R.model.add_model(E, FALSE, TRUE)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
 
 /obj/item/borg/upgrade/e_bola/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
 		if (E)
-			R.model.remove_model(E, TRUE)
+			R.model.remove_module(E, TRUE)
 
 /obj/item/ammo_casing/energy/bola
 	projectile_type = /obj/projectile/energy/trap/cyborg
@@ -225,7 +225,7 @@
 /obj/item/borg/upgrade/e_gun_lethal/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
 			return FALSE
@@ -240,7 +240,7 @@
 /obj/item/borg/upgrade/e_gun_lethal/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		if(!R.emagged) //If we're emagged, don't revert.
@@ -258,7 +258,7 @@
 /obj/item/borg/upgrade/e_gun_cooler/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
 			return FALSE
@@ -272,7 +272,7 @@
 /obj/item/borg/upgrade/e_gun_cooler/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.models
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		T.charge_delay = initial(T.charge_delay)
@@ -297,7 +297,7 @@
 /obj/item/borg/upgrade/peppersprayupgrade/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.models
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no pepper spray synthesizer in this unit!</span>")
 			return FALSE
@@ -313,7 +313,7 @@
 /obj/item/borg/upgrade/peppersprayupgrade/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.models
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		T.generate_amount = initial(T.generate_amount)
@@ -395,6 +395,6 @@
 
 	if(iscyborg(src))
 		var/mob/living/silicon/robot/R = src
-		return (locate(typepath) in R.module)
+		return (locate(typepath) in R.model)
 
 	return FALSE
