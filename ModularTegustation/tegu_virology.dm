@@ -1,40 +1,40 @@
 // Virology "advanced" symptoms.
 /datum/symptom/adv_transmit
-	name = "TCS-TSA 1" // Tiger Co Syndicate - Transmission Speed Accelerator
+	name = "TCS-TSA 1" // Tiger Co Syndicate - Transmission Speed Accelerant
 	desc = "Some sort of a dark, rapidly developing bacteria; Although it makes presence of the virus very obvious, \
 	it rapidly transmits and evolves to the last stages almost instantly, possibly killing everything in the process."
 	stealth = -9
 	resistance = -5
-	stage_speed = 9
-	transmittable = 7
+	stage_speed = 8
+	transmittable = 6
 	level = 19 // Can't get it normally
 
 /datum/symptom/adv_everything
-	name = "TCS-MPA 2" // Tiger Co Syndicate - Multi-Purpose Accelerator
+	name = "TCS-MPA 2" // Tiger Co Syndicate - Multi-Purpose Accelerant
 	desc = "A multi-purpose strain, capable of increasing most statistics of a virus by a small amount."
 	stealth = 3
-	resistance = 5
-	stage_speed = 5
+	resistance = 4
+	stage_speed = 3
 	transmittable = 3
 	level = 19
 
 /datum/symptom/adv_stealth
-	name = "TCS-SRA 3" // Tiger Co Syndicate - Stealth Resistance Accelerator
+	name = "TCS-SRA 3" // Tiger Co Syndicate - Stealth Resistance Accelerant
 	desc = "A rare symptom, previously unknown to Nanotrasen. \
 	This symptom makes virus near to impossible to spot, although hinders its ability to develop fast enough."
 	stealth = 7
 	resistance = 5
 	stage_speed = -9
-	transmittable = -5
+	transmittable = -4
 	level = 19
 
 /datum/symptom/fake_oxygen // Fake self-respiration, heals until stage 5, then begins to kill.
 	name = "Self-Respiratory Detonator"
 	desc = "Virus that resembles Self-Respiration symptom, up until the last stage where it begins to absord oxygen in victim's body."
 	stealth = 2
-	resistance = -1
-	stage_speed = -2
-	transmittable = 0
+	resistance = -3
+	stage_speed = -3
+	transmittable = -4
 	level = 19
 	base_message_chance = 5
 	symptom_delay_min = 1
@@ -56,7 +56,7 @@
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(5)
-			M.adjustOxyLoss(4, 0)
+			M.adjustOxyLoss(5, 0)
 			M.losebreath += 2
 			if(prob(20))
 				M.emote("gasp")

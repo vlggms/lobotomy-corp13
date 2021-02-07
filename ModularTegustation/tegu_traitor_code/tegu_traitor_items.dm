@@ -74,7 +74,7 @@
 /obj/item/assembly/flash/hypnotic/adv
 	desc = "A modified flash device, used to beam preprogrammed orders directly into the target's mind."
 	light_color = COLOR_RED_LIGHT
-	var/hypno_cooldown = 29 SECONDS // Big damn cooldown
+	var/hypno_cooldown = 59 SECONDS // Big damn cooldown
 	var/hypno_cooldown_current
 	var/hypno_message // User can change it by alt-clicking the flash.
 
@@ -101,7 +101,7 @@
 			else
 				if(!hypno_message) // Aka default settings
 					hypno_message = "You are a secret agent, working for [user.real_name]. \
-					You must do everything they order you and never attempt to harm, or let anyone else harm them."
+					You must do anything they ask of you, and you must never attempt to harm them, nor allow harm to come to them."
 				hypno_cooldown_current = world.time + hypno_cooldown
 				M.apply_status_effect(STATUS_EFFECT_PACIFY, 30)
 				M.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY) //clear previous hypnosis
@@ -123,8 +123,8 @@
 
 /obj/item/assembly/flash/hypnotic/adv/AltClick(mob/user)
 	hypno_message = stripped_input(user, "What order will be given to hypnotised people?", \
-	"You are a secret agent, working for [user.real_name]. You must do everything they order \
-	you and never attempt to harm, or let anyone else harm them.", "Hypnosis message")
+	"You are a secret agent, working for [user.real_name]. You must do anything they ask of you, \
+	and you must never attempt to harm them, nor allow harm to come to them.", "Hypnosis message")
 	to_chat(user, "<span class='notice'>New message is: [hypno_message]</span>")
 
 // Virology bottles
