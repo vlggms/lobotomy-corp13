@@ -258,7 +258,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 		/obj/item/stack/cable_coil)
 
 	cyborg_base_icon = "synd_medical"
-	modelselect_icon = "malf"
+	model_select_icon = "malf"
 	hat_offset = 3
 
 /mob/living/silicon/robot/model/medical/cybersun
