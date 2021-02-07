@@ -2,10 +2,6 @@
 set -euo pipefail
 
 tools/deploy.sh ci_test
-<<<<<<< HEAD
-rm ci_test/*.dll
-=======
->>>>>>> tg-merge-1
 mkdir ci_test/config
 
 #test config
