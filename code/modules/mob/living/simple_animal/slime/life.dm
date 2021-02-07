@@ -13,11 +13,11 @@
 		if(buckled)
 			handle_feeding()
 		if(!stat) // Slimes in stasis don't lose nutrition, don't change mood and don't respond to speech
-			if (transformeffects & SLIME_EFFECT_PYRITE && prob(2)) // TEGU
+			if (transformeffects & SLIME_EFFECT_PYRITE && prob(2)) // Tegustation Xenobiology Black Crossbreeds
 				set_colour(pick(slime_colours))
 				regenerate_icons()
 				update_name()
-			if (transformeffects & SLIME_EFFECT_PURPLE && prob(2)) // TEGU
+			if (transformeffects & SLIME_EFFECT_PURPLE && prob(2)) // Tegustation Xenobiology Black Crossbreeds
 				adjustBruteLoss(-1*round(rand(0.1,0.2)*maxHealth))
 			handle_nutrition()
 			if(QDELETED(src)) // Stop if the slime split during handle_nutrition()
@@ -72,7 +72,7 @@
 				break
 
 			if(Target in view(1,src))
-				var/feedcooldown = (transformeffects & SLIME_EFFECT_SEPIA) ? 2.5 SECONDS : 4.5 SECONDS // TEGU
+				var/feedcooldown = (transformeffects & SLIME_EFFECT_SEPIA) ? 2.5 SECONDS : 4.5 SECONDS // Tegustation Xenobiology Black Crossbreeds
 				if(!CanFeedon(Target)) //If they're not able to be fed upon, ignore them.
 					if(!Atkcool)
 						Atkcool = TRUE
@@ -100,7 +100,7 @@
 						Feedon(Target)
 
 			else if(Target in view(7, src))
-				if (transformeffects & SLIME_EFFECT_BLUESPACE && powerlevel == 10) // TEGU
+				if (transformeffects & SLIME_EFFECT_BLUESPACE && powerlevel == 10) // Tegustation Xenobiology Black Crossbreeds
 					do_teleport(src, get_turf(Target),null,TRUE,null,null,null,null,TRUE, channel = TELEPORT_CHANNEL_QUANTUM)
 				else if(!Target.Adjacent(src))
 				// Bug of the month candidate: slimes were attempting to move to target only if it was directly next to them, which caused them to target things, but not approach them
@@ -131,7 +131,7 @@
 	else // This is a hot place
 		adjust_bodytemperature((loc_temp - bodytemperature) / divisor)
 
-	if (!(transformeffects & SLIME_EFFECT_ADAMANTINE)) // TEGU
+	if (!(transformeffects & SLIME_EFFECT_ADAMANTINE)) // Tegustation Xenobiology Black Crossbreeds
 		if(bodytemperature < (T0C + 5)) // start calculating temperature damage etc
 			if(bodytemperature <= (T0C - 40)) // stun temperature
 				ADD_TRAIT(src, TRAIT_IMMOBILIZED, SLIME_COLD)
@@ -198,7 +198,7 @@
 			if(prob(85))
 				rabid = 1 //we go rabid after finishing to feed on a human with a client.
 
-		if(ismonkey(M))
+		if(ismonkey(M)) // Tegustation Xenobiology Black Crossbreeds
 			if (transformeffects & SLIME_EFFECT_BLACK)
 				make_baby(drop_location(),FALSE,round(nutrition * 0.9),round(powerlevel / 4))
 		if (transformeffects & SLIME_EFFECT_GREEN)
@@ -249,7 +249,7 @@
 		set_nutrition(700) //fuck you for using the base nutrition var
 		return
 
-	if(prob(15) && !(transformeffects & SLIME_EFFECT_SILVER))
+	if(prob(15) && !(transformeffects & SLIME_EFFECT_SILVER)) // Tegustation Xenobiology Black Crossbreeds
 		adjust_nutrition((-(1 + is_adult)) * (transformeffects & SLIME_EFFECT_GREY) ? 2 : 1)
 
 	if(nutrition <= 0)
@@ -269,7 +269,7 @@
 			Evolve()
 
 /mob/living/simple_animal/slime/proc/add_nutrition(nutrition_to_add = 0)
-	var/gainpower = (transformeffects & SLIME_EFFECT_YELLOW) ? 2 : 1 // TEGU var.
+	var/gainpower = (transformeffects & SLIME_EFFECT_YELLOW) ? 2 : 1 // Tegustation Xenobiology Black Crossbreeds
 	set_nutrition(min((nutrition + nutrition_to_add), get_max_nutrition()))
 	if(nutrition >= get_grow_nutrition())
 		if(powerlevel<10)
@@ -336,7 +336,7 @@
 					if(isslime(L) || L.stat == DEAD) // Ignore other slimes and dead mobs
 						continue
 
-					if (transformeffects & SLIME_EFFECT_LIGHT_PINK && ishuman(L)) //TEGU: ignore humans when the light pink transformative effect is on
+					if (transformeffects & SLIME_EFFECT_LIGHT_PINK && ishuman(L)) // Tegustation Xenobiology Black Crossbreeds
 						continue
 
 					if(L in Friends) // No eating friends!

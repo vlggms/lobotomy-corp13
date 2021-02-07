@@ -1,3 +1,6 @@
+/obj/item/slime_extract
+	var/sparkly = FALSE //if true, cargo gets 2x the money for them
+
 /mob/living/simple_animal/slime
 // Transformative extract effects - get passed down
 	var/transformeffects = SLIME_EFFECT_DEFAULT

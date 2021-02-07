@@ -772,7 +772,7 @@ GENE SCANNER
 	if(T.effectmod)
 		to_render += "\n<span class='notice'>Core mutation in progress: [T.effectmod]</span>\
 					  \n<span class='notice'>Progress in core mutation: [T.applied] / [SLIME_EXTRACT_CROSSING_REQUIRED]</span>"
-	if (T.transformeffects != SLIME_EFFECT_DEFAULT) // TEGU: Black crossbreeds
+	if (T.transformeffects != SLIME_EFFECT_DEFAULT) // Tegustation Xenobiology Black Crossbreeds
 		var/slimeeffects = "\nTransformative extract effects detected: "
 		var/i = T.effectsapplied - 1
 		if (T.transformeffects & SLIME_EFFECT_GREY)

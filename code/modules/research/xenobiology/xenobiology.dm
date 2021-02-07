@@ -18,13 +18,12 @@
 	var/recurring = FALSE
 	/// Research point value for slime cores. These are defines stored in [code/__DEFINES/research.dm] - the actual values are updated there.
 	var/research
-	var/sparkly = FALSE //if true, cargo gets 2x the money for them // TEGU
 
 /obj/item/slime_extract/examine(mob/user)
 	. = ..()
 	if(Uses > 1)
 		. += "It has [Uses] uses remaining."
-	if (sparkly == TRUE) // TEGU
+	if (sparkly == TRUE) // Tegustation Xenobiology Black Crossbreeds
 		. += "It looks sparkly."
 
 /obj/item/slime_extract/attackby(obj/item/O, mob/user)

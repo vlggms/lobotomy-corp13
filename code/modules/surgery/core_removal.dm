@@ -31,7 +31,7 @@
 			"<span class='notice'>[user] successfully extracts a core from [target]!</span>")
 
 		var/obj/item/slime_extract/item = new slime.coretype(slime.loc)
-		if (slime.transformeffects & SLIME_EFFECT_GOLD)
+		if (slime.transformeffects & SLIME_EFFECT_GOLD) // Tegustation Xenobiology Black Crossbreeds
 			item.sparkly = TRUE
 
 		if(slime.cores <= 0)

@@ -59,7 +59,7 @@
 		Feedstop()
 		return FALSE
 
-	if (transformeffects & SLIME_EFFECT_LIGHT_PINK && ishuman(M))
+	if (transformeffects & SLIME_EFFECT_LIGHT_PINK && ishuman(M)) // Tegustation Xenobiology Black Crossbreeds
 		return FALSE
 
 	if(issilicon(M))
@@ -94,7 +94,7 @@
 		to_chat(src, "<span class='warning'><i>I must be conscious to do this...</i></span>")
 		return FALSE
 
-	if(M.stat == DEAD && !(transformeffects & SLIME_EFFECT_GREEN))
+	if(M.stat == DEAD && !(transformeffects & SLIME_EFFECT_GREEN)) // Tegustation Xenobiology Black Crossbreeds
 		if(silent)
 			return FALSE
 		to_chat(src, "<span class='warning'><i>This subject does not have a strong enough life energy...</i></span>")
@@ -139,7 +139,7 @@
 	if(!is_adult)
 		if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
 			is_adult = 1
-			maxHealth = (transformeffects & SLIME_EFFECT_METAL) ? 300 : 200
+			maxHealth = (transformeffects & SLIME_EFFECT_METAL) ? 300 : 200 // Tegustation Xenobiology Black Crossbreeds
 			amount_grown = 0
 			for(var/datum/action/innate/slime/evolve/E in actions)
 				E.Remove(src)
@@ -182,7 +182,7 @@
 			var/datum/component/nanites/original_nanites = GetComponent(/datum/component/nanites)
 			var/turf/drop_loc = drop_location()
 
-			var/childamount = 4 // Bunch of Tegu edits
+			var/childamount = 4 // Tegustation Xenobiology Black Crossbreeds
 			var/new_adult = FALSE
 			if (transformeffects & SLIME_EFFECT_CERULEAN)
 				childamount = 2

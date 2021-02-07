@@ -212,7 +212,7 @@
 				if (prob(stunprob) && M.powerlevel >= 8)
 					adjustFireLoss(M.powerlevel * rand(6,10))
 					updatehealth()
-				if (M.transformeffects & SLIME_EFFECT_ORANGE) // TEGU EDIT
+				if (M.transformeffects & SLIME_EFFECT_ORANGE) // Tegustation Xenobiology Black Crossbreeds
 					adjust_fire_stacks(2)
 					IgniteMob()
 		return 1
