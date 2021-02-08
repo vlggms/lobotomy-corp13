@@ -266,24 +266,3 @@
 //***********************************************************
 //**** Sleepy Pen for ops ENDS - Glubtok, Jul 2020
 //***********************************************************
-
-//***********************************************************
-//**** Fairy Grass Sprite changes BEGINS - HonkersTheClown, Feb 2021
-//***********************************************************
-
-/turf/open/floor/grass/fairy //like grass but fae-er
-	name = "fairygrass patch"
-	desc = "Something about this grass makes you want to frolic. Or get high."
-	icon = 'ModularTegustation/Teguicons/tegu_fairygrass.dmi'
-	icon_state = "fairygrass0"
-	floor_tile = /obj/item/stack/tile/fairygrass
-	light_range = 2
-	light_power = 0.80
-	light_color = COLOR_BLUE_LIGHT
-
-/turf/open/floor/grass/fairy/spawniconchange()
-	icon_state = "fairygrass[rand(0,3)]"
-
-//***********************************************************
-//**** Fairy Grass Sprite changes ENDS - HonkersTheClown, Feb 2021
-//***********************************************************
