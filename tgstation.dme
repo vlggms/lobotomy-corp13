@@ -3358,6 +3358,7 @@
 #include "ModularTegustation\tegu_procs.dm"
 #include "ModularTegustation\tegu_spaceruins.dm"
 #include "ModularTegustation\tegu_starfury_event.dm"
+#include "ModularTegustation\tegu_virology.dm"
 #include "ModularTegustation\tegu_world.dm"
 #include "ModularTegustation\tegu_beefmen\code\_DEFINES\beefman_defines.dm"
 #include "ModularTegustation\tegu_beefmen\code\modules\language\russian.dm"
