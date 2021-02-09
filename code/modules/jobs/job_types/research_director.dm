@@ -27,6 +27,7 @@
 						ACCESS_RESEARCH, ACCESS_ROBOTICS, ACCESS_XENOBIOLOGY, ACCESS_AI_UPLOAD,
 						ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_MINERAL_STOREROOM,
 						ACCESS_TECH_STORAGE, ACCESS_MINISAT, ACCESS_MAINT_TUNNELS, ACCESS_NETWORK,
+						ACCESS_WEAPONS, // Tegustation Heads of Staff eguns edit: Gives them a weapon's permit
 						ACCESS_TOXINS_STORAGE, ACCESS_AUX_BASE, ACCESS_EVA)
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_SCI
@@ -50,6 +51,9 @@
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
+	duffelbag = /obj/item/storage/backpack/duffelbag/toxins
+
+	skillchips = list(/obj/item/skillchip/job/research_director)
 
 	chameleon_extras = /obj/item/stamp/rd
 

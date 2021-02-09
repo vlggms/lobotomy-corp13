@@ -15,7 +15,10 @@
 
 	var/area_flags = VALID_TERRITORY | BLOBS_ALLOWED | UNIQUE_AREA
 
-	var/fire = null
+	///Do we have an active fire alarm?
+	var/fire = FALSE
+	///How many fire alarm sources do we have?
+	var/triggered_firealarms = 0
 	///Whether there is an atmos alarm in this area
 	var/atmosalm = FALSE
 	var/poweralm = FALSE
@@ -37,11 +40,13 @@
 	/// Bonus mood for being in this area
 	var/mood_bonus = 0
 	/// Mood message for being here, only shows up if mood_bonus != 0
-	var/mood_message = "<span class='nicegreen'>This area is pretty nice!\n</span>"
+	var/mood_message = "<span class='nicegreen'>This area is pretty nice!</span>\n"
+	/// Does the mood bonus require a trait?
+	var/mood_trait
 
 	///Will objects this area be needing power?
 	var/requires_power = TRUE
-	/// This gets overridden to 1 for space in area/Initialize().
+	/// This gets overridden to 1 for space in area/.
 	var/always_unpowered = FALSE
 
 	var/power_equip = TRUE
@@ -52,7 +57,8 @@
 
 	var/parallax_movedir = 0
 
-	var/list/ambientsounds = GENERIC
+	var/ambience_index = AMBIENCE_GENERIC
+	var/list/ambientsounds
 	flags_1 = CAN_BE_DIRTY_1 | CULT_PERMITTED_1
 
 	var/list/firedoors
@@ -134,7 +140,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/Initialize(mapload)
 	icon_state = ""
-
+	if(!ambientsounds)
+		ambientsounds = GLOB.ambience_assoc[ambience_index]
 	if(requires_power)
 		luminosity = 0
 	else
@@ -385,6 +392,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  * If 100 ticks has elapsed, toggle all the firedoors closed again
  */
 /area/process()
+	if(!triggered_firealarms)
+		firereset() //If there are no breaches or fires, and this alert was caused by a breach or fire, die
 	if(firedoors_last_closed_on + 100 < world.time)	//every 10 seconds
 		ModifyFiredoors(FALSE)
 
@@ -428,6 +437,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/proc/set_fire_alarm_effect()
 	fire = TRUE
+	if(!triggered_firealarms) //If there aren't any fires/breaches
+		triggered_firealarms = INFINITY //You're not allowed to naturally die
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
@@ -442,10 +453,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/proc/unset_fire_alarm_effects()
 	fire = FALSE
+	triggered_firealarms = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
+		F.triggered = FALSE
 	for(var/obj/machinery/light/L in src)
 		L.update()
 

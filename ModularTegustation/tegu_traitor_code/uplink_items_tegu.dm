@@ -7,6 +7,25 @@
 	restricted_roles = list("Curator")
 	limited_stock = 1 //for testing at least
 
+/datum/uplink_item/role_restricted/hypnotic_flash/psych
+	name = "Advanced Hypnotic Flash"
+	desc = "A modified flash able to hypnotize targets. This model is capable of beaming orders directly into target's mind, instantly. \
+			The only downside is that it requires about a minute to recharge. This one allows user to input a message straight into device, \
+			removing the need to say anything after using it on your target."
+	item = /obj/item/assembly/flash/hypnotic/adv
+	cost = 10
+	cant_discount = FALSE
+	restricted_roles = list("Psychologist")
+	limited_stock = 1
+
+/datum/uplink_item/role_restricted/symptom_box
+	name = "Virology Symptoms Box"
+	desc = "Box full of advanced virology symptoms, extracted from Tiger Co. abandoned laborotories. \
+	Strains range from virus accelerants to deadly diseases."
+	item = /obj/item/storage/box/syndie_kit/virology
+	cost = 12
+	cant_discount = FALSE
+	restricted_roles = list("Virologist")
 
 /datum/uplink_item/badass/balloongold
 	name = "Golden Syndicate Balloons"

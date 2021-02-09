@@ -125,13 +125,13 @@
 
 	var/mob/living/silicon/robot/R = loc
 
-	var/obj/item/stack/sheet/glass/G = locate(/obj/item/stack/sheet/glass) in R.module
+	var/obj/item/stack/sheet/glass/G = locate(/obj/item/stack/sheet/glass) in R.model
 	if(!G)
 		return
 	if(!G.source.use_charge(50))
 		return
 
-	var/obj/item/stack/sheet/metal/M = locate(/obj/item/stack/sheet/metal) in R.module
+	var/obj/item/stack/sheet/metal/M = locate(/obj/item/stack/sheet/metal) in R.model
 	if(!M)
 		return
 	if(!M.source.use_charge(50))

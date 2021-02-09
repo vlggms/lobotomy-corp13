@@ -14,7 +14,7 @@
 	var/nutriment_factor = 1 * REAGENTS_METABOLISM
 	var/quality = 0	//affects mood, typically higher for mixed drinks with more complex recipes
 
-/datum/reagent/consumable/on_mob_life(mob/living/M)
+/datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -55,9 +55,9 @@
 	if(chems.has_reagent(type, 1))
 		mytray.adjustHealth(round(chems.get_reagent_amount(type) * 0.2))
 
-/datum/reagent/consumable/nutriment/on_mob_life(mob/living/M)
+/datum/reagent/consumable/nutriment/on_mob_life(mob/living/carbon/M)
 	if(prob(50))
-		M.heal_bodypart_damage(brute_heal,burn_heal, 0)
+		M.heal_bodypart_damage(brute = brute_heal, burn = burn_heal)
 		. = 1
 	..()
 
@@ -105,7 +105,7 @@
 	brute_heal = 1
 	burn_heal = 1
 
-/datum/reagent/consumable/nutriment/vitamin/on_mob_life(mob/living/M)
+/datum/reagent/consumable/nutriment/vitamin/on_mob_life(mob/living/carbon/M)
 	if(M.satiety < 600)
 		M.satiety += 30
 	. = ..()
@@ -239,7 +239,7 @@
 	taste_description = "hot peppers"
 	taste_mult = 1.5
 
-/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/M)
+/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/carbon/M)
 	var/heating = 0
 	switch(current_cycle)
 		if(1 to 15)
@@ -269,7 +269,7 @@
 	color = "#8BA6E9" // rgb: 139, 166, 233
 	taste_description = "mint"
 
-/datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
+/datum/reagent/consumable/frostoil/on_mob_life(mob/living/carbon/M)
 	var/cooling = 0
 	switch(current_cycle)
 		if(1 to 15)
@@ -349,7 +349,7 @@
 			if(prob(5))
 				victim.vomit()
 
-/datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/M)
+/datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/carbon/M)
 	if(!holder.has_reagent(/datum/reagent/consumable/milk))
 		if(prob(10))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
@@ -392,7 +392,7 @@
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "mushroom"
 
-/datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/M)
+/datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	if(!M.slurring)
 		M.slurring = 1
 	switch(current_cycle)
@@ -422,17 +422,17 @@
 	taste_description = "garlic"
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/garlic/on_mob_life(mob/living/M)
+/datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(prob(min(25,current_cycle)))
 			to_chat(M, "<span class='danger'>You can't get the scent of garlic out of your nose! You can barely think...</span>")
 			M.Paralyze(10)
 			M.Jitter(10)
-	else if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.job == "Cook")
+	else
+		var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
+		if(liver && HAS_TRAIT(liver, TRAIT_CULINARY_METABOLISM))
 			if(prob(20)) //stays in the system much longer than sprinkles/banana juice, so heals slower to partially compensate
-				H.heal_bodypart_damage(1,1, 0)
+				M.heal_bodypart_damage(brute = 1, burn = 1)
 				. = 1
 	..()
 
@@ -442,9 +442,10 @@
 	color = "#FF00FF" // rgb: 255, 0, 255
 	taste_description = "childhood whimsy"
 
-/datum/reagent/consumable/sprinkles/on_mob_life(mob/living/M)
-	if(M.mind && HAS_TRAIT(M.mind, TRAIT_LAW_ENFORCEMENT_METABOLISM))
-		M.heal_bodypart_damage(1,1, 0)
+/datum/reagent/consumable/sprinkles/on_mob_life(mob/living/carbon/M)
+	var/obj/item/organ/liver/liver = M.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver && HAS_TRAIT(liver, TRAIT_LAW_ENFORCEMENT_METABOLISM))
+		M.heal_bodypart_damage(brute = 1, burn = 1)
 		. = 1
 	..()
 
@@ -495,7 +496,7 @@
 	color = "#3E4A00" // rgb: 62, 74, 0
 	taste_description = "your imprisonment"
 
-/datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/M)
+/datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
 	..()
 
@@ -506,7 +507,7 @@
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles on fire"
 
-/datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/target_mob)
+/datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/carbon/target_mob)
 	target_mob.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT)
 	..()
 
@@ -575,7 +576,7 @@
 	metabolization_rate = 3 * REAGENTS_METABOLISM
 	taste_description = "sweet slime"
 
-/datum/reagent/consumable/corn_syrup/on_mob_life(mob/living/M)
+/datum/reagent/consumable/corn_syrup/on_mob_life(mob/living/carbon/M)
 	holder.add_reagent(/datum/reagent/consumable/sugar, 3)
 	..()
 
@@ -597,7 +598,7 @@
 			mytray.adjustWeeds(rand(1,2))
 			mytray.adjustPests(rand(1,2))
 
-/datum/reagent/consumable/honey/on_mob_life(mob/living/M)
+/datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)
 	holder.add_reagent(/datum/reagent/consumable/sugar,3)
 	if(prob(55))
 		M.adjustBruteLoss(-1*REM, 0)
@@ -647,7 +648,7 @@
 		exposed_mob.blind_eyes(2)
 		exposed_mob.blur_eyes(5)
 
-/datum/reagent/consumable/tearjuice/on_mob_life(mob/living/M)
+/datum/reagent/consumable/tearjuice/on_mob_life(mob/living/carbon/M)
 	..()
 	if(M.eye_blurry)	//Don't worsen vision if it was otherwise fine
 		M.blur_eyes(4)
@@ -663,7 +664,7 @@
 	nutriment_factor = 15 * REAGENTS_METABOLISM
 	color = "#664330" // rgb: 102, 67, 48
 
-/datum/reagent/consumable/nutriment/stabilized/on_mob_life(mob/living/M)
+/datum/reagent/consumable/nutriment/stabilized/on_mob_life(mob/living/carbon/M)
 	if(M.nutrition > NUTRITION_LEVEL_FULL - 25)
 		M.adjust_nutrition(-3*nutriment_factor)
 	..()
@@ -677,7 +678,7 @@
 	color = "#1d043d"
 	taste_description = "bitter mushroom"
 
-/datum/reagent/consumable/entpoly/on_mob_life(mob/living/M)
+/datum/reagent/consumable/entpoly/on_mob_life(mob/living/carbon/M)
 	if(current_cycle >= 10)
 		M.Unconscious(40, 0)
 		. = 1
@@ -730,7 +731,7 @@
 	nutriment_factor = 3 * REAGENTS_METABOLISM
 	taste_description = "fruity mushroom"
 
-/datum/reagent/consumable/vitfro/on_mob_life(mob/living/M)
+/datum/reagent/consumable/vitfro/on_mob_life(mob/living/carbon/M)
 	if(prob(80))
 		M.adjustBruteLoss(-1*REM, 0)
 		M.adjustFireLoss(-1*REM, 0)
@@ -762,7 +763,7 @@
 	if(istype(stomach))
 		stomach.adjust_charge(reac_volume * REM * 20)
 
-/datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/M)
+/datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
 	if(prob(25) && !isethereal(M)) //lmao at the newbs who eat energy bars
 		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1, SHOCK_NOGLOVES) //the shock is coming from inside the house
 		playsound(M, "sparks", 50, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)

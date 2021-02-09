@@ -14,6 +14,7 @@
 #define ROLE_MALF				"Malf AI"
 #define ROLE_REV				"Revolutionary"
 #define ROLE_REV_HEAD			"Head Revolutionary"
+#define ROLE_REV_SUCCESSFUL		"Victorious Revolutionary"
 #define ROLE_ALIEN				"Xenomorph"
 #define ROLE_PAI				"pAI"
 #define ROLE_CULTIST			"Cultist"
@@ -41,7 +42,7 @@
 #define ROLE_FAMILIES			"Familes Antagonists"
 #define ROLE_SYNDICATE_CYBERSUN			"Cybersun Space Syndicate"		//Ghost role syndi from Forgottenship ruin
 #define ROLE_SYNDICATE_CYBERSUN_CAPTAIN	"Cybersun Space Syndicate Captain"		//Forgottenship captain syndie
-#define ROLE_INFILTRATOR 				"Infiltrator"							//Tegustation Infiltration edit
+#define ROLE_INFILTRATOR 				"Infiltrator"							// Tegustation Infiltration edit
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
