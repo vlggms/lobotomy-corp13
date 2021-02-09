@@ -9,9 +9,15 @@
 	allow_temp_override = FALSE
 	smashes_tables = TRUE
 	help_verb = /mob/living/proc/velvetfu_help
+//	var/stancing = FALSE - Couldn't get this to work, supposed to stop Receding_Stance from being spammed. Taken from CQC.dm
+	display_combos = TRUE
+	block_chance = 40
 	var/datum/action/receding_stance/recedingstance = new/datum/action/receding_stance()
 	var/datum/action/twisted_stance/twistedstance = new/datum/action/twisted_stance()
-	var/stancing = FALSE
+
+/datum/martial_art/velvetfu/reset_streak(mob/living/new_target)
+	. = ..()
+//	stancing = FALSE - Couldn't get this to work, supposed to stop Receding_Stance from being spammed. Taken from CQC.dm
 
 /datum/martial_art/velvetfu/teach(mob/living/H, make_temporary=0)
 	if(..())
@@ -60,9 +66,6 @@
 	button_icon_state = "receding_stance"
 
 /datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
-	if(user.stancing)
-		to_chat(src, "<span class='warning'>You are already making a stance!</span>")
-		return
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
@@ -71,18 +74,14 @@
 		user.mind.martial_art.streak = ""
 	else
 		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
-		user.stancing = addtimer(CALLBACK(src, /mob/living/.proc/stancing, src), 600, TIMER_STOPPABLE)
-
-/mob/living/proc/stancing(mob/living/M, mob/living/user)
-	if(do_after(H, 3 SECONDS))
-		owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
-		H.adjustStaminaLoss(-40)
-		H.mind.martial_art.streak = "receding_stance"
-		stancing = src
-	else
-		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
-		H.mind.martial_art.streak = ""
-		return
+		if(do_after(user, 3 SECONDS))
+			owner.visible_message("<span class='danger'>[user] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
+			user.adjustStaminaLoss(-40)
+			user.mind.martial_art.streak = "receding_stance"
+		else
+			user.visible_message("<span class='danger'>[user] stops moving back.</i></b>")
+			user.mind.martial_art.streak = ""
+			return
 
 /datum/martial_art/velvetfu/proc/receding_stance(mob/living/A)
 	A.mind.martial_art.streak = ""
@@ -125,9 +124,9 @@
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
 	A.adjustStaminaLoss(50)
 	D.apply_damage(10, BRUTE) // Slash!
-	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
+	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
 	var/datum/wound/slash/moderate/crit_wound = new
-	crit_wound.apply_wound(bodypart)
+	crit_wound.apply_wound(limb)
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -171,15 +170,18 @@
 	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
 	D.apply_damage(30, BRUTE) // Slash!
-	var/obj/item/bodypart/bodypart = pick(D.bodyparts)
+	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
 	var/datum/wound/slash/moderate/crit_wound = new
-	crit_wound.apply_wound(bodypart)
+	crit_wound.apply_wound(limb)
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return TRUE
 
 //Intents
 /datum/martial_art/velvetfu/harm_act(mob/living/A, mob/living/D)
 	if(!can_use(A))
+		return FALSE
+	var/datum/dna/dna = A.has_dna()
+	if(dna?.check_mutation(HULK))
 		return FALSE
 	add_to_streak("H",D)
 	if(check_streak(A,D))
@@ -199,11 +201,12 @@
 	return TRUE
 
 /datum/martial_art/velvetfu/grab_act(mob/living/A, mob/living/D) // No grabbing in Velvet-Fu!
-	if(A.dna.check_mutation(HULK))
-		return FALSE
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
 		return FALSE
 	if(!can_use(A))
+		return FALSE
+	var/datum/dna/dna = A.has_dna()
+	if(dna?.check_mutation(HULK))
 		return FALSE
 	add_to_streak("G",D)
 	if(check_streak(A,D))
@@ -223,11 +226,12 @@
 	return TRUE
 
 /datum/martial_art/velvetfu/disarm_act(mob/living/A, mob/living/D) // No shoving in Velvet-Fu!
-	if(A.dna.check_mutation(HULK))
-		return FALSE
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
 		return FALSE
 	if(!can_use(A))
+		return FALSE
+	var/datum/dna/dna = A.has_dna()
+	if(dna?.check_mutation(HULK))
 		return FALSE
 	add_to_streak("D",D)
 	if(check_streak(A,D))
