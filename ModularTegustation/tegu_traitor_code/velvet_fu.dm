@@ -8,22 +8,23 @@
 	id = MARTIALART_VELVETFU
 	allow_temp_override = FALSE
 	smashes_tables = TRUE
-	help_verb = /mob/living/carbon/human/proc/velvetfu_help
+	help_verb = /mob/living/proc/velvetfu_help
 	var/datum/action/receding_stance/recedingstance = new/datum/action/receding_stance()
 	var/datum/action/twisted_stance/twistedstance = new/datum/action/twisted_stance()
+	var/stancing = FALSE
 
-/datum/martial_art/velvetfu/teach(mob/living/carbon/human/H, make_temporary=0)
+/datum/martial_art/velvetfu/teach(mob/living/H, make_temporary=0)
 	if(..())
 		to_chat(H, "<span class='userdanger'>You've mastered the arts of Velvet-Fu!</span>")
 		recedingstance.Grant(H)
 		twistedstance.Grant(H)
 
-/datum/martial_art/velvetfu/on_remove(mob/living/carbon/human/H)
+/datum/martial_art/velvetfu/on_remove(mob/living/H)
 	to_chat(H, "<span class='userdanger'>You've forgotten the arts of Velvet-Fu...'</span>")
 	recedingstance.Remove(H)
 	twistedstance.Remove(H)
 
-/datum/martial_art/velvetfu/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/proc/check_streak(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	switch(streak)
@@ -59,25 +60,31 @@
 	button_icon_state = "receding_stance"
 
 /datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
+	if(user.stancing)
+		to_chat(src, "<span class='warning'>You are already making a stance!</span>")
+		return
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
-	var/mob/living/carbon/human/H = owner
-	if(H.mind.martial_art.streak == "receding_stance")
+	if(user.mind.martial_art.streak == "receding_stance")
 		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
-		H.mind.martial_art.streak = ""
+		user.mind.martial_art.streak = ""
 	else
 		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
-		if(do_after(H, 3 SECONDS))
-			owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
-			H.adjustStaminaLoss(-40)
-			H.mind.martial_art.streak = "receding_stance"
-		else
-			owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
-			H.mind.martial_art.streak = ""
-			return
+		user.stancing = addtimer(CALLBACK(src, /mob/living/.proc/stancing, src), 600, TIMER_STOPPABLE)
 
-/datum/martial_art/velvetfu/proc/receding_stance(mob/living/carbon/human/A)
+/mob/living/proc/stancing(mob/living/M, mob/living/user)
+	if(do_after(H, 3 SECONDS))
+		owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
+		H.adjustStaminaLoss(-40)
+		H.mind.martial_art.streak = "receding_stance"
+		stancing = src
+	else
+		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
+		H.mind.martial_art.streak = ""
+		return
+
+/datum/martial_art/velvetfu/proc/receding_stance(mob/living/A)
 	A.mind.martial_art.streak = ""
 
 // Twisted Stance
@@ -90,7 +97,7 @@
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/H = owner
 	if(H.mind.martial_art.streak == "twisted_stance")
 		owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
 		H.mind.martial_art.streak = ""
@@ -98,18 +105,18 @@
 		if(do_after(H, 0.1 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your ultimate stance is done!</b>")
 			H.adjustStaminaLoss(-40)
-			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST)
+			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 			H.mind.martial_art.streak = "twisted_stance"
 		else
 			owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
 			H.mind.martial_art.streak = ""
 			return
 
-/datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/human/A)
+/datum/martial_art/velvetfu/proc/twisted_stance(mob/living/A)
 	A.mind.martial_art.streak = ""
 
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
-/datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "flying kick (Velvet-Fu)")
@@ -125,22 +132,22 @@
 	return TRUE
 
 //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 60 Stamina and deals some Brute.
-/datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "goat headbutt (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
-	D.apply_damage(10, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	D.Stun(4 SECONDS)
-	A.apply_damage(15, BRUTE)
+	A.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
 
 //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 70 Stamina.
-/datum/martial_art/velvetfu/proc/fullThrust(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/proc/fullThrust(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "full thrust (Velvet-Fu)")
@@ -148,14 +155,14 @@
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
 	A.adjustStaminaLoss(70)
-	D.apply_damage(15, A.dna.species.attack_type, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	if(prob(50))
 		D.Knockdown(30)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 
 //Minor Iris - Deals a ton of armor penetrating slash brute. Costs 80 Stamina.
-/datum/martial_art/velvetfu/proc/minorIris(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/proc/minorIris(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	log_combat(A, D, "minor iris (Velvet-Fu)")
@@ -171,7 +178,7 @@
 	return TRUE
 
 //Intents
-/datum/martial_art/velvetfu/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/velvetfu/harm_act(mob/living/A, mob/living/D)
 	if(!can_use(A))
 		return FALSE
 	add_to_streak("H",D)
@@ -184,14 +191,14 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.dna.species.attack_type)
+	D.apply_damage(bonus_damage, A.get_attack_type())
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
-/datum/martial_art/velvetfu/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D) // No grabbing in Velvet-Fu!
+/datum/martial_art/velvetfu/grab_act(mob/living/A, mob/living/D) // No grabbing in Velvet-Fu!
 	if(A.dna.check_mutation(HULK))
 		return FALSE
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
@@ -208,14 +215,14 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.dna.species.attack_type)
+	D.apply_damage(bonus_damage, A.get_attack_type())
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
-/datum/martial_art/velvetfu/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D) // No shoving in Velvet-Fu!
+/datum/martial_art/velvetfu/disarm_act(mob/living/A, mob/living/D) // No shoving in Velvet-Fu!
 	if(A.dna.check_mutation(HULK))
 		return FALSE
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
@@ -232,7 +239,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.dna.species.attack_type)
+	D.apply_damage(bonus_damage, A.get_attack_type())
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
 					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
@@ -241,7 +248,7 @@
 
 
 //Help and Granters
-/mob/living/carbon/human/proc/velvetfu_help()
+/mob/living/proc/velvetfu_help()
 	set name = "Recall Teachings"
 	set desc = "Remember the martial techniques of Velvet-Fu."
 	set category = "VelvetFu"
