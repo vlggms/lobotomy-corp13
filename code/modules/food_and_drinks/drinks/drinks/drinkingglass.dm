@@ -30,7 +30,7 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/update_icon_state()
 	. = ..()
-	icon = initial(icon)
+	icon = initial(icon) // TEGU
 
 	if(!length(reagents.reagent_list))
 		icon_state = "glass_empty"

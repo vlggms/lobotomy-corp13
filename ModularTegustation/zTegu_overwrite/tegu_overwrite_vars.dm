@@ -91,7 +91,7 @@
 //** Expands the Secborg's module items and upgrades.
 //***************************************************************************
 
-/obj/item/robot_module/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
+/obj/item/robot_model/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -106,7 +106,7 @@
 
 
 /obj/item/borg/upgrade/pinpointer //Sec borg can now install the crew monitor/pinpointer module.
-	module_type = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical, /obj/item/robot_module/security)
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/security)
 
 
 //***************************************************************************
@@ -121,7 +121,7 @@
 //** electronics which can be upgraded to hold stock parts and circuitboards
 //*****************************************************************************
 
-/obj/item/robot_module/engineering
+/obj/item/robot_model/engineering
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,
@@ -265,25 +265,4 @@
 
 //***********************************************************
 //**** Sleepy Pen for ops ENDS - Glubtok, Jul 2020
-//***********************************************************
-
-//***********************************************************
-//**** Fairy Grass Sprite changes BEGINS - HonkersTheClown, Feb 2021
-//***********************************************************
-
-/turf/open/floor/grass/fairy //like grass but fae-er
-	name = "fairygrass patch"
-	desc = "Something about this grass makes you want to frolic. Or get high."
-	icon = 'ModularTegustation/Teguicons/tegu_fairygrass.dmi'
-	icon_state = "fairygrass0"
-	floor_tile = /obj/item/stack/tile/fairygrass
-	light_range = 2
-	light_power = 0.80
-	light_color = COLOR_BLUE_LIGHT
-
-/turf/open/floor/grass/fairy/spawniconchange()
-	icon_state = "fairygrass[rand(0,3)]"
-
-//***********************************************************
-//**** Fairy Grass Sprite changes ENDS - HonkersTheClown, Feb 2021
 //***********************************************************

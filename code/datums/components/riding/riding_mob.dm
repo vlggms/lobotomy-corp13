@@ -78,7 +78,11 @@
 /datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction)
 	if(!COOLDOWN_FINISHED(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
-
+	if(!keycheck(user))
+		if(ispath(keytype, /obj/item))
+			var/obj/item/key = keytype
+			to_chat(user, "<span class='warning'>You need a [initial(key.name)] to ride [movable_parent]!</span>")
+		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/mob/living/living_parent = parent
 	var/turf/next = get_step(living_parent, direction)
 	step(living_parent, direction)
@@ -192,7 +196,7 @@
 		rider.Paralyze(1 SECONDS)
 		rider.Knockdown(4 SECONDS)
 		human_parent.visible_message("<span class='danger'>[rider] topples off of [human_parent] as they both fall to the ground!</span>", \
-					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", COMBAT_MESSAGE_RANGE ,ignored_mobs=rider)
+					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>", COMBAT_MESSAGE_RANGE, ignored_mobs=rider)
 		to_chat(rider, "<span class='danger'>[human_parent] falls to the ground, bringing you with [human_parent.p_them()]!</span>")
 
 /datum/component/riding/creature/human/handle_vehicle_layer(dir)
@@ -259,9 +263,9 @@
 
 	for(var/mob/living/rider in robot_parent.buckled_mobs)
 		rider.setDir(dir)
-		if(istype(robot_parent.module))
-			rider.pixel_x = robot_parent.module.ride_offset_x[dir2text(dir)]
-			rider.pixel_y = robot_parent.module.ride_offset_y[dir2text(dir)]
+		if(istype(robot_parent.model))
+			rider.pixel_x = robot_parent.model.ride_offset_x[dir2text(dir)]
+			rider.pixel_y = robot_parent.model.ride_offset_y[dir2text(dir)]
 
 //now onto every other ridable mob//
 
@@ -340,3 +344,16 @@
 	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
+
+/datum/component/riding/creature/glutton/handle_specials()
+	. = ..()
+	var/atom/movable/movable_parent = parent
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 24), TEXT_SOUTH = list(0, 24), TEXT_EAST = list(-16, 24), TEXT_WEST = list(16, 24)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+	set_vehicle_dir_offsets(SOUTH, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(NORTH, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(EAST, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(WEST, movable_parent.pixel_x, 0)
