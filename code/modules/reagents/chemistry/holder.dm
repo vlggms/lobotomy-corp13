@@ -139,7 +139,11 @@
 
 			iter_reagent.on_merge(data, amount)
 			if(reagtemp != cached_temp)
-				set_temperature(((old_heat_capacity * cached_temp) + (iter_reagent.specific_heat * amount * reagtemp)) / heat_capacity())
+				var/new_heat_capacity = heat_capacity()
+				if(new_heat_capacity)
+					set_temperature(((old_heat_capacity * cached_temp) + (iter_reagent.specific_heat * amount * reagtemp)) / new_heat_capacity)
+				else
+					set_temperature(reagtemp)
 
 			SEND_SIGNAL(src, COMSIG_REAGENTS_ADD_REAGENT, iter_reagent, amount, reagtemp, data, no_react)
 			if(!no_react)
@@ -160,7 +164,11 @@
 
 	update_total()
 	if(reagtemp != cached_temp)
-		set_temperature(((old_heat_capacity * cached_temp) + (new_reagent.specific_heat * amount * reagtemp)) / heat_capacity())
+		var/new_heat_capacity = heat_capacity()
+		if(new_heat_capacity)
+			set_temperature(((old_heat_capacity * cached_temp) + (new_reagent.specific_heat * amount * reagtemp)) / new_heat_capacity)
+		else
+			set_temperature(reagtemp)
 
 	SEND_SIGNAL(src, COMSIG_REAGENTS_NEW_REAGENT, new_reagent, amount, reagtemp, data, no_react)
 	if(!no_react)
@@ -555,9 +563,8 @@
  * * can_overdose - Allows overdosing
  * * liverless - Stops reagents that aren't set as [/datum/reagent/var/self_consuming] from metabolizing
  */
-/datum/reagents/proc/metabolize(mob/living/C, can_overdose = FALSE, liverless = FALSE)
+/datum/reagents/proc/metabolize(mob/living/carbon/C, can_overdose = FALSE, liverless = FALSE)
 	var/list/cached_reagents = reagent_list
-	var/list/cached_addictions = addiction_list
 	if(C)
 		expose_temperature(C.bodytemperature, 0.25)
 	var/need_mob_update = 0
@@ -576,62 +583,58 @@
 				if(!R.metabolizing)
 					R.metabolizing = TRUE
 					R.on_mob_metabolize(C)
-				if(iscarbon(C))
-					var/mob/living/carbon/M = C
-					if(can_overdose)
-						if(R.overdose_threshold)
-							if(R.volume >= R.overdose_threshold && !R.overdosed)
-								R.overdosed = TRUE
-								need_mob_update += R.overdose_start(M)
-								log_game("[key_name(M)] has started overdosing on [R.name] at [R.volume] units.")
-						var/is_addicted_to = cached_addictions && is_type_in_list(R, cached_addictions)
-						if(R.addiction_threshold)
-							if(R.volume >= R.addiction_threshold && !is_addicted_to)
-								var/datum/reagent/new_reagent = new R.addiction_type()
-								LAZYADD(cached_addictions, new_reagent)
-								is_addicted_to = TRUE
-								log_game("[key_name(M)] has become addicted to [R.name] at [R.volume] units.")
-						if(R.overdosed)
-							need_mob_update += R.overdose_process(M)
-						var/datum/reagent/addiction_type = new R.addiction_type()
-						if(is_addicted_to)
-							for(var/addiction in cached_addictions)
-								var/datum/reagent/A = addiction
-								if(istype(addiction_type, A))
-									A.addiction_stage = -15 // you're satisfied for a good while.
+				if(can_overdose)
+					if(R.overdose_threshold)
+						if(R.volume >= R.overdose_threshold && !R.overdosed)
+							R.overdosed = TRUE
+							need_mob_update += R.overdose_start(C)
+							log_game("[key_name(C)] has started overdosing on [R.name] at [R.volume] units.")
+					var/is_addicted_to = addiction_list && is_type_in_list(R, addiction_list)
+					if(R.addiction_threshold)
+						if(R.volume >= R.addiction_threshold && !is_addicted_to)
+							var/datum/reagent/new_reagent = new R.addiction_type()
+							LAZYADD(addiction_list, new_reagent)
+							is_addicted_to = TRUE
+							log_game("[key_name(C)] has become addicted to [R.name] at [R.volume] units.")
+					if(R.overdosed)
+						need_mob_update += R.overdose_process(C)
+					var/datum/reagent/addiction_type = new R.addiction_type()
+					if(is_addicted_to)
+						for(var/addiction in addiction_list)
+							var/datum/reagent/A = addiction
+							if(istype(addiction_type, A))
+								A.addiction_stage = -15 // you're satisfied for a good while.
 				need_mob_update += R.on_mob_life(C)
 
-	if(iscarbon(C))
-		var/mob/living/carbon/M = C
-		if(can_overdose)
-			if(addiction_tick == 6)
-				addiction_tick = 1
-				for(var/addiction in cached_addictions)
-					var/datum/reagent/R = addiction
-					if(!M)
-						break
-					R.addiction_stage++
-					switch(R.addiction_stage)
-						if(1 to 10)
-							need_mob_update += R.addiction_act_stage1(M)
-						if(10 to 20)
-							need_mob_update += R.addiction_act_stage2(M)
-						if(20 to 30)
-							need_mob_update += R.addiction_act_stage3(M)
-						if(30 to 40)
-							need_mob_update += R.addiction_act_stage4(M)
-						if(40 to INFINITY)
-							remove_addiction(R)
-						else
-							SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
-			addiction_tick++
+	if(can_overdose)
+		if(addiction_tick == 6)
+			addiction_tick = 1
+			for(var/addiction in addiction_list)
+				var/datum/reagent/R = addiction
+				if(!C)
+					break
+				R.addiction_stage++
+				switch(R.addiction_stage)
+					if(1 to 10)
+						need_mob_update += R.addiction_act_stage1(C)
+					if(10 to 20)
+						need_mob_update += R.addiction_act_stage2(C)
+					if(20 to 30)
+						need_mob_update += R.addiction_act_stage3(C)
+					if(30 to 40)
+						need_mob_update += R.addiction_act_stage4(C)
+					if(40 to INFINITY)
+						remove_addiction(R)
+					else
+						SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
+		addiction_tick++
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
 		C.updatehealth()
 		C.update_stamina()
 	update_total()
 
 /// Signals that metabolization has stopped, triggering the end of trait-based effects
-/datum/reagents/proc/end_metabolization(mob/living/C, keep_liverless = TRUE)
+/datum/reagents/proc/end_metabolization(mob/living/carbon/C, keep_liverless = TRUE)
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
@@ -982,6 +985,8 @@
  */
 /datum/reagents/proc/adjust_thermal_energy(delta_energy, min_temp = 2.7, max_temp = 1000)
 	var/heat_capacity = heat_capacity()
+	if(!heat_capacity)
+		return	// no div/0 please
 	set_temperature(clamp(chem_temp + (delta_energy / heat_capacity), min_temp, max_temp))
 
 /// Applies heat to this holder

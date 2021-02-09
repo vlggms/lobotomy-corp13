@@ -1,5 +1,6 @@
 /mob/living/carbon/Initialize(mapload)
 	. = ..()
+	create_reagents(1000)
 	assign_bodypart_ownership()
 	update_body_parts() //to update the carbon's new bodyparts appearance
 
@@ -1321,6 +1322,14 @@
 		return
 
 	return ..()
+
+
+/mob/living/carbon/get_attack_type()
+	var/datum/species/species = dna?.species
+	if (species)
+		return species.attack_type
+	return ..()
+
 
 /mob/living/carbon/proc/attach_rot(mapload)
 	AddComponent(/datum/component/rot/corpse)
