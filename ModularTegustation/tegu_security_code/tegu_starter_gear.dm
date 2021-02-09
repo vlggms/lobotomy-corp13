@@ -176,3 +176,17 @@
 	build_path = /obj/item/disk/forensic
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
+// Tegustation Heads of Staff edit: Adding the gun here instead of a /TG/ file
+/obj/item/gun/energy/disabler/head
+	name = "miniature disabler"
+	desc = "A small disabler meant for the protection of the Heads of Staff."
+	icon_state = "mini"
+	inhand_icon_state = "gun"
+	w_class = WEIGHT_CLASS_SMALL
+	cell_type = /obj/item/stock_parts/cell/mini_egun
+	ammo_x_offset = 2
+	charge_sections = 3
+	gunlight_state = "mini-light"
+	flight_x_offset = 15
+	flight_y_offset = 10

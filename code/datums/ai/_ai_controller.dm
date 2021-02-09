@@ -10,7 +10,9 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	var/ai_traits
 	///Current actions being performed by the AI.
 	var/list/current_behaviors = list()
-	///Current status of AI (OFF/ON	)
+	///Current actions and their respective last time ran as an assoc list.
+	var/list/behavior_cooldowns = list()
+	///Current status of AI (OFF/ON)
 	var/ai_status
 	///Current movement target of the AI, generally set by decision making.
 	var/atom/current_movement_target
@@ -22,6 +24,8 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	var/pathing_attempts
 	///Can the AI remain in control if there is a client?
 	var/continue_processing_when_client = FALSE
+	///distance to give up on target
+	var/max_target_distance = 14
 
 /datum/ai_controller/New(atom/new_pawn)
 	PossessPawn(new_pawn)
@@ -89,6 +93,10 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	var/want_to_move = FALSE
 	for(var/i in current_behaviors)
 		var/datum/ai_behavior/current_behavior = i
+
+		if(behavior_cooldowns[current_behavior] > world.time) //Still on cooldown
+			continue
+
 		if(current_behavior.behavior_flags & AI_BEHAVIOR_REQUIRE_MOVEMENT && current_movement_target && current_behavior.required_distance < get_dist(pawn, current_movement_target)) //Move closer
 			want_to_move = TRUE
 			if(current_behavior.behavior_flags & AI_BEHAVIOR_MOVE_AND_PERFORM) //Move and perform the action
@@ -109,6 +117,9 @@ have ways of interacting with a specific atom and control it. They posses a blac
 
 	if(!is_type_in_typecache(target_turf, GLOB.dangerous_turfs))
 		movable_pawn.Move(target_turf, get_dir(current_loc, target_turf))
+	if(get_dist(movable_pawn, current_movement_target) > max_target_distance)
+		CancelActions()
+		pathing_attempts = 0
 	if(current_loc == get_turf(movable_pawn))
 		if(++pathing_attempts >= MAX_PATHING_ATTEMPTS)
 			CancelActions()

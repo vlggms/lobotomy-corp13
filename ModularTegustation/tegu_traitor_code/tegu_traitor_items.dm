@@ -69,3 +69,102 @@
 	new /obj/item/radio/headset/syndicate/alt(src)
 	new /obj/item/clothing/gloves/combat(src) //1 TC?
 	new /obj/item/gun/ballistic/automatic/pistol(src) //7 TC
+
+// Advanced hypno-flash. For psychologists.
+/obj/item/assembly/flash/hypnotic/adv
+	desc = "A modified flash device, used to beam preprogrammed orders directly into the target's mind."
+	light_color = COLOR_RED_LIGHT
+	var/hypno_cooldown = 59 SECONDS // Big damn cooldown
+	var/hypno_cooldown_current
+	var/hypno_message // User can change it by alt-clicking the flash.
+
+/obj/item/assembly/flash/hypnotic/adv/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
+	if(!istype(M))
+		return
+	if(user)
+		log_combat(user, M, "[targeted? "hypno-flashed(targeted)" : "hypno-flashed(AOE)"]", src)
+	else //caused by emp/remote signal
+		M.log_message("was [targeted? "hypno-flashed(targeted)" : "hypno-flashed(AOE)"]",LOG_ATTACK)
+	if(generic_message && M != user)
+		to_chat(M, "<span class='notice'>[src] emits a red, sharp light!</span>")
+	if(targeted)
+		if(M.flash_act(1, 1))
+			if(user)
+				user.visible_message("<span class='danger'>[user] blinds [M] with the flash!</span>", "<span class='danger'>You hypno-flash [M]!</span>")
+
+			if(hypno_cooldown_current > world.time) // Still on cooldown
+				to_chat(M, "<span class='hypnophrase'>The light makes you feel oddly relaxed...</span>")
+				M.add_confusion(min(M.get_confusion() + 10, 20))
+				M.dizziness += min(M.dizziness + 10, 20)
+				M.drowsyness += min(M.drowsyness + 10, 20)
+				M.apply_status_effect(STATUS_EFFECT_PACIFY, 100)
+			else
+				if(!hypno_message) // Aka default settings
+					hypno_message = "You are a secret agent, working for [user.real_name]. \
+					You must do anything they ask of you, and you must never attempt to harm them, nor allow harm to come to them."
+				hypno_cooldown_current = world.time + hypno_cooldown
+				M.apply_status_effect(STATUS_EFFECT_PACIFY, 30)
+				M.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY) //clear previous hypnosis
+				addtimer(CALLBACK(M, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hypno_message), 10)
+				addtimer(CALLBACK(M, /mob/living.proc/Stun, 60, TRUE, TRUE), 15)
+
+
+		else if(user)
+			user.visible_message("<span class='warning'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to hypno-flash [M]!</span>")
+		else
+			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
+
+	else if(M.flash_act())
+		to_chat(M, "<span class='notice'>Such a pretty light...</span>")
+		M.add_confusion(min(M.get_confusion() + 4, 20))
+		M.dizziness += min(M.dizziness + 4, 20)
+		M.drowsyness += min(M.drowsyness + 4, 20)
+		M.apply_status_effect(STATUS_EFFECT_PACIFY, 40)
+
+/obj/item/assembly/flash/hypnotic/adv/AltClick(mob/user)
+	hypno_message = stripped_input(user, "What order will be given to hypnotised people?", \
+	"You are a secret agent, working for [user.real_name]. You must do anything they ask of you, \
+	and you must never attempt to harm them, nor allow harm to come to them.", "Hypnosis message")
+	to_chat(user, "<span class='notice'>New message is: [hypno_message]</span>")
+
+// Virology bottles
+/obj/item/reagent_containers/glass/bottle/accelerant_ts
+	name = "Fast transmitability virus accelerant"
+	desc = "A small bottle containing TCS-TSA strain."
+	spawned_disease = /datum/disease/advance/adv_ts
+
+/obj/item/reagent_containers/glass/bottle/accelerant_mp
+	name = "Multi-purpose virus accelerant"
+	desc = "A small bottle containing TCS-MPA strain."
+	spawned_disease = /datum/disease/advance/adv_mp
+
+/obj/item/reagent_containers/glass/bottle/accelerant_sr
+	name = "Resistant stealth virus accelerant"
+	desc = "A small bottle containing TCS-SRA strain."
+	spawned_disease = /datum/disease/advance/adv_sr
+
+/obj/item/reagent_containers/glass/bottle/fake_oxygen
+	name = "Self-Respiratory Detonator bottle"
+	desc = "A small bottle containing rare disease that tries to disguise as self-respiration strain."
+	spawned_disease = /datum/disease/advance/fake_oxygen
+
+// Syndi-kit
+/obj/item/storage/box/syndie_kit/virology
+	name = "virology kit"
+
+/obj/item/storage/box/syndie_kit/virology/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10
+
+/obj/item/storage/box/syndie_kit/virology/PopulateContents()
+	new /obj/item/reagent_containers/glass/bottle/accelerant_ts(src)
+	new /obj/item/reagent_containers/glass/bottle/accelerant_mp(src)
+	new /obj/item/reagent_containers/glass/bottle/accelerant_sr(src)
+	new /obj/item/reagent_containers/glass/bottle/fake_oxygen(src)
+	new /obj/item/reagent_containers/glass/bottle/formaldehyde(src)
+	new /obj/item/reagent_containers/glass/bottle/synaptizine(src)
+	new /obj/item/reagent_containers/glass/beaker/large(src)
+	new /obj/item/reagent_containers/glass/beaker/large(src)
+	new /obj/item/reagent_containers/dropper(src)
+	new /obj/item/reagent_containers/syringe(src)

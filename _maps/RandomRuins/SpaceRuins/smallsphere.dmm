@@ -751,10 +751,6 @@
 	pixel_x = 8;
 	pixel_y = -8
 	},
-/obj/item/reagent_containers/pill/floorpill{
-	pixel_x = 11;
-	pixel_y = 2
-	},
 /obj/item/reagent_containers/pill/morphine{
 	pixel_x = 4;
 	pixel_y = 7

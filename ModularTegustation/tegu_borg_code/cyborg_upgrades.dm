@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(basic_engiborg_manipulator_allowed, typecacheof(list(
 
 /obj/item/borg/upgrade/circuit_app/proc/upgrade_engiborg_manipulator(mob/living/silicon/robot/R, mob/user)
 
-	var/obj/item/borg/apparatus/circuit/C = locate() in R.module.modules
+	var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
 	if(!C)
 		to_chat(user, "<span class='warning'>This unit has no [C] to upgrade!</span>")
 		return FALSE
@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(basic_engiborg_manipulator_allowed, typecacheof(list(
 
 /obj/item/borg/upgrade/circuit_app/proc/remove_engiborg_manipulator_upgrade(mob/living/silicon/robot/R, mob/user)
 
-	var/obj/item/borg/apparatus/circuit/C = locate() in R.module.modules
+	var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
 	if(C && C.upgraded) //If upgraded, remove the upgrade
 		C.upgraded = FALSE
 		C.name = initial(C.name)
