@@ -277,7 +277,7 @@
 	icon = 'icons/obj/device.dmi'
 	inhand_icon_state = "analyzer"
 	greet = "You've finished watching the Velvet-Fu cassette."
-	remarks = list("Smooth as Velvet...", "Show me your stance!", "Left Jab!", "Right Jab!", "Kick, kick!", "Ah, so fast...", "Now forget the basics!",)
+	remarks = list("Smooth as Velvet...", "Show me your stance!", "Left Jab!", "Right Jab!", "Kick, kick!", "Ah, so fast...", "Now forget the basics!", "...But remember the style!")
 
 /obj/item/book/granter/martial/velvetfu/onlearned(mob/living/carbon/user)
 	..()
