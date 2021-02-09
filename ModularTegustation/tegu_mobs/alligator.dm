@@ -25,14 +25,20 @@
 	glide_size = 2
 	footstep_type = FOOTSTEP_MOB_CLAW
 
-/mob/living/simple_animal/hostile/retaliate/gator/atlas
-	name = "Atlas"
-	desc = "The captain's trustworthy alligator, although you are not sure if it should be one."
+/mob/living/simple_animal/hostile/retaliate/gator/steppy
+	name = "Steppy"
+	desc = "Cargo's pet gator. Is he being detained!?"
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/pet/fox/renault/Initialize(mapload) // Shitty way of replacing renault, without editing maps.
+/mob/living/simple_animal/sloth/paperwork/Initialize(mapload) // Shitty way of replacing sloth pets, without editing maps.
 	. = ..()
 	var/turf/T = get_turf(src)
-	new /mob/living/simple_animal/hostile/retaliate/gator/atlas(T)
+	new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
+	return INITIALIZE_HINT_QDEL
+
+/mob/living/simple_animal/sloth/citrus/Initialize(mapload)
+	. = ..()
+	var/turf/T = get_turf(src)
+	new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
 	return INITIALIZE_HINT_QDEL
