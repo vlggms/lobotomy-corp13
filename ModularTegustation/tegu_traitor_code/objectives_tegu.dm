@@ -30,30 +30,6 @@
 					return TRUE
 	return FALSE
 
-/datum/objective_item/steal/poly
-	name = "Poly, the Chief Engineer's pet parrot, alive"
-	targetitem = /obj/item/pet_carrier
-	difficulty = 30
-	excludefromjob = list("Chief Engineer")
-	altitems = list(/obj/item/clothing/head/mob_holder)
-
-/datum/objective_item/steal/poly/New()
-	special_equipment += /obj/item/lazarus_injector
-	..()
-
-/datum/objective_item/steal/poly/check_special_completion(obj/item/B)
-	if(istype(B, /obj/item/pet_carrier))
-		var/obj/item/pet_carrier/A = B
-		for(var/mob/living/simple_animal/parrot/poly/D in A)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	if(istype(B, /obj/item/clothing/head/mob_holder))
-		var/obj/item/clothing/head/mob_holder/A = B
-		for(var/mob/living/simple_animal/parrot/poly/D in A)
-			if(D.stat != DEAD)//checks if pet is alive.
-				return TRUE
-	return FALSE
-
 /datum/objective_item/steal/runtimecat
 	name = "Runtime, the Chief Medical Officer's pet, alive."
 	targetitem = /obj/item/pet_carrier
