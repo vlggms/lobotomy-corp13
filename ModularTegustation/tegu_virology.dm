@@ -5,16 +5,16 @@
 	it rapidly transmits and evolves to the last stages almost instantly, possibly killing everything in the process."
 	stealth = -9
 	resistance = -5
-	stage_speed = 8
-	transmittable = 6
+	stage_speed = 7
+	transmittable = 5
 	level = 19 // Can't get it normally
 
 /datum/symptom/adv_everything
 	name = "TCS-MPA 2" // Tiger Co Syndicate - Multi-Purpose Accelerant
 	desc = "A multi-purpose strain, capable of increasing most statistics of a virus by a small amount."
-	stealth = 3
+	stealth = 2
 	resistance = 4
-	stage_speed = 3
+	stage_speed = 4
 	transmittable = 3
 	level = 19
 
@@ -25,20 +25,21 @@
 	stealth = 7
 	resistance = 5
 	stage_speed = -9
-	transmittable = -4
+	transmittable = -3
 	level = 19
 
 /datum/symptom/fake_oxygen // Fake self-respiration, heals until stage 5, then begins to kill.
 	name = "Self-Respiratory Detonator"
 	desc = "Virus that resembles Self-Respiration symptom, up until the last stage where it begins to absord oxygen in victim's body."
-	stealth = 2
+	stealth = 1
 	resistance = -3
 	stage_speed = -3
 	transmittable = -4
 	level = 19
+	severity = 0
 	base_message_chance = 5
-	symptom_delay_min = 1
-	symptom_delay_max = 2
+	symptom_delay_min = 2
+	symptom_delay_max = 3
 	var/regenerate_blood = FALSE
 	threshold_descs = list(
 		"Resistance 8" = "Regenerates blood. At the last stage it will ignore body safety thresholds."
@@ -57,8 +58,8 @@
 	switch(A.stage)
 		if(5)
 			M.adjustOxyLoss(5, 0)
-			M.losebreath += 2
 			if(prob(20))
+				M.losebreath += 2
 				M.emote("gasp")
 			if(prob(base_message_chance))
 				to_chat(M, "<span class='userwarning'>[pick("You feel a dull pain in your chest.", "You try to breathe, but can't inhale air!", "Your lungs feel empty!")]</span>")
