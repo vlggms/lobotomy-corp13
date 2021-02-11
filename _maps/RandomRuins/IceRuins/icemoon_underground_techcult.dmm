@@ -14,7 +14,7 @@
 /area/ruin/powered/mechanicus)
 "ad" = (
 /turf/template_noop,
-/area/lavaland/surface/outdoors)
+/area/icemoon/underground/explored)
 "ae" = (
 /turf/closed/wall,
 /area/ruin/powered/mechanicus/robotics)
@@ -98,12 +98,12 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "as" = (
 /obj/structure/fence/corner,
 /obj/structure/fence,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "at" = (
 /obj/machinery/mecha_part_fabricator,
@@ -165,10 +165,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/powered/mechanicus/dorms)
-"az" = (
-/obj/machinery/hydroponics/soil,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/mechanicus/vault)
 "aA" = (
 /obj/machinery/light{
 	dir = 8;
@@ -182,12 +178,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/robotics)
-"aC" = (
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/ruin/powered/mechanicus/vault)
 "aD" = (
 /obj/structure/fence,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "aF" = (
 /obj/structure/chair/wood{
@@ -419,12 +412,12 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/powered/mechanicus/vault)
 "be" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/turf/open/lava/plasma/ice_moon,
+/area/icemoon/underground/explored)
 "bf" = (
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/area/icemoon/underground/explored)
 "bg" = (
 /obj/effect/turf_decal/trimline/red/line{
 	dir = 9;
@@ -734,7 +727,7 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "bP" = (
 /obj/effect/turf_decal/tile/green{
@@ -761,7 +754,7 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "bS" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -783,11 +776,10 @@
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z,
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z,
 /obj/structure/closet/crate,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "bV" = (
-/obj/structure/water_source/puddle,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "bW" = (
 /obj/structure/rack,
@@ -800,7 +792,7 @@
 	pixel_x = 4;
 	pixel_y = 2
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "bX" = (
 /obj/effect/turf_decal/tile/purple{
@@ -833,7 +825,7 @@
 /area/ruin/powered/mechanicus/robotics)
 "cb" = (
 /obj/structure/rack,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "cc" = (
 /obj/machinery/mech_bay_recharge_port{
@@ -910,6 +902,14 @@
 /obj/effect/turf_decal/tile/brown,
 /obj/structure/closet/crate/maint,
 /obj/effect/spawner/lootdrop/maintenance/three,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/mechanicus/vault)
+"gC" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/vault)
 "gQ" = (
@@ -1060,14 +1060,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/surgery)
-"Cm" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/mechanicus/vault)
 "Ec" = (
 /obj/machinery/door/airlock/grunge{
 	name = "Chapel";
@@ -1075,16 +1067,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/vault)
-"GT" = (
-/obj/structure/closet/crate/maint,
-/turf/open/floor/plasteel/dark,
-/area/ruin/powered/mechanicus/vault)
-"Hf" = (
+"Gw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered/mechanicus/vault)
+"GT" = (
+/obj/structure/closet/crate/maint,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/vault)
 "If" = (
@@ -1257,7 +1249,6 @@ aa
 aa
 ad
 ad
-ad
 be
 be
 be
@@ -1269,7 +1260,8 @@ be
 be
 be
 be
-ad
+be
+be
 ad
 ad
 aa
@@ -1311,7 +1303,7 @@ aa
 (3,1,1) = {"
 aa
 aa
-ad
+be
 be
 ae
 ae
@@ -1339,7 +1331,7 @@ aa
 (4,1,1) = {"
 aa
 aa
-ad
+be
 be
 ae
 at
@@ -1355,7 +1347,7 @@ bC
 bF
 aM
 be
-ad
+be
 aa
 aa
 aa
@@ -1367,7 +1359,7 @@ aa
 (5,1,1) = {"
 aa
 aa
-ad
+be
 be
 ae
 ai
@@ -1383,7 +1375,7 @@ aT
 bG
 aM
 be
-ad
+be
 aa
 aa
 aa
@@ -1411,7 +1403,7 @@ bD
 bH
 aM
 be
-ad
+be
 aa
 aa
 aa
@@ -1439,7 +1431,7 @@ bE
 bn
 aM
 be
-ad
+be
 aa
 aa
 aa
@@ -1467,7 +1459,7 @@ dD
 bF
 aM
 be
-ad
+be
 aa
 aa
 aa
@@ -1495,7 +1487,7 @@ aV
 aV
 aV
 be
-ad
+be
 ad
 aa
 aa
@@ -1692,7 +1684,7 @@ bQ
 bS
 be
 be
-ad
+be
 aa
 aa
 aa
@@ -1747,7 +1739,7 @@ TV
 br
 bS
 be
-ad
+be
 aa
 aa
 aa
@@ -1757,7 +1749,7 @@ aa
 aa
 "}
 (19,1,1) = {"
-ad
+be
 be
 be
 ab
@@ -1775,7 +1767,7 @@ aV
 bu
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1803,7 +1795,7 @@ OJ
 bw
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1814,7 +1806,7 @@ aa
 "}
 (21,1,1) = {"
 aa
-ad
+be
 be
 be
 ah
@@ -1831,7 +1823,7 @@ bi
 by
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1859,7 +1851,7 @@ bi
 Xo
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1887,7 +1879,7 @@ bs
 by
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1915,7 +1907,7 @@ gQ
 ke
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1943,7 +1935,7 @@ aV
 vr
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1958,10 +1950,10 @@ aa
 be
 be
 ar
-az
-az
-aC
-aC
+bV
+bV
+bV
+bV
 bO
 bS
 TE
@@ -1971,7 +1963,7 @@ nV
 jE
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -1986,10 +1978,10 @@ aa
 be
 be
 ar
-aC
-aC
-aC
-aC
+bV
+bV
+bV
+bV
 bR
 bS
 sW
@@ -1999,7 +1991,7 @@ bi
 by
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -2011,13 +2003,13 @@ aa
 (28,1,1) = {"
 aa
 aa
-be
+ad
 be
 ar
-az
-az
-aC
-aC
+bV
+bV
+bV
+bV
 bU
 bS
 xD
@@ -2027,7 +2019,7 @@ bi
 by
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -2042,20 +2034,20 @@ aa
 ad
 be
 ar
-aC
-aC
-aC
-aC
-aC
+bV
+bV
+bV
+bV
+bV
 aV
 oL
 bi
 bi
 bi
-Hf
+Gw
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -2070,20 +2062,20 @@ aa
 ad
 be
 ar
-az
-az
-aC
-aC
-aC
+bV
+bV
+bV
+bV
+bV
 rN
 bi
 bi
 bi
 bi
-Cm
+gC
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -2098,11 +2090,11 @@ aa
 ad
 be
 ar
-aC
-aC
-aC
-aC
-aC
+bV
+bV
+bV
+bV
+bV
 aV
 Nq
 GT
@@ -2111,7 +2103,7 @@ bi
 MD
 aV
 be
-ad
+be
 aa
 aa
 aa
@@ -2126,10 +2118,10 @@ aa
 ad
 be
 ar
-az
-az
-aC
-aC
+bV
+bV
+bV
+bV
 bV
 bS
 Vq
@@ -2154,10 +2146,10 @@ aa
 ad
 be
 ar
-aC
-aC
-aC
-aC
+bV
+bV
+bV
+bV
 bW
 bS
 vg
@@ -2182,10 +2174,10 @@ aa
 ad
 be
 ar
-az
-az
-aC
-aC
+bV
+bV
+bV
+bV
 cb
 bS
 Vq
@@ -2210,10 +2202,10 @@ aa
 ad
 be
 ar
-aC
-aC
-aC
-aC
+bV
+bV
+bV
+bV
 cb
 bS
 dv
@@ -2293,7 +2285,7 @@ aa
 aa
 ad
 ad
-ad
+be
 be
 be
 be
