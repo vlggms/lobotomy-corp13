@@ -309,12 +309,11 @@
 	},
 /area/ruin/powered/mechanicus)
 "aS" = (
-/obj/effect/mapping_helpers/no_lava,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1;
 	icon_state = "trimline_fill"
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "aT" = (
 /obj/effect/turf_decal/tile/blue{
@@ -400,7 +399,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/robotics)
 "bd" = (
-/obj/effect/mapping_helpers/no_lava,
 /obj/machinery/light/small{
 	dir = 1;
 	icon_state = "bulb"
@@ -409,14 +407,13 @@
 	dir = 1;
 	icon_state = "trimline_fill"
 	},
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/ruin/powered/mechanicus/vault)
 "be" = (
 /turf/open/lava/plasma/ice_moon,
 /area/icemoon/underground/explored)
 "bf" = (
-/obj/effect/mapping_helpers/no_lava,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/icemoon/underground/explored)
 "bg" = (
 /obj/effect/turf_decal/trimline/red/line{
