@@ -25,3 +25,8 @@
 //MEDBORG UPDATE -Surrealistik Feb 2020
 // Tegustation Mediborg Improvements
 #define SYNTHFLESH_HUSKFIX_THRESHOLD 40 //For instabitaluri/synthflesh; allows maxed patches to heal burn husking.
+
+//Access levels
+#define ACCESS_MECHANICUS_BASIC 220
+#define ACCESS_MECHANICUS_LEADER 221
+
