@@ -185,11 +185,11 @@
 		return
 	if(!ismonkey(owner))
 		original_species = owner.dna.species.type
-	. = owner.monkeyize(original_species)
+	. = owner.monkeyize()
 
 /datum/mutation/human/race/on_losing(mob/living/carbon/human/owner)
 	if(owner && owner.stat != DEAD && (owner.dna.mutations.Remove(src)) && ismonkey(owner))
-		. = owner.humanize()
+		. = owner.humanize(original_species)
 
 /datum/mutation/human/glow
 	name = "Glowy"

@@ -91,7 +91,7 @@
 //** Expands the Secborg's module items and upgrades.
 //***************************************************************************
 
-/obj/item/robot_module/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
+/obj/item/robot_model/security //Now has a crowbar to allow it to navigate depowered areas, and a default pepperspray.
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/restraints/handcuffs/cable/zipties,
@@ -106,7 +106,7 @@
 
 
 /obj/item/borg/upgrade/pinpointer //Sec borg can now install the crew monitor/pinpointer module.
-	module_type = list(/obj/item/robot_module/medical, /obj/item/robot_module/syndicate_medical, /obj/item/robot_module/security)
+	model_type = list(/obj/item/robot_model/medical, /obj/item/robot_model/syndicate_medical, /obj/item/robot_model/security)
 
 
 //***************************************************************************
@@ -121,7 +121,7 @@
 //** electronics which can be upgraded to hold stock parts and circuitboards
 //*****************************************************************************
 
-/obj/item/robot_module/engineering
+/obj/item/robot_model/engineering
 	basic_modules = list(
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/borg/sight/meson,

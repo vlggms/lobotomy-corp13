@@ -11,7 +11,7 @@
 	if(reac_volume >= 1)
 		exposed_turf.AddComponent(/datum/component/thermite, reac_volume)
 
-/datum/reagent/thermite/on_mob_life(mob/living/M)
+/datum/reagent/thermite/on_mob_life(mob/living/carbon/M)
 	M.adjustFireLoss(1, 0)
 	..()
 	return TRUE
@@ -44,7 +44,7 @@
 	taste_description = "burning"
 	penetrates_skin = NONE
 
-/datum/reagent/clf3/on_mob_life(mob/living/M)
+/datum/reagent/clf3/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(2)
 	var/burndmg = max(0.3*M.fire_stacks, 0.3)
 	M.adjustFireLoss(burndmg, 0)
@@ -97,7 +97,7 @@
 	metabolization_rate = 0.05
 	taste_description = "salt"
 
-/datum/reagent/gunpowder/on_mob_life(mob/living/M)
+/datum/reagent/gunpowder/on_mob_life(mob/living/carbon/M)
 	. = TRUE
 	..()
 	if(!isplasmaman(M))
@@ -163,7 +163,7 @@
 	exposed_mob.adjustFireLoss(burndmg, 0)
 	exposed_mob.IgniteMob()
 
-/datum/reagent/phlogiston/on_mob_life(mob/living/exposed_mob)
+/datum/reagent/phlogiston/on_mob_life(mob/living/carbon/exposed_mob)
 	exposed_mob.adjust_fire_stacks(1)
 	var/burndmg = max(0.3*exposed_mob.fire_stacks, 0.3)
 	exposed_mob.adjustFireLoss(burndmg, 0)
@@ -188,7 +188,7 @@
 			mytray.adjustToxic(round(chems.get_reagent_amount(type) * 7))
 		mytray.adjustWeeds(-rand(5,9)) //At least give them a small reward if they bother.
 
-/datum/reagent/napalm/on_mob_life(mob/living/M)
+/datum/reagent/napalm/on_mob_life(mob/living/carbon/M)
 	M.adjust_fire_stacks(1)
 	..()
 
@@ -206,7 +206,7 @@
 	self_consuming = TRUE
 
 
-/datum/reagent/cryostylane/on_mob_life(mob/living/M) //TODO: code freezing into an ice cube
+/datum/reagent/cryostylane/on_mob_life(mob/living/carbon/M) //TODO: code freezing into an ice cube
 	if(M.reagents.has_reagent(/datum/reagent/oxygen))
 		M.reagents.remove_reagent(/datum/reagent/oxygen, 0.5)
 		M.adjust_bodytemperature(-15)
@@ -230,7 +230,7 @@
 	taste_description = "bitterness"
 	self_consuming = TRUE
 
-/datum/reagent/pyrosium/on_mob_life(mob/living/M)
+/datum/reagent/pyrosium/on_mob_life(mob/living/carbon/M)
 	if(holder.has_reagent(/datum/reagent/oxygen))
 		holder.remove_reagent(/datum/reagent/oxygen, 0.5)
 		M.adjust_bodytemperature(15)
@@ -249,7 +249,7 @@
 	self_consuming = TRUE
 	var/shock_timer = 0
 
-/datum/reagent/teslium/on_mob_life(mob/living/M)
+/datum/reagent/teslium/on_mob_life(mob/living/carbon/M)
 	shock_timer++
 	if(shock_timer >= rand(5,30)) //Random shocks are wildly unpredictable
 		shock_timer = 0
@@ -276,7 +276,7 @@
 	color = "#CAFF43"
 	taste_description = "jelly"
 
-/datum/reagent/teslium/energized_jelly/on_mob_life(mob/living/M)
+/datum/reagent/teslium/energized_jelly/on_mob_life(mob/living/carbon/M)
 	if(isjellyperson(M))
 		shock_timer = 0 //immune to shocks
 		M.AdjustAllImmobility(-40)

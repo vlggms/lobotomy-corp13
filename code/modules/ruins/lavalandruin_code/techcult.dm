@@ -1,8 +1,3 @@
-//Special access levels, starting from 220 so I won't fuck up anything else in the future.
-#define ACCESS_MECHANICUS_BASIC 220
-#define ACCESS_MECHANICUS_LEADER 221
-/////////////////////////////////////
-
 /***************** ID *****************/
 
 /obj/item/card/id/away/techcult
@@ -295,7 +290,10 @@
 /area/ruin/powered/mechanicus
 	name = "Mechanicum Chapel"
 	icon_state = "chapel"
-	ambientsounds = HOLY
+	mood_bonus = 5
+	mood_message = "<span class='nicegreen'>Being in the chapel brings me peace.</span>\n"
+	mood_trait = TRAIT_SPIRITUAL
+	ambience_index = AMBIENCE_HOLY
 
 /area/ruin/powered/mechanicus/robotics
 	name = "Mechanicum Robotics"
@@ -321,6 +319,13 @@
 	description = "An old base, filled with religious fanatics praising the entity they call 'Machine God'."
 	cost = 20
 	suffix = "lavaland_surface_techcult.dmm"
+	allow_duplicates = FALSE
+
+/datum/map_template/ruin/icemoon/underground/techcult
+	name = "Adeptus Mechanicus"
+	id = "techcult"
+	description = "An old base, filled with religious fanatics praising the entity they call 'Machine God'."
+	suffix = "icemoon_underground_techcult.dmm"
 	allow_duplicates = FALSE
 
 /***************** Researches *****************/

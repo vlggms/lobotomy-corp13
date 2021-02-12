@@ -1,12 +1,3 @@
-/*/datum/techweb_node/cyborg_upg_med
-	id = "cyborg_upg_med"
-	display_name = "Cyborg Upgrades: Medical"
-	description = "Medical upgrades for cyborgs."
-	prereq_ids = list("adv_biotech")
-	design_ids = list("borg_upgrade_piercinghypospray", "borg_upgrade_expandedsynthesiser", "borg_upgrade_pinpointer", "borg_upgrade_surgicalprocessor", "borg_upgrade_beakerapp", "borg_upgrade_medbeam") // TEGUSTATION MEDBORG UPGRADES by Surrealistik March 2020
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
-	export_price = 5000*/
-
 /datum/design/borg_upgrade_medbeam
 	name = "Cyborg Upgrade (Heal Beam)"
 	id = "borg_upgrade_medbeam"
@@ -20,21 +11,21 @@
 	name = "medical cyborg heal beam"
 	desc = "An upgrade to the Medical module, installing a built-in healing beam."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = list(/obj/item/robot_module/medical)
+	require_model = 1
+	model_type = list(/obj/item/robot_model/medical)
 
 /obj/item/borg/upgrade/medbeam/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/medbeam/cyborg/MB = new(R.module)
-		R.module.basic_modules += MB
-		R.module.add_module(MB, FALSE, TRUE)
+		var/obj/item/gun/medbeam/cyborg/MB = new(R.model)
+		R.model.basic_modules += MB
+		R.model.add_module(MB, FALSE, TRUE)
 
 /obj/item/borg/upgrade/medbeam/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/medbeam/cyborg/MB = locate() in R.module
-		R.module.remove_module(MB, TRUE)
+		var/obj/item/gun/medbeam/cyborg/MB = locate() in R.model
+		R.model.remove_module(MB, TRUE)
 
 /obj/item/gun/medbeam/cyborg
 	name = "Integrated Medical Beamgun"
@@ -105,7 +96,7 @@
 
 /mob/living/silicon/robot/put_in_hands(obj/item/I, del_on_fail = FALSE, merge_stacks = TRUE, forced = FALSE) //Qualify of life; puts beaker in manipulator
 	. = ..()
-	var/obj/item/borg/apparatus/E = locate() in module.modules // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
+	var/obj/item/borg/apparatus/E = locate() in model.modules // TEGUSTATION MEDBORG CHANGES -Surrealistik Feb 2020
 	if(!E)
 		return
 	E.pre_attack(I, src)

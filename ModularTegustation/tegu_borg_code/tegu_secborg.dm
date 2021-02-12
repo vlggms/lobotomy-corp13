@@ -65,27 +65,27 @@
 	desc = "A module that permits creation of holographic security barriers."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker_sec"
-	require_module = TRUE
-	module_type = list(/obj/item/robot_module/security)
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/security)
 
 /obj/item/borg/upgrade/sec_holobarrier/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.module.modules
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
 		if(E)
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
-		E = new(R.module)
-		R.module.basic_modules += E
-		R.module.add_module(E, FALSE, TRUE)
+		E = new(R.model)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
 
 /obj/item/borg/upgrade/sec_holobarrier/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.module.modules
+		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
 		if (E)
-			R.module.remove_module(E, TRUE)
+			R.model.remove_module(E, TRUE)
 
 /obj/item/holosign_creator/security/cyborg
 	name = "Security Holobarrier Projector"
@@ -150,27 +150,27 @@
 	desc = "A module that permits firing energy bolas."
 	icon = 'icons/obj/guns/energy.dmi'
 	icon_state = "dragnet"
-	require_module = TRUE
-	module_type = list(/obj/item/robot_module/security)
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/security)
 
 /obj/item/borg/upgrade/e_bola/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
 		if(E)
 			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
 			return FALSE
 
-		E = new(R.module)
-		R.module.basic_modules += E
-		R.module.add_module(E, FALSE, TRUE)
+		E = new(R.model)
+		R.model.basic_modules += E
+		R.model.add_module(E, FALSE, TRUE)
 
 /obj/item/borg/upgrade/e_bola/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
 		if (E)
-			R.module.remove_module(E, TRUE)
+			R.model.remove_module(E, TRUE)
 
 /obj/item/ammo_casing/energy/bola
 	projectile_type = /obj/projectile/energy/trap/cyborg
@@ -219,13 +219,13 @@
 	name = "cyborg lethal mode unlock"
 	desc = "A module that unlocks the lethal mode for a cyborg's integrated energy gun for use during red alert."
 	icon_state = "cyborg_upgrade3"
-	require_module = TRUE
-	module_type = list(/obj/item/robot_module/security)
+	require_model = TRUE
+	model_type = list(/obj/item/robot_model/security)
 
 /obj/item/borg/upgrade/e_gun_lethal/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
 			return FALSE
@@ -240,7 +240,7 @@
 /obj/item/borg/upgrade/e_gun_lethal/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		if(!R.emagged) //If we're emagged, don't revert.
@@ -252,13 +252,13 @@
 	name = "cyborg energy gun cooling module"
 	desc = "Used to cool an integrated energy gun, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = list(/obj/item/robot_module/security)
+	require_model = 1
+	model_type = list(/obj/item/robot_model/security)
 
 /obj/item/borg/upgrade/e_gun_cooler/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
 			return FALSE
@@ -272,7 +272,7 @@
 /obj/item/borg/upgrade/e_gun_cooler/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.module.modules
+		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		T.charge_delay = initial(T.charge_delay)
@@ -291,13 +291,13 @@
 	name = "cyborg improved capsaicin synthesizer module"
 	desc = "Enhances a security cyborg's integrated pepper spray synthesizer, improving capacity and synthesizing efficiency."
 	icon_state = "cyborg_upgrade3"
-	require_module = 1
-	module_type = list(/obj/item/robot_module/security)
+	require_model = 1
+	model_type = list(/obj/item/robot_model/security)
 
 /obj/item/borg/upgrade/peppersprayupgrade/action(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if(.)
-		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.module.modules
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
 		if(!T)
 			to_chat(user, "<span class='warning'>There's no pepper spray synthesizer in this unit!</span>")
 			return FALSE
@@ -313,7 +313,7 @@
 /obj/item/borg/upgrade/peppersprayupgrade/deactivate(mob/living/silicon/robot/R, user = usr)
 	. = ..()
 	if (.)
-		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.module.modules
+		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
 		if(!T)
 			return FALSE
 		T.generate_amount = initial(T.generate_amount)
@@ -395,6 +395,6 @@
 
 	if(iscyborg(src))
 		var/mob/living/silicon/robot/R = src
-		return (locate(typepath) in R.module)
+		return (locate(typepath) in R.model)
 
 	return FALSE
