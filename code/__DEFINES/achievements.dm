@@ -19,7 +19,7 @@
 #define MEDAL_SELFOUCH			"Hands???"
 #define MEDAL_SANDMAN			"Mister Sandman"
 #define MEDAL_CLEANBOSS			"Cleanboss"
-#define MEDAL_RULE8				"Rule 8"
+#define MEDAL_RULE3				"Rule 3"
 #define MEDAL_LONGSHIFT			"longshift"
 #define MEDAL_SNAIL				"KKKiiilll mmmeee"
 #define MEDAL_LOOKOUTSIR		"Look Out, Sir!"

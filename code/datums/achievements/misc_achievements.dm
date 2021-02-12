@@ -84,11 +84,11 @@
 	desc = "How does it feel to know that your workplace values a mop bucket on wheels more than you?" // i can do better than this give me time
 	database_id = MEDAL_CLEANBOSS
 
-/datum/award/achievement/misc/rule8
-	name = "Rule 8"
+/datum/award/achievement/misc/rule3
+	name = "Rule 3"
 	desc = "Call an admin this is ILLEGAL!!"
-	database_id = MEDAL_RULE8
-	icon = "rule8"
+	database_id = MEDAL_RULE3
+	icon = "rule3"
 
 /datum/award/achievement/misc/speed_round
 	name = "Long shift"

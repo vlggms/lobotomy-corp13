@@ -243,7 +243,7 @@
 		"upgrade" = 'icons/UI_Icons/Achievements/Misc/upgrade.png',
 		"clownking" = 'icons/UI_Icons/Achievements/Misc/clownking.png',
 		"clownthanks" = 'icons/UI_Icons/Achievements/Misc/clownthanks.png',
-		"rule8" = 'icons/UI_Icons/Achievements/Misc/rule8.png',
+		"rule3" = 'icons/UI_Icons/Achievements/Misc/rule3.png',
 		"snail" = 'icons/UI_Icons/Achievements/Misc/snail.png',
 		"ascension" = 'icons/UI_Icons/Achievements/Misc/ascension.png',
 		"ashascend" = 'icons/UI_Icons/Achievements/Misc/ashascend.png',
