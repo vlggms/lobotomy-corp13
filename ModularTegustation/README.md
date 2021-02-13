@@ -137,3 +137,4 @@ Codewords to search PRs by:
 // Tegustation T5 parts - T5 parts
 // Tegustation Clothing - Vending machine clothes
 // Tegustation Heads of Staff - Heads of staff eguns
+// Tegustation Space Exploration - Stuff for space explorers/miners edits.
