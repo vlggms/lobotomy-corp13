@@ -14,7 +14,8 @@
 /obj/item/food/bread/breadstick
 	name = "breadstick"
 	desc = "Listen never forget, when you're here you're family. Breadstick?"
-	icon_state = "breadstick"
+	icon_state = "baguette"
+	icon = 'icons/obj/food/burgerbread.dmi'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("stale bread" = 1)
 	foodtypes = GRAIN
