@@ -4,7 +4,7 @@
 	icon_state = "duffel-explorer"
 	inhand_icon_state = "duffel-explorer"
 
-/obj/item/storage/backpack/duffelbag/mining_conscript/PopulateContents()
+/obj/item/storage/backpack/duffelbag/space_exploration/PopulateContents()
 	new /obj/item/clothing/suit/space/hardsuit/mining/compact(src)
 	new /obj/item/tank/jetpack/oxygen/harness(src)
 	new /obj/item/tank/internals/oxygen(src)
