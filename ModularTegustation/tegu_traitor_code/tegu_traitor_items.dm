@@ -157,6 +157,15 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
 
+/obj/item/melee/sabre/breadstick
+	name = "breadstick"
+	desc = "Listen never forget, when you’re here you’re family. Breadstick?"
+	icon_state = "baguette"
+	icon = "icons/obj/food/burgerbread.dmi"
+	inhand_icon_state = "baguette"
+	force = 10
+
+
 /obj/item/storage/box/syndie_kit/virology/PopulateContents()
 	new /obj/item/reagent_containers/glass/bottle/accelerant_ts(src)
 	new /obj/item/reagent_containers/glass/bottle/accelerant_mp(src)
