@@ -161,7 +161,7 @@
 	name = "breadstick"
 	desc = "Listen never forget, when you’re here you’re family. Breadstick?"
 	icon_state = "baguette"
-	icon = "icons/obj/food/burgerbread.dmi"
+	icon = 'icons/obj/food/burgerbread.dmi'
 	inhand_icon_state = "baguette"
 	force = 10
 
