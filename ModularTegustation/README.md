@@ -138,3 +138,4 @@ Codewords to search PRs by:
 // Tegustation Clothing - Vending machine clothes
 // Tegustation Heads of Staff - Heads of staff eguns
 // Tegustation Xenobiology Black Crossbreeds - Transformative(Black) slime crossbreed extracts
+// Tegustation Space Exploration - Stuff for space explorers/miners edits.

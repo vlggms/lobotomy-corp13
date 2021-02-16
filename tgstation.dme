@@ -3358,6 +3358,7 @@
 #include "ModularTegustation\tegu_locker_overwrites.dm"
 #include "ModularTegustation\tegu_posters.dm"
 #include "ModularTegustation\tegu_procs.dm"
+#include "ModularTegustation\tegu_space_explorers.dm"
 #include "ModularTegustation\tegu_spaceruins.dm"
 #include "ModularTegustation\tegu_starfury_event.dm"
 #include "ModularTegustation\tegu_virology.dm"
