@@ -137,7 +137,8 @@ export const ExosuitFabricator = (props, context) => {
     <Window
       title="Exosuit Fabricator"
       width={1100}
-      height={640}>
+      height={640}
+      resizable>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
