@@ -137,8 +137,7 @@ export const ExosuitFabricator = (props, context) => {
     <Window
       title="Exosuit Fabricator"
       width={1100}
-      height={640}
-      resizable>
+      height={640}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
@@ -471,6 +470,23 @@ const PartCategory = (props, context) => {
                 tooltipPosition="left" />
             </Stack.Item>
           </Stack>
+          {displayMatCost && (
+            <Stack mb={2}>
+              {Object.keys(part.cost).map(material => (
+                <Stack.Item
+                  key={material}
+                  width="50px"
+                  color={COLOR_KEYS[part.format[material].color]}>
+                  <MaterialAmount
+                    formatmoney
+                    style={{
+                      transform: 'scale(0.75) translate(0%, 10%)',
+                    }}
+                    name={material}
+                    amount={part.cost[material]} />
+                </Stack.Item>
+              ))}
+            </Stack>
           )}
         </Fragment>
       ))}
