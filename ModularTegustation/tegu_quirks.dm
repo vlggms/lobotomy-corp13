@@ -15,7 +15,6 @@
     switch(limb_slot)
         if(BODY_ZONE_R_ARM)
             prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-            slot_string = "right arm"
     prosthetic.replace_limb(H)
     qdel(old_part)
     H.regenerate_icons()
@@ -36,7 +35,6 @@
     switch(limb_slot)
         if(BODY_ZONE_L_ARM)
             prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-            slot_string = "left arm"
     prosthetic.replace_limb(H)
     qdel(old_part)
     H.regenerate_icons()
@@ -57,7 +55,6 @@
     switch(limb_slot)
         if(BODY_ZONE_R_LEG)
             prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-            slot_string = "right leg"
     prosthetic.replace_limb(H)
     qdel(old_part)
     H.regenerate_icons()
@@ -78,7 +75,6 @@
     switch(limb_slot)
         if(BODY_ZONE_L_LEG)
             prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-            slot_string = "left leg"
     prosthetic.replace_limb(H)
     qdel(old_part)
     H.regenerate_icons()
