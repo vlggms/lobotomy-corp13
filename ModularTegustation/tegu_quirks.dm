@@ -9,15 +9,6 @@
 
 /datum/quirk/prosthetic_limb/r_arm/on_spawn()
     var/limb_slot = pick(BODY_ZONE_R_ARM)
-    var/mob/living/carbon/human/H = quirk_holder
-    var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
-    var/obj/item/bodypart/prosthetic
-    switch(limb_slot)
-        if(BODY_ZONE_R_ARM)
-            prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-    prosthetic.replace_limb(H)
-    qdel(old_part)
-    H.regenerate_icons()
 
 //Left Arm
 /datum/quirk/prosthetic_limb/l_arm
@@ -29,15 +20,6 @@
 
 /datum/quirk/prosthetic_limb/l_arm/on_spawn()
     var/limb_slot = pick(BODY_ZONE_L_ARM)
-    var/mob/living/carbon/human/H = quirk_holder
-    var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
-    var/obj/item/bodypart/prosthetic
-    switch(limb_slot)
-        if(BODY_ZONE_L_ARM)
-            prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-    prosthetic.replace_limb(H)
-    qdel(old_part)
-    H.regenerate_icons()
 
 //Right Leg
 /datum/quirk/prosthetic_limb/r_leg
@@ -49,15 +31,6 @@
 
 /datum/quirk/prosthetic_limb/r_leg/on_spawn()
     var/limb_slot = pick(BODY_ZONE_R_LEG)
-    var/mob/living/carbon/human/H = quirk_holder
-    var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
-    var/obj/item/bodypart/prosthetic
-    switch(limb_slot)
-        if(BODY_ZONE_R_LEG)
-            prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-    prosthetic.replace_limb(H)
-    qdel(old_part)
-    H.regenerate_icons()
 
 //Left Leg
 /datum/quirk/prosthetic_limb/l_leg
@@ -69,12 +42,3 @@
 
 /datum/quirk/prosthetic_limb/l_leg/on_spawn()
     var/limb_slot = pick(BODY_ZONE_L_LEG)
-    var/mob/living/carbon/human/H = quirk_holder
-    var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
-    var/obj/item/bodypart/prosthetic
-    switch(limb_slot)
-        if(BODY_ZONE_L_LEG)
-            prosthetic = new/obj/item/bodypart/l_arm/robot/surplus(quirk_holder)
-    prosthetic.replace_limb(H)
-    qdel(old_part)
-    H.regenerate_icons()
