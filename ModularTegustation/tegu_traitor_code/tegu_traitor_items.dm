@@ -162,7 +162,6 @@
 	desc = "Listen never forget, when you’re here you’re family. Breadstick?"
 	icon_state = "breadstick"
 	icon = 'ModularTegustation/Teguicons/breadstick.dmi'
-	inhand_icon_state = "baguette"
 	force = 10
 
 
