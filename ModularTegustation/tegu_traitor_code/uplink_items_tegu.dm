@@ -167,7 +167,7 @@
 	name = "Weaponized Breadstick"
 	desc = "An officer's sabre disguised as a breadstick. Slightly weaker than the average sabre."
 	item = /obj/item/melee/sabre/breadstick
-	cost = 10
+	cost = 7
 	restricted_roles = list("Cook")
 
 /obj/item/toy/balloon/syndicate/gold
