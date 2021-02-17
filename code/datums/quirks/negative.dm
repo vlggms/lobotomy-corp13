@@ -413,9 +413,11 @@
 	var/slot_string = "limb"
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 	hardcore_value = 3
+	var/limb_slot // Tegu edit
 
 /datum/quirk/prosthetic_limb/on_spawn()
-	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+	if(!limb_slot) // If it's empty - it will choose random limb.
+		limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) // Tegu edit
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/bodypart/old_part = H.get_bodypart(limb_slot)
 	var/obj/item/bodypart/prosthetic
