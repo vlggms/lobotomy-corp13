@@ -325,7 +325,7 @@
 	name = "Adeptus Mechanicus"
 	id = "techcult"
 	description = "An old base, filled with religious fanatics praising the entity they call 'Machine God'."
-	suffix = "icemoon_underground_techcult.dmm"
+	suffix = "icemoon_underground_techcult2.dmm"
 	allow_duplicates = FALSE
 
 /***************** Researches *****************/

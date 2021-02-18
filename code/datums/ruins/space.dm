@@ -299,3 +299,9 @@
 	suffix = "hellfactory.dmm"
 	name = "Heck Brewery"
 	description = "An abandoned warehouse and brewing facility, which has been recently rediscovered. Reports claim that the security system entered an ultra-hard lockdown, but these reports are inconclusive."
+
+/datum/map_template/ruin/space/oldshuttle //Tegu, old nuke op ship
+	id = "oldcode-nukeops"
+	suffix = "oldcodeops.dmm"
+	name = "Strange Infiltrator"
+	description = "A nuclear operative's ship, drifing along the stars. This thing looks like it belongs in ancient times."
