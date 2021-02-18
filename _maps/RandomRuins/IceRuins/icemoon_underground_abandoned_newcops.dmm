@@ -87,7 +87,7 @@
 "Ds" = (/turf/closed/wall/mineral/plastitanium,/area/ruin/powered)
 "Dv" = (/obj/effect/turf_decal/stripes/corner{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/ruin/powered)
 "DG" = (/obj/structure/urinal{pixel_y = 28},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/freezer,/area/ruin/powered)
-"Ec" = (/obj/machinery/door/poddoor/shuttledock{id = abandonednukebase; name = stolen shuttle storage},/turf/open/floor/plating,/area/ruin/powered)
+"Ec" = (/obj/machinery/door/poddoor/shuttledock{name = "stolen shuttle storage"},/turf/open/floor/plating,/area/ruin/powered)
 "Ez" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/item/broken_bottle{pixel_x = 3; pixel_y = 5},/obj/item/shard,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel,/area/ruin/powered)
 "EV" = (/obj/machinery/light/small{brightness = 3; dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/freezer,/area/ruin/powered)
 "Fb" = (/obj/structure/closet/syndicate,/obj/item/clothing/shoes/jackboots,/obj/item/clothing/glasses/night,/obj/item/radio/headset,/obj/item/kitchen/knife/combat/survival,/obj/item/radio{icon_state = "radio"},/obj/effect/decal/cleanable/dirt,/obj/item/clothing/under/color/black,/turf/open/floor/wood,/area/ruin/powered)
@@ -110,7 +110,7 @@
 "KN" = (/obj/structure/table/wood,/obj/item/toy/plush/nukeplushie,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood,/area/ruin/powered)
 "KZ" = (/obj/effect/turf_decal/tile/bar,/obj/effect/turf_decal/tile/bar{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/plasteel,/area/ruin/powered)
 "Lh" = (/obj/item/bedsheet/syndie,/obj/structure/bed,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood,/area/ruin/powered)
-"Lq" = (/obj/structure/girder,/turf/open/floor/plating/airless,/area/ruin/powered)
+"Lq" = (/obj/machinery/door/poddoor/shuttledock,/turf/open/floor/plating,/area/ruin/powered)
 "Lt" = (/obj/structure/light_construct,/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood{icon_state = "wood-broken"},/area/ruin/powered)
 "LA" = (/obj/structure/rack,/obj/item/clothing/suit/space/syndicate,/turf/open/floor/mineral/plastitanium/red,/area/ruin/powered)
 "LL" = (/obj/effect/decal/cleanable/dirt,/obj/effect/spawner/lootdrop/maintenance,/turf/open/floor/plasteel/dark,/area/ruin/powered)
@@ -173,15 +173,15 @@ rGrGrGrGrGrGrGrGrGrGrGrGrGvVFrFrCdFhvVWVrGrGrGWVrGrGXnrGrGWVfaZUZULPLPZUfa
 BdrGrGrGrGrGrGrGBdWVrGXnvVvVfLlwJeXkCdvVvVvVvVFrvVrGrGrGrGrGvVLPlwZUZULPvV
 rGrGrGrGrGrGrGrGrGrGrGrGvVtPLPLPGUlwQTSQvVDsKxtrvVrGrGXnrGrGvVWtZULPlNLPvV
 BdrGrGrGrGrGrGrGBdrGWVrGvVUtJeAWLPJesWKZCdDGtSzUvVvVvVvVvVvVvVCdCdeXvVvVvV
-rGrGrGrGrGrGrGrGrGrGrGrGvVHymEjIZZJeLPJeYJLPWpzjvVvVWtLPyBIGSsIGIGIGnmLPEc
-BdrGrGrGrGrGrGrGBdFrFrFrvVLUAWsfmzclQfiYvVEVotvVLqvVLPZcHaLPlwLPLPLPBrDvEc
-rGrGrGrGrGrGrGrGrGxnLPWMRjLPLPJeEzLPJeLPCdvVCdCdvVLqWtKJLPLPWtLPLPmELPFoEc
-BdrGrGrGrGrGrGrGBdFrFrFrvVAiAWUtgZVTJeJeudFrFrFrFrFrFrFrWtLPDiLPLPLPLPKoEc
-rGrGrGrGrGrGrGrGrGrGrGrGvVSiKNtgokVKLPlwJeWMWtLPDiWtWtWMmELPLPLPlwLPLPFoEc
-BdrGrGrGrGrGrGrGBdXnrGrGvVLthaCsttkjJeHBZNFrFrFrFrFrFrFrWtLPLPLPLPLPLPKoEc
-rGrGrGrGrGrGrGrGrGWVrGrGZpvVtgicjXdXCdkTCdCdvVCdvVvVWtCUWtLPlwLPWtLPDiKoEc
-BdrGrGrGrGrGrGrGBdrGrGrGXnvVvVvVvVvVvVZULPeuYUbFpWvVWtiDBSWtLPLPWtWtfPYQEc
-rGrGrGrGrGrGrGrGrGrGWVrGrGvViSQbWsgtFrLPoULPLLoUDivVLPLPCVbHVMbHAEgjYQLPEc
+rGrGrGrGrGrGrGrGrGrGrGrGvVHymEjIZZJeLPJeYJLPWpzjvVvVWtLPyBIGSsIGIGIGnmLPLq
+BdrGrGrGrGrGrGrGBdFrFrFrvVLUAWsfmzclQfiYvVEVotvVCdvVLPZcHaLPlwLPLPLPBrDvLq
+rGrGrGrGrGrGrGrGrGxnLPWMRjLPLPJeEzLPJeLPCdvVCdCdvVCdWtKJLPLPWtLPLPmELPFoLq
+BdrGrGrGrGrGrGrGBdFrFrFrvVAiAWUtgZVTJeJeudFrFrFrFrFrFrCUWtLPDiLPLPLPLPKoLq
+rGrGrGrGrGrGrGrGrGrGrGrGvVSiKNtgokVKLPlwJeWMWtLPDiWtWMCUmELPLPLPlwLPLPFoLq
+BdrGrGrGrGrGrGrGBdXnrGrGvVLthaCsttkjJeHBZNFrFrFrFrFrFrCUWtLPLPLPLPLPLPKoLq
+rGrGrGrGrGrGrGrGrGWVrGrGZpvVtgicjXdXCdkTCdCdvVCdvVvVWtCUWtLPlwLPWtLPDiKoLq
+BdrGrGrGrGrGrGrGBdrGrGrGXnvVvVvVvVvVvVZULPeuYUbFpWvVWtiDBSWtLPLPWtWtfPYQLq
+rGrGrGrGrGrGrGrGrGrGWVrGrGvViSQbWsgtFrLPoULPLLoUDivVLPLPCVbHVMbHAEgjYQLPLq
 BdrGBdrGBdrGBdrGBdrGrGrGrGFrmcWYlwLPZLZUZULPZULPuxvVvVvVvVWEvVCdvVCdvVvVvV
 gpgpgpgpgpgpgprGrGXnrGrGWVvVLAWYLPLLCdxBMlKkJNwOvkCdUfkeDsWWqtzLRoZkvVgpgp
 gpgpgpgpgpgpgpgprGrGrGWVrGvVvVvVvVvVvVvVFrFrFrFrvVvVyOCsPHpssoaFWICsvVgpgp
