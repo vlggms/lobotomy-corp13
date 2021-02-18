@@ -429,6 +429,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/machinery/conveyor_switch/oneway{
+	id = "techcult_fab"
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered/mechanicus/robotics)
 "vn" = (
