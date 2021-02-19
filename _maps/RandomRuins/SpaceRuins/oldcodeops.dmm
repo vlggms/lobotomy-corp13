@@ -154,11 +154,6 @@
 "vk" = (
 /turf/template_noop,
 /area/template_noop)
-"vZ" = (
-/turf/closed/indestructible/oldshuttle/corner{
-	dir = 8
-	},
-/area/template_noop)
 "wf" = (
 /mob/living/simple_animal/hostile/syndicate/melee/sword/space/oldcode,
 /turf/template_noop,
@@ -169,8 +164,8 @@
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "xO" = (
-/obj/item/storage/backpack/duffelbag/syndie/surgery,
 /obj/structure/table/greyscale,
+/obj/item/storage/backpack/duffelbag/sec/surgery,
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "xT" = (
@@ -221,8 +216,8 @@
 /turf/open/floor/circuit,
 /area/ruin/powered)
 "KA" = (
-/obj/item/storage/backpack/duffelbag/syndie/c4,
 /obj/structure/table/greyscale,
+/obj/item/grenade/c4,
 /turf/open/floor/oldshuttle,
 /area/ruin/powered)
 "KT" = (
@@ -465,7 +460,7 @@ OZ
 Dy
 Td
 jz
-vZ
+Jh
 Td
 fO
 qQ
