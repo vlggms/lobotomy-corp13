@@ -6,18 +6,15 @@
 /datum/martial_art/velvetfu
 	name = "Velvet-Fu"
 	id = MARTIALART_VELVETFU
-	allow_temp_override = FALSE
-	smashes_tables = TRUE
 	help_verb = /mob/living/proc/velvetfu_help
-//	var/stancing = FALSE - Couldn't get this to work, supposed to stop Receding_Stance from being spammed. Taken from CQC.dm
-	display_combos = TRUE
 	block_chance = 40
+	display_combos = TRUE
+	allow_temp_override = FALSE
 	var/datum/action/receding_stance/recedingstance = new/datum/action/receding_stance()
 	var/datum/action/twisted_stance/twistedstance = new/datum/action/twisted_stance()
 
 /datum/martial_art/velvetfu/reset_streak(mob/living/new_target)
 	. = ..()
-//	stancing = FALSE - Couldn't get this to work, supposed to stop Receding_Stance from being spammed. Taken from CQC.dm
 
 /datum/martial_art/velvetfu/teach(mob/living/H, make_temporary=0)
 	if(..())
@@ -65,26 +62,24 @@
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "receding_stance"
 
-/datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
+/datum/action/receding_stance/Trigger()
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
-	if(user.mind.martial_art.streak == "receding_stance")
+	if(owner.mind.martial_art.streak == "receding_stance")
 		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
-		user.mind.martial_art.streak = ""
+		owner.mind.martial_art.streak = ""
 	else
 		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
-		if(do_after(user, 3 SECONDS))
-			owner.visible_message("<span class='danger'>[user] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
-			user.adjustStaminaLoss(-40)
-			user.mind.martial_art.streak = "receding_stance"
+		if(do_after(owner, 3 SECONDS))
+			owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
+			owner.mind.martial_art.streak = "receding_stance"
 		else
-			user.visible_message("<span class='danger'>[user] stops moving back.</i></b>")
-			user.mind.martial_art.streak = ""
+			owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
 			return
 
-/datum/martial_art/velvetfu/proc/receding_stance(mob/living/A)
-	A.mind.martial_art.streak = ""
+/datum/martial_art/velvetfu/proc/receding_stance(mob/living/carbon/user)
+	user.adjustStaminaLoss(-40)
 
 // Twisted Stance
 /datum/action/twisted_stance
@@ -92,27 +87,20 @@
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "twisted_stance"
 
-/datum/action/twisted_stance/Trigger(mob/living/M, mob/living/user)
+/datum/action/twisted_stance/Trigger()
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
-	var/mob/living/H = owner
-	if(H.mind.martial_art.streak == "twisted_stance")
-		owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
-		H.mind.martial_art.streak = ""
+	if(owner.mind.martial_art.streak == "twisted_stance")
+		owner.visible_message("<span class='danger'>[owner] untwists [owner.p_them()]self.</i></b>")
+		owner.mind.martial_art.streak = ""
 	else
-		if(do_after(H, 0.1 SECONDS))
-			owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your ultimate stance is done!</b>")
-			H.adjustStaminaLoss(-40)
-			H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
-			H.mind.martial_art.streak = "twisted_stance"
-		else
-			owner.visible_message("<span class='danger'>[owner] untwists [user.p_them()]self.</i></b>")
-			H.mind.martial_art.streak = ""
-			return
+		owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your twisted stance is done!</b>")
+		owner.mind.martial_art.streak = "twisted_stance"
 
-/datum/martial_art/velvetfu/proc/twisted_stance(mob/living/A)
-	A.mind.martial_art.streak = ""
+/datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/user)
+	user.adjustStaminaLoss(-40)
+	user.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
@@ -273,9 +261,8 @@
 	name = "Velvet-Fu cassette"
 	martialname = "velvet-fu"
 	desc = "A cassette labelled 'Grand-Master's Course'. This seems modified, causing it to beam the content straight into your brain."
-	icon_state = "tape_white"
-	icon = 'icons/obj/device.dmi'
-	inhand_icon_state = "analyzer"
+	icon = 'ModularTegustation/Teguicons/velvetfu.dmi'
+	icon_state = "velvet"
 	greet = "You've finished watching the Velvet-Fu cassette."
 	remarks = list("Smooth as Velvet...", "Show me your stance!", "Left Jab!", "Right Jab!", "Kick, kick!", "Ah, so fast...", "Now forget the basics!", "...But remember the style!")
 
@@ -284,3 +271,4 @@
 	if(oneuse == TRUE)
 		desc = "A cassette labelled 'Grand-Master's Course'. This seems modified, and won't turn on."
 		name = "Used cassette"
+		icon_state = "velvet_used"
