@@ -61,25 +61,33 @@
 	name = "Receding Stance - Regenerates Stamina, takes time to do."
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "receding_stance"
+	var/stancing = FALSE
 
-/datum/action/receding_stance/Trigger()
+/datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
+	if(stancing)
+		to_chat(owner, "<span class='warning'>You are already perfoming a stance.</span>")
+		return
+	var/mob/living/carbon/human/H = owner
 	if(owner.mind.martial_art.streak == "receding_stance")
 		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
 		owner.mind.martial_art.streak = ""
 	else
 		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
+		stancing = TRUE
+		addtimer(VARSET_CALLBACK(src, stancing, FALSE), 30, TIMER_UNIQUE)
 		if(do_after(owner, 3 SECONDS))
 			owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
 			owner.mind.martial_art.streak = "receding_stance"
+			H.adjustStaminaLoss(-40)
 		else
 			owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
 			return
 
 /datum/martial_art/velvetfu/proc/receding_stance(mob/living/carbon/user)
-	user.adjustStaminaLoss(-40)
+	..()
 
 // Twisted Stance
 /datum/action/twisted_stance
@@ -87,20 +95,22 @@
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "twisted_stance"
 
-/datum/action/twisted_stance/Trigger()
+/datum/action/twisted_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
 		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
 		return
+	var/mob/living/carbon/human/H = owner
 	if(owner.mind.martial_art.streak == "twisted_stance")
 		owner.visible_message("<span class='danger'>[owner] untwists [owner.p_them()]self.</i></b>")
 		owner.mind.martial_art.streak = ""
 	else
 		owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your twisted stance is done!</b>")
 		owner.mind.martial_art.streak = "twisted_stance"
+		H.adjustStaminaLoss(-40)
+		H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/user)
-	user.adjustStaminaLoss(-40)
-	user.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	..()
 
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
