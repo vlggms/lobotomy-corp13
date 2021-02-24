@@ -416,7 +416,7 @@
 	var/limb_slot // Tegu edit
 
 /datum/quirk/prosthetic_limb/on_spawn()
-	//var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+//	var/limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	if(!limb_slot) // If it's empty - it will choose random limb.
 		limb_slot = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) // Tegu edit
 	var/mob/living/carbon/human/H = quirk_holder
