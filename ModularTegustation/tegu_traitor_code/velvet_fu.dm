@@ -268,17 +268,17 @@
 
 /obj/item/book/granter/martial/velvetfu
 	martial = /datum/martial_art/velvetfu
-	name = "Velvet-Fu cassette"
+	name = "Hollywood VHS tape"
 	martialname = "velvet-fu"
-	desc = "A cassette labelled 'Grand-Master's Course'. This seems modified, causing it to beam the content straight into your brain."
+	desc = "A VHS tape labelled 'Grand-Master's Course'. This seems modified, causing it to beam the content straight into your eyes."
 	icon = 'ModularTegustation/Teguicons/velvetfu.dmi'
 	icon_state = "velvet"
-	greet = "You've finished watching the Velvet-Fu cassette."
+	greet = "You've finished watching the Velvet-Fu VHS tape."
 	remarks = list("Smooth as Velvet...", "Show me your stance!", "Left Jab!", "Right Jab!", "Kick, kick!", "Ah, so fast...", "Now forget the basics!", "...But remember the style!")
 
 /obj/item/book/granter/martial/velvetfu/onlearned(mob/living/carbon/user)
 	..()
 	if(oneuse == TRUE)
-		desc = "A cassette labelled 'Grand-Master's Course'. This seems modified, and won't turn on."
-		name = "Used cassette"
+		desc = "A VHS tape labelled 'Grand-Master's Course'. The film seems ripped out, and can't be put back in."
+		name = "Broken VHS tape"
 		icon_state = "velvet_used"

@@ -1,10 +1,11 @@
 /datum/uplink_item/stealthy_weapons/velvetfu
 	name = "Velvet-Fu cassette"
 	desc = "Velvet-Fu is a knock-off Martial Art straight from Hollywood.\
-			'A cassette that teaches YOU, the secrets of Velvet-Fu!' \
-			Now specially modified to beam its knowledge directly into your brain, removing the need for a TV."
+			All tapes of this have been lost to time, until it finally resurfaced mere months ago. \
+			'A VHS tape that teaches YOU, the secrets of Velvet-Fu!' \
+			Now specially modified to beam its knowledge directly into your eyes, removing the need for a TV."
 	item = /obj/item/book/granter/martial/velvetfu
-	cost = 8
+	cost = 10
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
 
