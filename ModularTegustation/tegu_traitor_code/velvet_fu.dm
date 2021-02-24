@@ -87,7 +87,7 @@
 			return
 
 /datum/martial_art/velvetfu/proc/receding_stance(mob/living/carbon/user)
-	..()
+	return // Empty return because we only want the button trigger
 
 // Twisted Stance
 /datum/action/twisted_stance
@@ -110,7 +110,7 @@
 		H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/user)
-	..()
+	return // Empty return because we only want the button trigger
 
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
