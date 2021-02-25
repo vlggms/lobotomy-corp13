@@ -28,8 +28,6 @@
 	twistedstance.Remove(H)
 
 /datum/martial_art/velvetfu/proc/check_streak(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	switch(streak)
 		if("receding_stance")
 			streak = ""
@@ -114,8 +112,6 @@
 
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	log_combat(A, D, "flying kick (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] flying kicked [D], such skill!</span>", \
 					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
@@ -131,8 +127,6 @@
 
 //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 60 Stamina and deals some Brute.
 /datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	log_combat(A, D, "goat headbutt (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
@@ -147,8 +141,6 @@
 
 //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 70 Stamina.
 /datum/martial_art/velvetfu/proc/fullThrust(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	log_combat(A, D, "full thrust (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] thrusted into [D]!</span>", \
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
@@ -162,8 +154,6 @@
 
 //Minor Iris - Deals a ton of armor penetrating slash brute. Costs 80 Stamina.
 /datum/martial_art/velvetfu/proc/minorIris(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	log_combat(A, D, "minor iris (Velvet-Fu)")
 	D.visible_message("<span class='danger'>[A] slashes [D] rapidly and repeatedly!</span>", \
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
@@ -178,8 +168,6 @@
 
 //Intents
 /datum/martial_art/velvetfu/harm_act(mob/living/A, mob/living/D)
-	if(!can_use(A))
-		return FALSE
 	var/datum/dna/dna = A.has_dna()
 	if(dna?.check_mutation(HULK))
 		return FALSE
@@ -202,8 +190,6 @@
 
 /datum/martial_art/velvetfu/grab_act(mob/living/A, mob/living/D) // No grabbing in Velvet-Fu!
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
-		return FALSE
-	if(!can_use(A))
 		return FALSE
 	var/datum/dna/dna = A.has_dna()
 	if(dna?.check_mutation(HULK))
@@ -228,8 +214,6 @@
 /datum/martial_art/velvetfu/disarm_act(mob/living/A, mob/living/D) // No shoving in Velvet-Fu!
 	if(HAS_TRAIT(A, TRAIT_PACIFISM))
 		return FALSE
-	if(!can_use(A))
-		return FALSE
 	var/datum/dna/dna = A.has_dna()
 	if(dna?.check_mutation(HULK))
 		return FALSE
@@ -239,9 +223,9 @@
 	log_combat(A, D, "disarmed (Velvet-Fu)")
 	A.do_attack_animation(D)
 	var/picked_hit_type = "side kick"
-	var/bonus_damage = 15 // Kicking deals more damage
+	var/bonus_damage = 10 // Kicking deals more damage
 	if(D.body_position == LYING_DOWN)
-		bonus_damage += 5
+		bonus_damage += 8
 		picked_hit_type = "iron hooved"
 	D.apply_damage(bonus_damage, A.get_attack_type())
 	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \

@@ -1,7 +1,6 @@
 /datum/uplink_item/stealthy_weapons/velvetfu
-	name = "Velvet-Fu cassette"
+	name = "Velvet-Fu VHS tape"
 	desc = "Velvet-Fu is a knock-off Martial Art straight from Hollywood.\
-			All tapes of this have been lost to time, until it finally resurfaced mere months ago. \
 			'A VHS tape that teaches YOU, the secrets of Velvet-Fu!' \
 			Now specially modified to beam its knowledge directly into your eyes, removing the need for a TV."
 	item = /obj/item/book/granter/martial/velvetfu
