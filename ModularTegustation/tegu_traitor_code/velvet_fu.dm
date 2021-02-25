@@ -121,10 +121,11 @@
 					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
 	A.adjustStaminaLoss(50)
+	if(prob(60))
+		var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
+		var/datum/wound/slash/moderate/crit_wound = new
+		crit_wound.apply_wound(limb)
 	D.apply_damage(10, BRUTE) // Slash!
-	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
-	var/datum/wound/slash/moderate/crit_wound = new
-	crit_wound.apply_wound(limb)
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -136,10 +137,11 @@
 	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
 					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
-	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
-	D.Stun(4 SECONDS)
 	A.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
+	if(prob(80))
+		D.Stun(4 SECONDS)
+	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -152,9 +154,9 @@
 					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
 	A.adjustStaminaLoss(70)
-	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
-	if(prob(50))
+	if(prob(60))
 		D.Knockdown(30)
+	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -167,10 +169,10 @@
 					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
 	A.adjustStaminaLoss(80)
-	D.apply_damage(30, BRUTE) // Slash!
-	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
+	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected)) // Guaranteed, unlike Flying Axe Kick
 	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(limb)
+	D.apply_damage(30, BRUTE) // Slash!
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return TRUE
 
