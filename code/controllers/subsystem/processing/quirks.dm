@@ -29,7 +29,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							list("Bad Touch", "Friendly"), \
 							list("Prosthetic Limb", "Prosthetic Right Arm", "Prosthetic Left Arm", "Prosthetic Right Leg", "Prosthetic Left Leg"), \ //Tegu edit
 							list("Extrovert", "Introvert"))
-
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
