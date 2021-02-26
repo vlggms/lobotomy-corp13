@@ -118,9 +118,12 @@
 	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
 	A.adjustStaminaLoss(50)
 	if(prob(60))
-		var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
-		var/datum/wound/slash/moderate/crit_wound = new
-		crit_wound.apply_wound(limb)
+		if(!D.stat)
+			var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected))
+			var/datum/wound/slash/moderate/crit_wound = new
+			crit_wound.apply_wound(limb)
+	else
+		to_chat(A, "<span class='danger'>Your flying axe kick fails to cause [D] to bleed!</span>")
 	D.apply_damage(10, BRUTE) // Slash!
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
@@ -134,7 +137,10 @@
 	A.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
 	if(prob(80))
-		D.Stun(4 SECONDS)
+		if(!D.stat)
+			D.Stun(4 SECONDS)
+	else
+		to_chat(A, "<span class='danger'>You fail to stun [D]!</span>")
 	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
@@ -147,7 +153,10 @@
 	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
 	A.adjustStaminaLoss(70)
 	if(prob(60))
-		D.Knockdown(30)
+		if(!D.stat)
+			D.Knockdown(30)
+	else
+		to_chat(A, "<span class='danger'>You fail to knock [D] down!</span>")
 	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
