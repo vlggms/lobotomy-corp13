@@ -315,3 +315,9 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	suffix = "smallsphere.dmm"
 	name = "Bio Sphere"
 	description = "Nanotrasen holding facility, rumored to be the MOST humane in the entire galaxy! Is it though?"
+
+/datum/map_template/ruin/space/oldshuttle 
+	id = "oldcode-nukeops"
+	suffix = "oldcodeops.dmm"
+	name = "Strange Infiltrator"
+	description = "A nuclear operative's ship, drifing along the stars. This thing looks like it belongs in ancient times."
