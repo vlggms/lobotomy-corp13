@@ -138,3 +138,4 @@ Codewords to search PRs by:
 // Tegustation Clothing - Vending machine clothes
 // Tegustation Heads of Staff - Heads of staff eguns + CMO surgerybelt
 // Tegustation Space Exploration - Stuff for space explorers/miners edits.
+// Tegustation Prosthetic limbs - Prosthetic limbs

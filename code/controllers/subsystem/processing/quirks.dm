@@ -25,9 +25,14 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							list("Ageusia","Vegetarian","Deviant Tastes"), \
 							list("Ananas Affinity","Ananas Aversion"), \
 							list("Alcohol Tolerance","Light Drinker"), \
+							// Tegustation Prosthetic limbs edit: Cant powergame free negative quirk points
+							list("Prosthetic Limb","Prosthetic Right Arm"), \
+							list("Prosthetic Limb","Prosthetic Left Arm"), \
+							list("Prosthetic Limb","Prosthetic Right Leg"), \
+							list("Prosthetic Limb","Prosthetic Left Leg"), \
+							// Tegustation Prosthetic limbs edit ends
 							list("Clown Fan","Mime Fan"), \
 							list("Bad Touch", "Friendly"), \
-							list("Prosthetic Limb", "Prosthetic Right Arm", "Prosthetic Left Arm", "Prosthetic Right Leg", "Prosthetic Left Leg"), \ //Tegu edit
 							list("Extrovert", "Introvert"))
 	return ..()
 
