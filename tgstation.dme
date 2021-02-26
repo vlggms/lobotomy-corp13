@@ -3355,6 +3355,7 @@
 #include "ModularTegustation\tegu_global_vars.dm"
 #include "ModularTegustation\tegu_integration.dm"
 #include "ModularTegustation\tegu_locker_overwrites.dm"
+#include "ModularTegustation\tegu_minor_factions.dm"
 #include "ModularTegustation\tegu_posters.dm"
 #include "ModularTegustation\tegu_procs.dm"
 #include "ModularTegustation\tegu_space_explorers.dm"
