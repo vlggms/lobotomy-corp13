@@ -59,6 +59,9 @@
 		Feedstop()
 		return FALSE
 
+	if (transformeffects & SLIME_EFFECT_LIGHT_PINK && ishuman(M)) // Tegustation Xenobiology Black Crossbreeds
+		return FALSE
+
 	if(issilicon(M))
 		return FALSE
 
@@ -91,7 +94,7 @@
 		to_chat(src, "<span class='warning'><i>I must be conscious to do this...</i></span>")
 		return FALSE
 
-	if(M.stat == DEAD)
+	if(M.stat == DEAD && !(transformeffects & SLIME_EFFECT_GREEN)) // Tegustation Xenobiology Black Crossbreeds
 		if(silent)
 			return FALSE
 		to_chat(src, "<span class='warning'><i>This subject does not have a strong enough life energy...</i></span>")
@@ -136,7 +139,7 @@
 	if(!is_adult)
 		if(amount_grown >= SLIME_EVOLUTION_THRESHOLD)
 			is_adult = 1
-			maxHealth = 200
+			maxHealth = (transformeffects & SLIME_EFFECT_METAL) ? 300 : 200 // Tegustation Xenobiology Black Crossbreeds
 			amount_grown = 0
 			for(var/datum/action/innate/slime/evolve/E in actions)
 				E.Remove(src)
@@ -179,29 +182,25 @@
 			var/datum/component/nanites/original_nanites = GetComponent(/datum/component/nanites)
 			var/turf/drop_loc = drop_location()
 
-			for(var/i=1,i<=4,i++)
-				var/child_colour
-				if(mutation_chance >= 100)
-					child_colour = "rainbow"
-				else if(prob(mutation_chance))
-					child_colour = slime_mutation[rand(1,4)]
-				else
-					child_colour = colour
-				var/mob/living/simple_animal/slime/M
-				M = new(drop_loc, child_colour)
-				if(ckey)
-					M.set_nutrition(new_nutrition) //Player slimes are more robust at spliting. Once an oversight of poor copypasta, now a feature!
-				M.powerlevel = new_powerlevel
-				if(i != 1)
-					step_away(M,src)
-				M.Friends = Friends.Copy()
-				babies += M
-				M.mutation_chance = clamp(mutation_chance+(rand(5,-5)),0,100)
-				SSblackbox.record_feedback("tally", "slime_babies_born", 1, M.colour)
+			var/childamount = 4 // Tegustation Xenobiology Black Crossbreeds
+			var/new_adult = FALSE
+			if (transformeffects & SLIME_EFFECT_CERULEAN)
+				childamount = 2
+				new_nutrition = round(nutrition * 0.5)
+				new_powerlevel = round(powerlevel / 2)
+				new_adult = TRUE
+			if (transformeffects & SLIME_EFFECT_GREY)
+				childamount++
 
-				if(original_nanites)
-					M.AddComponent(/datum/component/nanites, original_nanites.nanite_volume*0.25)
-					SEND_SIGNAL(M, COMSIG_NANITE_SYNC, original_nanites, TRUE, TRUE) //The trues are to copy activation as well
+			for(var/i=1,i<=childamount,i++)
+				var/force_colour = FALSE
+				var/step_away = TRUE
+				if (i == 1)
+					step_away = FALSE
+					if (transformeffects & SLIME_EFFECT_BLUE)
+						force_colour = TRUE
+				var/mob/living/simple_animal/slime/M = make_baby(drop_loc, new_adult, new_nutrition, new_powerlevel, force_colour, step_away, original_nanites)
+				babies += M
 
 			var/mob/living/simple_animal/slime/new_slime = pick(babies)
 			new_slime.a_intent = INTENT_HARM
