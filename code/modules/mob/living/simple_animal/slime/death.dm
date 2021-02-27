@@ -1,6 +1,15 @@
 /mob/living/simple_animal/slime/death(gibbed)
 	if(stat == DEAD)
 		return
+
+	if (transformeffects & SLIME_EFFECT_OIL) // TEGU EDIT
+		for (var/i in 1 to rand(2,2 + cores))
+			var/obj/item/slime_extract/item = new coretype(loc)
+			if (transformeffects & SLIME_EFFECT_GOLD)
+				item.sparkly = TRUE
+		qdel(src)
+		return
+
 	if(!gibbed)
 		if(is_adult)
 			var/mob/living/simple_animal/slime/M = new(drop_location(), colour)

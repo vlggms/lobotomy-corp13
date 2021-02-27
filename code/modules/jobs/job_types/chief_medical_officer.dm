@@ -36,9 +36,10 @@
 	jobtype = /datum/job/cmo
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/pda/heads/cmo
+//	belt = /obj/item/pda/heads/cmo
 	belt = /obj/item/storage/belt/medical/surgeryfilled
 	l_pocket = /obj/item/pinpointer/crew
+	r_pocket = /obj/item/pda/heads/cmo // Tegustation Heads of Staff edit: Moving it to their pocket.
 	ears = /obj/item/radio/headset/heads/cmo
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
 	shoes = /obj/item/clothing/shoes/sneakers/brown
