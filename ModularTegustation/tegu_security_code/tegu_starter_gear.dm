@@ -187,6 +187,7 @@
 	cell_type = /obj/item/stock_parts/cell/mini_egun
 	ammo_x_offset = 2
 	charge_sections = 3
+	modifystate = 1 // So we don't have to fuck up icons
 	gunlight_state = "mini-light"
 	flight_x_offset = 15
 	flight_y_offset = 10
