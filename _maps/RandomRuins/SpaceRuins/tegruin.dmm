@@ -1,76 +1,128 @@
-"a" = (/turf/open/space/basic,/area/space)
-"f" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/eva)
-"g" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
-"h" = (/obj/machinery/door/airlock/external,/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/eva)
-"j" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg)
-"k" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg)
-"l" = (/turf/closed/wall,/area/ruin/has_grav/teg/storage)
-"o" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/storage)
-"r" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg/eva)
-"s" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
-"t" = (/obj/machinery/door/airlock/engineering,/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg/eva)
-"x" = (/turf/open/floor/plating/airless{icon_state = "platingdmg3"},/area/ruin/has_grav/teg)
-"y" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg)
-"G" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg/storage)
-"H" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/eva)
-"J" = (/obj/structure/door_assembly/door_assembly_mai,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/storage)
-"K" = (/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg)
-"M" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/storage)
-"Q" = (/obj/machinery/door/airlock/external,/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg/eva)
-"S" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
-"T" = (/turf/closed/wall,/area/ruin/has_grav/teg)
-"Y" = (/turf/open/floor/plating/airless{icon_state = "platingdmg2"},/area/ruin/has_grav/teg)
-"Z" = (/turf/closed/wall,/area/ruin/has_grav/teg/eva)
+"aw" = (/obj/structure/door_assembly/door_assembly_science,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"bX" = (/obj/item/stack/sheet/metal,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"cg" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"cL" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg)
+"eI" = (/obj/structure/table/optable,/obj/effect/mob_spawn/human/doctor,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"eZ" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/storage)
+"fF" = (/turf/closed/wall,/area/ruin/has_grav/teg)
+"gQ" = (/obj/item/mmi,/obj/structure/table,/obj/item/circular_saw,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"hg" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"hC" = (/obj/structure/girder,/obj/item/stack/sheet/metal,/turf/closed/wall,/area/ruin/has_grav/teg)
+"hW" = (/turf/open/floor/plating/airless{icon_state = "platingdmg2"},/area/ruin/has_grav/teg)
+"iy" = (/obj/item/stock_parts/manipulator,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"jQ" = (/obj/item/clothing/shoes/magboots,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"kM" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg/storage)
+"kU" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"lb" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg)
+"lE" = (/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg)
+"mr" = (/obj/machinery/door/airlock/external,/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/eva)
+"ov" = (/obj/item/tank/jetpack,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"oS" = (/turf/closed/wall,/area/ruin/has_grav/teg/eva)
+"py" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 5},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"qI" = (/obj/machinery/door/airlock/engineering,/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg/eva)
+"qM" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg)
+"rr" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"rv" = (/turf/closed/wall,/area/ruin/has_grav/teg/storage)
+"rL" = (/obj/effect/decal/cleanable/blood,/obj/effect/mob_spawn/human/engineer,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"tj" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/storage)
+"tG" = (/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/eva)
+"uY" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg)
+"vd" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/wrench,/obj/item/mecha_parts/part/ripley_left_leg,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"vM" = (/obj/machinery/atmospherics/pipe/simple/general/visible,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"vV" = (/obj/structure/mecha_wreckage/ripley,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"wg" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"xE" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 9},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"ye" = (/obj/structure/mecha_wreckage/clarke,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"za" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"zs" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"zR" = (/obj/item/stack/rods,/turf/closed/wall,/area/ruin/has_grav/teg)
+"Cv" = (/turf/open/floor/plating/airless{icon_state = "platingdmg3"},/area/ruin/has_grav/teg)
+"DF" = (/obj/machinery/mech_bay_recharge_port,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"DL" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 6},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"DW" = (/obj/machinery/power/generator,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Ev" = (/obj/item/circuitboard/machine/circulator,/obj/structure/closet/crate/engineering{icon_state = "engi_crateopen"; opened = 1},/obj/item/stack/cable_coil,/obj/item/stack/sheet/metal/fifty,/obj/item/wirecutters,/obj/item/screwdriver,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"Fv" = (/obj/machinery/atmospherics/components/unary/thermomachine/heater,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"FC" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/stack/cable_coil,/obj/item/storage/firstaid/fire,/obj/item/storage/firstaid/brute,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"FP" = (/obj/item/stock_parts/capacitor,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Gk" = (/obj/item/stack/rods,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg)
+"Gx" = (/obj/machinery/atmospherics/pipe/manifold/general/visible,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"GH" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Hs" = (/obj/machinery/atmospherics/pipe/simple/general/visible,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"IX" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/stack/sheet/metal/fifty,/obj/item/screwdriver,/obj/item/gps,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"Jb" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/storage)
+"KP" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/weldingtool,/obj/item/stack/sheet/metal/fifty,/obj/item/screwdriver,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"La" = (/obj/machinery/atmospherics/pipe/manifold/general/visible{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Lj" = (/obj/item/stack/sheet/metal,/turf/closed/wall,/area/ruin/has_grav/teg)
+"Mq" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg)
+"NG" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/lightreplacer,/obj/item/mecha_parts/part/durand_right_arm,/obj/item/paicard,/obj/item/circuitboard/computer/mecha_control,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"NI" = (/obj/structure/girder,/turf/closed/wall,/area/ruin/has_grav/teg/eva)
+"Oe" = (/obj/item/stack/rods,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Ow" = (/turf/template_noop,/area/template_noop)
+"OT" = (/obj/item/stock_parts/matter_bin,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"QU" = (/obj/structure/girder,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"Rr" = (/obj/machinery/atmospherics/pipe/simple/general/visible{dir = 4},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"RS" = (/obj/machinery/atmospherics/components/unary/thermomachine/freezer,/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg)
+"RW" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/multitool,/obj/item/mecha_parts/part/clarke_head,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"SV" = (/turf/open/floor/plating/airless{icon_state = "panelscorched"},/area/ruin/has_grav/teg/eva)
+"SZ" = (/obj/effect/mob_spawn/human/skeleton/alive,/obj/item/stack/cable_coil,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"Ub" = (/obj/structure/door_assembly/door_assembly_mai,/turf/open/floor/plating/airless,/area/ruin/has_grav/teg/storage)
+"UH" = (/obj/effect/decal/cleanable/dirt/dust,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"UR" = (/obj/structure/closet/crate{icon_state = "crateopen"},/obj/item/weldingtool,/obj/item/stack/cable_coil,/obj/item/wirecutters,/obj/item/screwdriver,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/storage)
+"Vu" = (/obj/machinery/atmospherics/components/binary/circulator/cold{dir = 8},/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"VK" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"Zj" = (/obj/machinery/suit_storage_unit/standard_unit,/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg/eva)
+"Zr" = (/turf/open/floor/plasteel/airless,/area/ruin/has_grav/teg)
+"ZH" = (/obj/machinery/door/airlock/external,/turf/open/floor/plating/airless{icon_state = "platingdmg1"},/area/ruin/has_grav/teg/eva)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTTTTTjjTTTTTjjjTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggggggggggggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaajgykggggyyyKyygTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaajxyggggggggggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaajggggggggggggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggygggggggggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggygKyggxgggggjaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggygyggggyggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggyggggggxggggjaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggKggggggyggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaajggggggggggggygjaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaajgggggggggggyygjaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTgyggggggggyYggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTgYggggkggyygggjaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaTggygggggggggggTaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaalllGllJlZZtZrZZZaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaalsssssMsZSSSSSSZZZaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaalossssMsrSSSSfShfQaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaalsssssssZSSHSSSZZZaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaalsssMsssZSSSSSSZaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaallGlGlllZZZrrZZZaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFfFfFfFfFqMqMfFfFfFfFfFqMqMqMfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrRWZrbXZrZrZrfFDFvVZrbXiyZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwqMZrcLMqZrZrZrZrfFcLcLlEcLcLgQfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwqMCvcLZrZrUHZrUHzRZrOTZrZrhgeIfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwqMvdUHZrZrUHZrZrawZrZryeZrFPZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFbXUHcLZrZrUHZrQUQUfFfFQUfFNGfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrUHcLZrlEuYUHZrCvQUOeZrLjfFqMOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrUHcLDLlbZrZrDLGxcLZrZrbXZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrUHcLvMkUZrDWVuZrCvvMZrZrZrqMOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrUHRSZrZrHsZrvMZrcLLaFvZrZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwhCZrUHZrZrzaxEZrpyzaRrZrZrcLZrqMOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwqMZrUHUHZrZrZrGHZrZrZrUHuYcLZrqMOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrcLUHUHZrZrZrkUZrUHcLhWZrZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrhWZrUHUHUHMqZrUHcLcLZrZrZrqMOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwfFZrZrGkZrZrZrZrZrZrZrZrZrZrZrfFOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvrvrvkMrvrvUbrvoSoSqIoSNIoSoSoSOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvKPrrzsrrrrtjwgoScgVKVKVKcgovoSoSoSOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvJbwgrrrrUReZrrNIVKVKVKrLtGVKmrtGZHOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvrrrrEvrrrrrrrroSVKVKSVVKVKVKoSoSoSOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvFCrrwgtjwgzsIXoSjQSZcgcgZjZjoSOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwrvrvkMrvkMrvrvrvoSoSoSNINIoSoSoSOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
+OwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOwOw
 "}
