@@ -2472,6 +2472,7 @@
 	pixel_y = 26;
 	req_one_access_txt = "150"
 	},
+/obj/machinery/griddle,
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eH" = (
