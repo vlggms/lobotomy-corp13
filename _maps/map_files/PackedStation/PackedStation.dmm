@@ -21922,7 +21922,7 @@
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/old,
-/obj/item/storage/part_replacer/bluespace/tier1,
+/obj/item/storage/part_replacer,
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "evj" = (
@@ -23987,7 +23987,7 @@
 	pressure_checks = 0
 	},
 /turf/open/floor/plating,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "hxB" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -24610,6 +24610,9 @@
 "iqV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -24719,6 +24722,10 @@
 	dir = 4
 	},
 /mob/living/simple_animal/slime,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -27959,6 +27966,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"nor" = (
+/obj/structure/frame/machine,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/science/research/abandoned)
 "npc" = (
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
@@ -28489,7 +28504,7 @@
 	name = "server vent"
 	},
 /turf/open/floor/engine,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "ocb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -30643,7 +30658,7 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/engine,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "rxi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/turf_decal/tile/blue{
@@ -30725,6 +30740,7 @@
 	layer = 2.9
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/stockparts/basic,
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -30966,7 +30982,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/item/kirbyplants/random,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -31182,7 +31197,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "sji" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -31249,7 +31264,7 @@
 /area/bridge)
 "soD" = (
 /turf/open/floor/engine,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "soX" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -31957,6 +31972,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"txe" = (
+/obj/structure/frame/computer,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/science/research/abandoned)
 "tyE" = (
 /obj/machinery/atmospherics/miner/nitrogen,
 /obj/machinery/air_sensor/atmos/nitrogen_tank,
@@ -32313,7 +32336,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/aft/secondary)
+/area/science/research/abandoned)
 "ubf" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -33095,6 +33118,11 @@
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
+"vde" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/box/stockparts/basic,
+/turf/open/floor/plating,
+/area/science/research/abandoned)
 "vds" = (
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
@@ -33684,6 +33712,7 @@
 	req_access_txt = "55"
 	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "wpw" = (
@@ -33770,6 +33799,9 @@
 /obj/item/chair,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/slime,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "wzK" = (
@@ -34870,6 +34902,9 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
 	pixel_x = 27
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/science/research/abandoned)
@@ -81051,7 +81086,7 @@ axm
 axm
 axm
 axm
-jDJ
+nor
 npc
 jDJ
 axI
@@ -81578,7 +81613,7 @@ xnA
 ayh
 pKi
 mqz
-ayh
+vde
 uUd
 wnZ
 hwW
@@ -82077,7 +82112,7 @@ ayb
 wxd
 jhM
 axm
-iaH
+txe
 hBh
 vvy
 ayh
