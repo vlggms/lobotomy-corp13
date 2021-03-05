@@ -26019,6 +26019,7 @@
 	req_access_txt = "47"
 	},
 /obj/structure/barricade/wooden/crude,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "kFw" = (
