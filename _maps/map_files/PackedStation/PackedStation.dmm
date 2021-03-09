@@ -4389,7 +4389,8 @@
 /obj/machinery/door/window/brigdoor{
 	dir = 4;
 	name = "Interrogation";
-	req_access = "63"
+	req_access = null;
+	req_access_txt = "63"
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -7648,7 +7649,7 @@
 /area/janitor)
 "aoI" = (
 /obj/machinery/power/apc{
-	areastring = "/area/medical/genetics";
+	areastring = "/area/science/genetics";
 	dir = 1;
 	name = "Genetics APC";
 	pixel_y = 24
@@ -7837,7 +7838,7 @@
 /area/crew_quarters/heads/hop)
 "aoY" = (
 /obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/head_of_personnel";
+	areastring = "/area/crew_quarters/heads/hop;
 	name = "Head of Personnel APC";
 	pixel_y = -24
 	},
@@ -16815,11 +16816,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"aFD" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/open/space,
-/area/space/nearstation)
 "aFE" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /obj/structure/sign/warning/vacuum/external{
@@ -61798,7 +61794,7 @@ aaa
 aaS
 aaa
 aaS
-aFD
+aaS
 ajd
 ajd
 aGa
@@ -62055,7 +62051,7 @@ ajd
 aGa
 aaa
 aaS
-aFD
+aaS
 ajd
 ajd
 aGa
@@ -62561,12 +62557,12 @@ ajd
 ajd
 ajd
 ajd
-aFD
+aaS
 aaa
 aaa
 aaa
 aaa
-aFD
+aaS
 aaa
 aGa
 aGa
@@ -63695,7 +63691,7 @@ pMX
 aGa
 aGa
 aGa
-aFD
+aaS
 aaS
 aaS
 aaS

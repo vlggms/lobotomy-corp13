@@ -60,7 +60,13 @@
 /obj/machinery/door/airlock/titanium{
 	name = "Arrivals Shuttle Airlock"
 	},
-/obj/docking_port/mobile/arrivals,
+/obj/docking_port/mobile/arrivals{
+	dheight = 4;
+	dwidth = 9;
+	height = 7;
+	name = "packed arrivals shuttle";
+	width = 10
+	},
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
