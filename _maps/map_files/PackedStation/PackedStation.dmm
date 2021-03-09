@@ -7838,7 +7838,7 @@
 /area/crew_quarters/heads/hop)
 "aoY" = (
 /obj/machinery/power/apc{
-	areastring = "/area/crew_quarters/heads/hop;
+	areastring = "/area/crew_quarters/heads/hop";
 	name = "Head of Personnel APC";
 	pixel_y = -24
 	},
