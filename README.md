@@ -1,19 +1,16 @@
-## /tg/station codebase
+## TeguStation codebase
 
-[![Build Status](https://github.com/tgstation/tgstation/workflows/CI%20Suite/badge.svg)](https://github.com/tgstation/tgstation/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open")
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue")
+[![Build Status](https://github.com/vlggms/tegustation/workflows/CI%20Suite/badge.svg)](https://github.com/vlggms/tegustation/actions?query=workflow%3A%22CI+Suite%22)
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/vlggms/tegustation.svg)](https://isitmaintained.com/project/vlggms/tegustation "Percentage of issues still open")
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/vlggms/tegustation.svg)](https://isitmaintained.com/project/vlggms/tegustation "Average time to resolve an issue")
 ![Coverage](https://img.shields.io/badge/coverage---3%25-red.svg)
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://user-images.githubusercontent.com/8171642/50290880-ffef5500-043a-11e9-8270-a2e5b697c86c.png) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-* **Website:** https://www.tgstation13.org
-* **Code:** https://github.com/tgstation/tgstation
-* **Wiki:** https://tgstation13.org/wiki/Main_Page
-* **Codedocs:** https://codedocs.tgstation13.org/
-* **/tg/station Discord:** https://tgstation13.org/phpBB/viewforum.php?f=60
+* **Code:** https://github.com/vlggms/tegustation
+* **/tg/Station Wiki:** https://tgstation13.org/wiki/Main_Page
+* **TeguStation Discord:** https://discord.gg/AzmEhtH
 * **Coderbus Discord:** https://discord.gg/Vh8TJp9
-* ~~**IRC:** irc://irc.rizon.net/coderbus~~ (dead)
 
 This is the codebase for the /tg/station flavoured fork of SpaceStation 13.
 
@@ -28,8 +25,6 @@ Space Station 13 is a paranoia-laden round-based roleplaying game set against th
 
 ## Requirements for contributors
 [Guidelines for Contributors](.github/CONTRIBUTING.md)
-
-[/tg/station HACKMD account](https://hackmd.io/@tgstation) - Design documentation here
 
 [Documenting your code](.github/AUTODOC_GUIDE.md)
 
