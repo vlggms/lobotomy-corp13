@@ -89,9 +89,6 @@
  	alt_titles = list("Forensics Specialist", "Private Investigator")
  	senior_title = "Hard-boiled Detective"
 
- /datum/job/brig_phys
- 	alt_titles = list("Security Medic")
-
  /datum/job/officer
  	alt_titles = list("Security Guard", "Junior Officer")
  	senior_title = "Senior Officer"
