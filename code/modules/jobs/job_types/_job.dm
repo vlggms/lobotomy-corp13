@@ -71,6 +71,11 @@
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
 
+	//Tegu edit - Alt job titles
+	var/list/alt_titles = list()
+	var/senior_title
+	//Tegu end
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -149,8 +154,13 @@
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
+	if(outfit && preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[title])//tegu alt job titles start
+ 		var/outfitholder = "[outfit]/[replacetext(lowertext(preference_source.prefs.alt_titles_preferences[title]), " ", "")]"
+ 		if(text2path(outfitholder) || !outfitholder)
+ 			outfit = text2path(outfitholder)//tegu end
+
 	if(outfit_override || outfit)
-		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
+		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly, preference_source)//tegu alt job titles
 
 	H.dna.species.after_equip_job(src, H, visualsOnly)
 
@@ -269,7 +279,7 @@
 		holder = "[uniform]"
 	uniform = text2path(holder)
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null)
 	if(visualsOnly)
 		return
 

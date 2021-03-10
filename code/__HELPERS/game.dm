@@ -519,9 +519,12 @@
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))
 		return
 
+	var/displayed_rank = rank//Tegu edit - Alt job titles
+ 	if(character.client && character.client.prefs && character.client.prefs.alt_titles_preferences[rank])
+ 			displayed_rank = character.client.prefs.alt_titles_preferences[rank]
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
-	announcer.announce("ARRIVAL", character.real_name, rank, list()) //make the list empty to make it announce it in common
-
+	announcer.announce("ARRIVAL", character.real_name, displayed_rank, list()) //make the list empty to make it announce it in common
+//Tegu edit ends
 /proc/lavaland_equipment_pressure_check(turf/T)
 	. = FALSE
 	if(!istype(T))
