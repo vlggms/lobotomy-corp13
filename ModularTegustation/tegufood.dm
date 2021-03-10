@@ -18,7 +18,7 @@
 	icon = 'ModularTegustation/Teguicons/breadstick.dmi'
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	inhand_icon_state = 'breadstick'
+	inhand_icon_state = 'baguette'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10)
 	tastes = list("stale bread" = 1)
 	foodtypes = GRAIN
