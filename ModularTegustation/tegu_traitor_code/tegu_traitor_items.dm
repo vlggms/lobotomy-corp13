@@ -174,5 +174,8 @@
 	desc = "Listen never forget, when you’re here you’re family. Breadstick?"
 	icon_state = "breadstick"
 	icon = 'ModularTegustation/Teguicons/breadstick.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
+	inhand_icon_state = 'breadstick'
 	force = 10
 
