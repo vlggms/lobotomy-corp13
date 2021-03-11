@@ -47,13 +47,14 @@
 
  /datum/job/mime
  	alt_titles = list("Performer")
+	senior_title = "True Frenchman"
 
  //Science
  /datum/job/rd
  	alt_titles = list("Research Supervisor", "Head Scientist", "Chief Researcher", "Chief Science Officer")
 
  /datum/job/scientist
- 	alt_titles = list("Xenobiologist", "Nanite Researcher", "Junior Scientist")
+ 	alt_titles = list("Xenobiologist", "Nanite Researcher", "Cytologist", "Explosives Expert", "Junior Scientist")
  	senior_title = "Senior Scientist"
 
  /datum/job/roboticist
@@ -63,6 +64,7 @@
  //Medical
  /datum/job/cmo
  	alt_titles = list("Medical Director", "Surgeon-General", "Head Surgeon")
+	senior_title = "Masochist"
 
  /datum/job/doctor
  	alt_titles = list("Nurse", "Surgeon", "Junior Doctor", "Psychiatrist")
@@ -107,3 +109,4 @@
 
  /datum/job/cargo_tech
  	alt_titles = list("Mailroom Technician", "Deliveries Officer")
+	senior_title = "Expert Crate Re-Locator"

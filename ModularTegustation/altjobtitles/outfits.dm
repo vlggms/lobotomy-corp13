@@ -101,4 +101,4 @@
  	accessory = /obj/item/clothing/accessory/armband/engine
  	r_pocket = /obj/item/stack/cable_coil
  	l_pocket = /obj/item/flashlight
-
+	l_hand = /obj/item/bag/construction
