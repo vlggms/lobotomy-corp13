@@ -153,3 +153,9 @@
 	desc = "My eternal soul was destroyed to make a toolbox look funny and all I got was this achievement..."
 	database_id = MEDAL_TOOLBOX_SOUL
 	icon = "toolbox_soul"
+
+/datum/award/achievement/misc/tram_surfer
+	name = "Tram Surfer"
+	desc = "Lights out, guerilla radio!"
+	database_id = MEDAL_TRAM_SURFER
+	icon = "tram_surfer"
