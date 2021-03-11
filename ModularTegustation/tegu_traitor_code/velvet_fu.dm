@@ -139,6 +139,7 @@
 	if(prob(80))
 		if(!D.stat)
 			D.Stun(4 SECONDS)
+			D.Jitter(6 SECONDS)
 	else
 		to_chat(A, "<span class='danger'>You fail to stun [D]!</span>")
 	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
