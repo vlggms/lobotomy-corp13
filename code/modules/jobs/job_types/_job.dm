@@ -73,7 +73,7 @@
 
 	//Tegu edit - Alt job titles
 	var/list/alt_titles = list()
-	var/senior_title
+	var/senior_title = ""
 	//Tegu end
 
 /datum/job/New()
