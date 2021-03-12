@@ -70,7 +70,6 @@
  	name = "Medical Doctor (Nurse)"
  	head = /obj/item/clothing/head/nursehat
  	suit = null
- 	alt_uniform = /obj/item/clothing/under/rank/medical/doctor/nurse
  	accessory = /obj/item/clothing/accessory/armband/medblue
 
  /datum/outfit/job/doctor/psychiatrist
