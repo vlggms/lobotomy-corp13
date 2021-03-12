@@ -447,12 +447,12 @@ SUBSYSTEM_DEF(job)
 		living_mob.mind.assigned_role = rank
 
 	//Tegu edit start - Alt job titles
- 	var/display_rank = rank
- 	if(M.client && M.client.prefs && M.client.prefs.alt_titles_preferences[rank])
- 		display_rank = M.client.prefs.alt_titles_preferences[rank]
- 	//Tegu edit end
+	var/display_rank = rank
+	if(M.client && M.client.prefs && M.client.prefs.alt_titles_preferences[rank])
+		display_rank = M.client.prefs.alt_titles_preferences[rank]
+	//Tegu edit end
 
- 	to_chat(M, "<b>You are the [display_rank].</b>")
+	to_chat(M, "<b>You are the [display_rank].</b>")
 	if(job)
 		var/new_mob = job.equip(living_mob, null, null, joined_late , null, M.client)//silicons override this proc to return a mob
 		if(ismob(new_mob))
