@@ -3427,6 +3427,7 @@
 #include "ModularTegustation\tegu_traitor_code\tegu_traitor_items.dm"
 #include "ModularTegustation\tegu_traitor_code\traitor_chaplain.dm"
 #include "ModularTegustation\tegu_traitor_code\uplink_items_tegu.dm"
+#include "ModularTegustation\tegu_traitor_code\velvet_fu.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\black_extracts.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\slime_code.dm"
 #include "ModularTegustation\zTegu_overwrite\cards.dm"
