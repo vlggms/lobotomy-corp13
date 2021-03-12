@@ -23748,10 +23748,6 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
-"hgM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/space,
-/area/space)
 "hhh" = (
 /obj/structure/cable/layer1,
 /obj/effect/landmark/event_spawn,
@@ -25727,12 +25723,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
-"kiK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 9
-	},
-/turf/open/space,
-/area/space)
 "kiS" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -26384,12 +26374,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"ljw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 5
-	},
-/turf/open/space,
-/area/space)
 "ljU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -31046,12 +31030,6 @@
 /obj/item/kirbyplants/photosynthetic,
 /turf/open/floor/plasteel/white,
 /area/science/research)
-"rYB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/space,
-/area/space)
 "rZd" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/bot,
@@ -31240,10 +31218,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
-"sod" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
-/turf/open/space,
-/area/space)
 "soj" = (
 /obj/structure/cable,
 /obj/effect/spawner/structure/window/reinforced,
@@ -31298,6 +31272,9 @@
 "ssH" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/slime,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/science/research/abandoned)
 "ssU" = (
@@ -31538,12 +31515,16 @@
 	icon_state = "panelscorched"
 	},
 /area/science/research/abandoned)
-"sNl" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
+"sNt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Xenobiology Cell 1";
+	dir = 4;
+	name = "xenobiology camera";
+	network = list("ss13","rd","xeno")
 	},
-/turf/open/space,
-/area/space)
+/turf/open/floor/engine,
+/area/science/research/abandoned)
 "sOF" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 1
@@ -31986,12 +31967,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
-"tBK" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/space,
-/area/space)
 "tBZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -32280,12 +32255,6 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
-"tUH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 10
-	},
-/turf/open/space,
-/area/space)
 "tWg" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -32322,6 +32291,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/atmospherics_engine)
+"tZZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/science/research/abandoned)
 "uam" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/general/hidden{
@@ -33126,13 +33102,10 @@
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "vgs" = (
-/obj/machinery/camera{
-	c_tag = "Xenobiology Cell 1";
-	dir = 4;
-	name = "xenobiology camera";
-	network = list("ss13","rd","xeno")
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/open/floor/engine,
 /area/science/research/abandoned)
 "vgF" = (
@@ -34484,12 +34457,6 @@
 /obj/structure/cable/layer1,
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
-"xGa" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 1
-	},
-/turf/open/space,
-/area/space)
 "xHb" = (
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
@@ -34581,12 +34548,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
-"xNS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
-/turf/open/space,
-/area/space)
 "xNV" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/components/trinary/filter/atmos/o2{
@@ -49492,8 +49453,8 @@ aaa
 aaa
 aaa
 aaa
-hgM
-sod
+ajd
+ajd
 aaa
 aaa
 aaa
@@ -49750,7 +49711,7 @@ aaa
 aaa
 aaa
 aaa
-xGa
+ajd
 aaa
 aaa
 aaa
@@ -50006,8 +49967,8 @@ aaa
 aaa
 aaa
 aaa
-rYB
-tBK
+ajd
+ajd
 aaa
 aaa
 aaa
@@ -50264,7 +50225,7 @@ aaa
 aaa
 aaa
 aaa
-sNl
+aaa
 aaa
 aaa
 aaa
@@ -50520,7 +50481,7 @@ aaa
 aaa
 aaa
 aaa
-ljw
+aaa
 aaa
 aaa
 aaa
@@ -50777,7 +50738,7 @@ aaa
 aaa
 aaa
 aaa
-xNS
+ajd
 aaa
 aaa
 aaa
@@ -51034,7 +50995,7 @@ aaa
 aaa
 aaa
 aaa
-kiK
+ajd
 aaa
 aaa
 aaa
@@ -51291,7 +51252,7 @@ aaa
 aaa
 aaa
 aaa
-tUH
+aaa
 aaa
 aaa
 aaa
@@ -62077,16 +62038,16 @@ pWV
 aXJ
 aXJ
 aGa
-aGa
-aaS
+ajd
+ajd
 xHb
 aCH
 xHb
-aGa
-aaS
-aaS
-aaS
-aaS
+aaa
+ajd
+ajd
+ajd
+ajd
 uWg
 aEj
 iyG
@@ -80545,7 +80506,7 @@ axI
 axm
 bBo
 vgs
-bBo
+sNt
 axI
 axq
 uuE
@@ -82600,7 +82561,7 @@ axI
 axI
 axm
 bBo
-bBo
+tZZ
 bBo
 axI
 axq
@@ -83379,7 +83340,7 @@ irX
 bBo
 axm
 bBo
-bBo
+tZZ
 bBo
 axm
 xVT
