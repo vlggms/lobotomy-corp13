@@ -4,17 +4,17 @@
  	uniform = /obj/item/clothing/under/suit/black_really
  	l_hand = /obj/item/storage/briefcase
 
- /datum/outfit/job/assistant/visitor
+/datum/outfit/job/assistant/visitor
  	name = "Assistant (Visitor)"
  	uniform = /obj/item/clothing/under/misc/assistantformal
  	neck = /obj/item/camera
 
- /datum/outfit/job/assistant/trader
+/datum/outfit/job/assistant/trader
  	name = "Assistant (Trader)"
  	r_pocket = /obj/item/coin/gold
  	backpack_contents = list(/obj/item/export_scanner=1)
 
- /datum/outfit/job/assistant/entertainer
+/datum/outfit/job/assistant/entertainer
  	name = "Assistant (Entertainer)"
  	r_hand = /obj/item/bikehorn //hjonk
 
@@ -25,7 +25,7 @@
  	head = /obj/item/clothing/head/hardhat/red
  	l_hand = /obj/item/extinguisher
 
- /datum/outfit/job/atmos/lifesupportspecialist
+/datum/outfit/job/atmos/lifesupportspecialist
  	name = "Atmospheric Technician (Life Support Specialist)"
  	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
 
@@ -66,14 +66,14 @@
  	suit = /obj/item/clothing/suit/apron/surgical
  	mask = /obj/item/clothing/mask/surgical
 
- /datum/outfit/job/doctor/nurse
+/datum/outfit/job/doctor/nurse
  	name = "Medical Doctor (Nurse)"
  	head = /obj/item/clothing/head/nursehat
  	suit = null
  	alt_uniform = /obj/item/clothing/under/rank/medical/doctor/nurse
  	accessory = /obj/item/clothing/accessory/armband/medblue
 
- /datum/outfit/job/doctor/psychiatrist
+/datum/outfit/job/doctor/psychiatrist
  	name = "Medical Doctor (Psychiatrist)"
  	uniform = /obj/item/clothing/under/suit/black
  	suit = null
@@ -89,12 +89,12 @@
  	l_hand = /obj/item/storage/toolbox/electrical
  	gloves = /obj/item/clothing/gloves/color/grey
 
- /datum/outfit/job/engineer/enginetechnician
+/datum/outfit/job/engineer/enginetechnician
  	name = "Station Engineer (Engine Technician)"
  	uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
  	r_pocket = /obj/item/geiger_counter
 
- /datum/outfit/job/engineer/maintenancetechnician
+/datum/outfit/job/engineer/maintenancetechnician
  	name = "Station Engineer (Maintenance Technician)"
  	uniform = /obj/item/clothing/under/color/grey
  	suit = /obj/item/clothing/suit/hazardvest

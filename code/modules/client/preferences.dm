@@ -910,7 +910,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/rank = job.title
 			var/displayed_rank = rank//tegu edit - alt job titles
  			if(job.alt_titles.len && (rank in alt_titles_preferences))
- 					displayed_rank = alt_titles_preferences[rank]//tegu end
+					displayed_rank = alt_titles_preferences[rank]//tegu end
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
