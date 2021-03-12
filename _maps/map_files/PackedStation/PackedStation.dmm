@@ -3959,6 +3959,9 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/firealarm{
+	pixel_y = -26
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "ahV" = (
@@ -6495,6 +6498,10 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "amJ" = (
@@ -6996,6 +7003,10 @@
 /obj/machinery/camera{
 	c_tag = "Mining Dock";
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -16263,22 +16274,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"aFm" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering";
-	req_one_access_txt = "10;24"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "aFn" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -20981,6 +20976,10 @@
 /area/hallway/primary/fore)
 "dHc" = (
 /obj/item/kirbyplants/random,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "dHF" = (
@@ -25807,6 +25806,21 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
+"kSK" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/fore)
 "kSV" = (
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
@@ -30392,10 +30406,7 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable/layer1,
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
-	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "rKg" = (
@@ -65220,7 +65231,7 @@ rUn
 sKU
 sKU
 dts
-aFm
+rUn
 sKU
 spe
 aFF
@@ -66695,7 +66706,7 @@ adv
 aeS
 afa
 afC
-aeg
+kSK
 agt
 ahh
 ahB
