@@ -173,6 +173,13 @@
 	surplus = 18
 	include_modes = list(/datum/game_mode/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
 
+/datum/uplink_item/role_restricted/breadstick
+	name = "Weaponized Breadstick"
+	desc = "An officer's sabre disguised as a breadstick. Slightly weaker than the average sabre."
+	item = /obj/item/melee/sabre/breadstick
+	cost = 7
+	restricted_roles = list("Cook")
+
 /obj/item/toy/balloon/syndicate/gold
 	name = "gold syndicate balloon"
 	desc = "This is a balloon made out of pure gold. How it floats, nobody knows."
