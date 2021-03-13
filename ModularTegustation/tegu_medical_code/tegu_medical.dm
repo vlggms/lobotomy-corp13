@@ -1,6 +1,6 @@
 /obj/item/storage/belt/medical/surgeryfilled
-	name = "\improper Chief Medical Officers's surgerybelt"
-	desc = "a toolbelt full of surgery tools."
+	name = "\improper Chief Medical Officer's Medical belt"
+	desc = "Holds medical tools, looks the same as a regular belt."
 
 /obj/item/storage/belt/medical/surgeryfilled/PopulateContents()
 	new /obj/item/scalpel(src)

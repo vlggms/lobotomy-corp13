@@ -168,3 +168,14 @@
 	new /obj/item/reagent_containers/glass/beaker/large(src)
 	new /obj/item/reagent_containers/dropper(src)
 	new /obj/item/reagent_containers/syringe(src)
+
+/obj/item/melee/sabre/breadstick
+	name = "Breadstick"
+	desc = "Listen never forget, when you’re here you’re family. Breadstick?"
+	icon_state = "breadstick"
+	icon = 'ModularTegustation/Teguicons/breadstick.dmi'
+	lefthand_file = "icons/mob/inhands/misc/food_lefthand.dmi"
+	righthand_file = "icons/mob/inhands/misc/food_righthand.dmi"
+	inhand_icon_state = "baguette"
+	force = 10
+
