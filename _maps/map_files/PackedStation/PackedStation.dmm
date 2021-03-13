@@ -27256,10 +27256,10 @@
 /obj/docking_port/stationary{
 	dir = 8;
 	dwidth = 3;
-	height = 10;
+	height = 5;
 	id = "mining_home";
 	name = "mining shuttle bay";
-	roundstart_template = /datum/map_template/shuttle/mining/large;
+	roundstart_template = /datum/map_template/shuttle/mining/box;
 	width = 7
 	},
 /turf/open/space/basic,
@@ -77030,7 +77030,7 @@ ndg
 mpo
 pFV
 hPm
-eWh
+pFV
 aPs
 aPs
 aPs
