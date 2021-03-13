@@ -4348,10 +4348,10 @@
 	pixel_y = -10;
 	req_access_txt = "28"
 	},
-/obj/machinery/food_cart,
 /obj/item/radio/intercom{
 	pixel_x = -28
 	},
+/obj/machinery/griddle,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aiE" = (
@@ -9435,10 +9435,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/dark,
 /area/science/robotics/lab)
-"asi" = (
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/cafeteria,
-/area/crew_quarters/kitchen)
 "asj" = (
 /obj/structure/table,
 /obj/item/stamp/rd{
@@ -10960,11 +10956,12 @@
 "avm" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 4;
-	height = 15;
-	id = "emergency_home";
-	name = "PackedStation emergency evac bay";
-	width = 20
+	dwidth = 3;
+	height = 5;
+	id = "mining_home";
+	name = "mining shuttle bay";
+	roundstart_template = /datum/map_template/shuttle/mining/box;
+	width = 7
 	},
 /turf/open/space/basic,
 /area/space)
@@ -24706,6 +24703,17 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"jeV" = (
+/obj/structure/curtain/bounty{
+	req_one_access_txt = "25;28"
+	},
+/obj/machinery/door/window/southright{
+	dir = 8;
+	name = "Botany Door";
+	req_one_access_txt = "35;28"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/crew_quarters/bar)
 "jfC" = (
 /obj/structure/closet/secure_closet/brig,
 /obj/machinery/light/small{
@@ -26130,6 +26138,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
+"lni" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
 "lnY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 6
@@ -28163,6 +28175,11 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"oiR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/food_cart,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "ojD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -33850,10 +33867,10 @@
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "xnY" = (
-/obj/structure/bookcase/random/reference,
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/machinery/vending/drugs,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "xof" = (
@@ -68787,7 +68804,7 @@ azu
 aAt
 acK
 aSx
-asi
+alA
 aBH
 aUN
 aWU
@@ -69044,7 +69061,7 @@ aED
 qCj
 aEg
 aSx
-alA
+lni
 aBI
 aUN
 nfj
@@ -69301,7 +69318,7 @@ apa
 aph
 apz
 aSx
-aEp
+lni
 aBJ
 aUN
 aPq
@@ -70070,7 +70087,7 @@ aCm
 aCm
 aCm
 aCm
-aCm
+jeV
 ajH
 apc
 ayc
@@ -72387,7 +72404,7 @@ aKY
 sah
 aNI
 sQZ
-els
+oiR
 fWD
 arK
 arX
