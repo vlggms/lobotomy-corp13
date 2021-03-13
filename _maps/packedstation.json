@@ -1,6 +1,6 @@
 {
 	"version": 1, 
-   "map_name": "Packedstation",
+   "map_name": "Packed Station",
     "map_path": "map_files/PackedStation",
     "map_file": "PackedStation.dmm",
     "shuttles": {
