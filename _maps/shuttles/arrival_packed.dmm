@@ -5,8 +5,8 @@
 /turf/open/space/basic,
 /area/shuttle/arrival)
 "b" = (
-/turf/open/space/basic,
-/area/space)
+/turf/template_noop,
+/area/template_noop)
 "f" = (
 /obj/structure/closet/wardrobe/grey,
 /turf/open/floor/mineral/titanium,
@@ -97,8 +97,9 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)
 "P" = (
-/obj/machinery/computer/shuttle{
-	dir = 4
+/obj/machinery/computer{
+	dir = 4;
+	name = "Shuttle computer"
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/arrival)

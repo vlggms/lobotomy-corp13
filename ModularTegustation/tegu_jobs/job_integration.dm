@@ -17,6 +17,9 @@
 	if (!linkedJobType || assignment == "Deputy") // Using the global list here breaks Tegu Job's ID Card Overlays.
 		return 'ModularTegustation/Teguicons/cards.dmi'
 
+	if (!linkedJobType || assignment == "Geneticist") // Using the global list here breaks Tegu Job's ID Card Overlays.
+		return 'ModularTegustation/Teguicons/cards.dmi'
+
 	if (!linkedJobType || assignment == "Unassigned")
 		return 'icons/obj/card.dmi'
 
