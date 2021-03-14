@@ -46,15 +46,19 @@
 
   /* SPAWNERS */
 /obj/effect/mob_spawn/human/lufr
-	name = "cryogenics pod"
+	name = "LUFR Soldier"
 	desc = "A cryogenics pod, seemingly"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
-	mob_name = "a LUFr soldier"
+	mob_name = "a LUFR soldier"
+	assignedrole = "LUFR Soldier"
 	mob_species = /datum/species/lizard
-	short_desc = "You are a LUFr soldier, fighting for lizardkind."
+	short_desc = "You are a LUFR soldier, fighting for lizardkind."
 	outfit = /datum/outfit/lufr
+	id_job = "Syndicate Operative"
+	anchored = TRUE
 	roundstart = FALSE
+	random = TRUE
 	death = FALSE
 
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
@@ -63,8 +67,6 @@
 /obj/effect/mob_spawn/human/lufr/ashwalker
 	mob_species = /datum/species/lizard/ashwalker
 	outfit = /datum/outfit/lufr/ashen
-	assignedrole = "LUFr Soldier"
-	anchored = TRUE
 	important_info = "Avoid needless confontations with humans, protect your kind and do not attempt to get onto the Station!"
 
 /obj/effect/mob_spawn/human/lufr/ashwalker/Initialize(mapload) // Muh lore.
