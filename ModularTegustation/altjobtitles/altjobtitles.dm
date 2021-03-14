@@ -7,7 +7,7 @@
 	alt_titles = list("Chief Atmoshperics Technician", "Chief Electrical Technician")
 
 /datum/job/engineer
-	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist", "Junior Engineer")
+	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist")
 	senior_title = "Senior Engineer"
 
 /datum/job/atmos
@@ -38,7 +38,7 @@
 	alt_titles = list("Custodian", "Sanitation Technician")
 
 /datum/job/lawyer
-	alt_titles = list("Corporate Representative", "Attorney")
+	alt_titles = list("Attorney")
 	senior_title = "Ace Attorney"
 
 /datum/job/chaplain
@@ -57,7 +57,7 @@
 	alt_titles = list("Research Supervisor", "Head Scientist", "Chief Researcher", "Chief Science Officer")
 
 /datum/job/scientist
-	alt_titles = list("Xenobiologist", "Nanite Researcher", "Cytologist", "Explosives Expert", "Junior Scientist")
+	alt_titles = list("Xenobiologist", "Nanites Researcher", "Cytologist", "Explosives Expert")
 	senior_title = "Senior Scientist"
 
 /datum/job/roboticist
@@ -66,18 +66,17 @@
 
  //Medical
 /datum/job/cmo
-	alt_titles = list("Medical Director", "Surgeon-General", "Head Surgeon")
-	senior_title = "Masochist"
+	alt_titles = list("Medical Director", "Head Surgeon")
 
 /datum/job/doctor
-	alt_titles = list("Nurse", "Surgeon", "Junior Doctor", "Psychiatrist")
+	alt_titles = list("Nurse", "Surgeon", "Junior Doctor")
 	senior_title = "Senior Medical Doctor"
 
 /datum/job/paramedic
 	alt_titles = list("Emergency Medical Technician")
 
 /datum/job/chemist
-	alt_titles = list("Pharmacist", "Pharmacologist", "Junior Chemist")
+	alt_titles = list("Pharmacist", "Pharmacologist")
 	senior_title = "Senior Chemist"
 
 /datum/job/virologist
