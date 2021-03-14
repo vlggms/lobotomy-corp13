@@ -1,3 +1,13 @@
+/datum/uplink_item/stealthy_weapons/velvetfu
+	name = "Velvet-Fu VHS tape"
+	desc = "Velvet-Fu is a knock-off Martial Art straight from Hollywood.\
+			'A VHS tape that teaches YOU, the secrets of Velvet-Fu!' \
+			Now specially modified to beam its knowledge directly into your eyes, removing the need for a TV."
+	item = /obj/item/book/granter/martial/velvetfu
+	cost = 10
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+
 /datum/uplink_item/role_restricted/bag_of_encounters
 	name = "Bag of Encounters"
 	desc = "An inconspicious bag of dice, recovered from a Space Wizard's dungeon. Each dice within will summon a challenge for the crew: 1d4 Bears, 1d6 Space Carp or 1d20 angry Bees!\
@@ -162,6 +172,13 @@
 	cost = 5
 	surplus = 18
 	include_modes = list(/datum/game_mode/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
+
+/datum/uplink_item/role_restricted/breadstick
+	name = "Weaponized Breadstick"
+	desc = "An officer's sabre disguised as a breadstick. Slightly weaker than the average sabre."
+	item = /obj/item/melee/sabre/breadstick
+	cost = 7
+	restricted_roles = list("Cook")
 
 /obj/item/toy/balloon/syndicate/gold
 	name = "gold syndicate balloon"
