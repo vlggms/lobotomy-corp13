@@ -12284,6 +12284,12 @@
 /obj/item/clothing/glasses/meson/engine,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/button/door{
+	id = "SupermatterExternal";
+	name = "Shutters Control";
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "axM" = (
@@ -14948,13 +14954,6 @@
 "aCR" = (
 /turf/closed/wall/r_wall,
 /area/medical/surgery)
-"aCS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/structure/table,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "aCT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -19926,11 +19925,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
-"bYb" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/grille,
-/turf/closed/wall/r_wall,
-/area/engine/atmos)
 "bYl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
@@ -22656,16 +22650,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
-"fYX" = (
-/obj/machinery/button/door{
-	id = "SupermatterExternal";
-	name = "Shutters Control";
-	pixel_x = 23;
-	req_access_txt = "11"
-	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "gbv" = (
 /obj/structure/cable,
 /obj/machinery/iv_drip,
@@ -25717,6 +25701,12 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/button/door{
+	id = "SupermatterExternal";
+	name = "Shutters Control";
+	pixel_y = -23;
+	req_access_txt = "11"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "kFA" = (
@@ -26829,6 +26819,14 @@
 /obj/item/stack/cable_coil/cut,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
+"mge" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "mhM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -27470,6 +27468,13 @@
 	},
 /turf/open/space/basic,
 /area/engine/atmos)
+"ncj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "ncT" = (
 /obj/machinery/power/turbine{
 	dir = 4;
@@ -27756,6 +27761,23 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/maintenance/aft)
+"nrB" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/rods/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/stock_parts/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 30
+	},
+/obj/item/gps,
+/turf/open/floor/plating,
+/area/engine/break_room)
 "nrE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29861,7 +29883,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "qMs" = (
-/obj/structure/window/reinforced/tinted/fulltile,
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "qMN" = (
@@ -32328,12 +32351,6 @@
 "uuo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
-	},
-/obj/machinery/button/door{
-	id = "SupermatterExternal";
-	name = "Shutters Control";
-	pixel_x = -23;
-	req_access_txt = "11"
 	},
 /obj/effect/spawner/structure/window/plasma/reinforced,
 /turf/open/floor/plasteel,
@@ -62767,7 +62784,7 @@ cKE
 xpu
 xpu
 xpu
-xpu
+nrB
 xpu
 frg
 qhg
@@ -64577,7 +64594,7 @@ pXG
 dsq
 ptl
 jPO
-fYX
+cdw
 nAD
 vja
 bEz
@@ -71510,7 +71527,7 @@ fPS
 eLc
 yha
 hhp
-bYb
+let
 aks
 abh
 abh
@@ -72951,7 +72968,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaS
 aaS
 aaS
 aaS
@@ -74493,7 +74510,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaS
 aaS
 aaS
 aaS
@@ -79201,7 +79218,7 @@ wQY
 wQY
 wQY
 rTO
-aBw
+ncj
 eeJ
 bQH
 aaS
@@ -81257,7 +81274,7 @@ rTO
 eeE
 bIH
 rTO
-aCQ
+mge
 xmB
 bQH
 aaa
@@ -81771,7 +81788,7 @@ wQY
 wQY
 rTO
 qMs
-aCS
+aBw
 eeJ
 bQH
 aaa
