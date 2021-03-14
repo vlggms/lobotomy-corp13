@@ -14342,8 +14342,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -15336,17 +15336,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
-"aDD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "aDE" = (
 /obj/machinery/seed_extractor,
 /obj/machinery/airalarm{
@@ -23707,11 +23696,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "hBV" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/landmark/blobstart,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
+/obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "hCo" = (
@@ -27542,13 +27530,6 @@
 	dir = 1;
 	network = list("ss13","medbay")
 	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
-	pixel_y = -30
-	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
@@ -27558,6 +27539,9 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = -30
 	},
 /turf/open/floor/plasteel/white,
 /area/science/genetics)
@@ -28710,6 +28694,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oOO" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "oOW" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -28864,9 +28852,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
-	dir = 6
-	},
+/obj/machinery/atmospherics/components/binary/pump/on,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "phQ" = (
@@ -33101,6 +33087,7 @@
 	dir = 4;
 	pixel_x = 26
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/storage/eva)
 "vMH" = (
@@ -33530,10 +33517,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/visible,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wCQ" = (
@@ -76909,7 +76896,7 @@ pYh
 aCQ
 fQK
 cSv
-aDD
+fQH
 rTO
 aaa
 aaa
@@ -77678,7 +77665,7 @@ pYh
 rTO
 hUi
 aCf
-pYh
+oOO
 ath
 lEK
 rTO
