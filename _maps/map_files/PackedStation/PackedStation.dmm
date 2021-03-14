@@ -31855,6 +31855,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"tKX" = (
+/obj/item/food/bread/plain,
+/turf/open/space/basic,
+/area/space)
 "tLu" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate/engineering{
@@ -71233,7 +71237,7 @@ rTO
 aCh
 rTO
 ajd
-ajd
+tKX
 ajd
 wQY
 fqG
