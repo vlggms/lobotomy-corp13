@@ -86,6 +86,8 @@
 	desc = "From the rage of the beast, Machine God protect us."
 	armor = list("melee" = 75, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 40, "fire" = 100, "acid" = 100)
 	hoodtype = /obj/item/clothing/head/hooded/techpriest/armor/lead
+	cold_protection = CHEST|GROIN|LEGS|ARMS
+	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -102,6 +104,7 @@
 	desc = "From the weakness of the mind, Omnissiah set us free."
 	armor = list("melee" = 75, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 100, "rad" = 40, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD
+	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	transparent_protection = HIDEMASK
@@ -322,7 +325,7 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/icemoon/underground/techcult
-	name = "Adeptus Mechanicus"
+	name = "Adeptus Mechanicus Icebox"
 	id = "techcult"
 	description = "An old base, filled with religious fanatics praising the entity they call 'Machine God'."
 	suffix = "icemoon_underground_techcult.dmm"
