@@ -3409,6 +3409,7 @@
 #include "ModularTegustation\tegu_mobs\alligator.dm"
 #include "ModularTegustation\tegu_mobs\butcher.dm"
 #include "ModularTegustation\tegu_mobs\chaos_marine.dm"
+#include "ModularTegustation\tegu_ruins\lavaland_ruins.dm"
 #include "ModularTegustation\tegu_security_code\body_cameras.dm"
 #include "ModularTegustation\tegu_security_code\detective_glasses.dm"
 #include "ModularTegustation\tegu_security_code\detective_scanner.dm"
