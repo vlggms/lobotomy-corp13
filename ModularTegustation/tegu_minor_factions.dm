@@ -68,6 +68,7 @@
 	important_info = "Avoid needless confontations with humans, protect your kind and do not attempt to get onto the Station!"
 
 /obj/effect/mob_spawn/human/lufr/ashwalker/Initialize(mapload) // Muh lore.
+	. = ..()
 	var/prev_job_lufr = pick("Captain", "Head of Security", "Head of Personnel", "Research Director", \
 	"Corporate Representative", "Internal Affairs Agent", "ERT member")
 	var/prev_station_lufr = pick("'Zeta'", "'Ion'", "'KS'", "11", "12")
