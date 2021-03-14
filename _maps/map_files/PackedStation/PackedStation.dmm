@@ -6935,11 +6935,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel,
 /area/science/research)
-"anx" = (
-/obj/effect/decal/cleanable/dirt,
-/mob/living/carbon/human/species/monkey,
-/turf/open/floor/plating,
-/area/science/research/abandoned)
 "any" = (
 /obj/machinery/mineral/equipment_vendor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -9671,7 +9666,6 @@
 /obj/item/multitool,
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/slime,
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "asO" = (
@@ -9721,12 +9715,6 @@
 	},
 /turf/open/floor/plating,
 /area/chapel/main)
-"asT" = (
-/obj/structure/window/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/slime,
-/turf/open/floor/plating,
-/area/science/research/abandoned)
 "asU" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/cable,
@@ -12382,7 +12370,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/slime,
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -22722,6 +22709,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+"gfQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/science/research/abandoned)
 "ggk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
@@ -26838,6 +26834,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/mob/living/simple_animal/slime,
 /turf/open/floor/engine/airless,
 /area/science/research/abandoned)
 "mhS" = (
@@ -28933,12 +28930,13 @@
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "ppd" = (
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/door/airlock/maintenance{
+	name = "Science Maintenance";
+	req_access_txt = "47"
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "ppU" = (
@@ -33472,7 +33470,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/mob/living/simple_animal/slime,
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "wzK" = (
@@ -80456,7 +80453,7 @@ mqz
 sCu
 miR
 uUd
-asT
+mqz
 sCu
 xRI
 axm
@@ -80711,7 +80708,7 @@ bBo
 axI
 ayb
 bIm
-anx
+ayh
 cIQ
 bIm
 ayh
@@ -81721,7 +81718,7 @@ aad
 ajd
 aaS
 axq
-ayb
+gfQ
 bYB
 ayb
 wxd
