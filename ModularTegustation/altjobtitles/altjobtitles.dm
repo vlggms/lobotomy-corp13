@@ -54,7 +54,7 @@
 
  //Science
 /datum/job/rd
-	alt_titles = list("Research Supervisor", "Head Scientist", "Chief Researcher", "Chief Science Officer")
+	alt_titles = list("Research Supervisor", "Head Scientist", "Chief Researcher")
 
 /datum/job/scientist
 	alt_titles = list("Xenobiologist", "Nanites Researcher", "Cytologist", "Explosives Expert")

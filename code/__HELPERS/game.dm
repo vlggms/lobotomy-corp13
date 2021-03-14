@@ -519,7 +519,8 @@
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))
 		return
 
-	var/displayed_rank = rank//Tegu edit - Alt job titles
+//Tegu edit start - Alt job titles
+	var/displayed_rank = rank
 	if(character.client && character.client.prefs && character.client.prefs.alt_titles_preferences[rank])
 		displayed_rank = character.client.prefs.alt_titles_preferences[rank]
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)

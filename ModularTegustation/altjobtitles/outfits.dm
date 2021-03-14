@@ -12,7 +12,7 @@
 /datum/outfit/job/assistant/trader
 	name = "Assistant (Trader)"
 	r_pocket = /obj/item/coin/gold
-	backpack_contents = list(/obj/item/export_scanner=1)
+	backpack_contents = list(/obj/item/export_scanner=1, /obj/item/modular_computer/tablet/preset/cargo=1)
 
 /datum/outfit/job/assistant/entertainer
 	name = "Assistant (Entertainer)"

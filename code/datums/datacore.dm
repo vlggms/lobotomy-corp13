@@ -304,7 +304,7 @@
 		var/datum/data/record/L = new()
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")	//surely this should just be id, like the others?
 		L.fields["name"]		= H.real_name
-		L.fields["rank"]		= H.mind.assigned_role
+		L.fields["rank"] 		= H.mind.assigned_role
 		L.fields["age"]			= H.age
 		L.fields["gender"]			= H.gender
 		if(H.gender == "male")
