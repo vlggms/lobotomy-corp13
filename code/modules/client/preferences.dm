@@ -82,6 +82,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_JUMPSUIT_STYLE = TRUE, RANDOM_HAIRSTYLE = TRUE, RANDOM_HAIR_COLOR = TRUE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
 	var/phobia = "spiders"
 
+	var/list/alt_titles_preferences = list() // Tegu
+
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_RANDOM
@@ -911,7 +913,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/displayed_rank = rank//tegu edit - alt job titles
 			if(job.alt_titles.len && (rank in alt_titles_preferences))
 				displayed_rank = alt_titles_preferences[rank]//tegu end
-			var/datum/job/lastJob = job
+			lastJob = job
 			if(is_banned_from(user.ckey, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				continue

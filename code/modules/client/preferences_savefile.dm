@@ -388,7 +388,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_moth_antennae"], features["moth_antennae"])
 	READ_FILE(S["feature_moth_markings"], features["moth_markings"])
 	READ_FILE(S["persistent_scars"] , persistent_scars)
-	READ_FILE(S["alt_titles_preferences"] ,	alt_titles_preferences)//tegu edit - alt job titles
+	READ_FILE(S["alt_titles_preferences"], alt_titles_preferences)//tegu edit - alt job titles
 	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
 	if(SSjob)
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))

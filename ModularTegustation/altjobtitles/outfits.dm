@@ -66,7 +66,7 @@
 	suit = /obj/item/clothing/suit/apron/surgical
 	mask = /obj/item/clothing/mask/surgical
 
- /datum/outfit/job/doctor/nurse
+/datum/outfit/job/doctor/nurse
  	name = "Medical Doctor (Nurse)"
  	head = /obj/item/clothing/head/nursehat
  	suit = null
@@ -100,4 +100,4 @@
 	accessory = /obj/item/clothing/accessory/armband/engine
 	r_pocket = /obj/item/stack/cable_coil
 	l_pocket = /obj/item/flashlight
-	l_hand = /obj/item/bag/construction
+	l_hand = /obj/item/storage/bag/construction

@@ -71,11 +71,6 @@
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
 
-	//Tegu edit - Alt job titles
-	var/list/alt_titles = list()
-	var/senior_title = ""
-	//Tegu end
-
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()

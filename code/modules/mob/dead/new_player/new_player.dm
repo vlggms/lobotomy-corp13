@@ -410,8 +410,8 @@
 			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
 				var/altjobline = "" //tegu edit - alt job titles
 				var/command_bold = ""
-				if(client && client.prefs && client.prefs.alt_titles_preferences[job.title])//tegu edit - alt job titles
-					altjobline = "(as [client.prefs.alt_titles_preferences[job.title]])"//tegu edit - alt job titles
+				if(client && client.prefs && client.prefs.alt_titles_preferences[job_datum.title])//tegu edit - alt job titles
+					altjobline = "(as [client.prefs.alt_titles_preferences[job_datum.title]])"//tegu edit - alt job titles
 				if(job in GLOB.command_positions)
 					command_bold = " command"
 				if(job_datum in SSjob.prioritized_jobs)
