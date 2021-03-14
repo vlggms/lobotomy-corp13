@@ -39,6 +39,7 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
+/obj/item/mining_voucher,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "e" = (
@@ -188,6 +189,7 @@
 /obj/effect/spawner/lootdrop/maintenance/seven,
 /obj/effect/spawner/lootdrop/space/syndiecosmetic,
 /obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "t" = (
@@ -223,6 +225,7 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/item/construction/rcd/loaded,
+/obj/item/pickaxe/drill,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "x" = (
@@ -237,6 +240,7 @@
 /obj/effect/spawner/lootdrop/maintenance/seven,
 /obj/effect/spawner/lootdrop/space/material,
 /obj/effect/spawner/lootdrop/space/languagebook,
+/obj/item/storage/firstaid/fire,
 /turf/open/floor/plasteel/dark,
 /area/ruin/powered)
 "y" = (
