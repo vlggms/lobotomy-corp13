@@ -1,6 +1,13 @@
 /obj/machinery/vending/autodrobe/Initialize()
-	products += list(/obj/item/clothing/shoes/clown_shoes/digitigrade = 1,
+	products += list(/obj/item/clothing/head/zepellihat = 1,
+	/obj/item/clothing/under/costume/saiyan = 1,
+	/obj/item/clothing/shoes/clown_shoes/digitigrade = 1,
 	/obj/item/clothing/shoes/sneakers/mime/digitigrade = 1)
+	contraband += list(/obj/item/clothing/under/costume/diojumpsuit = 1,
+	/obj/item/clothing/suit/diojacket = 1,
+	/obj/item/clothing/shoes/dioshoes = 1,
+	/obj/item/clothing/head/dioband = 1,
+	/obj/item/clothing/gloves/diowristbands = 1)
 	. = ..()
 
 /obj/machinery/vending/clothing/Initialize()
