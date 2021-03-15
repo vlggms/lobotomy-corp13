@@ -1,11 +1,10 @@
 ### [![TeguStation](.github/assets/tegustation.png)](#) Welcome to the code repository for the TeguStation, a fork of [/tg/station](https://github.com/tgstation/tgstation).
 
+[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](#) [![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg)](#) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+
 [![Build Status](https://github.com/vlggms/tegustation/workflows/CI%20Suite/badge.svg)](https://github.com/vlggms/tegustation/actions?query=workflow%3A%22CI+Suite%22)
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/vlggms/tegustation.svg)](https://isitmaintained.com/project/vlggms/tegustation "Percentage of issues still open")
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/vlggms/tegustation.svg)](https://isitmaintained.com/project/vlggms/tegustation "Average time to resolve an issue")
-![Coverage](https://img.shields.io/badge/coverage---3%25-red.svg)
-
-[![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://user-images.githubusercontent.com/8171642/50290880-ffef5500-043a-11e9-8270-a2e5b697c86c.png) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 ## Community
 [<img src=".github/assets/discord.png" alt="Discord" width="150" align="left">](https://discord.gg/AzmEhtH)
