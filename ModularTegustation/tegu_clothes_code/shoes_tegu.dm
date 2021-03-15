@@ -32,6 +32,9 @@
 	permeability_coefficient = 0.05
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 20, "bio" = 5, "rad" = 0, "fire" = 40, "acid" = 20)
 
+/obj/item/clothing/shoes/digicombat/noslip
+	desc = "Robust combat boots especially for lizardmen. Perfect for walking over piled human corpses. This pair of shoes is specifically designed to prevent slipping on wet surfaces."
+	clothing_flags = NOSLIP
 
 /obj/item/clothing/shoes/jackboots/digitigrade
 	name = "digitigrade jackboots"
