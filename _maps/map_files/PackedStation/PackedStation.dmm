@@ -19611,8 +19611,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
 	name = "Science Maintenance";
-	req_access_txt = "47"
+	req_one_access_txt = "12;47"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "bEz" = (
@@ -21948,7 +21949,7 @@
 /obj/structure/sign/departments/xenobio{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/tile/purple{
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -29529,7 +29530,7 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
 	name = "Science Maintenance";
-	req_access_txt = "47"
+	req_one_access_txt = "12;47"
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -33906,6 +33907,15 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
+"vLF" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/maintenance/fore/secondary)
 "vLW" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -79282,7 +79292,7 @@ kbp
 nRb
 nuG
 sku
-uIC
+vLF
 uIC
 kyV
 uIC
