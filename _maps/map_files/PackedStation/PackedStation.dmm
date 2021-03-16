@@ -8619,10 +8619,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/door/airlock/research{
-	name = "Genetics Lab";
-	req_one_access = "9;47"
-	},
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -8631,6 +8627,10 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/research{
+	name = "Genetics Lab";
+	req_access_txt = "47, 9"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/genetics)
 "aqB" = (
@@ -12041,12 +12041,12 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "axm" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Science Maintenance";
-	req_access_txt = "47"
-	},
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/research{
+	name = "Xenobiology Access";
+	req_access_txt = "55"
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
 "axn" = (
@@ -27710,16 +27710,16 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "mLH" = (
-/obj/machinery/door/airlock/research{
-	name = "Genetics Lab";
-	req_one_access = "9;47"
-	},
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/door/airlock/research{
+	name = "Genetics Lab";
+	req_access_txt = "47, 9"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/genetics)
