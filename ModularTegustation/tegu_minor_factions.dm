@@ -37,6 +37,7 @@
 
 /datum/outfit/lufr/ashen // For ashwalker lizards.
 	name = "LUFR Ashen Warrior"
+	digitifit = TRUE
 	shoes = /obj/item/clothing/shoes/digicombat
 	glasses = /obj/item/clothing/glasses/meson
 	suit = null
@@ -60,6 +61,8 @@
 	roundstart = FALSE
 	random = TRUE
 	death = FALSE
+	var/prev_job_lufr
+	var/syndi_job_lufr
 
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
@@ -71,7 +74,7 @@
 
 /obj/effect/mob_spawn/human/lufr/ashwalker/Initialize(mapload) // Muh lore.
 	. = ..()
-	var/prev_job_lufr = pick("Captain", "Head of Security", "Head of Personnel", "Research Director", \
+	prev_job_lufr = pick("Captain", "Head of Security", "Head of Personnel", "Research Director", \
 	"Corporate Representative", "Internal Affairs Agent", "ERT member")
 	var/prev_station_lufr = pick("'Zeta'", "'Ion'", "'KS'", "11", "12")
 	var/new_job_lufr = pick("a Janitor", "a Deputy", "a Cook", "an Assistant", "a Station Engineer", "Bartender")
@@ -79,7 +82,6 @@
 	"released a horde of angry slimes in the main hall", \
 	"killed the new, human [prev_job_lufr]", "sent spam to CentCom via communications console", \
 	"managed to fool CentCom into sending Death Squad to Space Station [prev_station_lufr]")
-	var/syndi_job_lufr
 	switch(prev_job_lufr)
 		if("Captain")
 			syndi_job_lufr = pick("an Admiral", "a Captain on one of their combat ships")
@@ -97,3 +99,8 @@
 	forced to work as [new_job_lufr]! Outraged by this injustice, you [crime_lufr] and rushed to the last working escape pod \
 	and ended up on Lavaland, where you've got in contact with the Syndicate, which promptly sent you supplies and offered \
 	you to work as [syndi_job_lufr], once they arrive here to pick you up."
+
+/obj/effect/mob_spawn/human/lufr/ashwalker/special(mob/living/new_spawn)
+	. = ..()
+	new_spawn.mind.store_memory("Your previous job was: [prev_job_lufr]")
+	new_spawn.mind.store_memory("Syndicate offere you to work as: [syndi_job_lufr]")
