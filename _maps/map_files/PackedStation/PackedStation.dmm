@@ -12510,6 +12510,7 @@
 /area/science/research)
 "ayo" = (
 /obj/item/beacon,
+/obj/effect/landmark/blobstart,
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "ayp" = (
@@ -32743,6 +32744,11 @@
 "tTK" = (
 /turf/closed/wall/r_wall,
 /area/hallway/primary/aft)
+"tUb" = (
+/obj/effect/landmark/xeno_spawn,
+/obj/effect/spawner/lootdrop/two_percent_xeno_egg_spawner,
+/turf/open/floor/engine,
+/area/science/xenobiology)
 "tUk" = (
 /obj/machinery/disposal/bin,
 /obj/effect/turf_decal/tile/yellow{
@@ -33866,9 +33872,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "vHY" = (
-/obj/machinery/atmospherics/pipe/manifold/general/hidden{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -33880,6 +33883,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "vIt" = (
@@ -82589,7 +82595,7 @@ ajd
 aaS
 mZM
 enu
-enu
+tUb
 enu
 fRf
 jhM
