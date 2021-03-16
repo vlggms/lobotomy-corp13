@@ -21724,6 +21724,25 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+"eCE" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/dropper,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "eDj" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Lab";
@@ -22564,6 +22583,11 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
+	},
+/obj/structure/microscope,
+/obj/item/biopsy_tool{
+	pixel_x = 14;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -27292,6 +27316,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"mdn" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/closet/l3closet,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "mdR" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/computer/arcade,
@@ -28924,6 +28955,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
+"okz" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "okC" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
@@ -31248,6 +31286,10 @@
 /obj/structure/table,
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
+	},
+/obj/item/book/manual/wiki/cytology{
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -33704,6 +33746,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/port)
+"vrM" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/closet/l3closet,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "vto" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light{
@@ -81780,10 +81832,10 @@ pKi
 fNU
 dXz
 wLI
-axI
-mDq
-mDq
-mDq
+vrM
+mdn
+okz
+okz
 jHG
 rCA
 qic
@@ -82548,7 +82600,7 @@ vjw
 rFA
 lIA
 bFM
-fLX
+eCE
 udB
 mZM
 lWd
