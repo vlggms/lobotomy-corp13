@@ -5392,6 +5392,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/science/genetics)
 "akO" = (
@@ -6181,9 +6182,9 @@
 /obj/machinery/button/door{
 	id = "psychology";
 	name = "Psychology Shutters Control";
-	req_access_txt = "70";
 	pixel_x = 24;
-	pixel_y = 10
+	pixel_y = 10;
+	req_access_txt = "70"
 	},
 /turf/open/floor/carpet,
 /area/medical/psychology)
@@ -8721,6 +8722,7 @@
 	pixel_x = 4
 	},
 /obj/item/circular_saw,
+/obj/item/surgical_drapes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/medical/surgery)
 "arb" = (
@@ -23762,6 +23764,9 @@
 	dir = 4;
 	pixel_x = -24
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "hxT" = (
@@ -27378,6 +27383,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"mjI" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "mjO" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -27855,9 +27867,6 @@
 /turf/open/floor/wood,
 /area/library)
 "mQn" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/camera/emp_proof{
 	c_tag = "Singularity North-West";
 	dir = 6;
@@ -32857,9 +32866,6 @@
 /turf/open/floor/plating,
 /area/science/nanite)
 "tWT" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/atmospherics/components/binary/valve/digital,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -34809,6 +34815,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 4
 	},
+/obj/item/surgical_drapes,
 /turf/open/floor/plasteel/showroomfloor,
 /area/medical/surgery)
 "xcw" = (
@@ -35564,6 +35571,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "yig" = (
@@ -67683,7 +67691,7 @@ dxc
 ufe
 iif
 jjI
-xDn
+mjI
 amD
 tMS
 rCe
