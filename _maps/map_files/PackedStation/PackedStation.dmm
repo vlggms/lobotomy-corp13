@@ -1675,6 +1675,10 @@
 	pixel_x = -30
 	},
 /obj/structure/cable,
+/obj/machinery/computer/gateway_control{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/gateway)
 "adB" = (
@@ -2547,10 +2551,10 @@
 /turf/open/floor/plating,
 /area/science/lab)
 "afd" = (
-/obj/structure/window/plasma/reinforced,
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "afe" = (
@@ -4846,14 +4850,14 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/cmo)
 "ajP" = (
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
 /obj/machinery/computer/crew,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -7440,7 +7444,7 @@
 	name = "Brig Desk";
 	req_access_txt = "1"
 	},
-/obj/structure/window/plasma/reinforced,
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aoS" = (
@@ -17930,7 +17934,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "aST" = (
-/obj/structure/window/plasma/reinforced,
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
 "aSX" = (
@@ -18007,10 +18011,6 @@
 	id = "briggate";
 	name = "security shutters"
 	},
-/obj/structure/window/plasma/reinforced{
-	dir = 1
-	},
-/obj/structure/window/plasma/reinforced,
 /obj/machinery/door/window/brigdoor/eastleft{
 	name = "Brig Desk";
 	req_access_txt = "1"
@@ -18018,6 +18018,10 @@
 /obj/machinery/door/poddoor/preopen{
 	id = "Secure Gate";
 	name = "brig shutters"
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -21883,6 +21887,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
+"eNF" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/meter,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "eOX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -23496,6 +23508,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/virology)
+"hao" = (
+/obj/structure/displaycase/trophy,
+/turf/open/floor/wood,
+/area/library)
 "haZ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
@@ -23889,6 +23905,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "hAX" = (
@@ -27303,6 +27320,16 @@
 /obj/structure/grille,
 /turf/open/space,
 /area/space/nearstation)
+"lSr" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "lSx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -27635,6 +27662,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "mmJ" = (
@@ -28057,7 +28085,6 @@
 	name = "Psychology Maintenance";
 	req_access_txt = "70"
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -29301,6 +29328,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
+"osf" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/dark,
+/area/science/nanite)
 "osU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -29343,20 +29383,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
 /obj/machinery/airalarm/directional/west{
 	pixel_x = -24
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/dark,
 /area/science/nanite)
 "oud" = (
 /obj/machinery/vending/wardrobe/curator_wardrobe,
@@ -29895,11 +29925,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ptM" = (
-/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "psychology";
 	name = "psychology shutters"
 	},
+/obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/medical/psychology)
 "ptN" = (
@@ -33232,6 +33262,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
 	},
+/obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
 "uey" = (
@@ -33595,6 +33626,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
+/obj/machinery/meter,
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
 "uFj" = (
@@ -33626,6 +33658,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "uHU" = (
@@ -35246,13 +35279,6 @@
 /obj/effect/spawner/lootdrop/maintenance/two,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"xjI" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "xjM" = (
 /obj/effect/turf_decal/bot_white,
 /turf/open/floor/plasteel/dark,
@@ -35831,6 +35857,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "yeY" = (
@@ -64899,7 +64926,7 @@ deT
 nbi
 aev
 sgT
-apf
+hao
 atX
 njt
 krh
@@ -67782,7 +67809,7 @@ tWT
 mzP
 kZC
 mqD
-mqD
+eNF
 mqD
 mqD
 mqD
@@ -71584,7 +71611,7 @@ atH
 asJ
 auc
 asJ
-asJ
+lSr
 arM
 pCG
 awN
@@ -72098,7 +72125,7 @@ alf
 sap
 qdy
 tvb
-xjI
+tvb
 fLu
 sij
 awO
@@ -78256,7 +78283,7 @@ agV
 aoI
 apd
 qWx
-sIM
+osf
 oub
 agV
 alg
@@ -83922,7 +83949,7 @@ wQY
 opW
 wQY
 wQY
-diE
+ikw
 wQY
 wQY
 wQY
@@ -84436,7 +84463,7 @@ aaa
 csO
 aaa
 wQY
-ikw
+diE
 ikw
 pNs
 wQY
