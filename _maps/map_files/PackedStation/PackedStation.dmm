@@ -1538,7 +1538,7 @@
 	},
 /obj/effect/turf_decal/tile/blue,
 /obj/machinery/airalarm/directional{
-	step_y = 24
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -6182,8 +6182,8 @@
 	id = "psychology";
 	name = "Psychology Shutters Control";
 	req_access_txt = "70";
-	step_x = 24;
-	step_y = 10
+	pixel_x = 24;
+	pixel_y = 10
 	},
 /turf/open/floor/carpet,
 /area/medical/psychology)
@@ -11726,7 +11726,7 @@
 	dir = 4
 	},
 /obj/item/wallframe/extinguisher_cabinet{
-	step_y = 32
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
@@ -20604,7 +20604,7 @@
 	dir = 4
 	},
 /obj/structure/sign/departments/psychology{
-	step_y = 32
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
@@ -27766,7 +27766,7 @@
 	light_color = "#d1dfff"
 	},
 /obj/machinery/airalarm/directional{
-	step_y = 24
+	pixel_y = 24
 	},
 /turf/open/floor/carpet,
 /area/medical/psychology)
