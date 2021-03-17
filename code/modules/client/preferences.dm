@@ -930,7 +930,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				continue
 			var/rank_title_line = "[displayed_rank]" //tegu edit-alt job titles
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
-				rank_title_line = "<b>[rank_title_line]</b>"//tegu - alt title
+				rank_title_line = "<b><a href='?_src_=prefs;preference=job;task=alt_title;job_title=[job.title]'>[rank_title_line]</a></b>"//tegu - alt title
 			else
 				rank_title_line = "<a href='?_src_=prefs;preference=job;task=alt_title;job_title=[job.title]'>[rank_title_line]</a>"//tegu - alt title
 			HTML += rank_title_line//tegu - alt title
