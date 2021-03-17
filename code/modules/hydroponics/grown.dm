@@ -156,9 +156,13 @@
 			for(var/datum/plant_gene/trait/T in seed.genes)
 				T.on_consume(src, usr)
 
-///Callback for bonus behavior for generating trash of grown food.
-/obj/item/food/grown/proc/generate_trash(atom/location)
-	return new trash_type(location, seed)
+/// Callback proc for bonus behavior for generating trash of grown food. Used by [/datum/element/food_trash].
+/obj/item/food/grown/proc/generate_trash()
+	// If this is some type of grown thing, we pass a seed arg into its Inititalize()
+	if(istype(trash_type, /obj/item/grown) || istype(trash_type, /obj/item/food/grown))
+		return new trash_type(src, seed)
+
+	return new trash_type(src)
 
 /obj/item/food/grown/grind_requirements()
 	if(dry_grind && !HAS_TRAIT(src, TRAIT_DRIED))
