@@ -1176,6 +1176,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + CONFIG_GET(number/senior_timelock))) //If they have more than 50 hours (300 Minutes) past the required time needed for the job, give them access to the senior title
 					if(J.senior_title)
 						titles_list += J.senior_title
+				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + CONFIG_GET(number/ultra_senior_timelock))) //Ultra important(no) job title. Need more than 500 hours to unlock.
+					if(J.ultra_senior_title)
+						titles_list += J.ultra_senior_title
 				for(var/i in J.alt_titles)
 					titles_list += i
 				var/chosen_title

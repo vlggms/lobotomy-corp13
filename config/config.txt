@@ -544,3 +544,6 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ##Amount of time required for senior job titles in minutes
 SENIOR_TIMELOCK 3000
+
+##Amount of time required for ULTRA senior job titles in minutes
+SENIOR_TIMELOCK 30000

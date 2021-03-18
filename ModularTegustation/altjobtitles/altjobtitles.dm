@@ -1,8 +1,14 @@
 /datum/job
 	var/list/alt_titles = list()
 	var/senior_title
+	var/ultra_senior_title // A god-like position of power!
 
- //Engineering
+// Command
+/datum/job/captain
+	senior_title = "Commodore"
+	ultra_senior_title = "Rear Admiral"
+
+ // Engineering
 /datum/job/chief_engineer
 	alt_titles = list("Chief Atmospheric Technician")
 
@@ -14,10 +20,10 @@
 	alt_titles = list("Firefighter", "Life Support Specialist")
 	senior_title = "Senior Atmospheric Technician"
 
- //Service
+ // Service
 /datum/job/assistant
 	alt_titles = list("Visitor", "Businessman", "Entertainer")
-	senior_title = "Greytider"
+	ultra_senior_title = "Assistinator"
 
 /datum/job/cook
 	alt_titles = list("Butcher", "Grillmaster")
@@ -44,7 +50,7 @@
 /datum/job/chaplain
 	alt_titles = list("Counselor")
 	senior_title = "Priest"
-	// Add some ultra senior title "Paladin" that is available after ~250 hours as chaplain, lol.
+	ultra_senior_title = "Paladin"
 
 /datum/job/clown
 	alt_titles = list("Jester", "Comedian")
@@ -54,7 +60,7 @@
 	alt_titles = list("Performer")
 	senior_title = "Silent Artist"
 
- //Science
+ // Science
 /datum/job/rd
 	alt_titles = list("Research Supervisor", "Research Manager")
 
@@ -66,7 +72,7 @@
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
 	senior_title = "Robotics Expert"
 
- //Medical
+ // Medical
 /datum/job/cmo
 	alt_titles = list("Medical Director")
 
@@ -84,7 +90,7 @@
 /datum/job/virologist
 	alt_titles = list("Pathologist")
 
- //Security
+ // Security
 /datum/job/hos
 	alt_titles = list("Security Commander", "Chief of Security")
 
@@ -105,7 +111,7 @@
 /datum/job/prisoner
 	alt_titles = list("Protected Custody")
 
- //Supply
+// Supply
 
 /datum/job/qm
 	alt_titles = list("Supply Chief", "Requisitions Officer")
