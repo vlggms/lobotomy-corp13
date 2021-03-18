@@ -231,8 +231,8 @@
 
 		//Tegu edit - Alt job titles
 		if(C && C.prefs && C.prefs.alt_titles_preferences[assignment])
-			assignment = C.prefs.alt_titles_preferences[assignment]
 			trueassignment = assignment
+			assignment = C.prefs.alt_titles_preferences[assignment]
 		//Tegu edit end
 
 		var/static/record_id_num = 1001

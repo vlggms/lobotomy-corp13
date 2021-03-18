@@ -149,8 +149,8 @@
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
-	if(outfit && preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[title])//tegu alt job titles start
-		var/outfitholder = "[outfit]/[replacetext(lowertext(preference_source.prefs.alt_titles_preferences[title]), " ", "")]"
+	if(outfit && preference_source?.prefs?.alt_titles_preferences[title] && !outfit_override)
+		var/outfitholder = "[outfit]/[ckey(preference_source.prefs.alt_titles_preferences[title])]"
 		if(text2path(outfitholder) || !outfitholder)
 			outfit_override = text2path(outfitholder)//tegu end
 
