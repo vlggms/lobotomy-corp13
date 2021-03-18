@@ -152,7 +152,7 @@
 	if(outfit && preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[title])//tegu alt job titles start
 		var/outfitholder = "[outfit]/[replacetext(lowertext(preference_source.prefs.alt_titles_preferences[title]), " ", "")]"
 		if(text2path(outfitholder) || !outfitholder)
-			outfit = text2path(outfitholder)//tegu end
+			outfit_override = text2path(outfitholder)//tegu end
 
 	if(outfit_override || outfit)
 		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly, preference_source)//tegu alt job titles
@@ -287,7 +287,12 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		// Tegu edit - Alt job titles
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			C.assignment = J.title
+		// Tegu end
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -300,7 +305,12 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		// Tegu edit - Alt job titles
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			PDA.ownjob = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			PDA.ownjob = J.title
+		// Tegu end
 		PDA.update_label()
 
 	if(H.client?.prefs.playtime_reward_cloak)
