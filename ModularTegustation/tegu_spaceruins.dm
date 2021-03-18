@@ -334,3 +334,9 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	suffix = "oldcodeops.dmm"
 	name = "Strange Infiltrator"
 	description = "A nuclear operative's ship, drifing along the stars. This thing looks like it belongs in ancient times."
+
+/datum/map_template/ruin/space/tegruin
+	id = "tegruin"
+	suffix = "tegruin.dmm"
+	name = "Broken Engineering Satellite"
+	description = "An old engineering zone with bunch of useful items in it. How did it break off like that? Good question."
