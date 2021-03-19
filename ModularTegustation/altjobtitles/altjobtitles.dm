@@ -8,17 +8,6 @@
 	senior_title = "Commodore"
 	ultra_senior_title = "Rear Admiral"
 
-/// Engineering
-/datum/job/chief_engineer
-	alt_titles = list("Chief Atmospheric Technician")
-
-/datum/job/engineer
-	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist")
-	senior_title = "Senior Engineer"
-
-/datum/job/atmos
-	alt_titles = list("Firefighter", "Life Support Specialist")
-	senior_title = "Senior Atmospheric Technician"
 /// Security
 /datum/job/hos
 	alt_titles = list("Security Commander", "Chief of Security")
@@ -66,6 +55,18 @@
 
 /datum/job/virologist
 	alt_titles = list("Pathologist")
+
+/// Engineering
+/datum/job/chief_engineer
+	alt_titles = list("Chief Atmospheric Technician")
+
+/datum/job/engineer
+	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician", "Telecommunications Specialist")
+	senior_title = "Senior Engineer"
+
+/datum/job/atmos
+	alt_titles = list("Firefighter", "Life Support Specialist")
+	senior_title = "Senior Atmospheric Technician"
 
 /// Supply
 
