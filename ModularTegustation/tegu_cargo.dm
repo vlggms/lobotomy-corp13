@@ -4,3 +4,4 @@
 		var/obj/item/slime_extract/slimething = O
 		if (slimething.sparkly == TRUE)
 			return costfromparent*2
+	return costfromparent

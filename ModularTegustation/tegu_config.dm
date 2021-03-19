@@ -46,3 +46,11 @@
 	The only people that are allowed to know about your existance is high command of Cybersun. \
 	You must complete your objectives and stay undiscovered AT ALL COST. Remember - every innocent victim will be \
 	deducted from your pay-check."
+
+/datum/config_entry/number/senior_timelock
+	config_entry_value = 3000
+	min_val = 300
+
+/datum/config_entry/number/ultra_senior_timelock
+	config_entry_value = 30000
+	min_val = 1200

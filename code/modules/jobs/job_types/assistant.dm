@@ -32,6 +32,8 @@ Assistant
 
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
 	..()
+	if(uniform != /obj/item/clothing/under/color/grey)//tegu edit alt job titles
+		return//tegu edit too but you should have already known that
 	if (CONFIG_GET(flag/grey_assistants))
 		if(H.jumpsuit_style == PREF_SUIT)
 			uniform = /obj/item/clothing/under/color/grey

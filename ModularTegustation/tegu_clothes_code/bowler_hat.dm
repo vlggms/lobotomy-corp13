@@ -1,8 +1,9 @@
 /obj/item/clothing/head/susp_bowler
 	name = "black bowler"
 	desc = "A deep black bowler. Inside the hat, there is a sleek red S, with a smaller X insignia embroidered within. On closer inspection, the brim feels oddly weighted..."
-	icon_state = "bowler"
-	inhand_icon_state = "bowler"
+	icon = 'ModularTegustation/Teguicons/head_item.dmi'
+	icon_state = "bowlerhat"
+	worn_icon = 'ModularTegustation/Teguicons/head_worn.dmi'
 	dynamic_hair_suffix = ""
 	force = 3
 	throwforce = 45

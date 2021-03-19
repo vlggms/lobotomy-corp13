@@ -158,7 +158,7 @@
  *
  * If visualsOnly is true, you can omit any work that doesn't visually appear on the character sprite
  */
-/datum/outfit/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null) //tegu edit - alt job titles
 	pre_equip(H, visualsOnly)
 
 	//Start with uniform,suit,backpack for additional slots
@@ -228,7 +228,7 @@
 		var/obj/item/clothing/suit/space/hardsuit/HS = H.wear_suit
 		HS.ToggleHelmet()
 
-	post_equip(H, visualsOnly)
+	post_equip(H, visualsOnly, preference_source) //tegu edit - alt job titles
 
 	if(!visualsOnly)
 		apply_fingerprints(H)

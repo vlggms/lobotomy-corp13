@@ -1,0 +1,789 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aw" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/multitool,
+/obj/item/mecha_parts/part/clarke_head,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"bX" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"cg" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"cL" = (
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"eI" = (
+/obj/item/stock_parts/manipulator,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"eZ" = (
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg)
+"fw" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/screwdriver,
+/obj/item/gps,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"fF" = (
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg)
+"gQ" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/teg)
+"hg" = (
+/obj/item/mmi,
+/obj/structure/table,
+/obj/item/circular_saw,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"hC" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/teg)
+"hW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"iy" = (
+/obj/item/stack/rods,
+/turf/closed/wall,
+/area/ruin/has_grav/teg)
+"jQ" = (
+/obj/item/stock_parts/matter_bin,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"kM" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"kU" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"lb" = (
+/obj/structure/table/optable,
+/obj/effect/mob_spawn/human/doctor,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"lE" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/wrench,
+/obj/item/mecha_parts/part/ripley_left_leg,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"mr" = (
+/obj/structure/door_assembly/door_assembly_science,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"ov" = (
+/obj/structure/mecha_wreckage/clarke,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"oS" = (
+/obj/item/stock_parts/capacitor,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"py" = (
+/obj/structure/girder,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"qI" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/lightreplacer,
+/obj/item/mecha_parts/part/durand_right_arm,
+/obj/item/paicard,
+/obj/item/circuitboard/computer/mecha_control,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"qM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg)
+"rL" = (
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"tG" = (
+/obj/item/stack/sheet/metal,
+/turf/closed/wall,
+/area/ruin/has_grav/teg)
+"uY" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"vd" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg)
+"vM" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"vV" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"wg" = (
+/obj/structure/girder,
+/turf/closed/wall,
+/area/ruin/has_grav/teg)
+"xE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"ye" = (
+/obj/machinery/power/generator,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"za" = (
+/obj/machinery/atmospherics/components/binary/circulator/cold{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"zR" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/teg)
+"Cv" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"DF" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"DL" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"DW" = (
+/obj/structure/girder,
+/obj/item/stack/sheet/metal,
+/turf/closed/wall,
+/area/ruin/has_grav/teg)
+"Ev" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"Fv" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"FC" = (
+/turf/closed/wall,
+/area/ruin/has_grav/teg)
+"FP" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"Gk" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"Go" = (
+/obj/item/clothing/shoes/magboots,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"Gx" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"GH" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/has_grav/teg)
+"Hs" = (
+/obj/item/stack/rods,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg)
+"Ia" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"IX" = (
+/turf/closed/wall,
+/area/ruin/has_grav/teg/storage)
+"Jb" = (
+/obj/structure/girder,
+/turf/closed/wall,
+/area/ruin/has_grav/teg/storage)
+"KP" = (
+/obj/structure/door_assembly/door_assembly_mai,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/storage)
+"La" = (
+/turf/closed/wall,
+/area/ruin/has_grav/teg/eva)
+"Lj" = (
+/obj/machinery/door/airlock/engineering,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/teg/eva)
+"Mq" = (
+/obj/structure/girder,
+/turf/closed/wall,
+/area/ruin/has_grav/teg/eva)
+"NG" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/weldingtool,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/screwdriver,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"NI" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"Oe" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"Ow" = (
+/turf/template_noop,
+/area/template_noop)
+"OT" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/storage)
+"QU" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"Rr" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"RS" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"RW" = (
+/obj/item/tank/jetpack,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"SE" = (
+/obj/effect/mob_spawn/human/skeleton/alive,
+/obj/item/stack/cable_coil,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"SV" = (
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg/storage)
+"SZ" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/weldingtool,
+/obj/item/stack/cable_coil,
+/obj/item/wirecutters,
+/obj/item/screwdriver,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"Ub" = (
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/storage)
+"UH" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/engineer,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
+"UR" = (
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/eva)
+"Vu" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg/eva)
+"VK" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/teg/eva)
+"Zj" = (
+/obj/item/circuitboard/machine/circulator,
+/obj/structure/closet/crate/engineering{
+	icon_state = "engi_crateopen";
+	opened = 1
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/wirecutters,
+/obj/item/screwdriver,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+"Zr" = (
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg/eva)
+"ZH" = (
+/obj/structure/closet/crate{
+	icon_state = "crateopen"
+	},
+/obj/item/stack/cable_coil,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/brute,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
+
+(1,1,1) = {"
+FC
+FC
+wg
+wg
+wg
+FC
+FC
+FC
+FC
+FC
+DW
+wg
+FC
+FC
+FC
+IX
+IX
+IX
+IX
+IX
+IX
+"}
+(2,1,1) = {"
+FC
+kM
+kM
+hC
+lE
+bX
+kM
+kM
+kM
+kM
+kM
+kM
+kM
+kM
+kM
+IX
+NG
+SV
+NI
+ZH
+IX
+"}
+(3,1,1) = {"
+FC
+aw
+eZ
+eZ
+hW
+hW
+hW
+hW
+hW
+hW
+hW
+hW
+eZ
+GH
+kM
+IX
+NI
+QU
+NI
+NI
+Jb
+"}
+(4,1,1) = {"
+FC
+kM
+fF
+kM
+kM
+eZ
+eZ
+eZ
+eZ
+zR
+kM
+hW
+hW
+kM
+Hs
+Jb
+Oe
+NI
+Zj
+QU
+IX
+"}
+(5,1,1) = {"
+FC
+bX
+kM
+kM
+kM
+kM
+kM
+uY
+vV
+kM
+kM
+kM
+hW
+hW
+kM
+IX
+NI
+NI
+NI
+OT
+Jb
+"}
+(6,1,1) = {"
+wg
+kM
+kM
+hW
+hW
+kM
+gQ
+vd
+xE
+kM
+Ev
+kM
+kM
+hW
+kM
+IX
+NI
+SZ
+NI
+QU
+IX
+"}
+(7,1,1) = {"
+wg
+kM
+kM
+kM
+kM
+hW
+qM
+kM
+kM
+Cv
+Fv
+kM
+kM
+hW
+kM
+KP
+OT
+Ub
+NI
+Oe
+IX
+"}
+(8,1,1) = {"
+FC
+kM
+kM
+hW
+kM
+kM
+hW
+kM
+ye
+kM
+kM
+Gx
+kM
+fF
+kM
+IX
+QU
+NI
+NI
+fw
+IX
+"}
+(9,1,1) = {"
+FC
+FC
+FC
+iy
+mr
+py
+kM
+uY
+za
+vV
+FP
+kM
+xE
+kM
+kM
+La
+La
+Mq
+La
+La
+La
+"}
+(10,1,1) = {"
+FC
+cg
+eZ
+kM
+kM
+py
+hC
+vM
+kM
+kM
+Ev
+kM
+kM
+hW
+kM
+La
+Rr
+RS
+RS
+Go
+La
+"}
+(11,1,1) = {"
+FC
+cL
+eZ
+jQ
+kM
+FC
+py
+eZ
+hC
+eZ
+Gk
+kM
+hW
+eZ
+kM
+Lj
+RS
+RS
+RS
+SE
+La
+"}
+(12,1,1) = {"
+FC
+kM
+gQ
+kM
+ov
+FC
+rL
+kM
+vV
+DF
+kM
+hW
+eZ
+eZ
+kM
+La
+RS
+RS
+Zr
+Rr
+Mq
+"}
+(13,1,1) = {"
+wg
+bX
+eZ
+kM
+kM
+py
+kM
+kM
+kM
+DL
+kM
+qM
+GH
+kM
+kM
+Mq
+RS
+UH
+RS
+Rr
+Mq
+"}
+(14,1,1) = {"
+wg
+eI
+eZ
+kU
+oS
+FC
+tG
+bX
+kM
+kM
+eZ
+eZ
+kM
+kM
+kM
+La
+Rr
+UR
+RS
+Ia
+La
+"}
+(15,1,1) = {"
+wg
+kM
+hg
+lb
+kM
+qI
+FC
+kM
+kM
+kM
+kM
+kM
+kM
+kM
+kM
+La
+RW
+RS
+RS
+Ia
+La
+"}
+(16,1,1) = {"
+FC
+FC
+FC
+FC
+FC
+FC
+wg
+FC
+wg
+FC
+wg
+wg
+FC
+wg
+FC
+La
+La
+Vu
+La
+La
+La
+"}
+(17,1,1) = {"
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+La
+UR
+La
+Ow
+Ow
+"}
+(18,1,1) = {"
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+Ow
+La
+VK
+La
+Ow
+Ow
+"}
