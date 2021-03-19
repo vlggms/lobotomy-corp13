@@ -20,10 +20,10 @@
 	senior_title = "Intelligence Officer"
 
 /datum/job/officer
-	alt_titles = list("Security Guard", "Junior Officer")
-	senior_title = "Senior Officer"
+	alt_titles = list("Security Guard")
+	senior_title = "Security Sergeant"
 
-/datum/job/deputy
+/datum/job/tegu/deputy
 	alt_titles = list("Cadet")
 
 /// Science
