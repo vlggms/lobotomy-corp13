@@ -12246,6 +12246,12 @@
 	},
 /obj/machinery/light,
 /obj/structure/cable,
+/obj/machinery/camera/emp_proof{
+	c_tag = "SupermatterSouth-West";
+	dir = 8;
+	name = "Singularity South-East";
+	network = list("ss13","engine")
+	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ayq" = (
@@ -19904,7 +19910,6 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
 "cqa" = (
@@ -21071,13 +21076,6 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
-"dTR" = (
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "SupermatterExternal";
-	name = "radiation shutters"
-	},
-/turf/open/floor/plating,
-/area/engine/supermatter)
 "dUB" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -22261,7 +22259,7 @@
 /area/engine/break_room)
 "frk" = (
 /obj/machinery/camera/emp_proof{
-	c_tag = "Singularity South-West";
+	c_tag = "Supermatter South-West";
 	dir = 4;
 	name = "Singularity South-West";
 	network = list("ss13","engine")
@@ -22668,6 +22666,19 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
+"fUp" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/camera/emp_proof{
+	c_tag = "Supermatter North-East";
+	dir = 8;
+	name = "Singularity North-East";
+	network = list("ss13","engine")
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
 "fUM" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/tile/purple{
@@ -25927,6 +25938,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "jOj" = (
@@ -26374,7 +26386,10 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
 /area/maintenance/fore/secondary)
 "kzY" = (
 /obj/structure/sign/barsign,
@@ -28241,7 +28256,7 @@
 /area/library)
 "mQn" = (
 /obj/machinery/camera/emp_proof{
-	c_tag = "Singularity North-West";
+	c_tag = "Supermatter North-West";
 	dir = 6;
 	name = "Singularity North-West";
 	network = list("ss13","engine")
@@ -28665,6 +28680,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "nja" = (
@@ -30429,10 +30445,6 @@
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/engine/atmospherics_engine)
-"pyh" = (
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
 "pyn" = (
@@ -35775,6 +35787,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "wIk" = (
@@ -67018,7 +67031,7 @@ qmY
 rfq
 hvr
 hvr
-dTR
+hvr
 eLU
 oiI
 pLh
@@ -68560,7 +68573,7 @@ qmY
 rfq
 hvr
 hvr
-dTR
+hvr
 eLU
 oiI
 hWR
@@ -69072,7 +69085,7 @@ mjI
 amD
 tMS
 rCe
-nTR
+fUp
 nTR
 nTR
 nTR
@@ -72150,7 +72163,7 @@ sPc
 lJs
 otu
 cpc
-pyh
+aZn
 aZn
 aZn
 vmY
