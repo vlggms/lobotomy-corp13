@@ -109,8 +109,6 @@
 		            /obj/item/clothing/suit/apron/purple_bartender = 2,
 		            /obj/item/clothing/under/rank/civilian/bartender/purple = 2,
 		            /obj/item/clothing/suit/toggle/suspenders/blue = 2,
-		            /obj/item/clothing/shoes/sandal/digitigrade = 1,  // Tegustation digitigrade edit: Adding the clothing to vending machines
-					/obj/item/clothing/shoes/sneakers/brown/digitigrade = 3,  // Tegustation digitigrade edit: Adding the clothing to vending machines
 		            /obj/item/clothing/suit/toggle/suspenders/gray = 2)
 	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 1,
 					  /obj/item/clothing/under/syndicate/tacticool/skirt = 1,
@@ -121,7 +119,9 @@
 		              /obj/item/clothing/suit/jacket/letterman_syndie = 1,
 		              /obj/item/clothing/under/costume/jabroni = 1,
 		              /obj/item/clothing/suit/vapeshirt = 1,
-		              /obj/item/clothing/under/costume/geisha = 1)
+		              /obj/item/clothing/under/costume/geisha = 1,
+					  /obj/item/clothing/under/rank/centcom/officer/replica = 1,
+					  /obj/item/clothing/under/rank/centcom/officer_skirt/replica = 1)
 	premium = list(/obj/item/clothing/under/suit/checkered = 1,
 		           /obj/item/clothing/head/mailman = 1,
 		           /obj/item/clothing/under/misc/mailman = 1,
