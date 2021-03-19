@@ -3531,6 +3531,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
+"ahi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/science/xenobiology)
 "ahj" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
@@ -8380,6 +8386,7 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/botanist,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aqC" = (
@@ -18040,10 +18047,6 @@
 /turf/open/floor/carpet/royalblue,
 /area/crew_quarters/heads/captain)
 "aVm" = (
-/obj/structure/chair/office{
-	dir = 8
-	},
-/obj/effect/landmark/start/botanist,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -18051,6 +18054,7 @@
 	name = "Station Intercom (Botany)";
 	pixel_y = 25
 	},
+/obj/machinery/vending/wardrobe/hydro_wardrobe,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aVn" = (
@@ -19858,11 +19862,36 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"cjh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/science/xenobiology)
 "clK" = (
 /obj/structure/lattice,
 /obj/structure/grille/broken,
 /turf/open/space/basic,
 /area/space/nearstation)
+"cmi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "cmk" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
@@ -20297,6 +20326,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 10
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -21598,6 +21630,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "eDS" = (
@@ -21649,6 +21682,25 @@
 "eFr" = (
 /turf/open/space/basic,
 /area/maintenance/port/fore)
+"eFW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "eGA" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
@@ -22623,6 +22675,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "fRf" = (
@@ -23400,6 +23455,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "gXI" = (
@@ -23673,6 +23729,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24132,6 +24191,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"hLR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/science/xenobiology)
 "hMd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -24242,6 +24318,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "hRc" = (
@@ -24738,6 +24815,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "ivp" = (
@@ -24823,6 +24901,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "iBp" = (
@@ -24848,6 +24927,9 @@
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
@@ -25472,6 +25554,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "juH" = (
@@ -25774,6 +25857,13 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/disposal/bin{
+	desc = "A pneumatic waste disposal unit. This one leads into space!";
+	name = "deathsposal unit"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -27078,6 +27168,14 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/maintenance/fore/secondary)
+"lsp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/science/xenobiology)
 "ltE" = (
 /obj/machinery/button/door{
 	id = "bridge blast";
@@ -27523,6 +27621,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "lUz" = (
@@ -28536,6 +28635,9 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "nfz" = (
@@ -28807,6 +28909,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "npc" = (
@@ -28824,6 +28927,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/science/xenobiology)
+"npj" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "nrx" = (
 /obj/effect/turf_decal/stripes/line,
@@ -30461,6 +30571,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "pze" = (
@@ -30871,6 +30982,25 @@
 /area/engine/break_room)
 "qic" = (
 /turf/closed/wall,
+/area/science/xenobiology)
+"qis" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/science/xenobiology)
 "qiz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -32063,6 +32193,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "rFN" = (
@@ -32532,6 +32665,9 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
 	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
@@ -33385,6 +33521,15 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/closed/wall/r_wall,
 /area/engine/atmospherics_engine)
+"tsZ" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/science/xenobiology)
 "tto" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -33564,6 +33709,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"tGx" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/bin{
+	desc = "A pneumatic waste disposal unit. This one leads into space!";
+	name = "deathsposal unit"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "tHe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/structure/disposalpipe/segment{
@@ -33666,13 +33827,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
-"tKX" = (
-/obj/item/food/bread/plain{
-	desc = "Some holy bread that has acended from thie field of reality.";
-	name = "acended bread"
-	},
-/turf/open/space/basic,
-/area/space)
 "tLu" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/power/supermatter_crystal/engine,
@@ -36350,7 +36504,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/space/nearstation)
+/area/science/xenobiology)
 "xtm" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
 /turf/open/floor/plating,
@@ -36855,6 +37009,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "ygt" = (
@@ -36943,6 +37098,7 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "yig" = (
@@ -73677,7 +73833,7 @@ rTO
 aCh
 rTO
 ajd
-tKX
+ajd
 ajd
 wQY
 fqG
@@ -82624,7 +82780,7 @@ fRf
 nYj
 fRf
 fRf
-axI
+tGx
 mDq
 mDq
 ikn
@@ -82881,7 +83037,7 @@ ayk
 iqV
 sMI
 yhb
-aMh
+hLR
 sjV
 aMh
 npc
@@ -83142,7 +83298,7 @@ bij
 cRh
 yeY
 nor
-npc
+eFW
 jDJ
 rCA
 fLX
@@ -83399,7 +83555,7 @@ qic
 ssU
 vjw
 qic
-qzW
+cmi
 eYo
 pKi
 fNU
@@ -83656,7 +83812,7 @@ vjw
 sBY
 pkb
 vjw
-iwp
+qis
 irP
 kdg
 rLz
@@ -83666,7 +83822,7 @@ gDp
 avm
 pKi
 kUS
-pKi
+npj
 rCA
 qic
 ajd
@@ -84941,7 +85097,7 @@ vHY
 sNU
 uBT
 brV
-fRf
+lsp
 fRf
 deH
 fRf
@@ -85198,7 +85354,7 @@ iew
 gdu
 lfz
 jFe
-fRf
+lsp
 enu
 enu
 enu
@@ -85455,7 +85611,7 @@ fRf
 deH
 fRf
 fRf
-fRf
+lsp
 enu
 enu
 enu
@@ -85712,7 +85868,7 @@ enu
 enu
 enu
 qic
-qic
+cjh
 wLF
 cOr
 enu
@@ -85969,7 +86125,7 @@ enu
 qiL
 enu
 qic
-mZM
+ahi
 mZM
 uEh
 vVV
@@ -86226,7 +86382,7 @@ cLe
 cOr
 enu
 mZM
-ajd
+tsZ
 ajd
 xrL
 vrW
@@ -88304,7 +88460,7 @@ ajd
 aGa
 ajd
 ajd
-kHc
+ajd
 ajd
 ajd
 ajd
@@ -89564,7 +89720,7 @@ ajd
 ajd
 ajd
 ajd
-kHc
+ajd
 ajd
 ajd
 ajd
