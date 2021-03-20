@@ -1176,10 +1176,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/job_title = href_list["job_title"]
 				var/titles_list = list(job_title)
 				var/datum/job/J = SSjob.GetJob(job_title)
-				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + CONFIG_GET(number/senior_timelock))) //If they have more than 50 hours (300 Minutes) past the required time needed for the job, give them access to the senior title
+				var/sen_timelock = CONFIG_GET(number/senior_timelock)
+				var/ulsen_timelock = CONFIG_GET(number/ultra_senior_timelock)
+				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + sen_timelock)) //If they have more than 50 hours (300 Minutes) past the required time needed for the job, give them access to the senior title
 					if(J.senior_title)
 						titles_list += J.senior_title
-				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + CONFIG_GET(number/ultra_senior_timelock))) //Ultra important(no) job title. Need more than 500 hours to unlock.
+				if(user.client.prefs.exp[job_title] > (J.get_exp_req_amount() + ulsen_timelock)) //Ultra important(no) job title. Need more than 500 hours to unlock.
 					if(J.ultra_senior_title)
 						titles_list += J.ultra_senior_title
 				for(var/i in J.alt_titles)
