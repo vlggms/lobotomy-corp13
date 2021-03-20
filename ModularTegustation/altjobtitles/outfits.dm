@@ -2,14 +2,14 @@
 /datum/outfit/job/captain/commodore
 	name = "Captain (Commodore)"
 	head = /obj/item/clothing/head/caphat/parade
-	uniform =  /obj/item/clothing/under/rank/captain/parade
+	uniform = /obj/item/clothing/under/rank/captain/parade
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/alt
 	shoes = /obj/item/clothing/shoes/jackboots
 
 /datum/outfit/job/captain/rearadmiral
 	name = "Captain (Rear Admiral)"
 	head = /obj/item/clothing/head/caphat/admiral
-	uniform =  /obj/item/clothing/under/rank/captain/admiral
+	uniform = /obj/item/clothing/under/rank/captain/admiral
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
 	shoes = /obj/item/clothing/shoes/jackboots
 
