@@ -1,3 +1,36 @@
+/*** Command ***/
+/datum/outfit/job/captain/commodore
+	name = "Captain (Commodore)"
+	head = /obj/item/clothing/head/caphat/parade
+	uniform = /obj/item/clothing/under/rank/captain/parade
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/alt
+	shoes = /obj/item/clothing/shoes/jackboots
+
+/datum/outfit/job/captain/rearadmiral
+	name = "Captain (Rear Admiral)"
+	head = /obj/item/clothing/head/caphat/admiral
+	uniform = /obj/item/clothing/under/rank/captain/admiral
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
+	shoes = /obj/item/clothing/shoes/jackboots
+
+/*** Security ***/
+/// Security Officer
+/datum/outfit/job/security/securitysergeant
+	name = "Security Officer (Sergeant)"
+	head = /obj/item/clothing/head/beret/sec/navyofficer
+	uniform = /obj/item/clothing/under/rank/security/officer/formal
+	suit = /obj/item/clothing/suit/armor/vest/officer
+
+/*** Science ***/
+/// Scientist
+/datum/outfit/job/scientist/professor
+	name = "Scientist (Professor)"
+	uniform = /obj/item/clothing/under/rank/rnd/scientist
+	shoes = /obj/item/clothing/shoes/laceup
+	suit = /obj/item/clothing/suit/toggle/labcoat
+	glasses = /obj/item/clothing/glasses/regular
+
+/*** Medical ***/
 /// Medical Doctor
 /datum/outfit/job/doctor/surgeon
 	name = "Medical Doctor (Surgeon)"
@@ -13,6 +46,7 @@
  	suit_store = null
  	accessory = /obj/item/clothing/accessory/armband/medblue
 
+/*** Engineering ***/
 /// Station Engineer
 /datum/outfit/job/engineer/electrician
 	name = "Station Engineer (Electrician)"
@@ -43,7 +77,13 @@
 /datum/outfit/job/atmos/lifesupportspecialist
 	name = "Atmospheric Technician (Life Support Specialist)"
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
-	
+
+/*** Supply ***/
+/datum/outfit/job/cargo_tech/mailroomtechnician
+	name = "Cargo Technician (Mailroom Technician)"
+	backpack_contents = list(/obj/item/storage/box/shipping=1, /obj/item/modular_computer/tablet/preset/cargo=1)
+
+/*** Service ***/
 /// Cook
 /datum/outfit/job/cook/grillmaster
 	uniform = /obj/item/clothing/under/rank/civilian/cookjorts
@@ -65,7 +105,7 @@
 		/obj/item/soapstone = 1,
 		/obj/item/tape = 1
 	)
-	
+
 /// Assistant
 /datum/outfit/job/assistant/businessman
 	name = "Assistant (Businessman)"
@@ -85,3 +125,14 @@
 /datum/outfit/job/assistant/entertainer
 	name = "Assistant (Entertainer)"
 	r_hand = /obj/item/bikehorn //hjonk
+
+/datum/outfit/job/assistant/assistinator
+	name = "Assistant (Assistinator)"
+	uniform = /obj/item/clothing/under/color/grey/ancient
+	mask = /obj/item/clothing/mask/gas
+
+/datum/outfit/job/clown/jester
+	name = "Clown (Jester)"
+	uniform = /obj/item/clothing/under/rank/civilian/clown/jester
+	shoes = /obj/item/clothing/shoes/clown_shoes/jester
+	head = /obj/item/clothing/head/jester
