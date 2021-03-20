@@ -21166,8 +21166,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/door/airlock/maintenance{
-	name = "Science Maintenance";
-	req_access_txt = "47"
+	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -25449,6 +25448,9 @@
 /obj/machinery/airalarm/mixingchamber{
 	pixel_y = 24
 	},
+/obj/machinery/airlock_sensor/incinerator_toxmix{
+	pixel_x = -24
+	},
 /turf/open/floor/engine,
 /area/science/mixing/chamber)
 "jlu" = (
@@ -25947,8 +25949,8 @@
 /turf/open/space,
 /area/space/nearstation)
 "jLW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/science/xenobiology)
@@ -34356,6 +34358,24 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"uyM" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/structure/disposalpipe/sorting/mail/flip{
+	dir = 2;
+	name = "Hydroponics Junction";
+	sortType = 21
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/aft)
 "uAn" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/rack,
@@ -34457,11 +34477,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "uDu" = (
-/obj/machinery/door/airlock/maintenance{
-	name = "Science Maintenance";
-	req_access_txt = "47"
-	},
 /obj/effect/mapping_helpers/airlock/abandoned,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
 "uDD" = (
@@ -69203,7 +69222,7 @@ lDr
 eQw
 vqZ
 aBE
-lDr
+uyM
 lDr
 lDr
 lDr
