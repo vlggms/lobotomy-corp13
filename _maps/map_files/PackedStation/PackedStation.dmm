@@ -865,11 +865,11 @@
 /turf/open/floor/plating,
 /area/bridge)
 "abQ" = (
+/obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "abR" = (
@@ -2814,15 +2814,15 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "afF" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -3146,11 +3146,11 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "agx" = (
+/obj/structure/cable,
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "QMLoad"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "agy" = (
@@ -4985,12 +4985,12 @@
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "ake" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "akf" = (
@@ -9415,7 +9415,10 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 6
+	},
+/obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asP" = (
@@ -9427,6 +9430,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asQ" = (
@@ -15537,10 +15543,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/binary/valve/digital{
-	dir = 1;
-	name = "Waste Release"
-	},
+/obj/machinery/atmospherics/components/binary/valve/digital/on,
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "aEJ" = (
@@ -17100,7 +17103,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/loading_area{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -18891,22 +18894,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
-"bhR" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "bij" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -21315,11 +21302,11 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "egU" = (
+/obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "QMLoad"
 	},
-/obj/structure/plasticflaps,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "eib" = (
@@ -25280,13 +25267,13 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "iXv" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "QMLoad"
-	},
 /obj/machinery/door/poddoor{
 	id = "QMLoaddoor";
 	name = "supply dock loading door"
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -27802,17 +27789,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"mcP" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
-	dir = 6
-	},
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "mdn" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -28272,13 +28248,13 @@
 /turf/open/floor/carpet,
 /area/medical/psychology)
 "mLY" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "QMLoad2"
-	},
 /obj/machinery/door/poddoor{
 	id = "QMLoaddoor2";
 	name = "supply dock loading door"
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "QMLoad2"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -29083,11 +29059,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "nAl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "nAy" = (
@@ -30291,7 +30267,7 @@
 /area/maintenance/fore/secondary)
 "pgx" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/open/floor/plating,
@@ -30307,7 +30283,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/binary/pump/on,
+/obj/machinery/atmospherics/components/binary/pump,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "piL" = (
@@ -31863,9 +31839,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "rny" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
-	dir = 6
-	},
+/obj/structure/grille,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "rnI" = (
@@ -34767,6 +34741,23 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
+"uTp" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/purple/visible{
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
 "uTx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -35404,7 +35395,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/binary/pump/on{
+/obj/machinery/atmospherics/components/binary/pump{
 	name = "Mix to Filter"
 	},
 /turf/open/floor/plasteel,
@@ -35788,6 +35779,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wtn" = (
@@ -35855,6 +35847,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/visible,
+/obj/machinery/meter,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wCd" = (
@@ -68429,7 +68422,7 @@ tDu
 aRc
 abC
 aaL
-mcP
+acs
 asP
 alx
 pAW
@@ -70779,7 +70772,7 @@ wdt
 eTZ
 eTZ
 ich
-bhR
+eTZ
 elO
 aEY
 fzk
@@ -71548,7 +71541,7 @@ aDN
 bPk
 nUv
 eTZ
-hHH
+uTp
 hgM
 uZr
 ygt
