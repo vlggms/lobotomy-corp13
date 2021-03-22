@@ -5962,10 +5962,10 @@
 	name = "Medbay APC";
 	pixel_y = 24
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "amf" = (
@@ -6180,7 +6180,6 @@
 /area/medical/medbay/central)
 "amz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plasteel/white,
@@ -9066,6 +9065,9 @@
 	name = "Station Intercom (Medbay)";
 	pixel_y = 30
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "arZ" = (
@@ -10386,6 +10388,7 @@
 	req_access_txt = "5"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "auQ" = (
@@ -11199,6 +11202,7 @@
 	desc = "Kingston's personal cup."
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "awl" = (
@@ -30290,7 +30294,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "pjh" = (
@@ -35332,6 +35335,7 @@
 /area/hallway/secondary/exit)
 "vMn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "vMw" = (
