@@ -215,5 +215,5 @@
 	STR.max_items = 3
 
 /obj/item/storage/box/hug/mad_clown/PopulateContents()
-	new /obj/item/reagent_containers/glass/bottle/accelerant_ts(src)
+	new /obj/item/clothing/mask/gas/mad_clown(src)
 	new /obj/item/staff/roadsign(src)
