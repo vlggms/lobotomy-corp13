@@ -25,13 +25,6 @@
 	icon_state = "centcom"
 	inhand_icon_state = "dg_suit"
 
-/obj/item/clothing/head/caphat/admiral
-	name = "rear admiral's cap"
-	desc = "Worn by the finest captains of the Nanotrasen. Inside the lining of the cap, lies two faint initials."
-	icon_state = "centcom_cap"
-	inhand_icon_state = "that"
-	dog_fashion = null
-
 /obj/item/clothing/suit/armor/vest/officer
 	name = "armored officer's jacket"
 	desc = "A reinforced jacket for high-ranking security officers. Who said you have to sacrifice safety for the style?"
