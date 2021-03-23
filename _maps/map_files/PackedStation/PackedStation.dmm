@@ -19988,11 +19988,11 @@
 /turf/open/floor/wood,
 /area/maintenance/aft/secondary)
 "crz" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/turf/open/floor/plasteel,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
 /area/science/storage)
 "crG" = (
 /obj/effect/turf_decal/stripes/line{
@@ -20055,9 +20055,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel/white,
 /area/science/storage)
 "cxp" = (
@@ -21355,13 +21353,6 @@
 	},
 /turf/open/floor/wood,
 /area/security/courtroom)
-"ekk" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "ekE" = (
 /obj/machinery/light{
 	dir = 8
@@ -21557,10 +21548,8 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "eAk" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/plasteel/white,
 /area/science/storage)
 "eAL" = (
@@ -21633,18 +21622,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"eEy" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "eEE" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"eEH" = (
+/turf/open/floor/plasteel/white,
+/area/science/storage)
 "eEQ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -21674,6 +21659,13 @@
 "eFr" = (
 /turf/open/space/basic,
 /area/maintenance/port/fore)
+"eFU" = (
+/obj/structure/cable,
+/obj/machinery/portable_atmospherics/scrubber{
+	name = "scrubber ducky"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/storage)
 "eFW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -22444,7 +22436,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
 	},
@@ -23777,6 +23768,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"hmu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/science/storage)
 "hmB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
@@ -24092,11 +24089,8 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "hIC" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/white,
 /area/science/storage)
 "hIF" = (
 /obj/machinery/hydroponics/constructable,
@@ -24865,11 +24859,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "izC" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/east,
+/obj/machinery/portable_atmospherics/scrubber{
+	name = "scrubber ducky"
+	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing/chamber)
 "iAj" = (
@@ -25628,9 +25622,6 @@
 "jzV" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
-	},
-/obj/machinery/portable_atmospherics/scrubber{
-	name = "scrubber ducky"
 	},
 /turf/open/floor/plasteel,
 /area/science/storage)
@@ -27268,6 +27259,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
+"lAC" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/turf/open/floor/plasteel/white,
+/area/science/storage)
 "lAW" = (
 /obj/structure/closet/secure_closet/bar,
 /turf/open/floor/wood{
@@ -28998,9 +28993,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/scrubber{
-	name = "scrubber ducky"
-	},
 /turf/open/floor/plasteel,
 /area/science/storage)
 "nwV" = (
@@ -29372,13 +29364,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
-"nUx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/pump,
-/turf/open/floor/plasteel,
-/area/science/storage)
 "nVd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -30773,6 +30758,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
+"pTX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/storage)
 "pUn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -32365,9 +32356,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "rRQ" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/plasteel/white,
 /area/science/storage)
@@ -33456,9 +33444,6 @@
 /turf/closed/wall,
 /area/hallway/secondary/exit)
 "tqq" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
@@ -34650,12 +34635,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "uQp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/firealarm{
 	pixel_y = -26
 	},
+/obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plasteel/white,
 /area/science/storage)
 "uRz" = (
@@ -37165,11 +37148,11 @@
 /turf/open/floor/plating,
 /area/maintenance/aft/secondary)
 "ykv" = (
-/obj/effect/turf_decal/stripes/line{
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/white,
 /area/science/storage)
 "yky" = (
 /obj/effect/decal/cleanable/dirt,
@@ -86397,8 +86380,8 @@ xrL
 vrW
 fYt
 tmo
-tmo
-fYt
+vAI
+pTX
 cub
 vrW
 niD
@@ -86654,8 +86637,8 @@ ajd
 vrW
 tmo
 tmo
-tmo
-tmo
+vAI
+eEH
 uQp
 vrW
 wHS
@@ -86911,9 +86894,9 @@ ajd
 vrW
 fkm
 fkm
-fkm
-fkm
 vAI
+eEH
+lAC
 vrW
 jNS
 pkK
@@ -87166,10 +87149,10 @@ ajd
 ajd
 ajd
 vrW
-eEy
+nvZ
 nvZ
 crz
-ekk
+rRQ
 rRQ
 hUe
 aHd
@@ -87423,7 +87406,7 @@ ajd
 ajd
 ajd
 vrW
-nUx
+jzV
 jzV
 ykv
 hIC
@@ -87682,8 +87665,8 @@ ajd
 vrW
 mBi
 lge
-lge
-lge
+vAI
+eEH
 eAk
 vrW
 ijh
@@ -87939,9 +87922,9 @@ ajd
 vrW
 wSb
 wSb
-wSb
-wSb
-eAk
+vAI
+eEH
+eFU
 vrW
 loA
 cgz
@@ -88196,8 +88179,8 @@ ajd
 vrW
 fxW
 wSb
-wSb
-fxW
+vAI
+hmu
 izC
 vrW
 ijh
