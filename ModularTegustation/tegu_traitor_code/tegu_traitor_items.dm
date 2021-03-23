@@ -179,3 +179,41 @@
 	inhand_icon_state = "baguette"
 	force = 10
 
+/obj/item/staff/roadsign
+	name = "road sign"
+	desc = "It obviously isn't supposed to be used like that, huh?"
+	force = 15
+	throwforce = 18
+	sharpness = SHARP_EDGED
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguitems_hold_right.dmi'
+	icon_state = "roadsign"
+	inhand_icon_state = "roadsign"
+	armour_penetration = 20
+	block_chance = 20
+	attack_verb_continuous = list("bludgeons", "whacks", "slices", "impales")
+	attack_verb_simple = list("bludgeon", "whack", "slice", "impale")
+	w_class = WEIGHT_CLASS_BULKY
+	var/attack_speed_mod = 0.4
+
+/obj/item/staff/roadsign/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if(user.mad_shaking > 0)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed_mod)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+
+// A kit for clown
+/obj/item/storage/box/hug/mad_clown
+	name = "clown's box"
+
+/obj/item/storage/box/hug/mad_clown/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_items = 3
+
+/obj/item/storage/box/hug/mad_clown/PopulateContents()
+	new /obj/item/reagent_containers/glass/bottle/accelerant_ts(src)
+	new /obj/item/staff/roadsign(src)
