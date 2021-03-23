@@ -105,7 +105,7 @@
 
 /datum/uplink_item/role_restricted/mad_clown
 	name = "Mad clown's box"
-	desc = "Tired of BORING comedy? Want to introduce something NEW to societ? \
+	desc = "Tired of BORING and simple comedy? Want to introduce something NEW to society? \
 			Then you'll surely like this box our team found somewhere in Nevada! \
 			Contains a protective clown's mask and the ultimate weapon for a mad man you are."
 	item = /obj/item/storage/box/hug/mad_clown
