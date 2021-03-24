@@ -13,9 +13,9 @@
 	. = ..()
 	if(ishuman(user) && slot == ITEM_SLOT_MASK)
 		ADD_TRAIT(src, TRAIT_NODROP, "mad-mask")
-		user.mad_shaking += 1
+		user.mad_shaking = 1
 
 /obj/item/clothing/mask/gas/mad_clown/dropped(mob/living/user)
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_NODROP, "mad-mask")
-	user.mad_shaking -= 1
+	user.mad_shaking = 0
