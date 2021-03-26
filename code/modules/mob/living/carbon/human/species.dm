@@ -213,6 +213,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(S.check_roundstart_eligible())
 			GLOB.roundstart_races += S.id
 			qdel(S)
+		if(S.check_trusted_eligible()) // TeguStation edit.
+			GLOB.trusted_races += S.id
+			qdel(S)
 	if(!GLOB.roundstart_races.len)
 		GLOB.roundstart_races += "human"
 
@@ -224,6 +227,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
  */
 /datum/species/proc/check_roundstart_eligible()
 	if(id in (CONFIG_GET(keyed_list/roundstart_races)))
+		return TRUE
+	return FALSE
+
+/**
+ * Similar check, but for trusted players only.
+ * TeguStation edit.
+ */
+/datum/species/proc/check_trusted_eligible()
+	if(id in (CONFIG_GET(keyed_list/trusted_races)))
 		return TRUE
 	return FALSE
 
