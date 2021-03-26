@@ -31,14 +31,33 @@
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
+/mob/living/simple_animal/hostile/retaliate/gator/steppy/cool
+	name = "Cool Steppy"
+	desc = "Cargo's pet gator. Looks like nobody can detain him now."
+	speak_emote = list("snaps menacingly")
+	loot = list(/obj/item/clothing/glasses/hud/security/sunglasses)
+	icon_state = "gator_cool"
+	icon_living = "gator_cool"
+	speed = 7
+	melee_damage_lower = 25
+	melee_damage_upper = 30
+	health = 150
+	maxHealth = 150
+
 /mob/living/simple_animal/sloth/paperwork/Initialize(mapload) // Shitty way of replacing sloth pets, without editing maps.
 	. = ..()
 	var/turf/T = get_turf(src)
-	new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
+	if(prob(5))
+		new /mob/living/simple_animal/hostile/retaliate/gator/steppy/cool(T)
+	else
+		new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
 	return INITIALIZE_HINT_QDEL
 
 /mob/living/simple_animal/sloth/citrus/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
-	new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
+	if(prob(5))
+		new /mob/living/simple_animal/hostile/retaliate/gator/steppy/cool(T)
+	else
+		new /mob/living/simple_animal/hostile/retaliate/gator/steppy(T)
 	return INITIALIZE_HINT_QDEL
