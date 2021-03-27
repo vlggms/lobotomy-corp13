@@ -1434,10 +1434,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/species_input_list = GLOB.roundstart_races // TeguStation edit.
-					if(IS_TRUSTED_PLAYER(user.ckey) || check_rights_for(user.client, R_ADMIN))
-						species_input_list += GLOB.trusted_races
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in species_input_list // TeguStation edit end.
+					var/result // TeguStation edit.
+					if(IS_TRUSTED_PLAYER(user.client.ckey) || check_rights_for(user.client, R_ADMIN))
+						result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races + GLOB.trusted_races
+					else
+						result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races // TeguStation edit end.
 
 					if(result)
 						var/newtype = GLOB.species_list[result]
