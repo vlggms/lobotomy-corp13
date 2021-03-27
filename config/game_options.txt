@@ -488,6 +488,9 @@ ROUNDSTART_RACES ethereal
 ## Uncomment to give players the choice of joining as a human with mutant bodyparts before they join the game
 #JOIN_WITH_MUTANT_HUMANS
 
+## Races available to trusted players AND admins
+TRUSTED_RACES shadow
+
 ##Overflow job. Default is assistant
 OVERFLOW_JOB Assistant
 

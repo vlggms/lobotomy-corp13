@@ -1434,7 +1434,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("species")
 
-					var/result = input(user, "Select a species", "Species Selection") as null|anything in GLOB.roundstart_races
+					var/species_input_list = GLOB.roundstart_races // TeguStation edit.
+					if(IS_TRUSTED_PLAYER(user.ckey) || user.client.holder || GLOB.deadmins[user.client.ckey])
+						species_input_list += GLOB.trusted_races
+					var/result = input(user, "Select a species", "Species Selection") as null|anything in species_input_list // TeguStation edit end.
 
 					if(result)
 						var/newtype = GLOB.species_list[result]
@@ -2003,9 +2006,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/chosen_species
 	chosen_species = pref_species.type
 	if(roundstart_checks && !(pref_species.id in GLOB.roundstart_races) && !(pref_species.id in (CONFIG_GET(keyed_list/roundstart_no_hard_check))))
-		chosen_species = /datum/species/human
-		pref_species = new /datum/species/human
-		save_character()
+		if(!((pref_species.id in GLOB.trusted_races) && (IS_TRUSTED_PLAYER(parent.ckey) || parent.holder || GLOB.deadmins[parent.ckey]))) // TeguStation edit.
+			chosen_species = /datum/species/human
+			pref_species = new /datum/species/human
+			save_character()
 
 	character.dna.features = features.Copy()
 	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
