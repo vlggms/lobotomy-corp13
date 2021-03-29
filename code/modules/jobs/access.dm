@@ -397,6 +397,9 @@
 		return jobName
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job
 		return "CentCom"
+	for(var/datum/job/J in SSjob.occupations)//tegu alt job titles
+		if((jobName in J.alt_titles) || (jobName == J.senior_title) || (jobName == J.ultra_senior_title))
+			return J.title//tegu end
 	if(jobName in get_all_syndicate_jobs()) //Sets icon to Syndicate logo if from the list
 		return "Syndicate Official"
 	return "Unknown" //Return unknown if none of the above apply

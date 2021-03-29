@@ -541,3 +541,9 @@ DEFAULT_VIEW_SQUARE 15x15
 
 ## Add the ID of the role you want assigning here
 #DISCORD_ROLEID 000000000000000000
+
+##Amount of time required for senior job titles in minutes
+SENIOR_TIMELOCK 3000
+
+##Amount of time required for ULTRA senior job titles in minutes
+SENIOR_TIMELOCK 30000

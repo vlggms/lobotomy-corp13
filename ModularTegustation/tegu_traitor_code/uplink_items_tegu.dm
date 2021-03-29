@@ -103,6 +103,15 @@
 	item = /obj/structure/closet/crate/laser_tag_partypack_blue
 	cost = 50
 
+/datum/uplink_item/role_restricted/mad_clown
+	name = "Mad clown's box"
+	desc = "Tired of BORING and simple comedy? Want to introduce something NEW to society? \
+			Then you'll surely like this box our team found somewhere in Nevada! \
+			Contains a protective clown's mask and the ultimate weapon for a mad man you are."
+	item = /obj/item/storage/box/hug/mad_clown
+	cost = 12
+	restricted_roles = list("Clown")
+
 /datum/uplink_item/race_restricted/diginoslip
 	name = "No-Slip Digitigrade Shoes"
 	desc = "Simple as that - Robust shoes for lizardmen aiming to control the galaxy. \

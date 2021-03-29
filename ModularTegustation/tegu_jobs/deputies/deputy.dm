@@ -7,7 +7,7 @@
 	spawn_positions = 4 //ditto
 	supervisors = "the head of security, and the head of your assigned department"
 	selection_color = "#ffeeee"
-	minimal_player_age = 14
+	minimal_player_age = 3
 	exp_requirements = 50
 	exp_type = EXP_TYPE_CREW
 	id_icon = 'ModularTegustation/Teguicons/cards.dmi'

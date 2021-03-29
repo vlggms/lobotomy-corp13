@@ -11,6 +11,23 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 
-/obj/item/clothing/shoes/digicombat/noslip
-	desc = "Robust combat boots especially for lizardmen. Perfect for walking over piled human corpses. This pair of shoes is specifically designed to prevent slipping on wet surfaces."
-	clothing_flags = NOSLIP
+/obj/item/clothing/suit/armor/vest/capcarapace/admiral
+	name = "rear admiral's armored coat"
+	desc = "An armored coat that is given out to the most trust-worthy captains in Nanotrasen."
+	icon_state = "centcom_formal"
+	inhand_icon_state = "centcom"
+
+/obj/item/clothing/under/rank/captain/admiral
+	name = "rear admiral's jumpsuit"
+	desc = "It's a green jumpsuit with some gold markings denoting the rank of \"Rear Admiral\"."
+	icon = 'icons/obj/clothing/under/centcom.dmi'
+	worn_icon = 'icons/mob/clothing/under/centcom.dmi'
+	icon_state = "centcom"
+	inhand_icon_state = "dg_suit"
+
+/obj/item/clothing/suit/armor/vest/officer
+	name = "armored officer's jacket"
+	desc = "A reinforced jacket for high-ranking security officers. Who said you have to sacrifice safety for the style?"
+	icon_state = "officerbluejacket"
+	inhand_icon_state = "officerbluejacket"
+	dog_fashion = null

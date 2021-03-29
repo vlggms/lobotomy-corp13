@@ -71,6 +71,20 @@
 	new /obj/item/gun/ballistic/automatic/pistol(src) //7 TC
 	new /obj/item/ammo_box/magazine/m9mm(src) //1TC
 
+// A kit for LUFR operatives. Available only to lizard infiltrators that got lucky enough to get this faction.
+// Costs 14 TC.
+/obj/item/storage/backpack/duffelbag/syndie/lufr/PopulateContents()
+	new /obj/item/clothing/head/hos/beret/syndicate(src) //1 TC
+	new /obj/item/clothing/mask/balaclava(src) //0 TC, haha
+	new /obj/item/radio/headset/syndicate/alt(src)
+	new /obj/item/clothing/gloves/combat(src) //1 TC?
+	new /obj/item/clothing/under/syndicate/coldres(src) //2-3 TC?
+	new /obj/item/clothing/shoes/combat(src) //Free, idk
+	new /obj/item/gun/ballistic/automatic/pistol(src) //7 TC
+	new /obj/item/ammo_box/magazine/m9mm(src) //1TC
+	new /obj/item/grenade/chem_grenade/clf3(src) //1 TC, I suppose
+	new /obj/item/grenade/frag(src) //3 TC
+
 // Advanced hypno-flash. For psychologists.
 /obj/item/assembly/flash/hypnotic/adv
 	desc = "A modified flash device, used to beam preprogrammed orders directly into the target's mind."
@@ -180,16 +194,41 @@
 	inhand_icon_state = "baguette"
 	force = 10
 
-// A kit for LUFR operatives. Available only to lizard infiltrators that got lucky enough to get this faction.
-// Costs 14 TC.
-/obj/item/storage/backpack/duffelbag/syndie/lufr/PopulateContents()
-	new /obj/item/clothing/head/hos/beret/syndicate(src) //1 TC
-	new /obj/item/clothing/mask/balaclava(src) //0 TC, haha
-	new /obj/item/radio/headset/syndicate/alt(src)
-	new /obj/item/clothing/gloves/combat(src) //1 TC?
-	new /obj/item/clothing/under/syndicate/coldres(src) //2-3 TC?
-	new /obj/item/clothing/shoes/combat(src) //Free, idk
-	new /obj/item/gun/ballistic/automatic/pistol(src) //7 TC
-	new /obj/item/ammo_box/magazine/m9mm(src) //1TC
-	new /obj/item/grenade/chem_grenade/clf3(src) //1 TC, I suppose
-	new /obj/item/grenade/frag(src) //3 TC
+/obj/item/staff/roadsign
+	name = "road sign"
+	desc = "It obviously isn't supposed to be used like that, huh?"
+	force = 15
+	throwforce = 18
+	sharpness = SHARP_EDGED
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/teguitems_hold_right.dmi'
+	icon_state = "roadsign"
+	inhand_icon_state = "roadsign"
+	armour_penetration = 20
+	block_chance = 20
+	attack_verb_continuous = list("bludgeons", "whacks", "slices", "impales")
+	attack_verb_simple = list("bludgeon", "whack", "slice", "impale")
+	w_class = WEIGHT_CLASS_BULKY
+	var/attack_speed_mod = 0.4
+
+/obj/item/staff/roadsign/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if(user.mad_shaking > 0)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed_mod)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+
+// A kit for clown
+/obj/item/storage/box/hug/mad_clown
+	name = "clown's box"
+
+/obj/item/storage/box/hug/mad_clown/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_items = 3
+
+/obj/item/storage/box/hug/mad_clown/PopulateContents()
+	new /obj/item/clothing/mask/gas/mad_clown(src)
+	new /obj/item/staff/roadsign(src)

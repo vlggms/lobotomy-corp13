@@ -89,6 +89,7 @@
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
 	if(mind_traits)
 		for(var/t in mind_traits)
 			ADD_TRAIT(H.mind, t, JOB_TRAIT)
@@ -149,8 +150,13 @@
 	//Equip the rest of the gear
 	H.dna.species.before_equip_job(src, H, visualsOnly)
 
+	if(outfit && preference_source?.prefs?.alt_titles_preferences[title] && !outfit_override)
+		var/outfitholder = "[outfit]/[ckey(preference_source.prefs.alt_titles_preferences[title])]"
+		if(text2path(outfitholder) || !outfitholder)
+			outfit_override = text2path(outfitholder)//tegu end
+
 	if(outfit_override || outfit)
-		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly)
+		H.equipOutfit(outfit_override ? outfit_override : outfit, visualsOnly, preference_source)//tegu alt job titles
 
 	H.dna.species.after_equip_job(src, H, visualsOnly)
 
@@ -269,7 +275,7 @@
 		holder = "[uniform]"
 	uniform = text2path(holder)
 
-/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null) // Tegu alt job titles
 	if(visualsOnly)
 		return
 
@@ -282,7 +288,12 @@
 		C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		C.assignment = J.title
+		// Tegu edit - Alt job titles
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			C.assignment = J.title
+		// Tegu end
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -295,7 +306,12 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		PDA.ownjob = J.title
+		// Tegu edit - Alt job titles
+		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+			PDA.ownjob = preference_source.prefs.alt_titles_preferences[J.title]
+		else
+			PDA.ownjob = J.title
+		// Tegu end
 		PDA.update_label()
 
 	if(H.client?.prefs.playtime_reward_cloak)
