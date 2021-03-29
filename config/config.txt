@@ -409,12 +409,12 @@ AUTOADMIN_RANK Game Master
 #AUTO_DEADMIN_PLAYERS
 
 ## Uncomment to automatically deadmin antagonists when they gain the role.
-AUTO_DEADMIN_ANTAGONISTS
+#AUTO_DEADMIN_ANTAGONISTS
 
 ## Uncomment to automatically deadmin specific role sets when a player joins the game.
-AUTO_DEADMIN_HEADS
-AUTO_DEADMIN_SECURITY
-AUTO_DEADMIN_SILICONS
+#AUTO_DEADMIN_HEADS
+#AUTO_DEADMIN_SECURITY
+#AUTO_DEADMIN_SILICONS
 
 
 ## CLIENT VERSION CONTROL

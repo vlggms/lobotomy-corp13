@@ -1,4 +1,4 @@
-// Bunch of code/outfits for factions that have no real use. YET.
+// Bunch of code/outfits for minor factions unique to Tegu Station lore/code.
 
 ///* LIZARDS UNITED FRONT *///
   /* OUTFITS */
@@ -94,7 +94,7 @@
 		else
 			syndi_job_lufr = pick("Nuclear Operative", "Sabotage Specialist", "Assault Operative", "Intelligence Officer")
 	flavour_text = "Since the humans arrived to your sector your kind was given a great opportunity to work with them, together. \
-	Sadly, it didn't stay like this for long, as TerraGov destroyed your dreams of racial equality and friendship. \
+	Sadly, it didn't stay like this for too long, as TerraGov destroyed your dreams of racial equality and friendship. \
 	Previously you worked as [prev_job_lufr] on Space Station [prev_station_lufr], but as the new law passed, you've been \
 	forced to work as [new_job_lufr]! Outraged by this injustice, you [crime_lufr] and rushed to the last working escape pod \
 	and ended up on Lavaland, where you've got in contact with the Syndicate, which promptly sent you supplies and offered \
@@ -103,4 +103,4 @@
 /obj/effect/mob_spawn/human/lufr/ashwalker/special(mob/living/new_spawn)
 	. = ..()
 	new_spawn.mind.store_memory("Your previous job was: [prev_job_lufr]")
-	new_spawn.mind.store_memory("Syndicate offere you to work as: [syndi_job_lufr]")
+	new_spawn.mind.store_memory("Syndicate offered you to work as: [syndi_job_lufr]")
