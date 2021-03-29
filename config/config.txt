@@ -409,12 +409,12 @@ AUTOADMIN_RANK Game Master
 #AUTO_DEADMIN_PLAYERS
 
 ## Uncomment to automatically deadmin antagonists when they gain the role.
-AUTO_DEADMIN_ANTAGONISTS
+#AUTO_DEADMIN_ANTAGONISTS
 
 ## Uncomment to automatically deadmin specific role sets when a player joins the game.
-AUTO_DEADMIN_HEADS
-AUTO_DEADMIN_SECURITY
-AUTO_DEADMIN_SILICONS
+#AUTO_DEADMIN_HEADS
+#AUTO_DEADMIN_SECURITY
+#AUTO_DEADMIN_SILICONS
 
 
 ## CLIENT VERSION CONTROL
@@ -543,7 +543,7 @@ DEFAULT_VIEW_SQUARE 15x15
 #DISCORD_ROLEID 000000000000000000
 
 ##Amount of time required for senior job titles in minutes
-SENIOR_TIMELOCK 3000
+SENIOR_TIMELOCK 600
 
 ##Amount of time required for ULTRA senior job titles in minutes
-SENIOR_TIMELOCK 30000
+ULTRA_SENIOR_TIMELOCK 6000
