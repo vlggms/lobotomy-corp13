@@ -10,3 +10,12 @@
 		/obj/item/stack/sheet/glass = 1,
 		/obj/item/stock_parts/scanning_module = 1)
 	generate_items_inside(items_inside,src)
+
+/obj/item/storage/box/stockparts/dna_manip_disks
+	name = "plant data disk box"
+	desc = "A box full of disks used to contain plant data, for use in DNA manipulator."
+
+/obj/item/storage/box/stockparts/dna_manip_disks/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/disk/plantgene = 7)
+	generate_items_inside(items_inside,src)
