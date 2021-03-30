@@ -3378,6 +3378,7 @@
 #include "ModularTegustation\tegu_virology.dm"
 #include "ModularTegustation\tegu_world.dm"
 #include "ModularTegustation\tegufood.dm"
+#include "ModularTegustation\tegushuttles.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
 #include "ModularTegustation\altjobtitles\outfits.dm"
 #include "ModularTegustation\living\living.dm"
