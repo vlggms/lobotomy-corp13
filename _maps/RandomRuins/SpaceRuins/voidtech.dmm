@@ -93,7 +93,9 @@
 /area/ruin/space/has_grav/voidtech)
 "nE" = (
 /obj/structure/cable,
-/obj/machinery/power/port_gen/pacman,
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/voidtech)
@@ -116,6 +118,9 @@
 /area/ruin/space/has_grav/voidtech)
 "nS" = (
 /obj/machinery/portable_atmospherics/pump,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "nX" = (
@@ -286,7 +291,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "DQ" = (
-/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/voidtech)
 "Ej" = (
@@ -489,7 +496,10 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/voidtech)
 "WG" = (
-/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser{
+	pixel_x = 5;
+	pixel_y = 3
+	},
 /obj/item/pipe_dispenser,
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -528,9 +538,15 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/voidtech)
+"XV" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
 "YI" = (
 /obj/effect/turf_decal/stripes,
-/obj/effect/landmark/start/voidtech,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/voidtech)
 
@@ -995,7 +1011,7 @@ UU
 Lh
 GE
 aO
-aO
+XV
 zR
 Xf
 Jt
