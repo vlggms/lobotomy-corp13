@@ -41,7 +41,7 @@
 	name = "a hand teleporter."
 	targetitem = /obj/item/hand_tele
 	difficulty = 5
-	excludefromjob = list("Captain", "Research Director")
+	excludefromjob = list("Captain", "Research Director", "Void Technician")
 
 /datum/objective_item/steal/jetpack
 	name = "the Captain's jetpack."

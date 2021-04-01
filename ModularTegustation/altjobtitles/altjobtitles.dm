@@ -68,6 +68,9 @@
 	alt_titles = list("Firefighter", "Life Support Specialist")
 	senior_title = "Senior Atmospheric Technician"
 
+/datum/job/tegu/voidtech
+	ultra_senior_title = "Space Marine"
+
 /// Supply
 
 /datum/job/qm

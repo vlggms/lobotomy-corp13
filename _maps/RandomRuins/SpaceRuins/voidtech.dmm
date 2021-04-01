@@ -1,0 +1,1624 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aD" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"aO" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"bj" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"bm" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"bX" = (
+/obj/machinery/computer/teleporter{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"dy" = (
+/obj/item/storage/bag/sheetsnatcher{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/storage/bag/sheetsnatcher{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"en" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"jy" = (
+/obj/machinery/teleport/station,
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"kN" = (
+/obj/effect/turf_decal/stripes{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"lj" = (
+/obj/machinery/door/airlock/external/glass{
+	req_one_access_txt = "17;19"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"ln" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "voidtech_teleport_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"mg" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"nC" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/west,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"nE" = (
+/obj/structure/cable,
+/obj/machinery/power/port_gen/pacman,
+/obj/effect/turf_decal/delivery/red,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"nP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/pickaxe,
+/obj/item/pickaxe,
+/obj/item/storage/bag/ore{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/storage/bag/ore{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"nS" = (
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"nX" = (
+/obj/effect/turf_decal/stripes,
+/obj/machinery/atmospherics/components/binary/pump/on{
+	dir = 1;
+	name = "Air Supply"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"oJ" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"oT" = (
+/obj/machinery/door/window/brigdoor/eastright{
+	req_one_access_txt = "17;19"
+	},
+/obj/machinery/button/door{
+	id = "voidtech_teleport_windows";
+	name = "Window Shutters";
+	pixel_x = -6;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"pw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"qx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/stack/rods/fifty,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"qJ" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/structure/sign/poster/official/wtf_is_co2{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"rM" = (
+/obj/machinery/airalarm/directional/north{
+	locked = 0
+	},
+/obj/machinery/portable_atmospherics/pump,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"rR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/table,
+/obj/item/gps{
+	gpstag = "VOID0";
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/gps{
+	gpstag = "VOID0"
+	},
+/obj/item/gps{
+	gpstag = "VOID0";
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"ty" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"tD" = (
+/turf/closed/wall/r_wall,
+/area/template_noop)
+"wq" = (
+/obj/structure/sign/poster/official/enlist{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"wH" = (
+/obj/machinery/portable_atmospherics/scrubber,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"yj" = (
+/obj/effect/turf_decal/stripes,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"zf" = (
+/obj/machinery/door/airlock/external/glass{
+	req_one_access_txt = "17;19"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"zR" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Aa" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"An" = (
+/obj/structure/rack,
+/obj/item/tank/jetpack/carbondioxide{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/tank/jetpack/carbondioxide,
+/obj/item/tank/jetpack/carbondioxide{
+	pixel_y = 2
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"AS" = (
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32
+	},
+/turf/template_noop,
+/area/template_noop)
+"BA" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"CD" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/pump,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"CE" = (
+/obj/effect/turf_decal/stripes{
+	dir = 6
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Dk" = (
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"DQ" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Ej" = (
+/obj/effect/turf_decal/loading_area/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"EK" = (
+/obj/effect/turf_decal/stripes{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Fz" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"FW" = (
+/obj/effect/landmark/start/voidtech,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Gz" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/engineering{
+	pixel_y = 5
+	},
+/obj/item/storage/backpack/duffelbag/engineering,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"GE" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"GI" = (
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Hv" = (
+/obj/structure/window/reinforced/spawner/east,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"II" = (
+/obj/effect/turf_decal/stripes{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Jt" = (
+/turf/template_noop,
+/area/template_noop)
+"JY" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"KL" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"La" = (
+/obj/machinery/teleport/hub,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/floor/circuit/green,
+/area/ruin/space/has_grav/voidtech)
+"Lh" = (
+/obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/bluespace_beacon,
+/obj/effect/landmark/start/voidtech,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Li" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/tank/air{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"LW" = (
+/obj/machinery/atmospherics/components/unary/tank/air,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"MC" = (
+/obj/effect/turf_decal/stripes{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Na" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"Nr" = (
+/obj/structure/table/reinforced,
+/obj/structure/cable,
+/obj/item/beacon{
+	enabled = 0;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/beacon{
+	enabled = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Ol" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/engineering,
+/obj/machinery/camera{
+	c_tag = "Void Outpost";
+	name = "outpost camera"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"OB" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Qm" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/template_noop,
+/area/template_noop)
+"RQ" = (
+/obj/machinery/atmospherics/components/binary/pump,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"SL" = (
+/obj/machinery/door/window/brigdoor/eastleft{
+	req_one_access_txt = "17;19"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"TU" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = -32
+	},
+/turf/template_noop,
+/area/template_noop)
+"UU" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"Vq" = (
+/obj/machinery/light_switch{
+	pixel_x = -6;
+	pixel_y = 32
+	},
+/obj/item/binoculars{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/binoculars{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"VA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"WG" = (
+/obj/item/pipe_dispenser,
+/obj/item/pipe_dispenser,
+/obj/structure/table/reinforced,
+/obj/structure/cable,
+/obj/structure/sign/poster/official/build{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/voidtech)
+"WM" = (
+/obj/machinery/door/airlock/external/glass{
+	req_one_access_txt = "17;19"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"Xf" = (
+/turf/closed/wall/r_wall,
+/area/ruin/space/has_grav/voidtech)
+"XA" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 30
+	},
+/obj/effect/turf_decal/bot_red,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"XC" = (
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+"XI" = (
+/obj/machinery/door/airlock/external/glass{
+	req_one_access_txt = "17;19"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/voidtech)
+"YI" = (
+/obj/effect/turf_decal/stripes,
+/obj/effect/landmark/start/voidtech,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/voidtech)
+
+(1,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(2,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(3,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(4,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(5,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+AS
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(6,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+tD
+tD
+tD
+tD
+tD
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(7,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+tD
+oJ
+oJ
+oJ
+tD
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(8,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+oJ
+Jt
+oJ
+Jt
+oJ
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(9,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+tD
+tD
+tD
+oJ
+oJ
+oJ
+tD
+tD
+tD
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(10,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+tD
+oJ
+oJ
+Jt
+oJ
+Jt
+oJ
+oJ
+tD
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(11,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+tD
+oJ
+Xf
+ln
+ln
+ln
+Xf
+oJ
+tD
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(12,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+oJ
+Jt
+Xf
+La
+jy
+bX
+Xf
+Jt
+oJ
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(13,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+Xf
+Xf
+Xf
+SL
+Hv
+oT
+Xf
+Xf
+Xf
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(14,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+WG
+Nr
+nC
+UU
+Lh
+GE
+aO
+aO
+zR
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(15,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+TU
+Xf
+Gz
+MC
+II
+II
+II
+II
+II
+kN
+An
+Xf
+Qm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(16,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+Ol
+bj
+nE
+Ej
+XA
+XC
+XC
+yj
+qJ
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(17,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+bm
+bm
+Xf
+Vq
+GI
+XC
+FW
+XC
+XC
+XC
+yj
+Dk
+Xf
+bm
+bm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(18,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+XI
+BA
+zf
+aO
+GI
+pw
+qx
+aD
+rR
+Fz
+yj
+aO
+XI
+BA
+zf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(19,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+bm
+bm
+Xf
+rM
+Na
+XC
+KL
+ty
+nP
+VA
+nX
+Li
+Xf
+bm
+bm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(20,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+nS
+Aa
+FW
+XC
+XC
+dy
+XC
+YI
+DQ
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(21,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+TU
+Xf
+wH
+JY
+EK
+EK
+EK
+EK
+EK
+CE
+en
+Xf
+Qm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(22,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+LW
+RQ
+CD
+aO
+aO
+aO
+wq
+aO
+OB
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(23,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Xf
+Xf
+Xf
+Xf
+Xf
+WM
+Xf
+Xf
+Xf
+Xf
+Xf
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(24,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+bm
+mg
+bm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(25,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+bm
+lj
+bm
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(26,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(27,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(28,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(29,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(30,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(31,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}
+(32,1,1) = {"
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+Jt
+"}

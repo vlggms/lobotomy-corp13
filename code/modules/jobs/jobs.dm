@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 GLOBAL_LIST_INIT(engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
+	"Void Technician", // Tegustation Voidtech edit
 	"Atmospheric Technician"))
 
 
