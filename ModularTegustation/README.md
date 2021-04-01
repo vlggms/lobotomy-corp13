@@ -1,12 +1,12 @@
 	[PLEASE KEEP YOUR CODE AS MODULAR AS POSSIBLE]
 
-##Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to prevent merge conflicts when we update with /TG/.
+Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to prevent merge conflicts when we update with /TG/.
 
 	// Notes to help against merge conflicts \\
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###WHEN ADDING ONTO TG CODE
+Situation: WHEN ADDING ONTO TG CODE
 
 Practice: Add a note saying '// Tegustation [PR name] edit: (reason for edit)' (Dont forget to write at the bottom of this README the name and what the PR is)
 
@@ -22,7 +22,7 @@ Example:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###WHEN ADDING SOMETHING ON TOP OF TEGU-ONLY CODE ON TG FILES THAT ALREADY HAS A NOTE
+Situation: WHEN ADDING SOMETHING ON TOP OF TEGU-ONLY CODE ON TG FILES THAT ALREADY HAS A NOTE
 
 Practice: Add a note saying it is also used in your PR as well
 
@@ -38,7 +38,7 @@ Example:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###WHEN ADDING AN ITEM TO A VENDING MACHINE/LOCKER
+Situation: WHEN ADDING AN ITEM TO A VENDING MACHINE/LOCKER
 
 Practice: Initialize the Vending Machine/Locker in a separate Tegu file, adding it onto there.
 
@@ -102,7 +102,7 @@ Example:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###WHEN REPLACING TG CODE (How something should act, starting gear, ect)
+Situation: WHEN REPLACING TG CODE (How something should act, starting gear, ect)
 
 Practice: Comment out the TG code, then have your code under it, with the '// Tegustation edit' note'
 
@@ -129,7 +129,7 @@ Example:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###List of things to be done:
+List of things to be done:
 
 - Change Tegu-only Medical code (I'd like unhusking to be moved || Tend Wound surgery unhusks -> Unhusk Surgery)
 - 
@@ -141,7 +141,7 @@ Example:
 - 
 - Fix Haunted dice (Curator only traitor item, it's supposed to ask ghosts a question, but it doesnt let ghosts actually answer it)
 
-###Codewords to search PRs by:
+Codewords to search PRs by:
 
 // Tegustation Deputy - Deputies
 
