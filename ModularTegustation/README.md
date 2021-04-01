@@ -1,12 +1,12 @@
 	[PLEASE KEEP YOUR CODE AS MODULAR AS POSSIBLE]
 
-Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to prevent merge conflicts when we update with /TG/.
+##Keep edits in the TegustationModular folder WHENEVER POSSIBLE. This is to prevent merge conflicts when we update with /TG/.
 
 	// Notes to help against merge conflicts \\
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Sitation: WHEN ADDING ONTO TG CODE
+###WHEN ADDING ONTO TG CODE
 
 Practice: Add a note saying '// Tegustation [PR name] edit: (reason for edit)' (Dont forget to write at the bottom of this README the name and what the PR is)
 
@@ -22,7 +22,7 @@ Example:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Situation: WHEN ADDING SOMETHING ON TOP OF TEGU-ONLY CODE ON TG FILES THAT ALREADY HAS A NOTE
+###WHEN ADDING SOMETHING ON TOP OF TEGU-ONLY CODE ON TG FILES THAT ALREADY HAS A NOTE
 
 Practice: Add a note saying it is also used in your PR as well
 
@@ -38,7 +38,7 @@ Example:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Situation: WHEN ADDING AN ITEM TO A VENDING MACHINE/LOCKER
+###WHEN ADDING AN ITEM TO A VENDING MACHINE/LOCKER
 
 Practice: Initialize the Vending Machine/Locker in a separate Tegu file, adding it onto there.
 
@@ -64,7 +64,7 @@ Example:
 	
 		new /obj/item/clothing/neck/cloak/cmo(src)
 
->On a separate file in ModularTegustation called 'vendor_containor_init.dm'
+>On a separate file in ModularTegustation called 'vendor_container_init.dm'
 
 	/obj/structure/closet/secure_closet/chief_medical/Initialize()
 
@@ -102,7 +102,7 @@ Example:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Situation: WHEN REPLACING TG CODE (How something should act, starting gear, ect)
+###WHEN REPLACING TG CODE (How something should act, starting gear, ect)
 
 Practice: Comment out the TG code, then have your code under it, with the '// Tegustation edit' note'
 
@@ -129,23 +129,19 @@ Example:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-List of things to be done:
+###List of things to be done:
 
 - Change Tegu-only Medical code (I'd like unhusking to be moved || Tend Wound surgery unhusks -> Unhusk Surgery)
 - 
-- Remove Tegu-only borg things (Dont do this yet, there will likely have a vote on the Discord on whether these changes should happen!)
+- Remove/Update Tegu-only borg things (Dont do this yet, there will likely have a vote on the Discord on whether these changes should happen!)
 - 
 - Balance or remove T5 parts
 - 
-- Import the new Halloween costumes
-- 
-- Fix bodycams (Are they even broken?)
-- 
-- Modularize or remove TerraGov comms (Why do they even exist when CentCom channel is a thing?)
+- Fix bodycams (If these are really broken)
 - 
 - Fix Haunted dice (Curator only traitor item, it's supposed to ask ghosts a question, but it doesnt let ghosts actually answer it)
 
-Codewords to search PRs by:
+###Codewords to search PRs by:
 
 // Tegustation Deputy - Deputies
 
