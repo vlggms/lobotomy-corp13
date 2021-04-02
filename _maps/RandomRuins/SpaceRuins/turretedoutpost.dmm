@@ -89,7 +89,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/item/clothing/mask/gas/sechailer/swat,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/turretedoutpost)
 "at" = (
@@ -340,7 +340,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/item/storage/belt/military/assault,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/turretedoutpost)
 "aZ" = (

@@ -8,7 +8,7 @@
 	inhand_icon_state = "void_suit"
 	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 10)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 10)
 	resistance_flags = NONE
 
 //Voidtech hardsuit
@@ -21,7 +21,7 @@
 	inhand_icon_state = "void_hardsuit"
 	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
-	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 15, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 5)
 	hardsuit_type = "voidtech"
 
 /obj/item/clothing/suit/space/hardsuit/voidtech
@@ -33,9 +33,10 @@
 	inhand_icon_state = "void_hardsuit"
 	lefthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/teguclothing_hold_right.dmi'
-	armor = list(MELEE = 20, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 10, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 10)
+	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 15, BIO = 100, RAD = 15, FIRE = 60, ACID = 30, WOUND = 5)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech
-	slowdown = 0.35
+	cell = /obj/item/stock_parts/cell/hyper
+	slowdown = 0.25
 
 //Special Subspace Headset
 /obj/item/radio/headset/subspace/void

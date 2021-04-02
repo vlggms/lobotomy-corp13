@@ -1,0 +1,1635 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aH" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"aR" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"bf" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"bJ" = (
+/obj/structure/chair/sofa/corp/left,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"bL" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/space/fancytech,
+/obj/effect/spawner/lootdrop/space/fancytool,
+/obj/effect/spawner/lootdrop/space/languagebook,
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/structure/sign/poster/contraband/kss13{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"bO" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"cf" = (
+/obj/structure/table/reinforced,
+/obj/item/food/badrecipe,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"cg" = (
+/obj/structure/table/reinforced,
+/obj/item/dnainjector/glow{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/obj/item/dnainjector/antenna{
+	pixel_y = 3
+	},
+/obj/item/organ/eyes/robotic/xray,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"cG" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/raw_anomaly_core/bluespace{
+	pixel_x = -4
+	},
+/obj/item/stack/ore/bluespace_crystal{
+	amount = 15;
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/effect/spawner/lootdrop/space/fancytool,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"cH" = (
+/obj/structure/table/reinforced,
+/obj/item/food/meat/slab/human/mutant/slime,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"cQ" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ed" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/north,
+/obj/item/organ/tail/monkey,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ei" = (
+/obj/structure/table/reinforced,
+/obj/item/food/donut/jelly/slimejelly/laugh,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ek" = (
+/mob/living/simple_animal/hostile/syndicate/civilian{
+	name = "Syndicate Scientist"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"ey" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"eF" = (
+/obj/structure/chair/office,
+/mob/living/simple_animal/hostile/syndicate/ranged/smg/space/stormtrooper{
+	desc = "A high-ranking Syndicate official, apparently. You have no idea in what kind of trouble you are getting into.";
+	name = "Syndicate Vice Admiral"
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"eL" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"eT" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 9
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"fM" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/box/monkeycubes/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"fU" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/vending/coffee,
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"gY" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/pill_bottle/mannitol,
+/obj/item/storage/pill_bottle/mutadone{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"hb" = (
+/obj/item/research_notes{
+	desc = "Valuable scientific data discovered by scientists of the Syndicate. Use it in a research console to scan it.";
+	name = "\improper Syndicate research notes";
+	origin_type = "syndicate technology";
+	pixel_x = 7;
+	pixel_y = 4;
+	value = 1500
+	},
+/obj/item/clothing/under/syndicate/sniper,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ho" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/dna_scannernew,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ig" = (
+/obj/structure/chair/sofa/corp{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"iJ" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"iQ" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"jg" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/machinery/dna_scannernew,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ji" = (
+/obj/structure/table/wood,
+/obj/item/folder/white,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"kH" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor{
+	id = "oldscience_windows"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"kJ" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"lM" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/window/reinforced/spawner/east,
+/obj/item/stack/sheet/animalhide/monkey,
+/mob/living/simple_animal/slime{
+	faction = list("slime","neutral", "Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"mp" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"mV" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/have_a_puff{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"nY" = (
+/obj/structure/showcase/machinery/signal_decrypter,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"of" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/clothing/mask/gas/syndicate,
+/obj/item/gun/ballistic/automatic/pistol{
+	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors. Sadly, it's rather old and not in the best condition.";
+	dual_wield_spread = 32;
+	fire_delay = 3;
+	name = "rusty makarov pistol";
+	pixel_x = -4;
+	projectile_damage_multiplier = 0.9;
+	rack_delay = 9;
+	spread = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"pw" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "Genetic Research"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"pI" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/space{
+	name = "Syndicate Officer"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"pK" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/machinery/door/window/brigdoor/westright{
+	dir = 4;
+	name = "Xenobiology Pen";
+	req_access_txt = "20"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"qg" = (
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	name = "Syndicate Guard"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"qM" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"qU" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/syndi_science/main)
+"re" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/computer/rdconsole{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"rQ" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"sH" = (
+/obj/machinery/door/airlock/glass_large{
+	name = "Research & Development"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"tp" = (
+/obj/structure/table/reinforced,
+/obj/item/food/jellysandwich/slime,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"tH" = (
+/obj/effect/turf_decal/tile/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"tK" = (
+/obj/structure/chair/sofa/corp,
+/obj/structure/sign/poster/official/science{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"tT" = (
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"ur" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"vs" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"vQ" = (
+/obj/structure/table/reinforced,
+/obj/item/nanite_scanner{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"wj" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"wx" = (
+/obj/structure/showcase/machinery/implanter{
+	desc = "A model of the Syndicate machine that was used to instantly brainwash whoever was inside. Fancy!";
+	name = "\improper Syndicate automated brainwashing machine exhibit"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"wX" = (
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"xg" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"xJ" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"xM" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/item/kirbyplants{
+	icon_state = "plant-18"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ye" = (
+/obj/structure/table/reinforced,
+/obj/item/hand_labeler,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"yi" = (
+/obj/structure/table/wood,
+/obj/item/paper,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"yj" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/mob/living/carbon/human/species/monkey{
+	faction = list("neutral","monkey", "Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"yy" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/item/kirbyplants{
+	icon_state = "applebush"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"yV" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor{
+	id = "oldscience_windows"
+	},
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science/main)
+"zM" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"At" = (
+/obj/structure/table/reinforced,
+/obj/item/food/bbqribs,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"AI" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"AQ" = (
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	name = "Syndicate Guard"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"BM" = (
+/obj/structure/table/reinforced,
+/obj/item/disk/tech_disk/spaceloot{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/disk/tech_disk/spaceloot,
+/obj/item/disk/tech_disk/spaceloot{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/structure/sign/poster/contraband/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"BR" = (
+/obj/structure/closet/firecloset/full{
+	anchored = 1
+	},
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"BS" = (
+/obj/structure/table/wood,
+/obj/item/folder/red,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Cf" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"Cj" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/protolathe{
+	pixel_x = -5;
+	pixel_y = -3
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Cx" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Dg" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/pump,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"DF" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/material,
+/turf/open/floor/plasteel/dark/side{
+	dir = 5
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"DG" = (
+/obj/item/kirbyplants{
+	icon_state = "applebush"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 6
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"DU" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Vault";
+	req_one_access_txt = "30"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"DV" = (
+/obj/structure/showcase/machinery/cloning_pod,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Eg" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Ep" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"EQ" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"EX" = (
+/mob/living/simple_animal/hostile/syndicate/civilian{
+	name = "Syndicate Scientist"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Fh" = (
+/turf/closed/wall/r_wall,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Fr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"FA" = (
+/mob/living/simple_animal/hostile/syndicate/ranged/space{
+	name = "Syndicate Officer"
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"FB" = (
+/obj/structure/safe{
+	pixel_x = 4
+	},
+/obj/item/clothing/suit/space/hardsuit/rd,
+/obj/item/clothing/mask/gas,
+/obj/item/tank/internals/oxygen/red,
+/obj/item/documents/syndicate,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Gz" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/mob/living/simple_animal/hostile/syndicate/ranged{
+	name = "Syndicate Guard"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"GK" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft{
+	name = "Monkey Pen";
+	req_access_txt = "9"
+	},
+/mob/living/carbon/human/species/monkey{
+	faction = list("neutral","monkey", "Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Hl" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Hp" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/mob/living/simple_animal/slime{
+	faction = list("slime","neutral", "Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Hw" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"HR" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/syndicate/civilian{
+	name = "Syndicate Scientist"
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"IK" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/circuit_imprinter,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"IW" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/glasses/science{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"JI" = (
+/obj/machinery/button/door{
+	id = "oldscience_windows";
+	name = "Window Shutters";
+	pixel_x = 8;
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Lp" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-03"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"Lw" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_x = 7
+	},
+/obj/item/gun/energy/laser/retro/old,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"LE" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/vending/snack/teal,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Mc" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/shower{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Mq" = (
+/turf/closed/wall/r_wall,
+/area/ruin/has_grav/powered/syndi_science)
+"MY" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"NM" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"Od" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Oe" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/gloves/color/black,
+/obj/item/healthanalyzer,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Of" = (
+/obj/machinery/door/window/southright,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Og" = (
+/obj/structure/table/reinforced,
+/obj/item/research_notes{
+	desc = "Valuable scientific data discovered by scientists of the Syndicate. Use it in a research console to scan it.";
+	name = "\improper Syndicate research notes";
+	origin_type = "syndicate technology";
+	value = 1500
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"OL" = (
+/obj/structure/sign/poster/official/nanotrasen_logo{
+	pixel_x = -32
+	},
+/turf/template_noop,
+/area/template_noop)
+"OX" = (
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Pi" = (
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/mob/living/carbon/human/species/monkey{
+	faction = list("neutral","monkey", "Syndicate")
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Pl" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"QB" = (
+/obj/effect/turf_decal/tile/purple,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"QO" = (
+/obj/machinery/telecomms/relay{
+	on = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Re" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"RY" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"SC" = (
+/obj/structure/showcase/cyborg/old,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"SL" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"SQ" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/item/kirbyplants{
+	icon_state = "plant-22"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Te" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"Tu" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"TC" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-16"
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 10
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"Up" = (
+/obj/structure/table/reinforced,
+/obj/item/gps/spaceruin,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"UN" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered/syndi_science)
+"Vz" = (
+/obj/machinery/door/airlock/command{
+	name = "Research Director";
+	req_one_access_txt = "30"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Xc" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Xi" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Xr" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"XI" = (
+/obj/structure/table/reinforced,
+/obj/item/food/benedict,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"XT" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+"Yb" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/machinery/computer/scan_consolenew{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Yw" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/ruin/has_grav/powered/syndi_science/main)
+"YB" = (
+/turf/template_noop,
+/area/template_noop)
+"YD" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/machinery/computer/scan_consolenew{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"YP" = (
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Zh" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/syndi_science/main)
+"Zt" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner/north,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ZB" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ZJ" = (
+/obj/structure/window/reinforced/spawner/east,
+/obj/effect/gibspawner/generic/animal,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/syndi_science/main)
+"ZM" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/languagebook,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/syndi_science/main)
+
+(1,1,1) = {"
+YB
+YB
+YB
+YB
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(2,1,1) = {"
+YB
+YB
+YB
+YB
+Fh
+iQ
+cG
+BM
+Fh
+wX
+Eg
+Cx
+ji
+Fh
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(3,1,1) = {"
+YB
+YB
+YB
+YB
+Fh
+cQ
+cQ
+cQ
+DU
+wX
+eF
+yi
+HR
+wX
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(4,1,1) = {"
+YB
+YB
+YB
+YB
+Fh
+hb
+cQ
+FB
+Fh
+bL
+wX
+Zh
+wX
+wX
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(5,1,1) = {"
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Tu
+wX
+BS
+wX
+FA
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(6,1,1) = {"
+Fh
+bO
+AI
+Hw
+Xc
+ed
+Hp
+EQ
+Fh
+MY
+wX
+Of
+wX
+wX
+Fh
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(7,1,1) = {"
+Fh
+fU
+cQ
+EX
+cQ
+pK
+ZJ
+lM
+Fh
+Fh
+Fh
+Fh
+Vz
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+YB
+YB
+"}
+(8,1,1) = {"
+Fh
+LE
+cQ
+cQ
+cQ
+cQ
+cQ
+Ep
+Fh
+eT
+ig
+RY
+xJ
+xJ
+XT
+TC
+Fh
+ho
+YD
+Fh
+Fh
+YB
+"}
+(9,1,1) = {"
+Fh
+SL
+cQ
+cQ
+pI
+cQ
+cQ
+Gz
+Fh
+tK
+kJ
+kJ
+kJ
+kJ
+qg
+OX
+Fh
+eL
+xg
+iJ
+Fh
+Fh
+"}
+(10,1,1) = {"
+Fh
+ey
+cQ
+qM
+tp
+cH
+cQ
+Re
+Fh
+Fr
+kJ
+vQ
+IW
+ye
+kJ
+qU
+Fh
+rQ
+EX
+xg
+yj
+Fh
+"}
+(11,1,1) = {"
+Fh
+Dg
+cQ
+cf
+nY
+ei
+cQ
+SQ
+Fh
+bJ
+kJ
+Xi
+Oe
+Yw
+kJ
+YP
+Fh
+eL
+cQ
+cQ
+vs
+Fh
+"}
+(12,1,1) = {"
+Fh
+Dg
+cQ
+qM
+DV
+Og
+cQ
+Ep
+sH
+NM
+kJ
+Xi
+gY
+Yw
+kJ
+YP
+pw
+eL
+cQ
+cQ
+vs
+Fh
+"}
+(13,1,1) = {"
+Fh
+Hl
+EX
+Up
+SC
+At
+cQ
+Ep
+cQ
+NM
+kJ
+Xi
+Lw
+Yw
+kJ
+YP
+cQ
+eL
+cQ
+cQ
+Pi
+Fh
+"}
+(14,1,1) = {"
+Fh
+wj
+cQ
+qM
+wx
+cf
+AQ
+xM
+Fh
+Lp
+qg
+Xi
+cg
+Yw
+kJ
+YP
+Fh
+Mc
+cQ
+cQ
+vs
+Fh
+"}
+(15,1,1) = {"
+Fh
+ey
+cQ
+XI
+QO
+qM
+cQ
+Re
+Fh
+of
+kJ
+zM
+ur
+Xr
+kJ
+qU
+Fh
+mV
+EX
+cQ
+GK
+Fh
+"}
+(16,1,1) = {"
+Fh
+SL
+cQ
+qM
+cH
+qM
+cQ
+Ep
+Fh
+bf
+kJ
+kJ
+kJ
+kJ
+kJ
+YP
+Fh
+eL
+cQ
+tH
+Zt
+Fh
+"}
+(17,1,1) = {"
+Fh
+mp
+Od
+ZB
+cQ
+QB
+Od
+yy
+Fh
+DF
+aH
+ZM
+Te
+Te
+ek
+DG
+Fh
+Yb
+jg
+fM
+Fh
+Fh
+"}
+(18,1,1) = {"
+Fh
+Fh
+Fh
+JI
+EX
+Ep
+cQ
+Fh
+Fh
+Fh
+Mq
+Mq
+Pl
+Mq
+Mq
+Fh
+Fh
+Fh
+Fh
+Fh
+Fh
+YB
+"}
+(19,1,1) = {"
+YB
+YB
+yV
+re
+Cj
+IK
+kH
+YB
+YB
+YB
+Mq
+UN
+tT
+BR
+Mq
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(20,1,1) = {"
+YB
+YB
+yV
+yV
+yV
+yV
+yV
+YB
+YB
+YB
+Mq
+BR
+tT
+Cf
+Mq
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(21,1,1) = {"
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+Mq
+Mq
+aR
+Mq
+Mq
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}
+(22,1,1) = {"
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+OL
+YB
+OL
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+YB
+"}

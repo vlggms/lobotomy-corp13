@@ -289,6 +289,13 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	name = "Abadoned TEG Facility EVA"
 	icon_state = "eva"
 
+/area/ruin/has_grav/powered/syndi_science
+	name = "Abandoned Research Vessel" // Ho boy! I sure do wonder what I will find in this ABANDONED science area!
+	icon_state = "eva"
+
+/area/ruin/has_grav/powered/syndi_science/main
+	name = "Syndicate Research Vessel" // Oh wow, what a twist (no)!
+
 //DATU
 
 /datum/map_template/ruin/space/tegu_asteroid
@@ -340,3 +347,15 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	suffix = "tegruin.dmm"
 	name = "Broken Engineering Satellite"
 	description = "An old engineering zone with bunch of useful items in it. How did it break off like that? Good question."
+
+/datum/map_template/ruin/space/oldmedical
+	id = "oldmedical"
+	suffix = "oldmedical.dmm"
+	name = "Ancient Medical Bay"
+	description = "An old, abandoned part of the medical bay that got into a meteor shower. It may still contain useful technology, though."
+
+/datum/map_template/ruin/space/oldscience
+	id = "oldscience"
+	suffix = "oldscience.dmm"
+	name = "Abandoned Science Satellite"
+	description = "Seemingly operational small Nanotrasen research satellite, but I wouldn't say it's abandoned..."

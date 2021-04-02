@@ -1031,7 +1031,20 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
-/obj/item/gun/energy/laser/retro,
+/obj/item/gun/ballistic/automatic/pistol{
+	desc = "A small, easily concealable 9mm handgun. Has a threaded barrel for suppressors. Sadly, it's rather old and not in the best condition.";
+	dual_wield_spread = 32;
+	fire_delay = 3;
+	name = "rusty makarov pistol";
+	pixel_x = -4;
+	projectile_damage_multiplier = 0.9;
+	rack_delay = 9;
+	spread = 4
+	},
+/obj/item/ammo_box/magazine/m9mm{
+	pixel_x = 5;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/airless/dark,
 /area/shuttle/caravan/freighter2)
 "js" = (

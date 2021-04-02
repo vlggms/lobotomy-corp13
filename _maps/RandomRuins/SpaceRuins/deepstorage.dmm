@@ -140,16 +140,22 @@
 "aG" = (
 /obj/structure/closet/cardboard,
 /obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/gold,
 /obj/item/stack/sheet/mineral/silver,
 /obj/item/stack/sheet/mineral/silver,
-/obj/item/stack/sheet/mineral/gold,
-/obj/item/stack/sheet/mineral/gold,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/diamond{
+	amount = 3
+	},
+/obj/item/stack/ore/gold{
+	amount = 16
+	},
+/obj/item/stack/ore/titanium{
+	amount = 34
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/storage)
 "aH" = (
@@ -1745,7 +1751,13 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 32
 	},
-/obj/effect/spawner/lootdrop/space/fancytool,
+/obj/item/gun/ballistic/automatic/pistol/m1911{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/ammo_box/magazine/m45{
+	pixel_x = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/deepstorage/armory)
 "ey" = (
@@ -1981,15 +1993,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/deepstorage/airlock)
 "eX" = (
-/obj/machinery/atmospherics/components/binary/valve{
-	name = "Hall Siphon to Port"
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
+/turf/open/space/basic,
 /area/ruin/space/has_grav/deepstorage/airlock)
 "eY" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -2927,6 +2931,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/deepstorage/power)
+"MQ" = (
+/turf/closed/mineral/random/high_chance,
+/area/ruin/unpowered/no_grav)
 "Rs" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -3271,7 +3278,7 @@ ac
 ac
 ab
 ab
-ab
+MQ
 ab
 ab
 ab
@@ -3323,8 +3330,8 @@ ac
 ac
 ab
 ab
-ab
-ab
+MQ
+MQ
 ab
 ab
 ab
@@ -3374,11 +3381,11 @@ ac
 ac
 ab
 ab
-ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
+MQ
 ab
 ab
 ab
@@ -3425,16 +3432,16 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 ab
 ab
 ab
@@ -3521,8 +3528,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+MQ
+MQ
 hU
 bT
 bU
@@ -3540,7 +3547,7 @@ dB
 ei
 ey
 dB
-ab
+MQ
 ab
 ab
 ab
@@ -3592,8 +3599,8 @@ dB
 ej
 ez
 dB
-ab
-ab
+MQ
+MQ
 ab
 ab
 ab
@@ -3934,7 +3941,7 @@ ab
 ab
 ab
 ab
-ab
+MQ
 hU
 hA
 af
@@ -3984,10 +3991,10 @@ ac
 ac
 ab
 ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
 af
 aX
 bs
@@ -4503,7 +4510,7 @@ aa
 aa
 ab
 ab
-ab
+MQ
 ag
 am
 he
@@ -4555,7 +4562,7 @@ aa
 aa
 ab
 ab
-ab
+MQ
 ag
 rz
 an
@@ -4607,7 +4614,7 @@ aa
 aa
 aa
 ab
-ab
+MQ
 ag
 ag
 ag
@@ -4636,9 +4643,9 @@ fK
 gc
 fp
 fp
-ab
-ab
-ab
+MQ
+MQ
+MQ
 ab
 ab
 ac
@@ -4659,11 +4666,11 @@ aa
 aa
 aa
 ab
-ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
+MQ
 aQ
 bj
 bC
@@ -4687,8 +4694,8 @@ gv
 gD
 gP
 fp
-ab
-ab
+MQ
+MQ
 ab
 ab
 ab
@@ -4712,10 +4719,10 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
 aQ
 hf
 bC
@@ -4739,9 +4746,9 @@ fD
 gE
 fD
 hY
-ab
-ab
-ab
+MQ
+MQ
+MQ
 ab
 ab
 ab
@@ -4766,8 +4773,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+MQ
+MQ
 aQ
 bk
 bC
@@ -4791,8 +4798,8 @@ fp
 fp
 fp
 fp
-ab
-ab
+MQ
+MQ
 ab
 aa
 ab
@@ -4819,7 +4826,7 @@ ab
 ab
 ab
 ab
-ab
+MQ
 aQ
 bl
 bD
@@ -4835,15 +4842,15 @@ ac
 ac
 fd
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 ab
 ab
 aa
@@ -4888,12 +4895,12 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
+MQ
+MQ
+MQ
+MQ
+MQ
+MQ
 ab
 ab
 aa
@@ -4942,8 +4949,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+MQ
+MQ
 ab
 ab
 ab

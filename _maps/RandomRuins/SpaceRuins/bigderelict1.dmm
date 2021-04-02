@@ -893,6 +893,8 @@
 	icon_state = "crateopen"
 	},
 /obj/structure/cable,
+/obj/item/ammo_box/magazine/m45,
+/obj/item/ammo_box/magazine/m45,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "cI" = (
@@ -1360,6 +1362,7 @@
 	icon_state = "trails_1";
 	name = "dried blood trail"
 	},
+/obj/item/ammo_box/magazine/m45,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
 "dT" = (
@@ -1487,6 +1490,7 @@
 	},
 /obj/item/stack/sheet/cardboard/fifty,
 /obj/effect/turf_decal/delivery,
+/obj/item/ammo_box/magazine/m45,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "el" = (
@@ -1518,6 +1522,7 @@
 	icon_state = "crateopen"
 	},
 /obj/effect/spawner/lootdrop/space/fancytool,
+/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "er" = (
@@ -1677,6 +1682,14 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/cargobay)
+"sx" = (
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate,
+/obj/item/stack/ore/diamond{
+	amount = 3
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "uV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -1684,6 +1697,20 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/derelictoutpost/powerstorage)
+"yr" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/delivery,
+/obj/item/stack/ore/iron{
+	amount = 24
+	},
+/obj/item/stack/ore/gold{
+	amount = 16
+	},
+/obj/item/stack/ore/silver{
+	amount = 13
+	},
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/derelictoutpost/cargostorage)
 "LB" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -2079,7 +2106,7 @@ dW
 dW
 dW
 ex
-dW
+sx
 dL
 aR
 aZ
@@ -2113,7 +2140,7 @@ dF
 dL
 dX
 dW
-dW
+yr
 ex
 eD
 dL
