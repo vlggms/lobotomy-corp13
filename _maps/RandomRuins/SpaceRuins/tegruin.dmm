@@ -61,12 +61,22 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
 "iy" = (
-/obj/item/stack/rods,
-/turf/closed/wall,
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
 "jQ" = (
 /obj/item/stock_parts/matter_bin,
 /turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"kJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless{
+	icon_state = "floorscorched2"
+	},
+/area/ruin/has_grav/teg)
+"kK" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg)
 "kM" = (
 /turf/open/floor/plasteel/airless,
@@ -96,12 +106,17 @@
 /obj/structure/mecha_wreckage/clarke,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
-"oS" = (
-/obj/item/stock_parts/capacitor,
+"oB" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged1"
+	},
+/area/ruin/has_grav/teg)
+"oO" = (
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
-"py" = (
-/obj/structure/girder,
+"oS" = (
+/obj/item/stock_parts/capacitor,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
 "qI" = (
@@ -120,11 +135,25 @@
 /area/ruin/has_grav/teg)
 "rL" = (
 /obj/item/stack/rods,
-/turf/open/floor/plasteel/airless,
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg)
+"rW" = (
+/obj/structure/girder,
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/has_grav/teg/eva)
+"sT" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged5"
+	},
 /area/ruin/has_grav/teg)
 "tG" = (
-/obj/item/stack/sheet/metal,
-/turf/closed/wall,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged4"
+	},
 /area/ruin/has_grav/teg)
 "uY" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -139,6 +168,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg)
+"vk" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/has_grav/teg)
 "vM" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/plasteel/airless,
@@ -149,7 +183,7 @@
 /area/ruin/has_grav/teg)
 "wg" = (
 /obj/structure/girder,
-/turf/closed/wall,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg)
 "xE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -171,16 +205,29 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/has_grav/teg)
+"Cc" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/turf/open/floor/plasteel/airless{
+	icon_state = "floorscorched2"
+	},
+/area/ruin/has_grav/teg)
 "Cv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
+"Do" = (
+/obj/item/stack/sheet/metal,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/has_grav/teg)
 "DF" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
-/turf/open/floor/plasteel/airless,
+/turf/open/floor/plasteel/airless{
+	icon_state = "floorscorched1"
+	},
 /area/ruin/has_grav/teg)
 "DL" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater,
@@ -189,7 +236,7 @@
 "DW" = (
 /obj/structure/girder,
 /obj/item/stack/sheet/metal,
-/turf/closed/wall,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg)
 "Ev" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -197,11 +244,15 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
+"EP" = (
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/storage)
 "Fv" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
 "FC" = (
@@ -213,11 +264,17 @@
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg)
+"FW" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/eva)
 "Gk" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/turf/open/floor/plasteel/airless,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
 /area/ruin/has_grav/teg)
 "Go" = (
 /obj/item/clothing/shoes/magboots,
@@ -233,6 +290,14 @@
 	icon_state = "platingdmg2"
 	},
 /area/ruin/has_grav/teg)
+"GM" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 6
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged5"
+	},
+/area/ruin/has_grav/teg)
 "Hs" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/airless,
@@ -246,7 +311,7 @@
 /area/ruin/has_grav/teg/storage)
 "Jb" = (
 /obj/structure/girder,
-/turf/closed/wall,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg/storage)
 "KP" = (
 /obj/structure/door_assembly/door_assembly_mai,
@@ -261,9 +326,18 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/has_grav/teg/eva)
+"Lm" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged3"
+	},
+/area/ruin/has_grav/teg)
 "Mq" = (
 /obj/structure/girder,
-/turf/closed/wall,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg/eva)
+"Nm" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/eva)
 "NG" = (
 /obj/structure/closet/crate{
@@ -277,6 +351,10 @@
 "NI" = (
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/storage)
+"NN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/teg)
 "Oe" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/airless,
@@ -303,9 +381,16 @@
 /obj/item/tank/jetpack,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/eva)
+"Sz" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/hivebot/mechanic,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
 "SE" = (
-/obj/effect/mob_spawn/human/skeleton/alive,
 /obj/item/stack/cable_coil,
+/obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/eva)
 "SV" = (
@@ -324,11 +409,13 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/storage)
 "Ub" = (
+/obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/teg/storage)
 "UH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/engineer,
+/obj/item/gps/spaceruin,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/teg/eva)
 "UR" = (
@@ -340,12 +427,24 @@
 	icon_state = "panelscorched"
 	},
 /area/ruin/has_grav/teg/eva)
+"Vy" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/has_grav/teg)
 "VK" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
 	},
 /area/ruin/has_grav/teg/eva)
+"XQ" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg)
+"Yc" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/teg/storage)
 "Zj" = (
 /obj/item/circuitboard/machine/circulator,
 /obj/structure/closet/crate/engineering{
@@ -403,7 +502,7 @@ kM
 hC
 lE
 bX
-kM
+gQ
 kM
 kM
 kM
@@ -425,9 +524,9 @@ aw
 eZ
 eZ
 hW
-hW
-hW
-hW
+qM
+Vy
+kJ
 hW
 hW
 hW
@@ -447,10 +546,10 @@ FC
 kM
 fF
 kM
-kM
+tG
 eZ
 eZ
-eZ
+Vy
 eZ
 zR
 kM
@@ -460,7 +559,7 @@ kM
 Hs
 Jb
 Oe
-NI
+Yc
 Zj
 QU
 IX
@@ -473,7 +572,7 @@ kM
 kM
 kM
 kM
-uY
+GM
 vV
 kM
 kM
@@ -499,15 +598,15 @@ gQ
 vd
 xE
 kM
-Ev
+Sz
 kM
-kM
+oO
 hW
 kM
 IX
-NI
+EP
 SZ
-NI
+Yc
 QU
 IX
 "}
@@ -520,13 +619,13 @@ kM
 hW
 qM
 kM
-kM
+XQ
 Cv
 Fv
 kM
 kM
 hW
-kM
+kK
 KP
 OT
 Ub
@@ -561,18 +660,18 @@ IX
 FC
 FC
 FC
-iy
+Hs
 mr
-py
+wg
 kM
 uY
 za
 vV
 FP
 kM
-xE
-kM
-kM
+NN
+hC
+oB
 La
 La
 Mq
@@ -586,16 +685,16 @@ cg
 eZ
 kM
 kM
-py
+wg
 hC
 vM
 kM
 kM
 Ev
-kM
-kM
-hW
-kM
+Lm
+Vy
+Vy
+sT
 La
 Rr
 RS
@@ -610,15 +709,15 @@ eZ
 jQ
 kM
 FC
-py
+wg
 eZ
 hC
 eZ
 Gk
-kM
-hW
+gQ
+Vy
 eZ
-kM
+vk
 Lj
 RS
 RS
@@ -630,24 +729,24 @@ La
 FC
 kM
 gQ
-kM
+iy
 ov
 FC
 rL
-kM
-vV
+fF
+Cc
 DF
-kM
-hW
-eZ
+fF
+Vy
+hC
 eZ
 kM
 La
-RS
-RS
+Nm
+FW
 Zr
 Rr
-Mq
+rW
 "}
 (13,1,1) = {"
 wg
@@ -655,12 +754,12 @@ bX
 eZ
 kM
 kM
-py
-kM
-kM
-kM
+wg
+Vy
+Vy
+hC
 DL
-kM
+Vy
 qM
 GH
 kM
@@ -679,10 +778,10 @@ eZ
 kU
 oS
 FC
+FC
+Do
+GH
 tG
-bX
-kM
-kM
 eZ
 eZ
 kM
@@ -703,9 +802,9 @@ lb
 kM
 qI
 FC
-kM
-kM
-kM
+eZ
+Vy
+fF
 kM
 kM
 kM

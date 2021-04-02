@@ -1,0 +1,548 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged1"
+	},
+/area/ruin/space)
+"d" = (
+/obj/structure/frame/machine,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/item/stack/cable_coil/five,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"e" = (
+/obj/effect/mob_spawn/human/corpse/damaged,
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/space)
+"f" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/space)
+"g" = (
+/obj/structure/lattice,
+/obj/structure/firelock_frame,
+/turf/template_noop,
+/area/space)
+"h" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"i" = (
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"j" = (
+/obj/structure/girder,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"k" = (
+/obj/structure/table_frame,
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"l" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"n" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"o" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/item/reagent_containers/hypospray/medipen/atropine,
+/obj/item/reagent_containers/hypospray/medipen/penacid{
+	pixel_x = -2;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/hypospray/medipen/salacid{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"q" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "floorscorched1"
+	},
+/area/ruin/space)
+"r" = (
+/turf/closed/wall,
+/area/ruin/space)
+"s" = (
+/obj/structure/lattice,
+/obj/item/gps/spaceruin,
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"u" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/airless{
+	icon_state = "floorscorched1"
+	},
+/area/ruin/space)
+"v" = (
+/obj/structure/lattice,
+/obj/structure/firelock_frame,
+/turf/template_noop,
+/area/template_noop)
+"w" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"y" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"z" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"B" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"C" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged4"
+	},
+/area/ruin/space)
+"D" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"E" = (
+/turf/open/floor/plating/airless{
+	icon_state = "panelscorched"
+	},
+/area/ruin/space)
+"G" = (
+/obj/item/circuitboard/machine/sleeper,
+/obj/structure/frame/machine{
+	anchored = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"H" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"I" = (
+/obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"J" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/space)
+"K" = (
+/obj/structure/table_frame,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/space)
+"L" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"M" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"N" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"O" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"P" = (
+/obj/structure/girder/displaced,
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+"Q" = (
+/obj/item/storage/firstaid,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"R" = (
+/obj/item/wallframe/defib_mount{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"S" = (
+/obj/effect/mob_spawn/human/doctor{
+	brute_damage = 125
+	},
+/obj/machinery/door/firedoor/closed,
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"T" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"U" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged3"
+	},
+/area/ruin/space)
+"V" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/space)
+"W" = (
+/obj/machinery/stasis{
+	dir = 4
+	},
+/obj/machinery/defibrillator_mount{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/turf/open/floor/plasteel/airless,
+/area/ruin/space)
+"X" = (
+/obj/structure/frame/machine,
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/item/stack/cable_coil/five,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged1"
+	},
+/area/ruin/space)
+"Z" = (
+/turf/open/floor/plating/airless,
+/area/ruin/space)
+
+(1,1,1) = {"
+a
+a
+a
+r
+r
+r
+r
+r
+j
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+r
+r
+r
+r
+X
+K
+W
+o
+r
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+r
+d
+O
+I
+R
+i
+l
+x
+r
+j
+r
+w
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+j
+q
+i
+l
+i
+i
+h
+H
+z
+b
+J
+g
+w
+w
+w
+a
+"}
+(5,1,1) = {"
+P
+f
+b
+Q
+i
+i
+i
+b
+S
+U
+E
+V
+w
+a
+a
+a
+"}
+(6,1,1) = {"
+r
+G
+k
+L
+T
+n
+N
+N
+y
+Z
+C
+w
+a
+w
+w
+a
+"}
+(7,1,1) = {"
+r
+r
+r
+r
+B
+M
+r
+r
+r
+r
+f
+w
+a
+a
+a
+s
+"}
+(8,1,1) = {"
+a
+a
+a
+r
+u
+t
+r
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+j
+f
+D
+r
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+w
+w
+J
+e
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+v
+w
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -30,9 +30,7 @@
 /turf/closed/wall,
 /area/ruin/space/has_grav/onehalf/hallway)
 "al" = (
-/obj/machinery/sleeper/syndie{
-	dir = 4
-	},
+/obj/item/circuitboard/machine/sleeper,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/onehalf/dorms_med)
 "am" = (
@@ -855,6 +853,9 @@
 	name = "Bridge"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cF" = (
@@ -871,16 +872,19 @@
 	name = "Bridge"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cI" = (
 /obj/structure/safe/floor,
 /obj/item/tank/internals/oxygen/red,
-/obj/item/clothing/head/helmet/space/eva,
-/obj/item/clothing/suit/space/eva,
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /obj/item/reagent_containers/food/drinks/bottle/rum,
 /obj/item/folder/syndicate/mining,
+/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/mask/gas/syndicate,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/onehalf/bridge)
 "cJ" = (
