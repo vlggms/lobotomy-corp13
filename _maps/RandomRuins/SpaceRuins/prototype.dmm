@@ -41,7 +41,7 @@
 /area/ruin/has_grav/prototype/brig)
 "ak" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/brig)
 "al" = (
 /obj/structure/frame/machine,
@@ -64,7 +64,7 @@
 /area/ruin/has_grav/prototype/Captain)
 "ap" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aq" = (
 /turf/closed/wall,
@@ -90,20 +90,20 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/hypospray/medipen/survival,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "av" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/disabler,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "aw" = (
 /obj/structure/table/reinforced,
 /obj/item/poster/random_official,
 /obj/item/poster/random_official,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "ax" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -113,26 +113,28 @@
 	dir = 8;
 	icon_state = "tube"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "ay" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "az" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/old,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/obj/effect/gibspawner/human,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aA" = (
 /obj/structure/safe,
+/obj/item/circuitboard/machine/sleeper,
+/obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
 /obj/item/gun/ballistic/revolver/mateba,
-/obj/item/ammo_box/a357,
-/obj/item/ammo_box/a357,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aB" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open,
@@ -235,7 +237,8 @@
 /obj/item/circuitboard/machine/ore_redemption,
 /obj/item/circuitboard/machine/ore_silo,
 /obj/item/pickaxe/drill,
-/turf/open/floor/wood,
+/obj/item/lazarus_injector,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aP" = (
 /obj/effect/mapping_helpers/airlock/locked,
@@ -243,16 +246,16 @@
 	name = "Prison cell"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/has_grav/prototype/brig)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "aR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "aS" = (
 /obj/structure/cable,
@@ -263,7 +266,7 @@
 	req_access = null
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "aT" = (
 /obj/structure/closet/syndicate,
@@ -274,7 +277,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/suit/security/officer,
 /obj/item/clothing/head/beret/sec/navyofficer,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/dark/airless,
 /area/ruin/has_grav/prototype/brig)
 "aU" = (
 /obj/structure/cable,
@@ -283,11 +286,11 @@
 	start_charge = 0
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aV" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "aW" = (
 /obj/structure/cable,
@@ -308,19 +311,19 @@
 "aY" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "aZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "ba" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "bb" = (
 /obj/structure/table,
@@ -362,7 +365,7 @@
 /area/template_noop)
 "bh" = (
 /obj/effect/spawner/structure/window,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "bi" = (
 /turf/closed/wall,
@@ -372,7 +375,7 @@
 /area/ruin/has_grav/prototype/engineering)
 "bk" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
 "bl" = (
 /obj/effect/decal/remains/human,
@@ -399,7 +402,7 @@
 	dir = 6;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "bo" = (
 /obj/structure/cable,
@@ -457,7 +460,7 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered)
 "bv" = (
 /obj/structure/cable,
@@ -467,7 +470,7 @@
 	dir = 10;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "bw" = (
 /turf/open/floor/plating/airless,
@@ -500,8 +503,9 @@
 	layer = 2.9
 	},
 /obj/structure/closet/cabinet,
+/obj/item/clothing/suit/armor/vest/centcom_formal,
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "bA" = (
 /obj/structure/girder/displaced,
@@ -576,7 +580,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "bM" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
@@ -593,13 +597,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "bO" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/flashlight/lamp/green,
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "bP" = (
 /obj/structure/table,
@@ -617,7 +621,9 @@
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/grass,
+/turf/open/floor/grass{
+	initial_gas_mix = "TEMP=2.7"
+	},
 /area/ruin/has_grav/prototype/arrivals)
 "bS" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
@@ -680,6 +686,7 @@
 	icon_state = "gib5-old"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/human,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg1"
 	},
@@ -738,7 +745,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "ch" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
@@ -748,7 +755,7 @@
 /area/ruin/has_grav/prototype/engineering)
 "ci" = (
 /obj/structure/window/spawner/north,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "cj" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -756,7 +763,7 @@
 	dir = 8;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "ck" = (
 /obj/machinery/door/window/northright{
@@ -771,7 +778,7 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cm" = (
 /obj/machinery/airalarm/directional/north,
@@ -794,16 +801,16 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
 "cq" = (
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "cr" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cs" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "ct" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -824,7 +831,7 @@
 	dir = 8;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
@@ -848,26 +855,23 @@
 	dir = 8;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "cz" = (
-/turf/open/floor/plating,
-/area/ruin/has_grav/prototype/engineering)
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/built{
+	dir = 1;
+	icon_state = "bulb-empty"
+	},
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/turf/open/floor/plasteel/airless,
+/area/ruin/has_grav/prototype/dorms)
 "cA" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
 	},
-/obj/effect/decal/cleanable/blood/footprints{
-	dir = 8;
-	icon_state = "blood1"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 8;
-	icon_state = "pipe11-2"
-	},
-/turf/open/floor/plating,
-/area/ruin/has_grav/prototype/hallway)
+/area/ruin/has_grav/prototype/arrivals)
 "cB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -895,18 +899,18 @@
 /area/ruin/has_grav/prototype/hallway)
 "cE" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cG" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/effect/decal/cleanable/blood/footprints,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
 "cH" = (
 /obj/structure/lattice,
@@ -918,17 +922,17 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cJ" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "cK" = (
 /obj/effect/decal/cleanable/blood/footprints,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
 "cL" = (
 /obj/machinery/door/airlock/external,
@@ -936,7 +940,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/footprints,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/arrivals)
 "cM" = (
 /obj/structure/cable,
@@ -985,7 +989,7 @@
 	dir = 1;
 	icon_state = "tube-empty"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "cS" = (
 /turf/open/floor/plating/airless,
@@ -1009,11 +1013,13 @@
 /obj/item/shard{
 	icon_state = "medium"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "cY" = (
 /obj/structure/lattice,
-/mob/living/simple_animal/cow,
+/mob/living/simple_animal/cow{
+	health = 1
+	},
 /turf/template_noop,
 /area/ruin/has_grav/prototype/botany)
 "cZ" = (
@@ -1038,8 +1044,10 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/hallway)
 "dd" = (
-/mob/living/simple_animal/chicken,
-/turf/open/floor/plating,
+/mob/living/simple_animal/chicken{
+	health = 1
+	},
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "de" = (
 /turf/template_noop,
@@ -1048,7 +1056,7 @@
 /obj/item/shard{
 	icon_state = "small"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "dg" = (
 /obj/structure/cable,
@@ -1079,7 +1087,7 @@
 /obj/structure/frame/machine,
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "dk" = (
 /obj/structure/closet/crate/engineering{
@@ -1102,8 +1110,16 @@
 /obj/item/electronics/apc,
 /obj/item/electronics/apc,
 /obj/item/electronics/apc,
-/obj/item/card/id/away/old/apc,
-/obj/item/card/id/away/old/apc,
+/obj/item/card/id/away/old/apc{
+	access = list(11, 24);
+	desc = "An ID card that allows access to APC terminals and Air Alarms.";
+	name = "Engineering ID"
+	},
+/obj/item/card/id/away/old/apc{
+	access = list(11, 24);
+	desc = "An ID card that allows access to APC terminals and Air Alarms.";
+	name = "Engineering ID"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
 "dl" = (
@@ -1120,9 +1136,13 @@
 /turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "do" = (
-/obj/structure/grille,
-/turf/open/floor/plating,
-/area/ruin/has_grav/prototype/botany)
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/has_grav/prototype/arrivals)
 "dp" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/effect/decal/cleanable/dirt,
@@ -1245,13 +1265,14 @@
 	dir = 8;
 	icon_state = "bulb"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "dF" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/human,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/botany)
 "dG" = (
@@ -1278,7 +1299,9 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
 "dJ" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -1320,8 +1343,9 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "u_guilty_l"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/airless,
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged1"
+	},
 /area/ruin/has_grav/prototype/arrivals)
 "dO" = (
 /obj/structure/cable,
@@ -1365,11 +1389,16 @@
 /area/ruin/has_grav/prototype/arrivals)
 "dS" = (
 /obj/item/wallframe/apc,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "dT" = (
-/turf/open/floor/plating,
-/area/ruin/has_grav/prototype/hallway)
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/prototype/arrivals)
 "dU" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8;
@@ -1387,7 +1416,7 @@
 /obj/machinery/airalarm/directional/north{
 	req_access = null
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "dW" = (
 /obj/effect/decal/cleanable/blood/old{
@@ -1400,9 +1429,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 50
-	},
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 50
 	},
@@ -1457,7 +1483,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/engineering)
 "ef" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1479,7 +1505,7 @@
 "ej" = (
 /obj/structure/grille,
 /obj/structure/window/plasma/reinforced/plastitanium,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered)
 "ek" = (
 /obj/structure/shuttle/engine/heater{
@@ -1894,7 +1920,7 @@
 	dir = 8;
 	icon_state = "scrub_map-2"
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/mineral/plastitanium/airless,
 /area/ruin/has_grav/prototype/brig)
 "fh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1905,7 +1931,7 @@
 	dir = 4;
 	icon_state = "scrub_map-2"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)
 "fi" = (
 /obj/effect/decal/cleanable/blood/footprints,
@@ -1969,7 +1995,7 @@
 /obj/effect/decal/cleanable/blood{
 	icon_state = "gibmid3"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/hallway)
 "fq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
@@ -2018,7 +2044,7 @@
 	dir = 4;
 	icon_state = "propulsion"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/powered)
 "fx" = (
 /obj/machinery/light/built{
@@ -2046,8 +2072,13 @@
 /obj/item/stack/sheet/mineral/silver{
 	amount = 5
 	},
+/obj/effect/spawner/lootdrop/space/material,
+/obj/effect/spawner/lootdrop/space/material,
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 5
+	},
+/obj/item/stack/sheet/mineral/titanium{
+	amount = 15
 	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
@@ -2071,7 +2102,6 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
 "fD" = (
-/obj/effect/gibspawner/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/suit/space/syndicate/black/red,
 /obj/item/clothing/head/helmet/space/syndicate/black/red,
@@ -2204,7 +2234,7 @@
 /area/ruin/has_grav/prototype/medsci)
 "ge" = (
 /obj/structure/girder/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/Captain)
 "gf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2240,7 +2270,7 @@
 /area/ruin/has_grav/prototype/dorms)
 "gl" = (
 /obj/machinery/light/small/built,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/dorms)
 "gm" = (
 /turf/open/floor/plating/airless{
@@ -2302,13 +2332,14 @@
 	dir = 4;
 	icon_state = "tube-empty"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/ruin/has_grav/prototype/botany)
 "gw" = (
 /obj/structure/chair{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/human,
 /turf/open/floor/plating/airless{
 	icon_state = "platingdmg2"
 	},
@@ -2340,6 +2371,7 @@
 	dir = 8;
 	icon_state = "tube"
 	},
+/obj/effect/spawner/lootdrop/space/fancytool,
 /turf/open/floor/plasteel/airless,
 /area/ruin/has_grav/prototype/engineering)
 "gA" = (
@@ -2393,6 +2425,51 @@
 	icon_state = "platingdmg3"
 	},
 /area/ruin/has_grav/prototype/dorms)
+"lp" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/prototype/arrivals)
+"mZ" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/prototype/arrivals)
+"tZ" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged3"
+	},
+/area/ruin/has_grav/prototype/arrivals)
+"Ek" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged5"
+	},
+/area/ruin/has_grav/prototype/arrivals)
+"Gb" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/prototype/arrivals)
+"GS" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/prototype/arrivals)
+"IR" = (
+/turf/open/floor/plasteel/airless{
+	icon_state = "damaged2"
+	},
+/area/ruin/has_grav/prototype/arrivals)
 
 (1,1,1) = {"
 aa
@@ -2408,10 +2485,10 @@ aV
 be
 bk
 bk
-bk
-bk
-bk
-bk
+do
+Gb
+GS
+lp
 bk
 bk
 bk
@@ -2441,11 +2518,11 @@ ct
 ct
 be
 dp
-dr
-es
-es
-es
-es
+cA
+dT
+mZ
+tZ
+Ek
 es
 dr
 bk
@@ -2476,8 +2553,8 @@ bU
 be
 dq
 dN
-dr
-dr
+cA
+IR
 dr
 dr
 dr
@@ -2574,7 +2651,7 @@ bJ
 ad
 gC
 cy
-dT
+cS
 be
 fF
 dt
@@ -2608,7 +2685,7 @@ bq
 ad
 cR
 cy
-dT
+cS
 be
 dr
 du
@@ -2641,8 +2718,8 @@ ae
 bo
 ad
 dS
-cA
-dT
+cM
+cS
 be
 dv
 dR
@@ -2709,10 +2786,10 @@ aj
 aj
 aj
 bU
-cA
+cM
 go
 ab
-dx
+cz
 eK
 er
 eK
@@ -2982,7 +3059,7 @@ ao
 ao
 fH
 cM
-dT
+cS
 ab
 ab
 ab
@@ -3017,7 +3094,7 @@ ao
 gF
 dg
 bU
-do
+cZ
 dA
 bE
 eA
@@ -3025,7 +3102,7 @@ eP
 eM
 gp
 dB
-dd
+cq
 cX
 cZ
 aa
@@ -3119,7 +3196,7 @@ bN
 cd
 cB
 bU
-do
+cZ
 dB
 eb
 eF
@@ -3263,7 +3340,7 @@ eu
 fb
 cl
 cs
-cz
+bw
 cs
 cI
 dl
