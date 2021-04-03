@@ -26,8 +26,7 @@ export const Telecomms = (props, context) => {
   const linked = data.linked || [];
   const frequencies = data.frequencies || [];
   return (
-    <Window 
-      resizable 
+    <Window  
       title={id}
       width={400}
       height={600}>

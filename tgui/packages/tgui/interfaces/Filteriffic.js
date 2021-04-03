@@ -249,8 +249,7 @@ export const Filteriffic = (props, context) => {
     <Window
       width={500}
       height={500}
-      title="Filteriffic"
-      resizable>
+      title="Filteriffic">
       <Window.Content scrollable>
         <NoticeBox danger>
           DO NOT MESS WITH EXISTING FILTERS IF YOU DO NOT KNOW THE CONSEQUENCES.

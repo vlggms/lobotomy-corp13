@@ -50,7 +50,6 @@ export const Hypertorus = (props, context) => {
       width={500}
       height={600}
       scrollable
-      resizable
       title="Fusion Reactor">
       <Window.Content>
         <Section title="Switches">
