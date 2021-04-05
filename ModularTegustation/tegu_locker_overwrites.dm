@@ -43,6 +43,11 @@
 	new /obj/item/clothing/shoes/digicombat(src)
 	. = ..()
 
+/obj/structure/closet/secure_closet/hydroponics/PopulateContents()
+	new /obj/item/storage/box/stockparts/dna_manip(src)
+	new /obj/item/storage/box/stockparts/dna_manip_disks(src)
+	new /obj/item/storage/box/stockparts/dna_manip_disks(src)
+	. = ..()
 
 //Medalboxes, was apparently removed at one point? Either way, it was supposed to be ported over.
 /obj/item/storage/lockbox/medal/cmo
