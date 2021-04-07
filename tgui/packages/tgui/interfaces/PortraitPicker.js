@@ -15,17 +15,17 @@ export const PortraitPicker = (props, context) => {
   const TABS = [
     {
       name: 'Common Portraits',
-	  asset_prefix: "library",
+      asset_prefix: "library",
       list: library,
     },
     {
       name: 'Secure Portraits',
-	  asset_prefix: "library",
+      asset_prefix: "library_secure",
       list: library_secure,
     },
     {
       name: 'Private Portraits',
-	  asset_prefix: "library",
+      asset_prefix: "library_private",
       list: library_private,
     },
   ];
