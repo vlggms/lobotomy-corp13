@@ -139,6 +139,28 @@
 	else
 		close()
 
+/*
+/obj/machinery/door/firedoor/proc/handle_held_open_adjacency(mob/user)
+	SIGNAL_HANDLER
+
+	//Handle qdeletion here
+	if(QDELETED(user))
+		being_held_open = FALSE
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION)
+		UnregisterSignal(user, COMSIG_PARENT_QDELETING)
+		return
+
+	var/mob/living/living_user = user
+	if(Adjacent(user) && isliving(user) && (living_user.body_position == STANDING_UP))
+		return
+	being_held_open = FALSE
+	INVOKE_ASYNC(src, .proc/close)
+	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(user, COMSIG_LIVING_SET_BODY_POSITION)
+	UnregisterSignal(user, COMSIG_PARENT_QDELETING)
+*/
+
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
 	if(welded || operating || machine_stat & NOPOWER)
@@ -235,7 +257,7 @@
 		COMSIG_ATOM_EXIT = .proc/on_exit,
 	)
 
-	AddElement(/datum/element/connect_loc, loc_connections)
+	AddElement(/datum/element/connect_loc, src, loc_connections)
 
 /obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
