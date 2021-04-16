@@ -52,10 +52,17 @@
 	if(faction == "Random")
 		var/list/faction_list = list(\
 		"Syndicate" = CONFIG_GET(number/infiltrator_faction_syndicate), \
-		"Cybersun" = CONFIG_GET(number/infiltrator_faction_cybersun), \
-		"Gorlex" = CONFIG_GET(number/infiltrator_faction_gorlex), \
-		"Tiger Co." = CONFIG_GET(number/infiltrator_faction_tiger), \
-		"MI13" = CONFIG_GET(number/infiltrator_faction_mi))
+		"Cybersun" = CONFIG_GET(number/infiltrator_faction_cybersun))
+
+		/* Population Locked Factions */
+		if(GLOB.joined_player_list.len >= 12)
+			faction_list += list("Gorlex" = CONFIG_GET(number/infiltrator_faction_gorlex))
+		if(GLOB.joined_player_list.len >= 30)
+			faction_list += list(\
+			"Tiger Co." = CONFIG_GET(number/infiltrator_faction_tiger), \
+			"MI13" = CONFIG_GET(number/infiltrator_faction_mi))
+
+		/* Special Factions */
 		if(islizard(H))
 			faction_list += list("LUFR" = CONFIG_GET(number/infiltrator_faction_lufr))
 		faction = pickweight(faction_list)
