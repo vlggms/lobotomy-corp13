@@ -3396,6 +3396,8 @@
 #include "ModularTegustation\tegu_borg_code\tegu_airlock_electroadaptive.dm"
 #include "ModularTegustation\tegu_borg_code\tegu_medborg_upgrades.dm"
 #include "ModularTegustation\tegu_borg_code\tegu_secborg.dm"
+#include "ModularTegustation\tegu_chemistry\reagents.dm"
+#include "ModularTegustation\tegu_chemistry\recipes.dm"
 #include "ModularTegustation\tegu_clothes_code\dbz.dm"
 #include "ModularTegustation\tegu_clothes_code\digisuits.dm"
 #include "ModularTegustation\tegu_clothes_code\dio_tegu.dm"

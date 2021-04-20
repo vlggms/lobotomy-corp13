@@ -122,3 +122,62 @@
 /datum/disease/advance/fake_oxygen/New()
 	symptoms = list(new/datum/symptom/fake_oxygen)
 	..()
+
+/datum/disease/transformation/clown_mutant
+	name = "Bananium Essence Overdose"
+	cure_text = "Bananium Essence."
+	cures = list(/datum/reagent/bananium_essence) // Good luck
+	cure_chance = 1 // As I said - GOOD LUCK.
+	stage_prob = 5
+	agent = "Pure joy"
+	desc = "Nobody can withstand the true power of bananium."
+	severity = DISEASE_SEVERITY_BIOHAZARD
+	visibility_flags = NONE
+	stage1 = list("Your skin itches.")
+	stage2 = list("You catch yourself smiling for no reason.")
+	stage3 = list("<span class='danger'>You feel as if your arm attempts to fall off.</span>", "<span class='danger'>Your skin twitches.</span>", "<span class='danger'>You crave for bananium!</span>")
+	stage4 = list("<span class='danger'>You hear circus sounds everywhere.</span>", "<span class='danger'>Your feel as if your head exploded!</span>")
+	stage5 = list("<span class='danger'>H... O... N... K...</span>")
+	new_form = /mob/living/simple_animal/hostile/retaliate/clown
+
+/datum/disease/transformation/clown_mutant/do_disease_transformation(mob/living/affected_mob)
+	var/list/le_list = list(\
+		/mob/living/simple_animal/hostile/retaliate/clown/mutant = 10, \
+		/mob/living/simple_animal/hostile/retaliate/clown/fleshclown = 5, \
+		/mob/living/simple_animal/hostile/retaliate/clown/mutant/glutton = 3, \
+		/mob/living/simple_animal/hostile/retaliate/clown/lube = 1, \
+		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus = 1)
+	new_form = pickweight(le_list)
+	. = ..()
+
+/datum/disease/transformation/clown_mutant/stage_act()
+	. = ..()
+	if(!.)
+		return
+
+	switch(stage)
+		if(2)
+			if (prob(30))
+				affected_mob.emote("smile")
+			if (prob(20))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 2))
+		if(3)
+			if (prob(40))
+				affected_mob.emote("smile")
+			if (prob(10))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 3))
+				affected_mob.say(pick("My skin...", "Urgh...", "Is my head gone..?"))
+			if (prob(5))
+				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				affected_mob.Unconscious(40)
+		if(4)
+			if (prob(50))
+				to_chat(affected_mob, "<span class='danger'>The pain is unbearable!</span>")
+				affected_mob.emote("cry")
+			if (prob(30))
+				to_chat(affected_mob, "<span class='danger'>Your skin begins to move on its own!</span>")
+				affected_mob.emote("scream")
+				affected_mob.Jitter(4)
+			if (prob(10))
+				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 4))
+				affected_mob.say(pick("Kkkwah...", "Hhhonn...", "K-iilll, me-e...", "The pa-ain..."))
