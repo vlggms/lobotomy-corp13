@@ -1,0 +1,333 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/ruin/powered)
+"c" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/machinery/door/poddoor{
+	id = "lufr_shutters";
+	name = "window shutters"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered)
+"d" = (
+/obj/machinery/button/door{
+	id = "lufr_shutters";
+	name = "window shutters";
+	pixel_x = -6;
+	pixel_y = 26
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/spear{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/spear,
+/obj/item/spear{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/mining_voucher,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"e" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/vest/old,
+/obj/item/clothing/suit/armor/vest/old,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"f" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/clothing/shoes/jackboots/digitigrade,
+/obj/item/clothing/shoes/jackboots/digitigrade,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"g" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"h" = (
+/obj/structure/bed/pod,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1;
+	icon_state = "tile_corner"
+	},
+/obj/effect/mob_spawn/human/lufr/ashwalker{
+	dir = 8;
+	icon_state = "sleeper_s"
+	},
+/obj/machinery/light/warm{
+	dir = 4;
+	icon_state = "tube"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"i" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"j" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"k" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"l" = (
+/obj/structure/chair/wood,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"m" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"n" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"o" = (
+/obj/effect/turf_decal/tile/brown,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"p" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"q" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/combat/bone,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"r" = (
+/obj/structure/table/wood,
+/obj/item/stack/sheet/leather{
+	amount = 10
+	},
+/obj/item/stack/sheet/animalhide/goliath_hide,
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 8;
+	icon_state = "tile_corner"
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4;
+	icon_state = "tile_corner"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"s" = (
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/closet/crate,
+/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/effect/spawner/lootdrop/space/syndiecosmetic,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"t" = (
+/obj/machinery/door/window/brigdoor/northright,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"u" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ruin/powered)
+"v" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/light/warm{
+	dir = 8;
+	icon_state = "tube"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"w" = (
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/rack,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/item/construction/rcd/loaded,
+/obj/item/pickaxe/drill,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"x" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/spawner/lootdrop/maintenance/seven,
+/obj/effect/spawner/lootdrop/space/material,
+/obj/effect/spawner/lootdrop/space/languagebook,
+/obj/item/storage/firstaid/fire,
+/turf/open/floor/plasteel/dark,
+/area/ruin/powered)
+"y" = (
+/obj/machinery/door/airlock/grunge{
+	name = "dark airlock";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plating,
+/area/ruin/powered)
+
+(1,1,1) = {"
+b
+b
+c
+c
+c
+c
+b
+b
+"}
+(2,1,1) = {"
+b
+d
+i
+i
+m
+m
+v
+y
+"}
+(3,1,1) = {"
+b
+e
+j
+j
+n
+s
+w
+b
+"}
+(4,1,1) = {"
+b
+f
+j
+j
+o
+t
+x
+b
+"}
+(5,1,1) = {"
+c
+g
+j
+j
+p
+u
+b
+b
+"}
+(6,1,1) = {"
+c
+g
+j
+j
+q
+c
+a
+a
+"}
+(7,1,1) = {"
+b
+h
+k
+l
+r
+c
+a
+a
+"}
+(8,1,1) = {"
+b
+b
+c
+c
+b
+b
+a
+a
+"}

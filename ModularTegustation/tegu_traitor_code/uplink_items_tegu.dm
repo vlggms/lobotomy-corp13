@@ -170,6 +170,15 @@
 	restricted_roles = list("Tiger Co. Infiltrator")
 	cant_discount = FALSE
 
+/datum/uplink_item/role_restricted/lufr_kit
+	name = "LUFR Operative Bundle"
+	desc = "A large kit for a professional freedom fighter. \
+	Comes with a tactical duffelbag filled with: \
+	badass balaclava and beret, cold-resistant uniform, combat gloves, Makarov pistol, bowman headset and few grenades."
+	item = /obj/item/storage/backpack/duffelbag/syndie/lufr
+	cost = 14
+	restricted_roles = list("LUFR Infiltrator")
+
 /datum/uplink_item/stealthy_tools/adv_mulligan
 	name = "Advanced Mulligan"
 	desc = "An advanced form of toxin created in one of the Tiger Cooperative laboratories using \
@@ -181,6 +190,8 @@
 	cost = 5
 	surplus = 18
 	include_modes = list(/datum/game_mode/traitor/infiltrator) //It's only for infiltrators, 'cuz of low-cost.
+
+////////////// INFILTRATION GAMEMODE ITEMS - END //////////////
 
 /datum/uplink_item/role_restricted/breadstick
 	name = "Weaponized Breadstick"

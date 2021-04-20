@@ -50,12 +50,22 @@
 	if(CONFIG_GET(flag/infiltrator_give_codespeak))
 		H.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 	if(faction == "Random")
-		faction = pickweight(list(\
+		var/list/faction_list = list(\
 		"Syndicate" = CONFIG_GET(number/infiltrator_faction_syndicate), \
-		"Cybersun" = CONFIG_GET(number/infiltrator_faction_cybersun), \
-		"Gorlex" = CONFIG_GET(number/infiltrator_faction_gorlex), \
-		"Tiger Co." = CONFIG_GET(number/infiltrator_faction_tiger), \
-		"MI13" = CONFIG_GET(number/infiltrator_faction_mi)))
+		"Cybersun" = CONFIG_GET(number/infiltrator_faction_cybersun))
+
+		/* Population Locked Factions */
+		if(GLOB.joined_player_list.len >= 12)
+			faction_list += list("Gorlex" = CONFIG_GET(number/infiltrator_faction_gorlex))
+		if(GLOB.joined_player_list.len >= 30)
+			faction_list += list(\
+			"Tiger Co." = CONFIG_GET(number/infiltrator_faction_tiger), \
+			"MI13" = CONFIG_GET(number/infiltrator_faction_mi))
+
+		/* Special Factions */
+		if(islizard(H))
+			faction_list += list("LUFR" = CONFIG_GET(number/infiltrator_faction_lufr))
+		faction = pickweight(faction_list)
 
 	owner.assigned_role = "[faction] Infiltrator"
 
@@ -71,7 +81,7 @@
 			InfilFit = new /datum/outfit/infiltrator/gorlex
 
 		if("Tiger Co.") //The rarest of them all - 100% DAGD.
-			hijack_chance = 0 //Who need the shuttle when you are going to die anyway?
+			hijack_chance = 0 //Who needs the shuttle when you are going to die anyway?
 			kill_chance = 100 //RIP AND TEAR
 			dagd_chance = 100 //UNTIL IT'S DONE
 			obj_mod = 2 //More murders before going full DAGD.
@@ -86,6 +96,11 @@
 			obj_mod = 4 //Something to do for an hour.
 			extra_tc = 10 //Have fun while staying -=STEALTHY=-
 			InfilFit = new /datum/outfit/infiltrator/cybersun/mi13
+
+		if("LUFR") //Lizard supremacists / freedom fighters. Available to lizardpeople only, obviously.
+			hijack_chance = 10
+			dagd_chance = 10
+			InfilFit = new /datum/outfit/infiltrator/lufr
 
 	if(isplasmaman(owner.current)) //Plasmamen equipment
 		InfilFit.uniform = /obj/item/clothing/under/plasmaman
@@ -110,15 +125,19 @@
 			to_chat(owner.current, "<span class='alertwarning'>[CONFIG_GET(string/infiltrator_tiger_message)] \n</span>")
 		if("MI13 Infiltrator")
 			to_chat(owner.current, "<span class='alertwarning'>[CONFIG_GET(string/infiltrator_mi_message)] \n</span>")
+		if("LUFR Infiltrator")
+			to_chat(owner.current, "<span class='alertwarning'>[CONFIG_GET(string/infiltrator_lufr_message)] \n</span>")
 
 		else //Used for Syndicate "faction" and non-existant factions, in case there is an error.
 			to_chat(owner.current, "<span class='alertwarning'>[CONFIG_GET(string/infiltrator_syndicate_message)] \n</span>")
 
 /datum/antagonist/traitor/infiltrator/forge_traitor_objectives()
 	var/is_hijacker = FALSE
-	if (GLOB.joined_player_list.len >= 60)
+	if (GLOB.joined_player_list.len >= 30)
 		is_hijacker = prob(hijack_chance)
-	var/martyr_chance = prob(dagd_chance)
+	var/martyr_chance = FALSE
+	if (GLOB.joined_player_list.len >= 30)
+		martyr_chance = prob(dagd_chance)
 	var/objective_count = is_hijacker
 	var/toa = CONFIG_GET(number/infiltrator_objectives_amount) + obj_mod //Additional objective.
 	for(var/i = objective_count, i < toa, i++)
@@ -170,7 +189,12 @@
 		else
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = owner
-			kill_objective.find_target()
+			if(faction == "LUFR" && prob(90))
+				kill_objective.find_target_by_race(race = "human", invert = FALSE)
+			else if(faction == "Tiger Co." && prob(30))
+				kill_objective.find_target_by_role(role = ROLE_INFILTRATOR, role_type = TRUE, invert = FALSE)
+			else
+				kill_objective.find_target()
 			add_objective(kill_objective)
 	else
 		if(prob(15) && !(locate(/datum/objective/download) in objectives))
@@ -186,9 +210,9 @@
 
 /datum/antagonist/traitor/infiltrator/admin_add(datum/mind/new_owner,mob/admin)
 	var/faction_t = input("What kind of infiltrator?", "Infiltrator") as null|anything in \
-	list("Random", "Syndicate", "Cybersun", "Gorlex", "Tiger Co.", "MI13")
+	list("Random", "Syndicate", "Cybersun", "Gorlex", "Tiger Co.", "MI13", "LUFR")
 
-	if(faction_t in list("Random","Syndicate","Cybersun","Gorlex", "Tiger Co.", "MI13"))
+	if(faction_t in list("Random","Syndicate","Cybersun","Gorlex", "Tiger Co.", "MI13", "LUFR"))
 		faction = faction_t
 	else
 		return

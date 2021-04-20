@@ -83,6 +83,7 @@ INFILTRATOR_CYBERSUN_MESSAGE As a member of our group remember: Your actions may
 INFILTRATOR_GORLEX_MESSAGE As a member of our group remember: While stealth is optional, you still have to finish your mission even if it means going with a fight!
 INFILTRATOR_TIGER_MESSAGE You are here to seize mass destruction and terror! Everyone is your enemy, even the other infiltrators, except for those Gorlex dudes. Rip and tear until it's done, operative!
 INFILTRATOR_MI_MESSAGE Welcome operative. Formally - you don't exist and you are not here. The only people that are allowed to know about your existance is high command of Cybersun. You must complete your objectives and stay undiscovered AT ALL COST. Remember - every innocent victim will be deducted from your pay-check.
+INFILTRATOR_LUFR_MESSAGE You are here to get rid of filthy humans and sabotage their work. Avoid attacking non-human crew and low-ranking workers. If there will be a chance - Kill every TerraGov or CentCom official, they have to pay for their crimes.
 
 ## GAME MODES ###
 
@@ -280,6 +281,8 @@ INFILTRATOR_FACTION_GORLEX 8
 INFILTRATOR_FACTION_TIGER 2
 ## MI13
 INFILTRATOR_FACTION_MI 2
+## Lizards United Front
+INFILTRATOR_FACTION_LUFR 16
 
 ## Comment if infiltrators should not get codespeak on roundstart
 INFILTRATOR_GIVE_CODESPEAK
