@@ -27,6 +27,10 @@
 	config_entry_value = 2
 	min_val = 0
 
+/datum/config_entry/number/infiltrator_faction_lufr
+	config_entry_value = 18 // It won't appear for human infiltrators.
+	min_val = 0
+
 /datum/config_entry/flag/infiltrator_give_codespeak	//If infils should get codespeak on start
 
 /datum/config_entry/string/infiltrator_syndicate_message
@@ -46,6 +50,10 @@
 	The only people that are allowed to know about your existance is high command of Cybersun. \
 	You must complete your objectives and stay undiscovered AT ALL COST. Remember - every innocent victim will be \
 	deducted from your pay-check."
+
+/datum/config_entry/string/infiltrator_lufr_message
+	config_entry_value = "You are here to get rid of filthy humans and sabotage their work. Avoid attacking non-human crew and low-ranking workers. \
+	If there will be a chance - Kill every TerraGov or CentCom official, they have to pay for their crimes."
 
 /datum/config_entry/number/senior_timelock
 	config_entry_value = 2600

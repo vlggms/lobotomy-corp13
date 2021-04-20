@@ -52,7 +52,7 @@
 // Outfits
 
 /datum/outfit/infiltrator
-	name = "Infiltrator Starting Kit"
+	name = "Infiltrator Kit - Normal"
 	uniform = /obj/item/clothing/under/chameleon
 	shoes = /obj/item/clothing/shoes/chameleon
 	back = /obj/item/storage/backpack
@@ -69,28 +69,37 @@
 	/obj/item/tank/jetpack/oxygen/harness=1)
 
 /datum/outfit/infiltrator/cybersun
-	name = "Cybersun Infiltrator Kit"
+	name = "Infiltrator Kit - Cybersun"
 	suit = /obj/item/clothing/suit/space/syndicate/black/blue
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/blue
 
 /datum/outfit/infiltrator/gorlex
-	name = "Gorlex Infiltrator Kit"
+	name = "Infiltrator Kit - Gorlex"
 	suit = /obj/item/clothing/suit/space/syndicate/black/red
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/red
 
 /datum/outfit/infiltrator/tiger
-	name = "Gorlex Infiltrator Kit"
+	name = "Infiltrator Kit - Tiger co"
 	suit = /obj/item/clothing/suit/space/syndicate/black/orange
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/orange
 	gloves = /obj/item/clothing/gloves/combat
 	r_pocket = /obj/item/grenade/c4/x4
 
 /datum/outfit/infiltrator/cybersun/mi13
-	name = "MI13 Infiltrator Kit"
+	name = "Infiltrator Kit - MI13"
 	gloves = /obj/item/clothing/gloves/chameleon/combat
 	ears = /obj/item/radio/headset/chameleon
 	mask = /obj/item/clothing/mask/chameleon
 	implants = list(/obj/item/implant/adrenalin, /obj/item/implant/freedom, /obj/item/implant/explosive)
+
+/datum/outfit/infiltrator/lufr
+	name = "Infiltrator Kit - LUFR"
+	suit = /obj/item/clothing/suit/space/syndicate/black/green
+	head = /obj/item/clothing/head/helmet/space/syndicate/black/green
+
+/datum/outfit/infiltrator/lufr/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(DIGITIGRADE in H.dna.species.species_traits)
+		shoes = /obj/item/clothing/shoes/digicombat
 
 //Latejoin
 
