@@ -11,7 +11,6 @@
 	description = "An essence made of pure bananium and some other powerful reagents."
 	color = "#FAFA5A"
 	taste_description = "pure bananium"
-	can_synth = FALSE
 	addiction_threshold = 3
 	overdose_threshold = 5
 	metabolization_rate = 0.2

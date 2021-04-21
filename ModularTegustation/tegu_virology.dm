@@ -158,7 +158,7 @@
 	switch(stage)
 		if(2)
 			if (prob(30))
-				affected_mob.emote("smile")
+				affected_mob.emote("laugh")
 			if (prob(20))
 				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 2))
 		if(3)
