@@ -3,14 +3,14 @@
 	description = "A soft, slippery metal. Shining yellow and emitting laughter..?"
 	reagent_state = SOLID
 	color = "#FFFF00"
-	taste_description = "entire circus"
+	taste_description = "pure bananium"
 	material = /datum/material/bananium
 
 /datum/reagent/bananium_essence
 	name = "Concentrated Bananium Essence"
 	description = "An essence made of pure bananium and some other powerful reagents."
 	color = "#FAFA5A"
-	taste_description = "pure bananium"
+	taste_description = "entire circus"
 	addiction_threshold = 3
 	overdose_threshold = 5
 	metabolization_rate = 0.2

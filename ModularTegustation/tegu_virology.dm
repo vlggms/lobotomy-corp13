@@ -135,8 +135,8 @@
 	visibility_flags = NONE
 	stage1 = list("Your skin itches.")
 	stage2 = list("You catch yourself smiling for no reason.")
-	stage3 = list("<span class='danger'>You feel as if your arm attempts to fall off.</span>", "<span class='danger'>Your skin twitches.</span>", "<span class='danger'>You crave for bananium!</span>")
-	stage4 = list("<span class='danger'>You hear circus sounds everywhere.</span>", "<span class='danger'>Your feel as if your head exploded!</span>")
+	stage3 = list("<span class='danger'>You feel like your arm is  going to fall off!</span>", "<span class='danger'>Your skin twitches.</span>", "<span class='danger'>You could really go for some bananium right now!</span>")
+	stage4 = list("<span class='danger'>You hear circus sounds everywhere.</span>", "<span class='danger'>Your feel like your head is about to explode!</span>")
 	stage5 = list("<span class='danger'>H... O... N... K...</span>")
 	new_form = /mob/living/simple_animal/hostile/retaliate/clown
 
@@ -166,7 +166,7 @@
 				affected_mob.emote("smile")
 			if (prob(10))
 				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 3))
-				affected_mob.say(pick("My skin...", "Urgh...", "Is my head gone..?"))
+				affected_mob.say(pick("Urgh...", "Heh-he...", "Ho-nk..."))
 			if (prob(5))
 				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
 				affected_mob.Unconscious(40)
@@ -175,7 +175,7 @@
 				to_chat(affected_mob, "<span class='danger'>The pain is unbearable!</span>")
 				affected_mob.emote("cry")
 			if (prob(30))
-				to_chat(affected_mob, "<span class='danger'>Your skin begins to move on its own!</span>")
+				to_chat(affected_mob, "<span class='danger'>Your skin begins to shift, hurting like hell!</span>")
 				affected_mob.emote("scream")
 				affected_mob.Jitter(4)
 			if (prob(10))
