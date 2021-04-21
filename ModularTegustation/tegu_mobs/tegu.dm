@@ -29,7 +29,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/tegu/atlas
 	name = "Atlas"
-	desc = "Captain's pet tegu."
+	desc = "That's the captain's small, but mighty pet tegu. They may or may not have the blood of greytiders on them."
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
