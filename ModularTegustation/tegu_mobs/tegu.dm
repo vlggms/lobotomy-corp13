@@ -17,8 +17,8 @@
 	response_disarm_simple = "roll over"
 	response_harm_continuous = "kicks"
 	response_harm_simple = "kick"
-	melee_damage_lower = 21
-	melee_damage_upper = 24
+	melee_damage_lower = 18
+	melee_damage_upper = 22
 	health = 5
 	maxHealth = 75
 	speed = 5
@@ -33,7 +33,7 @@
 	gender = MALE
 	gold_core_spawnable = NO_SPAWN
 
-/mob/living/simple_animal/pet/fox/renault/Initialize(mapload) // Shitty way of replacing sloth pets, without editing maps.
+/mob/living/simple_animal/pet/fox/renault/Initialize(mapload) // Shitty way of replacing renault, without editing maps.
 	. = ..()
 	var/turf/T = get_turf(src)
 	new /mob/living/simple_animal/hostile/retaliate/tegu/atlas(T)
