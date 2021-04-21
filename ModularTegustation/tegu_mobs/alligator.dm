@@ -24,6 +24,9 @@
 	speed = 8
 	glide_size = 2
 	footstep_type = FOOTSTEP_MOB_CLAW
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'sound/weapons/bite.ogg'
 
 /mob/living/simple_animal/hostile/retaliate/gator/steppy
 	name = "Steppy"
