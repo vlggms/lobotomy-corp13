@@ -19,7 +19,7 @@
 	response_harm_simple = "kick"
 	melee_damage_lower = 18
 	melee_damage_upper = 22
-	health = 5
+	health = 75
 	maxHealth = 75
 	speed = 5
 	footstep_type = FOOTSTEP_MOB_CLAW
