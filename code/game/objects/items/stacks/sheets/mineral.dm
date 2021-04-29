@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(silver_recipes, list ( \
 	sheettype = "bananium"
 	mats_per_unit = list(/datum/material/bananium=MINERAL_MATERIAL_AMOUNT)
 	novariants = TRUE
-	grind_results = list(/datum/reagent/consumable/banana = 20)
+	grind_results = list(/datum/reagent/bananium = 1) // TEGU Edit. So you need 2 full bananium sheets to make 1u of essence.
 	point_value = 50
 	merge_type = /obj/item/stack/sheet/mineral/bananium
 	material_type = /datum/material/bananium

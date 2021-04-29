@@ -3397,6 +3397,8 @@
 #include "ModularTegustation\tegu_borg_code\tegu_airlock_electroadaptive.dm"
 #include "ModularTegustation\tegu_borg_code\tegu_medborg_upgrades.dm"
 #include "ModularTegustation\tegu_borg_code\tegu_secborg.dm"
+#include "ModularTegustation\tegu_chemistry\reagents.dm"
+#include "ModularTegustation\tegu_chemistry\recipes.dm"
 #include "ModularTegustation\tegu_cloning\brain_item.dm"
 #include "ModularTegustation\tegu_cloning\circuits.dm"
 #include "ModularTegustation\tegu_cloning\computer.dm"
