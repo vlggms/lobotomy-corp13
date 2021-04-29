@@ -557,6 +557,55 @@
 			message_admins("[key_name_admin(holder)] has Un-Fully Immersed \
 				everyone!")
 			log_admin("[key_name(holder)] has Un-Fully Immersed everyone.")
+		if("anarchy") //FUUUN!!
+			if(!is_funmin)
+				return
+			var/really = alert("Are you sure you want to start an anarchist community?",,"Yes","No","Cancel")
+
+			if((really == "Cancel") || (really == "No"))
+				return
+			SSblackbox.record_feedback("nested tally", "admin_secrets_fun_used", 1, list("Anarchy Mode"))
+			message_admins("[key_name_admin(holder)] started an anarcho-communist society.")
+			change_command_name(pick("Free Territory", "Independent Space Coalition", "United Commune", "Anarchist Union", "Galactic Defense Council"))
+			priority_announce("The Nanotrasen has been disbanded in the recent anarchist uprising. You are now free, workers!", null, SSstation.announcer.get_rand_report_sound())
+			SSeconomy.pack_price_modifier *= 0.2 // ALMOST free stuff.
+			for (var/job_name in GLOB.command_positions + GLOB.security_positions) // Nuh-uh. No gods, no masters.
+				var/datum/job/job = SSjob.GetJob(job_name)
+				job.allow_bureaucratic_error = FALSE
+				job.total_positions = 0
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				// Jumpsuit
+				var/olduniform = H.w_uniform
+				var/obj/item/clothing/under/newuniform = new /obj/item/clothing/under/color/black
+				if(olduniform)
+					H.temporarilyRemoveItemFromInventory(H.w_uniform, TRUE, FALSE)
+					H.equip_to_slot_or_del(newuniform, ITEM_SLOT_ICLOTHING)
+					qdel(olduniform)
+				else
+					H.equip_to_slot_or_del(newuniform, ITEM_SLOT_ICLOTHING)
+
+				// Some stuff gets yeeted.
+				qdel(H.wear_suit)
+				qdel(H.head)
+				qdel(H.wear_mask)
+				qdel(H.shoes)
+
+				// Mask
+				var/obj/item/clothing/mask/newmask = new /obj/item/clothing/mask/bandana/black
+				H.equip_to_slot_or_del(newmask, ITEM_SLOT_MASK)
+
+				// Shoes
+				var/obj/item/clothing/shoes/newshoes = new /obj/item/clothing/shoes/jackboots
+				H.equip_to_slot_or_del(newshoes, ITEM_SLOT_FEET)
+
+				// ID
+				if(H.get_idcard(TRUE))
+					var/obj/item/card/id/LEID = H.get_idcard(TRUE)
+					LEID.access = get_all_accesses()
+					LEID.assignment = "Assistant"
+					LEID.desc = "An identification card of a FREE man! Has full access everywhere on the station."
+					LEID.update_label()
+
 	if(E)
 		E.processing = FALSE
 		if(E.announceWhen>0)

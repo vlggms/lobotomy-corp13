@@ -176,6 +176,13 @@
 #define G_FEMALE 2
 #define G_PLURAL 3
 
+//Tegustation Cloning
+#define CLONER_FRESH_CLONE "fresh"
+#define CLONER_MATURE_CLONE "mature"
+
+
+
+
 ///Organ slot processing order for life proc
 GLOBAL_LIST_INIT(organ_process_order, list(
 	ORGAN_SLOT_BRAIN,
