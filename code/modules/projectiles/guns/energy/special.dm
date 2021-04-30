@@ -59,7 +59,7 @@
 	inhand_icon_state = "c20r"
 	w_class = WEIGHT_CLASS_BULKY
 	ammo_type = list(/obj/item/ammo_casing/energy/meteor)
-	cell_type = "/obj/item/stock_parts/cell/potato"
+	cell_type = /obj/item/stock_parts/cell/potato
 	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
 	selfcharge = 1
 
@@ -367,3 +367,17 @@
 		return FALSE
 	return ..()
 
+
+
+/obj/item/gun/energy/tesla_cannon
+	name = "tesla cannon"
+	icon_state = "tesla"
+	inhand_icon_state = "tesla"
+	desc = "A gun that shoots balls of \"tesla\", whatever that is."
+	ammo_type = list(/obj/item/ammo_casing/energy/tesla_cannon)
+	shaded_charge = 1
+	weapon_weight = WEAPON_HEAVY
+
+/obj/item/gun/energy/tesla_cannon/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)

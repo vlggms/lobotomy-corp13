@@ -42,7 +42,7 @@
 	var/semicd = 0						//cooldown handler
 	var/weapon_weight = WEAPON_LIGHT
 	var/dual_wield_spread = 24			//additional spread when dual wielding
-	
+
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
 
@@ -75,8 +75,6 @@
 	var/zoom_amt = 3 //Distance in TURFs to move the user's screen forward (the "zoom" effect)
 	var/zoom_out_amt = 0
 	var/datum/action/toggle_scope_zoom/azoom
-
-	var/automatic = 0 //can gun use it, 0 is no, anything above 0 is the delay between clicks in ds
 	var/pb_knockback = 0
 
 /obj/item/gun/Initialize()
