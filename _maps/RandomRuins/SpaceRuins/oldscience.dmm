@@ -113,13 +113,11 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered/syndi_science/main)
 "ek" = (
-/mob/living/simple_animal/hostile/syndicate/civilian{
-	name = "Syndicate Scientist"
+/obj/structure/sign/poster/official/nanotrasen_logo{
+	pixel_y = -32
 	},
-/turf/open/floor/plasteel/dark/side{
-	dir = 4
-	},
-/area/ruin/has_grav/powered/syndi_science/main)
+/turf/template_noop,
+/area/template_noop)
 "ey" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -238,9 +236,7 @@
 /area/ruin/has_grav/powered/syndi_science/main)
 "iQ" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/research,
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered/syndi_science/main)
 "jg" = (
@@ -756,12 +752,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered/syndi_science/main)
+"HD" = (
+/obj/structure/sign/poster/official/nanotrasen_logo{
+	pixel_y = 32
+	},
+/turf/template_noop,
+/area/template_noop)
 "HR" = (
 /obj/structure/chair/office{
 	dir = 1
-	},
-/mob/living/simple_animal/hostile/syndicate/civilian{
-	name = "Syndicate Scientist"
 	},
 /turf/open/floor/wood,
 /area/ruin/has_grav/powered/syndi_science/main)
@@ -817,7 +816,6 @@
 /obj/machinery/recharger{
 	pixel_x = 7
 	},
-/obj/item/gun/energy/laser/retro/old,
 /turf/open/floor/plasteel/showroomfloor,
 /area/ruin/has_grav/powered/syndi_science/main)
 "LE" = (
@@ -874,12 +872,7 @@
 /area/ruin/has_grav/powered/syndi_science/main)
 "Og" = (
 /obj/structure/table/reinforced,
-/obj/item/research_notes{
-	desc = "Valuable scientific data discovered by scientists of the Syndicate. Use it in a research console to scan it.";
-	name = "\improper Syndicate research notes";
-	origin_type = "syndicate technology";
-	value = 1500
-	},
+/obj/item/research_notes/loot,
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered/syndi_science/main)
 "OL" = (
@@ -1157,7 +1150,7 @@ YB
 YB
 YB
 YB
-YB
+ek
 Fh
 cQ
 cQ
@@ -1193,7 +1186,7 @@ Zh
 wX
 wX
 Fh
-YB
+HD
 YB
 YB
 YB
@@ -1253,7 +1246,7 @@ YB
 Fh
 fU
 cQ
-EX
+cQ
 cQ
 pK
 ZJ
@@ -1340,7 +1333,7 @@ kJ
 qU
 Fh
 rQ
-EX
+cQ
 xg
 yj
 Fh
@@ -1364,7 +1357,7 @@ kJ
 YP
 Fh
 eL
-cQ
+AQ
 cQ
 vs
 Fh
@@ -1396,7 +1389,7 @@ Fh
 (13,1,1) = {"
 Fh
 Hl
-EX
+AQ
 Up
 SC
 At
@@ -1421,7 +1414,7 @@ Fh
 Fh
 wj
 cQ
-qM
+iQ
 wx
 cf
 AQ
@@ -1504,7 +1497,7 @@ aH
 ZM
 Te
 Te
-ek
+Te
 DG
 Fh
 Yb
@@ -1518,7 +1511,7 @@ Fh
 Fh
 Fh
 JI
-EX
+cQ
 Ep
 cQ
 Fh

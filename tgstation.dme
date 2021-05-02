@@ -3386,6 +3386,8 @@
 #include "ModularTegustation\tegushuttles.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
 #include "ModularTegustation\altjobtitles\outfits.dm"
+#include "ModularTegustation\anomaly_items\anomaly_tools.dm"
+#include "ModularTegustation\anomaly_items\anomaly_weapons.dm"
 #include "ModularTegustation\living\living.dm"
 #include "ModularTegustation\living\carbon\life.dm"
 #include "ModularTegustation\tegu_beefmen\code\_DEFINES\beefman_defines.dm"
