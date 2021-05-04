@@ -128,14 +128,6 @@
 	icon_state = "book_xeno"
 	language_name = "Xenomorph"
 
-/obj/item/book/granter/language_book/russian
-	name = "Guide To Space-Russian"
-	desc = "A nu cheeki breeki iv damke!"
-	learnable_language = /datum/language/russian
-	remarks = list("What if the space workers owned the means of space production..?", "Permanent revolution or socialism in one star system..?", "Boy I'd sure go for some cheap grain alcohol right now...", "Squatting and you; hip drive...", "Huh, lying down protects you from bears...")
-	icon_state = "book_russian"
-	language_name = "Space Russian"
-
 /obj/item/book/granter/language_book/random
 	icon_state = "random_book"
 
