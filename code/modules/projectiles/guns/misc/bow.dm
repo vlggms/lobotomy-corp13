@@ -1,13 +1,15 @@
-
 /obj/item/gun/ballistic/bow
 	name = "longbow"
 	desc = "While pretty finely crafted, surely you can find something better to use in the current year."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "bow"
+	worn_icon_state = "pipebow"
 	inhand_icon_state = "bow"
 	load_sound = null
-	fire_sound = null
+	fire_sound = 'sound/weapons/bowfire.ogg'
+	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/bow
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	force = 15
 	attack_verb_continuous = list("whipped", "cracked")
 	attack_verb_simple = list("whip", "crack")
@@ -20,19 +22,9 @@
 /obj/item/gun/ballistic/bow/update_icon()
 	. = ..()
 	if(!chambered)
-		icon_state = "bow"
+		icon_state = "[initial(icon_state)]"
 	else
-		icon_state = "bow_[drawn]"
-
-/obj/item/gun/ballistic/bow/proc/drop_arrow()
-	drawn = FALSE
-	if(!chambered)
-		chambered = magazine.get_round(keep = FALSE)
-		return
-	if(!chambered)
-		return
-	chambered.forceMove(drop_location())
-	update_icon()
+		icon_state = "[initial(icon_state)]_[drawn]"
 
 /obj/item/gun/ballistic/bow/chamber_round(keep_bullet = FALSE, spin_cylinder, replace_new_round)
 	if(chambered || !magazine)
@@ -44,6 +36,8 @@
 /obj/item/gun/ballistic/bow/attack_self(mob/user)
 	if(chambered)
 		to_chat(user, "<span class='notice'>You [drawn ? "release the tension on" : "draw the string on"] [src].</span>")
+		if(!drawn)
+			playsound(src, 'sound/weapons/bowdraw.ogg', 75, 0)
 		drawn = !drawn
 	update_icon()
 
@@ -51,9 +45,7 @@
 	if(!chambered)
 		return
 	if(!drawn)
-		to_chat(user, "<span clasas='warning'>Without drawing the bow, the arrow uselessly falls to the ground.</span>")
-		drop_arrow()
-		update_icon()
+		to_chat(user, "<span clasas='warning'>You can't shoot without drawing the bow.</span>")
 		return
 	drawn = FALSE
 	. = ..() //fires, removing the arrow
@@ -62,23 +54,20 @@
 /obj/item/gun/ballistic/bow/shoot_with_empty_chamber(mob/living/user)
 	return //so clicking sounds please
 
-/obj/item/ammo_box/magazine/internal/bow
-	name = "bowstring"
-	ammo_type = /obj/item/ammo_casing/caseless/arrow
-	max_ammo = 1
-	start_empty = TRUE
-	caliber = CALIBER_ARROW
+/obj/item/gun/ballistic/bow/ashen
+	name = "Bone Bow"
+	desc = "Some sort of primitive projectile weapon made of bone and wrapped sinew."
+	icon_state = "ashenbow"
+	inhand_icon_state = "ashenbow"
+	worn_icon_state = "ashenbow"
+	force = 8
 
-/obj/item/ammo_casing/caseless/arrow
-	name = "arrow"
-	desc = "Stabby Stabman!"
-	icon_state = "arrow"
-	flags_1 = NONE
-	throwforce = 1
-	projectile_type = /obj/projectile/bullet/reusable/arrow
-	firing_effect_type = null
-	caliber = CALIBER_ARROW
-	heavy_metal = FALSE
+/obj/item/gun/ballistic/bow/pipe
+	name = "Pipe Bow"
+	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
+	icon_state = "pipebow"
+	inhand_icon_state = "pipebow"
+	force = 7
 
 /obj/item/ammo_casing/caseless/arrow/despawning/dropped()
 	. = ..()
@@ -87,16 +76,6 @@
 /obj/item/ammo_casing/caseless/arrow/despawning/proc/floor_vanish()
 	if(isturf(loc))
 		qdel(src)
-
-/obj/projectile/bullet/reusable/arrow
-	name = "arrow"
-	desc = "Ow! Get it out of me!"
-	ammo_type = /obj/item/ammo_casing/caseless/arrow
-	damage = 50
-	speed = 1
-	range = 25
-
-
 
 /obj/item/storage/bag/quiver
 	name = "quiver"
@@ -118,8 +97,14 @@
 
 /obj/item/storage/bag/quiver/PopulateContents()
 	. = ..()
-	for(var/i in 1 to 10)
-		new arrow_path(src)
+	if(arrow_path)
+		for(var/i in 1 to 10)
+			new arrow_path(src)
 
 /obj/item/storage/bag/quiver/despawning
 	arrow_path = /obj/item/ammo_casing/caseless/arrow/despawning
+
+/obj/item/storage/bag/quiver/empty
+	name = "leather quiver"
+	desc = "A quiver made from the hide of some animal. Used to hold arrows."
+	arrow_path = null

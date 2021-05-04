@@ -24,6 +24,12 @@
 	reward = CARGO_CRATE_VALUE * 15
 	wanted_types = list(/obj/item/fireaxe/boneaxe)
 
+/datum/bounty/item/mining/bone_bow
+	name = "Bone Bow"
+	description = "Central Command is holding an archery competition. Ship a special bow for our top athlete."
+	reward = CARGO_CRATE_VALUE * 15
+	wanted_types = list(/obj/item/gun/ballistic/bow/ashen)
+
 /datum/bounty/item/mining/bone_armor
 	name = "Bone Armor"
 	description = "Station 14 has volunteered their lizard crew for ballistic armor testing. Ship over some bone armor."

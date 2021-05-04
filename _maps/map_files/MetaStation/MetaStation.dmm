@@ -66410,7 +66410,7 @@
 /area/science/storage)
 "mrv" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/cloth/five,
+/obj/item/stack/sheet/cotton/cloth/five,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "mrP" = (

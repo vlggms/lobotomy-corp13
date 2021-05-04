@@ -37,7 +37,7 @@
 	return ..()
 
 /obj/item/gun/ballistic/rifle/attackby(obj/item/A, mob/user, params)
-	if (!bolt_locked && !istype(A, /obj/item/stack/sheet/cloth))
+	if (!bolt_locked && !istype(A, /obj/item/stack/sheet/cotton/cloth))
 		to_chat(user, "<span class='notice'>The bolt is closed!</span>")
 		return
 	return ..()

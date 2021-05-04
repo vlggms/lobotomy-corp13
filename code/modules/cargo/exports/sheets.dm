@@ -83,7 +83,7 @@
 /datum/export/stack/cloth
 	cost = CARGO_CRATE_VALUE * 0.025
 	message = "rolls of cloth"
-	export_types = list(/obj/item/stack/sheet/cloth)
+	export_types = list(/obj/item/stack/sheet/cotton/cloth)
 
 /datum/export/stack/durathread
 	cost = CARGO_CRATE_VALUE * 0.35

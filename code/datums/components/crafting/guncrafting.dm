@@ -15,6 +15,12 @@
 	icon = 'icons/obj/improvised.dmi'
 	icon_state = "riflestock"
 
+/obj/item/weaponcrafting/silkstring
+	name = "silkstring"
+	desc = "A long piece of Silk that looks like a cable coil."
+	icon = 'icons/obj/improvised.dmi'
+	icon_state = "silkstring"
+
 ///These gun kits are printed from the security protolathe to then be used in making new weapons
 
 // GUN PART KIT //

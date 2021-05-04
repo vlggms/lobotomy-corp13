@@ -308,10 +308,11 @@
 		/obj/item/organ/regenerative_core,
 		/obj/item/wormhole_jaunter,
 		/obj/item/stack/marker_beacon,
+		/obj/item/restraints/legcuffs/bola/watcher,
+		/obj/item/claymore/bone,
 		/obj/item/key/lasso,
 		/obj/item/skeleton_key
 		))
-
 
 /obj/item/storage/belt/mining/vendor
 	contents = newlist(/obj/item/survivalcapsule)

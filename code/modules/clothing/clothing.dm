@@ -29,7 +29,7 @@
 	var/can_be_bloody = TRUE
 
 	/// What items can be consumed to repair this clothing (must by an /obj/item/stack)
-	var/repairable_by = /obj/item/stack/sheet/cloth
+	var/repairable_by = /obj/item/stack/sheet/cotton/cloth
 
 	//Var modification - PLEASE be careful with this I know who you are and where you live
 	var/list/user_vars_to_edit //VARNAME = VARVALUE eg: "name" = "butts"

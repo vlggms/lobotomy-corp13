@@ -133,6 +133,7 @@
 	inhand_icon_state = "blowgun"
 	has_syringe_overlay = FALSE
 	fire_sound = 'sound/items/syringeproj.ogg'
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/syringe/blowgun/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	visible_message("<span class='danger'>[user] starts aiming with a blowgun!</span>")

@@ -91,7 +91,7 @@
 	var/suppressor_y_offset ///pixel offset for the suppressor overlay on the y axis.
 
 	///Gun internal magazine modification and misfiring
-	
+
 	///Can we modify our ammo type in this gun's internal magazine?
 	var/can_modify_ammo = FALSE
 	///our initial ammo type. Should match initial caliber, but a bit of redundency doesn't hurt.
@@ -106,7 +106,7 @@
 	var/alternative_ammo_misfires = FALSE
 	/// Whether our ammo misfires now or when it's set by the wrench_act. TRUE means it misfires.
 	var/can_misfire = FALSE
-	///How likely is our gun to misfire? 
+	///How likely is our gun to misfire?
 	var/misfire_probability = 0
 	///How much does shooting the gun increment the misfire probability?
 	var/misfire_percentage_increment = 0
@@ -322,11 +322,11 @@
 	if (can_be_sawn_off)
 		if (sawoff(user, A))
 			return
-	
-	if(can_misfire && istype(A, /obj/item/stack/sheet/cloth))
+
+	if(can_misfire && istype(A, /obj/item/stack/sheet/cotton/cloth))
 		if(guncleaning(user, A))
 			return
-	
+
 	return FALSE
 
 /obj/item/gun/ballistic/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -343,7 +343,7 @@
 /obj/item/gun/ballistic/shoot_live_shot(mob/living/user, pointblank = 0, atom/pbtarget = null, message = 1)
 	if(can_misfire)
 		misfire_probability += misfire_percentage_increment
-	
+
 	. = ..()
 
 ///Installs a new suppressor, assumes that the suppressor is already in the contents of src
@@ -553,10 +553,10 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	if(misfire_probability == 0)
 		to_chat(user, "<span class='notice'>\The [src] seems to be already clean of fouling.</span>")
 		return
-	
+
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.visible_message("<span class='notice'>[user] begins to cleaning \the [src].</span>", "<span class='notice'>You begin to clean the internals of \the [src].</span>")
-	
+
 	if(do_after(user, 100, target = src))
 		var/original_misfire_value = initial(misfire_probability)
 		if(misfire_probability > original_misfire_value)
@@ -568,15 +568,15 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	if(!user.is_holding(src))
 		to_chat(user, "<span class='notice'>You need to hold [src] to modify it.</span>")
 		return TRUE
-	
+
 	if(!can_modify_ammo)
 		return
-	
+
 	if(bolt_type == BOLT_TYPE_STANDARD)
-		if(get_ammo())	
+		if(get_ammo())
 			to_chat(user, "<span class='notice'>You can't get at the internals while the gun has a bullet in it!</span>")
 			return
-		
+
 		else if(!bolt_locked)
 			to_chat(user, "<span class='notice'>You can't get at the internals while the bolt is down!</span>")
 			return
@@ -585,7 +585,7 @@ GLOBAL_LIST_INIT(gun_saw_types, typecacheof(list(
 	I.play_tool_sound(src)
 	if(!I.use_tool(src, user, 3 SECONDS))
 		return TRUE
-	
+
 	if(blow_up(user))
 		user.visible_message("<span class='danger'>\The [src] goes off!</span>", "<span class='danger'>\The [src] goes off in your face!</span>")
 		return
