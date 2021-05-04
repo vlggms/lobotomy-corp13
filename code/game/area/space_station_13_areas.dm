@@ -511,7 +511,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	mood_bonus = 5
 	mood_message = "<span class='nicegreen'>I love being in the library!</span>\n"
 	mood_trait = TRAIT_INTROVERT
-	flags_1 = CULT_PERMITTED_1
+	area_flags = CULT_PERMITTED
 	sound_environment = SOUND_AREA_LARGE_SOFTFLOOR
 
 /area/library/lounge
@@ -538,7 +538,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/library/abandoned
 	name = "Abandoned Library"
 	icon_state = "abandoned_library"
-	flags_1 = CULT_PERMITTED_1
+	area_flags = CULT_PERMITTED
 
 /area/chapel
 	icon_state = "chapel"
@@ -595,7 +595,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engine/atmos
 	name = "Atmospherics"
 	icon_state = "atmos"
-	flags_1 = CULT_PERMITTED_1
+	area_flags = CULT_PERMITTED
 
 /area/engine/atmos/upper
 	name = "Upper Atmospherics"
@@ -826,7 +826,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/virology
 	name = "Virology"
 	icon_state = "virology"
-	flags_1 = CULT_PERMITTED_1
+	area_flags = CULT_PERMITTED
 
 /area/medical/morgue
 	name = "Morgue"
@@ -1077,7 +1077,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/janitor
 	name = "Custodial Closet"
 	icon_state = "janitor"
-	flags_1 = CULT_PERMITTED_1
+	area_flags = CULT_PERMITTED
 	airlock_wires = /datum/wires/airlock/service
 	sound_environment = SOUND_AREA_SMALL_ENCLOSED
 
