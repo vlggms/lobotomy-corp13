@@ -262,15 +262,20 @@
 		user.say("Nothing between me and a payday!", forced = "fixer's badge")
 	user.visible_message("<span class='notice'>[user] shows [user.p_their()] fixer's badge.</span>", "<span class='notice'>You show your fixer's badge.</span>")
 
-/obj/item/clothing/accessory/fixer_badge/on_uniform_equip(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(L)
-		L.bubble_icon = "lawyer"
+/obj/item/clothing/accessory/fixer_badge/on_uniform_equip(obj/item/clothing/under/U, mob/living/user)
+	RegisterSignal(user, COMSIG_LIVING_SLAM_TABLE, .proc/table_slam)
+	user.bubble_icon = "lawyer"
 
-/obj/item/clothing/accessory/fixer_badge/on_uniform_dropped(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
+/obj/item/clothing/accessory/fixer_badge/on_uniform_dropped(obj/item/clothing/under/U, mob/living/user)
+	UnregisterSignal(user, COMSIG_LIVING_SLAM_TABLE)
+	user.bubble_icon = initial(user.bubble_icon)
+
+/obj/item/clothing/accessory/fixer_badge/proc/table_slam(mob/living/source, obj/structure/table/the_table)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/handle_table_slam, source)
+
+/obj/item/clothing/accessory/fixer_badge/proc/handle_table_slam(mob/living/user)
+	user.say("Objection!!", spans = list(SPAN_YELL), forced=TRUE)
 
 ////////////////
 //HA HA! NERD!//

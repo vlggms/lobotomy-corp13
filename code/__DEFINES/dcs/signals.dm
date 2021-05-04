@@ -564,6 +564,11 @@
 #define COMSIG_GLOB_PATROL_START "!patrol_start"
 #define COMSIG_PATROL_START "patrol_start"
 
+///from /obj/item/slapper/attack_obj(): (source=mob/living/slammer, obj/structure/table/slammed_table)
+#define COMSIG_LIVING_SLAM_TABLE "living_slam_table"
+///from /obj/item/slapper/attack_obj(): (source=obj/structure/table/slammed_table, mob/living/slammer)
+#define COMSIG_TABLE_SLAMMED "table_slammed"
+
 // /obj signals
 
 ///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, sound_effect, attack_dir, aurmor_penetration)
