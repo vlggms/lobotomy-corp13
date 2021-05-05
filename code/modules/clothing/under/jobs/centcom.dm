@@ -44,3 +44,10 @@
 	icon_state = "centcom_skirt"
 	inhand_icon_state = "dg_suit"
 	fitted = FEMALE_UNIFORM_TOP
+
+/obj/item/clothing/under/rank/centcom/officer/alt
+	name = "\improper CentCom officer's jumpsuit"
+	desc = "It's a jumpsuit worn by CentCom Officers."
+	icon_state = "officer2"
+	inhand_icon_state = "g_suit"
+	alt_covers_chest = TRUE

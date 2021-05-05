@@ -162,7 +162,7 @@
 /datum/outfit/centcom/centcom_official
 	name = "CentCom Official"
 
-	uniform = /obj/item/clothing/under/rank/centcom/officer
+	uniform = /obj/item/clothing/under/rank/centcom/officer/alt
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent
@@ -319,6 +319,7 @@
 
 /datum/outfit/centcom/centcom_intern
 	name = "CentCom Intern"
+	var/jb_name = "CentCom Intern" // It is required for unarmed type.
 
 	uniform = /obj/item/clothing/under/rank/centcom/intern
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -340,7 +341,7 @@
 	var/obj/item/card/id/W = H.wear_id
 	W.access = get_centcom_access(name)
 	W.access += ACCESS_WEAPONS
-	W.assignment = name
+	W.assignment = jb_name
 	W.registered_name = H.real_name
 	W.update_label()
 
@@ -353,6 +354,8 @@
 
 /datum/outfit/centcom/centcom_intern/leader
 	name = "CentCom Head Intern"
+	jb_name = "CentCom Head Intern"
+
 	belt = /obj/item/melee/baton/loaded
 	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction/brand_new

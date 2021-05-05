@@ -4,6 +4,7 @@
   /* OUTFITS */
 /datum/outfit/lufr
 	name = "LUFR Soldier"
+	var/jb_name = "Syndicate Operative"
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
 	uniform = /obj/item/clothing/under/syndicate/combat
@@ -19,11 +20,21 @@
 		)
 	id = /obj/item/card/id/syndicate_command
 
-/datum/outfit/lufr/post_equip(mob/living/carbon/human/H)
+/datum/outfit/lufr/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
 	H.faction |= ROLE_SYNDICATE
+	var/obj/item/card/id/W = H.wear_id
+	W.access = list(ACCESS_SYNDICATE)
+	W.assignment = jb_name
+	W.registered_name = H.real_name
+	W.update_label()
+	..()
 
 /datum/outfit/lufr/elite
 	name = "LUFR Elite"
+	jb_name = "Syndicate Assault Operative"
 	uniform = /obj/item/clothing/under/syndicate/coldres
 	suit_store = /obj/item/gun/ballistic/automatic/tommygun
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
@@ -67,6 +78,9 @@
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
 	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
+	var/mob/living/carbon/human/H = new_spawn
+	var/obj/item/card/id/W = H.wear_id
+	W.registered_name = H.real_name
 
 /obj/effect/mob_spawn/human/lufr/ashwalker
 	mob_species = /datum/species/lizard/ashwalker

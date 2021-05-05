@@ -273,6 +273,11 @@
 	desc = "A special beret with the security insignia emblazoned on it. For officers with class."
 	icon_state = "officerberet"
 
+/obj/item/clothing/head/beret/sec/centcom
+	name = "centcom beret"
+	desc = "A dark-green beret worn by CentCom officers and high-ranking soldiers."
+	icon_state = "centberet"
+
 //Science
 
 /obj/item/clothing/head/beret/science
