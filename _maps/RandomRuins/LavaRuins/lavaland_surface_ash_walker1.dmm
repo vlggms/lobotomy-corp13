@@ -569,10 +569,9 @@
 /obj/structure/stone_tile/cracked{
 	dir = 8
 	},
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
-/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood{
+	amount = 4
+	},
 /obj/item/seeds/tower,
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
@@ -605,6 +604,16 @@
 	},
 /obj/structure/stone_tile/cracked{
 	dir = 8
+	},
+/obj/item/stack/sheet/sinew{
+	amount = 5
+	},
+/obj/item/stack/sheet/bone{
+	amount = 5
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/cotton{
+	amount = 20
 	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
@@ -1099,8 +1108,12 @@
 	dir = 4
 	},
 /obj/structure/table/wood,
-/obj/item/spear,
-/obj/item/clothing/head/helmet/roman/legionnaire,
+/obj/item/spear/bonespear,
+/obj/item/clothing/suit/hooded/cloak/goliath{
+	armor = list("melee" = 45, "bullet" = 10, "laser" = 25, "energy" = 35, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60);
+	desc = "An old cape made with goliath plates, rumored to be from the age of greater ashwalkers.";
+	name = "ancient goliath cloak"
+	},
 /turf/open/indestructible/boss,
 /area/ruin/unpowered/ash_walkers)
 "cO" = (
@@ -1265,7 +1278,9 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "dq" = (
-/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood{
+	amount = 6
+	},
 /obj/structure/stone_tile{
 	dir = 4
 	},

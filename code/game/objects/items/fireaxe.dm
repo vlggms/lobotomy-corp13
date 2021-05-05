@@ -67,6 +67,8 @@
 	icon_state = "bone_axe0"
 	name = "bone axe"
 	desc = "A large, vicious axe crafted out of several sharpened bone plates and crudely tied together. Made of monsters, by killing monsters, for killing monsters."
+	var/faction_bonus_force = 26
+	var/nemesis_factions = list("mining", "boss") // Deal more damage to lavaland mobs.
 
 /obj/item/fireaxe/boneaxe/ComponentInitialize()
 	. = ..()
@@ -74,6 +76,19 @@
 
 /obj/item/fireaxe/boneaxe/update_icon_state()
 	icon_state = "bone_axe0"
+
+/obj/item/fireaxe/boneaxe/attack(mob/living/target, mob/living/carbon/human/user)
+	var/nemesis_faction = FALSE
+	if(LAZYLEN(nemesis_factions))
+		for(var/F in target.faction)
+			if(F in nemesis_factions)
+				nemesis_faction = TRUE
+				force += faction_bonus_force
+				break
+	. = ..()
+	if(nemesis_faction)
+		playsound(target.loc,'sound/effects/wounds/pierce1.ogg', rand(30,50), TRUE) // Play funny sound to signify additional damage.
+		force -= faction_bonus_force
 
 /*
  * Metal Hydrogen Axe

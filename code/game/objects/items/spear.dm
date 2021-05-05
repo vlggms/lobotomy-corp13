@@ -172,6 +172,8 @@
 	force = 12
 	throwforce = 22
 	armour_penetration = 15				//Enhanced armor piercing
+	var/faction_bonus_force = 22
+	var/nemesis_factions = list("mining", "boss") // Deal more damage to lavaland mobs.
 
 /obj/item/spear/bonespear/ComponentInitialize()
 	. = ..()
@@ -179,3 +181,16 @@
 
 /obj/item/spear/bonespear/update_icon_state()
 	icon_state = "bone_spear0"
+
+/obj/item/spear/bonespear/attack(mob/living/target, mob/living/carbon/human/user)
+	var/nemesis_faction = FALSE
+	if(LAZYLEN(nemesis_factions))
+		for(var/F in target.faction)
+			if(F in nemesis_factions)
+				nemesis_faction = TRUE
+				force += faction_bonus_force
+				break
+	. = ..()
+	if(nemesis_faction)
+		playsound(target.loc,'sound/effects/wounds/pierce1.ogg', rand(30,50), TRUE) // Play funny sound to signify additional damage.
+		force -= faction_bonus_force

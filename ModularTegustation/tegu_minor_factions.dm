@@ -66,6 +66,7 @@
 
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)
+	new_spawn.fully_replace_character_name(null,random_unique_lizard_name(gender))
 
 /obj/effect/mob_spawn/human/lufr/ashwalker
 	mob_species = /datum/species/lizard/ashwalker
