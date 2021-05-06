@@ -26,7 +26,7 @@
 
 /obj/item/gun/ballistic/automatic/aks74u/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.1 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.12 SECONDS)
 
 //MAGS
 /obj/item/ammo_box/magazine/ak47
@@ -61,7 +61,7 @@
 //BULLETS
 /obj/projectile/bullet/a545_39
 	name = "5.45x39mm bullet"
-	damage = 26
+	damage = 30
 
 /obj/projectile/bullet/a762_39
 	name = "7.62x39mm bullet"
