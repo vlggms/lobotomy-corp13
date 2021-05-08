@@ -20,6 +20,7 @@
 	icon_state = "gangtool-blue"
 	inhand_icon_state = "radio"
 	var/uses = 1
+	var/beacon_msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows: <span class='bold'>Item request received. Your package is inbound, please stand back from the landing site.</span> Message ends.\""
 
 /obj/item/choice_beacon/attack_self(mob/user)
 	if(canUseBeacon(user))
@@ -58,7 +59,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(istype(H.ears, /obj/item/radio/headset))
-			msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows: <span class='bold'>Item request received. Your package is inbound, please stand back from the landing site.</span> Message ends.\""
+			msg = beacon_msg // If you got a working headset - receive a special message.
 	to_chat(M, msg)
 
 	new /obj/effect/pod_landingzone(get_turf(src), pod)
@@ -67,6 +68,7 @@
 	name = "ingredient delivery beacon"
 	desc = "Summon a box of ingredients to help you get started cooking."
 	icon_state = "gangtool-white"
+	beacon_msg = "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from Sophronia Broadcasting. Message as follows: <b>Please enjoy your Sophronia Broadcasting's 'Plasteel Chef' Ingredients Box, exactly as shown in the hit show!</b> Message ends.\"</span>"
 
 /obj/item/choice_beacon/ingredient/generate_display_names()
 	var/list/ingredients = list()
@@ -74,10 +76,6 @@
 		var/obj/item/storage/box/ingredients/A = V
 		ingredients[initial(A.theme_name)] = A
 	return ingredients
-
-/obj/item/choice_beacon/ingredient/spawn_option(obj/choice,mob/living/M)
-	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from Sophronia Broadcasting. Message as follows: <b>Please enjoy your Sophronia Broadcasting's 'Plasteel Chef' Ingredients Box, exactly as shown in the hit show!</b> Message ends.\"</span>")
 
 /obj/item/storage/box/ingredients //This box is for the randomly chosen version the chef used to spawn with, it shouldn't actually exist.
 	name = "ingredients box"
@@ -232,6 +230,7 @@
 /obj/item/choice_beacon/hero
 	name = "heroic beacon"
 	desc = "To summon heroes from the past to protect the future."
+	beacon_msg = "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from Sophronia Broadcasting. Message as follows: <b>Please enjoy your Sophronia Broadcasting's 'History Comes Alive branded' Costume Set, exactly as shown in the hit show!</b> Message ends.\"</span>"
 
 /obj/item/choice_beacon/hero/generate_display_names()
 	var/static/list/hero_item_list
@@ -242,10 +241,6 @@
 			var/atom/A = V
 			hero_item_list[initial(A.name)] = A
 	return hero_item_list
-
-/obj/item/choice_beacon/hero/spawn_option(obj/choice,mob/living/M)
-	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from Sophronia Broadcasting. Message as follows: <b>Please enjoy your Sophronia Broadcasting's 'History Comes Alive branded' Costume Set, exactly as shown in the hit show!</b> Message ends.\"</span>")
 
 
 /obj/item/storage/box/hero
@@ -293,6 +288,7 @@
 	name = "augment beacon"
 	desc = "Summons augmentations. Can be used 3 times!"
 	uses = 3
+	beacon_msg = "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from S.E.L.F. Message as follows: <b>Item request received. Your package has been transported, use the autosurgeon supplied to apply the upgrade.</b> Message ends.\"</span>"
 
 /obj/item/choice_beacon/augments/generate_display_names()
 	var/static/list/augment_list
@@ -310,9 +306,6 @@
 			augment_list[initial(A.name)] = A
 	return augment_list
 
-/obj/item/choice_beacon/augments/spawn_option(obj/choice,mob/living/M)
-	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>You hear something crackle from the beacon for a moment before a voice speaks. \"Please stand by for a message from S.E.L.F. Message as follows: <b>Item request received. Your package has been transported, use the autosurgeon supplied to apply the upgrade.</b> Message ends.\"</span>")
 
 /obj/item/skub
 	desc = "It's skub."

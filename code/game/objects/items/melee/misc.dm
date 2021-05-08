@@ -186,10 +186,11 @@
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
 
-	var/cooldown = 40 // Default wait time until can stun again.
-	var/knockdown_time_carbon = (1.5 SECONDS) // Knockdown length for carbons.
+	var/cooldown = 30 // Default wait time until can stun again.
+	var/knockdown_time_carbon = (2 SECONDS) // Knockdown length for carbons. Only used when targeting legs.
 	var/stun_time_silicon = (5 SECONDS) // If enabled, how long do we stun silicons.
 	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/stunarmor_penetration = 1 // A modifier from 0 to 1. How much armor we can ignore. Less = Ignores more armor.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.
 	var/on_stun_sound = 'sound/effects/woodhit.ogg' // Default path to sound for when we stun.
@@ -222,8 +223,12 @@
 /obj/item/melee/classic_baton/proc/get_stun_description(mob/living/target, mob/living/user)
 	. = list()
 
-	.["visible"] =  "<span class ='danger'>[user] knocks [target] down with [src]!</span>"
-	.["local"] = "<span class ='userdanger'>[user] knocks you down with [src]!</span>"
+	.["visibletrip"] =  "<span class ='danger'>[user] has knocked [target]'s legs out from under them with [src]!</span>"
+	.["localtrip"] = "<span class ='danger'>[user]  has knocked your legs out from under you [src]!</span>"
+	.["visibledisarm"] =  "<span class ='danger'>[user] has disarmed [target] with [src]!</span>"
+	.["localdisarm"] = "<span class ='danger'>[user] whacks your arm with [src], causing a coursing pain!</span>"
+	.["visiblestun"] =  "<span class ='danger'>[user] beat [target] with [src]!</span>"
+	.["localstun"] = "<span class ='danger'>[user] has beat you with [src]!</span>"
 
 	return .
 
@@ -304,14 +309,36 @@
 				user.do_attack_animation(target)
 
 			playsound(get_turf(src), on_stun_sound, 75, TRUE, -1)
-			target.Knockdown(knockdown_time_carbon)
-			target.apply_damage(stamina_damage, STAMINA, BODY_ZONE_CHEST)
 			additional_effects_carbon(target, user)
 
-			log_combat(user, target, "stunned", src)
-			add_fingerprint(user)
+			var/selected_bodypart_area = check_zone(user.zone_selected)
+			var/target_limb = target.get_bodypart(selected_bodypart_area)
+			var/def_check = (target.getarmor(target_limb, type = "melee") * stunarmor_penetration)
+			switch(selected_bodypart_area)
+				if(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+					if(target.stat || target.IsKnockdown() || (target == user) || def_check < 41) // Can't knock down someone with shit-load of armor.
+						var/armor_effect = 1 - (def_check / 100)
+						target.Knockdown(knockdown_time_carbon * armor_effect)
+						log_combat(user, target, "tripped", src)
+						target.visible_message(desc["visibletrip"], desc["localtrip"])
+						target.apply_damage(stamina_damage*0.25, STAMINA, selected_bodypart_area, def_check)
+					else
+						log_combat(user, target, "stunned", src)
+						target.visible_message(desc["visiblestun"], desc["localstun"])
+						target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
 
-			target.visible_message(desc["visible"], desc["local"])
+				if(BODY_ZONE_L_ARM)
+					baton_disarm(user, target, LEFT_HANDS, selected_bodypart_area, def_check)
+
+				if(BODY_ZONE_R_ARM)
+					baton_disarm(user, target, RIGHT_HANDS, selected_bodypart_area, def_check)
+
+				else // Normal effect.
+					target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
+					log_combat(user, target, "stunned", src)
+					target.visible_message(desc["visiblestun"], desc["localstun"])
+
+			add_fingerprint(user)
 
 			if(!iscarbon(user))
 				target.LAssailant = null
@@ -322,6 +349,18 @@
 			var/wait_desc = get_wait_description()
 			if (wait_desc)
 				to_chat(user, wait_desc)
+
+/obj/item/melee/classic_baton/proc/baton_disarm(mob/living/carbon/user, mob/living/carbon/target, side, bodypart_target, def_check)
+	var/obj/item/I = target.get_held_items_for_side(side)
+	var/list/desc = get_stun_description(target, user)
+	if(I && target.dropItemToGround(I)) // There is an item in this hand. Drop it and deal slightly less stamina damage.
+		log_combat(user, target, "disarmed", src)
+		target.visible_message(desc["visibledisarm"], desc["localdisarm"])
+		target.apply_damage(stamina_damage*0.5, STAMINA, bodypart_target, def_check)
+	else // No item in that hand. Deal normal stamina damage.
+		log_combat(user, target, "stunned", src)
+		target.visible_message(desc["visiblestun"], desc["localstun"])
+		target.apply_damage(stamina_damage, STAMINA, bodypart_target, def_check)
 
 /obj/item/conversion_kit
 	name = "conversion kit"
@@ -410,8 +449,11 @@
 	item_flags = NONE
 	force = 5
 
-	cooldown = 25
-	stamina_damage = 85
+	cooldown = 20
+	knockdown_time_carbon = (4 SECONDS)
+	stamina_damage = 75
+	stunarmor_penetration = 0.5 // Contractor Baton deserves to be powerful. Just for a reference:
+	// You can knockdown someone with 80 armor, since it will turn into 40. Kill those death commandos!
 	affect_silicon = TRUE
 	on_sound = 'sound/weapons/contractorbatonextend.ogg'
 	on_stun_sound = 'sound/effects/contractorbatonhit.ogg'
@@ -537,18 +579,78 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	worn_icon_state = "whip"
 	slot_flags = ITEM_SLOT_BELT
-	force = 15
+	force = 4
+	reach = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
 	attack_verb_simple = list("flog", "whip", "lash", "discipline")
 	hitsound = 'sound/weapons/whip.ogg'
 
-/obj/item/melee/curator_whip/afterattack(target, mob/user, proximity_flag)
-	. = ..()
-	if(ishuman(target) && proximity_flag)
-		var/mob/living/carbon/human/H = target
-		H.drop_all_held_items()
-		H.visible_message("<span class='danger'>[user] disarms [H]!</span>", "<span class='userdanger'>[user] disarmed you!</span>")
+/obj/item/melee/curator_whip/attack(mob/living/target, mob/living/user)
+	. = ..() // Do normal attack stuff and then let's check what limb is attacked.
+	if(!ishuman(target))
+		return // A target isn't human? Abort operation "limb-destroyer"!
+
+	var/mob/living/carbon/H = target
+	var/selected_bodypart_area = check_zone(user.zone_selected) // For stuff like eyes, mouth, etc.
+	var/target_limb = H.get_bodypart(selected_bodypart_area)
+	if(!target_limb) // Does this limb exist at all?
+		return
+	var/armor_v = H.getarmor(target_limb, type = "melee")
+	H.apply_damage(force, STAMINA, selected_bodypart_area, armor_v) // Regardless of limb, you get some stamina damage
+	switch(selected_bodypart_area)
+		if(BODY_ZONE_L_ARM)
+			if(armor_v < 41)
+				whip_disarm(user, H, LEFT_HANDS)
+		if(BODY_ZONE_R_ARM)
+			if(armor_v < 41)
+				whip_disarm(user, H, RIGHT_HANDS)
+		if(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
+			if(armor_v < 31)
+				whip_trip(user, H)
+		if(BODY_ZONE_HEAD)
+			if((armor_v < 26) && prob(25 - armor_v))
+				var/obj/item/organ/eyes/eyes = H.getorganslot(ORGAN_SLOT_EYES)
+				if(!H.is_eyes_covered() && eyes) // You have eyes, right..?
+					to_chat(H, "<span class='userdanger'>[user] managed to hit your eyes with [src]!</span>")
+					to_chat(user, "<span class='notice'>You managed to hit [H] with [src] right in the eyes!</span>")
+					H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v) // That's ADDITIONAL damage.
+					H.emote("scream")
+					H.blur_eyes(3)
+					H.add_confusion(2)
+					eyes.applyOrganDamage(4)
+		else
+			if((armor_v < 16) && prob(15 - armor_v)) // Armor is too low! That's gonna sting.
+				to_chat(H, "<span class='userdanger'>You can't stand this pain!</span>")
+				H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v) // Even more damage.
+				H.emote("scream")
+				H.Stun(2)
+				H.Jitter(3)
+
+/obj/item/melee/curator_whip/proc/whip_disarm(mob/living/carbon/user, mob/living/carbon/target, side)
+	var/obj/item/I = target.get_held_items_for_side(side)
+	if(I)
+		if(target.dropItemToGround(I))
+			target.visible_message("<span class='danger'>[I] is yanked out of [target]'s hands by [src]!</span>","<span class='userdanger'>[user] grabs [I] out of your hands with [src]!</span>")
+			log_combat(user, target, "disarmed", src)
+			if(!user.get_inactive_held_item() && target != user)
+				if(I.w_class > WEIGHT_CLASS_NORMAL)
+					to_chat(user, "<span class='notice'>[I] is too heavy to pull with [src]!</span>")
+				else
+					to_chat(user, "<span class='notice'>You yank [I] towards yourself.</span>")
+					user.throw_mode_on()
+					user.swap_hand()
+					I.throw_at(user, 10, 2)
+
+/obj/item/melee/curator_whip/proc/whip_trip(mob/living/carbon/user, mob/living/carbon/target)
+	if(target.stat || target.IsKnockdown() || target == user) // No need to "trip" someone who is already fucking dead. Also don't trip yourself.
+		return
+	if(get_dist(user, target) < 2)
+		to_chat(user, "<span class='warning'>[target] is too close to trip with the whip!</span>")
+		return
+	target.Knockdown(1 SECONDS)
+	log_combat(user, target, "tripped", src)
+	target.visible_message("<span class='danger'>[user] knocks [target] off [target.p_their()] feet!</span>", "<span class='userdanger'>[user] yanks your legs out from under you!</span>")
 
 /obj/item/melee/roastingstick
 	name = "advanced roasting stick"
