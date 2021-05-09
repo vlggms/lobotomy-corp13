@@ -38,6 +38,21 @@
 	cell = /obj/item/stock_parts/cell/hyper
 	slowdown = 0.25
 
+/obj/item/clothing/head/helmet/space/hardsuit/voidtech/marine
+	name = "space marine hardsuit helmet"
+	desc = "A standard-issued helmet of Nanotrasen space marine's hardsuit. While technically it lacks armor, most enemies \
+	will disperse just at the sight of it"
+	icon_state = "hardsuit0-spacemarine"
+	hardsuit_type = "spacemarine"
+	light_color = COLOR_SOFT_RED // Fear me mortals.
+
+/obj/item/clothing/suit/space/hardsuit/voidtech/marine
+	name = "space marine hardsuit"
+	desc = "A modified Void Technician's hardsuit, given to the most successful explorers that managed to earn the rank of \
+	a Space Marine."
+	icon_state = "hardsuit-spacemarine"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/voidtech/marine
+
 //Special Subspace Headset
 /obj/item/radio/headset/subspace/void
 	name = "voidtech's subspace headset"
