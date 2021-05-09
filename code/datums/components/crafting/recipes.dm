@@ -807,9 +807,10 @@
 /datum/crafting_recipe/heavybonearmor
 	name = "Heavy Bone Armor"
 	result = /obj/item/clothing/suit/hooded/cloak/bone
-	time = 60
-	reqs = list(/obj/item/stack/sheet/bone = 8,
-				/obj/item/stack/sheet/sinew = 3)
+	time = 80
+	reqs = list(/obj/item/stack/sheet/bone = 10,
+				/obj/item/stack/sheet/sinew = 3,
+				/obj/item/stack/sheet/animalhide/goliath_hide = 2)
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/bonetalisman
