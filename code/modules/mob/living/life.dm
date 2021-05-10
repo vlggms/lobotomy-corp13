@@ -44,7 +44,7 @@
 		handle_wounds()
 
 		if(!iscarbon(src))
-			reagents.metabolize(src, FALSE, FALSE)
+			reagents.metabolize(src, TRUE, TRUE)
 
 		if (QDELETED(src)) // diseases can qdel the mob via transformations
 			return
