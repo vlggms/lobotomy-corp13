@@ -1,4 +1,3 @@
-
 /datum/species/lizard/before_equip_job(datum/job/J, mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	var/current_job = J.title
