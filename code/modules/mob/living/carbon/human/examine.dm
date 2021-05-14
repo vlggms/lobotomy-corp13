@@ -185,38 +185,29 @@
 	if(!(user == src && src.hal_screwyhud == SCREWYHUD_HEALTHY)) //fake healthy
 		if(temp)
 			if(temp < 25)
-//				msg += "[t_He] [t_has] minor bruising.\n"
-				msg += "[t_He] [t_has] minor [dna.species.bruising_desc].\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] minor bruising.\n"
 			else if(temp < 50)
-//				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
-				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.bruising_desc]!\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
 			else
-//				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
-				msg += "<B>[t_He] [t_has] severe [dna.species.bruising_desc]!</B>\n" // Tegustation Beefmen edit
+				msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
 
 		temp = getFireLoss()
 		if(temp)
 			if(temp < 25)
-//				msg += "[t_He] [t_has] minor burns.\n"
-				msg += "[t_He] [t_has] minor [dna.species.burns_desc].\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] minor burns.\n"
 			else if (temp < 50)
-//				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
-				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.burns_desc]!\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
 			else
-//				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
-				msg += "<B>[t_He] [t_has] severe [dna.species.burns_desc]!</B>\n" // Tegustation Beefmen edit
+				msg += "<B>[t_He] [t_has] severe burns!</B>\n"
 
 		temp = getCloneLoss()
 		if(temp)
 			if(temp < 25)
-//				msg += "[t_He] [t_has] minor cellular damage.\n"
-				msg += "[t_He] [t_has] minor [dna.species.cellulardamage_desc].\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] minor cellular damage.\n"
 			else if(temp < 50)
-//				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
-				msg += "[t_He] [t_has] <b>moderate</b> [dna.species.cellulardamage_desc]!\n" // Tegustation Beefmen edit
+				msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 			else
-//				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
-				msg += "<b>[t_He] [t_has] severe [dna.species.cellulardamage_desc]!</b>\n" // Tegustation Beefmen edit
+				msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
 
 
 	if(fire_stacks > 0)
@@ -268,17 +259,10 @@
 		var/num_bleeds = LAZYLEN(bleeding_limbs)
 
 		var/list/bleed_text
-		if (istype(dna) && istype(dna.species, /datum/species/beefman))
-			if(appears_dead)
-				bleed_text = list("<span class='deadsay'><B>The natural juices are visible in [t_his] open")
-			else
-				bleed_text = list("<B>[t_His] natural juices are seeping from [t_his]")
-
+		if(appears_dead)
+			bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
 		else
-			if(appears_dead)
-				bleed_text = list("<span class='deadsay'><B>Blood is visible in [t_his] open")
-			else
-				bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
+			bleed_text = list("<B>[t_He] [t_is] bleeding from [t_his]")
 
 		switch(num_bleeds)
 			if(1 to 2)
