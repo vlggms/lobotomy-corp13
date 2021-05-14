@@ -497,6 +497,7 @@
 
 /datum/outfit/syndicate_empty/sbc/med
 	name = "Syndicate Battlecruiser Ship Medical Doctor"
+	uniform = /obj/item/clothing/under/syndicate/medic
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	l_pocket = /obj/item/gun/ballistic/automatic/pistol
 	r_pocket = /obj/item/kitchen/knife/combat/survival
