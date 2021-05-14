@@ -188,9 +188,9 @@
 	name = "Lia's bed"
 	anchored = TRUE
 
-/obj/structure/bed/dogbed/renault
-	desc = "Renault's bed! Looks comfy. A foxy person needs a foxy pet."
-	name = "Renault's bed"
+/obj/structure/bed/dogbed/renault // Begone, fox. Tegu edit.
+	desc = "A bed that belongs to the Captain's pet tegu - Atlas!"
+	name = "Atlas's bed"
 	anchored = TRUE
 
 /obj/structure/bed/dogbed/mcgriff
