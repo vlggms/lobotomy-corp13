@@ -346,6 +346,10 @@
 					/obj/item/clothing/under/rank/civilian/lawyer/red/skirt = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/black = 1,
 					/obj/item/clothing/under/rank/civilian/lawyer/black/skirt = 1,
+					/obj/item/clothing/suit/aristocrat = 1,
+					/obj/item/clothing/suit/aristocrat/red = 1,
+					/obj/item/clothing/suit/aristocrat/brown = 1,
+					/obj/item/clothing/suit/aristocrat/blue = 1,
 					/obj/item/clothing/shoes/laceup = 2,
 					/obj/item/clothing/accessory/lawyers_badge = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/law_wardrobe

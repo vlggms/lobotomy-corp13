@@ -82,6 +82,12 @@
 	icon_state = "syndicate_combat"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/syndicate/medic
+	name = "medical turtleneck"
+	desc = "A tactical turtleneck with blue linings, meant to represent the finest doctors of the Syndicate."
+	icon_state = "syndicate_medic"
+	can_adjust = FALSE
+
 /obj/item/clothing/under/syndicate/rus_army
 	name = "advanced military tracksuit"
 	desc = "Military grade tracksuits for frontline squatting."
