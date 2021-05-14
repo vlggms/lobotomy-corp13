@@ -1,0 +1,11 @@
+{
+    "Trusted": "trusted",
+    "Mentor": "mentor",
+    "Trial Moderator": "trialmoderator",
+    "Moderator": "moderator",
+    "Trial Admin": "trialadmin",
+    "Admin": "admin",
+    "Senior Admin": "senioradmin",
+    "Head Administrator": "headadmin",
+    "Host": "host"
+}
