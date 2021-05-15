@@ -49,6 +49,15 @@
 	desc = "Worn by the Head of Personnel. It smells faintly of bureaucracy."
 	icon_state = "hopcloak"
 
+/obj/item/clothing/neck/cloak/cent
+	name = "\improper CentCom cloak"
+	desc = "Worn by the admirals of the Central Command and other high-ranking officials."
+	icon_state = "centcloak"
+
+/obj/item/clothing/neck/cloak/cent/cap
+	name = "rear admiral's cloak"
+	desc = "Worn by those rare captains that ever manage to reach the rank of 'Rear Admiral'."
+
 /obj/item/clothing/suit/hooded/cloak/goliath
 	name = "goliath cloak"
 	icon_state = "goliath_cloak"

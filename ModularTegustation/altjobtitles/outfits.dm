@@ -11,6 +11,7 @@
 	head = /obj/item/clothing/head/caphat/admiral
 	uniform = /obj/item/clothing/under/rank/captain/admiral
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
+	neck = /obj/item/clothing/neck/cloak/cent/cap // GREEN CLOAK!!
 	shoes = /obj/item/clothing/shoes/jackboots
 
 /*** Security ***/
