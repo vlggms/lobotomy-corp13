@@ -941,6 +941,7 @@
 	glass_icon_state = "lean"
 	glass_name = "Lean"
 	glass_desc = "A drink that makes your life less miserable."
+	addiction_types = list(/datum/addiction/opiods = 6)
 
 /datum/reagent/consumable/lean/on_mob_life(mob/living/carbon/M)
 	if(M.slurring < 3)

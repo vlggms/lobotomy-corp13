@@ -242,8 +242,14 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_CANT_RIDE			"cant_ride"
 #define TRAIT_BLOODY_MESS		"bloody_mess" //from heparin, makes open bleeding wounds rapidly spill more blood
 #define TRAIT_COAGULATING		"coagulating" //from coagulant reagents, this doesn't affect the bleeding itself but does affect the bleed warning messages
+/// From anti-convulsant medication against seizures.
+#define TRAIT_ANTICONVULSANT "anticonvulsant"
 /// The holder of this trait has antennae or whatever that hurt a ton when noogied
 #define TRAIT_ANTENNAE	"antennae"
+/// Addictions don't tick down, basically they're permanently addicted
+#define TRAIT_HOPELESSLY_ADDICTED "hopelessly_addicted"
+/// Special examine if eyes are visible
+#define CULT_EYES "cult_eyes"
 
 #define TRAIT_NOBLEED "nobleed" //This carbon doesn't bleed
 
@@ -421,7 +427,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define STASIS_MUTE "stasis"
 #define GENETICS_SPELL "genetics_spell"
 #define EYES_COVERED "eyes_covered"
-#define CULT_EYES "cult_eyes"
 #define TRAIT_SANTA "santa"
 #define SCRYING_ORB "scrying-orb"
 #define ABDUCTOR_ANTAGONIST "abductor-antagonist"

@@ -132,6 +132,10 @@
 	description = "<span class='warning'>I'm missing my family heirloom...</span>\n"
 	mood_change = -4
 
+/datum/mood_event/bright_light
+	description = "<span class='boldwarning'>I hate it in the light...I need to find a darker place...</span>\n"
+	mood_change = -12
+
 /datum/mood_event/healsbadman
 	description = "<span class='warning'>I feel like I'm held together by flimsy string, and could fall apart at any moment!</span>\n"
 	mood_change = -4
@@ -310,3 +314,13 @@
 	description = "<span class='warning'>All the fish are dead...</span>\n"
 	mood_change = -3
 	timeout = 1.5 MINUTES
+
+/datum/mood_event/holy_smite //punished
+	description = "<span class='warning'>I have been punished by my deity!</span>\n"
+	mood_change = -5
+	timeout = 5 MINUTES
+
+/datum/mood_event/banished //when the chaplain gets forcably de-holy'd
+	description = "<span class='boldwarning'>I have been excommunicated!</span>\n"
+	mood_change = -10
+	timeout = 10 MINUTES

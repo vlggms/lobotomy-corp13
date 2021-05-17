@@ -173,6 +173,9 @@
 
 ///Called on SSmood process
 /datum/component/mood/process(delta_time)
+	var/mob/living/moody_fellow = parent
+	if(moody_fellow.stat == DEAD)
+		return //updating sanity during death leads to people getting revived and being completely insane for simply being dead for a long time
 	switch(mood_level)
 		if(1)
 			setSanity(sanity-0.3*delta_time, SANITY_INSANE)
@@ -414,6 +417,18 @@
 
 	add_event(null, "slipped", /datum/mood_event/slipped)
 
+/datum/component/mood/proc/HandleAddictions()
+	if(!iscarbon(parent))
+		return
+
+	var/mob/living/carbon/affected_carbon = parent
+
+	if(sanity < SANITY_GREAT) ///Sanity is low, stay addicted.
+		return
+
+	for(var/addiction_type in affected_carbon.mind.addiction_points)
+		var/datum/addiction/addiction_to_remove = SSaddiction.all_addictions[type]
+		affected_carbon.mind.remove_addiction_points(type, addiction_to_remove.high_sanity_addiction_loss) //If true was returned, we lost the addiction!
 
 #undef MINOR_INSANITY_PEN
 #undef MAJOR_INSANITY_PEN

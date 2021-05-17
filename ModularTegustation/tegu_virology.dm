@@ -133,8 +133,8 @@
 	desc = "Nobody can withstand the true power of bananium."
 	severity = DISEASE_SEVERITY_BIOHAZARD
 	visibility_flags = NONE
-	stage1 = list()
-	stage2 = list()
+	stage1 = list("You feel happy!")
+	stage2 = list("You are twitching from happiness!")
 	stage3 = list("<span class='danger'>You feel like your arm is  going to fall off!</span>", "<span class='danger'>Your skin twitches.</span>", "<span class='danger'>You could really go for some bananium right now!</span>")
 	stage4 = list("<span class='danger'>You hear circus sounds everywhere.</span>", "<span class='danger'>Your feel like your head is about to explode!</span>")
 	stage5 = list("<span class='danger'>H... O... N... K...</span>")
@@ -146,7 +146,34 @@
 		/mob/living/simple_animal/hostile/retaliate/clown/mutant/glutton = 3, \
 		/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus = 1)
 	new_form = pickweight(le_list)
-	. = ..()
+
+	if(istype(affected_mob, /mob/living/carbon) && affected_mob.stat != DEAD)
+		if(stage5)
+			to_chat(affected_mob, pick(stage5))
+		if(QDELETED(affected_mob))
+			return
+		if(affected_mob.notransform)
+			return
+		affected_mob.notransform = 1
+		for(var/obj/item/W in affected_mob.get_equipped_items(TRUE))
+			affected_mob.dropItemToGround(W)
+		for(var/obj/item/I in affected_mob.held_items)
+			affected_mob.dropItemToGround(I)
+		var/mob/living/new_mob = new new_form(affected_mob.loc)
+		if(istype(new_mob))
+			if(bantype && is_banned_from(affected_mob.ckey, bantype))
+				replace_banned_player(new_mob)
+			new_mob.a_intent = INTENT_HARM
+			if(affected_mob.mind)
+				affected_mob.mind.transfer_to(new_mob)
+			else
+				new_mob.key = affected_mob.key
+		if(transformed_antag_datum)
+			new_mob.mind.add_antag_datum(transformed_antag_datum)
+		new_mob.name = pick(affected_mob.real_name, "clown mutant", "horrible creature", "monster", "biological mess")
+		new_mob.real_name = new_mob.name
+		new_mob.remove_language(/datum/language/common) // Suffer
+		qdel(affected_mob)
 
 /datum/disease/transformation/clown_mutant/stage_act()
 	. = ..()

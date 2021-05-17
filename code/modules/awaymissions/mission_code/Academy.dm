@@ -367,6 +367,7 @@
 /obj/effect/proc_holder/spell/targeted/summonmob
 	name = "Summon Servant"
 	desc = "This spell can be used to call your servant, whenever you need it."
+	school = SCHOOL_CONJURATION
 	charge_max = 100
 	clothes_req = 0
 	invocation = "JE VES"

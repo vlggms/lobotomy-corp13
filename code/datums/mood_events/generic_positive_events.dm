@@ -34,6 +34,12 @@
 	mood_change = 3
 	timeout = 8 MINUTES
 
+/datum/mood_event/maintenance_adaptation
+	mood_change = 8
+
+/datum/mood_event/maintenance_adaptation/add_effects()
+	description = "<span class='nicegreen'>[GLOB.deity] has helped me adapt to the maintenance shafts!</span>\n"
+
 /datum/mood_event/book_nerd
 	description = "<span class='nicegreen'>I have recently read a book.</span>\n"
 	mood_change = 1
@@ -223,3 +229,7 @@
 	description = "<span class='nicegreen'>Watching fish in aquarium is calming.</span>\n"
 	mood_change = 3
 	timeout = 1.5 MINUTES
+
+/datum/mood_event/honorbound
+	description = "<span class='nicegreen'>Following my honorbound code is fulfilling!</span>\n"
+	mood_change = 4

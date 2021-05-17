@@ -53,7 +53,7 @@
 		else
 			qdel(replaced)
 
-	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src)
+	SEND_SIGNAL(M, COMSIG_CARBON_GAIN_ORGAN, src, special)
 
 	owner = M
 	M.internal_organs |= src
@@ -77,7 +77,7 @@
 		var/datum/action/A = X
 		A.Remove(M)
 
-	SEND_SIGNAL(M, COMSIG_CARBON_LOSE_ORGAN, src)
+	SEND_SIGNAL(M, COMSIG_CARBON_LOSE_ORGAN, src, special)
 
 	START_PROCESSING(SSobj, src)
 

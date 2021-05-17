@@ -91,7 +91,7 @@
 /obj/effect/proc_holder/spell/aimed/lightningbolt
 	name = "Lightning Bolt"
 	desc = "Fire a lightning bolt at your foes! It will jump between targets, but can't knock them down."
-	school = "evocation"
+	school = SCHOOL_EVOCATION
 	charge_max = 100
 	clothes_req = FALSE
 	invocation = "P'WAH, UNLIM'TED P'WAH"
@@ -109,7 +109,7 @@
 /obj/effect/proc_holder/spell/aimed/fireball
 	name = "Fireball"
 	desc = "This spell fires an explosive fireball at a target."
-	school = "evocation"
+	school = SCHOOL_EVOCATION
 	charge_max = 60
 	clothes_req = FALSE
 	invocation = "ONI SOMA"
@@ -132,7 +132,7 @@
 /obj/effect/proc_holder/spell/aimed/spell_cards
 	name = "Spell Cards"
 	desc = "Blazing hot rapid-fire homing cards. Send your foes to the shadow realm with their mystical power!"
-	school = "evocation"
+	school = SCHOOL_EVOCATION
 	charge_max = 50
 	clothes_req = FALSE
 	invocation = "Sigi'lu M'Fan 'Tasia"
