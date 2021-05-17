@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/chaos_marine
 	name = "chaos marine"
 	desc = "Forever a servant of the dark gods, a chaos marine is always in state of eternal battle."
-	health = 2000
-	maxHealth = 2000
+	health = 2400
+	maxHealth = 2400
 	icon_state = "chaos_marine"
 	icon_living = "chaos_marine"
 	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
@@ -13,11 +13,11 @@
 	speak_emote = list("roars")
 	speed = 6
 	light_range = 6
-	move_to_delay = 4
 	projectiletype = /obj/projectile/bullet/chaos_bomb
 	projectilesound = 'sound/weapons/gun/l6/shot.ogg'
 	ranged = TRUE
 	ranged_cooldown_time = 20
+	rapid_melee = 2
 	vision_range = 10
 	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5)
 	loot = list(/obj/item/nullrod/scythe/talking/chainsword/chaos, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos)
@@ -43,7 +43,7 @@
 	var/runic_blast_cooldown = 14 SECONDS
 	var/teleport_cooldown = 6 SECONDS
 	var/infernal_summon_cooldown = 30 SECONDS
-	var/dash_mod = 1
+	var/dash_mod = 0.9
 	var/dash_num = 3
 	var/newcolor = rgb(149, 10, 10)
 
@@ -131,7 +131,7 @@
 			if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 				adjustHealth(-(L.maxHealth * 0.5))
 			L.gib()
-			if(prob(50))
+			if(ishuman(L)) // If target is a human - yell some funny shit.
 				telegraph()
 				say(pick("Blood for the blood god!!", "Skulls for the skull throne!!", "Blood, blood!!", "Die! Die! Die!!", "You will be a fine offering!!", "Chaos!!"))
 			return TRUE
@@ -146,19 +146,19 @@
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/adjustCMspeed()
 	if(health <= maxHealth*0.25)
 		speed = 4
-		dash_mod = 0.4
+		dash_mod = 0.3
 		dash_num = 5
 		rapid_melee = 3.5
 	else if(health <= maxHealth*0.5)
 		speed = 4.8
-		dash_mod = 0.6
+		dash_mod = 0.5
 		dash_num = 4
-		rapid_melee = 2.5
+		rapid_melee = 3
 	else if(health <= maxHealth*0.75)
 		speed = 5.4
-		dash_mod = 0.8
+		dash_mod = 0.7
 		dash_num = initial(dash_num)
-		rapid_melee = 1.5
+		rapid_melee = 2
 	else if(health > maxHealth*0.75)
 		speed = initial(speed)
 		dash_mod = initial(dash_mod)
@@ -288,9 +288,8 @@
 	if(T.density)
 		T = get_turf(target)
 	layer = 3
-	SLEEP_CHECK_DEATH(4)
+	SLEEP_CHECK_DEATH(3)
 	new /obj/effect/temp_visual/cult/blood(S)
-	SLEEP_CHECK_DEATH(1)
 	new /obj/effect/temp_visual/cult/blood/out(T)
 	SLEEP_CHECK_DEATH(2)
 	forceMove(T)
@@ -401,7 +400,7 @@
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmempower()
-	damage_coeff = list(BRUTE = 0.6, BURN = 0.2, TOX = 0.2, CLONE = 0.2, STAMINA = 0, OXY = 0.2)
+	damage_coeff = list(BRUTE = 0.5, BURN = 0.2, TOX = 0.2, CLONE = 0.2, STAMINA = 0, OXY = 0.2)
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
@@ -463,8 +462,8 @@
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	faction = list("chaos")
-	maxHealth = 60
-	health = 60
+	maxHealth = 80
+	health = 80
 	vision_range = 16
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	mob_size = MOB_SIZE_HUGE
@@ -487,8 +486,8 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 14
 	light_range = 4
-	maxHealth = 125
-	health = 125
+	maxHealth = 140
+	health = 140
 
 /mob/living/simple_animal/hostile/chaos/ex_act(severity, target)
 	return //Resistant to explosions
