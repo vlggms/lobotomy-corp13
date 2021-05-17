@@ -9,22 +9,6 @@
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"ad" = (
-/obj/machinery/computer/operating,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ae" = (
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
@@ -67,18 +51,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"aj" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/stasis,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ak" = (
 /obj/structure/displaycase{
 	alert = 0;
@@ -98,30 +70,6 @@
 "al" = (
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"am" = (
-/obj/item/storage/backpack/duffelbag/syndie/surgery{
-	layer = 3.001
-	},
-/obj/structure/table,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/item/reagent_containers/glass/bottle/formaldehyde{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/reagent_containers/syringe{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "an" = (
 /obj/structure/sign/warning/vacuum/external,
 /turf/closed/wall/r_wall/syndicate,
@@ -135,9 +83,6 @@
 "aq" = (
 /obj/structure/sign/poster/contraband/syndicate_recruitment,
 /turf/closed/wall/r_wall/syndicate,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"ar" = (
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "as" = (
 /obj/structure/shuttle/engine/huge{
@@ -303,17 +248,6 @@
 	dir = 6
 	},
 /turf/open/floor/mineral/plastitanium/red,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"aI" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "aJ" = (
 /obj/machinery/suit_storage_unit/syndicate{
@@ -1056,21 +990,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"cj" = (
-/obj/machinery/camera/xray{
-	c_tag = "Medbay";
-	dir = 9;
-	name = "security camera";
-	network = list("fsci");
-	screen_loc = ""
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue,
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ck" = (
 /obj/structure/closet/crate/secure/gear{
 	req_one_access_txt = "150"
@@ -1095,18 +1014,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"cm" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/machinery/light/small{
-	dir = 4;
-	icon_state = "bulb"
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cn" = (
 /obj/machinery/recharge_station,
@@ -1181,13 +1088,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ruin/space/has_grav/syndicate_forgotten_cargopod)
-"ct" = (
-/obj/machinery/door/airlock/grunge{
-	name = "Syndicate Ship Airlock";
-	req_one_access_txt = "150"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "cu" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -2000,39 +1900,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"dM" = (
-/obj/machinery/vending/medical/syndicate_access/cybersun,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"dN" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"dO" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 4;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/turf/open/floor/plasteel/white,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "dP" = (
 /obj/machinery/vending/cigarette/syndicate,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
@@ -2427,10 +2294,6 @@
 	},
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"ez" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eA" = (
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
@@ -2442,7 +2305,6 @@
 	pixel_y = -26;
 	req_one_access_txt = "150"
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eC" = (
@@ -2496,13 +2358,12 @@
 	name = "Warehouse";
 	req_one_access_txt = "150"
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 1;
 	icon_state = "pipe11-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eK" = (
 /obj/structure/table,
@@ -2575,44 +2436,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
-"eR" = (
-/obj/item/electronics/airlock{
-	accesses = list(150);
-	desc = "An airlock circuitry with preset syndicate access level. For use on airlock or windoors.";
-	name = "syndicate airlock electronics";
-	pixel_x = 6;
-	pixel_y = 6
-	},
-/obj/item/electronics/airlock{
-	accesses = list(150);
-	desc = "An airlock circuitry with preset syndicate access level. For use on airlock or windoors.";
-	name = "syndicate airlock electronics";
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/electronics/airlock{
-	accesses = list(150);
-	desc = "An airlock circuitry with preset syndicate access level. For use on airlock or windoors.";
-	name = "syndicate airlock electronics"
-	},
-/obj/item/electronics/airlock{
-	accesses = list(150);
-	desc = "An airlock circuitry with preset syndicate access level. For use on airlock or windoors.";
-	name = "syndicate airlock electronics";
-	pixel_x = -3;
-	pixel_y = -3
-	},
-/obj/item/electronics/airlock{
-	accesses = list(150);
-	desc = "An airlock circuitry with preset syndicate access level. For use on airlock or windoors.";
-	name = "syndicate airlock electronics";
-	pixel_x = -6;
-	pixel_y = -6
-	},
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eS" = (
 /obj/machinery/button/door{
 	id = "fswindow3";
@@ -2622,24 +2445,6 @@
 	req_one_access_txt = "150"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/space/has_grav/syndicate_forgotten_ship)
-"eT" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1;
-	icon_state = "tile_corner"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8;
-	icon_state = "tile_corner"
-	},
-/obj/machinery/button/door{
-	id = "fswindow4";
-	name = "window shutters";
-	pixel_x = -26;
-	pixel_y = 26;
-	req_one_access_txt = "150"
-	},
-/turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eU" = (
 /obj/machinery/button/door{
@@ -2670,7 +2475,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eX" = (
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 1;
@@ -2679,7 +2483,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "eY" = (
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	dir = 5
 	},
@@ -2722,7 +2525,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "fe" = (
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4;
 	icon_state = "scrub_map_on-2"
@@ -2730,7 +2532,6 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "ff" = (
-/obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
@@ -2780,10 +2581,6 @@
 /turf/open/floor/plastic,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "fm" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "fn" = (
@@ -2791,6 +2588,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"Cy" = (
+/obj/effect/spawner/room/cybersun_med,
+/turf/closed/wall/r_wall/syndicate,
+/area/ruin/space/has_grav/syndicate_forgotten_ship)
+"GN" = (
+/obj/effect/spawner/room/cybersun,
+/turf/open/floor/plating,
 /area/ruin/space/has_grav/syndicate_forgotten_ship)
 "NC" = (
 /turf/template_noop,
@@ -3080,12 +2885,12 @@ eA
 aL
 bI
 aL
-ez
-ez
-ez
-ez
-ez
-eR
+fm
+fm
+fm
+fm
+fm
+GN
 aL
 aY
 aY
@@ -3120,10 +2925,10 @@ aL
 bI
 aL
 fm
-ez
-ez
-ez
-ez
+fm
+fm
+fm
+fm
 aL
 aL
 aY
@@ -3158,11 +2963,11 @@ eA
 aL
 fn
 aL
-ez
-ez
+fm
+fm
 fe
-ez
-ez
+fm
+fm
 eM
 aY
 aY
@@ -3200,8 +3005,8 @@ eJ
 eX
 eX
 eY
-ez
-ez
+fm
+fm
 eM
 aY
 aY
@@ -3236,11 +3041,11 @@ eA
 aL
 cA
 aL
-ez
-ez
+fm
+fm
 ff
-ez
-ez
+fm
+fm
 eM
 aY
 aY
@@ -3276,9 +3081,9 @@ aL
 cA
 aL
 fm
-ez
-ez
-ez
+fm
+fm
+fm
 eB
 aL
 ac
@@ -3314,12 +3119,12 @@ eA
 aL
 cA
 aL
-ez
-ez
-ez
-ez
-ez
-eR
+fm
+fm
+fm
+fm
+fm
+fm
 aL
 aY
 aY
@@ -3657,11 +3462,11 @@ aY
 (23,1,1) = {"
 aY
 aL
-ad
-eT
-aI
-dM
-bZ
+fm
+fm
+fm
+fm
+Cy
 al
 cT
 al
@@ -3696,10 +3501,10 @@ aY
 (24,1,1) = {"
 aY
 eO
-aj
-ar
-ar
-dN
+fm
+fm
+fm
+fm
 bZ
 ai
 cT
@@ -3735,11 +3540,11 @@ aY
 (25,1,1) = {"
 aY
 eO
-am
-cj
-cm
-dO
-ct
+fm
+fm
+fm
+fm
+fm
 cv
 cW
 fg

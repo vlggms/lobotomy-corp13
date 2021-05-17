@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
 	var/list/holodeck_templates = list()
+	var/list/random_room_templates = list()
 
 	var/list/areas_in_z = list()
 
@@ -193,6 +194,7 @@ Used by the AI doomsday and the self-destruct nuke.
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
 	holodeck_templates = SSmapping.holodeck_templates
+	random_room_templates = SSmapping.random_room_templates
 
 	config = SSmapping.config
 	next_map_config = SSmapping.next_map_config
@@ -397,6 +399,16 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	preloadShuttleTemplates()
 	preloadShelterTemplates()
 	preloadHolodeckTemplates()
+	preloadRandomRoomTemplates()
+
+/datum/controller/subsystem/mapping/proc/preloadRandomRoomTemplates()
+	for(var/item in subtypesof(/datum/map_template/random_room))
+		var/datum/map_template/random_room/room_type = item
+		if(!(initial(room_type.mappath)))
+			continue
+		var/datum/map_template/random_room/R = new room_type()
+		random_room_templates[R.room_id] = R
+		map_templates[R.room_id] = R
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename
