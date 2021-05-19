@@ -381,6 +381,9 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
+	stunarmor_penetration = 0.8 // Buffs heads of staff!
+	knockdown_time_carbon = (3 SECONDS)
+	cooldown = 25
 	force = 0
 	on = FALSE
 	on_sound = 'sound/weapons/batonextend.ogg'
