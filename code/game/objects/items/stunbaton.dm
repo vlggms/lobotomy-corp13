@@ -32,9 +32,10 @@
 	var/stun_sound = 'sound/weapons/egloves.ogg'
 
 	var/confusion_amt = 10
-	var/stamina_loss_amt = 60
+	var/stamina_loss_amt = 55
 	var/apply_stun_delay = 2 SECONDS
 	var/stun_time = 5 SECONDS
+	var/stunarmor_penetration = 1 // The lower - the better.
 
 	var/convertible = TRUE //if it can be converted with a conversion kit
 
@@ -226,13 +227,20 @@
 			return FALSE
 	/// After a target is hit, we do a chunk of stamina damage, along with other effects.
 	/// After a period of time, we then check to see what stun duration we give.
+	var/armor_v = (L.getarmor(null, type = "melee") * stunarmor_penetration)
+	if(iscarbon(L))
+		var/mob/living/carbon/H = L
+		var/selected_bodypart_area = check_zone(user.zone_selected)
+		var/target_limb = H.get_bodypart(selected_bodypart_area)
+		if(target_limb) // Does this limb exist at all?
+			armor_v = (H.getarmor(target_limb, type = "melee") * stunarmor_penetration)
 	L.Jitter(20)
 	L.set_confusion(max(confusion_amt, L.get_confusion()))
 	L.stuttering = max(8, L.stuttering)
-	L.apply_damage(stamina_loss_amt, STAMINA, BODY_ZONE_CHEST)
+	L.apply_damage(stamina_loss_amt, STAMINA, BODY_ZONE_CHEST, armor_v)
 
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
-	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L), apply_stun_delay)
+	addtimer(CALLBACK(src, .proc/apply_stun_effect_end, L, armor_v), apply_stun_delay)
 
 	if(user)
 		L.lastattacker = user.real_name
@@ -251,20 +259,22 @@
 	return 1
 
 /// After the initial stun period, we check to see if the target needs to have the stun applied.
-/obj/item/melee/baton/proc/apply_stun_effect_end(mob/living/target)
+/obj/item/melee/baton/proc/apply_stun_effect_end(mob/living/target, armor_check)
 	var/trait_check = HAS_TRAIT(target, TRAIT_STUNRESISTANCE) //var since we check it in out to_chat as well as determine stun duration
+	var/armor_mod = 1 + (armor_check / 35)
 	if(!target.IsKnockdown())
 		to_chat(target, "<span class='warning'>Your muscles seize, making you collapse[trait_check ? ", but your body quickly recovers..." : "!"]</span>")
 
-	if(trait_check)
-		target.Knockdown(stun_time * 0.1)
-	else
-		target.Knockdown(stun_time)
+	if(armor_mod < 3) // At 70 armor it's useless.
+		if(trait_check)
+			target.Knockdown(stun_time / armor_mod * 0.1)
+		else
+			target.Knockdown(stun_time / armor_mod)
 
 /obj/item/melee/baton/emp_act(severity)
 	. = ..()
 	if (!(. & EMP_PROTECT_SELF))
-		deductcharge(1000 / severity)
+		deductcharge(4000 / severity)
 
 /obj/item/melee/baton/proc/shields_blocked(mob/living/L, mob/user)
 	if(ishuman(L))
@@ -305,6 +315,18 @@
 	if(sparkler)
 		QDEL_NULL(sparkler)
 	return ..()
+
+/obj/item/melee/baton/winstick // Funny
+	name = "batong"
+	desc = "A weapon used by sadists."
+	force = 16
+	throwforce = 12
+	stun_time = 10 SECONDS
+	throw_stun_chance = 100
+	attack_cooldown = 1 SECONDS
+	apply_stun_delay = 1 SECONDS
+	stamina_loss_amt = 90
+	stunarmor_penetration = 0.5
 
 /obj/item/melee/baton/boomerang
 	name = "\improper OZtek Boomerang"
