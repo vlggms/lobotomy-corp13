@@ -114,15 +114,15 @@
 				M.drowsyness += min(M.drowsyness + 10, 20)
 				M.apply_status_effect(STATUS_EFFECT_PACIFY, 100)
 			else
-				if(!hypno_message) // Aka default settings
+				if(!hypno_message || !length(hypno_message)) // Aka default settings
 					hypno_message = "You are a secret agent, working for [user.real_name]. \
 					You must do anything they ask of you, and you must never attempt to harm them, nor allow harm to come to them."
 				hypno_cooldown_current = world.time + hypno_cooldown
 				M.apply_status_effect(STATUS_EFFECT_PACIFY, 30)
 				M.cure_trauma_type(/datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY) //clear previous hypnosis
-				addtimer(CALLBACK(M, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hypno_message), 10)
-				addtimer(CALLBACK(M, /mob/living.proc/Stun, 60, TRUE, TRUE), 15)
-
+				var/datum/brain_trauma/trauma = new /datum/brain_trauma/hypnosis(hypno_message)
+				M.gain_trauma(trauma, TRAUMA_RESILIENCE_SURGERY)
+				M.Stun(60, TRUE, TRUE)
 
 		else if(user)
 			user.visible_message("<span class='warning'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to hypno-flash [M]!</span>")
@@ -138,8 +138,8 @@
 
 /obj/item/assembly/flash/hypnotic/adv/AltClick(mob/user)
 	hypno_message = stripped_input(user, "What order will be given to hypnotised people?", \
-	"You are a secret agent, working for [user.real_name]. You must do anything they ask of you, \
-	and you must never attempt to harm them, nor allow harm to come to them.", "Hypnosis message")
+	"Hypnosis message", "You are a secret agent, working for [user.real_name]. You must do anything they ask of you, \
+	and you must never attempt to harm them, nor allow harm to come to them.")
 	to_chat(user, "<span class='notice'>New message is: [hypno_message]</span>")
 
 // Virology bottles
