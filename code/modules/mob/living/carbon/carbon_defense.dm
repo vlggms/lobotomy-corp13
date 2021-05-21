@@ -77,10 +77,11 @@
 		affecting = get_bodypart(ran_zone(user.zone_selected, zone_hit_chance))
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
+	var/skill_mod = get_skill_rating(user, type="melee")
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	send_item_attack_message(I, user, affecting.name, affecting)
 	if(I.force)
-		apply_damage(I.force, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
+		apply_damage((I.force + skill_mod), I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			if(prob(33))
 				I.add_mob_blood(src)
@@ -453,7 +454,7 @@
 					null, "<span class='hear'>You hear a soft patter.</span>", DEFAULT_MESSAGE_RANGE, list(M, src))
 		to_chat(M, "<span class='notice'>You give [src] a pat on the head to make [p_them()] feel better!</span>")
 		to_chat(src, "<span class='notice'>[M] gives you a pat on the head to make you feel better! </span>")
-		
+
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
 			to_chat(M, "<span class='warning'>[src] looks visibly upset as you pat [p_them()] on the head.</span>")
 
@@ -495,7 +496,7 @@
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
 			else if (hugger_mood.sanity >= SANITY_DISTURBED)
 				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
-		
+
 		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
 			to_chat(M, "<span class='warning'>[src] looks visibly upset as you hug [p_them()].</span>")
 

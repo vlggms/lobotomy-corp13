@@ -18,6 +18,7 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	skills_type = /datum/skill_list_bay/centcom
 
 /datum/antagonist/ert/on_gain()
 	if(random_names)
@@ -65,7 +66,8 @@
 	mission = missionobj
 	objectives |= mission
 
-/datum/antagonist/ert/security // kinda handled by the base template but here for completion
+/datum/antagonist/ert/security
+	skills_type = /datum/skill_list_bay/centcom/security
 
 /datum/antagonist/ert/security/red
 	outfit = /datum/outfit/centcom/ert/security/alert
@@ -73,6 +75,7 @@
 /datum/antagonist/ert/engineer
 	role = "Engineer"
 	outfit = /datum/outfit/centcom/ert/engineer
+	skills_type = /datum/skill_list_bay/centcom/engineer
 
 /datum/antagonist/ert/engineer/red
 	outfit = /datum/outfit/centcom/ert/engineer/alert
@@ -80,6 +83,7 @@
 /datum/antagonist/ert/medic
 	role = "Medical Officer"
 	outfit = /datum/outfit/centcom/ert/medic
+	skills_type = /datum/skill_list_bay/centcom/medical
 
 /datum/antagonist/ert/medic/red
 	outfit = /datum/outfit/centcom/ert/medic/alert
@@ -87,6 +91,7 @@
 /datum/antagonist/ert/commander
 	role = "Commander"
 	outfit = /datum/outfit/centcom/ert/commander
+	skills_type = /datum/skill_list_bay/centcom/security/commander
 
 /datum/antagonist/ert/commander/red
 	outfit = /datum/outfit/centcom/ert/commander/alert
@@ -96,6 +101,7 @@
 	outfit = /datum/outfit/centcom/death_commando
 	role = "Trooper"
 	rip_and_tear = TRUE
+	skills_type = /datum/skill_list_bay/centcom/commando
 
 /datum/antagonist/ert/deathsquad/New()
 	. = ..()
@@ -118,6 +124,7 @@
 /datum/antagonist/ert/chaplain
 	role = "Chaplain"
 	outfit = /datum/outfit/centcom/ert/chaplain
+	skills_type = /datum/skill_list_bay/centcom/security
 
 /datum/antagonist/ert/chaplain/inquisitor
 	outfit = /datum/outfit/centcom/ert/chaplain/inquisitor

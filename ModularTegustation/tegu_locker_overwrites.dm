@@ -8,6 +8,9 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/engineering/head(src)
 	new /obj/item/gun/energy/disabler/head(src)
 	new /obj/item/storage/lockbox/medal/ce(src)
+	new /obj/item/book/granter/skill/basic/engineer(src)
+	new /obj/item/book/granter/skill/basic/engineer(src)
+	new /obj/item/book/granter/skill/basic/engineer(src)
 	. = ..()
 
 /obj/structure/closet/secure_closet/chief_medical/Initialize()
@@ -17,6 +20,9 @@
 	new /obj/item/clothing/suit/hooded/wintercoat/medical/head(src)
 	new /obj/item/gun/energy/disabler/head(src)
 	new /obj/item/storage/lockbox/medal/cmo(src)
+	new /obj/item/book/granter/skill/basic/medical(src)
+	new /obj/item/book/granter/skill/basic/medical(src)
+	new /obj/item/book/granter/skill/basic/medical(src)
 	. = ..()
 
 /obj/structure/closet/secure_closet/research_director/Initialize()

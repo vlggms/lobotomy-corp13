@@ -23,6 +23,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_DETECTIVE
 
+	skills_type = /datum/skill_list_bay/security
+
 /datum/outfit/job/detective
 	name = "Detective"
 	jobtype = /datum/job/detective

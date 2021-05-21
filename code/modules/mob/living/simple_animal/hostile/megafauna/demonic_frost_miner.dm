@@ -357,7 +357,7 @@ Difficulty: Extremely Hard
 	AddComponent(/datum/component/knockback, 4, TRUE, FALSE)
 	AddComponent(/datum/component/lifesteal, 5)
 
-/obj/item/pickaxe/drill/jackhammer/demonic/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/pickaxe/drill/jackhammer/demonic/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, difficulty_mod=6)
 	var/turf/T = get_turf(target)
 	mineral_scan_pulse(T, world.view + 1)
 	. = ..()

@@ -12,6 +12,10 @@
 	resistance_flags = ACID_PROOF
 	circuit = /obj/item/circuitboard/computer/pandemic
 
+	skillcheck_type = "chemistry"
+	skillcheck_level = 4 // No delay as virologist.
+	skillcheck_delay = 100 // How tf do I use this monstrosity???
+
 	var/wait
 	var/datum/symptom/selected_symptom
 	var/obj/item/reagent_containers/beaker

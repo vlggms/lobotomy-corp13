@@ -198,7 +198,7 @@
 			to_chat(user, "<span class='warning'>You need one length of cable to repair [src]!</span>")
 			return
 		to_chat(user, "<span class='notice'>You begin to replace the wires...</span>")
-		if(do_after(user, 30, target = src))
+		if(do_after(user, (30 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 			if(coil.get_amount() < 1)
 				return
 			coil.use(1)

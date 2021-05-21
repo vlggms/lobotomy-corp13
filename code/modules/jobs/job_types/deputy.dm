@@ -25,6 +25,8 @@
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	bounty_types = CIV_JOB_SEC
 
+	skills_type = /datum/skill_list_bay/security
+
 /obj/item/clothing/under/rank/security/mallcop
 	name = "deputy shirt"
 	desc = "An awe-inspiring tactical shirt-and-pants combo; because safety never takes a holiday."

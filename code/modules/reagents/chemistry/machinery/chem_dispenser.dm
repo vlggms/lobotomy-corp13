@@ -24,6 +24,9 @@
 	circuit = /obj/item/circuitboard/machine/chem_dispenser
 	processing_flags = NONE
 
+	skillcheck_type = "chemistry"
+	skillcheck_level = 2
+
 	var/obj/item/stock_parts/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
@@ -107,7 +110,6 @@
 		. += "<span class='notice'>The status display reads:\n\
 		Recharging <b>[recharge_amount]</b> power units per interval.\n\
 		Power efficiency increased by <b>[round((powerefficiency*1000)-100, 1)]%</b>.</span>"
-
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
 	if(old_value) //Turned off

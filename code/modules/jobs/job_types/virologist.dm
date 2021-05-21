@@ -21,6 +21,8 @@
 	display_order = JOB_DISPLAY_ORDER_VIROLOGIST
 	bounty_types = CIV_JOB_VIRO
 
+	skills_type = /datum/skill_list_bay/medical/viro
+
 /datum/outfit/job/virologist
 	name = "Virologist"
 	jobtype = /datum/job/virologist

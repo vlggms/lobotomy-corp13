@@ -150,7 +150,7 @@
 		W.play_tool_sound(src, 100)
 		user.visible_message("<span class='notice'>[user] installs the electronics into the airlock assembly.</span>", \
 							"<span class='notice'>You start to install electronics into the airlock assembly...</span>")
-		if(do_after(user, 40, target = src))
+		if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 			if( state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
 				return
 			if(!user.transferItemToLoc(W, src))
@@ -190,7 +190,7 @@
 							playsound(src, 'sound/items/crowbar.ogg', 100, TRUE)
 							user.visible_message("<span class='notice'>[user] adds [G.name] to the airlock assembly.</span>", \
 												"<span class='notice'>You start to install [G.name] into the airlock assembly...</span>")
-							if(do_after(user, 40, target = src))
+							if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 								if(G.get_amount() < 1 || glass)
 									return
 								if(G.type == /obj/item/stack/sheet/rglass)
@@ -209,7 +209,7 @@
 								playsound(src, 'sound/items/crowbar.ogg', 100, TRUE)
 								user.visible_message("<span class='notice'>[user] adds [G.name] to the airlock assembly.</span>", \
 									"<span class='notice'>You start to install [G.name] into the airlock assembly...</span>")
-								if(do_after(user, 40, target = src))
+								if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 									if(G.get_amount() < 2 || mineral)
 										return
 									to_chat(user, "<span class='notice'>You install [M] plating into the airlock assembly.</span>")

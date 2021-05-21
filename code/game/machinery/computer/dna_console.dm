@@ -47,6 +47,9 @@
 	active_power_usage = 400
 	light_color = LIGHT_COLOR_BLUE
 
+	skillcheck_type = "science"
+	skillcheck_level = 2
+
 	/// Link to the techweb's stored research. Used to retrieve stored mutations
 	var/datum/techweb/stored_research
 	/// Duration for enzyme radiation pulses

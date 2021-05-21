@@ -532,7 +532,9 @@ RLD
 			playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 			qdel(rcd_effect)
 			return FALSE
-	if(!do_after(user, delay, target = A))
+	// A modifier to do_afters.
+	var/skill_mod = SKILL_CHECK_VALUE(user, "engineering")
+	if(!do_after(user, delay / skill_mod, target = A))
 		qdel(rcd_effect)
 		return FALSE
 	if(!checkResource(rcd_results["cost"], user))
@@ -835,6 +837,8 @@ RLD
 	if(!range_check(A,user))
 		return
 	var/turf/start = get_turf(src)
+	// A modifier to do_afters.
+	var/skill_mod = SKILL_CHECK_VALUE(user, "engineering")
 	switch(mode)
 		if(REMOVE_MODE)
 			if(istype(A, /obj/machinery/light/))
@@ -842,7 +846,7 @@ RLD
 					to_chat(user, "<span class='notice'>You start deconstructing [A]...</span>")
 					user.Beam(A,icon_state="light_beam", time = 15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
-					if(do_after(user, decondelay, target = A))
+					if(do_after(user, decondelay / skill_mod, target = A))
 						if(!useResource(deconcost, user))
 							return FALSE
 						activate()
@@ -857,7 +861,7 @@ RLD
 					user.Beam(A,icon_state="light_beam", time = 15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, FALSE)
-					if(do_after(user, floordelay, target = A))
+					if(do_after(user, floordelay / skill_mod, target = A))
 						if(!istype(W))
 							return FALSE
 						var/list/candidates = list()
@@ -903,7 +907,7 @@ RLD
 					user.Beam(A,icon_state="light_beam", time = 15)
 					playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 					playsound(src.loc, 'sound/effects/light_flicker.ogg', 50, TRUE)
-					if(do_after(user, floordelay, target = A))
+					if(do_after(user, floordelay / skill_mod, target = A))
 						if(!istype(F))
 							return FALSE
 						if(!useResource(floorcost, user))

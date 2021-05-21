@@ -19,6 +19,8 @@
 #define TOOL_BLOODFILTER	"bloodfilter"
 #define TOOL_ROLLINGPIN		"rollingpin"
 
+#define TOOL_ENGINEERING list(TOOL_CROWBAR, TOOL_MULTITOOL, TOOL_SCREWDRIVER, TOOL_WIRECUTTER, TOOL_WRENCH, TOOL_WELDER, TOOL_ANALYZER)
+
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,
 // tool sound is only played when op is started. If not, it's played twice.
 #define MIN_TOOL_SOUND_DELAY 20

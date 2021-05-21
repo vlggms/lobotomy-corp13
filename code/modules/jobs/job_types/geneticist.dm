@@ -19,6 +19,8 @@
 	display_order = JOB_DISPLAY_ORDER_GENETICIST
 	bounty_types = CIV_JOB_SCI
 
+	skills_type = /datum/skill_list_bay/science
+
 /datum/outfit/job/geneticist
 	name = "Geneticist"
 	jobtype = /datum/job/geneticist

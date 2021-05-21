@@ -31,23 +31,3 @@
 		return 'icons/mob/hud.dmi'
 
 	return initial(linkedJobType.hud_icon)
-
-
-		//	JOBS	//
-
-/datum/job
-	var/id_icon = 'icons/obj/card.dmi'	// Overlay on your ID
-	var/hud_icon = 'icons/mob/hud.dmi'	// Sec Huds see this
-
-/datum/job/tegu
-	var/tegu_spawn = null //give it a room's type path to spawn there
-
-/datum/job/tegu/after_spawn(mob/living/H, mob/M, latejoin)
-	if(!latejoin && tegu_spawn)
-		var/turf/T = get_tegu_spawn(tegu_spawn)
-		H.Move(T)
-
-/proc/get_tegu_spawn(area/room) // Reworked to find any empty tile
-	for(var/turf/T in shuffle(get_area_turfs(room)))
-		if(!T.is_blocked_turf(TRUE))
-			return T

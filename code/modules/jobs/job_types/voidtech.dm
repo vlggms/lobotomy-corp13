@@ -22,6 +22,8 @@
 	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
 	bounty_types = CIV_JOB_ENG
 
+	skills_type = /datum/skill_list_bay/engineer/voidtech
+
 /datum/outfit/job/voidtech
 	name = "Void Technician"
 	jobtype = /datum/job/tegu/voidtech

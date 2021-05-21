@@ -18,6 +18,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_PSYCHOLOGIST
 
+	skills_type = /datum/skill_list_bay/medical/psych
+
 /datum/outfit/job/psychologist
 	name = "Psychologist"
 	jobtype = /datum/job/psychologist

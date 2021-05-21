@@ -143,7 +143,7 @@
 					return
 				to_chat(user, "<span class='notice'>You start to reinforce the windoor with plasteel...</span>")
 
-				if(do_after(user,40, target = src))
+				if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(!src || secure || P.get_amount() < 2)
 						return
 
@@ -159,7 +159,7 @@
 			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
 				user.visible_message("<span class='notice'>[user] wires the windoor assembly.</span>", "<span class='notice'>You start to wire the windoor assembly...</span>")
 
-				if(do_after(user, 40, target = src))
+				if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(!src || !anchored || src.state != "01")
 						return
 					var/obj/item/stack/cable_coil/CC = W
@@ -201,7 +201,7 @@
 				user.visible_message("<span class='notice'>[user] installs the electronics into the airlock assembly.</span>",
 					"<span class='notice'>You start to install electronics into the airlock assembly...</span>")
 
-				if(do_after(user, 40, target = src))
+				if(do_after(user, (40 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(!src || electronics)
 						W.forceMove(drop_location())
 						return

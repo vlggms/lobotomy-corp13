@@ -53,7 +53,7 @@
 			return
 		else
 			to_chat(user, "<span class='notice'>You begin reinforcing the floor...</span>")
-			if(do_after(user, 30, target = src))
+			if(do_after(user, (30 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 				if (R.get_amount() >= 2 && !istype(src, /turf/open/floor/engine))
 					PlaceOnTop(/turf/open/floor/engine, flags = CHANGETURF_INHERIT_AIR)
 					playsound(src, 'sound/items/deconstruct.ogg', 80, TRUE)

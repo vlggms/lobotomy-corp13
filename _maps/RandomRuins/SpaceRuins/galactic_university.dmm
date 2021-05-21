@@ -1,0 +1,2038 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"cp" = (
+/obj/structure/table,
+/obj/item/ammo_casing/shotgun/buckshot{
+	pixel_y = 7
+	},
+/obj/item/gun/ballistic/shotgun/doublebarrel,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"cG" = (
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"cL" = (
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"dK" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"dN" = (
+/obj/structure/chair/stool,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"em" = (
+/obj/structure/table,
+/obj/item/food/donut{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/food/donut/berry,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"fv" = (
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"fG" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"fK" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"gd" = (
+/obj/machinery/door/airlock/command{
+	name = "Director's Office"
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"gz" = (
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"gB" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"gH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"hb" = (
+/obj/structure/bookcase/random/reference,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"he" = (
+/obj/machinery/teleport/hub,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/galactic_university)
+"hE" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter/flesh,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"hK" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"if" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"ig" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"iq" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"iH" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"iV" = (
+/obj/structure/table,
+/obj/item/book/granter/skill/random{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/item/book/granter/language_book/common{
+	pixel_x = -3;
+	pixel_y = -4
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"ji" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/fancytool,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"ju" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"jD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 8
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"jE" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"ka" = (
+/obj/structure/table,
+/obj/item/food/hotdog{
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"kd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"kg" = (
+/obj/structure/bookcase/manuals/research_and_development,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"kt" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"kG" = (
+/obj/structure/bookcase/manuals/research_and_development,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"lo" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"lq" = (
+/obj/machinery/light,
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"lu" = (
+/turf/closed/wall/r_wall,
+/area/ruin/has_grav/powered/galactic_university)
+"lO" = (
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"mA" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"mO" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"nh" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter/flesh,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"nA" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Teleporter Room"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"nW" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/languagebook,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"oQ" = (
+/obj/structure/table/reinforced,
+/obj/item/stock_parts/subspace/crystal{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/stack/ore/bluespace_crystal{
+	amount = 12
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"qd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/deepfryer,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"qH" = (
+/obj/machinery/door/window/eastright{
+	dir = 2;
+	name = "Kitchen"
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"rh" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Balcony"
+	},
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"rr" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"rB" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"sg" = (
+/obj/structure/safe{
+	pixel_x = 4
+	},
+/obj/item/research_notes{
+	desc = "Valuable scientific data discovered in the Galactic University. Use it in a research console to scan it.";
+	name = "\improper Wizardry research notes";
+	origin_type = "magic research";
+	value = 15000
+	},
+/obj/item/gun/magic/wand/polymorph{
+	desc = "A magical artifact recreated by scientists in the Galactic University using bluespace technology. It seems that it is still a prototype.";
+	max_charges = 3;
+	name = "recreated wand of polymorph"
+	},
+/obj/item/book/granter/skill{
+	desc = "A legendary book that containts secret surgical technics. To understand this, you'd probably have to be some medical fanatic.";
+	icon_state = "bookSkill6";
+	maximum_skill = 10;
+	minimum_skill = 6;
+	name = "arch-tome of surgery";
+	name_mod = "surgery";
+	skill_amount = 1;
+	skill_type = "surgery"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/anim,
+/area/ruin/has_grav/powered/galactic_university)
+"si" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"sz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"sE" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Cabinet #1"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"tQ" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/research,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"tT" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/suit/apron/chef,
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"ui" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"un" = (
+/turf/closed/wall,
+/area/ruin/has_grav/powered/galactic_university)
+"uE" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"vf" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"vY" = (
+/mob/living/simple_animal/hostile/viscerator,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"wb" = (
+/obj/structure/noticeboard{
+	dir = 4;
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"wf" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"wP" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"wR" = (
+/obj/structure/bookcase/random/religion,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"wV" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"xl" = (
+/obj/structure/chair/wood/wings,
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"xm" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"xp" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"xA" = (
+/obj/machinery/griddle,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"xM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/book/manual/chef_recipes,
+/obj/item/stack/package_wrap,
+/obj/item/hand_labeler,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"xW" = (
+/obj/structure/bookcase/random/reference,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"ya" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"yg" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"yi" = (
+/obj/structure/table,
+/obj/item/food/friedegg,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"yw" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"yz" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"zj" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/research,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"zt" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"zT" = (
+/obj/structure/table/wood,
+/obj/item/research_notes/loot,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Ah" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken4"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Am" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"Ao" = (
+/obj/item/clothing/suit/space/syndicate/black/orange{
+	frail = 1
+	},
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"AH" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"AX" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"AZ" = (
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"Bf" = (
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Bh" = (
+/obj/machinery/light,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Bn" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"BN" = (
+/obj/structure/bookcase/manuals/engineering,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"BV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"BY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"CL" = (
+/turf/open/space/basic,
+/area/ruin/has_grav/powered/galactic_university)
+"CP" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"Do" = (
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Dp" = (
+/obj/machinery/light,
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"DV" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Ef" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"Ek" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Em" = (
+/obj/structure/table,
+/obj/item/food/eggwrap{
+	pixel_x = -10
+	},
+/obj/item/food/fried_chicken{
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"En" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/ruin/has_grav/powered/galactic_university)
+"Es" = (
+/obj/machinery/gibber,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"Ex" = (
+/turf/open/floor/plasteel/dark/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"ET" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"EX" = (
+/turf/template_noop,
+/area/template_noop)
+"Fq" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Ft" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"FU" = (
+/obj/structure/table/wood,
+/obj/item/book/granter/skill/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Ge" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"Gw" = (
+/obj/structure/table/reinforced,
+/obj/item/food/dough,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"GE" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"GU" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"GV" = (
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Hd" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"IB" = (
+/obj/structure/bookcase/random/fiction,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"IW" = (
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"JC" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"JM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/trap/stun,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"JP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/trap/stun,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"JZ" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/corpse/wizard,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Km" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"Ku" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/assembly/mousetrap/armed,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"Kw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken7"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"KA" = (
+/obj/machinery/door/airlock/vault{
+	name = "Research Vault"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/floor/circuit/off,
+/area/ruin/has_grav/powered/galactic_university)
+"KB" = (
+/obj/structure/trap/stun,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"KL" = (
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"Lw" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"LJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"LL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Mv" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Mz" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"MC" = (
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"MV" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Cafeteria"
+	},
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"MZ" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Ns" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"NI" = (
+/obj/item/chair/wood/wings,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Om" = (
+/obj/structure/table_frame/wood,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Oq" = (
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"OK" = (
+/obj/machinery/door/airlock/grunge{
+	name = "Cabinet #2"
+	},
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"OZ" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Pl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"Pw" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/fancytech,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"PE" = (
+/obj/item/chair/wood,
+/obj/structure/table_frame/wood,
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"PX" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered/galactic_university)
+"Qh" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Qj" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"QH" = (
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"QO" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"QP" = (
+/obj/structure/table/wood,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"QY" = (
+/obj/machinery/deepfryer,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"Ri" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken2"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Rq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken5"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Rw" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/hunter/flesh,
+/turf/open/floor/plasteel/dark/side,
+/area/ruin/has_grav/powered/galactic_university)
+"Ry" = (
+/obj/machinery/light,
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"RG" = (
+/mob/living/simple_animal/hostile/poison/giant_spider/viper,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"RK" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/gloves,
+/obj/effect/spawner/lootdrop/maintenance/two,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Sa" = (
+/obj/structure/chair/stool,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"SK" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Tg" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Tl" = (
+/obj/machinery/teleport/station,
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/galactic_university)
+"TT" = (
+/obj/structure/table,
+/obj/item/food/meat/bacon{
+	pixel_x = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"TW" = (
+/obj/item/chair/wood,
+/turf/open/floor/plating/airless,
+/area/ruin/has_grav/powered/galactic_university)
+"TZ" = (
+/obj/item/clothing/head/helmet/space/syndicate/black/orange{
+	frail = 1;
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg3"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Ud" = (
+/obj/structure/table_frame/wood,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg2"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Ug" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red/off,
+/area/ruin/has_grav/powered/galactic_university)
+"Ui" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless{
+	icon_state = "wood-broken"
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Ut" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Uy" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Vd" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark/corner{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Vz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/trap/stun,
+/turf/open/floor/circuit/red,
+/area/ruin/has_grav/powered/galactic_university)
+"VL" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/papersack,
+/turf/open/floor/plasteel/checker,
+/area/ruin/has_grav/powered/galactic_university)
+"VN" = (
+/obj/item/kirbyplants/random,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spider/stickyweb,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark/corner,
+/area/ruin/has_grav/powered/galactic_university)
+"WQ" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"WZ" = (
+/obj/structure/dresser,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"XA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit/red,
+/area/ruin/has_grav/powered/galactic_university)
+"Yd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"Yq" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/fancytech,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Zh" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/space/material,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered/galactic_university)
+"Zk" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered/galactic_university)
+"Zx" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/ruin/has_grav/powered/galactic_university)
+"ZY" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/airless,
+/area/ruin/has_grav/powered/galactic_university)
+
+(1,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(2,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(3,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(4,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+lu
+yw
+wb
+JZ
+lO
+BY
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(5,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+lu
+yg
+iV
+Zh
+cp
+Ek
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(6,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+WQ
+lu
+kd
+yg
+Ek
+yg
+RG
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(7,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+WQ
+WQ
+lu
+Fq
+nh
+kd
+Ek
+Tg
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(8,1,1) = {"
+EX
+EX
+EX
+EX
+WQ
+WQ
+EX
+lu
+WZ
+Ek
+yg
+yg
+Ut
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(9,1,1) = {"
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+gd
+lu
+lu
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(10,1,1) = {"
+lu
+kG
+lO
+kd
+lo
+ui
+nW
+ui
+un
+VN
+Yd
+xp
+Vd
+lu
+EX
+EX
+EX
+EX
+EX
+EX
+"}
+(11,1,1) = {"
+lu
+hb
+kd
+kd
+Yq
+ui
+lo
+wf
+un
+Ft
+JP
+ET
+Bf
+lu
+WQ
+EX
+EX
+EX
+EX
+EX
+"}
+(12,1,1) = {"
+lu
+BV
+lO
+lO
+lO
+lO
+kd
+vf
+un
+Ft
+Ge
+Ge
+Bh
+lu
+WQ
+WQ
+EX
+EX
+EX
+EX
+"}
+(13,1,1) = {"
+lu
+lO
+ig
+lO
+mO
+ui
+zT
+ui
+un
+KL
+Ge
+Ge
+jE
+lu
+EX
+WQ
+WQ
+EX
+EX
+EX
+"}
+(14,1,1) = {"
+lu
+mA
+hK
+kd
+ig
+ui
+lo
+ui
+un
+KL
+MC
+Ge
+RK
+lu
+EX
+EX
+WQ
+WQ
+EX
+EX
+"}
+(15,1,1) = {"
+lu
+xl
+ig
+lO
+lO
+lO
+kd
+lO
+sE
+LJ
+cL
+Ge
+GU
+lu
+lu
+lu
+lu
+lu
+lu
+EX
+"}
+(16,1,1) = {"
+lu
+kd
+zT
+lO
+ig
+ui
+mO
+ui
+un
+Ft
+Ge
+Ge
+dK
+un
+Ex
+fv
+QH
+ju
+uE
+EX
+"}
+(17,1,1) = {"
+lu
+lO
+lo
+kd
+ji
+ui
+ig
+ui
+un
+Ft
+Ge
+Ge
+iH
+un
+Ex
+Ex
+fv
+uE
+SK
+EX
+"}
+(18,1,1) = {"
+lu
+BV
+kd
+kd
+kd
+lO
+kd
+vf
+un
+KL
+Ge
+Ge
+Zx
+rh
+Ex
+Ex
+fv
+QH
+fG
+EX
+"}
+(19,1,1) = {"
+lu
+Tg
+kd
+lO
+ig
+ui
+Pw
+wf
+un
+KL
+CP
+Ge
+Zx
+un
+Ex
+Ex
+Ex
+fv
+LL
+EX
+"}
+(20,1,1) = {"
+lu
+Uy
+lO
+lO
+zj
+ui
+ig
+wf
+un
+KL
+cL
+hE
+gB
+un
+ya
+Ex
+Ex
+fv
+LL
+EX
+"}
+(21,1,1) = {"
+lu
+un
+un
+un
+un
+un
+un
+un
+un
+KL
+cL
+MC
+JC
+lu
+lu
+lu
+lu
+lu
+lu
+EX
+"}
+(22,1,1) = {"
+lu
+vY
+Qj
+QH
+Ui
+Pl
+FU
+Pl
+un
+rr
+Ge
+Ge
+zt
+lu
+EX
+EX
+WQ
+WQ
+EX
+EX
+"}
+(23,1,1) = {"
+lu
+Pl
+sz
+En
+tQ
+Pl
+PE
+Pl
+un
+Ft
+Ge
+Ge
+JC
+lu
+EX
+WQ
+WQ
+EX
+EX
+EX
+"}
+(24,1,1) = {"
+lu
+MZ
+NI
+QH
+En
+si
+Pl
+Mz
+un
+Ft
+Ge
+Ge
+JC
+lu
+WQ
+WQ
+WQ
+EX
+EX
+EX
+"}
+(25,1,1) = {"
+lu
+Rq
+Om
+fv
+Ud
+Ao
+OZ
+GV
+un
+Ft
+Ge
+Ge
+iH
+lu
+WQ
+EX
+WQ
+EX
+EX
+EX
+"}
+(26,1,1) = {"
+lu
+si
+Lw
+CL
+En
+TZ
+QP
+Pl
+un
+Ft
+Ge
+Ge
+QO
+lu
+EX
+EX
+WQ
+EX
+EX
+EX
+"}
+(27,1,1) = {"
+lu
+Ri
+Om
+uE
+Oq
+uE
+si
+Pl
+OK
+Ft
+Ge
+Ge
+Dp
+lu
+EX
+EX
+WQ
+EX
+EX
+EX
+"}
+(28,1,1) = {"
+lu
+vY
+QP
+Mv
+Ud
+fv
+yz
+Pl
+un
+Ft
+Ge
+Ge
+DV
+lu
+EX
+EX
+WQ
+EX
+EX
+EX
+"}
+(29,1,1) = {"
+lu
+sz
+wP
+En
+fv
+En
+AH
+ZY
+un
+Ft
+Ge
+Ge
+jE
+lu
+EX
+EX
+WQ
+EX
+EX
+EX
+"}
+(30,1,1) = {"
+lu
+Pl
+Rq
+fv
+En
+Kw
+Rq
+Qj
+un
+Ft
+Ge
+Ge
+JC
+lu
+EX
+EX
+WQ
+EX
+EX
+EX
+"}
+(31,1,1) = {"
+lu
+Pl
+GV
+Pl
+TW
+vY
+OZ
+Pl
+un
+Ft
+Ge
+Ge
+Zx
+lu
+WQ
+EX
+WQ
+EX
+EX
+EX
+"}
+(32,1,1) = {"
+lu
+Pl
+Pl
+Kw
+yz
+Pl
+Ah
+Pl
+un
+rr
+Ge
+cL
+Qh
+lu
+WQ
+WQ
+WQ
+EX
+EX
+EX
+"}
+(33,1,1) = {"
+lu
+un
+un
+un
+un
+un
+un
+un
+un
+Ft
+Ge
+Ge
+JC
+lu
+EX
+WQ
+WQ
+EX
+EX
+EX
+"}
+(34,1,1) = {"
+lu
+QY
+cG
+jD
+if
+IW
+em
+Bn
+un
+Ft
+AZ
+Ge
+JC
+lu
+EX
+EX
+WQ
+WQ
+EX
+EX
+"}
+(35,1,1) = {"
+lu
+qd
+gz
+Gw
+dN
+if
+Em
+Ry
+un
+KL
+cL
+Ge
+gB
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+"}
+(36,1,1) = {"
+lu
+xA
+gz
+VL
+dN
+if
+yi
+kt
+un
+KL
+Ge
+JP
+JC
+lu
+Ug
+IB
+xW
+BN
+AX
+lu
+"}
+(37,1,1) = {"
+lu
+xm
+gz
+rB
+Sa
+if
+if
+gz
+MV
+KL
+Ge
+Ge
+Zx
+lu
+Ef
+XA
+Vz
+XA
+Ef
+lu
+"}
+(38,1,1) = {"
+lu
+xm
+gz
+fK
+Sa
+if
+TT
+Am
+un
+KL
+Ge
+Ge
+Zx
+KA
+JM
+XA
+sg
+XA
+Ef
+lu
+"}
+(39,1,1) = {"
+lu
+xM
+gz
+tT
+if
+if
+ka
+lq
+un
+Ft
+Ge
+gH
+Do
+lu
+Ef
+XA
+XA
+XA
+JM
+lu
+"}
+(40,1,1) = {"
+lu
+Es
+gz
+qH
+if
+if
+Km
+Bn
+un
+Ft
+Ge
+cL
+KB
+lu
+Ug
+wV
+wR
+kg
+AX
+lu
+"}
+(41,1,1) = {"
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+KL
+Ge
+Ge
+JC
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+"}
+(42,1,1) = {"
+EX
+EX
+EX
+WQ
+WQ
+WQ
+WQ
+WQ
+lu
+Rw
+GE
+Ge
+gB
+un
+oQ
+LJ
+Zk
+lu
+WQ
+WQ
+"}
+(43,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+WQ
+WQ
+WQ
+lu
+KL
+Ge
+Ge
+JC
+nA
+Ku
+LJ
+Tl
+lu
+WQ
+EX
+"}
+(44,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+WQ
+lu
+Ns
+iq
+iq
+Hd
+un
+PX
+LJ
+he
+lu
+EX
+EX
+"}
+(45,1,1) = {"
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+EX
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+lu
+EX
+EX
+"}

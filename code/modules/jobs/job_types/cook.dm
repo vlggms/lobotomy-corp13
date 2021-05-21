@@ -20,6 +20,8 @@
 	display_order = JOB_DISPLAY_ORDER_COOK
 	bounty_types = CIV_JOB_CHEF
 
+	skills_type = /datum/skill_list_bay/culinary/cook
+
 /datum/outfit/job/cook
 	name = "Cook"
 	jobtype = /datum/job/cook

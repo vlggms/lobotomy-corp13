@@ -16,6 +16,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_JANITOR
 
+	skills_type = /datum/skill_list_bay/assistant
+
 /datum/outfit/job/janitor
 	name = "Janitor"
 	jobtype = /datum/job/janitor

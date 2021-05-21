@@ -10,6 +10,7 @@
 	var/static/list/shortcuts = list(
 		"meth" = /datum/reagent/drug/methamphetamine
 	)
+	skillcheck_level = 0 // It's a debug thing, come on.
 
 /obj/machinery/chem_dispenser/chem_synthesizer/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

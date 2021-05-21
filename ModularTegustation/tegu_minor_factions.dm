@@ -74,6 +74,7 @@
 	death = FALSE
 	var/prev_job_lufr
 	var/syndi_job_lufr
+	skills_type = /datum/skill_list_bay/syndi
 
 /obj/effect/mob_spawn/human/lufr/special(mob/living/new_spawn)
 	new_spawn.grant_language(/datum/language/codespeak, TRUE, TRUE, LANGUAGE_MIND)

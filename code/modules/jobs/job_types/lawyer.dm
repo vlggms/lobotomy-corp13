@@ -20,6 +20,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_LAWYER
 
+	skills_type = /datum/skill_list_bay/assistant // Point and laugh
+
 /datum/outfit/job/lawyer
 	name = "Lawyer"
 	jobtype = /datum/job/lawyer

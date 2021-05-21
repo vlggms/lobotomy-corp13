@@ -21,6 +21,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_ROBOTICIST
 
+	skills_type = /datum/skill_list_bay/science/robo
+
 /datum/outfit/job/roboticist
 	name = "Roboticist"
 	jobtype = /datum/job/roboticist

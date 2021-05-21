@@ -52,7 +52,7 @@
 		return
 	if(!HAS_TRAIT(user, TRAIT_ABDUCTOR_TRAINING) && !HAS_TRAIT(user.mind, TRAIT_ABDUCTOR_TRAINING))
 		to_chat(user, "<span class='warning'>You start mashing alien buttons at random!</span>")
-		if(do_after(user,100, target = src))
+		if(do_after(user, (100 / SKILL_CHECK_VALUE(user, "engineering", 10)), target = src))
 			TeleporterSend()
 
 /obj/machinery/abductor/console/ui_status(mob/user)

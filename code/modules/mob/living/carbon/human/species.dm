@@ -1379,7 +1379,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
 
-		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+		var/skill_mod = 1 + (get_skill_rating(user, "unarmed") / 10) // Unarmed skill increases your damage
+
+		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh) * skill_mod
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
@@ -1511,7 +1513,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	H.send_item_attack_message(I, user, hit_area, affecting)
 
-	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
+	var/skill_mod = 1 + (get_skill_rating(user, type="melee") / 10) // Maximum skill mod(normally) would be 1.6;
+	// In this case, a weapon with 20 damage would deal 32 damage. Sick!
+	apply_damage((I.force * weakness) * skill_mod, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 
 	if(!I.force)
 		return FALSE //item force is zero

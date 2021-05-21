@@ -43,7 +43,7 @@
 				to_chat(user, "<span class='warning'>There's already a table built here!</span>")
 				return
 			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
-			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
+			if(!do_after(user, (2 SECONDS / SKILL_CHECK_VALUE(user, "engineering")), target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
 				return
 			make_new_table(material.tableVariant)
 		else if(istype(material, /obj/item/stack/sheet))
@@ -54,7 +54,7 @@
 				to_chat(user, "<span class='warning'>There's already a table built here!</span>")
 				return
 			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
-			if(!do_after(user, 2 SECONDS, target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
+			if(!do_after(user, (2 SECONDS / SKILL_CHECK_VALUE(user, "engineering")), target = src) || !material.use(1) || (locate(/obj/structure/table) in loc))
 				return
 			var/list/material_list = list()
 			if(material.material_type)
@@ -110,7 +110,7 @@
 				to_chat(user, "<span class='warning'>You need one [material.name] sheet to do this!</span>")
 				return
 			to_chat(user, "<span class='notice'>You start adding [material] to [src]...</span>")
-			if(do_after(user, 20, target = src) && material.use(1))
+			if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src) && material.use(1))
 				make_new_table(toConstruct, null, carpet_type)
 	else
 		return ..()

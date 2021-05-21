@@ -6,6 +6,9 @@
 	light_color = LIGHT_COLOR_BLUE
 	circuit = /obj/item/circuitboard/computer/teleporter
 
+	skillcheck_type = "engineering"
+	skillcheck_level = 2
+
 	var/regime_set = "Teleporter"
 	var/id
 	var/obj/machinery/teleport/station/power_station

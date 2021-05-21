@@ -11,6 +11,9 @@
 	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
 	var/list/minimal_skills
 
+	/// Job specific bay-skills. Difference from normal skills..? You can't earn these normally.
+	var/datum/skill_list_bay/skills_type
+
 	//Determines who can demote this position
 	var/department_head = list()
 
@@ -71,6 +74,10 @@
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
 
+	/// Tegu vars
+	var/id_icon = 'icons/obj/card.dmi'	// Overlay on your ID
+	var/hud_icon = 'icons/mob/hud.dmi'	// Sec Huds see this
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -104,6 +111,8 @@
 
 	if(!ishuman(H))
 		return
+
+	H?.mind.bay_skills = new skills_type
 
 	if(!config)	//Needed for robots.
 		roundstart_experience = minimal_skills
@@ -209,6 +218,24 @@
 	if(!job_changes)
 		return FALSE
 	return TRUE
+
+/*
+* TEGU JOBS
+*/
+
+/datum/job/tegu
+	var/tegu_spawn = null //give it a room's type path to spawn there
+
+/datum/job/tegu/after_spawn(mob/living/H, mob/M, latejoin)
+	. = ..()
+	if(!latejoin && tegu_spawn)
+		var/turf/T = get_tegu_spawn(tegu_spawn)
+		H.Move(T)
+
+/proc/get_tegu_spawn(area/room) // Reworked to find any empty tile
+	for(var/turf/T in shuffle(get_area_turfs(room)))
+		if(!T.is_blocked_turf(TRUE))
+			return T
 
 /**
  * Gets the changes dictionary made to the job template by the map config. Returns null if job is removed.

@@ -140,6 +140,7 @@
 	important_info = "Listen to your leader, help those in need and protect your religion."
 	outfit = /datum/outfit/techcult
 	assignedrole = "Tech Priest"
+	skills_type = /datum/skill_list_bay/techcultist
 
 /obj/effect/mob_spawn/human/techcult/special(mob/living/new_spawn)
 	var/obj/item/organ/tongue/T = new_spawn.getorgan(/obj/item/organ/tongue)
@@ -175,6 +176,7 @@
 	important_info = "Lead your cult to the perfection, protect your religion."
 	outfit = /datum/outfit/techcult/lead
 	assignedrole = "Tech Cult Leader"
+	skills_type = /datum/skill_list_bay/techcultist/leader
 
 /obj/effect/mob_spawn/human/techcult/leader/special(mob/living/new_spawn)
 	new_spawn.mind.holy_role = HOLY_ROLE_PRIEST

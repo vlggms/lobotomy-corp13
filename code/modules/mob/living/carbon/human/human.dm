@@ -1,6 +1,7 @@
 /mob/living/carbon/human/Initialize()
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/toggle_resting)
+	add_verb(src, /mob/living/carbon/human/proc/show_skills)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -24,6 +25,23 @@
 	AddComponent(/datum/component/bloodysoles/feet)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
+
+/mob/living/carbon/human/proc/show_skills() // Bay-skills
+	set category = "IC"
+	set name = "Show Skills"
+
+	if(!mind || !mind?.bay_skills)
+		to_chat(src, "<span class='warning'>You have no mind/skills!</span>")
+		return
+
+	var/list/dat = list()
+	var/list/skill_list = mind.bay_skills.getList()
+	for(var/i in skill_list)
+		dat += "[i]: [skill_list[i]]"
+
+	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
+	popup.set_content(dat.Join("<br>"))
+	popup.open(FALSE)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code

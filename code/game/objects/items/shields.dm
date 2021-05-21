@@ -31,6 +31,8 @@
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
 		return FALSE
+	var/skill_mod = get_skill_rating(owner, type="melee") * 2 // Maximum of 20 bonus
+	final_block_chance += skill_mod
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
 		final_block_chance += 30
 	if(attack_type == LEAP_ATTACK)

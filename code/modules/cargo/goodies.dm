@@ -144,3 +144,21 @@
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = PAYCHECK_MEDIUM * 2
 	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+
+/datum/supply_pack/goody/skill_book_low
+	name = "Random Beginner's Guide"
+	desc = "A book that will surely teach you the basics of some random skill."
+	cost = PAYCHECK_HARD * 5
+	contains = list(/obj/item/book/granter/skill/random/low_level)
+
+/datum/supply_pack/goody/skill_book_medium
+	name = "Random Intermediate Guide"
+	desc = "Probably some research or an essay on one of the skills you could learn."
+	cost = PAYCHECK_HARD * 10
+	contains = list(/obj/item/book/granter/skill/random/medium_level)
+
+/datum/supply_pack/goody/skill_book_high
+	name = "Random Professional Guide"
+	desc = "A grand book containing all the information you need to master some random skill."
+	cost = PAYCHECK_HARD * 15
+	contains = list(/obj/item/book/granter/skill/random/high_level)

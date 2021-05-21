@@ -7,6 +7,7 @@
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	skills_type = /datum/skill_list_bay/syndi
 	///Whether or not this ninja will obtain objectives
 	var/give_objectives = TRUE
 	///Whether or not this ninja receives the standard equipment

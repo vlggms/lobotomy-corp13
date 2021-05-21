@@ -777,7 +777,7 @@
 					return
 				user.visible_message("<span class='notice'>[user.name] wires the air alarm.</span>", \
 									"<span class='notice'>You start wiring the air alarm...</span>")
-				if (do_after(user, 20, target = src))
+				if (do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if (cable.get_amount() >= 5 && buildstage == 1)
 						cable.use(5)
 						to_chat(user, "<span class='notice'>You wire the air alarm.</span>")

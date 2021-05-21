@@ -5,6 +5,7 @@
 	special_role = ROLE_INFILTRATOR
 	job_rank = "Syndicate Infiltrator"
 	should_give_codewords = FALSE //They already get syndicate comms for this.
+	skills_type = /datum/skill_list_bay/syndi
 	var/hijack_chance = 10 //Some corps are more or less stealthier.
 	var/dagd_chance = 5 //Why would you infiltrate the station and die here?
 	var/kill_chance = 70

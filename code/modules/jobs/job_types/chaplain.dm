@@ -16,6 +16,7 @@
 
 	display_order = JOB_DISPLAY_ORDER_CHAPLAIN
 
+	skills_type = /datum/skill_list_bay/chaplain
 
 /datum/job/chaplain/after_spawn(mob/living/H, mob/M)
 	. = ..()

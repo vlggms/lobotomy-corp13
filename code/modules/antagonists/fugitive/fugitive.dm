@@ -1,4 +1,3 @@
-
 /datum/antagonist/fugitive
 	name = "Fugitive"
 	roundend_category = "Fugitive"
@@ -7,6 +6,7 @@
 	prevent_roundtype_conversion = FALSE
 	antag_hud_type = ANTAG_HUD_FUGITIVE
 	antag_hud_name = "fugitive"
+	skills_type = /datum/skill_list_bay/assistant
 	var/datum/team/fugitive/fugitive_team
 	var/is_captured = FALSE
 	var/backstory = "error"

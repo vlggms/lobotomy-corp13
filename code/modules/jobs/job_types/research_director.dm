@@ -35,6 +35,8 @@
 	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
 	bounty_types = CIV_JOB_SCI
 
+	skills_type = /datum/skill_list_bay/science/rd
+
 /datum/outfit/job/rd
 	name = "Research Director"
 	jobtype = /datum/job/rd

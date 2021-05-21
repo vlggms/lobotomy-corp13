@@ -17,6 +17,8 @@
 	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
 	bounty_types = CIV_JOB_MINE
 
+	skills_type = /datum/skill_list_bay/cargo/miner
+
 /datum/outfit/job/miner
 	name = "Shaft Miner"
 	jobtype = /datum/job/mining

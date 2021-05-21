@@ -126,6 +126,14 @@
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
 
+	// Skills stuff
+	/// Type of a skill that's getting checked.
+	var/skillcheck_type = "engineering"
+	/// Minimum skill level to use it without a delay.
+	var/skillcheck_level = 0
+	/// Normal do_after delay.
+	var/skillcheck_delay = 60
+
 	// For storing and overriding ui id
 	var/tgui_id // ID of TGUI interface
 
@@ -419,6 +427,17 @@
 	return FALSE
 
 ////////////////////////////////////////////////////////////////////////////////////////////
+
+// Skill check before using machine.
+// I sure do believe it won't break anything!
+/obj/machinery/attack_hand(mob/user)
+	var/skill = user?.mind?.bay_skills.getRating(skillcheck_type)
+	if(ishuman(user) && user.mind) // Don't check AIs and Cyborgs for skills, please.
+		if(skill < skillcheck_level)
+			to_chat(user, "<span class='warning'>You fumble around, trying to understand how to use [src].</span>")
+			if(!do_after(user, (skillcheck_delay / SKILL_CHECK_VALUE(user, skillcheck_type)), target = src))
+				return
+	return ..()
 
 /obj/machinery/attack_paw(mob/living/user)
 	if(user.a_intent != INTENT_HARM)

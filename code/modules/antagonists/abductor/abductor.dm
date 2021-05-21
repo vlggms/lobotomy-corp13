@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(possible_abductor_names, list("Alpha","Beta","Gamma","Delta","E
 	antag_hud_name = "abductor"
 	show_in_antagpanel = FALSE //should only show subtypes
 	show_to_ghosts = TRUE
+	skills_type = /datum/skill_list_bay/abductor
 	var/datum/team/abductor_team/team
 	var/sub_role
 	var/outfit
@@ -24,6 +25,7 @@ GLOBAL_LIST_INIT(possible_abductor_names, list("Alpha","Beta","Gamma","Delta","E
 	landmark_type = /obj/effect/landmark/abductor/agent
 	greet_text = "Use your stealth technology and equipment to incapacitate humans for your scientist to retrieve."
 	show_in_antagpanel = TRUE
+	skills_type = /datum/skill_list_bay/abductor/agent
 
 /datum/antagonist/abductor/scientist
 	name = "Abductor Scientist"
@@ -36,6 +38,7 @@ GLOBAL_LIST_INIT(possible_abductor_names, list("Alpha","Beta","Gamma","Delta","E
 /datum/antagonist/abductor/scientist/onemanteam
 	name = "Abductor Solo"
 	outfit = /datum/outfit/abductor/scientist/onemanteam
+	skills_type = /datum/skill_list_bay/abductor/solo
 
 /datum/antagonist/abductor/create_team(datum/team/abductor_team/new_team)
 	if(!new_team)

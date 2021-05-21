@@ -10,6 +10,7 @@
 	show_to_ghosts = TRUE
 	prevent_roundtype_conversion = FALSE
 	antagpanel_category = "Ash Walkers"
+	skills_type = /datum/skill_list_bay/ashwalker
 	var/datum/team/ashwalkers/ashie_team
 
 /datum/antagonist/ashwalker/create_team(datum/team/team)

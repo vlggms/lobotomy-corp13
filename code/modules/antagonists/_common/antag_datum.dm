@@ -26,6 +26,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
 	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
 
+	/// Bay-skill list specific to this antagonist, unless empty.
+	var/datum/skill_list_bay/skills_type = null
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
@@ -117,6 +120,8 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.client.holder.auto_deadmin()
 	if(owner.current.stat != DEAD)
 		owner.current.add_to_current_living_antags()
+	if(skills_type)
+		owner.bay_skills = new skills_type
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)

@@ -330,7 +330,7 @@
 				user.visible_message("<span class='notice'>[user] begins reinforcing [src]...</span>", \
 					"<span class='notice'>You begin reinforcing [src]...</span>")
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
-				if(do_after(user, DEFAULT_STEP_TIME, target = src))
+				if(do_after(user, (DEFAULT_STEP_TIME / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					if(constructionStep != CONSTRUCTION_PANEL_OPEN || reinforced || P.get_amount() < 2 || !P)
 						return
 					user.visible_message("<span class='notice'>[user] reinforces [src].</span>", \
@@ -344,7 +344,7 @@
 				user.visible_message("<span class='notice'>[user] starts adding [C] to [src]...</span>", \
 					"<span class='notice'>You begin adding a circuit board to [src]...</span>")
 				playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)
-				if(!do_after(user, DEFAULT_STEP_TIME, target = src))
+				if(!do_after(user, (DEFAULT_STEP_TIME / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 					return
 				if(constructionStep != CONSTRUCTION_NO_CIRCUIT)
 					return

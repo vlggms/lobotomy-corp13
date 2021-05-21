@@ -846,7 +846,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 
 /// Called when a mob tries to use the item as a tool. Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount=0, volume=0, datum/callback/extra_checks, difficulty_mod=6)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -854,14 +854,16 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/skill_modifier = 1
 
-	if(tool_behaviour == TOOL_MINING && ishuman(user))
-		if(user.mind)
+	if(ishuman(user) && (user.mind))
+		if(tool_behaviour == TOOL_MINING)
 			skill_modifier = user.mind.get_skill_modifier(/datum/skill/mining, SKILL_SPEED_MODIFIER)
-
 			if(user.mind.get_skill_level(/datum/skill/mining) >= SKILL_LEVEL_JOURNEYMAN && prob(user.mind.get_skill_modifier(/datum/skill/mining, SKILL_PROBS_MODIFIER))) // we check if the skill level is greater than Journeyman and then we check for the probality for that specific level.
 				mineral_scan_pulse(get_turf(user), SKILL_LEVEL_JOURNEYMAN - 2) //SKILL_LEVEL_JOURNEYMAN = 3 So to get range of 1+ we have to subtract 2 from it,.
+		if(tool_behaviour in TOOL_ENGINEERING) // Engi tool in use - check engi skill.
+			skill_modifier = SKILL_CHECK_VALUE(user, "engineering", difficulty_mod)
 
-	delay *= toolspeed * skill_modifier
+
+	delay *= toolspeed / skill_modifier
 
 
 	// Play tool sound at the beginning of tool usage.

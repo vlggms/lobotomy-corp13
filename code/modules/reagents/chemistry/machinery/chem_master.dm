@@ -16,6 +16,9 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_master
 
+	skillcheck_type = "chemistry"
+	skillcheck_level = 2
+
 	/// Input reagents container
 	var/obj/item/reagent_containers/beaker
 	/// Pill bottle for newly created pills
@@ -579,3 +582,4 @@
 	name = "CondiMaster 3000"
 	desc = "Used to create condiments and other cooking supplies."
 	condi = TRUE
+	skillcheck_type = "culinary"

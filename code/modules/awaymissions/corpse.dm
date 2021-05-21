@@ -35,6 +35,7 @@
 	var/show_flavour = TRUE
 	var/banType = ROLE_LAVALAND
 	var/ghost_usable = TRUE
+	var/datum/skill_list_bay/skills_type // TEGU Edit
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/attack_ghost(mob/user)
@@ -131,6 +132,8 @@
 				A.objectives += O
 		if(assignedrole)
 			M.mind.assigned_role = assignedrole
+		if(skills_type) // Assign a bay-skill list
+			M.mind.bay_skills = new skills_type
 		special(M)
 		MM.name = M.real_name
 	if(uses > 0)

@@ -804,7 +804,7 @@
 		return ..()
 	if(istype(W, /obj/item/paper) && obj_integrity < max_integrity)
 		user.visible_message("<span class='notice'>[user] starts to patch the holes in \the [src].</span>")
-		if(do_after(user, 20, target = src))
+		if(do_after(user, (20 / SKILL_CHECK_VALUE(user, "engineering")), target = src))
 			obj_integrity = min(obj_integrity+4,max_integrity)
 			qdel(W)
 			user.visible_message("<span class='notice'>[user] patches some of the holes in \the [src].</span>")

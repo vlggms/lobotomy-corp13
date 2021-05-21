@@ -24,6 +24,8 @@
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
+	skills_type = /datum/skill_list_bay/command/captain
+
 /datum/job/captain/get_access()
 	return get_all_accesses()
 

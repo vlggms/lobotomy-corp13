@@ -40,15 +40,16 @@
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
 	if(!patient.can_inject(user, TRUE))
 		return
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 	if(patient == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
-		if(!do_mob(user, patient, self_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, patient, self_delay / skill_mod, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 	else if(other_delay)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [patient].</span>", "<span class='notice'>You begin applying [src] on [patient]...</span>")
-		if(!do_mob(user, patient, other_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, patient, other_delay / skill_mod, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
 			return
 
 	if(heal(patient, user))
@@ -123,8 +124,8 @@
 	gender = PLURAL
 	singular_name = "medical gauze"
 	icon_state = "gauze"
-	self_delay = 5 SECONDS
-	other_delay = 2 SECONDS
+	self_delay = 6 SECONDS
+	other_delay = 3 SECONDS
 	max_amount = 12
 	amount = 6
 	grind_results = list(/datum/reagent/cellulose = 2)
@@ -158,8 +159,9 @@
 		to_chat(user, "<span class='warning'>The bandage currently on [user==M ? "your" : "[M]'s"] [limb.name] is still in good condition!</span>")
 		return
 
+	var/skill_mod = SKILL_CHECK_VALUE(user, "medical")
 	user.visible_message("<span class='warning'>[user] begins wrapping the wounds on [M]'s [limb.name] with [src]...</span>", "<span class='warning'>You begin wrapping the wounds on [user == M ? "your" : "[M]'s"] [limb.name] with [src]...</span>")
-	if(!do_after(user, (user == M ? self_delay : other_delay), target=M))
+	if(!do_after(user, (user == M ? self_delay : other_delay) / skill_mod, target=M))
 		return
 
 	user.visible_message("<span class='green'>[user] applies [src] to [M]'s [limb.name].</span>", "<span class='green'>You bandage the wounds on [user == M ? "your" : "[M]'s"] [limb.name].</span>")
@@ -189,8 +191,8 @@
 	name = "improvised gauze"
 	singular_name = "improvised gauze"
 	desc = "A roll of cloth roughly cut from something that does a decent job of stabilizing wounds, but less efficiently so than real medical gauze."
-	self_delay = 6 SECONDS
-	other_delay = 3 SECONDS
+	self_delay = 8 SECONDS
+	other_delay = 4 SECONDS
 	absorption_rate = 0.15
 	absorption_capacity = 4
 	merge_type = /obj/item/stack/medical/gauze/improvised
@@ -209,8 +211,8 @@
 	gender = PLURAL
 	singular_name = "suture"
 	icon_state = "suture"
-	self_delay = 3 SECONDS
-	other_delay = 1 SECONDS
+	self_delay = 4 SECONDS
+	other_delay = 2 SECONDS
 	amount = 10
 	max_amount = 10
 	repeating = TRUE
@@ -246,8 +248,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	amount = 8
 	max_amount = 8
-	self_delay = 4 SECONDS
-	other_delay = 2 SECONDS
+	self_delay = 5 SECONDS
+	other_delay = 2.5 SECONDS
 
 	heal_burn = 5
 	flesh_regeneration = 2.5
@@ -265,8 +267,8 @@
 	gender = PLURAL
 	singular_name = "mesh piece"
 	icon_state = "regen_mesh"
-	self_delay = 3 SECONDS
-	other_delay = 1 SECONDS
+	self_delay = 4 SECONDS
+	other_delay = 2 SECONDS
 	amount = 15
 	heal_burn = 10
 	max_amount = 15
@@ -342,8 +344,8 @@
 	gender = PLURAL
 	singular_name = "aloe cream"
 	icon_state = "aloe_paste"
-	self_delay = 2 SECONDS
-	other_delay = 1 SECONDS
+	self_delay = 4 SECONDS
+	other_delay = 2 SECONDS
 	novariants = TRUE
 	amount = 20
 	max_amount = 20
@@ -364,7 +366,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 
 	amount = 4
-	self_delay = 20
+	self_delay = 30
 	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
 	novariants = TRUE
 	merge_type = /obj/item/stack/medical/bone_gel
@@ -405,8 +407,8 @@
 	max_amount = 15
 	heal_brute = 10
 	heal_burn = 10
-	self_delay = 40
-	other_delay = 10
+	self_delay = 50
+	other_delay = 20
 	repeating = TRUE
 	drop_sound = 'sound/misc/moist_impact.ogg'
 	mob_throw_hit_sound = 'sound/misc/moist_impact.ogg'
