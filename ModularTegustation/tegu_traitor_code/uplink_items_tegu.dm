@@ -219,3 +219,43 @@
 	new /obj/item/toy/balloon/syndicate/gold(src)
 	new /obj/item/toy/balloon/syndicate/gold(src)
 	new /obj/item/toy/balloon/syndicate/gold(src)
+
+/* Announcements */
+
+/datum/uplink_item/announcement
+	category = "Announcements"
+	surplus = 2
+	cant_discount = TRUE
+
+/// -- Modular/additional uplink items --
+/datum/uplink_item/announcement/fake_ionstorm
+	name = "Fake Ion Storm Announcement"
+	desc = "Ai, state flaws. A beacon with one use that triggers a fake ion storm, \
+		sending the crew clammering to investigate their nearest silicon."
+	item = /obj/item/item_announcer/preset/ion
+	cost = 4
+
+/datum/uplink_item/announcement/fake_radstorm
+	name = "Fake Radiation Storm Announcement"
+	desc = "Radiation storm! Turn on emergency maint! \
+		A beacon with one use that triggers a fake radiation storm, \
+		causing mild panic and a mad dash for maintenance. \
+		Does not come with warm air."
+	item = /obj/item/item_announcer/preset/rad
+	cost = 5
+
+/datum/uplink_item/announcement/syndicate_announcement
+	name = "Syndicate Announcement"
+	desc = "Forgoing any semblance of stealth and security? Need to make yourself known? \
+		A beacon with two uses that sends reports directly from The Syndicate to the station, classified or announced."
+	item = /obj/item/item_announcer/input/syndicate
+	cost = 8
+
+/datum/uplink_item/announcement/cc_announcement
+	name = "\"Central Command\" Announcement"
+	desc = "Need some diplomatic immunity to go along side your infiltration? \
+		A beacon with one use that sends a fake report from \"Central Command\" \
+		written by yours truly (you!). This report can be classified \
+		or announced to everyone."
+	item = /obj/item/item_announcer/input/centcom
+	cost = 12
