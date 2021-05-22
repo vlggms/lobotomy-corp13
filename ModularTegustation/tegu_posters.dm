@@ -10,6 +10,11 @@
 	desc = "It's time to rise up, friends! No longer shall the Nanotrasen scum opress our kind! Join L.U.Fr - TODAY!"
 	icon_state = "poster-lufr"
 
+/obj/structure/sign/poster/contraband/isc
+	name = "Independent Space Confederation"
+	desc = "Fight the TerraGov's dictatorship! Join ISC today!"
+	icon_state = "poster-isc"
+
 // Legit
 // Moth poster sprites are created by Azlanon and AyyRobotics
 
@@ -72,3 +77,8 @@
 	name = "Hang In There"
 	desc = "A poster advising you to stay sane. Stay on that branch, little kitty!"
 	icon_state = "poster48_legit"
+
+/obj/structure/sign/poster/official/terragov
+	name = "Terran Government"
+	desc = "A poster with the TerraGov's coat of arms on it, symbolizing the \"Last defenders of Humanity\"."
+	icon_state = "poster_terragov"
