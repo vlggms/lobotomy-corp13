@@ -148,6 +148,9 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 
 GLOBAL_LIST_INIT(security_depts_prefs, sortList(list(SEC_DEPT_RANDOM, SEC_DEPT_NONE, SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, SEC_DEPT_SCIENCE, SEC_DEPT_SUPPLY)))
 
+	//Lore stuff
+GLOBAL_LIST_INIT(relationship_prefs, list(RELATION_LOYAL, RELATION_SUPPORTIVE, RELATION_NEUTRAL, RELATION_SKEPTICAL, RELATION_OPPOSED))
+
 	//Backpacks
 #define GBACKPACK "Grey Backpack"
 #define GSATCHEL "Grey Satchel"

@@ -144,6 +144,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
 
+	// Lore Stuff - Currently unused...
+	///What does the player think of TerraGov.
+	var/terragov_relation = RELATION_NEUTRAL
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -269,7 +273,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Custom Job Preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
-			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR></td>"
+			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR>"
+			dat += "<br>"
+
+			dat += "<h2>Background Information:</h2>"
+			dat += "<a href='?_src_=prefs;preference=govrelation;task=input'><b>Government Relation:</b> [terragov_relation]</a><BR></td>"
 
 			dat += "</tr></table>"
 
@@ -1587,6 +1595,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/department = input(user, "Choose your preferred security department:", "Security Departments") as null|anything in GLOB.security_depts_prefs
 					if(department)
 						prefered_security_department = department
+
+				// The lore stuff
+				if("govrelation")
+					var/new_relation = input(user, "Choose your relation to the Terran Government that will appear on background checks.", "Terragov Relation") as null|anything in GLOB.relationship_prefs
+					if(!new_relation)
+						return
+					terragov_relation = new_relation
 
 				if ("preferred_map")
 					var/maplist = list()

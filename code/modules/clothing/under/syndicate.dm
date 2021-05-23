@@ -95,3 +95,9 @@
 	can_adjust = FALSE
 	armor = list(MELEE = 5, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	resistance_flags = NONE
+
+/obj/item/clothing/under/syndicate/tgmc
+	name = "marine camo uniform"
+	desc = "A camouflage jumpsuit worn by marines of the Terran Government."
+	icon_state = "camo_tgmc"
+	can_adjust = FALSE

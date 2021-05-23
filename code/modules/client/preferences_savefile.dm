@@ -425,6 +425,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
 
+	//Lore
+	READ_FILE(S["terragov_relation"], terragov_relation)
+
 	//Jobs
 	READ_FILE(S["joblessrole"], joblessrole)
 	//Load prefs
@@ -504,6 +507,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	persistent_scars = sanitize_integer(persistent_scars)
 
+	//Lore
+	terragov_relation = sanitize_inlist(terragov_relation, GLOB.relationship_prefs, initial(terragov_relation))
+
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
 	for(var/j in job_preferences)
@@ -570,6 +576,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
+
+	//Lore
+	WRITE_FILE(S["terragov_relation"], terragov_relation)
 
 	//Jobs
 	WRITE_FILE(S["joblessrole"]		, joblessrole)

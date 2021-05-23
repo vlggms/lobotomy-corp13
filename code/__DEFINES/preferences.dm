@@ -69,6 +69,12 @@
 #define SEC_DEPT_SCIENCE "Science"
 #define SEC_DEPT_SUPPLY "Supply"
 
+#define RELATION_LOYAL "Loyal"
+#define RELATION_SUPPORTIVE "Supportive"
+#define RELATION_NEUTRAL "Neutral"
+#define RELATION_SKEPTICAL "Skeptical"
+#define RELATION_OPPOSED "Opposed"
+
 // Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING			"Living"
 #define EXP_TYPE_CREW			"Crew"
