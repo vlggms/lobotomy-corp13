@@ -44,6 +44,7 @@
 	. = ..()
 	equip_op()
 	memorize_code()
+	memorize_frequency()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()
 		// grant extra TC for the people who start in the nukie base ie. not the lone op
@@ -92,6 +93,13 @@
 		to_chat(owner, "The nuclear authorization code is: <B>[nuke_team.memorized_code]</B>")
 	else
 		to_chat(owner, "Unfortunately the syndicate was unable to provide you with nuclear authorization code.")
+
+/datum/antagonist/nukeop/proc/memorize_frequency()
+	if(nuke_team?.team_frequency)
+		antag_memory += "<B>Secure Tracking Beacon Frequency</B>: [nuke_team.team_frequency]<br>"
+		to_chat(owner, "Your team's unique tracking beacon code is: <B>[nuke_team.team_frequency]</B>")
+	else
+		to_chat(owner, "You were not assigned a frequency for your hardsuits beacons. You will have to coordinate with each other to decide a frequency to use.")
 
 /datum/antagonist/nukeop/proc/forge_objectives()
 	if(nuke_team)
@@ -252,12 +260,14 @@
 	var/obj/machinery/nuclearbomb/tracked_nuke
 	var/core_objective = /datum/objective/nuclear
 	var/memorized_code
+	var/team_frequency
 	var/list/team_discounts
 	var/obj/item/nuclear_challenge/war_button
 
 /datum/team/nuclear/New()
 	..()
 	syndicate_name = syndicate_name()
+	team_frequency = get_free_team_frequency("synd")
 
 /datum/team/nuclear/proc/update_objectives()
 	if(core_objective)
