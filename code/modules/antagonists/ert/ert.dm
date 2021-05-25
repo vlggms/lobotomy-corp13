@@ -2,6 +2,11 @@
 /datum/team/ert
 	name = "Emergency Response Team"
 	var/datum/objective/mission //main mission
+	var/ert_frequency
+
+/datum/team/ert/New(starting_members)
+	. = ..()
+	ert_frequency = get_free_team_frequency("cent")
 
 /datum/antagonist/ert
 	name = "Emergency Response Officer"
@@ -27,6 +32,7 @@
 		forge_objectives()
 	if(equip_ert)
 		equipERT()
+	owner.store_memory("Your team's shared tracking beacon frequency is [ert_team.ert_frequency].")
 	. = ..()
 
 /datum/antagonist/ert/get_team()
@@ -212,6 +218,12 @@
 	if(!istype(H))
 		return
 	H.equipOutfit(outfit)
+	//Set the suits frequency
+	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(I)
+		var/datum/component/tracking_beacon/beacon = I.GetComponent(/datum/component/tracking_beacon)
+		if(beacon)
+			beacon.set_frequency(ert_team.ert_frequency)
 
 
 /datum/antagonist/ert/greet()
@@ -229,6 +241,8 @@
 		missiondesc += "Avoid civilian casualties when possible."
 
 	missiondesc += "<BR><B>Your Mission</B> : [ert_team.mission.explanation_text]"
+	missiondesc += "<BR><b>Your Shared Tracking Frequency</b> : <i>[ert_team.ert_frequency]</i>"
+
 	to_chat(owner,missiondesc)
 
 

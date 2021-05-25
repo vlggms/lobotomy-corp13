@@ -171,10 +171,43 @@ Contains:
 	light_range = 7
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	actions_types = list(
+		/datum/action/item_action/toggle_helmet_light,
+		/datum/action/item_action/toggle_beacon_hud
+	)
+	var/beacon_colour = "#4b48ec"
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, LOCKED_HELMET_TRAIT)
+	//Link
+	if(istype(loc, /obj/item/clothing/suit/space/hardsuit/ert))
+		var/obj/linkedsuit = loc
+		//NOTE FOR COPY AND PASTING: BEACON MUST BE MADE FIRST
+		//Add the monitor (Default to null - No tracking)
+		var/datum/component/tracking_beacon/component_beacon = linkedsuit.AddComponent(/datum/component/tracking_beacon, "cent", null, null, TRUE, beacon_colour)
+		//Add the monitor (Default to null - No tracking)
+		component_beacon.attached_monitor = AddComponent(/datum/component/team_monitor, "cent", null, component_beacon)
+	else
+		AddComponent(/datum/component/team_monitor, "cent", null)
+
+/obj/item/clothing/head/helmet/space/hardsuit/ert/ui_action_click(mob/user, datum/action)
+	switch(action.type)
+		if(/datum/action/item_action/toggle_helmet_light)
+			toggle_helmlight()
+		if(/datum/action/item_action/toggle_beacon_hud)
+			toggle_hud(user)
+
+/obj/item/clothing/head/helmet/space/hardsuit/ert/proc/toggle_hud(mob/user)
+	var/datum/component/team_monitor/monitor = GetComponent(/datum/component/team_monitor)
+	if(!monitor)
+		to_chat(user, "<span class='notice'>The suit is not fitted with a tracking beacon.</span>")
+		return
+	monitor.toggle_hud(!monitor.hud_visible, user)
+	if(monitor.hud_visible)
+		to_chat(user, "<span class='notice'>You toggle the heads up display of your suit.</span>")
+	else
+		to_chat(user, "<span class='warning'>You disable the heads up display of your suit.</span>")
 
 /obj/item/clothing/suit/space/hardsuit/ert
 	name = "emergency response team commander hardsuit"
@@ -189,11 +222,43 @@ Contains:
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	cell = /obj/item/stock_parts/cell/bluespace
+	actions_types = list(
+		/datum/action/item_action/toggle_helmet,
+		/datum/action/item_action/toggle_beacon,
+		/datum/action/item_action/toggle_beacon_frequency
+	)
 
 // ERT suit's gets EMP Protection
 /obj/item/clothing/suit/space/hardsuit/ert/Initialize()
 	. = ..()
 	AddElement(/datum/element/empprotection, EMP_PROTECT_CONTENTS)
+
+/obj/item/clothing/suit/space/hardsuit/ert/ui_action_click(mob/user, datum/actiontype)
+	switch(actiontype.type)
+		if(/datum/action/item_action/toggle_helmet)
+			ToggleHelmet()
+		if(/datum/action/item_action/toggle_beacon)
+			toggle_beacon(user)
+		if(/datum/action/item_action/toggle_beacon_frequency)
+			set_beacon_freq(user)
+
+/obj/item/clothing/suit/space/hardsuit/ert/proc/toggle_beacon(mob/user)
+	var/datum/component/tracking_beacon/beacon = GetComponent(/datum/component/tracking_beacon)
+	if(!beacon)
+		to_chat(user, "<span class='notice'>The suit is not fitted with a tracking beacon.</span>")
+		return
+	beacon.toggle_visibility(!beacon.visible)
+	if(beacon.visible)
+		to_chat(user, "<span class='notice'>You enable the tracking beacon on [src]. Anybody on the same frequency will now be able to track your location.</span>")
+	else
+		to_chat(user, "<span class='warning'>You disable the tracking beacon on [src].</span>")
+
+/obj/item/clothing/suit/space/hardsuit/ert/proc/set_beacon_freq(mob/user)
+	var/datum/component/tracking_beacon/beacon = GetComponent(/datum/component/tracking_beacon)
+	if(!beacon)
+		to_chat(user, "<span class='notice'>The suit is not fitted with a tracking beacon.</span>")
+		return
+	beacon.change_frequency(user)
 
 	//ERT Security
 /obj/item/clothing/head/helmet/space/hardsuit/ert/sec
@@ -202,6 +267,7 @@ Contains:
 	icon_state = "hardsuit0-ert_security"
 	inhand_icon_state = "hardsuit0-ert_security"
 	hardsuit_type = "ert_security"
+	beacon_colour = "#ec4848"
 
 /obj/item/clothing/suit/space/hardsuit/ert/sec
 	name = "emergency response team security hardsuit"
@@ -217,6 +283,7 @@ Contains:
 	icon_state = "hardsuit0-ert_engineer"
 	inhand_icon_state = "hardsuit0-ert_engineer"
 	hardsuit_type = "ert_engineer"
+	beacon_colour = "#ecaa48"
 
 /obj/item/clothing/suit/space/hardsuit/ert/engi
 	name = "emergency response team engineering hardsuit"
@@ -232,6 +299,7 @@ Contains:
 	icon_state = "hardsuit0-ert_medical"
 	inhand_icon_state = "hardsuit0-ert_medical"
 	hardsuit_type = "ert_medical"
+	beacon_colour = "#88ecec"
 
 /obj/item/clothing/suit/space/hardsuit/ert/med
 	name = "emergency response team medical hardsuit"
@@ -247,6 +315,7 @@ Contains:
 	icon_state = "hardsuit0-ert_janitor"
 	inhand_icon_state = "hardsuit0-ert_janitor"
 	hardsuit_type = "ert_janitor"
+	beacon_colour = "#be43ce"
 
 /obj/item/clothing/suit/space/hardsuit/ert/jani
 	name = "emergency response team janitorial hardsuit"
@@ -359,6 +428,7 @@ Contains:
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
 	resistance_flags = FIRE_PROOF
+	beacon_colour = "#9ddb56"
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal
 	name = "paranormal response team hardsuit"
