@@ -3433,6 +3433,7 @@
 #include "ModularTegustation\tegu_cloning\circuits.dm"
 #include "ModularTegustation\tegu_cloning\computer.dm"
 #include "ModularTegustation\tegu_cloning\countdown.dm"
+#include "ModularTegustation\tegu_cloning\exp_cloner.dm"
 #include "ModularTegustation\tegu_cloning\gas.dm"
 #include "ModularTegustation\tegu_cloning\machine.dm"
 #include "ModularTegustation\tegu_cloning\negative_mood.dm"
