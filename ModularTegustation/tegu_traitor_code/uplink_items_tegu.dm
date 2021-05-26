@@ -220,14 +220,12 @@
 	new /obj/item/toy/balloon/syndicate/gold(src)
 	new /obj/item/toy/balloon/syndicate/gold(src)
 
-/* Announcements */
-
+/*** Announcements ***/
 /datum/uplink_item/announcement
 	category = "Announcements"
 	surplus = 2
 	cant_discount = TRUE
 
-/// -- Modular/additional uplink items --
 /datum/uplink_item/announcement/fake_ionstorm
 	name = "Fake Ion Storm Announcement"
 	desc = "Ai, state flaws. A beacon with one use that triggers a fake ion storm, \
@@ -259,3 +257,13 @@
 		or announced to everyone."
 	item = /obj/item/item_announcer/input/centcom
 	cost = 12
+
+/*** Dangerous Weapons ***/
+/datum/uplink_item/dangerous/nano_blade
+	name = "Nanoforged Katana"
+	desc = "A tailor-made blade forged by the most secretive ninja organization within the Syndicate. \
+			Merely weilding this weapon grants incredible agility."
+	item = /obj/item/storage/belt/nano_blade
+	cost = 12
+	surplus = 5
+	limited_stock = 1
