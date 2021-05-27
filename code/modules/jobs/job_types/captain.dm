@@ -31,9 +31,8 @@
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()
-	var/displayed_rank = H.mind.assigned_role // Tegu Edit: Alt Titles
-	if(H?.client?.prefs?.alt_titles_preferences[H.mind.assigned_role])
-		displayed_rank = H.client.prefs.alt_titles_preferences[H.mind.assigned_role]
+	var/displayed_rank = title // Tegu Edit: Alt Titles
+	displayed_rank = H?.client?.prefs?.alt_titles_preferences[title]
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[displayed_rank] [H.real_name] on deck!")) // Tegu Edit: Alt Titles end
 
 /datum/outfit/job/captain
