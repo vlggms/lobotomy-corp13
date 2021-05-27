@@ -547,3 +547,11 @@ SENIOR_TIMELOCK 600
 
 ##Amount of time required for ULTRA senior job titles in minutes
 ULTRA_SENIOR_TIMELOCK 6000
+
+### Autotransfer Settings
+## Uncomment to enable shuttle autotransfer
+VOTE_AUTOTRANSFER_ENABLED
+## Time (in deciseconds) before the first transfer vote. Default: 2 hours
+VOTE_AUTOTRANSFER_INITIAL 72000
+## Time (in deciseconds) between subsequent transfer votes. Default: 30 minutes
+VOTE_AUTOTRANSFER_INTERVAL 18000

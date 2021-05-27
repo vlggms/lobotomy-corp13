@@ -35,6 +35,7 @@ const VoteOptions = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     allow_vote_mode,
+    allow_vote_transfer,
     allow_vote_restart,
     allow_vote_map,
     upper_admin,
@@ -60,6 +61,22 @@ const VoteOptions = (props, context) => {
                   disabled={!upper_admin || !allow_vote_map}
                   onClick={() => act("map")}>
                   Map
+                </Button>
+              </Stack.Item>
+              <Stack.Item>
+                {!!upper_admin && (
+                  <Button.Checkbox
+                    mr={!allow_vote_transfer ? 1 : 1.6}
+                    color="red"
+                    checked={!!allow_vote_transfer}
+                    onClick={() => act("toggle_transfer")}>
+                    {allow_vote_transfer ? "Enabled" : "Disabled"}
+                  </Button.Checkbox>
+                )}
+                <Button
+                  disabled={!upper_admin || !allow_vote_transfer}
+                  onClick={() => act("transfer")}>
+                  Transfer
                 </Button>
               </Stack.Item>
               <Stack.Item>

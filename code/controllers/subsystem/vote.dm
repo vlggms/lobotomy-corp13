@@ -76,6 +76,20 @@ SUBSYSTEM_DEF(vote)
 						preferred_map = global.config.defaultmap.map_name
 					choices[preferred_map] += 1
 					greatest_votes = max(greatest_votes, choices[preferred_map])
+			else if(mode == "transfer")
+				var/factor = 1 // factor defines how non-voters are weighted towards calling the shuttle
+				switch(world.time / (1 MINUTES))
+					if(0 to 60)
+						factor = 0.5
+					if(61 to 120)
+						factor = 0.8
+					if(121 to 240)
+						factor = 1
+					if(241 to 300)
+						factor = 1.2
+					else
+						factor = 1.4
+				choices["Initiate Crew Transfer"] += round(non_voters.len * factor)
 	. = list()
 	if(greatest_votes)
 		for(var/option in choices)
@@ -130,6 +144,17 @@ SUBSYSTEM_DEF(vote)
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
+			if("transfer")
+				if(. == "Initiate Crew Transfer")
+					SSshuttle.emergency.request(noannounce = TRUE)
+					SSshuttle.emergencyNoRecall = TRUE //Prevent Recall.
+					priority_announce("The shift has come to an end and the shuttle called. [GLOB.security_level == SEC_LEVEL_RED ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [SSshuttle.emergency.timeLeft(600)] minutes.", null, ANNOUNCER_SHUTTLECALLED, "Priority")
+					log_game("Round end vote passed. Shuttle has been auto-called.")
+					message_admins("Round end vote passed. Shuttle has been auto-called.")
+
+					var/obj/machinery/computer/communications/C = locate() in GLOB.machines
+					if(C)
+						C.post_status("shuttle")
 	if(restart)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins + GLOB.deadmins)
@@ -201,6 +226,18 @@ SUBSYSTEM_DEF(vote)
 					shuffle_inplace(maps)
 				for(var/valid_map in maps)
 					choices.Add(valid_map)
+			if("transfer")
+				var/list/ignore_vote = list(
+					SHUTTLE_IGNITING,
+					SHUTTLE_CALL,
+					SHUTTLE_ENDGAME,
+					SHUTTLE_ESCAPE,
+					SHUTTLE_DOCKED,
+					SHUTTLE_PREARRIVAL
+				)
+				if(SSshuttle.emergency.mode in ignore_vote)
+					return FALSE
+				choices.Add("Initiate Crew Transfer", "Continue Playing")
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
@@ -215,7 +252,7 @@ SUBSYSTEM_DEF(vote)
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator || "CentCom"]."
+		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "CentCom"]."
 		if(mode == "custom")
 			text += "\n[question]"
 		log_vote(text)
@@ -256,6 +293,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/data = list(
 		"allow_vote_map" = CONFIG_GET(flag/allow_vote_map),
 		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
+		"allow_vote_transfer" = CONFIG_GET(flag/allow_vote_transfer),
 		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
 		"choices" = list(),
 		"lower_admin" = !!user.client?.holder,
@@ -294,6 +332,9 @@ SUBSYSTEM_DEF(vote)
 				usr.log_message("[key_name_admin(usr)] cancelled a vote.", LOG_ADMIN)
 				message_admins("[key_name_admin(usr)] has cancelled the current vote.")
 				reset()
+		if("toggle_transfer")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_transfer, !CONFIG_GET(flag/allow_vote_transfer))
 		if("toggle_restart")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
@@ -303,6 +344,9 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_map")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_map, !CONFIG_GET(flag/allow_vote_map))
+		if("transfer")
+			if(CONFIG_GET(flag/allow_vote_transfer) || usr.client.holder)
+				initiate_vote("transfer",usr.key)
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)

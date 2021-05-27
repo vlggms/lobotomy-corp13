@@ -102,6 +102,8 @@
 
 /datum/config_entry/flag/allow_admin_asaycolor //Allows admins with relevant permissions to have a personalized asay color
 
+/datum/config_entry/flag/allow_vote_transfer	// allow votes to transfer crew
+
 /datum/config_entry/flag/allow_vote_restart	// allow votes to restart
 
 /datum/config_entry/flag/allow_vote_mode	// allow votes to change mode
@@ -504,3 +506,15 @@
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
 /datum/config_entry/string/centcom_source_whitelist
+
+/datum/config_entry/flag/vote_autotransfer_enabled //toggle for autotransfer system
+
+/datum/config_entry/number/vote_autotransfer_initial //length of time before the first autotransfer vote is called (deciseconds, default 2 hours)
+	config_entry_value = 72000
+	integer = FALSE
+	min_val = 0
+
+/datum/config_entry/number/vote_autotransfer_interval //length of time to wait before subsequent autotransfer votes (deciseconds, default 30 minutes)
+	config_entry_value = 18000
+	integer = FALSE
+	min_val = 0
