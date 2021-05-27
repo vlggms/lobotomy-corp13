@@ -13,10 +13,12 @@
 	return dat
 
 /obj/item/implant/camera/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
+	. = ..()
 	camera = new (target)		//Insert the camera directly into the mob so the camera actually shows what it sees
 	camera.c_tag = "IMPLANT @[target.real_name]"
 	camera.network = list("ss13")
 	camera.internal_light = FALSE		//No AI camera light
+	return TRUE
 
 /obj/item/implant/camera/removed(mob/living/source, silent, special)
 	. = ..()
