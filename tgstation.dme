@@ -3498,6 +3498,7 @@
 #include "ModularTegustation\tegu_traitor_code\uplink_items_tegu.dm"
 #include "ModularTegustation\tegu_traitor_code\velvet_fu.dm"
 #include "ModularTegustation\tegu_weaponry\guns\ak47.dm"
+#include "ModularTegustation\tegu_weaponry\melee\nano_blade.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\black_extracts.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\slime_code.dm"
 #include "ModularTegustation\trusted_players\trusted-players_procs.dm"
