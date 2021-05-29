@@ -2,14 +2,12 @@
 /obj/machinery/clonepod/experimental
 	name = "experimental cloning pod"
 	desc = "An ancient cloning pod. It seems to be an early prototype of the experimental cloners used in Nanotrasen Stations."
-	icon = 'icons/obj/machines/cloning.dmi'
-	icon_state = "pod_0"
 	req_access = null
 	circuit = /obj/item/circuitboard/machine/clonepod/experimental
 	internal_radio = FALSE
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/experimental/growclone(clonename, ui, mutation_index, mindref, last_death, blood_type, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance)
+/obj/machinery/clonepod/experimental/growclone(clonename, ui, mutation_index, mindref, last_death, blood_type, datum/species/mrace, list/features, factions, list/quirks, datum/bank_account/insurance, list/traumas, empty)
 	if(panel_open)
 		return NONE
 	if(mess || attempting)
@@ -19,8 +17,8 @@
 	countdown.start()
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
-
-	H.hardset_dna(ui, mutation_index, H.real_name, blood_type, mrace, features)
+	H.hardset_dna(ui, mutation_index, H.dna.default_mutation_genes, H.real_name, blood_type, mrace, features, H.dna.mutations, FALSE)
+	H.set_species(mrace, TRUE, null, features)
 
 	if(efficiency > 2)
 		var/list/unclean_mutations = (GLOB.not_good_mutations|GLOB.bad_mutations)
@@ -39,7 +37,6 @@
 		clonename = "clone ([rand(1,999)])"
 	H.real_name = clonename
 
-	icon_state = "pod_1"
 	//Get the clone body ready
 	maim_clone(H)
 	ADD_TRAIT(H, TRAIT_STABLEHEART, CLONING_POD_TRAIT)
@@ -70,6 +67,7 @@
 
 		H.set_suicide(FALSE)
 	attempting = FALSE
+	update_icon()
 	return CLONING_DELETE_RECORD | CLONING_SUCCESS //so that we don't spam clones with autoprocess unless we leave a body in the scanner
 
 
