@@ -25,14 +25,13 @@
 
 /obj/projectile/bullet/mm712x82
 	name = "7.12x82mm bullet"
-	damage = 40
+	damage = 30
 	armour_penetration = 5
 	wound_bonus = -50
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/mm712x82_ap
 	name = "7.12x82mm armor-piercing bullet"
-	damage = 40
 	armour_penetration = 75
 
 /obj/projectile/bullet/mm712x82_hp
@@ -46,7 +45,7 @@
 
 /obj/projectile/bullet/incendiary/mm712x82
 	name = "7.12x82mm incendiary bullet"
-	damage = 20
+	damage = 15
 	fire_stacks = 3
 
 /obj/projectile/bullet/mm712x82_match
@@ -60,7 +59,7 @@
 
 /obj/projectile/bullet/mm712x82_bouncy
 	name = "7.12x82mm rubber bullet"
-	damage = 25
+	damage = 20
 	ricochets_max = 40
 	ricochet_chance = 500 // will bounce off anything and everything, whether they like it or not
 	ricochet_auto_aim_range = 4
