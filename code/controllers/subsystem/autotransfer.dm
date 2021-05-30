@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(autotransfer)
 
 	var/starttime
 	var/targettime
+	var/transfered = FALSE // Used for emergency shuttle destination
 
 /datum/controller/subsystem/autotransfer/Initialize(timeofday)
 	starttime = world.time

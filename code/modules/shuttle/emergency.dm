@@ -542,6 +542,8 @@
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
 						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+				else if(SSautotransfer.transfered) // If transfer vote passed and shuttle isn't hijacked.
+					destination_dock = "emergency_transfer"
 
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
