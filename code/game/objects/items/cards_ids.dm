@@ -118,14 +118,8 @@
 				update_label()
 
 /obj/item/card/id/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/holochip))
+	if(iscash(W))
 		insert_money(W, user)
-		return
-	else if(istype(W, /obj/item/stack/spacecash))
-		insert_money(W, user, TRUE)
-		return
-	else if(istype(W, /obj/item/coin))
-		insert_money(W, user, TRUE)
 		return
 	else if(istype(W, /obj/item/storage/bag/money))
 		var/obj/item/storage/bag/money/money_bag = W
@@ -139,7 +133,11 @@
 	else
 		return ..()
 
-/obj/item/card/id/proc/insert_money(obj/item/I, mob/user, physical_currency)
+/obj/item/card/id/proc/insert_money(obj/item/I, mob/user)
+	var/physical_currency
+	if(istype(I, /obj/item/stack/spacecash) || istype(I, /obj/item/coin))
+		physical_currency = TRUE
+
 	if(!registered_account)
 		to_chat(user, "<span class='warning'>[src] doesn't have a linked account to deposit [I] into!</span>")
 		return
