@@ -15741,8 +15741,12 @@
 /turf/open/floor/wood,
 /area/centcom/holding)
 "OH" = (
-/obj/machinery/door/poddoor/shuttledock,
-/turf/open/floor/plasteel,
+/obj/machinery/door/poddoor/shuttledock{
+	checkdir = 1;
+	name = "hub blast door";
+	turftype = /turf/open/floor/plating
+	},
+/turf/open/floor/plating,
 /area/centcom/hub)
 "OP" = (
 /obj/effect/turf_decal/delivery,
