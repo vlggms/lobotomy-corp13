@@ -15744,7 +15744,7 @@
 /obj/machinery/door/poddoor/shuttledock{
 	checkdir = 1;
 	name = "hub blast door";
-	turftype = /turf/open/floor/plating
+	turftype = /turf/open/space
 	},
 /turf/open/floor/plating,
 /area/centcom/hub)
