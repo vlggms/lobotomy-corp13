@@ -50,9 +50,9 @@
 				to_chat(owner, "<span class='danger'>Your stomach hurts.</span>")
 				if(prob(20))
 					owner.adjustToxLoss(1)
-		if(5)
-			to_chat(owner, "<span class='danger'>You feel something tearing its way out of your stomach...</span>")
-			owner.adjustToxLoss(10)
+		if(6)
+			to_chat(owner, "<span class='danger'>You feel something tearing its way out of your chest...</span>")
+			owner.take_bodypart_damage(5)
 
 /// Controls Xenomorph Embryo growth. If embryo is fully grown (or overgrown), stop the proc. If not, increase the stage by one and if it's not fully grown (stage 6), add a timer to do this proc again after however long the growth time variable is.
 /obj/item/organ/body_egg/alien_embryo/proc/advance_embryo_stage()
