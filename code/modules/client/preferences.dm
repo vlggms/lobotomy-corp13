@@ -63,23 +63,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/uses_glasses_colour = 0
 
 	//character preferences
-	var/slot_randomized //keeps track of round-to-round randomization of the character slot, prevents overwriting
-	var/real_name //our character's name
-	var/gender = MALE //gender of character (well duh)
-	var/age = 30 //age of character
-	var/underwear = "Nude" //underwear type
-	var/underwear_color = "000" //underwear color
-	var/undershirt = "Nude" //undershirt type
-	var/socks = "Nude" //socks type
-	var/backpack = DBACKPACK //backpack type
-	var/jumpsuit_style = PREF_SUIT //suit/skirt
-	var/hairstyle = "Bald" //Hair type
-	var/hair_color = "000" //Hair color
-	var/facial_hairstyle = "Shaved" //Face hair type
-	var/facial_hair_color = "000" //Facial hair color
-	var/skin_tone = "caucasian1" //Skin color
-	var/eye_color = "000" //Eye color
-	var/datum/species/pref_species = new /datum/species/human() //Mutant race
+	var/slot_randomized					//keeps track of round-to-round randomization of the character slot, prevents overwriting
+	var/real_name						//our character's name
+	var/gender = MALE					//gender of character (well duh)
+	var/age = 30						//age of character
+	var/underwear = "Nude"				//underwear type
+	var/underwear_color = "000"			//underwear color
+	var/undershirt = "Nude"				//undershirt type
+	var/socks = "Nude"					//socks type
+	var/backpack = DBACKPACK				//backpack type
+	var/jumpsuit_style = PREF_SUIT		//suit/skirt
+	var/hairstyle = "Bald"				//Hair type
+	var/hair_color = "000"				//Hair color
+	var/facial_hairstyle = "Shaved"	//Face hair type
+	var/facial_hair_color = "000"		//Facial hair color
+	var/skin_tone = "caucasian1"		//Skin color
+	var/eye_color = "000"				//Eye color
+	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_antennae" = "Plain", "moth_markings" = "None")
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_JUMPSUIT_STYLE = TRUE, RANDOM_HAIRSTYLE = TRUE, RANDOM_HAIR_COLOR = TRUE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
 	var/phobia = "spiders"
