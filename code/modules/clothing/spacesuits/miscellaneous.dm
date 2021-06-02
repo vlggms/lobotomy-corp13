@@ -222,7 +222,7 @@ Contains:
 	resistance_flags = FIRE_PROOF
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	cell = /obj/item/stock_parts/cell/bluespace
-	actions_types = list(
+	actions_types = list(/datum/action/item_action/toggle_spacesuit, \
 		/datum/action/item_action/toggle_helmet,
 		/datum/action/item_action/toggle_beacon,
 		/datum/action/item_action/toggle_beacon_frequency

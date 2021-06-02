@@ -449,7 +449,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	jetpack = /obj/item/tank/jetpack/suit
 	cell = /obj/item/stock_parts/cell/hyper
-	actions_types = list(
+	actions_types = list(/datum/action/item_action/toggle_spacesuit, \
 		/datum/action/item_action/toggle_helmet,
 		/datum/action/item_action/toggle_beacon,
 		/datum/action/item_action/toggle_beacon_frequency
@@ -951,7 +951,7 @@
 	slowdown = 0
 	shield_state = "shield-red"
 	shield_on = "shield-red"
-	actions_types = list(
+	actions_types = list(/datum/action/item_action/toggle_spacesuit, \
 		/datum/action/item_action/toggle_helmet,
 		/datum/action/item_action/toggle_beacon,
 		/datum/action/item_action/toggle_beacon_frequency
