@@ -403,19 +403,19 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_moth_markings"], features["moth_markings"])
 	READ_FILE(S["persistent_scars"] , persistent_scars)
 	READ_FILE(S["alt_titles_preferences"], alt_titles_preferences)// Tegu edit - Alt job titles
-	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
-	if(SSjob)
-		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(alt_titles_preferences[job.title])
-				if(!((alt_titles_preferences[job.title] in job.alt_titles) || (alt_titles_preferences[job.title] == job.senior_title) || (alt_titles_preferences[job.title] == job.ultra_senior_title)))
-					alt_titles_preferences.Remove(job.title) // Tegu end
-
 	if(!CONFIG_GET(flag/join_with_mutant_humans))
 		features["tail_human"] = "none"
 		features["ears"] = "none"
 	else
 		READ_FILE(S["feature_human_tail"], features["tail_human"])
 		READ_FILE(S["feature_human_ears"], features["ears"])
+
+	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
+	if(SSjob)
+		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+			if(alt_titles_preferences[job.title])
+				if(!((alt_titles_preferences[job.title] in job.alt_titles) || (alt_titles_preferences[job.title] == job.senior_title) || (alt_titles_preferences[job.title] == job.ultra_senior_title)))
+					alt_titles_preferences.Remove(job.title) // Tegu end
 
 	//Custom names
 	for(var/custom_name_id in GLOB.preferences_custom_names)
