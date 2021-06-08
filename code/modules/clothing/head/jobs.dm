@@ -258,7 +258,7 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/beret/sec/navyhos
-	name = "head of security's beret"
+	name = "head of security's navy beret"
 	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
 	icon_state = "hosberet"
 
@@ -269,9 +269,17 @@
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 50, WOUND = 6)
 	strip_delay = 60
 
+/obj/item/clothing/head/beret/sec/navywarden/black
+	desc = "A dark beret with the Warden's insignia emblazoned on it. For wardens with class."
+	icon_state = "wardenberetblack"
+
 /obj/item/clothing/head/beret/sec/navyofficer
 	desc = "A special beret with the security insignia emblazoned on it. For officers with class."
 	icon_state = "officerberet"
+
+/obj/item/clothing/head/beret/sec/navyofficer/black
+	desc = "A dark beret with the security insignia emblazoned on it. For officers with class."
+	icon_state = "officerberetblack"
 
 /obj/item/clothing/head/beret/sec/centcom
 	name = "centcom beret"

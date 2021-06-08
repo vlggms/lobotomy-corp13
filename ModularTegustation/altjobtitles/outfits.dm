@@ -1,4 +1,36 @@
+/*
+HOW ALT TITLES PICK OUTFITS
+
+	It checks the title
+
+"Senior Atmospheric Technician"
+"Surgeon-General"
+
+	it then converts it to text, removing spaces and special characters
+
+"senioratmospherictechnician"
+"surgeongeneral"
+
+	It then checks to see if a outfit exists
+
+/datum/outfit/job/atmos/senioratmospherictechnician
+/datum/outfit/job/cmo/surgeongeneral
+
+
+	So to add outfits, first add the title in altjobtitles.dm, THEN add a subtype of the normal outfit in this file with the simplified name as the path
+	so if you wanted to add a title named
+
+"Sky's number-one fan"
+
+	you would need to add it in altjobtitles.dm then add
+
+/datum/outfit/job/botanist/skysnumberonefan
+	name = "Botanist (Sky's number-one fan)"
+	head = /obj/item/paper
+
+*/
 /*** Command ***/
+/// Captain
 /datum/outfit/job/captain/commodore
 	name = "Captain (Commodore)"
 	head = /obj/item/clothing/head/caphat/parade
@@ -13,6 +45,23 @@
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/admiral
 	neck = /obj/item/clothing/neck/cloak/cent/cap // GREEN CLOAK!!
 	shoes = /obj/item/clothing/shoes/jackboots
+/// Chief Medical Officer
+
+/datum/outfit/job/cmo/surgeongeneral
+	name = "Chief Medical Officer (Surgeon-General)"
+	head = /obj/item/clothing/head/beret/tegu/cmo
+
+/// Chief Engineer
+
+/datum/outfit/job/ce/seniorchiefengineer
+	name = "Chief Engineer (Senior Chief Engineer)"
+	head = /obj/item/clothing/head/beret/tegu/ce
+
+//Research Director
+/datum/outfit/job/rd/madscientist
+	name = "Research Director (Mad Scientist)"
+	head = /obj/item/clothing/head/beret/tegu/rd
+	suit = /obj/item/clothing/suit/toggle/labcoat/mad
 
 /*** Security ***/
 /// Security Officer
@@ -26,6 +75,7 @@
 /// Scientist
 /datum/outfit/job/scientist/professor
 	name = "Scientist (Professor)"
+	head = /obj/item/clothing/head/beret/tegu/science
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
 	shoes = /obj/item/clothing/shoes/laceup
 	suit = /obj/item/clothing/suit/toggle/labcoat
@@ -46,6 +96,12 @@
  	suit = null
  	suit_store = null
  	accessory = /obj/item/clothing/accessory/armband/medblue
+
+/// Chemist
+
+/datum/outfit/job/chemist/seniorchemist
+ 	name = "Chemist (Senior Chemist)"
+ 	head = /obj/item/clothing/head/beret/tegu/chem
 
 /*** Engineering ***/
 /// Station Engineer
@@ -68,6 +124,10 @@
 	l_pocket = /obj/item/flashlight
 	l_hand = /obj/item/storage/bag/construction
 
+/datum/outfit/job/engineer/seniorengineer
+	name = "Station Engineer (Senior Engineer)"
+	head = /obj/item/clothing/head/beret/tegu/eng
+
 /// Atmospheric Technician
 /datum/outfit/job/atmos/firefighter
 	name = "Atmospheric Technician (Firefighter)"
@@ -79,16 +139,26 @@
 	name = "Atmospheric Technician (Life Support Specialist)"
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1, /obj/item/storage/box/survival=2)
 
+/datum/outfit/job/atmos/senioratmospherictechnician
+	name = "Atmospheric Technician (Senior Atmospheric Technician)"
+	head = /obj/item/clothing/head/beret/tegu/atmos
+
 /// Void Technician
-/datum/outfit/job/voidtech/marine
+/datum/outfit/job/voidtech/spacemarine
 	name = "Void Technician (Space Marine)"
 	shoes = /obj/item/clothing/shoes/jackboots
 	suit = /obj/item/clothing/suit/space/hardsuit/voidtech/marine
 
 /*** Supply ***/
+/// Cargo Tech
 /datum/outfit/job/cargo_tech/mailroomtechnician
 	name = "Cargo Technician (Mailroom Technician)"
 	backpack_contents = list(/obj/item/storage/box/shipping=1, /obj/item/modular_computer/tablet/preset/cargo=1)
+
+/// Shaft Miner
+/datum/outfit/job/miner/seniorminer
+	name = "Shaft Miner (Senior Miner)"
+	head = /obj/item/clothing/head/beret/tegu/mining
 
 /*** Service ***/
 /// Cook
@@ -98,6 +168,11 @@
 	head = null
 	mask = null
 	r_hand = /obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy
+
+/// Botanist
+/datum/outfit/job/botanist/mastergardener
+	name = "Botanist (Master Gardener)"
+	head = /obj/item/clothing/head/beret/tegu/service
 
 /// Curator
 /datum/outfit/job/curator/journalist
@@ -135,6 +210,7 @@
 
 /datum/outfit/job/assistant/assistinator
 	name = "Assistant (Assistinator)"
+	head = /obj/item/clothing/head/beret/tegu/grey
 	uniform = /obj/item/clothing/under/color/grey/ancient
 	mask = /obj/item/clothing/mask/gas
 
