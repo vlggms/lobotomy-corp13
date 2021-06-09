@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x32_guns.dmi'
 	icon_state = "ak47"
 	base_pixel_x = -8
-	fire_sound = "ModularTegustation/Tegusounds/weapons/guns/ak47.ogg"
+	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/ak47.ogg'
 	burst_size = 1
 	actions_types = list()
 	mag_display = TRUE
