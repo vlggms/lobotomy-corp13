@@ -146,7 +146,7 @@
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/adjustCMspeed()
 	if(health <= maxHealth*0.25)
 		speed = 4
-		dash_mod = 0.3
+		dash_mod = 0.4
 		dash_num = 5
 		rapid_melee = 3.5
 	else if(health <= maxHealth*0.5)
