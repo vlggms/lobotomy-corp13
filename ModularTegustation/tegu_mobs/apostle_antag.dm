@@ -92,7 +92,7 @@
 /datum/antagonist/apostle/proc/soundd_in()
 	var/mob/living/carbon/human/H = owner.current
 	var/turf/T = get_turf(H)
-	playsound(H, 'ModularTegustation/Tegusounds/apostle/mob/apostle_death_final.ogg', 200, TRUE, TRUE)
+	playsound(H, 'ModularTegustation/Tegusounds/apostle/mob/apostle_death_final.ogg', 60, TRUE, TRUE)
 	new /obj/effect/temp_visual/cult/sparks(T)
 	addtimer(CALLBACK(src, .proc/drop_dust), 25)
 
