@@ -167,6 +167,7 @@
 	icon_state = "honkhulk"
 	icon_living = "honkhulk"
 	move_resist = INFINITY
+	gender = MALE
 	response_help_continuous = "tries desperately to appease"
 	response_help_simple = "try desperately to appease"
 	response_disarm_continuous = "foolishly pushes"
@@ -195,6 +196,7 @@
 	desc = "A real lunkhead who somehow gets all the girls."
 	icon_state = "chlown"
 	icon_living = "chlown"
+	gender = MALE
 	response_help_continuous = "submits to"
 	response_help_simple = "submit to"
 	response_disarm_continuous = "tries to assert dominance over"
