@@ -252,8 +252,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// The holder of this trait has antennae or whatever that hurt a ton when noogied
 #define TRAIT_ANTENNAE	"antennae"
 /// Blowing kisses actually does damage to the victim
-#define TRAIT_KISS_OF_DEATH	"kiss_of_death"
-
+#define TRAIT_KISS_OF_DEATH "kiss_of_death"
+/// Used to activate french kissing
+#define TRAIT_GARLIC_BREATH "kiss_of_garlic_death"
 /// Addictions don't tick down, basically they're permanently addicted
 #define TRAIT_HOPELESSLY_ADDICTED "hopelessly_addicted"
 /// Special examine if eyes are visible
