@@ -43,7 +43,8 @@
 	var/datum/cellular_emporium/cellular_emporium
 	var/datum/action/innate/cellular_emporium/emporium_action
 
-	var/static/list/all_powers = typecacheof(/datum/action/changeling,TRUE)
+	/// Static typecache of all changeling powers that are usable.
+	var/static/list/all_powers = typecacheof(/datum/action/changeling, ignore_root_path = TRUE)
 
 /datum/antagonist/changeling/New()
 	. = ..()
