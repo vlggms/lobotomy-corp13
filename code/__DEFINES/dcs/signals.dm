@@ -565,9 +565,9 @@
 #define COMSIG_GLOB_PATROL_START "!patrol_start"
 #define COMSIG_PATROL_START "patrol_start"
 
-///from /obj/item/slapper/attack_obj(): (source=mob/living/slammer, obj/structure/table/slammed_table)
+///from /obj/item/hand_item/slapper/attack_obj(): (source=mob/living/slammer, obj/structure/table/slammed_table)
 #define COMSIG_LIVING_SLAM_TABLE "living_slam_table"
-///from /obj/item/slapper/attack_obj(): (source=obj/structure/table/slammed_table, mob/living/slammer)
+///from /obj/item/hand_item/slapper/attack_obj(): (source=obj/structure/table/slammed_table, mob/living/slammer)
 #define COMSIG_TABLE_SLAMMED "table_slammed"
 
 // /obj signals
