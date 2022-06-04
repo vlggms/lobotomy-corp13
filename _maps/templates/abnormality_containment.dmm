@@ -1,0 +1,99 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/containment_zone)
+"b" = (
+/obj/machinery/requests_console{
+	pixel_y = 26
+	},
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"f" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"g" = (
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"r" = (
+/obj/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/containment_zone)
+"D" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"J" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"N" = (
+/obj/effect/landmark/abnormality_spawn,
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"O" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"Q" = (
+/obj/machinery/door/airlock/security/glass,
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+"W" = (
+/obj/machinery/computer/abnormality,
+/turf/open/floor/plasteel/dark,
+/area/containment_zone)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+D
+g
+a
+"}
+(3,1,1) = {"
+a
+g
+N
+g
+a
+"}
+(4,1,1) = {"
+a
+O
+g
+g
+a
+"}
+(5,1,1) = {"
+a
+r
+r
+Q
+a
+"}
+(6,1,1) = {"
+a
+W
+J
+g
+f
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+"}

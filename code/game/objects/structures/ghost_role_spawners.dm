@@ -17,7 +17,6 @@
 	Your goal is to cultivate and spread life wherever it will go while waiting for contact from your creators. \
 	Estimated time of last contact: Deployment, 5000 millennia ago."
 	assignedrole = "Lifebringer"
-	skills_type = /datum/skill_list_bay/culinary/pod
 
 /obj/effect/mob_spawn/human/seed_vault/special(mob/living/new_spawn)
 	var/plant_name = pick("Tomato", "Potato", "Broccoli", "Carrot", "Ambrosia", "Pumpkin", "Ivy", "Kudzu", "Banana", "Moss", "Flower", "Bloom", "Root", "Bark", "Glowshroom", "Petal", "Leaf", \
@@ -183,7 +182,6 @@
 	flavour_text = "In his infinite and divine wisdom, he set your clan free to \
 	travel the stars with a single declaration: \"Yeah go do whatever.\" Though you are bound to the one who created you, it is customary in your society to repeat those same words to newborn \
 	golems, so that no golem may ever be forced to serve again."
-	skills_type = /datum/skill_list_bay/golem/free
 
 /obj/effect/mob_spawn/human/golem/Initialize(mapload, datum/species/golem/species = null, mob/creator = null)
 	if(species) //spawners list uses object name to register so this goes before ..()
@@ -251,7 +249,6 @@
 	has_owner = TRUE
 	name = "inert servant golem shell"
 	mob_name = "a servant golem"
-	skills_type = /datum/skill_list_bay/golem
 
 
 /obj/effect/mob_spawn/human/golem/adamantine
@@ -278,7 +275,6 @@
 	the hostile creatures, and the ash drakes swooping down from the cloudless skies, all you can wish for is the feel of soft grass between your toes and \
 	the fresh air of Earth. These thoughts are dispelled by yet another recollection of how you got here... "
 	assignedrole = "Hermit"
-	skills_type = /datum/skill_list_bay/assistant
 
 /obj/effect/mob_spawn/human/hermit/Initialize(mapload)
 	. = ..()
@@ -428,7 +424,6 @@
 	icon_state = "sleeper_s"
 	outfit = /datum/outfit/syndicate_empty
 	assignedrole = "Space Syndicate"	//I know this is really dumb, but Syndicate operative is nuke ops
-	skills_type = /datum/skill_list_bay/syndi
 
 /datum/outfit/syndicate_empty
 	name = "Syndicate Operative Empty"
@@ -480,7 +475,6 @@
 	assignedrole = "Battlecruiser Engineer"
 	mob_name = "syndicate engineer"
 	id_job = "Syndicate Engineer"
-	skills_type = /datum/skill_list_bay/syndi/engineer
 
 /datum/outfit/syndicate_empty/sbc/engi
 	name = "Syndicate Battlecruiser Ship Engineer"
@@ -500,7 +494,6 @@
 	assignedrole = "Battlecruiser Medical Doctor"
 	mob_name = "syndicate medic"
 	id_job = "Syndicate Medical Doctor"
-	skills_type = /datum/skill_list_bay/syndi/medic
 
 /datum/outfit/syndicate_empty/sbc/med
 	name = "Syndicate Battlecruiser Ship Medical Doctor"
@@ -545,7 +538,6 @@
 	id_job = "Syndicate Captain"
 	assignedrole = "Battlecruiser Captain"
 	mob_name = "syndicate captain"
-	skills_type = /datum/skill_list_bay/syndi/master
 
 /datum/outfit/syndicate_empty/sbc/assault/captain
 	name = "Syndicate Battlecruiser Captain"
@@ -579,7 +571,6 @@
 	r_pocket = /obj/item/restraints/handcuffs
 	l_pocket = /obj/item/assembly/flash/handheld
 	assignedrole = "Ancient Crew"
-	skills_type = /datum/skill_list_bay/security
 
 /obj/effect/mob_spawn/human/oldsec/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
@@ -606,7 +597,6 @@
 	gloves = /obj/item/clothing/gloves/color/fyellow/old
 	l_pocket = /obj/item/tank/internals/emergency_oxygen
 	assignedrole = "Ancient Crew"
-	skills_type = /datum/skill_list_bay/engineer
 
 /obj/effect/mob_spawn/human/oldeng/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
@@ -632,7 +622,6 @@
 	id = /obj/item/card/id/away/old/sci
 	l_pocket = /obj/item/stack/medical/bruise_pack
 	assignedrole = "Ancient Crew"
-	skills_type = /datum/skill_list_bay/science
 
 /obj/effect/mob_spawn/human/oldsci/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())

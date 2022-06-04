@@ -11,8 +11,13 @@
 	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
 	var/list/minimal_skills
 
-	/// Job specific bay-skills. Difference from normal skills..? You can't earn these normally.
-	var/datum/skill_list_bay/skills_type
+	/// Assoc list of round-start attributes
+	var/list/roundstart_attributes = list(
+									FORTITUDE_ATTRIBUTE = 0,
+									PRUDENCE_ATTRIBUTE = 0,
+									TEMPERANCE_ATTRIBUTE = 0,
+									JUSTICE_ATTRIBUTE = 0
+									)
 
 	//Determines who can demote this position
 	var/department_head = list()
@@ -74,10 +79,6 @@
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
 
-	/// Tegu vars
-	var/id_icon = 'icons/obj/card.dmi'	// Overlay on your ID
-	var/hud_icon = 'icons/mob/hud.dmi'	// Sec Huds see this
-
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -112,8 +113,6 @@
 	if(!ishuman(H))
 		return
 
-	H?.mind.bay_skills = new skills_type
-
 	if(!config)	//Needed for robots.
 		roundstart_experience = minimal_skills
 
@@ -126,6 +125,13 @@
 		var/mob/living/carbon/human/experiencer = H
 		for(var/i in roundstart_experience)
 			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
+
+	if(roundstart_attributes.len)
+		for(var/atrib in roundstart_attributes)
+			var/datum/attribute/atr = H?.mind.attributes[atrib]
+			if(istype(atr))
+				atr.level = roundstart_attributes[atrib]
+				atr.on_update(H)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -218,24 +224,6 @@
 	if(!job_changes)
 		return FALSE
 	return TRUE
-
-/*
-* TEGU JOBS
-*/
-
-/datum/job/tegu
-	var/tegu_spawn = null //give it a room's type path to spawn there
-
-/datum/job/tegu/after_spawn(mob/living/H, mob/M, latejoin)
-	. = ..()
-	if(!latejoin && tegu_spawn)
-		var/turf/T = get_tegu_spawn(tegu_spawn)
-		H.Move(T)
-
-/proc/get_tegu_spawn(area/room) // Reworked to find any empty tile
-	for(var/turf/T in shuffle(get_area_turfs(room)))
-		if(!T.is_blocked_turf(TRUE))
-			return T
 
 /**
  * Gets the changes dictionary made to the job template by the map config. Returns null if job is removed.

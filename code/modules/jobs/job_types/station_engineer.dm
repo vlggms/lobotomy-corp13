@@ -1,33 +1,5 @@
-/datum/job/engineer
-	title = "Station Engineer"
-	department_head = list("Chief Engineer")
-	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
-	supervisors = "the chief engineer"
-	selection_color = "#fff5cc"
-	exp_requirements = 60
-	exp_type = EXP_TYPE_CREW
-
-	outfit = /datum/outfit/job/engineer
-
-	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_AUX_BASE,
-									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_ATMOSPHERICS, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
-	minimal_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECH_ENGINE, ACCESS_AUX_BASE,
-									ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_TCOMSAT, ACCESS_MINERAL_STOREROOM)
-	paycheck = PAYCHECK_MEDIUM
-	paycheck_department = ACCOUNT_ENG
-
-	liver_traits = list(TRAIT_ENGINEER_METABOLISM)
-
-	display_order = JOB_DISPLAY_ORDER_STATION_ENGINEER
-	bounty_types = CIV_JOB_ENG
-
-	skills_type = /datum/skill_list_bay/engineer
-
 /datum/outfit/job/engineer
 	name = "Station Engineer"
-	jobtype = /datum/job/engineer
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	l_pocket = /obj/item/pda/engineering
