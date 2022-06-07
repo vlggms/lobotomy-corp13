@@ -42,6 +42,15 @@
 /// Involved in checking the likelyhood of applying a wound to a mob.
 #define WOUND		"wound"
 
+/// Red damage type
+#define RED_DAMAGE			"red"
+/// Deals sanity damage to humans and brute damage to simple mobs.
+#define WHITE_DAMAGE		"white"
+/// Deals both brute and sanity damage.
+#define BLACK_DAMAGE		"black"
+/// Deals brute damage in percents.
+#define PALE_DAMAGE			"pale"
+
 //bitflag damage defines used for suicide_act
 #define BRUTELOSS 	            	(1<<0)
 #define FIRELOSS 	            	(1<<1)

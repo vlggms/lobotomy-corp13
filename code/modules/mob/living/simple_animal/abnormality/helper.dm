@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "helper"
 	icon_living = "helper"
-	maxHealth = 600
-	health = 600
+	maxHealth = 900
+	health = 900
 	see_in_dark = 10
 	rapid_melee = 2
 	ranged = TRUE
@@ -16,12 +16,11 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	obj_damage = 250
 	speak_emote = list("states")
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
 	vision_range = 8
-	aggro_vision_range = 12
+	aggro_vision_range = 20
 	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)
 
 	can_breach = TRUE
@@ -33,11 +32,13 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = 20
 						)
+	work_damage_amount = 6
+	work_damage_type = RED_DAMAGE
 
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
-	var/dash_cooldown_time = 15 SECONDS
+	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 
 /datum/action/innate/abnormality_attack/helper_dash
@@ -88,12 +89,12 @@
 	dash_cooldown = world.time + dash_cooldown_time
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)
 	var/para = TRUE
-	if(dir in list(WEST, NORTHWEST, SOUTHWEST))
+	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	been_hit = list()
-	SpinAnimation(1.5 SECONDS, 1, para)
+	SpinAnimation(1.8 SECONDS, 1, para)
+	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(move_dir, times_ran)
@@ -101,6 +102,9 @@
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
 	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		charging = FALSE
+		return
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
 		M.gets_drilled()
@@ -112,16 +116,16 @@
 		if(D.density)
 			D.open(2)
 	if(stop_charge)
-		playsound(src, 'sound/abnormalities/helper/disable.ogg', 100, 1)
+		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
 		SLEEP_CHECK_DEATH(5 SECONDS)
 		charging = FALSE
 		return
 	forceMove(T)
 	var/para = TRUE
-	if(dir in list(WEST, NORTHWEST, SOUTHWEST))
+	if(move_dir in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
-	SpinAnimation(2, 1, para)
-	playsound(src,"sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(80, 120), 1)
+	SpinAnimation(3, 1, para)
+	playsound(src,"sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
 	for(var/mob/living/L in range(1, T))
 		if(!faction_check_mob(L))
 			if(L in been_hit)
@@ -135,10 +139,10 @@
 				var/mob/living/carbon/human/H = L
 				// Ugly code
 				var/affecting = get_bodypart(ran_zone(pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-				var/armor = H.run_armor_check(affecting, MELEE, armour_penetration = src.armour_penetration)
+				var/armor = H.run_armor_check(affecting, armortype, armour_penetration = src.armour_penetration)
 				H.apply_damage(60, src.melee_damage_type, affecting, armor, wound_bonus = src.wound_bonus, bare_wound_bonus = src.bare_wound_bonus, sharpness = src.sharpness)
 			else
-				L.adjustBruteLoss(60)
+				L.adjustRedLoss(60)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue

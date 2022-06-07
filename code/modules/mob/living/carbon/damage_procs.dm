@@ -43,6 +43,14 @@
 					update_damage_overlays()
 			else
 				adjustStaminaLoss(damage_amount, forced = forced)
+		if(RED_DAMAGE)
+			adjustRedLoss(damage_amount, forced = forced)
+		if(WHITE_DAMAGE)
+			adjustWhiteLoss(damage_amount, forced = forced)
+		if(BLACK_DAMAGE)
+			adjustBlackLoss(damage_amount, forced = forced)
+		if(PALE_DAMAGE)
+			adjustPaleLoss(damage_amount, forced = forced)
 	return TRUE
 
 

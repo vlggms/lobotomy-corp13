@@ -10,6 +10,8 @@
 
 	setup_human_dna()
 
+	init_attributes()
+
 	if(dna.species)
 		INVOKE_ASYNC(src, .proc/set_species, dna.species.type)
 
@@ -26,21 +28,28 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
 
+/mob/living/carbon/human/proc/init_attributes()
+	for(var/type in GLOB.attribute_types)
+		if(ispath(type, /datum/attribute))
+			var/datum/attribute/atr = new type
+			attributes[atr.name] = atr
+			atr.on_update(src)
+
 /mob/living/carbon/human/proc/show_attributes()
 	set category = "IC"
 	set name = "Show Attributes"
 
-	if(!mind || !mind?.attributes)
+	if(!LAZYLEN(attributes))
 		to_chat(src, "<span class='warning'>You have no attributes!</span>")
 		return
 
 	var/list/dat = list()
 	dat += "Level [get_user_level(src)]<br>"
-	for(var/atrname in mind.attributes)
-		var/datum/attribute/atr = mind.attributes[atrname]
+	for(var/atrname in attributes)
+		var/datum/attribute/atr = attributes[atrname]
 		dat += "[atr.name]: [atr.level] / [atr.level_limit]"
 
-	var/datum/browser/popup = new(src, "skills", "<div align='center'>Attributes</div>", 300, 600)
+	var/datum/browser/popup = new(src, "skills", "<div align='center'>Attributes</div>", 300, 300)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -1151,7 +1160,7 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 
-	if(mind?.attributes)
+	if(LAZYLEN(attributes))
 		maxHealth = 100 + get_attribute_level(src, FORTITUDE_ATTRIBUTE) // A maximum of 220
 		maxSanity = 100 + get_attribute_level(src, PRUDENCE_ATTRIBUTE)
 

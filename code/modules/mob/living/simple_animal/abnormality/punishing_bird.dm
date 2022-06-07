@@ -13,8 +13,9 @@
 	response_disarm_simple = "flail at"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	is_flying_animal = TRUE
-	maxHealth = 300
-	health = 300
+	maxHealth = 500
+	health = 500
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	harm_intent_damage = 10
 	melee_damage_lower = 1
@@ -31,8 +32,6 @@
 	mob_size = MOB_SIZE_TINY
 	is_flying_animal = TRUE
 	speak_emote = list("chirps")
-	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
-	minbodytemp = 0
 	vision_range = 14
 	aggro_vision_range = 28
 	can_breach = TRUE
@@ -44,6 +43,9 @@
 						ABNORMALITY_WORK_ATTACHMENT = 50,
 						ABNORMALITY_WORK_REPRESSION = 10
 						)
+	work_damage_amount = 2
+	work_damage_type = RED_DAMAGE
+
 	var/list/enemies = list()
 	var/list/already_punished = list()
 
@@ -145,7 +147,7 @@
 			TransformRed()
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe, success_pe)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(-1)

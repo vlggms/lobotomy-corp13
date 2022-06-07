@@ -357,6 +357,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
 		return
+	if(ishuman(mind.current)) // Went insane
+		var/mob/living/carbon/human/H = mind.current
+		if(H.sanity_lost)
+			to_chat(src, "<span class='warning'>You went insane and can't control yourself.</span>")
+			return
 	if(mind.current.key && mind.current.key[1] != "@")	//makes sure we don't accidentally kick any clients
 		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
 		return

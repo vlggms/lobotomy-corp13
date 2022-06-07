@@ -1,0 +1,28 @@
+{
+	"version": 1,
+	"map_name": "Facility X-114",
+	"map_path": "map_files/FacilityTest",
+	"map_file": [
+		"facility_surface.dmm",
+		"facility_test.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"traits": [
+		{
+			"Down": -1,
+			"Station": false,
+			"Linkage": null,
+			"Gravity": true,
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		},
+		{
+			"Up": 1,
+			"Linkage": null,
+			"Gravity": true,
+			"Ice Ruins": true,
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"minetype": "none"
+}

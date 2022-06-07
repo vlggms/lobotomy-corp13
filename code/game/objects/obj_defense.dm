@@ -25,10 +25,10 @@
 
 ///returns the damage value of the attack after processing the obj's various armor protections
 /obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
-	if(damage_flag == MELEE && damage_amount < damage_deflection)
+	if(damage_amount < damage_deflection)
 		return 0
 	switch(damage_type)
-		if(BRUTE)
+		if(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		if(BURN)
 		else
 			return 0
@@ -42,7 +42,7 @@
 ///the sound played when the obj is damaged.
 /obj/proc/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
-		if(BRUTE)
+		if(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE) // Guh
 			if(damage_amount)
 				playsound(src, 'sound/weapons/smash.ogg', 50, TRUE)
 			else

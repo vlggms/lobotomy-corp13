@@ -13,34 +13,10 @@ Format:
 	votable (is this map votable)
 endmap
 
-map metastation
-	#default
-	minplayers 25
-	#voteweight 0.5
-	votable
-endmap
-
-map deltastation
-	minplayers 50
-	votable
-endmap
-
-map kilostation
-	votable
-endmap
-
-map icebox
-	minplayers 25
-	votable
-endmap
-
-map packedstation
-	maxplayers 20
+map facilitytest
+	default
 	votable
 endmap
 
 map runtimestation
-endmap
-
-map multiz_debug
 endmap
