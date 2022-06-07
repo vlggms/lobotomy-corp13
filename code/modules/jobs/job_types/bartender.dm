@@ -16,8 +16,6 @@
 	display_order = JOB_DISPLAY_ORDER_BARTENDER
 	bounty_types = CIV_JOB_DRINK
 
-	skills_type = /datum/skill_list_bay/culinary
-
 /datum/outfit/job/bartender
 	name = "Bartender"
 	jobtype = /datum/job/bartender

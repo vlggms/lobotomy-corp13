@@ -4,7 +4,6 @@
 	roundend_category = "space pirates"
 	antagpanel_category = "Pirate"
 	show_to_ghosts = TRUE
-	skills_type = /datum/skill_list_bay/syndi
 	var/datum/team/pirate/crew
 
 /datum/antagonist/pirate/greet()

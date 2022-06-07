@@ -143,12 +143,6 @@ HOW ALT TITLES PICK OUTFITS
 	name = "Atmospheric Technician (Senior Atmospheric Technician)"
 	head = /obj/item/clothing/head/beret/tegu/atmos
 
-/// Void Technician
-/datum/outfit/job/voidtech/spacemarine
-	name = "Void Technician (Space Marine)"
-	shoes = /obj/item/clothing/shoes/jackboots
-	suit = /obj/item/clothing/suit/space/hardsuit/voidtech/marine
-
 /*** Supply ***/
 /// Cargo Tech
 /datum/outfit/job/cargo_tech/mailroomtechnician

@@ -21,6 +21,7 @@
 
 /datum/team/apostles
 	name = "Apostles"
+	var/victory_state = "none" // Updated on rapture and death
 
 /datum/antagonist/apostle/get_team()
 	return ap_team
@@ -54,6 +55,7 @@
 	var/datum/outfit/ApostleFit = new /datum/outfit/apostle
 	var/obj/item/wep_type
 	var/obj/effect/proc_holder/spell/spell_type = /obj/effect/proc_holder/spell/targeted/summonitem
+	ap_team.victory_state = "rapture"
 	switch(number)
 		if(1, 11) // Guardian
 			wep_type = /obj/item/nullrod/scythe/apostle/guardian
@@ -68,6 +70,9 @@
 			H.dropItemToGround(H.wear_mask)
 			spell_type = null
 			ApostleFit = /datum/outfit/apostle_heretic
+			to_chat(H, "<span class='userdanger'>Only now you realize the errors of your way! Seek to destroy the false prophet at any cost!</span>")
+			to_chat(H, "<span class='notice'>The bible shall grant you the powers to destroy them...</span>")
+			H.faction -= "apostle"
 	H.equipOutfit(ApostleFit)
 	if(wep_type)
 		var/obj/item/held = H.get_active_held_item()
@@ -87,6 +92,11 @@
 	H.visible_message("<span class='danger'>[H.real_name] briefly looks above...</span>", "<span class='userdanger'>You see the light above...</span>")
 	H.emote("scream")
 	H.Immobilize(200)
+	switch(ap_team.victory_state)
+		if("rapture")
+			ap_team.victory_state = "death_rapture"
+		else
+			ap_team.victory_state = "death"
 	addtimer(CALLBACK(src, .proc/soundd_in), (number * 6))
 
 /datum/antagonist/apostle/proc/soundd_in()
@@ -119,9 +129,18 @@
 			else
 				mod = "th"
 		parts += "[printplayer(A.owner.current.mind)]; The [A.number][mod] apostle."
-	if(members.len > 11)
-		parts += "<span class='greentext'>The rapture was successful!</span>"
-	else
-		parts += "<span class='redtext'>The apostles didn't manage to achieve rapture!</span>"
+	switch(victory_state)
+		if("rapture")
+			parts += "<span class='greentext big'>Victory!</span>"
+			parts += "<B>The rapture has been successful and White Night lives on.</B>"
+		if("death_rapture")
+			parts += "<span class='neutraltext big'>Draw!</span>"
+			parts += "<B>The rapture has been successful, but White Night has been defeated.</B>"
+		if("death")
+			parts += "<span class='redtext big'>Major Defeat!</span>"
+			parts += "<B>White Night didn't manage to achieve rapture and was defeated.</B>"
+		else
+			parts += "<span class='redtext big'>Defeat!</span>"
+			parts += "<B>The apostles didn't manage to achieve rapture.</B>"
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

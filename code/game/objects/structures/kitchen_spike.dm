@@ -101,8 +101,7 @@
 			M.visible_message("<span class='notice'>[user] tries to pull [M] free of [src]!</span>",\
 				"<span class='notice'>[user] is trying to pull you off [src], opening up fresh wounds!</span>",\
 				"<span class='hear'>You hear a squishy wet noise.</span>")
-			var/skill_mod = SKILL_CHECK_VALUE(user, "unarmed")
-			if(!do_after(user, (300 / skill_mod), target = src))
+			if(!do_after(user, 300, target = src))
 				if(M?.buckled)
 					M.visible_message("<span class='notice'>[user] fails to free [M]!</span>",\
 					"<span class='notice'>[user] fails to pull you off of [src].</span>")

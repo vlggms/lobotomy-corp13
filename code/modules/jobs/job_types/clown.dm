@@ -18,7 +18,6 @@
 
 	display_order = JOB_DISPLAY_ORDER_CLOWN
 
-	skills_type = /datum/skill_list_bay/assistant
 
 /datum/job/clown/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

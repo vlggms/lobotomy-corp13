@@ -1,68 +1,35 @@
 GLOBAL_LIST_INIT(command_positions, list(
-	"Captain",
-	"Head of Personnel",
-	"Head of Security",
-	"Chief Engineer",
-	"Research Director",
-	"Chief Medical Officer"))
+	))
 
 
 GLOBAL_LIST_INIT(engineering_positions, list(
-	"Chief Engineer",
-	"Station Engineer",
-	"Void Technician", // Tegustation Voidtech edit
-	"Atmospheric Technician"))
+	))
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
-	"Chief Medical Officer",
-	"Medical Doctor",
-	"Paramedic",
-	"Virologist",
-	"Chemist"))
+	))
 
 
 GLOBAL_LIST_INIT(science_positions, list(
-	"Research Director",
-	"Scientist",
-	"Geneticist",
-	"Roboticist"))
+	))
 
 
 GLOBAL_LIST_INIT(supply_positions, list(
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner"))
+	))
 
 
 GLOBAL_LIST_INIT(service_positions, list(
-	"Head of Personnel",
-	"Bartender",
-	"Botanist",
-	"Cook",
-	"Janitor",
-	"Curator",
-	"Psychologist",
-	"Lawyer",
-	"Chaplain",
-	"Clown",
-	"Mime",
-	"Prisoner",
-	"Assistant"))
+	))
 
 
 GLOBAL_LIST_INIT(security_positions, list(
-	"Head of Security",
-	"Warden",
-	"Detective",
-	"Deputy", // Tegustation Deupty edit: Adds them as a Security job
-	"Security Officer"))
+	"Agent",
+	"Senior Agent",
+	))
 
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
-	"AI",
-	"Cyborg",
-	ROLE_PAI))
+	))
 
 // job categories for rendering the late join menu
 GLOBAL_LIST_INIT(position_categories, list(

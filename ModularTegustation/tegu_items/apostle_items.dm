@@ -41,8 +41,8 @@
 /obj/item/storage/book/bible/attack_self(mob/living/carbon/human/user) // Normal bible effect when used by apostle №12.
 	for(var/datum/antagonist/apostle/A in user.mind.antag_datums)
 		if(A.number == 12)
-			var/mob/living/simple_animal/hostile/megafauna/apostle/devil
-			for(var/mob/living/simple_animal/hostile/megafauna/apostle/E in GLOB.player_list)
+			var/mob/living/simple_animal/hostile/abnormality/apostle/devil
+			for(var/mob/living/simple_animal/hostile/abnormality/apostle/E in GLOB.player_list)
 				devil = E
 				break
 			if(!devil)
@@ -71,6 +71,8 @@
 			user.jitteriness += (50)
 			user.do_jitter_animation(user.jitteriness)
 			apostle_use = FALSE
+			return
+	. = ..()
 
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
@@ -259,7 +261,7 @@
 	projectile_type = /obj/projectile/magic/arcane_barrage/apostle
 
 /obj/projectile/magic/arcane_barrage/apostle
-	damage = 16
+	damage = 20
 	damage_type = BURN
 	armour_penetration = 25
 
@@ -319,7 +321,7 @@
 	recharge_time = (world.time + (recharge_time_base * 0.5)) // This one here to avoid spam
 	to_chat(user, "<span class='warning'>You change your stance and prepare to dash forward.</span>")
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_charge.ogg', 100, 1)
-	if(!do_after(user, 36))
+	if(!do_after(user, 25))
 		return
 	recharge_time = (world.time + recharge_time_base) // The real cooldown
 	user.forceMove(final_T)

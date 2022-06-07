@@ -1,27 +1,5 @@
-/datum/job/mining
-	title = "Shaft Miner"
-	department_head = list("Head of Personnel")
-	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
-	supervisors = "the quartermaster and the head of personnel"
-	selection_color = "#dcba97"
-
-	outfit = /datum/outfit/job/miner
-
-	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_QM, ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM, ACCESS_AUX_BASE)
-	minimal_access = list(ACCESS_MINING, ACCESS_MECH_MINING, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM, ACCESS_AUX_BASE)
-	paycheck = PAYCHECK_MEDIUM
-	paycheck_department = ACCOUNT_CAR
-
-	display_order = JOB_DISPLAY_ORDER_SHAFT_MINER
-	bounty_types = CIV_JOB_MINE
-
-	skills_type = /datum/skill_list_bay/cargo/miner
-
 /datum/outfit/job/miner
 	name = "Shaft Miner"
-	jobtype = /datum/job/mining
 
 	belt = /obj/item/pda/shaftminer
 	ears = /obj/item/radio/headset/headset_cargo/mining

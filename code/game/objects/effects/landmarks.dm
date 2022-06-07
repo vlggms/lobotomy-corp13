@@ -439,3 +439,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /// In landmarks.dm and not unit_test.dm so it is always active in the mapping tools.
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
+
+/obj/effect/landmark/abnormality_spawn
+	name = "abnormality spawn"
+	var/datum/abnormality/datum_reference = null
+
+/obj/effect/landmark/abnormality_spawn/Destroy()
+	QDEL_NULL(datum_reference)
+	return ..()

@@ -3,7 +3,6 @@
 	name = "TerraGov Marine"
 	outfit = /datum/outfit/terragov/marine
 	role = "Marine"
-	skills_type = /datum/skill_list_bay/centcom/commando
 
 /datum/antagonist/ert/terragov/greet()
 	if(!ert_team)
@@ -42,7 +41,6 @@
 	role = "Inspector"
 	random_names = FALSE
 	outfit = /datum/outfit/terragov
-	skills_type = /datum/skill_list_bay/centcom
 
 //message on spawn
 
