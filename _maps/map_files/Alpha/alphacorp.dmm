@@ -1,499 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"av" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/stairs/left,
-/area/ruin/has_grav/powered)
 "aU" = (
-/obj/machinery/light,
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"bE" = (
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"bV" = (
-/obj/structure/showcase/mecha/marauder,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"dq" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"du" = (
-/obj/effect/spawner/abnormality_room,
-/turf/closed/indestructible/reinforced,
-/area/ruin/has_grav/powered)
-"dw" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"ep" = (
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"eE" = (
-/turf/closed/indestructible/fakeglass,
-/area/ruin/has_grav/powered)
-"eF" = (
-/obj/item/target/alien/anchored,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav/powered)
-"eH" = (
-/obj/structure/bookcase/random,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"ff" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"fD" = (
-/obj/machinery/computer,
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"gx" = (
-/turf/open/floor/plasteel/stairs/medium,
-/area/ruin/has_grav/powered)
-"hb" = (
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav/powered)
-"ht" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"hN" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"hW" = (
-/obj/structure/table/wood,
-/obj/item/storage/lockbox/medal,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"ir" = (
-/obj/effect/spawner/randomcolavend,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"iV" = (
-/obj/structure/sign/plaques/kiddie/library{
-	pixel_x = -32
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"kx" = (
-/obj/structure/weightmachine/weightlifter,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"kW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"lG" = (
-/obj/machinery/computer,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"mI" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"mT" = (
-/obj/machinery/vending/coffee,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"mZ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"nT" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav/powered)
-"nU" = (
-/obj/machinery/computer{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"nV" = (
-/obj/structure/window,
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/grass,
-/area/ruin/has_grav/powered)
-"oC" = (
-/turf/closed/indestructible/rock,
-/area/ruin/has_grav/powered)
-"oI" = (
-/obj/machinery/light,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"qv" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"qN" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"qQ" = (
-/obj/structure/weightmachine/stacklifter,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"rb" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/cups,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"rt" = (
-/obj/structure/statue/sandstone/venus,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"rS" = (
-/obj/structure/fluff/clockwork/fallen_armor,
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"sv" = (
-/turf/closed/wall/r_wall,
-/area/ruin/has_grav/powered)
-"tm" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"tR" = (
-/obj/structure/statue/sandstone/venus{
-	dir = 8
-	},
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"ur" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"vw" = (
-/obj/effect/spawner/abnormality_room,
-/turf/closed/wall/r_wall,
-/area/ruin/has_grav/powered)
-"vC" = (
-/obj/effect/spawner/randomsnackvend,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"vH" = (
-/obj/structure/table/wood,
-/obj/item/folder/red{
-	pixel_x = -3
-	},
-/obj/item/clipboard{
-	pixel_x = 2
-	},
-/turf/open/floor/carpet/royalblack,
-/area/ruin/has_grav/powered)
-"wV" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/fancy/donut_box,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"yo" = (
-/obj/item/target/alien/anchored,
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav/powered)
-"zD" = (
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 1
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/grass,
-/area/ruin/has_grav/powered)
-"zM" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"Ad" = (
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"AE" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"Bf" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"Dr" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"DP" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"Fv" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"FF" = (
-/obj/structure/fluff/clockwork/blind_eye,
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"FJ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"Gc" = (
-/obj/structure/table/wood,
-/obj/item/paper_bin{
-	pixel_x = -6
-	},
-/obj/item/pen{
-	pixel_x = -6
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"IY" = (
-/obj/machinery/light,
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"KK" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"KV" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/showcase/mecha/marauder,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"Lk" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"LL" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"Nc" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"Ny" = (
-/obj/machinery/door/airlock/highsecurity,
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"NR" = (
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"NT" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"NZ" = (
-/obj/structure/chair,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"Oi" = (
-/obj/structure/chair{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"OL" = (
-/turf/open/floor/plating,
-/area/ruin/has_grav/powered)
-"OP" = (
-/obj/machinery/light,
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"Qg" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/showcase/mecha/marauder,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"Qj" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"Qz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"QO" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"QQ" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/ruin/has_grav/powered)
-"QW" = (
-/obj/structure/table/wood,
-/obj/item/folder/blue{
-	pixel_x = -6
-	},
-/obj/item/book/random{
-	pixel_x = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"Ri" = (
-/obj/structure/healingfountain,
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"RE" = (
-/obj/structure/statue/gold/hos,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"RK" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"So" = (
-/turf/closed/indestructible/reinforced,
-/area/ruin/has_grav/powered)
-"SL" = (
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"ST" = (
-/obj/structure/flora/tree/jungle{
-	icon = 'icons/obj/flora/jungletreesmall.dmi';
-	icon_state = "tree1";
-	pixel_x = -32
-	},
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/window{
-	dir = 8
-	},
-/turf/open/floor/plating/grass,
-/area/ruin/has_grav/powered)
-"SZ" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/carpet/red,
-/area/ruin/has_grav/powered)
-"TJ" = (
-/obj/machinery/computer,
-/turf/open/floor/circuit,
-/area/ruin/has_grav/powered)
-"Uv" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/obj/item/clothing/ears/earmuffs{
-	pixel_y = 4
-	},
-/obj/item/clothing/ears/earmuffs,
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"Uz" = (
-/turf/open/floor/wood,
-/area/ruin/has_grav/powered)
-"UF" = (
-/turf/open/floor/carpet/stellar,
-/area/ruin/has_grav/powered)
-"Vj" = (
-/obj/machinery/computer{
-	dir = 8
-	},
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"Vw" = (
-/obj/structure/sign/warning/firingrange,
-/turf/closed/indestructible/reinforced,
-/area/ruin/has_grav/powered)
-"Xf" = (
-/obj/structure/fluff/divine/nexus,
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"Xk" = (
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"Xu" = (
-/obj/structure/chair/sofa/corp{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/ruin/has_grav/powered)
-"XK" = (
-/obj/structure/sign/warning,
-/turf/closed/indestructible/reinforced,
-/area/ruin/has_grav/powered)
-"Ya" = (
-/obj/structure/fluff/divine/conduit,
-/turf/open/floor/carpet/purple,
-/area/ruin/has_grav/powered)
-"YB" = (
 /obj/structure/table/wood,
 /obj/structure/plaque/static_plaque/golden{
 	pixel_y = 32
@@ -510,7 +16,817 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/has_grav/powered)
-"YI" = (
+"aY" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Information room"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"bZ" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"du" = (
+/obj/item/target/alien/anchored,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"dw" = (
+/obj/item/target/alien/anchored,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"dK" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"ep" = (
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"eD" = (
+/obj/structure/table/wood,
+/obj/item/folder/red{
+	pixel_x = -3
+	},
+/obj/item/clipboard{
+	pixel_x = 2
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"eF" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"eH" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"fj" = (
+/obj/effect/turf_decal/siding/yellow/corner{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"fk" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/personal,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"fl" = (
+/obj/structure/statue/gold/hos,
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"fD" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"fM" = (
+/obj/structure/fluff/divine/nexus,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/solarpanel,
+/area/ruin/has_grav/powered)
+"gx" = (
+/obj/effect/turf_decal/siding/yellow/corner,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"gA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"gX" = (
+/obj/structure/sign/warning,
+/turf/closed/indestructible/reinforced,
+/area/ruin/has_grav/powered)
+"hb" = (
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"hN" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"hW" = (
+/obj/structure/statue/gold/hos,
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"ih" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/medium,
+/area/ruin/has_grav/powered)
+"iV" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/weightmachine/stacklifter,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"jd" = (
+/obj/structure/sign/plaques/kiddie/library{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"jN" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"kx" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"kS" = (
+/obj/structure/healingfountain,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/solarpanel,
+/area/ruin/has_grav/powered)
+"kW" = (
+/obj/structure/flora/grass/jungle/b,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"lw" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"mq" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"mT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"mZ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/item/clothing/ears/earmuffs{
+	pixel_y = 4
+	},
+/obj/item/clothing/ears/earmuffs,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"nd" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"nq" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"nT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"nU" = (
+/obj/structure/showcase/machinery{
+	desc = "A server for the information department. Stores information.";
+	icon_state = "blackbox";
+	name = "Information Server"
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"nV" = (
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"oe" = (
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"oC" = (
+/turf/closed/indestructible/rock,
+/area/ruin/has_grav/powered)
+"oI" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"oQ" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"oU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"pg" = (
+/obj/structure/table/wood,
+/obj/item/storage/box/cups,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"pL" = (
+/obj/structure/table,
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"qv" = (
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"qN" = (
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"qQ" = (
+/obj/machinery/light,
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"rb" = (
+/obj/machinery/light,
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"rt" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"sv" = (
+/turf/closed/wall/r_wall,
+/area/ruin/has_grav/powered)
+"sM" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"sW" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"tm" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"tR" = (
+/obj/structure/statue/sandstone/venus,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"ur" = (
+/obj/structure/table/wood,
+/obj/item/storage/lockbox/medal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"vw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"vC" = (
+/turf/closed/indestructible/riveted,
+/area/ruin/has_grav/powered)
+"vH" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"wv" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"xh" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"xA" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"yo" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"zD" = (
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"zM" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"Ad" = (
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"AN" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Bf" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"Bp" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Command Room"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Cv" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/ruin/has_grav/powered)
+"Cx" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"CI" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"DC" = (
+/obj/effect/turf_decal/siding/yellow,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"DP" = (
+/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"En" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 6
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"EA" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"EN" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"Fg" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control room"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Fk" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Training Room"
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Fv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/showcase/mecha/marauder{
+	pixel_y = -1
+	},
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 1;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"FJ" = (
+/obj/effect/spawner/abnormality_room,
+/turf/closed/indestructible/reinforced,
+/area/ruin/has_grav/powered)
+"Gb" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Gc" = (
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/structure/showcase/mecha/marauder{
+	pixel_y = -1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"GM" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"GZ" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"Hz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/medium,
+/area/ruin/has_grav/powered)
+"HH" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"HY" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Ib" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"IF" = (
+/obj/structure/fluff/clockwork/fallen_armor,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/solarpanel,
+/area/ruin/has_grav/powered)
+"IK" = (
+/obj/machinery/computer{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"IY" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"Jf" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"Kt" = (
+/obj/structure/flora/tree/jungle{
+	icon = 'icons/obj/flora/jungletreesmall.dmi';
+	icon_state = "tree1";
+	pixel_x = -32
+	},
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"KK" = (
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/structure/showcase/mecha/marauder{
+	pixel_y = -1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"Lk" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced/spawner{
+	dir = 1;
+	pixel_y = 3
+	},
+/obj/structure/showcase/mecha/marauder{
+	pixel_y = -1
+	},
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"LB" = (
+/obj/effect/turf_decal/siding/yellow/corner,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"LE" = (
+/obj/structure/fluff/clockwork/blind_eye,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/solarpanel,
+/area/ruin/has_grav/powered)
+"LL" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"Mn" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"MI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/wood,
+/obj/item/book/random{
+	pixel_x = 4
+	},
+/obj/item/folder/blue{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"Nc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Ny" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"NR" = (
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"NT" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin{
+	pixel_x = -6
+	},
+/obj/item/pen{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"NZ" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/ruin/has_grav/powered)
+"Oi" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"OL" = (
+/turf/open/floor/plating,
+/area/ruin/has_grav/powered)
+"OP" = (
+/obj/item/kirbyplants/random,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"OV" = (
+/obj/structure/table,
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"Qj" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"Qk" = (
+/obj/structure/chair/comfy,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"Qp" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Qu" = (
+/obj/structure/table,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"Qx" = (
+/turf/open/floor/plasteel/stairs/left,
+/area/ruin/has_grav/powered)
+"Qz" = (
+/obj/machinery/computer,
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"QO" = (
+/obj/structure/chair/sofa/corp{
+	dir = 8
+	},
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"QQ" = (
+/obj/structure/table,
+/obj/machinery/microwave,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
+"QT" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"QW" = (
+/obj/machinery/computer{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"RK" = (
+/obj/structure/chair,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"RN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"RX" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"So" = (
+/turf/closed/indestructible/reinforced,
+/area/ruin/has_grav/powered)
+"SB" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"SL" = (
+/obj/machinery/computer,
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"ST" = (
+/obj/structure/statue/sandstone/venus{
+	dir = 8
+	},
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"SZ" = (
+/obj/effect/turf_decal/siding/red,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Tj" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"TC" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"TJ" = (
+/turf/open/floor/circuit,
+/area/ruin/has_grav/powered)
+"TK" = (
+/obj/structure/fluff/divine/conduit,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/solarpanel,
+/area/ruin/has_grav/powered)
+"TL" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"TY" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Uv" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Uz" = (
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
+"UF" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Vj" = (
+/obj/structure/showcase/machinery/cloning_pod{
+	desc = "A device for storing fragile biological samples. This one is out of order.";
+	name = "cryopod tube"
+	},
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"Vw" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/structure/sign/warning/firingrange{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Vy" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/laser/practice{
 	pixel_y = 6
@@ -519,24 +835,59 @@
 	pixel_y = 3
 	},
 /obj/item/gun/energy/laser/practice,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"Xk" = (
+/turf/open/floor/carpet/purple,
+/area/ruin/has_grav/powered)
+"Xu" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
 /turf/open/floor/carpet/orange,
 /area/ruin/has_grav/powered)
-"YR" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/stairs/right,
-/area/ruin/has_grav/powered)
-"YS" = (
-/obj/structure/chair/comfy,
+"XE" = (
+/obj/effect/spawner/randomsnackvend,
 /turf/open/floor/carpet/stellar,
 /area/ruin/has_grav/powered)
+"XK" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
+"Ya" = (
+/turf/closed/indestructible/fakeglass,
+/area/ruin/has_grav/powered)
+"YB" = (
+/obj/effect/spawner/abnormality_room,
+/turf/closed/wall/r_wall,
+/area/ruin/has_grav/powered)
+"YI" = (
+/obj/effect/turf_decal/siding/yellow/corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"YR" = (
+/turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"YS" = (
+/obj/structure/window/reinforced,
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
 "Zl" = (
+/obj/machinery/computer,
 /turf/open/floor/circuit,
 /area/ruin/has_grav/powered)
 "ZB" = (
-/obj/structure/chair/comfy/black,
+/obj/machinery/computer,
 /turf/open/floor/carpet/royalblack,
+/area/ruin/has_grav/powered)
+"ZL" = (
+/obj/machinery/telecomms/allinone/indestructable,
+/turf/open/indestructible,
 /area/ruin/has_grav/powered)
 
 (1,1,1) = {"
@@ -582,26 +933,25 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
+vC
+vC
+vC
 "}
 (2,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-lG
-ff
+TJ
+Ya
+Qz
+nT
 NR
-lG
-ff
-NR
-NR
-Qg
+Qz
+nT
+rt
+SZ
+Fv
 So
 oC
 oC
@@ -630,26 +980,25 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
+vC
+ZL
+vC
 "}
 (3,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-lG
-ht
+TJ
+Ya
+Qz
+oI
 NR
-lG
-ht
-NR
-NR
-bV
+Qz
+oI
+rt
+SZ
+Gc
 So
 oC
 oC
@@ -678,49 +1027,47 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
+vC
+vC
+vC
 "}
 (4,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-RE
+TJ
+Ya
+hW
 NR
 NR
 NR
 NR
-NR
-NR
-Dr
+rt
+SZ
+IY
 So
 So
 So
 So
-du
-So
-So
-So
-So
-So
-So
-du
+FJ
 So
 So
 So
 So
 So
 So
-du
+FJ
 So
 So
 So
-oC
+So
+So
+So
+FJ
+So
+So
+So
 oC
 oC
 oC
@@ -733,19 +1080,19 @@ oC
 "}
 (5,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-RE
+TJ
+Ya
+hW
 NR
 NR
 NR
 NR
-NR
-NR
+rt
 SZ
+Jf
 So
 OL
 OL
@@ -768,7 +1115,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 oC
@@ -781,67 +1127,66 @@ oC
 "}
 (6,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-lG
-ht
+TJ
+Ya
+Qz
+oI
 NR
-lG
-ht
-NR
-NR
-bV
+Qz
+oI
+rt
+SZ
+KK
 So
 OL
 OL
 OL
 So
 Ad
-QQ
+HY
 So
 OL
 OL
 OL
 So
 Ad
-QQ
+HY
 So
 OL
 OL
 OL
 So
 Ad
-QQ
+HY
 So
 sv
 sv
 So
-du
+FJ
 So
 So
 So
-oC
 oC
 oC
 "}
 (7,1,1) = {"
 So
-TJ
 Zl
 TJ
 Zl
-eE
-lG
+TJ
+Ya
 Qz
+oU
 NR
-lG
 Qz
-NR
-NR
-KV
+oU
+rt
+SZ
+Lk
 So
 OL
 OL
@@ -871,7 +1216,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -888,7 +1232,7 @@ So
 So
 So
 So
-Ny
+Fg
 So
 So
 OL
@@ -919,7 +1263,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -969,7 +1312,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (10,1,1) = {"
 oC
@@ -1017,7 +1359,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (11,1,1) = {"
 oC
@@ -1030,31 +1371,31 @@ sv
 sv
 sv
 sv
-du
 FJ
+vw
 Ad
 Ad
 Ad
 Ad
-mZ
+RN
 Ad
 Ad
 Ad
 Ad
-mZ
-Ad
-Ad
-Ad
-Ad
-Ad
-Ad
-mZ
+RN
 Ad
 Ad
 Ad
 Ad
 Ad
-QQ
+Ad
+RN
+Ad
+Ad
+Ad
+Ad
+Ad
+HY
 So
 OL
 OL
@@ -1063,7 +1404,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -1107,11 +1447,10 @@ So
 sv
 sv
 So
-du
 FJ
+vw
 Ad
 So
-oC
 oC
 oC
 "}
@@ -1161,7 +1500,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (14,1,1) = {"
 oC
@@ -1209,7 +1547,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (15,1,1) = {"
 oC
@@ -1244,7 +1581,7 @@ So
 sv
 sv
 So
-du
+FJ
 So
 So
 So
@@ -1255,7 +1592,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -1305,7 +1641,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (17,1,1) = {"
 oC
@@ -1319,7 +1654,7 @@ sv
 sv
 sv
 So
-FJ
+vw
 Ad
 So
 oC
@@ -1329,9 +1664,9 @@ oC
 oC
 oC
 So
-NT
+QT
 Ad
-NT
+QT
 So
 oC
 oC
@@ -1342,7 +1677,7 @@ OL
 OL
 So
 Ad
-QQ
+HY
 So
 OL
 OL
@@ -1351,7 +1686,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -1371,14 +1705,14 @@ Ad
 Ad
 So
 oC
-oC
 So
 So
 So
 So
 So
 So
-Ny
+So
+Bp
 So
 So
 So
@@ -1397,9 +1731,8 @@ So
 So
 So
 So
-Ny
+aY
 So
-oC
 oC
 oC
 "}
@@ -1419,19 +1752,19 @@ Ad
 Ad
 So
 oC
-oC
 So
-rt
+tR
 UF
-UF
-av
-UF
-UF
-UF
-NZ
-mI
+XE
+YR
+ih
+nV
+nV
+kx
+RK
 zM
-dq
+EN
+Qu
 So
 OL
 OL
@@ -1443,11 +1776,10 @@ So
 oC
 So
 nU
-nU
-nU
-Xk
+QW
+jN
+XK
 So
-oC
 oC
 oC
 "}
@@ -1467,19 +1799,19 @@ Ad
 Ad
 So
 oC
-oC
 So
 kW
-UF
-UF
+nq
+wv
 gx
-UF
-UF
-UF
-NZ
+Cv
+nV
+nV
+kx
 RK
-zM
-vC
+TC
+EN
+Qu
 So
 OL
 OL
@@ -1490,254 +1822,248 @@ Ad
 So
 oC
 So
-Lk
-Lk
-Lk
-Xk
+SL
+GM
+pL
 XK
+gX
 So
 So
-oC
 "}
 (21,1,1) = {"
 So
-hW
 ur
 vH
+eD
 Uz
-OP
+fD
 So
 So
 So
 So
 So
-FJ
+vw
 Ad
 So
 oC
-oC
 So
-UF
+Qp
 YS
-wV
-gx
-UF
-UF
-UF
-NZ
+YR
+zD
+fl
+nV
+nV
+kx
 RK
-zM
-ir
+TC
+EN
+RX
 So
 So
 So
 So
 So
-FJ
+vw
 Ad
 So
 So
 So
+CI
 Xk
-Xk
-Xk
-Xk
-eE
+pL
+XK
 Ya
+TK
 So
-oC
 "}
 (22,1,1) = {"
 So
-fD
-bE
-qv
-Uz
-Uz
-So
-LL
-LL
-aU
-So
-Ad
-Ad
-So
-oC
-oC
-So
-UF
-YS
-AE
-gx
-UF
-UF
-UF
-UF
-UF
-UF
-oI
-So
-FJ
-Ad
-Ad
-Ad
-Ad
-Ad
-Ad
-QQ
-So
-Xk
-Xk
-Xk
-Xk
-eE
-FF
-So
-oC
-"}
-(23,1,1) = {"
-So
-fD
 ZB
 qv
 Qj
 Uz
-KK
 Uz
-Uz
-Uz
-KK
+So
+LL
+LL
+qQ
+So
 Ad
 Ad
 So
 oC
-oC
 So
-UF
-YS
-AE
-gx
-UF
-zD
-ST
+oQ
+Tj
+YR
+fj
+xh
 nV
-UF
-UF
-UF
-Ny
+nV
+sM
+sW
+sW
+sW
+GZ
+So
+vw
 Ad
 Ad
 Ad
 Ad
 Ad
 Ad
-Ad
-Ad
-Ny
+HY
+So
+CI
 Xk
 Xk
-Xk
-Xk
-eE
-Ri
+XK
+Ya
+LE
+So
+"}
+(23,1,1) = {"
+So
+ZB
+dK
+Qj
+eF
+Uz
+lw
+Uz
+Uz
+Uz
+lw
+Ad
+Ad
 So
 oC
+So
+Kt
+TL
+YR
+Qk
+DC
+nV
+nV
+nV
+nV
+nV
+nV
+nV
+Bp
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
+Ad
+aY
+Mn
+Mn
+Mn
+Ib
+Ya
+kS
+So
 "}
 (24,1,1) = {"
 So
-fD
-bE
+ZB
 qv
+Qj
 Uz
 Uz
 So
 Oi
 Oi
-IY
+rb
 So
 Ad
 Ad
 So
 oC
-oC
 So
+SB
 UF
-YS
-AE
-gx
-UF
-UF
-UF
-UF
-UF
-UF
-oI
+YR
+LB
+En
+nV
+nV
+oe
+Cx
+Cx
+Cx
+mq
 So
-FJ
+vw
 Ad
 Ad
 Ad
 Ad
 Ad
 Ad
-QQ
+HY
 So
+CI
 Xk
 Xk
-Xk
-Xk
-eE
-rS
+XK
+Ya
+IF
 So
-oC
 "}
 (25,1,1) = {"
 So
-YB
-bE
+aU
+qv
 Uz
 Uz
-OP
+fD
 So
 So
 So
 So
 So
-FJ
+vw
 Ad
 So
 oC
-oC
 So
-UF
-YS
-wV
-gx
-UF
-UF
-UF
+AN
+TY
+YR
+zD
+fl
+nV
+nV
 NZ
-RK
-zM
-vC
+hN
+hN
+YR
+EA
 So
 So
 So
 So
-du
 FJ
+vw
 Ad
 So
 So
 So
+CI
 Xk
-Xk
-Xk
-Xk
-eE
-Xf
+pL
+XK
+Ya
+fM
 So
-oC
 "}
 (26,1,1) = {"
 So
@@ -1755,19 +2081,19 @@ Ad
 Ad
 So
 oC
-oC
 So
-kW
-UF
-UF
-gx
-UF
-UF
-UF
+xA
+Uv
+wv
+YI
+Qx
+nV
+nV
 NZ
-RK
-zM
-dq
+hN
+hN
+YR
+EA
 So
 OL
 OL
@@ -1779,13 +2105,12 @@ So
 oC
 So
 SL
-SL
-SL
-Xk
+GM
+pL
+XK
+gX
 So
 So
-So
-oC
 "}
 (27,1,1) = {"
 oC
@@ -1803,19 +2128,19 @@ Ad
 Ad
 So
 oC
-oC
 So
-tR
+ST
 UF
-UF
+XE
 YR
-UF
-UF
-UF
+Hz
+nV
+nV
 NZ
 hN
-zM
-ir
+fk
+YR
+EA
 So
 OL
 OL
@@ -1827,11 +2152,10 @@ So
 oC
 So
 Vj
-Vj
-Vj
-Xk
+IK
+bZ
+XK
 So
-oC
 oC
 oC
 "}
@@ -1851,14 +2175,14 @@ Ad
 Ad
 So
 oC
-oC
 So
 So
 So
 So
 So
 So
-Ny
+So
+Bp
 So
 So
 So
@@ -1870,16 +2194,15 @@ OL
 OL
 sv
 Ad
-QQ
+HY
 So
 sv
 sv
 So
-du
+FJ
 So
-Ny
+aY
 So
-oC
 oC
 oC
 "}
@@ -1894,8 +2217,8 @@ sv
 sv
 sv
 sv
-du
 FJ
+vw
 Ad
 So
 oC
@@ -1905,9 +2228,9 @@ oC
 oC
 oC
 So
-mZ
+RN
 Ad
-mZ
+RN
 So
 oC
 oC
@@ -1927,7 +2250,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -1977,7 +2299,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (31,1,1) = {"
 oC
@@ -2023,7 +2344,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2073,7 +2393,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (33,1,1) = {"
 oC
@@ -2121,7 +2440,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (34,1,1) = {"
 oC
@@ -2163,11 +2481,10 @@ So
 sv
 sv
 So
-du
 FJ
+vw
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2183,30 +2500,30 @@ sv
 sv
 sv
 So
-FJ
+vw
 Ad
 Ad
-NT
-Ad
-Ad
-Ad
-Ad
-Ad
-Ad
-NT
+QT
 Ad
 Ad
 Ad
 Ad
 Ad
 Ad
-NT
+QT
 Ad
 Ad
 Ad
 Ad
 Ad
-QQ
+Ad
+QT
+Ad
+Ad
+Ad
+Ad
+Ad
+HY
 So
 OL
 OL
@@ -2215,7 +2532,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2238,21 +2554,21 @@ So
 sv
 sv
 sv
-vw
+YB
 Ad
 Ad
 sv
 sv
 sv
 sv
-vw
+YB
 Ad
 Ad
 sv
 sv
 sv
 sv
-vw
+YB
 Ad
 Ad
 So
@@ -2263,7 +2579,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2313,7 +2628,6 @@ Ad
 So
 oC
 oC
-oC
 "}
 (38,1,1) = {"
 oC
@@ -2328,7 +2642,7 @@ So
 So
 So
 So
-Ny
+Fk
 So
 So
 OL
@@ -2359,7 +2673,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2369,36 +2682,36 @@ oC
 oC
 oC
 So
-nT
-hb
-ep
+gA
+So
 iV
-eH
-eH
+jd
+DP
+HH
+yo
 ep
-ep
-Fv
+MI
 So
 OL
 OL
 OL
 sv
 Ad
-QQ
+HY
 sv
 OL
 OL
 OL
 sv
 Ad
-QQ
+HY
 sv
 OL
 OL
 OL
 sv
 Ad
-QQ
+HY
 So
 OL
 OL
@@ -2407,7 +2720,6 @@ So
 Ad
 Ad
 So
-oC
 oC
 oC
 "}
@@ -2418,14 +2730,14 @@ So
 So
 So
 hb
-Vw
+hb
+Ad
+qN
 ep
 ep
-eH
-eH
 ep
 ep
-kx
+Ny
 So
 OL
 OL
@@ -2455,25 +2767,24 @@ So
 So
 So
 So
-oC
 oC
 oC
 "}
 (41,1,1) = {"
 So
-eF
+du
 hb
 hb
 hb
 hb
-Uv
-ep
+mZ
+Ad
+qN
 ep
 eH
 eH
 ep
-ep
-kx
+NT
 So
 OL
 OL
@@ -2496,7 +2807,6 @@ sv
 Ad
 Ad
 So
-oC
 oC
 oC
 oC
@@ -2509,19 +2819,19 @@ oC
 "}
 (42,1,1) = {"
 So
-yo
-hb
-hb
-hb
-hb
 dw
+hb
+hb
+hb
+hb
+nd
+Ad
+qN
 ep
+eH
+eH
 ep
-Bf
-QW
-ep
-ep
-qQ
+Ny
 So
 So
 So
@@ -2544,7 +2854,6 @@ So
 So
 So
 So
-oC
 oC
 oC
 oC
@@ -2557,21 +2866,20 @@ oC
 "}
 (43,1,1) = {"
 So
-eF
+du
 hb
 hb
 hb
 hb
-YI
+Vy
+Vw
+qN
 ep
 ep
-Bf
-Gc
 ep
 ep
-qQ
+OP
 So
-oC
 oC
 oC
 oC
@@ -2611,15 +2919,14 @@ So
 So
 So
 So
-rb
+pg
+qN
+Bf
+Bf
+Bf
 ep
-ep
-ep
-ep
-ep
-DP
+OV
 So
-oC
 oC
 oC
 oC
@@ -2659,15 +2966,14 @@ oC
 oC
 oC
 So
-qN
-tm
+Gb
 Nc
 Xu
 QO
-ep
+tm
 mT
+QQ
 So
-oC
 oC
 oC
 oC
@@ -2715,7 +3021,6 @@ So
 So
 So
 So
-oC
 oC
 oC
 oC
