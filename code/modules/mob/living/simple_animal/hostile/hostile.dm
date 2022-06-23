@@ -574,7 +574,7 @@
 	else
 		tlist = ListTargets()
 
-	if(AIStatus == AI_IDLE && FindTarget(tlist, 1))
+	if((AIStatus == AI_IDLE || AIStatus == AI_Z_OFF) && FindTarget(tlist, 1))
 		if(cheap_search) //Try again with full effort
 			FindTarget()
 		toggle_ai(AI_ON)

@@ -81,9 +81,11 @@
 	///How much armour they ignore, as a flat reduction from the targets armour value.
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
-	var/melee_damage_type = BRUTE
+	var/melee_damage_type = RED_DAMAGE
+	///Armor type that is checked when attacking someone
+	var/armortype = RED_DAMAGE
 	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
-	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	///Attacking verb in present continuous tense.
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
@@ -171,7 +173,6 @@
 	var/pet_bonus = FALSE
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
-
 
 /mob/living/simple_animal/Initialize()
 	. = ..()

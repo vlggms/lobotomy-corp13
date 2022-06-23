@@ -5,7 +5,8 @@
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
-	var/damtype = BRUTE
+	var/damtype = RED_DAMAGE
+	var/armortype = RED_DAMAGE
 	var/force = 0
 
 	/// How good a given object is at causing wounds on carbons. Higher values equal better shots at creating serious wounds.

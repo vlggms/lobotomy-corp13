@@ -529,3 +529,20 @@
 
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
+
+/obj/effect/temp_visual/bee_gas
+	icon_state = "mustard"
+	alpha = 0
+	duration = 50
+
+/obj/effect/temp_visual/bee_gas/Initialize()
+	..()
+	animate(src, alpha = rand(125,200), time = 5)
+	addtimer(CALLBACK(src, .proc/fade_out), 5)
+
+/obj/effect/temp_visual/bee_gas/proc/fade_out()
+	animate(src, alpha = 0, time = duration-5)
+
+/obj/effect/temp_visual/sanity_heal
+	icon_state = "shieldsparkles"
+	duration = 2

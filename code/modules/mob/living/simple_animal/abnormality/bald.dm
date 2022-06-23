@@ -14,6 +14,8 @@
 						ABNORMALITY_WORK_ATTACHMENT = 30,
 						ABNORMALITY_WORK_REPRESSION = 30
 						)
+	work_damage_amount = 1
+	work_damage_type = WHITE_DAMAGE
 
 	var/list/balding_list = list(
 							"Bald",
@@ -26,7 +28,7 @@
 		return 95
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/bald/work_complete(mob/living/carbon/human/user, work_type, pe, success_pe)
+/mob/living/simple_animal/hostile/abnormality/bald/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	do_bald(user)
 	bald_counter += 1

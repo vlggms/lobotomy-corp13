@@ -18,38 +18,38 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 
 // Procs
 
-/datum/attribute/proc/adjust_level(mob/living/carbon/user, attribute, addition)
-	if(!istype(user) || !user.mind || !attribute)
+/datum/attribute/proc/adjust_level(mob/living/carbon/human/user, attribute, addition)
+	if(!istype(user) || !attribute)
 		return FALSE
-	var/datum/attribute/atr = user.mind.attributes[attribute]
+	var/datum/attribute/atr = user.attributes[attribute]
 	if(!istype(atr))
 		return FALSE
 	atr.level = clamp((atr.level + addition), atr.level_lower_limit, atr.level_limit)
 	atr.on_update(user)
 	return TRUE
 
-/proc/adjust_attribute_level(mob/living/carbon/user, attribute, addition)
-	if(!istype(user) || !user.mind || !attribute)
+/proc/adjust_attribute_level(mob/living/carbon/human/user, attribute, addition)
+	if(!istype(user) || !attribute)
 		return 0
-	var/datum/attribute/atr = user.mind.attributes[attribute]
+	var/datum/attribute/atr = user.attributes[attribute]
 	if(!istype(atr))
 		return 0
 	return atr.adjust_level(user, attribute, addition)
 
-/proc/get_attribute_level(mob/living/carbon/user, attribute)
-	if(!istype(user) || !user.mind || !attribute)
+/proc/get_attribute_level(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
 		return 0
-	var/datum/attribute/atr = user.mind.attributes[attribute]
+	var/datum/attribute/atr = user.attributes[attribute]
 	if(!istype(atr))
 		return 0
-	return atr.get_level()
+	return max(1, atr.get_level())
 
 // Returns a combination of attributes, giving a "level" from 1 to 6(EX)
-/proc/get_user_level(mob/living/carbon/user)
-	if(!istype(user) || !user.mind)
+/proc/get_user_level(mob/living/carbon/human/user)
+	if(!istype(user))
 		return 0
 	var/collective_levels = 0
-	for(var/a in user.mind.attributes)
-		var/datum/attribute/atr = user.mind.attributes[a]
+	for(var/a in user.attributes)
+		var/datum/attribute/atr = user.attributes[a]
 		collective_levels += atr.level
 	return clamp(round(collective_levels / 70), 1, 6)
