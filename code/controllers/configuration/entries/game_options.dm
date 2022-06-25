@@ -174,22 +174,22 @@
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin	//Require the arrivals shuttle to be operational in order for latejoiners to join
 
 /datum/config_entry/string/alert_green
-	config_entry_value = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	config_entry_value = "Warning level has been reset. All dangerous abnormalities have been re-contained and situation is under control."
 
 /datum/config_entry/string/alert_blue_upto
-	config_entry_value = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	config_entry_value = "First warning level achieved. Few dangerous abnormalities have breached the containment."
 
 /datum/config_entry/string/alert_blue_downto
-	config_entry_value = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	config_entry_value = "Warning level reset to first. Most dangerous abnormalities have been re-contained, but situation is still threatening."
 
 /datum/config_entry/string/alert_red_upto
-	config_entry_value = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	config_entry_value = "Second warning level achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control."
 
 /datum/config_entry/string/alert_red_downto
-	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	config_entry_value = "Warning level reset to second. Facility's integrity is no longer in danger, but most abnormalities are still not re-contained."
 
 /datum/config_entry/string/alert_delta
-	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	config_entry_value = "Warning level three achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost."
 
 /datum/config_entry/flag/revival_pod_plants
 

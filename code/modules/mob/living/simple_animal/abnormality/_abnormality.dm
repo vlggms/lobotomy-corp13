@@ -5,14 +5,23 @@
 	ranged_ignores_vision = TRUE
 	stat_attack = DEAD
 	layer = LARGE_MOB_LAYER
+	a_intent = INTENT_HARM
 	del_on_death = TRUE
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
+	see_in_dark = 7
+	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
+	pull_force = MOVE_FORCE_STRONG
+	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
+	/// Can this abnormality spawn normally during the round?
+	var/can_spawn = TRUE
 	/// Reference to the datum we use
 	var/datum/abnormality/datum_reference = null
 	/// The threat level of the abnormality. It is passed to the datum on spawn
 	var/threat_level = ZAYIN_LEVEL
+	/// Separate level of fear. If null - will use threat level.
+	var/fear_level = null
 	/// Maximum qliphoth level, passed to datum
 	var/start_qliphoth = 0
 	/// Can it breach? If TRUE - zero_qliphoth() calls breach_effect()
@@ -64,6 +73,10 @@
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
 	var/work_damage_type = RED_DAMAGE
+	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
+	var/max_boxes = null
+	/// List of ego equipment datums
+	var/list/ego_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -73,6 +86,8 @@
 	if(small_sprite_type)
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
+	if(fear_level == null)
+		fear_level = threat_level
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -80,20 +95,21 @@
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/Move()
-	..()
+/mob/living/simple_animal/hostile/abnormality/Life() // Fear effect
+	. = ..()
+	if(!.) // Dead
+		return FALSE
 	if(status_flags & GODMODE)
-		return
+		return FALSE
 	for(var/mob/living/carbon/human/H in view(6, src))
 		if(H in breach_affected)
 			continue
 		breach_affected += H
-		var/sanity_result = round(threat_level - get_user_level(H))
+		var/sanity_result = round(fear_level - get_user_level(H))
 		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
 		H.adjustSanityLoss(sanity_damage)
 		if(H.sanity_lost)
-			to_chat(H, "<span class='userdanger'>I DON'T WANT TO DIE!")
-			return
+			continue
 		switch(sanity_result)
 			if(1)
 				to_chat(H, "<span class='warning'>Here it comes!")
@@ -107,7 +123,7 @@
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
 		return
@@ -134,6 +150,10 @@
 	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
 	return
 
+// Dictates whereas this type of work can be performed at the moment or not
+/mob/living/simple_animal/hostile/abnormality/proc/attempt_work(mob/living/carbon/human/user, work_type)
+	return TRUE
+
 // Effects when qliphoth reaches 0
 /mob/living/simple_animal/hostile/abnormality/proc/zero_qliphoth(mob/living/carbon/human/user)
 	if(can_breach)
@@ -144,6 +164,10 @@
 /mob/living/simple_animal/hostile/abnormality/proc/breach_effect(mob/living/carbon/human/user)
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
+
+// On lobotomy_corp subsystem qliphoth event
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
+	return
 
 // Actions
 /datum/action/innate/abnormality_attack

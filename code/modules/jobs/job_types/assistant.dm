@@ -12,7 +12,7 @@ Assistant
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit = /datum/outfit/job/assistant
 	antag_rep = 7
-	paycheck = PAYCHECK_ASSISTANT // Get a job. Job reassignment changes your paycheck now. Get over it.
+	paycheck = PAYCHECK_ASSISTANT
 
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
@@ -22,7 +22,7 @@ Assistant
 
 
 /datum/outfit/job/assistant
-	name = "General Clerk"
+	name = "Clerk"
 	jobtype = /datum/job/assistant
 	uniform = /obj/item/clothing/under/suit/black
 	backpack_contents = list(

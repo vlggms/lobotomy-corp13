@@ -47,7 +47,7 @@
 		return
 	var/dat
 	for(var/wt in datum_reference.available_work)
-		dat += "<A href='?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
+		dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
 	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 300, 200)
 	popup.set_content(dat)
 	popup.open()
@@ -69,15 +69,20 @@
 			if(datum_reference.current.AIStatus == TRUE)
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
+			if(!datum_reference.current.attempt_work(usr, href_list["do_work"]))
+				to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
+				return
 			start_work(usr, href_list["do_work"])
 
+	add_fingerprint(usr)
+	updateUsrDialog()
+
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
-	var/sanity_result = round(datum_reference.threat_level - get_user_level(user))
+	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.28) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
 	user.adjustSanityLoss(sanity_damage)
 	if(user.sanity_lost)
-		to_chat(user, "<span class='userdanger'>I DON'T WANT TO DIE!")
 		finish_work(user, work_type, 0, work_time) // Assume total failure
 		return
 	switch(sanity_result)
@@ -94,36 +99,39 @@
 	meltdown = FALSE // Reset meltdown
 	update_icon()
 	working = TRUE
-	var/work_chance = datum_reference.get_work_chance(work_type, get_user_level(user))
+	var/work_chance = datum_reference.get_work_chance(work_type, user)
 	work_chance *= 1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 180)
 	work_chance = datum_reference.current.work_chance(user, work_chance)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
+		user.Stun(work_speed) // TODO: Probably temporary
 		sleep(work_speed)
 		if(do_work(work_chance))
 			success_boxes += 1
 		else
 			datum_reference.current.worktick_failure(user)
+		if(user.sanity_lost)
+			break // Lost sanity
 		if(user.health < 0)
 			break // Dying
-	finish_work(user, work_type, success_boxes, work_time)
+	finish_work(user, work_type, success_boxes, work_time, work_speed)
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
-		playsound(src, 'sound/machines/synth_yes.ogg', 25, FALSE)
+		playsound(src, 'sound/machines/synth_yes.ogg', 25, FALSE, -3)
 		return TRUE
-	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE)
+	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -3)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
 	working = FALSE
 	if(max_pe != 0)
 		visible_message("<span class='notice'>Work finished. [pe]/[max_pe] PE acquired.")
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(istype(user))
-		datum_reference.work_complete(user, work_type, pe, max_pe)
+		datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
@@ -147,7 +155,7 @@
 /obj/machinery/computer/abnormality/proc/qliphoth_meltdown_effect()
 	meltdown = FALSE
 	update_icon()
-	datum_reference.qliphoth_change(-1)
+	datum_reference.qliphoth_change(-9)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)

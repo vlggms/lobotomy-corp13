@@ -27,6 +27,8 @@
 #define COMSIG_GLOB_JOB_AFTER_SPAWN "!job_after_spawn"
 /// crewmember joined the game (mob/living, rank)
 #define COMSIG_GLOB_CREWMEMBER_JOINED "!crewmember_joined"
+/// a human mob went insane (mob/living/carbon/human, attribute)
+#define COMSIG_GLOB_HUMAN_INSANE "!human_insane"
 
 /// signals from globally accessible objects
 
@@ -451,6 +453,9 @@
 
 ///from base of mob/living/death(): (gibbed)
 #define COMSIG_LIVING_DEATH "living_death"
+
+///from base of mob/living/carbon/human/SanityLossEffect(): (attribute)
+#define COMSIG_HUMAN_INSANE "human_insane"
 
 ///sent from borg recharge stations: (amount, repairs)
 #define COMSIG_PROCESS_BORGCHARGER_OCCUPANT "living_charge"

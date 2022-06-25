@@ -440,6 +440,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/unit_test_top_right
 	name = "unit test zone top right"
 
+/* LC13 landmarks */
+
 /obj/effect/landmark/abnormality_spawn
 	name = "abnormality spawn"
 	var/datum/abnormality/datum_reference = null
@@ -447,3 +449,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/Destroy()
 	QDEL_NULL(datum_reference)
 	return ..()
+
+// Department's center
+/obj/effect/landmark/department_center
+	name = "department_center"
+
+/obj/effect/landmark/department_center/Initialize(mapload)
+	..()
+	GLOB.department_centers += get_turf(src)
+	return INITIALIZE_HINT_QDEL

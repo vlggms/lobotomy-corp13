@@ -1,4 +1,5 @@
-#define IS_APOSTLE(apostle) (apostle.mind && apostle.mind.has_antag_datum(/datum/antagonist/apostle))
+/proc/isapostle(mob/living/M)
+	return istype(M) && M.mind && M.mind.has_antag_datum(/datum/antagonist/apostle)
 
 /datum/antagonist/apostle
 	name = "Apostle"
@@ -9,6 +10,7 @@
 	antag_hud_name = "shadowling"
 	antag_moodlet = /datum/mood_event/focused
 	var/number = 1 // Number of apostle, obviously. Used for finale
+	var/betrayed = FALSE // For one-sin interaction
 	var/datum/team/apostles/ap_team
 	show_to_ghosts = TRUE
 

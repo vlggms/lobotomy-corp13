@@ -6,9 +6,11 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 	/// Current level of the skill
 	var/level = 0
 	/// How high it can go
-	var/level_limit = 120
+	var/level_limit = 130
 	/// How low it can get
 	var/level_lower_limit = 0
+
+// Procs
 
 /datum/attribute/proc/get_level() // Returns current level of attribute
 	return level
@@ -16,35 +18,40 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 /datum/attribute/proc/on_update(mob/living/carbon/user)
 	return
 
-// Procs
-
-/datum/attribute/proc/adjust_level(mob/living/carbon/human/user, attribute, addition)
-	if(!istype(user) || !attribute)
+/datum/attribute/proc/adjust_level(mob/living/carbon/human/user, addition)
+	if(!istype(user))
 		return FALSE
-	var/datum/attribute/atr = user.attributes[attribute]
-	if(!istype(atr))
-		return FALSE
-	atr.level = clamp((atr.level + addition), atr.level_lower_limit, atr.level_limit)
-	atr.on_update(user)
+	level = clamp((level + addition), level_lower_limit, level_limit)
+	on_update(user)
 	return TRUE
 
-/proc/adjust_attribute_level(mob/living/carbon/human/user, attribute, addition)
-	if(!istype(user) || !attribute)
+// Other procs
+
+/mob/living/carbon/human/proc/adjust_attribute_level(attribute, addition)
+	if(!attribute)
 		return 0
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 0
-	return atr.adjust_level(user, attribute, addition)
+	return atr.adjust_level(src, addition)
+
+/mob/living/carbon/human/proc/adjust_all_attribute_levels(addition)
+	for(var/atr_type in attributes)
+		var/datum/attribute/atr = attributes[atr_type]
+		if(!istype(atr))
+			continue
+		atr.adjust_level(src, addition)
+	return TRUE
 
 /proc/get_attribute_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
-		return 0
+		return 1
 	var/datum/attribute/atr = user.attributes[attribute]
 	if(!istype(atr))
-		return 0
+		return 1
 	return max(1, atr.get_level())
 
-// Returns a combination of attributes, giving a "level" from 1 to 6(EX)
+// Returns a combination of attributes, giving a "level" from 1 to 5
 /proc/get_user_level(mob/living/carbon/human/user)
 	if(!istype(user))
 		return 0
@@ -52,4 +59,4 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 	for(var/a in user.attributes)
 		var/datum/attribute/atr = user.attributes[a]
 		collective_levels += atr.level
-	return clamp(round(collective_levels / 70), 1, 6)
+	return clamp(round(collective_levels / 70), 1, 5)

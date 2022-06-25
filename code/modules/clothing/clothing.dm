@@ -365,6 +365,26 @@
 /obj/item/clothing/proc/armor_to_protection_class(armor_value)
 	armor_value = round(armor_value,10) / 10
 	switch (armor_value)
+		if (-INFINITY to -10)
+			. = "-X"
+		if (-9)
+			. = "-IX"
+		if (-8)
+			. = "-VIII"
+		if (-7)
+			. = "-VII"
+		if (-6)
+			. = "-VI"
+		if (-5)
+			. = "-V"
+		if (-4)
+			. = "-IV"
+		if (-3)
+			. = "-III"
+		if (-2)
+			. = "-II"
+		if (-1)
+			. = "-I"
 		if (1)
 			. = "I"
 		if (2)

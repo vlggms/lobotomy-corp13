@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// State at which it will cause qliphoth meltdowns/ordeal
 	var/qliphoth_max = 4
 	// How many abnormalities will be affected. Cannot be more than current amount of abnos
-	var/qliphoth_meltdown_amount = 0
+	var/qliphoth_meltdown_amount = 1
 
 	// Assoc list of ordeals by level
 	var/list/all_ordeals = list(
@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 							4 = list()
 							)
 	// At what qliphoth_state next ordeal will happen
-	var/next_ordeal_time = 2
+	var/next_ordeal_time = 1
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
@@ -34,8 +34,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/goal_reached = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
-	box_goal = 500 // TODO: Make it scale with pop
-	qliphoth_meltdown_amount = 1 // Ditto
+	box_goal = 4000
 	// Build ordeals global list
 	for(var/type in subtypesof(/datum/ordeal))
 		var/datum/ordeal/O = new type()
@@ -68,20 +67,31 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	qliphoth_max = 4 + min(8, round(abno_amount * 0.25))
+	qliphoth_max = 4 + round(abno_amount * 0.5)
 	qliphoth_state += 1
-	qliphoth_meltdown_amount = min(abno_amount, round(abno_amount * 0.23)) // TODO: Formula takes pop in consideration
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			return
-	var/list/computer_list = shuffle(GLOB.abnormality_consoles)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in all_abnormality_datums)
+		A.OnQliphothEvent()
+	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
+	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
+		if(cmp.meltdown || cmp.working)
+			continue
+		if(!cmp.datum_reference || !cmp.datum_reference.current)
+			continue
+		if(!(cmp.datum_reference.current.status_flags & GODMODE))
+			continue
+		computer_list += cmp
 	for(var/i = 1 to qliphoth_meltdown_amount)
+		if(!LAZYLEN(computer_list))
+			break
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
 		computer_list -= computer
 		computer.start_meltdown()
 		meltdown_occured += computer
-	if(meltdown_occured.len)
+	if(LAZYLEN(meltdown_occured))
 		var/text_info = ""
 		for(var/y = 1 to meltdown_occured.len)
 			var/obj/machinery/computer/abnormality/computer = meltdown_occured[y]
@@ -89,18 +99,22 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			if(y != meltdown_occured.len)
 				text_info += ", "
 		priority_announce("Qliphoth meltdown occured in containment zones of the following abnormalities: [text_info].", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
+	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35)) // TODO: Formula takes pop in consideration
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))
 		return FALSE
 	next_ordeal = pick(all_ordeals[next_ordeal_level])
 	all_ordeals[next_ordeal_level] -= next_ordeal
+	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(3,6)
 	next_ordeal_level += 1 // Increase difficulty!
+	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealEvent()
 	if(!next_ordeal)
 		return FALSE
 	next_ordeal.Run()
+	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now

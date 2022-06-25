@@ -193,6 +193,13 @@
 	inhand_icon_state = "salacid"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 10)
 
+/obj/item/reagent_containers/hypospray/medipen/mental
+	name = "mental stabilizator medipen"
+	desc = "An autoinjector containing mental stabilizator, used to treat severe anxiety and panic."
+	icon_state = "morphen"
+	inhand_icon_state = "morphen"
+	list_reagents = list(/datum/reagent/medicine/mental_stabilizator = 10)
+
 /obj/item/reagent_containers/hypospray/medipen/salbutamol
 	name = "salbutamol medipen"
 	desc = "An autoinjector containing salbutamol, used to heal oxygen damage quickly."

@@ -19,6 +19,19 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
+	var/normal_attribute_level = 20 // Scales with round time
+
+/datum/job/agent/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+	var/set_attribute = normal_attribute_level
+	switch(world.time)
+		if(30 MINUTES to 55 MINUTES) // Usual time for WAWs
+			set_attribute *= 1.5
+		if(55 MINUTES to INFINITY) // Already have an ALEPH or two
+			set_attribute *= 2
+	for(var/A in roundstart_attributes)
+		roundstart_attributes[A] = set_attribute
+	return ..()
+
 /datum/outfit/job/agent
 	name = "Agent"
 	jobtype = /datum/job/agent
@@ -41,3 +54,4 @@
 								TEMPERANCE_ATTRIBUTE = 40,
 								JUSTICE_ATTRIBUTE = 40
 								)
+	normal_attribute_level = 40
