@@ -10,11 +10,14 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
-	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE)|| !attributes)
+	if((status_flags & GODMODE) || !attributes)
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
+		amount = maxSanity+1
 	if(sanityhealth > maxSanity)
 		sanityhealth = maxSanity
 	sanityhealth = clamp((sanityhealth + amount), 0, maxSanity)
+	update_sanity_hud()
 	if(amount < 0)
 		playsound(loc, 'sound/effects/sanity_damage.ogg', 25, TRUE, -1)
 	else if(amount > 1)

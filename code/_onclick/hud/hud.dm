@@ -61,6 +61,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/healthdoll
+	var/atom/movable/screen/sanityhealth
 	var/atom/movable/screen/internals
 	var/atom/movable/screen/wanted/wanted_lvl
 	var/atom/movable/screen/spacesuit
@@ -113,6 +114,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	healths = null
 	healthdoll = null
+	sanityhealth = null
 	wanted_lvl = null
 	internals = null
 	spacesuit = null

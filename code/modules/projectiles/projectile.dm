@@ -124,7 +124,7 @@
 	var/homing_offset_y = 0
 
 	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
+	var/damage_type = RED_DAMAGE
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/flag = BULLET //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	///How much armor this projectile pierces.
@@ -229,7 +229,7 @@
 		hitx = target.pixel_x + rand(-8, 8)
 		hity = target.pixel_y + rand(-8, 8)
 
-	if(!nodamage && (damage_type == BRUTE || damage_type == BURN) && iswallturf(target_loca) && prob(75))
+	if(!nodamage && (damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)) && iswallturf(target_loca) && prob(75))
 		var/turf/closed/wall/W = target_loca
 		if(impact_effect_type && !hitscan)
 			new impact_effect_type(target_loca, hitx, hity)
@@ -251,7 +251,7 @@
 	var/mob/living/L = target
 
 	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && damage_type == BRUTE)
+		if(damage && L.blood_volume && damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)

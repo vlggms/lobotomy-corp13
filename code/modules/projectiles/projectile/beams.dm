@@ -3,7 +3,7 @@
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
-	damage_type = BURN
+	damage_type = BLACK_DAMAGE
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	flag = LASER
@@ -89,7 +89,7 @@
 	name = "disabler beam"
 	icon_state = "omnilaser"
 	damage = 30
-	damage_type = STAMINA
+	damage_type = WHITE_DAMAGE
 	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
 	eyeblur = 0
@@ -205,7 +205,7 @@
 	name = "instagib laser"
 	icon_state = "purple_laser"
 	damage = 200
-	damage_type = BURN
+	damage_type = PALE_DAMAGE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	light_color = LIGHT_COLOR_PURPLE
 
