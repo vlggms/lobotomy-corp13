@@ -1,6 +1,7 @@
+// Dawn
 /datum/ordeal/amber_dawn
 	name = "Dawn of Amber"
-	annonce_text = "The bugs have come to feast." // TODO: Change this
+	annonce_text = "A perfect meal, an excellent substitute."
 	level = 1
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
