@@ -345,6 +345,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/ruin/has_grav/powered)
+"vy" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/wood,
+/area/ruin/has_grav/powered)
 "vC" = (
 /turf/closed/indestructible/riveted,
 /area/ruin/has_grav/powered)
@@ -364,6 +368,10 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet/stellar,
+/area/ruin/has_grav/powered)
+"xy" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/wood,
 /area/ruin/has_grav/powered)
 "xA" = (
 /obj/machinery/light{
@@ -559,6 +567,11 @@
 "Jf" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
+"Ju" = (
+/obj/machinery/light,
+/obj/machinery/cryopod,
+/turf/open/floor/wood,
 /area/ruin/has_grav/powered)
 "Kt" = (
 /obj/structure/flora/tree/jungle{
@@ -808,6 +821,10 @@
 /obj/structure/window/reinforced,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"Vh" = (
+/obj/machinery/cryopod,
+/turf/open/floor/wood,
 /area/ruin/has_grav/powered)
 "Vj" = (
 /obj/structure/showcase/machinery/cloning_pod{
@@ -1518,10 +1535,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+sv
+Vh
+Vh
+Ju
 So
 Ad
 Ad
@@ -1565,10 +1582,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+So
+xy
+xy
+xy
 So
 Ad
 Ad
@@ -1612,11 +1629,11 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
 So
+xy
+xy
+xy
+vy
 Ad
 Ad
 Ad
@@ -1659,10 +1676,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+So
+Vh
+Vh
+Ju
 So
 QT
 Ad
@@ -1696,10 +1713,10 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
+So
+Vh
+Vh
+Ju
 So
 Ad
 Ad
@@ -1743,11 +1760,11 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
 So
+xy
+xy
+xy
+vy
 Ad
 Ad
 So
@@ -1791,9 +1808,9 @@ So
 So
 So
 So
-oC
-oC
-oC
+Vh
+Vh
+Ju
 So
 Ad
 Ad
@@ -2025,10 +2042,10 @@ qv
 Uz
 Uz
 fD
-So
-So
-So
-So
+sv
+sv
+sv
+sv
 So
 vw
 Ad
@@ -2073,9 +2090,9 @@ So
 So
 So
 So
-oC
-oC
-oC
+Vh
+Vh
+Ju
 So
 Ad
 Ad
@@ -2119,11 +2136,11 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
 So
+xy
+xy
+xy
+vy
 Ad
 Ad
 So
@@ -2166,10 +2183,10 @@ oC
 oC
 oC
 oC
-oC
-oC
-oC
-oC
+So
+Vh
+Vh
+Ju
 So
 Ad
 Ad
@@ -2223,10 +2240,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+sv
+Vh
+Vh
+Ju
 So
 RN
 Ad
@@ -2270,10 +2287,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+So
+xy
+xy
+xy
 So
 Ad
 Ad
@@ -2317,11 +2334,11 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
 So
+xy
+xy
+xy
+vy
 Ad
 Ad
 Ad
@@ -2364,10 +2381,10 @@ Ad
 So
 oC
 oC
-oC
-oC
-oC
-oC
+So
+Vh
+Vh
+Ju
 So
 Ad
 Ad
