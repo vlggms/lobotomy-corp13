@@ -33,6 +33,14 @@
 			adjustCloneLoss(damage_amount, forced = forced)
 		if(STAMINA)
 			adjustStaminaLoss(damage_amount, forced = forced)
+		if(RED_DAMAGE)
+			adjustRedLoss(damage_amount, forced = forced)
+		if(WHITE_DAMAGE)
+			adjustWhiteLoss(damage_amount, forced = forced)
+		if(BLACK_DAMAGE)
+			adjustBlackLoss(damage_amount, forced = forced)
+		if(PALE_DAMAGE)
+			adjustPaleLoss(damage_amount, forced = forced)
 	return TRUE
 
 ///like [apply_damage][/mob/living/proc/apply_damage] except it always uses the damage procs
@@ -50,6 +58,14 @@
 			return adjustCloneLoss(damage)
 		if(STAMINA)
 			return adjustStaminaLoss(damage)
+		if(RED_DAMAGE)
+			return adjustRedLoss(damage)
+		if(WHITE_DAMAGE)
+			return adjustWhiteLoss(damage)
+		if(BLACK_DAMAGE)
+			return adjustBlackLoss(damage)
+		if(PALE_DAMAGE)
+			return adjustPaleLoss(damage)
 
 /// return the damage amount for the type given
 /mob/living/proc/get_damage_amount(damagetype = BRUTE)
@@ -250,6 +266,21 @@
 
 /mob/living/proc/setStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
 	return
+
+/mob/living/proc/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	return adjustBruteLoss(amount, forced = forced)
+
+/mob/living/proc/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE)
+	return adjustBruteLoss(amount, forced = forced) // White damage deals brute for everyone but humans
+
+/mob/living/proc/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE)
+	adjustBruteLoss(amount, forced = forced)
+	adjustWhiteLoss(amount, forced = forced)
+	return amount
+
+/mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/damage_amt = maxHealth * (amount/100)
+	return adjustBruteLoss(damage_amt, forced = forced)
 
 /**
  * heal ONE external organ, organ gets randomly selected from damaged ones.

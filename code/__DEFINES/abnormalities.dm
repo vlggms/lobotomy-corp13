@@ -23,7 +23,7 @@
 #define THREAT_TO_COLOR list(\
 							ZAYIN_LEVEL = COLOR_GREEN,\
 							TETH_LEVEL = COLOR_BLUE,\
-							HE_LEVEL = COLOR_YELLOW,\
+							HE_LEVEL = COLOR_DARK_ORANGE,\
 							WAW_LEVEL = COLOR_PURPLE,\
 							ALEPH_LEVEL = COLOR_RED,\
 							)

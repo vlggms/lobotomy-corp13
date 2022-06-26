@@ -6,6 +6,9 @@
 	stat_attack = DEAD
 	layer = LARGE_MOB_LAYER
 	del_on_death = TRUE
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
+	minbodytemp = 0
 	/// Reference to the datum we use
 	var/datum/abnormality/datum_reference = null
 	/// The threat level of the abnormality. It is passed to the datum on spawn
@@ -14,19 +17,53 @@
 	var/start_qliphoth = 0
 	/// Can it breach? If TRUE - zero_qliphoth() calls breach_effect()
 	var/can_breach = FALSE
+	/// List of humans that witnessed the abnormality breaching
+	var/list/breach_affected = list()
 	/// Copy-pasted from megafauna.dm: This allows player controlled mobs to use abilities
 	var/chosen_attack = 1
 	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
-	/// If there is a small sprite icon for players controlling the megafauna to use
+	/// If there is a small sprite icon for players controlling the mob to use
 	var/small_sprite_type
 	/// Work types and chances
 	var/list/work_chances = list(
-							ABNORMALITY_WORK_INSTINCT = 30,
-							ABNORMALITY_WORK_INSIGHT = 30,
-							ABNORMALITY_WORK_ATTACHMENT = 30,
-							ABNORMALITY_WORK_REPRESSION = 30
+							ABNORMALITY_WORK_INSTINCT = list(
+														1 = 50,
+														2 = 50,
+														3 = 50,
+														4 = 50,
+														5 = 50,
+														6 = 50
+														),
+							ABNORMALITY_WORK_INSIGHT = list(
+														1 = 50,
+														2 = 50,
+														3 = 50,
+														4 = 50,
+														5 = 50,
+														6 = 50
+														),
+							ABNORMALITY_WORK_ATTACHMENT = list(
+														1 = 50,
+														2 = 50,
+														3 = 50,
+														4 = 50,
+														5 = 50,
+														6 = 50
+														),
+							ABNORMALITY_WORK_REPRESSION = list(
+														1 = 50,
+														2 = 50,
+														3 = 50,
+														4 = 50,
+														5 = 50,
+														6 = 50
+														)
 							)
+	/// How much damage is dealt to user on each work failure
+	var/work_damage_amount = 2
+	/// What damage type is used for work failures
+	var/work_damage_type = RED_DAMAGE
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -37,32 +74,64 @@
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
 
-/mob/living/simple_animal/hostile/abnormality/death(gibbed, list/force_grant)
-	if(health > 0)
-		return
+/mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
-	return ..()
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/Move()
+	..()
+	if(status_flags & GODMODE)
+		return
+	for(var/mob/living/carbon/human/H in view(6, src))
+		if(H in breach_affected)
+			continue
+		breach_affected += H
+		var/sanity_result = round(threat_level - get_user_level(H))
+		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
+		H.adjustSanityLoss(sanity_damage)
+		if(H.sanity_lost)
+			to_chat(H, "<span class='userdanger'>I DON'T WANT TO DIE!")
+			return
+		switch(sanity_result)
+			if(1)
+				to_chat(H, "<span class='warning'>Here it comes!")
+			if(2)
+				to_chat(H, "<span class='danger'>Not that thing...")
+			if(3 to INFINITY)
+				to_chat(H, "<span class='userdanger'>I'm not ready for this!")
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/work_chance(mob/living/carbon/human/user, chance)
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, success_pe)
-	if(pe >= success_pe)
+/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe)
+	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
+		return
+	if(pe >= datum_reference.neutral_boxes)
+		neutral_effect(user, work_type, pe)
 		return
 	failure_effect(user, work_type, pe)
 	return
 
-// Additional effects on work success, if any
+// Additional effects on good work result, if any
 /mob/living/simple_animal/hostile/abnormality/proc/success_effect(mob/living/carbon/human/user, work_type, pe)
+	return
+
+// Additional effects on neutral work result, if any
+/mob/living/simple_animal/hostile/abnormality/proc/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	return
 
 // Additional effects on work failure
 /mob/living/simple_animal/hostile/abnormality/proc/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	return
+
+// Additional effect on each individual work tick failure
+/mob/living/simple_animal/hostile/abnormality/proc/worktick_failure(mob/living/carbon/human/user)
+	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
 	return
 
 // Effects when qliphoth reaches 0

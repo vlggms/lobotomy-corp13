@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(!hitsound)
 		if(damtype == BURN)
 			hitsound = 'sound/items/welder.ogg'
-		if(damtype == BRUTE)
+		if(damtype in list(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			hitsound = "swing_hit"
 
 /obj/item/Destroy()

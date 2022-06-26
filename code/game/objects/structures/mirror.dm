@@ -89,11 +89,7 @@
 	return TRUE
 
 /obj/structure/mirror/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
-	switch(damage_type)
-		if(BRUTE)
-			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
-		if(BURN)
-			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
+	playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 
 
 /obj/structure/mirror/magic
