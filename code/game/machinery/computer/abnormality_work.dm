@@ -72,7 +72,7 @@
 			start_work(usr, href_list["do_work"])
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
-	var/sanity_result = round(datum_reference.threat_level - get_user_level(user))
+	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.28) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
 	user.adjustSanityLoss(sanity_damage)

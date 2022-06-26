@@ -15,6 +15,8 @@
 	var/datum/abnormality/datum_reference = null
 	/// The threat level of the abnormality. It is passed to the datum on spawn
 	var/threat_level = ZAYIN_LEVEL
+	/// Separate level of fear. If null - will use threat level.
+	var/fear_level = null
 	/// Maximum qliphoth level, passed to datum
 	var/start_qliphoth = 0
 	/// Can it breach? If TRUE - zero_qliphoth() calls breach_effect()
@@ -75,6 +77,8 @@
 	if(small_sprite_type)
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
+	if(fear_level == null)
+		fear_level = threat_level
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -90,7 +94,7 @@
 		if(H in breach_affected)
 			continue
 		breach_affected += H
-		var/sanity_result = round(threat_level - get_user_level(H))
+		var/sanity_result = round(fear_level - get_user_level(H))
 		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
 		H.adjustSanityLoss(sanity_damage)
 		if(H.sanity_lost)

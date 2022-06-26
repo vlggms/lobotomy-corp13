@@ -13,8 +13,8 @@
 	response_disarm_simple = "flail at"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	is_flying_animal = TRUE
-	maxHealth = 500
-	health = 500
+	maxHealth = 600
+	health = 600
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	harm_intent_damage = 10

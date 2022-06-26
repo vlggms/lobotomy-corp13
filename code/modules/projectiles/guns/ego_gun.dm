@@ -43,5 +43,5 @@
 		recharge_newshot()
 
 /obj/item/gun/ego_gun/recharge_newshot()
-	if (chambered && !chambered.BB)
+	if(chambered && !chambered.BB)
 		chambered.newshot()
