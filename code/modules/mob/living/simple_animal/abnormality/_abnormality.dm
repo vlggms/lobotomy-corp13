@@ -9,6 +9,8 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
+	/// Can this abnormality spawn normally during the round?
+	var/can_spawn = TRUE
 	/// Reference to the datum we use
 	var/datum/abnormality/datum_reference = null
 	/// The threat level of the abnormality. It is passed to the datum on spawn

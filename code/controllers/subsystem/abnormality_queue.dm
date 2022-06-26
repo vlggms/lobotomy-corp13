@@ -11,7 +11,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
 	for(var/i in all_abnos)
 		var/mob/living/simple_animal/hostile/abnormality/abno = i
-		possible_abnormalities[initial(abno.threat_level)] += abno
+		if(initial(abno.can_spawn))
+			possible_abnormalities[initial(abno.threat_level)] += abno
 	if(possible_abnormalities.len)
 		var/list/picking_abno = list()
 		for(var/lev in available_levels)

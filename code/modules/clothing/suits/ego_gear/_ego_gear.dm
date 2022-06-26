@@ -22,4 +22,9 @@
 			if(attribute_requirements[atr] > get_attribute_level(H, atr))
 				to_chat(H, "<span class='notice'>You cannot equip [src]!</span>")
 				return FALSE
+	if(!special_ego_check(H))
+		return FALSE
 	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/proc/special_ego_check(mob/living/carbon/human/H)
+	return TRUE

@@ -2,6 +2,8 @@
 	name = "ego weapon"
 	desc = "You aren't meant to see this."
 	icon = 'icons/obj/ego_weapons.dmi'
+	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	var/list/attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 0,
 							PRUDENCE_ATTRIBUTE = 0,
