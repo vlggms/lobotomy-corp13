@@ -15,7 +15,7 @@
 	is_flying_animal = TRUE
 	maxHealth = 600
 	health = 600
-	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	harm_intent_damage = 10
 	melee_damage_lower = 1

@@ -3,7 +3,7 @@
 	desc = "A strange humanoid creature with several gadgets attached to it."
 	health = 3000
 	maxHealth = 3000
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
@@ -11,7 +11,7 @@
 	icon_living = "claw"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	health_doll_icon = "miner"
-	faction = "Head"
+	faction = list("Head")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
 	light_range = 5
@@ -49,7 +49,7 @@
 	// 4 * 4 = 16 (1.6 seconds)
 	// 4 * 18 = 72 (7.2 seconds)
 	var/serumA_cooldown = 0
-	var/serumA_cooldown_time = 10 SECONDS
+	var/serumA_cooldown_time = 20 SECONDS
 
 /datum/action/innate/megafauna_attack/ultimatum
 	name = "Ultimatum"
@@ -192,7 +192,7 @@
 	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.7)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/serumA(target)
-	if(dash_cooldown > world.time)
+	if(serumA_cooldown > world.time)
 		return
 	if(!isliving(target))
 		return
@@ -201,8 +201,8 @@
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	charging = TRUE
 	SLEEP_CHECK_DEATH(8)
-	for(var/i = 1 to 10)
-		SLEEP_CHECK_DEATH(3)
+	for(var/i = 1 to 8)
+		SLEEP_CHECK_DEATH(2)
 		if(!LT)
 			break
 		addtimer(CALLBACK(src, .proc/blink, LT), 0)
@@ -210,8 +210,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
 	var/turf/start_turf = get_turf(src)
-	var/turf/target_turf = get_turf(LT)
-	for(var/i = 1 to 3) // For fancy effect
+	var/turf/target_turf = get_step(get_turf(LT), pick(0,1,2,4,5,6,8,9,10))
+	for(var/i = 1 to 2) // For fancy effect
 		target_turf = get_step(target_turf, get_dir(get_turf(start_turf), get_turf(target_turf)))
 	SLEEP_CHECK_DEATH(1) // Some chance to escape
 	forceMove(target_turf)

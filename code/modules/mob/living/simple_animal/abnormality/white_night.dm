@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	speak_emote = list("proclaims")
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	obj_damage = 600
