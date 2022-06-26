@@ -102,7 +102,7 @@
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0))
 		current?.zero_qliphoth(user)
 
-/datum/abnormality/proc/get_work_chance(workType, user)
+/datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	var/acquired_chance = 0
 	// In case there's no level specific results
 	if(!islist(available_work[workType]))

@@ -3,6 +3,7 @@
 	desc = "A strange humanoid creature with several gadgets attached to it."
 	health = 3000
 	maxHealth = 3000
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
@@ -10,14 +11,15 @@
 	icon_living = "claw"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	health_doll_icon = "miner"
+	faction = "Head"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
 	light_range = 5
 	movement_type = GROUND
 	speak_emote = list("says")
-	armour_penetration = 30
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	ranged = TRUE
 	speed = 4
 	move_to_delay = 4
@@ -34,7 +36,9 @@
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/ultimatum,
 							   /datum/action/innate/megafauna_attack/swift_dash,
-							   /datum/action/innate/megafauna_attack/swift_dash_long)
+							   /datum/action/innate/megafauna_attack/swift_dash_long,
+							   /datum/action/innate/megafauna_attack/serum_a,
+							   )
 	var/ultimatum_cooldown = 0
 	var/ultimatum_cooldown_time = 40 SECONDS
 	var/charging = FALSE
@@ -44,6 +48,8 @@
 	var/dash_cooldown_time = 4 // cooldown_time * distance:
 	// 4 * 4 = 16 (1.6 seconds)
 	// 4 * 18 = 72 (7.2 seconds)
+	var/serumA_cooldown = 0
+	var/serumA_cooldown_time = 10 SECONDS
 
 /datum/action/innate/megafauna_attack/ultimatum
 	name = "Ultimatum"
@@ -66,6 +72,13 @@
 	chosen_message = "<span class='colossus'>You will now dash forward for a long distance.</span>"
 	chosen_attack_num = 3
 
+/datum/action/innate/megafauna_attack/serum_a
+	name = "Serum 'A'"
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "impact_laser"
+	chosen_message = "<span class='colossus'>You will now continously dash towards your target.</span>"
+	chosen_attack_num = 4
+
 /obj/effect/target_field
 	name = "target field"
 	desc = "You have a bad feeling about this..."
@@ -87,12 +100,16 @@
 				swift_dash(target, dash_num_short, 5)
 			if(3)
 				swift_dash(target, dash_num_long, 20)
+			if(4)
+				serumA(target)
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
-	if(get_dist(src, target) >= 3 && dash_cooldown <= world.time && !charging)
+	if(get_dist(src, target) >= 1 && dash_cooldown <= world.time && !charging)
 		swift_dash(target, dash_num_short, 5)
-	if(get_dist(src, target) > 5 && ultimatum_cooldown <= world.time && !charging)
+	else if(get_dist(src, target) >= 3 && serumA_cooldown <= world.time && !charging)
+		serumA(target)
+	else if(get_dist(src, target) > 5 && ultimatum_cooldown <= world.time && !charging)
 		ultimatum()
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
@@ -173,3 +190,34 @@
 		L.attack_animal(src)
 		new /obj/effect/temp_visual/cleave(L.loc)
 	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.7)
+
+/mob/living/simple_animal/hostile/megafauna/claw/proc/serumA(target)
+	if(dash_cooldown > world.time)
+		return
+	if(!isliving(target))
+		return
+	var/mob/living/LT = target
+	serumA_cooldown = world.time + serumA_cooldown_time
+	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
+	charging = TRUE
+	SLEEP_CHECK_DEATH(8)
+	for(var/i = 1 to 10)
+		SLEEP_CHECK_DEATH(3)
+		if(!LT)
+			break
+		addtimer(CALLBACK(src, .proc/blink, LT), 0)
+	charging = FALSE
+
+/mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
+	var/turf/start_turf = get_turf(src)
+	var/turf/target_turf = get_turf(LT)
+	for(var/i = 1 to 3) // For fancy effect
+		target_turf = get_step(target_turf, get_dir(get_turf(start_turf), get_turf(target_turf)))
+	SLEEP_CHECK_DEATH(1) // Some chance to escape
+	forceMove(target_turf)
+	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
+	for(var/turf/B in getline(start_turf, target_turf))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(B)
+		for(var/mob/living/victim in B)
+			if(!("Head" in victim.faction) && victim != src)
+				victim.attack_animal(src)

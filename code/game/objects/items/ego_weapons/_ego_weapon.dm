@@ -11,12 +11,12 @@
 							JUSTICE_ATTRIBUTE = 0
 							)
 
-/obj/item/ego_weapon/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(!ishuman(M))
+/obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!ishuman(user))
 		return FALSE
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
 		if(attribute_requirements[atr] > get_attribute_level(H, atr))
-			to_chat(H, "<span class='notice'>You cannot equip [src]!</span>")
+			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
 			return FALSE
 	return ..()

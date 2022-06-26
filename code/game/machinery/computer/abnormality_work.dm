@@ -94,7 +94,7 @@
 	meltdown = FALSE // Reset meltdown
 	update_icon()
 	working = TRUE
-	var/work_chance = datum_reference.get_work_chance(work_type, get_user_level(user))
+	var/work_chance = datum_reference.get_work_chance(work_type, user)
 	work_chance *= 1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 180)
 	work_chance = datum_reference.current.work_chance(user, work_chance)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
