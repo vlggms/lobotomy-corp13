@@ -118,6 +118,10 @@
 "hb" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered)
+"hJ" = (
+/obj/effect/landmark/start,
+/turf/open/floor/carpet/red,
+/area/ruin/has_grav/powered)
 "hN" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/carpet/stellar,
@@ -143,6 +147,13 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"iY" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/effect/landmark/start,
 /turf/open/floor/plasteel,
 /area/ruin/has_grav/powered)
 "jd" = (
@@ -339,6 +350,13 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/ruin/has_grav/powered)
+"uY" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 1
+	},
+/obj/effect/landmark/start,
+/turf/open/floor/plasteel/dark,
+/area/ruin/has_grav/powered)
 "vw" = (
 /obj/machinery/light{
 	dir = 1
@@ -384,6 +402,10 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet/orange,
 /area/ruin/has_grav/powered)
+"yP" = (
+/obj/effect/landmark/start,
+/turf/open/floor/carpet/orange,
+/area/ruin/has_grav/powered)
 "zD" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/carpet/stellar,
@@ -413,6 +435,10 @@
 	name = "Command Room"
 	},
 /turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
+"BD" = (
+/obj/effect/landmark/start,
+/turf/open/floor/plasteel/white,
 /area/ruin/has_grav/powered)
 "Cv" = (
 /turf/open/floor/plasteel/stairs/right,
@@ -514,6 +540,7 @@
 /obj/structure/chair/office{
 	dir = 1
 	},
+/obj/effect/landmark/start,
 /turf/open/floor/carpet/purple,
 /area/ruin/has_grav/powered)
 "GZ" = (
@@ -1010,10 +1037,10 @@ TJ
 Ya
 Qz
 oI
-NR
+hJ
 Qz
 oI
-rt
+iY
 SZ
 Gc
 So
@@ -1151,10 +1178,10 @@ TJ
 Ya
 Qz
 oI
-NR
+hJ
 Qz
 oI
-rt
+iY
 SZ
 KK
 So
@@ -1594,11 +1621,11 @@ So
 oC
 oC
 oC
-So
 sv
 sv
-So
-FJ
+sv
+sv
+YB
 So
 So
 So
@@ -1641,11 +1668,11 @@ So
 oC
 oC
 oC
-So
+sv
 OL
 OL
 OL
-So
+sv
 Ad
 Ad
 So
@@ -1688,11 +1715,11 @@ So
 oC
 oC
 oC
-So
+sv
 OL
 OL
 OL
-So
+sv
 Ad
 HY
 So
@@ -1735,11 +1762,11 @@ So
 So
 So
 So
-So
+sv
 OL
 OL
 OL
-So
+sv
 Ad
 Ad
 So
@@ -1782,11 +1809,11 @@ RK
 zM
 EN
 Qu
-So
+sv
 OL
 OL
 OL
-So
+sv
 Ad
 Ad
 So
@@ -1823,17 +1850,17 @@ wv
 gx
 Cv
 nV
-nV
+BD
 kx
 RK
 TC
 EN
 Qu
-So
+sv
 OL
 OL
 OL
-So
+sv
 Ad
 Ad
 So
@@ -1876,11 +1903,11 @@ RK
 TC
 EN
 RX
-So
-So
-So
-So
-So
+sv
+sv
+sv
+sv
+sv
 vw
 Ad
 So
@@ -1889,7 +1916,7 @@ So
 CI
 Xk
 pL
-XK
+uY
 Ya
 TK
 So
@@ -1917,7 +1944,7 @@ YR
 fj
 xh
 nV
-nV
+BD
 sM
 sW
 sW
@@ -1967,7 +1994,7 @@ nV
 nV
 nV
 nV
-nV
+BD
 nV
 nV
 Bp
@@ -2011,7 +2038,7 @@ YR
 LB
 En
 nV
-nV
+BD
 oe
 Cx
 Cx
@@ -2077,7 +2104,7 @@ So
 CI
 Xk
 pL
-XK
+uY
 Ya
 fM
 So
@@ -2105,7 +2132,7 @@ wv
 YI
 Qx
 nV
-nV
+BD
 NZ
 hN
 hN
@@ -2753,7 +2780,7 @@ qN
 ep
 ep
 ep
-ep
+yP
 Ny
 So
 OL
@@ -2797,7 +2824,7 @@ hb
 mZ
 Ad
 qN
-ep
+yP
 eH
 eH
 ep
@@ -2891,10 +2918,10 @@ hb
 Vy
 Vw
 qN
+yP
 ep
 ep
-ep
-ep
+yP
 OP
 So
 oC
