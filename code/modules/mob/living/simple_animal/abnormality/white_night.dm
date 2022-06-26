@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/apostle
 	name = "white night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
-	health = 1000
-	maxHealth = 1000
+	health = 2500
+	maxHealth = 2500
 	attack_verb_continuous = "purges"
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'
@@ -16,9 +16,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	speak_emote = list("proclaims")
-	armour_penetration = 20
-	melee_damage_lower = 48
-	melee_damage_upper = 48
+	melee_damage_type = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
+	melee_damage_lower = 20
+	melee_damage_upper = 20
 	obj_damage = 600
 	move_force = MOVE_FORCE_STRONG
 	move_resist = MOVE_FORCE_STRONG
@@ -43,14 +45,17 @@ GLOBAL_LIST_EMPTY(apostles)
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 20,
-						ABNORMALITY_WORK_INSIGHT = 30,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = 20
+						ABNORMALITY_WORK_INSTINCT = 10,
+						ABNORMALITY_WORK_INSIGHT = 20,
+						ABNORMALITY_WORK_ATTACHMENT = 20,
+						ABNORMALITY_WORK_REPRESSION = 10
 						)
+	work_damage_amount = 8
+	work_damage_type = PALE_DAMAGE
+
 	var/holy_revival_cooldown = 10 SECONDS
 	var/holy_revival_cooldown_base = 10 SECONDS
-	var/holy_revival_damage = 18 // Amount of damage OR heal, depending on target.
+	var/holy_revival_damage = 8 // Pale damage, scales with distance
 	var/holy_revival_range = 4
 	var/last_revival_time // To prevent multiple conversions per one action
 	var/fire_field_cooldown = 20 SECONDS
@@ -136,7 +141,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				if(!client) // NPC controlled
 					revive_target(L)
 				return
-	gib(L)
+	L.gib()
 
 /mob/living/simple_animal/hostile/abnormality/apostle/OpenFire()
 	if(client)
@@ -190,6 +195,11 @@ GLOBAL_LIST_EMPTY(apostles)
 					var/mob/living/carbon/human/H = L
 					new /obj/effect/temp_visual/dir_setting/cult/phase(T, H.dir)
 					addtimer(CALLBACK(src, .proc/revive_target, H, i, faction_check))
+					continue
+				// Not a human and an enemy
+				if(!(faction_check in L.faction))
+					playsound(L.loc, 'sound/machines/clockcult/ark_damage.ogg', 35, TRUE, -1)
+					L.adjustPaleLoss(holy_revival_damage)
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/apostle/proc/revive_target(mob/living/carbon/human/H, attack_range = 1, faction_check = "apostle")
@@ -207,12 +217,13 @@ GLOBAL_LIST_EMPTY(apostles)
 			H.revive(full_heal = TRUE, admin_revive = FALSE)
 			// Giving the fancy stuff to new apostle
 			H.faction |= "apostle"
-			ADD_TRAIT(H, TRAIT_BOMBIMMUNE, SPECIES_TRAIT)
-			ADD_TRAIT(H, TRAIT_NOFIRE, SPECIES_TRAIT)
-			ADD_TRAIT(H, TRAIT_NOBREATH, SPECIES_TRAIT)
-			ADD_TRAIT(H, TRAIT_RESISTLOWPRESSURE, SPECIES_TRAIT)
-			ADD_TRAIT(H, TRAIT_RESISTCOLD, SPECIES_TRAIT)
-			ADD_TRAIT(H, TRAIT_NODISMEMBER, SPECIES_TRAIT)
+			ADD_TRAIT(H, TRAIT_BOMBIMMUNE, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_NOFIRE, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_NOBREATH, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_RESISTLOWPRESSURE, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_RESISTCOLD, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_NODISMEMBER, "White Night Apostle")
+			ADD_TRAIT(H, TRAIT_SANITYIMMUNE, "White Night Apostle")
 			to_chat(H, "<span class='notice'>You are protected by the holy light!</span>")
 			if(apostle_num < 12)
 				H.set_light_color(COLOR_VERY_SOFT_YELLOW)
@@ -260,17 +271,16 @@ GLOBAL_LIST_EMPTY(apostles)
 			new_apostle.number = apostle_num
 			H.mind.add_antag_datum(new_apostle)
 			apostle_num += 1
-			armour_penetration += 5
 			maxHealth += 50
 			health = maxHealth
-			holy_revival_damage += 1 // More damage and healing from AOE spell.
+			holy_revival_damage += 0.5 // More damage and healing from AOE spell.
 			scream_power += 1 // Deafen them all. Destroy their ears.
 			light_range += 1 // More light, because why not.
-		else if((holy_revival_damage - attack_range) >= 1)
+		else
 			playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 			// The farther you are from white night - the less damage it deals
-			H.adjustFireLoss(holy_revival_damage - attack_range)
-			if((holy_revival_damage - attack_range) > 15)
+			H.adjustPaleLoss(max(1, holy_revival_damage - attack_range))
+			if((holy_revival_damage - attack_range) > 5)
 				H.emote("scream")
 			to_chat(H, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
 	else
@@ -283,8 +293,8 @@ GLOBAL_LIST_EMPTY(apostles)
 			to_chat(H, "<span class='notice'>The holy light compels you to live!</span>")
 		else
 			H.adjustStaminaLoss(-200)
-			H.adjustBruteLoss(-holy_revival_damage)
-			H.adjustFireLoss(-holy_revival_damage)
+			H.adjustBruteLoss(-holy_revival_damage*5)
+			H.adjustFireLoss(-holy_revival_damage*5)
 			H.regenerate_limbs()
 			H.regenerate_organs()
 			to_chat(H, "<span class='notice'>The holy light heals you!</span>")

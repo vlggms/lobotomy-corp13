@@ -14,3 +14,14 @@
 	var/mob/living/living_pawn = controller.pawn
 	INVOKE_ASYNC(living_pawn, /mob.proc/emote, pick(screeches))
 	finish_action(controller, TRUE)
+
+/datum/ai_behavior/say_line
+	///List of potential lines to say
+	var/list/lines
+
+/datum/ai_behavior/say_line/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
+	var/mob/living/living_pawn = controller.pawn
+	INVOKE_ASYNC(living_pawn, /atom/movable.proc/say, pick(lines))
+	finish_action(controller, TRUE)
+

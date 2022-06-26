@@ -127,11 +127,12 @@
 			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
 	if(roundstart_attributes.len)
+		var/mob/living/carbon/human/HA = H
 		for(var/atrib in roundstart_attributes)
-			var/datum/attribute/atr = H?.mind.attributes[atrib]
+			var/datum/attribute/atr = HA?.attributes[atrib]
 			if(istype(atr))
 				atr.level = roundstart_attributes[atrib]
-				atr.on_update(H)
+				atr.on_update(HA)
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

@@ -1499,8 +1499,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
-	var/armor_block = H.run_armor_check(affecting, MELEE, "<span class='notice'>Your armor has protected your [hit_area]!</span>", "<span class='warning'>Your armor has softened a hit to your [hit_area]!</span>",I.armour_penetration)
-	armor_block = min(90,armor_block) //cap damage reduction at 90%
+	var/armor_block = H.run_armor_check(affecting, I.armortype, "<span class='notice'>Your armor has protected your [hit_area]!</span>", "<span class='warning'>Your armor has softened a hit to your [hit_area]!</span>",I.armour_penetration)
 	var/Iwound_bonus = I.wound_bonus
 
 	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are lying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
@@ -1632,6 +1631,23 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
+		if(RED_DAMAGE) // TODO
+			H.damageoverlaytemp = 20
+			var/damage_amount = forced ? damage : damage * hit_percent
+			if(BP)
+				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+					H.update_damage_overlays()
+			else//no bodypart, we deal damage with a more general method.
+				H.adjustBruteLoss(damage_amount)
+		if(WHITE_DAMAGE)
+			var/damage_amount = forced ? damage : damage * hit_percent
+			H.adjustWhiteLoss(damage_amount)
+		if(BLACK_DAMAGE)
+			var/damage_amount = forced ? damage : damage * hit_percent
+			H.adjustBlackLoss(damage_amount, forced = forced)
+		if(PALE_DAMAGE)
+			var/damage_amount = forced ? damage : damage * hit_percent
+			H.adjustPaleLoss(damage_amount, forced = forced)
 	return 1
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
