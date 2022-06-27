@@ -338,6 +338,10 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/ruin/has_grav/powered)
+"tx" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
 "tR" = (
 /obj/structure/statue/sandstone/venus,
 /turf/open/floor/plating/grass,
@@ -792,6 +796,11 @@
 "So" = (
 /turf/closed/indestructible/reinforced,
 /area/ruin/has_grav/powered)
+"Sq" = (
+/obj/machinery/light,
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plasteel,
+/area/ruin/has_grav/powered)
 "SB" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/grass,
@@ -1236,7 +1245,7 @@ OL
 OL
 OL
 So
-Ad
+tx
 Ad
 So
 OL
@@ -1244,7 +1253,7 @@ OL
 OL
 So
 Ad
-Ad
+tx
 So
 OL
 OL
@@ -1417,18 +1426,11 @@ sv
 sv
 FJ
 vw
-Ad
-Ad
-Ad
-Ad
-RN
-Ad
+tx
 Ad
 Ad
 Ad
 RN
-Ad
-Ad
 Ad
 Ad
 Ad
@@ -1439,6 +1441,13 @@ Ad
 Ad
 Ad
 Ad
+Ad
+RN
+Ad
+Ad
+Ad
+Ad
+tx
 HY
 So
 OL
@@ -1446,7 +1455,7 @@ OL
 OL
 So
 Ad
-Ad
+tx
 So
 oC
 oC
@@ -1474,7 +1483,7 @@ Ad
 Ad
 Ad
 Ad
-Ad
+tx
 Ad
 Ad
 Ad
@@ -1767,7 +1776,7 @@ OL
 OL
 OL
 sv
-Ad
+tx
 Ad
 So
 So
@@ -1981,7 +1990,7 @@ Uz
 Uz
 lw
 Ad
-Ad
+tx
 So
 oC
 So
@@ -2000,7 +2009,7 @@ nV
 Bp
 Ad
 Ad
-Ad
+tx
 Ad
 Ad
 Ad
@@ -2190,7 +2199,7 @@ OL
 OL
 OL
 sv
-Ad
+tx
 Ad
 So
 oC
@@ -2508,7 +2517,7 @@ Ad
 Ad
 Ad
 Ad
-Ad
+tx
 Ad
 Ad
 Ad
@@ -2545,14 +2554,7 @@ sv
 sv
 So
 vw
-Ad
-Ad
-QT
-Ad
-Ad
-Ad
-Ad
-Ad
+tx
 Ad
 QT
 Ad
@@ -2567,6 +2569,13 @@ Ad
 Ad
 Ad
 Ad
+Ad
+QT
+Ad
+Ad
+Ad
+Ad
+tx
 HY
 So
 OL
@@ -2574,7 +2583,7 @@ OL
 OL
 So
 Ad
-Ad
+tx
 So
 oC
 oC
@@ -2740,7 +2749,7 @@ OL
 OL
 OL
 sv
-Ad
+tx
 HY
 sv
 OL
@@ -2748,7 +2757,7 @@ OL
 OL
 sv
 Ad
-HY
+Sq
 sv
 OL
 OL
