@@ -71,7 +71,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "violet_fruit"
 	icon_living = "violet_fruit"
-	icon_dead = "violet_fruit"
+	icon_dead = "violet_fruit_dead"
 	maxHealth = 180
 	health = 180
 	speed = 2
@@ -81,14 +81,17 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), 120 SECONDS)
+	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Life()
 	. = ..()
+	if(!.) // Dead
+		return FALSE
 	for(var/mob/living/carbon/human/H in view(5, src))
 		new /obj/effect/temp_visual/revenant(get_turf(H))
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 		H.apply_damage(2, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
 	var/turf/target_c = get_turf(src)
@@ -103,4 +106,4 @@
 	for(var/obj/machinery/computer/abnormality/A in range(24, src))
 		if(prob(88))
 			A.datum_reference.qliphoth_change(pick(-1, -2))
-	adjustWhiteLoss(maxHealth)
+	adjustWhiteLoss(maxHealth) // Die

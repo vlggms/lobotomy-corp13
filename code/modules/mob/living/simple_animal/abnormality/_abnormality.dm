@@ -148,6 +148,7 @@
 
 // Special breach effect for abnormalities with can_breach set to TRUE
 /mob/living/simple_animal/hostile/abnormality/proc/breach_effect(mob/living/carbon/human/user)
+	priority_announce("\[[THREAT_TO_NAME[threat_level]]\] [src] has breached containment. All security forces are advised to respond immediately.", "Containment Control", sound='sound/effects/meltdownAlert.ogg')
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 

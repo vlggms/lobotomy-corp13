@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/abnormality/apostle
-	name = "white night"
+	name = "White night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
 	health = 2500
 	maxHealth = 2500

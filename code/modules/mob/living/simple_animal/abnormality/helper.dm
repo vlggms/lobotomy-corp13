@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/helper
-	name = "all around helper"
+	name = "All around helper"
 	desc = "A tiny robot with helpful intentions."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "helper"

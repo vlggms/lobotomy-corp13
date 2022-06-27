@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/training_rabbit
-	name = "standard training-dummy rabbit"
+	name = "Standard training-dummy rabbit"
 	desc = "A rabbit-like training dummy. Should be completely harmless."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "training_rabbit"
