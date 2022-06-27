@@ -35,45 +35,6 @@
 		else
 			to_chat(user, "<span class='info'>You can't offer a prayer for yourself!</span>")
 
-/obj/item/storage/book/bible
-	var/apostle_use = FALSE
-
-/obj/item/storage/book/bible/attack_self(mob/living/carbon/human/user) // Normal bible effect when used by apostle №12.
-	for(var/datum/antagonist/apostle/A in user.mind.antag_datums)
-		if(A.number == 12)
-			var/mob/living/simple_animal/hostile/abnormality/apostle/devil
-			for(var/mob/living/simple_animal/hostile/abnormality/apostle/E in GLOB.player_list)
-				devil = E
-				break
-			if(!devil)
-				to_chat(user, "<span class='notice'>The evil spirit is already gone.</span>")
-				return
-			if(devil.apostle_num != 666)
-				to_chat(user, "<span class='notice'>You have nothing to ask for. Yet...</span>")
-				return
-			if(apostle_use)
-				return // Avoiding spam.
-			apostle_use = TRUE
-			var/text_pick = pick("You begin praying for safety of the station...", "You ask the god for forgiveness...", \
-			"You wish to abandon the dark ways of the false prophet...", "You shall never be one with him again...")
-			user.visible_message("<span class='info'>[user] holds bible close to the chest and starts whispering something.</span>", \
-			"<span class='warning'>[text_pick]</span>", \
-			"<span class='hear'>You can hear someone whispering...</span>")
-			if(!do_after(user, 300))
-				apostle_use = FALSE
-				return
-			playsound(devil.loc, 'sound/machines/clockcult/ark_damage.ogg', 100, TRUE, -1)
-			devil.adjustBruteLoss(devil.maxHealth / 12)
-			to_chat(devil, "<span class='colossus'>The twelfth is trying to purge us!</span>")
-			to_chat(user, "<span class='notice'>You feel weaker, but so is the evil spirit.</span>")
-			user.emote("scream")
-			user.adjustFireLoss(30)
-			user.jitteriness += (50)
-			user.do_jitter_animation(user.jitteriness)
-			apostle_use = FALSE
-			return
-	. = ..()
-
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
 	desc = "Your armor, to protect the holy one."

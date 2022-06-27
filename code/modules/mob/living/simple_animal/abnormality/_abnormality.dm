@@ -140,6 +140,10 @@
 	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
 	return
 
+// Dictates whereas this type of work can be performed at the moment or not
+/mob/living/simple_animal/hostile/abnormality/proc/attempt_work(mob/living/carbon/human/user, work_type)
+	return TRUE
+
 // Effects when qliphoth reaches 0
 /mob/living/simple_animal/hostile/abnormality/proc/zero_qliphoth(mob/living/carbon/human/user)
 	if(can_breach)

@@ -68,14 +68,16 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	qliphoth_max = 4 + min(8, round(abno_amount * 0.25))
+	qliphoth_max = 4 + round(abno_amount * 0.25)
 	qliphoth_state += 1
-	qliphoth_meltdown_amount = min(abno_amount, round(abno_amount * 0.23)) // TODO: Formula takes pop in consideration
+	qliphoth_meltdown_amount = min(1, round(abno_amount * 0.25)) // TODO: Formula takes pop in consideration
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			return
 	var/list/computer_list = shuffle(GLOB.abnormality_consoles)
 	var/list/meltdown_occured = list()
+	if(!LAZYLEN(computer_list))
+		return
 	for(var/i = 1 to qliphoth_meltdown_amount)
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
 		computer_list -= computer

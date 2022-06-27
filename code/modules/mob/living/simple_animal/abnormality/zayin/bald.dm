@@ -14,7 +14,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 30,
 						ABNORMALITY_WORK_REPRESSION = 30
 						)
-	work_damage_amount = 1
+	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
 
 	var/list/balding_list = list(

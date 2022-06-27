@@ -32,7 +32,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = 20
 						)
-	work_damage_amount = 6
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 
 	var/charging = FALSE

@@ -69,6 +69,9 @@
 			if(datum_reference.current.AIStatus == TRUE)
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
+			if(datum_reference.current.attempt_work(usr, href_list["do_work"]))
+				to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
+				return
 			start_work(usr, href_list["do_work"])
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
@@ -105,6 +108,8 @@
 			success_boxes += 1
 		else
 			datum_reference.current.worktick_failure(user)
+		if(user.sanity_lost)
+			break // Lost sanity
 		if(user.health < 0)
 			break // Dying
 	finish_work(user, work_type, success_boxes, work_time)

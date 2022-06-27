@@ -18,7 +18,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 15,
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 8
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 
 	var/datum/looping_sound/queenbee/soundloop

@@ -43,7 +43,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 50,
 						ABNORMALITY_WORK_REPRESSION = 10
 						)
-	work_damage_amount = 3
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	var/list/enemies = list()
