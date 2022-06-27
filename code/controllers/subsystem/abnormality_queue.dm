@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
-	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list(), )
+	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)

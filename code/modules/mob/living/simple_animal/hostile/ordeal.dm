@@ -94,6 +94,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
+	if(stat == DEAD)
+		return
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = list()
 	turf_list = spiral_range_turfs(24, target_c)
@@ -104,6 +106,6 @@
 	for(var/mob/living/carbon/human/H in range(24, src))
 		H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in range(24, src))
-		if(prob(88))
-			A.datum_reference.qliphoth_change(pick(-1, -2))
+		if(prob(88) && A.datum_reference)
+			A.datum_reference.qliphoth_change(pick(-2, -3))
 	adjustWhiteLoss(maxHealth) // Die
