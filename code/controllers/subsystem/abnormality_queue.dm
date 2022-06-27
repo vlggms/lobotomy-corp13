@@ -47,4 +47,4 @@ SUBSYSTEM_DEF(abnormality_queue)
 		picking_abno += pick(possible_abnormalities[lev])
 	if(LAZYLEN(picking_abno))
 		queued_abnormality = pick(picking_abno)
-	possible_abnormalities[lev] -= queued_abnormality
+	possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
