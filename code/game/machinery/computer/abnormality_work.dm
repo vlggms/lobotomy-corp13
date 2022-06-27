@@ -69,7 +69,7 @@
 			if(datum_reference.current.AIStatus == TRUE)
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
-			if(datum_reference.current.attempt_work(usr, href_list["do_work"]))
+			if(!datum_reference.current.attempt_work(usr, href_list["do_work"]))
 				to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
 				return
 			start_work(usr, href_list["do_work"])
