@@ -175,6 +175,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /turf/open/floor/carpet/purple,
 /area/ruin/has_grav/powered)
 "kx" = (
@@ -503,12 +506,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/showcase/mecha/marauder{
-	pixel_y = -1
-	},
-/obj/structure/window/plasma/reinforced/spawner{
-	dir = 1;
-	pixel_y = 3
+/obj/effect/spawner/randomarcade{
+	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/has_grav/powered)
@@ -528,15 +527,8 @@
 /turf/open/floor/plasteel,
 /area/ruin/has_grav/powered)
 "Gc" = (
-/obj/structure/window/plasma/reinforced/spawner{
-	dir = 4
-	},
-/obj/structure/window/plasma/reinforced/spawner{
-	dir = 1;
-	pixel_y = 3
-	},
-/obj/structure/showcase/mecha/marauder{
-	pixel_y = -1
+/obj/effect/spawner/randomarcade{
+	dir = 1
 	},
 /turf/open/floor/carpet/red,
 /area/ruin/has_grav/powered)
@@ -857,6 +849,12 @@
 /obj/structure/window/reinforced,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/grass,
+/area/ruin/has_grav/powered)
+"UZ" = (
+/obj/structure/table,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/turf/open/floor/carpet/purple,
 /area/ruin/has_grav/powered)
 "Vh" = (
 /obj/machinery/cryopod,
@@ -2159,7 +2157,7 @@ oC
 So
 SL
 GM
-pL
+UZ
 XK
 gX
 So
