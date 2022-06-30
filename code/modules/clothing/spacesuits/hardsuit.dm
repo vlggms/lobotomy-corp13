@@ -1076,7 +1076,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rabbit
 	name = "\improper Rabbit Team Helmet"
 	desc = "A tactical helmet worn by the R. Corp mercenaries."
-	icon_state = "rabbit1helm"
+	icon_state = "rabbit1"
 	inhand_icon_state = "deathsquad"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -1102,10 +1102,12 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/rabbit/leader
 	name = "\improper Rabbit Team Leader Helmet"
+	icon_state = "rabbit2"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 
 /obj/item/clothing/suit/space/hardsuit/rabbit/leader
 	name = "\improper Rabbit Team Leader Suit"
+	icon_state = "rabbit2"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 
 #undef HARDSUIT_EMP_BURN

@@ -7,7 +7,7 @@
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	flag = LASER
-	eyeblur = 2
+	eyeblur = 0
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_system = MOVABLE_LIGHT
 	light_range = 1
@@ -17,15 +17,41 @@
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
 	wound_bonus = -20
-	bare_wound_bonus = 10
+	bare_wound_bonus = -10
 
 
 /obj/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
+	damage = 15
 	wound_bonus = -30
-	bare_wound_bonus = 40
+	bare_wound_bonus = -20
+
+/obj/projectile/beam/laser/red
+	damage_type = RED_DAMAGE
+	light_color = COLOR_RED
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+/obj/projectile/beam/laser/white
+	damage_type = WHITE_DAMAGE
+	light_color = COLOR_WHITE
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+/obj/projectile/beam/laser/black
+	damage_type = BLACK_DAMAGE
+	light_color = COLOR_PURPLE
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+/obj/projectile/beam/laser/pale
+	damage = 5
+	damage_type = PALE_DAMAGE
+	light_color = COLOR_PALE_BLUE_GRAY
+	wound_bonus = -100
+	bare_wound_bonus = -100
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire

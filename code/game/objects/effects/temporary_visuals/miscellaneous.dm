@@ -546,3 +546,22 @@
 /obj/effect/temp_visual/sanity_heal
 	icon_state = "shieldsparkles"
 	duration = 2
+
+/obj/effect/temp_visual/judgement
+	icon_state = "judge"
+	duration = 30
+
+/obj/effect/temp_visual/judgement/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/fade_out), 15)
+
+/obj/effect/temp_visual/judgement/proc/fade_out()
+	animate(src, alpha = 0, time = duration-15)
+
+/obj/effect/temp_visual/paradise_attack
+	icon_state = "paradise_attack"
+	duration = 10
+
+/obj/effect/temp_visual/paradise_attack/Initialize()
+	..()
+	animate(src, alpha = 0, time = duration)

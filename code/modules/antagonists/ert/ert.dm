@@ -23,6 +23,12 @@
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
 	antag_moodlet = /datum/mood_event/focused
+	antag_attributes = list(
+		FORTITUDE_ATTRIBUTE = 70,
+		PRUDENCE_ATTRIBUTE = 70,
+		TEMPERANCE_ATTRIBUTE = 70,
+		JUSTICE_ATTRIBUTE = 70
+		)
 
 /datum/antagonist/ert/on_gain()
 	if(random_names)

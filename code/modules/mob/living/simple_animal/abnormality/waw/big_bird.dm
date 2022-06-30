@@ -16,7 +16,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	see_in_dark = 10
 
-	speed = 4
+	speed = 5
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
@@ -28,9 +28,7 @@
 						)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
-	can_spawn = FALSE // TODO: Finish it
 
-	var/mob/living/mob_target
 	var/bite_cooldown
 	var/bite_cooldown_time = 10 SECONDS
 
@@ -46,7 +44,9 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		head.dismember()
 		QDEL_NULL(head)
+		H.regenerate_icons()
 		visible_message("<span class='danger'>\The [src] bites [H]'s head off!</span>")
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)

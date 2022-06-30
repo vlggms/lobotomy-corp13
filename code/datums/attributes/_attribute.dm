@@ -52,4 +52,4 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 	for(var/a in user.attributes)
 		var/datum/attribute/atr = user.attributes[a]
 		collective_levels += atr.level
-	return clamp(round(collective_levels / 70), 1, 6)
+	return clamp(round(collective_levels / 70), 1, 5)
