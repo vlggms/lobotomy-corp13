@@ -28,3 +28,12 @@
 
 /obj/item/clothing/suit/armor/ego_gear/proc/special_ego_check(mob/living/carbon/human/H)
 	return TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/examine(mob/user)
+	. = ..()
+	var/display_text = null
+	for(var/atr in attribute_requirements)
+		if(attribute_requirements[atr] > 0)
+			display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
+	if(display_text)
+		. += "<span class='warning'><b>It requires the following attributes:</b></span> [display_text]"

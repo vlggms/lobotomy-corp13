@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	pin = /obj/item/firing_pin/magic
-	var/ammo_type
+	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 0,
 							PRUDENCE_ATTRIBUTE = 0,
@@ -19,6 +19,21 @@
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
 	chambered = new ammo_type(src)
+
+/obj/item/gun/ego_gun/examine(mob/user)
+	. = ..()
+	. += EgoAttackInfo(user)
+	var/display_text = null
+	for(var/atr in attribute_requirements)
+		if(attribute_requirements[atr] > 0)
+			display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
+	if(display_text)
+		. += "<span class='warning'><b>It requires the following attributes:</b></span> [display_text]"
+
+/obj/item/gun/ego_gun/proc/EgoAttackInfo(mob/user)
+	if(chambered && chambered.BB)
+		return "<span class='notice'>Its bullets deal [chambered.BB.damage] [chambered.BB.damage_type] damage.</span>"
+	return
 
 /obj/item/gun/ego_gun/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(!ishuman(user))

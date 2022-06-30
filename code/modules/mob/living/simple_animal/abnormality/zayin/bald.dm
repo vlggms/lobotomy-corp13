@@ -9,10 +9,10 @@
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 30,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = 30
+						ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = 0,
+						ABNORMALITY_WORK_ATTACHMENT = 0,
+						ABNORMALITY_WORK_REPRESSION = 0
 						)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
@@ -21,7 +21,7 @@
 							"Bald",
 							"Shaved"
 							)
-	var/bald_counter = 0
+	var/bald_users = list()
 
 /mob/living/simple_animal/hostile/abnormality/bald/work_chance(mob/living/carbon/human/user, chance)
 	if(user.hairstyle in balding_list)
@@ -30,11 +30,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/bald/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
-	do_bald(user)
-	bald_counter += 1
+	if(!do_bald(user)) // Already bald
+		return
+	bald_users |= user.ckey
 	update_icon()
 
-	switch(bald_counter)
+	switch(length(bald_users))
 		if(2)
 			for(var/mob/living/carbon/human/H in range(14, user))
 				if(prob(33))
@@ -54,11 +55,14 @@
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
 		victim.hairstyle = pick(balding_list)
 		victim.update_hair()
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bald/update_icon_state()
-	icon_state = "bald1"
-	switch(bald_counter)
+	switch(length(bald_users))
 		if(3 to 5)
 			icon_state = "bald2"
 		if(6 to INFINITY)
 			icon_state = "bald3"
+		else
+			icon_state = "bald1"

@@ -69,7 +69,7 @@
 
 /datum/abnormality/proc/RespawnAbno()
 	if(!ispath(abno_path))
-		CRASH("Abnormality tried to respawn a mob, but had no path.")
+		CRASH("Abnormality tried to respawn a mob, but abnormality path wasn't valid.")
 	if(!istype(landmark))
 		CRASH("Couldn't respawn an abnormality [initial(abno_path.name)] due to missing landmark.")
 	if(istype(current))
@@ -83,8 +83,8 @@
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
 	max_boxes = threat_level * 6
-	success_boxes = round(max_boxes * 0.75)
-	neutral_boxes = round(max_boxes * 0.5)
+	success_boxes = round(max_boxes * 0.7)
+	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe)
@@ -98,8 +98,9 @@
 	adjust_attribute_level(user, attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
+	var/pre_qlip = qliphoth_meter
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
-	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0))
+	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.zero_qliphoth(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)

@@ -20,3 +20,16 @@
 			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
 			return FALSE
 	return ..()
+
+/obj/item/ego_weapon/examine(mob/user)
+	. = ..()
+	. += EgoAttackInfo(user)
+	var/display_text = null
+	for(var/atr in attribute_requirements)
+		if(attribute_requirements[atr] > 0)
+			display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
+	if(display_text)
+		. += "<span class='warning'><b>It requires the following attributes:</b></span> [display_text]"
+
+/obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
+	return "<span class='notice'>It deals [force] [damtype] damage.</span>"

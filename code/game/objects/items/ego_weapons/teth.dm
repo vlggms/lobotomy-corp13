@@ -2,7 +2,7 @@
 	name = "training hammer"
 	desc = "E.G.O intended for Manager Education"
 	icon_state = "training"
-	force = 10
+	force = 8
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL

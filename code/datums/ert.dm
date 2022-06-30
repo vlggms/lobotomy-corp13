@@ -94,3 +94,13 @@
 	mission = "Create entertainment for the crew."
 	polldesc = "a Code Rainbow Nanotrasen Emergency Response Party"
 	code = "Rainbow"
+
+/datum/ert/rabbit
+	roles = list(/datum/antagonist/ert/security/rabbit)
+	leader_role = /datum/antagonist/ert/commander/rabbit
+	teamsize = 6
+	opendoors = FALSE
+	rename_team = "Rabbit Team"
+	mission = "Dispose of any breaching abnormalities and/or panicking employees of L Corp."
+	polldesc = "a Rabbit Team"
+	code = "Orange"

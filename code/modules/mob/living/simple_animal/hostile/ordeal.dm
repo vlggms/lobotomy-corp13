@@ -105,7 +105,7 @@
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/carbon/human/H in range(24, src))
-		H.apply_damage(75, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+		H.apply_damage(75, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
 	for(var/obj/machinery/computer/abnormality/A in range(24, src))
 		if(prob(88) && A.datum_reference)
 			A.datum_reference.qliphoth_change(pick(-2, -3))

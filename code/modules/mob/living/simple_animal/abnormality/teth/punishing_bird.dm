@@ -59,11 +59,12 @@
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
-	melee_damage_lower = 50
-	melee_damage_upper = 75
+	melee_damage_lower = 175
+	melee_damage_upper = 225
 	obj_damage = 500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
 	visible_message("<span class='notice'>\The [src] turns back into a fuzzy looking bird!</span>")
@@ -77,6 +78,7 @@
 	environment_smash = initial(environment_smash)
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
 	if(..())

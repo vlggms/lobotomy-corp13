@@ -45,10 +45,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 10,
-						ABNORMALITY_WORK_INSIGHT = 20,
-						ABNORMALITY_WORK_ATTACHMENT = 20,
-						ABNORMALITY_WORK_REPRESSION = 10
+						ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = 30,
+						ABNORMALITY_WORK_ATTACHMENT = 35,
+						ABNORMALITY_WORK_REPRESSION = 35
 						)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE

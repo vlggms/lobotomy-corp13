@@ -10,7 +10,7 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
-	if((status_flags & GODMODE) || !attributes)
+	if((status_flags & GODMODE) || !attributes || stat >= HARD_CRIT)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
 		amount = maxSanity+1
@@ -31,7 +31,7 @@
 						"<span class='notice'>You are back to normal!</span>")
 	else if(!sanity_lost && sanityhealth <= 0)
 		sanity_lost = TRUE
-		var/highest_atr = FORTITUDE_ATTRIBUTE
+		var/highest_atr = PRUDENCE_ATTRIBUTE
 		if(LAZYLEN(attributes))
 			var/highest_level = -1
 			for(var/i in attributes)

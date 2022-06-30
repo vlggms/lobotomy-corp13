@@ -74,8 +74,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			return
-	var/list/computer_list = shuffle(GLOB.abnormality_consoles)
+	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
+	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
+		if(!istype(cmp.datum_reference.current))
+			continue
+		if(cmp.datum_reference.current.AIStatus == TRUE)
+			continue
+		computer_list += cmp
 	if(!LAZYLEN(computer_list))
 		return
 	for(var/i = 1 to qliphoth_meltdown_amount)

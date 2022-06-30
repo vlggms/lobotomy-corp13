@@ -80,7 +80,6 @@
 	var/work_time = datum_reference.max_boxes
 	user.adjustSanityLoss(sanity_damage)
 	if(user.sanity_lost)
-		to_chat(user, "<span class='userdanger'>I DON'T WANT TO DIE!")
 		finish_work(user, work_type, 0, work_time) // Assume total failure
 		return
 	switch(sanity_result)
@@ -103,6 +102,7 @@
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
+		user.Stun(work_speed) // TODO: Probably temporary
 		sleep(work_speed)
 		if(do_work(work_chance))
 			success_boxes += 1
@@ -152,7 +152,7 @@
 /obj/machinery/computer/abnormality/proc/qliphoth_meltdown_effect()
 	meltdown = FALSE
 	update_icon()
-	datum_reference.qliphoth_change(-1)
+	datum_reference.qliphoth_change(-9)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)

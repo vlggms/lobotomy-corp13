@@ -198,6 +198,14 @@
 	role = "Party Coordinator"
 	outfit = /datum/outfit/centcom/ert/commander/party
 
+/datum/antagonist/ert/security/rabbit
+	role = "Mercenary"
+	outfit = /datum/outfit/centcom/ert/security/rabbit
+
+/datum/antagonist/ert/commander/rabbit
+	role = "Mercenary Leader"
+	outfit = /datum/outfit/centcom/ert/commander/rabbit
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
