@@ -98,7 +98,7 @@
 		breach_affected += H
 		var/sanity_result = round(fear_level - get_user_level(H))
 		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
-		H.adjustSanityLoss(sanity_damage, forced = TRUE)
+		H.adjustSanityLoss(sanity_damage)
 		if(H.sanity_lost)
 			return
 		switch(sanity_result)

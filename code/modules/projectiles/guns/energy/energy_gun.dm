@@ -159,7 +159,8 @@
 		/obj/item/ammo_casing/energy/laser/pale
 		)
 	can_charge = FALSE
+	weapon_weight = WEAPON_HEAVY // No dual wielding
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.18 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.16 SECONDS)

@@ -10,8 +10,11 @@
 	icon_state = "tough"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
 
-/obj/item/clothing/suit/armor/ego_gear/tough/special_ego_check(mob/living/carbon/human/H)
+/obj/item/clothing/suit/armor/ego_gear/tough/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(H.hairstyle in list("Bald", "Shaved"))
 		return TRUE
 	to_chat(H, "<span class='notice'>Only the ones with clean hairstyle can use [src]!</span>")
 	return FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/tough/SpecialGearRequirements()
+	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"

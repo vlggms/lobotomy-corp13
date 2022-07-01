@@ -110,5 +110,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!next_ordeal)
 		return FALSE
 	next_ordeal.Run()
+	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now

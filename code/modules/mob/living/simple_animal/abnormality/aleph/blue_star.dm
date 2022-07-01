@@ -8,7 +8,6 @@
 	icon_living = "bluestar"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	is_flying_animal = TRUE
-	anchored = TRUE // It's immovable
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
@@ -21,10 +20,11 @@
 	work_damage_amount = 18
 	work_damage_type = WHITE_DAMAGE
 
+	wander = FALSE
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_BLUE_LIGHT
-	light_range = 12
-	light_power = 6
+	light_range = 7
+	light_power = 5
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS
@@ -53,24 +53,26 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar/proc/BluePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 28)
-	for(var/mob/living/carbon/human/H in range(32, src))
-		H.apply_damage((pulse_damage - get_dist(src, H)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
-		flash_color(H, flash_color = COLOR_BLUE_LIGHT, flash_time = 50)
+	for(var/mob/living/carbon/human/H in range(48, src))
+		H.apply_damage((pulse_damage - round(get_dist(src, H) * 0.5)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+		flash_color(H, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
 			H.dust()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
-	if(work_time > 60 SECONDS)
+	if(work_time > 40 SECONDS)
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)
 	..()
-	var/X = pick(GLOB.xeno_spawn) // Temporary
+	var/X = pick(GLOB.xeno_spawn) // Temporary?
 	var/turf/T = get_turf(X)
+	light_range = 14
+	light_power = 20
 	soundloop.start()
 	forceMove(T)
 	BluePulse()

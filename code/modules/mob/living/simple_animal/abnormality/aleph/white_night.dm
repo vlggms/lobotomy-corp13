@@ -441,9 +441,9 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/apostle/success_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(50))
+	if(prob(66))
 		datum_reference.qliphoth_change(1)
-		if(prob(50)) // Rare effect, mmmm
+		if(prob(66)) // Rare effect, mmmm
 			revive_humans(20, "neutral") // Big heal
 	return
 

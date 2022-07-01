@@ -2760,6 +2760,7 @@
 #include "code\modules\ordeals\_ordeal.dm"
 #include "code\modules\ordeals\amber_ordeals.dm"
 #include "code\modules\ordeals\violet_ordeals.dm"
+#include "code\modules\ordeals\white_ordeals.dm"
 #include "code\modules\paperwork\carbonpaper.dm"
 #include "code\modules\paperwork\clipboard.dm"
 #include "code\modules\paperwork\contract.dm"

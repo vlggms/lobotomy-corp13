@@ -48,14 +48,14 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/pale
-	damage = 5
+	damage = 4
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "omnilaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
-//overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
+//overclocked laser, does a bit more damage but has much higher wound power
 /obj/projectile/beam/laser/hellfire
 	name = "hellfire laser"
 	wound_bonus = 0

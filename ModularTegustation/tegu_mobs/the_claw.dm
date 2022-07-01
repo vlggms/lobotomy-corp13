@@ -1,38 +1,34 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Claw"
 	desc = "A strange humanoid creature with several gadgets attached to it."
-	health = 3000
-	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	health = 4500
+	maxHealth = 4500
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.2)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
 	icon_state = "claw"
 	icon_living = "claw"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	health_doll_icon = "miner"
 	faction = list("Head")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
-	light_range = 5
+	light_range = 3
 	movement_type = GROUND
 	speak_emote = list("says")
-	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 50
+	melee_damage_upper = 60
 	ranged = TRUE
-	speed = 4
-	move_to_delay = 4
+	speed = 2
+	move_to_delay = 2
 	pixel_x = 0
 	base_pixel_x = 0
-	crusher_loot = list(/obj/item/card/id/ert/deathsquad, /obj/item/documents/nanotrasen)
-	loot = list(/obj/item/card/id/ert/deathsquad, /obj/item/documents/nanotrasen)
-	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
 	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "bodyfall"
+	deathsound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/ultimatum,
 							   /datum/action/innate/megafauna_attack/swift_dash,
@@ -45,11 +41,13 @@
 	var/dash_num_short = 4
 	var/dash_num_long = 18
 	var/dash_cooldown = 0
-	var/dash_cooldown_time = 4 // cooldown_time * distance:
-	// 4 * 4 = 16 (1.6 seconds)
-	// 4 * 18 = 72 (7.2 seconds)
+	var/dash_cooldown_time = 6 // cooldown_time * distance:
+	// 6 * 4 = 24 (2.4 seconds)
+	// 6 * 18 = 108 (10.8 seconds)
 	var/serumA_cooldown = 0
 	var/serumA_cooldown_time = 20 SECONDS
+
+	var/datum/ordeal/ordeal_reference
 
 /datum/action/innate/megafauna_attack/ultimatum
 	name = "Ultimatum"
@@ -84,10 +82,24 @@
 	desc = "You have a bad feeling about this..."
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "target_field"
+	duration = 30 SECONDS // In case claw dies in the processs
+	randomdir = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/claw/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
+
+/mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	..()
+
+/mob/living/simple_animal/hostile/megafauna/claw/Destroy()
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
 	if(client)
@@ -105,11 +117,11 @@
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
-	if(get_dist(src, target) >= 1 && dash_cooldown <= world.time && !charging)
+	if(dash_cooldown <= world.time && !charging)
 		swift_dash(target, dash_num_short, 5)
-	else if(get_dist(src, target) >= 3 && serumA_cooldown <= world.time && !charging)
+	else if(get_dist(src, target) >= 2 && serumA_cooldown <= world.time && !charging)
 		serumA(target)
-	else if(get_dist(src, target) > 5 && ultimatum_cooldown <= world.time && !charging)
+	else if(get_dist(src, target) >= 3 && ultimatum_cooldown <= world.time && !charging)
 		ultimatum()
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
@@ -158,6 +170,7 @@
 	forceMove(tp_loc)
 	qdel(eff)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
+	GiveTarget(target)
 	for(var/turf/b in range(1, src.loc)) // Attacks everyone around.
 		for(var/mob/living/H in b)
 			H.Knockdown(15)
@@ -182,6 +195,9 @@
 		charging = FALSE
 		return
 	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		charging = FALSE
+		return
 	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	forceMove(T)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
