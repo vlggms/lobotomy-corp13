@@ -77,7 +77,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
-		if(!istype(cmp.datum_reference.current))
+		if(cmp.meltdown)
+			continue
+		if(!cmp.datum_reference || !cmp.datum_reference.current)
 			continue
 		if(cmp.datum_reference.current.AIStatus == TRUE)
 			continue

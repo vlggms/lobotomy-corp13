@@ -7,17 +7,18 @@
 	faction = list("hostile")
 	speak_emote = list("chirps")
 
-	pixel_x = -16
-	base_pixel_x = -16
+	pixel_x = -8
+	base_pixel_x = -8
 
 	ranged = TRUE
 	retreat_distance = 1
 	minimum_distance = 4
 
-	maxHealth = 1500
-	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	maxHealth = 2000
+	health = 2000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 	see_in_dark = 10
+	stat_attack = HARD_CRIT
 
 	speed = 4
 	threat_level = WAW_LEVEL
@@ -37,7 +38,7 @@
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 85
-	var/judgement_range = 8
+	var/judgement_range = 9
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -66,8 +67,21 @@
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
-	for(var/mob/living/L in view(judgement_range, src))
+	for(var/mob/living/L in range(judgement_range, src))
 		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40))
+		datum_reference.qliphoth_change(-1)
+	return
+
+// Additional effects on work failure
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
+	return

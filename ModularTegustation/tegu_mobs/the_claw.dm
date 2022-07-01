@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Claw"
 	desc = "A strange humanoid creature with several gadgets attached to it."
-	health = 4500
-	maxHealth = 4500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.2)
+	health = 5000
+	maxHealth = 5000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.1)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'

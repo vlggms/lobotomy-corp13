@@ -38,13 +38,13 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 
 /proc/get_attribute_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
-		return 0
+		return 1
 	var/datum/attribute/atr = user.attributes[attribute]
 	if(!istype(atr))
-		return 0
+		return 1
 	return max(1, atr.get_level())
 
-// Returns a combination of attributes, giving a "level" from 1 to 6(EX)
+// Returns a combination of attributes, giving a "level" from 1 to 5
 /proc/get_user_level(mob/living/carbon/human/user)
 	if(!istype(user))
 		return 0

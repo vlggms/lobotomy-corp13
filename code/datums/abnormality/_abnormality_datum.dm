@@ -94,7 +94,7 @@
 		return
 	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
 	var/maximum_attribute_level = min(120, threat_level * 24)
-	var/attribute_given = round(clamp((maximum_attribute_level / get_attribute_level(user, attribute_type)), 0, 4))
+	var/attribute_given = round(clamp((maximum_attribute_level / (get_attribute_level(user, attribute_type) * 0.5)), 0, 8))
 	adjust_attribute_level(user, attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)

@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/apostle
 	name = "White night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
-	health = 2500
-	maxHealth = 2500
+	health = 4000
+	maxHealth = 4000
 	attack_verb_continuous = "purges"
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'

@@ -49,7 +49,6 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-// Additional effects on work failure
 /mob/living/simple_animal/hostile/abnormality/queen_bee/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)

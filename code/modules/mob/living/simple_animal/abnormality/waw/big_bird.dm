@@ -11,9 +11,10 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 1500
-	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	ranged = TRUE
+	maxHealth = 2000
+	health = 2000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
@@ -30,14 +31,45 @@
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
-	// This stuff is only done to non-humans if it's player-controlled
+	// This stuff is only done to non-humans
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 200
 	melee_damage_upper = 200
 
+	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
+
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
+	var/hypnosis_cooldown
+	var/hypnosis_cooldown_time = 16 SECONDS
+	/// How many people died at the moment? When it hits 5 - reduce qliphoth and reset counter to 0.
+	var/death_counter = 0
+
+/datum/action/innate/abnormality_attack/hypnosis
+	name = "Hypnosis"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now put random human near you to sleep.</span>"
+	chosen_attack_num = 1
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				hypnotize()
+		return
+
+	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time)
+		hypnotize()
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
+	. = ..()
+	playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/ListTargets()
 	return hearers(vision_range, targets_from) - src
@@ -67,6 +99,32 @@
 		bite_cooldown = world.time + bite_cooldown_time
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/hypnotize()
+	if(hypnosis_cooldown > world.time)
+		return
+	hypnosis_cooldown = world.time + hypnosis_cooldown_time
+	playsound(get_turf(src), 'sound/abnormalities/bigbird/hypnosis.ogg', 50, 1, 2)
+	for(var/mob/living/carbon/C in view(7, src))
+		if(faction_check_mob(C, FALSE))
+			continue
+		if(!CanAttack(C))
+			continue
+		if(prob(66))
+			C.drowsyness += 3 SECONDS
+			addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 2 SECONDS), 3 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(mob/dead_man)
+	SIGNAL_HANDLER
+	if(!ishuman(dead_man))
+		return
+	if(!dead_man.ckey)
+		return
+	death_counter += 1
+	if(death_counter >= 5)
+		death_counter = 0
+		datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/success_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
