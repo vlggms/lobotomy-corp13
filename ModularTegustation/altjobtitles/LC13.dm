@@ -7,7 +7,7 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy/control
 
 /datum/outfit/job/assistant/informationdepartmentclerk
-	name = "Clerk (Infomration)"
+	name = "Clerk (Information)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/information
 
 /datum/outfit/job/assistant/trainingdepartmentclerk
