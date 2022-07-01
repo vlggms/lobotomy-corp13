@@ -25,33 +25,31 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
 	damage = 15
-	wound_bonus = -30
-	bare_wound_bonus = -20
+	wound_bonus = -100
+	bare_wound_bonus = -100
 
 /obj/projectile/beam/laser/red
 	damage_type = RED_DAMAGE
 	light_color = COLOR_RED
-	wound_bonus = -100
-	bare_wound_bonus = -100
 
 /obj/projectile/beam/laser/white
 	damage_type = WHITE_DAMAGE
 	light_color = COLOR_WHITE
-	wound_bonus = -100
-	bare_wound_bonus = -100
+	icon_state = "whitelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
 /obj/projectile/beam/laser/black
 	damage_type = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
-	wound_bonus = -100
-	bare_wound_bonus = -100
+	icon_state = "purplelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/pale
 	damage = 5
 	damage_type = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
-	wound_bonus = -100
-	bare_wound_bonus = -100
+	icon_state = "omnilaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
 //overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
 /obj/projectile/beam/laser/hellfire
@@ -81,7 +79,7 @@
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/weak
-	damage = 15
+	damage = 10
 
 /obj/projectile/beam/weak/penetrator
 	armour_penetration = 50

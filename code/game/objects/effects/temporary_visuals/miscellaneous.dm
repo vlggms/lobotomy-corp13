@@ -364,6 +364,10 @@
 	icon_state = "impact_laser_purple"
 	duration = 4
 
+/obj/effect/temp_visual/impact_effect/white_laser
+	icon_state = "impact_laser_white"
+	duration = 4
+
 /obj/effect/temp_visual/impact_effect/shrink
 	icon_state = "m_shield"
 	duration = 10
