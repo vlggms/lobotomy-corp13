@@ -12,13 +12,8 @@
 							)
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!ishuman(user))
+	if(!CanUseEgo(user))
 		return FALSE
-	var/mob/living/carbon/human/H = user
-	for(var/atr in attribute_requirements)
-		if(attribute_requirements[atr] > get_attribute_level(H, atr))
-			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
-			return FALSE
 	return ..()
 
 /obj/item/ego_weapon/examine(mob/user)
@@ -30,6 +25,16 @@
 			display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
 	if(display_text)
 		. += "<span class='warning'><b>It requires the following attributes:</b></span> [display_text]"
+
+/obj/item/ego_weapon/proc/CanUseEgo(mob/living/carbon/human/user)
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	for(var/atr in attribute_requirements)
+		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
+			return FALSE
+	return TRUE
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"

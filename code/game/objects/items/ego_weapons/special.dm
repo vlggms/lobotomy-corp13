@@ -30,10 +30,10 @@
 			force = 20
 		if(BLACK_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 10
+			force = 8
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 25
+			force = 24
 	armortype = damtype // TODO: In future, armortype should be gone entirely
 	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)

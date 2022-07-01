@@ -87,8 +87,8 @@
 	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances
 
-/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe)
-	current.work_complete(user, work_type, pe, success_boxes) // Cross-referencing gone wrong
+/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
+	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
 	SSlobotomy_corp.WorkComplete(pe)
 	if(max_pe <= 0) // Work failure
 		return

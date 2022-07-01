@@ -16,7 +16,7 @@
 
 	maxHealth = 1500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	see_in_dark = 10
 
 	speed = 4
@@ -32,10 +32,12 @@
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
+	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
+
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
-	var/judgement_damage = 70
-	var/judgement_range = 7
+	var/judgement_damage = 85
+	var/judgement_range = 8
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -60,12 +62,12 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/proc/judgement()
 	if(judgement_cooldown > world.time)
 		return
-	judgement_cooldown = (world.time + judgement_cooldown_base)
+	judgement_cooldown = world.time + judgement_cooldown_base
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
-	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 4)
-	for(var/mob/living/L in view(judgement_range))
-		if(faction_check_mob(L, TRUE))
+	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
+	for(var/mob/living/L in view(judgement_range, src))
+		if(faction_check_mob(L, FALSE))
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)

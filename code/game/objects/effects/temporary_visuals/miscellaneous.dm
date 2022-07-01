@@ -553,14 +553,14 @@
 
 /obj/effect/temp_visual/judgement
 	icon_state = "judge"
-	duration = 30
+	duration = 20
 
 /obj/effect/temp_visual/judgement/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/fade_out), 15)
+	addtimer(CALLBACK(src, .proc/fade_out), 10)
 
 /obj/effect/temp_visual/judgement/proc/fade_out()
-	animate(src, alpha = 0, time = duration-15)
+	animate(src, alpha = 0, time = duration-10)
 
 /obj/effect/temp_visual/paradise_attack
 	icon_state = "paradise_attack"

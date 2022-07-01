@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
-	wait = 10 MINUTES
+	wait = 8 MINUTES
 
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)

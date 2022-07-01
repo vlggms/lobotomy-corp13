@@ -162,4 +162,4 @@
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.3 SECONDS)
+	AddComponent(/datum/component/automatic_fire, 0.18 SECONDS)

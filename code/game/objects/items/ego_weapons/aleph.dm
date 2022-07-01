@@ -3,7 +3,7 @@
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
 	icon_state = "paradise"
-	force = 20
+	force = 7 // Keep in mind the justice bonus
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,12 +18,12 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1 SECONDS
-	var/ranged_damage = 20
+	var/ranged_damage = 15
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		return
-	if(!ishuman(user))
+	if(!CanUseEgo(user))
 		return
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
@@ -38,9 +38,14 @@
 		new /obj/effect/temp_visual/paradise_attack(T)
 		for(var/mob/living/L in T.contents)
 			L.apply_damage(ranged_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-			damage_dealt += ranged_damage
+			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
-		H.adjustStaminaLoss(-damage_dealt)
-		H.adjustBruteLoss(-damage_dealt*0.5)
-		H.adjustFireLoss(-damage_dealt*0.5)
-		H.adjustSanityLoss(damage_dealt*0.5)
+		H.adjustStaminaLoss(-damage_dealt*0.5)
+		H.adjustBruteLoss(-damage_dealt*0.25)
+		H.adjustFireLoss(-damage_dealt*0.25)
+		H.adjustSanityLoss(damage_dealt*0.25)
+
+/obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
+	return "<span class='notice'>It deals [force] [damtype] damage in melee. \n \
+	Use it on a distant target to perform special attack that can heal you.</span>"

@@ -6,9 +6,11 @@
 	stat_attack = DEAD
 	layer = LARGE_MOB_LAYER
 	del_on_death = TRUE
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
+	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
+	pull_force = MOVE_FORCE_STRONG
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -96,9 +98,8 @@
 		breach_affected += H
 		var/sanity_result = round(fear_level - get_user_level(H))
 		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
-		H.adjustSanityLoss(sanity_damage)
+		H.adjustSanityLoss(sanity_damage, forced = TRUE)
 		if(H.sanity_lost)
-			to_chat(H, "<span class='userdanger'>I DON'T WANT TO DIE!")
 			return
 		switch(sanity_result)
 			if(1)
@@ -113,7 +114,7 @@
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
 		return

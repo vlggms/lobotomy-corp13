@@ -18,13 +18,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	speak_emote = list("proclaims")
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	obj_damage = 600
-	move_force = MOVE_FORCE_STRONG
-	move_resist = MOVE_FORCE_STRONG
-	pull_force = MOVE_FORCE_STRONG
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	is_flying_animal = TRUE
 	speed = 2
@@ -43,6 +40,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	small_sprite_type = /datum/action/small_sprite/megafauna/tegu/angel
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
+	fear_level = ALEPH_LEVEL + 1
 	start_qliphoth = 3
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
@@ -53,9 +51,14 @@ GLOBAL_LIST_EMPTY(apostles)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
+	light_system = MOVABLE_LIGHT
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_range = 3
+	light_power = 1
+
 	var/holy_revival_cooldown = 10 SECONDS
 	var/holy_revival_cooldown_base = 10 SECONDS
-	var/holy_revival_damage = 8 // Pale damage, scales with distance
+	var/holy_revival_damage = 12 // Pale damage, scales with distance
 	var/holy_revival_range = 4
 	var/last_revival_time // To prevent multiple conversions per one action
 	var/fire_field_cooldown = 20 SECONDS
@@ -262,6 +265,8 @@ GLOBAL_LIST_EMPTY(apostles)
 				if(12) //Here we go sicko mode
 					apostle_line = "Have I not chosen you, the Twelve? Yet one of you is a devil."
 					rapture_skill.Grant(src)
+					if(!client) // AI in control
+						addtimer(CALLBACK(src, .proc/rapture), 5 SECONDS)
 			for(var/mob/M in GLOB.player_list)
 				if(M.z == z && M.client)
 					to_chat(M, "<span class='userdanger'>[apostle_line]</span>")
@@ -279,7 +284,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		else
 			playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 			// The farther you are from white night - the less damage it deals
-			H.adjustPaleLoss(max(1, holy_revival_damage - attack_range))
+			var/dealt_damage = max(1, holy_revival_damage - attack_range)
+			H.apply_damage(dealt_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 			if((holy_revival_damage - attack_range) > 5)
 				H.emote("scream")
 			to_chat(H, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
@@ -295,6 +301,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			H.adjustStaminaLoss(-200)
 			H.adjustBruteLoss(-holy_revival_damage*5)
 			H.adjustFireLoss(-holy_revival_damage*5)
+			H.adjustSanityLoss(holy_revival_damage*5) // It actually heals, don't worry
 			H.regenerate_limbs()
 			H.regenerate_organs()
 			to_chat(H, "<span class='notice'>The holy light heals you!</span>")

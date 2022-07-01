@@ -112,7 +112,7 @@
 			break // Lost sanity
 		if(user.health < 0)
 			break // Dying
-	finish_work(user, work_type, success_boxes, work_time)
+	finish_work(user, work_type, success_boxes, work_time, work_speed)
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
@@ -121,14 +121,14 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
 	working = FALSE
 	if(max_pe != 0)
 		visible_message("<span class='notice'>Work finished. [pe]/[max_pe] PE acquired.")
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(istype(user))
-		datum_reference.work_complete(user, work_type, pe, max_pe)
+		datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)

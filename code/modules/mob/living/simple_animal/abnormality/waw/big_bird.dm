@@ -13,8 +13,9 @@
 
 	maxHealth = 1500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	see_in_dark = 10
+	stat_attack = HARD_CRIT
 
 	speed = 5
 	threat_level = WAW_LEVEL
@@ -29,8 +30,14 @@
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
+	// This stuff is only done to non-humans if it's player-controlled
+	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	melee_damage_lower = 200
+	melee_damage_upper = 200
+
 	var/bite_cooldown
-	var/bite_cooldown_time = 10 SECONDS
+	var/bite_cooldown_time = 8 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/ListTargets()
 	return hearers(vision_range, targets_from) - src
@@ -38,12 +45,19 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/CanAttack(atom/the_target)
 	if(bite_cooldown > world.time)
 		return FALSE
+	if(ishuman(the_target))
+		var/mob/living/carbon/human/H = the_target
+		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		if(!istype(head)) // You, I'm afraid, are headless
+			return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget()
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		if(QDELETED(head))
+			return
 		head.dismember()
 		QDEL_NULL(head)
 		H.regenerate_icons()
