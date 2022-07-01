@@ -77,7 +77,7 @@
 	chosen_message = "<span class='colossus'>You will now continously dash towards your target.</span>"
 	chosen_attack_num = 4
 
-/obj/effect/target_field
+/obj/effect/temp_visual/target_field
 	name = "target field"
 	desc = "You have a bad feeling about this..."
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
@@ -149,7 +149,7 @@
 		death_candidates.Remove(H)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate(mob/living/carbon/human/target)
-	var/obj/effect/target_field/uhoh = new /obj/effect/target_field(target.loc)
+	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(target.loc)
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
