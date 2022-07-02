@@ -4,10 +4,10 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "helper"
 	icon_living = "helper"
-	maxHealth = 900
-	health = 900
+	maxHealth = 1000
+	health = 1000
 	see_in_dark = 10
-	rapid_melee = 2
+	rapid_melee = 3
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -16,7 +16,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	obj_damage = 250
 	speak_emote = list("states")
 	vision_range = 8

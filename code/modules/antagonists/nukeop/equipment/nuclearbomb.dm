@@ -422,7 +422,7 @@
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
-		set_security_level("delta")
+		set_security_level(SEC_LEVEL_DELTA)
 	else
 		message_admins("\The [src] at [ADMIN_VERBOSEJMP(our_turf)] was disarmed by [ADMIN_LOOKUPFLW(usr)].")
 		log_game("\The [src] at [loc_name(our_turf)] was disarmed by [key_name(usr)].")

@@ -48,5 +48,5 @@
 		H.adjustSanityLoss(damage_dealt*0.25)
 
 /obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force] [damtype] damage in melee. \n \
+	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
 	Use it on a distant target to perform special attack that can heal you.</span>"

@@ -158,6 +158,10 @@
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 
+// On lobotomy_corp subsystem qliphoth event
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
+	return
+
 // Actions
 /datum/action/innate/abnormality_attack
 	name = "Megafauna Attack"
