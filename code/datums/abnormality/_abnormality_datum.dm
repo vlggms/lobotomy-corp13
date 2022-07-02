@@ -93,8 +93,11 @@
 	if(max_pe <= 0) // Work failure
 		return
 	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
-	var/maximum_attribute_level = min(120, threat_level * 24)
-	var/attribute_given = round(clamp((maximum_attribute_level / (get_attribute_level(user, attribute_type) * 0.5)), 0, 8))
+	var/maximum_attribute_level = min(130, threat_level * 26)
+	var/user_attribute_level = get_attribute_level(user, attribute_type)
+	var/attribute_given = round(clamp((maximum_attribute_level / (user_attribute_level * 0.35)), 0, 12))
+	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
+		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 	adjust_attribute_level(user, attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
@@ -104,12 +107,9 @@
 		current?.zero_qliphoth(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
-	var/acquired_chance = 0
-	// In case there's no level specific results
-	if(!islist(available_work[workType]))
-		acquired_chance = available_work[workType]
-	else
-		acquired_chance = available_work[workType[get_user_level(user)]]
+	var/acquired_chance = available_work[workType]
+	if(islist(acquired_chance))
+		acquired_chance = acquired_chance[get_user_level(user)]
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
 	return acquired_chance

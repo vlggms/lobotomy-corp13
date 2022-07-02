@@ -12,7 +12,7 @@
 
 	ranged = TRUE
 	retreat_distance = 1
-	minimum_distance = 4
+	minimum_distance = 5
 
 	maxHealth = 2000
 	health = 2000
@@ -57,7 +57,7 @@
 				judgement()
 		return
 
-	if(get_dist(src, target) <= judgement_range && judgement_cooldown <= world.time)
+	if(judgement_cooldown <= world.time)
 		judgement()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/proc/judgement()

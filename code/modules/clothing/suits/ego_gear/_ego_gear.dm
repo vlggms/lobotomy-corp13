@@ -13,13 +13,21 @@
 		return FALSE
 	var/mob/living/carbon/human/H = M
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
-		for(var/atr in attribute_requirements)
-			if(attribute_requirements[atr] > get_attribute_level(H, atr))
-				to_chat(H, "<span class='notice'>You cannot equip [src]!</span>")
-				return FALSE
+		if(!CanUseEgo(H))
+			return FALSE
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/proc/CanUseEgo(mob/living/carbon/human/user)
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	for(var/atr in attribute_requirements)
+		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
+			return FALSE
 	if(!SpecialEgoCheck(H))
 		return FALSE
-	return ..()
+	return TRUE
 
 /obj/item/clothing/suit/armor/ego_gear/proc/SpecialEgoCheck(mob/living/carbon/human/H)
 	return TRUE

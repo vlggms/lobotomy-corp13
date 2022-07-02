@@ -88,10 +88,12 @@
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/Move()
-	..()
+/mob/living/simple_animal/hostile/abnormality/Life() // Fear effect
+	. = ..()
+	if(!.) // Dead
+		return FALSE
 	if(status_flags & GODMODE)
-		return
+		return FALSE
 	for(var/mob/living/carbon/human/H in view(6, src))
 		if(H in breach_affected)
 			continue
@@ -100,7 +102,7 @@
 		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
 		H.adjustSanityLoss(sanity_damage)
 		if(H.sanity_lost)
-			return
+			continue
 		switch(sanity_result)
 			if(1)
 				to_chat(H, "<span class='warning'>Here it comes!")

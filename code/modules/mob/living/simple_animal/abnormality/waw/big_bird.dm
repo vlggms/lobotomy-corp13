@@ -67,9 +67,14 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
-	playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
+	if(!(status_flags & GODMODE)) // Whitaker nerf
+		playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/ListTargets()
 	return hearers(vision_range, targets_from) - src
@@ -111,20 +116,22 @@
 		if(!CanAttack(C))
 			continue
 		if(prob(66))
-			C.drowsyness += 3 SECONDS
-			addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 2 SECONDS), 3 SECONDS)
+			C.drowsyness += 3
+			addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 2 SECONDS), 4 SECONDS)
 
-/mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(mob/dead_man)
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(!ishuman(dead_man))
-		return
-	if(!dead_man.ckey)
-		return
+	if(!(status_flags & GODMODE)) // If it's breaching right now
+		return FALSE
+	if(!ishuman(died))
+		return FALSE
+	if(!died.ckey)
+		return FALSE
 	death_counter += 1
-	if(death_counter >= 5)
+	if(death_counter >= 3)
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
-	return
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/success_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)

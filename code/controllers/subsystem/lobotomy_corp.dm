@@ -68,9 +68,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	qliphoth_max = 4 + round(abno_amount * 0.25)
+	qliphoth_max = 4 + round(abno_amount * 0.35)
 	qliphoth_state += 1
-	qliphoth_meltdown_amount = min(1, round(abno_amount * 0.25)) // TODO: Formula takes pop in consideration
+	qliphoth_meltdown_amount = min(1, round(abno_amount * 0.35)) // TODO: Formula takes pop in consideration
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			return
@@ -86,14 +86,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		computer_list += cmp
 	if(!LAZYLEN(computer_list))
 		return
-	for(var/i = 1 to qliphoth_meltdown_amount)
+	for(var/i = 0 to qliphoth_meltdown_amount)
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
 		computer_list -= computer
 		computer.start_meltdown()
 		meltdown_occured += computer
 	if(meltdown_occured.len)
 		var/text_info = ""
-		for(var/y = 1 to meltdown_occured.len)
+		for(var/y = 0 to meltdown_occured.len)
 			var/obj/machinery/computer/abnormality/computer = meltdown_occured[y]
 			text_info += computer.datum_reference.name
 			if(y != meltdown_occured.len)
@@ -106,6 +106,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	next_ordeal = pick(all_ordeals[next_ordeal_level])
 	all_ordeals[next_ordeal_level] -= next_ordeal
 	next_ordeal_level += 1 // Increase difficulty!
+	next_ordeal_time += (next_ordeal_level + pick(5,6,7))
+	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealEvent()

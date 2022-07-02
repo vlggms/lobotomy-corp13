@@ -23,8 +23,8 @@
 	wander = FALSE
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_BLUE_LIGHT
-	light_range = 7
-	light_power = 5
+	light_range = 24
+	light_power = 7
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS

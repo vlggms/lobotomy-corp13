@@ -14,8 +14,12 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/tough/special_ego_check(mob/living/carbon/human/H)
+/obj/item/gun/ego_gun/tough/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(H.hairstyle in list("Bald", "Shaved"))
 		return TRUE
 	to_chat(H, "<span class='notice'>Only the ones with clean hairstyle can use [src]!</span>")
 	return FALSE
+
+/obj/item/gun/ego_gun/tough/SpecialGearRequirements()
+	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"
+

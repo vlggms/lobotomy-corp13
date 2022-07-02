@@ -30,6 +30,7 @@
 		return
 	if(get_dist(user, target_turf) < 2)
 		return
+	..()
 	var/mob/living/carbon/human/H = user
 	ranged_cooldown = world.time + ranged_cooldown_time
 	playsound(target_turf, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
