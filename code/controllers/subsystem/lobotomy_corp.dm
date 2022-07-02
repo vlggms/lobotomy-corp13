@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!(cmp.datum_reference.current.status_flags & GODMODE))
 			continue
 		computer_list += cmp
-	for(var/i = 0 to qliphoth_meltdown_amount)
+	for(var/i = 1 to qliphoth_meltdown_amount)
 		if(!LAZYLEN(computer_list))
 			break
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
@@ -99,15 +99,15 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			if(y != meltdown_occured.len)
 				text_info += ", "
 		priority_announce("Qliphoth meltdown occured in containment zones of the following abnormalities: [text_info].", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
-	qliphoth_meltdown_amount = min(1, round(abno_amount * 0.35)) // TODO: Formula takes pop in consideration
+	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35)) // TODO: Formula takes pop in consideration
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))
 		return FALSE
 	next_ordeal = pick(all_ordeals[next_ordeal_level])
 	all_ordeals[next_ordeal_level] -= next_ordeal
+	next_ordeal_time += (next_ordeal_level + pick(2,3,4))
 	next_ordeal_level += 1 // Increase difficulty!
-	next_ordeal_time += (next_ordeal_level + pick(5,6,7))
 	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE
 
