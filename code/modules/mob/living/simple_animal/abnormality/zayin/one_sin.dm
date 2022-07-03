@@ -62,6 +62,7 @@
 			to_chat(A.owner.current, "<span class='colossus'>The twelfth has betrayed us...</span>")
 		for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
+			WN.loot = list() // No loot for you!
 			for(var/i = 1 to 12)
 				sleep(1.5 SECONDS)
 				playsound(get_turf(WN), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)

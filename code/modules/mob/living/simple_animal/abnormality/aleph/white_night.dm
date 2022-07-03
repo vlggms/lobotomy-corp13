@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	base_pixel_x = -16
 	pixel_y = -16
 	base_pixel_y = -16
-	loot = list(/obj/item/dark_bible) // Allows 6 people to use apostle weaponry.
+	loot = list(/obj/item/ego_weapon/paradise)
 	deathmessage = "evaporates in a moment, leaving heavenly light and feathers behind."
 	deathsound = 'ModularTegustation/Tegusounds/apostle/mob/apostle_death.ogg'
 	attack_action_types = list(/datum/action/innate/abnormality_attack/holy_revival,

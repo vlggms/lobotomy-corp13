@@ -82,7 +82,10 @@
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
-	max_boxes = threat_level * 6
+	if(!current.max_boxes)
+		max_boxes = threat_level * 6
+	else
+		max_boxes = current.max_boxes
 	success_boxes = round(max_boxes * 0.7)
 	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances

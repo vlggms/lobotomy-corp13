@@ -27,8 +27,8 @@
 	light_power = 14
 
 	var/pulse_cooldown
-	var/pulse_cooldown_time = 10 SECONDS
-	var/pulse_damage = 40 // Scales with distance
+	var/pulse_cooldown_time = 9 SECONDS
+	var/pulse_damage = 38 // Scales with distance
 
 	var/datum/looping_sound/bluestar/soundloop
 
@@ -39,6 +39,9 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/bluestar/Move()
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Life()
 	. = ..()
@@ -61,7 +64,7 @@
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
 			H.Stun(5)
 			animate(H, transform = H.transform*0.01, time = 5)
-			addtimer(CALLBACK (H, .mob/living/proc/dust), 5)
+			QDEL_IN(H, 5)
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 

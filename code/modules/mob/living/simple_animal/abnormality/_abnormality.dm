@@ -70,6 +70,8 @@
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
 	var/work_damage_type = RED_DAMAGE
+	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
+	var/max_boxes = null
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()

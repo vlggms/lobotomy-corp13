@@ -569,3 +569,20 @@
 /obj/effect/temp_visual/paradise_attack/Initialize()
 	..()
 	animate(src, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/water_waves
+	name = "ocean"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	layer = ABOVE_ALL_MOB_LAYER
+	density = TRUE
+	duration = 18 SECONDS
+	alpha = 0
+
+/obj/effect/temp_visual/water_waves/Initialize()
+	..()
+	animate(src, alpha = 255, time = 10)
+	addtimer(CALLBACK(src, .proc/fade_out), 10 SECONDS)
+
+/obj/effect/temp_visual/water_waves/proc/fade_out()
+	animate(src, alpha = 0, time = (duration - 10 SECONDS))
