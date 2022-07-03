@@ -67,27 +67,26 @@
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/proc/explode()
 	if(boom_cooldown > world.time) // That's only for players
 		return
-	exploding = TRUE
 	boom_cooldown = world.time + 3 SECONDS
 	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
 	if(client)
 		if(!do_after(src, 1.5 SECONDS, target = src))
-			exploding = FALSE
 			return
 	else
 		SLEEP_CHECK_DEATH(1.5 SECONDS)
+	exploding = TRUE
 	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4)
 	SLEEP_CHECK_DEATH(3 SECONDS)
 	// Ka-boom
-	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/explosion.ogg', 75, 0, 8)
-	new /obj/effect/explosion(get_turf(src))
-	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(5, get_turf(src))
-	S.start()
+	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		H.apply_damage(boom_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(H.health < 0)
 			H.gib()
+	new /obj/effect/temp_visual/explosion(get_turf(src))
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(5, get_turf(src))
+	S.start()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/neutral_effect(mob/living/carbon/human/user, work_type, pe)
