@@ -36,7 +36,7 @@
 	if(!dropped_can)
 		return
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
-	new dropped_can(dispense_turf)
+	dropped_can = new(dispense_turf)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
 	visible_message("<span class='notice'>[src] dispenses [dropped_can].</span>")
 	return

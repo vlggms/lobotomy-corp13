@@ -75,18 +75,20 @@
 	maxHealth = 240
 	health = 240
 	speed = 2
-	faction = list("neutral")
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), 80 SECONDS)
 
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/CanAttack(atom/the_target)
+	return FALSE
+
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	for(var/mob/living/carbon/human/H in view(5, src))
+	for(var/mob/living/carbon/human/H in view(7, src))
 		new /obj/effect/temp_visual/revenant(get_turf(H))
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 		H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
@@ -96,15 +98,14 @@
 	if(stat == DEAD)
 		return
 	var/turf/target_c = get_turf(src)
-	var/list/turf_list = list()
-	turf_list = spiral_range_turfs(24, target_c)
+	var/list/turf_list = spiral_range_turfs(24, target_c)
 	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 15)
 	adjustWhiteLoss(maxHealth) // Die
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in range(24, src))
+	for(var/mob/living/carbon/human/H in range(24, target_c))
 		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
-	for(var/obj/machinery/computer/abnormality/A in range(24, src))
+	for(var/obj/machinery/computer/abnormality/A in range(24, target_c))
 		if(prob(66) && A.datum_reference)
-			A.datum_reference.qliphoth_change(pick(-2, -3))
+			A.datum_reference.qliphoth_change(pick(-1, -2))

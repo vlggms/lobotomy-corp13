@@ -32,11 +32,12 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
-	// This stuff is only done to non-humans
+	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 200
 	melee_damage_upper = 200
+	obj_damage = 1000
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
 
@@ -81,9 +82,9 @@
 	return hearers(vision_range, targets_from) - src
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/CanAttack(atom/the_target)
-	if(bite_cooldown > world.time)
-		return FALSE
 	if(ishuman(the_target))
+		if(bite_cooldown > world.time)
+			return FALSE
 		var/mob/living/carbon/human/H = the_target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		if(!istype(head)) // You, I'm afraid, are headless

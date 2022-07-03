@@ -11,7 +11,7 @@
 	response_help_simple = "brush aside"
 	response_disarm_continuous = "flails at"
 	response_disarm_simple = "flail at"
-	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	density = FALSE
 	is_flying_animal = TRUE
 	maxHealth = 600
 	health = 600

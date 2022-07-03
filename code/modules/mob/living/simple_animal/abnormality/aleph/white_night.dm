@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(apostles)
 						ABNORMALITY_WORK_ATTACHMENT = 35,
 						ABNORMALITY_WORK_REPRESSION = 35
 						)
-	work_damage_amount = 8
+	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
 
 	light_system = MOVABLE_LIGHT

@@ -5,12 +5,14 @@
 	ranged_ignores_vision = TRUE
 	stat_attack = DEAD
 	layer = LARGE_MOB_LAYER
+	a_intent = INTENT_HARM
 	del_on_death = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
 	pull_force = MOVE_FORCE_STRONG
+	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use

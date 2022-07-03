@@ -11,8 +11,7 @@
 	base_pixel_x = -8
 
 	ranged = TRUE
-	retreat_distance = 1
-	minimum_distance = 5
+	minimum_distance = 6
 
 	maxHealth = 2000
 	health = 2000
