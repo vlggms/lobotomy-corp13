@@ -5,12 +5,13 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wellcheers_vendor"
 	icon_living = "wellcheers_vendor"
+	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 65,
-						ABNORMALITY_WORK_INSIGHT = 65,
-						ABNORMALITY_WORK_ATTACHMENT = 45,
-						ABNORMALITY_WORK_REPRESSION = 45
+						ABNORMALITY_WORK_INSTINCT = list(70, 65, 55, 50, 45),
+						ABNORMALITY_WORK_INSIGHT = list(70, 65, 55, 50, 45),
+						ABNORMALITY_WORK_ATTACHMENT = list(45, 40, 35, 30, 25),
+						ABNORMALITY_WORK_REPRESSION = list(45, 40, 35, 30, 25)
 						)
 	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE
@@ -34,9 +35,9 @@
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
 	if(!dropped_can)
 		return
-	var/turf/dispense_turf = get_step(src, get_dir(get_turf(src), get_turf(target)))
+	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	new dropped_can(dispense_turf)
-	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -2)
+	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
 	visible_message("<span class='notice'>[src] dispenses [dropped_can].</span>")
 	return
 

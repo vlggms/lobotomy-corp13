@@ -963,7 +963,7 @@
 	glass_desc = "A glass of cherry-flavored soda."
 
 /datum/reagent/consumable/wellcheers_red/on_mob_life(mob/living/M)
-	M.adjustBruteLoss(-2)
+	M.adjustBruteLoss(-5)
 	return ..()
 
 /datum/reagent/consumable/wellcheers_white
@@ -979,7 +979,7 @@
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(2) // That's healing
+	H.adjustSanityLoss(5) // That's healing
 	return ..()
 
 /datum/reagent/consumable/wellcheers_purple
@@ -995,6 +995,6 @@
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustBruteLoss(-1.5)
-	H.adjustSanityLoss(1.5) // That's healing
+	H.adjustBruteLoss(-3.5)
+	H.adjustSanityLoss(3.5) // That's healing
 	return ..()
