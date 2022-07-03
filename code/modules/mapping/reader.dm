@@ -82,7 +82,7 @@
 		// (1,1,1) = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
 		else if(dmmRegex.group[3]) // Coords
 			if(!key_len)
-				CRASH("Coords before model definition in DMM")
+				CRASH("Coords before model definition in DMM: [dmmRegex.group[3]]")
 
 			var/curr_x = text2num(dmmRegex.group[3])
 

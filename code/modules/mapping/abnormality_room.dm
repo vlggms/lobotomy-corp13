@@ -4,6 +4,9 @@
 
 /datum/map_template/abnormality_room/load(turf/T, centered = FALSE)
 	. = ..()
+	post_load(T, centered)
+
+/datum/map_template/abnormality_room/post_load(turf/T, centered = FALSE)
 	var/list/list_o_turfs = get_affected_turfs(T, centered)
 	var/list/allObjects = list()
 	var/mob/living/simple_animal/hostile/abnormality/abno_path = SSabnormality_queue.queued_abnormality
