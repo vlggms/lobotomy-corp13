@@ -18,7 +18,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 9
+	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	var/datum/looping_sound/queenbee/soundloop
@@ -66,8 +66,8 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "worker_bee"
 	icon_living = "worker_bee"
-	health = 400
-	maxHealth = 400
+	health = 450
+	maxHealth = 450
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)

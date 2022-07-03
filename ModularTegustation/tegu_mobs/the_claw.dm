@@ -16,14 +16,12 @@
 	light_range = 3
 	movement_type = GROUND
 	speak_emote = list("says")
-	melee_damage_type = BLACK_DAMAGE
+	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 50
-	melee_damage_upper = 60
+	melee_damage_upper = 55
 	ranged = TRUE
 	speed = 2
 	move_to_delay = 2
-	pixel_x = 0
-	base_pixel_x = 0
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
@@ -139,7 +137,7 @@
 			death_candidates += maybe_victim
 	var/mob/living/carbon/human/H = null
 	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
-		to_chat(src, "<span class='notice'>There is no more human survivors on the station. Mission accomplished.</span>")
+		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
 	for(var/i in 1 to 5)
 		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
@@ -173,7 +171,6 @@
 	GiveTarget(target)
 	for(var/turf/b in range(1, src.loc)) // Attacks everyone around.
 		for(var/mob/living/H in b)
-			H.Knockdown(15)
 			H.attack_animal(src)
 			new /obj/effect/temp_visual/cleave(H.loc)
 
@@ -202,7 +199,6 @@
 	forceMove(T)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
 	for(var/mob/living/L in T.contents - src)
-		L.Knockdown(15)
 		L.attack_animal(src)
 		new /obj/effect/temp_visual/cleave(L.loc)
 	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.7)

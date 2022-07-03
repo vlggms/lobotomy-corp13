@@ -24,7 +24,7 @@
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_BLUE_LIGHT
 	light_range = 24
-	light_power = 7
+	light_power = 14
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS
@@ -53,11 +53,15 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar/proc/BluePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 28)
+	var/matrix/init_transform = transform
+	animate(src, transform = transform*2, time = 5, easing = CUBIC_EASING|EASE_OUT)
 	for(var/mob/living/carbon/human/H in range(48, src))
 		H.apply_damage((pulse_damage - round(get_dist(src, H) * 0.5)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
 		flash_color(H, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
 			H.dust()
+	SLEEP_CHECK_DEATH(5)
+	animate(src, transform = init_transform, time = 8, easing = CUBIC_EASING|EASE_IN)
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()

@@ -32,7 +32,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = 20
 						)
-	work_damage_amount = 7
+	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 
 	var/charging = FALSE
@@ -69,18 +69,18 @@
 		helper_dash(target)
 
 /mob/living/simple_animal/hostile/abnormality/helper/update_icon_state()
-	if(AIStatus != AI_OFF)
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		pixel_x = -16
-		base_pixel_x = -16
-		pixel_y = -16
-		base_pixel_y = -16
-	else
+	if(status_flags & GODMODE)
 		icon = initial(icon)
 		pixel_x = initial(pixel_x)
 		base_pixel_x = initial(base_pixel_x)
 		pixel_y = initial(pixel_y)
 		base_pixel_y = initial(base_pixel_y)
+	else
+		icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		pixel_x = -16
+		base_pixel_x = -16
+		pixel_y = -16
+		base_pixel_y = -16
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/helper_dash(target)
 	if(charging || dash_cooldown > world.time)

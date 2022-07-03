@@ -18,7 +18,8 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	speed = 5
+	speed = 4
+	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
@@ -28,7 +29,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 50,
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 8
+	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
 	// This stuff is only done to non-humans

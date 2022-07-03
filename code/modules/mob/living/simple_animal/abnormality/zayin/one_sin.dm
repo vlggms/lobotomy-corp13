@@ -14,32 +14,28 @@
 			2 = 40,
 			3 = 35,
 			4 = 30,
-			5 = 25,
-			6 = 20
+			5 = 25
 			),
 		ABNORMALITY_WORK_INSIGHT = list(
 			1 = 80,
 			2 = 75,
 			3 = 70,
 			4 = 65,
-			5 = 60,
-			6 = 55
+			5 = 60
 			),
 		ABNORMALITY_WORK_ATTACHMENT = list(
 			1 = 90,
 			2 = 85,
 			3 = 80,
 			4 = 75,
-			5 = 70,
-			6 = 65
+			5 = 70
 			),
 		ABNORMALITY_WORK_REPRESSION = list(
 			1 = 40,
 			2 = 35,
 			3 = 30,
 			4 = 25,
-			5 = 20,
-			6 = 15
+			5 = 20
 			),
 		"Confess" = 100
 		)

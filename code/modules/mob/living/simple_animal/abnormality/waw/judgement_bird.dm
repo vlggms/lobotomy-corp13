@@ -20,7 +20,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	speed = 4
+	speed = 3
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -30,7 +30,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 45,
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 8
+	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
