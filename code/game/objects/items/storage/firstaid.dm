@@ -295,7 +295,7 @@
 //Lobotomy Corp 13 clerk kit
 /obj/item/storage/firstaid/revival
 	name = "medipen kit"
-	icon_state = "revival"
+	icon_state = "revivalfirstaid"
 	desc = "A first aid kit with ."
 
 /obj/item/storage/firstaid/revival/PopulateContents()
