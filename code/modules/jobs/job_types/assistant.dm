@@ -26,6 +26,8 @@ Assistant
 	jobtype = /datum/job/assistant
 	uniform = /obj/item/clothing/under/suit/black
 
+	l_hand = /obj/item/storage/firstaid/revival
+
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(uniform != /obj/item/clothing/under/color/grey)//tegu edit alt job titles
