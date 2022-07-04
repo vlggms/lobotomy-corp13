@@ -23,8 +23,11 @@ GLOBAL_LIST_INIT(service_positions, list(
 
 
 GLOBAL_LIST_INIT(security_positions, list(
+	"Manager",
+	"General Clerk",
 	"Agent",
 	"Senior Agent",
+	"Fixer",
 	))
 
 

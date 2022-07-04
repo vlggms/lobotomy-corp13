@@ -2,8 +2,8 @@
 	title = "Agent"
 	department_head = list("Manager")
 	faction = "Station"
-	total_positions = 12
-	spawn_positions = 12
+	total_positions = -1
+	spawn_positions = -1
 	supervisors = "the manager"
 	selection_color = "#ccaaaa"
 
@@ -26,7 +26,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
-	uniform = /obj/item/clothing/under/suit/black
+	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup

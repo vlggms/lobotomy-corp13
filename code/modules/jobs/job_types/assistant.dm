@@ -2,10 +2,10 @@
 Assistant
 */
 /datum/job/assistant
-	title = "Clerk"
+	title = "General Clerk"
 	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = -1
+	spawn_positions = -1
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
 	access = list()			//See /datum/job/assistant/get_access()
@@ -19,16 +19,12 @@ Assistant
 	paycheck_department = ACCOUNT_CIV
 	display_order = JOB_DISPLAY_ORDER_ASSISTANT
 
-/datum/job/assistant/get_access()
-	if(CONFIG_GET(flag/assistants_have_maint_access) || !CONFIG_GET(flag/jobs_have_minimal_access)) //Config has assistant maint access set
-		. = ..()
-		. |= list(ACCESS_MAINT_TUNNELS)
-	else
-		return ..()
+
 
 /datum/outfit/job/assistant
-	name = "Assistant"
+	name = "General Clerk"
 	jobtype = /datum/job/assistant
+	uniform = /obj/item/clothing/under/suit/black
 
 /datum/outfit/job/assistant/pre_equip(mob/living/carbon/human/H)
 	..()
