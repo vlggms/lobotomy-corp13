@@ -66,6 +66,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "worker_bee"
 	icon_living = "worker_bee"
+	base_pixel_x = -8
 	health = 450
 	maxHealth = 450
 	melee_damage_type = RED_DAMAGE

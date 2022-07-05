@@ -1,7 +1,7 @@
 /obj/effect/silent_orchestra_singer
 	name = "silent orchestra performer"
 	desc = "A white figure singing a song nobody can hear, but everyone can listen to."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "silent_1"
 	density = FALSE
 	anchored = TRUE

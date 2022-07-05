@@ -34,7 +34,7 @@
 		var/highest_atr = PRUDENCE_ATTRIBUTE
 		if(LAZYLEN(attributes))
 			var/highest_level = -1
-			for(var/i in attributes)
+			for(var/i in shuffle(attributes))
 				var/datum/attribute/atr = attributes[i]
 				if(atr.level > highest_level)
 					highest_level = atr.level
@@ -51,16 +51,16 @@
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/murder
-			warning_text = "[src] screams for a moment, murderous intent shining in [lowertext(p_their(TRUE))] eyes."
+			warning_text = "[src] screams for a moment, murderous intent shining in [p_their()] eyes."
 		if(PRUDENCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/suicide
-			warning_text = "[src] stops moving entirely, [lowertext(p_they(TRUE))] lost all hope..."
+			warning_text = "[src] stops moving entirely, [p_they()] lost all hope..."
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
-			warning_text = "[src] twitches for a moment, [lowertext(p_their(TRUE))] eyes looking for an exit."
+			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for an exit."
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release
-			warning_text = "[src] laughs for a moment, as [lowertext(p_they(TRUE))] start[p_s()] approaching nearby containment zones."
+			warning_text = "[src] laughs for a moment, as [p_they()] start[p_s()] approaching nearby containment zones."
 	visible_message("<span class='danger'>[warning_text]</span>", \
 					"<span class='userdanger'>You've been overwhelmed by what is going on in this place... There's no hope!</span>")
 	ghostize(1)
