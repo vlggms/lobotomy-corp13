@@ -30,9 +30,12 @@ SUBSYSTEM_DEF(abnormality_queue)
 		pick_abno()
 		return
 
+	if(!LAZYLEN(GLOB.abnormality_room_spawners))
+		return
+
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
 	if(istype(choice))
-		addtimer(CALLBACK (choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
+		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)

@@ -26,6 +26,12 @@
 		return TRUE
 	return FALSE
 
+// Ignore everyone
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/FindTarget(list/possible_targets, HasTargetsList = 0)
+	if(!(/obj/machinery/computer/abnormality in possible_targets))
+		return
+	return ..()
+
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget()
 	if(istype(target, /obj/machinery/computer/abnormality))
 		var/obj/machinery/computer/abnormality/CA = target
@@ -59,6 +65,7 @@
 		var/matrix/init_transform = transform
 		animate(src, transform = transform*0.01, time = 5, easing = BACK_EASING)
 		SLEEP_CHECK_DEATH(5)
+		console_attack_counter = 0
 		forceMove(T)
 		target = teleport_computer
 		animate(src, transform = init_transform, time = 5, easing = BACK_EASING)

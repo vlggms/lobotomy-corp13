@@ -1640,8 +1640,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(WHITE_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent
-			H.adjustWhiteLoss(damage_amount)
+			H.adjustWhiteLoss(damage, forced = forced)
 		if(BLACK_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent
 			H.adjustBlackLoss(damage_amount, forced = forced)

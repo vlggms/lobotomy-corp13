@@ -1,7 +1,8 @@
 // Dawn
 /datum/ordeal/crimson_dawn
 	name = "Dawn of Crimson"
-	annonce_text = "A perfect meal, an excellent substitute."
+	annonce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
+	destined to snuff out one day."
 	level = 1
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'

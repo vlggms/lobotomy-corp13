@@ -80,7 +80,7 @@
 				movement_volume = 10 // No more tinnitus
 				spawn_performer(1, EAST)
 			if(4)
-				next_movement_time = world.time + 23.5 SECONDS
+				next_movement_time = world.time + 23 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 				symphony_damage = 10
 				spawn_performer(2, EAST)
@@ -88,6 +88,11 @@
 				next_movement_time = world.time + 999 SECONDS // Never
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 				movement_volume = 75 // TA-DA!!!
+		if(current_movement_num < 6)
+			for(var/mob/M in GLOB.player_list)
+				if(M.z == z && M.client)
+					M.playsound_local(get_turf(M), "sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, 0)
+			if(current_movement_num == 5)
 				for(var/mob/living/carbon/human/H in range(symphony_range, get_turf(src)))
 					if(H.sanity_lost || (H.sanityhealth < H.maxSanity * 0.5))
 						var/obj/item/bodypart/head/head = H.get_bodypart("head")
@@ -98,11 +103,7 @@
 						H.regenerate_icons()
 						H.visible_message("<span class='danger'>[H]'s head explodes!</span>")
 						new /obj/effect/gibspawner/generic/silent(get_turf(H))
-		if(current_movement_num < 6)
-			for(var/mob/M in GLOB.player_list)
-				if(M.z == z && M.client)
-					M.playsound_local(get_turf(M), "sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, 0)
-			if(current_movement_num == 5)
+						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 35, 1)
 				SLEEP_CHECK_DEATH(4 SECONDS)
 				animate(src, alpha = 0, time = 2 SECONDS)
 				QDEL_IN(src, 2 SECONDS)

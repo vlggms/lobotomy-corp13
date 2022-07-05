@@ -59,7 +59,7 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/work_complete(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Confess")
 		for(var/datum/antagonist/A in GLOB.apostles)
-			to_chat(A.owner.current, "<span class='colossus'>The twelfth has betrayed us...</span>")
+			to_chat(A?.owner?.current, "<span class='colossus'>The twelfth has betrayed us...</span>")
 		for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
 			WN.loot = list() // No loot for you!

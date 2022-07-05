@@ -17,10 +17,13 @@ GLOBAL_LIST_EMPTY(abnormality_room_spawners)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/spawner/abnormality_room/LateInitialize()
-	template = new()
+	template = new(cache = TRUE)
 	GLOB.abnormality_room_spawners += src
 
 /obj/effect/spawner/abnormality_room/proc/SpawnRoom()
 	template.load(get_turf(src))
-	GLOB.abnormality_room_spawners -= src
 	qdel(src)
+
+/obj/effect/spawner/abnormality_room/Destroy()
+	GLOB.abnormality_room_spawners -= src
+	..()

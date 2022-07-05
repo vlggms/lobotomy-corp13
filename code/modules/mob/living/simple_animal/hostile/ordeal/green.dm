@@ -43,7 +43,11 @@
 			TH.Stun(4 SECONDS)
 			forceMove(get_turf(TH))
 			for(var/i = 1 to 7)
+				if(QDELETED(TH))
+					finishing = FALSE
+					return
 				if(!targets_from.Adjacent(TH)) // They can still be saved if you move them away
+					finishing = FALSE
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))

@@ -1,5 +1,7 @@
 /datum/map_template/abnormality_room
 	name = "Abnormality Room"
+	width = 7
+	height = 5
 	mappath = "_maps/templates/abnormality_containment.dmm"
 
 /datum/map_template/abnormality_room/load(turf/T, centered = FALSE)

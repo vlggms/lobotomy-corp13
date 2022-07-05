@@ -57,6 +57,7 @@
 	icon_living = "violet_noon"
 	icon_dead = "violet_noon_dead"
 	base_pixel_x = -8
+	pixel_x = -8
 	faction = list("violet_ordeal")
 	maxHealth = 1000
 	health = 1000
@@ -68,6 +69,12 @@
 	..()
 	next_pulse = world.time + 20 SECONDS
 	FallDown()
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/Move()
+	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Life()
 	. = ..()
@@ -83,8 +90,9 @@
 			L.apply_damage(7, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/proc/FallDown()

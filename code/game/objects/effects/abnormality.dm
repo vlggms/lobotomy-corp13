@@ -9,7 +9,7 @@
 
 /obj/effect/silent_orchestra_singer/Initialize()
 	..()
-	animate(src, alpha = 155, time = 10)
+	animate(src, alpha = 225, time = 10)
 
 /obj/effect/silent_orchestra_singer/proc/fade_out()
 	animate(src, alpha = 0, time = 2 SECONDS)
