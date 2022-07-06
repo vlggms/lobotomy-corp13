@@ -18,5 +18,9 @@ map facilitytest
 	votable
 endmap
 
+map alphacorp
+	votable
+endmap
+
 map runtimestation
 endmap

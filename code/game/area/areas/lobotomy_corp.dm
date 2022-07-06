@@ -30,6 +30,26 @@
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
 
+
+/area/department_main/command
+	name = "Command Main Room"
+
+/area/department_main/control
+	name = "Control Main Room"
+
+/area/department_main/training
+	name = "Training Main Room"
+
+/area/department_main/information
+	name = "Information Main Room"
+
+/area/department_main/safety
+	name = "Safety Main Room"
+
+
+
+
+
 /area/facility_hallway
 	name = "Hallway"
 	icon_state = "hallA"
@@ -45,3 +65,10 @@
 
 /area/facility_hallway/west
 	name = "West Hallway"
+
+/area/facility_hallway/north
+	name = "North Hallway"
+
+/area/facility_hallway/south
+	name = "South Hallway"
+
