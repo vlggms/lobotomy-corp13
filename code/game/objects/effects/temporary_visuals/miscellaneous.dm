@@ -592,6 +592,6 @@
 	icon_state = "bluestream"
 	duration = 5
 
-/obj/effect/temp_visual/water_waves/Initialize()
+/obj/effect/temp_visual/justitia_effect/Initialize()
 	..()
 	animate(src, alpha = 0, transform = transform*2, time = 5)

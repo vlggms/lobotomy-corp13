@@ -26,7 +26,6 @@
 		return .
 	if(ishuman(usr))
 		usr.set_machine(src)
-		to_chat(world, "[href_list] | [href_list["purchase"]]")
 		if(href_list["purchase"])
 			var/target_datum = href_list["purchase"]
 			var/datum/ego_datum/E = GLOB.ego_datums[target_datum]
