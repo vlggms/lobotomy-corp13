@@ -28,7 +28,7 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 9 SECONDS
-	var/pulse_damage = 38 // Scales with distance
+	var/pulse_damage = 36 // Scales with distance
 
 	var/datum/looping_sound/bluestar/soundloop
 
@@ -58,9 +58,14 @@
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 28)
 	var/matrix/init_transform = transform
 	animate(src, transform = transform*2, time = 3, easing = BACK_EASING|EASE_OUT)
-	for(var/mob/living/carbon/human/H in range(48, src))
-		H.apply_damage((pulse_damage - round(get_dist(src, H) * 0.5)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
-		flash_color(H, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
+	for(var/mob/living/L in urange(48, src))
+		if(faction_check_mob(L))
+			continue
+		L.apply_damage((pulse_damage - round(get_dist(src, L) * 0.75)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
+		if(!ishuman(L))
+			continue
+		var/mob/living/carbon/human/H = L
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
 			H.Stun(5)
 			animate(H, transform = H.transform*0.01, time = 5)

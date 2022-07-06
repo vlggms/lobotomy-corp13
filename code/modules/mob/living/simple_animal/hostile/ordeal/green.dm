@@ -43,17 +43,14 @@
 			TH.Stun(4 SECONDS)
 			forceMove(get_turf(TH))
 			for(var/i = 1 to 7)
-				if(QDELETED(TH))
-					finishing = FALSE
-					return
-				if(!targets_from.Adjacent(TH)) // They can still be saved if you move them away
+				if(!targets_from.Adjacent(TH) || QDELETED(TH)) // They can still be saved if you move them away
 					finishing = FALSE
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
 					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
 				SLEEP_CHECK_DEATH(2)
-			if(!targets_from.Adjacent(TH))
+			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				return
 			playsound(get_turf(src), 'sound/effects/ordeals/green/final_stab.ogg', 50, 1)
 			TH.gib()

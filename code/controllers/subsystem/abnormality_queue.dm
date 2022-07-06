@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
-	wait = 8 MINUTES
+	wait = 7 MINUTES
 
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
@@ -19,11 +19,11 @@ SUBSYSTEM_DEF(abnormality_queue)
 	. = ..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
-	if(!(HE_LEVEL in available_levels) && (world.time >= 15 MINUTES))
+	if(!(HE_LEVEL in available_levels) && (world.time >= (wait*2)))
 		available_levels += HE_LEVEL
-	if(!(WAW_LEVEL in available_levels) && (world.time >= 25 MINUTES))
+	if(!(WAW_LEVEL in available_levels) && (world.time >= (wait*4)))
 		available_levels += WAW_LEVEL
-	if(!(ALEPH_LEVEL in available_levels) && (world.time >= 45 MINUTES))
+	if(!(ALEPH_LEVEL in available_levels) && (world.time >= (wait*7)))
 		available_levels += ALEPH_LEVEL
 
 	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))

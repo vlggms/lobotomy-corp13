@@ -25,9 +25,9 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
+	new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 	for(var/mob/living/carbon/human/H in view(7, src))
 		new /obj/effect/temp_visual/revenant(get_turf(H))
-		new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 		H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
 	return TRUE
 
@@ -42,9 +42,9 @@
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in range(24, target_c))
+	for(var/mob/living/carbon/human/H in urange(24, target_c))
 		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
-	for(var/obj/machinery/computer/abnormality/A in range(24, target_c))
+	for(var/obj/machinery/computer/abnormality/A in urange(24, target_c))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-1, -2))
 
@@ -104,6 +104,8 @@
 	density = TRUE
 	visible_message("<span class='danger'>[src] falls down on the ground!</span>")
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+	animate(D, alpha = 0, transform = matrix()*2, time = 5)
 	for(var/turf/open/T in view(4, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	for(var/mob/living/L in view(4, src))

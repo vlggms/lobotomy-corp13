@@ -55,7 +55,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/proc/DamagePulse()
-	for(var/mob/living/carbon/human/H in range(symphony_range, get_turf(src)))
+	for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
 		H.apply_damage(symphony_damage - round(get_dist(src, H) * 0.5), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
 
 	if(world.time >= next_movement_time) // Next movement
@@ -93,7 +93,7 @@
 				if(M.z == z && M.client)
 					M.playsound_local(get_turf(M), "sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, 0)
 			if(current_movement_num == 5)
-				for(var/mob/living/carbon/human/H in range(symphony_range, get_turf(src)))
+				for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
 					if(H.sanity_lost || (H.sanityhealth < H.maxSanity * 0.5))
 						var/obj/item/bodypart/head/head = H.get_bodypart("head")
 						if(QDELETED(head))
