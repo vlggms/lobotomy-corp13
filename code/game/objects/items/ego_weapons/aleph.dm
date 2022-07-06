@@ -78,7 +78,7 @@
 	/// Wait time between attacks for combo to reset
 	var/combo_wait = 8
 
-/obj/item/ego_weapon/justitia/pre_attack(mob/living/M, mob/living/user, params)
+/obj/item/ego_weapon/justitia/attack(mob/living/M, mob/living/user)
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
@@ -90,24 +90,22 @@
 		if(1,4)
 			hitsound = 'sound/weapons/ego/justitia3.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.3)
-		if(6 to INFINITY)
+		if(6)
 			hitsound = 'sound/weapons/ego/justitia4.ogg'
-			force = 12
+			force = 6 // Additional damage done below
 			combo = -1
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
 			for(var/mob/living/L in T.contents)
-				if(L == M)
+				if(L == user)
 					continue
-				if(L.stat != CONSCIOUS)
+				if(L.stat >= DEAD)
 					continue
-				melee_attack_chain(user, L)
+				L.apply_damage(10, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
-
-/obj/item/ego_weapon/justitia/afterattack(mob/living/M, mob/living/user, params)
 	combo += 1
 	force = initial(force)
