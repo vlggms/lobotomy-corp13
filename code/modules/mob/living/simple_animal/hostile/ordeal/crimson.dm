@@ -26,12 +26,6 @@
 		return TRUE
 	return FALSE
 
-// Ignore everyone
-/mob/living/simple_animal/hostile/ordeal/crimson_clown/FindTarget(list/possible_targets, HasTargetsList = 0)
-	if(!(/obj/machinery/computer/abnormality in possible_targets))
-		return
-	return ..()
-
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget()
 	if(istype(target, /obj/machinery/computer/abnormality))
 		var/obj/machinery/computer/abnormality/CA = target
@@ -73,7 +67,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/CanTeleportTo(obj/machinery/computer/abnormality/CA)
 	if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
 		return FALSE
-	if(type in view(5, CA)) // There's already a similar clown nearby
+	if(type in view(5, get_turf(CA))) // There's already a similar clown nearby
 		return FALSE
 	return TRUE
 
