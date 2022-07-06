@@ -42,6 +42,11 @@
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 
+	ego_list = list(
+		/datum/ego_datum/weapon/penitence,
+		/datum/ego_datum/armor/penitence
+		)
+
 /mob/living/simple_animal/hostile/abnormality/onesin/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
 		if(isapostle(user))

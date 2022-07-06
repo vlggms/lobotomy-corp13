@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "training_rabbit"
 	icon_living = "training_rabbit"
-	maxHealth = 150
-	health = 150
+	maxHealth = 250
+	health = 250
 	threat_level = TETH_LEVEL
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 65,
@@ -20,3 +20,8 @@
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
+
+	ego_list = list(
+		/datum/ego_datum/weapon/training,
+		/datum/ego_datum/armor/training
+		)

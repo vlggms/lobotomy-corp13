@@ -17,6 +17,11 @@
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
 
+	ego_list = list(
+		/datum/ego_datum/weapon/tough,
+		/datum/ego_datum/armor/tough
+		)
+
 	var/list/balding_list = list(
 							"Bald",
 							"Shaved"

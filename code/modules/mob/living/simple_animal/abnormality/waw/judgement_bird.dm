@@ -34,6 +34,10 @@
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
 
+	ego_list = list(
+		/datum/ego_datum/armor/justitia
+		)
+
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 85

@@ -35,6 +35,11 @@
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 
+	ego_list = list(
+		/datum/ego_datum/weapon/grinder,
+		/datum/ego_datum/armor/grinder
+		)
+
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0

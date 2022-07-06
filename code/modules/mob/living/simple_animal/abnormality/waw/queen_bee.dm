@@ -21,6 +21,10 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
+	ego_list = list(
+		/datum/ego_datum/armor/hornet
+		)
+
 	var/datum/looping_sound/queenbee/soundloop
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Initialize()

@@ -47,7 +47,7 @@
 		return
 	var/dat
 	for(var/wt in datum_reference.available_work)
-		dat += "<A href='?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
+		dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
 	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 300, 200)
 	popup.set_content(dat)
 	popup.open()
@@ -73,6 +73,9 @@
 				to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
 				return
 			start_work(usr, href_list["do_work"])
+
+	add_fingerprint(usr)
+	updateUsrDialog()
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))

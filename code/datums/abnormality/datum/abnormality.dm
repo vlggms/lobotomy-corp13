@@ -16,38 +16,10 @@
 
 	/// Available work types with their success chances per level. Used in console
 	var/list/available_work = list(
-							ABNORMALITY_WORK_INSTINCT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_INSIGHT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_ATTACHMENT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_REPRESSION = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														)
+							ABNORMALITY_WORK_INSTINCT = 0,
+							ABNORMALITY_WORK_INSIGHT = 0,
+							ABNORMALITY_WORK_ATTACHMENT = 0,
+							ABNORMALITY_WORK_REPRESSION = 0
 							)
 	/// How much PE it produces. Also responsible for work time
 	var/max_boxes = 0
@@ -55,6 +27,12 @@
 	var/success_boxes = 0
 	/// How much PE you have to produce for neutral result.
 	var/neutral_boxes = 0
+	/// List of available EGO for purchase
+	var/list/ego_datums = list()
+	/// Currently purchased EGO gear, so we don't go over the limit
+	var/list/current_ego = list()
+	/// How many PE boxes we have available for use on EGO purchase
+	var/stored_boxes = 0
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -66,6 +44,7 @@
 	name = initial(abno_path.name)
 	desc = initial(abno_path.desc)
 	RespawnAbno()
+	FillEgoList()
 
 /datum/abnormality/proc/RespawnAbno()
 	if(!ispath(abno_path))
@@ -90,8 +69,18 @@
 	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances
 
+/datum/abnormality/proc/FillEgoList()
+	if(!current || !current.ego_list)
+		return FALSE
+	for(var/thing in current.ego_list)
+		var/datum/ego_datum/ED = new thing(src)
+		ego_datums += ED
+		GLOB.ego_datums["[ED.name][ED.item_category]"] = ED
+	return TRUE
+
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
 	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
+	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
 	if(max_pe <= 0) // Work failure
 		return

@@ -41,6 +41,10 @@
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
 
+	ego_list = list(
+		/datum/ego_datum/armor/lamp
+		)
+
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
 	var/hypnosis_cooldown

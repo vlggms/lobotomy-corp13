@@ -56,6 +56,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	light_range = 3
 	light_power = 1
 
+	ego_list = list(
+		/datum/ego_datum/armor/paradise
+		)
+
 	var/holy_revival_cooldown = 10 SECONDS
 	var/holy_revival_cooldown_base = 10 SECONDS
 	var/holy_revival_damage = 12 // Pale damage, scales with distance

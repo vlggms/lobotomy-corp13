@@ -68,7 +68,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
 	..()
 	next_pulse = world.time + 20 SECONDS
-	FallDown()
+	addtimer(CALLBACK(src, .proc/FallDown))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/CanAttack(atom/the_target)
 	return FALSE
