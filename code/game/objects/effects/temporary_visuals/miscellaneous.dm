@@ -586,3 +586,12 @@
 
 /obj/effect/temp_visual/water_waves/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 10 SECONDS))
+
+/obj/effect/temp_visual/justitia_effect
+	name = "slash"
+	icon_state = "bluestream"
+	duration = 5
+
+/obj/effect/temp_visual/water_waves/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*2, time = 5)

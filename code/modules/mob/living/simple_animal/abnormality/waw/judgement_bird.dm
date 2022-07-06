@@ -35,6 +35,7 @@
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
 
 	ego_list = list(
+		/datum/ego_datum/weapon/justitia,
 		/datum/ego_datum/armor/justitia
 		)
 
