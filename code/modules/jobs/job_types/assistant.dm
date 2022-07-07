@@ -2,7 +2,7 @@
 Assistant
 */
 /datum/job/assistant
-	title = "General Clerk"
+	title = "Clerk"
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
