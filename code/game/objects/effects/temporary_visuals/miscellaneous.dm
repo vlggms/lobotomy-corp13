@@ -595,3 +595,15 @@
 /obj/effect/temp_visual/justitia_effect/Initialize()
 	..()
 	animate(src, alpha = 0, transform = transform*2, time = 5)
+
+/obj/effect/temp_visual/fragment_song
+	name = "sound waves"
+	icon_state = "fragment_song"
+	duration = 5
+	pixel_y = 16
+	base_pixel_y = 16
+
+/obj/effect/temp_visual/fragment_song/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*3, time = 5)
+

@@ -68,9 +68,6 @@
 							TEMPERANCE_ATTRIBUTE = 90,
 							JUSTICE_ATTRIBUTE = 110
 							)
-	inhand_icon_state = "claymore_gold" // Temporary!
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 
 	var/combo = 0
 	/// Maximum world.time after which combo is reset
