@@ -19,8 +19,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 35
+	melee_damage_upper = 40
 	obj_damage = 600
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	is_flying_animal = TRUE
@@ -53,8 +53,8 @@ GLOBAL_LIST_EMPTY(apostles)
 
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_range = 3
-	light_power = 1
+	light_range = 7
+	light_power = 3
 
 	ego_list = list(
 		/datum/ego_datum/armor/paradise

@@ -3,7 +3,7 @@
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
 	icon_state = "paradise"
-	force = 6 // Keep in mind the justice bonus
+	force = 7 // Keep in mind the justice bonus
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -18,7 +18,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1 SECONDS
-	var/ranged_damage = 15
+	var/ranged_damage = 12
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -55,7 +55,7 @@
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	icon_state = "justitia"
-	force = 4
+	force = 3
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -63,10 +63,10 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	hitsound = 'sound/weapons/ego/justitia1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 90,
-							PRUDENCE_ATTRIBUTE = 90,
-							TEMPERANCE_ATTRIBUTE = 90,
-							JUSTICE_ATTRIBUTE = 110
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
 							)
 
 	var/combo = 0
@@ -82,14 +82,14 @@
 	switch(combo)
 		if(5)
 			hitsound = 'sound/weapons/ego/justitia2.ogg'
-			force = 6
+			force = 4
 			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(1,4)
 			hitsound = 'sound/weapons/ego/justitia3.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.3)
 		if(6)
 			hitsound = 'sound/weapons/ego/justitia4.ogg'
-			force = 6 // Additional damage done below
+			force = 5 // Additional damage done below
 			combo = -1
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)

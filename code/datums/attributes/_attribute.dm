@@ -27,22 +27,20 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 
 // Other procs
 
-/proc/adjust_attribute_level(mob/living/carbon/human/user, attribute, addition)
-	if(!istype(user) || !attribute)
+/mob/living/carbon/human/proc/adjust_attribute_level(attribute, addition)
+	if(!attribute)
 		return 0
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 0
-	return atr.adjust_level(user, addition)
+	return atr.adjust_level(src, addition)
 
-/proc/adjust_all_attribute_levels(mob/living/carbon/human/user, addition)
-	if(!istype(user))
-		return 0
-	for(var/atr_type in user.attributes)
-		var/datum/attribute/atr = user.attributes[atr_type]
+/mob/living/carbon/human/proc/adjust_all_attribute_levels(addition)
+	for(var/atr_type in attributes)
+		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
 			continue
-		atr.adjust_level(user, addition)
+		atr.adjust_level(src, addition)
 	return TRUE
 
 /proc/get_attribute_level(mob/living/carbon/human/user, attribute)

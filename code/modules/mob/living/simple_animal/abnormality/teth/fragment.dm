@@ -12,6 +12,7 @@
 	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
+	attack_sound = 'sound/abnormalities/fragment/attack.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	faction = list("hostile")

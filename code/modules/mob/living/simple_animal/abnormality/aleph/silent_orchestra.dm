@@ -67,7 +67,7 @@
 				next_movement_time = world.time + 5 SECONDS
 			if(1)
 				next_movement_time = world.time + 22 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.3)
+				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.2)
 				spawn_performer(1, WEST)
 			if(2)
 				next_movement_time = world.time + 14.5 SECONDS

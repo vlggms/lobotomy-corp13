@@ -5,7 +5,6 @@
 	icon_state = "pbird"
 	icon_living = "pbird"
 	icon_dead = "pbird_dead"
-	icon_gib = "pbird_dead"
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"

@@ -6,7 +6,6 @@
 	icon_living = "helper"
 	maxHealth = 1000
 	health = 1000
-	see_in_dark = 10
 	rapid_melee = 3
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -32,7 +31,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = 40
 						)
-	work_damage_amount = 8
+	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(

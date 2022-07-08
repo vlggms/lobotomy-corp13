@@ -90,7 +90,7 @@
 	var/attribute_given = round(clamp((maximum_attribute_level / (user_attribute_level * 0.35)), 0, 12))
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-	adjust_attribute_level(user, attribute_type, attribute_given)
+	user.adjust_attribute_level(attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter

@@ -51,6 +51,7 @@
 					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
+				finishing = FALSE
 				return
 			playsound(get_turf(src), 'sound/effects/ordeals/green/final_stab.ogg', 50, 1)
 			TH.gib()
