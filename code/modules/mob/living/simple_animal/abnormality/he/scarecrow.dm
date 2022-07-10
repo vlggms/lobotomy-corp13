@@ -8,8 +8,8 @@
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
+	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
-	ranged = TRUE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = BLACK_DAMAGE

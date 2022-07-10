@@ -12,6 +12,7 @@
 	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
+	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/fragment/attack.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"

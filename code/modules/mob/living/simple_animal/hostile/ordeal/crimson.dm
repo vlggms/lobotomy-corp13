@@ -81,7 +81,7 @@
 	gib()
 
 // Crimson noon
-/mob/living/simple_animal/hostile/ordeal/crimson_clown
+/mob/living/simple_animal/hostile/ordeal/crimson_noon
 	name = "harmony of skin"
 	desc = "A large clown-like creature with 3 heads full of red tumors."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
@@ -91,9 +91,7 @@
 	faction = list("crimson_ordeal")
 	maxHealth = 1200
 	health = 1200
-	speed = 3
-	move_to_delay = 4
-	melee_damage_lower = 18
+	melee_damage_lower = 20
 	melee_damage_upper = 24
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"

@@ -10,10 +10,11 @@
 	maxHealth = 500
 	health = 500
 	speed = 2
+	move_to_delay = 4
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 26
-	melee_damage_upper = 30
+	melee_damage_lower = 22
+	melee_damage_upper = 26
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
@@ -68,10 +69,12 @@
 	icon_living = "green_bot"
 	icon_dead = "green_bot_dead"
 	faction = list("green_ordeal")
+	pixel_x = -8
+	base_pixel_x = -8
 	maxHealth = 1000
 	health = 1000
 	speed = 3
-	move_to_delay = 4
+	move_to_delay = 5
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 26 // Full damage is done on the entire turf of target
@@ -85,7 +88,7 @@
 	projectiletype = /obj/projectile/bullet/c9x19mm
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.8)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -128,11 +131,11 @@
 	reloading = TRUE
 	icon_state = "green_bot_reload"
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.65, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.25)
-	for(var/i = 1 to 4)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.65, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.4)
+	for(var/i = 1 to 5)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
 		SLEEP_CHECK_DEATH(8)
 	fire_count = 0
 	reloading = FALSE
 	icon_state = icon_living
-	damage_coeff = initial(damage_coeff)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.8)

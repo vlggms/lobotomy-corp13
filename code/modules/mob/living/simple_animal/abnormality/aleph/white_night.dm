@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	is_flying_animal = TRUE
 	speed = 2
+	move_to_delay = 5
 	ranged = TRUE
 	pixel_x = -16
 	base_pixel_x = -16

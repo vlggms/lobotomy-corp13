@@ -6,18 +6,19 @@
 	icon_living = "sweeper_1"
 	icon_dead = "sweeper_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 700
-	health = 700
+	maxHealth = 500
+	health = 500
+	move_to_delay = 4
 	robust_searching = TRUE
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	melee_damage_lower = 22
-	melee_damage_upper = 26
+	melee_damage_lower = 20
+	melee_damage_upper = 24
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.4)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 
 /mob/living/simple_animal/hostile/ordeal/sweeper/Initialize()
 	..()

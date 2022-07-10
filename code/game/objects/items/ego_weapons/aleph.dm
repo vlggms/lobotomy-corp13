@@ -3,7 +3,7 @@
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
 	icon_state = "paradise"
-	force = 7 // Keep in mind the justice bonus
+	force = 8
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -55,7 +55,7 @@
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	icon_state = "justitia"
-	force = 3
+	force = 5
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -73,23 +73,24 @@
 	/// Maximum world.time after which combo is reset
 	var/combo_time
 	/// Wait time between attacks for combo to reset
-	var/combo_wait = 8
+	var/combo_wait = 10
 
 /obj/item/ego_weapon/justitia/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
 	switch(combo)
 		if(5)
 			hitsound = 'sound/weapons/ego/justitia2.ogg'
-			force = 4
+			force = 7
 			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(1,4)
 			hitsound = 'sound/weapons/ego/justitia3.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.3)
 		if(6)
 			hitsound = 'sound/weapons/ego/justitia4.ogg'
-			force = 5 // Additional damage done below
 			combo = -1
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
@@ -99,7 +100,7 @@
 					continue
 				if(L.stat >= DEAD)
 					continue
-				L.apply_damage(10, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(15, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
