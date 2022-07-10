@@ -7,8 +7,8 @@
 	icon_living = "green_bot"
 	icon_dead = "green_bot_dead"
 	faction = list("green_ordeal")
-	maxHealth = 300
-	health = 300
+	maxHealth = 500
+	health = 500
 	speed = 2
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
@@ -58,3 +58,81 @@
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
 				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
 			finishing = FALSE
+
+// Green dawn
+/mob/living/simple_animal/hostile/ordeal/green_bot_big
+	name = "process of understanding"
+	desc = "A big robot with a saw and a machinegun in place of its hands."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "green_bot"
+	icon_living = "green_bot"
+	icon_dead = "green_bot_dead"
+	faction = list("green_ordeal")
+	maxHealth = 1000
+	health = 1000
+	speed = 3
+	move_to_delay = 4
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	melee_damage_lower = 26 // Full damage is done on the entire turf of target
+	melee_damage_upper = 30
+	attack_verb_continuous = "slices"
+	attack_verb_simple = "slice"
+	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
+	ranged = 1
+	rapid = 6
+	rapid_fire_delay = 3
+	projectiletype = /obj/projectile/bullet/c9x19mm
+	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.5)
+
+	/// Can't move/attack when it's TRUE
+	var/reloading = FALSE
+	/// When at 10 - it will start "reloading"
+	var/fire_count = 0
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/CanAttack(atom/the_target)
+	if(reloading)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/Move()
+	if(reloading)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/OpenFire(atom/A)
+	if(reloading)
+		return FALSE
+	..()
+	fire_count += 1
+	if(fire_count >= 10)
+		StartReloading()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget()
+	. = ..()
+	if(.)
+		if(!istype(target, /mob/living))
+			return
+		var/turf/T = get_turf(target)
+		for(var/i = 1 to 4)
+			new /obj/effect/temp_visual/saw_effect(T)
+			for(var/mob/living/L in T.contents)
+				if(faction_check_mob(L))
+					continue
+				L.apply_damage(8, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			SLEEP_CHECK_DEATH(1)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/StartReloading()
+	reloading = TRUE
+	icon_state = "green_bot_reload"
+	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.65, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.25)
+	for(var/i = 1 to 4)
+		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
+		SLEEP_CHECK_DEATH(8)
+	fire_count = 0
+	reloading = FALSE
+	icon_state = icon_living
+	damage_coeff = initial(damage_coeff)

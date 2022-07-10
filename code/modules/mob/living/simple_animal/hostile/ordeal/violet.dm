@@ -59,9 +59,9 @@
 	base_pixel_x = -8
 	pixel_x = -8
 	faction = list("violet_ordeal")
-	maxHealth = 1000
-	health = 1000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	maxHealth = 1200
+	health = 1200
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 
 	var/next_pulse = INFINITY
 

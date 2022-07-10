@@ -129,8 +129,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/breach_effect(mob/living/carbon/human/user)
 	..()
-	var/X = pick(GLOB.xeno_spawn) // Temporary?
-	var/turf/T = get_turf(X)
+	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 	DamagePulse()
 	return

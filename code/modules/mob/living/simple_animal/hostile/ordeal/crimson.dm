@@ -79,3 +79,42 @@
 		if(!faction_check_mob(L))
 			L.apply_damage(15, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
+
+// Crimson noon
+/mob/living/simple_animal/hostile/ordeal/crimson_clown
+	name = "harmony of skin"
+	desc = "A large clown-like creature with 3 heads full of red tumors."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "crimson_noon"
+	icon_living = "crimson_noon"
+	icon_dead = "crimson_noon_dead"
+	faction = list("crimson_ordeal")
+	maxHealth = 1200
+	health = 1200
+	speed = 3
+	move_to_delay = 4
+	melee_damage_lower = 18
+	melee_damage_upper = 24
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
+	deathsound = 'sound/effects/ordeals/crimson/noon_dead.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/death(gibbed)
+	animate(src, transform = matrix()*1.5, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	for(var/i = 1 to 3)
+		var/turf/T = get_step(get_turf(src), pick(ALL_CARDINALS))
+		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
+		nc.TeleportAway()
+		if(ordeal_reference)
+			ordeal_reference.ordeal_mobs += nc
+			nc.ordeal_reference = ordeal_reference
+	gib()

@@ -83,10 +83,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)
 	..()
-	var/X = pick(GLOB.xeno_spawn) // Temporary?
-	var/turf/T = get_turf(X)
-	light_range = 14
-	light_power = 20
+	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
 	forceMove(T)
 	BluePulse()

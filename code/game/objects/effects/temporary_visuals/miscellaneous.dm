@@ -607,3 +607,18 @@
 	..()
 	animate(src, alpha = 0, transform = transform*3, time = 5)
 
+/obj/effect/temp_visual/saw_effect
+	name = "saw"
+	icon_state = "claw"
+	duration = 4
+
+/obj/effect/temp_visual/green_noon_reload
+	name = "recharging field"
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "green_bot_reload_effect"
+	layer = BELOW_MOB_LAYER
+	duration = 8
+
+/obj/effect/temp_visual/green_noon_reload/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*2, time = duration)
