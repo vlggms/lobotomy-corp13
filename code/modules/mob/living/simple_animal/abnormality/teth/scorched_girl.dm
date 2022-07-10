@@ -16,13 +16,7 @@
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 55,
-		ABNORMALITY_WORK_ATTACHMENT = list(
-			1 = 30,
-			2 = 15,
-			3 = 0,
-			4 = -40,
-			5 = -50
-			),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, 0, -40, -50),
 		ABNORMALITY_WORK_REPRESSION = 45
 		)
 	work_damage_amount = 6

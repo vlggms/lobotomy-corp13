@@ -9,7 +9,6 @@
 	maxHealth = 500
 	health = 500
 	move_to_delay = 4
-	robust_searching = TRUE
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE

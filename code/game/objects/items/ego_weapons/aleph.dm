@@ -3,7 +3,7 @@
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
 	icon_state = "paradise"
-	force = 8
+	force = 10
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -55,7 +55,7 @@
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	icon_state = "justitia"
-	force = 5
+	force = 6
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
@@ -84,7 +84,7 @@
 	switch(combo)
 		if(5)
 			hitsound = 'sound/weapons/ego/justitia2.ogg'
-			force = 7
+			force = 8
 			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(1,4)
 			hitsound = 'sound/weapons/ego/justitia3.ogg'

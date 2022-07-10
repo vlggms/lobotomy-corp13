@@ -23,8 +23,7 @@
 		)
 
 	var/list/balding_list = list(
-							"Bald",
-							"Shaved"
+							"Bald"
 							)
 	var/bald_users = list()
 

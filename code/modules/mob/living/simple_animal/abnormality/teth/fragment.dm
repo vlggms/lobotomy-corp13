@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fragment"
 	icon_living = "fragment"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	ranged = TRUE
 	melee_damage_lower = 12

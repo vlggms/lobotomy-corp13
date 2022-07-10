@@ -9,34 +9,10 @@
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(
-			1 = 45,
-			2 = 40,
-			3 = 35,
-			4 = 30,
-			5 = 25
-			),
-		ABNORMALITY_WORK_INSIGHT = list(
-			1 = 80,
-			2 = 75,
-			3 = 70,
-			4 = 65,
-			5 = 60
-			),
-		ABNORMALITY_WORK_ATTACHMENT = list(
-			1 = 90,
-			2 = 85,
-			3 = 80,
-			4 = 75,
-			5 = 70
-			),
-		ABNORMALITY_WORK_REPRESSION = list(
-			1 = 40,
-			2 = 35,
-			3 = 30,
-			4 = 25,
-			5 = 20
-			),
+		ABNORMALITY_WORK_INSTINCT = list(45, 40, 35, 30, 25),
+		ABNORMALITY_WORK_INSIGHT = list(80, 75, 70, 65, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(90, 85, 80, 75, 70),
+		ABNORMALITY_WORK_REPRESSION = list(40, 35, 30, 25, 20),
 		"Confess" = 100
 		)
 	work_damage_amount = 6
@@ -50,6 +26,9 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
 		if(isapostle(user))
+			for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
+				if(WN.apostle_num != 666)
+					return FALSE
 			var/datum/antagonist/apostle/A = user.mind.has_antag_datum(/datum/antagonist/apostle, FALSE)
 			if(!A.betrayed && A.number == 12) // Heretic
 				A.betrayed = TRUE // So no spam happens
@@ -57,7 +36,6 @@
 					if(M.client)
 						M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
 				return TRUE
-			return FALSE
 		return FALSE
 	return TRUE
 
@@ -66,6 +44,8 @@
 		for(var/datum/antagonist/A in GLOB.apostles)
 			to_chat(A?.owner?.current, "<span class='colossus'>The twelfth has betrayed us...</span>")
 		for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
+			if(WN.apostle_num != 666)
+				continue
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
 			WN.loot = list() // No loot for you!
 			for(var/i = 1 to 12)

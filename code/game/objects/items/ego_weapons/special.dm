@@ -6,7 +6,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 28
+	force = 35
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 24
 	throw_speed = 3
@@ -27,13 +27,13 @@
 			damtype = WHITE_DAMAGE
 		if(WHITE_DAMAGE)
 			damtype = BLACK_DAMAGE
-			force = 26
+			force = 30
 		if(BLACK_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 7
+			force = 8
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 30
+			force = 35
 	armortype = damtype // TODO: In future, armortype should be gone entirely
 	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)

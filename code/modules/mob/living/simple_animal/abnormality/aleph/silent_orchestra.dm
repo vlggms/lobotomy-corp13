@@ -64,7 +64,7 @@
 		symphony_range += 5
 		switch(current_movement_num)
 			if(0)
-				next_movement_time = world.time + 5 SECONDS
+				next_movement_time = world.time + 4 SECONDS
 			if(1)
 				next_movement_time = world.time + 22 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.2)
@@ -77,7 +77,7 @@
 				next_movement_time = world.time + 11.5 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 				symphony_damage = 15
-				movement_volume = 10 // No more tinnitus
+				movement_volume = 5 // No more tinnitus
 				spawn_performer(1, EAST)
 			if(4)
 				next_movement_time = world.time + 23 SECONDS
@@ -103,7 +103,7 @@
 						H.regenerate_icons()
 						H.visible_message("<span class='danger'>[H]'s head explodes!</span>")
 						new /obj/effect/gibspawner/generic/silent(get_turf(H))
-						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 35, 1)
+						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 50, 1)
 				SLEEP_CHECK_DEATH(4 SECONDS)
 				animate(src, alpha = 0, time = 2 SECONDS)
 				QDEL_IN(src, 2 SECONDS)

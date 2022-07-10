@@ -41,6 +41,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/black
+	damage = 12
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
@@ -48,7 +49,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/pale
-	damage = 4
+	damage = 3
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY

@@ -89,12 +89,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/breach_effect(mob/living/carbon/human/user)
 	..()
-	update_icon()
+	icon_living = "scarecrow_breach"
+	icon_state = icon_living
 	GiveTarget(user)
-
-/mob/living/simple_animal/hostile/abnormality/scarecrow/update_icon_state()
-	if(status_flags & GODMODE) // Not breaching
-		icon_state = initial(icon)
-	else // Breaching
-		icon_state = "scarecrow_breach"
-	icon_living = icon_state

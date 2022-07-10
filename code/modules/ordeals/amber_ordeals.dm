@@ -7,7 +7,7 @@
 	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
 	/// How many places are chosen for the spawn
-	var/spawn_places = 3
+	var/spawn_places = 4
 	/// How many mobs to spawn per spot
 	var/spawn_amount = 3
 	/// What mob to spawn

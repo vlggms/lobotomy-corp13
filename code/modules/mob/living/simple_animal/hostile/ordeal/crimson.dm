@@ -44,7 +44,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/TeleportAway()
@@ -91,6 +91,8 @@
 	faction = list("crimson_ordeal")
 	maxHealth = 1200
 	health = 1200
+	pixel_x = -8
+	base_pixel_x = -8
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	attack_verb_continuous = "bites"
@@ -104,15 +106,15 @@
 	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion(datum/ordeal/OR = null)
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	for(var/i = 1 to 3)
-		var/turf/T = get_step(get_turf(src), pick(ALL_CARDINALS))
+		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
-		nc.TeleportAway()
-		if(ordeal_reference)
-			ordeal_reference.ordeal_mobs += nc
-			nc.ordeal_reference = ordeal_reference
+		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/.proc/TeleportAway), 1)
+		if(OR)
+			nc.ordeal_reference = OR
+			OR.ordeal_mobs += nc
 	gib()

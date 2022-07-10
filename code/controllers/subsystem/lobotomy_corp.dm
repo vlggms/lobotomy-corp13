@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 							4 = list()
 							)
 	// At what qliphoth_state next ordeal will happen
-	var/next_ordeal_time = -2
+	var/next_ordeal_time = 1
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	qliphoth_max = 4 + round(abno_amount * 0.35)
+	qliphoth_max = 4 + round(abno_amount * 0.5)
 	qliphoth_state += 1
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(all_ordeals[next_ordeal_level])
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time += (next_ordeal_level + pick(2,3,4))
+	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(3,6)
 	next_ordeal_level += 1 // Increase difficulty!
 	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE

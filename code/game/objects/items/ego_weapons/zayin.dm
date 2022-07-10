@@ -2,7 +2,7 @@
 	name = "penitence"
 	desc = "A mace meant to purify the evil thoughts."
 	icon_state = "penitence"
-	force = 8
+	force = 16
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL

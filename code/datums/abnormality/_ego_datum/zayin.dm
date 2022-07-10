@@ -15,3 +15,13 @@
 /datum/ego_datum/armor/tough
 	item_path = /obj/item/clothing/suit/armor/ego_gear/tough
 	cost = 12
+
+// Wellcheers vending machine - Soda
+/datum/ego_datum/weapon/soda
+	item_path = /obj/item/gun/ego_gun/soda
+	cost = 12
+
+/datum/ego_datum/armor/soda
+	item_path = /obj/item/clothing/suit/armor/ego_gear/soda
+	cost = 12
+

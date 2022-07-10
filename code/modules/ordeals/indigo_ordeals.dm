@@ -6,6 +6,6 @@
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 2
 	reward_percent = 0.15
-	spawn_places = 5
+	spawn_places = 4
 	spawn_amount = 3
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/sweeper

@@ -3,7 +3,7 @@
 	desc = "The sharp sawtooth of the grinder makes a clean cut through its enemy. \
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
 	icon_state = "grinder"
-	force = 20
+	force = 30
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL

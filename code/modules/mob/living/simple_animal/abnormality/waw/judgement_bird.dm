@@ -42,8 +42,8 @@
 
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
-	var/judgement_damage = 85
-	var/judgement_range = 9
+	var/judgement_damage = 65
+	var/judgement_range = 8
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"

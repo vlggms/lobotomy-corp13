@@ -2,7 +2,7 @@
 	name = "hornet armor"
 	desc = "A dark coat with yellow details. You feel as if you can hear faint buzzing coming out of it."
 	icon_state = "hornet"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 25)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 25)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 40,

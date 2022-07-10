@@ -23,3 +23,14 @@
 /obj/item/gun/ego_gun/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"
 
+/obj/item/gun/ego_gun/soda
+	name = "soda pistol"
+	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
+	icon_state = "soda"
+	w_class = WEIGHT_CLASS_SMALL
+	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	burst_size = 1
+	fire_delay = 0
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70

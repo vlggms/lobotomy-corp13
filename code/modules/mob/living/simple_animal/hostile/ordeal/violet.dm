@@ -7,9 +7,10 @@
 	icon_living = "violet_fruit"
 	icon_dead = "violet_fruit_dead"
 	base_pixel_x = -8
+	pixel_x = -8
 	faction = list("violet_ordeal")
-	maxHealth = 200
-	health = 200
+	maxHealth = 250
+	health = 250
 	speed = 4
 	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)

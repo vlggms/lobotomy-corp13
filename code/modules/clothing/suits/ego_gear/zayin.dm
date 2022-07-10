@@ -18,3 +18,10 @@
 
 /obj/item/clothing/suit/armor/ego_gear/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"
+
+/obj/item/clothing/suit/armor/ego_gear/soda
+	name = "soda armor"
+	desc = "A suit of armor that feels like you're wearing aluminum. \
+	It’s quite light for armor, so it is rather comfortable to wear."
+	icon_state = "soda"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)

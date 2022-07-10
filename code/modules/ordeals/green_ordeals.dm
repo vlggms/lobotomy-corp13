@@ -6,7 +6,7 @@
 	We were given life and left in this world against our own volition."
 	annonce_sound = 'sound/effects/ordeals/green_start.ogg'
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
-	spawn_places = 5
+	spawn_places = 4
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
 
@@ -18,6 +18,6 @@
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
 	level = 2
 	reward_percent = 0.15
-	spawn_places = 5
+	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot_big

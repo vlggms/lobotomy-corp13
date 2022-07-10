@@ -6,7 +6,7 @@
 	icon_living = "helper"
 	maxHealth = 1000
 	health = 1000
-	rapid_melee = 3
+	rapid_melee = 4
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -18,7 +18,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	obj_damage = 250
 	speak_emote = list("states")
-	vision_range = 8
+	vision_range = 12
 	aggro_vision_range = 20
 	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)
 
@@ -146,7 +146,7 @@
 				var/armor = H.run_armor_check(affecting, armortype, armour_penetration = src.armour_penetration)
 				H.apply_damage(60, src.melee_damage_type, affecting, armor, wound_bonus = src.wound_bonus, bare_wound_bonus = src.bare_wound_bonus, sharpness = src.sharpness)
 			else
-				L.adjustRedLoss(60)
+				L.adjustRedLoss(120)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
