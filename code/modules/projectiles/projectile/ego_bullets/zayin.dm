@@ -7,4 +7,3 @@
 	name = "9mm soda bullet"
 	damage = 6
 	damage_type = RED_DAMAGE
-

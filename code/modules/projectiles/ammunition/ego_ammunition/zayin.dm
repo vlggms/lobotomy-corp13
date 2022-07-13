@@ -7,4 +7,3 @@
 	name = "9mm tough soda casing"
 	desc = "A 9mm tough soda casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_soda
-

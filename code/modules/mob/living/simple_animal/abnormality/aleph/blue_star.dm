@@ -26,6 +26,10 @@
 	light_range = 24
 	light_power = 14
 
+	ego_list = list(
+		/datum/ego_datum/weapon/star_sound
+		)
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 9 SECONDS
 	var/pulse_damage = 36 // Scales with distance
