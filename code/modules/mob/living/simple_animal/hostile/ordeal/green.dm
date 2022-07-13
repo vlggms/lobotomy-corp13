@@ -130,7 +130,7 @@
 	reloading = TRUE
 	icon_state = "green_bot_reload"
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
-	for(var/i = 1 to 7)
+	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
 		SLEEP_CHECK_DEATH(8)
 	fire_count = 0
@@ -169,6 +169,9 @@
 	if(!.) // Dead
 		return FALSE
 	listclearnulls(spawned_mobs)
+	for(var/mob/living/L in spawned_mobs)
+		if(L.stat == DEAD)
+			spawned_mobs -= L
 	update_icon()
 	if(length(spawned_mobs) >= 15)
 		return
@@ -176,10 +179,10 @@
 		spawn_progress += 1
 		return
 	flick("green_dusk_create", src)
-	spawn_progress = -5 // Basically, puts us on a tiny cooldown
+	spawn_progress = -2 // Basically, puts us on a tiny cooldown
 	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
 	for(var/i = 1 to 3)
-		var/turf/T = get_step(get_turf(src), pick(WEST, EAST))
+		var/turf/T = get_step(get_turf(src), pick(0, EAST))
 		var/mob/living/simple_animal/hostile/ordeal/nb = pick(/mob/living/simple_animal/hostile/ordeal/green_bot, /mob/living/simple_animal/hostile/ordeal/green_bot_big)
 		spawned_mobs += new nb(T)
 		if(ordeal_reference)

@@ -3,9 +3,10 @@
 	stat_attack = HARD_CRIT
 	a_intent = INTENT_HARM
 	var/datum/ordeal/ordeal_reference
+	var/ordeal_remove_ondeath = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/death(gibbed)
-	if(ordeal_reference)
+	if(ordeal_reference && ordeal_remove_ondeath)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
 	..()

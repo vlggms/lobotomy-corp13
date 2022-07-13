@@ -100,6 +100,7 @@
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	deathsound = 'sound/effects/ordeals/crimson/noon_dead.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	ordeal_remove_ondeath = FALSE
 
 	/// How many mobs we spawn on death
 	var/mob_spawn_amount = 3
@@ -109,7 +110,7 @@
 	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion(datum/ordeal/OR = null)
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
@@ -117,9 +118,12 @@
 		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
 		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/.proc/TeleportAway), 1)
-		if(OR)
-			nc.ordeal_reference = OR
-			OR.ordeal_mobs += nc
+		if(ordeal_reference)
+			nc.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nc
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
 	gib()
 
 // Crimson noon
@@ -129,16 +133,15 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "crimson_dusk"
 	icon_living = "crimson_dusk"
-	icon_dead = "crimson_noon_dead"
+	icon_dead = "crimson_dusk_dead"
 	faction = list("crimson_ordeal")
 	maxHealth = 2000
 	health = 2000
 	pixel_x = -16
 	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
 	melee_damage_lower = 32
 	melee_damage_upper = 36
+	move_to_delay = 5
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -148,7 +151,7 @@
 
 	var/roll_num = 36
 	var/roll_cooldown
-	var/roll_cooldown_time = 14 SECONDS
+	var/roll_cooldown_time = 10 SECONDS
 	var/charging = FALSE
 	var/list/been_hit = list()
 
@@ -162,7 +165,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/DeathExplosion(datum/ordeal/OR = null)
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/DeathExplosion()
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
@@ -170,9 +173,12 @@
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_noon/nc = new(T)
-		if(OR)
-			nc.ordeal_reference = OR
-			OR.ordeal_mobs += nc
+		if(ordeal_reference)
+			nc.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nc
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
 	gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/OpenFire()
@@ -197,6 +203,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
+	animate(src, pixel_y = -16, time = 3)
 	do_roll(dir_to_target, 0)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/proc/do_roll(move_dir, times_ran)
@@ -204,12 +211,14 @@
 	if(stat == DEAD)
 		icon_state = icon_dead
 		charging = FALSE
+		animate(src, pixel_y = base_pixel_y, time = 3)
 		return
 	if(times_ran >= roll_num)
 		stop_charge = TRUE
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(!T)
 		charging = FALSE
+		animate(src, pixel_y = base_pixel_y, time = 3)
 		return
 	if(ismineralturf(T))
 		var/turf/closed/mineral/M = T
@@ -219,11 +228,13 @@
 	for(var/obj/structure/window/W in T.contents)
 		W.obj_destruction("spinning clown")
 	for(var/obj/machinery/door/D in T.contents)
-		stop_charge = TRUE
+		if(D.density)
+			stop_charge = TRUE
 	if(stop_charge)
-		SLEEP_CHECK_DEATH(3 SECONDS)
+		SLEEP_CHECK_DEATH(2 SECONDS)
 		icon_state = icon_living
 		charging = FALSE
+		animate(src, pixel_y = base_pixel_y, time = 3)
 		return
 	forceMove(T)
 	var/para = TRUE

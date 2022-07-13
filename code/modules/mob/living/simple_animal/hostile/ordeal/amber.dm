@@ -62,8 +62,8 @@
 	speed = 4
 	move_to_delay = 7
 	density = FALSE
-	melee_damage_lower = 58
-	melee_damage_upper = 62
+	melee_damage_lower = 88
+	melee_damage_upper = 94 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
 	attack_verb_continuous = "eviscerates"
@@ -121,11 +121,17 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/AttemptBirth()
 	listclearnulls(spawned_mobs)
+	for(var/mob/living/L in spawned_mobs)
+		if(L.stat == DEAD)
+			spawned_mobs -= L
 	if(length(spawned_mobs) >= 15)
 		return
 	visible_message("<span class='danger'>Three smaller bugs appear out of [src]!</span>")
 	for(var/i = 1 to 3)
-		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		if(T.density) // Retry
+			i -= 1
+			continue
 		var/mob/living/simple_animal/hostile/ordeal/amber_bug/nb = new(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
