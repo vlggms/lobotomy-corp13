@@ -70,7 +70,12 @@
 		return
 
 	if(dash_cooldown <= world.time)
-		helper_dash(target)
+		var/chance_to_dash = 25
+		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		if(dir_to_target in list(NORTH, SOUTH, WEST, EAST))
+			chance_to_dash = 100
+		if(prob(chance_to_dash))
+			helper_dash(target)
 
 /mob/living/simple_animal/hostile/abnormality/helper/update_icon_state()
 	if(status_flags & GODMODE)

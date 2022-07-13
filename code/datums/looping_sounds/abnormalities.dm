@@ -9,3 +9,10 @@
 	mid_length = 26.8 SECONDS
 	volume = 50
 	extra_range = 22
+
+// Ordeals
+/datum/looping_sound/amberdusk
+	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
+	mid_length = 0.7 SECONDS
+	volume = 25
+

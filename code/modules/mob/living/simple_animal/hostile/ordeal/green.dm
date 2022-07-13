@@ -136,3 +136,71 @@
 	fire_count = 0
 	reloading = FALSE
 	icon_state = icon_living
+
+// Green dusk
+/mob/living/simple_animal/hostile/ordeal/green_dusk
+	name = "where we must reach"
+	desc = "A factory-like structure, constantly producing ancient robots."
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "green_dusk"
+	icon_living = "green_dusk"
+	icon_dead = "green_dusk_dead"
+	bound_width = 64 // 2x1
+	faction = list("green_ordeal")
+	maxHealth = 2500
+	health = 2500
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.3)
+
+	var/spawn_progress = 10
+	var/list/spawned_mobs = list()
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
+	..()
+	update_icon()
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	listclearnulls(spawned_mobs)
+	update_icon()
+	if(length(spawned_mobs) >= 15)
+		return
+	if(spawn_progress < 15)
+		spawn_progress += 1
+		return
+	flick("green_dusk_create", src)
+	spawn_progress = -5 // Basically, puts us on a tiny cooldown
+	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
+	for(var/i = 1 to 3)
+		var/turf/T = get_step(get_turf(src), pick(WEST, EAST))
+		var/mob/living/simple_animal/hostile/ordeal/nb = pick(/mob/living/simple_animal/hostile/ordeal/green_bot, /mob/living/simple_animal/hostile/ordeal/green_bot_big)
+		spawned_mobs += new nb(T)
+		if(ordeal_reference)
+			nb.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nb
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/update_overlays()
+	. = ..()
+	if(spawn_progress <= 0)
+		cut_overlays()
+		return
+
+	var/mutable_appearance/progress_overlay = mutable_appearance(icon, "progress_1")
+	switch(spawn_progress)
+		if(1 to 4)
+			progress_overlay.icon_state = "progress_1"
+		if(5 to 8)
+			progress_overlay.icon_state = "progress_2"
+		if(9 to 12)
+			progress_overlay.icon_state = "progress_3"
+		if(13 to INFINITY)
+			progress_overlay.icon_state = "progress_4"
+
+	. += progress_overlay

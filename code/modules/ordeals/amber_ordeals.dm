@@ -22,3 +22,12 @@
 			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(T)
 			ordeal_mobs += M
 			M.ordeal_reference = src
+
+/datum/ordeal/amber_dawn/amber_dusk
+	name = "Dusk of Amber"
+	annonce_text = "To accustom oneself to the taste was an inevitable process."
+	level = 3
+	reward_percent = 0.2
+	spawn_places = 3
+	spawn_amount = 1
+	spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_dusk

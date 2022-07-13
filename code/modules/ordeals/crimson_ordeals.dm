@@ -33,3 +33,14 @@
 	spawn_places = 4
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon
+
+/datum/ordeal/amber_dawn/crimson_dusk
+	name = "Dusk of Crimson"
+	annonce_text = "Throwing away our old bodies, we all become one, infinitely continuing the red march."
+	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
+	level = 3
+	reward_percent = 0.2
+	spawn_places = 3
+	spawn_amount = 1
+	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk

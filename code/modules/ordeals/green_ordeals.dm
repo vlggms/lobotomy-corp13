@@ -21,3 +21,27 @@
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+
+// Dusk
+/datum/ordeal/green_dusk
+	name = "Dusk of Green"
+	annonce_text = "We constructed a looming tower to return whence we came."
+	level = 3
+	reward_percent = 0.2
+	annonce_sound = 'sound/effects/ordeals/green_start.ogg'
+	end_sound = 'sound/effects/ordeals/green_end.ogg'
+	/// How many places are chosen for the spawn
+	var/spawn_places = 3
+
+/datum/ordeal/green_dusk/Run()
+	..()
+	for(var/i = 1 to spawn_places)
+		var/X = pick(GLOB.xeno_spawn)
+		var/turf/T = get_turf(X)
+		var/turf/NT = get_step(T, EAST) // It's a 2x1 object, after all
+		if(NT.density) // Retry
+			i -= 1
+			continue
+		var/mob/living/simple_animal/hostile/ordeal/green_dusk/GD = new(T)
+		ordeal_mobs += GD
+		GD.ordeal_reference = src
