@@ -11,3 +11,10 @@
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 50
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
