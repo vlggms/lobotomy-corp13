@@ -454,6 +454,14 @@
 	l_pocket = /obj/item/ego_weapon/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 
+/datum/outfit/centcom/ert/commander/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()
+
 /datum/outfit/centcom/ert/security/rabbit
 	name = "Rabbit Team"
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit
@@ -463,3 +471,11 @@
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/centcom/ert/security/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()

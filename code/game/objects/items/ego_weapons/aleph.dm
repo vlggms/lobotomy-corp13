@@ -107,3 +107,48 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/da_capo
+	name = "da capo"
+	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
+	If there were a score for this song, it would be one that sings of the apocalypse."
+	icon_state = "da_capo"
+	force = 30 // It attacks very fast
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/da_capo1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/combo = 0 // I am copy-pasting justitia "combo" system and nobody can stop me
+	var/combo_time
+	var/combo_wait = 14
+
+/obj/item/ego_weapon/da_capo/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	switch(combo)
+		if(1)
+			hitsound = 'sound/weapons/ego/da_capo2.ogg'
+			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+		if(2)
+			hitsound = 'sound/weapons/ego/da_capo3.ogg'
+			user.changeNext_move(CLICK_CD_MELEE * 0.7)
+			force *= 1.25
+			combo = -1
+		else
+			hitsound = 'sound/weapons/ego/da_capo1.ogg'
+			user.changeNext_move(CLICK_CD_MELEE * 0.5)
+	..()
+	combo += 1
+	force = initial(force)

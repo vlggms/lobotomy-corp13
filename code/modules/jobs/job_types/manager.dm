@@ -21,9 +21,11 @@
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()
-	var/displayed_rank = title // Tegu Edit: Alt Titles
-	displayed_rank = H?.client?.prefs?.alt_titles_preferences[title]
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[displayed_rank] [H.real_name] has arrived to the facility."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Manager [H.real_name] has arrived to the facility."))
+
+/datum/job/manager/after_spawn(mob/living/H, mob/M)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT) // God bless the manager
 
 /datum/outfit/job/manager
 	name = "Manager"

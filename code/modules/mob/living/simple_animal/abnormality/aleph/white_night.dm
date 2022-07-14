@@ -304,9 +304,9 @@ GLOBAL_LIST_EMPTY(apostles)
 			to_chat(H, "<span class='notice'>The holy light compels you to live!</span>")
 		else
 			H.adjustStaminaLoss(-200)
-			H.adjustBruteLoss(-holy_revival_damage*5)
-			H.adjustFireLoss(-holy_revival_damage*5)
-			H.adjustSanityLoss(holy_revival_damage*5) // It actually heals, don't worry
+			H.adjustBruteLoss(-holy_revival_damage*10)
+			H.adjustFireLoss(-holy_revival_damage*10)
+			H.adjustSanityLoss(holy_revival_damage*10) // It actually heals, don't worry
 			H.regenerate_limbs()
 			H.regenerate_organs()
 			to_chat(H, "<span class='notice'>The holy light heals you!</span>")

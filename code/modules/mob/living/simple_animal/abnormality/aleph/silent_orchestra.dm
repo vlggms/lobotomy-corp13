@@ -25,6 +25,10 @@
 	light_range = 7
 	light_power = 2
 
+	ego_list = list(
+		/datum/ego_datum/weapon/da_capo
+		)
+
 	/// Range of the damage
 	var/symphony_range = 7
 	/// Amount of white damage

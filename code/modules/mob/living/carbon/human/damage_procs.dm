@@ -10,7 +10,7 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
-	if((status_flags & GODMODE) || !attributes || stat >= HARD_CRIT)
+	if((status_flags & GODMODE) || !attributes)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
 		amount = maxSanity+1
@@ -46,6 +46,8 @@
 	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
 		return
 	QDEL_NULL(ai_controller) // In case there was one already
+	SEND_SIGNAL(src, COMSIG_HUMAN_INSANE, attribute)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HUMAN_INSANE, src, attribute)
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
 	switch(attribute)

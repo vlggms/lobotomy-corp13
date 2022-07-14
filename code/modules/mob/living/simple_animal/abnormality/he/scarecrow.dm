@@ -33,6 +33,10 @@
 	deathmessage = "stops moving, with its torso rotating forwards."
 	deathsound = 'sound/abnormalities/scarecrow/death.ogg'
 
+	ego_list = list(
+		/datum/ego_datum/weapon/harvest
+		)
+
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 

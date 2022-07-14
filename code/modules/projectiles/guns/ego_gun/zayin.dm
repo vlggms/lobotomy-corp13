@@ -27,6 +27,7 @@
 	name = "soda pistol"
 	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
 	icon_state = "soda"
+	inhand_icon_state = "soda"
 	w_class = WEIGHT_CLASS_SMALL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	burst_size = 1

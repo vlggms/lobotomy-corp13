@@ -16,3 +16,9 @@
 /datum/ego_datum/weapon/star_sound
 	item_path = /obj/item/gun/ego_gun/star
 	cost = 200
+
+// Silent orchestra - Da capo
+/datum/ego_datum/weapon/da_capo
+	item_path = /obj/item/ego_weapon/da_capo
+	cost = 200
+

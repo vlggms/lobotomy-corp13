@@ -71,7 +71,7 @@
 			continue
 		var/mob/living/carbon/human/H = L
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
-			H.Stun(5)
+			H.death()
 			animate(H, transform = H.transform*0.01, time = 5)
 			QDEL_IN(H, 5)
 	SLEEP_CHECK_DEATH(3)
