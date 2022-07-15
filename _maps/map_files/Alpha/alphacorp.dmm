@@ -114,11 +114,6 @@
 "cg" = (
 /turf/closed/indestructible/rock,
 /area/facility_hallway/east)
-"ci" = (
-/obj/structure/fluff/divine/conduit,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/solarpanel,
-/area/space)
 "cs" = (
 /obj/machinery/light/cold{
 	dir = 8
@@ -178,11 +173,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
-"dn" = (
-/obj/structure/fluff/clockwork/fallen_armor,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/solarpanel,
-/area/space)
 "dx" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -226,7 +216,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/central)
 "dL" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -382,11 +372,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/safety)
-"gm" = (
-/obj/structure/healingfountain,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/solarpanel,
-/area/space)
 "gp" = (
 /obj/structure/showcase/machinery{
 	desc = "A server for the information department. Stores information.";
@@ -686,12 +671,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"lo" = (
-/obj/structure/table,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/turf/open/floor/carpet/purple,
-/area/space)
 "lp" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/railing,
@@ -793,12 +772,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"mF" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Information room"
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "mG" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -807,18 +780,13 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "mM" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
 /area/department_main/control)
 "mQ" = (
 /obj/structure/window/reinforced,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/grass,
-/area/space)
-"mR" = (
-/obj/structure/fluff/clockwork/blind_eye,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/solarpanel,
 /area/space)
 "ng" = (
 /obj/structure/toilet,
@@ -875,9 +843,6 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"om" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "ot" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet/orange,
@@ -981,16 +946,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"pG" = (
-/obj/effect/turf_decal/siding/purple/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/purple/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/purple,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "pM" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -1049,9 +1004,6 @@
 "qO" = (
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"qR" = (
-/turf/closed/indestructible/fakeglass,
-/area/space)
 "qT" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -1120,17 +1072,10 @@
 /obj/machinery/modular_computer/console/preset/research,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"sa" = (
-/turf/open/floor/plating,
-/area/space)
 "se" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
-"sk" = (
-/obj/structure/sign/warning,
-/turf/closed/indestructible/reinforced,
-/area/space)
 "sw" = (
 /obj/machinery/light,
 /obj/machinery/cryopod{
@@ -1278,11 +1223,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"uD" = (
-/obj/effect/landmark/start,
-/obj/structure/chair/office,
-/turf/open/floor/carpet/purple,
-/area/space)
 "uE" = (
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/railing,
@@ -1622,10 +1562,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"AT" = (
-/obj/structure/table,
-/turf/open/floor/carpet/purple,
-/area/space)
 "AU" = (
 /obj/structure/table/wood,
 /obj/item/toy/figure/scientist{
@@ -1702,14 +1638,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"CR" = (
-/obj/structure/showcase/machinery{
-	desc = "A server for the information department. Stores information.";
-	icon_state = "blackbox";
-	name = "Information Server"
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "CT" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -1787,25 +1715,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
-"EK" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "ET" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"EZ" = (
-/obj/machinery/modular_computer/console/preset/research,
-/turf/open/floor/carpet/purple,
-/area/space)
-"Fg" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/open/floor/carpet/purple,
-/area/space)
 "Fk" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -1831,11 +1744,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"Fw" = (
-/obj/structure/fluff/divine/nexus,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/plasteel/solarpanel,
-/area/space)
 "Fy" = (
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel,
@@ -1963,15 +1871,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/blue,
 /area/space)
-"Iq" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 1
-	},
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/department_main/control)
 "Ir" = (
 /obj/machinery/light,
 /obj/structure/closet/secure_closet/personal,
@@ -2005,10 +1904,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"IJ" = (
-/obj/structure/closet/crate/bin,
-/turf/open/floor/carpet/purple,
-/area/space)
 "IO" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/disposalpipe/segment,
@@ -2107,27 +2002,10 @@
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"KG" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/purple,
-/turf/open/floor/plasteel/dark,
-/area/space)
 "KI" = (
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"KN" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/turf/open/floor/carpet/purple,
-/area/space)
 "KP" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -2173,15 +2051,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
-"LJ" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/space)
 "LN" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/wall/r_wall,
@@ -2225,10 +2094,6 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel,
 /area/department_main/control)
-"Mv" = (
-/mob/living/simple_animal/bot/medbot,
-/turf/open/floor/carpet/purple,
-/area/space)
 "Mw" = (
 /obj/structure/table,
 /turf/open/floor/carpet/blue,
@@ -2237,13 +2102,6 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"MK" = (
-/obj/structure/showcase/machinery/cloning_pod{
-	desc = "A device for storing fragile biological samples. This one is out of order.";
-	name = "cryopod tube"
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "MN" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
@@ -2335,12 +2193,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"Og" = (
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "Oi" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -2453,10 +2305,6 @@
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
-"Ps" = (
-/obj/effect/spawner/abnormality_room,
-/turf/closed/indestructible/reinforced,
-/area/space)
 "Pw" = (
 /obj/structure/table/glass,
 /turf/open/floor/carpet/green,
@@ -2559,10 +2407,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/north)
-"QS" = (
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/carpet/purple,
-/area/space)
 "Rd" = (
 /turf/closed/wall/r_wall,
 /area/department_main/information)
@@ -2628,12 +2472,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
-"RM" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "Sa" = (
 /turf/closed/wall/r_wall,
 /area/facility_hallway/central)
@@ -2651,13 +2489,6 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"Si" = (
-/obj/effect/landmark/start,
-/obj/structure/chair/office{
-	dir = 8
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "So" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2755,9 +2586,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
-"Tz" = (
-/turf/open/floor/carpet/purple,
-/area/space)
 "TB" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
@@ -2913,21 +2741,8 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/north)
-"Wr" = (
-/obj/effect/landmark/start,
-/obj/structure/chair/office{
-	dir = 4
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "Wt" = (
 /turf/open/floor/plasteel/stairs/medium,
-/area/space)
-"Wv" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
-	},
-/turf/open/floor/carpet/purple,
 /area/space)
 "Ww" = (
 /obj/machinery/light,
@@ -3076,12 +2891,6 @@
 "YO" = (
 /turf/open/floor/plating,
 /area/facility_hallway/central)
-"YV" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/carpet/purple,
-/area/space)
 "YW" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -33824,7 +33633,7 @@ RD
 Hv
 Hv
 Hv
-oK
+Hv
 DW
 vg
 vg
@@ -34081,7 +33890,7 @@ Sa
 Rf
 kT
 Jz
-sa
+YO
 DW
 vg
 vg
@@ -34338,7 +34147,7 @@ Sa
 ho
 iB
 Hv
-sa
+YO
 DW
 vg
 vg
@@ -34595,7 +34404,7 @@ Sa
 MU
 TM
 Hv
-sa
+YO
 LX
 LX
 LX
@@ -34852,7 +34661,7 @@ Sa
 ho
 TM
 Hv
-sa
+YO
 LX
 gp
 eu
@@ -35835,7 +35644,7 @@ kD
 mM
 FV
 FV
-Iq
+GT
 Mi
 PP
 PP
@@ -45873,15 +45682,15 @@ ZL
 ZL
 ZL
 ZL
-oK
-oK
-oK
-oK
-oK
-oK
-mF
-oK
-om
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 oK
@@ -46130,15 +45939,15 @@ ZL
 ZL
 ZL
 ZL
-oK
-CR
-RM
-KN
-Og
-Tz
-KG
-QS
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -46387,17 +46196,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-EZ
-Si
-AT
-Tz
-Tz
-KG
-uD
-sk
-oK
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -46644,17 +46453,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-Fg
-Tz
-AT
-Og
-Tz
-KG
-AT
-qR
-ci
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -46901,17 +46710,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-IJ
-Tz
-Tz
-Tz
-Tz
-KG
-AT
-qR
-mR
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -47158,17 +46967,17 @@ ZL
 ZL
 ZL
 ZL
-mF
-LJ
-LJ
-LJ
-LJ
-LJ
-pG
-AT
-qR
-gm
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -47415,17 +47224,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-Mv
-Tz
-Tz
-Tz
-Tz
-KG
-AT
-qR
-dn
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -47672,17 +47481,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-Fg
-Tz
-AT
-Og
-Tz
-KG
-AT
-qR
-Fw
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -47929,17 +47738,17 @@ ZL
 ZL
 ZL
 ZL
-oK
-EZ
-Wr
-lo
-Tz
-Tz
-KG
-uD
-sk
-oK
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -48186,15 +47995,15 @@ ZL
 ZL
 ZL
 ZL
-oK
-MK
-Wv
-EK
-Og
-Tz
-KG
-YV
-oK
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -48443,15 +48252,15 @@ ZL
 ZL
 ZL
 ZL
-oK
-om
-om
-oK
-Ps
-oK
-mF
-oK
-om
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
