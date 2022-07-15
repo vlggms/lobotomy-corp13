@@ -302,7 +302,8 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/hypospray/medipen = 14)
+		/obj/item/reagent_containers/hypospray/medipen = 2,
+		/obj/item/reagent_containers/hypospray/medipen/salacid = 12)
 	generate_items_inside(items_inside,src)
 
 
