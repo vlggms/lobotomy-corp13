@@ -151,7 +151,7 @@
 	var/temp_icon_to_use = initial(icon_state)
 	if(modifystate)
 		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
-		temp_icon_to_use += "[shot.select_name]"
+		temp_icon_to_use += "[shot.select_icon_name]"
 
 	temp_icon_to_use += "[ratio]"
 	if(!skip_inhand)
@@ -168,8 +168,8 @@
 	var/ratio = get_charge_ratio()
 	if(modifystate)
 		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
-		overlay_icon_state += "_[shot.select_name]"
-		. += "[icon_state]_[shot.select_name]"
+		overlay_icon_state += "_[shot.select_icon_name]"
+		. += "[icon_state]_[shot.select_icon_name]"
 	if(ratio == 0)
 		. += "[icon_state]_empty"
 	else

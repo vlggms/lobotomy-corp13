@@ -3,11 +3,11 @@
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 20
-	damage_type = BURN
+	damage_type = BLACK_DAMAGE
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
-	flag = LASER
-	eyeblur = 2
+	flag = BLACK_DAMAGE
+	eyeblur = 0
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_system = MOVABLE_LIGHT
 	light_range = 1
@@ -17,17 +17,46 @@
 	ricochet_chance = 80
 	reflectable = REFLECT_NORMAL
 	wound_bonus = -20
-	bare_wound_bonus = 10
+	bare_wound_bonus = -10
 
 
 /obj/projectile/beam/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	impact_type = /obj/effect/projectile/impact/laser
-	wound_bonus = -30
-	bare_wound_bonus = 40
+	damage = 15
+	wound_bonus = -100
+	bare_wound_bonus = -100
 
-//overclocked laser, does a bit more damage but has much higher wound power (-0 vs -20)
+/obj/projectile/beam/laser/red
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	light_color = COLOR_RED
+
+/obj/projectile/beam/laser/white
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	light_color = COLOR_WHITE
+	icon_state = "whitelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
+
+/obj/projectile/beam/laser/black
+	damage = 12
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	light_color = COLOR_PURPLE
+	icon_state = "purplelaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
+
+/obj/projectile/beam/laser/pale
+	damage = 3
+	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
+	light_color = COLOR_PALE_BLUE_GRAY
+	icon_state = "omnilaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
+
+//overclocked laser, does a bit more damage but has much higher wound power
 /obj/projectile/beam/laser/hellfire
 	name = "hellfire laser"
 	wound_bonus = 0
@@ -55,7 +84,7 @@
 		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/weak
-	damage = 15
+	damage = 10
 
 /obj/projectile/beam/weak/penetrator
 	armour_penetration = 50
@@ -89,7 +118,7 @@
 	name = "disabler beam"
 	icon_state = "omnilaser"
 	damage = 30
-	damage_type = STAMINA
+	damage_type = WHITE_DAMAGE
 	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
 	eyeblur = 0
@@ -205,7 +234,7 @@
 	name = "instagib laser"
 	icon_state = "purple_laser"
 	damage = 200
-	damage_type = BURN
+	damage_type = PALE_DAMAGE
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	light_color = LIGHT_COLOR_PURPLE
 

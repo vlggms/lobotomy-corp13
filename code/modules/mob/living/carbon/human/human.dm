@@ -917,6 +917,24 @@
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
 
+/mob/living/carbon/human/proc/update_sanity_hud()
+	if(!client || !hud_used)
+		return
+	else
+		if(hud_used.sanityhealth)
+			if(sanityhealth >= maxSanity)
+				hud_used.sanityhealth.icon_state = "sanity0"
+			else if(sanityhealth > maxSanity*0.8)
+				hud_used.sanityhealth.icon_state = "sanity1"
+			else if(sanityhealth > maxSanity*0.6)
+				hud_used.sanityhealth.icon_state = "sanity2"
+			else if(sanityhealth > maxSanity*0.4)
+				hud_used.sanityhealth.icon_state = "sanity3"
+			else if(sanityhealth > maxSanity*0.2)
+				hud_used.sanityhealth.icon_state = "sanity4"
+			else
+				hud_used.sanityhealth.icon_state = "sanity5"
+
 /mob/living/carbon/human/fully_heal(admin_revive = FALSE)
 	dna?.species.spec_fully_heal(src)
 	if(admin_revive)
@@ -925,6 +943,7 @@
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
+	adjustSanityLoss(maxSanity+1)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -1154,8 +1173,8 @@
 		return
 	var/health_deficiency = max((maxHealth - health), staminaloss)
 	if(health_deficiency >= 40)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 75)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 25)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 200)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 100)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)

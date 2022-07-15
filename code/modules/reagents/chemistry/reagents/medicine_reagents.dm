@@ -498,6 +498,28 @@
 	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
 	..()
 
+/datum/reagent/medicine/mental_stabilizator
+	name = "Mental Stabilizator"
+	description = "Heals any potential issues with mental state of the patient."
+	reagent_state = LIQUID
+	color = "#CCFFFF"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 25
+
+/datum/reagent/medicine/mental_stabilizator/on_mob_life(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	H.adjustSanityLoss(5*REM) // That's healing
+	..()
+	. = 1
+
+/datum/reagent/medicine/sal_acid/overdose_process(mob/living/M)
+	if(M.getBruteLoss()) //It only makes existing bruises worse
+		M.adjustBruteLoss(4.5*REM, FALSE, FALSE, BODYPART_ORGANIC) // it's going to be healing either 4 or 0.5
+		. = 1
+	..()
+
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/M)
 	if(prob(20) && iscarbon(M))
 		var/obj/item/I = M.get_active_held_item()

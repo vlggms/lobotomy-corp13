@@ -15,10 +15,6 @@
 "g" = (
 /turf/open/floor/plasteel/dark,
 /area/containment_zone)
-"r" = (
-/obj/structure/window/plasma/reinforced/plastitanium,
-/turf/open/floor/plating,
-/area/containment_zone)
 "D" = (
 /obj/machinery/light{
 	dir = 8
@@ -40,7 +36,9 @@
 /turf/open/floor/plasteel/dark,
 /area/containment_zone)
 "Q" = (
-/obj/machinery/door/airlock/security/glass,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/containment_zone)
 "W" = (
@@ -78,8 +76,8 @@ a
 "}
 (5,1,1) = {"
 a
-r
-r
+Q
+Q
 Q
 a
 "}

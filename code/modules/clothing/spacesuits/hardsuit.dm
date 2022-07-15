@@ -1072,4 +1072,42 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
 
+// Rabbit team
+/obj/item/clothing/head/helmet/space/hardsuit/rabbit
+	name = "\improper Rabbit Team Helmet"
+	desc = "A tactical helmet worn by the R. Corp mercenaries."
+	icon_state = "rabbit1"
+	inhand_icon_state = "deathsquad"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
+	heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	actions_types = list()
+
+/obj/item/clothing/suit/space/hardsuit/rabbit
+	name = "\improper Rabbit Team Suit"
+	desc = "An armored suit produced for use by R. Corp mercenary teams."
+	icon_state = "rabbit1"
+	inhand_icon_state = "swat_suit" // TODO
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rabbit
+
+/obj/item/clothing/suit/space/hardsuit/rabbit/Initialize()
+	. = ..()
+	allowed = GLOB.security_hardsuit_allowed
+
+/obj/item/clothing/head/helmet/space/hardsuit/rabbit/leader
+	name = "\improper Rabbit Team Leader Helmet"
+	icon_state = "rabbit2"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+
+/obj/item/clothing/suit/space/hardsuit/rabbit/leader
+	name = "\improper Rabbit Team Leader Suit"
+	icon_state = "rabbit2"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+
 #undef HARDSUIT_EMP_BURN

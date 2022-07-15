@@ -26,6 +26,9 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/show_name_in_check_antagonists = FALSE //Will append antagonist name in admin listings - use for categories that share more than one antag type
 	var/show_to_ghosts = FALSE // Should this antagonist be shown as antag to ghosts? Shouldn't be used for stealthy antagonists like traitors
 
+	// If the role has any additional attributes
+	var/list/antag_attributes = list()
+
 /datum/antagonist/New()
 	GLOB.antagonists += src
 	typecache_datum_blacklist = typecacheof(typecache_datum_blacklist)
@@ -117,6 +120,15 @@ GLOBAL_LIST_EMPTY(antagonists)
 		owner.current.client.holder.auto_deadmin()
 	if(owner.current.stat != DEAD)
 		owner.current.add_to_current_living_antags()
+	if(LAZYLEN(antag_attributes))
+		var/mob/living/carbon/human/H = owner.current
+		if(!istype(H))
+			return
+		for(var/atrib in antag_attributes)
+			var/datum/attribute/atr = H?.attributes[atrib]
+			if(istype(atr))
+				atr.level = antag_attributes[atrib]
+				atr.on_update(H)
 
 /datum/antagonist/proc/is_banned(mob/M)
 	if(!M)
