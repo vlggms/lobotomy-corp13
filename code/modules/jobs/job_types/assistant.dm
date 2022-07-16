@@ -25,7 +25,9 @@ Assistant
 	name = "Clerk"
 	jobtype = /datum/job/assistant
 	uniform = /obj/item/clothing/under/suit/black
+	glasses = /obj/item/clothing/glasses/hud/health
 	backpack_contents = list(
 		/obj/item/storage/firstaid/revival=1,
 		/obj/item/flashlight/seclite = 1,
+		/obj/item/gun/ego_gun/clerk = 1,
 		/obj/item/grenade/barrier = 5)
