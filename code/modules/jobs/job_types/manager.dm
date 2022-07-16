@@ -6,6 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the manager"
 	selection_color = "#ccccff"
+	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
 	outfit = /datum/outfit/job/manager
 
