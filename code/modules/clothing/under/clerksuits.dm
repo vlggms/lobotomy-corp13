@@ -6,6 +6,7 @@
 	icon_state = "agent"
 	can_adjust = FALSE
 
+
 /obj/item/clothing/under/suit/lobotomy/control
 	name = "control department clerk suit"
 	desc = "A red suit worn by clerks from the control department."
@@ -27,6 +28,17 @@
 	icon_state = "training"
 
 /obj/item/clothing/under/suit/lobotomy/command
-	name = "training department clerk suit"
-	desc = "An orange suit worn by clerks from the training department."
-	icon_state = "training"
+	name = "command department clerk suit"
+	desc = "An yellow suit worn by clerks from the command department."
+	icon_state = "command"
+
+/obj/item/clothing/under/suit/lobotomy/discipline
+	name = "discipline department clerk suit"
+	desc = "An red tracksuit worn by clerks from the discipline department."
+	icon_state = "disciplinary"
+
+/obj/item/clothing/under/suit/lobotomy/welfare
+	name = "welfare department clerk suit"
+	desc = "An grey sailor uniform worn by clerks from the welfare department."
+	icon_state = "welfare"
+
