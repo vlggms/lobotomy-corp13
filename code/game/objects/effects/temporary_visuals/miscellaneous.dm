@@ -234,6 +234,10 @@
 	light_color = LIGHT_COLOR_FIRE
 	duration = 10
 
+/obj/effect/temp_visual/fire/fast
+	icon_state = "1"
+	duration = 5
+
 /obj/effect/temp_visual/revenant
 	name = "spooky lights"
 	icon_state = "purplesparkles"
@@ -362,6 +366,10 @@
 
 /obj/effect/temp_visual/impact_effect/purple_laser
 	icon_state = "impact_laser_purple"
+	duration = 4
+
+/obj/effect/temp_visual/impact_effect/white_laser
+	icon_state = "impact_laser_white"
 	duration = 4
 
 /obj/effect/temp_visual/impact_effect/shrink
@@ -546,3 +554,77 @@
 /obj/effect/temp_visual/sanity_heal
 	icon_state = "shieldsparkles"
 	duration = 2
+
+/obj/effect/temp_visual/judgement
+	icon_state = "judge"
+	duration = 20
+
+/obj/effect/temp_visual/judgement/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/fade_out), 10)
+
+/obj/effect/temp_visual/judgement/proc/fade_out()
+	animate(src, alpha = 0, time = duration-10)
+
+/obj/effect/temp_visual/paradise_attack
+	icon_state = "paradise_attack"
+	duration = 10
+
+/obj/effect/temp_visual/paradise_attack/Initialize()
+	..()
+	animate(src, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/water_waves
+	name = "ocean"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	layer = ABOVE_ALL_MOB_LAYER
+	density = TRUE
+	duration = 18 SECONDS
+	alpha = 0
+
+/obj/effect/temp_visual/water_waves/Initialize()
+	..()
+	animate(src, alpha = 255, time = 10)
+	addtimer(CALLBACK(src, .proc/fade_out), 10 SECONDS)
+
+/obj/effect/temp_visual/water_waves/proc/fade_out()
+	animate(src, alpha = 0, time = (duration - 10 SECONDS))
+
+/obj/effect/temp_visual/justitia_effect
+	name = "slash"
+	icon_state = "bluestream"
+	duration = 5
+
+/obj/effect/temp_visual/justitia_effect/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*2, time = 5)
+
+/obj/effect/temp_visual/fragment_song
+	name = "sound waves"
+	icon_state = "fragment_song"
+	duration = 5
+	pixel_y = 16
+	base_pixel_y = 16
+
+/obj/effect/temp_visual/fragment_song/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*3, time = 5)
+
+/obj/effect/temp_visual/saw_effect
+	name = "saw"
+	icon_state = "claw"
+	duration = 4
+
+/obj/effect/temp_visual/green_noon_reload
+	name = "recharging field"
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "green_bot_reload_effect"
+	layer = BELOW_MOB_LAYER
+	pixel_x = -8
+	base_pixel_x = -8
+	duration = 8
+
+/obj/effect/temp_visual/green_noon_reload/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*1.5, time = duration)

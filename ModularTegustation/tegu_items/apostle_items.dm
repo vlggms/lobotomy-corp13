@@ -35,45 +35,6 @@
 		else
 			to_chat(user, "<span class='info'>You can't offer a prayer for yourself!</span>")
 
-/obj/item/storage/book/bible
-	var/apostle_use = FALSE
-
-/obj/item/storage/book/bible/attack_self(mob/living/carbon/human/user) // Normal bible effect when used by apostle №12.
-	for(var/datum/antagonist/apostle/A in user.mind.antag_datums)
-		if(A.number == 12)
-			var/mob/living/simple_animal/hostile/abnormality/apostle/devil
-			for(var/mob/living/simple_animal/hostile/abnormality/apostle/E in GLOB.player_list)
-				devil = E
-				break
-			if(!devil)
-				to_chat(user, "<span class='notice'>The evil spirit is already gone.</span>")
-				return
-			if(devil.apostle_num != 666)
-				to_chat(user, "<span class='notice'>You have nothing to ask for. Yet...</span>")
-				return
-			if(apostle_use)
-				return // Avoiding spam.
-			apostle_use = TRUE
-			var/text_pick = pick("You begin praying for safety of the station...", "You ask the god for forgiveness...", \
-			"You wish to abandon the dark ways of the false prophet...", "You shall never be one with him again...")
-			user.visible_message("<span class='info'>[user] holds bible close to the chest and starts whispering something.</span>", \
-			"<span class='warning'>[text_pick]</span>", \
-			"<span class='hear'>You can hear someone whispering...</span>")
-			if(!do_after(user, 300))
-				apostle_use = FALSE
-				return
-			playsound(devil.loc, 'sound/machines/clockcult/ark_damage.ogg', 100, TRUE, -1)
-			devil.adjustBruteLoss(devil.maxHealth / 12)
-			to_chat(devil, "<span class='colossus'>The twelfth is trying to purge us!</span>")
-			to_chat(user, "<span class='notice'>You feel weaker, but so is the evil spirit.</span>")
-			user.emote("scream")
-			user.adjustFireLoss(30)
-			user.jitteriness += (50)
-			user.do_jitter_animation(user.jitteriness)
-			apostle_use = FALSE
-			return
-	. = ..()
-
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
 	desc = "Your armor, to protect the holy one."
@@ -82,7 +43,7 @@
 	item_flags = DROPDEL
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(MELEE = 70, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 15)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 200, BLACK_DAMAGE = 70, PALE_DAMAGE = 60, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 50)
 	transparent_protection = HIDEGLOVES|HIDESUITSTORAGE|HIDEJUMPSUIT|HIDESHOES
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
@@ -101,7 +62,7 @@
 	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACIALHAIR
 	visor_flags_cover = MASKCOVERSMOUTH
-	armor = list(MELEE = 70, BULLET = 50, LASER = 50, ENERGY = 80, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 45) // Wound bonus so you can't remove their head.
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 200, BLACK_DAMAGE = 70, PALE_DAMAGE = 60, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 95, WOUND = 200)
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	heat_protection = HEAD
 	body_parts_covered = HEAD
@@ -129,14 +90,14 @@
 	name = "holy scythe"
 	desc = "None shall harm us."
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/scythe.ogg'
-	force = 34
-	throwforce = 14 // Why are you throwing scythe anyway?
-	armour_penetration = 25
-	block_chance = 15
-	wound_bonus = 10
-	bare_wound_bonus = 20
+	force = 45
+	throwforce = 25 // Why are you throwing scythe anyway?
 	sharpness = SHARP_EDGED
 	var/faction_needed = "apostle"
+	var/recharge_time
+	var/recharge_base = 6 SECONDS
+	var/spell_radius = 1
+	var/spin_force = 95
 
 /obj/item/nullrod/scythe/apostle/attack_hand(mob/living/user)
 	. = ..()
@@ -155,19 +116,7 @@
 		user.heal_bodypart_damage(3,3) // Free heals.
 	..()
 
-/obj/item/nullrod/scythe/apostle/guardian
-	name = "guardian scythe"
-	desc = "The divine light will grant you protection."
-	force = 38
-	throwforce = 18
-	armour_penetration = 40
-	block_chance = 30
-	var/recharge_time
-	var/recharge_base = 6 SECONDS
-	var/spell_radius = 1
-	var/spin_force = 75
-
-/obj/item/nullrod/scythe/apostle/guardian/attack_self(mob/living/carbon/user)
+/obj/item/nullrod/scythe/apostle/attack_self(mob/living/carbon/user)
 	var/list/target_turfs = list()
 	if(recharge_time > world.time)
 		to_chat(user, "<span class='warning'>You are not ready to purge heretics yet.</span>")
@@ -198,18 +147,25 @@
 	recharge_time = (world.time + recharge_base)
 	force = init_force
 
-/obj/item/nullrod/scythe/apostle/guardian/light // An overpowered piece of shit, granted to whoever defeats the apostle with a crusher.
+/obj/item/nullrod/scythe/apostle/guardian
+	name = "guardian scythe"
+	desc = "The divine light will grant you protection."
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	force = 10
+	throwforce = 6
+	spin_force = 20
+
+/obj/item/nullrod/scythe/apostle/guardian/light
 	name = "heavenly scythe"
 	desc = "A particle of light, obtained from the heart of the evil."
 	icon_state = "ap_scythe_light"
 	inhand_icon_state = "ap_scythe_light"
-	force = 45
-	throwforce = 24
-	armour_penetration = 60
-	block_chance = 40
+	force = 15
+	throwforce = 12
 	recharge_base = 5 SECONDS
 	spell_radius = 2
-	spin_force = 90
+	spin_force = 30
 	faction_needed = "hero" // Yep. A hero.
 	var/bound = FALSE // If it's true - nobody can gain the faction required to use it.
 
@@ -262,8 +218,7 @@
 
 /obj/projectile/magic/arcane_barrage/apostle
 	damage = 20
-	damage_type = BURN
-	armour_penetration = 25
+	damage_type = BLACK_DAMAGE
 
 /obj/projectile/magic/arcane_barrage/apostle/on_hit(target)
 	if(ismob(target))
@@ -284,21 +239,17 @@
 	icon_state = "ap_spear"
 	inhand_icon_state = "ap_spear"
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/spear.ogg'
-	force = 17 // Weaker in melee, but kills everyone with its active ability.
-	throwforce = 34 // That's a spear after all.
-	armour_penetration = 15
-	wound_bonus = 20
-	bare_wound_bonus = 40
+	force = 30 // Weaker in melee, but kills everyone with its active ability.
+	throwforce = 55 // That's a spear after all.
 	throw_speed = 4
-	throw_range = 8
+	throw_range = 11
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
 	attack_verb_continuous = list("attacks", "impales", "pierces", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "impale", "pierce", "tear", "lacerate", "gore")
-	sharpness = SHARP_EDGED
 	var/dash_distance = 6
 	var/recharge_time_base = 8 SECONDS // You can dash every 8 seconds.
 	var/recharge_time = 0
-	var/dash_force = 65 // Temporary force for dash ability.
+	var/dash_force = 95 // Temporary force for dash ability.
 	var/list/target_turfs = list()
 
 /obj/item/nullrod/spear/apostle/attack_self(mob/living/carbon/user)

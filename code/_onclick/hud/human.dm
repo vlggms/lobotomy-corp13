@@ -289,6 +289,10 @@
 	healthdoll.hud = src
 	infodisplay += healthdoll
 
+	sanityhealth = new /atom/movable/screen/sanityhealth()
+	sanityhealth.hud = src
+	infodisplay += sanityhealth
+
 	pull_icon = new /atom/movable/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon()

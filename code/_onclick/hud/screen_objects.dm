@@ -667,6 +667,11 @@
 	screen_loc = ui_living_healthdoll
 	var/filtered = FALSE //so we don't repeatedly create the mask of the mob every update
 
+/atom/movable/screen/sanityhealth
+	name = "sanity"
+	icon_state = "sanity0"
+	screen_loc = ui_sanityhealth
+
 /atom/movable/screen/mood
 	name = "mood"
 	icon_state = "mood5"

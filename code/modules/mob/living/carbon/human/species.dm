@@ -91,13 +91,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///multiplier for money paid at payday
 	var/payday_modifier = 1
 	///Type of damage attack does. Ethereals attack with burn damage for example.
-	var/attack_type = BRUTE
+	var/attack_type = RED_DAMAGE
 	///Lowest possible punch damage this species can give. If this is set to 0, punches will always miss.
 	var/punchdamagelow = 1
 	///Highest possible punch damage this species can give.
-	var/punchdamagehigh = 10
+	var/punchdamagehigh = 6
 	///Damage at which punches from this race will stun
-	var/punchstunthreshold = 10 //yes it should be to the attacked race but it's not useful that way even if it's logical
+	var/punchstunthreshold = 6 //yes it should be to the attacked race but it's not useful that way even if it's logical
 	///Base electrocution coefficient.  Basically a multiplier for damage from electrocutions.
 	var/siemens_coeff = 1
 	///What kind of damage overlays (if any) appear on our species when wounded? If this is "", does not add an overlay.
@@ -1640,8 +1640,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(WHITE_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent
-			H.adjustWhiteLoss(damage_amount)
+			H.adjustWhiteLoss(damage, forced = forced)
 		if(BLACK_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent
 			H.adjustBlackLoss(damage_amount, forced = forced)

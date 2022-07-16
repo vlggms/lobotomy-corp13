@@ -10,11 +10,14 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
-	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE)|| !attributes)
+	if((status_flags & GODMODE) || !attributes)
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
+		amount = maxSanity+1
 	if(sanityhealth > maxSanity)
 		sanityhealth = maxSanity
 	sanityhealth = clamp((sanityhealth + amount), 0, maxSanity)
+	update_sanity_hud()
 	if(amount < 0)
 		playsound(loc, 'sound/effects/sanity_damage.ogg', 25, TRUE, -1)
 	else if(amount > 1)
@@ -28,10 +31,10 @@
 						"<span class='notice'>You are back to normal!</span>")
 	else if(!sanity_lost && sanityhealth <= 0)
 		sanity_lost = TRUE
-		var/highest_atr = FORTITUDE_ATTRIBUTE
+		var/highest_atr = PRUDENCE_ATTRIBUTE
 		if(LAZYLEN(attributes))
 			var/highest_level = -1
-			for(var/i in attributes)
+			for(var/i in shuffle(attributes))
 				var/datum/attribute/atr = attributes[i]
 				if(atr.level > highest_level)
 					highest_level = atr.level
@@ -40,24 +43,26 @@
 	return amount
 
 /mob/living/carbon/human/proc/SanityLossEffect(attribute)
-	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
+	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE) || stat >= HARD_CRIT)
 		return
 	QDEL_NULL(ai_controller) // In case there was one already
+	SEND_SIGNAL(src, COMSIG_HUMAN_INSANE, attribute)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HUMAN_INSANE, src, attribute)
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/murder
-			warning_text = "[src] screams for a moment, murderous intent shining in [p_their(TRUE)] eyes."
+			warning_text = "[src] screams for a moment, murderous intent shining in [p_their()] eyes."
 		if(PRUDENCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/suicide
-			warning_text = "[src] stops moving entirely, [p_they(TRUE)] lost all hope..."
+			warning_text = "[src] stops moving entirely, [p_they()] lost all hope..."
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
-			warning_text = "[src] twitches for a moment, [p_their(TRUE)] eyes looking for an exit."
+			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for an exit."
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release
-			warning_text = "[src] laughs for a moment, as [p_they(TRUE)] start[p_s()] approaching nearby containment zones."
+			warning_text = "[src] laughs for a moment, as [p_they()] start[p_s()] approaching nearby containment zones."
 	visible_message("<span class='danger'>[warning_text]</span>", \
 					"<span class='userdanger'>You've been overwhelmed by what is going on in this place... There's no hope!</span>")
 	ghostize(1)
