@@ -15,10 +15,9 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	obj_damage = 250
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.7)
 	speak_emote = list("states")
-	vision_range = 12
+	vision_range = 14
 	aggro_vision_range = 20
 	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)
 

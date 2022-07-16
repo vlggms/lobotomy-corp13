@@ -31,7 +31,7 @@
 		)
 
 	/// Range of the damage
-	var/symphony_range = 7
+	var/symphony_range = 12
 	/// Amount of white damage
 	var/symphony_damage = 5
 	/// When to perform next movement
@@ -60,8 +60,9 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/proc/DamagePulse()
-	for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
-		H.apply_damage(symphony_damage - round(get_dist(src, H) * 0.5), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+	if(current_movement_num < 5)
+		for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
+			H.apply_damage(symphony_damage - round(get_dist(src, H) * 0.5), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 	if(world.time >= next_movement_time) // Next movement
 		var/movement_volume = 50

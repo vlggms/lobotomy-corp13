@@ -41,3 +41,4 @@
 /obj/projectile/bullet/c9x19mm
 	name = "9x19mm bullet"
 	damage = 10
+	embedding = null

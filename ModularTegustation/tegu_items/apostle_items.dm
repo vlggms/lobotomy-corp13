@@ -92,12 +92,13 @@
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/scythe.ogg'
 	force = 45
 	throwforce = 25 // Why are you throwing scythe anyway?
-	sharpness = SHARP_EDGED
+	armour_penetration = 0
+	sharpness = SHARP_NONE
 	var/faction_needed = "apostle"
 	var/recharge_time
 	var/recharge_base = 6 SECONDS
 	var/spell_radius = 1
-	var/spin_force = 95
+	var/spin_force = 125
 
 /obj/item/nullrod/scythe/apostle/attack_hand(mob/living/user)
 	. = ..()
@@ -152,20 +153,17 @@
 	desc = "The divine light will grant you protection."
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	force = 10
+	force = 25
 	throwforce = 6
-	spin_force = 20
+	spin_force = 75
+	spell_radius = 2
 
 /obj/item/nullrod/scythe/apostle/guardian/light
 	name = "heavenly scythe"
 	desc = "A particle of light, obtained from the heart of the evil."
 	icon_state = "ap_scythe_light"
 	inhand_icon_state = "ap_scythe_light"
-	force = 15
-	throwforce = 12
 	recharge_base = 5 SECONDS
-	spell_radius = 2
-	spin_force = 30
 	faction_needed = "hero" // Yep. A hero.
 	var/bound = FALSE // If it's true - nobody can gain the faction required to use it.
 
@@ -218,7 +216,8 @@
 
 /obj/projectile/magic/arcane_barrage/apostle
 	damage = 20
-	damage_type = BLACK_DAMAGE
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/magic/arcane_barrage/apostle/on_hit(target)
 	if(ismob(target))
@@ -240,16 +239,20 @@
 	inhand_icon_state = "ap_spear"
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/spear.ogg'
 	force = 30 // Weaker in melee, but kills everyone with its active ability.
-	throwforce = 55 // That's a spear after all.
+	throwforce = 35
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	throw_speed = 4
 	throw_range = 11
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
+	armour_penetration = 0
+	sharpness = SHARP_NONE
 	attack_verb_continuous = list("attacks", "impales", "pierces", "tears", "lacerates", "gores")
 	attack_verb_simple = list("attack", "impale", "pierce", "tear", "lacerate", "gore")
 	var/dash_distance = 6
 	var/recharge_time_base = 8 SECONDS // You can dash every 8 seconds.
 	var/recharge_time = 0
-	var/dash_force = 95 // Temporary force for dash ability.
+	var/dash_force = 125 // Temporary force for dash ability.
 	var/list/target_turfs = list()
 
 /obj/item/nullrod/spear/apostle/attack_self(mob/living/carbon/user)

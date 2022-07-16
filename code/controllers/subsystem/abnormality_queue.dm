@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
-	wait = 7 MINUTES
+	wait = 5 MINUTES
 
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
@@ -15,26 +15,31 @@ SUBSYSTEM_DEF(abnormality_queue)
 			possible_abnormalities[initial(abno.threat_level)] += abno
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
-
-	. = ..()
+	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
-	if(!(HE_LEVEL in available_levels) && (world.time >= (wait*2)))
-		available_levels += HE_LEVEL
-	if(!(WAW_LEVEL in available_levels) && (world.time >= (wait*4)))
-		available_levels += WAW_LEVEL
-	if(!(ALEPH_LEVEL in available_levels) && (world.time >= (wait*7)))
-		available_levels += ALEPH_LEVEL
-
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
-		pick_abno()
-		return
+	if(world.time >= (wait*3))
+		if(!(HE_LEVEL in available_levels))
+			available_levels += HE_LEVEL
+	if(world.time >= (wait*6))
+		if(ZAYIN_LEVEL in available_levels)
+			available_levels -= ZAYIN_LEVEL
+		if(!(WAW_LEVEL in available_levels))
+			available_levels += WAW_LEVEL
+	if(world.time >= (wait*9))
+		if(TETH_LEVEL in available_levels)
+			available_levels -= TETH_LEVEL
+		if(!(ALEPH_LEVEL in available_levels))
+			available_levels += ALEPH_LEVEL
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
 		return
 
+	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
+		pick_abno()
+
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
-	if(istype(choice))
+	if(istype(choice) && ispath(queued_abnormality))
 		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()

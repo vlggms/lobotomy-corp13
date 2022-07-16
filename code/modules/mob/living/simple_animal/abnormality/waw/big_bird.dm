@@ -35,9 +35,8 @@
 	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	melee_damage_lower = 200
-	melee_damage_upper = 200
-	obj_damage = 1000
+	melee_damage_lower = 100
+	melee_damage_upper = 100
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
 
@@ -50,7 +49,7 @@
 	var/bite_cooldown_time = 8 SECONDS
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
-	/// How many people died at the moment? When it hits 5 - reduce qliphoth and reset counter to 0.
+	/// How many people died at the moment? When it hits 3 - reduce qliphoth and reset counter to 0.
 	var/death_counter = 0
 
 /datum/action/innate/abnormality_attack/hypnosis
@@ -98,6 +97,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget()
 	if(ishuman(target))
+		if(bite_cooldown > world.time)
+			return FALSE
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/head/head = H.get_bodypart("head")
 		if(QDELETED(head))
@@ -123,7 +124,8 @@
 		if(!CanAttack(C))
 			continue
 		if(prob(66))
-			C.drowsyness += 3
+			to_chat(C, "<span class='warning'>You feel sleepy...</span>")
+			C.drowsyness += 4
 			addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 2 SECONDS), 4 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)

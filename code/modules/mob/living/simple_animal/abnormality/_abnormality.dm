@@ -11,9 +11,12 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	see_in_dark = 7
+	vision_range = 12
+	aggro_vision_range = 20
 	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
+	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -95,6 +98,11 @@
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/Move()
+	if(status_flags & GODMODE) // STOP STEALING MY FREAKING ABNORMALITIES
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/Life() // Fear effect
 	. = ..()
 	if(!.) // Dead
@@ -167,6 +175,10 @@
 
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
+	return
+
+// When qliphoth meltdown begins
+/mob/living/simple_animal/hostile/abnormality/proc/meltdown_start()
 	return
 
 // Actions

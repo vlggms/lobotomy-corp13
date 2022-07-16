@@ -88,6 +88,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/heatmod = 1
 	///multiplier for stun durations
 	var/stunmod = 1
+	var/redmod = 1
+	var/whitemod = 1
+	var/blackmod = 1
+	var/palemod = 1
 	///multiplier for money paid at payday
 	var/payday_modifier = 1
 	///Type of damage attack does. Ethereals attack with burn damage for example.
@@ -1512,7 +1516,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/justice_mod = 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
 
-	apply_damage((I.force * weakness) * justice_mod, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
+	apply_damage((I.force * weakness) * justice_mod, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
 
 	if(!I.force)
 		return FALSE //item force is zero
@@ -1577,7 +1581,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
@@ -1633,19 +1637,20 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
 		if(RED_DAMAGE) // TODO
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent
+			var/damage_amount = forced ? damage : damage * hit_percent * redmod * H.physiology.red_mod
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(WHITE_DAMAGE)
-			H.adjustWhiteLoss(damage, forced = forced)
+			var/damage_amount = forced ? damage : damage * hit_percent * whitemod * H.physiology.white_mod
+			H.adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(BLACK_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent
-			H.adjustBlackLoss(damage_amount, forced = forced)
+			var/damage_amount = forced ? damage : damage * hit_percent * blackmod * H.physiology.black_mod
+			H.adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(PALE_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent
+			var/damage_amount = forced ? damage : damage * hit_percent * palemod * H.physiology.pale_mod
 			H.adjustPaleLoss(damage_amount, forced = forced)
 	return 1
 

@@ -1,15 +1,16 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Claw"
 	desc = "A strange humanoid creature with several gadgets attached to it."
-	health = 5000
-	maxHealth = 5000
+	health = 7000
+	maxHealth = 7000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.1)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
 	icon_state = "claw"
 	icon_living = "claw"
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_dead = "claw_dead"
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	faction = list("Head")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
@@ -17,14 +18,15 @@
 	movement_type = GROUND
 	speak_emote = list("says")
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 50
-	melee_damage_upper = 55
+	melee_damage_lower = 75 // Assuming everyone has at least 0.5 red armor
+	melee_damage_upper = 85
+	rapid_melee = 2
 	ranged = TRUE
 	speed = 2
 	move_to_delay = 2
-	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
+	del_on_death = FALSE
 	deathmessage = "falls to the ground, decaying into glowing particles."
 	deathsound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
@@ -36,14 +38,14 @@
 	var/ultimatum_cooldown = 0
 	var/ultimatum_cooldown_time = 40 SECONDS
 	var/charging = FALSE
-	var/dash_num_short = 4
+	var/dash_num_short = 5
 	var/dash_num_long = 18
 	var/dash_cooldown = 0
-	var/dash_cooldown_time = 6 // cooldown_time * distance:
-	// 6 * 4 = 24 (2.4 seconds)
-	// 6 * 18 = 108 (10.8 seconds)
+	var/dash_cooldown_time = 5 // cooldown_time * distance:
+	// 5 * 5 = 25 (2.5 seconds)
+	// 5 * 18 = 90 (9 seconds)
 	var/serumA_cooldown = 0
-	var/serumA_cooldown_time = 20 SECONDS
+	var/serumA_cooldown_time = 14 SECONDS
 
 	var/datum/ordeal/ordeal_reference
 
@@ -86,11 +88,15 @@
 /mob/living/simple_animal/hostile/megafauna/claw/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
+	ultimatum_cooldown = world.time + 5 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
+	density = FALSE
+	animate(src, alpha = 0, transform = transform*0.2, time = 2 SECONDS)
+	QDEL_IN(src, 2 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/Destroy()
@@ -115,17 +121,21 @@
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
-	if(dash_cooldown <= world.time && !charging)
-		swift_dash(target, dash_num_short, 5)
-	else if(get_dist(src, target) >= 2 && serumA_cooldown <= world.time && !charging)
+	if(serumA_cooldown <= world.time && !charging)
 		serumA(target)
-	else if(get_dist(src, target) >= 3 && ultimatum_cooldown <= world.time && !charging)
-		ultimatum()
+	else if(dash_cooldown <= world.time && !charging)
+		swift_dash(target, dash_num_short, 5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
 	if(charging)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/megafauna/claw/Life()
+	. = ..()
+	if(.) // Alive and well
+		if(!client && (ultimatum_cooldown <= world.time))
+			ultimatum() // So we don't get stuck
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/ultimatum()
 	if(ultimatum_cooldown > world.time)
@@ -171,7 +181,8 @@
 	GiveTarget(target)
 	for(var/turf/b in range(1, src.loc)) // Attacks everyone around.
 		for(var/mob/living/H in b)
-			H.attack_animal(src)
+			to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
+			H.apply_damage(60, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE))
 			new /obj/effect/temp_visual/cleave(H.loc)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash(target, distance, wait_time)
@@ -186,22 +197,26 @@
 		T = get_step(T, dir_to_target)
 	addtimer(CALLBACK(src, .proc/swift_dash2, dir_to_target, 0, distance), wait_time)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
+	icon_state = "claw_prepare"
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash2(move_dir, times_ran, distance_run)
 	if(times_ran > distance_run)
 		charging = FALSE
+		icon_state = icon_living
 		return
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(!T)
 		charging = FALSE
+		icon_state = icon_living
 		return
 	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	icon_state = "claw_dash"
 	forceMove(T)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
 	for(var/mob/living/L in T.contents - src)
 		L.attack_animal(src)
 		new /obj/effect/temp_visual/cleave(L.loc)
-	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.7)
+	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/serumA(target)
 	if(serumA_cooldown > world.time)

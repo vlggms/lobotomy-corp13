@@ -40,7 +40,7 @@
 	if(!ishuman(imp_in))
 		return
 	var/mob/living/carbon/human/H = imp_in
-	imp_in.visible_message("<span class='warning'>Implant in [imp_in] blares a loud alarm!</span>")
+	H.visible_message("<span class='warning'>Implant in [H] blares a loud alarm!</span>")
 	playsound(loc, 'sound/items/sanity_implant_alert.ogg', 50, FALSE)
 	sleep(delay)
 	playsound(loc, 'sound/items/sanity_implant_explode.ogg', 30, TRUE)

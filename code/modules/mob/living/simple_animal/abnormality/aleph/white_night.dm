@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(apostles)
 
-/mob/living/simple_animal/hostile/abnormality/apostle
+/mob/living/simple_animal/hostile/abnormality/white_night
 	name = "White night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
 	health = 4000
@@ -9,9 +9,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	attack_verb_simple = "purge"
 	attack_sound = 'sound/magic/mm_hit.ogg'
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
-	icon_state = "angel"
-	icon_living = "angel"
-	health_doll_icon = "angel"
+	icon_state = "white_night"
+	icon_living = "white_night"
+	health_doll_icon = "white_night"
 	faction = list("apostle")
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
@@ -61,9 +61,9 @@ GLOBAL_LIST_EMPTY(apostles)
 		/datum/ego_datum/armor/paradise
 		)
 
-	var/holy_revival_cooldown = 10 SECONDS
-	var/holy_revival_cooldown_base = 10 SECONDS
-	var/holy_revival_damage = 12 // Pale damage, scales with distance
+	var/holy_revival_cooldown = 20 SECONDS
+	var/holy_revival_cooldown_base = 20 SECONDS
+	var/holy_revival_damage = 28 // Pale damage, scales with distance
 	var/holy_revival_range = 4
 	var/last_revival_time // To prevent multiple conversions per one action
 	var/fire_field_cooldown = 20 SECONDS
@@ -72,14 +72,14 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/scream_cooldown = 18 SECONDS
 	var/scream_cooldown_base = 18 SECONDS
 	var/scream_power = 20
-	var/blink_cooldown = 8 SECONDS
-	var/blink_cooldown_base = 8 SECONDS
+	var/blink_cooldown = 6 SECONDS
+	var/blink_cooldown_base = 6 SECONDS
 	var/apostle_num = 1 //Number of apostles. Used for revival and finale.
 	var/apostle_line
 	var/apostle_prev //Used for previous apostle's name, to reference in next line.
 	var/datum/action/innate/abnormality_attack/rapture/rapture_skill = new /datum/action/innate/abnormality_attack/rapture
 
-/mob/living/simple_animal/hostile/abnormality/apostle/ex_act(severity, target)
+/mob/living/simple_animal/hostile/abnormality/white_night/ex_act(severity, target)
 	return //Resistant to explosions
 
 /datum/action/small_sprite/megafauna/tegu
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	chosen_message = "<span class='colossus'>Finale...</span>"
 	chosen_attack_num = 5
 
-/mob/living/simple_animal/hostile/abnormality/apostle/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
 	if(isliving(target))
 		var/mob/living/L = target
 		if("apostle" in L.faction)
@@ -140,18 +140,16 @@ GLOBAL_LIST_EMPTY(apostles)
 		else
 			devour(L)
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/devour(mob/living/L)
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/devour(mob/living/L)
 	if(apostle_num < 13)
 		var/mob/dead/observer/ghost = L.get_ghost(TRUE, TRUE)
 		if(ishuman(L))
 			if(L.client || ghost?.can_reenter_corpse) // If ghost is able to reenter - we can't gib the body.
-				to_chat(src, "<span class='notice'>You still can force [L] to join our cause...</span>")
-				if(!client) // NPC controlled
-					revive_target(L)
+				revive_target(L)
 				return
 	L.gib()
 
-/mob/living/simple_animal/hostile/abnormality/apostle/OpenFire()
+/mob/living/simple_animal/hostile/abnormality/white_night/OpenFire()
 	if(client)
 		switch(chosen_attack)
 			if(1)
@@ -176,14 +174,14 @@ GLOBAL_LIST_EMPTY(apostles)
 		else if(scream_cooldown <= world.time)
 			deafening_scream()
 
-/mob/living/simple_animal/hostile/abnormality/apostle/death(gibbed)
+/mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
 		if(!A.owner || !ishuman(A.owner.current))
 			continue
 		A.prophet_death()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/revive_humans(range_override = null, faction_check = "apostle")
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
 	if(holy_revival_cooldown > world.time)
 		return
 	if(range_override == null)
@@ -210,7 +208,7 @@ GLOBAL_LIST_EMPTY(apostles)
 					L.adjustPaleLoss(holy_revival_damage)
 		SLEEP_CHECK_DEATH(1.5)
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/revive_target(mob/living/carbon/human/H, attack_range = 1, faction_check = "apostle")
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/carbon/human/H, attack_range = 1, faction_check = "apostle")
 	if(!(faction_check in H.faction))
 		if(apostle_num < 13 && H.stat == DEAD && H.mind && world.time > last_revival_time + 5 SECONDS)
 			if(!H.client)
@@ -283,9 +281,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			apostle_num += 1
 			maxHealth += 50
 			health = maxHealth
-			holy_revival_damage += 0.5 // More damage and healing from AOE spell.
-			scream_power += 1 // Deafen them all. Destroy their ears.
-			light_range += 1 // More light, because why not.
+			holy_revival_damage += 1 // More damage and healing from AOE spell.
 		else
 			playsound(H.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 			// The farther you are from white night - the less damage it deals
@@ -304,14 +300,14 @@ GLOBAL_LIST_EMPTY(apostles)
 			to_chat(H, "<span class='notice'>The holy light compels you to live!</span>")
 		else
 			H.adjustStaminaLoss(-200)
-			H.adjustBruteLoss(-holy_revival_damage*10)
-			H.adjustFireLoss(-holy_revival_damage*10)
-			H.adjustSanityLoss(holy_revival_damage*10) // It actually heals, don't worry
+			H.adjustBruteLoss(-holy_revival_damage*5)
+			H.adjustFireLoss(-holy_revival_damage*5)
+			H.adjustSanityLoss(holy_revival_damage*5) // It actually heals, don't worry
 			H.regenerate_limbs()
 			H.regenerate_organs()
 			to_chat(H, "<span class='notice'>The holy light heals you!</span>")
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/fire_field()
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/fire_field()
 	if(fire_field_cooldown > world.time)
 		return
 	var/turf/target_c = get_turf(src)
@@ -337,7 +333,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire field!</span>")
 		SLEEP_CHECK_DEATH(1.5)
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/deafening_scream()
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/deafening_scream()
 	if(scream_cooldown > world.time)
 		return
 	scream_cooldown = (world.time + scream_cooldown_base)
@@ -358,7 +354,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			L.break_light_tube()
 			L.on = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/holy_blink(blink_target)
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/holy_blink(blink_target)
 	if(blink_cooldown > world.time)
 		return
 	if(!blink_target)
@@ -385,9 +381,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	playsound(T, 'sound/effects/bamf.ogg', 100, 1)
 	forceMove(T)
 
-/mob/living/simple_animal/hostile/abnormality/apostle/proc/rapture()
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/rapture()
 	rapture_skill.Remove(src)
-	apostle_num = 666 // This is for special stuff in attacks
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
 	for(var/mob/M in GLOB.player_list)
@@ -401,11 +396,11 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(!H.client)
 			var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
 			if(!ghost?.can_reenter_corpse) // If there is nobody able to control it - offer to ghosts.
-				offer_control(H)
+				addtimer(CALLBACK(GLOBAL_PROC, /proc/offer_control, H))
 			else
 				H.grab_ghost(force = TRUE)
-		A.rapture()
 		H.revive(full_heal = TRUE, admin_revive = FALSE)
+		A.rapture()
 		shake_camera(H, 1, 1)
 		if(A.number < 12)
 			var/turf/main_loc = get_step(src, pick(0,1,2,4,5,6,8,9,10))
@@ -417,6 +412,8 @@ GLOBAL_LIST_EMPTY(apostles)
 			SLEEP_CHECK_DEATH(3)
 			H.forceMove(main_loc)
 		if(A.number == 12)
+			H.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+			H.status_flags |= GODMODE // Immortality...
 			SLEEP_CHECK_DEATH(26)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z && M.client)
@@ -436,6 +433,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		SLEEP_CHECK_DEATH(60)
 	SLEEP_CHECK_DEATH(300)
 	to_chat(src, "<span class='userdanger'>You feel stronger than ever...</span>")
+	apostle_num = 666
 	holy_revival_range = 20 // Get fucked
 	fire_field_cooldown_base = 16 SECONDS
 	field_range += 1 // Powercrepe
@@ -445,18 +443,18 @@ GLOBAL_LIST_EMPTY(apostles)
 			M.playsound_local(get_turf(M), 'ModularTegustation/Tegusounds/apostle/antagonist/rapture2.ogg', 50, 0)
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/apostle/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/white_night/success_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
 			revive_humans(20, "neutral") // Big heal
 	return
 
-/mob/living/simple_animal/hostile/abnormality/apostle/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/white_night/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/apostle/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/white_night/breach_effect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 	return
