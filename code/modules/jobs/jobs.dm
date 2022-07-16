@@ -1,4 +1,6 @@
 GLOBAL_LIST_INIT(command_positions, list(
+	"Manager",
+	"Agent Captain",
 	))
 
 
@@ -11,6 +13,7 @@ GLOBAL_LIST_INIT(medical_positions, list(
 
 
 GLOBAL_LIST_INIT(science_positions, list(
+	"Fixer",
 	))
 
 
@@ -19,15 +22,14 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Clerk",
 	))
 
 
 GLOBAL_LIST_INIT(security_positions, list(
-	"Manager",
-	"Clerk",
-	"Agent",
+	"Agent Captain",
 	"Senior Agent",
-	"Fixer",
+	"Agent",
 	))
 
 

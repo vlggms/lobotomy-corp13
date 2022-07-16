@@ -7,3 +7,8 @@
 	name = "9mm soda bullet"
 	damage = 6
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_clerk
+	name = "9mm bullet"
+	damage = 4
+	damage_type = RED_DAMAGE
