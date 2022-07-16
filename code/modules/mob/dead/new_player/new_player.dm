@@ -399,7 +399,7 @@
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
 	// render each category's available jobs
-	var/list/departments = list("Security")
+	var/list/departments = list("Command","Security","Service")
 
 
 	for(var/category in departments)

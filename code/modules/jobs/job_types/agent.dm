@@ -8,6 +8,7 @@
 	selection_color = "#ccaaaa"
 
 	outfit = /datum/outfit/job/agent
+	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 
 	access = list() // LC13:To-Do
 	minimal_access = list()
@@ -36,18 +37,22 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
+	gloves = /obj/item/clothing/gloves/color/black
+
 
 /datum/job/agent/senior
 	title = "Senior Agent"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 8
+	spawn_positions = 8
+	outfit = /datum/outfit/job/agent/senior
+	display_order = JOB_DISPLAY_ORDER_WARDEN
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 40,
 								PRUDENCE_ATTRIBUTE = 40,
@@ -55,3 +60,30 @@
 								JUSTICE_ATTRIBUTE = 40
 								)
 	normal_attribute_level = 40
+
+/datum/outfit/job/agent/senior
+	name = "Senior Agent"
+	jobtype = /datum/job/agent/senior
+
+
+/datum/job/agent/captain
+	title = "Agent Captain"
+	selection_color = "#BB9999"
+	total_positions = 2
+	spawn_positions = 2
+	outfit = /datum/outfit/job/agent/captain
+	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 40,
+								PRUDENCE_ATTRIBUTE = 40,
+								TEMPERANCE_ATTRIBUTE = 40,
+								JUSTICE_ATTRIBUTE = 40
+								)
+	normal_attribute_level = 40
+
+
+/datum/outfit/job/agent/captain
+	name = "Agent Captain"
+	jobtype = /datum/job/agent/captain
+	head = /obj/item/clothing/head/hos/beret
+	ears = /obj/item/radio/headset/heads/hos/alt
