@@ -1106,6 +1106,14 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
+"sU" = (
+/obj/machinery/door/airlock/external{
+	name = "Departure Lounge Airlock"
+	},
+/obj/effect/turf_decal/delivery,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel,
+/area/facility_hallway/south)
 "sY" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -1894,6 +1902,17 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Hr" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 9;
+	height = 25;
+	id = "emergency_home";
+	name = "Runtimestation emergency evac bay";
+	width = 29
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "Hv" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
@@ -39905,8 +39924,8 @@ vg
 Kn
 yE
 Qz
-Kn
-ZL
+sU
+Hr
 ZL
 ZL
 ZL
