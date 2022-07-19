@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"map_name": "Facility B-939",
+	"map_path": "map_files/Beta",
+	"map_file": [
+		"betacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none"
+}

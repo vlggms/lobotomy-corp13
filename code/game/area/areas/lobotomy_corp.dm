@@ -46,6 +46,17 @@
 /area/department_main/safety
 	name = "Safety Main Room"
 
+/area/department_main/discipline
+	name = "Disciplinary Main Room"
+
+/area/department_main/welfare
+	name = "Welfare Main Room"
+
+/area/department_main/records
+	name = "Records Main Room"
+
+/area/department_main/extraction
+	name = "Extraction Main Room"
 
 
 
@@ -71,4 +82,33 @@
 
 /area/facility_hallway/south
 	name = "South Hallway"
+
+
+//Departmental Hallways
+/area/facility_hallway/command
+	name = "Command Hallway"
+
+/area/facility_hallway/control
+	name = "Control Hallway"
+
+/area/facility_hallway/training
+	name = "Training Hallway"
+
+/area/facility_hallway/information
+	name = "Information Hallway"
+
+/area/facility_hallway/safety
+	name = "Safety Hallway"
+
+/area/facility_hallway/discipline
+	name = "Disciplinary Hallway"
+
+/area/facility_hallway/welfare
+	name = "Welfare Hallway"
+
+/area/facility_hallway/records
+	name = "Records Hallway"
+
+/area/facility_hallway/extraction
+	name = "Extraction Hallway"
 
