@@ -22,6 +22,7 @@
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/department_main
 	name = "Department Main Room"
@@ -29,7 +30,7 @@
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
-
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/department_main/command
 	name = "Command Main Room"
@@ -59,14 +60,13 @@
 	name = "Extraction Main Room"
 
 
-
-
 /area/facility_hallway
 	name = "Hallway"
 	icon_state = "hallA"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 /area/facility_hallway/central
 	name = "Central Hallway"
@@ -82,7 +82,6 @@
 
 /area/facility_hallway/south
 	name = "South Hallway"
-
 
 //Departmental Hallways
 /area/facility_hallway/command
@@ -111,4 +110,3 @@
 
 /area/facility_hallway/extraction
 	name = "Extraction Hallway"
-

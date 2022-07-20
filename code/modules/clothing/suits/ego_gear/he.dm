@@ -4,21 +4,11 @@
 	icon_state = "grinder"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 25)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 0,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 0,
-							JUSTICE_ATTRIBUTE = 0
+							PRUDENCE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/harvest
 	name = "harvest"
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	icon_state = "harvest"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 25)
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 0,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 0,
-							JUSTICE_ATTRIBUTE = 0
-							)
-
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 25)

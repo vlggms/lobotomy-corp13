@@ -6,5 +6,5 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_match
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 15
 	fire_sound = 'sound/weapons/ego/cannon.ogg'

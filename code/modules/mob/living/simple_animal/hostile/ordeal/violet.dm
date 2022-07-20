@@ -14,6 +14,7 @@
 	speed = 4
 	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
@@ -29,7 +30,7 @@
 	new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 	for(var/mob/living/carbon/human/H in view(7, src))
 		new /obj/effect/temp_visual/revenant(get_turf(H))
-		H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
+		H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
@@ -44,7 +45,7 @@
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/carbon/human/H in urange(24, target_c))
-		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), forced = TRUE)
+		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(24, target_c))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-1, -2))
@@ -111,7 +112,8 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(150, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			var/distance_decrease = get_dist(src, L) * 30
+			L.apply_damage((150 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(5)
@@ -126,10 +128,10 @@
 		SLEEP_CHECK_DEATH(8)
 	var/obj/machinery/computer/abnormality/CA
 	var/list/potential_computers = list()
-	for(var/obj/machinery/computer/abnormality/A in range(18, src))
+	for(var/obj/machinery/computer/abnormality/A in urange(24, src))
 		if(!A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			potential_computers += A
 	if(LAZYLEN(potential_computers))
 		CA = pick(potential_computers)
-		CA.datum_reference.qliphoth_change(-1)
+		CA.datum_reference.qliphoth_change(pick(-1, -2))
 	icon_state = "violet_noon_attack"

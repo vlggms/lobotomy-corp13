@@ -43,9 +43,9 @@
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
 		H.adjustStaminaLoss(-damage_dealt*0.5)
-		H.adjustBruteLoss(-damage_dealt*0.25)
-		H.adjustFireLoss(-damage_dealt*0.25)
-		H.adjustSanityLoss(damage_dealt*0.25)
+		H.adjustBruteLoss(-damage_dealt*0.3)
+		H.adjustFireLoss(-damage_dealt*0.3)
+		H.adjustSanityLoss(damage_dealt*0.3)
 
 /obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
@@ -113,7 +113,7 @@
 	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
 	If there were a score for this song, it would be one that sings of the apocalypse."
 	icon_state = "da_capo"
-	force = 35 // It attacks very fast
+	force = 40 // It attacks very fast
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL

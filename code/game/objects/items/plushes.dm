@@ -18,13 +18,6 @@
 	AddComponent(/datum/component/squeak, squeak_override)
 	AddElement(/datum/element/bed_tuckable, 6, -5, 90)
 
-	//have we decided if Pinocchio goes in the blue or pink aisle yet?
-	if(gender == NEUTER)
-		if(prob(50))
-			gender = FEMALE
-		else
-			gender = MALE
-
 /obj/item/toy/plush/Destroy()
 	QDEL_NULL(grenade)
 
@@ -328,13 +321,98 @@
 	squeak_override = list('sound/weapons/thudswoosh.ogg'=1)
 
 // LC plushes
+// Sephirots
+/obj/item/toy/plush/malkuth
+	name = "malkuth plushie"
+	desc = "A plushie depicting a diligent worker."
+	icon_state = "malkuth"
+	gender = FEMALE
 
+/obj/item/toy/plush/yesod
+	name = "yesod plushie"
+	desc = "A plushie depicting a researcher in a turtleneck."
+	icon_state = "yesod"
+	gender = MALE
+
+/obj/item/toy/plush/netzach
+	name = "netzach plushie"
+	desc = "A plushie depicting a person that likes alcohol a bit too much."
+	icon_state = "netzach"
+	gender = MALE
+
+/obj/item/toy/plush/hod
+	name = "hod plushie"
+	desc = "A plushie depicting a person who hopes to make everything right."
+	icon_state = "hod"
+	gender = FEMALE
+
+/obj/item/toy/plush/lisa
+	name = "tiphereth-A plushie"
+	desc = "A plushie depicting a person with high expectations."
+	icon_state = "lisa"
+	gender = FEMALE
+
+/obj/item/toy/plush/enoch
+	name = "tiphereth-B plushie"
+	desc = "A plushie depicting an optimistic person with kind heart."
+	icon_state = "enoch"
+	gender = MALE
+
+/obj/item/toy/plush/chesed
+	name = "chesed plushie"
+	desc = "A plushie depicting a sleepy person with a mug of coffee in their hand."
+	icon_state = "chesed"
+	gender = MALE
+
+/obj/item/toy/plush/gebura
+	name = "gebura plushie"
+	desc = "A plushie depicting very strong and brave person."
+	icon_state = "gebura"
+	gender = FEMALE
+
+/obj/item/toy/plush/hokma
+	name = "hokma plushie"
+	desc = "A plushie depicting a wise person with a fancy monocle. He knows much more than you."
+	icon_state = "hokma"
+	gender = MALE
+
+/obj/item/toy/plush/binah
+	name = "binah plushie"
+	desc = "A plushie depicting a sadistic person who lacks any emotions."
+	icon_state = "binah"
+	gender = FEMALE
+
+/obj/item/toy/plush/angela
+	name = "angela plushie"
+	desc = "A plushie depicting Lobotomy Corporation's AI."
+	icon_state = "angela"
+	gender = FEMALE
+
+// Misc LC stuff
 /obj/item/toy/plush/pierre
 	name = "pierre plushie"
 	desc = "A plushie depicting a friendly cook."
 	icon_state = "pierre"
-	inhand_icon_state = "pierre"
 	gender = FEMALE
-	attack_verb_continuous = list("hugs", "pats")
-	attack_verb_simple = list("hug", "pat")
 	squeak_override = list('sound/effects/wow.ogg'=1)
+
+/obj/item/toy/plush/qoh
+	name = "queen of hatred plushie"
+	desc = "A plushie depicting a magical girl whose goal is fighting all evil in the universe!"
+	icon_state = "qoh"
+	gender = FEMALE
+
+/obj/item/toy/plush/bigbird
+	name = "big bird plushie"
+	desc = "A plushie depicting a big bird with a lantern that burns forever. How does it even work..?"
+	icon_state = "bigbird"
+
+/obj/item/toy/plush/mosb
+	name = "mountain of smiling bodies plushie"
+	desc = "A plushie depicting a mountain of corpses merged into one. Yuck!"
+	icon_state = "mosb"
+
+/obj/item/toy/plush/melt
+	name = "melting love plushie"
+	desc = "A plushie depicting a slime girl, you think."
+	icon_state = "melt"

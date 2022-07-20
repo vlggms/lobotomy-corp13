@@ -2,7 +2,7 @@
 	name = "Bee Infection"
 	form = "Infection"
 	max_stages = 5
-	stage_prob = 50
+	stage_prob = 33
 	spread_text = "Blood"
 	disease_flags = CAN_CARRY
 	spread_flags = DISEASE_SPREAD_BLOOD
@@ -22,10 +22,9 @@
 		return
 
 	var/mob/living/carbon/human/H = affected_mob
+	H.apply_damage(stage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
-	if(prob(25))
-		H.apply_damage(stage*4, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	if(H.health <= 5)
+	if(H.health <= 0)
 		var/turf/T = get_turf(H)
 		H.visible_message("<span class='danger'>[H] explodes in a shower of gore, as a giant bee appears out of [H.p_them()]!</span>")
 		H.emote("scream")
@@ -33,5 +32,5 @@
 		new /mob/living/simple_animal/hostile/worker_bee(T)
 		return
 
-	if((stage >= max_stages) && (H.health >= (H.maxHealth * 0.75)) && prob(15))
+	if((stage >= max_stages) && (H.health >= (H.maxHealth * 0.75)) && prob(H.health * 0.25))
 		cure(FALSE)

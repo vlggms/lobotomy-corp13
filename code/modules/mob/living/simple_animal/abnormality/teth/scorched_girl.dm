@@ -21,7 +21,7 @@
 		)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	faction = list("hostile")
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -84,7 +84,7 @@
 			H.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(5, get_turf(src))
+	S.set_up(7, get_turf(src))
 	S.start()
 	qdel(src)
 
