@@ -50,13 +50,13 @@
 	else if(damage_coeff[RED_DAMAGE])
 		. = adjustHealth(amount * damage_coeff[RED_DAMAGE] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
-/mob/living/simple_animal/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else if(damage_coeff[WHITE_DAMAGE])
 		. = adjustHealth(amount * damage_coeff[WHITE_DAMAGE] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
-/mob/living/simple_animal/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else if(damage_coeff[BLACK_DAMAGE])

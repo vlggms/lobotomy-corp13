@@ -2,12 +2,9 @@
 	name = "hornet armor"
 	desc = "A dark coat with yellow details. You feel as if you can hear faint buzzing coming out of it."
 	icon_state = "hornet"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 25)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 25)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 40,
-							JUSTICE_ATTRIBUTE = 40
+							FORTITUDE_ATTRIBUTE = 60
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/lamp
@@ -16,8 +13,15 @@
 	icon_state = "lamp"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 25)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
-							PRUDENCE_ATTRIBUTE = 40,
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/despair
+	name = "armor sharpened with tears"
+	desc = "Tears fall like ash, embroidered as if they were constellations."
+	icon_state = "despair"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 60)
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
 							)

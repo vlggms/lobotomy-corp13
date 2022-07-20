@@ -2,6 +2,7 @@
 	name = "9mm tough bullet"
 	damage = 6
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_soda
 	name = "9mm soda bullet"

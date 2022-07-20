@@ -1,10 +1,10 @@
 /// depending on the species, it will run the corresponding apply_damage code there
-/mob/living/carbon/human/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
-	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness)
+/mob/living/carbon/human/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 
-/mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = -amount
-	if(sanity_lost && !forced) // Heal sanity instead.
+	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
 	adjustSanityLoss(damage_amt)
 	return damage_amt

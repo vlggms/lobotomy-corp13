@@ -6,10 +6,11 @@
 	icon_living = "fragment"
 	maxHealth = 800
 	health = 800
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	ranged = TRUE
-	melee_damage_lower = 12
-	melee_damage_upper = 15
+	melee_damage_lower = 8
+	melee_damage_upper = 12
+	rapid_melee = 2
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
@@ -38,7 +39,7 @@
 
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
-	var/song_damage = 6 // Dealt 8 times
+	var/song_damage = 4 // Dealt 8 times
 
 /datum/action/innate/abnormality_attack/fragment_song
 	name = "An Echo From Beyond"
@@ -69,7 +70,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(3)
 
 /mob/living/simple_animal/hostile/abnormality/fragment/neutral_effect(mob/living/carbon/human/user, work_type, pe)
