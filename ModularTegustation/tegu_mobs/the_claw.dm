@@ -30,13 +30,13 @@
 	deathmessage = "falls to the ground, decaying into glowing particles."
 	deathsound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
-	attack_action_types = list(/datum/action/innate/megafauna_attack/ultimatum,
-							   /datum/action/innate/megafauna_attack/swift_dash,
+	attack_action_types = list(/datum/action/innate/megafauna_attack/swift_dash,
 							   /datum/action/innate/megafauna_attack/swift_dash_long,
 							   /datum/action/innate/megafauna_attack/serum_a,
+							   /datum/action/innate/megafauna_attack/serum_w,
 							   )
-	var/ultimatum_cooldown = 0
-	var/ultimatum_cooldown_time = 40 SECONDS
+	var/serumW_cooldown = 0
+	var/serumW_cooldown_time = 30 SECONDS
 	var/charging = FALSE
 	var/dash_num_short = 5
 	var/dash_num_long = 18
@@ -45,15 +45,17 @@
 	// 5 * 5 = 25 (2.5 seconds)
 	// 5 * 18 = 90 (9 seconds)
 	var/serumA_cooldown = 0
-	var/serumA_cooldown_time = 14 SECONDS
+	var/serumA_cooldown_time = 10 SECONDS
+	var/triserum_cooldown
+	var/triserum_cooldown_time = 60 SECONDS
 
 	var/datum/ordeal/ordeal_reference
 
-/datum/action/innate/megafauna_attack/ultimatum
-	name = "Ultimatum"
+/datum/action/innate/megafauna_attack/serum_w
+	name = "Serum 'W'"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "static"
-	chosen_message = "<span class='colossus'>You will now jump to random targets on the station.</span>"
+	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/swift_dash
@@ -77,6 +79,13 @@
 	chosen_message = "<span class='colossus'>You will now continously dash towards your target.</span>"
 	chosen_attack_num = 4
 
+/datum/action/innate/megafauna_attack/tri_serum
+	name = "Tri-Serum Attack"
+	icon_icon = 'icons/effects/effects.dmi'
+	button_icon_state = "static"
+	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility, dealing pale damage to anyone on your way.</span>"
+	chosen_attack_num = 5
+
 /obj/effect/temp_visual/target_field
 	name = "target field"
 	desc = "You have a bad feeling about this..."
@@ -85,10 +94,15 @@
 	duration = 30 SECONDS // In case claw dies in the processs
 	randomdir = FALSE
 
+/obj/effect/temp_visual/target_field/blue
+	name = "tri-serum target field"
+	desc = "Well shit."
+	icon_state = "target_field_blue"
+
 /mob/living/simple_animal/hostile/megafauna/claw/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
-	ultimatum_cooldown = world.time + 5 SECONDS
+	serumW_cooldown = world.time + 5 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
 	if(ordeal_reference)
@@ -111,7 +125,7 @@
 			return
 		switch(chosen_attack)
 			if(1)
-				ultimatum(target)
+				serumW(target)
 			if(2)
 				swift_dash(target, dash_num_short, 5)
 			if(3)
@@ -134,13 +148,16 @@
 /mob/living/simple_animal/hostile/megafauna/claw/Life()
 	. = ..()
 	if(.) // Alive and well
-		if(!client && (ultimatum_cooldown <= world.time))
-			ultimatum() // So we don't get stuck
+		if(!client)
+			if(serumW_cooldown <= world.time)
+				serumW() // So we don't get stuck
+			if(triserum_cooldown <= world.time && (health < maxHealth*0.2))
+				TriSerum()
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/ultimatum()
-	if(ultimatum_cooldown > world.time)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/serumW()
+	if(serumW_cooldown > world.time)
 		return
-	ultimatum_cooldown = world.time + ultimatum_cooldown_time
+	serumW_cooldown = world.time + serumW_cooldown_time
 	var/list/mob/living/carbon/human/death_candidates = list()
 	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
@@ -179,11 +196,71 @@
 	qdel(eff)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
 	GiveTarget(target)
-	for(var/turf/b in range(1, src.loc)) // Attacks everyone around.
-		for(var/mob/living/H in b)
-			to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
-			H.apply_damage(60, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE))
-			new /obj/effect/temp_visual/cleave(H.loc)
+	for(var/mob/living/L in range(1, get_turf(src))) // Attacks everyone around.
+		if(faction_check_mob(L))
+			continue
+		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
+		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		new /obj/effect/temp_visual/cleave(get_turf(L))
+
+// I hate how it's just a copy-paste of serum W, but oh well
+/mob/living/simple_animal/hostile/megafauna/claw/proc/TriSerum()
+	if(triserum_cooldown > world.time)
+		return
+	triserum_cooldown = world.time + triserum_cooldown_time
+	var/list/mob/living/carbon/human/death_candidates = list()
+	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
+		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
+			death_candidates += maybe_victim
+	var/mob/living/carbon/human/H = null
+	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
+		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
+		return
+	for(var/i in 1 to 5)
+		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
+			break
+		H = pick(death_candidates)
+		addtimer(CALLBACK(src, .proc/triserum_eviscerate, H), i*5)
+		death_candidates.Remove(H)
+
+/mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate(mob/living/carbon/human/target)
+	var/obj/effect/temp_visual/target_field/blue/uhoh = new /obj/effect/temp_visual/target_field/blue(target.loc)
+	uhoh.orbit(target, 0)
+	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
+	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
+	to_chat(target, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	addtimer(CALLBACK(src, .proc/triserum_eviscerate2, target, uhoh), 40)
+
+/mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
+	if(target.z != z || !target.loc.AllowClick() || !target) // Be happy, mortal. Did you just hide in a locker?
+		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
+		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
+		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
+		qdel(eff)
+		return
+	visible_message("<span class='warning'>[src] blinks away!</span>")
+	var/turf/prev_loc = get_turf(src)
+	new /obj/effect/temp_visual/emp/pulse(prev_loc)
+	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
+	new /obj/effect/temp_visual/emp/pulse(tp_loc)
+	forceMove(tp_loc)
+	qdel(eff)
+	prev_loc.Beam(tp_loc, "bsa_beam", time=25)
+	for(var/turf/B in getline(prev_loc, tp_loc))
+		for(var/mob/living/L in range(1, B)) // Woe upon ye
+			if(faction_check_mob(L))
+				continue
+			to_chat(target, "<span class='userdanger'>\The [src] slashes you!</span>")
+			L.apply_damage(60, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			new /obj/effect/temp_visual/cleave(get_turf(L))
+	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
+	GiveTarget(target)
+	for(var/mob/living/L in range(1, get_turf(src))) // Attacks everyone around.
+		if(faction_check_mob(L))
+			continue
+		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
+		L.apply_damage(80, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash(target, distance, wait_time)
 	if(dash_cooldown > world.time)
@@ -213,8 +290,10 @@
 	icon_state = "claw_dash"
 	forceMove(T)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
-	for(var/mob/living/L in T.contents - src)
-		L.attack_animal(src)
+	for(var/mob/living/L in T.contents)
+		if(faction_check_mob(L))
+			continue
+		L.apply_damage(130, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		new /obj/effect/temp_visual/cleave(L.loc)
 	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.5)
 
@@ -226,13 +305,16 @@
 	var/mob/living/LT = target
 	serumA_cooldown = world.time + serumA_cooldown_time
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
+	icon_state = "claw_prepare"
 	charging = TRUE
 	SLEEP_CHECK_DEATH(8)
+	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
 		SLEEP_CHECK_DEATH(2)
 		if(!LT)
 			break
 		addtimer(CALLBACK(src, .proc/blink, LT), 0)
+	icon_state = icon_living
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
@@ -246,5 +328,5 @@
 	for(var/turf/B in getline(start_turf, target_turf))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(B)
 		for(var/mob/living/victim in B)
-			if(!("Head" in victim.faction) && victim != src)
+			if(!faction_check_mob(victim))
 				victim.attack_animal(src)
