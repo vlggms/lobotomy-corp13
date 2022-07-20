@@ -543,5 +543,5 @@ GLOBAL_LIST_INIT(pipe_paint_colors, sortList(list(
 		"yellow" = rgb(255,198,0)
 )))
 
-#define MIASMA_CORPSE_MOLES 0.02
-#define MIASMA_GIBS_MOLES 0.005
+#define MIASMA_CORPSE_MOLES 0
+#define MIASMA_GIBS_MOLES 0
