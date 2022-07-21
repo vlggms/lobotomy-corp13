@@ -1,7 +1,8 @@
 /mob/living/carbon/human/Initialize()
 	add_verb(src, /mob/living/proc/mob_sleep)
 	add_verb(src, /mob/living/proc/toggle_resting)
-	add_verb(src, /mob/living/carbon/human/proc/show_attributes)
+	add_verb(src, /mob/living/carbon/human/verb/show_attributes_self)
+	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -35,21 +36,36 @@
 			attributes[atr.name] = atr
 			atr.on_update(src)
 
-/mob/living/carbon/human/proc/show_attributes()
+/mob/living/carbon/human/verb/show_attributes_self()
 	set category = "IC"
 	set name = "Show Attributes"
 
+	show_attributes()
+
+/mob/living/carbon/human/verb/show_attributes_to(mob/living/L in oview(1))
+	set category = "IC"
+	set name = "Show Attributes To"
+
+	if(istype(L))
+		if(do_after(src, 1 SECONDS, L))
+			show_attributes(L)
+			to_chat(src, "<span class='notice'>You have shown your attributes to [L].</span>")
+			return
+		to_chat(src, "<span class='notice'>You must remain in place to show someone your attributes!</span>")
+
+/mob/living/carbon/human/proc/show_attributes(mob/viewer = src)
 	if(!LAZYLEN(attributes))
-		to_chat(src, "<span class='warning'>You have no attributes!</span>")
+		to_chat(viewer, "<span class='warning'>[src] has no attributes!</span>")
 		return
 
 	var/list/dat = list()
+	dat += "<b>[real_name]</b><br>"
 	dat += "Level [get_user_level(src)]<br>"
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name]: [atr.level] / [atr.level_limit]"
+		dat += "[atr.name]: [atr.level]/[atr.level_limit] + [atr.level_buff]"
 
-	var/datum/browser/popup = new(src, "skills", "<div align='center'>Attributes</div>", 300, 300)
+	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -83,6 +99,7 @@
 	sec_hud_set_ID()
 	sec_hud_set_implants()
 	sec_hud_set_security_status()
+	med_hud_set_sanity()
 	//...fan gear
 	fan_hud_set_fandom()
 	//...and display them.

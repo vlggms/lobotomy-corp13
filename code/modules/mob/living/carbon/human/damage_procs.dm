@@ -17,9 +17,8 @@
 	if(sanityhealth > maxSanity)
 		sanityhealth = maxSanity
 	sanityhealth = clamp((sanityhealth + amount), 0, maxSanity)
-	update_sanity_hud()
 	if(amount < 0)
-		playsound(loc, 'sound/effects/sanity_damage.ogg', 25, TRUE, -1)
+		playsound(loc, 'sound/effects/sanity_damage.ogg', min(-amount, 50), TRUE, -1)
 	else if(amount > 1)
 		var/turf/T = get_turf(src)
 		new /obj/effect/temp_visual/sanity_heal(T)
@@ -40,6 +39,8 @@
 					highest_level = atr.level
 					highest_atr = atr.name
 		SanityLossEffect(highest_atr)
+	update_sanity_hud()
+	med_hud_set_sanity()
 	return amount
 
 /mob/living/carbon/human/proc/SanityLossEffect(attribute)

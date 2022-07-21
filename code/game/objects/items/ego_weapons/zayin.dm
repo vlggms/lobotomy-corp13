@@ -5,6 +5,5 @@
 	force = 16
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")

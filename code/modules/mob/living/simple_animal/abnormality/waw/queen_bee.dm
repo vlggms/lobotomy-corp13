@@ -76,7 +76,7 @@
 	maxHealth = 450
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 14
 	melee_damage_upper = 18
 	rapid_melee = 2

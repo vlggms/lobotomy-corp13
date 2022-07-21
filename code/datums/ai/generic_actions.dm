@@ -24,4 +24,3 @@
 	var/mob/living/living_pawn = controller.pawn
 	INVOKE_ASYNC(living_pawn, /atom/movable.proc/say, pick(lines))
 	finish_action(controller, TRUE)
-

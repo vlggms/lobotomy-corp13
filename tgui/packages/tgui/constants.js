@@ -27,10 +27,11 @@ export const COLORS = {
   },
   // Damage type colors
   damageType: {
-    oxy: '#3498db',
+    oxy: '#2f62fa',
     toxin: '#2ecc71',
     burn: '#e67e22',
     brute: '#e74c3c',
+    sanity: '#00f5cc',
   },
 };
 

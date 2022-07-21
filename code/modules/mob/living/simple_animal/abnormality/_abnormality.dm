@@ -17,6 +17,7 @@
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -103,18 +104,23 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/Life() // Fear effect
+/mob/living/simple_animal/hostile/abnormality/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 	if(status_flags & GODMODE)
 		return FALSE
+	FearEffect()
+	return
+
+// Applies fear damage to everyone in range
+/mob/living/simple_animal/hostile/abnormality/proc/FearEffect()
 	for(var/mob/living/carbon/human/H in view(6, src))
 		if(H in breach_affected)
 			continue
 		breach_affected += H
 		var/sanity_result = round(fear_level - get_user_level(H))
-		var/sanity_damage = -(max(((H.maxSanity * 0.3) * (sanity_result)), 0))
+		var/sanity_damage = -(max(((H.maxSanity * 0.26) * (sanity_result)), 0))
 		H.adjustSanityLoss(sanity_damage)
 		if(H.sanity_lost)
 			continue
@@ -125,6 +131,7 @@
 				to_chat(H, "<span class='danger'>Not that thing...")
 			if(3 to INFINITY)
 				to_chat(H, "<span class='userdanger'>I'm not ready for this!")
+	return
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/work_chance(mob/living/carbon/human/user, chance)
@@ -175,10 +182,15 @@
 
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
+	if(istype(datum_reference)) // Reset chance debuff
+		datum_reference.overload_chance = 0
 	return
 
 // When qliphoth meltdown begins
 /mob/living/simple_animal/hostile/abnormality/proc/meltdown_start()
+	return
+
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user)
 	return
 
 // Actions

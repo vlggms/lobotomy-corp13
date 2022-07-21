@@ -11,6 +11,7 @@
 	lines = list(
 				"It's all my fault. It’s my responsibility...",
 				"I can hear someone. It’s the sound of back home. I just can’t stop hearing it…",
+				"There’s no hope left. My mind’s collapsing. Everything’s collapsing...",
 				"We will all sink and perish, devoured by madness...",
 				"There is no hope left...",
 				"It will all end, soon..."
@@ -24,6 +25,13 @@
 				"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
 				"I will never get out of here..."
 				)
+
+/datum/ai_behavior/say_line/insanity_wander/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
+	var/mob/living/living_pawn = controller.pawn
+	var/sanity_damage = get_user_level(living_pawn) * 5
+	for(var/mob/living/carbon/human/H in view(7, living_pawn))
+		H.adjustWhiteLoss(sanity_damage, forced = TRUE)
 
 /datum/ai_behavior/say_line/insanity_release
 	lines = list(
@@ -50,7 +58,7 @@
 		// check if target has a weapon
 		var/obj/item/W
 		for(var/obj/item/I in target.held_items)
-			if(!(I.item_flags & ABSTRACT))
+			if(!(I.item_flags & ABSTRACT) && I.force > 5)
 				W = I
 				break
 
@@ -139,16 +147,32 @@
 
 /datum/ai_behavior/insanity_smash_console
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
+	var/list/current_path = list()
 
 /datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 
-	var/obj/machinery/computer/abnormality/target = controller.current_movement_target
 	var/mob/living/living_pawn = controller.pawn
+
+	if(IS_DEAD_OR_INCAP(living_pawn))
+		return
+
+	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(!LAZYLEN(current_path))
+		current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal)
+		if(!current_path) // Returned FALSE or null.
+			finish_action(controller, FALSE)
+			return
+
+	if(LAZYLEN(current_path))
+		var/target_turf = current_path[1]
+		step_towards(living_pawn, target_turf)
+		current_path.Cut(1, 2)
+
 	if(!istype(target) || !istype(target.datum_reference))
 		finish_action(controller, FALSE)
 		return
-	if(DT_PROB(5, delta_time) && living_pawn.Adjacent(target) && isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
+	if(DT_PROB(5, delta_time) && living_pawn.Adjacent(target) && isturf(target.loc))
 		living_pawn.visible_message("<span class='danger'>[living_pawn] smashes panel on \the [target]!</span>")
 		playsound(living_pawn.loc, 'sound/effects/hit_on_shattered_glass.ogg', 75, TRUE, -1)
 		if(!target.finish_work(living_pawn))
@@ -156,6 +180,4 @@
 
 /datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
-	var/mob/living/living_pawn = controller.pawn
-	walk(living_pawn, 0)
-	controller.current_movement_target = null
+	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
