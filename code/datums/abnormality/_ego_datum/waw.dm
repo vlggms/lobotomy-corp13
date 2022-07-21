@@ -18,7 +18,7 @@
 
 // Big bird - Lamp
 /datum/ego_datum/weapon/lamp
-	item_path = /obj/item/gun/ego_gun/hornet
+	item_path = /obj/item/ego_weapon/lamp
 	cost = 50
 
 /datum/ego_datum/armor/lamp
