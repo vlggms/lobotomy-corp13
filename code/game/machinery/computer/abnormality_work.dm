@@ -115,6 +115,8 @@
 			break // Lost sanity
 		if(user.health < 0)
 			break // Dying
+		if(datum_reference.current.AIStatus == TRUE)
+			break // Somehow it escaped
 	finish_work(user, work_type, success_boxes, work_time, work_speed)
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
@@ -148,6 +150,7 @@
 /obj/machinery/computer/abnormality/proc/start_meltdown()
 	meltdown_time = rand(60, 90)
 	meltdown = TRUE
+	datum_reference.current.meltdown_start()
 	update_icon()
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 75, FALSE, 3)
 	return TRUE

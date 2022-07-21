@@ -14,7 +14,7 @@
  *
  * Returns TRUE if damage applied
  */
-/mob/living/proc/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+/mob/living/proc/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (!forced && hit_percent <= 0))
@@ -36,9 +36,9 @@
 		if(RED_DAMAGE)
 			adjustRedLoss(damage_amount, forced = forced)
 		if(WHITE_DAMAGE)
-			adjustWhiteLoss(damage_amount, forced = forced)
+			adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(BLACK_DAMAGE)
-			adjustBlackLoss(damage_amount, forced = forced)
+			adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(PALE_DAMAGE)
 			adjustPaleLoss(damage_amount, forced = forced)
 	return TRUE
@@ -270,12 +270,12 @@
 /mob/living/proc/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	return adjustBruteLoss(amount, forced = forced)
 
-/mob/living/proc/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/proc/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	return adjustBruteLoss(amount, forced = forced) // White damage deals brute for everyone but humans
 
-/mob/living/proc/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/proc/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	adjustBruteLoss(amount, forced = forced)
-	adjustWhiteLoss(amount, forced = forced)
+	adjustWhiteLoss(amount, forced = forced, white_healable = white_healable)
 	return amount
 
 /mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)

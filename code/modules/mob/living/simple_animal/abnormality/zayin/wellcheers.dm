@@ -59,7 +59,11 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/work_chance(mob/living/carbon/human/user, chance)
-	return chance - (success_counter * 2)
+	return chance - success_counter
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/meltdown_start()
+	..()
+	success_counter = 0
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red

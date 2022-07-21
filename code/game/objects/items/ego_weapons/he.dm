@@ -11,10 +11,7 @@
 	attack_verb_simple = list("slice", "saw", "rip")
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
-							PRUDENCE_ATTRIBUTE = 0,
-							TEMPERANCE_ATTRIBUTE = 0,
-							JUSTICE_ATTRIBUTE = 0
+							FORTITUDE_ATTRIBUTE = 40
 							)
 
 /obj/item/ego_weapon/harvest

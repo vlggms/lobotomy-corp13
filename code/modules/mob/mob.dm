@@ -699,7 +699,13 @@
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 
-	log_game("[key_name(usr)] used abandon mob.")
+	if(mind)
+		var/timediff = world.time - mind.last_death
+		if(timediff < CONFIG_GET(number/respawn_delay))
+			to_chat(usr, "span class='boldnotice'>You must wait for [round((CONFIG_GET(number/respawn_delay) - timediff)/10)] more seconds before respawning!</span>")
+			return
+
+	log_game("[key_name(usr)] respawned.")
 
 	to_chat(usr, "<span class='boldnotice'>Please roleplay correctly!</span>")
 

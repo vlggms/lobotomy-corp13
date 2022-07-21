@@ -47,7 +47,7 @@
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				finishing = FALSE
@@ -55,7 +55,7 @@
 			playsound(get_turf(src), 'sound/effects/ordeals/green/final_stab.ogg', 50, 1)
 			TH.gib()
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, forced = TRUE)
+				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			finishing = FALSE
 
 // Green dawn
@@ -84,7 +84,7 @@
 	projectiletype = /obj/projectile/bullet/c9x19mm
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.6)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -149,9 +149,9 @@
 	faction = list("green_ordeal")
 	maxHealth = 2500
 	health = 2500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.2)
 
-	var/spawn_progress = 10
+	var/spawn_progress = 20
 	var/list/spawned_mobs = list()
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
@@ -175,7 +175,7 @@
 	update_icon()
 	if(length(spawned_mobs) >= 15)
 		return
-	if(spawn_progress < 15)
+	if(spawn_progress < 20)
 		spawn_progress += 1
 		return
 	flick("green_dusk_create", src)
@@ -192,7 +192,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/update_overlays()
 	. = ..()
-	if(spawn_progress <= 0)
+	if(spawn_progress <= 0 || stat == DEAD)
 		cut_overlays()
 		return
 

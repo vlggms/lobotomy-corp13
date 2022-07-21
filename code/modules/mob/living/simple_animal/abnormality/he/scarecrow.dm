@@ -8,8 +8,9 @@
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
+	rapid_melee = 2
 	move_to_delay = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.7)
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = BLACK_DAMAGE
@@ -63,7 +64,7 @@
 		if(!istype(target, /mob/living/carbon/human))
 			return
 		var/mob/living/carbon/human/H = target
-		if(H.health < 0)
+		if(H.health < 0 && stat != DEAD && !finishing)
 			finishing = TRUE
 			H.Stun(10 SECONDS)
 			playsound(get_turf(src), 'sound/abnormalities/scarecrow/start_drink.ogg', 50, 1)

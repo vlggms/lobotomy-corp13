@@ -27,7 +27,7 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
 		if(isapostle(user))
-			for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
+			for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 				if(WN.apostle_num != 666)
 					return FALSE
 			var/datum/antagonist/apostle/A = user.mind.has_antag_datum(/datum/antagonist/apostle, FALSE)
@@ -42,18 +42,17 @@
 
 /mob/living/simple_animal/hostile/abnormality/onesin/work_complete(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Confess")
-		for(var/datum/antagonist/A in GLOB.apostles)
-			to_chat(A?.owner?.current, "<span class='colossus'>The twelfth has betrayed us...</span>")
-		for(var/mob/living/simple_animal/hostile/abnormality/apostle/WN in GLOB.mob_living_list)
+		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 			if(WN.apostle_num != 666)
-				continue
+				return FALSE
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
 			WN.loot = list() // No loot for you!
 			for(var/i = 1 to 12)
 				sleep(1.5 SECONDS)
 				playsound(get_turf(WN), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)
 				WN.adjustBruteLoss(WN.maxHealth/12)
-			WN.adjustBruteLoss(666666) // Just in case
+			WN.adjustBruteLoss(666666)
+		sleep(5 SECONDS)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)

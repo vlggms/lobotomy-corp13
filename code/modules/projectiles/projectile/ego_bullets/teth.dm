@@ -3,6 +3,7 @@
 	icon_state = "pulse0"
 	damage = 35 // Direct hit
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()
