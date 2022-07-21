@@ -39,3 +39,4 @@
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command

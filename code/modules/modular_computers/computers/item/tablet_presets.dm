@@ -31,6 +31,12 @@
 	install_component(new /obj/item/computer_hardware/printer/mini)
 	hard_drive.store_file(new /datum/computer_file/program/shipping)
 
+/obj/item/modular_computer/tablet/preset/advanced/medical/Initialize()
+	. = ..()
+	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("solid state drive")
+
+	hard_drive.store_file(new /datum/computer_file/program/radar/lifeline)
+
 /obj/item/modular_computer/tablet/preset/advanced/atmos/Initialize() //This will be defunct and will be replaced when NtOS PDAs are done
 	. = ..()
 	install_component(new /obj/item/computer_hardware/sensorpackage)
@@ -40,7 +46,7 @@
 	var/obj/item/computer_hardware/hard_drive/small/hard_drive = find_hardware_by_name("solid state drive")
 	install_component(new /obj/item/computer_hardware/sensorpackage)
 	install_component(new /obj/item/computer_hardware/card_slot/secondary)
-	hard_drive.store_file(new /datum/computer_file/program/budgetorders)
+	hard_drive.store_file(new /datum/computer_file/program/secureye)
 
 /// Given by the syndicate as part of the contract uplink bundle - loads in the Contractor Uplink.
 /obj/item/modular_computer/tablet/syndicate_contract_uplink/preset/uplink/Initialize()
