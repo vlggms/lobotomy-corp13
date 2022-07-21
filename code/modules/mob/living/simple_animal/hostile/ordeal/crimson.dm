@@ -13,7 +13,8 @@
 	density = FALSE
 	search_objects = TRUE
 	wanted_objects = list(/obj/machinery/computer/abnormality)
-	damage_coeff = list(BRUTE = 0.8, RED_DAMAGE = 1.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1)
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 	/// When it hits console 15 times - reduce qliphoth and teleport
 	var/console_attack_counter = 0
@@ -99,7 +100,8 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	deathsound = 'sound/effects/ordeals/crimson/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.5)
+	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
 
 	/// How many mobs we spawn on death
@@ -146,7 +148,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/effects/ordeals/crimson/dusk_attack.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.3)
 	mob_spawn_amount = 2
 
 	var/roll_num = 36

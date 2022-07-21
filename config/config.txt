@@ -199,6 +199,9 @@ VOTE_PERIOD 900
 ## disable abandon mob
 NORESPAWN
 
+## Respawn delay in deciseconds (Default is 3000 = 5 minutes)
+RESPAWN_DELAY 3000
+
 ## set a hosted by name for unix platforms
 HOSTEDBY EgorDinamit
 

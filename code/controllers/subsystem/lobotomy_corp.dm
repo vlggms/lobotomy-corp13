@@ -34,7 +34,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/goal_reached = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
-	box_goal = 4000
+	var/player_mod = GLOB.clients.len * 0.1
+	box_goal = clamp(round(4000 * player_mod), 3000, 24000)
 	// Build ordeals global list
 	for(var/type in subtypesof(/datum/ordeal))
 		var/datum/ordeal/O = new type()
@@ -67,7 +68,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	qliphoth_max = 4 + round(abno_amount * 0.5)
+	var/player_count = GLOB.clients.len
+	qliphoth_max = 4 + round(abno_amount * 0.6) + round(player_count * 0.2)
 	qliphoth_state += 1
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
@@ -99,7 +101,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			if(y != meltdown_occured.len)
 				text_info += ", "
 		priority_announce("Qliphoth meltdown occured in containment zones of the following abnormalities: [text_info].", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
-	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35)) // TODO: Formula takes pop in consideration
+	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))

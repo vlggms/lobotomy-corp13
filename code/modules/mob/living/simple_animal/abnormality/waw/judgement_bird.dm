@@ -15,7 +15,7 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.4)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
@@ -53,7 +53,7 @@
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
-	return
+	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/OpenFire()
 	if(client)

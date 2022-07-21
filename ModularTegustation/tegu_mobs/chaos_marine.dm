@@ -19,7 +19,7 @@
 	ranged_cooldown_time = 20
 	rapid_melee = 2
 	vision_range = 10
-	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.1)
 	loot = list(/obj/item/nullrod/scythe/talking/chainsword/chaos, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos)
 	crusher_loot = list(/obj/item/nullrod/scythe/talking/chainsword/chaos, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos, /obj/item/upgradescroll)
 	wander = FALSE
@@ -400,19 +400,19 @@
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmempower()
-	damage_coeff = list(BRUTE = 0.5, BURN = 0.2, TOX = 0.2, CLONE = 0.2, STAMINA = 0, OXY = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.25, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmdepower()
-	damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 0.5, CLONE = 0.5, STAMINA = 0, OXY = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, newcolor)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos
 	name = "berserker's hardsuit"
 	allowed = list(/obj/item/gun, /obj/item/nullrod, /obj/item/tank/internals)
-	armor = list("melee" = 75, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 80, "fire" = 100, "acid" = 100)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = -50, BLACK_DAMAGE = 35, PALE_DAMAGE = 60)
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	cell = /obj/item/stock_parts/cell/hyper
@@ -423,7 +423,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/ert/paranormal/berserker/chaos
 	name = "berserker's helmet"
-	armor = list("melee" = 75, "bullet" = 50, "laser" = 30, "energy" = 50, "bomb" = 100, "bio" = 100, "rad" = 80, "fire" = 100, "acid" = 100)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = -50, BLACK_DAMAGE = 35, PALE_DAMAGE = 60)
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	icon_state = "hardsuit0-chaos"

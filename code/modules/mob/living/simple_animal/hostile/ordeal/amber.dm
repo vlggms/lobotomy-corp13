@@ -18,6 +18,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	..()
@@ -57,13 +58,13 @@
 	icon_living = "amber_dusk"
 	icon_dead = "amber_dusk_dead"
 	faction = list("amber_ordeal")
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 2000
+	health = 2000
 	speed = 4
 	move_to_delay = 7
 	density = FALSE
-	melee_damage_lower = 88
-	melee_damage_upper = 94 // If you get hit by them it's a major skill issue
+	melee_damage_lower = 100
+	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
 	attack_verb_continuous = "eviscerates"
@@ -71,13 +72,14 @@
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
 	deathsound = 'sound/effects/ordeals/amber/dusk_dead.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.3)
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 	alpha = 0 // It burrows in on spawn
 	density = FALSE
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
-	var/burrow_cooldown_time = 30 SECONDS
+	var/burrow_cooldown_time = 20 SECONDS
 
 	/// If TRUE - cannot move nor attack
 	var/burrowing = TRUE
@@ -124,10 +126,10 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	if(length(spawned_mobs) >= 15)
+	if(length(spawned_mobs) >= 20)
 		return
 	visible_message("<span class='danger'>Three smaller bugs appear out of [src]!</span>")
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 4)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
 			i -= 1

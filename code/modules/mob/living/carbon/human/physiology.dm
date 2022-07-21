@@ -9,6 +9,11 @@
 	var/stamina_mod = 1 	// % of stamina damage taken from all sources
 	var/brain_mod = 1   	// % of brain damage taken from all sources
 
+	var/red_mod = 1
+	var/white_mod = 1
+	var/black_mod = 1
+	var/pale_mod = 1
+
 	var/pressure_mod = 1	// % of brute damage taken from low or high pressure (stacks with brute_mod)
 	var/heat_mod = 1    	// % of burn damage taken from heat (stacks with burn_mod)
 	var/cold_mod = 1    	// % of burn damage taken from cold (stacks with burn_mod)
