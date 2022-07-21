@@ -32,8 +32,8 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-		/obj/item/gun/ego_gun/correctional,
-		/obj/item/clothing/suit/armor/ego_gear/correctional
+		/datum/ego_datum/weapon/correctional,
+		/datum/ego_datum/armor/correctional
 		)
 
 	var/finishing = FALSE
