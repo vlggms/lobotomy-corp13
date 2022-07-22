@@ -25,10 +25,10 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
-						ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45)
+						ABNORMALITY_WORK_INSTINCT = 50,
+						ABNORMALITY_WORK_INSIGHT = -50,
+						ABNORMALITY_WORK_ATTACHMENT = 40,
+						ABNORMALITY_WORK_REPRESSION = 40
 						)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE

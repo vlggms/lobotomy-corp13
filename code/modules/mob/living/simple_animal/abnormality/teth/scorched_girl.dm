@@ -15,9 +15,9 @@
 	aggro_vision_range = 24
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
-		ABNORMALITY_WORK_INSIGHT = list(60, 60, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, 0, -40, -50),
-		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
+		ABNORMALITY_WORK_REPRESSION = 45
 		)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE

@@ -8,10 +8,10 @@
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
-						ABNORMALITY_WORK_INSIGHT = list(70, 70, 60, 60, 60),
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
+						ABNORMALITY_WORK_INSTINCT = list(70, 65, 60, 55, 50),
+						ABNORMALITY_WORK_INSIGHT = list(70, 65, 60, 55, 50),
+						ABNORMALITY_WORK_ATTACHMENT = list(45, 40, 35, 30, 25),
+						ABNORMALITY_WORK_REPRESSION = list(45, 40, 35, 30, 25)
 						)
 	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE

@@ -24,10 +24,10 @@
 	can_breach = TRUE
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(45, 45, 45, 50, 50),
+						ABNORMALITY_WORK_INSTINCT = 50,
 						ABNORMALITY_WORK_INSIGHT = 35,
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0)
+						ABNORMALITY_WORK_ATTACHMENT = 50,
+						ABNORMALITY_WORK_REPRESSION = 0
 						)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE

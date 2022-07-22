@@ -45,9 +45,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	start_qliphoth = 3
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45)
+						ABNORMALITY_WORK_INSIGHT = 30,
+						ABNORMALITY_WORK_ATTACHMENT = 35,
+						ABNORMALITY_WORK_REPRESSION = 35
 						)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE

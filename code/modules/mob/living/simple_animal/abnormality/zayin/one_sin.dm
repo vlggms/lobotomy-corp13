@@ -9,10 +9,10 @@
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_INSIGHT = list(70, 70, 50, 50, 50),
-		ABNORMALITY_WORK_ATTACHMENT = list(70),
-		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
+		ABNORMALITY_WORK_INSTINCT = list(45, 40, 35, 30, 25),
+		ABNORMALITY_WORK_INSIGHT = list(80, 75, 70, 65, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(90, 85, 80, 75, 70),
+		ABNORMALITY_WORK_REPRESSION = list(40, 35, 30, 25, 20),
 		"Confess" = 100
 		)
 	work_damage_amount = 6
