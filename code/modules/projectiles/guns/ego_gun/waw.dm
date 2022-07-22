@@ -21,6 +21,10 @@
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
 	w_class = WEIGHT_CLASS_NORMAL
+	weapon_weight = WEAPON_HEAVY
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	fire_delay = 1
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+							)
