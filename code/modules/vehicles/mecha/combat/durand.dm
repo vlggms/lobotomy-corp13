@@ -1,13 +1,13 @@
 /obj/vehicle/sealed/mecha/combat/durand
-	desc = "An aging combat exosuit utilized by the Nanotrasen corporation. Originally developed to combat hostile alien lifeforms."
-	name = "\improper Durand"
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team was loaned to the Rabbit team for extra 'cleaning'."
+	name = "\improper Rhinoceros Unit"
 	icon_state = "durand"
 	base_icon_state = "durand"
 	movedelay = 4
 	dir_in = 1 //Facing North.
 	max_integrity = 400
 	deflect_chance = 20
-	armor = list(MELEE = 40, BULLET = 35, LASER = 15, ENERGY = 10, BOMB = 20, BIO = 0, RAD = 50, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -122,6 +122,27 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 		shield.hitby(AM, skipcatch, hitpush, blocked, throwingdatum)
 	else
 		. = ..()
+
+//WEAPONS
+/obj/vehicle/sealed/mecha/combat/durand/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/red(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/white(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/black(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/pale(src)
+	ME.attach(src)
+	max_ammo()
+
+//BIG POWER
+/obj/vehicle/sealed/mecha/combat/durand/add_cell(obj/item/stock_parts/cell/C=null)
+	if(C)
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/stock_parts/cell/infinite/abductor(src)
 
 ////////////////////////////
 ///// Shield processing ////
