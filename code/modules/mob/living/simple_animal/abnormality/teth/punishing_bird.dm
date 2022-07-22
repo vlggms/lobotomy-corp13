@@ -37,10 +37,10 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 50,
-						ABNORMALITY_WORK_REPRESSION = 10
+						ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
+						ABNORMALITY_WORK_INSIGHT = 60,
+						ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
+						ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
 						)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE

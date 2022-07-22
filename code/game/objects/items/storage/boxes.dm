@@ -112,6 +112,15 @@
 /obj/item/storage/box/disks_nanite/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/disk/nanite_program(src)
+// Barrier Box
+/obj/item/storage/box/barrier
+	name = "box of barrier grenade"
+	desc = "Contains barrier grenade."
+	illustration = "flashbang"
+
+/obj/item/storage/box/barrier/PopulateContents()
+	for(var/i in 1 to 5)
+		new /obj/item/grenade/barrier(src)
 
 // Ordinary survival box
 /obj/item/storage/box/survival

@@ -5,7 +5,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the manager"
-	selection_color = "#ccccff"
+	selection_color = "#bcbcef"
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
 	outfit = /datum/outfit/job/manager
@@ -39,3 +39,4 @@
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command

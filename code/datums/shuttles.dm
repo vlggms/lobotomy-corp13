@@ -296,6 +296,12 @@
 	credit_cost = CARGO_CRATE_VALUE * 4
 	description = "The gold standard in emergency exfiltration, this tried and true design is equipped with everything the crew needs for a safe flight home."
 
+/datum/map_template/shuttle/emergency/alpha
+	suffix = "alpha"
+	name = "A-098 Transport WARP Train"
+	credit_cost = CARGO_CRATE_VALUE * 4
+	description = "A W-Corp commissioned transport train. Go anywhere in just 10 seconds!"
+
 /datum/map_template/shuttle/emergency/donut
 	suffix = "donut"
 	name = "Donutstation Emergency Shuttle"

@@ -37,15 +37,15 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec/alt
+	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
-
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
 /datum/job/agent/senior
 	title = "Senior Agent"
@@ -87,3 +87,4 @@
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/hos/alt
+	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
