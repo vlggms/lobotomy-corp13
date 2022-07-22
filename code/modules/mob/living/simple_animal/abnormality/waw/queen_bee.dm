@@ -13,9 +13,9 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 50,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = 40,
+						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 45),
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
+						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
 	work_damage_amount = 10
