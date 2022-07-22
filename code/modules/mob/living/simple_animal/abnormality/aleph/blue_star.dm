@@ -4,6 +4,7 @@
 	health = 4000
 	maxHealth = 4000
 	pixel_x = -16
+	base_pixel_x = -16
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "bluestar"
 	icon_living = "bluestar"
