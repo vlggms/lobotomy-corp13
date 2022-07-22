@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/mecha/combat/durand
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team was loaned to the Rabbit team for extra 'cleaning'."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
 	name = "\improper Rhinoceros Unit"
 	icon_state = "durand"
 	base_icon_state = "durand"
