@@ -902,11 +902,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "jy" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/dark,
+/obj/structure/rack,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "jD" = (
 /obj/machinery/door/airlock/hatch,
@@ -949,13 +946,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"kj" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
-/obj/machinery/modular_computer/console/preset/command,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "kr" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
@@ -1007,13 +997,6 @@
 /area/department_main/training)
 "kD" = (
 /turf/open/floor/wood,
-/area/department_main/control)
-"kJ" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/machinery/modular_computer/console/preset/command,
-/turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "kT" = (
 /obj/effect/turf_decal/siding/purple{
@@ -1224,15 +1207,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"nn" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "nq" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -1267,15 +1241,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"nP" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "nS" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/wood,
@@ -3467,6 +3432,13 @@
 /area/facility_hallway/central)
 "Ne" = (
 /obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/condiment/peppermill{
+	pixel_x = 2
+	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Nl" = (
@@ -36416,7 +36388,7 @@ GC
 KP
 KP
 KP
-jy
+KP
 KP
 KP
 oF
@@ -36673,8 +36645,8 @@ GT
 Lr
 Ol
 Ol
-kj
-nn
+Ol
+Ol
 Ol
 TB
 pX
@@ -36930,8 +36902,8 @@ GT
 Mi
 hP
 FV
-PP
-FV
+jy
+jy
 FV
 pa
 Mi
@@ -37187,8 +37159,8 @@ GT
 gx
 PP
 FV
-FV
-FV
+jy
+jy
 FV
 fq
 Mi
@@ -37701,8 +37673,8 @@ fq
 gx
 PP
 FV
-FV
-FV
+jy
+jy
 FV
 fq
 Mi
@@ -37958,8 +37930,8 @@ fq
 Mi
 FV
 FV
-PP
-FV
+jy
+jy
 FV
 pa
 Mi
@@ -38215,8 +38187,8 @@ fq
 Ns
 KP
 KP
-kJ
-nP
+KP
+KP
 KP
 Wc
 pX
@@ -38472,7 +38444,7 @@ JR
 Ol
 Ol
 Ol
-ms
+Ol
 Ol
 Ol
 ms
