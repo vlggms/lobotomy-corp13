@@ -1515,6 +1515,19 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"iT" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "iV" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -1989,7 +2002,6 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "mW" = (
-/obj/vehicle/sealed/mecha/combat/gygax,
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -1999,6 +2011,7 @@
 	color = "#CC5500";
 	dir = 4
 	},
+/obj/vehicle/sealed/mecha/combat/durand,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "nb" = (
@@ -45287,7 +45300,7 @@ iq
 iA
 il
 ss
-zA
+iT
 tr
 nU
 zb
@@ -54279,15 +54292,15 @@ qx
 sK
 BI
 BI
+yU
+yU
 BI
 BI
 BI
 BI
 BI
-BI
-BI
-BI
-BI
+yU
+yU
 BI
 BI
 nG
