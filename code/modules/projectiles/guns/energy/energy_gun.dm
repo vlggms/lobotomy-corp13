@@ -160,6 +160,7 @@
 		)
 	can_charge = FALSE
 	weapon_weight = WEAPON_HEAVY // No dual wielding
+	pin = /obj/item/firing_pin/implant/mindshield
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
