@@ -155,7 +155,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
 	light_power = 5
-	light_color = LIGHT_COLOR_ELECTRIC_CYAN
+	light_color = LIGHT_COLOR_ELECTRIC_ORANGE
 	light_on = FALSE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF //The shield should not take damage from fire,  lava, or acid; that's the mech's job.
 	///Our link back to the durand
@@ -226,7 +226,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 		invisibility = 0
 		flick("shield_raise", src)
 		playsound(src, 'sound/mecha/mech_shield_raise.ogg', 50, FALSE)
-		set_light(l_range = MINIMUM_USEFUL_LIGHT_RANGE , l_power = 5, l_color = "#00FFFF")
+		set_light(l_range = MINIMUM_USEFUL_LIGHT_RANGE , l_power = 5, l_color = "#FF8000")
 		icon_state = "shield"
 		RegisterSignal(chassis, COMSIG_ATOM_DIR_CHANGE, .proc/resetdir)
 	else
