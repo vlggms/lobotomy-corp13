@@ -3,7 +3,7 @@
 	name = "\improper Rhinoceros Unit"
 	icon_state = "durand"
 	base_icon_state = "durand"
-	movedelay = 5
+	movedelay = 6
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
 	deflect_chance = 20
@@ -149,7 +149,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon = 'icons/mecha/durand_shield.dmi'
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
-	pixel_y = 1
+	pixel_y = 2
 	obj_integrity = 300
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
