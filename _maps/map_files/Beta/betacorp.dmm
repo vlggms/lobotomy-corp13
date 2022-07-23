@@ -901,9 +901,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"ge" = (
-/turf/open/floor/plasteel/showroomfloor,
-/area/space)
 "gi" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/instrument/guitar,
@@ -3552,7 +3549,7 @@
 /obj/effect/turf_decal/delivery,
 /obj/structure/fans/tiny,
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/south)
+/area/facility_hallway/welfare)
 "yc" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -4917,10 +4914,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"IR" = (
-/obj/structure/toilet,
-/turf/open/floor/noslip,
-/area/space)
 "IX" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
@@ -37429,8 +37422,8 @@ XP
 AI
 JB
 hl
-IR
-ge
+Nt
+Mz
 hl
 th
 Mf
