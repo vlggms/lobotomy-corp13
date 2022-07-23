@@ -7,14 +7,14 @@
 // Marines
 /obj/item/clothing/under/syndicate/tgmc
 	name = "marine camo uniform"
-	desc = "A camouflage jumpsuit worn by marines of the Terran Government."
+	desc = "A camouflage jumpsuit worn by marines of the City Government."
 	icon_state = "camo_tgmc"
 	can_adjust = FALSE
 
 // Other stuff
 /obj/item/clothing/head/helmet/swat/un
 	name = "peacekeeper helmet"
-	desc = "A blue helmet that was once used by TerraGov predecessors."
+	desc = "A blue helmet that was once used by the old world government."
 	icon_state = "antichristhelm"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/thermal
@@ -27,16 +27,16 @@
 
 // Armbands
 /obj/item/clothing/accessory/armband/terragov
-	name = "\improper TerraGov armband"
-	desc = "An armband usually worn by TerraGov officials."
+	name = "\improper CityGov armband"
+	desc = "An armband usually worn by city district officials."
 	icon_state = "terraband"
 
 /obj/item/clothing/accessory/armband/terragov/un
 	name = "\improper UN armband"
-	desc = "A light-blue armband that was worn by the TerraGov predecessors. For when you love the antichrist."
+	desc = "A light-blue armband that was worn by the old world government. Some say humanity used to live beyond this one city."
 	icon_state = "tgunband"
 
 /obj/item/clothing/accessory/armband/russian
 	name = "russian armband"
-	desc = "An armband that is worn by Russian separatists, enemies of TerraGov and Space Russians alike."
+	desc = "An armband that is worn by nostalgic district dwellers, rambling about a long dead civilization."
 	icon_state = "rusband"

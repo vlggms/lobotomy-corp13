@@ -763,14 +763,14 @@
 
 
 /obj/item/storage/box/deputy
-	name = "box of deputy armbands"
-	desc = "To be issued to those authorized to act as deputy of security."
+	name = "box of control armbands"
+	desc = "To be issued to those authorized to act as control department personnel."
 	icon_state = "secbox"
 	illustration = "depband"
 
 /obj/item/storage/box/deputy/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/clothing/accessory/armband/deputy(src)
+		new /obj/item/clothing/accessory/armband/control(src)
 
 /obj/item/storage/box/metalfoam
 	name = "box of metal foam grenades"
