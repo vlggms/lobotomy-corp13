@@ -96,6 +96,16 @@
 "bj" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/table/wood/fancy/blue,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband/cargo,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "bq" = (
@@ -127,6 +137,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/rock,
 /area/space)
+"bD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/melt,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "bF" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -495,7 +510,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "fq" = (
@@ -650,6 +664,7 @@
 	id = "garbage"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "gS" = (
@@ -765,6 +780,19 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"hS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/recycler,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/facility_hallway/east)
 "hU" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -772,6 +800,20 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/department_main/training)
+"ia" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "ih" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -857,8 +899,16 @@
 /area/department_main/control)
 "iX" = (
 /obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
-/obj/item/gun/ego_gun/clerk,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/deputy,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "je" = (
@@ -2354,6 +2404,18 @@
 /obj/structure/sign/poster/official/hang_in_there{
 	pixel_y = -32
 	},
+/obj/structure/rack,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/accessory/armband/hydro,
+/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zI" = (
@@ -2703,12 +2765,24 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"Fa" = (
+/obj/structure/rack,
+/obj/item/gun/ego_gun/clerk,
+/obj/item/gun/ego_gun/clerk,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Fc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "garbage"
+	},
 /obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
-/obj/machinery/recycler,
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "Fl" = (
@@ -2907,6 +2981,11 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/facility_hallway/east)
+"Hm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
 "Hq" = (
 /obj/effect/turf_decal/siding/purple{
@@ -3938,14 +4017,14 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "RW" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/structure/disposaloutlet{
 	dir = 4
 	},
 /obj/structure/disposalpipe/trunk,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "Sa" = (
@@ -4178,6 +4257,20 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"Up" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Uq" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -4328,6 +4421,26 @@
 /obj/item/reagent_containers/spray/chemsprayer/janitor,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/box/lights/tubes,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 10;
+	pixel_y = -5
+	},
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "Wb" = (
@@ -4442,13 +4555,14 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "WU" = (
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/structure/closet/crate/trashcart,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "garbage"
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "WW" = (
@@ -4657,7 +4771,7 @@
 /area/facility_hallway/north)
 "Zx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/melt,
+/obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "Zz" = (
@@ -38232,7 +38346,7 @@ ZL
 LX
 Wb
 dy
-Nr
+ia
 pR
 YM
 Sg
@@ -39220,7 +39334,7 @@ Iq
 Iq
 DH
 qG
-DH
+Fa
 rg
 vs
 vs
@@ -39727,13 +39841,13 @@ ZL
 ZL
 ZL
 rg
-iX
-jq
+DH
+DH
 DH
 oj
 Iq
-DH
-DH
+iX
+jq
 rf
 rg
 ZL
@@ -42839,7 +42953,7 @@ CY
 zW
 bd
 Mk
-Mk
+Hm
 vi
 RW
 yf
@@ -43612,7 +43726,7 @@ hq
 Mk
 tu
 tu
-gR
+hS
 UZ
 ZL
 ZL
@@ -43866,7 +43980,7 @@ ZC
 Zv
 zW
 VT
-Mk
+bD
 Zx
 WU
 Fc
@@ -44369,7 +44483,7 @@ zW
 mC
 Vo
 qO
-WC
+Up
 SE
 Bz
 qO
