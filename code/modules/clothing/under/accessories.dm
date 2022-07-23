@@ -247,26 +247,26 @@
 	icon_state = "redband"
 	attachment_slot = null
 
-/obj/item/clothing/accessory/armband/deputy
+/obj/item/clothing/accessory/armband/control
 	name = "control department armband"
 	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
 
-/obj/item/clothing/accessory/armband/cargo
+/obj/item/clothing/accessory/armband/command
 	name = "command department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is golden."
 	icon_state = "cargoband"
 
-/obj/item/clothing/accessory/armband/engine
+/obj/item/clothing/accessory/armband/training
 	name = "training department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
 
-/obj/item/clothing/accessory/armband/science
+/obj/item/clothing/accessory/armband/information
 	name = "information department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
 
-/obj/item/clothing/accessory/armband/hydro
+/obj/item/clothing/accessory/armband/safety
 	name = "safety department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
