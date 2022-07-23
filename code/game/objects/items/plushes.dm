@@ -416,3 +416,8 @@
 	name = "melting love plushie"
 	desc = "A plushie depicting a slime girl, you think."
 	icon_state = "melt"
+
+/obj/item/toy/plush/bongbong
+	name = "bongbong plushie"
+	desc = "A plushie depicting the Lobotomy Corporation"
+	icon_state = "bongbong"
