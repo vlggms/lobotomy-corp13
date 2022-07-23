@@ -7,7 +7,7 @@
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
 	deflect_chance = 20
-	armor = list(RED_DAMAGE = 200, WHITE_DAMAGE = 200, BLACK_DAMAGE = 200, PALE_DAMAGE = 100, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -150,7 +150,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
 	pixel_y = 1
-	obj_integrity = 100
+	obj_integrity = 300
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -267,7 +267,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 			var/mob/living/occupant = O
 			var/datum/action/action = LAZYACCESSASSOC(chassis.occupant_actions, occupant, /datum/action/vehicle/sealed/mecha/mech_defense_mode)
 			action.Trigger()
-	obj_integrity = 100
+	obj_integrity = 300
 
 /obj/durand_shield/play_attack_sound()
 	playsound(src, 'sound/mecha/mech_shield_deflect.ogg', 100, TRUE)
