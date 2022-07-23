@@ -128,6 +128,11 @@
 /obj/structure/railing,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
+"bv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/melt,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "bx" = (
 /obj/structure/chair/office,
 /obj/item/toy/plush/angela,
@@ -137,11 +142,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/rock,
 /area/space)
-"bD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/melt,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/east)
 "bF" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -599,7 +599,7 @@
 /obj/structure/showcase/machinery{
 	desc = "A server for the information department. Stores information.";
 	icon_state = "blackbox";
-	name = "Information Server"
+	name = "Information Server Box"
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -754,6 +754,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"hA" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "hC" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -780,19 +794,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"hS" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "garbage"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/recycler,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/facility_hallway/east)
 "hU" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -800,20 +801,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"ia" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "ih" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2765,12 +2752,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"Fa" = (
-/obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
-/obj/item/gun/ego_gun/clerk,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "Fc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor/inverted{
@@ -2981,11 +2962,6 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east)
-"Hm" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/trashcart,
-/turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
 "Hq" = (
 /obj/effect/turf_decal/siding/purple{
@@ -3438,6 +3414,20 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"LV" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "LX" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
@@ -3764,6 +3754,19 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"PF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/recycler,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/facility_hallway/east)
 "PI" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/showroomfloor,
@@ -4257,20 +4260,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
-"Up" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
 "Uq" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -4323,6 +4312,11 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"UU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "UX" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/showroomfloor,
@@ -4443,6 +4437,12 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/east)
+"VW" = (
+/obj/structure/rack,
+/obj/item/gun/ego_gun/clerk,
+/obj/item/gun/ego_gun/clerk,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Wb" = (
 /obj/machinery/modular_computer/console/preset/research{
 	name = "information department console"
@@ -38346,7 +38346,7 @@ ZL
 LX
 Wb
 dy
-ia
+LV
 pR
 YM
 Sg
@@ -39334,7 +39334,7 @@ Iq
 Iq
 DH
 qG
-Fa
+VW
 rg
 vs
 vs
@@ -42953,7 +42953,7 @@ CY
 zW
 bd
 Mk
-Hm
+UU
 vi
 RW
 yf
@@ -43726,7 +43726,7 @@ hq
 Mk
 tu
 tu
-hS
+PF
 UZ
 ZL
 ZL
@@ -43980,7 +43980,7 @@ ZC
 Zv
 zW
 VT
-bD
+bv
 Zx
 WU
 Fc
@@ -44483,7 +44483,7 @@ zW
 mC
 Vo
 qO
-Up
+hA
 SE
 Bz
 qO
