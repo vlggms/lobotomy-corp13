@@ -6,6 +6,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
+	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)
 
 /datum/outfit/centcom/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -447,7 +448,7 @@
 
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit/leader
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	back = /obj/item/storage/backpack/ert
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
@@ -466,7 +467,7 @@
 	name = "Rabbit Team"
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	l_pocket = /obj/item/ego_weapon/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	belt = /obj/item/storage/belt/security/full
