@@ -1620,6 +1620,9 @@
 "lB" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "lE" = (
