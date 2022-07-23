@@ -150,7 +150,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
 	pixel_y = 1
-	max_integrity = 10000
+	obj_integrity = 100
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -267,7 +267,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 			var/mob/living/occupant = O
 			var/datum/action/action = LAZYACCESSASSOC(chassis.occupant_actions, occupant, /datum/action/vehicle/sealed/mecha/mech_defense_mode)
 			action.Trigger()
-	obj_integrity = 10000
+	obj_integrity = 100
 
 /obj/durand_shield/play_attack_sound()
 	playsound(src, 'sound/mecha/mech_shield_deflect.ogg', 100, TRUE)
