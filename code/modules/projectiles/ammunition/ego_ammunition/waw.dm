@@ -2,5 +2,5 @@
 	name = "correctional casing"
 	desc = "A correctional casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_correctional
-	pellets = 6
-	variance = 25
+//	pellets = 6			Broken, please fix.
+//	spread = 0
