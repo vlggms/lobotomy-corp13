@@ -3,7 +3,6 @@
 	desc = "The star shines brighter as our despair gathers. The weapon's small, evocative sphere fires a warm ray."
 	icon_state = "star"
 	inhand_icon_state = "star"
-	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_star
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
