@@ -128,11 +128,6 @@
 /obj/structure/railing,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
-"bv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/melt,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/east)
 "bx" = (
 /obj/structure/chair/office,
 /obj/item/toy/plush/angela,
@@ -345,6 +340,11 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
+"dO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/melt,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "dX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool/bar,
@@ -754,20 +754,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"hA" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/obj/item/clothing/accessory/armband/engine,
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
 "hC" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -1445,6 +1431,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"pt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "pu" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet/orange,
@@ -2125,6 +2116,19 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
+"wC" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/recycler,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating,
+/area/facility_hallway/east)
 "wF" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -2672,6 +2676,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"DR" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/science,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "DW" = (
 /turf/closed/wall/r_wall,
 /area/facility_hallway/south)
@@ -2924,6 +2942,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"GN" = (
+/obj/structure/rack,
+/obj/item/gun/ego_gun/clerk,
+/obj/item/gun/ego_gun/clerk,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "GT" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -3414,20 +3438,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"LV" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/obj/item/clothing/accessory/armband/science,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "LX" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
@@ -3754,19 +3764,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
-"PF" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "garbage"
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/recycler,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
-/area/facility_hallway/east)
 "PI" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/plasteel/showroomfloor,
@@ -3837,10 +3834,10 @@
 /area/department_main/command)
 "Qq" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/machinery/light/small{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/facility_hallway/east)
 "Qs" = (
@@ -4312,11 +4309,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
-"UU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/trashcart,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/east)
 "UX" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plasteel/showroomfloor,
@@ -4437,12 +4429,6 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/east)
-"VW" = (
-/obj/structure/rack,
-/obj/item/gun/ego_gun/clerk,
-/obj/item/gun/ego_gun/clerk,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "Wb" = (
 /obj/machinery/modular_computer/console/preset/research{
 	name = "information department console"
@@ -4723,6 +4709,20 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/safety)
+"YK" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/engine,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "YM" = (
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -38346,7 +38346,7 @@ ZL
 LX
 Wb
 dy
-LV
+DR
 pR
 YM
 Sg
@@ -39334,7 +39334,7 @@ Iq
 Iq
 DH
 qG
-VW
+GN
 rg
 vs
 vs
@@ -42953,7 +42953,7 @@ CY
 zW
 bd
 Mk
-UU
+pt
 vi
 RW
 yf
@@ -43726,7 +43726,7 @@ hq
 Mk
 tu
 tu
-PF
+wC
 UZ
 ZL
 ZL
@@ -43980,7 +43980,7 @@ ZC
 Zv
 zW
 VT
-bv
+dO
 Zx
 WU
 Fc
@@ -44483,7 +44483,7 @@ zW
 mC
 Vo
 qO
-hA
+YK
 SE
 Bz
 qO
