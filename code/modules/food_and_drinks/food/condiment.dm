@@ -156,7 +156,7 @@
 	fill_icon_thresholds = null
 
 /obj/item/reagent_containers/food/condiment/milk
-	name = "space milk"
+	name = "milk"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	inhand_icon_state = "carton"
