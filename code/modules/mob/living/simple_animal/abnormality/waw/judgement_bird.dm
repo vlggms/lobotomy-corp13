@@ -69,6 +69,7 @@
 	if(judgement_cooldown > world.time)
 		return
 	judgement_cooldown = world.time + judgement_cooldown_base
+	icon_state = "judgement_bird_attack"
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7)
@@ -79,6 +80,7 @@
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	icon_state = icon_living
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
