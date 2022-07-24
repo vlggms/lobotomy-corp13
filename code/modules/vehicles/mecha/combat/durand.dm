@@ -177,7 +177,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 
 
 /obj/durand_shield/Destroy()
-	UnregisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, .proc/activate)
+	UnregisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER)
 	for(var/occupant in chassis.occupants)
 		var/datum/action/button = chassis.occupant_actions[occupant][/datum/action/vehicle/sealed/mecha/mech_defense_mode]
 		button.button_icon_state = "mech_defense_mode_off"
