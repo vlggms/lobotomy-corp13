@@ -844,6 +844,10 @@
 	},
 /turf/closed/indestructible/rock,
 /area/space)
+"fO" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/wood,
+/area/facility_hallway/north)
 "fR" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -2363,20 +2367,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"pL" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/obj/item/clothing/accessory/armband/welfare,
-/turf/open/floor/carpet/royalblue,
-/area/department_main/welfare)
 "pN" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -3835,9 +3825,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "zb" = (
-/obj/machinery/vending/coffee,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
@@ -4467,6 +4456,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"DS" = (
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/obj/item/clothing/accessory/armband/welfare,
+/turf/open/floor/carpet/royalblue,
+/area/department_main/welfare)
 "DY" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -4845,7 +4848,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "GX" = (
-/obj/effect/spawner/randomcolavend,
+/obj/machinery/vending/coffee,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "Ha" = (
@@ -37896,7 +37902,7 @@ JB
 vN
 Ce
 Zq
-pL
+DS
 Zq
 uF
 kf
@@ -38090,9 +38096,9 @@ qG
 an
 JB
 JB
+JB
 Rc
-Rc
-Ro
+zb
 iA
 iA
 iA
@@ -38347,9 +38353,9 @@ qK
 an
 JB
 JB
+JB
 Rc
 Ej
-iA
 yS
 yS
 yS
@@ -38604,9 +38610,9 @@ rb
 an
 JB
 JB
+JB
 Rc
-zb
-yS
+GX
 yS
 yS
 yS
@@ -38861,9 +38867,9 @@ rg
 an
 JB
 JB
+JB
 Rc
-GX
-iA
+fO
 yS
 yS
 yS
@@ -39118,9 +39124,9 @@ fa
 an
 JB
 JB
+JB
 Rc
-Rc
-Cz
+zb
 iA
 iA
 iA
