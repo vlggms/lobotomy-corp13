@@ -276,7 +276,7 @@
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 
-/obj/item/clothing/accessory/armband/medblue
+/obj/item/clothing/accessory/armband/welfare
 	name = "welfare department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"

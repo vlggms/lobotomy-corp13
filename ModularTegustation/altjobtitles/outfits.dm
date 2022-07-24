@@ -95,7 +95,7 @@ HOW ALT TITLES PICK OUTFITS
  	head = /obj/item/clothing/head/nursehat
  	suit = null
  	suit_store = null
- 	accessory = /obj/item/clothing/accessory/armband/medblue
+ 	accessory = /obj/item/clothing/accessory/armband/welfare
 
 /// Chemist
 
