@@ -47,8 +47,8 @@
 	song.ui_interact(user)
 
 /obj/item/instrument/violin
-	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	name = "violin"
+	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to the city, but there were no souls to claim.\""
 	icon_state = "violin"
 	inhand_icon_state = "violin"
 	hitsound = "swing_hit"
@@ -56,7 +56,7 @@
 
 /obj/item/instrument/violin/golden
 	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to the nest, but there were no souls to find.\""
 	icon_state = "golden_violin"
 	inhand_icon_state = "golden_violin"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -243,7 +243,7 @@
 
 /obj/item/instrument/harmonica
 	name = "harmonica"
-	desc = "For when you get a bad case of the space blues."
+	desc = "For when you get a bad case of the company blues."
 	icon_state = "harmonica"
 	allowed_instrument_ids = list("crharmony", "harmonica")
 	inhand_icon_state = "harmonica"

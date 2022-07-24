@@ -72,8 +72,8 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 // Cryopods themselves.
 /obj/machinery/cryopod
-	name = "cryogenic freezer"
-	desc = "Suited for Cyborgs and Humanoids, the pod is a safe place for personnel affected by the Space Sleep Disorder to get some rest."
+	name = "employee storage"
+	desc = "Suited for human employees of the corporation, the pod is a safe place for personnel who have dozed to get some rest."
 	icon = 'icons/obj/machines/cryopod.dmi'
 	icon_state = "cryopod-open"
 	density = TRUE
