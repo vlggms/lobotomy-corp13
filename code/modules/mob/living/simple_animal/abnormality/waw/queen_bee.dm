@@ -22,6 +22,7 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/hornet,
 		/datum/ego_datum/armor/hornet
 		)
 

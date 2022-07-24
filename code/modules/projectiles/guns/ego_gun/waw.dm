@@ -13,3 +13,19 @@
 							FORTITUDE_ATTRIBUTE = 40,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/gun/ego_gun/hornet
+	name = "hornet"
+	desc = "The kingdom needed to stay prosperous, and more bees were required for that task. \
+	The projectiles relive the legacy of the kingdom as they travel toward the target."
+	icon_state = "hornet"
+	inhand_icon_state = "hornet"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 4
+	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+							)
