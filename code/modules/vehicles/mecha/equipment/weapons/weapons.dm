@@ -96,39 +96,41 @@
 	harmful = TRUE
 
 //Heavy Rabbit Mech Laser
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/red
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
+	name = "\improper You should not have this"
+	desc = "You should not have this"
+	energy_drain = 0
+	projectiles_per_shot = 2
+	variance = 6
+	randomspread = 1
+	projectile_delay = 2
+
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/red
 	name = "\improper CH-LC \"Red\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy lasers."
 	icon_state = "mecha_laser_red"
-	energy_drain = 0
 	projectile = /obj/projectile/beam/laser/heavylaser/red
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/white
-	equip_cooldown = 15
 	name = "\improper CH-LC \"White\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy white lasers."
 	icon_state = "mecha_laser_white"
-	energy_drain = 0
 	projectile = /obj/projectile/beam/laser/heavylaser/white
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/black
-	equip_cooldown = 15
 	name = "\improper CH-LC \"Black\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy black lasers."
 	icon_state = "mecha_laser_black"
-	energy_drain = 0
 	projectile = /obj/projectile/beam/laser/heavylaser/black
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/pale
-	equip_cooldown = 15
 	name = "\improper CH-LC \"Pale\" laser cannon"
 	desc = "A weapon for combat exosuits. Shoots heavy pale lasers."
 	icon_state = "mecha_laser_pale"
-	energy_drain = 0
 	projectile = /obj/projectile/beam/laser/heavylaser/pale
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 

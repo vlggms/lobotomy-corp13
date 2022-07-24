@@ -204,6 +204,14 @@
 	role = "Party Coordinator"
 	outfit = /datum/outfit/centcom/ert/commander/party
 
+/datum/antagonist/ert/security/rhino
+	role = "Pilot Mercenary"
+	outfit = /datum/outfit/centcom/ert/security/rhino
+
+/datum/antagonist/ert/commander/rhino
+	role = "Pilot Mercenary Leader"
+	outfit = /datum/outfit/centcom/ert/commander/rhino
+
 /datum/antagonist/ert/security/rabbit
 	role = "Mercenary"
 	outfit = /datum/outfit/centcom/ert/security/rabbit
