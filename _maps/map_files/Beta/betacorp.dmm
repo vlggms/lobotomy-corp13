@@ -2955,6 +2955,9 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
 "tk" = (
@@ -6694,6 +6697,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"Uj" = (
+/obj/effect/landmark/latejoin,
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/north)
 "Uk" = (
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -7398,6 +7408,9 @@
 /area/department_main/information)
 "YF" = (
 /obj/machinery/camera/autoname,
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
 "YM" = (
@@ -37230,7 +37243,7 @@ kK
 Nq
 Rc
 Rc
-iA
+Uj
 iA
 iA
 xL
@@ -39800,7 +39813,7 @@ kK
 Nq
 Rc
 Rc
-iA
+Uj
 iA
 iA
 xL
