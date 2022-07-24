@@ -492,7 +492,7 @@
 	r_pocket = null
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 
-/datum/outfit/centcom/ert/security/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/centcom/ert/commander/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -511,7 +511,7 @@
 	r_pocket = null
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 
-/datum/outfit/centcom/ert/security/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
