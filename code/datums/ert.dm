@@ -108,7 +108,7 @@
 /datum/ert/rhino
 	roles = list(/datum/antagonist/ert/security/rhino)
 	leader_role = /datum/antagonist/ert/commander/rhino
-	teamsize = 1
+	teamsize = 2
 	opendoors = TRUE
 	rename_team = "Rhino Team"
 	mission = "Dispose of any breaching abnormalities and/or panicking employees of L Corp."
