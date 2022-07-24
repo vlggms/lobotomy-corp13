@@ -9,7 +9,7 @@
 
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
-	item_path = /obj/item/clothing/suit/armor/ego_gun/hornet
+	item_path = /obj/item/gun/ego_gun/hornet
 	cost = 50
 
 /datum/ego_datum/armor/hornet
