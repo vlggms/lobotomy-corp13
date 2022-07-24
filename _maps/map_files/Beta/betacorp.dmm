@@ -22,10 +22,12 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "ah" = (
-/obj/structure/table/glass,
-/obj/machinery/camera/autoname,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
+/obj/effect/landmark/latejoin,
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/north)
 "ai" = (
 /obj/item/stack/sticky_tape/surgical,
 /obj/item/stack/medical/bone_gel,
@@ -3223,9 +3225,7 @@
 /area/department_main/control)
 "uF" = (
 /obj/structure/table/glass,
-/obj/item/paper_bin,
 /obj/machinery/camera/autoname,
-/obj/item/pen/fourcolor,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "uK" = (
@@ -5514,6 +5514,7 @@
 "Mc" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/camera/autoname,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Md" = (
@@ -6438,6 +6439,9 @@
 /area/facility_hallway/discipline)
 "SF" = (
 /obj/machinery/rnd/server,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "SJ" = (
@@ -6697,13 +6701,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"Uj" = (
-/obj/effect/landmark/latejoin,
-/obj/machinery/computer/cryopod{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/north)
 "Uk" = (
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -37243,7 +37240,7 @@ kK
 Nq
 Rc
 Rc
-Uj
+ah
 iA
 iA
 xL
@@ -39813,7 +39810,7 @@ kK
 Nq
 Rc
 Rc
-Uj
+ah
 iA
 iA
 xL
@@ -41902,7 +41899,7 @@ JB
 Io
 JU
 Zg
-ah
+MP
 MP
 YM
 MP
@@ -42930,7 +42927,7 @@ JB
 Io
 jw
 Zg
-uF
+gd
 YE
 MP
 MP
@@ -43187,7 +43184,7 @@ JB
 Io
 Io
 Io
-MP
+uF
 pH
 hD
 hD
