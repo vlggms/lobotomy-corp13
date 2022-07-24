@@ -330,6 +330,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
+"cd" = (
+/obj/structure/sign/poster/official/help_others,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/training)
 "ch" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 5
@@ -423,20 +427,6 @@
 /obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/plating,
 /area/department_main/safety)
-"cV" = (
-/obj/structure/table/glass,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "cZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1682,6 +1672,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"lr" = (
+/obj/structure/table/glass,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "ls" = (
 /obj/machinery/sleeper/syndie{
 	dir = 8
@@ -2580,6 +2579,13 @@
 /obj/machinery/medical_kiosk,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"rw" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "rx" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2897,20 +2903,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/department_main/control)
-"tc" = (
-/obj/structure/table/wood/fancy/blue,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/turf/open/floor/carpet/stellar,
-/area/department_main/command)
 "te" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -3776,15 +3768,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"yR" = (
-/obj/structure/table/glass,
-/obj/item/bodypart/l_arm/robot,
-/obj/item/bodypart/l_arm/robot,
-/obj/item/bodypart/l_arm/robot,
-/obj/item/bodypart/l_arm/robot,
-/obj/item/bodypart/l_arm/robot,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "yS" = (
 /turf/open/floor/wood,
 /area/facility_hallway/north)
@@ -4140,10 +4123,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"BL" = (
-/obj/structure/sign/poster/official/fruit_bowl,
-/turf/closed/indestructible/reinforced,
-/area/department_main/welfare)
 "BM" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/wood,
@@ -4380,6 +4359,10 @@
 /obj/item/instrument/glockenspiel,
 /turf/open/floor/wood,
 /area/department_main/command)
+"Dk" = (
+/obj/structure/sign/poster/official/fruit_bowl,
+/turf/closed/indestructible/reinforced,
+/area/department_main/welfare)
 "Dp" = (
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment,
@@ -5603,20 +5586,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"Mr" = (
-/obj/structure/table/glass,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "Mz" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/south)
@@ -5795,6 +5764,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"Nz" = (
+/obj/structure/table/glass,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "NA" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -6298,13 +6281,20 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"RD" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 4
-	},
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel/dark,
-/area/department_main/information)
+"RE" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "RG" = (
 /obj/structure/sink{
 	dir = 8;
@@ -6731,10 +6721,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"Ud" = (
-/obj/structure/sign/poster/official/help_others,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/training)
 "Ug" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -7539,6 +7525,20 @@
 /obj/structure/chair/office,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/discipline)
+"Zb" = (
+/obj/structure/table/glass,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Zc" = (
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/indestructible/reinforced,
@@ -37600,7 +37600,7 @@ JB
 JB
 JB
 JB
-BL
+Dk
 Xf
 ia
 Zq
@@ -40137,7 +40137,7 @@ Bk
 Bk
 Bk
 VV
-tc
+RE
 Wp
 Bk
 VV
@@ -41956,8 +41956,8 @@ Io
 JU
 Zg
 ah
-yR
-Mr
+lr
+Zb
 MP
 hD
 OJ
@@ -41966,7 +41966,7 @@ QO
 hD
 EO
 Io
-JB
+Io
 JB
 JB
 JB
@@ -42223,7 +42223,7 @@ QO
 hD
 hD
 UI
-JB
+Io
 JB
 JB
 JB
@@ -42480,7 +42480,7 @@ QO
 hD
 hD
 AA
-JB
+Io
 JB
 JB
 JB
@@ -42726,7 +42726,7 @@ JB
 Io
 vo
 Zg
-RD
+rw
 CE
 CE
 CE
@@ -42737,7 +42737,7 @@ QO
 hD
 hD
 UI
-JB
+Io
 JB
 JB
 JB
@@ -42984,7 +42984,7 @@ Io
 jw
 Zg
 uF
-cV
+Nz
 MP
 MP
 hD
@@ -42994,7 +42994,7 @@ QO
 WI
 Bh
 Io
-JB
+Io
 JB
 JB
 JB
@@ -49627,7 +49627,7 @@ zL
 FT
 Ia
 LA
-Ud
+cd
 JB
 JB
 JB
