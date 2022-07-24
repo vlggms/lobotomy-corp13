@@ -29620,7 +29620,7 @@
 /obj/item/taperecorder{
 	pixel_x = 3
 	},
-/obj/item/storage/box/deputy,
+/obj/item/storage/box/control,
 /obj/item/flashlight/seclite,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -32017,11 +32017,11 @@
 "bpp" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
-/obj/item/clothing/accessory/armband/deputy,
-/obj/item/clothing/accessory/armband/deputy,
-/obj/item/clothing/accessory/armband/deputy,
-/obj/item/clothing/accessory/armband/deputy,
-/obj/item/clothing/accessory/armband/deputy,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
 /obj/item/food/donut/jelly/choco,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{

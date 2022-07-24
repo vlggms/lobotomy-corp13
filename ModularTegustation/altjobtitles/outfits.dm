@@ -119,7 +119,7 @@ HOW ALT TITLES PICK OUTFITS
 	name = "Station Engineer (Maintenance Technician)"
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/hazardvest
-	accessory = /obj/item/clothing/accessory/armband/engine
+	accessory = /obj/item/clothing/accessory/armband/training
 	r_pocket = /obj/item/stack/cable_coil
 	l_pocket = /obj/item/flashlight
 	l_hand = /obj/item/storage/bag/construction
