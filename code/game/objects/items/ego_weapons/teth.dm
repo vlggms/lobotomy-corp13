@@ -21,3 +21,15 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/horn
+	name = "horn"
+	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
+	icon_state = "horn"
+	force = 30
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'

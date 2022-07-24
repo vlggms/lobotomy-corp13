@@ -29,3 +29,12 @@
 /datum/ego_datum/armor/fragment
 	item_path = /obj/item/clothing/suit/armor/ego_gear/fragment
 	cost = 20
+
+// Beauty and the Beast - Horn
+/datum/ego_datum/weapon/horn
+	item_path = /obj/item/ego_weapon/horn
+	cost = 20
+
+/datum/ego_datum/armor/horn
+	item_path = /obj/item/clothing/suit/armor/ego_gear/horn
+	cost = 20

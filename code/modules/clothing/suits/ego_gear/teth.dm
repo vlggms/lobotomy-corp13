@@ -23,3 +23,9 @@
 	Sometimes, the wielder may see things we have long forgotten."
 	icon_state = "fragment"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -20, BLACK_DAMAGE = 50, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/horn
+	name = "horn"
+	desc = "Since the flower had concluded its tale long ago, its scent is gone."
+	icon_state = "horn"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -30, PALE_DAMAGE = 0)
