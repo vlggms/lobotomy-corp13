@@ -537,8 +537,8 @@
 /area/facility_hallway/south)
 "dE" = (
 /obj/machinery/door/poddoor/shutters/window{
-	name = "Fuel Storage";
-	id = "fuelstorage"
+	id = "fuelstorage";
+	name = "Fuel Storage"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -674,6 +674,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
+"eF" = (
+/obj/structure/table/glass,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/info,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "eG" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -1039,9 +1053,9 @@
 "ha" = (
 /obj/machinery/computer/camera_advanced,
 /obj/machinery/button/door/indestructible{
+	id = "managerlockdown";
 	name = "Manager's Office Lockdown button";
-	pixel_y = 32;
-	id = "managerlockdown"
+	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
@@ -1602,9 +1616,9 @@
 /area/department_main/control)
 "lh" = (
 /obj/machinery/button/door{
+	id = "announcementstorage";
 	name = "Announcement Systems Storage button";
 	pixel_x = -32;
-	id = "announcementstorage";
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/purple,
@@ -1901,8 +1915,8 @@
 /area/department_main/control)
 "mD" = (
 /obj/machinery/button/door{
-	name = "Fuel Storage button";
 	id = "fuelstorage";
+	name = "Fuel Storage button";
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -1947,9 +1961,9 @@
 /area/department_main/control)
 "mS" = (
 /obj/machinery/button/door{
-	pixel_x = 32;
 	id = cellthree;
-	name = "Cell Three Lock Button"
+	name = "Cell Three Lock Button";
+	pixel_x = 32
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
@@ -2072,8 +2086,8 @@
 "ny" = (
 /obj/machinery/computer/ego_purchase,
 /obj/machinery/button/door/indestructible{
-	name = "Facility Lockdown button";
 	id = "facilitylockdown";
+	name = "Facility Lockdown button";
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
@@ -3144,9 +3158,9 @@
 /area/department_main/information)
 "uV" = (
 /obj/machinery/button/door{
-	pixel_x = 32;
 	id = cellfour;
-	name = "Cell Four Lock Button"
+	name = "Cell Four Lock Button";
+	pixel_x = 32
 	},
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -3183,9 +3197,9 @@
 /area/department_main/training)
 "vj" = (
 /obj/machinery/button/door{
-	pixel_x = -32;
 	id = celltwo;
-	name = "Cell Two Lock Button"
+	name = "Cell Two Lock Button";
+	pixel_x = -32
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
@@ -3463,12 +3477,22 @@
 	dir = 9
 	},
 /obj/structure/rack,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/control,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "xz" = (
 /obj/machinery/door/poddoor/shutters/window{
-	name = "Announcement Systems Storage";
-	id = "announcementstorage"
+	id = "announcementstorage";
+	name = "Announcement Systems Storage"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -3580,6 +3604,20 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/department_main/control)
+"yt" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/command,
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "yy" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -4078,8 +4116,8 @@
 /area/facility_hallway/north)
 "Cp" = (
 /obj/machinery/button/door{
-	name = "Fuel Storage button";
 	id = "fuelstorage";
+	name = "Fuel Storage button";
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -4106,8 +4144,18 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
 "Cu" = (
-/obj/structure/table/reinforced,
-/turf/closed/indestructible/reinforced,
+/obj/structure/table/wood/fancy/green,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/safety,
+/turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Cz" = (
 /obj/machinery/cryopod,
@@ -5684,9 +5732,9 @@
 /area/facility_hallway/south)
 "NW" = (
 /obj/machinery/button/door{
-	pixel_x = -32;
 	id = cellone;
-	name = "Cell One Lock Button"
+	name = "Cell One Lock Button";
+	pixel_x = -32
 	},
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -6373,6 +6421,20 @@
 /obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"Tf" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/training,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Th" = (
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -7344,8 +7406,8 @@
 	name = "Manager's Office"
 	},
 /obj/machinery/door/poddoor/preopen{
-	name = "Manager's Office Lockdown Blast Door";
-	id = "managerlockdown"
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
@@ -38144,7 +38206,7 @@ Pe
 Pe
 jy
 cy
-cy
+Cu
 dj
 Pe
 Pe
@@ -39679,7 +39741,7 @@ JB
 JB
 an
 an
-Cu
+an
 an
 fG
 gH
@@ -39979,7 +40041,7 @@ Bk
 Bk
 Bk
 VV
-UF
+yt
 Wp
 Bk
 VV
@@ -41799,7 +41861,7 @@ JU
 Io
 ah
 MP
-MP
+eF
 MP
 hD
 OJ
@@ -45093,7 +45155,7 @@ RG
 CT
 SY
 vh
-tw
+Tf
 KO
 Ib
 Ib
