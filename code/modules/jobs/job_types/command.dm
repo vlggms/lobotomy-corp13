@@ -35,3 +35,5 @@
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
+	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
