@@ -480,3 +480,41 @@
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
 	..()
+
+/datum/outfit/centcom/ert/commander/rhino
+	name = "Rhino Team Leader"
+	suit = null
+	suit_store = null
+	glasses = /obj/item/clothing/glasses/hud/health/night
+	back = /obj/item/storage/backpack/ert/engineer
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = null
+	r_pocket = null
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/centcom/ert/commander/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()
+
+/datum/outfit/centcom/ert/security/rhino
+	name = "Rhino Team"
+	suit = null
+	suit_store = null
+	glasses = /obj/item/clothing/glasses/hud/health/night
+	back = /obj/item/storage/backpack/ert/engineer
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = null
+	r_pocket = null
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()

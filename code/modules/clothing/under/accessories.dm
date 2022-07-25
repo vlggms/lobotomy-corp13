@@ -209,7 +209,7 @@
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by the Wings of the World. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
 
 /obj/item/clothing/accessory/medal/plasma
 	name = "plasma medal"
@@ -247,38 +247,38 @@
 	icon_state = "redband"
 	attachment_slot = null
 
-/obj/item/clothing/accessory/armband/deputy
-	name = "security deputy armband"
-	desc = "An armband, worn by personnel authorized to act as a deputy of station security."
+/obj/item/clothing/accessory/armband/control
+	name = "control department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is red."
 
-/obj/item/clothing/accessory/armband/cargo
-	name = "cargo bay guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is brown."
+/obj/item/clothing/accessory/armband/command
+	name = "command department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is golden."
 	icon_state = "cargoband"
 
-/obj/item/clothing/accessory/armband/engine
-	name = "engineering guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is orange with a reflective strip!"
+/obj/item/clothing/accessory/armband/training
+	name = "training department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is orange with a reflective strip!"
 	icon_state = "engieband"
 
-/obj/item/clothing/accessory/armband/science
-	name = "science guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is purple."
+/obj/item/clothing/accessory/armband/info
+	name = "information department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is purple."
 	icon_state = "rndband"
 
-/obj/item/clothing/accessory/armband/hydro
-	name = "hydroponics guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is green and blue."
+/obj/item/clothing/accessory/armband/safety
+	name = "safety department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is green and blue."
 	icon_state = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white."
+	name = "white armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 
-/obj/item/clothing/accessory/armband/medblue
-	name = "medical guard armband"
-	desc = "An armband, worn by the station's security forces to display which department they're assigned to. This one is white and blue."
+/obj/item/clothing/accessory/armband/welfare
+	name = "welfare department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
 
 //////////////

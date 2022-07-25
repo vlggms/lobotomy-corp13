@@ -87,4 +87,3 @@
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/hos/alt
-	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command

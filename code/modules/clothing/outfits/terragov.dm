@@ -2,7 +2,7 @@
 	name = "TerraGov Official"
 	var/jb_name = "TerraGov Official"
 
-	uniform = /obj/item/clothing/under/suit/black_really/terragov
+	uniform = /obj/item/clothing/under/suit/black_really/citygov
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -10,7 +10,7 @@
 	ears = /obj/item/radio/headset/terragov/alt
 	id = /obj/item/card/id/centcom
 
-	accessory = /obj/item/clothing/accessory/armband/terragov
+	accessory = /obj/item/clothing/accessory/armband/citygov
 	back = /obj/item/storage/backpack/satchel
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1, \
 		/obj/item/crowbar=1, \
@@ -31,7 +31,7 @@
 /datum/outfit/terragov/marine
 	name = "TerraGov Marine"
 	jb_name = "TerraGov Marine"
-	uniform = /obj/item/clothing/under/syndicate/tgmc
+	uniform = /obj/item/clothing/under/syndicate/citygov
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/thermal
 	mask = /obj/item/clothing/mask/gas
 	suit_store = /obj/item/gun/ballistic/automatic/t12

@@ -169,8 +169,8 @@
 //CIG PACK//
 ////////////
 /obj/item/storage/fancy/cigarettes
-	name = "\improper Space Cigarettes packet"
-	desc = "The most popular brand of cigarettes, sponsors of the Space Olympics."
+	name = "\improper City Cigarettes packet"
+	desc = "The most popular brand of cigarettes, through the efforts of the very best corporate assassins."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig"
 	inhand_icon_state = "cigpacket"
@@ -179,7 +179,7 @@
 	throwforce = 0
 	slot_flags = ITEM_SLOT_BELT
 	icon_type = "cigarette"
-	spawn_type = /obj/item/clothing/mask/cigarette/space_cigarette
+	spawn_type = /obj/item/clothing/mask/cigarette/city_cigarette
 	custom_price = PAYCHECK_MEDIUM
 	age_restricted = TRUE
 	///for cigarette overlay

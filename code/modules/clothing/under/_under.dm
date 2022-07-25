@@ -11,9 +11,9 @@
 	pickup_sound =  'sound/items/handling/cloth_pickup.ogg'
 	limb_integrity = 30
 	var/fitted = FEMALE_UNIFORM_FULL // For use in alternate clothing styles for women
-	var/has_sensor = HAS_SENSORS // For the crew computer
+	var/has_sensor = LOCKED_SENSORS // For the crew computer
 	var/random_sensor = TRUE
-	var/sensor_mode = NO_SENSORS
+	var/sensor_mode = SENSOR_COORDS
 	var/can_adjust = TRUE
 	var/adjusted = NORMAL_STYLE
 	var/alt_covers_chest = FALSE // for adjusted/rolled-down jumpsuits, FALSE = exposes chest and arms, TRUE = exposes arms only
@@ -56,7 +56,7 @@
 	. = ..()
 	if(random_sensor)
 		//make the sensor mode favor higher levels, except coords.
-		sensor_mode = pick(SENSOR_OFF, SENSOR_LIVING, SENSOR_LIVING, SENSOR_VITALS, SENSOR_VITALS, SENSOR_VITALS, SENSOR_COORDS, SENSOR_COORDS)
+		sensor_mode = SENSOR_COORDS
 
 /obj/item/clothing/under/emp_act()
 	. = ..()
