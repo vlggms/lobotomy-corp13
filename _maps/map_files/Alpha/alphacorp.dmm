@@ -1525,6 +1525,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/item/storage/box/drinkingglasses,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "pH" = (
