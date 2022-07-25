@@ -33,7 +33,7 @@
 
 /obj/item/clothing/accessory/armband/citygov/un
 	name = "\improper UN armband"
-	desc = "A light-blue armband that was worn by the old world government. Some day humanity once lived beyond the city."
+	desc = "A light-blue armband that was worn by the old world government. Some say humanity once lived beyond the city."
 	icon_state = "tgunband"
 
 /obj/item/clothing/accessory/armband/russian

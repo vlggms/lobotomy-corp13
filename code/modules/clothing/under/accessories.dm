@@ -209,7 +209,7 @@
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by the Wings of the World. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
 
 /obj/item/clothing/accessory/medal/plasma
 	name = "plasma medal"
@@ -272,12 +272,12 @@
 	icon_state = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical guard armband"
+	name = "white armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 
-/obj/item/clothing/accessory/armband/medblue
-	name = "medical guard armband"
+/obj/item/clothing/accessory/armband/welfare
+	name = "welfare department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
 

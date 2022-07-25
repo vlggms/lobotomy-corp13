@@ -1525,6 +1525,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/item/storage/box/drinkingglasses,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "pH" = (
@@ -1904,7 +1905,9 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
+	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -2185,7 +2188,7 @@
 /area/facility_hallway/east)
 "vS" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/obey{
+/obj/machinery/computer/cryopod{
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
@@ -2260,6 +2263,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/kirbyplants{
 	icon_state = "plant-05"
+	},
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
@@ -2560,6 +2566,9 @@
 	icon_state = "plant-04"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/official/obey{
+	pixel_x = -32
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "zN" = (
@@ -3293,6 +3302,9 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "IS" = (
@@ -3649,6 +3661,9 @@
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "Mo" = (
@@ -3808,7 +3823,7 @@
 /area/department_main/safety)
 "Ov" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster/official/work_for_a_future{
+/obj/machinery/computer/cryopod{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
