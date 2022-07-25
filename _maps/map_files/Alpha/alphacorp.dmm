@@ -1905,7 +1905,9 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/freezer/fridge/open,
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
+	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
