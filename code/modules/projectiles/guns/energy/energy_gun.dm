@@ -165,3 +165,20 @@
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.16 SECONDS)
+
+
+
+/obj/item/gun/energy/e_gun/rifleman
+	name = "L corp issued rifle"
+	desc = "An energy gun specifically produces to fight threats commonly seen in the L corp facilities."
+	cell_type = /obj/item/stock_parts/cell/infinite
+	fire_delay = 0
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/white/weak,
+		/obj/item/ammo_casing/energy/laser/red/weak
+		)
+	can_charge = FALSE
+	weapon_weight = WEAPON_HEAVY // No dual wielding
+
+
+
