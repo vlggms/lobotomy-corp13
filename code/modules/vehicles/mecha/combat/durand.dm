@@ -3,11 +3,13 @@
 	name = "\improper Rhinoceros Unit"
 	icon_state = "durand"
 	base_icon_state = "durand"
+	operation_req_access = list(ACCESS_CENT_GENERAL)
+	internals_req_access = list(ACCESS_CENT_GENERAL)
 	movedelay = 6
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
 	deflect_chance = 20
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -149,8 +151,8 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon = 'icons/mecha/durand_shield.dmi'
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
-	pixel_y = 2
-	obj_integrity = 300
+	pixel_y = 5
+	obj_integrity = 100
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
@@ -176,6 +178,11 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 
 /obj/durand_shield/Destroy()
 	UnregisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER)
+	for(var/occupant in chassis.occupants)
+		var/datum/action/button = chassis.occupant_actions[occupant][/datum/action/vehicle/sealed/mecha/mech_defense_mode]
+		button.button_icon_state = "mech_defense_mode_off"
+		chassis.defense_mode = FALSE
+		button.UpdateButtonIcon()
 	if(chassis)
 		UnregisterSignal(chassis, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 		chassis.shield = null
@@ -267,7 +274,6 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 			var/mob/living/occupant = O
 			var/datum/action/action = LAZYACCESSASSOC(chassis.occupant_actions, occupant, /datum/action/vehicle/sealed/mecha/mech_defense_mode)
 			action.Trigger()
-	obj_integrity = 300
 
 /obj/durand_shield/play_attack_sound()
 	playsound(src, 'sound/mecha/mech_shield_deflect.ogg', 100, TRUE)
