@@ -16,6 +16,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/horn,
+		/datum/ego_datum/armor/horn
 		)
 
 	var/injured = FALSE
