@@ -151,7 +151,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon = 'icons/mecha/durand_shield.dmi'
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
-	pixel_y = 2
+	pixel_y = 5
 	obj_integrity = 100
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
