@@ -49,7 +49,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/mining)
 "i" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/mining)
 "j" = (

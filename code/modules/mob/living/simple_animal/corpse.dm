@@ -186,7 +186,7 @@
 	id = /obj/item/card/id
 
 /obj/effect/mob_spawn/human/corpse/nanotrasenassaultsoldier
-	name = "Nanotrasen Private Security Officer"
+	name = "N-Corporation Private Security Agent"
 	id_job = "Nanotrasen Assault Force"
 	id_access = "Security Officer"
 	outfit = /datum/outfit/nanotrasenassaultsoldiercorpse

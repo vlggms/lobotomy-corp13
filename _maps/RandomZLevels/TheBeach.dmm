@@ -978,7 +978,7 @@
 /area/awaymission/beach)
 "db" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket/letterman_nanotrasen,
+/obj/item/clothing/suit/jacket/letterman_ncorp,
 /turf/open/floor/wood,
 /area/awaymission/beach)
 "dc" = (

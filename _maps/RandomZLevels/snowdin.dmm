@@ -2608,7 +2608,7 @@
 "gg" = (
 /obj/structure/bed,
 /obj/effect/landmark/awaystart,
-/obj/item/bedsheet/nanotrasen,
+/obj/item/bedsheet/ncorporation,
 /turf/open/floor/carpet,
 /area/awaymission/snowdin/post/dorm)
 "gh" = (
@@ -4486,7 +4486,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin/outside)
 "kq" = (
@@ -7252,7 +7252,7 @@
 /turf/open/floor/plating,
 /area/awaymission/snowdin/post/engineering)
 "qE" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/machinery/light/small/broken{
@@ -7918,7 +7918,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /turf/open/floor/plating/snowed/cavern,
@@ -8983,7 +8983,7 @@
 	},
 /area/awaymission/snowdin/cave)
 "vR" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/mineral/titanium,
 /area/awaymission/snowdin/post/broken_shuttle)
 "vS" = (
@@ -10582,7 +10582,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /turf/open/floor/plating/snowed/cavern,
@@ -12716,7 +12716,7 @@
 /area/awaymission/snowdin/outside)
 "Fv" = (
 /obj/machinery/light/small,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /turf/open/floor/plating/asteroid/snow/ice,
@@ -12910,7 +12910,7 @@
 /turf/open/floor/plasteel,
 /area/awaymission/snowdin/post/mining_dock)
 "FW" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /turf/open/floor/plating/asteroid/snow/ice,

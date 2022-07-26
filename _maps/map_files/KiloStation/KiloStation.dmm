@@ -7973,7 +7973,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "anG" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall/rust,
 /area/ai_monitored/security/armory)
 "anH" = (
@@ -8275,7 +8275,7 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "aof" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/space/nearstation)
 "aog" = (
@@ -26506,7 +26506,7 @@
 	dir = 8
 	},
 /obj/structure/table,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/item/hand_labeler,
 /obj/item/gun/syringe{
 	pixel_y = 5
@@ -31511,7 +31511,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark/corner{
@@ -43710,7 +43710,7 @@
 /turf/open/floor/plasteel/dark,
 /area/quartermaster/qm)
 "bsC" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/maintenance/port)
 "bsD" = (
@@ -53919,7 +53919,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
@@ -55949,7 +55949,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 8
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
@@ -89234,7 +89234,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /turf/open/floor/plastic,
 /area/security/prison)
 "pwX" = (

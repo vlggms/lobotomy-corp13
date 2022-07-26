@@ -636,7 +636,7 @@
 "bM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -3284,7 +3284,7 @@
 	dir = 8
 	},
 /obj/item/broken_bottle,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/rnd)
@@ -7619,7 +7619,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /turf/open/floor/plasteel/white,
 /area/ruin/space/has_grav/ancientstation)
 "Yr" = (
