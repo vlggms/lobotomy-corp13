@@ -70,6 +70,7 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 0.2, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.05)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	move_resist = MOVE_FORCE_OVERPOWERING
 
 	//How many people has she eaten
 	var/belly = 0
