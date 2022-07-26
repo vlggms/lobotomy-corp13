@@ -109,7 +109,7 @@
 	//She gets faster but not as protected or as strong
 	if(belly == 5)
 		//animation!
-		icon_state = "striptease"
+		icon_state = "phasechange"
 		SLEEP_CHECK_DEATH(5)
 
 		damage_coeff = list(BRUTE = 0.4, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
@@ -121,8 +121,8 @@
 
 		pulse_cooldown_time = 6 SECONDS
 
-		icon_state = "matriarch_nude"
-		icon_living = "matriarch_nude"
+		icon_state = "matriarch_slim"
+		icon_living = "matriarch_slim"
 
 
 	if(belly == 10)
