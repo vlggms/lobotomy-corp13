@@ -4238,7 +4238,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/brown,
-/obj/structure/sign/poster/contraband/space_cola{
+/obj/structure/sign/poster/contraband/city_cola{
 	pixel_y = -32
 	},
 /obj/machinery/processor,
