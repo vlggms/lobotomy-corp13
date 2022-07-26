@@ -70,10 +70,38 @@
 /obj/projectile/beam/laser/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
-	damage = 40
+	damage = 100
 	tracer_type = /obj/effect/projectile/tracer/heavy_laser
 	muzzle_type = /obj/effect/projectile/muzzle/heavy_laser
 	impact_type = /obj/effect/projectile/impact/heavy_laser
+
+/obj/projectile/beam/laser/heavylaser/red
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	light_color = COLOR_RED
+
+/obj/projectile/beam/laser/heavylaser/white
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	light_color = COLOR_WHITE
+	icon_state = "whiteheavylaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
+
+/obj/projectile/beam/laser/heavylaser/black
+	damage = 40
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	light_color = COLOR_PURPLE
+	icon_state = "purpleheavylaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
+
+/obj/projectile/beam/laser/heavylaser/pale
+	damage = 20
+	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
+	light_color = COLOR_PALE_BLUE_GRAY
+	icon_state = "blueheavylaser"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 
 /obj/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
 	. = ..()

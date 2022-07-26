@@ -1,20 +1,20 @@
 // Officials
-/obj/item/clothing/under/suit/black_really/terragov
+/obj/item/clothing/under/suit/black_really/citygov
 	name = "armored executive suit"
-	desc = "A formal black suit made out of protective material. Used by non-military personnel of Terran Government."
+	desc = "A formal black suit made out of protective material. Used by non-military personnel of city government."
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 // Marines
-/obj/item/clothing/under/syndicate/tgmc
+/obj/item/clothing/under/syndicate/citygov
 	name = "marine camo uniform"
-	desc = "A camouflage jumpsuit worn by marines of the Terran Government."
+	desc = "A camouflage jumpsuit worn by marines of the city government."
 	icon_state = "camo_tgmc"
 	can_adjust = FALSE
 
 // Other stuff
 /obj/item/clothing/head/helmet/swat/un
 	name = "peacekeeper helmet"
-	desc = "A blue helmet that was once used by TerraGov predecessors."
+	desc = "A blue helmet that was once used by the old world government."
 	icon_state = "antichristhelm"
 
 /obj/item/clothing/glasses/hud/security/sunglasses/thermal
@@ -26,17 +26,17 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 // Armbands
-/obj/item/clothing/accessory/armband/terragov
-	name = "\improper TerraGov armband"
-	desc = "An armband usually worn by TerraGov officials."
+/obj/item/clothing/accessory/armband/citygov
+	name = "\improper CityGov armband"
+	desc = "An armband usually worn by city government officials."
 	icon_state = "terraband"
 
-/obj/item/clothing/accessory/armband/terragov/un
+/obj/item/clothing/accessory/armband/citygov/un
 	name = "\improper UN armband"
-	desc = "A light-blue armband that was worn by the TerraGov predecessors. For when you love the antichrist."
+	desc = "A light-blue armband that was worn by the old world government. Some say humanity once lived beyond the city."
 	icon_state = "tgunband"
 
 /obj/item/clothing/accessory/armband/russian
 	name = "russian armband"
-	desc = "An armband that is worn by Russian separatists, enemies of TerraGov and Space Russians alike."
+	desc = "An armband that is worn by nostalgic district residents, who ramble about a long dead civilization."
 	icon_state = "rusband"

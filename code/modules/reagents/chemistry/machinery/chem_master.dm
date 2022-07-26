@@ -502,7 +502,7 @@
 			"enzyme" = list("icon_state" = "enzyme", "icon_empty" = "", "name" = "universal enzyme bottle", "desc" = "Used in cooking various dishes."),
 			"flour" = list("icon_state" = "flour", "icon_empty" = "", "name" = "flour sack", "desc" = "A big bag of flour. Good for baking!"),
 			"mayonnaise" = list("icon_state" = "mayonnaise", "icon_empty" = "", "name" = "mayonnaise jar", "desc" = "An oily condiment made from egg yolks."),
-			"milk" = list("icon_state" = "milk", "icon_empty" = "", "name" = "space milk", "desc" = "It's milk. White and nutritious goodness!"),
+			"milk" = list("icon_state" = "milk", "icon_empty" = "", "name" = "milk", "desc" = "It's milk. White and nutritious goodness!"),
 			"blackpepper" = list("icon_state" = "peppermillsmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "pepper mill", "desc" = "Often used to flavor food or make people sneeze."),
 			"rice" = list("icon_state" = "rice", "icon_empty" = "", "name" = "rice sack", "desc" = "A big bag of rice. Good for cooking!"),
 			"sodiumchloride" = list("icon_state" = "saltshakersmall", "inhand_icon_state" = "", "icon_empty" = "emptyshaker", "name" = "salt shaker", "desc" = "Salt. From dead crew, presumably."),

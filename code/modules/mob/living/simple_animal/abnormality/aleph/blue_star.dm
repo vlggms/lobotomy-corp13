@@ -3,7 +3,11 @@
 	desc = "Floating heart-shaped object. It's alive, and soon you will become one with it."
 	health = 4000
 	maxHealth = 4000
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -16
+	base_pixel_y = -16
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "bluestar"
 	icon_living = "bluestar"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.1)

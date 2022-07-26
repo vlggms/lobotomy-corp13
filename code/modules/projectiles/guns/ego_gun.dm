@@ -5,9 +5,10 @@
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	fire_sound = 'sound/weapons/emitter.ogg'
-	w_class = WEIGHT_CLASS_NORMAL
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	pin = /obj/item/firing_pin/magic
+	slot_flags = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 0,

@@ -6,6 +6,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
+	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)
 
 /datum/outfit/centcom/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
@@ -447,7 +448,7 @@
 
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit/leader
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	back = /obj/item/storage/backpack/ert
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
@@ -466,13 +467,51 @@
 	name = "Rabbit Team"
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	l_pocket = /obj/item/ego_weapon/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 
 /datum/outfit/centcom/ert/security/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()
+
+/datum/outfit/centcom/ert/commander/rhino
+	name = "Rhino Team Leader"
+	suit = null
+	suit_store = null
+	glasses = /obj/item/clothing/glasses/hud/health/night
+	back = /obj/item/storage/backpack/ert/engineer
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = null
+	r_pocket = null
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/centcom/ert/commander/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	..()
+
+/datum/outfit/centcom/ert/security/rhino
+	name = "Rhino Team"
+	suit = null
+	suit_store = null
+	glasses = /obj/item/clothing/glasses/hud/health/night
+	back = /obj/item/storage/backpack/ert/engineer
+	belt = /obj/item/storage/belt/utility/full
+	l_pocket = null
+	r_pocket = null
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 

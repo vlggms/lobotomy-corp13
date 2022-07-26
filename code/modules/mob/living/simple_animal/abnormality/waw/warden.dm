@@ -71,7 +71,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/warden/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 80)
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
 	return ..()
 

@@ -32,7 +32,7 @@
 	name = "Manager"
 	jobtype = /datum/job/manager
 
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/debug
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/captain/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy

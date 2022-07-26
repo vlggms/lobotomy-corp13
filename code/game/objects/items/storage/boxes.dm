@@ -762,15 +762,15 @@
 		new /obj/item/light/bulb(src)
 
 
-/obj/item/storage/box/deputy
-	name = "box of deputy armbands"
-	desc = "To be issued to those authorized to act as deputy of security."
+/obj/item/storage/box/control
+	name = "box of control armbands"
+	desc = "To be issued to those authorized to act as agents of the control department."
 	icon_state = "secbox"
 	illustration = "depband"
 
-/obj/item/storage/box/deputy/PopulateContents()
+/obj/item/storage/box/control/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/clothing/accessory/armband/deputy(src)
+		new /obj/item/clothing/accessory/armband/control(src)
 
 /obj/item/storage/box/metalfoam
 	name = "box of metal foam grenades"

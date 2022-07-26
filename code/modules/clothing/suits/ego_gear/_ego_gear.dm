@@ -3,9 +3,12 @@
 	desc = "You aren't meant to see this."
 	icon = 'icons/obj/clothing/ego_gear/suits.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/suit.dmi'
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD // We protect all because magic
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD 	// We protect all because magic
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+	w_class = WEIGHT_CLASS_BULKY								//No more stupid 10 egos in bag
+	allowed = list(/obj/item/gun/ego_gun, /obj/item/ego_weapon)
+
 	var/list/attribute_requirements = list()
 
 /obj/item/clothing/suit/armor/ego_gear/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)

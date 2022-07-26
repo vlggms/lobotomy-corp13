@@ -81,7 +81,7 @@
 
 /obj/effect/spawner/lootdrop/prison_contraband
 	name = "prison contraband loot spawner"
-	loot = list(/obj/item/clothing/mask/cigarette/space_cigarette = 4,
+	loot = list(/obj/item/clothing/mask/cigarette/city_cigarette = 4,
 				/obj/item/clothing/mask/cigarette/robust = 2,
 				/obj/item/clothing/mask/cigarette/carp = 3,
 				/obj/item/clothing/mask/cigarette/uplift = 2,
