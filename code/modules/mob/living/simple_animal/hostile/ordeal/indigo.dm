@@ -48,7 +48,7 @@
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight
-	name = "The Matriarch"
+	name = "Matriarch"
 	desc = "A humanoid creature wearing metallic armor. The Queen of sweepers."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "matriarch"
