@@ -371,7 +371,7 @@ If you create T5+ please take a pass at mech_fabricator.dm. The parts being good
 /obj/item/stock_parts/card_reader
 	name = "card reader"
 	icon_state = "card_reader"
-	desc = "A small magnetic card reader, used for devices that take and transmit holocredits."
+	desc = "A small magnetic card reader, used for devices that take and transmit holo-ahn."
 	custom_materials = list(/datum/material/iron=50, /datum/material/glass=10)
 
 /obj/item/stock_parts/water_recycler

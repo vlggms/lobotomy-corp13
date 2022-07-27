@@ -154,7 +154,7 @@
 
 /obj/item/clothing/head/hos
 	name = "head of security cap"
-	desc = "The robust standard-issue cap of the Head of Security. For showing the officers who's in charge."
+	desc = "The robust standard-issue cap of the department captain. For showing the agents who's in charge."
 	icon_state = "hoscap"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 35, BOMB = 25, BIO = 10, RAD = 0, FIRE = 50, ACID = 60, WOUND = 10)
 	strip_delay = 80
@@ -165,8 +165,8 @@
 	desc = "A black cap fit for a high ranking syndicate officer."
 
 /obj/item/clothing/head/hos/beret
-	name = "head of security beret"
-	desc = "A robust beret for the Head of Security, for looking stylish while not sacrificing protection."
+	name = "captain beret"
+	desc = "A robust beret for the department captain, for looking stylish while not sacrificing protection."
 	icon_state = "hosberetblack"
 
 /obj/item/clothing/head/hos/beret/syndicate

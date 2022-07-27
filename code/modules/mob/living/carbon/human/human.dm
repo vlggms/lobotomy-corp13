@@ -478,7 +478,7 @@
 				var/crime = GLOB.data_core.createCrimeEntry(t1, "", allowed_access, station_time_timestamp(), fine)
 				for (var/obj/item/pda/P in GLOB.PDAs)
 					if(P.owner == R.fields["name"])
-						var/message = "You have been fined [fine] credits for '[t1]'. Fines may be paid at security."
+						var/message = "You have been fined [fine] ahn for '[t1]'. Fines may be paid at security."
 						var/datum/signal/subspace/messaging/pda/signal = new(src, list(
 							"name" = "Security Citation",
 							"job" = "Citation Server",

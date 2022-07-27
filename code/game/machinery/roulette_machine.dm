@@ -215,7 +215,7 @@
 		playsound(src, 'sound/machines/synth_no.ogg', 50)
 		return FALSE
 
-	audible_message("<span class='notice'>You have won [potential_payout] credits! Congratulations!</span>")
+	audible_message("<span class='notice'>You have won [potential_payout] ahn! Congratulations!</span>")
 	playsound(src, 'sound/machines/synth_yes.ogg', 50)
 
 	dispense_prize(potential_payout)

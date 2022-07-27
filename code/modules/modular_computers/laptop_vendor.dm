@@ -2,7 +2,7 @@
 
 /obj/machinery/lapvend
 	name = "computer vendor"
-	desc = "A vending machine with microfabricator capable of dispensing various NT-branded computers."
+	desc = "A vending machine with microfabricator capable of dispensing various Lobotomy Corp-branded computers."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
 	layer = 2.9
@@ -247,7 +247,7 @@
 	else if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/HC = I
 		credits += HC.credits
-		visible_message("<span class='info'>[user] inserts a [HC.credits] cr holocredit chip into [src].</span>")
+		visible_message("<span class='info'>[user] inserts a [HC.credits] holo-ahn chip into [src].</span>")
 		qdel(HC)
 		return
 	else if(istype(I, /obj/item/card/id))
@@ -257,17 +257,17 @@
 		var/datum/bank_account/account = ID.registered_account
 		var/target_credits = total_price - credits
 		if(!account.adjust_money(-target_credits))
-			say("Insufficient credits on card to purchase!")
+			say("Insufficient ahn on card to purchase!")
 			return
 		credits += target_credits
-		say("[target_credits] cr have been withdrawn from your account.")
+		say("[target_credits] ahn have been withdrawn from your account.")
 		return
 	return ..()
 
 // Simplified payment processing, returns 1 on success.
 /obj/machinery/lapvend/proc/process_payment()
 	if(total_price > credits)
-		say("Insufficient credits.")
+		say("Insufficient ahn.")
 		return FALSE
 	else
 		return TRUE

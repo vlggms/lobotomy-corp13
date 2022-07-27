@@ -8,7 +8,7 @@
 
 /datum/antagonist/pirate/greet()
 	to_chat(owner, "<span class='boldannounce'>You are a Space Pirate!</span>")
-	to_chat(owner, "<B>The station refused to pay for your protection, protect the ship, siphon the credits from the station and raid it for even more loot.</B>")
+	to_chat(owner, "<B>The neighborhood refused to pay for your protection, protect the ship, siphon the ahn from the facility and raid it for even more loot.</B>")
 	owner.announce_objectives()
 
 /datum/antagonist/pirate/get_team()
@@ -64,7 +64,7 @@
 /datum/objective/loot/update_explanation_text()
 	if(cargo_hold)
 		var/area/storage_area = get_area(cargo_hold)
-		explanation_text = "Acquire loot and store [target_value] of credits worth in [storage_area.name] cargo hold."
+		explanation_text = "Acquire loot and store [target_value] of ahn worth in [storage_area.name] cargo hold."
 
 /datum/objective/loot/proc/loot_listing()
 	//Lists notable loot.
@@ -99,7 +99,7 @@
 	parts += "Loot stolen: "
 	var/datum/objective/loot/L = locate() in objectives
 	parts += L.loot_listing()
-	parts += "Total loot value : [L.get_loot_value()]/[L.target_value] credits"
+	parts += "Total loot value : [L.get_loot_value()]/[L.target_value] ahn."
 
 	if(L.check_completion() && !all_dead)
 		parts += "<span class='greentext big'>The pirate crew was successful!</span>"

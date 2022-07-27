@@ -34,7 +34,7 @@
 	if(D)
 		payoff = max(payoff_min, FLOOR(D.account_balance * 0.80, 1000))
 	threat.title = "Business proposition"
-	threat.content = "This is [ship_name]. Pay up [payoff] credits or you'll walk the plank."
+	threat.content = "This is [ship_name]. Pay up [payoff] ahn or you'll walk the plank."
 	threat.possible_answers = list("We'll pay.","No way.")
 	threat.answer_callback = CALLBACK(src,.proc/answered)
 	SScommunications.send_message(threat,unique = TRUE)
@@ -44,7 +44,7 @@
 		var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			if(D.adjust_money(-payoff))
-				priority_announce("Thanks for the credits, landlubbers.",sender_override = ship_name)
+				priority_announce("Thanks for the ahn, landlubbers.",sender_override = ship_name)
 				paid_off = TRUE
 				return
 			else
@@ -94,7 +94,7 @@
 
 /obj/machinery/shuttle_scrambler
 	name = "Data Siphon"
-	desc = "This heap of machinery steals credits and data from unprotected systems and locks down cargo shuttles."
+	desc = "This heap of machinery steals ahn and data from unprotected systems and locks down cargo shuttles."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
 	density = TRUE
@@ -151,7 +151,7 @@
 /obj/machinery/shuttle_scrambler/proc/dump_loot(mob/user)
 	if(credits_stored)	// Prevents spamming empty holochips
 		new /obj/item/holochip(drop_location(), credits_stored)
-		to_chat(user,"<span class='notice'>You retrieve the siphoned credits!</span>")
+		to_chat(user,"<span class='notice'>You retrieve the siphoned ahn!</span>")
 		credits_stored = 0
 	else
 		to_chat(user,"<span class='notice'>There's nothing to withdraw.</span>")

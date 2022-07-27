@@ -319,8 +319,8 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 //Special NT NPCs
 
 /mob/living/simple_animal/hostile/nanotrasen/ranged/assault
-	name = "Nanotrasen Assault Officer"
-	desc = "Nanotrasen Assault Officer. Contact CentCom if you saw him on your station. Prepare to die, if you've been found near Syndicate property."
+	name = "N-Corporation Assault Agent"
+	desc = "N-Corporation Assault Agent. Contact the Wings of the World if you saw him in your facility. Prepare to die, if you've been found near criminal syndicate property."
 	icon_state = "nanotrasenrangedassault"
 	icon_living = "nanotrasenrangedassault"
 	icon_dead = null
@@ -336,7 +336,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	loot = list(/obj/effect/mob_spawn/human/corpse/nanotrasenassaultsoldier)
 
 /mob/living/simple_animal/hostile/nanotrasen/elite
-	name = "Nanotrasen Elite Assault Officer"
+	name = "N-Corporation Elite Assault Officer"
 	desc = "Pray for your life, syndicate. Run while you can."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "nanotrasen_ert"

@@ -119,7 +119,7 @@
 
 /obj/machinery/paystand/proc/purchase(buyer, price)
 	my_card.registered_account.adjust_money(price)
-	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [price] credits.")
+	my_card.registered_account.bank_card_talk("Purchase made at your vendor by [buyer] for [price] ahn.")
 	amount_deposited = amount_deposited + price
 	if(signaler && amount_deposited >= signaler_threshold)
 		signaler.signal()
@@ -134,6 +134,6 @@
 /obj/machinery/paystand/examine(mob/user)
 	. = ..()
 	if(force_fee)
-		. += "<span class='warning'>This paystand forces a payment of <b>[force_fee]</b> credit\s per swipe instead of a variable amount.</span>"
+		. += "<span class='warning'>This paystand forces a payment of <b>[force_fee]</b> ahn per swipe instead of a variable amount.</span>"
 	if(user.get_active_held_item() == my_card)
 		. += "<span class='notice'>Paystands can be edited through swiping your card with different intents. <b>Disarm</b> allows editing the name while <b>Grab</b> changes payment functionality.</span>"

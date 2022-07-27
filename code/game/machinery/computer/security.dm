@@ -358,7 +358,7 @@ What a mess.*/
 							else
 								var/diff = p.fine - p.paid
 								GLOB.data_core.payCitation(active2.fields["id"], text2num(href_list["cdataid"]), pay)
-								to_chat(usr, "<span class='notice'>You have paid [pay] credit\s towards your fine.</span>")
+								to_chat(usr, "<span class='notice'>You have paid [pay] ahn towards your fine.</span>")
 								if (pay == diff || pay > diff || pay >= diff)
 									investigate_log("Citation Paid off: <strong>[p.crimeName]</strong> Fine: [p.fine] | Paid off by [key_name(usr)]", INVESTIGATE_RECORDS)
 									to_chat(usr, "<span class='notice'>The fine has been paid in full.</span>")
@@ -730,7 +730,7 @@ What a mess.*/
 							var/crime = GLOB.data_core.createCrimeEntry(t1, "", authenticated, station_time_timestamp(), fine)
 							for (var/obj/item/pda/P in GLOB.PDAs)
 								if(P.owner == active1.fields["name"])
-									var/message = "You have been fined [fine] credits for '[t1]'. Fines may be paid at security."
+									var/message = "You have been fined [fine] ahn for '[t1]'. Fines may be paid at security."
 									var/datum/signal/subspace/messaging/pda/signal = new(src, list(
 										"name" = "Security Citation",
 										"job" = "Citation Server",

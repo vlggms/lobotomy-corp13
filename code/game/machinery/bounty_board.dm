@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(request_list)
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 				return
 			request_target.transfer_money(current_user, active_request.value)
-			say("Paid out [active_request.value] credits.")
+			say("Paid out [active_request.value] ahn.")
 			return TRUE
 		if("clear")
 			if(current_user)

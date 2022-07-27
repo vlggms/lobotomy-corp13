@@ -210,15 +210,15 @@
 	placed_sign.setDir(dir)
 	qdel(src)
 
-/obj/structure/sign/nanotrasen
-	name = "\improper Nanotrasen logo sign"
-	sign_change_name = "Corporate Logo - Nanotrasen"
-	desc = "A sign with the Nanotrasen logo on it. Glory to Nanotrasen!"
+/obj/structure/sign/ncorporation
+	name = "\improper N-Corporation logo sign"
+	sign_change_name = "Corporate Logo - N-Corporation"
+	desc = "A sign with the N-Corporation logo on it. Beyond the City!"
 	icon_state = "nanotrasen"
 	is_editable = TRUE
 
 /obj/structure/sign/logo
-	name = "\improper Nanotrasen logo sign"
-	desc = "The Nanotrasen corporate logo."
+	name = "\improper N-Corporation logo sign"
+	desc = "The N-Corporation corporate logo."
 	icon_state = "nanotrasen_sign1"
 	buildable_sign = FALSE

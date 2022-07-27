@@ -392,9 +392,9 @@
 	desc = "Drink the stars!"
 	icon_state = "poster40"
 
-/obj/structure/sign/poster/contraband/space_cola
-	name = "Space Cola"
-	desc = "Your favorite cola, in space."
+/obj/structure/sign/poster/contraband/city_cola
+	name = "City Cola"
+	desc = "Your favorite cola, in the city. I mean, where else would it be?"
 	icon_state = "poster41"
 
 /obj/structure/sign/poster/contraband/space_up

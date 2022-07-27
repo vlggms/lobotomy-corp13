@@ -1,6 +1,6 @@
 /obj/machinery/computer/bank_machine
 	name = "bank machine"
-	desc = "A machine used to deposit and withdraw station funds."
+	desc = "A machine used to deposit and withdraw facility funds."
 	icon = 'goon/icons/obj/goon_terminals.dmi'
 	idle_power_usage = 100
 
@@ -57,7 +57,7 @@
 		D.adjust_money(-siphon_am)
 		if(next_warning < world.time && prob(15))
 			var/area/A = get_area(loc)
-			var/message = "Unauthorized credit withdrawal underway in [initial(A.name)]!!"
+			var/message = "Unauthorized ahn withdrawal underway in [initial(A.name)]!!"
 			radio.talk_into(src, message, radio_channel)
 			next_warning = world.time + minimum_time_between_warnings
 
@@ -87,11 +87,11 @@
 
 	switch(action)
 		if("siphon")
-			say("Siphon of station credits has begun!")
+			say("Siphon of facility funds has begun!")
 			siphoning = TRUE
 			. = TRUE
 		if("halt")
-			say("Station credit withdrawal halted.")
+			say("Facility fund withdrawal halted.")
 			end_syphon()
 			. = TRUE
 

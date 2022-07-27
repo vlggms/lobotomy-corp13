@@ -124,19 +124,19 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 			// note this is before we increment, so this is the GOODY_FREE_SHIPPING_MAX + 1th goody to ship. also note we only increment off this step if they successfully pay the fee, so there's no way around it
 			else if(LAZYLEN(current_buyer_orders) == GOODY_FREE_SHIPPING_MAX)
 				price += CRATE_TAX
-				D.bank_card_talk("Goody order size exceeds free shipping limit: Assessing [CRATE_TAX] credit S&H fee.")
+				D.bank_card_talk("Goody order size exceeds free shipping limit: Assessing [CRATE_TAX] ahn S&H fee.")
 		else
 			D = SSeconomy.get_dep_account(ACCOUNT_CAR)
 		if(D)
 			if(!D.adjust_money(-price))
 				if(SO.paying_account)
-					D.bank_card_talk("Cargo order #[SO.id] rejected due to lack of funds. Credits required: [price]")
+					D.bank_card_talk("Cargo order #[SO.id] rejected due to lack of funds. Ahn required: [price]")
 				continue
 
 		if(SO.paying_account)
 			if(SO.pack.goody)
 				LAZYADD(goodies_by_buyer[SO.paying_account], SO)
-			D.bank_card_talk("Cargo order #[SO.id] has shipped. [price] credits have been charged to your bank account.")
+			D.bank_card_talk("Cargo order #[SO.id] has shipped. [price] ahn have been charged to your bank account.")
 			var/datum/bank_account/department/cargo = SSeconomy.get_dep_account(ACCOUNT_CAR)
 			cargo.adjust_money(price - SO.pack.get_cost()) //Cargo gets the handling fee
 		value += SO.pack.get_cost()
@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		qdel(SO)
 
 	var/datum/bank_account/cargo_budget = SSeconomy.get_dep_account(ACCOUNT_CAR)
-	investigate_log("[purchases] orders in this shipment, worth [value] credits. [cargo_budget.account_balance] credits left.", INVESTIGATE_CARGO)
+	investigate_log("[purchases] orders in this shipment, worth [value] ahn. [cargo_budget.account_balance] ahn left.", INVESTIGATE_CARGO)
 
 /obj/docking_port/mobile/supply/proc/sell()
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		D.adjust_money(ex.total_value[E])
 
 	SSshuttle.centcom_message = msg
-	investigate_log("Shuttle contents sold for [D.account_balance - presale_points] credits. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
+	investigate_log("Shuttle contents sold for [D.account_balance - presale_points] ahn. Contents: [ex.exported_atoms ? ex.exported_atoms.Join(",") + "." : "none."] Message: [SSshuttle.centcom_message || "none."]", INVESTIGATE_CARGO)
 
 #undef GOODY_FREE_SHIPPING_MAX
 #undef CRATE_TAX
