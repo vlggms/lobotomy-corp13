@@ -1,5 +1,5 @@
 /obj/item/ego_weapon/rabbit_blade
-	name = "combat knife"
+	name = "high-frequency combat blade"
 	desc = "A sharp high-frequency combat blade manufactured for use against abnormalities and other threats within L corp facilities."
 	icon_state = "rabbitblade"
 	inhand_icon_state = "rabbit_katana"
