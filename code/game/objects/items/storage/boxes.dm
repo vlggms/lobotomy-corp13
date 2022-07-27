@@ -124,12 +124,13 @@
 
 // Ordinary survival box
 /obj/item/storage/box/survival
-	var/mask_type = /obj/item/clothing/mask/breath
+	var/mask_type = /obj/item/clothing/mask/gas
 	var/internal_type = /obj/item/tank/internals/emergency_oxygen
 	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
 
 /obj/item/storage/box/survival/PopulateContents()
 	new mask_type(src)
+	new /obj/item/extinguisher/mini(src)
 	if(!isnull(medipen_type))
 		new medipen_type(src)
 
