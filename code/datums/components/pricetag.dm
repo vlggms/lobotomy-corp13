@@ -24,7 +24,7 @@
 	if(price)
 		var/adjusted_value = price*(profit_ratio/100)
 		owner.adjust_money(adjusted_value)
-		owner.bank_card_talk("Sale recorded. [adjusted_value] credits added to account.")
+		owner.bank_card_talk("Sale recorded. [adjusted_value] ahn added to account.")
 		return TRUE
 
 /datum/component/pricetag/proc/return_ratio()

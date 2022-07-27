@@ -3652,7 +3652,7 @@
 /turf/closed/wall,
 /area/vacant_room/office)
 "akz" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/vacant_room/office)
 "akA" = (
@@ -3704,7 +3704,7 @@
 /turf/closed/wall,
 /area/security/checkpoint/customs)
 "akF" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/checkpoint/customs)
 "akG" = (
@@ -3783,7 +3783,7 @@
 /turf/open/floor/plating,
 /area/security/checkpoint)
 "akR" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/checkpoint)
 "akS" = (
@@ -6178,7 +6178,7 @@
 /obj/structure/table/wood,
 /obj/item/camera,
 /obj/machinery/light/small,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /turf/open/floor/wood,
@@ -8485,7 +8485,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /obj/item/storage/box/mousetraps{
@@ -12152,7 +12152,7 @@
 /area/hallway/secondary/service)
 "aDH" = (
 /obj/item/kirbyplants/random,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/grimy,
@@ -14663,7 +14663,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "aJc" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/crew_quarters/bar)
 "aJd" = (
@@ -16572,7 +16572,7 @@
 /area/crew_quarters/bar/atrium)
 "aNb" = (
 /obj/structure/table/wood,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/structure/sign/poster/random{
 	pixel_y = 32
 	},
@@ -20724,7 +20724,7 @@
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/item/tank/internals/oxygen/red{
@@ -24875,7 +24875,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/kitchen)
 "bcl" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
 "bcm" = (
@@ -28517,7 +28517,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /obj/machinery/camera{
@@ -30151,7 +30151,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "blE" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/hallway/primary/fore)
 "blH" = (
@@ -35195,7 +35195,7 @@
 	pixel_y = -22
 	},
 /obj/machinery/light,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = -32
 	},
@@ -36150,7 +36150,7 @@
 /area/hydroponics)
 "bwP" = (
 /obj/machinery/hydroponics/constructable,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/machinery/light,
@@ -38408,7 +38408,7 @@
 /obj/machinery/power/smes{
 	charge = 5e+006
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /obj/structure/extinguisher_cabinet{
@@ -38843,7 +38843,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -42179,7 +42179,7 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bGQ" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = -32
 	},
@@ -42435,7 +42435,7 @@
 /turf/open/floor/plasteel/dark,
 /area/bridge)
 "bHp" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32;
 	pixel_y = -32
 	},
@@ -45443,7 +45443,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "bMv" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -45570,7 +45570,7 @@
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "bMH" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32;
 	pixel_y = 32
 	},
@@ -46491,7 +46491,7 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bOj" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/security/checkpoint/engineering)
 "bOk" = (
@@ -47483,7 +47483,7 @@
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/chief)
 "bPX" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/chief)
 "bPY" = (
@@ -48311,7 +48311,7 @@
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bRD" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bRE" = (
@@ -48659,7 +48659,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "bSq" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/storage/tech)
 "bSs" = (
@@ -49698,7 +49698,7 @@
 /area/engine/engineering)
 "bUd" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /obj/structure/cable,
@@ -49971,7 +49971,7 @@
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
 "bUH" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
 "bUI" = (
@@ -50304,7 +50304,7 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -52688,7 +52688,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bZn" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/captain/private)
 "bZo" = (
@@ -55719,7 +55719,7 @@
 	lootcount = 3;
 	lootdoubles = 0
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -57066,7 +57066,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ciA" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/machinery/camera{
@@ -57279,7 +57279,7 @@
 /area/security/brig)
 "ciN" = (
 /obj/machinery/vending/security,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/red,
@@ -58476,7 +58476,7 @@
 /turf/open/floor/plasteel,
 /area/security/courtroom)
 "clr" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -59534,7 +59534,7 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "cnx" = (
 /obj/machinery/porta_turret/ai,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -60386,7 +60386,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/hop)
 "cpC" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/crew_quarters/heads/hop)
 "cpD" = (
@@ -60855,7 +60855,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/library)
 "cqV" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hop)
 "cqX" = (
@@ -60949,7 +60949,7 @@
 /turf/open/floor/plating,
 /area/teleporter)
 "crg" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/teleporter)
 "crh" = (
@@ -60993,7 +60993,7 @@
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
 "crk" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/courtroom)
 "crl" = (
@@ -63538,7 +63538,7 @@
 /area/crew_quarters/fitness/recreation)
 "cwk" = (
 /obj/structure/closet/masks,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -65915,7 +65915,7 @@
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cBi" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/storage/eva)
 "cBj" = (
@@ -65995,7 +65995,7 @@
 /area/bridge/showroom/corporate)
 "cBp" = (
 /obj/structure/bookcase,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -66215,7 +66215,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -66444,7 +66444,7 @@
 "cCe" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
@@ -66463,7 +66463,7 @@
 /area/crew_quarters/dorms)
 "cCg" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket/letterman_nanotrasen,
+/obj/item/clothing/suit/jacket/letterman_ncorp,
 /obj/item/clothing/suit/toggle/lawyer,
 /obj/item/radio/intercom{
 	pixel_x = 26;
@@ -67326,7 +67326,7 @@
 /obj/structure/table/wood,
 /obj/item/folder/red,
 /obj/item/pen,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32
 	},
 /turf/open/floor/carpet,
@@ -74140,7 +74140,7 @@
 /area/crew_quarters/dorms)
 "cRv" = (
 /obj/item/kirbyplants/random,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = -32
 	},
@@ -76159,7 +76159,7 @@
 /area/crew_quarters/dorms)
 "cUW" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket/letterman_nanotrasen,
+/obj/item/clothing/suit/jacket/letterman_ncorp,
 /obj/item/clothing/suit/toggle/lawyer,
 /obj/item/clothing/under/costume/maid,
 /obj/item/clothing/head/kitty,
@@ -78225,7 +78225,7 @@
 /area/security/checkpoint/science/research)
 "cZg" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/structure/cable,
@@ -78311,7 +78311,7 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "cZq" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/science/lab)
 "cZr" = (
@@ -80612,7 +80612,7 @@
 "ddA" = (
 /obj/structure/table/wood,
 /obj/item/camera,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = -32
 	},
@@ -81331,7 +81331,7 @@
 /turf/open/floor/plasteel,
 /area/science/research)
 "dfi" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/science/research)
 "dfj" = (
@@ -81567,7 +81567,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "dfD" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/checkpoint/medical)
 "dfE" = (
@@ -82613,7 +82613,7 @@
 /turf/open/floor/plating,
 /area/science/research/abandoned)
 "dhU" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
 "dhV" = (
@@ -84392,7 +84392,7 @@
 /turf/closed/wall,
 /area/science/research)
 "dlD" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hor)
 "dlE" = (
@@ -91797,7 +91797,7 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = -32;
 	pixel_y = -32
 	},
@@ -94466,7 +94466,7 @@
 "dJl" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -97978,7 +97978,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -99241,7 +99241,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "dSO" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/checkpoint/customs/auxiliary)
 "dSP" = (
@@ -102235,7 +102235,7 @@
 /turf/open/space/basic,
 /area/space)
 "eaf" = (
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/item/kirbyplants/random,
@@ -102442,7 +102442,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "eaO" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/medical/virology)
 "eaP" = (
@@ -102587,7 +102587,7 @@
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "ebc" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/maintenance/port/aft)
 "ebd" = (
@@ -104022,7 +104022,7 @@
 /turf/closed/wall,
 /area/security/checkpoint/escape)
 "edZ" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall,
 /area/security/checkpoint/escape)
 "eea" = (
@@ -104831,7 +104831,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -26
 	},
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -113665,7 +113665,7 @@
 	},
 /obj/item/stack/sheet/plasteel/fifty,
 /obj/item/crowbar/power,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_x = 32
 	},
 /obj/effect/turf_decal/bot,
@@ -114163,7 +114163,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "wAA" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/r_wall,
 /area/science/misc_lab/range)
 "wBO" = (

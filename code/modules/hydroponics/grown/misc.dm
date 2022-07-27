@@ -281,7 +281,7 @@
 /obj/item/grown/shrub
 	seed = /obj/item/seeds/shrub
 	name = "shrub"
-	desc = "A shrubbery, it looks nice and it was only a few credits too. Plant it on the ground to grow a hedge, shrubbing skills not required."
+	desc = "A shrubbery, it looks nice and it was only a few ahn too. Plant it on the ground to grow a hedge, shrubbing skills not required."
 	icon_state = "shrub"
 
 /obj/item/grown/shrub/attack_self(mob/user)

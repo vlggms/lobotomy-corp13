@@ -1,7 +1,7 @@
 //goat
 /mob/living/simple_animal/hostile/retaliate/goat
 	name = "goat"
-	desc = "Not known for their pleasant disposition."
+	desc = "Not known for their pleasant disposition, a favored meat in the backstreets of district twelve."
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
@@ -111,7 +111,7 @@
 //cow
 /mob/living/simple_animal/cow
 	name = "cow"
-	desc = "Known for their milk, just don't tip them over."
+	desc = "Known for their milk, just don't tip them over; real beef is a luxury known only to citizens of a nest."
 	icon_state = "cow"
 	icon_living = "cow"
 	icon_dead = "cow_dead"
@@ -210,7 +210,7 @@
 ///Wisdom cow, gives XP to a random skill and speaks wisdoms
 /mob/living/simple_animal/cow/wisdom
 	name = "wisdom cow"
-	desc = "Known for its wisdom, shares it with all"
+	desc = "Known for its wisdom, shares it with all."
 	gold_core_spawnable = FALSE
 	tame_chance = 0
 	bonus_tame_chance = 0
@@ -233,7 +233,7 @@
 
 /mob/living/simple_animal/chick
 	name = "\improper chick"
-	desc = "Adorable! They make such a racket though."
+	desc = "Adorable! And such a good feed to protein ratio as well!"
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_dead"
@@ -293,7 +293,7 @@
 
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
-	desc = "Hopefully the eggs are good this season."
+	desc = "The harsh pecking order of these birds has made them the unofficial city mascot, with how they embody its work culture."
 	gender = FEMALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	icon_state = "chicken_brown"
@@ -417,7 +417,7 @@
 
 /mob/living/simple_animal/deer
 	name = "doe"
-	desc = "A gentle, peaceful forest animal. How did this get into space?"
+	desc = "A gentle, peaceful forest animal. These live in the overgrown ruins, its abnormal to find them in the city."
 	icon_state = "deer-doe"
 	icon_living = "deer-doe"
 	icon_dead = "deer-doe-dead"

@@ -6,7 +6,7 @@
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
-		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
+		            /obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
@@ -41,9 +41,9 @@
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
-	name = "\improper Space Cola Vendor"
-	desc = "It vends cola, in space."
-	product_slogans = "Cola in space!"
+	name = "\improper City Cola Vendor"
+	desc = "It vends cola, but nobody ever sees them get refilled."
+	product_slogans = "Your favorite by default!"
 	light_mask = "red_cola-light-mask"
 	light_color = COLOR_DARK_RED
 
@@ -81,7 +81,7 @@
 	desc = "~Shake me up some of that Shambler's Juice!~"
 	icon_state = "shamblers_juice"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
-		            /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,
+		            /obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,

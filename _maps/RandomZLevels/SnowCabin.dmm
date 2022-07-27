@@ -556,7 +556,7 @@
 	dir = 1
 	},
 /obj/structure/curtain,
-/obj/item/soap/nanotrasen{
+/obj/item/soap/ncorporation{
 	pixel_x = -1;
 	pixel_y = -3
 	},
@@ -580,7 +580,7 @@
 /area/awaymission/cabin/snowforest/sovietsurface)
 "bL" = (
 /obj/structure/bed,
-/obj/item/bedsheet/nanotrasen,
+/obj/item/bedsheet/ncorporation,
 /obj/item/clothing/suit/hooded/wintercoat/captain{
 	name = "manager's winter coat"
 	},
@@ -2911,7 +2911,7 @@
 /turf/open/floor/carpet,
 /area/awaymission/cabin/caves/mountain)
 "hL" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/mineral/snow,
 /area/awaymission/cabin/caves/mountain)
 "hM" = (
@@ -4739,7 +4739,7 @@
 /obj/structure/fence{
 	dir = 4
 	},
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/cabin/caves)
 "ml" = (
