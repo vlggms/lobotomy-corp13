@@ -2,7 +2,7 @@
 	name = "combat knife"
 	desc = "A sharp high-frequency combat blade manufactured for use against abnormalities and other threats within L corp facilities."
 	icon_state = "rabbitblade"
-	inhand_icon_state = "cultdagger"
+	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
