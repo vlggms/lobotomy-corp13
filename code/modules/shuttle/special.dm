@@ -359,7 +359,7 @@
 			change = TRUE
 			var/obj/item/holochip/HC = new /obj/item/holochip(AM.loc) //Change is made in holocredits exclusively.
 			HC.credits = payees[AM]
-			HC.name = "[HC.credits] credit holochip"
+			HC.name = "[HC.credits] ahn holochip"
 			if(istype(AM, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = AM
 				if(!H.put_in_hands(HC))

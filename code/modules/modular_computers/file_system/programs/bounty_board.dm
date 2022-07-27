@@ -90,7 +90,7 @@
 				playsound(computer, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 				return
 			request_target.transfer_money(current_user, active_request.value)
-			computer.say("Paid out [active_request.value] credits.")
+			computer.say("Paid out [active_request.value] ahn.")
 			return TRUE
 		if("clear")
 			if(current_user)

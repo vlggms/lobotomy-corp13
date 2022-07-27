@@ -364,7 +364,7 @@
 
 /datum/design/card_reader
 	name = "Card Reader"
-	desc = "A small magnetic card reader, used for devices that take and transmit holocredits."
+	desc = "A small magnetic card reader, used for devices that take and transmit holo-ahn."
 	id = "c-reader"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron=50, /datum/material/glass=10)

@@ -54,7 +54,7 @@
 
 	synth_acc.account_holder = name
 
-	desc += " [ppt_cost ? "Only [ppt_cost] credits! " : ""]It also synthesises costumes for some reason."
+	desc += " [ppt_cost ? "Only [ppt_cost] ahn! " : ""]It also synthesises costumes for some reason."
 
 	power_change()
 
@@ -139,7 +139,7 @@
 			msg += "a bank account to buy a pinpointer"
 			dispense = FALSE
 		else if(!cust_acc.has_money(ppt_cost))
-			msg += "[!msg ? "to find [ppt_cost-cust_acc.account_balance] more credit\s" : " and find [ppt_cost-cust_acc.account_balance] more credit\s"]"
+			msg += "[!msg ? "to find [ppt_cost-cust_acc.account_balance] more ahn" : " and find [ppt_cost-cust_acc.account_balance] more ahn"]"
 			dispense = FALSE
 		else if(synth_acc.transfer_money(cust_acc, ppt_cost))
 			dispense = TRUE
@@ -177,7 +177,7 @@
 				synth_acc._adjust_money(-refund_amt)
 				var/obj/item/holochip/holochip = new (loc)
 				holochip.credits = refund_amt
-				holochip.name = "[holochip.credits] credit holochip"
+				holochip.name = "[holochip.credits] ahn holochip"
 				if(ishuman(user))
 					var/mob/living/carbon/human/customer = user
 					customer.put_in_hands(holochip)
@@ -189,7 +189,7 @@
 
 		set_expression("veryhappy", 2 SECONDS)
 
-		var/is_a_thing = "are [refund_amt] credit\s."
+		var/is_a_thing = "are [refund_amt] ahn."
 		if(!refundiscredits)
 			is_a_thing = "is a freshly synthesised costume!"
 			if(prob(funnyprob))
