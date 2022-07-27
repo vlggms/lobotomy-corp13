@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/scarecrow
-	name = "Scarecrow searchin for wisdom"
-	desc = "An abnormality taking form of a scarecrow with metal rake in place of its hand."
+	name = "Scarecrow Searching for Wisdom"
+	desc = "The city still remained a beautiful place where the emerald roads sparkled bright as ever."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "scarecrow"
 	icon_living = "scarecrow"

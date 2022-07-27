@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird
-	name = "Big bird"
+	name = "Big Bird"
 	desc = "A large, many-eyed bird that patrols the dark forest with an everlasting lamp. \
 	Unlike regular birds, it lacks wings and has long arms instead with which it can pick things up."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'

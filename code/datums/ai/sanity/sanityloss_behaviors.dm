@@ -4,13 +4,13 @@
 				"You left me behind!",
 				"You are the problem, YOU!!",
 				"I'll destroy everything...",
-				"It will end quickly, so relax. I’ll free you from this prison we call flesh."
+				"It will end quickly, so relax. I'll free you from this prison we call flesh."
 				)
 
 /datum/ai_behavior/say_line/insanity_suicide
 	lines = list(
-				"It's all my fault. It’s my responsibility...",
-				"I can hear someone. It’s the sound of back home. I just can’t stop hearing it…",
+				"It's all my fault. It's my responsibility...",
+				"I can hear someone. It's the sound of back home. I just can't stop hearing itï¿½",
 				"We will all sink and perish, devoured by madness...",
 				"There is no hope left...",
 				"It will all end, soon..."
@@ -20,7 +20,7 @@
 	lines = list(
 				"Manager?! Manager! Open the emergency door! PLEASE LET ME OUT!!",
 				"HELP ME!!",
-				"DON'T SEND ME IN THERE! DON’T KILL ME!!",
+				"DON'T SEND ME IN THERE! DON'T KILL ME!!",
 				"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
 				"I will never get out of here..."
 				)
@@ -28,10 +28,10 @@
 /datum/ai_behavior/say_line/insanity_release
 	lines = list(
 				"Let us find peace from them.",
-				"I’m so sorry dear friends, I’ll let you out now.",
+				"I'm so sorry dear friends, I'll let you out now.",
 				"We will find our redemption through the Abnormalities.",
 				"Let us reach the paradise beyond death, together with the Abnormalities.",
-				"Let me introduce you to my imaginary friends! They asked me to! They’re screaming to be let out!"
+				"Let me introduce you to my imaginary friends! They asked me to! They're screaming to be let out!"
 				)
 
 /datum/ai_behavior/insanity_attack_mob
