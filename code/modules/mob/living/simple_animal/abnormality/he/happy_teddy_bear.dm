@@ -28,8 +28,10 @@
 	buckle_lying = FALSE
 	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
 	var/last_worker = null
+	var/hugging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
+	src.hugging = TRUE
 	user.Stun(30 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
@@ -53,6 +55,7 @@
 	src.unbuckle_mob(user, force=TRUE)
 	src.icon_state = "teddy"
 	src.visible_message("<span class='warning'>[src] drops [user] to the ground!</span>")
+	src.hugging = FALSE
 
 // can only unbuckle dead things
 // hopefully prevents people from attempting to "save" the victim, which would break the immersion
@@ -65,7 +68,7 @@
 	if(user == src.last_worker)
 		Strangle(user)
 		return FALSE
-	if(src.buckled_mobs.len > 0) // can't work while someone is being killed by it
+	if(src.hugging) // can't work while someone is being killed by it
 		return FALSE
 	src.last_worker = user
 	. = ..()
