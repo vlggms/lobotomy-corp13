@@ -10,7 +10,7 @@
 /datum/ai_behavior/say_line/insanity_suicide
 	lines = list(
 				"It's all my fault. It's my responsibility...",
-				"I can hear someone. It's the sound of back home. I just can't stop hearing it�",
+				"I can hear someone. It's the sound of back home. I just can't stop hearing it...",
 				"We will all sink and perish, devoured by madness...",
 				"There is no hope left...",
 				"It will all end, soon..."

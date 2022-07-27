@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar
 	name = "Blue Star"
-	desc = "Let us meet again as stars."
+	desc = "A floating, heart-shaped object. It's alive, and soon you will become one with it."
 	health = 4000
 	maxHealth = 4000
 	pixel_x = -32
