@@ -167,5 +167,4 @@
 
 		L.apply_damage(((pulse_damage + distance - 10)*0.5), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
-	SLEEP_CHECK_DEATH(3)
 
