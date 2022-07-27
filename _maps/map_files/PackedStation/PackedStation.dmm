@@ -20755,7 +20755,7 @@
 	name = "Unisex Showers"
 	},
 /obj/structure/window/reinforced,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/structure/mirror{
 	pixel_y = 28
 	},

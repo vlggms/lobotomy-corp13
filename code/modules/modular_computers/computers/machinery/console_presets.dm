@@ -43,7 +43,7 @@
 // ===== RESEARCH CONSOLE =====
 /obj/machinery/modular_computer/console/preset/research
 	console_department = "Research"
-	name = "research director's console"
+	name = "information department console"
 	desc = "A stationary computer. This one comes preloaded with research programs."
 	_has_ai = TRUE
 

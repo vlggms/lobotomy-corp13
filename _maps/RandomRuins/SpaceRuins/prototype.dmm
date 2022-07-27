@@ -2380,7 +2380,7 @@
 /area/ruin/has_grav/prototype/arrivals)
 "gB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/nanotrasen{
+/obj/structure/sign/ncorporation{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/airless,

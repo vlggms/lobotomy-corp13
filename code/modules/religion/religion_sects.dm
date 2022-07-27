@@ -118,9 +118,9 @@
 /**** Nanotrasen Approved God ****/
 
 /datum/religion_sect/puritanism
-	name = "Nanotrasen Approved God"
+	name = "Head Approved God"
 	desc = "Your run-of-the-mill sect, there are no benefits or boons associated."
-	quote = "Nanotrasen Recommends!"
+	quote = "City Recommended!"
 	tgui_icon = "bible"
 
 /**** Mechanical God ****/
@@ -242,7 +242,7 @@
 		to_chat(chap, "<span class='warning'>You need a way to pay for the heal!</span>")
 		return TRUE
 	if(account.account_balance < GREEDY_HEAL_COST)
-		to_chat(chap, "<span class='warning'>Healing from [GLOB.deity] costs [GREEDY_HEAL_COST] credits for 30 health!</span>")
+		to_chat(chap, "<span class='warning'>Healing from [GLOB.deity] costs [GREEDY_HEAL_COST] ahn for 30 health!</span>")
 		return TRUE
 	if(!ishuman(blessed_living))
 		return FALSE

@@ -204,7 +204,7 @@
 	subcategory = CAT_ICE
 
 /datum/crafting_recipe/food/soda_sc
-	name = "Space Cola snowcone"
+	name = "City Cola snowcone"
 	reqs = list(
 		/obj/item/reagent_containers/food/drinks/sillycup = 1,
 		/datum/reagent/consumable/ice = 15,

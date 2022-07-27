@@ -429,7 +429,7 @@
 		/obj/item/food/rofflewaffles,
 		/obj/item/food/donkpocket,
 		/obj/item/reagent_containers/food/drinks/soda_cans/cola,
-		/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+		/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind,
 		/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
 		/obj/item/reagent_containers/food/drinks/soda_cans/starkist,
 		/obj/item/reagent_containers/food/drinks/soda_cans/space_up,
@@ -574,7 +574,7 @@
 /obj/item/storage/belt/janitor/full/PopulateContents()
 	new /obj/item/lightreplacer(src)
 	new /obj/item/reagent_containers/spray/cleaner(src)
-	new /obj/item/soap/nanotrasen(src)
+	new /obj/item/soap/ncorporation(src)
 	new /obj/item/holosign_creator(src)
 	new /obj/item/melee/flyswatter(src)
 

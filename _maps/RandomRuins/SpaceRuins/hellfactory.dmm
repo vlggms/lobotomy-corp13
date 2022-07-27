@@ -417,7 +417,7 @@
 /area/ruin/space/has_grav/hellfactory)
 "bn" = (
 /obj/structure/closet/crate/trashcart,
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/hellfactory)
 "bo" = (

@@ -9842,7 +9842,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
 	},

@@ -3862,7 +3862,7 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "il" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/machinery/light/small{
 	dir = 8
 	},

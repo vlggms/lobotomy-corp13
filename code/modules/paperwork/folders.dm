@@ -102,7 +102,7 @@
 
 /obj/item/folder/documents/Initialize()
 	. = ..()
-	new /obj/item/documents/nanotrasen(src)
+	new /obj/item/documents/ncorporation(src)
 	update_icon()
 
 /obj/item/folder/syndicate
