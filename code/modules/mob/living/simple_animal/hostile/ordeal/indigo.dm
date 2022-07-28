@@ -55,8 +55,8 @@
 	icon_living = "matriarch"
 	icon_dead = "matriarch_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 5000
+	health = 5000
 	stat_attack = DEAD
 	pixel_x = -16
 	base_pixel_x = -16
@@ -65,6 +65,7 @@
 	rapid_melee = 2
 	melee_damage_lower = 60
 	melee_damage_upper = 60
+	ranged = TRUE
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -89,6 +90,9 @@
 				devour(L)
 		else
 			devour(L)
+	if(prob(20))
+		aoe(2, 2)
+
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/devour(mob/living/L)
@@ -167,4 +171,26 @@
 
 		L.apply_damage(((pulse_damage + distance - 10)*0.5), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
+
+
+/// cannibalized from wendigo
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/aoe(range, delay)
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(range, orgin)
+	for(var/i = 0 to range)
+		for(var/turf/T in all_turfs)
+			if(get_dist(orgin, T) > i)
+				continue
+			playsound(T,'sound/effects/bamf.ogg', 60, TRUE, 10)
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+			for(var/mob/living/L in T)
+				if(L == src || L.throwing)
+					continue
+				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
+				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
+				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
+				L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				shake_camera(L, 2, 1)
+			all_turfs -= T
+		sleep(delay)
 
