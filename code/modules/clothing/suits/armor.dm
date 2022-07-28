@@ -22,7 +22,7 @@
 	icon_state = "armoralt"
 	inhand_icon_state = "armoralt"
 	blood_overlay_type = "armor"
-	allowed = list(/obj/item/ego_weapon, /obj/item/melee/classic_baton)
+	allowed = list(/obj/item/ego_weapon, /obj/item/melee, /obj/item/gun)
 	dog_fashion = /datum/dog_fashion/back
 
 /obj/item/clothing/suit/armor/vest/alt
