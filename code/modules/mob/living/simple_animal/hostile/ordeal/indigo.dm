@@ -181,7 +181,7 @@
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
-			playsound(T,'sound/effects/bamf.ogg', 600, TRUE, 10)
+			playsound(T,'sound/effects/bamf.ogg', 60, TRUE, 10)
 			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 			for(var/mob/living/L in T)
 				if(L == src || L.throwing)
@@ -189,7 +189,7 @@
 				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
-				L.apply_damage(40, BLACK_DAMAGE, wound_bonus=CANT_WOUND)
+				L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				shake_camera(L, 2, 1)
 			all_turfs -= T
 		sleep(delay)
