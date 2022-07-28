@@ -8,4 +8,22 @@
 	reward_percent = 0.15
 	spawn_places = 4
 	spawn_amount = 3
-	spawn_type = /mob/living/simple_animal/hostile/ordeal/sweeper
+	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+
+
+// Midnight
+/datum/ordeal/indigo_midnight
+	name = "Noon of Indigo"
+	annonce_text = "For the sake of our families in our village, we cannot stop."
+	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
+	level = 4
+	reward_percent = 0.4
+
+/datum/ordeal/indigo_midnight/Run()
+	..()
+	var/X = pick(GLOB.department_centers)
+	var/turf/T = get_turf(X)
+	var/mob/living/simple_animal/hostile/ordeal/indigo_midnight/C = new(T)
+	ordeal_mobs += C
+	C.ordeal_reference = src
