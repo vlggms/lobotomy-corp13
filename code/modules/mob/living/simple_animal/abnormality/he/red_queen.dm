@@ -7,13 +7,13 @@
 	health = 650
 	threat_level = HE_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 90,
-		ABNORMALITY_WORK_INSIGHT = 90,
-		ABNORMALITY_WORK_ATTACHMENT = 90,
-		ABNORMALITY_WORK_REPRESSION = 90
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 60
 		)
-	work_damage_amount = 15
-	work_damage_type = PALE_DAMAGE		//She doesn't really hurt you but I guess if she ever does she'll fuck you
+	work_damage_amount = 60			//Unlikely to hurt you but if she ever does she'll fuck you
+	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		)
