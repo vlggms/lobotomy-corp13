@@ -25,7 +25,7 @@ export const BankMachine = (props, context) => {
               buttons={(
                 <Button
                   icon={siphoning ? 'times' : 'sync'}
-                  content={siphoning ? 'Stop Siphoning' : 'Siphon Credits'}
+                  content={siphoning ? 'Stop Siphoning' : 'Siphon Ahn'}
                   selected={siphoning}
                   onClick={() => act(siphoning ? 'halt' : 'siphon')} />
               )}>

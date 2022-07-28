@@ -493,7 +493,7 @@
 ///Generate a report for how much money is on station, as well as the richest crewmember on the station.
 /datum/controller/subsystem/ticker/proc/market_report()
 	var/list/parts = list()
-	parts += "<span class='header'>Station Economic Summary:</span>"
+	parts += "<span class='header'>Facility Economic Summary:</span>"
 	///This is the richest account on station at roundend.
 	var/datum/bank_account/mr_moneybags
 	///This is the station's total wealth at the end of the round.
@@ -508,12 +508,12 @@
 		station_vault += current_acc.account_balance
 		if(!mr_moneybags || mr_moneybags.account_balance < current_acc.account_balance)
 			mr_moneybags = current_acc
-	parts += "<div class='panel stationborder'>There were [station_vault] credits collected by crew this shift.<br>"
+	parts += "<div class='panel stationborder'>There were [station_vault] ahn collected by employees this shift.<br>"
 	if(total_players > 0)
-		parts += "An average of [station_vault/total_players] credits were collected.<br>"
-		log_econ("Roundend credit total: [station_vault] credits. Average Credits: [station_vault/total_players]")
+		parts += "An average of [station_vault/total_players] ahn were collected.<br>"
+		log_econ("Roundend ahn total: [station_vault] ahn. Average Ahn: [station_vault/total_players]")
 	if(mr_moneybags)
-		parts += "The most affluent crew member at shift end was <b>[mr_moneybags.account_holder] with [mr_moneybags.account_balance]</b> cr!</div>"
+		parts += "The most affluent employee at shift end was <b>[mr_moneybags.account_holder] with [mr_moneybags.account_balance]</b> cr!</div>"
 	else
 		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
 	return parts

@@ -128,7 +128,7 @@
 		var/money_added = mass_insert_money(money_contained, user)
 
 		if (money_added)
-			to_chat(user, "<span class='notice'>You stuff the contents into the card! They disappear in a puff of bluespace smoke, adding [money_added] worth of credits to the linked account.</span>")
+			to_chat(user, "<span class='notice'>You stuff the contents into the card! They disappear in a puff of smoke, adding [money_added] worth of ahn to the linked account.</span>")
 		return
 	else
 		return ..()
@@ -147,11 +147,11 @@
 		return
 	registered_account.adjust_money(cash_money)
 	SSblackbox.record_feedback("amount", "credits_inserted", cash_money)
-	log_econ("[cash_money] credits were inserted into [src] owned by [src.registered_name]")
+	log_econ("[cash_money] ahn were inserted into [src] owned by [src.registered_name]")
 	if(physical_currency)
-		to_chat(user, "<span class='notice'>You stuff [I] into [src]. It disappears in a small puff of bluespace smoke, adding [cash_money] credits to the linked account.</span>")
+		to_chat(user, "<span class='notice'>You stuff [I] into [src]. It disappears in a small puff of smoke, adding [cash_money] ahn to the linked account.</span>")
 	else
-		to_chat(user, "<span class='notice'>You insert [I] into [src], adding [cash_money] credits to the linked account.</span>")
+		to_chat(user, "<span class='notice'>You insert [I] into [src], adding [cash_money] ahn to the linked account.</span>")
 
 	to_chat(user, "<span class='notice'>The linked account now reports a balance of [registered_account.account_balance] cr.</span>")
 	qdel(I)
@@ -172,7 +172,7 @@
 
 	registered_account.adjust_money(total)
 	SSblackbox.record_feedback("amount", "credits_inserted", total)
-	log_econ("[total] credits were inserted into [src] owned by [src.registered_name]")
+	log_econ("[total] ahn were inserted into [src] owned by [src.registered_name]")
 	QDEL_LIST(money)
 
 	return total
@@ -239,13 +239,13 @@
 	if(registered_account.adjust_money(-amount_to_remove))
 		var/obj/item/holochip/holochip = new (user.drop_location(), amount_to_remove)
 		user.put_in_hands(holochip)
-		to_chat(user, "<span class='notice'>You withdraw [amount_to_remove] credits into a holochip.</span>")
+		to_chat(user, "<span class='notice'>You withdraw [amount_to_remove] ahn into a holochip.</span>")
 		SSblackbox.record_feedback("amount", "credits_removed", amount_to_remove)
-		log_econ("[amount_to_remove] credits were removed from [src] owned by [src.registered_name]")
+		log_econ("[amount_to_remove] ahn were removed from [src] owned by [src.registered_name]")
 		return
 	else
 		var/difference = amount_to_remove - registered_account.account_balance
-		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more credit\s to perform that withdrawal.</span>", TRUE)
+		registered_account.bank_card_talk("<span class='warning'>ERROR: The linked account requires [difference] more ahn to perform that withdrawal.</span>", TRUE)
 
 /obj/item/card/id/examine(mob/user)
 	. = ..()
@@ -267,7 +267,7 @@
 			if(D)
 				msg += "The [D.account_holder] reports a balance of [D.account_balance] cr."
 		msg += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
-		msg += "<span class='info'>You can insert credits into the linked account by pressing holochips, cash, or coins against the ID.</span>"
+		msg += "<span class='info'>You can insert ahn into the linked account by pressing holochips, cash, or coins against the ID.</span>"
 		if(registered_account.civilian_bounty)
 			msg += "<span class='info'><b>There is an active civilian bounty.</b>"
 			msg += "<span class='info'><i>[registered_account.bounty_text()]</i></span>"

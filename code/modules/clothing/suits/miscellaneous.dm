@@ -488,9 +488,9 @@
 	inhand_icon_state = "letterman_s"
 	species_exception = list(/datum/species/golem)
 
-/obj/item/clothing/suit/jacket/letterman_nanotrasen
+/obj/item/clothing/suit/jacket/letterman_ncorp
 	name = "blue letterman jacket"
-	desc = "A blue letterman jacket with a proud Nanotrasen N on the back. The tag says that it was made in Space China."
+	desc = "A blue letterman jacket with a proud N-Corporation N on the back. The tag says that it was made in the district fourteen backstreets, odd."
 	icon_state = "letterman_n"
 	inhand_icon_state = "letterman_n"
 	species_exception = list(/datum/species/golem)

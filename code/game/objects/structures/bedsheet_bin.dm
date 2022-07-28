@@ -226,9 +226,9 @@ LINEN BINS
 	inhand_icon_state = "sheetwiz"
 	dream_messages = list("a book", "an explosion", "lightning", "a staff", "a skeleton", "a robe", "magic")
 
-/obj/item/bedsheet/nanotrasen
-	name = "\improper Nanotrasen bedsheet"
-	desc = "It has the Nanotrasen logo on it and has an aura of duty."
+/obj/item/bedsheet/ncorporation
+	name = "\improper N-Corporation bedsheet"
+	desc = "It has the N-Corporation logo on it and has an aura of duty."
 	icon_state = "sheetNT"
 	inhand_icon_state = "sheetNT"
 	dream_messages = list("authority", "an ending")
@@ -285,7 +285,7 @@ LINEN BINS
 				/obj/item/bedsheet/rainbow,
 				/obj/item/bedsheet/ian,
 				/obj/item/bedsheet/cosmos,
-				/obj/item/bedsheet/nanotrasen))
+				/obj/item/bedsheet/ncorporation))
 	new type(loc)
 	return INITIALIZE_HINT_QDEL
 

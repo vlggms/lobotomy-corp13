@@ -28,8 +28,8 @@
 	footstep_type = FOOTSTEP_MOB_SHOE
 
 /mob/living/simple_animal/hostile/retaliate/nanotrasenpeace //this should be in a different file
-	name = "\improper Nanotrasen Private Security Officer"
-	desc = "An officer part of Nanotrasen's private security force."
+	name = "\improper N-Corporation Private Security Agent"
+	desc = "An agent part of N-Corporation's private security force."
 	icon = 'icons/mob/simple_human.dmi'
 	icon_state = "nanotrasen"
 	icon_living = "nanotrasen"

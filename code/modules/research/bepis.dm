@@ -55,7 +55,7 @@
 		var/deposit_value = O.get_item_credit_value()
 		banked_cash += deposit_value
 		qdel(O)
-		say("Deposited [deposit_value] credits into storage.")
+		say("Deposited [deposit_value] ahn into storage.")
 		update_icon()
 		return
 	if(istype(O, /obj/item/card/id))
@@ -92,18 +92,18 @@
 	deposit_value = banking_amount
 	if(deposit_value == 0)
 		update_icon()
-		say("Attempting to deposit 0 credits. Aborting.")
+		say("Attempting to deposit 0 ahn. Aborting.")
 		return
 	deposit_value = clamp(round(deposit_value, 1), 1, 10000)
 	if(!account)
 		say("Cannot find user account. Please swipe a valid ID.")
 		return
 	if(!account.has_money(deposit_value))
-		say("You do not possess enough credits.")
+		say("You do not possess enough ahn.")
 		return
 	account.adjust_money(-deposit_value) //The money vanishes, not paid to any accounts.
 	SSblackbox.record_feedback("amount", "BEPIS_credits_spent", deposit_value)
-	log_econ("[deposit_value] credits were inserted into [src] by [account.account_holder]")
+	log_econ("[deposit_value] ahn were inserted into [src] by [account.account_holder]")
 	banked_cash += deposit_value
 	use_power(1000 * power_saver)
 	say("Cash deposit successful. There is [banked_cash] in the chamber.")
@@ -118,7 +118,7 @@
 	else
 		banked_cash -= withdraw_value
 		new /obj/item/holochip(src.loc, withdraw_value)
-		say("Withdrawing [withdraw_value] credits from the chamber.")
+		say("Withdrawing [withdraw_value] ahn from the chamber.")
 	update_icon()
 	return
 

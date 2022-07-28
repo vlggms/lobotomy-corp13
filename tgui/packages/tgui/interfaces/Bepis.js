@@ -44,7 +44,7 @@ export const Bepis = (props, context) => {
             <Grid.Column size={1.5}>
               <Section title="Stored Data and Statistics">
                 <LabeledList>
-                  <LabeledList.Item label="Deposited Credits">
+                  <LabeledList.Item label="Deposited Ahn">
                     {data.stored_cash}
                   </LabeledList.Item>
                   <LabeledList.Item label="Investment Variability">
@@ -74,14 +74,14 @@ export const Bepis = (props, context) => {
               <Box>
                 <Button
                   icon="donate"
-                  content="Deposit Credits"
+                  content="Deposit Ahn"
                   disabled={data.manual_power === 1
                     || data.silicon_check === 1}
                   onClick={() => act('deposit_cash')}
                 />
                 <Button
                   icon="eject"
-                  content="Withdraw Credits"
+                  content="Withdraw Ahn"
                   disabled={data.manual_power === 1}
                   onClick={() => act('withdraw_cash')} />
               </Box>

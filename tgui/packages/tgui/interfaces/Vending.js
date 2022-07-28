@@ -136,7 +136,7 @@ export const Vending = (props, context) => {
                 {' '}
                 <b>{user.job || 'Unemployed'}</b>!
                 <br />
-                Your balance is <b>{user.cash} credits</b>.
+                Your balance is <b>{user.cash} ahn</b>.
               </Box>
             ) || (
               <Box color="light-grey">

@@ -115,7 +115,7 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper_s"
 	short_desc = "You are a syndicate science technician, employed in a top secret research facility developing biological weapons."
-	flavour_text = "Unfortunately, your hated enemy, Nanotrasen, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
+	flavour_text = "Unfortunately, your hated enemy, N-Corporation, has begun mining in this sector. Continue your research as best you can, and try to keep a low profile."
 	important_info = "The base is rigged with explosives, DO NOT abandon it or let it fall into enemy hands!"
 	outfit = /datum/outfit/lavaland_syndicate
 	assignedrole = "Lavaland Syndicate"

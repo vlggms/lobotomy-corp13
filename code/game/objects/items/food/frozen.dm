@@ -159,8 +159,8 @@
 	tastes = list("ice" = 1, "water" = 1, "jokes" = 5, "brainfreeze" = 5, "joy" = 5)
 
 /obj/item/food/snowcones/soda
-	name = "space cola snowcone"
-	desc = "Space Cola drizzled over a snowball in a paper cup."
+	name = "city cola snowcone"
+	desc = "City Cola drizzled over a snowball in a paper cup."
 	icon_state = "soda_sc"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/space_cola = 5, /datum/reagent/water = 11)
 	tastes = list("ice" = 1, "water" = 1, "cola" = 5)

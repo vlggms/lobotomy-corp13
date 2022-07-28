@@ -2452,7 +2452,7 @@
 
 /datum/supply_pack/misc/empty
 	name = "Empty Supplypod"
-	desc = "Presenting the New Nanotrasen-Brand Bluespace Supplypod! Transport cargo with grace and ease! Call today and we'll shoot over a demo unit for just 300 credits!"
+	desc = "Presenting the New N-Corporation-Brand Bluespace Supplypod! Transport cargo with grace and ease! Call today and we'll shoot over a demo unit for just 300 ahn!"
 	cost = CARGO_CRATE_VALUE * 0.6 //Empty pod, so no crate refund
 	contains = list()
 	DropPodOnly = TRUE

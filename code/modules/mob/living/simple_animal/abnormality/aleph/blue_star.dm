@@ -8,8 +8,8 @@
 	pixel_y = -16
 	base_pixel_y = -16
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_state = "bluestar"
-	icon_living = "bluestar"
+	icon_state = "blue_star"
+	icon_living = "blue_star"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.1)
 	is_flying_animal = TRUE
 	can_breach = TRUE

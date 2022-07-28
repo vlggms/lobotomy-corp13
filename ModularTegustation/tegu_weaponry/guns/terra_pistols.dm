@@ -14,7 +14,7 @@
 	icon_state = "beretta"
 	can_suppress = FALSE
 
-/obj/item/gun/ballistic/automatic/pistol/terragov/sig
+/obj/item/gun/ballistic/automatic/pistol/citygov/sig
 	name = "SIG Sauer"
 	desc = "A classic handgun with a larger than average magazine capacity."
 	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/pistol_large.ogg'
@@ -61,8 +61,8 @@
 	caliber = CALIBER_38
 	max_ammo = 6
 
-/obj/item/gun/ballistic/automatic/proto/terragov
+/obj/item/gun/ballistic/automatic/proto/citygov
 	name = "\improper SABR SMG"
-	desc = "A three-round burst 9mm submachine gun. Used by TerraGov military personnel. Has a threaded barrel for suppressors."
+	desc = "A three-round burst 9mm submachine gun. Used by CityGov military personnel. Has a threaded barrel for suppressors."
 	w_class = WEIGHT_CLASS_NORMAL
 	pin = /obj/item/firing_pin

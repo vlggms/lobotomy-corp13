@@ -10760,7 +10760,7 @@
 "aCg" = (
 /obj/structure/safe,
 /obj/item/storage/secure/briefcase{
-	contents = newlist(/obj/item/clothing/suit/armor/vest,/obj/item/gun/ballistic/automatic/pistol,/obj/item/suppressor,/obj/item/melee/classic_baton/telescopic,/obj/item/clothing/mask/balaclava,/obj/item/bodybag,/obj/item/soap/nanotrasen)
+	contents = newlist(/obj/item/clothing/suit/armor/vest,/obj/item/gun/ballistic/automatic/pistol,/obj/item/suppressor,/obj/item/melee/classic_baton/telescopic,/obj/item/clothing/mask/balaclava,/obj/item/bodybag,/obj/item/soap/ncorporation)
 	},
 /obj/item/storage/backpack/duffelbag/syndie/hitman,
 /obj/item/card/id/silver/reaper,
@@ -33188,7 +33188,7 @@
 	pixel_y = 25;
 	specialfunctions = 4
 	},
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
@@ -70544,7 +70544,7 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "puI" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 4
 	},
@@ -82492,7 +82492,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "ydZ" = (
-/obj/item/soap/nanotrasen,
+/obj/item/soap/ncorporation,
 /obj/structure/table/wood,
 /obj/structure/sign/poster/random{
 	pixel_x = 32
