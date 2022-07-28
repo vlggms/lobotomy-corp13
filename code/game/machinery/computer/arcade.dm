@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	var/enemy_hp = 100
 	var/enemy_mp = 40
 	///Temporary message, for attack messages, etc
-	var/temp = "<br><center><h3>Winners don't use space drugs<center><h3>"
+	var/temp = "<br><center><h3>Winners don't use drugs!<center><h3>"
 	///the list of passive skill the enemy currently has. the actual passives are added in the enemy_setup() proc
 	var/list/enemy_passive
 	///if all the enemy's weakpoints have been triggered becomes TRUE
