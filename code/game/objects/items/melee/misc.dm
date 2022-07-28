@@ -172,8 +172,8 @@
 	return TOXLOSS
 
 /obj/item/melee/classic_baton
-	name = "police baton"
-	desc = "A wooden truncheon for beating criminal scum."
+	name = "agent baton"
+	desc = "A cheap weapon for beating Abnormalities or Clerks."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "classic_baton"
 	inhand_icon_state = "classic_baton"

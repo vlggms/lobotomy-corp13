@@ -516,7 +516,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "aT" = (
-/obj/structure/sign/nanotrasen,
+/obj/structure/sign/ncorporation,
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "aU" = (

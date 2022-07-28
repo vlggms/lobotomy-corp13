@@ -1,6 +1,6 @@
 // TerraGov Marines
 /datum/antagonist/ert/terragov
-	name = "TerraGov Marine"
+	name = "CityGov Marine"
 	outfit = /datum/outfit/terragov/marine
 	role = "Marine"
 
@@ -9,8 +9,8 @@
 		return
 
 	to_chat(owner, "<B><font size=3 color=red>You are a [name].</font></B>")
-	to_chat(owner, "<B><font size=4 color=red>You are NOT a Nanotrasen Employee!</font></B>")
-	var/missiondesc = "Your squad is being sent on a mission to [station_name()] TerraGov high command."
+	to_chat(owner, "<B><font size=4 color=red>You are NOT a Lobotomy Corporation Employee!</font></B>")
+	var/missiondesc = "Your squad is being sent on a mission to [station_name()] CityGov high command."
 	if(leader) //If Squad Leader
 		missiondesc += " Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready."
 	else

@@ -171,14 +171,14 @@ const PageBuyingShuttle = (props, context) => {
           key={shuttle.ref}
           buttons={(
             <Button
-              content={`${shuttle.creditCost.toLocaleString()} credits`}
+              content={`${shuttle.creditCost.toLocaleString()} ahn`}
               disabled={data.budget < shuttle.creditCost}
               onClick={() => act("purchaseShuttle", {
                 shuttle: shuttle.ref,
               })}
               tooltip={
                 data.budget < shuttle.creditCost
-                  ? `You need ${shuttle.creditCost - data.budget} more credits.`
+                  ? `You need ${shuttle.creditCost - data.budget} more ahn.`
                   : undefined
               }
               tooltipPosition="left"

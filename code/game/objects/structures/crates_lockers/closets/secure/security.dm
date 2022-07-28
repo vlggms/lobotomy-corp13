@@ -168,7 +168,7 @@
 
 /obj/structure/closet/secure_closet/security/med/PopulateContents()
 	..()
-	new /obj/item/clothing/accessory/armband/medblue(src)
+	new /obj/item/clothing/accessory/armband/welfare(src)
 	new /obj/item/encryptionkey/headset_med(src)
 
 /obj/structure/closet/secure_closet/detective

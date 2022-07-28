@@ -81,7 +81,7 @@
 
 /obj/effect/spawner/lootdrop/prison_contraband
 	name = "prison contraband loot spawner"
-	loot = list(/obj/item/clothing/mask/cigarette/space_cigarette = 4,
+	loot = list(/obj/item/clothing/mask/cigarette/city_cigarette = 4,
 				/obj/item/clothing/mask/cigarette/robust = 2,
 				/obj/item/clothing/mask/cigarette/carp = 3,
 				/obj/item/clothing/mask/cigarette/uplift = 2,
@@ -181,7 +181,7 @@
 				/obj/item/reagent_containers/food/drinks/soda_cans/shamblers = 5,
 				/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 5,
 				/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 5,
-				/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 5,
+				/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind = 5,
 				/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 5,
 				/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 5,
 				/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 5,

@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(available_depts, list(SEC_DEPT_ENGINEERING, SEC_DEPT_MEDICAL, S
 			dep_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY)
 			destination = /area/security/checkpoint/medical
 			spawn_point = locate(/obj/effect/landmark/start/depsec/medical) in GLOB.department_security_spawns
-			accessory =  /obj/item/clothing/accessory/armband/medblue
+			accessory =  /obj/item/clothing/accessory/armband/welfare
 		if(SEC_DEPT_SCIENCE)
 			ears = /obj/item/radio/headset/headset_sec/alt/department/sci
 			dep_access = list(ACCESS_RESEARCH, ACCESS_RND, ACCESS_AUX_BASE)

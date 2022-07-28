@@ -20,10 +20,10 @@
 	var/list/poss_reasons = list("the alignment of the moon and the sun",\
 		"some risky housing market outcomes",\
 		"The B.E.P.I.S. team's untimely downfall",\
-		"speculative Terragov grants backfiring",\
-		"greatly exaggerated reports of Nanotrasen accountancy personnel committing mass suicide")
+		"speculative city grants backfiring",\
+		"greatly exaggerated reports of Lobotomy Corporation accountancy personnel committing mass suicide")
 	var/reason = pick(poss_reasons)
-	priority_announce("Due to [reason], prices for on-station vendors will be increased for a short period.", "Nanotrasen Accounting Division")
+	priority_announce("Due to [reason], prices for on-site vendors will be increased for a short period.", "Lobotomy Corporation Accounting Division")
 
 /datum/round_event/market_crash/start()
 	. = ..()
@@ -37,5 +37,5 @@
 	SSeconomy.station_target += market_dip
 	SSeconomy.market_crashing = FALSE
 	SSeconomy.price_update()
-	priority_announce("Prices for on-station vendors have now stabilized.", "Nanotrasen Accounting Division")
+	priority_announce("Prices for on-site vendors have now stabilized.", "Lobotomy Corporation Accounting Division")
 

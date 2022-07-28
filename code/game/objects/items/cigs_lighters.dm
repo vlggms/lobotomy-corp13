@@ -314,8 +314,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 // Cigarette brands.
 
-/obj/item/clothing/mask/cigarette/space_cigarette
-	desc = "A Space Cigarette brand cigarette."
+/obj/item/clothing/mask/cigarette/city_cigarette
+	desc = "A City Cigarette brand cigarette."
 
 /obj/item/clothing/mask/cigarette/dromedary
 	desc = "A DromedaryCo brand cigarette. Contrary to popular belief, does not contain Calomel, but is reported to have a watery taste."

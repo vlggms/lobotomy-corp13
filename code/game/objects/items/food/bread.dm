@@ -70,6 +70,14 @@
 	tastes = list("bread" = 10, "meat" = 10)
 	foodtypes = GRAIN | MEAT
 
+/obj/item/food/bread/bongbread
+	name = "bongbread loaf"
+	desc = "How in the wings did you acquire this"
+	icon_state = "bongbread"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 10, /datum/reagent/consumable/nutriment/protein = 12)
+	tastes = list("bread" = 10, "meat" = 10)
+	foodtypes = GRAIN | MEAT
+
 /obj/item/food/bread/meat/MakeProcessable()
 	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/breadslice/meat, 5, 30)
 

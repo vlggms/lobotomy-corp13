@@ -197,7 +197,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "aH" = (
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind{
 	pixel_x = -17;
 	pixel_y = 17
 	},
@@ -928,7 +928,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cT" = (
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind,
+/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind,
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "cU" = (
@@ -936,7 +936,7 @@
 	pixel_x = -8;
 	pixel_y = -4
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind{
+/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind{
 	pixel_x = 15
 	},
 /turf/open/floor/plating/beach/sand,
@@ -978,7 +978,7 @@
 /area/awaymission/beach)
 "db" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/suit/jacket/letterman_nanotrasen,
+/obj/item/clothing/suit/jacket/letterman_ncorp,
 /turf/open/floor/wood,
 /area/awaymission/beach)
 "dc" = (

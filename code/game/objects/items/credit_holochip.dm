@@ -1,6 +1,6 @@
 /obj/item/holochip
-	name = "credit holochip"
-	desc = "A hard-light chip encoded with an amount of credits. It is a modern replacement for physical money that can be directly converted to virtual currency and viceversa. Keep away from magnets."
+	name = "ahn holochip"
+	desc = "A hard-light chip encoded with an amount of ahn. It is a modern replacement for physical money that can be directly converted to virtual currency and viceversa. Keep away from magnets."
 	icon = 'icons/obj/economy.dmi'
 	icon_state = "holochip"
 	throwforce = 0
@@ -15,14 +15,14 @@
 
 /obj/item/holochip/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It's loaded with [credits] credit[( credits > 1 ) ? "s" : ""]</span>\n"+\
+	. += "<span class='notice'>It's loaded with [credits] ahn[( credits > 1 ) ? "s" : ""]</span>\n"+\
 	"<span class='notice'>Alt-Click to split.</span>"
 
 /obj/item/holochip/get_item_credit_value()
 	return credits
 
 /obj/item/holochip/update_icon()
-	name = "\improper [credits] credit holochip"
+	name = "\improper [credits] ahn holochip"
 	var/rounded_credits = credits
 	switch(credits)
 		if(1 to 999)
@@ -77,14 +77,14 @@
 	if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/H = I
 		credits += H.credits
-		to_chat(user, "<span class='notice'>You insert the credits into [src].</span>")
+		to_chat(user, "<span class='notice'>You insert the ahn into [src].</span>")
 		update_icon()
 		qdel(H)
 
 /obj/item/holochip/AltClick(mob/user)
 	if(!user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return
-	var/split_amount = round(input(user,"How many credits do you want to extract from the holochip?") as null|num)
+	var/split_amount = round(input(user,"How many ahn do you want to extract from the holochip?") as null|num)
 	if(split_amount == null || split_amount <= 0 || !user.canUseTopic(src, BE_CLOSE, NO_DEXTERITY, FALSE, !iscyborg(user)))
 		return
 	else
@@ -95,7 +95,7 @@
 				H.forceMove(user.drop_location())
 			add_fingerprint(user)
 		H.add_fingerprint(user)
-		to_chat(user, "<span class='notice'>You extract [split_amount] credits into a new holochip.</span>")
+		to_chat(user, "<span class='notice'>You extract [split_amount] ahn into a new holochip.</span>")
 
 /obj/item/holochip/emp_act(severity)
 	. = ..()

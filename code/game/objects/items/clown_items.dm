@@ -51,25 +51,25 @@
 				msg = "It's seen some light use, but it's still pretty fresh."
 	. += "<span class='notice'>[msg]</span>"
 
-/obj/item/soap/nanotrasen
-	desc = "A heavy duty bar of Nanotrasen brand soap. Smells of plasma."
+/obj/item/soap/ncorporation
+	desc = "A heavy duty bar of N-Corporation brand soap. Smells of plasma, that can't be good."
 	grind_results = list(/datum/reagent/toxin/plasma = 10, /datum/reagent/lye = 10)
 	icon_state = "soapnt"
 	cleanspeed = 28 //janitor gets this
 	uses = 300
 
 /obj/item/soap/homemade
-	desc = "A homemade bar of soap. Smells of... well...."
+	desc = "A homemade bar of soap. Smells of... well..."
 	icon_state = "soapgibs"
 	cleanspeed = 30 // faster to reward chemists for going to the effort
 
 /obj/item/soap/deluxe
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of high-class luxury."
+	desc = "A deluxe W-Corporation brand bar of soap. Smells of high-class luxury."
 	icon_state = "soapdeluxe"
 	cleanspeed = 20 //captain gets one of these
 
 /obj/item/soap/syndie
-	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood faster."
+	desc = "An untrustworthy bar of soap made of strong chemical agents that dissolve blood quickly."
 	icon_state = "soapsyndie"
 	cleanspeed = 5 //faster than mop so it is useful for traitors who want to clean crime scenes
 
@@ -88,7 +88,7 @@
 /obj/item/paper/fluff/stations/soap
 	name = "ancient janitorial poem"
 	desc = "An old paper that has passed many hands."
-	info = "The legend of the omega soap</B><BR><BR> Essence of <B>potato</B>. Juice, not grind.<BR><BR> A <B>lizard's</B> tail, turned into <B>wine</B>.<BR><BR> <B>powder of monkey</B>, to help the workload.<BR><BR> Some <B>Krokodil</B>, because meth would explode.<BR><BR> <B>Nitric acid</B> and <B>Baldium</B>, for organic dissolving.<BR><BR> A cup filled with <B>Hooch</B>, for sinful absolving<BR><BR> Some <B>Bluespace Dust</B>, for removal of stains.<BR><BR> A syringe full of <B>Pump-up</B>, it's security's bane.<BR><BR> Add a can of <B>Space Cola</B>, because we've been paid.<BR><BR> <B>Heat</B> as hot as you can, let the soap be your blade.<BR><BR> <B>Ten units of each regent create a soap that could topple all others.</B>"
+	info = "The legend of the omega soap</B><BR><BR> Essence of <B>potato</B>. Juice, not grind.<BR><BR> A <B>lizard's</B> tail, turned into <B>wine</B>.<BR><BR> <B>powder of monkey</B>, to help the workload.<BR><BR> Some <B>Krokodil</B>, because meth would explode.<BR><BR> <B>Nitric acid</B> and <B>Baldium</B>, for organic dissolving.<BR><BR> A cup filled with <B>Hooch</B>, for sinful absolving<BR><BR> Some <B>Bluespace Dust</B>, for removal of stains.<BR><BR> A syringe full of <B>Pump-up</B>, it's security's bane.<BR><BR> Add a can of <B>City Cola</B>, because we've been paid.<BR><BR> <B>Heat</B> as hot as you can, let the soap be your blade.<BR><BR> <B>Ten units of each regent create a soap that could topple all others.</B>"
 
 
 /obj/item/soap/suicide_act(mob/user)

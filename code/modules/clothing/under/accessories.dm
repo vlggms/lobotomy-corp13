@@ -183,16 +183,16 @@
 	desc = "A silver medal awarded for acts of exceptional valor."
 
 /obj/item/clothing/accessory/medal/silver/security
-	name = "robust security award"
-	desc = "An award for distinguished combat and sacrifice in defence of Nanotrasen's commercial interests. Often awarded to security staff."
+	name = "robust discipline award"
+	desc = "An award for distinguished combat and sacrifice in defence of Lobotomy Corporation's commercial interests. Often awarded to disciplinary employees."
 
 /obj/item/clothing/accessory/medal/silver/excellence
 	name = "\proper the head of personnel award for outstanding achievement in the field of excellence"
-	desc = "Nanotrasen's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare crewmembers who fit that definition."
+	desc = "Lobotomy Corporation's dictionary defines excellence as \"the quality or condition of being excellent\". This is awarded to those rare employees who fit that definition."
 
 /obj/item/clothing/accessory/medal/silver/bureaucracy
 	name = "\improper Excellence in Bureaucracy Medal"
-	desc = "Awarded for exemplary managerial services rendered while under contract with Nanotrasen."
+	desc = "Awarded for exemplary managerial services rendered while under contract with L-Corporation."
 
 /obj/item/clothing/accessory/medal/gold
 	name = "gold medal"
@@ -203,13 +203,13 @@
 
 
 /obj/item/clothing/accessory/medal/gold/captain
-	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain to Nanotrasen, and their undisputable authority over their crew."
+	name = "medal of competency"
+	desc = "A golden medal awarded exclusively to those promoted to the rank of manager of the facility. It signifies the codified responsibilities of a manager to Lobotomy Corporation, and their undisputable authority over their team."
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by the Wings of the World. To receive such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
 
 /obj/item/clothing/accessory/medal/plasma
 	name = "plasma medal"
@@ -272,12 +272,12 @@
 	icon_state = "hydroband"
 
 /obj/item/clothing/accessory/armband/med
-	name = "medical guard armband"
+	name = "white armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white."
 	icon_state = "medband"
 
-/obj/item/clothing/accessory/armband/medblue
-	name = "medical guard armband"
+/obj/item/clothing/accessory/armband/welfare
+	name = "welfare department armband"
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is white and blue."
 	icon_state = "medblueband"
 

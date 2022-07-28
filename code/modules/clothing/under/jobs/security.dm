@@ -15,7 +15,7 @@
 
 /obj/item/clothing/under/rank/security/officer
 	name = "security jumpsuit"
-	desc = "A tactical security jumpsuit for officers complete with Nanotrasen belt buckle."
+	desc = "A tactical security jumpsuit for officers complete with disciplinary belt buckle."
 	icon_state = "rsecurity"
 	inhand_icon_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
@@ -26,7 +26,7 @@
 
 /obj/item/clothing/under/rank/security/officer/grey
 	name = "grey security jumpsuit"
-	desc = "A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	desc = "A tactical relic of years past before L-Corporation decided it was cheaper to dye the suits red instead of washing out the blood."
 	icon_state = "security"
 	inhand_icon_state = "gy_suit"
 
@@ -63,7 +63,7 @@
 
 /obj/item/clothing/under/rank/security/warden
 	name = "security suit"
-	desc = "A formal security suit for officers complete with Nanotrasen belt buckle."
+	desc = "A formal security suit for officers complete with disciplinary belt buckle."
 	icon_state = "rwarden"
 	inhand_icon_state = "r_suit"
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 30, ACID = 30, WOUND = 10)
@@ -74,13 +74,13 @@
 
 /obj/item/clothing/under/rank/security/warden/grey
 	name = "grey security suit"
-	desc = "A formal relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood."
+	desc = "A formal relic of years past before L-Corporation decided it was cheaper to dye the suits red instead of washing out the blood."
 	icon_state = "warden"
 	inhand_icon_state = "gy_suit"
 
 /obj/item/clothing/under/rank/security/warden/skirt
 	name = "warden's suitskirt"
-	desc = "A formal security suitskirt for officers complete with Nanotrasen belt buckle."
+	desc = "A formal security suitskirt for officers complete with disciplinary belt buckle."
 	icon_state = "rwarden_skirt"
 	inhand_icon_state = "r_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
@@ -212,7 +212,7 @@
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardised district twelve prison-clothes. Its suit sensors are stuck in the \"Fully On\" position."
 	icon = 'icons/obj/clothing/under/security.dmi'
 	icon_state = "prisoner"
 	inhand_icon_state = "o_suit"
@@ -223,7 +223,7 @@
 
 /obj/item/clothing/under/rank/prisoner/skirt
 	name = "prison jumpskirt"
-	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	desc = "It's standardised district twelve prison-clothes. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner_skirt"
 	inhand_icon_state = "o_suit"
 	body_parts_covered = CHEST|GROIN|ARMS
