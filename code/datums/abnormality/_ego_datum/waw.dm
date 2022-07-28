@@ -7,7 +7,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/correctional
 	cost = 50
 
-// Queen bee - Hornet
+// Queen Bee - Hornet
 /datum/ego_datum/weapon/hornet
 	item_path = /obj/item/gun/ego_gun/hornet
 	cost = 50
@@ -16,7 +16,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/hornet
 	cost = 50
 
-// Big bird - Lamp
+// Big Bird - Lamp
 /datum/ego_datum/weapon/lamp
 	item_path = /obj/item/ego_weapon/lamp
 	cost = 50
@@ -25,7 +25,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/lamp
 	cost = 50
 
-// Knight of despair - Sword sharpened with tears
+// Knight of Despair - Sword sharpened with Tears
 /datum/ego_datum/weapon/despair
 	item_path = /obj/item/ego_weapon/despair
 	cost = 50

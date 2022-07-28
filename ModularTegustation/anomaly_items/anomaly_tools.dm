@@ -51,7 +51,7 @@
 	build_path = /obj/item/clothing/shoes/magboots/noslow
 
 /obj/item/clothing/shoes/magboots/noslow
-	desc = "Pair of magnetic boots using a gravity core to reduce the weight and slowdown."
+	desc = "A pair of magnetic boots using a gravity core to reduce the weight and slowdown."
 	name = "dormant anomalous magboots"
 	icon = 'ModularTegustation/Teguicons/teguclothing.dmi'
 	slowdown_active = SHOES_SLOWDOWN

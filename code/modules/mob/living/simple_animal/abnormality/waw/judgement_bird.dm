@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird
-	name = "Judgement bird"
+	name = "Judgement Bird"
 	desc = "A bird that used to judge the living in the dark forest, carrying around an unbalanced scale."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"

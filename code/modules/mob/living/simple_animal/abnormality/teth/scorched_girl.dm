@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/scorched_girl
-	name = "Scorched girl"
+	name = "Scorched Girl"
 	desc = "An abnormality resembling a girl burnt to ashes. \
 	Even though there's nothing left to burn, the fire still doesn't extinguish."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'

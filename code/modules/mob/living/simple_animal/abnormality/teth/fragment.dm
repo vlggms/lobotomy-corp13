@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/fragment
-	name = "Fragment of the universe"
+	name = "Fragment of the Universe"
 	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fragment"

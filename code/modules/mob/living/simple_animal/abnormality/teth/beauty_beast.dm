@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/beauty
 	name = "Beauty and the Beast"
-	desc = "A giant, disgusting creature."
+	desc = "However, the curse continues eternally, never broken."
 	icon = 'ModularTegustation/Teguicons/48x32.dmi'
 	icon_state = "beauty"
 	maxHealth = 650

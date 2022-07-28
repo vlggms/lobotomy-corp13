@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird
-	name = "Punishing bird"
+	name = "Punishing Bird"
 	desc = "A white bird with tiny beak. Looks harmless."
 	icon = 'icons/mob/punishing_bird.dmi'
 	icon_state = "pbird"

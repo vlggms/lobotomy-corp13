@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/despair_knight
-	name = "Knight of despair"
+	name = "Knight of Despair"
 	desc = "A tall humanoid abnormality in a blue dress. \
 	Half of her head is black with sharp horn segments protruding out of it."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'

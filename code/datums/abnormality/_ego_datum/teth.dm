@@ -7,12 +7,12 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/training
 	cost = 20
 
-// Punishing bird - Beak
+// Punishing Bird - Beak
 /datum/ego_datum/armor/beak
 	item_path = /obj/item/clothing/suit/armor/ego_gear/beak
 	cost = 20
 
-// Scorched girl - Fourth match flame
+// Scorched Girl - Fourth match flame
 /datum/ego_datum/weapon/match
 	item_path = /obj/item/gun/ego_gun/match
 	cost = 25
@@ -21,7 +21,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/match
 	cost = 20
 
-// Fragment of the universe - Fragments of something
+// Fragment of the Universe - Fragments of something
 /datum/ego_datum/weapon/fragment
 	item_path = /obj/item/ego_weapon/fragment
 	cost = 20

@@ -1,6 +1,6 @@
 // A vending machine that is a mob type. My descent into madness continues.
 /mob/living/simple_animal/hostile/abnormality/wellcheers
-	name = "Wellcheers vending machine"
+	name = "Opened Can of WellCheers"
 	desc = "A vending machine selling cans of \"Wellcheers\"."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wellcheers_vendor"
@@ -67,21 +67,21 @@
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
-	name = "can of cherry 'Wellcheers' soda"
+	name = "Can of cherry 'Wellcheers' soda"
 	desc = "A can of cherry-flavored soda."
 	icon_state = "wellcheers_red"
 	inhand_icon_state = "cola"
 	list_reagents = list(/datum/reagent/consumable/wellcheers_red = 10)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
-	name = "can of 'Wellcheers' soda"
+	name = "Can of 'Wellcheers' soda"
 	desc = "A can of soda."
 	icon_state = "wellcheers_white"
 	inhand_icon_state = "monkey_energy"
 	list_reagents = list(/datum/reagent/consumable/wellcheers_white = 10)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
-	name = "can of grape 'Wellcheers' soda"
+	name = "Can of grape 'Wellcheers' soda"
 	desc = "A can of grape-flavored soda."
 	icon_state = "wellcheers_purple"
 	inhand_icon_state = "purple_can"
