@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60
 		)
-	work_damage_amount = 60			//Unlikely to hurt you but if she ever does she'll fuck you
+	work_damage_amount = 30			//Unlikely to hurt you but if she ever does she'll fuck you
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
