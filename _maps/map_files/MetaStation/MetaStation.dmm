@@ -37436,7 +37436,7 @@
 	},
 /obj/structure/table/wood,
 /obj/item/toy/talking/ai{
-	name = "\improper Nanotrasen-brand toy AI";
+	name = "\improper Lobotomy Corporation-Brand toy AI";
 	pixel_y = 6
 	},
 /turf/open/floor/carpet,

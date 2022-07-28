@@ -1063,6 +1063,16 @@
 "hl" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
+"hv" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/item/toy/plush/pierre,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/training)
 "hw" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -2469,6 +2479,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"pZ" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "qb" = (
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
@@ -2494,7 +2516,6 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 14
 	},
-/obj/item/toy/plush/pierre,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "qc" = (
@@ -38906,7 +38927,7 @@ an
 an
 fg
 Pe
-dj
+pZ
 Pe
 am
 Tz
@@ -44823,7 +44844,7 @@ JB
 JB
 SY
 qb
-rV
+hv
 tk
 rX
 xM

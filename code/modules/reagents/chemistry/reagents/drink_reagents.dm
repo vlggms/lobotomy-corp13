@@ -479,13 +479,13 @@
 	..()
 
 /datum/reagent/consumable/space_up
-	name = "Space-Up"
-	description = "Tastes like a hull breach in your mouth."
+	name = "Super-Up"
+	description = "What's up? Super up! In your face!"
 	color = "#00FF00" // rgb: 0, 255, 0
 	taste_description = "cherry soda"
 	glass_icon_state = "space-up_glass"
-	glass_name = "glass of Space-Up"
-	glass_desc = "Space-up. It helps you keep your cool."
+	glass_name = "glass of Super-Up"
+	glass_desc = "Super-up. Its a middle of the road soda for a middle of the road person."
 
 
 /datum/reagent/consumable/space_up/on_mob_life(mob/living/carbon/M)

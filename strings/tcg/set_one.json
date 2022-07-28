@@ -1384,7 +1384,7 @@
 		},
 		{
 			"id": "scientist_moth",
-			"name": "Scientist (Moth)",
+			"name": "Scientist (Insect)",
 			"desc": "Moths are a common sight in Nanotrasen research departments, acting as integral ideas guys for new clothing designs and lighting innovations.",
 			"rules": "",
 			"icon_state": "scientist_moth",
@@ -1474,8 +1474,8 @@
 		},
 		{
 			"id": "weekend_at_bernies",
-			"name": "Weekend at Nanotrasen's",
-			"desc": "Holy shit! We just accidentally killed the Captain! Here, uhh... oh god, stuff him in that wheelchair over there, before anyone comes in. Yeah, yeah! Get his sunglasses, cover his face. Oh my god, oh my god, oh my god. No one will be able to tell, he looks sorta fine, right? Right?",
+			"name": "Weekend at Lobotomy Corporation",
+			"desc": "Holy shit! We just accidentally killed the Manager! Here, uhh... oh god, stuff him in that wheelchair over there, before anyone comes in. Yeah, yeah! Get his sunglasses, cover his face. Oh my god, oh my god, oh my god. No one will be able to tell, he looks sorta fine, right? Right?",
 			"rules": "Return a creature card from your graveyard to the battlefield.",
 			"icon_state": "weekend_at_bernies",
 			"power": "0",
@@ -1490,7 +1490,7 @@
 		{
 			"id": "disco_inferno",
 			"name": "Disco Inferno",
-			"desc": "(Burn baby burn) burn that mother down y'all\n(Burn baby burn) Disco Inferno\n(Burn baby burn) burn that mother down",
+			"desc": "(Burn baby burn) burn that mother down y'all!\n(Burn baby burn) Disco Inferno!\n(Burn baby burn) burn that mother down!",
 			"rules": "For 2 mana: Tap this card permanantly. While tapped, all active creatures take 3 damage during the first play phase of each turn. This card is destroyed after 2 turns of being tapped.",
 			"icon_state": "disco_inferno",
 			"power": "0",
