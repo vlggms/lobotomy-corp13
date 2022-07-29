@@ -2447,6 +2447,9 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 14
 	},
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "qc" = (
@@ -4331,6 +4334,10 @@
 	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
+	},
+/obj/item/reagent_containers/food/condiment/soysauce{
+	pixel_x = 15;
+	pixel_y = 7
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
@@ -6581,6 +6588,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "RM" = (
