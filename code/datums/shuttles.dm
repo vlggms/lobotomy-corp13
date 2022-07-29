@@ -170,7 +170,15 @@
 	port_id = "snowdin"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/manager
+	port_id = "manager"
+	can_be_bought = FALSE	
+
 // Shuttles start here:
+
+/datum/map_template/shuttle/manager/elevator
+	suffix = "elevator"
+	name = "manager elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
@@ -238,8 +246,8 @@
 /datum/map_template/shuttle/emergency/luxury
 	suffix = "luxury"
 	name = "Luxury Shuttle"
-	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 ahn, payable in cash and mineral coin."
-	extra_desc = "This shuttle costs 500 ahn to board."
+	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 credits, payable in cash and mineral coin."
+	extra_desc = "This shuttle costs 500 credits to board."
 	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
 	credit_cost = CARGO_CRATE_VALUE * 20
 
