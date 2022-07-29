@@ -1,0 +1,84 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/mining)
+"d" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"f" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"m" = (
+/obj/machinery/computer/shuttle/mining{
+	name = "elevator console";
+	shuttleId = "manager";
+	possible_destinations = "elevator_home;elevator_away";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"w" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/mining)
+"I" = (
+/obj/docking_port/mobile{
+	name = "manager elevator";
+	id = "manager";
+	port_direction = 2;
+	dwidth = 2;
+	height = 4;
+	width = 4
+	},
+/obj/machinery/door/airlock/public/glass{
+	normalspeed = 0
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"P" = (
+/obj/machinery/door/airlock/public/glass{
+	normalspeed = 0
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+w
+a
+a
+a
+w
+"}
+(2,1,1) = {"
+a
+d
+m
+d
+a
+"}
+(3,1,1) = {"
+P
+d
+d
+d
+I
+"}
+(4,1,1) = {"
+a
+f
+f
+f
+a
+"}
+(5,1,1) = {"
+w
+a
+a
+a
+w
+"}
