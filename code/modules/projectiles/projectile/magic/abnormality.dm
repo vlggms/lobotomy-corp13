@@ -37,3 +37,27 @@
 /obj/projectile/hatred/Initialize()
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
+
+/obj/projectile/melting_blob
+	name = "slime projectile"
+	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
+	icon_state = "slime"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 70
+	spread = 15
+
+/obj/projectile/melting_blob/enraged
+	name = "slime projectile"
+	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
+	icon_state = "slime"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	projectile
+	damage = 100
+	spread = 15
+
+/obj/projectile/melting_blob/Initialize()
+	. = ..()
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	animate(src, alpha = 255, time = 3)
