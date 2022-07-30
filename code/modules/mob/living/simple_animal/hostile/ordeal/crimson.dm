@@ -11,9 +11,9 @@
 	health = 100
 	speed = 1
 	density = FALSE
-	search_objects = TRUE
+	search_objects = 3
 	wanted_objects = list(/obj/machinery/computer/abnormality)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
 	/// When it hits console 15 times - reduce qliphoth and teleport
@@ -100,7 +100,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	deathsound = 'sound/effects/ordeals/crimson/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
 
@@ -108,7 +108,7 @@
 	var/mob_spawn_amount = 3
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/death(gibbed)
-	animate(src, transform = matrix()*1.5, color = "#FF0000", time = 5)
+	animate(src, transform = matrix()*1.25, color = "#FF0000", time = 5)
 	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
 	..()
 
@@ -148,7 +148,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/effects/ordeals/crimson/dusk_attack.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_spawn_amount = 2
 
 	var/roll_num = 36

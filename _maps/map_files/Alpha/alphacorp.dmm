@@ -993,6 +993,21 @@
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
+"jw" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/training)
 "jy" = (
 /obj/structure/rack,
 /turf/open/floor/carpet/red,
@@ -1524,8 +1539,18 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/item/storage/box/drinkingglasses,
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
+	},
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "pH" = (
@@ -1897,6 +1922,15 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"tp" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/training)
 "tu" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -1932,12 +1966,6 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "ty" = (
@@ -3671,7 +3699,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
+/obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "My" = (
@@ -3925,14 +3953,23 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "Pd" = (
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
+/obj/item/choice_beacon/ingredient,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "Pf" = (
@@ -46275,7 +46312,7 @@ ZL
 zW
 ot
 Bl
-Mo
+jw
 Po
 Bl
 Tc
@@ -46532,7 +46569,7 @@ ZL
 zW
 pF
 Bl
-Mo
+tp
 PM
 Bl
 Vn

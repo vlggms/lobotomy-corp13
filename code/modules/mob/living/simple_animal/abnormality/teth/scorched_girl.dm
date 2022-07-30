@@ -21,7 +21,7 @@
 		)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("hostile")
 	can_breach = TRUE
 	start_qliphoth = 2

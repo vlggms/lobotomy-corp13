@@ -8,6 +8,10 @@
 	cost = 20
 
 // Punishing bird - Beak
+/datum/ego_datum/weapon/beak
+	item_path = /obj/item/gun/ego_gun/beak
+	cost = 20
+
 /datum/ego_datum/armor/beak
 	item_path = /obj/item/clothing/suit/armor/ego_gear/beak
 	cost = 20

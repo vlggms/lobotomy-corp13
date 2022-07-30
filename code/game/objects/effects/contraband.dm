@@ -398,8 +398,8 @@
 	icon_state = "poster41"
 
 /obj/structure/sign/poster/contraband/space_up
-	name = "Space-Up!"
-	desc = "Sucked out into space by the FLAVOR!"
+	name = "Super-Up!"
+	desc = "When you're too good for City Cola, but you're still cheap!"
 	icon_state = "poster42"
 
 /obj/structure/sign/poster/contraband/kudzu

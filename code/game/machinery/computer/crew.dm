@@ -32,13 +32,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	/// Map of job to ID for sorting purposes
 	var/list/jobs = list(
 		// Note that jobs divisible by 10 are considered heads of staff, and bolded
-		// 00: Captain
-		"Captain" = 00,
+		// 00: Manager
+		"Manager" = 00,
+		"Extraction Officer" = 01,
 		// 10-19: Security
-		"Head of Security" = 10,
-		"Warden" = 11,
-		"Security Officer" = 12,
-		"Detective" = 13,
+		"Agent Captain" = 10,
+		"Veteran Agent" = 11,
+		"Senior Agent" = 12,
+		"Agent" = 13,
 		// 20-29: Medbay
 		"Chief Medical Officer" = 20,
 		"Chemist" = 21,
@@ -61,7 +62,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Shaft Miner" = 52,
 		"Cargo Technician" = 53,
 		// 60+: Civilian/other
-		"Bartender" = 61,
+		"Clerk" = 61,
 		"Cook" = 62,
 		"Botanist" = 63,
 		"Curator" = 64,
@@ -201,7 +202,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				"oxydam" = round(tracked_living_mob.getOxyLoss(), 1),
 				"toxdam" = round(tracked_living_mob.getToxLoss(), 1),
 				"burndam" = round(tracked_living_mob.getFireLoss(), 1),
-				"brutedam" = round(tracked_living_mob.getBruteLoss(), 1)
+				"brutedam" = round(tracked_living_mob.getBruteLoss(), 1),
+				"sandam" = round(tracked_living_mob.getSanityLoss(), 1)
 			)
 
 		// Location

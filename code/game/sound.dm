@@ -189,6 +189,18 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			var/mob/M = m
 			M.playsound_local(M, null, volume, vary, frequency, null, channel, pressure_affected, S)
 
+/proc/sound_to_playing_players_on_level(soundin, volume = 100, vary = FALSE, frequency = 0, channel = 0, pressure_affected = FALSE, sound/S, zlevel)
+	if(!S)
+		S = sound(get_sfx(soundin))
+	for(var/m in GLOB.player_list)
+		if(ismob(m) && !isnewplayer(m))
+			var/mob/M = m
+			var/check_z = M.z
+			if(isatom(M.loc))
+				check_z = M.loc.z // So it plays even when you are in a locker/sleeper
+			if((check_z == zlevel) && M.client)
+				M.playsound_local(M, null, volume, vary, frequency, null, channel, pressure_affected, S)
+
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 

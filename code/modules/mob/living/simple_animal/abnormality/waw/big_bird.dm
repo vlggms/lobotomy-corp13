@@ -5,7 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "big_bird"
 	icon_living = "big_bird"
-	faction = list("hostile")
+	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
 
 	pixel_x = -16
@@ -14,7 +14,7 @@
 	ranged = TRUE
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
@@ -81,9 +81,6 @@
 	. = ..()
 	if(!(status_flags & GODMODE)) // Whitaker nerf
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
-
-/mob/living/simple_animal/hostile/abnormality/big_bird/ListTargets()
-	return hearers(vision_range, targets_from) - src
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/CanAttack(atom/the_target)
 	if(ishuman(the_target))

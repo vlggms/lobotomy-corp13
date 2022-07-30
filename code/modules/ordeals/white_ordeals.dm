@@ -4,7 +4,7 @@
 	annonce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
 	level = 4
-	reward_percent = 0.4
+	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 	var/spawn_type = /mob/living/simple_animal/hostile/megafauna/claw

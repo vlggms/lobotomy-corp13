@@ -10,9 +10,10 @@
 	maxHealth = 80
 	health = 80
 	speed = 2
+	rapid_melee = 2
 	density = FALSE
-	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	turns_per_move = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -71,7 +72,7 @@
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
 	deathsound = 'sound/effects/ordeals/amber/dusk_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
 	alpha = 0 // It burrows in on spawn

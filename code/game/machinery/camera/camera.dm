@@ -20,7 +20,7 @@
 	var/list/network = list("ss13")
 	var/c_tag = null
 	var/status = TRUE
-	var/start_active = FALSE //If it ignores the random chance to start broken on round start
+	var/start_active = TRUE //If it ignores the random chance to start broken on round start
 	var/invuln = null
 	var/obj/item/camera_bug/bug = null
 	var/obj/structure/camera_assembly/assembly = null
