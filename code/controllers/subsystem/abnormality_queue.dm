@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 			possible_abnormalities[initial(abno.threat_level)] += abno
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
+	addtimer(CALLBACK(src, .proc/HandleStartingAbnormalities), 120 SECONDS)
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -56,3 +57,14 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(LAZYLEN(picking_abno))
 		queued_abnormality = pick(picking_abno)
 	possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+
+/datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
+	var/player_count = GLOB.clients.len
+	if(player_count < 6)
+		return
+	var/i
+	for(i=1 to round(player_count / 6))
+		fire()
+		sleep(2 SECONDS) // To prevent some issues.
+	message_admins("[i] round-start abnormalities have been spawned.")
+	return

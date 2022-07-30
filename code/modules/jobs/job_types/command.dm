@@ -6,9 +6,12 @@
 	spawn_positions = 1
 	supervisors = "the manager"
 	selection_color = "#ccccff"
+	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
+
+	exp_requirements = 360
+	exp_type = EXP_TYPE_CREW
 
 	outfit = /datum/outfit/job/extraction
-	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
 
 	access = list() // LC13:To-Do
 	minimal_access = list()

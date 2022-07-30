@@ -5,12 +5,8 @@
 	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	flags_1 = CONDUCT_1
 	force = 35
-	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 24
-	throw_speed = 3
-	throw_range = 6
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")
@@ -30,7 +26,7 @@
 			force = 30
 		if(BLACK_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 8
+			force = 25
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
 			force = 35

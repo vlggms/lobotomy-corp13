@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	speak_emote = list("proclaims")
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 	melee_damage_lower = 35
 	melee_damage_upper = 40
 	obj_damage = 600
@@ -61,13 +61,13 @@ GLOBAL_LIST_EMPTY(apostles)
 		/datum/ego_datum/armor/paradise
 		)
 
-	var/holy_revival_cooldown = 20 SECONDS
-	var/holy_revival_cooldown_base = 20 SECONDS
+	var/holy_revival_cooldown = 30 SECONDS
+	var/holy_revival_cooldown_base = 30 SECONDS
 	var/holy_revival_damage = 28 // Pale damage, scales with distance
 	var/holy_revival_range = 4
 	var/last_revival_time // To prevent multiple conversions per one action
-	var/fire_field_cooldown = 20 SECONDS
-	var/fire_field_cooldown_base = 20 SECONDS
+	var/fire_field_cooldown = 15 SECONDS
+	var/fire_field_cooldown_base = 15 SECONDS
 	var/field_range = 4
 	var/scream_cooldown = 18 SECONDS
 	var/scream_cooldown_base = 18 SECONDS
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				H.overlays_standing[HALO_LAYER] = apostle_halo
 				H.apply_overlay(HALO_LAYER)
 			last_revival_time = world.time
-			SLEEP_CHECK_DEATH(20)
+			SLEEP_CHECK_DEATH(10)
 			// Executing rapture scenario
 			switch(apostle_num)
 				if(1)
@@ -267,9 +267,11 @@ GLOBAL_LIST_EMPTY(apostles)
 					apostle_line = "From now on, let no one cause me trouble, for I bear on my body the marks of him."
 				if(12) //Here we go sicko mode
 					apostle_line = "Have I not chosen you, the Twelve? Yet one of you is a devil."
+					H.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
+					H.status_flags |= GODMODE // Immortality...
 					rapture_skill.Grant(src)
 					if(!client) // AI in control
-						addtimer(CALLBACK(src, .proc/rapture), 5 SECONDS)
+						addtimer(CALLBACK(src, .proc/rapture), 10 SECONDS)
 			for(var/mob/M in GLOB.player_list)
 				if(M.z == z && M.client)
 					to_chat(M, "<span class='userdanger'>[apostle_line]</span>")
@@ -322,14 +324,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(3)
 	for(var/i = 1 to field_range)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
-		playsound(target_c, "explosion", 50, TRUE)
+		playsound(target_c, "explosion", 25, TRUE)
 		for(var/turf/open/T in fire_zone)
 			new /obj/effect/hotspot(T)
-			T.hotspot_expose(400, 30, 1)
 			for(var/mob/living/L in T.contents)
 				if("apostle" in L.faction)
 					continue
-				L.adjustFireLoss(15)
+				L.apply_damage(20, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 				to_chat(L, "<span class='userdanger'>You're hit by [src]'s fire field!</span>")
 		SLEEP_CHECK_DEATH(1.5)
 
@@ -348,11 +349,6 @@ GLOBAL_LIST_EMPTY(apostles)
 		C.do_jitter_animation(C.jitteriness)
 		C.blur_eyes(scream_power * 0.3, 0.6)
 		C.stuttering += (scream_power)
-	if(apostle_num == 666)
-		for(var/obj/machinery/light/L in range(6, src)) // A copy from apc.dm
-			L.on = TRUE
-			L.break_light_tube()
-			L.on = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/holy_blink(blink_target)
 	if(blink_cooldown > world.time)
@@ -385,9 +381,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	rapture_skill.Remove(src)
 	chosen_attack = 1 // To avoid rapture spam
 	to_chat(src, "<span class='userdanger'>You begin the final ritual...</span>")
-	for(var/mob/M in GLOB.player_list)
-		if(M.client) // Send it to every player currently active, not just everyone on Z-level
-			SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/antagonist/rapture.ogg')
+	sound_to_playing_players('ModularTegustation/Tegusounds/apostle/antagonist/rapture.ogg')
 	SLEEP_CHECK_DEATH(30)
 	for(var/datum/antagonist/apostle/A in GLOB.apostles)
 		if(!A.owner || !ishuman(A.owner.current))
@@ -412,8 +406,6 @@ GLOBAL_LIST_EMPTY(apostles)
 			SLEEP_CHECK_DEATH(3)
 			H.forceMove(main_loc)
 		if(A.number == 12)
-			H.gain_trauma(/datum/brain_trauma/severe/pacifism, TRAUMA_RESILIENCE_ABSOLUTE)
-			H.status_flags |= GODMODE // Immortality...
 			SLEEP_CHECK_DEATH(26)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z && M.client)
@@ -428,26 +420,25 @@ GLOBAL_LIST_EMPTY(apostles)
 					else
 						mod = "th"
 				to_chat(M, "<span class='userdanger'>[H.real_name], the [A.number][mod]...</span>")
-				SEND_SOUND(M, 'ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
 				flash_color(M, flash_color = "#FF4400", flash_time = 50)
-		SLEEP_CHECK_DEATH(60)
-	SLEEP_CHECK_DEATH(300)
+		sound_to_playing_players('ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
+		SLEEP_CHECK_DEATH(6 SECONDS)
+	SLEEP_CHECK_DEATH(30 SECONDS)
 	to_chat(src, "<span class='userdanger'>You feel stronger than ever...</span>")
-	apostle_num = 666
 	holy_revival_range = 20 // Get fucked
 	fire_field_cooldown_base = 16 SECONDS
 	field_range += 1 // Powercrepe
 	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z && M.client)
-			M.playsound_local(get_turf(M), 'ModularTegustation/Tegusounds/apostle/antagonist/rapture2.ogg', 50, 0)
+	sound_to_playing_players('ModularTegustation/Tegusounds/apostle/antagonist/rapture2.ogg', 50)
+	SLEEP_CHECK_DEATH(60 SECONDS)
+	apostle_num = 666
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/white_night/success_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
-			revive_humans(20, "neutral") // Big heal
+			revive_humans(32, "neutral") // Big heal
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/failure_effect(mob/living/carbon/human/user, work_type, pe)

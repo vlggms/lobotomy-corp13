@@ -84,7 +84,7 @@
 	projectiletype = /obj/projectile/bullet/c9x19mm
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.6)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -149,7 +149,7 @@
 	faction = list("green_ordeal")
 	maxHealth = 2500
 	health = 2500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 
 	var/spawn_progress = 20
 	var/list/spawned_mobs = list()
@@ -170,7 +170,7 @@
 		return FALSE
 	listclearnulls(spawned_mobs)
 	for(var/mob/living/L in spawned_mobs)
-		if(L.stat == DEAD)
+		if(L.stat == DEAD || QDELETED(L))
 			spawned_mobs -= L
 	update_icon()
 	if(length(spawned_mobs) >= 15)

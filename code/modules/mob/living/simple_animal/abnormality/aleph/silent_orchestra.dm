@@ -31,9 +31,9 @@
 		)
 
 	/// Range of the damage
-	var/symphony_range = 12
+	var/symphony_range = 18
 	/// Amount of white damage
-	var/symphony_damage = 5
+	var/symphony_damage = 8
 	/// When to perform next movement
 	var/next_movement_time
 	/// Current movement
@@ -61,8 +61,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/proc/DamagePulse()
 	if(current_movement_num < 5)
-		for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
-			H.apply_damage(symphony_damage - round(get_dist(src, H) * 0.5), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in livinginrange(symphony_range, get_turf(src)))
+			if(faction_check_mob(L))
+				continue
+			var/dealt_damage = max(4, symphony_damage - round(get_dist(src, L) * 0.2))
+			L.apply_damage(dealt_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 	if(world.time >= next_movement_time) // Next movement
 		var/movement_volume = 50
@@ -73,7 +76,7 @@
 				next_movement_time = world.time + 4 SECONDS
 			if(1)
 				next_movement_time = world.time + 22 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.2)
+				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 				spawn_performer(1, WEST)
 			if(2)
 				next_movement_time = world.time + 14.5 SECONDS
@@ -83,7 +86,7 @@
 				next_movement_time = world.time + 11.5 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 				symphony_damage = 15
-				movement_volume = 5 // No more tinnitus
+				movement_volume = 3 // No more tinnitus
 				spawn_performer(1, EAST)
 			if(4)
 				next_movement_time = world.time + 23 SECONDS
@@ -93,13 +96,11 @@
 			if(5)
 				next_movement_time = world.time + 999 SECONDS // Never
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
-				movement_volume = 75 // TA-DA!!!
+				movement_volume = 65 // TA-DA!!!
 		if(current_movement_num < 6)
-			for(var/mob/M in GLOB.player_list)
-				if(M.z == z && M.client)
-					M.playsound_local(get_turf(M), "sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, 0)
+			sound_to_playing_players_on_level("sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, zlevel = z)
 			if(current_movement_num == 5)
-				for(var/mob/living/carbon/human/H in urange(symphony_range, get_turf(src)))
+				for(var/mob/living/carbon/human/H in livinginrange(symphony_range, get_turf(src)))
 					if(H.sanity_lost || (H.sanityhealth < H.maxSanity * 0.5))
 						var/obj/item/bodypart/head/head = H.get_bodypart("head")
 						if(QDELETED(head))

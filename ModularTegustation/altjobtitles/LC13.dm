@@ -1,3 +1,14 @@
+/// Security
+/datum/job/agent
+	alt_titles = list("Newbie Agent")
+	senior_title = "Senior Agent"
+	ultra_senior_title = "Veteran Agent"
+
+/datum/job/agent/captain
+	alt_titles = list()
+	senior_title = null
+	ultra_senior_title = null
+
 /// Service
 /datum/job/assistant
 	alt_titles = list("Control Department Clerk", "Information Department Clerk",

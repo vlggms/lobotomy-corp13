@@ -396,6 +396,13 @@
 	gender = FEMALE
 	squeak_override = list('sound/effects/wow.ogg'=1)
 
+/obj/item/toy/plush/myo
+	name = "myo plushie"
+	desc = "A plushie depicting a mercenary leader."
+	icon_state = "myo"
+	gender = FEMALE
+	squeak_override = list('sound/effects/yem.ogg'=1)
+
 /obj/item/toy/plush/qoh
 	name = "queen of hatred plushie"
 	desc = "A plushie depicting a magical girl whose goal is fighting all evil in the universe!"

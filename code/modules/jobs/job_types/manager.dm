@@ -8,6 +8,9 @@
 	selection_color = "#bcbcef"
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
+	exp_requirements = 720
+	exp_type = EXP_TYPE_CREW
+
 	outfit = /datum/outfit/job/manager
 
 	access = list() // LC13:To-Do

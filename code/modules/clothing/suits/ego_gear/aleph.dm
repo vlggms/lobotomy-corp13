@@ -48,3 +48,16 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/twilight
+	name = "twilight"
+	desc = "The three birds united their efforts to defeat the beast. \
+	This could stop countless incidents, but you’ll have to be prepared to step into the Black Forest…"
+	icon_state = "twilight"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)

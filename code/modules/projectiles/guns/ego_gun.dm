@@ -73,11 +73,14 @@
 		recharge_newshot()
 
 /obj/item/gun/ego_gun/recharge_newshot()
-	if(chambered && !chambered.BB)
+	if(chambered)
 		chambered.newshot()
 
-/obj/item/gun/ego_gun/shoot_with_empty_chamber(mob/living/user)
-	if(!chambered)
+/obj/item/gun/ego_gun/before_firing(atom/target,mob/user)
+	if(QDELETED(chambered))
 		chambered = new ammo_type(src)
-		return
+	return
+
+/obj/item/gun/ego_gun/shoot_with_empty_chamber(mob/living/user)
+	before_firing(user = user)
 	return ..()
