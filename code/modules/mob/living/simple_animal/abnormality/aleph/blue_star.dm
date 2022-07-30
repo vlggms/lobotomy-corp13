@@ -10,8 +10,10 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "blue_star"
 	icon_living = "blue_star"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.1)
+	icon_dead = "blue_star_dead"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	is_flying_animal = TRUE
+	del_on_death = FALSE
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
@@ -25,10 +27,11 @@
 	work_damage_type = WHITE_DAMAGE
 
 	wander = FALSE
-	light_system = MOVABLE_LIGHT
 	light_color = COLOR_BLUE_LIGHT
-	light_range = 24
-	light_power = 14
+	light_range = 36
+	light_power = 20
+
+	del_on_death = FALSE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/star_sound,
@@ -37,7 +40,7 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 9 SECONDS
-	var/pulse_damage = 36 // Scales with distance
+	var/pulse_damage = 40 // Scales with distance
 
 	var/datum/looping_sound/bluestar/soundloop
 
@@ -47,6 +50,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/bluestar/death(gibbed)
+	QDEL_NULL(soundloop)
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Move()
@@ -67,7 +76,7 @@
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 28)
 	var/matrix/init_transform = transform
 	animate(src, transform = transform*2, time = 3, easing = BACK_EASING|EASE_OUT)
-	for(var/mob/living/L in urange(48, src))
+	for(var/mob/living/L in livinginrange(48, src))
 		if(faction_check_mob(L))
 			continue
 		L.apply_damage((pulse_damage - round(get_dist(src, L) * 0.75)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)

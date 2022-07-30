@@ -333,7 +333,7 @@
 "bh" = (
 /obj/structure/closet,
 /obj/item/clothing/under/syndicate/tacticool{
-	desc = "A cheap copy of tactical turtleneck. You can almost see 'NT' label on it.";
+	desc = "A cheap copy of a real tactical turtleneck. You can see the 'Lobotomy Corporation' label on it.";
 	name = "tactical turtleneck"
 	},
 /obj/item/clothing/shoes/sandal,

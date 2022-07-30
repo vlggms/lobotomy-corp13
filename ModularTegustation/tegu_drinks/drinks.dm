@@ -14,7 +14,7 @@
 
 /datum/reagent/consumable/tegu/shirley_temple
 	name = "Shirley Temple"
-	description = "Space-up, Grenadine, and Orange Juice."
+	description = "Super-up, Grenadine, and Orange Juice."
 	color = "#FFE48C" // rgb: 255, 228, 140
 	quality = DRINK_GOOD
 	taste_description = "Sweet tonic cherries"

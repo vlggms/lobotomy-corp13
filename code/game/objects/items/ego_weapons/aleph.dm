@@ -3,10 +3,9 @@
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
 	icon_state = "paradise"
-	force = 13
+	force = 40
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
@@ -18,7 +17,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 15
+	var/ranged_damage = 40
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -55,10 +54,9 @@
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	icon_state = "justitia"
-	force = 7
+	force = 25
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	hitsound = 'sound/weapons/ego/justitia1.ogg'
@@ -84,7 +82,7 @@
 	switch(combo)
 		if(5)
 			hitsound = 'sound/weapons/ego/justitia2.ogg'
-			force = 9
+			force *= 1.5
 			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(1,4)
 			hitsound = 'sound/weapons/ego/justitia3.ogg'
@@ -100,7 +98,7 @@
 					continue
 				if(L.stat >= DEAD)
 					continue
-				L.apply_damage(15, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -116,7 +114,6 @@
 	force = 40 // It attacks very fast
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/ego/da_capo1.ogg'

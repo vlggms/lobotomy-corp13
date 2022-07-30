@@ -713,8 +713,8 @@
 	foodtype = SUGAR
 
 /obj/item/reagent_containers/food/drinks/soda_cans/space_up
-	name = "Space-Up!"
-	desc = "Tastes like a hull breach in your mouth."
+	name = "Super-Up!"
+	desc = "What's up? Super up! In your face!"
 	icon_state = "space-up"
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	foodtype = SUGAR | JUNKFOOD

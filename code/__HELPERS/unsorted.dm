@@ -839,7 +839,7 @@ rough example of the "cone" made by the 3 dirs checked
 	return I
 
 //ultra range (no limitations on distance, faster than range for distances > 8); including areas drastically decreases performance
-/proc/urange(dist=0, atom/center=usr, orange=0, areas=0)
+/proc/urange(dist=0, atom/center=usr, orange=0, areas=0, contents_include = FALSE)
 	if(!dist)
 		if(!orange)
 			return list(center)
@@ -854,6 +854,10 @@ rough example of the "cone" made by the 3 dirs checked
 		var/turf/T = V
 		. += T
 		. += T.contents
+		if(contents_include)
+			for(var/atom/I in T.contents)
+				if(LAZYLEN(I.contents))
+					. |= I.contents
 		if(areas)
 			. |= T.loc
 
@@ -967,6 +971,36 @@ rough example of the "cone" made by the 3 dirs checked
 			CHECK_TICK
 
 	return L
+
+// Will return all mobs that are close enough to the center
+/proc/livinginrange(dist=0, atom/center=usr)
+	if(!dist)
+		return list()
+
+	var/list/mobs = list()
+	for(var/mob/living/L in GLOB.mob_living_list)
+		var/check_place = L
+		if(isatom(L.loc)) // Not a turf/area
+			check_place = L.loc
+		if(get_dist(center, check_place) <= dist)
+			mobs += L
+
+	return mobs
+
+// Will return all mobs that are in view regardless of their location(i.e. in a locker)
+/proc/livinginview(dist=0, atom/center=usr)
+	if(!dist)
+		return list()
+
+	var/list/mobs = list()
+	for(var/mob/living/L in GLOB.mob_living_list)
+		var/check_place = L
+		if(isatom(L.loc)) // Not a turf/area
+			check_place = L.loc
+		if(check_place in view(dist, center))
+			mobs += L
+
+	return mobs
 
 /atom/proc/contains(atom/A)
 	if(!A)
@@ -1439,5 +1473,38 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
+
+/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5)
+	if(!C)
+		return
+
+	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 11px;"
+	var/text = blurb_text
+	text = uppertext(text)
+
+	var/obj/effect/overlay/T = new()
+	T.alpha = 0
+	T.maptext_height = 64
+	T.maptext_width = 424
+	T.layer = FLOAT_LAYER
+	T.plane = HUD_PLANE
+	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	T.screen_loc = "LEFT+1,BOTTOM+2"
+
+	C.screen += T
+	animate(T, alpha = 255, time = 10)
+	T.maptext = "<span style=\"[style]\">[text]</span>"
+
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, T, fade_time), duration)
+
+/proc/fade_blurb(client/C, obj/T, fade_time = 5)
+	animate(T, alpha = 0, time = fade_time)
+	sleep(fade_time)
+	C.screen -= T
+	qdel(T)
+
+/proc/show_global_blurb(duration, blurb_text, fade_time = 5) // Shows a blurb to every client
+	for(var/client/C in GLOB.clients)
+		show_blurb(C, duration, blurb_text, fade_time)
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))

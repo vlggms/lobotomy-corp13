@@ -24,13 +24,20 @@
 
 /datum/job/agent/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	var/set_attribute = normal_attribute_level
-	switch(world.time)
-		if(30 MINUTES to 55 MINUTES) // Usual time for WAWs
-			set_attribute *= 1.5
-		if(55 MINUTES to INFINITY) // Already have an ALEPH or two
-			set_attribute *= 2
+	if(world.time >= 75 MINUTES) // Full facility expected
+		set_attribute *= 4
+	else if(world.time >= 60 MINUTES) // More than one ALEPH
+		set_attribute *= 3
+	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
+		set_attribute *= 2.5
+	else if(world.time >= 30 MINUTES) // Expecting WAW
+		set_attribute *= 2
+	else if(world.time >= 15 MINUTES) // Usual time for HEs
+		set_attribute *= 1.5
+
 	for(var/A in roundstart_attributes)
-		roundstart_attributes[A] = set_attribute
+		roundstart_attributes[A] = round(set_attribute)
+
 	return ..()
 
 /datum/outfit/job/agent
@@ -47,25 +54,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
-/datum/job/agent/senior
-	title = "Senior Agent"
-	total_positions = 8
-	spawn_positions = 8
-	outfit = /datum/outfit/job/agent/senior
-	display_order = JOB_DISPLAY_ORDER_WARDEN
-	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 40,
-								PRUDENCE_ATTRIBUTE = 40,
-								TEMPERANCE_ATTRIBUTE = 40,
-								JUSTICE_ATTRIBUTE = 40
-								)
-	normal_attribute_level = 40
-
-/datum/outfit/job/agent/senior
-	name = "Senior Agent"
-	jobtype = /datum/job/agent/senior
-
-
+// Captain
 /datum/job/agent/captain
 	title = "Agent Captain"
 	selection_color = "#BB9999"
@@ -73,14 +62,11 @@
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
-	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 40,
-								PRUDENCE_ATTRIBUTE = 40,
-								TEMPERANCE_ATTRIBUTE = 40,
-								JUSTICE_ATTRIBUTE = 40
-								)
-	normal_attribute_level = 40
+	normal_attribute_level = 21 // :)
 
+	exp_requirements = 240
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_SECURITY
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"

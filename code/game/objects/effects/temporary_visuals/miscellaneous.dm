@@ -90,7 +90,7 @@
 	icon_state = "shadow"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase
-	name = "ninja energy"
+	name = "energy"
 	icon_state = "phasein"
 
 /obj/effect/temp_visual/dir_setting/ninja/phase/out
@@ -223,6 +223,10 @@
 /obj/effect/temp_visual/small_smoke
 	icon_state = "smoke"
 	duration = 50
+
+/obj/effect/temp_visual/small_smoke/Initialize(mapload, atom/mimiced_atom)
+	. = ..()
+	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/small_smoke/halfsecond
 	duration = 5
@@ -628,3 +632,19 @@
 /obj/effect/temp_visual/green_noon_reload/Initialize()
 	..()
 	animate(src, alpha = 0, transform = transform*1.5, time = duration)
+
+/obj/effect/temp_visual/slice
+	name = "slice"
+	icon_state = "slice"
+	duration = 4
+
+/obj/effect/temp_visual/hatred
+	name = "hatred"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "hatred"
+	duration = 3 SECONDS
+
+/obj/effect/temp_visual/hatred/Initialize()
+	..()
+	pixel_x = rand(-16, 16)
+	animate(src, alpha = 0, pixel_z = rand(16, 48), time = duration)

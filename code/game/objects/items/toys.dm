@@ -590,7 +590,7 @@
  */
 /obj/item/toy/talking/ai
 	name = "toy AI"
-	desc = "A little toy model AI core with real law announcing action!"
+	desc = "While real AI might be illegal, this fun little toy is allowed!"
 	icon_state = "AI"
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -604,7 +604,7 @@
 	icon_state = "demonomicon"
 	lefthand_file = 'icons/mob/inhands/misc/books_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/books_righthand.dmi'
-	messages = list("You must challenge the devil to a dance-off!", "The devils true name is Ian", "The devil hates salt!", "Would you like infinite power?", "Would you like infinite  wisdom?", " Would you like infinite healing?")
+	messages = list("You must challenge the devil to a dance-off!", "The devils true name is Ian.", "The devil hates salt!", "Would you like infinite power?", "Would you like infinite  wisdom?", " Would you like infinite healing?")
 	w_class = WEIGHT_CLASS_SMALL
 	recharge_time = 60
 

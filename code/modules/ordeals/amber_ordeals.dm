@@ -12,13 +12,19 @@
 	var/spawn_amount = 3
 	/// What mob to spawn
 	var/spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_bug
+	/// Multiplier for player count, used to increase amount of spawn places. Set to 0 if you want it to not matter.
+	var/place_player_multiplicator = 0.1
+	/// Same as above, but for amount of mobs spawned
+	var/spawn_player_multiplicator = 0.1
 
 /datum/ordeal/amber_dawn/Run()
 	..()
-	for(var/i = 1 to spawn_places)
+	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
+	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	for(var/i = 1 to (spawn_places + place_player_mod))
 		var/X = pick(GLOB.xeno_spawn)
 		var/turf/T = get_turf(X)
-		for(var/y = 1 to spawn_amount)
+		for(var/y = 1 to (spawn_amount + spawn_player_mod))
 			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(T)
 			ordeal_mobs += M
 			M.ordeal_reference = src
@@ -31,3 +37,5 @@
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_dusk
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0

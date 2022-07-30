@@ -44,7 +44,7 @@
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in urange(24, target_c))
+	for(var/mob/living/carbon/human/H in urange(24, target_c, contents_include = TRUE))
 		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(24, target_c))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
@@ -63,7 +63,7 @@
 	faction = list("violet_ordeal")
 	maxHealth = 1200
 	health = 1200
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 
 	var/next_pulse = INFINITY
 

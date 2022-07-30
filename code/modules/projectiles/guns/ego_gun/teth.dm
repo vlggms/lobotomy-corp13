@@ -1,9 +1,25 @@
 /obj/item/gun/ego_gun/match
 	name = "fourth match flame"
-	desc = "The star shines brighter as our despair gathers. The weapon's small, evocative sphere fires a warm ray."
+	desc = "The light of the match will not go out until it has burned away happiness, warmth, light, \
+	and all the other good things of the world; there's no need to worry about it being quenched."
 	icon_state = "match"
 	inhand_icon_state = "match"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_match
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
+	fire_delay = 20
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
+
+/obj/item/gun/ego_gun/beak
+	name = "beak"
+	desc = "As if to prove that size doesn't matter when it comes to force, \
+	the weapon has high firepower despite its small size."
+	icon_state = "beak"
+	inhand_icon_state = "beak"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
+	weapon_weight = WEAPON_HEAVY
+	spread = 8
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+
+/obj/item/gun/ego_gun/beak/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)

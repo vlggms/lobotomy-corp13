@@ -3,7 +3,7 @@
 	desc = "A strange humanoid creature with several gadgets attached to it."
 	health = 7000
 	maxHealth = 7000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
@@ -20,10 +20,13 @@
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 75 // Assuming everyone has at least 0.5 red armor
 	melee_damage_upper = 85
+	stat_attack = HARD_CRIT
 	rapid_melee = 2
 	ranged = TRUE
 	speed = 2
 	move_to_delay = 2
+	pixel_x = -8
+	base_pixel_x = -8
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
 	del_on_death = FALSE
@@ -34,9 +37,10 @@
 							   /datum/action/innate/megafauna_attack/swift_dash_long,
 							   /datum/action/innate/megafauna_attack/serum_a,
 							   /datum/action/innate/megafauna_attack/serum_w,
+							   /datum/action/innate/megafauna_attack/tri_serum,
 							   )
 	var/serumW_cooldown = 0
-	var/serumW_cooldown_time = 30 SECONDS
+	var/serumW_cooldown_time = 40 SECONDS
 	var/charging = FALSE
 	var/dash_num_short = 5
 	var/dash_num_long = 18
@@ -45,9 +49,9 @@
 	// 5 * 5 = 25 (2.5 seconds)
 	// 5 * 18 = 90 (9 seconds)
 	var/serumA_cooldown = 0
-	var/serumA_cooldown_time = 10 SECONDS
+	var/serumA_cooldown_time = 13 SECONDS
 	var/triserum_cooldown
-	var/triserum_cooldown_time = 60 SECONDS
+	var/triserum_cooldown_time = 70 SECONDS
 
 	var/datum/ordeal/ordeal_reference
 
@@ -102,15 +106,15 @@
 /mob/living/simple_animal/hostile/megafauna/claw/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
-	serumW_cooldown = world.time + 5 SECONDS
+	serumW_cooldown = world.time + 15 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
 	density = FALSE
-	animate(src, alpha = 0, transform = transform*0.2, time = 2 SECONDS)
-	QDEL_IN(src, 2 SECONDS)
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/Destroy()
@@ -125,13 +129,15 @@
 			return
 		switch(chosen_attack)
 			if(1)
-				serumW(target)
+				serumW()
 			if(2)
 				swift_dash(target, dash_num_short, 5)
 			if(3)
 				swift_dash(target, dash_num_long, 20)
 			if(4)
 				serumA(target)
+			if(4)
+				TriSerum()
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
@@ -142,6 +148,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
 	if(charging)
+		return FALSE
+	if(stat == DEAD)
 		return FALSE
 	return ..()
 
@@ -200,7 +208,7 @@
 		if(faction_check_mob(L))
 			continue
 		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
-		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 // I hate how it's just a copy-paste of serum W, but oh well
@@ -239,6 +247,7 @@
 		qdel(eff)
 		return
 	visible_message("<span class='warning'>[src] blinks away!</span>")
+	var/list/been_hit = list()
 	var/turf/prev_loc = get_turf(src)
 	new /obj/effect/temp_visual/emp/pulse(prev_loc)
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
@@ -246,21 +255,28 @@
 	forceMove(tp_loc)
 	qdel(eff)
 	prev_loc.Beam(tp_loc, "bsa_beam", time=25)
-	for(var/turf/B in getline(prev_loc, tp_loc))
-		for(var/mob/living/L in range(1, B)) // Woe upon ye
-			if(faction_check_mob(L))
-				continue
-			to_chat(target, "<span class='userdanger'>\The [src] slashes you!</span>")
-			L.apply_damage(60, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
-			new /obj/effect/temp_visual/cleave(get_turf(L))
-	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
+	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1, 7)
 	GiveTarget(target)
 	for(var/mob/living/L in range(1, get_turf(src))) // Attacks everyone around.
+		if(L in been_hit)
+			continue
 		if(faction_check_mob(L))
 			continue
+		been_hit |= L
 		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
-		L.apply_damage(80, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+		L.apply_damage(70, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
+	for(var/turf/B in getline(prev_loc, tp_loc))
+		for(var/mob/living/L in range(1, B)) // Attacks everyone in line
+			if(L in been_hit)
+				continue
+			if(faction_check_mob(L))
+				continue
+			been_hit |= L
+			to_chat(L, "<span class='userdanger'>\The [src] slashes you!</span>")
+			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
+			new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash(target, distance, wait_time)
 	if(dash_cooldown > world.time)
@@ -275,6 +291,7 @@
 	addtimer(CALLBACK(src, .proc/swift_dash2, dir_to_target, 0, distance), wait_time)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	icon_state = "claw_prepare"
+	face_atom(target)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash2(move_dir, times_ran, distance_run)
 	if(times_ran > distance_run)
@@ -293,7 +310,7 @@
 	for(var/mob/living/L in T.contents)
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(130, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.apply_damage(100, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		new /obj/effect/temp_visual/cleave(L.loc)
 	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.5)
 
@@ -307,7 +324,9 @@
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	icon_state = "claw_prepare"
 	charging = TRUE
-	SLEEP_CHECK_DEATH(8)
+	new /obj/effect/temp_visual/dir_setting/cult/phase(get_turf(LT))
+	face_atom(target)
+	SLEEP_CHECK_DEATH(7)
 	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
 		SLEEP_CHECK_DEATH(2)
@@ -319,14 +338,21 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
 	var/turf/start_turf = get_turf(src)
-	var/turf/target_turf = get_step(get_turf(LT), pick(0,1,2,4,5,6,8,9,10))
+	var/turf/target_turf = get_step(get_turf(LT), pick(1,2,4,5,6,8,9,10))
 	for(var/i = 1 to 2) // For fancy effect
 		target_turf = get_step(target_turf, get_dir(get_turf(start_turf), get_turf(target_turf)))
-	SLEEP_CHECK_DEATH(1) // Some chance to escape
+	for(var/turf/T in getline(start_turf, target_turf))
+		new /obj/effect/temp_visual/cult/sparks(T) // Telegraph the attack
+	face_atom(LT)
+	SLEEP_CHECK_DEATH(2) // Some chance to escape
 	forceMove(target_turf)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	for(var/turf/B in getline(start_turf, target_turf))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(B)
 		for(var/mob/living/victim in B)
-			if(!faction_check_mob(victim))
-				victim.attack_animal(src)
+			if(faction_check_mob(victim))
+				continue
+			to_chat(victim, "<span class='userdanger'>\The [src] slashes you!</span>")
+			victim.apply_damage(50, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
+			new /obj/effect/temp_visual/cleave(victim.loc)
+			playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)

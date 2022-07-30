@@ -33,6 +33,10 @@
 	var/list/current_ego = list()
 	/// How many PE boxes we have available for use on EGO purchase
 	var/stored_boxes = 0
+	/// Current overload chance reduction applied to general work chance. Displayed on abnormality console and is reset on meltdown
+	var/overload_chance = 0
+	/// Amount of reduction applied on each work session
+	var/overload_chance_amount = 0
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -58,6 +62,7 @@
 	current.datum_reference = src
 	current.toggle_ai(AI_OFF)
 	current.status_flags |= GODMODE
+	current.setDir(EAST)
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
@@ -68,6 +73,11 @@
 	success_boxes = round(max_boxes * 0.7)
 	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances
+	switch(threat_level)
+		if(WAW_LEVEL)
+			overload_chance_amount = -4
+		if(ALEPH_LEVEL)
+			overload_chance_amount = -6
 
 /datum/abnormality/proc/FillEgoList()
 	if(!current || !current.ego_list)
@@ -82,12 +92,13 @@
 	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
 	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
+	overload_chance += overload_chance_amount
 	if(max_pe <= 0) // Work failure
 		return
 	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
 	var/maximum_attribute_level = min(130, threat_level * 26)
 	var/user_attribute_level = get_attribute_level(user, attribute_type)
-	var/attribute_given = round(clamp((maximum_attribute_level / (user_attribute_level * 0.35)), 0, 12))
+	var/attribute_given = round(clamp((maximum_attribute_level / (user_attribute_level * 0.25)), 0, 16))
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 	user.adjust_attribute_level(attribute_type, attribute_given)
@@ -97,11 +108,14 @@
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.zero_qliphoth(user)
+		return
+	current?.OnQliphothChange(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	var/acquired_chance = available_work[workType]
 	if(islist(acquired_chance))
 		acquired_chance = acquired_chance[get_user_level(user)]
+	acquired_chance += overload_chance
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
 	return acquired_chance

@@ -8,6 +8,8 @@
 	spawn_places = 4
 	spawn_amount = 2
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/violet_fruit
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0.025
 
 // Noon
 /datum/ordeal/violet_noon

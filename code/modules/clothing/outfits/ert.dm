@@ -449,10 +449,8 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit/leader
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	back = /obj/item/storage/backpack/ert
-	belt = /obj/item/storage/belt/security/full
+	belt = /obj/item/ego_weapon/rabbit_blade
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
-	l_pocket = /obj/item/ego_weapon/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 
 /datum/outfit/centcom/ert/commander/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -468,9 +466,8 @@
 	suit = /obj/item/clothing/suit/space/hardsuit/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	l_pocket = /obj/item/ego_weapon/rabbit_blade
+	belt = /obj/item/ego_weapon/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
-	belt = /obj/item/storage/belt/security/full
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 
 /datum/outfit/centcom/ert/security/rabbit/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

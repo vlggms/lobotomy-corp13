@@ -15,3 +15,8 @@
 /datum/ego_datum/armor/harvest
 	item_path = /obj/item/clothing/suit/armor/ego_gear/harvest
 	cost = 35
+
+// Red queen - Blind fury
+/datum/ego_datum/weapon/fury
+	item_path = /obj/item/ego_weapon/fury
+	cost = 50

@@ -11,3 +11,9 @@
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 		L.apply_damage(25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
+
+/obj/projectile/ego_bullet/ego_beak
+	name = "beak"
+	damage = 6
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
