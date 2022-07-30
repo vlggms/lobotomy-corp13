@@ -85,13 +85,16 @@ var/bigslime_num = 0
 
 //Qliphoth things
 /mob/living/simple_animal/hostile/abnormality/melting_love/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(100))
+	if(prob(66))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/failure_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(100))
-		datum_reference.qliphoth_change(-1)
+	datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/success_effect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/zero_qliphoth(mob/living/carbon/human/user)
