@@ -6,6 +6,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
+	recoil = 3		//Shakes your screen
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 
 
@@ -22,7 +23,7 @@
 	inhand_icon_state = "hornet"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 4
+	fire_delay = 0
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 
 
