@@ -7,7 +7,7 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	w_class = WEIGHT_CLASS_BULKY								//No more stupid 10 egos in bag
-	allowed = list(/obj/item/gun/ego_gun, /obj/item/ego_weapon)
+	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
 
 	var/list/attribute_requirements = list()
 
