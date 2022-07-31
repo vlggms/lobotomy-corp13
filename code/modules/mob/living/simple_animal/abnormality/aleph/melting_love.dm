@@ -22,7 +22,7 @@
 	threat_level = ALEPH_LEVEL
 	can_breach = TRUE
 	robust_searching = TRUE
-	stat_attack = HARD_CRIT
+	stat_attack = DEAD
 	start_qliphoth = 3
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
@@ -116,13 +116,14 @@
 		if(!gifted_human && istype(user))
 			gifted_human = user
 			RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
-			to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
+			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
 			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
+			user.physiology.white_mod *= 0.5
 			user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "gift", -MUTATIONS_LAYER))
 			playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
 			return
 		if(gifted_human && istype(user))
-			user.adjustSanityLoss(30)
+			user.adjustSanityLoss(25)
 		return
 	else
 		if(gifted_human && istype(user))
@@ -133,6 +134,7 @@
 	..()
 	//icon_living = "melting_breach" TO DO
 	//icon_state = icon_living
+	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	return
 
 /* Slimes */
@@ -157,8 +159,7 @@
 	rapid_melee = 2
 	obj_damage = 200
 	robust_searching = TRUE
-	stat_attack = HARD_CRIT
-	del_on_death = TRUE
+	stat_attack = DEAD
 	deathsound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
@@ -208,7 +209,7 @@
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
-	bigslime_alive = TRUE
+	bigslime_alive = TRUE //Reset Enraged Melting Love
 	var/matrix/init_transform = transform
 	transform *= 0.1
 	alpha = 25
@@ -231,7 +232,7 @@
 			slimeconv(H)
 
 /mob/living/simple_animal/hostile/slime/big/death(gibbed)
-	bigslime_alive = FALSE
+	bigslime_alive = FALSE //Trigger Enraged Melting Love
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
