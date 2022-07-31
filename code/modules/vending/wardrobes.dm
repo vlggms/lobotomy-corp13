@@ -198,8 +198,7 @@
 					/obj/item/clothing/suit/apron/waders = 3,
 					/obj/item/clothing/under/rank/civilian/hydroponics = 3,
 					/obj/item/clothing/under/rank/civilian/hydroponics/skirt = 3,
-					/obj/item/clothing/mask/bandana = 3,
-					/obj/item/clothing/accessory/armband/safety = 3)
+					/obj/item/clothing/mask/bandana = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/hydro_wardrobe
 	payment_department = ACCOUNT_SRV
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
