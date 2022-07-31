@@ -28,7 +28,7 @@
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
 						ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 25),
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
 						)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
@@ -96,12 +96,9 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/success_effect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(1)
-	return
-
 /mob/living/simple_animal/hostile/abnormality/melting_love/zero_qliphoth(mob/living/carbon/human/user)
 	if(gifted_human)
+		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
 		gifted_human.emote("scream")
 		gifted_human.gib()
 	else
@@ -124,15 +121,11 @@
 			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
 			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 			user.physiology.white_mod *= 0.5
-			user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "gift", -MUTATIONS_LAYER))
+			user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "giftface", -FACEMASK_LAYER))
 			playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
 			return
-		if(gifted_human && istype(user))
-			user.adjustSanityLoss(25)
-		return
-	else
-		if(gifted_human && istype(user))
-			datum_reference.qliphoth_change(-1)
+		if(gifted_human)
+			gifted_human.adjustSanityLoss(25)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
@@ -219,7 +212,7 @@
 	transform *= 0.1
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
-	resize = 1.5
+	resize = 1.3
 	update_transform()
 
 /mob/living/simple_animal/hostile/slime/big/AttackingTarget()
