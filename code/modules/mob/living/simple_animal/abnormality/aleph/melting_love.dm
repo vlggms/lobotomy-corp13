@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(slime)
-var/bigslime_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/melting_love
 	name = "Melting Love"
@@ -56,14 +54,10 @@ var/bigslime_num = 1
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-			if(H.health <= 0)
 				slimeconv(H)
 		else
 			slimeconv(H)
@@ -179,14 +173,10 @@ var/bigslime_num = 1
 
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-			if(H.health <= 0)
 				slimeconv(H)
 		else
 			slimeconv(H)
@@ -221,18 +211,13 @@ var/bigslime_num = 1
 
 /mob/living/simple_animal/hostile/slime/big/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
 				slimeconv(H)
-			if(H.health <= 0)
-				slimeconv(H)
 		else
 			slimeconv(H)
-
 /mob/living/simple_animal/hostile/slime/big/Life()
 	bigslime_num = 1
 
