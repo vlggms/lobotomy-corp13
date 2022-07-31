@@ -28,7 +28,7 @@
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
 						ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 25),
 						)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
@@ -37,7 +37,6 @@
 	ranged_cooldown_time = 30
 	projectilesound = 'sound/effects/footstep/slime1.ogg'
 	var/mob/living/carbon/human/gifted_human = null
-	var/static/bigslime_alive = TRUE
 	ego_list = list()
 
 //If you kill big slime first oh boy good luck
@@ -209,6 +208,7 @@
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
+	bigslime_alive = TRUE
 	var/matrix/init_transform = transform
 	transform *= 0.1
 	alpha = 25
@@ -230,11 +230,8 @@
 		else
 			slimeconv(H)
 
-/mob/living/simple_animal/hostile/slime/big/Life()
-	//bigslime_num = 1
-
 /mob/living/simple_animal/hostile/slime/big/death(gibbed)
-	//bigslime_num = 0
+	bigslime_alive = FALSE
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
