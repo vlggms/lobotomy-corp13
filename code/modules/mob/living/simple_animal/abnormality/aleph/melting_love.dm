@@ -98,6 +98,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/zero_qliphoth(mob/living/carbon/human/user)
 	if(gifted_human)
+		gifted_human.emote("scream")
 		gifted_human.gib()
 	else
 		breach_effect()
@@ -119,18 +120,16 @@
 			RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
 			to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
 			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
-			user.adjustSanityLoss(3)
 			user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "gift", -MUTATIONS_LAYER))
 			playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
 			return
 		if(gifted_human && istype(user))
-			user.adjustSanityLoss(10)
+			user.adjustSanityLoss(30)
 		return
 	else
 		if(gifted_human && istype(user))
 			datum_reference.qliphoth_change(-1)
 		return
-	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
 	..()
