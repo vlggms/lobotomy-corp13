@@ -124,12 +124,13 @@
 
 // Ordinary survival box
 /obj/item/storage/box/survival
-	var/mask_type = /obj/item/clothing/mask/breath
+	var/mask_type = /obj/item/clothing/mask/gas
 	var/internal_type = /obj/item/tank/internals/emergency_oxygen
 	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
 
 /obj/item/storage/box/survival/PopulateContents()
 	new mask_type(src)
+	new /obj/item/extinguisher/mini(src)
 	if(!isnull(medipen_type))
 		new medipen_type(src)
 
@@ -682,7 +683,7 @@
 
 /obj/item/storage/box/snappops
 	name = "snap pop box"
-	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
+	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
 
@@ -926,7 +927,7 @@
 			if("None")
 				desc = "A sack neatly crafted out of paper."
 			if("NanotrasenStandard")
-				desc = "A standard Nanotrasen paper lunch sack for loyal employees on the go."
+				desc = "A standard N-Corporation paper lunch sack for loyal employees on the go."
 			if("SyndiSnacks")
 				desc = "The design on this paper sack is a remnant of the notorious 'SyndieSnacks' program."
 			if("Heart")

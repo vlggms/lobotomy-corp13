@@ -18,7 +18,7 @@
 /datum/atom_hud/data
 
 /datum/atom_hud/data/human/medical
-	hud_icons = list(STATUS_HUD, HEALTH_HUD, NANITE_HUD)
+	hud_icons = list(STATUS_HUD, HEALTH_HUD, NANITE_HUD, SANITY_HUD)
 
 /datum/atom_hud/data/human/medical/basic
 
@@ -153,6 +153,49 @@ Medical HUD! Basic mode needs suit sensors on.
 		else
 			return "health-100"
 
+// Ditto, for sanity
+/proc/RoundSanity(mob/living/carbon/human/H)
+	if(H.stat == DEAD || (HAS_TRAIT(H, TRAIT_FAKEDEATH)))
+		return "sanity-dead"
+	if(H.sanity_lost)
+		return "sanity-insane" // Went insane
+	var/maxi_health = H.maxSanity
+	var/resulthealth = (H.sanityhealth / maxi_health) * 100
+	switch(resulthealth)
+		if(100 to INFINITY)
+			return "sanity100"
+		if(90.625 to 100)
+			return "sanity93.75"
+		if(84.375 to 90.625)
+			return "sanity87.5"
+		if(78.125 to 84.375)
+			return "sanity81.25"
+		if(71.875 to 78.125)
+			return "sanity75"
+		if(65.625 to 71.875)
+			return "sanity68.75"
+		if(59.375 to 65.625)
+			return "sanity62.5"
+		if(53.125 to 59.375)
+			return "sanity56.25"
+		if(46.875 to 53.125)
+			return "sanity50"
+		if(40.625 to 46.875)
+			return "sanity43.75"
+		if(34.375 to 40.625)
+			return "sanity37.5"
+		if(28.125 to 34.375)
+			return "sanity31.25"
+		if(21.875 to 28.125)
+			return "sanity25"
+		if(15.625 to 21.875)
+			return "sanity18.75"
+		if(9.375 to 15.625)
+			return "sanity12.5"
+		else
+			return "sanity6.25"
+
+
 //HOOKS
 
 //called when a human changes suit sensors
@@ -170,6 +213,13 @@ Medical HUD! Basic mode needs suit sensors on.
 //for carbon suit sensors
 /mob/living/carbon/med_hud_set_health()
 	..()
+
+//called when a mob changes sanity
+/mob/living/carbon/human/proc/med_hud_set_sanity()
+	var/image/holder = hud_list[SANITY_HUD]
+	holder.icon_state = "hud[RoundSanity(src)]"
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
 
 //called when a carbon changes stat, virus or XENO_HOST
 /mob/living/proc/med_hud_set_status()

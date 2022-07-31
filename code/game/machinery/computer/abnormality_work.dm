@@ -35,6 +35,8 @@
 	. += "<span class='notice'>Threat level:</span> [threat_level]<span class='notice'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
 		. += "<span class='notice'>Current qliphoth level: [datum_reference.qliphoth_meter].</span>"
+	if(datum_reference.overload_chance != 0)
+		. += "<span class='warning'>Current success chance modifier: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
 		. += "<span class='warning'>The chamber is currently in the process of meltdown. Time left: [meltdown_time].</span>"
 
@@ -46,9 +48,13 @@
 		to_chat(user, "<span class='boldannounce'>The console has no information stored!</span>")
 		return
 	var/dat
+	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
+	if(datum_reference.overload_chance != 0)
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
+	dat += "<br>"
 	for(var/wt in datum_reference.available_work)
 		dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
-	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 300, 200)
+	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 300)
 	popup.set_content(dat)
 	popup.open()
 	return
@@ -63,7 +69,7 @@
 			if(working)
 				to_chat(usr, "<span class='warning'>Console is currently being operated!</span>")
 				return
-			if(!istype(datum_reference.current))
+			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
 				to_chat(usr, "<span class='warning'>Abnormality is currently in the process of revival!</span>")
 				return
 			if(datum_reference.current.AIStatus == TRUE)
@@ -79,7 +85,7 @@
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
-	var/sanity_damage = -(max(((user.maxSanity * 0.28) * (sanity_result)), 0))
+	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
 	user.adjustSanityLoss(sanity_damage)
 	if(user.sanity_lost)

@@ -7,13 +7,11 @@
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 1
 	reward_percent = 0.1
-	/// How many mobs to spawn
-	var/spawn_amount = 3
 
 /datum/ordeal/crimson_dawn/Run()
 	..()
 	var/abno_amount = length(SSlobotomy_corp.all_abnormality_datums)
-	spawn_amount = clamp((abno_amount * 0.5), 1, 7)
+	var/spawn_amount = clamp((abno_amount * 0.5), 1, 7)
 	for(var/y = 1 to spawn_amount) // They get spawned and then instantly teleport
 		var/X = pick(GLOB.xeno_spawn)
 		var/turf/T = get_turf(X)
@@ -33,6 +31,8 @@
 	spawn_places = 4
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon
+	place_player_multiplicator = 0.07
+	spawn_player_multiplicator = 0.02
 
 /datum/ordeal/amber_dawn/crimson_dusk
 	name = "Dusk of Crimson"
@@ -44,3 +44,5 @@
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk
+	place_player_multiplicator = 0.05
+	spawn_player_multiplicator = 0

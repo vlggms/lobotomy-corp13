@@ -124,6 +124,7 @@ const CrewTableEntry = (props, context) => {
     toxdam,
     burndam,
     brutedam,
+    sandam,
     area,
     can_track,
   } = sensor_data;
@@ -153,6 +154,8 @@ const CrewTableEntry = (props, context) => {
             <HealthStat type="burn" value={burndam} />
             {'/'}
             <HealthStat type="brute" value={brutedam} />
+            {'/'}
+            <HealthStat type="sanity" value={sandam} />
           </Box>
         ) : (
           life_status ? 'Alive' : 'Dead'

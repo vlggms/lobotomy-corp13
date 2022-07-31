@@ -2,6 +2,7 @@
 	name = "ego weapon"
 	desc = "You aren't meant to see this."
 	icon = 'icons/obj/ego_weapons.dmi'
+	worn_icon_state = "nothing" //I HATE PURPLE SPRITES, I HATE PURPLE SPRITES
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag

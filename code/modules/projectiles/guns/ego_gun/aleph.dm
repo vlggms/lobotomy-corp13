@@ -6,8 +6,6 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_star
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
-	burst_size = 5
-	fire_delay = 2
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 50
@@ -18,3 +16,7 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/gun/ego_gun/star/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.25 SECONDS)

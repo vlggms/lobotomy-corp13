@@ -49,9 +49,9 @@
 
 /obj/machinery/vending/cola/space_up
 	icon_state = "space_up"
-	name = "\improper Space-up! Vendor"
-	desc = "Indulge in an explosion of flavor."
-	product_slogans = "Space-up! Like a hull breach in your mouth."
+	name = "\improper Super-up! machine"
+	desc = "When you need a little pep in your step but coffee is too hard on your stomach."
+	product_slogans = "Super-up! Marginally better than our competition!"
 	light_mask = "space_up-light-mask"
 	light_color = COLOR_DARK_MODERATE_LIME_GREEN
 

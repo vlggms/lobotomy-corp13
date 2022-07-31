@@ -4,11 +4,12 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "warden"
 	icon_living = "warden"
+	icon_dead = "warden_dead"
 	maxHealth = 1700
 	health = 1700
 	pixel_x = -8
 	base_pixel_x = -8
-	damage_coeff = list(BRUTE = 0.7, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.7)
+	damage_coeff = list(BRUTE = 0.7, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
 	melee_damage_lower = 38
 	melee_damage_upper = 38
@@ -19,6 +20,7 @@
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	faction = list("warden")	//It should attack everything else, fuck you.
+	del_on_death = FALSE
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
@@ -90,7 +92,6 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/death(gibbed)
-	icon_state = "warden_dead"
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

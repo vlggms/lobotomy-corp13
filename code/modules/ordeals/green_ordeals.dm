@@ -9,6 +9,7 @@
 	spawn_places = 4
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
+	spawn_player_multiplicator = 0.05
 
 // Noon
 /datum/ordeal/amber_dawn/green_noon
@@ -21,6 +22,8 @@
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot_big
+	place_player_multiplicator = 0.08
+	spawn_player_multiplicator = 0
 
 // Dusk
 /datum/ordeal/green_dusk
