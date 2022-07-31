@@ -7,6 +7,8 @@
 	icon_living = "melting_love"
 	faction = list("slime")
 	speak_emote = list("gurgle")
+	attack_verb_continuous = "glomps"
+	attack_verb_simple = "glomp"
 	health = 3500
 	maxHealth = 3500
 	pixel_x = -16
@@ -16,8 +18,9 @@
 	speed = 2
 	move_to_delay = 5
 	melee_damage_type = BLACK_DAMAGE
-	attack_sound = 'sound/effects/footstep/slime1.ogg'
-	damage_coeff = list(BRUTE = -1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
+	attack_sound = 'sound/effects/attackblob.ogg'
+	deathsound = 'sound/effects/blobattack.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	obj_damage = 600
 	threat_level = ALEPH_LEVEL
 	can_breach = TRUE
@@ -35,7 +38,7 @@
 	ranged = TRUE
 	minimum_distance = 1
 	ranged_cooldown_time = 30
-	projectilesound = 'sound/effects/footstep/slime1.ogg'
+	projectilesound = 'sound/effects/attackblob.ogg'
 	var/mob/living/carbon/human/gifted_human = null
 	var/norepeating = FALSE
 	ego_list = list()
@@ -75,7 +78,7 @@
 /mob/living/simple_animal/hostile/proc/slimeconv(mob/living/H)
 	if(ishuman(H))
 		var/turf/T = get_turf(H)
-		visible_message("<span class='danger'>[src] bites hard on \the [H] as another Slime Pawn appears!</span>")
+		visible_message("<span class='danger'>[src] glomp on \the [H] as another Slime Pawn appears!</span>")
 		H.emote("scream")
 		H.gib()
 		new /mob/living/simple_animal/hostile/slime(T)
@@ -151,22 +154,22 @@
 	pixel_y = -16
 	base_pixel_y = -16
 	melee_damage_type = BLACK_DAMAGE
-	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	rapid_melee = 2
 	obj_damage = 200
 	robust_searching = TRUE
 	stat_attack = DEAD
-	deathsound = 'sound/abnormalities/bee/death.ogg'
+	deathsound = 'sound/effects/blobattack.ogg'
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
-	attack_sound = 'sound/effects/footstep/slime1.ogg'
+	attack_sound = 'sound/effects/attackblob.ogg'
 	speak_emote = list("gurgle")
 
 /mob/living/simple_animal/hostile/slime/Initialize()
 	. = ..()
-	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
+	playsound(get_turf(src), 'sound/effects/footstep/slime1.ogg', 50, 1)
 	var/matrix/init_transform = transform
 	transform *= 0.1
 	alpha = 25
@@ -198,7 +201,7 @@
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
 	health = 2000
 	maxHealth = 2000
-	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 34
 	melee_damage_upper = 38
 	rapid_melee = 2
@@ -206,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()
-	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
+	playsound(get_turf(src), 'sound/effects/footstep/slime1.ogg', 50, 1)
 	bigslime_alive = TRUE //Reset Enraged Melting Love
 	var/matrix/init_transform = transform
 	transform *= 0.1
