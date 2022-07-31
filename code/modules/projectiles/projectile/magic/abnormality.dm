@@ -37,6 +37,7 @@
 /obj/projectile/hatred/Initialize()
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
+<<<<<<< HEAD
 
 /obj/projectile/melting_blob
 	name = "slime projectile"
@@ -61,3 +62,5 @@
 	. = ..()
 	hitsound = "sound/effects/footstep/slime1.ogg"
 	animate(src, alpha = 255, time = 3)
+=======
+>>>>>>> master
