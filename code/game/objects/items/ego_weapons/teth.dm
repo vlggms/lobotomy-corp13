@@ -30,3 +30,36 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/lutemia
+	name = "dear lutemia"
+	desc = "Don't you want your cares to go away?"
+	icon_state = "lutemia"
+	force = 22
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/eyes
+	name = "red eyes"
+	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
+	icon_state = "eyes"
+	force = 35					//Still less DPS, replaces baseball bat
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("beats", "smacks")
+	attack_verb_simple = list("beat", "smack")
+
+/obj/item/ego_weapon/eyes/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.6) // Really Slow, is a baseball bat. Don't want to stunlock people
+
+/obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+

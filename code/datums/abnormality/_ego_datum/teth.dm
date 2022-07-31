@@ -42,3 +42,21 @@
 /datum/ego_datum/armor/horn
 	item_path = /obj/item/clothing/suit/armor/ego_gear/horn
 	cost = 20
+
+// Dingle-Dangle - Dear Lutemia
+/datum/ego_datum/weapon/lutemia
+	item_path = /obj/item/ego_weapon/lutemia
+	cost = 20
+
+/datum/ego_datum/armor/lutemia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/lutemia
+	cost = 20
+
+// Spider Bud - Red Eyes
+/datum/ego_datum/weapon/eyes
+	item_path = /obj/item/ego_weapon/eyes
+	cost = 20
+
+/datum/ego_datum/armor/eyes
+	item_path = /obj/item/clothing/suit/armor/ego_gear/eyes
+	cost = 20
