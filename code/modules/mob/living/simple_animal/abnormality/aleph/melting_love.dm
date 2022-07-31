@@ -37,11 +37,12 @@
 	ranged_cooldown_time = 30
 	projectilesound = 'sound/effects/footstep/slime1.ogg'
 	var/mob/living/carbon/human/gifted_human = null
+	var/static/bigslime_alive = TRUE
 	ego_list = list()
 
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
-	if(bigslime_num == 0)
+	if(bigslime_alive == FALSE)
 		melee_damage_lower = 62
 		melee_damage_upper = 80
 		health = 1500
@@ -218,11 +219,9 @@
 				slimeconv(H)
 		else
 			slimeconv(H)
-/mob/living/simple_animal/hostile/slime/big/Life()
-	bigslime_num = 1
 
 /mob/living/simple_animal/hostile/slime/big/death(gibbed)
-	bigslime_num = 0
+	//bigslime_num = 0
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
