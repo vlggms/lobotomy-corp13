@@ -6,7 +6,6 @@
 	force = 50
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
@@ -27,7 +26,6 @@
 	force = 20
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'

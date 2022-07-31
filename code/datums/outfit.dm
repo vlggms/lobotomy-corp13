@@ -234,8 +234,12 @@
 			H.update_action_buttons_icon()
 		if(implants)
 			for(var/implant_type in implants)
-				var/obj/item/implant/I = new implant_type(H)
-				I.implant(H, null, TRUE)
+				if(ispath(implant_type, /obj/item/implant))
+					var/obj/item/implant/I = new implant_type(H)
+					I.implant(H, null, TRUE)
+				else if(ispath(implant_type, /obj/item/organ))
+					var/obj/item/organ/O = new implant_type(H)
+					O.Insert(H, TRUE, FALSE)
 
 		// Insert the skillchips associated with this outfit into the target.
 		if(skillchips)

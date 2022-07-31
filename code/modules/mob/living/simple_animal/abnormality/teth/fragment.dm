@@ -6,7 +6,7 @@
 	icon_living = "fragment"
 	maxHealth = 800
 	health = 800
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	ranged = TRUE
 	melee_damage_lower = 8
 	melee_damage_upper = 12

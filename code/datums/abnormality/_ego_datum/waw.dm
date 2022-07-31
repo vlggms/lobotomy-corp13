@@ -33,3 +33,12 @@
 /datum/ego_datum/armor/despair
 	item_path = /obj/item/clothing/suit/armor/ego_gear/despair
 	cost = 50
+
+// Queen of hatred - In the name of love and hate
+/datum/ego_datum/weapon/hatred
+	item_path = /obj/item/gun/ego_gun/hatred
+	cost = 50
+
+/datum/ego_datum/armor/hatred
+	item_path = /obj/item/clothing/suit/armor/ego_gear/hatred
+	cost = 50

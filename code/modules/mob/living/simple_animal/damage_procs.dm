@@ -66,4 +66,4 @@
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else if(damage_coeff[PALE_DAMAGE])
-		. = adjustHealth((amount * (maxHealth/100)) * damage_coeff[PALE_DAMAGE] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff[PALE_DAMAGE] * CONFIG_GET(number/damage_multiplier), updating_health, forced)

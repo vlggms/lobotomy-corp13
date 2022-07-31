@@ -9,7 +9,8 @@
 	spawn_places = 4
 	spawn_amount = 3
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_noon
-
+	place_player_multiplicator = 0.08
+	spawn_player_multiplicator = 0
 
 // Midnight
 /datum/ordeal/indigo_midnight
@@ -18,7 +19,7 @@
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 4
-	reward_percent = 0.4
+	reward_percent = 0.25
 
 /datum/ordeal/indigo_midnight/Run()
 	..()
