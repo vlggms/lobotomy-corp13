@@ -169,13 +169,16 @@
 
 
 /obj/item/gun/energy/e_gun/rifleman
-	name = "L corp issued rifle"
+	name = "L corp experimental rifle"
 	desc = "An energy gun specifically produces to fight threats commonly seen in the L corp facilities."
 
 	icon_state = "rifleman"
 	inhand_icon_state = "rifleman"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	cell_type = /obj/item/stock_parts/cell/infinite
+	can_charge = FALSE
+	weapon_weight = WEAPON_HEAVY // No dual wielding
 
 	cell_type = /obj/item/stock_parts/cell/infinite
 	fire_delay = 1
