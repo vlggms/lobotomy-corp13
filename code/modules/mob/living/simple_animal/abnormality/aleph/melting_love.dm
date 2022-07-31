@@ -109,7 +109,6 @@
 	SIGNAL_HANDLER
 	breach_effect()
 	var/turf/T = get_turf(gifted_human)
-	gifted_human.emote("scream")
 	new /mob/living/simple_animal/hostile/slime/big(T)
 	return TRUE
 
