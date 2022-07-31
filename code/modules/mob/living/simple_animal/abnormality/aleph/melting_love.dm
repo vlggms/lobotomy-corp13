@@ -7,8 +7,8 @@
 	icon_living = "melting_love"
 	faction = list("slime")
 	speak_emote = list("gurgle")
-	health = 1500
-	maxHealth = 1500
+	health = 3500
+	maxHealth = 3500
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -16
@@ -37,19 +37,24 @@
 	ranged_cooldown_time = 30
 	projectilesound = 'sound/effects/footstep/slime1.ogg'
 	var/mob/living/carbon/human/gifted_human = null
+	var/norepeating = FALSE
 	ego_list = list()
 
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
-	if(bigslime_alive == FALSE)
-		melee_damage_lower = 62
-		melee_damage_upper = 80
-		health = 1500
-		projectiletype = /obj/projectile/melting_blob/enraged
-	else
-		melee_damage_lower = 32
-		melee_damage_upper = 40
-		projectiletype = /obj/projectile/melting_blob
+	if(!norepeating)
+		if(!bigslime_alive)
+			melee_damage_lower = 62
+			melee_damage_upper = 80
+			adjustBruteLoss(maxHealth)
+			projectiletype = /obj/projectile/melting_blob/enraged
+			norepeating = TRUE
+		else
+			melee_damage_lower = 32
+			melee_damage_upper = 40
+			projectiletype = /obj/projectile/melting_blob
+	if(bigslime_alive && norepeating)
+		norepeating = FALSE
 
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
@@ -146,8 +151,8 @@
 	icon_living = "melting_slime"
 	faction = list("slime")
 	speak_emote = list("gurgle")
-	health = 400
-	maxHealth = 400
+	health = 800
+	maxHealth = 800
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -16
@@ -198,8 +203,8 @@
 /mob/living/simple_animal/hostile/slime/big
 	name = "Big Slime"
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
-	health = 800
-	maxHealth = 800
+	health = 2000
+	maxHealth = 2000
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 34
 	melee_damage_upper = 38
