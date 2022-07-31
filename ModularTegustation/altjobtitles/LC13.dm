@@ -14,7 +14,7 @@
 	alt_titles = list("Control Department Clerk", "Information Department Clerk",
 			"Training Department Clerk", "Safety Department Clerk",
 			"Welfare Department Clerk", "Disciplinary Department Clerk",
-			"Command Department Clerk")
+			"Command Department Clerk", "Extraction Department Clerk", "Record Department Clerk")
 
 /datum/outfit/job/assistant/controldepartmentclerk
 	name = "Clerk (Control)"
@@ -49,3 +49,11 @@
 /datum/outfit/job/assistant/commanddepartmentclerk
 	name = "Clerk (Command)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/command
+
+/datum/outfit/job/assistant/extractiondepartmentclerk
+	name = "Clerk (Extraction)"
+	uniform = /obj/item/clothing/under/suit/lobotomy/extraction
+
+/datum/outfit/job/assistant/recorddepartmentclerk
+	name = "Clerk (Record)"
+	uniform = /obj/item/clothing/under/suit/lobotomy/records
