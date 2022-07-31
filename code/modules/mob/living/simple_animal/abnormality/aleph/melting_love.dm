@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(slime)
-var/bigslime_num = 0
+var/bigslime_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/melting_love
 	name = "Melting Love"
