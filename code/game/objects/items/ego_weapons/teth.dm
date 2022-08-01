@@ -63,3 +63,32 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
+/obj/item/ego_weapon/eyeball
+	name = "eyeball scooper"
+	desc = "Mind if I take them?"
+	icon_state = "eyeball1"
+	force = 20
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+
+
+/obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
+	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
+	var/fortitude_mod = 1 + userfort/100
+	if(userfort>=60)
+		icon_state = "eyeball2"
+		force = 20 *(1+fortitude_mod)		//Scales with Fortitude
+
+	if(userfort<60)
+		icon_state = "eyeball1"				//Cool sprite gone
+
+	if(ishuman(target))
+		force*=2						//I've seen Catt one shot someone, This is also only a detriment lol
+	..()
+	force = initial(force)
+	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.
+	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
+	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+
