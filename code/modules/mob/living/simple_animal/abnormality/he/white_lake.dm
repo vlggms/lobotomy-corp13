@@ -59,6 +59,7 @@
 	H.put_in_hands(wep) 		//Time for pale
 
 	//They need to be hard to kill and unable to go sane again.
+	//No infinite ego
 	H.physiology.red_mod *= 0.3
 	H.physiology.white_mod *= 0
 	H.physiology.black_mod *= 0
