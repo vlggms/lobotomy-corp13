@@ -23,6 +23,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	obj_damage = 600
 	threat_level = ALEPH_LEVEL
+	del_on_death = FALSE
 	can_breach = TRUE
 	robust_searching = TRUE
 	stat_attack = DEAD
@@ -42,6 +43,9 @@
 	var/mob/living/carbon/human/gifted_human = null
 	var/norepeating = FALSE
 	ego_list = list()
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/Initialize()
+	bigslime_alive = TRUE //To be sure she doesn't spawn in enraged state
 
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
@@ -124,8 +128,8 @@
 			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
 			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 			user.physiology.white_mod *= 0.5
-			user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "giftface", -FACEMASK_LAYER))
-			playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+			user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
+			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
 		if(gifted_human)
 			gifted_human.adjustSanityLoss(25)
@@ -133,8 +137,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
 	..()
-	//icon_living = "melting_breach" TO DO
-	//icon_state = icon_living
+	icon = 'ModularTegustation/Teguicons/90x90.dmi'
+	icon_living = "melting_breach"
+	icon_state = icon_living
+	icon_dead = "melting_breach_dead"
+	pixel_y = 0
+	base_pixel_y = 0
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	return
 
