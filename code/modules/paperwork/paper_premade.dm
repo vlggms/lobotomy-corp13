@@ -45,7 +45,7 @@
 	<br>
 	Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."}
 
-obj/item/paper/guides/jobs/zayin/lore
+/obj/item/paper/guides/jobs/zayin/lore
 	name = "Classification Code - Hod"
 	icon_state = "paper_words"
 	info = {"Subject details are encoded in their classification, following the given:<br>
@@ -56,7 +56,7 @@ obj/item/paper/guides/jobs/zayin/lore
 	<br>
 	The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!"}
 
-obj/item/paper/guides/jobs/zayin/lore/wellcheers
+/obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
 	icon_state = "paper_words"
 	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
