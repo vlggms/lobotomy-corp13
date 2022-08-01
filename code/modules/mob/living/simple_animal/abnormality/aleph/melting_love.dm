@@ -45,6 +45,7 @@
 	ego_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Initialize()
+	. = ..()
 	bigslime_alive = TRUE //To be sure she doesn't spawn in enraged state
 
 //If you kill big slime first oh boy good luck
