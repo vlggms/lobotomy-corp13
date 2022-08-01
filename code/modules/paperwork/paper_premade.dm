@@ -23,6 +23,31 @@
 
 ////////////	Job guides n' fluff
 
+/obj/item/paper/guides/jobs/zayin
+	name = "Zayin Instruction Manual"
+	icon_state = "paper_words"
+	info = "For those handling Zayin grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets! <br><br>Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality. <br><br>Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first zayin duty assignment."
+
+/obj/item/paper/guides/jobs/guide
+	name = "Zayin Safety Manual - Netzach"
+	icon_state = "paper_words"
+	info = "I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright? - Netzach"
+
+/obj/item/paper/guides/jobs/guide/wellcheers
+	name = "F-05-52 Safety Guide"
+	icon_state = "paper_words"
+	info = "Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it. Insight work will produce a regular can of soda that calms mental distress, you just need to observe the machine for awhile and it'll dispense on its own.<br><br> Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."
+
+obj/item/paper/guides/jobs/zayin/lore
+	name = "Classification Code - Hod"
+	icon_state = "paper_words"
+	info = "Subject details are encoded in their classification, following the given:<br><br> The first letter classifies its origin (Fairy Tale, Trauma, Original, Donated) with the company. <br><br> The following number classifies its type (1 for humanoid, 2 for animal, 3 for religious, 4 for inanimate, 5 for artifact/machine, 6 for abstraction/amalgamation, 7 for breaching tool, 9 for tool).<br><br> The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!"
+
+obj/item/paper/guides/jobs/zayin/lore/wellcheers
+	name = "F-05-52 Information Attachment"
+	icon_state = "paper_words"
+	info = "The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br><br> As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.<br><br> If the work was bad, an open can will be dispensed and the employee will feel compelled to drink it, as the containment cell fills with ocean water and sounds of the beach. Under observation, humanoid figures dressed in rubber overall and boots with the heads of prawn can be seen pulling them deeper into the waters before disappearing completely.<br><br> Agents in District 24 have witnessed these agents working on fishing vessels dockside some months after the tests were performed."
+
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
 	info = "<B>Hey fellow botanist!</B><BR>\n<BR>\nI didn't trust the station folk so I left<BR>\na couple of weeks ago. But here's some<BR>\ninstructions on how to operate things here.<BR>\nYou can grow plants and each iteration they become<BR>\nstronger, more potent and have better yield, if you<BR>\nknow which ones to pick. Use your botanist's analyzer<BR>\nfor that. You can turn harvested plants into seeds<BR>\nat the seed extractor, and replant them for better stuff!<BR>\nSometimes if the weed level gets high in the tray<BR>\nmutations into different mushroom or weed species have<BR>\nbeen witnessed. On the rare occasion even weeds mutate!<BR>\n<BR>\nEither way, have fun!<BR>\n<BR>\nBest regards,<BR>\nBilly Bob Johnson.<BR>\n<BR>\nPS.<BR>\nHere's a few tips:<BR>\nIn nettles, potency = damage<BR>\nIn amanitas, potency = deadliness + side effect<BR>\nIn Liberty caps, potency = drug power + effect<BR>\nIn chilies, potency = heat<BR>\n<B>Nutrients keep mushrooms alive!</B><BR>\n<B>Water keeps weeds such as nettles alive!</B><BR>\n<B>All other plants need both.</B>"
