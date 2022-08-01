@@ -167,7 +167,7 @@
 			break
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/turf/TF in range(1, src)) // AAAAAAAAAAAAAAAAAAAAAAA
-			new /obj/effect/temp_visual/smash_effect(get_turf(L))
+			new /obj/effect/temp_visual/smash_effect(TF)
 			for(var/mob/living/L in TF)
 				if(faction_check_mob(L))
 					continue
