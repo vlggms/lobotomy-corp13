@@ -2,7 +2,7 @@
 	name = "lamp"
 	desc = "Big Bird's eyes gained another in number for every creature it saved. \
 	On this weapon, the radiant pride is apparent."
-	special = "This weapon attacks slightly slower than usual."
+	special = "This weapon has a slightly slower attack speed."
 	icon_state = "lamp"
 	force = 50
 	damtype = BLACK_DAMAGE

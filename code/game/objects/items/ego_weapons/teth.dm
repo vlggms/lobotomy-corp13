@@ -12,7 +12,8 @@
 	name = "fragments from somewhere"
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
-	special = "This weapon has a longer reach."
+	special = "This weapon has a longer reach.\
+			This weapon attacks slower than usual."
 	icon_state = "fragment"
 	force = 22
 	reach = 2		//Has 2 Square Reach.
@@ -51,7 +52,8 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
-	special = "This weapon hits slower than usual. On hit, knocks certain enemies backwards."
+	special = "Knocks certain enemies backwards.\
+			This weapon hits slower than usual. "
 	icon_state = "eyes"
 	force = 35					//Still less DPS, replaces baseball bat
 	damtype = RED_DAMAGE
