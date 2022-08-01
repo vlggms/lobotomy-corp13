@@ -168,8 +168,7 @@
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)
 			break
-		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/turf/TF in range(1, src)) // AAAAAAAAAAAAAAAAAAAAAAA
+		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
 			new /obj/effect/temp_visual/smash_effect(TF)
 			for(var/mob/living/L in TF)
 				if(faction_check_mob(L))

@@ -157,7 +157,9 @@
 	icon_state = "mimicry"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	force = 90
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 80
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -172,5 +174,5 @@
 
 /obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
 	if(target.stat != DEAD)
-		user.adjustBruteLoss(-force*0.25)
+		user.adjustBruteLoss(-force*0.2)
 	..()
