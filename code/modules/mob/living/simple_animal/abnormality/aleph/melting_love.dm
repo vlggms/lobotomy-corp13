@@ -20,7 +20,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	attack_sound = 'sound/effects/attackblob.ogg'
 	deathsound = 'sound/effects/blobattack.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	obj_damage = 600
 	threat_level = ALEPH_LEVEL
 	del_on_death = FALSE
@@ -164,7 +164,7 @@
 	pixel_y = -16
 	base_pixel_y = -16
 	melee_damage_type = BLACK_DAMAGE
-	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	rapid_melee = 2
@@ -211,7 +211,7 @@
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
 	health = 2000
 	maxHealth = 2000
-	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 34
 	melee_damage_upper = 38
 	rapid_melee = 2
