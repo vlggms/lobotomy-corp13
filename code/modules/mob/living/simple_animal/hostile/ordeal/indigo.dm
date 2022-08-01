@@ -20,13 +20,13 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/Initialize()
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
@@ -36,7 +36,7 @@
 		else
 			devour(L)
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/proc/devour(mob/living/L)
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
 	visible_message(
