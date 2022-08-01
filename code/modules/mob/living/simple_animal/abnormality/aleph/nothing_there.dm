@@ -32,7 +32,10 @@
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 
-	can_spawn = FALSE
+	ego_list = list(
+		/datum/ego_datum/weapon/mimicry,
+		/datum/ego_datum/armor/mimicry
+		)
 
 	var/mob/living/disguise = null
 	var/saved_appearance

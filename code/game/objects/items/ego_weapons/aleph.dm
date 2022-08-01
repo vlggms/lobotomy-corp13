@@ -149,3 +149,28 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/mimicry
+	name = "mimicry"
+	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
+	as if it were a reminder that it should remain a mere desire."
+	icon_state = "mimicry"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	force = 90
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
+	if(target.stat != DEAD)
+		user.adjustBruteLoss(-force*0.25)
+	..()

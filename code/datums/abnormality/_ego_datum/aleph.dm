@@ -29,3 +29,12 @@
 /datum/ego_datum/armor/da_capo
 	item_path = /obj/item/clothing/suit/armor/ego_gear/da_capo
 	cost = 100
+
+// Nothing there - Mimicry
+/datum/ego_datum/weapon/mimicry
+	item_path = /obj/item/ego_weapon/mimicry
+	cost = 100
+
+/datum/ego_datum/armor/mimicry
+	item_path = /obj/item/clothing/suit/armor/ego_gear/mimicry
+	cost = 100
