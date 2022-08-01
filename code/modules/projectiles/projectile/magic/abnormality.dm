@@ -53,7 +53,6 @@
 	desc = "A glob of infectious slime. It's going for your heart."
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	projectile
 	damage = 100
 	spread = 15
 
