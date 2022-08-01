@@ -54,7 +54,7 @@
 		if(!bigslime_alive)
 			melee_damage_lower = 62
 			melee_damage_upper = 80
-			adjustBruteLoss(maxHealth)
+			adjustBruteLoss(-maxHealth)
 			projectiletype = /obj/projectile/melting_blob/enraged
 			norepeating = TRUE
 		else
