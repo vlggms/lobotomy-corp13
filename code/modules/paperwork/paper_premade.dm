@@ -27,9 +27,9 @@
 	name = "Zayin Instruction Manual"
 	icon_state = "paper_words"
 	info = {"For those handling Zayin grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets!
-	<br>
+	\
 	Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality.
-	<br>
+	\
 	Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first zayin duty assignment."}
 
 /obj/item/paper/guides/jobs/zayin/guide
@@ -42,29 +42,29 @@
 	icon_state = "paper_words"
 	info = {"Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it.
 	Insight work will produce a regular can of soda that calms mental distress, you just need to observe the machine for awhile and it'll dispense on its own.
-	<br>
+	\
 	Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."}
 
 obj/item/paper/guides/jobs/zayin/lore
 	name = "Classification Code - Hod"
 	icon_state = "paper_words"
 	info = {"Subject details are encoded in their classification, following the given:
-	<br>
+	\
 	The first letter classifies its origin (Fairy Tale, Trauma, Original, Donated) with the company.
-	<br>
+	\
 	The following number classifies its type (1 for humanoid, 2 for animal, 3 for religious, 4 for inanimate, 5 for artifact/machine, 6 for abstraction/amalgamation, 7 for breaching tool, 9 for tool).
-	<br>
+	\
 	The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!"}
 
 obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
 	icon_state = "paper_words"
 	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.
-	<br>
+	\
 	As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.
-	<br>
+	\
 	If the work was bad, an open can will be dispensed and the employee will feel compelled to drink it, as the containment cell fills with ocean water and sounds of the beach. Under observation, humanoid figures dressed in rubber overall and boots with the heads of prawn can be seen pulling them deeper into the waters before disappearing completely.
-	<br>
+	\
 	Agents in District 24 have witnessed these abductees working on fishing vessels dockside some months after the tests were performed."}
 
 /obj/item/paper/guides/jobs/hydroponics
