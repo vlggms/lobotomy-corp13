@@ -40,8 +40,8 @@
 
 /obj/projectile/melting_blob
 	name = "slime projectile"
-	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
 	icon_state = "slime"
+	desc = "A glob of infectious slime. It's going for your heart."
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	damage = 70
@@ -49,8 +49,8 @@
 
 /obj/projectile/melting_blob/enraged
 	name = "slime projectile"
-	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
 	icon_state = "slime"
+	desc = "A glob of infectious slime. It's going for your heart."
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	projectile
