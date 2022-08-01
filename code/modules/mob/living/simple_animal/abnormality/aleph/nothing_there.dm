@@ -1,0 +1,236 @@
+/mob/living/simple_animal/hostile/abnormality/nothing_there
+	name = "Nothing There"
+	desc = "A wicked creature that consists of various human body parts and organs."
+	health = 4000
+	maxHealth = 4000
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
+	attack_sound = 'sound/weapons/slash.ogg'
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "nothing"
+	icon_living = "nothing"
+	icon_dead = "nothing_dead"
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
+	melee_damage_lower = 45
+	melee_damage_upper = 55
+	speed = 2
+	move_to_delay = 3
+	ranged = TRUE
+	pixel_x = -8
+	base_pixel_x = -8
+	can_breach = TRUE
+	threat_level = ALEPH_LEVEL
+	start_qliphoth = 1
+	work_chances = list(
+						ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
+						ABNORMALITY_WORK_INSIGHT = 0,
+						ABNORMALITY_WORK_ATTACHMENT = 50,
+						ABNORMALITY_WORK_REPRESSION = 0
+						)
+	work_damage_amount = 16
+	work_damage_type = RED_DAMAGE
+
+	can_spawn = FALSE
+
+	var/mob/living/disguise = null
+	var/saved_appearance
+	var/can_act = TRUE
+	var/current_stage = 1
+	var/next_transform = null
+
+	var/hello_cooldown
+	var/hello_cooldown_time = 7 SECONDS
+	var/goodbye_cooldown
+	var/goodbye_cooldown_time = 20 SECONDS
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
+	. = ..()
+	saved_appearance = appearance
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/examine(mob/user)
+	if(istype(disguise))
+		return disguise.examine(user)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Moved()
+	if(current_stage == 3)
+		playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+	if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
+		return Goodbye()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/OpenFire()
+	if(!can_act)
+		return
+
+	if(current_stage == 3)
+		if(hello_cooldown <= world.time)
+			Hello(target)
+		if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
+			Goodbye()
+
+	return
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/ListTargets()
+	if(istype(disguise))
+		return list()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(istype(disguise) && (health < maxHealth * 0.95))
+		drop_disguise()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Life()
+	. = ..()
+	if(status_flags & GODMODE) // Contained
+		return
+	if(.)
+		if(next_transform && (world.time > next_transform))
+			next_stage()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
+	if(!istype(M))
+		return
+	for(var/turf/open/T in view(4, src))
+		new /obj/effect/temp_visual/flesh(T)
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
+	new /obj/effect/gibspawner/generic(get_turf(M))
+	to_chat(M, "<span class='userdanger'>Oh no...</span>")
+	M.death()
+	M.forceMove(src) // Hide them for examine message to work
+	disguise = M
+	appearance = M.appearance
+	addtimer(CALLBACK(src, .proc/zero_qliphoth), rand(10 SECONDS, 50 SECONDS))
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
+	if(istype(disguise))
+		appearance = saved_appearance
+		disguise.forceMove(get_turf(src))
+		disguise.gib()
+		disguise = null
+		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/proc/next_stage()
+	next_transform = null
+	switch(current_stage)
+		if(1)
+			icon_state = "nothing_egg"
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+			next_transform = world.time + rand(20 SECONDS, 30 SECONDS)
+		if(2)
+			FearEffect()
+			attack_verb_continuous = "strikes"
+			attack_verb_simple = "strike"
+			attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
+			icon = 'ModularTegustation/Teguicons/64x96.dmi'
+			icon_state = icon_living
+			pixel_x = -16
+			base_pixel_x = -16
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+			melee_damage_lower = 65
+			melee_damage_upper = 75
+			move_to_delay = 4
+	adjustBruteLoss(-maxHealth)
+	current_stage = clamp(current_stage + 1, 1, 3)
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/proc/Hello(target)
+	if(hello_cooldown > world.time)
+		return
+	hello_cooldown = world.time + hello_cooldown_time
+	can_act = FALSE
+	face_atom(target)
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
+	icon_state = "nothing_ranged"
+	SLEEP_CHECK_DEATH(5)
+	for(var/turf/T in getline(get_turf(src), get_turf(target)))
+		if(get_dist(src, T) > 8)
+			break
+		if(T.density)
+			break
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in range(1, src)) // AAAAAAAAAAAAAAAAAAAAAAA
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			new /obj/effect/temp_visual/smash_effect(get_turf(L))
+			if(L.health < 0)
+				L.gib()
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 75, 0, 3)
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 7)
+	icon_state = icon_living
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/proc/Goodbye()
+	if(goodbye_cooldown > world.time)
+		return
+	goodbye_cooldown = world.time + goodbye_cooldown_time
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
+	icon_state = "nothing_blade"
+	SLEEP_CHECK_DEATH(7)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(500, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			if(L.health < 0)
+				L.gib()
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5)
+	SLEEP_CHECK_DEATH(3)
+	icon_state = icon_living
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/attempt_work(mob/living/carbon/human/user, work_type)
+	if(istype(disguise))
+		return FALSE
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/work_chance(mob/living/carbon/human/user, chance)
+	var/adjusted_chance = chance
+	var/fort = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
+	if(fort < 100)
+		adjusted_chance -= (100 - fort) * 0.5
+	return adjusted_chance
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	..()
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
+		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	disguise_as(user)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/breach_effect(mob/living/carbon/human/user)
+	..()
+	if(istype(disguise)) // Teleport us somewhere where nobody will see us at first
+		var/list/priority_list = list()
+		for(var/turf/T in GLOB.xeno_spawn)
+			var/people_in_range = 0
+			for(var/mob/living/L in view(9, T))
+				if(L.client && L.stat < UNCONSCIOUS)
+					people_in_range += 1
+					continue
+			if(people_in_range > 0)
+				continue
+			priority_list += T
+		var/turf/target_turf = pick(GLOB.xeno_spawn)
+		if(LAZYLEN(priority_list))
+			target_turf = pick(priority_list)
+		forceMove(target_turf)
+		addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))

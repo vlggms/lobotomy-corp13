@@ -115,7 +115,7 @@
 
 // Applies fear damage to everyone in range
 /mob/living/simple_animal/hostile/abnormality/proc/FearEffect()
-	for(var/mob/living/carbon/human/H in view(6, src))
+	for(var/mob/living/carbon/human/H in view(7, src))
 		if(H in breach_affected)
 			continue
 		breach_affected += H
