@@ -96,8 +96,7 @@
 
 //Qliphoth things
 /mob/living/simple_animal/hostile/abnormality/melting_love/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(66))
-		datum_reference.qliphoth_change(-1)
+	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/failure_effect(mob/living/carbon/human/user, work_type, pe)
@@ -122,6 +121,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/work_complete(mob/living/carbon/human/user, work_type, pe)
+	..()
 	if(work_type != ABNORMALITY_WORK_REPRESSION)
 		if(!gifted_human && istype(user))
 			gifted_human = user
