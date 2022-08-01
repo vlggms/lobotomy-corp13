@@ -59,3 +59,22 @@
 	user.changeNext_move(CLICK_CD_MELEE * 0.20)
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
 
+
+/obj/item/ego_weapon/wings
+	name = "torn off wings"
+	desc = "THe stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
+		pressed it to his lips, put it on as a token, and, bravely brandishing his bare sword, \
+		jumped as nimbly as a bird over the ledge of the cabinet to the floor."
+	icon_state = "wings"
+	force = 5
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slashes", "claws")
+	attack_verb_simple = list("slashes", "claws")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+//ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
+/obj/item/ego_weapon/wings/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 0.20)
+

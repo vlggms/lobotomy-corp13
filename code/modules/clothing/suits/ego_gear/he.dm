@@ -33,3 +33,11 @@
 	icon_state = "bear_paw"
 	//Better rounded than Grinder, not as good against red. Also weak to pale.
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = -20)
+
+/obj/item/clothing/suit/armor/ego_gear/wings
+	name = "torn off wings"
+	desc = "If she hadn’t thrown her slipper at the right time, if she hadn’t outfitted me with the pensioned colonel’s sword,\
+		I’d be lying in my grave."
+	icon_state = "wings"
+	//Just Kinda meh. A lot of WAWs do black at the time of writing so
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
