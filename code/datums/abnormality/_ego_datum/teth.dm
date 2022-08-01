@@ -60,3 +60,12 @@
 /datum/ego_datum/armor/eyes
 	item_path = /obj/item/clothing/suit/armor/ego_gear/eyes
 	cost = 20
+
+// Bottle Of Tears - Eyeball Scooper
+/datum/ego_datum/weapon/eyeball
+	item_path = /obj/item/ego_weapon/eyeball
+	cost = 20
+
+/datum/ego_datum/armor/eyeball
+	item_path = /obj/item/clothing/suit/armor/ego_gear/eyeball
+	cost = 20

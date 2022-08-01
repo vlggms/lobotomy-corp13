@@ -33,3 +33,12 @@
 /datum/ego_datum/armor/paw
 	item_path = /obj/item/clothing/suit/armor/ego_gear/paw
 	cost = 35
+
+// White Lake - Torn Off Wings
+/datum/ego_datum/weapon/wings
+	item_path = /obj/item/ego_weapon/wings
+	cost = 35
+
+/datum/ego_datum/armor/wings
+	item_path = /obj/item/clothing/suit/armor/ego_gear/wings
+	cost = 35
