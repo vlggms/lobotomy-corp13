@@ -41,7 +41,7 @@
 	var/next_transform = null
 
 	var/hello_cooldown
-	var/hello_cooldown_time = 7 SECONDS
+	var/hello_cooldown_time = 8 SECONDS
 	var/goodbye_cooldown
 	var/goodbye_cooldown_time = 20 SECONDS
 
@@ -102,6 +102,8 @@
 			next_stage()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
+	if(!(status_flags & GODMODE)) // Already breaching
+		return
 	if(!istype(M))
 		return
 	for(var/turf/open/T in view(4, src))
@@ -109,19 +111,19 @@
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
 	to_chat(M, "<span class='userdanger'>Oh no...</span>")
-	M.death()
-	M.forceMove(src) // Hide them for examine message to work
 	disguise = M
 	appearance = M.appearance
-	addtimer(CALLBACK(src, .proc/zero_qliphoth), rand(10 SECONDS, 50 SECONDS))
+	M.death()
+	M.forceMove(src) // Hide them for examine message to work
+	addtimer(CALLBACK(src, .proc/zero_qliphoth), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
+	next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
 	if(istype(disguise))
 		appearance = saved_appearance
 		disguise.forceMove(get_turf(src))
 		disguise.gib()
 		disguise = null
-		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/next_stage()
 	next_transform = null
@@ -129,6 +131,7 @@
 		if(1)
 			icon_state = "nothing_egg"
 			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+			can_act = FALSE
 			next_transform = world.time + rand(20 SECONDS, 30 SECONDS)
 		if(2)
 			FearEffect()
@@ -140,9 +143,10 @@
 			pixel_x = -16
 			base_pixel_x = -16
 			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75
-			move_to_delay = 4
+			move_to_delay = 5
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
@@ -154,22 +158,24 @@
 	face_atom(target)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	icon_state = "nothing_ranged"
+	var/turf/target_turf = get_turf(target)
+	for(var/i = 1 to 2)
+		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 	SLEEP_CHECK_DEATH(5)
-	for(var/turf/T in getline(get_turf(src), get_turf(target)))
-		if(get_dist(src, T) > 8)
-			break
+	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)
 			break
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in range(1, src)) // AAAAAAAAAAAAAAAAAAAAAAA
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		for(var/turf/TF in range(1, src)) // AAAAAAAAAAAAAAAAAAAAAAA
 			new /obj/effect/temp_visual/smash_effect(get_turf(L))
-			if(L.health < 0)
-				L.gib()
-	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 75, 0, 3)
-	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 7)
+			for(var/mob/living/L in TF)
+				if(faction_check_mob(L))
+					continue
+				L.apply_damage(100, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+				if(L.health < 0)
+					L.gib()
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3)
 	icon_state = icon_living
 	can_act = TRUE
 
@@ -207,10 +213,9 @@
 	return adjusted_chance
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	disguise_as(user)
@@ -218,6 +223,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/breach_effect(mob/living/carbon/human/user)
 	..()
+	if(!(status_flags & GODMODE)) // Already breaching
+		return
 	if(istype(disguise)) // Teleport us somewhere where nobody will see us at first
 		var/list/priority_list = list()
 		for(var/turf/T in GLOB.xeno_spawn)
@@ -233,4 +240,4 @@
 		if(LAZYLEN(priority_list))
 			target_turf = pick(priority_list)
 		forceMove(target_turf)
-		addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
+	addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
