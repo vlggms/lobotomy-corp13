@@ -224,9 +224,9 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/breach_effect(mob/living/carbon/human/user)
-	..()
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
+	..()
 	if(istype(disguise)) // Teleport us somewhere where nobody will see us at first
 		var/list/priority_list = list()
 		for(var/turf/T in GLOB.xeno_spawn)
