@@ -42,6 +42,8 @@
 	projectilesound = 'sound/effects/attackblob.ogg'
 	var/mob/living/carbon/human/gifted_human = null
 	var/norepeating = FALSE
+	var/sanityheal_cooldown = 15 SECONDS
+	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Initialize()
@@ -50,6 +52,7 @@
 
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
+	sanityheal()
 	if(!norepeating)
 		if(!bigslime_alive)
 			melee_damage_lower = 62
@@ -129,13 +132,17 @@
 			RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
 			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
 			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
-			user.physiology.white_mod *= 0.5
 			user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
 		if(gifted_human)
 			gifted_human.adjustSanityLoss(25)
 		return
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
+	if(sanityheal_cooldown <= world.time)
+		gifted_human.adjustSanityLoss(30)
+		sanityheal_cooldown = (world.time + sanityheal_cooldown_base)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
 	..()
