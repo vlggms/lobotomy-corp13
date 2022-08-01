@@ -28,12 +28,12 @@
 	icon_state = "paper_words"
 	info = "For those handling Zayin grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets! <br><br>Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality. <br><br>Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first zayin duty assignment."
 
-/obj/item/paper/guides/jobs/guide
+/obj/item/paper/guides/jobs/zayin/guide
 	name = "Zayin Safety Manual - Netzach"
 	icon_state = "paper_words"
 	info = "I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright? - Netzach"
 
-/obj/item/paper/guides/jobs/guide/wellcheers
+/obj/item/paper/guides/jobs/zayin/guide/wellcheers
 	name = "F-05-52 Safety Guide"
 	icon_state = "paper_words"
 	info = "Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it. Insight work will produce a regular can of soda that calms mental distress, you just need to observe the machine for awhile and it'll dispense on its own.<br><br> Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."
