@@ -42,3 +42,12 @@
 	desc = "An old fashioned gray sailor outfit with a blue necktie, worn by clerks from the welfare department."
 	icon_state = "welfare"
 
+/obj/item/clothing/under/suit/lobotomy/extraction
+	name = "extraction department uniform"
+	desc = "A black jumpsuit with a grey vest jacket, embroidered with hexagonal gold patterns. Worn by clerks from the extraction department."
+	icon_state = "extraction"
+
+/obj/item/clothing/under/suit/lobotomy/records
+	name = "record department uniform"
+	desc = "A white qipao and black trousers with grey cloud patterns. Buttons up at the chest, and fastened around the waist with a belt of fabric. Worn by clerks from the records department."
+	icon_state = "records"
