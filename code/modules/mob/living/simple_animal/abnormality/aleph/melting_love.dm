@@ -52,6 +52,7 @@
 
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
+	. = ..()
 	sanityheal()
 	if(!norepeating)
 		if(!bigslime_alive)
@@ -111,6 +112,7 @@
 		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
 		gifted_human.emote("scream")
 		gifted_human.gib()
+		breach_effect()
 	else
 		breach_effect()
 	return
@@ -118,10 +120,10 @@
 /* Gift */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
-	breach_effect()
 	var/turf/T = get_turf(gifted_human)
 	gifted_human.gib()
 	new /mob/living/simple_animal/hostile/slime/big(T)
+	datum_reference.qliphoth_change(-9)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/work_complete(mob/living/carbon/human/user, work_type, pe)
