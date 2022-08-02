@@ -18,7 +18,8 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/fury
+		/datum/ego_datum/weapon/fury,
+		/datum/ego_datum/armor/fury
 		)
 
 	var/liked
