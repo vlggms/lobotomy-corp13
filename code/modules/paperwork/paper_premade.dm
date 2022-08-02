@@ -36,6 +36,8 @@
 	<br>
 	-Malkuth"}
 
+///Zayin Guide Documentation - Written by Guymallory
+
 /obj/item/paper/guides/jobs/zayin/guide
 	name = "ZAYIN Safety Guide - Netzach"
 	icon_state = "paper_words"
@@ -50,6 +52,8 @@
 	Insight work will produce a regular can of soda that calms mental distress, you just need wipe down the machine and its front buttons to dispense a can.<br>
 	<br>
 	Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."}
+
+///Zayin Lore Documentation - Written by Guymallory
 
 /obj/item/paper/guides/jobs/zayin/lore
 	name = "Classification Code - Hod"
@@ -88,6 +92,8 @@
 	<br>
 	-Malkuth"}
 
+///Teth Guide Documentation - Written by Guymallory
+
 /obj/item/paper/guides/jobs/teth/guide
 	name = "TETH Safety Guide - Netzach"
 	icon_state = "paper_words"
@@ -105,6 +111,8 @@
 	The least effective work is repression, saying nasty things to the subject and glaring coldly at it. This anomaly does not take well to repression.<br>
 	<br>
 	Never attempt insight work with this one. Trying to improve its containment cell will hurt the brood, which will kill you."}
+
+///Teth Lore Documentation - Written by Guymallory
 
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
