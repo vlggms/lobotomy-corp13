@@ -20,6 +20,7 @@
 	ranged = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
+	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
