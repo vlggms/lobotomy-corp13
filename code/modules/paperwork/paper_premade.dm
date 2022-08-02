@@ -23,19 +23,25 @@
 
 ////////////	Job guides n' fluff
 
+/////Zayin Documentation - Written by Guymallory
+
 /obj/item/paper/guides/jobs/zayin
-	name = "Zayin Instruction Manual"
+	name = "ZAYIN Instruction Manual - Malkuth"
 	icon_state = "paper_words"
-	info = {"For those handling Zayin grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets!<br>
+	info = {"For those handling ZAYIN grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets!<br>
 	<br>
 	Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality.<br>
 	<br>
-	Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first zayin duty assignment."}
+	Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first ZAYIN duty assignment.<br>
+	<br>
+	-Malkuth"}
 
 /obj/item/paper/guides/jobs/zayin/guide
-	name = "Zayin Safety Guide - Netzach"
+	name = "ZAYIN Safety Guide - Netzach"
 	icon_state = "paper_words"
-	info = "I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright? - Netzach"
+	info = {"I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright?<br>
+	<br>
+	- Netzach"}
 
 /obj/item/paper/guides/jobs/zayin/guide/wellcheers
 	name = "F-05-52 Safety Guide"
@@ -54,7 +60,9 @@
 	<br>
 	The following number classifies its type (1 for humanoid, 2 for animal, 3 for religious, 4 for inanimate, 5 for artifact/machine, 6 for abstraction/amalgamation, 7 for breaching tool, 9 for tool).<br>
 	<br>
-	The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!"}
+	The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!<br>
+	<br>
+	-Hod"}
 
 /obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
@@ -67,19 +75,25 @@
 	<br>
 	Agents in District 24 have witnessed these abductees working on fishing vessels dockside some months after the tests were performed."}
 
+/////Teth Documentation - Written by Guymallory
+
 /obj/item/paper/guides/jobs/teth
-	name = "Teth Instruction Manual"
+	name = "TETH Instruction Manual - Malkuth"
 	icon_state = "paper_words"
-	info = {"For those handling Teth grade abnormalities, you have graduated from the beginner duties, you are now considered a proper agent ready for serious assignments. Welcome to the real world, agent.<br>
+	info = {"For those handling TETH grade abnormalities, you have graduated from the beginner duties, you are now considered a proper asset ready for serious assignments. Welcome to the real world, agent.<br>
 	<br>
 	Most of the subjects in this classification can and will breach if mishandled, and all can kill you either in engagement or immediately and without sanctuary if you approach them unprepared.<br>
 	<br>
-	Before attending to the needs of a Teth subject, read the relevant materials, speak to your captain, and ensure you have the appropriate equipment to protect you and the training to withstand the strange."}
+	Before attending to the needs of a Teth subject, read the relevant materials, speak to your captain, and ensure you have the appropriate equipment to protect you and the training to withstand the strange.<br>
+	<br>
+	-Malkuth"}
 
 /obj/item/paper/guides/jobs/teth/guide
-	name = "Teth Safety Guide - Netzach"
+	name = "TETH Safety Guide - Netzach"
 	icon_state = "paper_words"
-	info = "Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore. - Netzach"
+	info = {"Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
+	<br>
+	- Netzach"}
 
 /obj/item/paper/guides/jobs/teth/guide/spiderbud
 	name = "T-02-43 Safety Guide"
@@ -107,7 +121,9 @@
 	<br>
 	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
 	<br>
-	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!"}
+	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!<br>
+	<br>
+	-Hod"}
 
 /obj/item/paper/guides/jobs/teth/lore/spiderbud
 	name = "T-02-43 Information Attachment"
@@ -119,6 +135,48 @@
 	At once, they will be captured and consumed, made into cocooned meals for the remaining spiderlings of the brood.<br>
 	<br>
 	Trying to clean or improve the cell will only infuriate it. Do not attempt insight work on the spider bud."}
+
+/////He Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/he
+	name = "HE Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"These abnormalities can easily kill a number of employees, including veteran agents of the company. You have to pay twice as much attention as with ZAYIN or TETH subjects.<br>
+	As long as you pay close attention, you can avoid serious casualties.<br>
+	<br>
+	Ensure you are properly armed and armored if they do breach, these are serious threats, that require small teams to contain. And double check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
+	<br>
+	Remember that not only is the company relying on you, but your fellow agents. Do not let them down.<br>
+	<br>
+	-Malkuth"}
+
+/////Waw Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/waw
+	name = "WAW Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"Either you have successfully worked with HE subjects before, or you are reading far ahead of your paygrade. In either case what I have to say still applies to you.<br>
+	<br>
+	These are high risk abnormalities that carry devastating force. Death tolls within the facility could reach dozens of employees if they get loose.<br>
+	<br>
+	Most are hostile, agitated, and waiting for an excuse to break containment. Make absolutely sure you know what you're doing here.<br>
+	<br>
+	-Malkuth"}
+
+/////Aleph Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/aleph
+	name = "ALEPH Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"These are the most dangerous abnormalities we know of, from within the city and our scouting missions in the outskirts. There is no exaggeration when I say they threaten the survival of your species.<br>
+	<br>
+	If you do everything as you should, and work with your team, consider yourself blessed if only half the facility is dead when you finish suppression.<br>
+	<br>
+	If these subjects escape into the city, we face a paradigm shift, even total extinction. Needless to say your employment and life will be terminated should you allow or facilitate this event.<br>
+	<br>
+	-Malkuth"}
+
+/////Documents I have yet to delete...
 
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
