@@ -33,7 +33,7 @@
 	Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first zayin duty assignment."}
 
 /obj/item/paper/guides/jobs/zayin/guide
-	name = "Zayin Safety Manual - Netzach"
+	name = "Zayin Safety Guide - Netzach"
 	icon_state = "paper_words"
 	info = "I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright? - Netzach"
 
@@ -66,6 +66,37 @@
 	If the work was bad, an open can will be dispensed and the employee will feel compelled to drink it, as the containment cell fills with ocean water and sounds of the beach. Under observation, humanoid figures dressed in rubber overalls and boots with the heads of prawn can be seen pulling them deeper into the waters before disappearing completely.<br>
 	<br>
 	Agents in District 24 have witnessed these abductees working on fishing vessels dockside some months after the tests were performed."}
+
+/obj/item/paper/guides/jobs/teth
+	name = "Teth Instruction Manual"
+	icon_state = "paper_words"
+	info = {"For those handling Teth grade abnormalities, you have graduated from the beginner duties, you are now considered a proper agent ready for serious assignments. Welcome to the real world, agent.<br>
+	<br>
+	Most of the subjects in this classification can and will breach if mishandled, and all can kill you either in engagement or immediately and without sanctuary if you approach them unprepared.<br>
+	<br>
+	Before attending to the needs of a Teth subject, read the relevant materials, speak to your captain, and ensure you have the appropriate equipment to protect you and the training to withstand the strange."}
+
+/obj/item/paper/guides/jobs/teth/guide
+	name = "Teth Safety Guide - Netzach"
+	icon_state = "paper_words"
+	info = "Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore. - Netzach"
+
+/obj/item/paper/guides/jobs/teth/lore
+	name = "Attribute System - Hod"
+	icon_state = "paper_words"
+	info = {"You may have been wondering, fortitude, prudence, temperance, justice, what are these and why are people yelling about them?<br>
+	<br>
+	These are ways the company has simplified measurements of the body, mind and soul to help you stay safe and efficient!<br>
+	<br>
+	Fortitude is how strong and durable you are physically, your physique! You can train this by doing instinct work with abnormalities.<br>
+	<br>
+	Prudence is mental durability and intelligence, its your physique of smarts! Make your brain strong by doing insightful work.<br>
+	<br>
+	Temperance is the strength of your heart, your empathy and kindness! It helps you to avoid bending to the will of abnormals, and general temptation. Attachment work is good training for temperance.<br>
+	<br>
+	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
+	<br>
+	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!"}
 
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
