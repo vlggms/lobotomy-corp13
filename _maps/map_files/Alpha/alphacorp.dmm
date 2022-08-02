@@ -52,6 +52,11 @@
 /obj/structure/sign/poster/official/obey,
 /turf/closed/indestructible/reinforced,
 /area/department_main/training)
+"aR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/facility_hallway/east)
 "aS" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -973,6 +978,7 @@
 "jn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "jo" = (
@@ -1113,6 +1119,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
+"lf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment,
+/obj/structure/table/wood,
+/obj/item/paper/guides/jobs/teth/lore,
+/turf/open/floor/wood,
+/area/facility_hallway/north)
 "lk" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -1357,6 +1370,12 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"nP" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/guides/jobs/zayin/lore,
+/turf/open/floor/wood,
+/area/facility_hallway/west)
 "nS" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/wood,
@@ -1489,6 +1508,7 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/paper/guides/jobs/teth/guide,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "pc" = (
@@ -1709,6 +1729,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "qW" = (
@@ -1763,6 +1784,7 @@
 /area/facility_hallway/north)
 "rv" = (
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/zayin/lore/wellcheers,
 /obj/item/folder/blue{
 	pixel_x = -6
 	},
@@ -1885,6 +1907,14 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"sS" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/paper/guides/jobs/zayin/guide,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "sT" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -2079,6 +2109,8 @@
 /area/facility_hallway/west)
 "ul" = (
 /obj/structure/rack,
+/obj/item/paper/guides/jobs/teth/lore/spiderbud,
+/obj/item/paper/guides/jobs/teth/guide/spiderbud,
 /turf/open/floor/plating,
 /area/facility_hallway/north)
 "um" = (
@@ -2186,6 +2218,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"vy" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wood,
+/obj/item/paper/guides/jobs/zayin/lore,
+/turf/open/floor/wood,
+/area/facility_hallway/north)
 "vz" = (
 /obj/structure/easel,
 /obj/item/instrument/violin,
@@ -3459,6 +3498,7 @@
 /obj/structure/sign/poster/official/work_for_a_future{
 	pixel_x = 32
 	},
+/obj/item/paper/guides/jobs/zayin/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "Kf" = (
@@ -4700,6 +4740,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/zayin/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "VS" = (
@@ -4783,10 +4824,12 @@
 "Ww" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "WC" = (
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/zayin/guide/wellcheers,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "WD" = (
@@ -5047,6 +5090,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"Zn" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/facility_hallway/west)
 "Zv" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -35269,8 +35317,8 @@ fb
 kU
 FJ
 Kw
-Ww
-Ww
+Zn
+nP
 Ww
 zg
 Yk
@@ -35775,7 +35823,7 @@ Iu
 OP
 TC
 VK
-VK
+lf
 fb
 QB
 ep
@@ -38334,7 +38382,7 @@ FV
 jy
 jy
 FV
-pa
+sS
 Mi
 Ct
 rg
@@ -39887,7 +39935,7 @@ Nl
 PE
 TF
 qV
-qV
+vy
 fb
 BE
 xM
@@ -40411,7 +40459,7 @@ Vk
 Vk
 jn
 Ka
-jn
+aR
 Cz
 jL
 BX

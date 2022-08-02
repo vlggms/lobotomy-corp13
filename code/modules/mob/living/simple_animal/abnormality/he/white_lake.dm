@@ -16,7 +16,7 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	/// Grab her champion
-	var/list/champion = list()
+	var/champion
 	//She gets mad if you work on her too much as high fortitude
 	var/killcounter = 0
 	start_qliphoth = 3
@@ -35,7 +35,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/success_effect(mob/living/carbon/human/user, work_type, pe)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
-		champion += user
+		champion = user
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
@@ -50,7 +50,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
-	var/mob/living/carbon/human/H = pick(champion)
+	var/mob/living/carbon/human/H = champion
 
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
@@ -58,11 +58,11 @@
 	H.equipOutfit(whitelake)	//Get outfit
 	H.put_in_hands(wep) 		//Time for pale
 
-	//They need to be hard to kill and unable to go sane again.
-	//No infinite ego
+	//They need to be hard to kill and really hard to get sane again
+	//To avoid gettting infinite ego
 	H.physiology.red_mod *= 0.3
-	H.physiology.white_mod *= 0
-	H.physiology.black_mod *= 0
+	H.physiology.white_mod *= 0.05
+	H.physiology.black_mod *= 0.1
 	H.physiology.pale_mod *= 0.1
 
 	//Replaces AI with murder one
@@ -71,23 +71,17 @@
 	ghostize(1)
 	H.InitializeAIController()
 
+	datum_reference.qliphoth_change(3)
+
 	return
 
 //Outfit and Attacker's sword.
 /datum/outfit/whitelake
 	head = /obj/item/clothing/head/ego_gift/whitelake
-	glasses = /obj/item/clothing/glasses/whitelake
 
 /obj/item/clothing/head/ego_gift/whitelake
 	name = "waltz of the flowers"
 	icon_state = "whitelake"
-	icon = 'icons/obj/clothing/ego_gear/head.dmi'
-	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
-
-/obj/item/clothing/glasses/whitelake
-	name = "waltz of the flowers"
-	desc = "contacts and blush seen on those driven insane by whitelake"
-	icon_state = "flower_waltz"
 	icon = 'icons/obj/clothing/ego_gear/head.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 
