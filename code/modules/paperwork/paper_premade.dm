@@ -41,7 +41,7 @@
 	name = "F-05-52 Safety Guide"
 	icon_state = "paper_words"
 	info = {"Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it.<br>
-	Insight work will produce a regular can of soda that calms mental distress, you just need to observe the machine for awhile and it'll dispense on its own.<br>
+	Insight work will produce a regular can of soda that calms mental distress, you just need wipe down the machine and its front buttons to dispense a can.<br>
 	<br>
 	Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."}
 
@@ -90,7 +90,7 @@
 	<br>
 	The least effective work is repression, saying nasty things to the subject and glaring coldly at it. This anomaly does not take well to repression.<br>
 	<br>
-	Never attempt insight work with this one. Those who try to understand it end up cocooned as food for the brood."}
+	Never attempt insight work with this one. Trying to improve its containment cell will hurt the brood, which will kill you."}
 
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
@@ -118,7 +118,7 @@
 	<br>
 	At once, they will be captured and consumed, made into cocooned meals for the remaining spiderlings of the brood.<br>
 	<br>
-	Trying to understand it will only infuriate it. Do not attempt insight work on the spider bud."}
+	Trying to clean or improve the cell will only infuriate it. Do not attempt insight work on the spider bud."}
 
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
