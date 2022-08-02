@@ -1,5 +1,5 @@
 //Warden
-/obj/item/paper/fluff/waw/info/warden
+/obj/item/paper/fluff/info/waw/warden
 	name = "T-01-114"
 	info = {"<h1><center>T-01-114</center></h1>	<br>
 	Name : The Warden	<br>
@@ -16,7 +16,7 @@
 	<h4>Repression:</h4> High<br>"}
 
 //Bee
-/obj/item/paper/fluff/waw/info/queenbee
+/obj/item/paper/fluff/info/waw/queenbee
 	name = "T-04-50"
 	info = {"<h1><center>T-04-50</center></h1>	<br>
 	Name : Queen Bee	<br>
@@ -37,7 +37,7 @@
 
 
 //Jbird
-/obj/item/paper/fluff/waw/info/jbird
+/obj/item/paper/fluff/info/waw/jbird
 	name = "O-02-62"
 	info = {"<h1><center>O-02-62</center></h1>	<br>
 	Name : Judgement Bird	<br>
@@ -52,7 +52,7 @@
 	<h4>Repression:</h4> Very Low<br>"}
 
 //Bbird
-/obj/item/paper/fluff/waw/info/bbird
+/obj/item/paper/fluff/info/waw/bbird
 	name = "O-02-40"
 	info = {"<h1><center>O-02-40</center></h1>	<br>
 	Name : Big Bird	<br>
@@ -70,7 +70,7 @@
 	<h4>Repression:</h4> Very Low<br>"}
 
 //KOD
-/obj/item/paper/fluff/waw/info/kod
+/obj/item/paper/fluff/info/waw/kod
 	name = "O-01-73"
 	info = {"<h1><center>O-01-73</center></h1>	<br>
 	Name : The Knight Of Despair	<br>
@@ -88,7 +88,7 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //KOD
-/obj/item/paper/fluff/waw/info/qoh
+/obj/item/paper/fluff/info/waw/qoh
 	name = "O-01-04"
 	info = {"<h1><center>O-01-04</center></h1>	<br>
 	Name : The Queen Of Hatred	<br>

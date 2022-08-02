@@ -9,8 +9,8 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/zayininfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/zayin/info)
-	for(var/sheet in zayininfo)
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/zayin)
+	for(var/sheet in queue)
 		new sheet(src)
 
 
@@ -27,7 +27,7 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/tethinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/teth/info)
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/teth)
 	for(var/sheet in queue)
 		new sheet(src)
 
@@ -45,7 +45,7 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/heinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/he/info)
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/he)
 	for(var/sheet in queue)
 		new sheet(src)
 
@@ -64,7 +64,7 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/wawinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/waw/info)
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/waw)
 	for(var/sheet in queue)
 		new sheet(src)
 
@@ -82,7 +82,7 @@
 	var/virgin = TRUE
 
 /obj/structure/filingcabinet/alephinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/aleph/info)
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/aleph)
 	for(var/sheet in queue)
 		new sheet(src)
 

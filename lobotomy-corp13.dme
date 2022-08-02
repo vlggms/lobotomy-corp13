@@ -2814,6 +2814,7 @@
 #include "code\modules\paperwork\stamps.dm"
 #include "code\modules\paperwork\ticketmachine.dm"
 #include "code\modules\paperwork\records\recordsfiling.dm"
+#include "code\modules\paperwork\records\info\_info.dm"
 #include "code\modules\paperwork\records\info\aleph.dm"
 #include "code\modules\paperwork\records\info\he.dm"
 #include "code\modules\paperwork\records\info\teth.dm"

@@ -2407,9 +2407,9 @@
 /area/centcom/evac)
 "qh" = (
 /obj/machinery/button/door/indestructible{
-	pixel_x = -32;
 	id = "ccdroppod";
-	name = "Deployment Pod button"
+	name = "Deployment Pod button";
+	pixel_x = -32
 	},
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -3585,11 +3585,11 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
 "wX" = (
-/obj/structure/filingcabinet{
+/obj/structure/filingcabinet/heinfo{
 	pixel_x = 10
 	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet/employment{
+/obj/structure/filingcabinet/tethinfo,
+/obj/structure/filingcabinet/zayininfo{
 	pixel_x = -10
 	},
 /turf/open/floor/carpet/royalblack,
@@ -4395,6 +4395,15 @@
 "AQ" = (
 /turf/open/floor/engine,
 /area/tdome/tdomeobserve)
+"AR" = (
+/obj/structure/filingcabinet/alephinfo{
+	pixel_x = 8
+	},
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "AY" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -4909,10 +4918,10 @@
 	dir = 4
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 1;
 	name = "elevator console";
-	shuttleId = "manager";
 	possible_destinations = "elevator_home;elevator_away";
-	dir = 1
+	shuttleId = "manager"
 	},
 /obj/structure/railing,
 /obj/effect/turf_decal/stripes/line,
@@ -6818,12 +6827,12 @@
 /area/centcom/supplypod/loading/four)
 "Pw" = (
 /obj/docking_port/stationary{
-	name = "manager floor";
-	id = "elevator_away";
+	dir = 2;
 	dwidth = 3;
 	height = 5;
-	width = 6;
-	dir = 2
+	id = "elevator_away";
+	name = "manager floor";
+	width = 6
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
@@ -39966,8 +39975,8 @@ aa
 aa
 aa
 nC
-nC
-nC
+AR
+BZ
 nC
 nC
 nC
@@ -40222,10 +40231,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+nC
+nC
+nC
+nC
 aa
 aa
 aa

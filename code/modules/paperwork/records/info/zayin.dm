@@ -1,5 +1,5 @@
 //Bottle of Tears
-/obj/item/paper/fluff/zayin/info/bottle
+/obj/item/paper/fluff/info/zayin/bottle
 	name = "F-04-113"
 	info = {"<h1><center>F-04-113</center></h1>	<br>
 	Name : Bottle of Tears	<br>
@@ -14,7 +14,7 @@
 	<h4>Repression:</h4> High<br>"}
 
 //One Sin
-/obj/item/paper/fluff/zayin/info/onesin
+/obj/item/paper/fluff/info/zayin/onesin
 	name = "O-03-03"
 	info = {"<h1><center>O-03-03</center></h1>	<br>
 	Name : One Sin and Hundreds of Good Deeds	<br>
@@ -29,7 +29,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Wellcheers
-/obj/item/paper/fluff/zayin/info/shrimple
+/obj/item/paper/fluff/info/zayin/shrimple
 	name = "F-05-52"
 	info = {"<h1><center>F-05-52</center></h1>	<br>
 	Name : Opened Can of WellCheers	<br>
@@ -48,7 +48,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //BALD
-/obj/item/paper/fluff/zayin/info/bald
+/obj/item/paper/fluff/info/zayin/bald
 	name = "BALD-IS-AWESOME"
 	info = {"<h1><center>BALD-IS-AWESOME</center></h1>	<br>
 	Name : You're Bald	<br>

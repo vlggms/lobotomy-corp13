@@ -1,5 +1,5 @@
 //Wabbit Twouble
-/obj/item/paper/fluff/teth/info/training
+/obj/item/paper/fluff/info/teth/training
 	name = "0-00-00"
 	info = {"<h1><center>0-00-00</center></h1>	<br>
 	Name : Standard Training-Dummy Rabbit	<br>
@@ -13,7 +13,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Spider Bud
-/obj/item/paper/fluff/teth/info/spider
+/obj/item/paper/fluff/info/teth/spider
 	name = "T-02-43"
 	info = {"<h1><center>T-02-43</center></h1>	<br>
 	Name : Spider Bud	<br>
@@ -28,7 +28,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Scorched girl
-/obj/item/paper/fluff/teth/info/match
+/obj/item/paper/fluff/info/teth/match
 	name = "F-01-02"
 	info = {"<h1><center>F-01-02</center></h1>	<br>
 	Name : Scorched Girl	<br>
@@ -44,7 +44,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Punishing bird
-/obj/item/paper/fluff/teth/info/pbird
+/obj/item/paper/fluff/info/teth/pbird
 	name = "O-02-56"
 	info = {"<h1><center>O-02-56</center></h1>	<br>
 	Name : Punishing Bird	<br>
@@ -60,7 +60,7 @@
 	<h4>Repression:</h4> Very Low<br>"}
 
 //Fragment of the universe
-/obj/item/paper/fluff/teth/info/frag
+/obj/item/paper/fluff/info/teth/frag
 	name = "O-03-60"
 	info = {"<h1><center>O-03-60</center></h1>	<br>
 	Name : Fragment of the Universe	<br>
@@ -76,7 +76,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Dingle Dangle
-/obj/item/paper/fluff/teth/info/dingle
+/obj/item/paper/fluff/info/teth/dingle
 	name = "T-04-111"
 	info = {"<h1><center>T-04-111</center></h1>	<br>
 	Name : Fragment of the Universe	<br>
@@ -91,7 +91,7 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Beauty and the Beast
-/obj/item/paper/fluff/teth/info/beauty
+/obj/item/paper/fluff/info/teth/beauty
 	name = "F-02-44"
 	info = {"<h1><center>F-02-44</center></h1>	<br>
 	Name : Beauty and the Beast	<br>

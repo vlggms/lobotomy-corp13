@@ -1,5 +1,5 @@
 //Teddy Bear
-/obj/item/paper/fluff/he/info/bear
+/obj/item/paper/fluff/info/he/bear
 	name = "T-04-06"
 	info = {"<h1><center>T-04-06</center></h1>	<br>
 	Name : Happy Teddy Bear	<br>
@@ -14,7 +14,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Reddit
-/obj/item/paper/fluff/he/info/reddit
+/obj/item/paper/fluff/info/he/reddit
 	name = "T-05-41"
 	info = {"<h1><center>T-05-41</center></h1>	<br>
 	Name : All-Around Helper	<br>
@@ -29,7 +29,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Red Queen
-/obj/item/paper/fluff/he/info/queen
+/obj/item/paper/fluff/info/he/queen
 	name = "F-01-112"
 	info = {"<h1><center>F-01-112</center></h1>	<br>
 	Name : The Red Queen	<br>
@@ -45,7 +45,7 @@
 	<h4>Repression:</h4> High<br>"}
 
 //Scarecrow
-/obj/item/paper/fluff/he/info/scarecrow
+/obj/item/paper/fluff/info/he/scarecrow
 	name = "F-01-87"
 	info = {"<h1><center>F-01-87</center></h1>	<br>
 	Name : Scarecrow Searching for Wisdom	<br>
@@ -61,7 +61,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //White Lake
-/obj/item/paper/fluff/he/info/whitelake
+/obj/item/paper/fluff/info/he/whitelake
 	name = "F-01-113"
 	info = {"<h1><center>F-01-113</center></h1>	<br>
 	Name : White Lake	<br>

@@ -1,5 +1,5 @@
 //Silent Fucker
-/obj/item/paper/fluff/aleph/info/tso
+/obj/item/paper/fluff/info/aleph/tso
 	name = "T-01-31"
 	info = {"<h1><center>T-01-31</center></h1>	<br>
 	Name : The Silent Orchestra<br>
@@ -16,7 +16,7 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Blue Star
-/obj/item/paper/fluff/aleph/info/bluestar
+/obj/item/paper/fluff/info/aleph/bluestar
 	name = "O-03-93"
 	info = {"<h1><center>O-03-93</center></h1>	<br>
 	Name : Blue Star<br>
@@ -33,7 +33,7 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //White Night
-/obj/item/paper/fluff/aleph/info/whitenight
+/obj/item/paper/fluff/info/aleph/whitenight
 	name = "T-03-46"
 	info = {"<h1><center>T-03-46</center></h1>	<br>
 	Name : White Night<br>
