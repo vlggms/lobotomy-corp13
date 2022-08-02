@@ -225,7 +225,6 @@
 /area/department_main/welfare)
 "bm" = (
 /obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "bn" = (
@@ -1105,9 +1104,7 @@
 /area/facility_hallway/north)
 "hI" = (
 /obj/structure/table/wood,
-/obj/item/book/random{
-	pixel_x = 4
-	},
+/obj/item/paper/guides/jobs/teth/guide/spiderbud,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "hJ" = (
@@ -1631,7 +1628,7 @@
 /area/department_main/discipline)
 "lg" = (
 /obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin/guide,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "lh" = (
@@ -3571,6 +3568,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/zayin/guide,
 /obj/item/wrench,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -4317,11 +4315,7 @@
 "AV" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
+/obj/item/paper/guides/jobs/teth/guide,
 /obj/item/melee/classic_baton,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -5532,6 +5526,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/solarpanel,
 /area/department_main/information)
+"JV" = (
+/obj/structure/rack,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/turf/open/floor/carpet,
+/area/department_main/control)
 "Kd" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/wood,
@@ -6374,6 +6377,7 @@
 /area/department_main/command)
 "Pw" = (
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/teth/lore/spiderbud,
 /obj/item/folder/blue{
 	pixel_x = -6
 	},
@@ -31816,7 +31820,7 @@ jF
 jF
 jF
 CT
-RZ
+JV
 mg
 mg
 vT

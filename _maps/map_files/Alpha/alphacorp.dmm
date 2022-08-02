@@ -55,7 +55,6 @@
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "aS" = (
@@ -979,6 +978,7 @@
 "jn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "jo" = (
@@ -1123,7 +1123,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "lk" = (
@@ -1508,6 +1508,7 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/paper/guides/jobs/teth/guide,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "pc" = (
@@ -1728,7 +1729,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "qW" = (
@@ -1906,6 +1907,14 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"sS" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/paper/guides/jobs/zayin/guide,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "sT" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -2100,6 +2109,8 @@
 /area/facility_hallway/west)
 "ul" = (
 /obj/structure/rack,
+/obj/item/paper/guides/jobs/teth/lore/spiderbud,
+/obj/item/paper/guides/jobs/teth/guide/spiderbud,
 /turf/open/floor/plating,
 /area/facility_hallway/north)
 "um" = (
@@ -4813,6 +4824,7 @@
 "Ww" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/paper/guides/jobs/teth/lore,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "WC" = (
@@ -5081,7 +5093,6 @@
 "Zn" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/paper/guides/jobs/zayin,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "Zv" = (
@@ -38371,7 +38382,7 @@ FV
 jy
 jy
 FV
-pa
+sS
 Mi
 Ct
 rg
