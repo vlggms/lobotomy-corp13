@@ -81,6 +81,17 @@
 	icon_state = "paper_words"
 	info = "Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore. - Netzach"
 
+/obj/item/paper/guides/jobs/teth/guide/spiderbud
+	name = "T-02-43 Safety Guide"
+	icon_state = "paper_words"
+	info = {"Instinct work is the most effective and safe handling of the spider bud possible, toss it some food without stepping on a bug underfoot.<br>
+	<br>
+	Attachment work is the next most effective routine, just talk kindly to the subject and gently pet the gross little spiders.<br>
+	<br>
+	The least effective work is repression, saying nasty things to the subject and glaring coldly at it. This anomaly does not take well to repression.<br>
+	<br>
+	Never attempt insight work with this one. Those who try to understand it end up cocooned as food for the brood."}
+
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
 	icon_state = "paper_words"
@@ -97,6 +108,17 @@
 	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
 	<br>
 	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!"}
+
+/obj/item/paper/guides/jobs/teth/lore/spiderbud
+	name = "T-02-43 Information Attachment"
+	icon_state = "paper_words"
+	info = {"The brood mother was a hard capture, from those dark woods in the outskirts beyond the city.<br>
+	<br>
+	She's terrifying to junior agents, those with prudence ratings below forty will panic, and squish one of the offspring in their rush to escape.<br>
+	<br>
+	At once, they will be captured and consumed, made into cocooned meals for the remaining spiderlings of the brood.<br>
+	<br>
+	Trying to understand it will only infuriate it. Do not attempt insight work on the spider bud."}
 
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
