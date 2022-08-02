@@ -58,11 +58,11 @@
 	H.equipOutfit(whitelake)	//Get outfit
 	H.put_in_hands(wep) 		//Time for pale
 
-	//They need to be hard to kill and unable to go sane again.
-	//No infinite ego
+	//They need to be hard to kill and really hard to get sane again
+	//To avoid gettting infinite ego
 	H.physiology.red_mod *= 0.3
-	H.physiology.white_mod *= 0
-	H.physiology.black_mod *= 0
+	H.physiology.white_mod *= 0.05
+	H.physiology.black_mod *= 0.1
 	H.physiology.pale_mod *= 0.1
 
 	//Replaces AI with murder one
@@ -71,7 +71,7 @@
 	ghostize(1)
 	H.InitializeAIController()
 
-	datum_reference.qliphoth_change(+3)
+	datum_reference.qliphoth_change(3)
 
 	return
 
