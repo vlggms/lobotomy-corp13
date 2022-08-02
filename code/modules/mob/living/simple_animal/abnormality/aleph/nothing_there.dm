@@ -45,8 +45,10 @@
 
 	var/hello_cooldown
 	var/hello_cooldown_time = 8 SECONDS
+	var/hello_damage = 80
 	var/goodbye_cooldown
 	var/goodbye_cooldown_time = 20 SECONDS
+	var/goodbye_damage = 500
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
@@ -165,6 +167,7 @@
 	for(var/i = 1 to 2)
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 	SLEEP_CHECK_DEATH(5)
+	var/list/been_hit = list()
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)
 			break
@@ -173,7 +176,10 @@
 			for(var/mob/living/L in TF)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(100, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+				if(L in been_hit)
+					continue
+				been_hit += L
+				L.apply_damage(hello_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				if(L.health < 0)
 					L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
@@ -188,13 +194,13 @@
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
 	icon_state = "nothing_blade"
-	SLEEP_CHECK_DEATH(7)
+	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(500, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(goodbye_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5)
@@ -215,9 +221,11 @@
 	return adjusted_chance
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	. = ..()
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
-		datum_reference.qliphoth_change(-1)
-	return ..()
+		if(!istype(disguise)) // Not work failure
+			datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	disguise_as(user)
@@ -241,5 +249,7 @@
 		var/turf/target_turf = pick(GLOB.xeno_spawn)
 		if(LAZYLEN(priority_list))
 			target_turf = pick(priority_list)
+		for(var/turf/open/T in view(3, src))
+			new /obj/effect/temp_visual/flesh(T)
 		forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
