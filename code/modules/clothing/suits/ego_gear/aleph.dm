@@ -65,7 +65,7 @@
 /obj/item/clothing/suit/armor/ego_gear/adoration
 	name = "Adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
-	 In fact, it seems to give you an illusion of comfort and bravery."
+	In fact, it seems to give you an illusion of comfort and bravery."
 	icon_state = "adoration"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
 	attribute_requirements = list(
