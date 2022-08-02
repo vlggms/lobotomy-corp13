@@ -44,19 +44,11 @@
 	desc = "A glob of infectious slime. It's going for your heart."
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 70
-	spread = 15
-
-/obj/projectile/melting_blob/enraged
-	name = "slime projectile"
-	icon_state = "slime"
-	desc = "A glob of infectious slime. It's going for your heart."
-	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 100
 	spread = 15
-
-/obj/projectile/melting_blob/Initialize()
-	. = ..()
 	hitsound = "sound/effects/footstep/slime1.ogg"
-	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/melting_blob/enraged
+	damage = 200
+	spread = 15
+

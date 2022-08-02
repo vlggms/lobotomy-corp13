@@ -44,7 +44,7 @@
 	var/norepeating = FALSE
 	var/sanityheal_cooldown = 15 SECONDS
 	var/sanityheal_cooldown_base = 15 SECONDS
-	ego_list = list()
+	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Initialize()
 	. = ..()
