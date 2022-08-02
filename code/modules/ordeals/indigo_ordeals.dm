@@ -14,7 +14,7 @@
 
 // Midnight
 /datum/ordeal/indigo_midnight
-	name = "Midnight of Indigo"
+	name = "Noon of Indigo"
 	annonce_text = "For the sake of our families in our village, we cannot stop."
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'

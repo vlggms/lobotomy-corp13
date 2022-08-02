@@ -21,9 +21,11 @@
 	name = "correctional armor"
 	desc = "A white, lightly bloodstained coat. it goes all the way down to your ankles."
 	icon_state = "correctional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)		//Like Lamp and Hornet put together but if you are hit by white you fucking die
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/despair

@@ -31,21 +31,3 @@
 	desc = "Since the flower had concluded its tale long ago, its scent is gone."
 	icon_state = "horn"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -30, PALE_DAMAGE = 0)
-
-/obj/item/clothing/suit/armor/ego_gear/lutemia
-	name = "dear lutemia"
-	desc = "Your sadness, woes, cast them all aside."
-	icon_state = "lutemia"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
-
-/obj/item/clothing/suit/armor/ego_gear/eyes
-	name = "red eyes"
-	desc = "Spiders have strong maternal instincts. They will defend their offspring at all costs."
-	icon_state = "eyes"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
-
-/obj/item/clothing/suit/armor/ego_gear/little_alice
-	name = "little alice"	//Looks like alice from Shin Megami Tensei
-	desc = "Oh, they are so very beautiful."
-	icon_state = "little_alice"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
