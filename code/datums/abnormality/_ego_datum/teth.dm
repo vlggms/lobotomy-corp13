@@ -61,11 +61,11 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/eyes
 	cost = 20
 
-// Bottle Of Tears - Eyeball Scooper
-/datum/ego_datum/weapon/eyeball
-	item_path = /obj/item/ego_weapon/eyeball
+// Bottle Of Tears - Little Alice
+/datum/ego_datum/weapon/little_alice
+	item_path = /obj/item/ego_weapon/little_alice
 	cost = 20
 
-/datum/ego_datum/armor/eyeball
-	item_path = /obj/item/clothing/suit/armor/ego_gear/eyeball
+/datum/ego_datum/armor/little_alice
+	item_path = /obj/item/clothing/suit/armor/ego_gear/little_alice
 	cost = 20

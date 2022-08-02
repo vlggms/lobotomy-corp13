@@ -18,8 +18,8 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/eyeball,
-//		/datum/ego_datum/armor/eyeball
+		/datum/ego_datum/weapon/little_alice,
+		/datum/ego_datum/armor/little_alice
 		)
 	max_boxes = 10
 	var/cake = 5	//How many cake charges are there
@@ -33,19 +33,23 @@
 /mob/living/simple_animal/hostile/abnormality/bottle/work_complete(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Consume")
 		cake -= 1		//Eat some cake
-		if(cake != 0)
-			user.adjustBruteLoss(-500) // It heals you to full if you eat it
-			icon_state = "bottle2"	//cake looks eaten
-
-		else
+		if(cake == 0)
 			//Drowns you like Wellcheers does, so I mean the code checks out
 			for(var/turf/open/T in view(7, src))
 				new /obj/effect/temp_visual/water_waves(T)
 			to_chat(user, "<span class='userdanger'>The room is filling with water! You're going to drown!</span>")
 			icon_state = "bottle3"	//cake all gone
+
+			var/location = get_turf(user)
+			new /obj/item/ego_weapon/eyeball(location)
+
 			user.AdjustSleeping(10 SECONDS)
 			animate(user, alpha = 0, time = 2 SECONDS)
 			QDEL_IN(user, 3.5 SECONDS)
+
+		else
+			user.adjustBruteLoss(-500) // It heals you to full if you eat it
+			icon_state = "bottle2"	//cake looks eaten
 
 	return ..()
 
