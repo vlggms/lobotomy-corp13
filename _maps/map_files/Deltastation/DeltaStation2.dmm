@@ -32017,11 +32017,11 @@
 "bpp" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/food/donut/jelly/choco,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{

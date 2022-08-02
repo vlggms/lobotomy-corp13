@@ -116,17 +116,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "bz" = (
-/obj/structure/rack,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
-/obj/item/clothing/accessory/armband/control,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "bF" = (
@@ -236,16 +226,16 @@
 /area/department_main/information)
 "cQ" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
-/obj/item/clothing/accessory/armband/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "cR" = (
@@ -513,16 +503,16 @@
 /area/facility_hallway/east)
 "fo" = (
 /obj/structure/rack,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
-/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
 /obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -758,16 +748,16 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "hx" = (
@@ -820,8 +810,7 @@
 /area/department_main/control)
 "hQ" = (
 /obj/machinery/computer/ego_purchase,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "hU" = (
 /turf/open/floor/plasteel/dark,
@@ -845,16 +834,16 @@
 "ij" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/structure/table/wood/fancy/blue,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
-/obj/item/clothing/accessory/armband/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
+/obj/item/clothing/accessory/armband/lobotomy/command,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "im" = (
@@ -910,6 +899,12 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"iD" = (
+/obj/structure/sign/poster/contraband/shamblers_juice{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "iG" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/tree/jungle/small,
@@ -933,7 +928,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "iX" = (
 /obj/effect/turf_decal/siding/brown{
@@ -1337,6 +1332,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"nz" = (
+/obj/structure/chair,
+/obj/item/toy/plush/hokma,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "nG" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
@@ -1371,6 +1371,11 @@
 /obj/structure/sign/poster/official/twelve_gauge{
 	pixel_x = 32
 	},
+/obj/effect/turf_decal/siding{
+	color = "#212121";
+	dir = 1
+	},
+/obj/structure/closet/crate/secure/weapon,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "ot" = (
@@ -1388,20 +1393,11 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "ou" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/rack,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "ov" = (
 /obj/effect/turf_decal/siding/purple{
@@ -1489,6 +1485,7 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/storage/box/handcuffs,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "pc" = (
@@ -1619,10 +1616,10 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ql" = (
-/obj/structure/sign/poster/contraband/shamblers_juice{
-	pixel_x = 32
+/obj/structure/chair/office{
+	dir = 8
 	},
-/turf/open/floor/carpet/red,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "qo" = (
 /obj/effect/landmark/start{
@@ -1667,11 +1664,7 @@
 /area/department_main/information)
 "qG" = (
 /obj/structure/rack,
-/obj/item/storage/box/handcuffs{
-	pixel_y = 10
-	},
-/obj/item/storage/box/handcuffs,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "qL" = (
 /obj/machinery/light,
@@ -1850,6 +1843,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"sx" = (
+/obj/effect/turf_decal/siding{
+	color = "#212121";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "sC" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -2369,6 +2369,11 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"xb" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/toy/plush/lisa,
+/turf/open/floor/carpet/royalblue,
+/area/department_main/command)
 "xi" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 2
@@ -2880,6 +2885,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"DP" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "DW" = (
 /turf/closed/wall/r_wall,
 /area/facility_hallway/south)
@@ -2946,20 +2955,10 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "EW" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
+/obj/machinery/door/airlock/highsecurity{
+	name = "Extraction Office"
 	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "Fc" = (
 /obj/structure/sign/poster/official/work_for_a_future,
@@ -4046,7 +4045,9 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "PP" = (
-/obj/structure/table/glass,
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
+	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "PR" = (
@@ -4058,10 +4059,9 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/safety)
 "PY" = (
-/obj/structure/sign/poster/official/work_for_a_future{
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/red,
+/obj/structure/rack,
+/obj/item/toy/plush/binah,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Qc" = (
 /obj/machinery/light{
@@ -4785,6 +4785,23 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
+"WA" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "WC" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/orange,
@@ -37558,7 +37575,7 @@ FV
 FV
 GT
 gx
-PP
+FV
 FV
 jy
 jy
@@ -37815,7 +37832,7 @@ FV
 FV
 eV
 gF
-hQ
+DK
 bq
 nr
 DK
@@ -38072,7 +38089,7 @@ FV
 FV
 fq
 gx
-PP
+FV
 FV
 jy
 jy
@@ -38334,7 +38351,7 @@ FV
 jy
 jy
 FV
-pa
+WA
 Mi
 Ct
 rg
@@ -38646,7 +38663,7 @@ LX
 RO
 hU
 Wt
-xz
+nz
 UY
 Od
 rM
@@ -39100,14 +39117,14 @@ rg
 ta
 FV
 FV
-PY
 FV
+PP
 Qe
 FV
 FV
 FV
-ql
 FV
+iD
 rg
 ul
 BL
@@ -39132,7 +39149,7 @@ Jv
 yG
 TX
 NK
-VA
+xb
 lN
 Xu
 Hv
@@ -39355,15 +39372,15 @@ ZL
 ZL
 rg
 rg
-rg
-rg
-rg
+bz
+bz
+bz
 rg
 rg
 EW
-ou
 rg
-rg
+ve
+ve
 rg
 rg
 vf
@@ -39611,16 +39628,16 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
 rg
-DH
-DH
-DH
+hQ
+ql
+AU
+AU
+AU
+sx
 Iq
-Iq
 DH
-qG
+DH
 gR
 rg
 vs
@@ -39868,13 +39885,13 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
 rg
 iV
-Iq
-Iq
-Iq
+AU
+AU
+AU
+AU
+sx
 Iq
 Iq
 Iq
@@ -40125,15 +40142,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
 rg
-DH
-DH
-DH
+ou
+qG
+qG
+PY
+qG
 oj
-Iq
-bz
+DP
+DH
 eI
 rf
 rg
@@ -40382,8 +40399,8 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
+rg
+rg
 rg
 rg
 rg

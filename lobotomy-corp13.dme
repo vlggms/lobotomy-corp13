@@ -1916,6 +1916,7 @@
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\zepelli_hat.dm"
+#include "code\modules\clothing\accessory\armband.dm"
 #include "code\modules\clothing\ears\_ears.dm"
 #include "code\modules\clothing\glasses\_glasses.dm"
 #include "code\modules\clothing\glasses\engine_goggles.dm"
