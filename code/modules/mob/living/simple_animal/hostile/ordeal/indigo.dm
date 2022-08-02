@@ -20,13 +20,13 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/Initialize()
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
@@ -36,7 +36,7 @@
 		else
 			devour(L)
 
-/mob/living/simple_animal/hostile/ordeal/sweeper/proc/devour(mob/living/L)
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
 	visible_message(
@@ -75,6 +75,12 @@
 
 	//How many people has she eaten
 	var/belly = 0
+	//How mad is she?
+	var/phase = 1
+
+	//How often does she slam?
+	var/slam_cooldown = 3
+	var/slam_current = 3
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS
@@ -90,7 +96,10 @@
 				devour(L)
 		else
 			devour(L)
-	if(prob(20))
+
+	slam_current-=1
+	if(slam_current == 0)
+		slam_current = slam_cooldown
 		aoe(2, 2)
 
 
@@ -109,40 +118,12 @@
 	belly += 1
 	pulse_damage += 2
 
-
 	//She gets faster but not as protected or as strong
-	if(belly == 5)
-		//animation!
-		icon_state = "phasechange"
-		SLEEP_CHECK_DEATH(5)
+	if(belly == 5 && phase == 1)
+		phase2()
 
-		damage_coeff = list(BRUTE = 0.4, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
-		move_to_delay -= move_to_delay*0.4
-		speed += speed*0.4
-		rapid_melee +=2
-		melee_damage_lower -= 10
-		melee_damage_upper -= 10
-
-		pulse_cooldown_time = 6 SECONDS
-
-		icon_state = "matriarch_slim"
-		icon_living = "matriarch_slim"
-
-
-	if(belly == 10)
-		icon_state = "sicko_mode"
-		SLEEP_CHECK_DEATH(5)
-
-		damage_coeff = list(BRUTE = 0.5, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.2)
-		move_to_delay -= move_to_delay*0.4
-		speed += speed*0.4
-		rapid_melee += 2
-		melee_damage_lower -= 10
-		melee_damage_upper -= 10
-
-		pulse_cooldown_time = 4 SECONDS
-		icon_state = "matriarch_fast"
-		icon_living = "matriarch_fast"
+	if(belly == 10 && phase == 2)
+		phase3()
 
 	return TRUE
 
@@ -154,6 +135,13 @@
 	if(pulse_cooldown < world.time)
 		BlackPulse()
 
+		//Putting this here so that it doesn't look weird
+
+		if(health == maxHealth/2 && phase == 1)
+			phase2()
+
+		if(health == maxHealth/4 && phase == 2)
+			phase3()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/BlackPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -171,6 +159,43 @@
 
 		L.apply_damage(((pulse_damage + distance - 10)*0.5), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/phase2()
+	icon_state = "phasechange"
+	SLEEP_CHECK_DEATH(5)
+
+	maxHealth = 4000
+	damage_coeff = list(BRUTE = 0.4, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
+	move_to_delay -= move_to_delay*0.4
+	speed += speed*0.4
+	rapid_melee +=1
+	melee_damage_lower -= 10
+	melee_damage_upper -= 10
+
+	pulse_cooldown_time = 6 SECONDS
+	slam_cooldown = 5
+	icon_state = "matriarch_slim"
+	icon_living = "matriarch_slim"
+	phase = 2
+
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/phase3()
+	icon_state = "sicko_mode"
+	SLEEP_CHECK_DEATH(5)
+
+	maxHealth = 3000
+	damage_coeff = list(BRUTE = 0.5, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.2)
+	move_to_delay -= move_to_delay*0.4
+	speed += speed*0.4
+	rapid_melee += 2
+	melee_damage_lower -= 15
+	melee_damage_upper -= 15
+
+	pulse_cooldown_time = 4 SECONDS
+	slam_cooldown = 10
+	icon_state = "matriarch_fast"
+	icon_living = "matriarch_fast"
+	phase = 3
 
 
 /// cannibalized from wendigo

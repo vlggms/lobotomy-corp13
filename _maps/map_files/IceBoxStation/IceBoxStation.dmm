@@ -6953,7 +6953,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/security/prison)
 "apR" = (
-/obj/item/paper/fluff/jobs/security/beepsky_mom,
 /turf/open/floor/plating,
 /area/security/processing)
 "apS" = (

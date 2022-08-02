@@ -29,6 +29,10 @@
 	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
 	var/last_worker = null
 	var/hugging = FALSE
+	ego_list = list(
+		/datum/ego_datum/weapon/paw,
+		/datum/ego_datum/armor/paw
+		)
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
 	src.hugging = TRUE

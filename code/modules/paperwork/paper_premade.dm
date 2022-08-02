@@ -23,6 +23,169 @@
 
 ////////////	Job guides n' fluff
 
+/////Zayin Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/zayin
+	name = "ZAYIN Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"For those handling ZAYIN grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets!<br>
+	<br>
+	Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality.<br>
+	<br>
+	Welcome, newbie, to the Lobotomy Corporation. See the captain of your department for your first ZAYIN duty assignment.<br>
+	<br>
+	-Malkuth"}
+
+///Zayin Guide Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/zayin/guide
+	name = "ZAYIN Safety Guide - Netzach"
+	icon_state = "paper_words"
+	info = {"I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright?<br>
+	<br>
+	- Netzach"}
+
+/obj/item/paper/guides/jobs/zayin/guide/wellcheers
+	name = "F-05-52 Safety Guide"
+	icon_state = "paper_words"
+	info = {"Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it.<br>
+	Insight work will produce a regular can of soda that calms mental distress, you just need wipe down the machine and its front buttons to dispense a can.<br>
+	<br>
+	Attachment and repression work both have a chance of dispensing grape that heals both to a lesser degree, so either hug the machine or start kicking the side of it and the can should rattle out. But grape's a dangerous flavor to go for, it'll likely come out open and you'll feel compelled to drink it. You'll be abducted by a third party and be considered dead by the company."}
+
+///Zayin Lore Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/zayin/lore
+	name = "Classification Code - Hod"
+	icon_state = "paper_words"
+	info = {"Subject details are encoded in their classification, following the given:<br>
+	<br>
+	The first letter classifies its origin (Fairy Tale, Trauma, Original, Donated) with the company.<br>
+	<br>
+	The following number classifies its type (1 for humanoid, 2 for animal, 3 for religious, 4 for inanimate, 5 for artifact/machine, 6 for abstraction/amalgamation, 7 for breaching tool, 9 for tool).<br>
+	<br>
+	The final number acts as a unique code for the Abnormality, which doesn't repeat between them. Keep these in mind, and you'll be on your way to shared safety!<br>
+	<br>
+	-Hod"}
+
+/obj/item/paper/guides/jobs/zayin/lore/wellcheers
+	name = "F-05-52 Information Attachment"
+	icon_state = "paper_words"
+	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
+	<br>
+	As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.<br>
+	<br>
+	If the work was bad, an open can will be dispensed and the employee will feel compelled to drink it, as the containment cell fills with ocean water and sounds of the beach. Under observation, humanoid figures dressed in rubber overalls and boots with the heads of prawn can be seen pulling them deeper into the waters before disappearing completely.<br>
+	<br>
+	Agents in District 24 have witnessed these abductees working on fishing vessels dockside some months after the tests were performed."}
+
+/////Teth Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/teth
+	name = "TETH Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"For those handling TETH grade abnormalities, you have graduated from the beginner duties, you are now considered a proper asset ready for serious assignments. Welcome to the real world, agent.<br>
+	<br>
+	Most of the subjects in this classification can and will breach if mishandled, and all can kill you either in engagement or immediately and without sanctuary if you approach them unprepared.<br>
+	<br>
+	Before attending to the needs of a Teth subject, read the relevant materials, speak to your captain, and ensure you have the appropriate equipment to protect you and the training to withstand the strange.<br>
+	<br>
+	-Malkuth"}
+
+///Teth Guide Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/teth/guide
+	name = "TETH Safety Guide - Netzach"
+	icon_state = "paper_words"
+	info = {"Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
+	<br>
+	- Netzach"}
+
+/obj/item/paper/guides/jobs/teth/guide/spiderbud
+	name = "T-02-43 Safety Guide"
+	icon_state = "paper_words"
+	info = {"Instinct work is the most effective and safe handling of the spider bud possible, toss it some food without stepping on a bug underfoot.<br>
+	<br>
+	Attachment work is the next most effective routine, just talk kindly to the subject and gently pet the gross little spiders.<br>
+	<br>
+	The least effective work is repression, saying nasty things to the subject and glaring coldly at it. This anomaly does not take well to repression.<br>
+	<br>
+	Never attempt insight work with this one. Trying to improve its containment cell will hurt the brood, which will kill you."}
+
+///Teth Lore Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/teth/lore
+	name = "Attribute System - Hod"
+	icon_state = "paper_words"
+	info = {"You may have been wondering, fortitude, prudence, temperance, justice, what are these and why are people yelling about them?<br>
+	<br>
+	These are ways the company has simplified measurements of the body, mind and soul to help you stay safe and efficient!<br>
+	<br>
+	Fortitude is how strong and durable you are physically, your physique! You can train this by doing instinct work with abnormalities.<br>
+	<br>
+	Prudence is mental durability and intelligence, its your physique of smarts! Make your brain strong by doing insightful work.<br>
+	<br>
+	Temperance is the strength of your heart, your empathy and kindness! It helps you to avoid bending to the will of abnormals, and general temptation. Attachment work is good training for temperance.<br>
+	<br>
+	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
+	<br>
+	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!<br>
+	<br>
+	-Hod"}
+
+/obj/item/paper/guides/jobs/teth/lore/spiderbud
+	name = "T-02-43 Information Attachment"
+	icon_state = "paper_words"
+	info = {"The brood mother was a hard capture, from those dark woods in the outskirts beyond the city.<br>
+	<br>
+	She's terrifying to junior agents, those with prudence ratings below forty will panic, and squish one of the offspring in their rush to escape.<br>
+	<br>
+	At once, they will be captured and consumed, made into cocooned meals for the remaining spiderlings of the brood.<br>
+	<br>
+	Trying to clean or improve the cell will only infuriate it. Do not attempt insight work on the spider bud."}
+
+/////He Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/he
+	name = "HE Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"These abnormalities can easily kill a number of employees, including veteran agents of the company. You have to pay twice as much attention as with ZAYIN or TETH subjects.<br>
+	As long as you pay close attention, you can avoid serious casualties.<br>
+	<br>
+	Ensure you are properly armed and armored if they do breach, these are serious threats, that require small teams to contain. And double check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
+	<br>
+	Remember that not only is the company relying on you, but your fellow agents. Do not let them down.<br>
+	<br>
+	-Malkuth"}
+
+/////Waw Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/waw
+	name = "WAW Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"Either you have successfully worked with HE subjects before, or you are reading far ahead of your paygrade. In either case what I have to say still applies to you.<br>
+	<br>
+	These are high risk abnormalities that carry devastating force. Death tolls within the facility could reach dozens of employees if they get loose.<br>
+	<br>
+	Most are hostile, agitated, and waiting for an excuse to break containment. Make absolutely sure you know what you're doing here.<br>
+	<br>
+	-Malkuth"}
+
+/////Aleph Documentation - Written by Guymallory
+
+/obj/item/paper/guides/jobs/aleph
+	name = "ALEPH Instruction Manual - Malkuth"
+	icon_state = "paper_words"
+	info = {"These are the most dangerous abnormalities we know of, from within the city and our scouting missions in the outskirts. There is no exaggeration when I say they threaten the survival of your species.<br>
+	<br>
+	If you do everything as you should, and work with your team, consider yourself blessed if only half the facility is dead when you finish suppression.<br>
+	<br>
+	If these subjects escape into the city, we face a paradigm shift, even total extinction. Needless to say your employment and life will be terminated should you allow or facilitate this event.<br>
+	<br>
+	-Malkuth"}
+
+/////Documents I have yet to delete...
+
 /obj/item/paper/guides/jobs/hydroponics
 	name = "paper- 'Greetings from Billy Bob'"
 	info = "<B>Hey fellow botanist!</B><BR>\n<BR>\nI didn't trust the station folk so I left<BR>\na couple of weeks ago. But here's some<BR>\ninstructions on how to operate things here.<BR>\nYou can grow plants and each iteration they become<BR>\nstronger, more potent and have better yield, if you<BR>\nknow which ones to pick. Use your botanist's analyzer<BR>\nfor that. You can turn harvested plants into seeds<BR>\nat the seed extractor, and replant them for better stuff!<BR>\nSometimes if the weed level gets high in the tray<BR>\nmutations into different mushroom or weed species have<BR>\nbeen witnessed. On the rare occasion even weeds mutate!<BR>\n<BR>\nEither way, have fun!<BR>\n<BR>\nBest regards,<BR>\nBilly Bob Johnson.<BR>\n<BR>\nPS.<BR>\nHere's a few tips:<BR>\nIn nettles, potency = damage<BR>\nIn amanitas, potency = deadliness + side effect<BR>\nIn Liberty caps, potency = drug power + effect<BR>\nIn chilies, potency = heat<BR>\n<B>Nutrients keep mushrooms alive!</B><BR>\n<B>Water keeps weeds such as nettles alive!</B><BR>\n<B>All other plants need both.</B>"
@@ -30,10 +193,6 @@
 /obj/item/paper/guides/jobs/holopad_hydro
 	name = "paper- 'Holopad Notice'"
 	info = "<B>Can't get any botanists at the table? Have you tried using the damn holopad?</B><BR>\n<BR>\nStep onto the pad, and interface with it<BR>\nthen make your dang ol' call!<BR>\n<BR>\nYou want to call \"Hydroponics\" to reach them."
-
-/obj/item/paper/fluff/jobs/security/beepsky_mom
-	name = "Note from Beepsky's Mom"
-	info = "01001001 00100000 01101000 01101111 01110000 01100101 00100000 01111001 01101111 01110101 00100000 01110011 01110100 01100001 01111001 00100000 01110011 01100001 01100110 01100101 00101110 00100000 01001100 01101111 01110110 01100101 00101100 00100000 01101101 01101111 01101101 00101110"
 
 /obj/item/paper/guides/jobs/security/courtroom
 	name = "paper- 'A Crash Course in Legal SOP on SS13'"
