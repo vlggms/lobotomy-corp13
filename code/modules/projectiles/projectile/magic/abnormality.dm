@@ -37,3 +37,18 @@
 /obj/projectile/hatred/Initialize()
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
+
+/obj/projectile/melting_blob
+	name = "slime projectile"
+	icon_state = "slime"
+	desc = "A glob of infectious slime. It's going for your heart."
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 100
+	spread = 15
+	hitsound = "sound/effects/footstep/slime1.ogg"
+
+/obj/projectile/melting_blob/enraged
+	damage = 200
+	spread = 15
+
