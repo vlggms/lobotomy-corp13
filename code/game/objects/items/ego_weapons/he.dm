@@ -27,6 +27,7 @@
 /obj/item/ego_weapon/fury
 	name = "blind fury"
 	desc = "A fancy black and white halberd with a sharp blade. Whose head will it cut off next?"
+	special = "This weapon has a slower attack speed."
 	icon_state = "fury"
 	force = 45
 	damtype = RED_DAMAGE
@@ -45,6 +46,7 @@
 /obj/item/ego_weapon/paw
 	name = "bear paw"
 	desc = "The paws made form, and given life."
+	special = "This weapon has a very fast attack speed."
 	icon_state = "bear_paw"
 	force = 5
 	damtype = RED_DAMAGE

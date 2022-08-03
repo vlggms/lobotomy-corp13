@@ -2,6 +2,7 @@
 	name = "paradise lost"
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
+	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
 	force = 40
 	damtype = PALE_DAMAGE
@@ -53,6 +54,7 @@
 /obj/item/ego_weapon/justitia
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
+	special = "This weapon has a combo system."
 	icon_state = "justitia"
 	force = 25
 	damtype = PALE_DAMAGE
@@ -110,6 +112,7 @@
 	name = "da capo"
 	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
 	If there were a score for this song, it would be one that sings of the apocalypse."
+	special = "This weapon has a combo system."
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	damtype = WHITE_DAMAGE
