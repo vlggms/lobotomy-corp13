@@ -236,7 +236,7 @@
 
 /obj/machinery/sleeper/proc/inject_chem(chem, mob/user)
 	if((chem in available_chems) && chem_allowed(chem))
-		if(chem == /datum/reagent/medicine/c2/pro)
+		if(chem == /datum/reagent/medicine/c2/probital)
 			occupant.reagents.add_reagent(chem_buttons[chem], 9.5)
 		else(occupant.reagents.add_reagent(chem_buttons[chem], 10))	//emag effect kicks in here so that the "intended" chem is used for all checks, for extra FUUU
 		if(user)
@@ -247,7 +247,7 @@
 	var/mob/living/mob_occupant = occupant
 	if(!mob_occupant || !mob_occupant.reagents)
 		return
-	if (chem == /datum/reagent/medicine/c2/probital) //probital stamina crits at ~10u, needs special check
+	if(chem == /datum/reagent/medicine/c2/probital) //probital stamina crits at ~10u, needs special check
 		return (mob_occupant.reagents.get_reagent_amount(chem) + 3.5 <= 10) //30s grace period before another probital inject
 	var/amount = mob_occupant.reagents.get_reagent_amount(chem) + 10 <= 20 * efficiency
 	var/occ_health = mob_occupant.health > min_health || chem == /datum/reagent/medicine/epinephrine
