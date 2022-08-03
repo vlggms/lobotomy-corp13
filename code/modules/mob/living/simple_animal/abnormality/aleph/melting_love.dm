@@ -133,7 +133,7 @@
 			gifted_human = user
 			RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
 			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
-			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
+			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 			user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
