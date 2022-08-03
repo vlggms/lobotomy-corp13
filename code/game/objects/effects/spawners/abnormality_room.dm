@@ -25,11 +25,13 @@
 	for(var/obj/machinery/computer/abnormality/AC in allObjects)
 		AC.datum_reference = abno_datum
 		break
+	for(var/area/containment_zone/ACR)
+		ACR.name = "CZ: [abno_datum.name] ([THREAT_TO_NAME[abno_datum.threat_level]])"
 	for(var/obj/machinery/door/airlock/AR in allObjects)
 		AR.name = "[abno_datum.name] containment zone"
 		AR.desc = "Containment zone of [abno_datum.name]. Threat level: [THREAT_TO_NAME[abno_datum.threat_level]]."
 	for(var/obj/machinery/camera/ACM in allObjects)
-		ACM.c_tag = "Containment zone: [abno_datum.name]"
+		ACM.c_tag = "CZ: [abno_datum.name] ([THREAT_TO_NAME[abno_datum.threat_level]]) "
 	SSabnormality_queue.postspawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)
 
