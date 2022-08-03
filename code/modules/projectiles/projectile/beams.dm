@@ -300,3 +300,33 @@
 	if(isopenturf(target) || istype(target, /turf/closed/indestructible))//shrunk floors wouldnt do anything except look weird, i-walls shouldn't be bypassable
 		return
 	target.AddComponent(/datum/component/shrink, shrink_time)
+
+
+
+/obj/projectile/beam/laser/red/weak
+	damage = 10
+	speed = 0.4
+
+/obj/projectile/beam/laser/white/weak
+	damage = 10
+	speed = 0.4
+
+
+/obj/projectile/beam/hitscan/red
+	icon_state = "emitter"
+	hitscan = TRUE
+	damage = 10
+
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	light_color = COLOR_RED
+
+
+/obj/projectile/beam/hitscan/white
+	icon_state = "emitter"
+	hitscan = TRUE
+	damage = 10
+
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	light_color = COLOR_RED
