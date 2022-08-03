@@ -49,6 +49,18 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/mimicry
+	name = "mimicry"
+	desc = "It takes human hide to protect human flesh. To protect humans, you need something made out of humans."
+	icon_state = "mimicry"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/twilight
 	name = "twilight"
 	desc = "The three birds united their efforts to defeat the beast. \
