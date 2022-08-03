@@ -63,7 +63,7 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/adoration
-	name = "Adoration"
+	name = "adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
 	icon_state = "adoration"
