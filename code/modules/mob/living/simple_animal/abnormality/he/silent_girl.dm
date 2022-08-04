@@ -68,7 +68,7 @@
 		to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
 		guiltIcon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
 		user.add_overlay(guiltIcon)
-		addtimer(CALLBACK(src, .proc/guilty_work, user), 600) // Lasts for 1 minute. Temporary until Signals get fixed.
+		addtimer(CALLBACK(src, .proc/guilty_work, user), 1200) // Lasts for 2 minutes. Temporary until Signals get fixed.
 		playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 	return ..()
 
