@@ -26,20 +26,31 @@
 	var/mutable_appearance/guiltIcon  // Icon for the effect
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/DriveInsane(mob/living/carbon/human/target)
-	target.adjustSanityLoss(500) // Instance panics you
+	target.adjustSanityLoss(-500)
 	QDEL_NULL(ai_controller)
 	target.ai_controller = /datum/ai_controller/insane/release/silent_girl
 	ghostize(1)
 	target.InitializeAIController()
-	RegisterSignal(target, COMSIG_ACTION_TRIGGER, .proc/killguilty)
+	addtimer(CALLBACK(src, .proc/killguilty, target), 600) // If panicked after a minute, KILLS THEM | ADDENDUM: Will eventually function like this
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/killguilty(mob/living/carbon/human/target)
-	target.adjustBruteLoss(500)
+	if (target.sanity_lost)
+		target.adjustBruteLoss(500)
+		return
+	// INSERT AI REMOVAL CODE HERE
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
 	if ((user in guilty_people) == 0)
+		return
+	if (user.health <= 0)
+		guilty_people -= user
+		user.physiology.work_success_mod += 0.25
+		user.cut_overlay(guiltIcon)
+		return
+	if (user.sanity_lost)
+		addtimer(CALLBACK(src, .proc/guilty_work, user), 150)
 		return
 	guilty_people -= user
 	user.physiology.work_success_mod += 0.25
