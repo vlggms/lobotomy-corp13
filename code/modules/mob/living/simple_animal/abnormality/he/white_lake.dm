@@ -43,6 +43,7 @@
 
 			var/obj/item/held = H.get_active_held_item()
 			var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
+			to_chat(H, "<span class='userdanger'>You feel yourself giving in to the will of White Lake!</span>")
 			H.dropItemToGround(held) 	//Drop weapon
 			H.equipOutfit(whitelake)	//Get outfit
 			H.put_in_hands(wep) 		//Time for pale
@@ -59,5 +60,40 @@
 			H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 			H.ghostize(1)
 			H.InitializeAIController()
-
 	return
+
+
+//Outfit and Attacker's sword.
+/datum/outfit/whitelake
+	head = /obj/item/clothing/head/ego_gift/whitelake
+
+/obj/item/clothing/head/ego_gift/whitelake
+	name = "waltz of the flowers"
+	icon_state = "whitelake"
+	icon = 'icons/obj/clothing/ego_gear/head.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
+
+//WAW Class, you have to sacrifice someone for it
+/obj/item/ego_weapon/flower_waltz
+	name = "waltz of the flowers"
+	desc = "It's awfully fun to write a march for tin soldiers, a waltz of the flowers."
+	icon_state = "flower_waltz"
+	force = 18
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("slices", "cuts")
+	attack_verb_simple = list("slices", "cuts")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	//No requirements because who knows who will use it.
+	//The tradeoff is that you have to kill someone
+
+//Slightly different AI lines
+/datum/ai_controller/insane/murder/whitelake
+	lines_type = /datum/ai_behavior/say_line/insanity_whitelake
+
+/datum/ai_behavior/say_line/insanity_whitelake
+	lines = list(
+				"I will protect her!!",
+				"You're in the way!",
+				"I will dance with her forever!"
+				)
