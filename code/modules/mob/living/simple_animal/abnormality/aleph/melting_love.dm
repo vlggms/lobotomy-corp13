@@ -71,26 +71,23 @@
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-			if(H.health <= 0)
 				slimeconv(H)
 		else
 			slimeconv(H)
 
 //Slime Conversion
 /mob/living/simple_animal/hostile/proc/slimeconv(mob/living/H)
-	if(ishuman(H))
-		var/turf/T = get_turf(H)
-		visible_message("<span class='danger'>[src] glomp on \the [H] as another Slime Pawn appears!</span>")
-		H.emote("scream")
-		H.gib()
-		new /mob/living/simple_animal/hostile/slime(T)
+	if(!H)
+		return FALSE
+	var/turf/T = get_turf(H)
+	visible_message("<span class='danger'>[src] glomp on \the [H] as another Slime Pawn appears!</span>")
+	H.gib()
+	new /mob/living/simple_animal/hostile/slime(T)
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/death(gibbed)
 	density = FALSE
@@ -180,6 +177,7 @@
 	obj_damage = 200
 	robust_searching = TRUE
 	stat_attack = DEAD
+	del_on_death = TRUE
 	deathsound = 'sound/effects/blobattack.ogg'
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
@@ -196,23 +194,13 @@
 
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
 				slimeconv(H)
-			if(H.health <= 0)
-				slimeconv(H)
 		else
 			slimeconv(H)
-
-/mob/living/simple_animal/hostile/slime/death(gibbed)
-	density = FALSE
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
-	..()
 
 /* Big Slimes */
 /mob/living/simple_animal/hostile/slime/big
@@ -223,8 +211,6 @@
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 34
 	melee_damage_upper = 38
-	rapid_melee = 2
-	obj_damage = 200
 
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()
@@ -239,21 +225,14 @@
 
 /mob/living/simple_animal/hostile/slime/big/AttackingTarget()
 	. = ..()
-	if(!ishuman(target))
-		return
-	else
-		var/mob/living/carbon/human/H = target
+	if(. && isliving(target))
+		var/mob/living/H = target
 		if(H.stat != DEAD)
 			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-			if(H.health <= 0)
 				slimeconv(H)
 		else
 			slimeconv(H)
 
 /mob/living/simple_animal/hostile/slime/big/death(gibbed)
 	bigslime_alive = FALSE //Trigger Enraged Melting Love
-	density = FALSE
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
 	..()
