@@ -35,11 +35,9 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/killguilty(mob/living/carbon/human/target)
-	if (target.sanity_lost)
-		target.adjustBruteLoss(500)
-		return
-	// INSERT AI REMOVAL CODE HERE
+	target.adjustBruteLoss(500)
 	return
+	// INSERT AI REMOVAL CODE HERE
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
 	if ((user in guilty_people) == 0)
