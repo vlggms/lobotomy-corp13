@@ -42,3 +42,7 @@
 /datum/ego_datum/armor/hatred
 	item_path = /obj/item/clothing/suit/armor/ego_gear/hatred
 	cost = 50
+
+/datum/ego_datum/weapon/remorse
+	item_path = /obj/item/ego_weapon/remorse
+	cost = 50

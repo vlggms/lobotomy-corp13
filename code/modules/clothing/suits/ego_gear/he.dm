@@ -41,3 +41,11 @@
 	icon_state = "wings"
 	//Just Kinda meh. A lot of WAWs do black at the time of writing so
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/remorse
+	name = "remorse"
+	desc = "While the armor serves to protect the users mind from the influence of others, they can never seem to quiet their own thoughts."
+	icon_state = "remorse"
+	//Resistant to White and Pale but weaker to the physical aspects.
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 0, PALE_DAMAGE = 30)
+
