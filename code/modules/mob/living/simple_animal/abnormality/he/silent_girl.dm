@@ -35,13 +35,24 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/killguilty(mob/living/carbon/human/target)
-	target.adjustBruteLoss(500)
+	if (target.sanity_lost)
+		target.adjustBruteLoss(500)
+		return
+	// INSERT AI REMOVAL CODE HERE
 	return
 	// INSERT AI REMOVAL CODE HERE
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	if ((user in guilty_people) == 0)
+		return
+	if (user.health <= 0)
+		guilty_people -= user
+		user.physiology.work_success_mod += 0.25
+		user.cut_overlay(guiltIcon)
+		return
+	if (user.sanity_lost)
+		addtimer(CALLBACK(src, .proc/guilty_work, user), 150)
 		return
 	guilty_people -= user
 	user.physiology.work_success_mod += 0.25
