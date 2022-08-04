@@ -24,7 +24,8 @@
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
-	. += "<span class='notice'>[special]</span>"
+	if(special != "This weapon has no special abilities.")	//This is honestly a failsafe for if it doesn't go through. A failsafe debug text, if you would
+		. += "<span class='notice'>[special]</span>"
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
