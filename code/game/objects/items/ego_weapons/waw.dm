@@ -37,3 +37,24 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 0.75)
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+
+/obj/item/ego_weapon/remorse
+	name = "remorse"
+	desc = "A hammer and nail, unwieldy and impractical against most. \
+	Any crack, no matter how small, will be pried open by this E.G.O."
+	icon_state = "remorse"
+	force = 80 // Extremely powerful, but extremely slow
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("Smashes", "Pierces", "Cracks")
+	attack_verb_simple = list("Smash", "Pierce", "Crack")
+	hitsound = 'sound/weapons/ego/remorse.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/ego_weapon/remorse/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 2) // Extremely slow
+	hitsound = "sound/weapons/ego/remorse.ogg"

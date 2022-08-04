@@ -135,7 +135,9 @@
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/work_chance(mob/living/carbon/human/user, chance)
-	return chance
+	if (user.physiology.work_success_mod <= 0)
+		return -50
+	return chance * user.physiology.work_success_mod
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
