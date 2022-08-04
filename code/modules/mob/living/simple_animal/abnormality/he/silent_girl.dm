@@ -42,7 +42,7 @@
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
 	if ((user in guilty_people) == 0)
 		return
-	if (user.health <= 0)
+	if (user.stat == DEAD)
 		guilty_people -= user
 		user.physiology.work_success_mod += 0.25
 		user.cut_overlay(guiltIcon)
