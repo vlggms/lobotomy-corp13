@@ -84,7 +84,7 @@
 		icon_state = "eyeball1"				//Cool sprite gone
 
 	if(ishuman(target))
-		force*=2						//I've seen Catt one shot someone, This is also only a detriment lol
+		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
 	..()
 	force = initial(force)
 	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.
