@@ -43,14 +43,6 @@
 	SIGNAL_HANDLER
 	if ((user in guilty_people) == 0)
 		return
-	if (user.stat == DEAD)
-		guilty_people -= user
-		user.physiology.work_success_mod += 0.25
-		user.cut_overlay(guiltIcon)
-		return
-	if (user.sanity_lost)
-		addtimer(CALLBACK(src, .proc/guilty_work, user), 150)
-		return
 	guilty_people -= user
 	user.physiology.work_success_mod += 0.25
 	user.cut_overlay(guiltIcon)
