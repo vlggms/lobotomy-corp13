@@ -44,7 +44,7 @@
 	icon_state = "mini_leaper"
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 20
+	damage = 30
 	spread = 20
 	knockdown = 5
 

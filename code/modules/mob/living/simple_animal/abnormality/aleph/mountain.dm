@@ -5,14 +5,14 @@
 	icon_state = "mosb"
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
-	maxHealth = 800
-	health = 800
+	maxHealth = 1000
+	health = 1000
 	pixel_x = -16
 	base_pixel_x = -16
-	damage_coeff = list(BRUTE = 1.2, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 
-	melee_damage_lower = 24
-	melee_damage_upper = 24
+	melee_damage_lower = 30
+	melee_damage_upper = 30
 
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -31,7 +31,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 0,
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
 						)
-	work_damage_amount = 12
+	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
@@ -46,7 +46,7 @@
 	var/phase = 1
 	var/scream_cooldown
 	var/scream_cooldown_time = 10 SECONDS
-	var/scream_damage = 40
+	var/scream_damage = 50
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	..()
@@ -62,7 +62,6 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.stat == DEAD)
 		datum_reference.qliphoth_change(-1)
-
 	if(hurt == TRUE)
 		datum_reference.qliphoth_change(-1)
 		hurt = FALSE
@@ -118,7 +117,6 @@
 		maxHealth *= 0.50
 		adjustBruteLoss(-maxHealth)
 		phase -= 1
-
 		if(phase == 1)
 			icon = 'ModularTegustation/Teguicons/64x64.dmi'
 			pixel_x = -16
@@ -133,44 +131,36 @@
 
 		var/mob/living/H = target
 		if(H.health < 0)
-
 			finishing = TRUE
 			icon_state = "mosb_bite"
 			if(phase==3)					//FUCKING UGLY
 				icon_state = "mosb_bite2"
-
 			SLEEP_CHECK_DEATH(5)
 			playsound('sound/magic/demon_consume.ogg', 50, TRUE)
-
 			if(!targets_from.Adjacent(H) || QDELETED(H)) // They can still be saved if you move them away
 				finishing = FALSE
 				return
-
 			belly +=1
 			H.gib()
-
-			if(belly >=	3)
+			if(belly >=	5)
 				if(phase !=3)
 					maxHealth *= 2
 					phase +=1
 				else
 					icon_state = "mosb_breach2"
-
 				adjustBruteLoss(-maxHealth)
 				belly =0
-
 				if(phase == 2)
 					icon = 'ModularTegustation/Teguicons/96x96.dmi'
 					pixel_x = -32
 					base_pixel_x = -32
-
-			finishing = FALSE
 			icon_state = "mosb_breach"
 
 	if(phase == 3)
 		icon_state = "mosb_breach2"
 		if(prob(10))
 			slam(3,3)
+	finishing = FALSE	//Just in case.
 
 
 /mob/living/simple_animal/hostile/abnormality/mountain/OpenFire()
@@ -181,7 +171,6 @@
 			scream()
 		else if (prob(20))
 			spit()
-
 	if(phase == 3)
 		if(prob(30))//Prioritize Spit over scream
 			heavyspit()
@@ -189,12 +178,12 @@
 		else if(scream_cooldown <= world.time)
 			scream()
 
-
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/scream()
 	if(scream_cooldown > world.time)
 		return
 	scream_cooldown = world.time + scream_cooldown_time
 	new /obj/effect/temp_visual/voidout(get_turf(src))
+	SLEEP_CHECK_DEATH(7)
 	playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 100, 1)
 	for(var/mob/living/L in view(7, src))
 		if(faction_check_mob(L, FALSE))
@@ -202,12 +191,12 @@
 		if(L.stat == DEAD)
 			continue
 		L.apply_damage(scream_damage, BLACK_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(10)
 
 /// cannibalized from wendigo
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/slam(range, delay)
 	new /obj/effect/temp_visual/voidin(get_turf(src))
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_DEATH(15)
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(range, orgin)
 	for(var/i = 0 to range)
@@ -228,7 +217,6 @@
 		sleep(delay)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/spit()
-	finishing = TRUE
 	SLEEP_CHECK_DEATH(7)
 	var/turf/startloc = get_turf(src)
 	var/turf/endloc = get_turf(target)
@@ -239,12 +227,10 @@
 		if(target)
 			P.original = target
 		P.fire()
-	finishing = FALSE
 
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/heavyspit()
-	finishing = TRUE
-	SLEEP_CHECK_DEATH(7)
+	SLEEP_CHECK_DEATH(12)
 	var/turf/startloc = get_turf(src)
 	var/turf/endloc = get_turf(target)
 	if(endloc && finishing == TRUE)
@@ -254,6 +240,5 @@
 		if(target)
 			P.original = target
 		P.fire()
-	SLEEP_CHECK_DEATH(7)
-	finishing = FALSE
+	SLEEP_CHECK_DEATH(15)
 
