@@ -68,5 +68,6 @@
 	if((user in protected_people) && datum_sent != datum_reference)
 		to_chat(user, "<span class='userdanger'>With a beat of their wings, the fairies pounce on you and ravenously consume your body!</span>")
 		playsound(get_turf(user), 'sound/magic/demon_consume.ogg', 75, 0)
+		UnregisterSignal(user, COMSIG_WORK_STARTED)
 		user.gib()
 	return
