@@ -111,3 +111,29 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/blooming
+	name = "blooming"
+	desc = "Just looking at this, you feel quite tacky."
+	icon_state = "blooming"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 0, PALE_DAMAGE = 80)	//Still somehow worse than SOAS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/flowering
+	name = "flowering night"
+	desc = "Ah, magicians are actually in greater need of mercy."
+	icon_state = "air"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 20, PALE_DAMAGE = 90)	//This one costs more than twice as much
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 120
+							)

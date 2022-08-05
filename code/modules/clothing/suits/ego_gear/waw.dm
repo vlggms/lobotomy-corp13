@@ -30,7 +30,7 @@
 	name = "armor sharpened with tears"
 	desc = "Tears fall like ash, embroidered as if they were constellations."
 	icon_state = "despair"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 60)
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
@@ -71,7 +71,7 @@
 	name = "gold rush"
 	desc = "Bare armor. lightweight and ready for combat."
 	icon_state = "gold_rush"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							)

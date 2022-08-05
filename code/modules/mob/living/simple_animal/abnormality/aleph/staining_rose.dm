@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50)
 			)
 	start_qliphoth = 3
-	work_damage_amount = 16
+	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -23,8 +23,9 @@
 	base_pixel_y = -8
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/blooming,
-//		/datum/ego_datum/armor/blooming
+		/datum/ego_datum/weapon/blooming,
+		/datum/ego_datum/armor/blooming,
+		/datum/ego_datum/armor/flowering
 		)
 
 	var/chosen
@@ -34,6 +35,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
+	datum_reference.qliphoth_change(1)
 	if (chosen == null)
 		chosen = user
 		user.visible_message("<span class='warning'>You are now the rose's chosen.</span>")
@@ -45,11 +47,9 @@
 		user.physiology.white_mod *= 1.2
 		user.physiology.black_mod *= 1.2
 		user.physiology.pale_mod *= 1.2
-		datum_reference.qliphoth_change(-1)
 		pissed()
 
 	else
-		datum_reference.qliphoth_change(1)
 		user.visible_message("<span class='warning'>The Rose is satisfied.</span>")
 
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
@@ -58,6 +58,7 @@
 		user.physiology.white_mod *= 1.1
 		user.physiology.black_mod *= 1.1
 		user.physiology.pale_mod *= 1.1
+		datum_reference.qliphoth_change(1)	//If you lose your defenses you increase it's Q counter again
 		pissed()
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Life()

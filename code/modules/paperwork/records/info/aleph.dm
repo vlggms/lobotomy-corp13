@@ -100,7 +100,8 @@
 	- If anyone other than the chosen worked on the rose, they became permanently weaker.	<br>
 	- If the employee worked on the rose with justice 4 or lower, they became permanently weaker.	<br>
 	- Every 5 minutes, the Qliphoth Counter lowered.	<br>
-	- When the chosen worked on the rose, the Qliphoth Counter increased.	<br>
+	- When the Staining Rose was worked on, the Qliphoth Counter increased.	<br>
+	- When the employee's justice was under 5, the Qliphoth Counter increased.	<br>
 	<br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
