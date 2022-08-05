@@ -2,7 +2,7 @@
  * Records Cabinet
  */
 
- //Zayin
+//Zayin
 /obj/structure/filingcabinet/zayininfo
 	name = "zayin abnormality information cabinet"
 	icon_state = "employmentcabinet"

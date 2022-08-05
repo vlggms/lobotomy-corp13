@@ -14,7 +14,7 @@
 	outfit = /datum/outfit/job/manager
 
 	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
-	minimal_access = list(ACCESS_COMMAND)
+	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 0,
