@@ -181,11 +181,11 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/infinite_hatred/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/christmas/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 2) // Slow
 
-/obj/item/ego_weapon/infinite_hatred/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/christmas/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
