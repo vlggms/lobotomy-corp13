@@ -11,6 +11,19 @@
 #define ABNORMALITY_WORK_ATTACHMENT "Attachment"
 #define ABNORMALITY_WORK_REPRESSION "Repression"
 
+// Declares the Signals that should be listened for on Work Start/Attempt
+#define COMSIG_INSTINCT_WORK_ATTEMPTED "instinct_attempted"
+#define COMSIG_INSIGHT_WORK_ATTEMPTED "insight_attempted"
+#define COMSIG_ATTACHMENT_WORK_ATTEMPTED "attachment_attempted"
+#define COMSIG_REPRESSION_WORK_ATTEMPTED "repression_attempted"
+#define COMSIG_WORK_ATTEMPTED "work_attempted"
+/// Declares the Signals that should be listened for on Work Completion
+#define COMSIG_INSTINCT_WORK_COMPLETED "instinct_completed"
+#define COMSIG_INSIGHT_WORK_COMPLETED "insight_completed"
+#define COMSIG_ATTACHMENT_WORK_COMPLETED "attachment_completed"
+#define COMSIG_REPRESSION_WORK_COMPLETED "repression_completed"
+#define COMSIG_WORK_COMPLETED "work_completed"
+
 // List
 #define THREAT_TO_NAME list(\
 							ZAYIN_LEVEL = "ZAYIN",\

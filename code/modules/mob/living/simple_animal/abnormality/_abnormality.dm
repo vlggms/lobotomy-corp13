@@ -139,6 +139,7 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	signal_work_complete(user, work_type)
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
 		return
@@ -147,6 +148,22 @@
 		return
 	failure_effect(user, work_type, pe)
 	return
+
+// When work is completed, signals to any listeners that work was completed and what type it was
+/mob/living/simple_animal/hostile/abnormality/proc/signal_work_complete(mob/living/carbon/human/user, work_type)
+	SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, user)
+	if (work_type == ABNORMALITY_WORK_INSTINCT)
+		SEND_SIGNAL(user, COMSIG_INSTINCT_WORK_COMPLETED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_INSIGHT)
+		SEND_SIGNAL(user, COMSIG_INSIGHT_WORK_COMPLETED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_ATTACHMENT)
+		SEND_SIGNAL(user, COMSIG_ATTACHMENT_WORK_COMPLETED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_REPRESSION)
+		SEND_SIGNAL(user, COMSIG_REPRESSION_WORK_COMPLETED, user)
+		return
 
 // Additional effects on good work result, if any
 /mob/living/simple_animal/hostile/abnormality/proc/success_effect(mob/living/carbon/human/user, work_type, pe)
@@ -167,7 +184,24 @@
 
 // Dictates whereas this type of work can be performed at the moment or not
 /mob/living/simple_animal/hostile/abnormality/proc/attempt_work(mob/living/carbon/human/user, work_type)
+	signal_work_attempt(user, work_type)
 	return TRUE
+
+// When work is completed, signals to any listeners that work was completed and what type it was
+/mob/living/simple_animal/hostile/abnormality/proc/signal_work_attempt(mob/living/carbon/human/user, work_type)
+	SEND_SIGNAL(user, COMSIG_WORK_ATTEMPTED, user)
+	if (work_type == ABNORMALITY_WORK_INSTINCT)
+		SEND_SIGNAL(user, COMSIG_INSTINCT_WORK_ATTEMPTED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_INSIGHT)
+		SEND_SIGNAL(user, COMSIG_INSIGHT_WORK_ATTEMPTED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_ATTACHMENT)
+		SEND_SIGNAL(user, COMSIG_ATTACHMENT_WORK_ATTEMPTED, user)
+		return
+	if (work_type == ABNORMALITY_WORK_REPRESSION)
+		SEND_SIGNAL(user, COMSIG_REPRESSION_WORK_ATTEMPTED, user)
+		return
 
 // Effects when qliphoth reaches 0
 /mob/living/simple_animal/hostile/abnormality/proc/zero_qliphoth(mob/living/carbon/human/user)
