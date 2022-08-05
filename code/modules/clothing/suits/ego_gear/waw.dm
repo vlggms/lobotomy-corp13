@@ -46,3 +46,23 @@
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/shepard
+	name = "oppression"
+	desc = "And I shall hold you here, forever."
+	icon_state = "oppression"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)		//First and foremost: Good against red buddy. then itself.
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/buddy
+	name = "totalitarianism"
+	desc = "Or are you trapped here by me?"
+	icon_state = "totalitarianism"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20)		//First and foremost: Good against red buddy. then itself.
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 40
+							)
