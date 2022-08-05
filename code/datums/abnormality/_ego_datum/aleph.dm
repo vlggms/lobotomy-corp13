@@ -30,6 +30,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/da_capo
 	cost = 100
 
+// Nothing there - Mimicry
+/datum/ego_datum/weapon/mimicry
+	item_path = /obj/item/ego_weapon/mimicry
+	cost = 100
+
+/datum/ego_datum/armor/mimicry
+	item_path = /obj/item/clothing/suit/armor/ego_gear/mimicry
+	cost = 100
+
 // Melting Love - Adoration
 /datum/ego_datum/weapon/adoration
 	item_path = /obj/item/gun/ego_gun/adoration
@@ -37,4 +46,3 @@
 
 /datum/ego_datum/armor/adoration
 	item_path = /obj/item/clothing/suit/armor/ego_gear/adoration
-	cost = 100

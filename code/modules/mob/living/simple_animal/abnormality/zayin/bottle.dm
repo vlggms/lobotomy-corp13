@@ -47,7 +47,7 @@
 			animate(user, alpha = 0, time = 2 SECONDS)
 			QDEL_IN(user, 3.5 SECONDS)
 
-		else
+		if(cake > 0)
 			user.adjustBruteLoss(-500) // It heals you to full if you eat it
 			icon_state = "bottle2"	//cake looks eaten
 
