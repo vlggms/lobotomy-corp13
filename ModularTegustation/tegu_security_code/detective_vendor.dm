@@ -33,7 +33,7 @@
 					/obj/item/flashlight/seclite = 4,
 					/obj/item/radio/off/security = 4,
 					/obj/item/detective_scanner = 1,
-					/obj/item/radio/headset/headset_sec = 1,
+					/obj/item/radio/headset/headset_discipline = 1,
 					/obj/item/holosign_creator/security = 1,
 					/obj/item/reagent_containers/spray/pepper = 1,
 					/obj/item/storage/belt/holster/detective/full = 1,

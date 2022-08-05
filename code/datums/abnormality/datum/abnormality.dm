@@ -37,6 +37,8 @@
 	var/overload_chance = 0
 	/// Amount of reduction applied on each work session
 	var/overload_chance_amount = 0
+	/// Limit on overload_chance; By default equal to amount * 10
+	var/overload_chance_limit = 100
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -75,9 +77,10 @@
 	available_work = current.work_chances
 	switch(threat_level)
 		if(WAW_LEVEL)
-			overload_chance_amount = -4
+			overload_chance_amount = -2
 		if(ALEPH_LEVEL)
-			overload_chance_amount = -6
+			overload_chance_amount = -4
+	overload_chance_limit = overload_chance_amount * 10
 
 /datum/abnormality/proc/FillEgoList()
 	if(!current || !current.ego_list)
@@ -92,13 +95,26 @@
 	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
 	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
-	overload_chance += overload_chance_amount
+	if(overload_chance > overload_chance_limit)
+		overload_chance += overload_chance_amount
 	if(max_pe <= 0) // Work failure
 		return
 	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
-	var/maximum_attribute_level = min(130, threat_level * 26)
-	var/user_attribute_level = get_attribute_level(user, attribute_type)
-	var/attribute_given = round(clamp((maximum_attribute_level / (user_attribute_level * 0.25)), 0, 16))
+	var/maximum_attribute_level = 0
+	switch(threat_level)
+		if(ZAYIN_LEVEL)
+			maximum_attribute_level = 40
+		if(TETH_LEVEL)
+			maximum_attribute_level = 60
+		if(HE_LEVEL)
+			maximum_attribute_level = 80
+		if(WAW_LEVEL)
+			maximum_attribute_level = 100
+		if(ALEPH_LEVEL)
+			maximum_attribute_level = 130
+	var/datum/attribute/user_attribute = user.attributes[attribute_type]
+	var/user_attribute_level = user_attribute.level
+	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_pe))), 0, 16)
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 	user.adjust_attribute_level(attribute_type, attribute_given)

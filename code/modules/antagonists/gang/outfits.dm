@@ -18,7 +18,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = null
 	glasses = /obj/item/clothing/glasses/sunglasses
-	ears = /obj/item/radio/headset/headset_sec/alt
+	ears = /obj/item/radio/headset/headset_discipline
 	mask = null
 	head = /obj/item/clothing/head/spacepolice
 	belt = /obj/item/gun/ballistic/automatic/pistol/m1911

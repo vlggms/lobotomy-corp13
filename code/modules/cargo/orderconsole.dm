@@ -37,7 +37,7 @@
 
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
-	radio = new /obj/item/radio/headset/headset_cargo(src)
+	radio = new /obj/item/radio/headset/headset_control(src)
 
 /obj/machinery/computer/cargo/Destroy()
 	QDEL_NULL(radio)
@@ -244,7 +244,7 @@
 				if(self_paid)
 					say("Order processed. The price will be charged to [account.account_holder]'s bank account on delivery.")
 			if(requestonly && message_cooldown < world.time)
-				radio.talk_into(src, "A new order has been requested.", RADIO_CHANNEL_SUPPLY)
+				radio.talk_into(src, "A new order has been requested.", RADIO_CHANNEL_CONTROL)
 				message_cooldown = world.time + 30 SECONDS
 			. = TRUE
 		if("remove")

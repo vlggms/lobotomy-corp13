@@ -37,7 +37,7 @@
 
 	glasses = /obj/item/clothing/glasses/debug
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/captain/alt
+	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 	backpack_contents = list()

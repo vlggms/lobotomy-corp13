@@ -45,7 +45,7 @@
 	jobtype = /datum/job/agent
 
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/headset_sec/alt
+	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -73,4 +73,4 @@
 	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
-	ears = /obj/item/radio/headset/heads/hos/alt
+	ears = /obj/item/radio/headset/heads/agent_captain/alt

@@ -78,8 +78,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	var/player_count = GLOB.clients.len
-	qliphoth_max = 4 + round(abno_amount * 0.6) + round(player_count * 0.2)
+	var/player_count = 0
+	for(var/mob/player in GLOB.player_list)
+		if(isliving(player))
+			player_count += 1
+	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.2)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))

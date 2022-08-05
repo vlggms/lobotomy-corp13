@@ -41,7 +41,7 @@
 	if(visualsOnly)
 		return
 	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/heads/captain
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/commander/alert
@@ -75,7 +75,7 @@
 		return
 
 	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/heads/hos
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/security/alert
@@ -111,7 +111,7 @@
 		return
 
 	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/heads/cmo
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/medic/alert
@@ -147,7 +147,7 @@
 		return
 
 	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/heads/ce
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/engineer/alert
@@ -239,7 +239,7 @@
 	if(visualsOnly)
 		return
 	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/heads/hop
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/chaplain/inquisitor
@@ -268,16 +268,6 @@
 		/obj/item/mop/advanced=1,\
 		/obj/item/reagent_containers/glass/bucket=1,\
 		/obj/item/grenade/clusterbuster/cleaner=1)
-
-/datum/outfit/centcom/ert/janitor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-
-	if(visualsOnly)
-		return
-
-	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/headset_service
-	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/janitor/heavy
 	name = "ERT Janitor - Heavy Duty"
@@ -310,9 +300,6 @@
 	..()
 	if(visualsOnly)
 		return
-	var/obj/item/radio/R = H.ears
-	R.keyslot = new /obj/item/encryptionkey/headset_service
-	R.recalculateChannels()
 	ADD_TRAIT(H, TRAIT_NAIVE, INNATE_TRAIT)
 	H.dna.add_mutation(CLOWNMUT)
 	for(var/datum/mutation/human/clumsy/M in H.dna.mutations)

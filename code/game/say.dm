@@ -4,17 +4,18 @@ This file has the basic atom/movable level speech procs.
 And the base of the send_speech() proc, which is the core of saycode.
 */
 GLOBAL_LIST_INIT(freqtospan, list(
-	"[FREQ_SCIENCE]" = "sciradio",
-	"[FREQ_MEDICAL]" = "medradio",
-	"[FREQ_ENGINEERING]" = "engradio",
-	"[FREQ_SUPPLY]" = "suppradio",
-	"[FREQ_SERVICE]" = "servradio",
-	"[FREQ_SECURITY]" = "secradio",
+	"[FREQ_CONTROL]" = "controlradio",
+	"[FREQ_INFORMATION]" = "inforadio",
+	"[FREQ_SAFETY]" = "safradio",
+	"[FREQ_TRAINING]" = "trainradio",
 	"[FREQ_COMMAND]" = "comradio",
+	"[FREQ_WELFARE]" = "welfradio",
+	"[FREQ_DISCIPLINE]" = "discradio",
+	"[FREQ_ARCHITECTURE]" = "archradio",
+	"[FREQ_HEAD]" = "headradio",
 	"[FREQ_AI_PRIVATE]" = "aiprivradio",
 	"[FREQ_SYNDICATE]" = "syndradio",
 	"[FREQ_CENTCOM]" = "centcomradio",
-	"[FREQ_TERRAGOV]" = "terragovradio", // Tegustation TerraGov edit
 	"[FREQ_CTF_RED]" = "redteamradio",
 	"[FREQ_CTF_BLUE]" = "blueteamradio"
 	))

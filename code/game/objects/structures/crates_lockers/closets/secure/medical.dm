@@ -37,7 +37,6 @@
 
 /obj/structure/closet/secure_closet/medical3/PopulateContents()
 	..()
-	new /obj/item/radio/headset/headset_med(src)
 	new /obj/item/defibrillator/loaded(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
 	new /obj/item/storage/belt/medical(src)
@@ -59,7 +58,6 @@
 	new /obj/item/clothing/under/suit/black/skirt(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/storage/backpack/medic(src)
-	new /obj/item/radio/headset/headset_srvmed(src)
 	new /obj/item/clipboard(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/ears/earmuffs(src)
@@ -81,7 +79,6 @@
 	new /obj/item/clothing/under/rank/medical/chief_medical_officer/skirt(src)
 	new /obj/item/clothing/shoes/sneakers/brown	(src)
 	new /obj/item/cartridge/cmo(src)
-	new /obj/item/radio/headset/heads/cmo(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/defibrillator/compact/loaded(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile(src)
