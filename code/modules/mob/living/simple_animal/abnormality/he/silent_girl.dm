@@ -40,22 +40,18 @@
 	// INSERT AI REMOVAL CODE HERE
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
+	SIGNAL_HANDLER
 	if ((user in guilty_people) == 0)
-		return
-	if (user.stat == DEAD)
-		guilty_people -= user
-		user.physiology.work_success_mod += 0.25
-		user.cut_overlay(guiltIcon)
-		return
-	if (user.sanity_lost)
-		addtimer(CALLBACK(src, .proc/guilty_work, user), 150)
 		return
 	guilty_people -= user
 	user.physiology.work_success_mod += 0.25
 	user.cut_overlay(guiltIcon)
+	if (user.stat == DEAD)
+		return
 	to_chat(user, "<span class='nicegreen'>You feel a weight lift from your shoulders.</span>")
 	playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
 	datum_reference.qliphoth_change(1)
+	UnregisterSignal(user, COMSIG_ATTACHMENT_WORK_COMPLETED)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -68,15 +64,14 @@
 		to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
 		guiltIcon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
 		user.add_overlay(guiltIcon)
-		addtimer(CALLBACK(src, .proc/guilty_work, user), 1200) // Lasts for 2 minutes. Temporary until Signals get fixed.
 		playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
+		RegisterSignal(user, COMSIG_ATTACHMENT_WORK_COMPLETED, .proc/guilty_work)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/attempt_work(mob/living/carbon/human/user, work_type)
-	if ((user in guilty_people) == 0)
-		return ..()
-	DriveInsane(user) //If a guilty person works on her, they panic.
-	return FALSE
+	if ((user in guilty_people) == 1)
+		DriveInsane(user) //If a guilty person works on her, they panic.
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
 	var/i
