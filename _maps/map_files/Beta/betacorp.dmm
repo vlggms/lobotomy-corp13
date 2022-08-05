@@ -4667,10 +4667,10 @@
 	dir = 1
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 4;
 	name = "elevator console";
-	shuttleId = "manager";
 	possible_destinations = "elevator_home;elevator_away";
-	dir = 4
+	shuttleId = "manager"
 	},
 /obj/machinery/light{
 	dir = 8

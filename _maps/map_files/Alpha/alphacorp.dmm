@@ -36,10 +36,6 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/storage/box/handcuffs,
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
@@ -1240,6 +1236,7 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
+/obj/item/paper/guides/jobs/zayin/guide,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "mA" = (
@@ -2757,14 +2754,10 @@
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/paper/guides/jobs/zayin/guide,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Ct" = (
