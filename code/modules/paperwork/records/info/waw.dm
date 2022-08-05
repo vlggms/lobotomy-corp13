@@ -87,7 +87,7 @@
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Low<br>"}
 
-//KOD
+//QOH
 /obj/item/paper/fluff/info/waw/qoh
 	name = "O-01-04"
 	info = {"<h1><center>O-01-04</center></h1>	<br>
@@ -102,8 +102,8 @@
 	- When she was Hysteric, generating 16+ PE-Boxes raised her Qliphoth Counter."	<br>
 	- When she was Hysteric, generating 15 or fewer PE-Boxes lowered her Qliphoth Counter."	<br>
 	<br>
-	<h4>Instinct:</h4> Very Low<br>
+	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"}
+	<h4>Repression:</h4> Very Low<br>"}
 
