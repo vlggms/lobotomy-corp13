@@ -61,6 +61,7 @@
 	protected_people.Remove(user)
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
 	to_chat(user, "<span class='notice'>The fairies giggle before returning to their queen.</span>")
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyGib(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
