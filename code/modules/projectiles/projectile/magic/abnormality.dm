@@ -37,3 +37,29 @@
 /obj/projectile/hatred/Initialize()
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
+
+/obj/projectile/mountain
+	name = "spit"
+	desc = "Gross, disgusting spit."
+	icon_state = "mini_leaper"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 20
+	spread = 20
+	knockdown = 5
+
+/obj/projectile/mountain/big
+	name = "big spit"
+	desc = "Gross, disgusting spit."
+	icon_state = "leaper"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 40
+	knockdown = 10
+
+/obj/projectile/mountain/big/on_hit(atom/target, blocked = FALSE)
+	..()
+	for(var/mob/living/L in view(2, target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L))
+		L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	return BULLET_ACT_HIT
