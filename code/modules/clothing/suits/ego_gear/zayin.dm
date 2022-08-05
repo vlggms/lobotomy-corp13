@@ -27,3 +27,9 @@
 	It’s quite light for armor, so it is rather comfortable to wear."
 	icon_state = "soda"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/little_alice
+	name = "little alice"	//Looks like alice from Shin Megami Tensei
+	desc = "Oh, they are so very beautiful."
+	icon_state = "little_alice"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)

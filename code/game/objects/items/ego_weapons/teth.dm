@@ -25,6 +25,7 @@
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
 	force = 22
+	throwforce = 50		//You can only hold two so go nuts.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -90,15 +91,4 @@
 	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
-
-/obj/item/ego_weapon/little_alice
-	name = "little alice"
-	desc = "You, now in wonderland!"
-	icon_state = "little_alice"
-	force = 22
-	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("slices", "slashes", "stabs")
-	attack_verb_simple = list("slices", "slashes", "stabs")
-	hitsound = 'sound/weapons/bladeslice.ogg'
 

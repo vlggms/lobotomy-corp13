@@ -178,3 +178,33 @@
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		user.adjustBruteLoss(-force*0.2)
 	..()
+
+/obj/item/ego_weapon/gold_rush
+	name = "gold rush"
+	desc = "The weapon of someone who can swing their weight around like a truck"
+	icon_state = "gold_rush"
+	hitsound = 'sound/weapons/ego/da_capo1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+
+/obj/item/ego_weapon/gold_rush/attack(mob/living/M, mob/living/user)
+	if(do_after(user, 4, target = M))
+
+		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
+						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, A)
+		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
+
+		target.apply_damage(130, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
+
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		if(!target.anchored)
+			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
+	else
+		to_chat(A, "<span class='spider'><b>Your attack was interrupted!</b></span>")
+		return
+
