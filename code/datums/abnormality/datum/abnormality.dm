@@ -118,4 +118,7 @@
 	acquired_chance += overload_chance
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
+	if (user.physiology.work_success_mod <= 0)
+		return -50
+	acquired *= user.physiology.work_success_mod
 	return acquired_chance
