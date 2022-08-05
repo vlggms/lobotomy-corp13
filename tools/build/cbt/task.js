@@ -69,10 +69,7 @@ class Task {
     if (!this.script) {
       return;
     }
-    if (process.env.DEBUG && needsRebuild) {
-      console.debug(`    Reason: ${needsRebuild}`);
-    }
-    console.warn(` => Starting '${this.name}'`);
+    console.warn(` => Starting '${this.name}': ${needsRebuild}`);
     const startedAt = Date.now();
     // Run the script
     await this.script();
