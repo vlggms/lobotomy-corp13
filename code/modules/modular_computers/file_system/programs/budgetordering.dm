@@ -4,7 +4,7 @@
 	program_icon_state = "request"
 	extended_desc = "A request network that utilizes the Nanotrasen Ordering network to purchase supplies using a department budget account."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_HEADS
+	transfer_access = ACCESS_COMMAND
 	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET
 	size = 20
 	tgui_id = "NtosCargo"
@@ -62,7 +62,7 @@
 	var/obj/item/computer_hardware/card_slot/card_slot = computer.all_components[MC_CARD]
 	var/obj/item/card/id/id_card = card_slot?.GetID()
 	if(id_card?.registered_account)
-		if(ACCESS_HEADS in id_card.access)
+		if(ACCESS_COMMAND in id_card.access)
 			requestonly = FALSE
 			buyer = SSeconomy.get_dep_account(id_card.registered_account.account_job.paycheck_department)
 			can_approve_requests = TRUE
