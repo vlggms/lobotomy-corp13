@@ -65,11 +65,11 @@
 
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/melting_love/CanAttack(atom/the_target)
-    if(isliving(target) && !ishuman(target))
-        var/mob/living/L = target
-        if(L.stat == DEAD)
-            return FALSE
-    return ..()
+	if(isliving(target) && !ishuman(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
 	. = ..()
@@ -192,11 +192,11 @@
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
-    if(isliving(target) && !ishuman(target))
-        var/mob/living/L = target
-        if(L.stat == DEAD)
-            return FALSE
-    return ..()
+	if(isliving(target) && !ishuman(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
 	. = ..()
@@ -230,11 +230,11 @@
 	update_transform()
 
 /mob/living/simple_animal/hostile/slime/big/CanAttack(atom/the_target)
-    if(isliving(target) && !ishuman(target))
-        var/mob/living/L = target
-        if(L.stat == DEAD)
-            return FALSE
-    return ..()
+	if(isliving(target) && !ishuman(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/slime/big/AttackingTarget()
 	. = ..()
