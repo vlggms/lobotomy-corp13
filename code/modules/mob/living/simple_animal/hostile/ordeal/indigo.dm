@@ -68,7 +68,7 @@
 	melee_damage_lower = 60
 	melee_damage_upper = 60
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 3, /obj/item/food/meat/slab/human/mutant/sweeper = 4)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 4)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 3)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
