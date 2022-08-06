@@ -14,7 +14,7 @@
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2, /obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
