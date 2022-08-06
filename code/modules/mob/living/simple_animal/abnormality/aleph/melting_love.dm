@@ -89,7 +89,6 @@
 	else
 		slimeconv(H)
 
-
 /* Slime Conversion */
 /mob/living/simple_animal/hostile/proc/slimeconv(mob/living/H)
 	if(!H)
@@ -131,7 +130,7 @@
 			gifted_human = user
 			RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
 			to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
-			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+			user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 			user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
@@ -237,21 +236,3 @@
 	transform *= 0.1
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
-
-/mob/living/simple_animal/hostile/slime/big/CanAttack(atom/the_target)
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
-		if(L.stat == DEAD)
-			return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/slime/big/AttackingTarget()
-	. = ..()
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target
-	if(H.stat != DEAD)
-		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-			slimeconv(H)
-	else
-		slimeconv(H)
