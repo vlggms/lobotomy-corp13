@@ -19,6 +19,9 @@
 	attack_sound = 'sound/effects/attackblob.ogg'
 	deathsound = 'sound/effects/blobattack.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
+	melee_damage_lower = 32
+	melee_damage_upper = 40
+	projectiletype = /obj/projectile/melting_blob
 	obj_damage = 600
 	threat_level = ALEPH_LEVEL
 	del_on_death = FALSE
@@ -42,24 +45,24 @@
 	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
 
-//If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
 	. = ..()
 	if(gifted_human)
 		sanityheal()
-	if(!norepeating)
-		if(!bigslime_alive)
-			melee_damage_lower = 62
-			melee_damage_upper = 80
-			adjustBruteLoss(-maxHealth)
-			projectiletype = /obj/projectile/melting_blob/enraged
-			norepeating = TRUE
-		else
-			melee_damage_lower = 32
-			melee_damage_upper = 40
-			projectiletype = /obj/projectile/melting_blob
-	if(bigslime_alive && norepeating)
-		norepeating = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeDeath(datum/source, gibbed)
+	SIGNAL_HANDLER
+	melee_damage_lower = 62
+	melee_damage_upper = 80
+	adjustBruteLoss(-maxHealth)
+	projectiletype = /obj/projectile/melting_blob/enraged
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
+	var/turf/T = get_turf(gifted_human)
+	gifted_human.gib()
+	var /mob/living/simple_animal/hostile/slime/big/S = new(T)
+	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
 
 //Attacks
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
@@ -71,6 +74,7 @@
 				slimeconv(H)
 		else
 			slimeconv(H)
+
 
 //Slime Conversion
 /mob/living/simple_animal/hostile/proc/slimeconv(mob/living/H)
@@ -108,9 +112,7 @@
 /* Gift */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
-	var/turf/T = get_turf(gifted_human)
-	gifted_human.gib()
-	new /mob/living/simple_animal/hostile/slime/big(T)
+	SpawnBigSlime()
 	datum_reference.qliphoth_change(-9)
 	return TRUE
 
@@ -204,7 +206,6 @@
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/effects/footstep/slime1.ogg', 50, 1)
-	bigslime_alive = TRUE //Reset Enraged Melting Love
 	var/matrix/init_transform = transform
 	transform *= 0.1
 	alpha = 25
@@ -221,7 +222,3 @@
 				slimeconv(H)
 		else
 			slimeconv(H)
-
-/mob/living/simple_animal/hostile/slime/big/death(gibbed)
-	bigslime_alive = FALSE //Trigger Enraged Melting Love
-	..()

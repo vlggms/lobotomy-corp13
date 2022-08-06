@@ -173,8 +173,6 @@
 	var/pet_bonus = FALSE
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
-	/// Melting Love Big Slime check
-	var/static/bigslime_alive = TRUE
 
 /mob/living/simple_animal/Initialize()
 	. = ..()
