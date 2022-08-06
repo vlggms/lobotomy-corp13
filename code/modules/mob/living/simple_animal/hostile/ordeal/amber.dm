@@ -68,7 +68,7 @@
 	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 2, /obj/item/food/meat/slab/human/mutant/worm = 3)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 2)
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
