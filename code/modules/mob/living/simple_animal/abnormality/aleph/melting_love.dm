@@ -40,7 +40,6 @@
 	ranged_cooldown_time = 30
 	projectilesound = 'sound/effects/attackblob.ogg'
 	var/mob/living/carbon/human/gifted_human = null
-	var/norepeating = FALSE
 	var/sanityheal_cooldown = 15 SECONDS
 	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
@@ -65,15 +64,23 @@
 	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
 
 //Attacks
+/mob/living/simple_animal/hostile/abnormality/melting_love/CanAttack(atom/the_target)
+    if(isliving(target) && !ishuman(target))
+        var/mob/living/L = target
+        if(L.stat == DEAD)
+            return FALSE
+    return ..()
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/H = target
-		if(H.stat != DEAD)
-			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-		else
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.stat != DEAD)
+		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
 			slimeconv(H)
+	else
+		slimeconv(H)
 
 
 //Slime Conversion
@@ -127,7 +134,8 @@
 			user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
-		if(gifted_human)
+		if(user == gifted_human)
+			to_chat(gifted_human, "<span class='nicegreen'>Melting Love is happy to see you !</span>")
 			gifted_human.adjustSanityLoss(25)
 		return
 
@@ -183,15 +191,23 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
+/mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
+    if(isliving(target) && !ishuman(target))
+        var/mob/living/L = target
+        if(L.stat == DEAD)
+            return FALSE
+    return ..()
+
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/H = target
-		if(H.stat != DEAD)
-			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-		else
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.stat != DEAD)
+		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
 			slimeconv(H)
+	else
+		slimeconv(H)
 
 /* Big Slimes */
 /mob/living/simple_animal/hostile/slime/big
@@ -213,12 +229,20 @@
 	resize = 1.3
 	update_transform()
 
+/mob/living/simple_animal/hostile/slime/big/CanAttack(atom/the_target)
+    if(isliving(target) && !ishuman(target))
+        var/mob/living/L = target
+        if(L.stat == DEAD)
+            return FALSE
+    return ..()
+
 /mob/living/simple_animal/hostile/slime/big/AttackingTarget()
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/H = target
-		if(H.stat != DEAD)
-			if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-				slimeconv(H)
-		else
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.stat != DEAD)
+		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
 			slimeconv(H)
+	else
+		slimeconv(H)
