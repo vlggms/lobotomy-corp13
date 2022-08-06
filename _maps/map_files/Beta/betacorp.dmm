@@ -381,15 +381,8 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper/guides/jobs/he{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/teth{
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/zayin{
-	pixel_x = -5
-	},
+/obj/item/paper/guides/jobs/zayin/guide,
+/obj/item/wrench,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "co" = (
@@ -1942,11 +1935,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
-"mC" = (
-/obj/structure/table/reinforced,
-/obj/item/wrench,
-/turf/open/floor/carpet,
-/area/department_main/control)
 "mD" = (
 /obj/machinery/button/door{
 	id = "fuelstorage";
@@ -2150,7 +2138,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/north)
 "nK" = (
 /obj/effect/spawner/abnormality_room,
@@ -4498,7 +4486,7 @@
 /area/facility_hallway/south)
 "BM" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/south)
 "BN" = (
 /obj/structure/table/wood,
@@ -5071,6 +5059,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
+"FS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/information)
 "FT" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -5512,11 +5506,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Ja" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/plating,
 /area/department_main/welfare)
 "Jc" = (
@@ -5651,7 +5641,7 @@
 /area/department_main/information)
 "Kd" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/north)
 "Kf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -6310,17 +6300,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"NP" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/paper/guides/jobs/teth/guide{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/zayin/guide{
-	pixel_x = -5
-	},
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "NS" = (
 /obj/structure/railing{
 	dir = 1
@@ -7041,13 +7020,6 @@
 "SP" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
-/obj/item/paper/guides/jobs/aleph{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/waw{
-	pixel_x = -5;
-	pixel_y = 5
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "SR" = (
@@ -7990,6 +7962,9 @@
 	dir = 4
 	},
 /obj/structure/rack,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
@@ -8003,9 +7978,6 @@
 	dir = 5
 	},
 /obj/item/wrench,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/mask/gas/explorer,
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
 "Ym" = (
@@ -8113,6 +8085,7 @@
 "YP" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/teth/guide,
 /obj/item/melee/classic_baton,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -32533,7 +32506,7 @@ Iu
 rO
 mg
 mg
-mC
+ME
 jF
 jF
 jF
@@ -38938,7 +38911,7 @@ dj
 Pe
 jy
 Pe
-NP
+dj
 dj
 Pe
 IM
@@ -42601,7 +42574,7 @@ QO
 hD
 xF
 Io
-sj
+FS
 sj
 vs
 Io
