@@ -184,7 +184,6 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
-/obj/item/paper/guides/jobs/zayin/guide,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "cs" = (
@@ -477,6 +476,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"fa" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/paper/guides/jobs/teth/guide{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/zayin/guide{
+	pixel_x = -5
+	},
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "fb" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced,
@@ -500,6 +510,15 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
+"fo" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Extraction Office"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "fq" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -1343,8 +1362,15 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/toy/plush/malkuth,
+/obj/item/paper/guides/jobs/he{
+	pixel_x = 5
+	},
+/obj/item/paper/guides/jobs/teth{
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/zayin{
+	pixel_x = -5
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "oG" = (
@@ -1952,6 +1978,9 @@
 /area/facility_hallway/north)
 "tT" = (
 /obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "tX" = (
@@ -2023,7 +2052,14 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/paper/guides/jobs/teth/guide,
+/obj/item/paper/guides/jobs/aleph{
+	pixel_x = 5
+	},
+/obj/item/paper/guides/jobs/waw{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "uz" = (
@@ -2041,17 +2077,6 @@
 /obj/structure/railing,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
-"uH" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding{
-	color = "#212121";
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "uN" = (
 /mob/living/simple_animal/bot/cleanbot,
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -2445,12 +2470,12 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "yJ" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Extraction Office"
-	},
 /obj/effect/turf_decal/siding{
 	color = "#212121";
 	dir = 1
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Extraction Office"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -2686,10 +2711,11 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "Bw" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Extraction Office"
+/obj/structure/rack,
+/obj/structure/sign/poster/official/twelve_gauge{
+	pixel_x = 32
 	},
-/turf/closed/indestructible/reinforced,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Bz" = (
 /obj/effect/turf_decal/siding/brown{
@@ -3034,6 +3060,13 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/department_main/safety)
+"FZ" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/department_main/control)
 "Gg" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -4850,10 +4883,12 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Xr" = (
-/obj/structure/sign/poster/official/twelve_gauge{
-	pixel_x = 32
+/obj/effect/turf_decal/siding{
+	color = "#212121";
+	dir = 1
 	},
-/turf/closed/indestructible/reinforced,
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Xu" = (
 /obj/structure/railing{
@@ -4922,6 +4957,15 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"Yb" = (
+/obj/effect/turf_decal/siding/red,
+/obj/effect/landmark/start{
+	pixel_x = 3
+	},
+/obj/structure/chair/office,
+/obj/item/toy/plush/malkuth,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Yg" = (
 /obj/structure/sign/departments/extraction{
 	pixel_x = 32
@@ -32455,7 +32499,7 @@ PU
 gI
 gI
 gz
-gI
+fa
 gI
 OD
 PU
@@ -37071,7 +37115,7 @@ Ol
 Ol
 Ol
 TB
-pX
+Yb
 Ln
 rg
 vs
@@ -39381,10 +39425,10 @@ tT
 tT
 rg
 rg
-Bw
 rg
-ve
-ve
+FZ
+fo
+FZ
 rg
 rg
 vf
@@ -39636,12 +39680,12 @@ rg
 TO
 ha
 AU
-ci
 AU
-uH
+ci
+Xr
 Iq
-DH
-DH
+Iq
+Iq
 gR
 rg
 vs
@@ -40149,7 +40193,7 @@ ZL
 rg
 Wl
 ci
-ci
+Bw
 zT
 ci
 Xr
