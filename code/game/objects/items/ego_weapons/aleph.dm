@@ -2,6 +2,7 @@
 	name = "paradise lost"
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
+	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
 	force = 40
 	damtype = PALE_DAMAGE
@@ -41,10 +42,10 @@
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
-		H.adjustStaminaLoss(-damage_dealt*0.5)
-		H.adjustBruteLoss(-damage_dealt*0.3)
-		H.adjustFireLoss(-damage_dealt*0.3)
-		H.adjustSanityLoss(damage_dealt*0.3)
+		H.adjustStaminaLoss(-damage_dealt*0.4)
+		H.adjustBruteLoss(-damage_dealt*0.2)
+		H.adjustFireLoss(-damage_dealt*0.2)
+		H.adjustSanityLoss(damage_dealt*0.2)
 
 /obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
@@ -53,6 +54,7 @@
 /obj/item/ego_weapon/justitia
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
+	special = "This weapon has a combo system."
 	icon_state = "justitia"
 	force = 25
 	damtype = PALE_DAMAGE
@@ -110,6 +112,7 @@
 	name = "da capo"
 	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
 	If there were a score for this song, it would be one that sings of the apocalypse."
+	special = "This weapon has a combo system."
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	damtype = WHITE_DAMAGE
@@ -149,3 +152,32 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/mimicry
+	name = "mimicry"
+	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
+	as if it were a reminder that it should remain a mere desire."
+	icon_state = "mimicry"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 80
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		user.adjustBruteLoss(-force*0.2)
+	..()

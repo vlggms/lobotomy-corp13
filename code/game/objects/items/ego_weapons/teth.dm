@@ -12,13 +12,20 @@
 	name = "fragments from somewhere"
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
+	special = "This weapon has a longer reach.\
+			This weapon attacks slower than usual."
 	icon_state = "fragment"
 	force = 22
+	reach = 2		//Has 2 Square Reach.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/fragment/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.4) // Has Longer reach, should be a little slower
 
 /obj/item/ego_weapon/horn
 	name = "horn"
@@ -45,6 +52,8 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
+	special = "Knocks certain enemies backwards.\
+			This weapon hits slower than usual. "
 	icon_state = "eyes"
 	force = 35					//Still less DPS, replaces baseball bat
 	damtype = RED_DAMAGE
@@ -84,7 +93,7 @@
 		icon_state = "eyeball1"				//Cool sprite gone
 
 	if(ishuman(target))
-		force*=2						//I've seen Catt one shot someone, This is also only a detriment lol
+		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
 	..()
 	force = initial(force)
 	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.

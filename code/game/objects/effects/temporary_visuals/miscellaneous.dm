@@ -620,6 +620,11 @@
 	icon_state = "claw"
 	duration = 4
 
+/obj/effect/temp_visual/smash_effect
+	name = "smash"
+	icon_state = "smash"
+	duration = 4
+
 /obj/effect/temp_visual/green_noon_reload
 	name = "recharging field"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
@@ -648,3 +653,21 @@
 	..()
 	pixel_x = rand(-16, 16)
 	animate(src, alpha = 0, pixel_z = rand(16, 48), time = duration)
+
+/obj/effect/temp_visual/flesh
+	name = "flesh"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "flesh0"
+	layer = ABOVE_ALL_MOB_LAYER
+	density = TRUE
+	duration = 8 SECONDS
+	alpha = 0
+
+/obj/effect/temp_visual/flesh/Initialize()
+	..()
+	icon_state = "flesh[rand(0,3)]"
+	animate(src, alpha = 255, time = 5)
+	addtimer(CALLBACK(src, .proc/fade_out), 4 SECONDS)
+
+/obj/effect/temp_visual/flesh/proc/fade_out()
+	animate(src, alpha = 0, time = (duration - 4 SECONDS))

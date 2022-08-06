@@ -17,9 +17,6 @@
 	work_damage_type = RED_DAMAGE
 	/// Grab her champion
 	var/champion
-	//She gets mad if you work on her too much as high fortitude
-	var/killcounter = 0
-	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
@@ -37,16 +34,14 @@
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
 		champion = user
 
+/mob/living/simple_animal/hostile/abnormality/whitelake/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/whitelake/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
-		if(prob(30))
-			killcounter +=1
 		datum_reference.qliphoth_change(-1)
-
-		if(killcounter == 2)
-			killcounter =0
-			user.adjustBruteLoss(500) //Die.
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
@@ -58,22 +53,18 @@
 	H.equipOutfit(whitelake)	//Get outfit
 	H.put_in_hands(wep) 		//Time for pale
 
-	//They need to be hard to kill and really hard to get sane again
-	//To avoid gettting infinite ego
+	//They need to be unable to get sane again
+	//To avoid stacking these infinitely
 	H.physiology.red_mod *= 0.3
-	H.physiology.white_mod *= 0.05
-	H.physiology.black_mod *= 0.1
-	H.physiology.pale_mod *= 0.1
+	H.physiology.white_mod *= 0
+	H.physiology.black_mod *= 0
+	H.physiology.pale_mod *= 0.3
 
 	//Replaces AI with murder one
-	QDEL_NULL(ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
-	ghostize(1)
+	H.ghostize(1)
 	H.InitializeAIController()
 
-	datum_reference.qliphoth_change(3)
-
-	return
 
 //Outfit and Attacker's sword.
 /datum/outfit/whitelake
