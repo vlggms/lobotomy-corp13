@@ -4,12 +4,12 @@
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in the city."
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
-					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/super_up = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 10,
@@ -41,7 +41,7 @@
 
 /obj/machinery/vending/cola/red
 	icon_state = "red_cola"
-	name = "\improper City Cola Vendor"
+	name = "\improper City Cola vending machine"
 	desc = "It vends cola, but nobody ever sees them get refilled."
 	product_slogans = "Your favorite by default!"
 	light_mask = "red_cola-light-mask"
@@ -77,14 +77,14 @@
 	light_color = COLOR_STRONG_VIOLET
 
 /obj/machinery/vending/cola/shamblers
-	name = "\improper Shambler's Vendor"
-	desc = "~Shake me up some of that Shambler's Juice!~"
+	name = "\improper Shambler's vending machine"
+	desc = "~Shake me up some of that Shambler's Juice!"
 	icon_state = "shamblers_juice"
 	products = list(/obj/item/reagent_containers/food/drinks/soda_cans/cola = 10,
 		            /obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/starkist = 10,
-					/obj/item/reagent_containers/food/drinks/soda_cans/space_up = 10,
+					/obj/item/reagent_containers/food/drinks/soda_cans/super_up = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime = 10,
 					/obj/item/reagent_containers/food/drinks/soda_cans/sol_dry = 10,

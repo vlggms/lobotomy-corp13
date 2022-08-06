@@ -712,7 +712,7 @@
 	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
 	foodtype = SUGAR
 
-/obj/item/reagent_containers/food/drinks/soda_cans/space_up
+/obj/item/reagent_containers/food/drinks/soda_cans/super_up
 	name = "Super-Up!"
 	desc = "What's up? Super up! In your face!"
 	icon_state = "space-up"
