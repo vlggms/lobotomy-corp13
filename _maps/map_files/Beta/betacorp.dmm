@@ -7963,9 +7963,6 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
@@ -7979,6 +7976,9 @@
 	dir = 5
 	},
 /obj/item/wrench,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
 "Ym" = (
