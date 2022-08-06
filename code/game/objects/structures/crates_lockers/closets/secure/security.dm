@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/captains
 	name = "\proper captain's locker"
-	req_access = list(ACCESS_CAPTAIN)
+	req_access = list(ACCESS_MANAGER)
 	icon_state = "cap"
 
 /obj/structure/closet/secure_closet/captains/PopulateContents()
@@ -239,7 +239,7 @@
 /obj/structure/closet/secure_closet/contraband/heads
 	anchored = TRUE
 	name = "Contraband Locker"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"

@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
-//	"Archivist",
+	"Records Officer",
 	"Agent Captain",
 	))
 

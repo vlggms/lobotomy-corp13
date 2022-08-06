@@ -94,7 +94,7 @@
 /obj/structure/noticeboard/captain
 	name = "Captain's Notice Board"
 	desc = "Important notices from the Captain."
-	req_access = list(ACCESS_CAPTAIN)
+	req_access = list(ACCESS_MANAGER)
 
 /obj/structure/noticeboard/hop
 	name = "Head of Personnel's Notice Board"
@@ -129,4 +129,4 @@
 /obj/structure/noticeboard/staff
 	name = "Staff Notice Board"
 	desc = "Important notices from the heads of staff."
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
