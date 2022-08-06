@@ -1,3 +1,5 @@
+//White Lake from wonderlabs, by Kirie saito
+//It's very buggy, and I can't test it alone
 /mob/living/simple_animal/hostile/abnormality/whitelake
 	name = "White Lake"
 	desc = "A ballet dancer, absorbed in her work."
@@ -17,6 +19,7 @@
 	work_damage_type = RED_DAMAGE
 	/// Grab her champion
 	var/champion
+	start_qliphoth = 2
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
