@@ -2105,6 +2105,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/grass,
 /area/department_main/safety)
+"nn" = (
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "no" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Disciplinary Department"
@@ -2473,6 +2477,9 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"pV" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/control)
 "pW" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -4873,6 +4880,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
 /turf/open/floor/wood,
 /area/department_main/control)
 "EG" = (
@@ -4966,6 +4977,10 @@
 "Fi" = (
 /obj/machinery/light,
 /turf/open/floor/carpet,
+/area/department_main/control)
+"Fn" = (
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/control)
 "Fs" = (
 /obj/effect/turf_decal/tile/brown{
@@ -5185,6 +5200,10 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"GB" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "GD" = (
 /obj/machinery/regenerator,
 /turf/open/floor/carpet/royalblue,
@@ -5209,6 +5228,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"GV" = (
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "GW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5308,6 +5331,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"HC" = (
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "HG" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -5330,6 +5357,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"HJ" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "HM" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -6016,6 +6047,10 @@
 /obj/structure/sign/poster/official/we_watch,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
+"Mb" = (
+/obj/machinery/telecomms/server/presets/service,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Mc" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -6224,42 +6259,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	name = "elevator console";
-	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	name = "elevator console";
-	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
 	name = "Manager's Office Lockdown Blast Door"
@@ -6332,6 +6331,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
 /turf/open/floor/wood,
 /area/department_main/control)
 "NV" = (
@@ -6400,6 +6403,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
+"Om" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Oo" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -6541,7 +6548,7 @@
 	id = "managerlockdown";
 	name = "Manager's Office Lockdown Blast Door"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Px" = (
 /turf/open/floor/carpet/red,
@@ -6620,6 +6627,10 @@
 /obj/item/toy/plush/enoch,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Qi" = (
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Qj" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced,
@@ -7074,6 +7085,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"Td" = (
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Te" = (
 /obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/plasteel,
@@ -7253,6 +7268,10 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Ud" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Ue" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/red{
@@ -7324,6 +7343,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
 /turf/open/floor/wood,
 /area/department_main/control)
 "Uz" = (
@@ -7379,6 +7402,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/command)
+"UO" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "US" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -31203,11 +31230,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+jF
+jF
+jF
+jF
 jF
 Gp
 px
@@ -31460,11 +31487,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+Om
+nn
+GB
+jF
 Cu
 Uz
 rZ
@@ -31718,9 +31745,9 @@ jF
 jF
 jF
 jF
-JB
-JB
-JB
+Ud
+GV
+UO
 jF
 jF
 Ht
@@ -31975,9 +32002,9 @@ jM
 jM
 Nz
 jF
-jF
-jF
-jF
+pV
+pV
+pV
 jF
 Ti
 tS
@@ -33003,9 +33030,9 @@ jM
 jM
 NS
 jF
-jF
-jF
-jF
+pV
+pV
+pV
 jF
 Dh
 RZ
@@ -33260,9 +33287,9 @@ jF
 jF
 jF
 jF
-JB
-JB
-JB
+HC
+Qi
+HJ
 jF
 jF
 Nv
@@ -33516,11 +33543,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+Mb
+Td
+Fn
+jF
 Ej
 OZ
 Eu
@@ -33773,11 +33800,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+jF
+jF
+jF
+jF
 jF
 mA
 Oy
