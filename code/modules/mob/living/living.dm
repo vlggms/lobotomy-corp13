@@ -418,6 +418,9 @@
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 
+/mob/living/proc/getMaxSanity()
+	return maxSanity
+
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 

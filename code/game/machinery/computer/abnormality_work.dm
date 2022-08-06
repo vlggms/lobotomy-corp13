@@ -87,8 +87,9 @@
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
+	SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user)
 	user.adjustSanityLoss(sanity_damage)
-	if(user.sanity_lost)
+	if(user.stat == DEAD || user.sanity_lost)
 		finish_work(user, work_type, 0, work_time) // Assume total failure
 		return
 	switch(sanity_result)
