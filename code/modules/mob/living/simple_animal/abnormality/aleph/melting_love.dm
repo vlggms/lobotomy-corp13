@@ -13,8 +13,6 @@
 	maxHealth = 3500
 	pixel_x = -16
 	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
 	speed = 2
 	move_to_delay = 5
 	melee_damage_type = BLACK_DAMAGE
@@ -25,8 +23,6 @@
 	threat_level = ALEPH_LEVEL
 	del_on_death = FALSE
 	can_breach = TRUE
-	robust_searching = TRUE
-	stat_attack = DEAD
 	start_qliphoth = 3
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
@@ -46,14 +42,11 @@
 	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/Initialize()
-	. = ..()
-	bigslime_alive = TRUE //To be sure she doesn't spawn in enraged state
-
 //If you kill big slime first oh boy good luck
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
 	. = ..()
-	sanityheal()
+	if(gifted_human)
+		sanityheal()
 	if(!norepeating)
 		if(!bigslime_alive)
 			melee_damage_lower = 62
@@ -109,9 +102,7 @@
 		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
 		gifted_human.emote("scream")
 		gifted_human.gib()
-		breach_effect()
-	else
-		breach_effect()
+	breach_effect()
 	return
 
 /* Gift */
@@ -167,8 +158,6 @@
 	maxHealth = 800
 	pixel_x = -16
 	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_lower = 20

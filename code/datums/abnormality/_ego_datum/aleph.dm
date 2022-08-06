@@ -46,3 +46,4 @@
 
 /datum/ego_datum/armor/adoration
 	item_path = /obj/item/clothing/suit/armor/ego_gear/adoration
+	cost = 100
