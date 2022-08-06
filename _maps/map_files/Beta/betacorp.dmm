@@ -2130,10 +2130,10 @@
 /turf/open/floor/wood,
 /area/department_main/control)
 "nB" = (
-/obj/effect/spawner/structure/window/reinforced/indestructable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "nK" = (
@@ -4478,7 +4478,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "BM" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/wood,
 /area/facility_hallway/south)
 "BN" = (

@@ -179,14 +179,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "cp" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
 /obj/structure/table/glass,
-/obj/item/toy/plush/malkuth,
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
@@ -535,9 +528,6 @@
 "fC" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/rack,
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -664,12 +654,6 @@
 /area/department_main/safety)
 "ha" = (
 /obj/structure/chair/comfy/black{
-	dir = 8
-	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/chair/office{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
@@ -1360,6 +1344,7 @@
 	},
 /obj/structure/table/glass,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/toy/plush/malkuth,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "oG" = (
@@ -1988,27 +1973,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"ue" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/turf/open/floor/carpet/black,
-/area/department_main/training)
 "uf" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -2081,9 +2045,6 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /obj/effect/turf_decal/siding/red{
 	dir = 4
-	},
-/obj{
-	name = "---Merge conflict marker---"
 	},
 /obj/effect/turf_decal/siding{
 	color = "#212121";
@@ -2363,14 +2324,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"xc" = (
-/obj/structure/rack,
-/obj/item/toy/plush/binah,
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
 "xi" = (
 /obj/structure/bodycontainer/morgue{
 	dir = 2
@@ -2412,16 +2365,16 @@
 /area/facility_hallway/north)
 "xS" = (
 /obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
-/obj/item/clothing/accessory/armband/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "xW" = (
@@ -2492,15 +2445,8 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "yJ" = (
-/obj/effect/turf_decal/siding/white{
-	color = "#444444";
-	dir = 1
-	},
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
-	},
-/obj{
-	name = "---Merge conflict marker---"
 	},
 /obj/effect/turf_decal/siding{
 	color = "#212121";
@@ -2665,13 +2611,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/solarpanel,
 /area/facility_hallway/south)
-"Aq" = (
-/obj/structure/rack,
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/turf/open/floor/carpet/red,
-/area/department_main/control)
 "Ar" = (
 /obj/structure/sign/warning/bodysposal{
 	pixel_x = -32
@@ -2747,9 +2686,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "Bw" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
@@ -4790,9 +4726,6 @@
 /area/department_main/information)
 "Wl" = (
 /obj/structure/rack,
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/structure/rack,
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
@@ -4917,17 +4850,9 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Xr" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
 /obj/structure/sign/poster/official/twelve_gauge{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/siding{
-	color = "#212121";
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/weapon,
 /turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "Xu" = (
@@ -37654,7 +37579,7 @@ FV
 FV
 GT
 Mi
-Aq
+jy
 FV
 FV
 FV
@@ -38168,7 +38093,7 @@ FV
 FV
 fq
 Mi
-Aq
+jy
 FV
 FV
 FV
@@ -39711,7 +39636,7 @@ rg
 TO
 ha
 AU
-xc
+ci
 AU
 uH
 Iq
@@ -42806,7 +42731,7 @@ ZL
 ZL
 zW
 BD
-ue
+Mc
 zW
 op
 hO
