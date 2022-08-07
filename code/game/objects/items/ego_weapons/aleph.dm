@@ -223,3 +223,33 @@
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
 
+/obj/item/ego_weapon/smile
+	name = "smile"
+	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
+	special = "This weapon has a slightly slower attack speed.\
+			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
+	icon_state = "smile"
+	force = 100
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/weapons/ego/hammer.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/smile/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.5) // Slow
+
+/obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)
+		target.gib()
+		user.adjustBruteLoss(-user.maxHealth*0.1)	//Heal 10% HP. Moved here from the armor, because that's a nightmare to code
