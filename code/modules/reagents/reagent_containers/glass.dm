@@ -265,6 +265,12 @@
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 50)
 	resistance_flags = FLAMMABLE
 
+/obj/item/reagent_containers/glass/bucket/melting
+	name = "Mysterious bucket"
+	icon_state = "meltingbucket"
+	desc = "MY MIND IS TELLING ME NO, BUT MY BODY IS TELLIN' ME YEEHEHES!."
+	list_reagents = list(/datum/reagent/medicine/regen_jelly = 10, /datum/reagent/toxin/acid = 20, /datum/reagent/consumable/ethanol/beepsky_smash = 20)
+
 /obj/item/reagent_containers/glass/bucket/attackby(obj/O, mob/user, params)
 	if(istype(O, /obj/item/mop))
 		if(reagents.total_volume < 1)
