@@ -381,15 +381,8 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/paper/guides/jobs/he{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/teth{
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/zayin{
-	pixel_x = -5
-	},
+/obj/item/paper/guides/jobs/zayin/guide,
+/obj/item/wrench,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "co" = (
@@ -1942,11 +1935,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
-"mC" = (
-/obj/structure/table/reinforced,
-/obj/item/wrench,
-/turf/open/floor/carpet,
-/area/department_main/control)
 "mD" = (
 /obj/machinery/button/door{
 	id = "fuelstorage";
@@ -2105,6 +2093,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/grass,
 /area/department_main/safety)
+"nn" = (
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "no" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Disciplinary Department"
@@ -2146,7 +2138,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/north)
 "nK" = (
 /obj/effect/spawner/abnormality_room,
@@ -2473,6 +2465,9 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"pV" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/control)
 "pW" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -4491,7 +4486,7 @@
 /area/facility_hallway/south)
 "BM" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/south)
 "BN" = (
 /obj/structure/table/wood,
@@ -4873,6 +4868,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
 /turf/open/floor/wood,
 /area/department_main/control)
 "EG" = (
@@ -4967,6 +4966,10 @@
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/department_main/control)
+"Fn" = (
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Fs" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -5056,6 +5059,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
+"FS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/information)
 "FT" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -5185,6 +5194,10 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"GB" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "GD" = (
 /obj/machinery/regenerator,
 /turf/open/floor/carpet/royalblue,
@@ -5209,6 +5222,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"GV" = (
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "GW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5308,6 +5325,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"HC" = (
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "HG" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -5330,6 +5351,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"HJ" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "HM" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -5481,11 +5506,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Ja" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 1
-	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced/indestructable,
 /turf/open/floor/plating,
 /area/department_main/welfare)
 "Jc" = (
@@ -5620,7 +5641,7 @@
 /area/department_main/information)
 "Kd" = (
 /obj/effect/spawner/structure/window/reinforced/indestructable,
-/turf/open/floor/plating,
+/turf/open/floor/wood,
 /area/facility_hallway/north)
 "Kf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -6016,6 +6037,10 @@
 /obj/structure/sign/poster/official/we_watch,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
+"Mb" = (
+/obj/machinery/telecomms/server/presets/service,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Mc" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -6224,42 +6249,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	name = "elevator console";
-	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 4;
-	name = "elevator console";
-	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
 	name = "Manager's Office Lockdown Blast Door"
@@ -6311,17 +6300,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"NP" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/paper/guides/jobs/teth/guide{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/zayin/guide{
-	pixel_x = -5
-	},
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "NS" = (
 /obj/structure/railing{
 	dir = 1
@@ -6331,6 +6309,10 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
 	},
 /turf/open/floor/wood,
 /area/department_main/control)
@@ -6400,6 +6382,10 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
+"Om" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Oo" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -6541,7 +6527,7 @@
 	id = "managerlockdown";
 	name = "Manager's Office Lockdown Blast Door"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plating,
 /area/department_main/control)
 "Px" = (
 /turf/open/floor/carpet/red,
@@ -6620,6 +6606,10 @@
 /obj/item/toy/plush/enoch,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Qi" = (
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Qj" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced,
@@ -7030,13 +7020,6 @@
 "SP" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
-/obj/item/paper/guides/jobs/aleph{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/waw{
-	pixel_x = -5;
-	pixel_y = 5
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "SR" = (
@@ -7074,6 +7057,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"Td" = (
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Te" = (
 /obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/plasteel,
@@ -7253,6 +7240,10 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Ud" = (
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Ue" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/red{
@@ -7324,6 +7315,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/caution/stand_clear,
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown Blast Door"
+	},
 /turf/open/floor/wood,
 /area/department_main/control)
 "Uz" = (
@@ -7379,6 +7374,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/command)
+"UO" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "US" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -7963,6 +7962,9 @@
 	dir = 4
 	},
 /obj/structure/rack,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
 /obj/item/tank/internals/emergency_oxygen,
@@ -7976,9 +7978,6 @@
 	dir = 5
 	},
 /obj/item/wrench,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/mask/gas/explorer,
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
 "Ym" = (
@@ -8086,6 +8085,7 @@
 "YP" = (
 /obj/effect/turf_decal/siding/red,
 /obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/teth/guide,
 /obj/item/melee/classic_baton,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -31203,11 +31203,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+jF
+jF
+jF
+jF
 jF
 Gp
 px
@@ -31460,11 +31460,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+Om
+nn
+GB
+jF
 Cu
 Uz
 rZ
@@ -31718,9 +31718,9 @@ jF
 jF
 jF
 jF
-JB
-JB
-JB
+Ud
+GV
+UO
 jF
 jF
 Ht
@@ -31975,9 +31975,9 @@ jM
 jM
 Nz
 jF
-jF
-jF
-jF
+pV
+pV
+pV
 jF
 Ti
 tS
@@ -32506,7 +32506,7 @@ Iu
 rO
 mg
 mg
-mC
+ME
 jF
 jF
 jF
@@ -33003,9 +33003,9 @@ jM
 jM
 NS
 jF
-jF
-jF
-jF
+pV
+pV
+pV
 jF
 Dh
 RZ
@@ -33260,9 +33260,9 @@ jF
 jF
 jF
 jF
-JB
-JB
-JB
+HC
+Qi
+HJ
 jF
 jF
 Nv
@@ -33516,11 +33516,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+Mb
+Td
+Fn
+jF
 Ej
 OZ
 Eu
@@ -33773,11 +33773,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+jF
+jF
+jF
+jF
+jF
 jF
 mA
 Oy
@@ -38911,7 +38911,7 @@ dj
 Pe
 jy
 Pe
-NP
+dj
 dj
 Pe
 IM
@@ -42574,7 +42574,7 @@ QO
 hD
 xF
 Io
-sj
+FS
 sj
 vs
 Io
