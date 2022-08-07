@@ -273,6 +273,9 @@
 "dr" = (
 /obj/item/toner/extreme,
 /obj/structure/rack,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/training)
 "ds" = (
@@ -1417,6 +1420,12 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"oM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/department_main/training)
 "oN" = (
 /obj/machinery/modular_computer/console/preset/civilian{
 	dir = 4
@@ -3237,6 +3246,12 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"GV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/training)
 "GW" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -42062,7 +42077,7 @@ ZL
 ZL
 zW
 hj
-Mc
+GV
 Va
 zW
 pg
@@ -43600,7 +43615,7 @@ ZL
 ZL
 ZL
 ZL
-zW
+oM
 mb
 Jx
 Jx
