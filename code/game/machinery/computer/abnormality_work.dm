@@ -87,7 +87,7 @@
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
-	SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user)
+	signal_work_attempt(user, work_type)
 	user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
 		finish_work(user, work_type, 0, work_time) // Assume total failure
@@ -126,6 +126,22 @@
 			break // Somehow it escaped
 	finish_work(user, work_type, success_boxes, work_time, work_speed)
 
+// When work is started, signals to any listeners that work was started and what type it was
+/obj/machinery/computer/abnormality/proc/signal_work_attempt(mob/living/carbon/human/user, work_type)
+	SEND_SIGNAL(user, COMSIG_WORK_ATTEMPTED, datum_reference, user)
+	if (work_type == ABNORMALITY_WORK_INSTINCT)
+		SEND_SIGNAL(user, COMSIG_INSTINCT_WORK_ATTEMPTED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_INSIGHT)
+		SEND_SIGNAL(user, COMSIG_INSIGHT_WORK_ATTEMPTED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_ATTACHMENT)
+		SEND_SIGNAL(user, COMSIG_ATTACHMENT_WORK_ATTEMPTED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_REPRESSION)
+		SEND_SIGNAL(user, COMSIG_REPRESSION_WORK_ATTEMPTED, datum_reference, user)
+		return
+
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
 		playsound(src, 'sound/machines/synth_yes.ogg', 25, FALSE, -3)
@@ -135,6 +151,7 @@
 
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
 	working = FALSE
+	signal_work_complete(user, work_type)
 	if(max_pe != 0)
 		visible_message("<span class='notice'>Work finished. [pe]/[max_pe] PE acquired.")
 	if(!work_type)
@@ -146,6 +163,22 @@
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
 		return FALSE
 	return TRUE
+
+// When work is completed, signals to any listeners that work was completed and what type it was
+/obj/machinery/computer/abnormality/proc/signal_work_complete(mob/living/carbon/human/user, work_type)
+	SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user)
+	if (work_type == ABNORMALITY_WORK_INSTINCT)
+		SEND_SIGNAL(user, COMSIG_INSTINCT_WORK_COMPLETED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_INSIGHT)
+		SEND_SIGNAL(user, COMSIG_INSIGHT_WORK_COMPLETED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_ATTACHMENT)
+		SEND_SIGNAL(user, COMSIG_ATTACHMENT_WORK_COMPLETED, datum_reference, user)
+		return
+	if (work_type == ABNORMALITY_WORK_REPRESSION)
+		SEND_SIGNAL(user, COMSIG_REPRESSION_WORK_COMPLETED, datum_reference, user)
+		return
 
 /obj/machinery/computer/abnormality/process()
 	if(..())
