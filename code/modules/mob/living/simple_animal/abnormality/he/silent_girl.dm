@@ -39,7 +39,7 @@
 	return
 	// INSERT AI REMOVAL CODE HERE
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	if ((user in guilty_people) == 0)
 		return
