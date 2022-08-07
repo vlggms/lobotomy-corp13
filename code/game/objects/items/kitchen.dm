@@ -185,6 +185,8 @@
 	desc = "Despite its name, it's mainly used for cutting meat from dead prey rather than actual hunting."
 	inhand_icon_state = "huntingknife"
 	icon_state = "huntingknife"
+	force = 5
+	throwforce = 5
 
 /obj/item/kitchen/knife/hunting/set_butchering()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force + 10)

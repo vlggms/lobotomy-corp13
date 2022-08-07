@@ -17,6 +17,8 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
@@ -58,13 +60,18 @@
 				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			finishing = FALSE
 
-/mob/living/simple_animal/hostile/ordeal/green_bot/death(gibbed)
-	density = FALSE
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
-	..()
+//Green dawn factory spawn
+/mob/living/simple_animal/hostile/ordeal/green_bot/factory
+	butcher_results = list()
+	guaranteed_butcher_results = list()
 
-// Green dawn
+/mob/living/simple_animal/hostile/ordeal/green_bot/factory/death(gibbed)
+		density = FALSE
+		animate(src, alpha = 0, time = 5 SECONDS)
+		QDEL_IN(src, 5 SECONDS)
+		..()
+
+// Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
 	desc = "A big robot with a saw and a machinegun in place of its hands."
@@ -91,6 +98,8 @@
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -143,11 +152,16 @@
 	reloading = FALSE
 	icon_state = icon_living
 
-/mob/living/simple_animal/hostile/ordeal/green_bot_big/death(gibbed)
-	density = FALSE
-	animate(src, alpha = 0, time = 5 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
-	..()
+//Green noon factory spawn
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/factory
+	butcher_results = list()
+	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/factory/death(gibbed)
+		density = FALSE
+		animate(src, alpha = 0, time = 5 SECONDS)
+		QDEL_IN(src, 5 SECONDS)
+		..()
 
 // Green dusk
 /mob/living/simple_animal/hostile/ordeal/green_dusk
@@ -197,7 +211,7 @@
 	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
-		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot, /mob/living/simple_animal/hostile/ordeal/green_bot_big)
+		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
 		var/mob/living/simple_animal/hostile/ordeal/nb = new picked_mob(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
