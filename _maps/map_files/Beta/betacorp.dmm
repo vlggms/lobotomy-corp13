@@ -4333,6 +4333,7 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
+/obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "zK" = (
@@ -4656,6 +4657,11 @@
 /obj/item/pen/red,
 /obj/item/pen/fourcolor,
 /obj/item/pen/blue,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
 /turf/open/floor/carpet/black,
 /area/department_main/information)
 "BW" = (
@@ -4864,6 +4870,11 @@
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"Dw" = (
+/obj/structure/table/wood,
+/obj/item/toy/plush/enoch,
+/turf/open/floor/wood,
+/area/department_main/command)
 "Dy" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/disposalpipe/segment,
@@ -37789,7 +37800,7 @@ Fa
 AI
 Ge
 ZY
-Ge
+Dw
 AI
 Fa
 AI
