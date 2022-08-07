@@ -22,6 +22,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/fragment/melee_attack_chain(mob/user, atom/target, params)
 	..()
@@ -38,6 +41,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/lutemia
 	name = "dear lutemia"
@@ -49,6 +55,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
@@ -61,6 +70,9 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/eyes/melee_attack_chain(mob/user, atom/target, params)
 	..()
@@ -82,6 +94,9 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))

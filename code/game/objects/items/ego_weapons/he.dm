@@ -23,6 +23,9 @@
 	attack_verb_continuous = list("attacks", "bashes", "tills")
 	attack_verb_simple = list("attack", "bash", "till")
 	hitsound = 'sound/weapons/ego/harvest.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
@@ -48,35 +51,42 @@
 	desc = "The paws made form, and given life."
 	special = "This weapon has a very fast attack speed."
 	icon_state = "bear_paw"
-	force = 5
+	force = 12
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "jabs", "slaps")
 	attack_verb_simple = list("punches", "jabs", "slaps")
 	hitsound = 'sound/weapons/punch1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 //ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
 /obj/item/ego_weapon/paw/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.20)
+	user.changeNext_move(CLICK_CD_MELEE * 0.30)
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
 
 
 /obj/item/ego_weapon/wings
 	name = "torn off wings"
-	desc = "THe stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
+	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
 		pressed it to his lips, put it on as a token, and, bravely brandishing his bare sword, \
 		jumped as nimbly as a bird over the ledge of the cabinet to the floor."
+	special = "This weapon has a very fast attack speed."
 	icon_state = "wings"
-	force = 5
+	force = 12
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "claws")
 	attack_verb_simple = list("slashes", "claws")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
 
 //ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
 /obj/item/ego_weapon/wings/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.20)
+	user.changeNext_move(CLICK_CD_MELEE * 0.30)
 

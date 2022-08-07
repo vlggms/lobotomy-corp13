@@ -79,7 +79,7 @@
 /obj/item/paper/fluff/info/teth/dingle
 	name = "T-04-111"
 	info = {"<h1><center>T-04-111</center></h1>	<br>
-	Name : Fragment of the Universe	<br>
+	Name : Dingle Dangle	<br>
 	Risk Class : Teth	<br>
 	Max PE Boxes : 12	<br>
 	Qliphoth Counter : 2	<br>

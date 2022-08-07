@@ -25,3 +25,20 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/soda
 	cost = 12
 
+// Fairy Festival - Wingbeat
+/datum/ego_datum/weapon/wingbeat
+	item_path = /obj/item/ego_weapon/wingbeat
+	cost = 12
+
+/datum/ego_datum/armor/wingbeat
+	item_path = /obj/item/clothing/suit/armor/ego_gear/wingbeat
+	cost = 12
+
+// Bottle Of Tears - Little Alice
+/datum/ego_datum/weapon/little_alice
+	item_path = /obj/item/ego_weapon/little_alice
+	cost = 12
+
+/datum/ego_datum/armor/little_alice
+	item_path = /obj/item/clothing/suit/armor/ego_gear/little_alice
+	cost = 12

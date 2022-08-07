@@ -67,6 +67,8 @@
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.ghostize(1)
 	H.InitializeAIController()
+	datum_reference.qliphoth_change(3)
+	return
 
 
 //Outfit and Attacker's sword.

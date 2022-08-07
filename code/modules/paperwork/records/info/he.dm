@@ -67,10 +67,9 @@
 	Name : White Lake	<br>
 	Risk Class : He	<br>
 	Max PE Boxes : 18	<br>
-	Qliphoth Counter : 3	<br>
+	Qliphoth Counter : 2	<br>
 	- When an employee with Fortitude Level 3 or higher finished their work, the Qliphoth Counter lowered.	<br>
 	- When an employee with Fortitude Level 3 or higher worked on White Lake, The work chance was lowered.	<br>
-	- When an employee with Fortitude Level 3 or higher finished their work, White Lake occasionally tried to attack them.	<br>
 	- When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.	<br><br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> High<br>

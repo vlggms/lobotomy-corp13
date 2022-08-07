@@ -47,7 +47,7 @@
 							TEMPERANCE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/shepard
+/obj/item/clothing/suit/armor/ego_gear/oppression
 	name = "oppression"
 	desc = "And I shall hold you here, forever."
 	icon_state = "oppression"
@@ -57,7 +57,7 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/buddy
+/obj/item/clothing/suit/armor/ego_gear/totalitarianism
 	name = "totalitarianism"
 	desc = "Or are you trapped here by me?"
 	icon_state = "totalitarianism"
@@ -65,4 +65,13 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/goldrush
+	name = "gold rush"
+	desc = "Bare armor. lightweight and ready for combat."
+	icon_state = "gold_rush"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
 							)

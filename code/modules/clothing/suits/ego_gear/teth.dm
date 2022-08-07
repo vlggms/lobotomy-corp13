@@ -5,12 +5,18 @@
 	desc = "E.G.O intended for Manager Education"
 	icon_state = "training"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -40, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/beak
 	name = "beak"
 	desc = "It's sleek without a dent. The suit was originally very small, barely wearable by a child."
 	icon_state = "beak"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/match
 	name = "fourth match flame"
@@ -18,6 +24,9 @@
 	Although the exterior is scorched, it has no adverse effects on the E.G.O's performance."
 	icon_state = "match"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/fragment
 	name = "fragments from somewhere"
@@ -25,21 +34,33 @@
 	Sometimes, the wielder may see things we have long forgotten."
 	icon_state = "fragment"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/horn
 	name = "horn"
 	desc = "Since the flower had concluded its tale long ago, its scent is gone."
 	icon_state = "horn"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = -30, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/lutemia
 	name = "dear lutemia"
 	desc = "Your sadness, woes, cast them all aside."
 	icon_state = "lutemia"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/eyes
 	name = "red eyes"
 	desc = "Spiders have strong maternal instincts. They will defend their offspring at all costs."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
