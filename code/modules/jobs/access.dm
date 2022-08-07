@@ -144,7 +144,7 @@
 				ACCESS_MEDICAL, ACCESS_GENETICS, ACCESS_MORGUE, ACCESS_RD,
 				ACCESS_RND, ACCESS_TOXINS, ACCESS_CHEMISTRY, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_MAINT_TUNNELS,
 				ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD,
-				ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_HEADS, ACCESS_CAPTAIN, ACCESS_ALL_PERSONAL_LOCKERS,
+				ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_ALL_PERSONAL_LOCKERS,
 				ACCESS_TECH_STORAGE, ACCESS_CHAPEL_OFFICE, ACCESS_ATMOSPHERICS, ACCESS_KITCHEN,
 				ACCESS_BAR, ACCESS_JANITOR, ACCESS_CREMATORIUM, ACCESS_ROBOTICS, ACCESS_CARGO, ACCESS_CONSTRUCTION, ACCESS_AUX_BASE,
 				ACCESS_HYDROPONICS, ACCESS_LIBRARY, ACCESS_LAWYER, ACCESS_VIROLOGY, ACCESS_CMO, ACCESS_QM, ACCESS_SURGERY, ACCESS_PSYCHOLOGY,
@@ -187,7 +187,7 @@
 		if(6) //supply
 			return list(ACCESS_MAILSORTING, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MECH_MINING, ACCESS_MINERAL_STOREROOM, ACCESS_CARGO, ACCESS_QM, ACCESS_VAULT)
 		if(7) //command
-			return list(ACCESS_HEADS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_VAULT)
+			return list(ACCESS_COMMAND, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA, ACCESS_GATEWAY, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HOP, ACCESS_MANAGER, ACCESS_VAULT)
 		if(8) //syndicate -- TEGU
 			return get_all_syndicate_access()
 
@@ -260,9 +260,9 @@
 			return "Teleporter"
 		if(ACCESS_EVA)
 			return "EVA"
-		if(ACCESS_HEADS)
+		if(ACCESS_COMMAND)
 			return "Bridge"
-		if(ACCESS_CAPTAIN)
+		if(ACCESS_MANAGER)
 			return "Captain"
 		if(ACCESS_ALL_PERSONAL_LOCKERS)
 			return "Personal Lockers"
@@ -373,7 +373,7 @@
 			return "Code Scotch"
 
 /proc/get_all_jobs()
-	return list("Clerk", "Agent", "Senior Agent", "Agent Captain", "Explorer", "Fixer", "Pathfinder", "Sephirah", "Archivist", "Extraction Officer", "Manager", "Rabbit Team", "Rabbit Team Leader")
+	return list("Clerk", "Agent", "Senior Agent", "Agent Captain", "Explorer", "Fixer", "Pathfinder", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Rabbit Team", "Rabbit Team Leader")
 
 /proc/get_all_job_icons() //For all existing HUD icons
 	return get_all_jobs() + list("Emergency Response Team Commander", "Security Response Officer", "Engineering Response Officer", "Medical Response Officer", "Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "TerraGov Official", "TerraGov Marine") //Tegu edit right there

@@ -1,4 +1,19 @@
-/datum/job/extraction
+//General Command outfit
+/datum/outfit/job/command
+	name = "Command Outfit"
+	glasses = /obj/item/clothing/glasses/sunglasses
+	belt = /obj/item/pda/captain
+	ears = /obj/item/radio/headset/heads
+	uniform = /obj/item/clothing/under/suit/lobotomy
+	head = /obj/item/clothing/head/hos/beret
+	backpack_contents = list(/obj/item/melee/classic_baton=1)
+	shoes = /obj/item/clothing/shoes/laceup
+	gloves = /obj/item/clothing/gloves/color/black
+	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+
+//Extraction, for less copypaste
+/datum/job/command
 	title = "Extraction Officer"
 	department_head = list("Manager")
 	faction = "Station"
@@ -11,32 +26,31 @@
 	exp_requirements = 360
 	exp_type = EXP_TYPE_CREW
 
-	outfit = /datum/outfit/job/extraction
+	outfit = /datum/outfit/job/command/extraction
 
-	access = list() // LC13:To-Do
-	minimal_access = list()
+	access = list(ACCESS_COMMAND) // LC13:To-Do
+	minimal_access = list(ACCESS_COMMAND)
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 40,
-								PRUDENCE_ATTRIBUTE = 40,
-								TEMPERANCE_ATTRIBUTE = 40,
-								JUSTICE_ATTRIBUTE = 40
+								FORTITUDE_ATTRIBUTE = 20,
+								PRUDENCE_ATTRIBUTE = 20,
+								TEMPERANCE_ATTRIBUTE = 20,
+								JUSTICE_ATTRIBUTE = 20
 								)
-						//Beefy boy so they can use a couple gear
 
-
-/datum/outfit/job/extraction
+/datum/outfit/job/command/extraction
 	name = "Extraction Officer"
-	jobtype = /datum/job/extraction
-
-	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/pda/captain
-	ears = /obj/item/radio/headset/heads
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
-	head = /obj/item/clothing/head/hos/beret
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
-	shoes = /obj/item/clothing/shoes/laceup
-	gloves = /obj/item/clothing/gloves/color/black
-	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
-	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+
+
+//Records
+/datum/job/command/records
+	title = "Records Officer"
+	outfit = /datum/outfit/job/command/records
+
+
+/datum/outfit/job/command/records
+	name = "Records Officer"
+	jobtype = /datum/job/command/records
+	suit =  /obj/item/clothing/suit/armor/records

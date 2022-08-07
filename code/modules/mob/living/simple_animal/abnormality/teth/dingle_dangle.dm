@@ -7,10 +7,10 @@
 	health = 600
 	threat_level = TETH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(40, 40, 30, 30, 20),
+		ABNORMALITY_WORK_INSTINCT = list(70, 50, 30, 30, 20),
 		ABNORMALITY_WORK_INSIGHT = list(20, 30, 70, 70, 70),
-		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 10, 10, 10),
-		ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 10, 10)
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 30, 10, 10, 10),
+		ABNORMALITY_WORK_REPRESSION = list(40, 30, 20, 10, 10)
 			)
 	pixel_x = -16
 	base_pixel_x = -16
