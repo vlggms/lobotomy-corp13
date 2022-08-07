@@ -229,6 +229,18 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"bP" = (
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -9
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet/alephinfo{
+	pixel_x = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "bQ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -298,6 +310,16 @@
 "da" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/pod_storage)
+"db" = (
+/obj/structure/filingcabinet/heinfo,
+/obj/structure/filingcabinet/zayininfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/tethinfo{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "dc" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -2034,12 +2056,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"mS" = (
-/obj/structure/plaque/static_plaque/golden{
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
 "mW" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -2620,8 +2636,16 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
 "rH" = (
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/communications,
+/obj/machinery/button/door/indestructible{
+	id = "facilitylockdown";
+	name = "Facility Lockdown button";
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "rK" = (
 /obj/machinery/vending/snack/blue,
@@ -3570,7 +3594,35 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "xe" = (
-/obj/machinery/computer/ego_purchase,
+/obj/structure/table/wood,
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39;
+	pixel_x = 20
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27;
+	pixel_x = 20
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39;
+	pixel_x = -20
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27;
+	pixel_x = -20
+	},
+/obj/item/storage/photo_album/captain,
+/obj/item/documents,
+/obj/item/clothing/glasses/regular,
+/obj/item/stamp/denied,
+/obj/item/stamp,
+/obj/item/stamp/captain,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "xf" = (
@@ -5234,13 +5286,8 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "Ia" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/communications,
-/obj/machinery/button/door/indestructible{
-	id = "facilitylockdown";
-	name = "Facility Lockdown button";
+/obj/structure/plaque/static_plaque/golden{
+	pixel_x = -32;
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
@@ -6452,35 +6499,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "MQ" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 39;
-	pixel_x = 20
-	},
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = 20
-	},
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 39;
-	pixel_x = -20
-	},
-/obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -20
-	},
-/obj/item/storage/photo_album/captain,
-/obj/item/documents,
-/obj/item/clothing/glasses/regular,
-/obj/item/stamp/denied,
-/obj/item/stamp,
-/obj/item/stamp/captain,
+/obj/machinery/computer/ego_purchase,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "MR" = (
@@ -7611,6 +7630,10 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UF" = (
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "UI" = (
 /obj/docking_port/stationary{
 	dwidth = 25;
@@ -56890,10 +56913,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+VR
+VR
+VR
+VR
 aa
 aa
 aa
@@ -57148,8 +57171,8 @@ aa
 aa
 aa
 VR
-VR
-VR
+db
+We
 VR
 VR
 VR
@@ -57403,10 +57426,10 @@ aa
 aa
 aa
 aa
-aa
 VR
-We
-mS
+VR
+UX
+UX
 cY
 Cb
 PB
@@ -57660,8 +57683,8 @@ aa
 aa
 aa
 aa
-aa
 VR
+rH
 Ia
 UX
 ka
@@ -57917,9 +57940,9 @@ aa
 aa
 aa
 aa
-aa
 VR
-xe
+MQ
+UX
 UX
 UX
 Zd
@@ -58174,9 +58197,9 @@ aa
 aa
 aa
 aa
-aa
 VR
-MQ
+xe
+UX
 UX
 UX
 Bw
@@ -58431,9 +58454,9 @@ aa
 aa
 aa
 aa
-aa
 VR
 Fw
+UX
 UX
 UX
 Wb
@@ -58688,9 +58711,9 @@ aa
 aa
 aa
 aa
-aa
 VR
 eS
+UX
 UX
 Kz
 Yi
@@ -58945,9 +58968,9 @@ aa
 aa
 aa
 aa
-aa
 VR
-rV
+VR
+UX
 UX
 MN
 fb
@@ -59204,15 +59227,15 @@ aa
 aa
 aa
 VR
-VR
-VR
+rV
+bP
 VR
 VR
 VR
 VR
 VR
 Of
-rH
+UF
 VR
 aa
 aa
@@ -59460,10 +59483,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+VR
+VR
+VR
+VR
 aa
 aa
 aa
