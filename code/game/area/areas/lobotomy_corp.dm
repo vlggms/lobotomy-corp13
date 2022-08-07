@@ -32,11 +32,14 @@
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
-/area/department_main/command
-	name = "Command Main Room"
+/area/department_main/manager
+	name = "Manager's Office"
 
 /area/department_main/control
 	name = "Control Main Room"
+
+/area/department_main/command
+	name = "Command Main Room"
 
 /area/department_main/training
 	name = "Training Main Room"
