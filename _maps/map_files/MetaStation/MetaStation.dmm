@@ -40921,7 +40921,7 @@
 /area/hydroponics)
 "caS" = (
 /obj/structure/table/glass,
-/obj/item/clothing/accessory/armband/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
 /obj/item/clothing/suit/apron,
 /obj/item/wrench,
 /obj/structure/sign/poster/random{

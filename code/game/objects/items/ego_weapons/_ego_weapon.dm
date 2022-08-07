@@ -14,6 +14,8 @@
 							JUSTICE_ATTRIBUTE = 0
 							)
 
+	var/special
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return FALSE
@@ -22,6 +24,8 @@
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
+	if(special)
+		. += "<span class='notice'>[special]</span>"
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
