@@ -560,6 +560,12 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"fW" = (
+/obj/structure/plaque/static_plaque/golden{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "fX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
@@ -2614,10 +2620,8 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
 "rH" = (
-/obj/structure/plaque/static_plaque/golden{
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/royalblack,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/control)
 "rK" = (
 /obj/machinery/vending/snack/blue,
@@ -57402,7 +57406,7 @@ aa
 aa
 VR
 We
-rH
+fW
 cY
 Cb
 PB
@@ -59208,8 +59212,8 @@ VR
 VR
 VR
 Of
+rH
 VR
-aa
 aa
 aa
 aa
@@ -59466,7 +59470,7 @@ aa
 VR
 VR
 VR
-aa
+VR
 aa
 aa
 aa
