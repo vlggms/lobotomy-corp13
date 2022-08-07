@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
 	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	var/forcenext		//Used to force the next abnormality to be a certrain rank.
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
@@ -22,16 +23,19 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(world.time >= (wait*3))
 		if(!(HE_LEVEL in available_levels))
 			available_levels += HE_LEVEL
+			forcenext = HE_LEVEL
 	if(world.time >= (wait*6))
 		if(ZAYIN_LEVEL in available_levels)
 			available_levels -= ZAYIN_LEVEL
 		if(!(WAW_LEVEL in available_levels))
 			available_levels += WAW_LEVEL
+			forcenext = WAW_LEVEL
 	if(world.time >= (wait*9))
 		if(TETH_LEVEL in available_levels)
 			available_levels -= TETH_LEVEL
 		if(!(ALEPH_LEVEL in available_levels))
 			available_levels += ALEPH_LEVEL
+			forcenext = ALEPH_LEVEL
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
 		return
@@ -50,6 +54,11 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/pick_abno()
 	var/list/picking_abno = list()
+	if(forcenext)		//This ALWAYS forces one of each rank
+		forcenext = null
+		picking_abno += pick(possible_abnormalities[forcenext])
+		queued_abnormality = pick(picking_abno)
+		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
 	for(var/lev in available_levels)
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
