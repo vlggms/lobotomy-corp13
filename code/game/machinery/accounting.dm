@@ -5,7 +5,7 @@
 	icon_state = "recharger"
 	circuit = /obj/item/circuitboard/machine/accounting
 	pass_flags = PASSTABLE
-	req_one_access = list(ACCESS_HEADS, ACCESS_CHANGE_IDS)
+	req_one_access = list(ACCESS_COMMAND, ACCESS_CHANGE_IDS)
 	var/obj/item/card/id/inserted_id
 
 /obj/machinery/accounting/Destroy()

@@ -75,7 +75,7 @@
 	sign_change_name = "Department - Records"
 	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
 	desc = "The Records department. A light grey, you can smell an old library inside."
-	icon_state = "extraction"
+	icon_state = "records"
 	is_editable = FALSE
 
 
