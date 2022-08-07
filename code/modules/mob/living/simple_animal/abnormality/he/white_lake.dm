@@ -49,7 +49,7 @@
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
-
+	champion = null
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
 	H.dropItemToGround(held) 	//Drop weapon
