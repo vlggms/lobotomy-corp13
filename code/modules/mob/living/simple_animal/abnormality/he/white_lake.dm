@@ -55,6 +55,7 @@
 		return
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
+	champion = null
 	H.equipOutfit(whitelake)	//Get outfit
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
