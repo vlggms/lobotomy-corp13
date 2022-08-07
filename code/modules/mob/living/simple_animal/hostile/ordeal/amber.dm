@@ -50,6 +50,12 @@
 	animate(src, pixel_y = base_pixel_y, time = 2)
 	return TRUE
 
+/mob/living/simple_animal/hostile/ordeal/amber_bug/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
 	name = "food chain"

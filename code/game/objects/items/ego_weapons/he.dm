@@ -64,7 +64,7 @@
 
 /obj/item/ego_weapon/wings
 	name = "torn off wings"
-	desc = "THe stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
+	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
 		pressed it to his lips, put it on as a token, and, bravely brandishing his bare sword, \
 		jumped as nimbly as a bird over the ledge of the cabinet to the floor."
 	icon_state = "wings"

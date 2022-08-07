@@ -1,5 +1,5 @@
 //One sin
-/obj/item/paper/fluff/zayin/lore/onesin
+/obj/item/paper/fluff/lore/zayin/onesin
 	name = "O-03-03"
 	info = {"<h2><center>O-03-03</center></h2>	<br>
 	One Sin and Hundreds of Good Deeds	<br>
@@ -36,7 +36,7 @@
 	They distort perspectives to justify their actions, even though they are aware that they should be telling the truth. Once this happens, the confession is no longer truly a confession. Yes, I’m talking about you trying to justify your tardiness for 5 minutes now!"}
 
 //BALD
-/obj/item/paper/fluff/zayin/lore/bald
+/obj/item/paper/fluff/lore/zayin/bald
 	name = "O-03-03"
 	info = {"<h2><center>BALD-IS-AWESOME</center></h2>	<br>
 	You're Bald	<br>

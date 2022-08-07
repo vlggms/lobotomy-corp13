@@ -58,6 +58,12 @@
 				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			finishing = FALSE
 
+/mob/living/simple_animal/hostile/ordeal/green_bot/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
 // Green dawn
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
@@ -137,6 +143,12 @@
 	reloading = FALSE
 	icon_state = icon_living
 
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
 // Green dusk
 /mob/living/simple_animal/hostile/ordeal/green_dusk
 	name = "where we must reach"
@@ -150,6 +162,8 @@
 	maxHealth = 2500
 	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
 
 	var/spawn_progress = 20
 	var/list/spawned_mobs = list()
