@@ -24,6 +24,11 @@
 	base_pixel_x = -16
 	pixel_y = -16
 	base_pixel_y = -16
+	density = FALSE
+	anchored = TRUE
+	layer = BELOW_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 0
 
 /obj/effect/qoh_sygil/Initialize()
 	..()
