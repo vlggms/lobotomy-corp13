@@ -85,7 +85,7 @@
 	desc = "Even light forms of contraint can be considered totalitarianism"
 	special = "Use this weapon enter a stance to deflect bullets."
 	icon_state = "oppression"
-	force = 35
+	force = 32
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -95,6 +95,10 @@
 							TEMPERANCE_ATTRIBUTE = 80
 							)
 	var/mode = 0
+
+/obj/item/ego_weapon/oppression/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.25) // FASTER
 
 /obj/item/ego_weapon/oppression/attackby(obj/item/P, mob/living/user, params)
 	if (mode==0)
@@ -106,7 +110,7 @@
 	if (mode==1)
 		mode = 0
 		to_chat(user,"<span class='warning'>You reset your stance, prepared to fight</span>")
-		force = 35
+		force = 32
 
 /obj/item/ego_weapon/oppression/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && mode == 1)
