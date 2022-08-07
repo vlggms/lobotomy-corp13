@@ -5,6 +5,7 @@
 	icon_state = "derfreischutz"
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
+	pixel_y = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 50,
@@ -15,6 +16,8 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/magicbullet,
+		/datum/ego_datum/armor/magicbullet
 		)
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -66,13 +69,13 @@
 	datum_reference.qliphoth_change(3)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/fire_magic_bullet(var/mob/target = pick(GLOB.xeno_spawn), freidir = WEST)
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/fire_magic_bullet(var/mob/target = pick(GLOB.xeno_spawn), freidir = pick(EAST,WEST))
 	src.icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	src.update_icon()
-	var/offset = 0
+	var/offset = -12
 	var/list/portals = list()
 	var/turf/T = src.loc
-	var/turf/barrel = locate(T.x + 1, T.y + 1, T.z)
+	var/turf/barrel = locate(T.x + 2, T.y + 1, T.z)
 	var/turf/tpos = target.loc
 	if (freidir == EAST)
 		T = locate(tpos.x - 5, tpos.y, tpos.z)
@@ -82,7 +85,8 @@
 		T = locate(tpos.x, tpos.y + 5, tpos.z)
 	else
 		T = locate(tpos.x, tpos.y - 5, tpos.z)
-	playsound(T, 'sound/abnormalities/freischutz/prepare.ogg')
+	playsound(T, 'sound/abnormalities/freischutz/prepare.ogg', 100, 0, 20)
+	playsound(src.loc, 'sound/abnormalities/freischutz/prepare.ogg', 100, 0)
 	for(var/i=1, i<5, i++)
 		var/obj/effect/frei_magic/P = new(barrel)
 		P.dir = EAST
@@ -109,7 +113,7 @@
 			continue
 		else
 			var/obj/effect/magic_bullet/B = new(T)
-			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg')
+			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 0, 20)
 			B.dir = freidir
 			walk(B,freidir,0,0)
 			src.icon = 'ModularTegustation/Teguicons/32x64.dmi'

@@ -49,3 +49,18 @@
 	if(chambered && chambered.BB)
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
 	return
+
+/obj/item/gun/ego_gun/magicbullet
+	name = "magic bullet"
+	desc = "Though the original's power couldn't be fully extracted, the magic this holds is still potent. \
+	The weapon's bullets travel across the corridor, along the horizon."
+	icon_state = "magic_bullet"
+	inhand_icon_state = "magic_bullet"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 8
+	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
+
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60
+							)
