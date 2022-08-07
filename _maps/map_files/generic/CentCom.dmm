@@ -457,6 +457,11 @@
 	dir = 1
 	},
 /obj/machinery/computer/crew,
+/obj/machinery/button/door/indestructible{
+	id = "managerlockdown";
+	name = "Manager's Office Lockdown button";
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "eW" = (
@@ -1670,7 +1675,8 @@
 /area/centcom/evac)
 "kl" = (
 /obj/machinery/door/airlock/centcom{
-	name = "R-Corp Security"
+	name = "R-Corp Security";
+	req_access_txt = "101"
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
@@ -2226,13 +2232,11 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "oQ" = (
-/obj/machinery/power/smes/magical,
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "oV" = (
@@ -2610,20 +2614,11 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
 "rH" = (
-/obj/machinery/power/apc{
-	name = "Briefing Room APC";
-	pixel_y = -23
+/obj/structure/plaque/static_plaque/golden{
+	pixel_x = -32
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "rK" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/dark,
@@ -3572,11 +3567,6 @@
 /area/centcom/ferry)
 "xe" = (
 /obj/machinery/computer/ego_purchase,
-/obj/machinery/button/door/indestructible{
-	id = "facilitylockdown";
-	name = "Facility Lockdown button";
-	pixel_y = 32
-	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "xf" = (
@@ -3644,7 +3634,8 @@
 /area/centcom/evac)
 "xo" = (
 /obj/machinery/door/airlock/centcom{
-	name = "CentCom"
+	name = "CentCom";
+	req_access_txt = "101"
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
@@ -4985,11 +4976,6 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
 "Fw" = (
-/obj/machinery/button/door/indestructible{
-	id = "managerlockdown";
-	name = "Manager's Office Lockdown button";
-	pixel_y = 32
-	},
 /obj/machinery/computer/camera_advanced/manager,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
@@ -5141,6 +5127,16 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/holding)
+"Hp" = (
+/obj/structure/fans/tiny/invisible,
+/obj/structure/signpost/salvation{
+	pixel_y = 15
+	},
+/turf/open/floor/holofloor/hyperspace,
+/area/centcom/supplypod/supplypod_temp_holding)
+"Ht" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/department_main/control)
 "Hv" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -5234,13 +5230,15 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "Ia" = (
-/obj/structure/plaque/static_plaque/golden{
-	pixel_y = 32
-	},
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/computer/communications,
+/obj/machinery/button/door/indestructible{
+	id = "facilitylockdown";
+	name = "Facility Lockdown button";
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Ie" = (
@@ -5411,9 +5409,7 @@
 "IQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/terminal{
-	dir = 8
-	},
+/obj/machinery/power/smes/magical,
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
@@ -5834,10 +5830,14 @@
 /area/tdome/tdomeadmin)
 "Kz" = (
 /obj/structure/table/wood,
-/obj/item/toy/figure/scientist{
-	pixel_x = 8;
-	pixel_y = 8;
-	toysay = "Face the fear, build the future!"
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 7
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
@@ -6449,15 +6449,34 @@
 /area/department_main/control)
 "MQ" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -7
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27
 	},
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_y = 17
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39;
+	pixel_x = 20
 	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27;
+	pixel_x = 20
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 39;
+	pixel_x = -20
+	},
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 27;
+	pixel_x = -20
+	},
+/obj/item/storage/photo_album/captain,
+/obj/item/documents,
+/obj/item/clothing/glasses/regular,
+/obj/item/stamp/denied,
+/obj/item/stamp,
+/obj/item/stamp/captain,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "MR" = (
@@ -8063,7 +8082,10 @@
 "Yi" = (
 /obj/structure/railing,
 /obj/structure/table/wood,
-/obj/item/food/grown/star_cactus,
+/obj/item/kirbyplants{
+	icon_state = "plant-11";
+	pixel_y = 13
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Ym" = (
@@ -8122,7 +8144,7 @@
 	width = 6;
 	dir = 2
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "YI" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -15260,7 +15282,7 @@ hH
 hH
 jA
 lS
-lS
+Hp
 lS
 jA
 hH
@@ -46290,12 +46312,12 @@ mD
 HY
 zA
 Ac
-By
-By
-By
-By
-Qq
-rH
+Ac
+Ac
+Ac
+Ac
+zA
+nD
 mD
 aa
 aa
@@ -57380,7 +57402,7 @@ aa
 aa
 VR
 We
-UX
+rH
 cY
 Cb
 PB
@@ -57644,11 +57666,11 @@ PB
 PB
 PB
 WI
-PB
-PB
-PB
-PB
-PB
+Ht
+Ht
+Ht
+Ht
+Ht
 VR
 aa
 aa
@@ -57901,11 +57923,11 @@ ZI
 PB
 PB
 eD
-PB
-PB
-PB
-PB
-PB
+Ht
+Ht
+Ht
+Ht
+Ht
 VR
 aa
 aa
@@ -58159,10 +58181,10 @@ yP
 PB
 NI
 YC
-PB
-PB
-PB
-PB
+Ht
+Ht
+Ht
+Ht
 VR
 aa
 aa
@@ -58415,11 +58437,11 @@ Sh
 PB
 PB
 eD
-PB
-PB
-PB
-PB
-PB
+Ht
+Ht
+Ht
+Ht
+Ht
 VR
 aa
 aa
@@ -58672,11 +58694,11 @@ PB
 PB
 PB
 JX
-PB
-PB
-PB
-PB
-PB
+Ht
+Ht
+Ht
+Ht
+Ht
 VR
 aa
 aa
