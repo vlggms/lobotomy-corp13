@@ -598,6 +598,27 @@
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC
 
+/obj/item/food/meat/slab/human/mutant/sweeper
+	icon_state = "sweepermeat"
+	desc = "The butchered remains of a sweeper. It's edible, although just barely."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tender meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/human/mutant/fruit
+	icon_state = "fruitmeat"
+	desc = "The innards of a violet ordeal. If you can get past all of the horrible chemicals and textures, it's quite delicious."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
+	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
+	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
+
+/obj/item/food/meat/slab/human/mutant/worm
+	icon_state = "wormmeat"
+	desc = "An awful tasting gelatinous meat harvested from a worm."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
+	tastes = list("slime" = 1, "jelly" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
 /obj/item/food/meat/slab/human/mutant/golem
 	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future."
