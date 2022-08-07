@@ -560,12 +560,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"fW" = (
-/obj/structure/plaque/static_plaque/golden{
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
 "fX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
@@ -2040,6 +2034,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"mS" = (
+/obj/structure/plaque/static_plaque/golden{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "mW" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -57406,7 +57406,7 @@ aa
 aa
 VR
 We
-fW
+mS
 cY
 Cb
 PB
