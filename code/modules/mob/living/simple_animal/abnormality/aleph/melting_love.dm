@@ -56,12 +56,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
 	..()
-	icon = 'ModularTegustation/Teguicons/90x90.dmi'
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_living = "melting_breach"
 	icon_state = icon_living
 	icon_dead = "melting_breach_dead"
-	pixel_y = 0
-	base_pixel_y = 0
+	pixel_x = -32
+	base_pixel_x = -32
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	return
 
@@ -218,11 +218,11 @@
 /mob/living/simple_animal/hostile/slime/big
 	name = "Big Slime"
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
-	icon = 'ModularTegustation/Teguicons/44x44.dmi'
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "big_slime"
 	icon_living = "big_slime"
-	pixel_x = -6
-	base_pixel_x = -6
+	pixel_x = -8
+	base_pixel_x = -8
 	/* Stats */
 	health = 2000
 	maxHealth = 2000
