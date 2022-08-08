@@ -6,7 +6,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
-	recoil = 3		//Shakes your screen
+	recoil = 1		//Shakes your screen
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
