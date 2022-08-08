@@ -133,4 +133,4 @@
 		L.physiology.black_mod += 0.9
 		L.physiology.pale_mod += 0.8
 
-#undef STATUS_EFFECT_WILTING
+#undef STATUS_EFFECT_CHAMPION
