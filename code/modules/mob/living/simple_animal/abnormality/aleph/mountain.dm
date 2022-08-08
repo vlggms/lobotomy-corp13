@@ -108,9 +108,11 @@
 		datum_reference.qliphoth_change(-1)
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/mountain/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	healthcheck()
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/mountain/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/mountain/proc/healthcheck()
 	if(health < (maxHealth/2.3) && phase >=2)		//I can't do fucking half or it shits out
 		icon_state = "mosb_breach"
 		playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
