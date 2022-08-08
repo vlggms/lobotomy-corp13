@@ -59,7 +59,7 @@
 	datum_reference.qliphoth_change(3)
 	//Replaces AI with murder one
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
-	H.ghostize(1)
+	H.ghostize()
 	H.InitializeAIController()
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
