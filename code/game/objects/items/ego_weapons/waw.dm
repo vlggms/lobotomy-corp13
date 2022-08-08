@@ -100,13 +100,11 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 1.25) // FASTER
 
-/obj/item/ego_weapon/oppression/attackby(obj/item/P, mob/living/user, params)
+/obj/item/ego_weapon/oppression/attack_hand(mob/living/user)
 	if (mode==0)
 		mode = 1
 		to_chat(user,"<span class='warning'>You take a defensive stance to block bullets. You find your attacks less effective</span>")
 		force = 20
-
-
 	if (mode==1)
 		mode = 0
 		to_chat(user,"<span class='warning'>You reset your stance, prepared to fight</span>")

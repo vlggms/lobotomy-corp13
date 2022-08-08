@@ -215,7 +215,7 @@
 
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
-		playsound(src, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
+		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
@@ -229,7 +229,7 @@
 	special = "This weapon has a slightly slower attack speed.\
 			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
 	icon_state = "smile"
-	force = 100
+	force = 100		//Slightly less damage, has an ability
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -250,6 +250,6 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)
+	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth*0.1)	//Heal 10% HP. Moved here from the armor, because that's a nightmare to code

@@ -22,28 +22,22 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/ego_weapon/fragment/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.4) // Has Longer reach, should be a little slower
+	user.changeNext_move(CLICK_CD_MELEE * 1.2) // Has Longer reach, should be a little slower
 
 /obj/item/ego_weapon/horn
 	name = "horn"
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
 	force = 22
-	throwforce = 50		//You can only hold two so go nuts.
+	throwforce = 45		//You can only hold two so go nuts.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/ego_weapon/lutemia
 	name = "dear lutemia"
@@ -55,9 +49,6 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
@@ -70,9 +61,6 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/ego_weapon/eyes/melee_attack_chain(mob/user, atom/target, params)
 	..()

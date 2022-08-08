@@ -35,7 +35,7 @@
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/wingbeat
-	name = "wingbeat"	//Looks like alice from Shin Megami Tensei
+	name = "wingbeat"
 	desc = "Most of the employees do not know the true meaning of The Fairies’ Care."
 	icon_state = "wingbeat"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 00, BLACK_DAMAGE = 00, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 00, PALE_DAMAGE = 0)
