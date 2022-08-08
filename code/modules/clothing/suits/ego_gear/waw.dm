@@ -71,7 +71,7 @@
 	name = "gold rush"
 	desc = "Bare armor. lightweight and ready for combat."
 	icon_state = "gold_rush"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							)
