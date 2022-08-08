@@ -56,6 +56,7 @@
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)
+	datum_reference.qliphoth_change(3)
 	//Replaces AI with murder one
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.ghostize(1)
@@ -67,7 +68,6 @@
 	H.dropItemToGround(held) 	//Drop weapon
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE
-	datum_reference.qliphoth_change(3)
 
 //Outfit and Attacker's sword.
 /datum/outfit/whitelake
@@ -111,8 +111,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/champion
 
 /atom/movable/screen/alert/status_effect/champion
-	name = "His Grace"
-	desc = "His Grace hungers, and you must feed Him."
+	name = "The Champion"
+	desc = "You are White Lake's champion, and she has empowered you temporarily."
 
 /datum/status_effect/champion/on_apply()
 	. = ..()
