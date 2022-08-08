@@ -14,6 +14,8 @@
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -66,6 +68,8 @@
 	melee_damage_lower = 60
 	melee_damage_upper = 60
 	ranged = TRUE
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 4)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 3)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -110,7 +114,7 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth))
+	adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 
 
