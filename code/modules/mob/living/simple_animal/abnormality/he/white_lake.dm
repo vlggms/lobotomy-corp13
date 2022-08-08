@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_CHAMPION /datum/status_effect/champion
 //White Lake from wonderlabs, by Kirie saito
 //It's very buggy, and I can't test it alone
 /mob/living/simple_animal/hostile/abnormality/whitelake
@@ -19,7 +20,9 @@
 	work_damage_type = RED_DAMAGE
 	/// Grab her champion
 	var/champion
-	start_qliphoth = 2
+	//Has the weapon been given out?
+	var/sword = FALSE
+	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
@@ -49,25 +52,22 @@
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
+	H.equipOutfit(whitelake)	//Get outfit
+	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
+	if(!sword)
+		waltz(H)
+	datum_reference.qliphoth_change(3)
+	//Replaces AI with murder one
+	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
+	H.ghostize()
+	H.InitializeAIController()
 
+/mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
 	H.dropItemToGround(held) 	//Drop weapon
-	H.equipOutfit(whitelake)	//Get outfit
 	H.put_in_hands(wep) 		//Time for pale
-
-	//They need to be unable to get sane again
-	//To avoid stacking these infinitely
-	H.physiology.red_mod *= 0.3
-	H.physiology.white_mod *= 0
-	H.physiology.black_mod *= 0
-	H.physiology.pale_mod *= 0.3
-
-	//Replaces AI with murder one
-	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
-	H.ghostize(1)
-	H.InitializeAIController()
-
+	sword = TRUE
 
 //Outfit and Attacker's sword.
 /datum/outfit/whitelake
@@ -91,7 +91,6 @@
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	//No requirements because who knows who will use it.
-	//The tradeoff is that you have to kill someone
 
 //Slightly different AI lines
 /datum/ai_controller/insane/murder/whitelake
@@ -103,3 +102,35 @@
 				"You're in the way!",
 				"I will dance with her forever!"
 				)
+//CHAMPION
+//Sets the defenses of the champion
+/datum/status_effect/champion
+	id = "champion"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 6000		//Lasts 10 minutes, guaranteed.
+	alert_type = /atom/movable/screen/alert/status_effect/champion
+
+/atom/movable/screen/alert/status_effect/champion
+	name = "The Champion"
+	desc = "You are White Lake's champion, and she has empowered you temporarily."
+
+/datum/status_effect/champion/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		//To avoid bugs, I am instead reducing by a flat amount, so that you can't change it by applying a separate defense mod while it is active
+		L.physiology.red_mod -= 0.7
+		L.physiology.white_mod -= 0.9
+		L.physiology.black_mod -= 0.9
+		L.physiology.pale_mod -= 0.8
+
+/datum/status_effect/champion/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.red_mod += 0.7
+		L.physiology.white_mod += 0.9
+		L.physiology.black_mod += 0.9
+		L.physiology.pale_mod += 0.8
+
+#undef STATUS_EFFECT_CHAMPION
