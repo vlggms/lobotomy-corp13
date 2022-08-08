@@ -114,7 +114,7 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth))
+	adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 
 
