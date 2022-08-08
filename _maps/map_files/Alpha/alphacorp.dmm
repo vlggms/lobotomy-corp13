@@ -179,13 +179,16 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "cp" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/siding/red{
-	dir = 4
+/obj/structure/sign/poster/official/hang_in_there{
+	pixel_y = -32
 	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/obj/structure/rack,
+/obj/item/storage/box/gloves{
+	pixel_y = 5
+	},
+/obj/item/storage/box/masks,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "cs" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -203,7 +206,7 @@
 	name = "Facility Lockdown button";
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/black,
 /area/department_main/control)
 "cB" = (
 /obj/structure/disposalpipe/junction/flip{
@@ -233,7 +236,7 @@
 /area/department_main/information)
 "cR" = (
 /obj/machinery/computer/communications,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/black,
 /area/department_main/control)
 "cV" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -270,6 +273,9 @@
 "dr" = (
 /obj/item/toner/extreme,
 /obj/structure/rack,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/training)
 "ds" = (
@@ -546,7 +552,6 @@
 /area/facility_hallway/east)
 "fC" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/rack,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -950,7 +955,16 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "jy" = (
-/obj/structure/rack,
+/obj/structure/table/glass,
+/obj/structure/table/glass,
+/obj/item/paper/guides/jobs/aleph{
+	pixel_x = 5
+	},
+/obj/item/paper/guides/jobs/waw{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "jD" = (
@@ -1003,6 +1017,19 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"ks" = (
+/obj/structure/table/glass,
+/obj/item/paper/guides/jobs/he{
+	pixel_x = 5
+	},
+/obj/item/paper/guides/jobs/teth{
+	pixel_y = 5
+	},
+/obj/item/paper/guides/jobs/zayin{
+	pixel_x = -5
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "ku" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/structure/disposalpipe/segment,
@@ -1068,6 +1095,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"ll" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/chem_master/condimaster,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/training)
 "lp" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/railing,
@@ -1123,6 +1161,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"lJ" = (
+/obj/structure/table/glass,
+/obj/item/toy/plush/malkuth,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "lK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -1331,7 +1374,6 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 14
 	},
-/obj/item/toy/plush/pierre,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "ov" = (
@@ -1358,20 +1400,8 @@
 /turf/open/floor/wood,
 /area/department_main/control)
 "oF" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
 /obj/structure/table/glass,
-/obj/item/paper/guides/jobs/he{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/teth{
-	pixel_y = 5
-	},
-/obj/item/paper/guides/jobs/zayin{
-	pixel_x = -5
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "oG" = (
 /obj/effect/turf_decal/tile/brown{
@@ -1390,6 +1420,12 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"oM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/department_main/training)
 "oN" = (
 /obj/machinery/modular_computer/console/preset/civilian{
 	dir = 4
@@ -1483,6 +1519,26 @@
 /obj/item/reagent_containers/food/condiment/rice,
 /obj/item/reagent_containers/food/condiment/rice,
 /obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "pH" = (
@@ -1516,15 +1572,37 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "pX" = (
-/obj/effect/turf_decal/siding/red,
-/obj/effect/landmark/start{
-	pixel_x = 3
-	},
-/obj/structure/chair/office{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/structure/rack,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "qa" = (
 /obj/machinery/scanner_gate,
 /obj/effect/turf_decal/stripes/line,
@@ -1554,6 +1632,7 @@
 /obj/structure/sign/poster/contraband/shamblers_juice{
 	pixel_x = 32
 	},
+/obj/structure/table,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "qo" = (
@@ -2044,24 +2123,16 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "uu" = (
-/obj/effect/turf_decal/siding/red{
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/glass,
-/obj/effect/turf_decal/siding/red{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/obj/item/paper/guides/jobs/aleph{
-	pixel_x = 5
-	},
-/obj/item/paper/guides/jobs/waw{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/training)
 "uz" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/effect/turf_decal/siding/brown{
@@ -2284,6 +2355,19 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
+"wD" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/suit/toggle/labcoat{
+	pixel_y = 4
+	},
+/obj/item/storage/lockbox/medal{
+	req_access = list()
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/control)
 "wF" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -2519,7 +2603,7 @@
 	name = "Manager's Office Lockdown button";
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/black,
 /area/department_main/control)
 "zk" = (
 /obj/machinery/light,
@@ -2538,35 +2622,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "zy" = (
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/structure/rack,
+/obj/structure/table/glass,
 /obj/machinery/light,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -2577,17 +2633,30 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "zC" = (
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/structure/rack,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/sign/poster/official/hang_in_there{
-	pixel_y = -32
-	},
-/obj/structure/rack,
-/obj/item/storage/box/gloves{
-	pixel_y = 5
-	},
-/obj/item/storage/box/masks,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zF" = (
@@ -2725,6 +2794,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
+/obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "BB" = (
@@ -2804,6 +2874,7 @@
 /area/facility_hallway/east)
 "Ct" = (
 /obj/machinery/light,
+/obj/structure/rack,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Cy" = (
@@ -2896,6 +2967,8 @@
 /area/facility_hallway/north)
 "DH" = (
 /obj/structure/rack,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "DK" = (
@@ -2942,18 +3015,24 @@
 /obj/machinery/vending/cola/shamblers,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"Ep" = (
+/obj/structure/table/glass,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/item/clothing/accessory/armband/lobotomy,
+/obj/structure/table/glass,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "Es" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/suit/toggle/labcoat{
-	pixel_y = 4
-	},
-/obj/item/storage/lockbox/medal{
-	req_access = list()
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
+/obj/structure/table,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "Ex" = (
 /obj/effect/turf_decal/siding/purple/corner{
@@ -3168,6 +3247,12 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"GV" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/training)
 "GW" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -3365,7 +3450,7 @@
 /obj/structure/plaque/static_plaque/golden{
 	pixel_y = 32
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/black,
 /area/department_main/control)
 "IY" = (
 /obj/structure/table/glass,
@@ -3550,6 +3635,12 @@
 "KI" = (
 /turf/open/floor/plating,
 /area/department_main/information)
+"KJ" = (
+/obj/machinery/modular_computer/console/preset/command{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "KO" = (
 /obj/machinery/camera/autoname,
 /obj/effect/decal/cleanable/dirt,
@@ -3636,6 +3727,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/structure/rack,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Lr" = (
@@ -3849,6 +3941,11 @@
 /obj/item/toy/plush/hod,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"Ok" = (
+/obj/structure/table,
+/obj/item/storage/box/handcuffs,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "Ol" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -4001,6 +4098,8 @@
 /obj/item/reagent_containers/glass/bowl,
 /obj/item/kitchen/rollingpin,
 /obj/item/kitchen/knife,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "Pw" = (
@@ -4056,25 +4155,10 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/safety)
 "PV" = (
-/obj/effect/turf_decal/siding/red{
+/obj/structure/chair/office{
 	dir = 1
 	},
-/obj/structure/table/glass,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/effect/turf_decal/siding/red{
-	dir = 1
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "Qc" = (
 /obj/machinery/light{
@@ -4260,6 +4344,7 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
 	},
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "RW" = (
@@ -4461,7 +4546,9 @@
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
 	},
-/obj/machinery/modular_computer/console/preset/command,
+/obj/effect/landmark/start{
+	pixel_x = 3
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "TC" = (
@@ -4470,37 +4557,23 @@
 /obj/item/kirbyplants{
 	icon_state = "plant-06"
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "TE" = (
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/structure/rack,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
+/obj/structure/chair/office,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "TF" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/kirbyplants{
 	icon_state = "plant-02"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
@@ -4725,7 +4798,9 @@
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
 	},
-/obj/machinery/modular_computer/console/preset/command,
+/obj/effect/landmark/start{
+	pixel_x = 3
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Wd" = (
@@ -4806,6 +4881,9 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"WF" = (
+/turf/closed/indestructible/rock,
+/area/department_main/control)
 "WG" = (
 /obj/machinery/cryopod,
 /obj/effect/decal/cleanable/dirt,
@@ -4855,6 +4933,8 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
 	},
+/obj/structure/table/reinforced,
+/obj/item/toy/plush/pierre,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "WW" = (
@@ -4958,13 +5038,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Yb" = (
-/obj/effect/turf_decal/siding/red,
-/obj/effect/landmark/start{
-	pixel_x = 3
-	},
-/obj/structure/chair/office,
-/obj/item/toy/plush/malkuth,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/modular_computer/console/preset/command,
+/turf/open/floor/carpet/red,
 /area/department_main/control)
 "Yg" = (
 /obj/structure/sign/departments/extraction{
@@ -31732,7 +31807,7 @@ gz
 gz
 gz
 gz
-sc
+Pw
 cu
 ZL
 ZL
@@ -32246,7 +32321,7 @@ NN
 NN
 YJ
 PU
-TE
+sc
 cu
 ZL
 ZL
@@ -32503,7 +32578,7 @@ fa
 gI
 OD
 PU
-fZ
+pX
 cu
 ZL
 ZL
@@ -33017,7 +33092,7 @@ gI
 gI
 OD
 PU
-Pw
+fZ
 cu
 JI
 JI
@@ -33274,7 +33349,7 @@ Op
 sl
 ww
 PU
-Pw
+cp
 cu
 JI
 JI
@@ -36581,11 +36656,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
+rg
+rg
 ZL
 ZL
 ZL
@@ -36602,7 +36677,7 @@ qR
 FV
 FV
 pH
-FV
+Ok
 rg
 tI
 xW
@@ -36837,11 +36912,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
+WF
 rg
-rg
-rg
-rg
+eT
+ah
+ah
 rg
 rg
 rg
@@ -36857,9 +36932,9 @@ KP
 KP
 KP
 KP
-oF
+KP
 Xx
-FV
+Es
 rg
 tS
 xG
@@ -37096,7 +37171,7 @@ ZL
 ZL
 ZL
 rg
-Es
+YY
 AU
 AU
 bb
@@ -37115,7 +37190,7 @@ Ol
 Ol
 Ol
 TB
-Yb
+Mi
 Ln
 rg
 vs
@@ -37366,12 +37441,12 @@ rg
 Ch
 GT
 Mi
-jy
+ks
 jy
 hP
-FV
-FV
-uu
+oF
+oF
+fq
 Mi
 Ct
 rg
@@ -37623,11 +37698,11 @@ FV
 FV
 GT
 Mi
-jy
+Yb
+PV
 FV
-FV
-FV
-FV
+TE
+KJ
 fq
 Mi
 eL
@@ -37867,7 +37942,7 @@ ZL
 ZL
 ZL
 rg
-eT
+wD
 AU
 AU
 bx
@@ -38137,11 +38212,11 @@ FV
 FV
 fq
 Mi
-jy
+Yb
+PV
 FV
-FV
-FV
-FV
+TE
+KJ
 fq
 Mi
 eL
@@ -38394,12 +38469,12 @@ rg
 eh
 fq
 Mi
-jy
-jy
+lJ
+Ep
 FV
-FV
-FV
-PV
+oF
+oF
+fq
 Mi
 Ct
 rg
@@ -38638,7 +38713,7 @@ ZL
 ZL
 ZL
 rg
-YY
+ZA
 AU
 AU
 bV
@@ -38657,7 +38732,7 @@ KP
 KP
 KP
 Wc
-pX
+Mi
 Ln
 rg
 vs
@@ -38895,9 +38970,9 @@ ZL
 ZL
 ZL
 rg
-ZA
-AU
-AU
+ah
+ah
+ah
 rg
 rg
 rg
@@ -38913,9 +38988,9 @@ Ol
 Ol
 Ol
 Ol
-cp
+Ol
 XD
-FV
+Es
 rg
 uj
 AI
@@ -42003,7 +42078,7 @@ ZL
 ZL
 zW
 hj
-Mc
+GV
 Va
 zW
 pg
@@ -43541,7 +43616,7 @@ ZL
 ZL
 ZL
 ZL
-zW
+oM
 mb
 Jx
 Jx
@@ -47148,9 +47223,9 @@ ZL
 zW
 wj
 Bz
-Bz
-Bz
-Bz
+ll
+uu
+uu
 WU
 zW
 ZL
