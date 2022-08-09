@@ -10,7 +10,7 @@
 	return TRUE
 
 /datum/saymode/xeno
-	key = "a"
+	key = "v"
 	mode = MODE_ALIEN
 
 /datum/saymode/xeno/handle_message(mob/living/user, message, datum/language/language)

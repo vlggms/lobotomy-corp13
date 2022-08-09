@@ -254,7 +254,7 @@
 		/obj/item/stack/rods/cyborg,
 		/obj/item/stack/tile/plasteel,
 		/obj/item/stack/cable_coil)
-	radio_channels = list(RADIO_CHANNEL_ENGINEERING)
+	radio_channels = list(RADIO_CHANNEL_SAFETY)
 	emag_modules = list(/obj/item/borg/stun)
 	cyborg_base_icon = "engineer"
 	model_select_icon = "engineer"
@@ -279,7 +279,7 @@
 		/obj/item/lightreplacer/cyborg,
 		/obj/item/holosign_creator/janibarrier,
 		/obj/item/reagent_containers/spray/cyborg_drying)
-	radio_channels = list(RADIO_CHANNEL_SERVICE)
+	radio_channels = list(RADIO_CHANNEL_SAFETY)
 	emag_modules = list(/obj/item/reagent_containers/spray/cyborg_lube)
 	cyborg_base_icon = "janitor"
 	model_select_icon = "janitor"
@@ -335,7 +335,7 @@
 		/obj/item/stack/medical/bone_gel,
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop)
-	radio_channels = list(RADIO_CHANNEL_MEDICAL)
+	radio_channels = list(RADIO_CHANNEL_WELFARE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	cyborg_base_icon = "medical"
 	model_select_icon = "medical"
@@ -358,7 +358,7 @@
 		/obj/item/gun/energy/kinetic_accelerator/cyborg,
 		/obj/item/gps/cyborg,
 		/obj/item/stack/marker_beacon)
-	radio_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
+	radio_channels = list(RADIO_CHANNEL_CONTROL)
 	emag_modules = list(/obj/item/borg/stun)
 	cyborg_base_icon = "miner"
 	model_select_icon = "miner"
@@ -427,7 +427,7 @@
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/clothing/mask/gas/sechailer/cyborg,
 		/obj/item/extinguisher/mini)
-	radio_channels = list(RADIO_CHANNEL_SECURITY)
+	radio_channels = list(RADIO_CHANNEL_DISCIPLINE)
 	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 	cyborg_base_icon = "sec"
 	model_select_icon = "security"
@@ -472,7 +472,6 @@
 		/obj/item/borg/lollipop,
 		/obj/item/stack/pipe_cleaner_coil/cyborg,
 		/obj/item/borg/apparatus/beaker/service)
-	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
 	model_select_icon = "service"
 	special_light_key = "service"

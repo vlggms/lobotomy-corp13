@@ -42,10 +42,10 @@
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
-		H.adjustStaminaLoss(-damage_dealt*0.4)
-		H.adjustBruteLoss(-damage_dealt*0.2)
-		H.adjustFireLoss(-damage_dealt*0.2)
-		H.adjustSanityLoss(damage_dealt*0.2)
+		H.adjustStaminaLoss(-damage_dealt*0.3)
+		H.adjustBruteLoss(-damage_dealt*0.15)
+		H.adjustFireLoss(-damage_dealt*0.15)
+		H.adjustSanityLoss(damage_dealt*0.15)
 
 /obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
@@ -179,8 +179,49 @@
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		user.adjustBruteLoss(-force*0.2)
+		var/heal_amt = force*0.2
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype])
+				if(S.damage_coeff[damtype] >= 0)
+					heal_amt *= S.damage_coeff[damtype]
+				else
+					heal_amt = 0
+		user.adjustBruteLoss(-heal_amt)
 	..()
+
+/obj/item/ego_weapon/twilight
+	name = "twilight"
+	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
+	and the beak that could swallow everything protected the peace of the Black Forest... \
+	The wielder of this armament may also bring peace as they did."
+	icon_state = "twilight"
+	force = 25
+	damtype = RED_DAMAGE // It's all damage types, actually
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/twilight.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
+
+/obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		damtype = damage_type
+		armortype = damage_type
+		M.attacked_by(src, user)
+	damtype = initial(damtype)
+	armortype = initial(armortype)
+
+/obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
+	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
 
 /obj/item/ego_weapon/gold_rush
 	name = "gold rush"

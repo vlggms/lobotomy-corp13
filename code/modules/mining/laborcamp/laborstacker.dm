@@ -107,8 +107,8 @@ GLOBAL_LIST(labor_sheet_values)
 					to_chat(M, "<span class='alert'>No permission to dock could be granted.</span>")
 				else
 					if(!(obj_flags & EMAGGED))
-						Radio.set_frequency(FREQ_SECURITY)
-						Radio.talk_into(src, "A prisoner has returned to the station. Minerals and Prisoner ID card ready for retrieval.", FREQ_SECURITY)
+						Radio.set_frequency(FREQ_DISCIPLINE)
+						Radio.talk_into(src, "A prisoner has returned to the station. Minerals and Prisoner ID card ready for retrieval.", FREQ_DISCIPLINE)
 					to_chat(M, "<span class='notice'>Shuttle received message and will be sent shortly.</span>")
 					return TRUE
 

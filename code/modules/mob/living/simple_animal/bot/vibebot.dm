@@ -10,8 +10,8 @@
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2, BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB | PASSFLAPS
 
-	radio_key = /obj/item/encryptionkey/headset_service //doesn't have security key
-	radio_channel = RADIO_CHANNEL_SERVICE //Doesn't even use the radio anyway.
+	radio_key = /obj/item/encryptionkey/headset_architecture
+	radio_channel = RADIO_CHANNEL_ARCHITECTURE
 	bot_type = VIBE_BOT
 	model = "Vibebot"
 	window_id = "vibebot"

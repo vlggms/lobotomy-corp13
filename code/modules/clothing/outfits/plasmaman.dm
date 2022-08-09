@@ -52,7 +52,7 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman/white
 	uniform = /obj/item/clothing/under/plasmaman/enviroslacks
-	ears = /obj/item/radio/headset/headset_sec
+	ears = /obj/item/radio/headset/headset_discipline
 	gloves = /obj/item/clothing/gloves/color/plasmaman/white
 
 /datum/outfit/plasmaman/warden

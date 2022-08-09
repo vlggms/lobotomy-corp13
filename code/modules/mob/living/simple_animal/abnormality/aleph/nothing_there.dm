@@ -75,6 +75,11 @@
 		return FALSE
 	if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
 		return Goodbye()
+	if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
+		var/turf/target_turf = get_turf(target)
+		for(var/i = 1 to 3)
+			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+		return Hello(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/OpenFire()
@@ -130,6 +135,7 @@
 		disguise.forceMove(get_turf(src))
 		disguise.gib()
 		disguise = null
+		fear_level = ALEPH_LEVEL
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/next_stage()
 	next_transform = null
@@ -138,8 +144,9 @@
 			icon_state = "nothing_egg"
 			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
 			can_act = FALSE
-			next_transform = world.time + rand(20 SECONDS, 30 SECONDS)
+			next_transform = world.time + rand(10 SECONDS, 25 SECONDS)
 		if(2)
+			breach_affected = list() // Too spooky
 			FearEffect()
 			attack_verb_continuous = "strikes"
 			attack_verb_simple = "strike"
@@ -237,6 +244,7 @@
 		return
 	..()
 	if(istype(disguise)) // Teleport us somewhere where nobody will see us at first
+		fear_level = 0 // So it doesn't inflict fear to those around them
 		var/list/priority_list = list()
 		for(var/turf/T in GLOB.xeno_spawn)
 			var/people_in_range = 0

@@ -9,7 +9,7 @@
 	..()
 	var/static/items_inside = list(
 		/obj/item/clothing/head/that = 2,
-		/obj/item/radio/headset/headset_srv = 2,
+		/obj/item/radio/headset/headset_safety = 2,
 		/obj/item/clothing/under/suit/sl = 2,
 		/obj/item/clothing/under/rank/civilian/bartender = 2,
 		/obj/item/clothing/accessory/waistcoat = 2,
@@ -33,7 +33,7 @@
 	..()
 	var/static/items_inside = list(
 		/obj/item/clothing/under/suit/waiter = 2,
-		/obj/item/radio/headset/headset_srv = 2,
+		/obj/item/radio/headset/headset_safety = 2,
 		/obj/item/clothing/accessory/waistcoat = 2,
 		/obj/item/clothing/suit/apron/chef = 3,
 		/obj/item/clothing/head/soft/mime = 2,
@@ -145,7 +145,7 @@
 		/obj/item/clothing/shoes/sneakers/black = 3,
 		/obj/item/clothing/gloves/fingerless = 3,
 		/obj/item/clothing/head/soft = 3,
-		/obj/item/radio/headset/headset_cargo = 1)
+		/obj/item/radio/headset/headset_control = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/structure/closet/wardrobe/atmospherics_yellow
@@ -288,7 +288,7 @@
 		/obj/item/clothing/under/rank/rnd/scientist = 3,
 		/obj/item/clothing/suit/toggle/labcoat/science = 3,
 		/obj/item/clothing/shoes/sneakers/white = 3,
-		/obj/item/radio/headset/headset_sci = 2,
+		/obj/item/radio/headset/headset_information = 2,
 		/obj/item/clothing/mask/gas = 3)
 	generate_items_inside(items_inside,src)
 	return

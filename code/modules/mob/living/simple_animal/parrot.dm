@@ -111,11 +111,11 @@
 /mob/living/simple_animal/parrot/Initialize()
 	. = ..()
 	if(!ears)
-		var/headset = pick(/obj/item/radio/headset/headset_sec, \
-						/obj/item/radio/headset/headset_eng, \
-						/obj/item/radio/headset/headset_med, \
-						/obj/item/radio/headset/headset_sci, \
-						/obj/item/radio/headset/headset_cargo)
+		var/headset = pick(/obj/item/radio/headset/headset_control, \
+						/obj/item/radio/headset/headset_information, \
+						/obj/item/radio/headset/headset_safety, \
+						/obj/item/radio/headset/headset_information, \
+						/obj/item/radio/headset/headset_command)
 		ears = new headset(src)
 
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
@@ -255,20 +255,20 @@
 					available_channels.Cut()
 					for(var/ch in headset_to_add.channels)
 						switch(ch)
-							if(RADIO_CHANNEL_ENGINEERING)
-								available_channels.Add(RADIO_TOKEN_ENGINEERING)
+							if(RADIO_CHANNEL_CONTROL)
+								available_channels.Add(RADIO_TOKEN_CONTROL)
+							if(RADIO_CHANNEL_INFORMATION)
+								available_channels.Add(RADIO_TOKEN_INFORMATION)
+							if(RADIO_CHANNEL_SAFETY)
+								available_channels.Add(RADIO_TOKEN_SAFETY)
+							if(RADIO_CHANNEL_TRAINING)
+								available_channels.Add(RADIO_TOKEN_TRAINING)
 							if(RADIO_CHANNEL_COMMAND)
 								available_channels.Add(RADIO_TOKEN_COMMAND)
-							if(RADIO_CHANNEL_SECURITY)
-								available_channels.Add(RADIO_TOKEN_SECURITY)
-							if(RADIO_CHANNEL_SCIENCE)
-								available_channels.Add(RADIO_TOKEN_SCIENCE)
-							if(RADIO_CHANNEL_MEDICAL)
-								available_channels.Add(RADIO_TOKEN_MEDICAL)
-							if(RADIO_CHANNEL_SUPPLY)
-								available_channels.Add(RADIO_TOKEN_SUPPLY)
-							if(RADIO_CHANNEL_SERVICE)
-								available_channels.Add(RADIO_TOKEN_SERVICE)
+							if(RADIO_CHANNEL_WELFARE)
+								available_channels.Add(RADIO_TOKEN_WELFARE)
+							if(RADIO_CHANNEL_DISCIPLINE)
+								available_channels.Add(RADIO_TOKEN_DISCIPLINE)
 
 					if(headset_to_add.translate_binary)
 						available_channels.Add(MODE_TOKEN_BINARY)
@@ -889,7 +889,7 @@
 	var/longest_deathstreak = 0
 
 /mob/living/simple_animal/parrot/poly/Initialize()
-	ears = new /obj/item/radio/headset/headset_eng(src)
+	ears = new /obj/item/radio/headset/headset_control(src)
 	available_channels = list(":e")
 	Read_Memory()
 	if(rounds_survived == longest_survival)

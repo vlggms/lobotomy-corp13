@@ -13,8 +13,26 @@
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 40
-	spread = 15
+	damage = 50
+	spread = 10
+
+/obj/projectile/ego_bullet/ego_hatred/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target) && isliving(firer))
+		var/mob/living/carbon/human/H = target
+		var/mob/living/user = firer
+		if(user.faction_check_mob(H)) // Our faction
+			switch(damage_type)
+				if(WHITE_DAMAGE)
+					H.adjustSanityLoss(damage*0.2)
+				if(BLACK_DAMAGE)
+					H.adjustBruteLoss(-damage*0.1)
+					H.adjustSanityLoss(damage*0.1)
+				else // Red or pale
+					H.adjustBruteLoss(-damage*0.2)
+			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	..()
 
 /obj/projectile/ego_bullet/ego_hatred/Initialize()
 	. = ..()

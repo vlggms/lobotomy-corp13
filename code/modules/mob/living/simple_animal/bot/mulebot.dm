@@ -24,8 +24,8 @@
 	mob_size = MOB_SIZE_LARGE
 	buckle_prevents_pull = TRUE // No pulling loaded shit
 
-	radio_key = /obj/item/encryptionkey/headset_cargo
-	radio_channel = RADIO_CHANNEL_SUPPLY
+	radio_key = /obj/item/encryptionkey/headset_control
+	radio_channel = RADIO_CHANNEL_CONTROL
 
 	bot_type = MULE_BOT
 	model = "MULE"
@@ -670,7 +670,7 @@
 // called when bot reaches current target
 /mob/living/simple_animal/bot/mulebot/proc/at_target()
 	if(!reached_target)
-		radio_channel = RADIO_CHANNEL_SUPPLY //Supply channel
+		radio_channel = RADIO_CHANNEL_CONTROL
 		buzz(CHIME)
 		reached_target = TRUE
 

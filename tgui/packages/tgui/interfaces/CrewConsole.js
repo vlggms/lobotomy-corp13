@@ -35,7 +35,7 @@ const jobToColor = jobId => {
     return COLORS.department.cargo;
   }
   if (jobId >= 150 && jobId < 159) {
-    return COLORS.department.terragov;
+    return COLORS.department.head;
   }
   if (jobId >= 160 && jobId < 200) {
     return COLORS.department.syndicate;
