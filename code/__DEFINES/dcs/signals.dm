@@ -1045,5 +1045,5 @@
 
 
 // Abnormality Work Signals
-#define COMSIG_WORK_ATTEMPTED "work_attempted" // Work Start/Attempt
+#define COMSIG_WORK_STARTED "work_started" // Work Start/Attempt
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
