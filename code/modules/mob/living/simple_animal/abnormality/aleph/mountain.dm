@@ -10,14 +10,14 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
-
 	melee_damage_lower = 30
 	melee_damage_upper = 30
-
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	stat_attack = DEAD
 	ranged = TRUE
+	speed = -2
+	move_to_delay = 2
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "nips"
 	attack_verb_simple = "nips"
@@ -115,12 +115,16 @@
 		icon_state = "mosb_breach"
 		playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
 		maxHealth *= 0.50
+		speed = 3
+		move_to_delay = 4
 		adjustBruteLoss(-maxHealth)
 		phase -= 1
 		if(phase == 1)
 			icon = 'ModularTegustation/Teguicons/64x64.dmi'
 			pixel_x = -16
 			base_pixel_x = -16
+			speed = -2
+			move_to_delay = 2
 
 
 /mob/living/simple_animal/hostile/abnormality/mountain/AttackingTarget()
@@ -148,12 +152,16 @@
 					phase +=1
 				else
 					icon_state = "mosb_breach2"
+					speed = 4
+					move_to_delay = 5
 				adjustBruteLoss(-maxHealth)
 				belly =0
 				if(phase == 2)
 					icon = 'ModularTegustation/Teguicons/96x96.dmi'
 					pixel_x = -32
 					base_pixel_x = -32
+					speed = 3
+					move_to_delay = 4
 			icon_state = "mosb_breach"
 
 	if(phase == 3)
