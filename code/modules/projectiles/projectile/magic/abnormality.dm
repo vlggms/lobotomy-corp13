@@ -38,28 +38,17 @@
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
 
-/obj/projectile/mountain
+/obj/projectile/mountain_spit
 	name = "spit"
 	desc = "Gross, disgusting spit."
-	icon_state = "mini_leaper"
+	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 30
-	spread = 20
-	knockdown = 5
+	damage = 10 // Launches 32(96) of those, for a whooping 320(960) black damage
+	spread = 60
+	slur = 3
+	eyeblur = 3
 
-/obj/projectile/mountain/big
-	name = "big spit"
-	desc = "Gross, disgusting spit."
-	icon_state = "leaper"
-	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
-	damage = 40
-	knockdown = 10
-
-/obj/projectile/mountain/big/on_hit(atom/target, blocked = FALSE)
-	..()
-	for(var/mob/living/L in view(2, target))
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L))
-		L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	return BULLET_ACT_HIT
+/obj/projectile/mountain_spit/Initialize()
+	. = ..()
+	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
