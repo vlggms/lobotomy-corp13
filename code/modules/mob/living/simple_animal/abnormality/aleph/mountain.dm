@@ -147,6 +147,7 @@
 		if(belly >= 5)
 			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
+				adjustHealth(-5000)
 				maxHealth += 500
 				phase += 1
 				belly = 0
@@ -162,12 +163,12 @@
 				speed = 3
 				move_to_delay = 4
 			icon_state = icon_living
-			adjustHealth(-maxHealth)
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
 		return FALSE
 	playsound(get_turf(src), 'sound/abnormalities/mountain/level_down.ogg', 75, 1)
+	adjustHealth(-5000)
 	maxHealth -= 500
 	phase -= 1
 	icon_living = "mosb_breach"
@@ -184,7 +185,6 @@
 		speed = 3
 		move_to_delay = 4
 	icon_state = icon_living
-	adjustHealth(-maxHealth)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Scream()
