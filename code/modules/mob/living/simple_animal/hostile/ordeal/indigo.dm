@@ -73,7 +73,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 0.2, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.05)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.05)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
 
@@ -169,7 +169,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 0.4, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
 	move_to_delay -= move_to_delay*0.4
 	speed += speed*0.4
 	rapid_melee +=1
@@ -188,7 +188,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 0.5, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.2)
 	move_to_delay -= move_to_delay*0.4
 	speed += speed*0.4
 	rapid_melee += 2

@@ -87,11 +87,10 @@
 	if(!died.ckey)
 		return FALSE
 	death_counter += 1
-	if(death_counter >= 10)
+	if(death_counter >= 6)
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
-
 
 /mob/living/simple_animal/hostile/abnormality/mountain/death()
 	//Make sure we didn't get cheesed
@@ -145,6 +144,26 @@
 			if(ishuman(L))
 				belly += 1
 				StageChange(TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
+	if(phase == 1)
+		var/list/highest_priority = list()
+		var/list/lower_priority = list()
+		for(var/mob/living/L in Targets)
+			if(!CanAttack(L))
+				continue
+			if(L.health < 0 || L.stat == DEAD)
+				if(ishuman(L))
+					highest_priority += L
+				else
+					lower_priority += L
+			else if(L.health < L.maxHealth*0.5)
+				lower_priority += L
+		if(LAZYLEN(highest_priority))
+			return pick(highest_priority)
+		if(LAZYLEN(lower_priority))
+			return pick(lower_priority)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
