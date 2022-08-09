@@ -43,7 +43,7 @@
 		if(user in protected_people)
 			return
 		protected_people += user
-		RegisterSignal(user, COMSIG_WORK_ATTEMPTED, .proc/FairyGib)
+		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/FairyGib)
 		to_chat(user, "<span class='nicegreen'>You feel at peace under the fairies' care.</span>")
 		playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
@@ -63,7 +63,7 @@
 	protected_people.Remove(user)
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
 	to_chat(user, "<span class='notice'>The fairies giggle before returning to their queen.</span>")
-	UnregisterSignal(user, COMSIG_WORK_ATTEMPTED)
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyGib(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
