@@ -59,8 +59,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
 	if(prob(1)) // Kirie, why
 		icon_state = "amog"
+
+/mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/CanAttack(atom/the_target)
 	if(finishing)
