@@ -1197,8 +1197,8 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 
 	if(LAZYLEN(attributes))
-		maxHealth = 100 + get_attribute_level(src, FORTITUDE_ATTRIBUTE) // A maximum of 220
-		maxSanity = 100 + get_attribute_level(src, PRUDENCE_ATTRIBUTE)
+		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
