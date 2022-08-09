@@ -108,7 +108,6 @@
 	working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
 	work_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
-	work_chance = datum_reference.current.work_chance(user, work_chance)
 	work_chance = clamp(work_chance * user.physiology.work_success_mod, 0, 100)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
@@ -137,8 +136,6 @@
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
 	working = FALSE
 	SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
-	if(max_pe != 0)
-		visible_message("<span class='notice'>Work finished. [pe]/[max_pe] PE acquired.")
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(max_pe != 0)

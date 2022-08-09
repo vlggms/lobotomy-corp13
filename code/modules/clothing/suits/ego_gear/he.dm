@@ -56,7 +56,6 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-
 /obj/item/clothing/suit/armor/ego_gear/remorse
 	name = "remorse"
 	desc = "While the armor serves to protect the users mind from the influence of others, they can never seem to quiet their own thoughts."
