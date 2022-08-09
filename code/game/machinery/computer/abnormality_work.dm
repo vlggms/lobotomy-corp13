@@ -109,10 +109,7 @@
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
 	work_chance *= 1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 180)
 	work_chance = datum_reference.current.work_chance(user, work_chance)
-	if (user.physiology.work_success_mod <= 0)
-		work_chance = 0
-	else
-		work_chance *= user.physiology.work_success_mod
+	work_chance = clamp(work_chance * user.physiology.work_success_mod, 0, 100)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
