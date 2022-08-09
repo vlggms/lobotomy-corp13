@@ -79,10 +79,10 @@
 /obj/item/paper/fluff/info/teth/dingle
 	name = "T-04-111"
 	info = {"<h1><center>T-04-111</center></h1>	<br>
-	Name : Fragment of the Universe	<br>
+	Name : Dingle Dangle	<br>
 	Risk Class : Teth	<br>
 	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
+	Qliphoth Counter : X	<br>
 	- An employee with Level 3 or higher Prudence was consumed after completing their work.	<br>
 	- When the work result was Bad, the employee was consumed with a normal probability	<br><br>
 	<h4>Instinct:</h4> High<br>

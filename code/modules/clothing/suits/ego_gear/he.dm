@@ -12,6 +12,9 @@
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	icon_state = "harvest"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 25)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/fury
 	name = "blind fury"
@@ -19,6 +22,9 @@
 	icon_state = "fury"
 	//all in on red, minor negatives on all else
 	armor = list(RED_DAMAGE = 65, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/lutemis
 	name = "dear lutemis"
@@ -26,6 +32,9 @@
 	icon_state = "lutemis"
 	//White armor, weak to red. Red is pretty valuable.
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 25)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/paw
 	name = "bear paw"
@@ -33,6 +42,9 @@
 	icon_state = "bear_paw"
 	//Better rounded than Grinder, not as good against red. Also weak to pale.
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = -20)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/wings
 	name = "torn off wings"
@@ -41,3 +53,6 @@
 	icon_state = "wings"
 	//Just Kinda meh. A lot of WAWs do black at the time of writing so
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)

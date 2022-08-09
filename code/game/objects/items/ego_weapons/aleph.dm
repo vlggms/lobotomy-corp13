@@ -181,3 +181,75 @@
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		user.adjustBruteLoss(-force*0.2)
 	..()
+
+/obj/item/ego_weapon/gold_rush
+	name = "gold rush"
+	desc = "The weapon of someone who can swing their weight around like a truck"
+	icon_state = "gold_rush"
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/goldrush_damage = 130
+
+//Replaces the normal attack with the gigafuck punch
+/obj/item/ego_weapon/gold_rush/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 4, target))
+
+		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
+						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
+
+
+		//I gotta regrab  justice here
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		goldrush_damage *= justicemod
+
+		if(ishuman(target))
+			goldrush_damage = 50
+
+		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
+
+		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		if(!target.anchored)
+			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
+	else
+		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
+		return
+
+/obj/item/ego_weapon/smile
+	name = "smile"
+	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
+	special = "This weapon has a slightly slower attack speed.\
+			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
+	icon_state = "smile"
+	force = 100		//Slightly less damage, has an ability
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/weapons/ego/hammer.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/smile/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.5) // Slow
+
+/obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)	//Makes up for the lack of damage by automatically killing things under 10% HP
+		target.gib()
+		user.adjustBruteLoss(-user.maxHealth*0.1)	//Heal 10% HP. Moved here from the armor, because that's a nightmare to code

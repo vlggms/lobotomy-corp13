@@ -24,7 +24,10 @@
 	var/heal_cooldown_base = 2 SECONDS
 	var/list/mob/living/carbon/human/protected_people = list()
 
-	ego_list = list()
+	ego_list = list(
+		/datum/ego_datum/weapon/wingbeat,
+		/datum/ego_datum/armor/wingbeat
+		)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
