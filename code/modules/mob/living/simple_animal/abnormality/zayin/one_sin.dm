@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/onesin
-	name = "One sin and hundreds of good deeds"
-	desc = "A giant skull that is attached to a cross, it wears a crown of thorns."
+	name = "One Sin and Hundreds of Good Deeds"
+	desc = "A levitating crucifix melded to a human skull, bound tightly by a mocking crown of thorns, instrument of the passion."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin"
 	icon_living = "onesin"
@@ -45,7 +45,7 @@
 		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 			if(WN.apostle_num != 666)
 				return FALSE
-			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
+			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us!</span>")
 			WN.loot = list() // No loot for you!
 			for(var/i = 1 to 12)
 				sleep(1.5 SECONDS)

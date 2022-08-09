@@ -684,7 +684,7 @@
 /area/awaymission/beach)
 "cg" = (
 /obj/effect/turf_decal/sand,
-/obj/machinery/vending/cola/space_up,
+/obj/machinery/vending/cola/super_up,
 /turf/open/floor/plating/beach/sand,
 /area/awaymission/beach)
 "ch" = (

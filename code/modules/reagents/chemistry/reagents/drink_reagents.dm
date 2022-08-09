@@ -478,7 +478,7 @@
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
 	..()
 
-/datum/reagent/consumable/space_up
+/datum/reagent/consumable/super_up
 	name = "Super-Up"
 	description = "What's up? Super up! In your face!"
 	color = "#00FF00" // rgb: 0, 255, 0
@@ -488,7 +488,7 @@
 	glass_desc = "Super-up. Its a middle of the road soda for a middle of the road person."
 
 
-/datum/reagent/consumable/space_up/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/super_up/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-8 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
 	..()
 

@@ -418,8 +418,8 @@
 	update_icon()
 
 /obj/item/reagent_containers/food/drinks/beer
-	name = "space beer"
-	desc = "Beer. In space."
+	name = "beer"
+	desc = "More water than booze, but its cheap as hell."
 	icon_state = "beer"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
 	foodtype = GRAIN | ALCOHOL
@@ -712,11 +712,11 @@
 	list_reagents = list(/datum/reagent/consumable/sol_dry = 30)
 	foodtype = SUGAR
 
-/obj/item/reagent_containers/food/drinks/soda_cans/space_up
+/obj/item/reagent_containers/food/drinks/soda_cans/super_up
 	name = "Super-Up!"
 	desc = "What's up? Super up! In your face!"
 	icon_state = "space-up"
-	list_reagents = list(/datum/reagent/consumable/space_up = 30)
+	list_reagents = list(/datum/reagent/consumable/super_up = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist

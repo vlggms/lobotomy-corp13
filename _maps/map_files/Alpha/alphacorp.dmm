@@ -518,12 +518,13 @@
 /area/facility_hallway/east)
 "fo" = (
 /obj/effect/turf_decal/siding/red{
-	dir = 4
+	dir = 8
 	},
+/obj/structure/fans/tiny,
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "fq" = (
 /obj/effect/turf_decal/siding/red{
@@ -2167,7 +2168,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "vf" = (
 /obj/structure/rack,
@@ -2561,7 +2562,8 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
-/turf/open/floor/plasteel/dark,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "yL" = (
 /obj/item/kirbyplants{
