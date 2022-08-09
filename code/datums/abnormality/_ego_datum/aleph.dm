@@ -38,3 +38,8 @@
 /datum/ego_datum/armor/mimicry
 	item_path = /obj/item/clothing/suit/armor/ego_gear/mimicry
 	cost = 100
+
+// Mountain of smiling bodies - Smile
+/datum/ego_datum/weapon/smile
+	item_path = /obj/item/ego_weapon/smile
+	cost = 100
