@@ -9,3 +9,8 @@
 		var/mob/living/carbon/human/H = user
 		var/damage_mod = max(0.8, (H.sanityhealth / 100)) // Maximum SP will double the damage
 		BB.damage *= damage_mod
+
+/obj/item/ammo_casing/caseless/ego_adoration
+	name = "adoration slug"
+	desc = "A adoration slug."
+	projectile_type = /obj/projectile/ego_bullet/melting_blob
