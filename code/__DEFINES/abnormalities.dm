@@ -28,5 +28,3 @@
 							ALEPH_LEVEL = COLOR_RED,\
 							)
 
-//Signals
-#define COMSIG_WORK_STARTED "work_started"
