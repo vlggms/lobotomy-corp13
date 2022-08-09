@@ -27,7 +27,6 @@
 
 /obj/item/paper/guides/jobs/zayin
 	name = "ZAYIN Instruction Manual - Malkuth"
-	icon_state = "paper_words"
 	info = {"For those handling ZAYIN grade abnormalities, you can be happy to hear you've been assigned what the company regards as our safest category of company assets!<br>
 	<br>
 	Almost none of them are capable of breaching containment, and any harm they could do is easily avoidable if you follow your instructions for the assigned abnormality.<br>
@@ -40,14 +39,12 @@
 
 /obj/item/paper/guides/jobs/zayin/guide
 	name = "ZAYIN Safety Guide - Netzach"
-	icon_state = "paper_words"
 	info = {"I can't believe they have me writing this... just follow the instructions for your assignment and you're safe, alright?<br>
 	<br>
 	- Netzach"}
 
 /obj/item/paper/guides/jobs/zayin/guide/wellcheers
 	name = "F-05-52 Safety Guide"
-	icon_state = "paper_words"
 	info = {"Instinct work will produce a can of cherry soda that mends physical injury, simply press any button on the machine to dispense it.<br>
 	Insight work will produce a regular can of soda that calms mental distress, you just need wipe down the machine and its front buttons to dispense a can.<br>
 	<br>
@@ -57,7 +54,6 @@
 
 /obj/item/paper/guides/jobs/zayin/lore
 	name = "Classification Code - Hod"
-	icon_state = "paper_words"
 	info = {"Subject details are encoded in their classification, following the given:<br>
 	<br>
 	The first letter classifies its origin (Fairy Tale, Trauma, Original, Donated) with the company.<br>
@@ -70,7 +66,6 @@
 
 /obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
-	icon_state = "paper_words"
 	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
 	<br>
 	As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.<br>
@@ -83,7 +78,6 @@
 
 /obj/item/paper/guides/jobs/teth
 	name = "TETH Instruction Manual - Malkuth"
-	icon_state = "paper_words"
 	info = {"For those handling TETH grade abnormalities, you have graduated from the beginner duties, you are now considered a proper asset ready for serious assignments. Welcome to the real world, agent.<br>
 	<br>
 	Most of the subjects in this classification can and will breach if mishandled, and all can kill you either in engagement or immediately and without sanctuary if you approach them unprepared.<br>
@@ -96,14 +90,12 @@
 
 /obj/item/paper/guides/jobs/teth/guide
 	name = "TETH Safety Guide - Netzach"
-	icon_state = "paper_words"
 	info = {"Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
 	<br>
 	- Netzach"}
 
 /obj/item/paper/guides/jobs/teth/guide/spiderbud
 	name = "T-02-43 Safety Guide"
-	icon_state = "paper_words"
 	info = {"Instinct work is the most effective and safe handling of the spider bud possible, toss it some food without stepping on a bug underfoot.<br>
 	<br>
 	Attachment work is the next most effective routine, just talk kindly to the subject and gently pet the gross little spiders.<br>
@@ -116,7 +108,6 @@
 
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
-	icon_state = "paper_words"
 	info = {"You may have been wondering, fortitude, prudence, temperance, justice, what are these and why are people yelling about them?<br>
 	<br>
 	These are ways the company has simplified measurements of the body, mind and soul to help you stay safe and efficient!<br>
@@ -135,7 +126,6 @@
 
 /obj/item/paper/guides/jobs/teth/lore/spiderbud
 	name = "T-02-43 Information Attachment"
-	icon_state = "paper_words"
 	info = {"The brood mother was a hard capture, from those dark woods in the outskirts beyond the city.<br>
 	<br>
 	She's terrifying to junior agents, those with prudence ratings below forty will panic, and squish one of the offspring in their rush to escape.<br>
@@ -148,7 +138,6 @@
 
 /obj/item/paper/guides/jobs/he
 	name = "HE Instruction Manual - Malkuth"
-	icon_state = "paper_words"
 	info = {"These abnormalities can easily kill a number of employees, including veteran agents of the company. You have to pay twice as much attention as with ZAYIN or TETH subjects.<br>
 	As long as you pay close attention, you can avoid serious casualties.<br>
 	<br>
@@ -162,7 +151,6 @@
 
 /obj/item/paper/guides/jobs/waw
 	name = "WAW Instruction Manual - Malkuth"
-	icon_state = "paper_words"
 	info = {"Either you have successfully worked with HE subjects before, or you are reading far ahead of your paygrade. In either case what I have to say still applies to you.<br>
 	<br>
 	These are high risk abnormalities that carry devastating force. Death tolls within the facility could reach dozens of employees if they get loose.<br>
@@ -175,7 +163,6 @@
 
 /obj/item/paper/guides/jobs/aleph
 	name = "ALEPH Instruction Manual - Malkuth"
-	icon_state = "paper_words"
 	info = {"These are the most dangerous abnormalities we know of, from within the city and our scouting missions in the outskirts. There is no exaggeration when I say they threaten the survival of your species.<br>
 	<br>
 	If you do everything as you should, and work with your team, consider yourself blessed if only half the facility is dead when you finish suppression.<br>

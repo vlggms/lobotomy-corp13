@@ -15,7 +15,7 @@
 	button_icon_state = "airlock_select"
 
 /datum/action/innate/door_bolt/Activate()
-	if(!target || !iscarbon(owner))
+	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control

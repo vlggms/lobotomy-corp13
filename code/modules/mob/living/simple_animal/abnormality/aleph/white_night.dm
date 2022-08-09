@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		fire_zone = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		playsound(target_c, "explosion", 25, TRUE)
 		for(var/turf/open/T in fire_zone)
-			new /obj/effect/hotspot(T)
+			new /obj/effect/temp_visual/fire/fast(T)
 			for(var/mob/living/L in T.contents)
 				if("apostle" in L.faction)
 					continue
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		return
 	scream_cooldown = (world.time + scream_cooldown_base)
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/mob/apostle_shout.ogg', 30, 1)
-	for(var/mob/living/carbon/C in get_hearers_in_view(6, src))
+	for(var/mob/living/carbon/C in get_hearers_in_view(7, src))
 		to_chat(C, "<span class='danger'>[src] shouts incredibly loud!</span>")
 		if("apostle" in C.faction)
 			continue

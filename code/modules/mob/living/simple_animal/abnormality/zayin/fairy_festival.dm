@@ -18,13 +18,16 @@
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
 
+	ego_list = list(
+		/datum/ego_datum/weapon/wingbeat,
+		/datum/ego_datum/armor/wingbeat
+		)
+
 	var/heal_duration = 90 SECONDS
 	var/heal_amount = 0.02
 	var/heal_cooldown = 2 SECONDS
 	var/heal_cooldown_base = 2 SECONDS
 	var/list/mob/living/carbon/human/protected_people = list()
-
-	ego_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
@@ -37,8 +40,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/success_effect(mob/living/carbon/human/user, work_type, pe)
 	if(istype(user))
-		if (user in protected_people)
-			to_chat(user, "<span class='notice'>The fairies are already protecting you!</span>")
+		if(user in protected_people)
 			return
 		protected_people += user
 		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/FairyGib)
@@ -70,5 +72,6 @@
 		to_chat(user, "<span class='userdanger'>With a beat of their wings, the fairies pounce on you and ravenously consume your body!</span>")
 		playsound(get_turf(user), 'sound/magic/demon_consume.ogg', 75, 0)
 		UnregisterSignal(user, COMSIG_WORK_STARTED)
+		protected_people.Remove(user)
 		user.gib()
 	return

@@ -97,6 +97,8 @@
 		datum_reference.qliphoth_change(-1)
 	if(work_time > 40 SECONDS)
 		datum_reference.qliphoth_change(-1)
+	if(user.sanity_lost)
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)

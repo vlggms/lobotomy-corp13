@@ -13,8 +13,8 @@
 
 	outfit = /datum/outfit/job/manager
 
-	access = list() // LC13:To-Do
-	minimal_access = list()
+	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
+	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 0,
@@ -37,7 +37,7 @@
 
 	glasses = /obj/item/clothing/glasses/debug
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/captain/alt
+	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit =  /obj/item/clothing/suit/toggle/labcoat
 	backpack_contents = list()

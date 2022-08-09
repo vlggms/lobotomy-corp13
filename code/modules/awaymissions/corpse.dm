@@ -392,7 +392,7 @@
 
 /datum/outfit/nanotrasenbridgeofficercorpse
 	name = "Bridge Officer Corpse"
-	ears = /obj/item/radio/headset/heads/hop
+	ears = /obj/item/radio/headset/heads/manager
 	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -409,7 +409,7 @@
 	name = "\improper Nanotrasen Private Security Commander"
 	uniform = /obj/item/clothing/under/rank/centcom/commander
 	suit = /obj/item/clothing/suit/armor/bulletproof
-	ears = /obj/item/radio/headset/heads/captain
+	ears = /obj/item/radio/headset/heads/manager
 	glasses = /obj/item/clothing/glasses/eyepatch
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
 	head = /obj/item/clothing/head/centhat

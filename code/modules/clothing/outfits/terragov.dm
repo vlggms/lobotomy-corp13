@@ -7,7 +7,7 @@
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
-	ears = /obj/item/radio/headset/terragov/alt
+	ears = /obj/item/radio/headset/headset_head/alt
 	id = /obj/item/card/id/centcom
 
 	accessory = /obj/item/clothing/accessory/armband/citygov

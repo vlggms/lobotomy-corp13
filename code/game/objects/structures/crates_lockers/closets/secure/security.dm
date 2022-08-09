@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/captains
 	name = "\proper captain's locker"
-	req_access = list(ACCESS_CAPTAIN)
+	req_access = list(ACCESS_MANAGER)
 	icon_state = "cap"
 
 /obj/structure/closet/secure_closet/captains/PopulateContents()
@@ -24,8 +24,6 @@
 	new /obj/item/clothing/head/crown/fancy(src)
 	new /obj/item/cartridge/captain(src)
 	new /obj/item/storage/box/silver_ids(src)
-	new /obj/item/radio/headset/heads/captain/alt(src)
-	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/clothing/glasses/sunglasses/gar/supergar(src)
 	new /obj/item/clothing/gloves/color/captain(src)
 	new /obj/item/storage/belt/sabre(src)
@@ -47,7 +45,6 @@
 	new /obj/item/clothing/under/rank/civilian/head_of_personnel/skirt(src)
 	new /obj/item/clothing/head/hopcap(src)
 	new /obj/item/cartridge/hop(src)
-	new /obj/item/radio/headset/heads/hop(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/storage/box/ids(src)
 	new /obj/item/storage/box/ids(src)
@@ -73,7 +70,6 @@
 	..()
 	new /obj/item/clothing/neck/cloak/hos(src)
 	new /obj/item/cartridge/hos(src)
-	new /obj/item/radio/headset/heads/hos(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/parade/female(src)
 	new /obj/item/clothing/under/rank/security/head_of_security/parade(src)
 	new /obj/item/clothing/suit/armor/vest/leather(src)
@@ -105,7 +101,6 @@
 
 /obj/structure/closet/secure_closet/warden/PopulateContents()
 	..()
-	new /obj/item/radio/headset/headset_sec(src)
 	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/warden(src)
 	new /obj/item/clothing/head/warden/drill(src)
@@ -132,8 +127,6 @@
 	..()
 	new /obj/item/clothing/suit/armor/vest(src)
 	new /obj/item/clothing/head/helmet/sec(src)
-	new /obj/item/radio/headset/headset_sec(src)
-	new /obj/item/radio/headset/headset_sec/alt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/flashlight/seclite(src)
 
@@ -147,25 +140,25 @@
 
 /obj/structure/closet/secure_closet/security/cargo/PopulateContents()
 	..()
-	new /obj/item/encryptionkey/headset_cargo(src)
+	new /obj/item/encryptionkey/headset_control(src)
 
 /obj/structure/closet/secure_closet/security/engine
 
 /obj/structure/closet/secure_closet/security/engine/PopulateContents()
 	..()
-	new /obj/item/encryptionkey/headset_eng(src)
+	new /obj/item/encryptionkey/headset_training(src)
 
 /obj/structure/closet/secure_closet/security/science
 
 /obj/structure/closet/secure_closet/security/science/PopulateContents()
 	..()
-	new /obj/item/encryptionkey/headset_sci(src)
+	new /obj/item/encryptionkey/headset_information(src)
 
 /obj/structure/closet/secure_closet/security/med
 
 /obj/structure/closet/secure_closet/security/med/PopulateContents()
 	..()
-	new /obj/item/encryptionkey/headset_med(src)
+	new /obj/item/encryptionkey/headset_welfare(src)
 
 /obj/structure/closet/secure_closet/detective
 	name = "\improper detective's cabinet"
@@ -179,7 +172,6 @@
 /obj/structure/closet/secure_closet/detective/PopulateContents()
 	..()
 	new /obj/item/storage/box/evidence(src)
-	new /obj/item/radio/headset/headset_sec(src)
 	new /obj/item/detective_scanner(src)
 	new /obj/item/flashlight/seclite(src)
 	new /obj/item/holosign_creator/security(src)
@@ -239,7 +231,7 @@
 /obj/structure/closet/secure_closet/contraband/heads
 	anchored = TRUE
 	name = "Contraband Locker"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_COMMAND)
 
 /obj/structure/closet/secure_closet/armory1
 	name = "armory armor locker"

@@ -18,8 +18,8 @@
 #define MODE_KEY_L_HAND "l"
 
 #define MODE_INTERCOM "intercom"
-#define MODE_KEY_INTERCOM "i"
-#define MODE_TOKEN_INTERCOM ":i"
+#define MODE_KEY_INTERCOM "n"
+#define MODE_TOKEN_INTERCOM ":n"
 
 #define MODE_BINARY "binary"
 #define MODE_KEY_BINARY "b"

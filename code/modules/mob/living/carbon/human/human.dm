@@ -63,7 +63,7 @@
 	dat += "Level [get_user_level(src)]<br>"
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name]: [atr.level]/[atr.level_limit] + [atr.level_buff]"
+		dat += "[atr.name]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
 	popup.set_content(dat.Join("<br>"))
@@ -1197,8 +1197,8 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 
 	if(LAZYLEN(attributes))
-		maxHealth = 100 + get_attribute_level(src, FORTITUDE_ATTRIBUTE) // A maximum of 220
-		maxSanity = 100 + get_attribute_level(src, PRUDENCE_ATTRIBUTE)
+		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
 
 /mob/living/carbon/human/adjust_nutrition(change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
 	if(HAS_TRAIT(src, TRAIT_NOHUNGER))

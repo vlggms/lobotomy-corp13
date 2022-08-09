@@ -131,7 +131,7 @@
 					/obj/item/clothing/shoes/sneakers/black = 3,
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
-					/obj/item/radio/headset/headset_cargo = 3)
+					/obj/item/radio/headset/headset_control = 3)
 	premium = list(/obj/item/clothing/under/rank/cargo/miner = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	payment_department = ACCOUNT_CAR
@@ -176,7 +176,7 @@
 					/obj/item/clothing/under/rank/rnd/scientist/skirt = 3,
 					/obj/item/clothing/suit/toggle/labcoat/science = 3,
 					/obj/item/clothing/shoes/sneakers/white = 3,
-					/obj/item/radio/headset/headset_sci = 3,
+					/obj/item/radio/headset/headset_information = 3,
 					/obj/item/clothing/mask/gas = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/science_wardrobe
 	payment_department = ACCOUNT_SCI
@@ -237,7 +237,7 @@
 	product_ads = "Guaranteed to prevent stains from spilled drinks!"
 	vend_reply = "Thank you for using the BarDrobe!"
 	products = list(/obj/item/clothing/head/that = 2,
-					/obj/item/radio/headset/headset_srv = 2,
+					/obj/item/radio/headset/headset_safety = 2,
 					/obj/item/clothing/under/suit/sl = 2,
 					/obj/item/clothing/under/rank/civilian/bartender = 2,
 					/obj/item/clothing/under/rank/civilian/bartender/purple = 2,
@@ -269,7 +269,7 @@
 	product_ads = "Our clothes are guaranteed to protect you from food splatters!"
 	vend_reply = "Thank you for using the ChefDrobe!"
 	products = list(/obj/item/clothing/under/suit/waiter = 2,
-					/obj/item/radio/headset/headset_srv = 2,
+					/obj/item/radio/headset/headset_training = 2,
 					/obj/item/clothing/accessory/waistcoat = 2,
 					/obj/item/clothing/suit/apron/chef = 3,
 					/obj/item/clothing/head/soft/mime = 2,

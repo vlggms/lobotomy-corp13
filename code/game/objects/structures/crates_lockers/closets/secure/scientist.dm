@@ -18,7 +18,6 @@
 	new /obj/item/clothing/head/beret/science(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
 	new /obj/item/cartridge/rd(src)
-	new /obj/item/radio/headset/heads/rd(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/storage/lockbox/medal/sci(src)
 	new /obj/item/clothing/suit/armor/reactive/teleport(src)

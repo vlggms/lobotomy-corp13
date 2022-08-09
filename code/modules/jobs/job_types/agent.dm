@@ -45,7 +45,7 @@
 	jobtype = /datum/job/agent
 
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/headset_sec/alt
+	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -64,6 +64,7 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 	normal_attribute_level = 21 // :)
 
+	access = list(ACCESS_COMMAND) // LC13:To-Do
 	exp_requirements = 240
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
@@ -72,4 +73,4 @@
 	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
-	ears = /obj/item/radio/headset/heads/hos/alt
+	ears = /obj/item/radio/headset/heads/agent_captain/alt

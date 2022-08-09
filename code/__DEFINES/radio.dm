@@ -5,33 +5,41 @@
 #define RADIO_CHANNEL_COMMON "Common"
 #define RADIO_KEY_COMMON ";"
 
-#define RADIO_CHANNEL_SECURITY "Security"
-#define RADIO_KEY_SECURITY "s"
-#define RADIO_TOKEN_SECURITY ":s"
+#define RADIO_CHANNEL_CONTROL "Control"
+#define RADIO_KEY_CONTROL "r"
+#define RADIO_TOKEN_CONTROL ":r"
 
-#define RADIO_CHANNEL_ENGINEERING "Engineering"
-#define RADIO_KEY_ENGINEERING "e"
-#define RADIO_TOKEN_ENGINEERING ":e"
+#define RADIO_CHANNEL_INFORMATION "Information"
+#define RADIO_KEY_INFORMATION "i"
+#define RADIO_TOKEN_INFORMATION ":i"
+
+#define RADIO_CHANNEL_SAFETY "Safety"
+#define RADIO_KEY_SAFETY "f"
+#define RADIO_TOKEN_SAFETY ":f"
+
+#define RADIO_CHANNEL_TRAINING "Training"
+#define RADIO_KEY_TRAINING "t"
+#define RADIO_TOKEN_TRAINING ":t"
 
 #define RADIO_CHANNEL_COMMAND "Command"
 #define RADIO_KEY_COMMAND "c"
 #define RADIO_TOKEN_COMMAND ":c"
 
-#define RADIO_CHANNEL_SCIENCE "Science"
-#define RADIO_KEY_SCIENCE "n"
-#define RADIO_TOKEN_SCIENCE ":n"
+#define RADIO_CHANNEL_WELFARE "Welfare"
+#define RADIO_KEY_WELFARE "w"
+#define RADIO_TOKEN_WELFARE ":w"
 
-#define RADIO_CHANNEL_MEDICAL "Medical"
-#define RADIO_KEY_MEDICAL "m"
-#define RADIO_TOKEN_MEDICAL ":m"
+#define RADIO_CHANNEL_DISCIPLINE "Discipline"
+#define RADIO_KEY_DISCIPLINE "s"
+#define RADIO_TOKEN_DISCIPLINE ":s"
 
-#define RADIO_CHANNEL_SUPPLY "Supply"
-#define RADIO_KEY_SUPPLY "u"
-#define RADIO_TOKEN_SUPPLY ":u"
+#define RADIO_CHANNEL_ARCHITECTURE "Architecture"
+#define RADIO_KEY_ARCHITECTURE "a"
+#define RADIO_TOKEN_ARCHITECTURE ":a"
 
-#define RADIO_CHANNEL_SERVICE "Service"
-#define RADIO_KEY_SERVICE "v"
-#define RADIO_TOKEN_SERVICE ":v"
+#define RADIO_CHANNEL_HEAD "Head"
+#define RADIO_KEY_HEAD "z"
+#define RADIO_TOKEN_HEAD ":z"
 
 #define RADIO_CHANNEL_AI_PRIVATE "AI Private"
 #define RADIO_KEY_AI_PRIVATE "o"
@@ -39,8 +47,8 @@
 
 
 #define RADIO_CHANNEL_SYNDICATE "Syndicate"
-#define RADIO_KEY_SYNDICATE "t"
-#define RADIO_TOKEN_SYNDICATE ":t"
+#define RADIO_KEY_SYNDICATE "e"
+#define RADIO_TOKEN_SYNDICATE ":e"
 
 #define RADIO_CHANNEL_CENTCOM "CentCom"
 #define RADIO_KEY_CENTCOM "y"
@@ -57,13 +65,15 @@
 #define FREQ_CTF_RED 1215  // CTF red team comms frequency, red
 #define FREQ_CTF_BLUE 1217  // CTF blue team comms frequency, blue
 #define FREQ_CENTCOM 1337  // CentCom comms frequency, gray
-#define FREQ_SUPPLY 1347  // Supply comms frequency, light brown
-#define FREQ_SERVICE 1349  // Service comms frequency, green
-#define FREQ_SCIENCE 1351  // Science comms frequency, plum
-#define FREQ_COMMAND 1353  // Command comms frequency, gold
-#define FREQ_MEDICAL 1355  // Medical comms frequency, soft blue
-#define FREQ_ENGINEERING 1357  // Engineering comms frequency, orange
-#define FREQ_SECURITY 1359  // Security comms frequency, red
+#define FREQ_HEAD 1339  // Head comms frequency, dark blue
+#define FREQ_CONTROL 1347  // Control comms frequency, light brown
+#define FREQ_INFORMATION 1349  // Information comms frequency, plum
+#define FREQ_SAFETY 1351  // Safety comms frequency, green
+#define FREQ_TRAINING 1353  // Training comms frequency, orange
+#define FREQ_COMMAND 1355  // Command comms frequency, gold
+#define FREQ_WELFARE 1357  // Welfare comms frequency, soft blue
+#define FREQ_DISCIPLINE 1359  // Discipline comms frequency, red
+#define FREQ_ARCHITECTURE 1365  // Architecture comms frequency, light grey
 
 #define FREQ_HOLOGRID_SOLUTION 1433
 #define FREQ_STATUS_DISPLAYS 1435

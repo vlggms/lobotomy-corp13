@@ -20,6 +20,8 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	..()
@@ -50,6 +52,17 @@
 	animate(src, pixel_y = base_pixel_y, time = 2)
 	return TRUE
 
+//Amber dawn spawned from dusk
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned
+	butcher_results = list()
+	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/death(gibbed)
+		density = FALSE
+		animate(src, alpha = 0, time = 5 SECONDS)
+		QDEL_IN(src, 5 SECONDS)
+		..()
+
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
 	name = "food chain"
@@ -68,6 +81,8 @@
 	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 2)
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
@@ -135,7 +150,7 @@
 		if(T.density) // Retry
 			i -= 1
 			continue
-		var/mob/living/simple_animal/hostile/ordeal/amber_bug/nb = new(T)
+		var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/nb = new(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
 			nb.ordeal_reference = ordeal_reference
