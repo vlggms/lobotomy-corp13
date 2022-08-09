@@ -124,7 +124,7 @@
 
 // Ordinary survival box
 /obj/item/storage/box/survival
-	var/mask_type = /obj/item/clothing/mask/gas
+	var/mask_type = /obj/item/clothing/mask/gas/explorer
 	var/internal_type = /obj/item/tank/internals/emergency_oxygen
 	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
 
