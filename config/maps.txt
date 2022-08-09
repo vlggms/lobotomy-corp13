@@ -22,5 +22,9 @@ map alphacorp
 	votable
 endmap
 
+map betacorp
+	votable
+endmap
+
 map runtimestation
 endmap
