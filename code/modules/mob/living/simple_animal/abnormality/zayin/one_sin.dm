@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/onesin
-	name = "One sin and hundreds of good deeds"
-	desc = "A giant skull that is attached to a cross, it wears a crown of thorns."
+	name = "One Sin and Hundreds of Good Deeds"
+	desc = "A levitating crucifix melded to a human skull, bound tightly by a mocking crown of thorns, instrument of the passion."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin"
 	icon_living = "onesin"
@@ -45,7 +45,7 @@
 		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 			if(WN.apostle_num != 666)
 				return FALSE
-			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
+			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us!</span>")
 			WN.loot = list() // No loot for you!
 			for(var/i = 1 to 12)
 				sleep(1.5 SECONDS)
@@ -65,3 +65,16 @@
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			H.adjustSanityLoss(10)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/onesin/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(status_flags & GODMODE && prob(10))
+	var/turf/lightning_source = get_step(get_step(target, NORTH), NORTH)
+	lightning_source.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
+	target.adjustBruteLoss(LIGHTNING_BOLT_DAMAGE)
+	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, TRUE)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		human_target.electrocution_animation(LIGHTNING_BOLT_ELECTROCUTION_ANIMATION_LENGTH)
+		to_chat(target, "<span class='userdanger'>Father, forgive them, for they know not what they do!</span>",
+	confidential = TRUE)

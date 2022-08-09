@@ -887,7 +887,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "fo" = (
-/obj/machinery/vending/cola/space_up,
+/obj/machinery/vending/cola/super_up,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "fu" = (

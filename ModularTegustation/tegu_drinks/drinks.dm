@@ -37,4 +37,4 @@
 
 /datum/chemical_reaction/shirley_temple
 	results = list(/datum/reagent/consumable/tegu/shirley_temple = 5)
-	required_reagents = list(/datum/reagent/consumable/space_up = 2, /datum/reagent/consumable/orangejuice = 2, /datum/reagent/consumable/grenadine = 1)
+	required_reagents = list(/datum/reagent/consumable/super_up = 2, /datum/reagent/consumable/orangejuice = 2, /datum/reagent/consumable/grenadine = 1)

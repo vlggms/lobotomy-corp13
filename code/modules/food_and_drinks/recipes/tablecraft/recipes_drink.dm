@@ -151,5 +151,5 @@
 	reqs = list(/obj/item/reagent_containers/food/drinks/colocup = 1,
 				/obj/item/food/chewable/gumball = 2,
 				/datum/reagent/medicine/morphine = 5,
-				/datum/reagent/consumable/space_up = 15)
+				/datum/reagent/consumable/super_up = 15)
 	category = CAT_DRINK

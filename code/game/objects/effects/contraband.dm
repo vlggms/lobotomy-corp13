@@ -397,7 +397,7 @@
 	desc = "Your favorite cola, in the city. I mean, where else would it be?"
 	icon_state = "poster41"
 
-/obj/structure/sign/poster/contraband/space_up
+/obj/structure/sign/poster/contraband/super_up
 	name = "Super-Up!"
 	desc = "When you're too good for City Cola, but you're still cheap!"
 	icon_state = "poster42"

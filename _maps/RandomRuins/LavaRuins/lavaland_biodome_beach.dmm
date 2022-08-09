@@ -1043,7 +1043,7 @@
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "FZ" = (
-/obj/structure/sign/poster/contraband/space_up{
+/obj/structure/sign/poster/contraband/super_up{
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
