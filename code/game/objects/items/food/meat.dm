@@ -619,6 +619,13 @@
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC | GROSS
 
+/obj/item/food/meat/slab/human/mutant/robot
+	icon_state = "robotmeat"
+	desc = "The ancient scrap of ruined machinery. It's as flavorful as a lump of metal."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
+	tastes = list("metal" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
 /obj/item/food/meat/slab/human/mutant/golem
 	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future."
