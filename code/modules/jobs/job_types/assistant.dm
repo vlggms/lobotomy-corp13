@@ -32,5 +32,6 @@ Assistant
 		/obj/item/flashlight/seclite = 1,
 		/obj/item/storage/box/barrier= 1,
 		/obj/item/healthanalyzer = 1,
-		/obj/item/gun/ego_gun/clerk = 1)
+		/obj/item/gun/ego_gun/clerk = 1,
+		/obj/item/kitchen/knife/hunting = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
