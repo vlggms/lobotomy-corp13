@@ -165,3 +165,29 @@
 		for(var/mob/living/carbon/human/person in oview(7, owner))
 			to_chat(person,"<span class='userdanger'>[owner.real_name] parries the attack!</span>")
 	return ..()
+
+/obj/item/ego_weapon/infinite_hatred
+	name = "infinite hatred"
+	desc = "With my infinite hatred, I give you this gift."
+	special = "This weapon has a slower attack speed. \
+	This weapon has knockback."
+	icon_state = "infinite_hatred"
+	force = 50
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/infinite_hatred/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 2) // Slow
+
+/obj/item/ego_weapon/infinite_hatred/attack(mob/living/target, mob/living/user)
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
