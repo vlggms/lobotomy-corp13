@@ -99,3 +99,13 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/prank
+	name = "funny prank"
+	desc = "The little kid who couldn't leave her friends behind came up with a brilliant idea."
+	icon_state = "prank"
+	flags_inv = HIDESHOES
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 25)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
