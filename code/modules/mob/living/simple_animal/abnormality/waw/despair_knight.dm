@@ -84,6 +84,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
+	blessed_human.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
+	UnregisterSignal(blessed_human, COMSIG_LIVING_DEATH)
+	UnregisterSignal(blessed_human, COMSIG_HUMAN_INSANE)
+	blessed_human.physiology.red_mod /= 0.5
+	blessed_human.physiology.white_mod /= 0.5
+	blessed_human.physiology.black_mod /= 0.5
+	blessed_human.physiology.pale_mod /= 2
+	blessed_human = null
 	breach_effect()
 	return TRUE
 
@@ -121,6 +129,7 @@
 	if(!blessed_human && istype(user))
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
+		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
 		to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
 		user.physiology.red_mod *= 0.5
 		user.physiology.white_mod *= 0.5

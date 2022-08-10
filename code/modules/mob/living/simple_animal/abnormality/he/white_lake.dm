@@ -122,19 +122,18 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		//To avoid bugs, I am instead reducing by a flat amount, so that you can't change it by applying a separate defense mod while it is active
-		L.physiology.red_mod -= 0.7
-		L.physiology.white_mod -= 0.9
-		L.physiology.black_mod -= 0.9
-		L.physiology.pale_mod -= 0.8
+		L.physiology.red_mod *= 0.3
+		L.physiology.white_mod *= 0.1
+		L.physiology.black_mod *= 0.1
+		L.physiology.pale_mod *= 0.2
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod += 0.7
-		L.physiology.white_mod += 0.9
-		L.physiology.black_mod += 0.9
-		L.physiology.pale_mod += 0.8
+		L.physiology.red_mod /= 0.3
+		L.physiology.white_mod /= 0.1
+		L.physiology.black_mod /= 0.1
+		L.physiology.pale_mod /= 0.2
 
 #undef STATUS_EFFECT_CHAMPION
