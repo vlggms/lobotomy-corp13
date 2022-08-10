@@ -37,7 +37,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/smile,
-//		/datum/ego_datum/armor/smile
+		/datum/ego_datum/armor/smile
 		)
 
 	/// Is user performing work hurt at the beginning?
