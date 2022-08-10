@@ -83,9 +83,10 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
-	if (guilty_people.len == 0) // Oh, you think it's OKAY to ignore your SINS?
-		for(var/mob/M in urange(100, get_turf(src))) // Shamelessly stolen code from Der Freischutz
-			if(istype(M,mob/living/carbon/human))
+	if (!LAZYLEN(guilty_people)) // Oh, you think it's OKAY to ignore your SINS?
+		var/mob/living/carbon/human/targets = list()
+		for(var/mob/living/carbon/human/M in urange(100, get_turf(src))) // Shamelessly stolen code from Der Freischutz
+			if(M.stat != DEAD)
 				targets += M
 		guilty_people += pick(targets)
 	var/i
