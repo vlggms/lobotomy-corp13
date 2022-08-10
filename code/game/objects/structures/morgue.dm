@@ -147,35 +147,46 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /obj/structure/bodycontainer/get_remote_view_fullscreens(mob/user)
 	if(user.stat == DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /atom/movable/screen/fullscreen/impaired, 2)
+
 /*
  * Morgue
  */
+
 /obj/structure/bodycontainer/morgue
 	name = "morgue"
-	desc = "Used to keep bodies in until someone fetches them. Now includes a high-tech alert system."
+	desc = "This particular slab looks like it.. shouldn't exist?"
 	icon_state = "morgue1"
 	dir = EAST
 	var/beeper = TRUE
 	var/beep_cooldown = 50
 	var/next_beep = 0
 
-/obj/structure/bodycontainer/morgue/Initialize()
+/obj/structure/bodycontainer/morgue/standard
+	name = "morgue"
+	desc = "Used to keep bodies in until someone fetches them. Now includes a high-tech alert system."
+	icon_state = "morgue1"
+	dir = EAST
+	beeper = TRUE
+	beep_cooldown = 50
+	next_beep = 0
+
+/obj/structure/bodycontainer/morgue/standard/Initialize()
 	. = ..()
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
 
-/obj/structure/bodycontainer/morgue/examine(mob/user)
+/obj/structure/bodycontainer/morgue/standard/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
 
-/obj/structure/bodycontainer/morgue/AltClick(mob/user)
+/obj/structure/bodycontainer/morgue/standard/AltClick(mob/user)
 	..()
 	if(!user.canUseTopic(src, !issilicon(user)))
 		return
 	beeper = !beeper
 	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
 
-/obj/structure/bodycontainer/morgue/update_icon()
+/obj/structure/bodycontainer/morgue/standard/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
 		icon_state = "morgue0"
 	else
