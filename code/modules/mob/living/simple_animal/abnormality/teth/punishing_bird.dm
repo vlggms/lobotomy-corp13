@@ -199,7 +199,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
-	if(!target)
+	if(!target && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
 		addtimer(CALLBACK(src, .proc/kill_bird), 120 SECONDS)
