@@ -79,7 +79,6 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 3) // Slow
 
-
 /obj/item/ego_weapon/oppression
 	name = "oppression"
 	desc = "Even light forms of contraint can be considered totalitarianism"
@@ -95,14 +94,16 @@
 							TEMPERANCE_ATTRIBUTE = 80
 							)
 	var/mode = 0
+	var/blocked = 0
 
 /obj/item/ego_weapon/oppression/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 1.25) // FASTER
 
-/obj/item/ego_weapon/oppression/attack_hand(mob/living/user)
+/obj/item/ego_weapon/oppression/attack_self(mob/user)
 	if (mode==0)
 		mode = 1
+		blocked = 0
 		to_chat(user,"<span class='warning'>You take a defensive stance to block bullets. You find your attacks less effective</span>")
 		force = 20
 	if (mode==1)
@@ -113,6 +114,11 @@
 /obj/item/ego_weapon/oppression/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && mode == 1)
 		final_block_chance = 100 //Anime Katana time
+		blocked +=1
+		if(blocked == 5)
+			to_chat(owner,"<span class='warning'>The bullets have knocked you out of stance</span>")
+			mode = 0
+			force = 32
 	return ..()
 
 /obj/item/ego_weapon/remorse
