@@ -103,7 +103,7 @@
 	name = "smile"	//The ability was moved to the weapon.
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
