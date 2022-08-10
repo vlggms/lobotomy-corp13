@@ -193,6 +193,14 @@
 	..()
 	Retaliate(user)
 
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/breach_effect(mob/living/carbon/human/user)
+	..()
+	addtimer(CALLBACK(src, .proc/kill_bird()), 240 SECONDS)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
+	Destroy()
+
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
