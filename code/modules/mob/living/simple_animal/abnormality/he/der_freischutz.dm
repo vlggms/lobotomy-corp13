@@ -65,7 +65,7 @@
 			freidir = NORTH
 		else
 			freidir = SOUTH
-	src.fire_magic_bullet(target, freidir)
+	src.fire_magic_bullet(targetturf, freidir)
 	datum_reference.qliphoth_change(3)
 	return ..()
 
@@ -76,7 +76,7 @@
 	var/list/portals = list()
 	var/turf/T = src.loc
 	var/turf/barrel = locate(T.x + 2, T.y + 1, T.z)
-	var/turf/tpos = target.loc
+	var/turf/tpos = target
 	if (freidir == EAST)
 		T = locate(tpos.x - 5, tpos.y, tpos.z)
 	else if (freidir == WEST)
