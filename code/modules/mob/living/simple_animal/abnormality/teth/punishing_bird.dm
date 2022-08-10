@@ -201,6 +201,8 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!target)
 		QDEL_NULL(src)
+	else
+		addtimer(CALLBACK(src, .proc/kill_bird), 120 SECONDS)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)
