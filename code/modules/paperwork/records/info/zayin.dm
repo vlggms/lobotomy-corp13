@@ -62,3 +62,19 @@
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Very Low<br>"}
+
+//Fairy Festival
+/obj/item/paper/fluff/info/zayin/fairy
+	name = "F-04-83"
+	info = {"<h1><center>F-04-83</center></h1>	<br>
+	Name : Fairy Festival	<br>
+	Risk Class : Zayin	<br>
+	Max PE Boxes : 10	<br>
+	Qliphoth Counter : X	<br>
+	- When the work result was Normal or Good, small fairies appeared around the employee.	<br>
+	- The small fairies will heal the employee’s HP over a limited time.<br>
+	- If an employee under the fairies' care is assigned to a different Containment Unit, they will immediately die and be consumed by the fairies.<br><br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Common<br>"}

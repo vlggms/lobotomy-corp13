@@ -19,36 +19,37 @@
 /datum/outfit/job/assistant/controldepartmentclerk
 	name = "Clerk (Control)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/control
-
+	ears = /obj/item/radio/headset/headset_control
 
 /datum/outfit/job/assistant/informationdepartmentclerk
 	name = "Clerk (Information)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/information
-
+	ears = /obj/item/radio/headset/headset_information
 
 /datum/outfit/job/assistant/trainingdepartmentclerk
 	name = "Clerk (Training)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/training
-
+	ears = /obj/item/radio/headset/headset_training
 
 /datum/outfit/job/assistant/safetydepartmentclerk
 	name = "Clerk (Safety)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/safety
-
+	ears = /obj/item/radio/headset/headset_safety
 
 /datum/outfit/job/assistant/welfaredepartmentclerk
 	name = "Clerk (Welfare)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/welfare
-
+	ears = /obj/item/radio/headset/headset_welfare
 
 /datum/outfit/job/assistant/disciplinarydepartmentclerk
 	name = "Clerk (Discipline)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/discipline
-
+	ears = /obj/item/radio/headset/headset_discipline
 
 /datum/outfit/job/assistant/commanddepartmentclerk
 	name = "Clerk (Command)"
 	uniform = /obj/item/clothing/under/suit/lobotomy/command
+	ears = /obj/item/radio/headset/headset_command
 
 /datum/outfit/job/assistant/extractiondepartmentclerk
 	name = "Clerk (Extraction)"

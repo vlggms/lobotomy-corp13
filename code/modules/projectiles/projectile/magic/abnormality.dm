@@ -37,3 +37,33 @@
 /obj/projectile/hatred/Initialize()
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
+
+/obj/projectile/melting_blob
+	name = "slime projectile"
+	icon_state = "slime"
+	desc = "A glob of infectious slime. It's going for your heart."
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 100
+	spread = 15
+	hitsound = "sound/effects/footstep/slime1.ogg"
+
+/obj/projectile/melting_blob/enraged
+	damage = 200
+	spread = 15
+
+/obj/projectile/mountain_spit
+	name = "spit"
+	desc = "Gross, disgusting spit."
+	icon_state = "mountain"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 10 // Launches 32(96) of those, for a whooping 320(960) black damage
+	spread = 60
+	slur = 3
+	eyeblur = 3
+
+/obj/projectile/mountain_spit/Initialize()
+	. = ..()
+	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
+

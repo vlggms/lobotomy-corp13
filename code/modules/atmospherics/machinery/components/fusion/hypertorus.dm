@@ -285,7 +285,7 @@
 	///Our internal radio
 	var/obj/item/radio/radio
 	///The key our internal radio uses
-	var/radio_key = /obj/item/encryptionkey/headset_eng
+	var/radio_key = /obj/item/encryptionkey/headset_safety
 	///The engineering channel
 	var/engineering_channel = "Engineering"
 	///The common channel

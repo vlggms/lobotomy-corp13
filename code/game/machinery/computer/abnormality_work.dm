@@ -24,7 +24,7 @@
 /obj/machinery/computer/abnormality/update_overlays()
 	. = ..()
 	if(meltdown)
-		. += "abnormality_meltdown"
+		SSvis_overlays.add_vis_overlay(src, icon, "abnormality_meltdown", layer + 0.1, plane, dir)
 
 /obj/machinery/computer/abnormality/examine(mob/user)
 	. = ..()
@@ -72,7 +72,7 @@
 			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
 				to_chat(usr, "<span class='warning'>Abnormality is currently in the process of revival!</span>")
 				return
-			if(datum_reference.current.AIStatus == TRUE)
+			if(!(datum_reference.current.status_flags & GODMODE))
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
 			if(!datum_reference.current.attempt_work(usr, href_list["do_work"]))
@@ -87,7 +87,7 @@
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
-	SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user)
+	SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 	user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
 		finish_work(user, work_type, 0, work_time) // Assume total failure
@@ -107,8 +107,8 @@
 	update_icon()
 	working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
-	work_chance *= 1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 180)
-	work_chance = datum_reference.current.work_chance(user, work_chance)
+	work_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	work_chance = clamp(work_chance * user.physiology.work_success_mod, 0, 100)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
@@ -122,7 +122,7 @@
 			break // Lost sanity
 		if(user.health < 0)
 			break // Dying
-		if(datum_reference.current.AIStatus == TRUE)
+		if(!(datum_reference.current.status_flags & GODMODE))
 			break // Somehow it escaped
 	finish_work(user, work_type, success_boxes, work_time, work_speed)
 
@@ -135,10 +135,11 @@
 
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
 	working = FALSE
-	if(max_pe != 0)
-		visible_message("<span class='notice'>Work finished. [pe]/[max_pe] PE acquired.")
+	SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
+	if(max_pe != 0)
+		visible_message("<span class='notice'>[work_type] work finished. [pe]/[max_pe] PE acquired.")
 	if(istype(user))
 		datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))

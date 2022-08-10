@@ -47,3 +47,21 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//Nothing There
+/obj/item/paper/fluff/info/aleph/nothingthere
+	name = "T-03-46"
+	info = {"<h1><center>O-06-20</center></h1>	<br>
+	Name : Nothing There<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 1	<br>
+	- The lower the working employee’s Fortitude, the lower the success rate was and the less stable the work was. <br>
+	- When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.	<br>
+	- When the work result was Bad, NAME was attacked and turned into Nothing There’s shell.	<br>
+	- When the Qliphoth Counter reached 0, Nothing There, taking the appearance of the dead NAME, disappeared from its Containment Unit. The manager must quickly find and kill Nothing There’s disguised appearance.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Very Low<br>"}

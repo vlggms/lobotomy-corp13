@@ -28,5 +28,7 @@
 
 	var/hunger_mod = 1		//% of hunger rate taken per tick.
 
+	var/work_success_mod = 1 //% Modifier to the success rate of works
+
 /datum/physiology/New()
 	armor = new

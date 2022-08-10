@@ -7,11 +7,8 @@
 		#include "map_files\Mining\Lavaland.dmm"
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\debug\multiz.dmm"
-		#include "map_files\Deltastation\DeltaStation2.dmm"
-		#include "map_files\KiloStation\KiloStation.dmm"
-		#include "map_files\MetaStation\MetaStation.dmm"
-		#include "map_files\PackedStation\PackedStation.dmm"
-		#include "map_files\IceBoxStation\IceBoxStation.dmm"
+		#include "map_files\Alpha\alphacorp.dmm"
+		#include "map_files\Beta\betacorp.dmm"
 
 		#ifdef CIBUILDING
 			#include "templates.dm"

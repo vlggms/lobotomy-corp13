@@ -25,13 +25,14 @@
 
 /obj/item/ego_weapon/fragment/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.4) // Has Longer reach, should be a little slower
+	user.changeNext_move(CLICK_CD_MELEE * 1.2) // Has Longer reach, should be a little slower
 
 /obj/item/ego_weapon/horn
 	name = "horn"
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
 	force = 22
+	throwforce = 45		//You can only hold two so go nuts.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -81,6 +82,9 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
 
 /obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
@@ -99,15 +103,4 @@
 	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
-
-/obj/item/ego_weapon/little_alice
-	name = "little alice"
-	desc = "You, now in wonderland!"
-	icon_state = "little_alice"
-	force = 22
-	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("slices", "slashes", "stabs")
-	attack_verb_simple = list("slices", "slashes", "stabs")
-	hitsound = 'sound/weapons/bladeslice.ogg'
 

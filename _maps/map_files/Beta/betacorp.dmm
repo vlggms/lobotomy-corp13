@@ -2170,7 +2170,7 @@
 /area/department_main/control)
 "mS" = (
 /obj/machinery/button/door{
-	id = cellthree;
+	id = "cellthree";
 	name = "Cell Three Lock Button";
 	pixel_x = 32
 	},
@@ -2801,7 +2801,7 @@
 /area/department_main/safety)
 "qM" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = celltwo
+	id = "celltwo"
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -3622,7 +3622,7 @@
 /area/department_main/information)
 "uV" = (
 /obj/machinery/button/door{
-	id = cellfour;
+	id = "cellfour";
 	name = "Cell Four Lock Button";
 	pixel_x = 32
 	},
@@ -3667,7 +3667,7 @@
 /area/department_main/training)
 "vj" = (
 /obj/machinery/button/door{
-	id = celltwo;
+	id = "celltwo";
 	name = "Cell Two Lock Button";
 	pixel_x = -32
 	},
@@ -3803,7 +3803,7 @@
 "wq" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = cellone
+	id = "cellone"
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -4161,7 +4161,7 @@
 /area/facility_hallway/north)
 "yw" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = cellthree
+	id = "cellthree"
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -4446,7 +4446,7 @@
 "AG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = cellfour
+	id = "cellfour"
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -6721,7 +6721,7 @@
 /area/facility_hallway/south)
 "NW" = (
 /obj/machinery/button/door{
-	id = cellone;
+	id = "cellone";
 	name = "Cell One Lock Button";
 	pixel_x = -32
 	},

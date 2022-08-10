@@ -94,8 +94,8 @@
 	var/consume_gas = FALSE
 
 	var/obj/item/radio/radio
-	var/radio_key = /obj/item/encryptionkey/headset_med
-	var/radio_channel = RADIO_CHANNEL_MEDICAL
+	var/radio_key = /obj/item/encryptionkey/headset_welfare
+	var/radio_channel = RADIO_CHANNEL_WELFARE
 
 	/// Visual content - Occupant
 	var/atom/movable/visual/cryo_occupant/occupant_vis
@@ -322,7 +322,7 @@ GLOBAL_VAR_INIT(cryo_overlay_cover_off, mutable_appearance('icons/obj/cryogenics
 
 		if(air1.temperature > 2000)
 			take_damage(clamp((air1.temperature)/200, 10, 20), BURN)
-		
+
 		update_parents()
 
 		update_parents()

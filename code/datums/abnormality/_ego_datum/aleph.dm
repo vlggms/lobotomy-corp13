@@ -38,3 +38,16 @@
 /datum/ego_datum/armor/mimicry
 	item_path = /obj/item/clothing/suit/armor/ego_gear/mimicry
 	cost = 100
+
+// Melting Love - Adoration
+/datum/ego_datum/weapon/adoration
+	item_path = /obj/item/gun/ego_gun/adoration
+	cost = 100
+
+/datum/ego_datum/armor/adoration
+	item_path = /obj/item/clothing/suit/armor/ego_gear/adoration
+
+// Mountain of smiling bodies - Smile
+/datum/ego_datum/weapon/smile
+	item_path = /obj/item/ego_weapon/smile
+	cost = 100

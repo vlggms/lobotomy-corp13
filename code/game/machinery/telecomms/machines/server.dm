@@ -72,31 +72,30 @@
 	. = ..()
 	name = id
 
+/obj/machinery/telecomms/server/presets/supply
+	id = "Control Server"
+	freq_listening = list(FREQ_CONTROL)
+	autolinkers = list("control")
 
 /obj/machinery/telecomms/server/presets/science
-	id = "Science Server"
-	freq_listening = list(FREQ_SCIENCE)
-	autolinkers = list("science")
+	id = "Information Server"
+	freq_listening = list(FREQ_INFORMATION)
+	autolinkers = list("information")
 
 /obj/machinery/telecomms/server/presets/medical
-	id = "Medical Server"
-	freq_listening = list(FREQ_MEDICAL)
-	autolinkers = list("medical")
+	id = "Safety Server"
+	freq_listening = list(FREQ_SAFETY)
+	autolinkers = list("safety")
 
-/obj/machinery/telecomms/server/presets/supply
-	id = "Supply Server"
-	freq_listening = list(FREQ_SUPPLY)
-	autolinkers = list("supply")
-
-/obj/machinery/telecomms/server/presets/service
-	id = "Service Server"
-	freq_listening = list(FREQ_SERVICE)
-	autolinkers = list("service")
+/obj/machinery/telecomms/server/presets/engineering
+	id = "Training Server"
+	freq_listening = list(FREQ_TRAINING)
+	autolinkers = list("training")
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
-	freq_listening = list()
-	autolinkers = list("common")
+	freq_listening = list(FREQ_ARCHITECTURE)
+	autolinkers = list("common", "architecture")
 
 //Common and other radio frequencies for people to freely use
 /obj/machinery/telecomms/server/presets/common/Initialize()
@@ -109,15 +108,15 @@
 	freq_listening = list(FREQ_COMMAND)
 	autolinkers = list("command")
 
-/obj/machinery/telecomms/server/presets/engineering
-	id = "Engineering Server"
-	freq_listening = list(FREQ_ENGINEERING)
-	autolinkers = list("engineering")
+/obj/machinery/telecomms/server/presets/service
+	id = "Welfare Server"
+	freq_listening = list(FREQ_WELFARE)
+	autolinkers = list("welfare")
 
 /obj/machinery/telecomms/server/presets/security
 	id = "Security Server"
-	freq_listening = list(FREQ_SECURITY)
-	autolinkers = list("security")
+	freq_listening = list(FREQ_DISCIPLINE)
+	autolinkers = list("discipline")
 
 /obj/machinery/telecomms/server/presets/common/birdstation/Initialize()
 	. = ..()

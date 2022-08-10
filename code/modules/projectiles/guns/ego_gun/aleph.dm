@@ -20,3 +20,22 @@
 /obj/item/gun/ego_gun/star/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.25 SECONDS)
+
+/obj/item/gun/ego_gun/adoration
+	name = "adoration"
+	desc = "A big mug filled with mysterious slime that never runs out. \
+	It’s the byproduct of some horrid experiment in a certain laboratory that eventually failed."
+	icon_state = "adoration"
+	inhand_icon_state = "adoration"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_adoration
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/effects/attackblob.ogg'
+	fire_sound_volume = 50
+	fire_delay = 15
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)

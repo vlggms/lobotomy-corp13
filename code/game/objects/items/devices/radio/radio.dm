@@ -260,8 +260,8 @@
 	// Construct the signal
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans, message_mods)
 
-	// Independent radios, on the CentCom frequency, reach all independent radios ! TerraGov is TEGU edit
-	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_TERRAGOV || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE))
+	// Independent radios, on the CentCom frequency, reach all independent radios
+	if (independent && (freq == FREQ_CENTCOM || freq == FREQ_HEAD || freq == FREQ_CTF_RED || freq == FREQ_CTF_BLUE))
 		signal.data["compression"] = 0
 		signal.transmission_method = TRANSMISSION_SUPERSPACE
 		signal.levels = list(0)  // reaches all Z-levels

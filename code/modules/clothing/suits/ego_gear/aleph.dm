@@ -61,6 +61,18 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/goldexperience
+	name = "gold experience"
+	desc = "A jacket made of gold is hardly light. But it shines like the sun."
+	icon_state = "gold_experience"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)	//Basically Immune to red..
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/twilight
 	name = "twilight"
 	desc = "The three birds united their efforts to defeat the beast. \
@@ -72,4 +84,17 @@
 							PRUDENCE_ATTRIBUTE = 120,
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/adoration
+	name = "adoration"
+	desc = "It is not as unpleasant to wear as it is to look at. \
+	In fact, it seems to give you an illusion of comfort and bravery."
+	icon_state = "adoration"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
 							)

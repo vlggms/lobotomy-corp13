@@ -7,7 +7,7 @@
 	Max PE Boxes : 15	<br>
 	Qliphoth Counter : X	<br>
 	- NAME died of asphyxiation after working with Happy Teddy Bear multiple times in a row.	<br>
-	- NAME was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.	<br><br>
+	- NAME was found dead in Happy Teddy Bearâ€™s arms with a broken neck. It is believed that visiting Happy Teddy Bearâ€™s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.	<br><br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> High<br>

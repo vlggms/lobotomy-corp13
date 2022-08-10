@@ -50,17 +50,20 @@
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
+	datum_reference.qliphoth_change(3)
+	if(!champion)
+		return
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
 	H.equipOutfit(whitelake)	//Get outfit
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)
-	datum_reference.qliphoth_change(3)
 	//Replaces AI with murder one
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.ghostize()
 	H.InitializeAIController()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
 	var/obj/item/held = H.get_active_held_item()
