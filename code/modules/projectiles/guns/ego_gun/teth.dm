@@ -8,9 +8,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 20
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/gun/ego_gun/beak
 	name = "beak"
@@ -22,9 +19,6 @@
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
 
 /obj/item/gun/ego_gun/beak/Initialize()
 	. = ..()
