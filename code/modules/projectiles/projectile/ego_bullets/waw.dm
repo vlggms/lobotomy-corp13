@@ -20,6 +20,8 @@
 	if(ishuman(target) && isliving(firer))
 		var/mob/living/carbon/human/H = target
 		var/mob/living/user = firer
+		if(firer==target)
+			return BULLET_ACT_BLOCK
 		if(user.faction_check_mob(H)) // Our faction
 			switch(damage_type)
 				if(WHITE_DAMAGE)
