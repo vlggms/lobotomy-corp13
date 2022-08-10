@@ -17,7 +17,7 @@
 						)
 	work_damage_amount = 0
 	work_damage_type = WHITE_DAMAGE
-	start_qliphoth = 4
+	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/remorse,
@@ -59,15 +59,23 @@
 	if((user in guilty_people) == 1) // In statement uses 0 for not present, 1 for present
 		return ..()
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60)
-		datum_reference.qliphoth_change(-1)
-		guilty_people += user
-		user.physiology.work_success_mod -= 0.25 // Reduces global success rate by 25%
-		to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
-		guiltIcon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
-		user.add_overlay(guiltIcon)
-		playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
-		RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/guilty_work)
+		apply_guilt(user)
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/apply_guilt(mob/living/carbon/human/user)
+	datum_reference.qliphoth_change(-1)
+	guilty_people += user
+	user.physiology.work_success_mod -= 0.25 // Reduces global success rate by 25%
+	to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
+	guiltIcon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
+	user.add_overlay(guiltIcon)
+	playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
+	RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/guilty_work)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	apply_guilt(user)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/attempt_work(mob/living/carbon/human/user, work_type)
 	if ((user in guilty_people) == 1)
@@ -78,7 +86,7 @@
 	var/i
 	for(i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
 		DriveInsane(i)
-	datum_reference.qliphoth_change(4)
+	datum_reference.qliphoth_change(3)
 	return
 
 //Whitelake makes a good point with the different lines, so I thought it'd be cool
