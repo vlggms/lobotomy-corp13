@@ -2404,13 +2404,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "wT" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 2
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/bodycontainer/morgue/standard{
+	dir = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "wU" = (
@@ -2434,10 +2434,10 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "xi" = (
-/obj/structure/bodycontainer/morgue{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bodycontainer/morgue/standard{
 	dir = 2
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "xz" = (
@@ -4330,10 +4330,10 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "RP" = (
-/obj/structure/bodycontainer/morgue{
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bodycontainer/morgue/standard{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "RU" = (
@@ -4415,11 +4415,11 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Sz" = (
-/obj/structure/bodycontainer/morgue{
-	dir = 1
-	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/bodycontainer/morgue/standard{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "SB" = (

@@ -152,8 +152,9 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
  * Morgue
  */
 
+//Parent type (don't use >:[ )
 /obj/structure/bodycontainer/morgue
-	name = "morgue"
+	name = "broken morgue"
 	desc = "This particular slab looks like it.. shouldn't exist?"
 	icon_state = "morgue1"
 	dir = EAST
@@ -161,6 +162,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/beep_cooldown = 50
 	var/next_beep = 0
 
+//Standard Morgue Slab
 /obj/structure/bodycontainer/morgue/standard
 	name = "morgue"
 	desc = "Used to keep bodies in until someone fetches them. Now includes a high-tech alert system."
@@ -186,6 +188,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = !beeper
 	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
 
+//Morgue Slab Indicators
 /obj/structure/bodycontainer/morgue/standard/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
 		icon_state = "morgue0"
@@ -217,6 +220,7 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 /*
  * Morgue (Extraction Variant)
  */
+
 /obj/structure/bodycontainer/morgue/extraction
 	name = "headstone"
 	desc = "A sleek stone container, etched apon it's surface is a glowing gold text. Along it's sides are elaborate grooves and creases."
