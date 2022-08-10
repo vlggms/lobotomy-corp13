@@ -105,3 +105,25 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> High<br>"}
+
+//1.76 MHz
+/obj/item/paper/fluff/info/teth/mhz
+	name = "T-06-27"
+	info = {"<h1><center>T-06-27</center></h1>	<br>
+	Name : 1.76 MHz	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 4	<br>
+	- The higher the Agent’s Fortitude was, the lower their Success Rate when working with 1.76 MHz. It may be due to the fact that violent tendencies flare rapidly due to 1.76 MHz’s influence.	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
+	- When employee NAME panicked during work, the Qliphoth Counter lowered.	<br>
+	- When the work result was Good, the Qliphoth Counter increased. When all E-Boxes were produced as PE-Boxes, the Counter increased by 2.	<br>
+	- The surveillance camera detected various noises emitting around the facility. Based on the fact that this occurred after 1.76 MHz’s Qliphoth Counter reached 0, it can be assumed that the noise originated from 1.76 MHz’s Containment Unit.	<br>
+	- The broadcast lasted for a maximum of 3 minutes.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>"}
+
