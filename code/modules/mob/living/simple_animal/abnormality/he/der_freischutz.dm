@@ -21,17 +21,17 @@
 		)
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-    if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
-        datum_reference.qliphoth_change(-1)
-    return ..()
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
+		datum_reference.qliphoth_change(-1)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/failure_effect(mob/living/carbon/human/user, work_type, pe)
-    datum_reference.qliphoth_change(-(prob(75)))
-    return ..()
+	datum_reference.qliphoth_change(-(prob(75)))
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-    datum_reference.qliphoth_change(-(prob(50)))
-    return ..()
+	datum_reference.qliphoth_change(-(prob(50)))
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/zero_qliphoth(mob/living/carbon/human/user)
 	var/list/targets = list()
