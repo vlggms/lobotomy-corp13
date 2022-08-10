@@ -23,3 +23,14 @@
 /obj/item/gun/ego_gun/beak/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
+
+/obj/item/gun/ego_gun/noise
+	name = "noise"
+	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
+	icon_state = "noise"
+	inhand_icon_state = "noise"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_noise
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	recoil = 1		//Shakes your screen
+	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'

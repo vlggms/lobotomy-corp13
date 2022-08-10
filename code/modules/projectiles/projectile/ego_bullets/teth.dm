@@ -17,3 +17,8 @@
 	damage = 6
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_noise
+	name = "noise"
+	damage = 3
+	damage_type = BLACK_DAMAGE

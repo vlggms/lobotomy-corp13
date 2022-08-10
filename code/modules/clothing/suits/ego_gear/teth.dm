@@ -49,3 +49,9 @@
 	desc = "The fear of death is natural, but in denying it you shall find untold strength."
 	icon_state = "daredevil"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 25, BLACK_DAMAGE = 25, PALE_DAMAGE = -100)
+
+/obj/item/clothing/suit/armor/ego_gear/noise
+	name = "noise"
+	desc = "This is a recording of the day we must never forget."
+	icon_state = "noise"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
