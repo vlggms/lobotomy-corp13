@@ -261,13 +261,13 @@
 	genes = list(/datum/plant_gene/trait/sticky, /datum/plant_gene/trait/stinging)
 	graft_gene = /datum/plant_gene/trait/sticky
 	growing_icon = 'icons/obj/hydroponics/growing_vegetables.dmi'
-	reagents_add = list(/datum/reagent/water = 0.08, /datum/reagent/consumable/nutriment = 0.05, /datum/reagent/medicine/c2/helbital = 0.05)
+	reagents_add = list(/datum/reagent/water = 0.08, /datum/reagent/consumable/nutriment = 0.05)
 
 ///Star Cactus Plants.
 /obj/item/food/grown/star_cactus
 	seed = /obj/item/seeds/star_cactus
 	name = "star cacti"
-	desc = "A spikey, round cluster of prickly star cacti. And no, it's not called a star cactus because it's in space."
+	desc = "A spikey, round cluster of prickly star cacti."
 	icon_state = "starcactus"
 	filling_color = "#1c801c"
 	bite_consumption_mod = 3

@@ -22,7 +22,7 @@
 	to_chat(owner,missiondesc)
 
 /datum/antagonist/ert/terragov/leader
-	name = "TerraGov Squad Leader"
+	name = "CityGov Squad Leader"
 	role = "Squad Leader"
 
 /datum/antagonist/ert/terragov/heavy
@@ -35,7 +35,7 @@
 
 // TerraGov Official
 /datum/antagonist/ert/terragov/official
-	name = "Terragov Official"
+	name = "Citygov Official"
 	show_name_in_check_antagonists = TRUE
 	var/datum/objective/mission
 	role = "Inspector"
@@ -49,7 +49,7 @@
 	to_chat(owner, "<B><font size=4 color=red>You are NOT a Nanotrasen Employee!</font></B>")
 
 	if (ert_team)
-		to_chat(owner, "TerraGov is sending you to [station_name()] with the task: [ert_team.mission.explanation_text]")
+		to_chat(owner, "CityGov is sending you to [station_name()] with the task: [ert_team.mission.explanation_text]")
 	else
 		to_chat(owner, "TerraGov is sending you to [station_name()] with the task: [mission.explanation_text]")
 

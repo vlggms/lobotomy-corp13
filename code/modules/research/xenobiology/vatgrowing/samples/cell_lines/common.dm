@@ -329,7 +329,6 @@
 
 	suppressive_reagents = list(
 							/datum/reagent/toxin/pestkiller = -2,
-							/datum/reagent/consumable/poisonberryjuice = -4,
 							/datum/reagent/consumable/ethanol/bug_spray = -4)
 
 	virus_suspectibility = 0

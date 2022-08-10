@@ -11,25 +11,9 @@
 	instability = 25
 	growthstages = 5
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy)
-	mutatelist = list(/obj/item/seeds/nettle/death)
+	mutatelist = list()
 	reagents_add = list(/datum/reagent/toxin/acid = 0.5)
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
-
-/obj/item/seeds/nettle/death
-	name = "pack of death-nettle seeds"
-	desc = "These seeds grow into death-nettles."
-	icon_state = "seed-deathnettle"
-	species = "deathnettle"
-	plantname = "Death Nettles"
-	product = /obj/item/food/grown/nettle/death
-	endurance = 25
-	maturation = 8
-	yield = 2
-	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging)
-	mutatelist = list()
-	reagents_add = list(/datum/reagent/toxin/acid/fluacid = 0.5, /datum/reagent/toxin/acid = 0.5)
-	rarity = 20
-	graft_gene = /datum/plant_gene/trait/stinging
 
 /obj/item/food/grown/nettle // "snack"
 	seed = /obj/item/seeds/nettle
@@ -86,35 +70,3 @@
 /obj/item/food/grown/nettle/basic/Initialize(mapload, obj/item/seeds/new_seed)
 	. = ..()
 	force = round((5 + seed.potency / 5), 1)
-
-/obj/item/food/grown/nettle/death
-	seed = /obj/item/seeds/nettle/death
-	name = "deathnettle"
-	desc = "The <span class='danger'>glowing</span> nettle incites <span class='boldannounce'>rage</span> in you just from looking at it!"
-	icon_state = "deathnettle"
-	force = 30
-	wound_bonus = CANT_WOUND
-	throwforce = 15
-
-/obj/item/food/grown/nettle/death/Initialize(mapload, obj/item/seeds/new_seed)
-	. = ..()
-	force = round((5 + seed.potency / 2.5), 1)
-
-/obj/item/food/grown/nettle/death/pickup(mob/living/carbon/user)
-	if(..())
-		if(prob(50))
-			user.Paralyze(100)
-			to_chat(user, "<span class='userdanger'>You are stunned by [src] as you try picking it up!</span>")
-
-/obj/item/food/grown/nettle/death/attack(mob/living/carbon/M, mob/user)
-	if(!..())
-		return
-	if(isliving(M))
-		to_chat(M, "<span class='danger'>You are stunned by the powerful acid of [src]!</span>")
-		log_combat(user, M, "attacked", src)
-
-		M.adjust_blurriness(force/7)
-		if(prob(20))
-			M.Unconscious(force / 0.3)
-			M.Paralyze(force / 0.75)
-		M.drop_all_held_items()

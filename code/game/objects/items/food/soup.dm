@@ -232,14 +232,6 @@
 	tastes = list("creamy texture" = 1, "crab" = 4)
 	foodtypes = MEAT
 
-/obj/item/food/soup/electron
-	name = "electron soup"
-	desc = "A gastronomic curiosity of ethereal origin. It is famed for the minature weather system formed over a properly prepared soup."
-	icon_state = "electronsoup"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/liquidelectricity = 5)
-	tastes = list("mushroom" = 1, "electrons" = 4)
-	foodtypes = VEGETABLES | TOXIC
-
 /obj/item/food/soup/bungocurry
 	name = "bungo curry"
 	desc = "A spicy vegetable curry made with the humble bungo fruit, Exotic!"

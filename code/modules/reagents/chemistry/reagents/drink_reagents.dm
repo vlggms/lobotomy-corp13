@@ -85,20 +85,6 @@
 	color = "#ECFF56" // rgb: 236, 255, 86
 	taste_description = "apples"
 
-/datum/reagent/consumable/poisonberryjuice
-	name = "Poison Berry Juice"
-	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
-	color = "#863353" // rgb: 134, 51, 83
-	taste_description = "berries"
-	glass_icon_state = "poisonberryjuice"
-	glass_name = "glass of berry juice"
-	glass_desc = "Berry juice. Or maybe it's poison. Who cares?"
-
-/datum/reagent/consumable/poisonberryjuice/on_mob_life(mob/living/carbon/M)
-	M.adjustToxLoss(1, 0)
-	. = 1
-	..()
-
 /datum/reagent/consumable/watermelonjuice
 	name = "Watermelon Juice"
 	description = "Delicious juice made from watermelon."

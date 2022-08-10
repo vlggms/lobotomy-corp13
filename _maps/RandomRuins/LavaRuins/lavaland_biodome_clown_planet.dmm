@@ -797,7 +797,6 @@
 /area/ruin/powered/clownplanet)
 "bQ" = (
 /obj/structure/table/glass,
-/obj/item/grown/bananapeel/bluespace,
 /turf/open/floor/carpet,
 /area/ruin/powered/clownplanet)
 "bR" = (

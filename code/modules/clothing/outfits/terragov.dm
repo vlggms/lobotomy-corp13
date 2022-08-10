@@ -1,6 +1,6 @@
 /datum/outfit/terragov
-	name = "TerraGov Official"
-	var/jb_name = "TerraGov Official"
+	name = "CityGov Official"
+	var/jb_name = "CityGov Official"
 
 	uniform = /obj/item/clothing/under/suit/black_really/citygov
 	suit = /obj/item/clothing/suit/armor/bulletproof
@@ -29,8 +29,8 @@
 	..()
 
 /datum/outfit/terragov/marine
-	name = "TerraGov Marine"
-	jb_name = "TerraGov Marine"
+	name = "CityGov Marine"
+	jb_name = "CityGov Marine"
 	uniform = /obj/item/clothing/under/syndicate/citygov
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/thermal
 	mask = /obj/item/clothing/mask/gas

@@ -382,11 +382,7 @@
 	else
 		oldPlantName = "empty tray"
 	switch(rand(1,18))		// randomly pick predominative weed
-		if(16 to 18)
-			myseed = new /obj/item/seeds/reishi(src)
-		if(14 to 15)
-			myseed = new /obj/item/seeds/nettle(src)
-		if(12 to 13)
+		if(12 to 18)
 			myseed = new /obj/item/seeds/harebell(src)
 		if(10 to 11)
 			myseed = new /obj/item/seeds/amanita(src)
@@ -447,7 +443,7 @@
 		if(myseed)
 			qdel(myseed)
 			myseed = null
-		var/newWeed = pick(/obj/item/seeds/liberty, /obj/item/seeds/angel, /obj/item/seeds/nettle/death, /obj/item/seeds/kudzu)
+		var/newWeed = pick(/obj/item/seeds/liberty)
 		myseed = new newWeed
 		dead = FALSE
 		hardmutate()
@@ -892,7 +888,7 @@
  * Upon using strange reagent on a tray, it will spawn a killer tomato or killer tree at random.
  */
 /obj/machinery/hydroponics/proc/spawnplant() // why would you put strange reagent in a hydro tray you monster I bet you also feed them blood
-	var/list/livingplants = list(/mob/living/simple_animal/hostile/tree, /mob/living/simple_animal/hostile/killertomato)
+	var/list/livingplants = list(/mob/living/simple_animal/hostile/tree)
 	var/chosen = pick(livingplants)
 	var/mob/living/simple_animal/hostile/C = new chosen
 	C.faction = list("plants")

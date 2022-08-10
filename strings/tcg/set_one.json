@@ -10,7 +10,7 @@
 		{
 			"id": "AI",
 			"name": "Sefirot",
-			"desc": "The latest generation of Lobotomy Corporation's top secret enhanced intelligence project, this time with actual human brains in a jar! Don't tell the press though.",
+			"desc": "The latest generation of Lobotomy Corporation's top secret enhanced intelligence project, this time with actual human brains in a jar! Don't tell the press though!",
 			"rules": "Asimov",
 			"icon_state": "ai",
 			"power": "3",
@@ -1294,9 +1294,9 @@
 		},
 		{
 			"id": "black_gaia",
-			"name": "Black Ambrosia Gaia",
-			"desc": "If Ambrosia Gaia is the gold of Botany, the rare black variety is the platinum. Almost nobody has seen this illusive plant with their own eyes.",
-			"rules": "During the draw phase, you may sacrifice Ambrosia Gaia to gain 3 mana.",
+			"name": "High Grade Contraband",
+			"desc": "Certain substances grade higher than your average contraband, sought after and highly valued by the most esteemed junkies in command.",
+			"rules": "During the draw phase, you may sacrifice your contraband to gain 3 mana.",
 			"icon_state": "black_gaia",
 			"power": "0",
 			"resolve": "0",
