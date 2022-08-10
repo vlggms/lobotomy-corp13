@@ -10,10 +10,10 @@
 	health = 650
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 10,
-						ABNORMALITY_WORK_INSIGHT = list(-50, -50, 40, 45, 50),
+						ABNORMALITY_WORK_INSTINCT = 20,
+						ABNORMALITY_WORK_INSIGHT = list(-50, -50, 50, 55, 60),
 						ABNORMALITY_WORK_ATTACHMENT = -50,
-						ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60)
+						ABNORMALITY_WORK_REPRESSION = list(45, 50, 55, 60, 65)
 						)
 	work_damage_amount = 0
 	work_damage_type = WHITE_DAMAGE
@@ -83,6 +83,11 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
+	if (guilty_people.len == 0) // Oh, you think it's OKAY to ignore your SINS?
+		for(var/mob/M in urange(100, get_turf(src))) // Shamelessly stolen code from Der Freischutz
+			if(istype(M,mob/living/carbon/human))
+				targets += M
+		guilty_people += pick(targets)
 	var/i
 	for(i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
 		DriveInsane(i)
