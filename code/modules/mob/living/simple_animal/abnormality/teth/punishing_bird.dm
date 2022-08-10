@@ -199,7 +199,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
-	Destroy()
+	if(!target)
+		QDEL_NULL(src)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)
