@@ -50,7 +50,7 @@
 
 //Nothing There
 /obj/item/paper/fluff/info/aleph/nothingthere
-	name = "T-03-46"
+	name = "O-06-20"
 	info = {"<h1><center>O-06-20</center></h1>	<br>
 	Name : Nothing There<br>
 	Risk Class : Aleph	<br>
@@ -63,5 +63,64 @@
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Very Low<br>"}
+
+//The Mountain of Smiling Bodies
+/obj/item/paper/fluff/info/aleph/mountain
+	name = "T-01-75"
+	info = {"<h1><center>T-01-75</center></h1>	<br>
+	Name : The Mountain Of Smiling Bodies<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 2	<br>
+	- When NAME died or was critically injured while working with Mountain of Smiling Bodies, the Qliphoth Counter lowered. <br>
+	- When a wounded employee began work on The Mountain of Smiling Bodies, the Qliphoth Counter lowered.	<br>
+	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
+	- When 3 employees die inside the facility, the Qliphoth Counter will lower.	<br>
+	- While Mountain of Smiling Bodies is escaping, it will show sensitive reactions to corpses. During suppression, ensure that no one dies due to the Abnormality; if casualties do happen, try to keep Mountain of Smiling Bodies away from the dead.	<br>
+	- If Mountain of Smiling Bodies’s suppression could not be completed on the previous level, you must be very careful to prevent any death inside the section where Mountain of Smiling Bodies is located.	<br>
+	- After other entities spawned from Mountain of Smiling Bodies’s main body while escaping, reducing its HP to 0 did not fully suppress it. Mountain of Smiling Bodies will only be quelled by attacking the main body after continuously reducing its HP and defeating the other spawned entities	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Staining Rose
+/obj/item/paper/fluff/info/aleph/rose
+	name = "F-04-116"
+	info = {"<h1><center>F-04-116</center></h1>	<br>
+	Name : Staining Rose<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 3	<br>
+	- Once the Qliphoth Counter reaches 0, the rose would shed it's petals, and everyone in the facility became more vulnerable.	<br>
+	- The first person to work on the rose would become it's chosen.	<br>
+	- If anyone other than the chosen worked on the rose, they became permanently weaker.	<br>
+	- If the employee worked on the rose with justice 4 or lower, they became permanently weaker.	<br>
+	- Every 5 minutes, the Qliphoth Counter lowered.	<br>
+	- When the chosen worked on the rose, the Qliphoth Counter increased.	<br>
+	<br>
+	<h4>Instinct:</h4> Very Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Melting Love
+/obj/item/paper/fluff/info/aleph/melty
+	name = "D-03-109"
+	info = {"<h1><center>D-03-109</center></h1>	<br>
+	Name : Melting Love<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 3	<br>
+	- When the work result was Bad or Normal, the Qliphoth Counter lowered.	<br>
+	- Melting Love gave a lump of slime to the first employee (D-03-109-1) who performed any work other than Repression with it. The lump healed D-03-109-1’s SP and raised their work success rate. However, further observation is needed to determine how the lump’s effects change according to the state of Melting Love.	<br>
+	- When D-03-109-1 completed Repression Work, the Qliphoth Counter lowered.	<br>
+	- The Qliphoth Counter dropped to 0 when D-03-109-1 died.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Very Low<br>"}
