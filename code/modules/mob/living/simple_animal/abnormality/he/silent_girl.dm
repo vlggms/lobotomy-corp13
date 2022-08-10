@@ -88,7 +88,11 @@
 		for(var/mob/living/carbon/human/M in urange(100, get_turf(src))) // Shamelessly stolen code from Der Freischutz
 			if(M.stat != DEAD)
 				targets += M
-		guilty_people += pick(targets)
+		var/mob/living/carbon/human/panicked = pick(targets)
+		to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
+		playsound(get_turf(panicked), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
+		panicked.add_overlay(guiltIcon)
+		guilty_people += panicked
 	var/i
 	for(i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
 		DriveInsane(i)
