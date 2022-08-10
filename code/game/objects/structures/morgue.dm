@@ -204,6 +204,57 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	info = "<font size='2'>Since this station's medbay never seems to fail to be staffed by the mindless monkeys meant for genetics experiments, I'm leaving a reminder here for anyone handling the pile of cadavers the quacks are sure to leave.</font><BR><BR><font size='4'><font color=red>Red lights mean there's a plain ol' dead body inside.</font><BR><BR><font color=orange>Yellow lights mean there's non-body objects inside.</font><BR><font size='2'>Probably stuff pried off a corpse someone grabbed, or if you're lucky it's stashed booze.</font><BR><BR><font color=green>Green lights mean the morgue system detects the body may be able to be brought back to life.</font></font><BR><font size='2'>I don't know how that works, but keep it away from the kitchen and go yell at the geneticists.</font><BR><BR>- CentCom medical inspector"
 
 /*
+ * Morgue (Extraction Variant)
+ */
+/obj/structure/bodycontainer/morgue/extraction
+	name = "headstone"
+	desc = "A sleek stone container, etched apon it's surface is a glowing gold text. Along it's sides are elaborate grooves and creases."
+	icon_state = "extract_morgue_empty"
+	dir = EAST
+	beeper = TRUE
+	beep_cooldown = 50
+	next_beep = 0
+
+/obj/structure/bodycontainer/morgue/extraction/Initialize()
+	. = ..()
+	connected = new/obj/structure/tray/e_tray(src)
+	connected.connected = src
+
+/obj/structure/bodycontainer/morgue/extraction/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
+
+/obj/structure/bodycontainer/morgue/extraction/AltClick(mob/user)
+	..()
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	beeper = !beeper
+	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
+
+/obj/structure/bodycontainer/morgue/extraction/update_icon()
+	if (!connected || connected.loc != src) // Open or tray is gone.
+		icon_state = "extract_morgue_open"
+	else
+		if(contents.len == 1)  // Empty
+			icon_state = "extract_morgue_empty"
+		else
+			icon_state = "extract_morgue_occupied" // Dead, brainded mob.
+			var/list/compiled = get_all_contents_type(/mob/living) // Search for mobs in all contents.
+			if(!length(compiled)) // No mobs?
+				icon_state = "extract_morgue_clogged"
+				return
+
+			for(var/mob/living/M in compiled)
+				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
+				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)))
+					icon_state = "extract_morgue_clogged" // Revivable
+					if(mob_occupant.stat == DEAD && beeper)
+						if(world.time > next_beep)
+							playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
+							next_beep = world.time + beep_cooldown
+					break
+
+/*
  * Crematorium
  */
 GLOBAL_LIST_EMPTY(crematoriums)
@@ -390,3 +441,20 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		return
 	if(locate(/obj/structure/table) in get_turf(mover))
 		return TRUE
+
+/*
+ * Morgue tray (Extraction Variant)
+ */
+/obj/structure/tray/e_tray
+	name = "morgue tray"
+	desc = "Apply corpse before closing."
+	icon_state = "extract_morgue_tray"
+	pass_flags_self = PASSTABLE
+
+/obj/structure/tray/e_tray/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if(locate(/obj/structure/table) in get_turf(mover))
+		return TRUE
+
