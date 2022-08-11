@@ -2,7 +2,7 @@
 
 /obj/item/reagent_containers/hypospray/emais
 	name = "E.M.A.I.S"
-	desc = "The Emergency Medical Aid injector and synthesiser is a lobotomy corp favored medical device, used by the safety department to keep all employe's healthy and happy in emergency cases."
+	desc = "The Emergency Medical Aid Injector and Synthesiser is a lobotomy corp favored medical device, used by the safety department to keep all employe's healthy and happy in emergency cases."
 	reagent_flags = DRAINABLE
 	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
