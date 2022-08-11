@@ -143,7 +143,7 @@
 		H.add_upgrade(src,user)
 
 
-/obj/item/reagent_containers/hypospray/emais/proc/clerk_check(var/mob/living/carbon/human/H)
+/obj/item/reagent_containers/hypospray/emais/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
 		return TRUE
 	return FALSE

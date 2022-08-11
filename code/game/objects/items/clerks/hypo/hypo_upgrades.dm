@@ -15,7 +15,7 @@
 		return FALSE
 	return TRUE
 
-/datum/hypo_upgrade/proc/remove_upgrade(obj/item/reagent_containers/hypospray/emais/H,var/atom/movable/A)
+/datum/hypo_upgrade/proc/remove_upgrade(obj/item/reagent_containers/hypospray/emais/H,atom/movable/A)
 	H.upgrades -= src
 	return TRUE
 
