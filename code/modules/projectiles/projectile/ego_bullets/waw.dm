@@ -39,3 +39,11 @@
 	icon_state = "qoh[pick(1,2,3)]"
 	damage_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	flag = damage_type
+
+/obj/projectile/ego_bullet/ego_magicbullet
+	name = "magic bullet"
+	damage = 40
+	speed = 0.1
+	damage_type = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB))
