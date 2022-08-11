@@ -90,3 +90,78 @@
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 0.30)
 
+/obj/item/ego_weapon/daredevil
+	name = "life for a daredevil"
+	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
+	special = "This weapon blocks ranged attacks while attacking and has a parry on command."
+	icon_state = "daredevil"
+	force = 12
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("decimates", "bisects")
+	attack_verb_simple = list("decimate", "bisect")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/attacking = FALSE
+	var/parry = 0
+
+/obj/item/ego_weapon/daredevil/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	if (myman.getarmor(null, RED_DAMAGE) <= 0 && myman.getarmor(null, WHITE_DAMAGE) <= 0 && myman.getarmor(null, BLACK_DAMAGE) <= 0 && myman.getarmor(null, PALE_DAMAGE) <= 0)
+		user.changeNext_move(CLICK_CD_MELEE * 0.33)
+		attacking = TRUE
+		addtimer(CALLBACK(src, .proc/drop_stance), 0.33 SECONDS)
+		return
+	user.changeNext_move(CLICK_CD_MELEE * 0.5)
+	attacking = TRUE
+	addtimer(CALLBACK(src, .proc/drop_stance), 0.5 SECONDS)
+
+/obj/item/ego_weapon/daredevil/proc/drop_stance()
+	attacking = FALSE
+
+/obj/item/ego_weapon/daredevil/attack_self(mob/user)
+	if (parry == 0)
+		parry = 1
+		if (!istype(user,/mob/living/carbon/human))
+			return
+		var/mob/living/carbon/human/myman = user
+		addtimer(CALLBACK(src, .proc/disable_parry, myman), 0.5 SECONDS) // I'd do 4 or 3, but you don't KNOW when the abno is going to attack a lot of the time. They seem to have a random delay
+		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
+
+/obj/item/ego_weapon/daredevil/proc/disable_parry(mob/living/carbon/human/user)
+	parry = 2
+	addtimer(CALLBACK(src, .proc/parry_cooldown, user), 3 SECONDS)
+	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
+	user.physiology.red_mod *= 1.2
+	user.physiology.white_mod *= 1.2
+	user.physiology.black_mod *= 1.2
+	user.physiology.pale_mod *= 1.2
+
+/obj/item/ego_weapon/daredevil/proc/parry_cooldown(mob/living/carbon/human/user)
+	parry = 0
+	to_chat(user,"<span class='nicegreen'>You recollect your stance</span>")
+	user.physiology.red_mod /= 1.2
+	user.physiology.white_mod /= 1.2
+	user.physiology.black_mod /= 1.2
+	user.physiology.pale_mod /= 1.2
+
+/obj/item/ego_weapon/daredevil/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(attack_type == PROJECTILE_ATTACK && attacking)
+		final_block_chance = 100 //Anime Katana time
+		to_chat(owner,"<span class='userdanger'>A God does not fear death!</span>")
+		var/mob/living/carbon/human/other = list()
+		other += oview(7, owner)
+		other -= owner
+		for(var/mob/living/carbon/human/person in other)
+			to_chat(person,"<span class='nicegreen'>[owner.real_name] deflects the projectile!</span>")
+		return ..()
+	if(parry == 1)
+		final_block_chance = 100 // Holy shit
+		for(var/mob/living/carbon/human/person in oview(7, owner))
+			to_chat(person,"<span class='userdanger'>[owner.real_name] parries the attack!</span>")
+	return ..()

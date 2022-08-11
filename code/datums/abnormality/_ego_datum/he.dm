@@ -46,9 +46,15 @@
 // Silent Girl - Remorse
 /datum/ego_datum/armor/remorse
 	item_path = /obj/item/clothing/suit/armor/ego_gear/remorse
+	cost = 35
 
 // Der Freischutz - Magic Bullet
 
 /datum/ego_datum/armor/magicbullet
 	item_path = /obj/item/clothing/suit/armor/ego_gear/magicbullet
+	cost = 35
+
+// Crumbling Armor - Life for a Daredevil
+/datum/ego_datum/weapon/daredevil
+	item_path = /obj/item/ego_weapon/daredevil
 	cost = 35
