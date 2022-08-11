@@ -1,5 +1,3 @@
-#define C2NAMEREAGENT	"[initial(reagent.name)] (Has Side-Effects)"
-
 /obj/item/reagent_containers/hypospray/emais
 	name = "E.M.A.I.S"
 	desc = "The Emergency Medical Aid Injector and Synthesiser is a lobotomy corp favored medical device, used by the safety department to keep all employe's healthy and happy in emergency cases."
@@ -44,17 +42,11 @@
 
 	modes[reagent] = modes.len + 1
 
-	if(initial(reagent.harmful))
-		reagent_names[C2NAMEREAGENT] = reagent
-	else
-		reagent_names[initial(reagent.name)] = reagent
+	reagent_names[initial(reagent.name)] = reagent
 
 /obj/item/reagent_containers/hypospray/emais/proc/del_reagent(datum/reagent/reagent)
 	reagent_ids -= reagent
-	if(istype(reagent, /datum/reagent/medicine/c2))
-		reagent_names -= C2NAMEREAGENT
-	else
-		reagent_names -= initial(reagent.name)
+	reagent_names -= initial(reagent.name)
 	var/datum/reagents/RG
 	var/datum/reagents/TRG
 	for(var/i in 1 to reagent_ids.len)
