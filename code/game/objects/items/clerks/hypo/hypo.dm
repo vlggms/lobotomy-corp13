@@ -140,8 +140,8 @@
 /obj/item/reagent_containers/hypospray/emais/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I,/obj/item/hypo_upgrade))
 		var/obj/item/hypo_upgrade/H = I
-		if (H?.add_upgrade(src,user))
-			qdel(H)
+		H.add_upgrade(src,user)
+
 
 /obj/item/reagent_containers/hypospray/emais/proc/clerk_check(var/mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
