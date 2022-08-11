@@ -38,8 +38,8 @@
 	var/turf/targetturf
 	var/targetx
 	var/targety
-	for(var/mob/M in urange(70, get_turf(src)))
-		if(istype(M,/mob/living/simple_animal/bot) || istype(M,/mob/living/simple_animal/hostile/abnormality/der_freischutz))
+	for(var/mob/M in GLOB.mob_living_list)
+		if(istype(M,/mob/living/simple_animal/bot) || istype(M,/mob/living/simple_animal/hostile/abnormality/der_freischutz) || (src.z != M.z) || (M.stat == DEAD))
 			continue
 		targets += M
 	var/mob/target = pick(targets)

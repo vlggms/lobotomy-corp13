@@ -79,7 +79,6 @@
 	var/obj/effect/frei_trail/trayl = new(src.loc)
 	trayl.dir = src.dir
 	src.forceMove(get_step(src,src.dir))
-	del(nearmiss)
 	return ..()
 
 /obj/effect/frei_magic
