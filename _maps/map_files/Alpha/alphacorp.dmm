@@ -2624,6 +2624,16 @@
 "zy" = (
 /obj/structure/table/glass,
 /obj/machinery/light,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zB" = (
