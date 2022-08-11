@@ -51,3 +51,7 @@
 /datum/ego_datum/weapon/smile
 	item_path = /obj/item/ego_weapon/smile
 	cost = 100
+
+/datum/ego_datum/armor/smile
+	item_path = /obj/item/clothing/suit/armor/ego_gear/smile
+	cost = 100
