@@ -50,13 +50,15 @@
 	key = "burp"
 	key_third_person = "burps"
 	message = "burps."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out a burp."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/choke
 	key = "choke"
 	key_third_person = "chokes"
 	message = "chokes!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "chokes silently!"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/cross
 	key = "cross"
@@ -68,7 +70,8 @@
 	key = "chuckle"
 	key_third_person = "chuckles"
 	message = "chuckles."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out chuckling."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/collapse
 	key = "collapse"
@@ -86,7 +89,8 @@
 	key = "cough"
 	key_third_person = "coughs"
 	message = "coughs!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out an exaggerated cough!"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE , intentional)
 	. = ..()
@@ -174,13 +178,15 @@
 	key = "gag"
 	key_third_person = "gags"
 	message = "gags."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "gags silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/gasp
 	key = "gasp"
 	key_third_person = "gasps"
 	message = "gasps!"
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "gasps silently!"
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	stat_allowed = HARD_CRIT
 
 /datum/emote/living/giggle
@@ -301,6 +307,7 @@
 	key = "pout"
 	key_third_person = "pouts"
 	message = "pouts."
+	message_mime = "pouts silently."
 
 /datum/emote/living/scream
 	key = "scream"
@@ -334,7 +341,8 @@
 	key = "sigh"
 	key_third_person = "sighs"
 	message = "sighs."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out an exaggerated silent sigh."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/sit
 	key = "sit"
@@ -350,7 +358,8 @@
 	key = "sneeze"
 	key_third_person = "sneezes"
 	message = "sneezes."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out an exaggerated silent sneeze."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/smug
 	key = "smug"
@@ -361,7 +370,8 @@
 	key = "sniff"
 	key_third_person = "sniffs"
 	message = "sniffs."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "sniffs silently."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/snore
 	key = "snore"
@@ -450,7 +460,8 @@
 	key = "yawn"
 	key_third_person = "yawns"
 	message = "yawns."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "acts out an exaggerated silent yawn."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	cooldown = 3 SECONDS
 
 /datum/emote/living/yawn/run_emote(mob/user, params, type_override, intentional)
@@ -498,7 +509,8 @@
 	key = "gurgle"
 	key_third_person = "gurgles"
 	message = "makes an uncomfortable gurgle."
-	emote_type = EMOTE_AUDIBLE
+	message_mime = "gurgles silently and uncomfortably."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 
 /datum/emote/living/custom
 	key = "me"
