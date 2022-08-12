@@ -103,6 +103,7 @@
 	name = "smile"	//The ability was moved to the weapon.
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
+	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

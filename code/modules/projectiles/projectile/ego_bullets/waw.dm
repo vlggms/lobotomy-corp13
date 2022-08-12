@@ -42,8 +42,9 @@
 
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
-	damage = 40
+	damage = 80
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
-	projectile_phasing = (ALL & (~PASSMOB))
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))

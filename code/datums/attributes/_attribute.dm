@@ -89,3 +89,24 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 		var/datum/attribute/atr = user.attributes[a]
 		collective_levels += atr.level
 	return clamp(round(collective_levels / 70), 1, 5)
+
+// Returns a level for the show_attributes proc as a roman numeral I - V, or EX if level is too high.
+/mob/living/carbon/human/proc/get_text_level()
+	var/collective_levels = 0
+	for(var/a in attributes)
+		var/datum/attribute/atr = attributes[a]
+		collective_levels += atr.level
+	switch(clamp(round(collective_levels / 70), 1, 6))
+		if(1) // 70
+			return "I"
+		if(2) // 140
+			return "II"
+		if(3) // 210
+			return "III"
+		if(4) // 280
+			return "IV"
+		if(5) // 350
+			return "V"
+		if(6) // 420+
+			return "EX"
+	return "N/A"
