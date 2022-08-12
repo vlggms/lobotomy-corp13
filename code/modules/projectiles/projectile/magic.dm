@@ -677,6 +677,52 @@
 	var/turf/T = get_turf(target)
 	explosion(T, -1, exp_heavy, exp_light, exp_flash, 0, flame_range = exp_fire)
 
+/obj/projectile/magic/aoe/pillar
+	name = "pillar"
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "pillar"
+	alpha = 0
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+
+	damage = 350
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	armour_penetration = 0
+	speed = 1.3 // Slow
+	nodamage = FALSE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB))
+	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
+	var/list/been_hit = list()
+
+/obj/projectile/magic/aoe/pillar/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 5)
+
+/obj/projectile/magic/aoe/pillar/Moved(atom/OldLoc, Dir)
+	..()
+	for(var/turf/T in range(1, get_turf(src)))
+		new /obj/effect/temp_visual/revenant(T)
+
+/obj/projectile/magic/aoe/pillar/Range()
+	if(proxdet)
+		for(var/obj/machinery/computer/abnormality/CA in range(1, get_turf(src)))
+			if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
+				continue
+			CA.start_meltdown()
+			CA.meltdown_time = rand(10,20)
+	..()
+
+/obj/projectile/magic/aoe/pillar/on_hit(target)
+	. = ..()
+	if(isliving(target) && !(target in been_hit))
+		var/mob/living/L = target
+		var/throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
+		L.safe_throw_at(throwtarget, 7, force = MOVE_FORCE_EXTREMELY_STRONG)
+		been_hit += L
 
 //still magic related, but a different path
 

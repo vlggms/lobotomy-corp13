@@ -3,7 +3,7 @@
 	name = BODY_ZONE_CHEST
 	desc = "It's impolite to stare at a person's chest."
 	icon_state = "default_human_chest"
-	max_damage = 200
+	max_damage = 1000
 	body_zone = BODY_ZONE_CHEST
 	body_part = CHEST
 	px_x = 0
@@ -11,7 +11,7 @@
 	stam_damage_coeff = 1
 	max_stamina_damage = 120
 	var/obj/item/cavity_item
-	wound_resistance = 10
+	wound_resistance = 50
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(owner.stat < HARD_CRIT || !get_organs())
@@ -57,7 +57,7 @@
 	icon_state = "default_human_l_arm"
 	attack_verb_continuous = list("slaps", "punches")
 	attack_verb_simple = list("slap", "punch")
-	max_damage = 50
+	max_damage = 250
 	max_stamina_damage = 50
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
@@ -152,7 +152,7 @@
 	icon_state = "default_human_r_arm"
 	attack_verb_continuous = list("slaps", "punches")
 	attack_verb_simple = list("slap", "punch")
-	max_damage = 50
+	max_damage = 250
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
 	aux_zone = BODY_ZONE_PRECISE_R_HAND
@@ -247,7 +247,7 @@
 	icon_state = "default_human_l_leg"
 	attack_verb_continuous = list("kicks", "stomps")
 	attack_verb_simple = list("kick", "stomp")
-	max_damage = 50
+	max_damage = 250
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
 	body_damage_coeff = 0.75
@@ -338,7 +338,7 @@
 	icon_state = "default_human_r_leg"
 	attack_verb_continuous = list("kicks", "stomps")
 	attack_verb_simple = list("kick", "stomp")
-	max_damage = 50
+	max_damage = 250
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75

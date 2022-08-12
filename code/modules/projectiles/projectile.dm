@@ -99,6 +99,8 @@
 	var/turf/last_angle_set_hitscan_store
 	var/datum/point/beam_index
 	var/turf/hitscan_last	//last turf touched during hitscanning.
+	/// A list of arguments for Beam() proc. [1] is icon_state, [2] is icon
+	var/list/beam_type = list()
 	var/tracer_type
 	var/muzzle_type
 	var/impact_type
@@ -927,6 +929,12 @@
 /obj/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 3, impacting = TRUE)
 	if(!length(beam_segments))
 		return
+	if(LAZYLEN(beam_type)) // This is probably awful, but it works, I think.
+		var/datum/point/start_p = beam_segments[1]
+		var/datum/point/end_p = beam_segments[beam_segments[beam_segments.len]]
+		var/turf/start_t = start_p.return_turf()
+		var/turf/end_t = end_p.return_turf()
+		start_t.Beam(end_t, beam_type[1], beam_type[2], duration)
 	if(tracer_type)
 		var/tempref = REF(src)
 		for(var/datum/point/p in beam_segments)
