@@ -63,3 +63,15 @@
 	icon_state = "remorse"
 	//Resistant to White and Pale but weaker to the physical aspects.
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 0, PALE_DAMAGE = 30)
+
+/obj/item/clothing/suit/armor/ego_gear/magicbullet
+	name = "magic bullet"
+	desc = "The Devil ultimately wished for despair.\
+		For despair wears down the mind and drains one's will to go forward. When one feels there's nothing left to go for, their soul falls down to Hell, the Devil's domain."
+	icon_state = "magic_bullet"
+	// Magic Bullet has WAW-tier requirements and goes with a WAW-tier gun, but is not quite WAW-tier itself. Still, valuable if you're a well-rounded agent doing well-rounded work.
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)

@@ -46,4 +46,9 @@
 // Silent Girl - Remorse
 /datum/ego_datum/weapon/remorse
 	item_path = /obj/item/ego_weapon/remorse
+
+// Der Freischutz - Magic Bullet
+
+/datum/ego_datum/weapon/magicbullet
+	item_path = /obj/item/gun/ego_gun/magicbullet
 	cost = 50

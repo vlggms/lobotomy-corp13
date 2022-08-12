@@ -59,8 +59,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
 	if(prob(1)) // Kirie, why
 		icon_state = "amog"
+
+/mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/CanAttack(atom/the_target)
 	if(finishing)
@@ -82,11 +87,10 @@
 	if(!died.ckey)
 		return FALSE
 	death_counter += 1
-	if(death_counter >= 10)
+	if(death_counter >= 6)
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
-
 
 /mob/living/simple_animal/hostile/abnormality/mountain/death()
 	//Make sure we didn't get cheesed
@@ -141,12 +145,33 @@
 				belly += 1
 				StageChange(TRUE)
 
+/mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
+	if(phase == 1)
+		var/list/highest_priority = list()
+		var/list/lower_priority = list()
+		for(var/mob/living/L in Targets)
+			if(!CanAttack(L))
+				continue
+			if(L.health < 0 || L.stat == DEAD)
+				if(ishuman(L))
+					highest_priority += L
+				else
+					lower_priority += L
+			else if(L.health < L.maxHealth*0.5)
+				lower_priority += L
+		if(LAZYLEN(highest_priority))
+			return pick(highest_priority)
+		if(LAZYLEN(lower_priority))
+			return pick(lower_priority)
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
 	if(increase)
 		if(belly >= 5)
 			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
+				adjustHealth(-5000)
 				maxHealth += 500
 				phase += 1
 				belly = 0
@@ -162,12 +187,12 @@
 				speed = 3
 				move_to_delay = 4
 			icon_state = icon_living
-			adjustHealth(-maxHealth)
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
 		return FALSE
 	playsound(get_turf(src), 'sound/abnormalities/mountain/level_down.ogg', 75, 1)
+	adjustHealth(-5000)
 	maxHealth -= 500
 	phase -= 1
 	icon_living = "mosb_breach"
@@ -184,7 +209,6 @@
 		speed = 3
 		move_to_delay = 4
 	icon_state = icon_living
-	adjustHealth(-maxHealth)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Scream()

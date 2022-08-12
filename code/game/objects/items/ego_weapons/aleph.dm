@@ -42,10 +42,10 @@
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
-		H.adjustStaminaLoss(-damage_dealt*0.3)
-		H.adjustBruteLoss(-damage_dealt*0.15)
-		H.adjustFireLoss(-damage_dealt*0.15)
-		H.adjustSanityLoss(damage_dealt*0.15)
+		H.adjustStaminaLoss(-damage_dealt*0.2)
+		H.adjustBruteLoss(-damage_dealt*0.1)
+		H.adjustFireLoss(-damage_dealt*0.1)
+		H.adjustSanityLoss(damage_dealt*0.1)
 
 /obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
@@ -56,7 +56,7 @@
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	special = "This weapon has a combo system."
 	icon_state = "justitia"
-	force = 25
+	force = 35
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
@@ -182,11 +182,10 @@
 		var/heal_amt = force*0.2
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
+			heal_amt = 0 // In case damage_coeff is 0 or doesn't exist
 			if(S.damage_coeff[damtype])
-				if(S.damage_coeff[damtype] >= 0)
+				if(S.damage_coeff[damtype] > 0)
 					heal_amt *= S.damage_coeff[damtype]
-				else
-					heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
 	..()
 
@@ -270,7 +269,7 @@
 	special = "This weapon has a slightly slower attack speed.\
 			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
 	icon_state = "smile"
-	force = 100		//Slightly less damage, has an ability
+	force = 100 //Slightly less damage, has an ability
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")

@@ -13,3 +13,7 @@
 /obj/item/ammo_casing/caseless/ego_hatred
 	projectile_type = /obj/projectile/ego_bullet/ego_hatred
 
+/obj/item/ammo_casing/caseless/ego_magicbullet
+	name = "magic bullet casing"
+	desc = "A magic casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_magicbullet
