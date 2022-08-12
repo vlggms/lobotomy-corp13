@@ -63,6 +63,9 @@
 	icon_state = "remorse"
 	//Resistant to White and Pale but weaker to the physical aspects.
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 0, PALE_DAMAGE = 30)
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/magicbullet
 	name = "magic bullet"

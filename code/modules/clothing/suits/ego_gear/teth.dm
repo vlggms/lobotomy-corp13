@@ -43,3 +43,9 @@
 	desc = "Spiders have strong maternal instincts. They will defend their offspring at all costs."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/daredevil
+	name = "life for a daredevil"
+	desc = "The fear of death is natural, but in denying it you shall find untold strength."
+	icon_state = "daredevil"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 25, BLACK_DAMAGE = 25, PALE_DAMAGE = -100)

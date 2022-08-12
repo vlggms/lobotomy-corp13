@@ -60,3 +60,8 @@
 /datum/ego_datum/armor/eyes
 	item_path = /obj/item/clothing/suit/armor/ego_gear/eyes
 	cost = 20
+
+// Crumbling Armor - Life for a Daredevil
+/datum/ego_datum/armor/daredevil
+	item_path = /obj/item/clothing/suit/armor/ego_gear/daredevil
+	cost = 20
