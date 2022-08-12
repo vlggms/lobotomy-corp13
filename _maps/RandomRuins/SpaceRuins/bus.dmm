@@ -91,7 +91,6 @@
 /area/ruin/unpowered/no_grav)
 "ar" = (
 /obj/structure/fluff/bus/passable/seat,
-/obj/item/food/grown/cherry_bomb,
 /turf/open/floor/plasteel/airless/dark{
 	icon_state = "bus"
 	},

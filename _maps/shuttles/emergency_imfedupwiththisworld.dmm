@@ -14,6 +14,7 @@
 	width = 12
 	},
 /obj/machinery/door/airlock/wood,
+/obj/structure/fans/tiny,
 /turf/open/floor/wood,
 /area/shuttle/escape)
 "d" = (

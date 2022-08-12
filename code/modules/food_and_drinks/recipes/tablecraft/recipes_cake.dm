@@ -181,18 +181,6 @@
 	result = /obj/item/food/cake/vanilla_cake
 	subcategory = CAT_CAKE
 
-/datum/crafting_recipe/food/trumpetcake
-	name = "Spaceman's Cake"
-	reqs = list(
-		/obj/item/food/cake/plain = 1,
-		/obj/item/food/grown/trumpet = 2,
-		/datum/reagent/consumable/cream = 5,
-		/datum/reagent/consumable/berryjuice = 5
-	)
-	result = /obj/item/food/cake/trumpet
-	subcategory = CAT_CAKE
-
-
 /datum/crafting_recipe/food/cak
 	name = "Living cat/cake hybrid"
 	reqs = list(

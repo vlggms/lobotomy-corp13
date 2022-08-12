@@ -60,7 +60,7 @@
 	growthstages = 5
 	icon_dead = "coffee-dead"
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/coffee/robusta)
+	mutatelist = list()
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/toxin/coffeepowder = 0.1)
 
 /obj/item/food/grown/coffee
@@ -72,22 +72,3 @@
 	dry_grind = TRUE
 	grind_results = list(/datum/reagent/toxin/coffeepowder = 0)
 	distill_reagent = /datum/reagent/consumable/ethanol/kahlua
-
-// Coffee Robusta
-/obj/item/seeds/coffee/robusta
-	name = "pack of coffee robusta seeds"
-	desc = "These seeds grow into coffee robusta bushes."
-	icon_state = "seed-coffeer"
-	species = "coffeer"
-	plantname = "Coffee Robusta Bush"
-	product = /obj/item/food/grown/coffee/robusta
-	mutatelist = list()
-	reagents_add = list(/datum/reagent/medicine/ephedrine = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/toxin/coffeepowder = 0.1)
-	rarity = 20
-
-/obj/item/food/grown/coffee/robusta
-	seed = /obj/item/seeds/coffee/robusta
-	name = "coffee robusta beans"
-	desc = "Increases robustness by 37 percent!"
-	icon_state = "coffee_robusta"
-	grind_results = list(/datum/reagent/toxin/coffeepowder = 0, /datum/reagent/medicine/morphine = 0)

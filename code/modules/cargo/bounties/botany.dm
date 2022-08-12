@@ -10,11 +10,6 @@
 	reward += multiplier * (CARGO_CRATE_VALUE * 2)
 	required_count = rand(5, 10)
 
-/datum/bounty/item/botany/ambrosia_vulgaris
-	name = "Ambrosia Vulgaris Leaves"
-	wanted_types = list(/obj/item/food/grown/ambrosia/vulgaris)
-	foodtype = "stew"
-
 /datum/bounty/item/botany/ambrosia_gaia
 	name = "Ambrosia Gaia Leaves"
 	wanted_types = list(/obj/item/food/grown/ambrosia/gaia)
@@ -30,26 +25,12 @@
 /datum/bounty/item/botany/banana
 	name = "Bananas"
 	wanted_types = list(/obj/item/food/grown/banana)
-	exclude_types = list(/obj/item/food/grown/banana/bluespace)
-	foodtype = "banana split"
-
-/datum/bounty/item/botany/banana_bluespace
-	name = "Bluespace Bananas"
-	wanted_types = list(/obj/item/food/grown/banana/bluespace)
-	multiplier = 2
 	foodtype = "banana split"
 
 /datum/bounty/item/botany/beans_koi
 	name = "Koi Beans"
 	wanted_types = list(/obj/item/food/grown/koibeans)
 	multiplier = 2
-
-/datum/bounty/item/botany/berries_death
-	name = "Death Berries"
-	wanted_types = list(/obj/item/food/grown/berries/death)
-	multiplier = 2
-	bonus_desc = "He insists that \"he knows what he's doing\"."
-	foodtype = "sorbet"
 
 /datum/bounty/item/botany/berries_glow
 	name = "Glow-Berries"
@@ -60,7 +41,7 @@
 /datum/bounty/item/botany/cannabis
 	name = "Cannabis Leaves"
 	wanted_types = list(/obj/item/food/grown/cannabis)
-	exclude_types = list(/obj/item/food/grown/cannabis/white, /obj/item/food/grown/cannabis/death, /obj/item/food/grown/cannabis/ultimate)
+	exclude_types = list(/obj/item/food/grown/cannabis/white)
 	multiplier = 4 //hush money
 	bonus_desc = "Do not mention this shipment to security."
 	foodtype = "batch of \"muffins\""
@@ -71,20 +52,6 @@
 	multiplier = 6
 	bonus_desc = "Do not mention this shipment to security."
 	foodtype = "\"meal\""
-
-/datum/bounty/item/botany/cannabis_death
-	name = "Deathweed Leaves"
-	wanted_types = list(/obj/item/food/grown/cannabis/death)
-	multiplier = 6
-	bonus_desc = "Do not mention this shipment to security."
-	foodtype = "\"meal\""
-
-/datum/bounty/item/botany/cannabis_ultimate
-	name = "Omega Weed Leaves"
-	wanted_types = list(/obj/item/food/grown/cannabis/ultimate)
-	multiplier = 6
-	bonus_desc = "Under no circumstances mention this shipment to security."
-	foodtype = "batch of \"brownies\""
 
 /datum/bounty/item/botany/wheat
 	name = "Wheat Grains"
@@ -135,21 +102,9 @@
 	bonus_desc = "Not to be confused with eggplants."
 	multiplier = 2
 
-/datum/bounty/item/botany/kudzu
-	name = "Kudzu Pods"
-	wanted_types = list(/obj/item/food/grown/kudzupod)
-	bonus_desc = "Store in a dry, dark place."
-	multiplier = 4
-
 /datum/bounty/item/botany/watermelon
 	name = "Watermelons"
 	wanted_types = list(/obj/item/food/grown/watermelon)
-	foodtype = "dessert"
-
-/datum/bounty/item/botany/watermelon_holy
-	name = "Holy Melons"
-	wanted_types = list(/obj/item/food/grown/holymelon)
-	multiplier = 2
 	foodtype = "dessert"
 
 /datum/bounty/item/botany/glowshroom
@@ -170,13 +125,6 @@
 	multiplier = 2
 	foodtype = "omelet"
 
-/datum/bounty/item/botany/nettles_death
-	name = "Death Nettles"
-	wanted_types = list(/obj/item/food/grown/nettle/death)
-	multiplier = 2
-	bonus_desc = "Wear protection when handling them."
-	foodtype = "cheese"
-
 /datum/bounty/item/botany/pineapples
 	name = "Pineapples"
 	wanted_types = list(/obj/item/food/grown/pineapple)
@@ -187,11 +135,6 @@
 	name = "Tomatoes"
 	wanted_types = list(/obj/item/food/grown/tomato)
 	exclude_types = list(/obj/item/food/grown/tomato/blue)
-
-/datum/bounty/item/botany/tomato_bluespace
-	name = "Bluespace Tomatoes"
-	wanted_types = list(/obj/item/food/grown/tomato/blue/bluespace)
-	multiplier = 4
 
 /datum/bounty/item/botany/oatz
 	name = "Oats"

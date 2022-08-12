@@ -387,16 +387,6 @@
 	foodtypes = VEGETABLES | FRIED | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/melonkeg
-	name = "melon keg"
-	desc = "Who knew vodka was a fruit?"
-	icon_state = "melonkeg"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 9, /datum/reagent/consumable/ethanol/vodka = 15, /datum/reagent/consumable/nutriment/vitamin = 4)
-	max_volume = 80
-	bite_consumption = 5
-	tastes = list("grain alcohol" = 1, "fruit" = 1)
-	foodtypes = FRUIT | ALCOHOL
-
 /obj/item/food/honeybar
 	name = "honey nut bar"
 	desc = "Oats and nuts compressed together into a bar, held together with a honey glaze."

@@ -187,8 +187,8 @@
 
 /datum/map_template/shuttle/emergency/construction
 	suffix = "construction"
-	name = "Build your own shuttle kit"
-	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. Unlocks the ability to buy shuttle engine crates from cargo."
+	name = "Build Your Own Shuttle Kit!"
+	description = "For the enterprising shuttle engineer! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Comes stocked with construction materials. If you have a supply department at your facility, you can order shuttle engine crates from there upon purchase of this kit."
 	admin_notes = "No brig, no medical facilities, no shuttle console."
 	credit_cost = CARGO_CRATE_VALUE * 5
 
@@ -201,8 +201,8 @@
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
-	name = "Asteroid Station Emergency Shuttle"
-	description = "A respectable mid-sized shuttle that first saw service shuttling Nanotrasen crew to and from their asteroid belt embedded facilities."
+	name = "Ceres Station Transport"
+	description = "A respectable mid-sized shuttle that first saw service shuttling Ceres colonists to and from their mining operations in the belt."
 	credit_cost = CARGO_CRATE_VALUE * 6
 
 /datum/map_template/shuttle/emergency/bar
@@ -544,10 +544,11 @@
 
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
-	name = "CentCom Raven Cruiser"
-	description = "The CentCom Raven Cruiser is a former high-risk salvage vessel, now repurposed into an emergency escape shuttle. \
-	Once first to the scene to pick through warzones for valuable remains, it now serves as an excellent escape option for stations under heavy fire from outside forces. \
-	This escape shuttle boasts shields and numerous anti-personnel turrets guarding its perimeter to fend off meteors and enemy boarding attempts."
+	name = "N-Corporation Raven Corvette"
+	description = "The N-Corporation Raven Corvette is a high-risk exploration vessel, on loan at great expense to your facility. \
+	Always first to secure the scene before N-Corporation salvage tugs pick through orbital warzones for valuable remains, it also serves as transportation for executives who like to travel in style. \
+	N-Corporation denies there are any threats in space for their personnel aside from defunct automated security systems in old orbital stations and vessels. Any rumors of alien life or ancient AI cores in orbit are blatantly false.\
+	This vessel boasts shields and numerous anti-personnel turrets guarding its perimeter to fend off meteors and enemy boarding party attempts."
 	admin_notes = "Comes with turrets that will target anything without the neutral faction (nuke ops, xenos etc, but not pets)."
 	credit_cost = CARGO_CRATE_VALUE * 60
 

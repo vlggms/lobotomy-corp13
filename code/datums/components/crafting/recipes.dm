@@ -1172,34 +1172,6 @@
 	result = /obj/item/pickaxe/improvised
 	category = CAT_MISC
 
-/datum/crafting_recipe/underwater_basket
-	name = "Underwater Basket (Bamboo)"
-	reqs = list(
-		/obj/item/stack/sheet/mineral/bamboo = 20
-	)
-	result = /obj/item/storage/basket
-	category = CAT_MISC
-	additional_req_text = " being underwater, underwater basketweaving mastery"
-
-/datum/crafting_recipe/underwater_basket/check_requirements(mob/user, list/collected_requirements)
-	. = ..()
-	if(!HAS_TRAIT(user,TRAIT_UNDERWATER_BASKETWEAVING_KNOWLEDGE))
-		return FALSE
-	var/turf/T = get_turf(user)
-	if(istype(T,/turf/open/water) || istype(T,/turf/open/floor/plating/beach/water))
-		return TRUE
-	var/obj/machinery/shower/S = locate() in T
-	if(S?.on)
-		return TRUE
-
-//Same but with wheat
-/datum/crafting_recipe/underwater_basket/wheat
-	name = "Underwater Basket (Wheat)"
-	reqs = list(
-		/obj/item/food/grown/wheat = 50
-	)
-
-
 /datum/crafting_recipe/elder_atmosian_statue
 	name = "Elder Atmosian Statue"
 	result = /obj/structure/statue/elder_atmosian

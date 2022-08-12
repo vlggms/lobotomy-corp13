@@ -283,17 +283,6 @@
 	result = /obj/item/food/soup/bungocurry
 	subcategory = CAT_SOUP
 
-/datum/crafting_recipe/food/electron
-	name = "Electron Soup"
-	reqs = list(
-		/datum/reagent/water = 10,
-		/datum/reagent/consumable/salt = 5,
-		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/food/grown/mushroom/jupitercup = 1
-	)
-	result = /obj/item/food/soup/electron
-	subcategory = CAT_SOUP
-
 /datum/crafting_recipe/food/peasoup
 	name = "Pea soup"
 	reqs = list(

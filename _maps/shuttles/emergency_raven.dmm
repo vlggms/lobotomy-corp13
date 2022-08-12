@@ -133,18 +133,6 @@
 "ar" = (
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"as" = (
-/obj/effect/turf_decal/raven/seven,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"at" = (
-/obj/effect/turf_decal/raven/eight,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"au" = (
-/obj/effect/turf_decal/raven/nine,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
 "av" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -192,18 +180,6 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"aB" = (
-/obj/effect/turf_decal/raven/four,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"aC" = (
-/obj/effect/turf_decal/raven/five,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"aD" = (
-/obj/effect/turf_decal/raven/six,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aE" = (
@@ -257,10 +233,6 @@
 /obj/item/assembly/flash,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
-"aJ" = (
-/obj/effect/turf_decal/raven/one,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
 "aK" = (
 /obj/machinery/button/door{
 	id = "escape_cockpit_blast";
@@ -268,11 +240,6 @@
 	pixel_y = -26;
 	req_access_txt = "19"
 	},
-/obj/effect/turf_decal/raven/two,
-/turf/open/floor/plasteel/dark,
-/area/shuttle/escape)
-"aL" = (
-/obj/effect/turf_decal/raven/three,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aM" = (
@@ -329,10 +296,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aS" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aT" = (
@@ -497,10 +461,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape/brig)
 "bl" = (
@@ -567,10 +528,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary";
-	req_one_access_txt = "2;19"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "bp" = (
@@ -639,10 +597,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_one_access_txt = "2;19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "by" = (
@@ -867,9 +822,7 @@
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
 "bT" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bU" = (
@@ -962,12 +915,6 @@
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/emcloset,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/shuttle/escape)
-"cd" = (
-/obj/machinery/door/airlock/external{
-	name = "Emegency Shuttle External Airlock"
-	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ce" = (
@@ -1115,6 +1062,7 @@
 "ct" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "cu" = (
@@ -1536,9 +1484,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Seating"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "db" = (
@@ -1585,9 +1531,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Seating"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "df" = (
@@ -1753,9 +1697,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/obj/machinery/door/airlock/grunge{
-	name = "Emergency Shuttle Cargo Bay"
-	},
+/obj/machinery/door/airlock/grunge,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "ds" = (
@@ -1864,9 +1806,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "dA" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Emergency Shutle Engineering"
-	},
+/obj/machinery/door/airlock/engineering,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "dB" = (
@@ -2117,15 +2057,13 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "eo" = (
-/obj/machinery/door/airlock/external{
-	name = "Emegency Shuttle External Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dwidth = 14;
 	height = 21;
-	name = "CentCom Raven Cruiser";
+	name = "N-Corporation Raven Corvette";
 	width = 32
 	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ep" = (
@@ -2136,7 +2074,7 @@
 	dir = 4
 	},
 /obj/machinery/turretid{
-	desc = "Used to the Raven's automated defenses.";
+	desc = "Used against meteors, hostile boarding parties, and non-existent mad AI cores in space.";
 	icon_state = "control_kill";
 	lethal = 1;
 	pixel_x = 5;
@@ -2145,6 +2083,11 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/plasteel/dark,
+/area/shuttle/escape)
+"Ur" = (
+/obj/machinery/door/airlock/external,
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -2161,7 +2104,7 @@ aa
 aa
 aO
 ax
-cd
+cn
 co
 eo
 ax
@@ -2169,9 +2112,9 @@ aO
 aa
 aO
 ax
-cd
+cn
 co
-cd
+cn
 ax
 aO
 aa
@@ -2264,7 +2207,7 @@ bC
 ax
 ax
 cg
-cd
+Ur
 ax
 ax
 cH
@@ -2272,7 +2215,7 @@ cJ
 cO
 ax
 ax
-cd
+Ur
 cg
 ax
 ax
@@ -2457,9 +2400,9 @@ en
 ab
 ae
 am
-as
-aB
-aJ
+ar
+ar
+ar
 aS
 bb
 bl
@@ -2491,8 +2434,8 @@ el
 ab
 af
 al
-at
-aC
+ar
+ar
 aK
 ax
 bc
@@ -2525,9 +2468,9 @@ aa
 ab
 ag
 ep
-au
-aD
-aL
+ar
+ar
+ar
 aS
 bc
 bn
@@ -2748,7 +2691,7 @@ cN
 cN
 ax
 ax
-cd
+Ur
 cg
 ax
 ax
@@ -2849,9 +2792,9 @@ aO
 aa
 aO
 ax
-cd
+cn
 cw
-cd
+cn
 ax
 aO
 aa

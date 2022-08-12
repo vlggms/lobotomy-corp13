@@ -49,7 +49,7 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	mutatelist = list(/obj/item/seeds/angel)
+	mutatelist = list()
 	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/toxin/amatoxin = 0.35, /datum/reagent/consumable/nutriment = 0, /datum/reagent/growthserum = 0.1)
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
@@ -58,34 +58,6 @@
 	name = "fly amanita"
 	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
 	icon_state = "amanita"
-
-// Destroying Angel
-/obj/item/seeds/angel
-	name = "pack of destroying angel mycelium"
-	desc = "This mycelium grows into something devastating."
-	icon_state = "mycelium-angel"
-	species = "angel"
-	plantname = "Destroying Angels"
-	product = /obj/item/food/grown/mushroom/angel
-	lifespan = 50
-	endurance = 35
-	maturation = 12
-	production = 5
-	yield = 2
-	potency = 35
-	growthstages = 3
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
-	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/drug/mushroomhallucinogen = 0.04, /datum/reagent/toxin/amatoxin = 0.1, /datum/reagent/consumable/nutriment = 0, /datum/reagent/toxin/amanitin = 0.2)
-	rarity = 30
-	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
-
-/obj/item/food/grown/mushroom/angel
-	seed = /obj/item/seeds/angel
-	name = "destroying angel"
-	desc = "<I>Amanita Virosa</I>: Deadly poisonous basidiomycete fungus filled with alpha amatoxins."
-	icon_state = "angel"
-	wine_power = 60
 
 // Liberty Cap
 /obj/item/seeds/liberty
@@ -196,7 +168,7 @@
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
-	mutatelist = list(/obj/item/seeds/chanter/jupitercup)
+	mutatelist = list()
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
 /obj/item/food/grown/mushroom/chanterelle
@@ -204,36 +176,6 @@
 	name = "chanterelle cluster"
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
 	icon_state = "chanterelle"
-
-//Jupiter Cup
-/obj/item/seeds/chanter/jupitercup
-	name = "pack of jupiter cup mycelium"
-	desc = "This mycelium grows into jupiter cups. Zeus would be envious at the power at your fingertips."
-	icon_state = "mycelium-jupitercup"
-	species = "jupitercup"
-	plantname = "Jupiter Cups"
-	product = /obj/item/food/grown/mushroom/jupitercup
-	lifespan = 40
-	production = 4
-	endurance = 8
-	yield = 4
-	growthstages = 2
-	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/reagent/liquidelectricity, /datum/plant_gene/trait/plant_type/carnivory)
-	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1)
-	graft_gene = /datum/plant_gene/trait/plant_type/carnivory
-
-/obj/item/seeds/chanter/jupitercup/Initialize(mapload,nogenes)
-	. = ..()
-	if(!nogenes)
-		unset_mutability(/datum/plant_gene/reagent/liquidelectricity, PLANT_GENE_EXTRACTABLE)
-		unset_mutability(/datum/plant_gene/trait/plant_type/carnivory, PLANT_GENE_REMOVABLE)
-
-/obj/item/food/grown/mushroom/jupitercup
-	seed = /obj/item/seeds/chanter/jupitercup
-	name = "jupiter cup"
-	desc = "A strange red mushroom, its surface is moist and slick. You wonder how many tiny worms have met their fate inside."
-	icon_state = "jupitercup"
 
 // Glowshroom
 /obj/item/seeds/glowshroom
@@ -254,7 +196,7 @@
 	rarity = 20
 	genes = list(/datum/plant_gene/trait/glow, /datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	mutatelist = list(/obj/item/seeds/glowshroom/glowcap, /obj/item/seeds/glowshroom/shadowshroom)
+	mutatelist = list(/obj/item/seeds/glowshroom/shadowshroom)
 	reagents_add = list(/datum/reagent/uranium/radium = 0.1, /datum/reagent/phosphorus = 0.1, /datum/reagent/consumable/nutriment = 0.04)
 	graft_gene = /datum/plant_gene/trait/glow
 
@@ -300,7 +242,7 @@
 	product = /obj/item/food/grown/mushroom/glowshroom/glowcap
 	genes = list(/datum/plant_gene/trait/glow/red, /datum/plant_gene/trait/cell_charge, /datum/plant_gene/trait/plant_type/fungal_metabolism)
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/teslium = 0.1, /datum/reagent/consumable/nutriment = 0.04)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.04)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/cell_charge
 

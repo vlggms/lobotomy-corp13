@@ -822,7 +822,6 @@
 /turf/open/floor/circuit/green/anim,
 /area/shuttle/escape)
 "GQ" = (
-/obj/structure/punji_sticks/spikes,
 /turf/open/floor/plating/grass,
 /area/shuttle/escape/simulation)
 "Ho" = (
@@ -1008,7 +1007,6 @@
 /area/shuttle/escape)
 "Pv" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/punji_sticks/spikes,
 /turf/open/floor/plating/grass,
 /area/shuttle/escape/simulation)
 "QC" = (

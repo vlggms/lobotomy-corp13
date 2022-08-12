@@ -904,7 +904,6 @@
 /area/awaymission/academy/classrooms)
 "dJ" = (
 /obj/machinery/hydroponics/constructable,
-/obj/item/seeds/replicapod,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "dK" = (
@@ -918,7 +917,6 @@
 /area/awaymission/academy/classrooms)
 "dM" = (
 /obj/machinery/hydroponics/constructable,
-/obj/item/seeds/tomato/blue/bluespace,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "dS" = (
@@ -3000,7 +2998,6 @@
 /area/awaymission/academy/classrooms)
 "lY" = (
 /obj/structure/table/wood,
-/obj/item/seeds/kudzu,
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "lZ" = (

@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 
 /obj/machinery/requests_console
 	name = "requests console"
-	desc = "A console intended to send requests to different departments on the station."
+	desc = "A console intended to send requests to different departments in the facility."
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "req_comp0"
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				dat += "<BR><A href='?src=[REF(src)];setScreen=[REQ_SCREEN_MAIN]'><< Discard Message</A><BR>"
 
 			if(REQ_SCREEN_ANNOUNCE)
-				dat += "<h3>Station-wide Announcement</h3>"
+				dat += "<h3>Facility-wide Announcement</h3>"
 				if(announceAuth)
 					dat += "<div class='notice'>Authentication accepted</div><BR>"
 				else
@@ -265,10 +265,10 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 			var/mob/living/L = usr
 			message = L.treat_message(message)
 		minor_announce(message, "[department] Announcement:", html_encode = FALSE)
-		GLOB.news_network.SubmitArticle(message, department, "Station Announcements", null)
-		usr.log_talk(message, LOG_SAY, tag="station announcement from [src]")
-		message_admins("[ADMIN_LOOKUPFLW(usr)] has made a station announcement from [src] at [AREACOORD(usr)].")
-		deadchat_broadcast(" made a station announcement from <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr, message_type=DEADCHAT_ANNOUNCEMENT)
+		GLOB.news_network.SubmitArticle(message, department, "Facility Announcements", null)
+		usr.log_talk(message, LOG_SAY, tag="facility announcement from [src]")
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has made a facility announcement from [src] at [AREACOORD(usr)].")
+		deadchat_broadcast(" made a facility announcement from <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr, message_type=DEADCHAT_ANNOUNCEMENT)
 		announceAuth = FALSE
 		message = ""
 		screen = REQ_SCREEN_MAIN
