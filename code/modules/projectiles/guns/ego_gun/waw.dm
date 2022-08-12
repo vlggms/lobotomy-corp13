@@ -58,7 +58,7 @@
 	inhand_icon_state = "magic_bullet"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 8
+	fire_delay = 12
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
 	attribute_requirements = list(
