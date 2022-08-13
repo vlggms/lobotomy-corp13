@@ -102,7 +102,8 @@
 
 /* Qliphoth things */
 /mob/living/simple_animal/hostile/abnormality/melting_love/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
+	if(prob(50))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/failure_effect(mob/living/carbon/human/user, work_type, pe)
@@ -136,8 +137,13 @@
 			playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
 			return
 		if(user == gifted_human)
-			to_chat(gifted_human, "<span class='nicegreen'>Melting Love is happy to see you !</span>")
+			to_chat(gifted_human, "<span class='nicegreen'>Melting Love was happy to see you !</span>")
 			gifted_human.adjustSanityLoss(25)
+		return
+	else
+		if(user == gifted_human)
+			to_chat(gifted_human, "<span class='danger'>Melting Love didn't like that !</span>")
+			datum_reference.qliphoth_change(-1)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
@@ -152,6 +158,11 @@
 	melee_damage_upper = 80
 	adjustBruteLoss(-maxHealth)
 	projectiletype = /obj/projectile/melting_blob/enraged
+	for(var/mob/M in GLOB.player_list)
+		if(M.z == z && M.client)
+			to_chat(M, "<span class='userdanger'>You can hear a gooey cry !</span>")
+			SEND_SOUND(M, 'sound/creatures/legion_death_far.ogg')
+			flash_color(M, flash_color = "#FF0081", flash_time = 50)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
