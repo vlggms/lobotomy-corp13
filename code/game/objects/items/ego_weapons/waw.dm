@@ -105,7 +105,7 @@
 
 
 /obj/item/ego_weapon/oppression/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK && blocked == 0)
+	if(attack_type == PROJECTILE_ATTACK && blocked != 0)
 		final_block_chance = 100 //Anime Katana time
 		blocked -=1
 		if(blocked == 0)
