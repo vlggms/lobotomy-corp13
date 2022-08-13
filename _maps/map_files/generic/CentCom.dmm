@@ -240,7 +240,7 @@
 	pixel_x = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "bQ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -300,7 +300,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "cZ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -319,7 +319,7 @@
 	pixel_x = 10
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "dc" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -466,7 +466,7 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "eG" = (
 /obj/structure/sink{
 	dir = 4;
@@ -485,7 +485,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "eW" = (
 /obj/machinery/vending/security,
 /obj/effect/turf_decal/stripes/line,
@@ -509,7 +509,7 @@
 "fb" = (
 /obj/machinery/door/window/brigdoor/southright,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "ff" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -1674,7 +1674,7 @@
 /obj/structure/table/wood,
 /obj/item/toy/plush/angela,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "ke" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -2407,9 +2407,9 @@
 /area/centcom/evac)
 "qh" = (
 /obj/machinery/button/door/indestructible{
-	pixel_x = -32;
 	id = "ccdroppod";
-	name = "Deployment Pod button"
+	name = "Deployment Pod button";
+	pixel_x = -32
 	},
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -2646,7 +2646,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "rK" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/dark,
@@ -2664,7 +2664,7 @@
 	pixel_x = -10
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "rW" = (
 /obj/machinery/light{
 	dir = 8
@@ -3602,20 +3602,20 @@
 	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 39;
-	pixel_x = 20
+	pixel_x = 20;
+	pixel_y = 39
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = 20
+	pixel_x = 20;
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 39;
-	pixel_x = -20
+	pixel_x = -20;
+	pixel_y = 39
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -20
+	pixel_x = -20;
+	pixel_y = 27
 	},
 /obj/item/storage/photo_album/captain,
 /obj/item/documents,
@@ -3624,7 +3624,7 @@
 /obj/item/stamp,
 /obj/item/stamp/captain,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "xf" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/centcom{
@@ -3981,7 +3981,7 @@
 "yP" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "yU" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -4479,7 +4479,7 @@
 "Bw" = (
 /obj/structure/chair/office,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Bx" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -4567,7 +4567,7 @@
 "Cb" = (
 /obj/machinery/door/window/brigdoor/southleft,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Cd" = (
 /obj/effect/turf_decal/stripes/end,
 /obj/machinery/conveyor/inverted{
@@ -5033,7 +5033,7 @@
 "Fw" = (
 /obj/machinery/computer/camera_advanced/manager,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "FE" = (
 /obj/item/stack/package_wrap,
 /obj/item/hand_labeler,
@@ -5191,7 +5191,7 @@
 /area/centcom/supplypod/supplypod_temp_holding)
 "Ht" = (
 /turf/open/floor/plasteel/elevatorshaft,
-/area/department_main/control)
+/area/department_main/manager)
 "Hv" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -5290,7 +5290,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Ie" = (
 /turf/closed/indestructible/riveted,
 /area/tdome/arena)
@@ -5786,15 +5786,15 @@
 	dir = 4
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 1;
 	name = "elevator console";
-	shuttleId = "manager";
 	possible_destinations = "elevator_home;elevator_away";
-	dir = 1
+	shuttleId = "manager"
 	},
 /obj/structure/railing,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "Ka" = (
 /obj/machinery/light{
 	dir = 1
@@ -5890,7 +5890,7 @@
 	pixel_x = 7
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "KC" = (
 /obj/machinery/status_display/evac,
 /turf/closed/indestructible/riveted,
@@ -6496,11 +6496,11 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "MQ" = (
 /obj/machinery/computer/ego_purchase,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "MR" = (
 /obj/machinery/light{
 	dir = 4
@@ -6639,7 +6639,7 @@
 /obj/machinery/door/window/brigdoor/southright,
 /obj/effect/turf_decal/caution/stand_clear,
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "NJ" = (
 /obj/structure/table,
 /obj/item/book/manual/hydroponics_pod_people,
@@ -6700,7 +6700,7 @@
 "Of" = (
 /obj/machinery/telecomms/relay/preset/station,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/manager)
 "Ok" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue{
@@ -6865,7 +6865,7 @@
 /area/centcom/holding)
 "PB" = (
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "PI" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
@@ -7319,7 +7319,7 @@
 /obj/structure/table/wood,
 /obj/item/folder/red,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
@@ -7632,7 +7632,7 @@
 "UF" = (
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/manager)
 "UI" = (
 /obj/docking_port/stationary{
 	dwidth = 25;
@@ -7678,7 +7678,7 @@
 /area/centcom/holding)
 "UX" = (
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Vc" = (
 /obj/vehicle/ridden/secway,
 /obj/effect/turf_decal/bot,
@@ -7790,13 +7790,13 @@
 /area/centcom/hub)
 "VR" = (
 /turf/closed/indestructible/reinforced,
-/area/department_main/control)
+/area/department_main/manager)
 "Wb" = (
 /obj/structure/railing/corner,
 /obj/structure/table/wood,
 /obj/item/modular_computer/laptop/preset/civilian,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "We" = (
 /obj/item/clothing/suit/toggle/labcoat{
 	pixel_y = 4
@@ -7806,7 +7806,7 @@
 	anchored = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Wh" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/delivery,
@@ -7859,7 +7859,7 @@
 /obj/structure/railing,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "WI" = (
 /obj/machinery/light{
 	dir = 8
@@ -7867,7 +7867,7 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/wood,
-/area/department_main/control)
+/area/department_main/manager)
 "WJ" = (
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
@@ -8113,7 +8113,7 @@
 	pixel_y = 13
 	},
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Ym" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/wood,
@@ -8163,15 +8163,15 @@
 /area/centcom/hub)
 "YC" = (
 /obj/docking_port/stationary{
-	name = "manager floor";
-	id = "elevator_away";
+	dir = 2;
 	dwidth = 3;
 	height = 5;
-	width = 6;
-	dir = 2
+	id = "elevator_away";
+	name = "manager floor";
+	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
-/area/department_main/control)
+/area/department_main/manager)
 "YI" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 5
@@ -8235,7 +8235,7 @@
 /obj/item/paper_bin,
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "Zi" = (
 /obj/machinery/vending/snack/orange,
 /obj/effect/turf_decal/tile/blue{
@@ -8318,7 +8318,7 @@
 /obj/structure/table/wood,
 /obj/item/clipboard,
 /turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/area/department_main/manager)
 "ZN" = (
 /obj/machinery/light/small{
 	dir = 1
