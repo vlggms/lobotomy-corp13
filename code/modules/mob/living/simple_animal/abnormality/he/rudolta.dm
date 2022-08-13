@@ -37,12 +37,12 @@
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 15 // Scales with distance
 
-/mob/living/simple_animal/hostile/abnormality/rudalta/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/rudolta/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/rudalta/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/rudolta/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
