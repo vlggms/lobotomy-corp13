@@ -60,7 +60,7 @@
 
 	var/list/dat = list()
 	dat += "<b>[real_name]</b><br>"
-	dat += "Level [get_user_level(src)]<br>"
+	dat += "Level [get_text_level()]<br>"
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
 		dat += "[atr.name]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"

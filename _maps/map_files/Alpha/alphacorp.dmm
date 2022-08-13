@@ -271,8 +271,6 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "dr" = (
-/obj/item/toner/extreme,
-/obj/structure/rack,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2030,7 +2028,8 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
 	},
-/turf/open/floor/carpet/black,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "tR" = (
 /obj/effect/turf_decal/siding/brown/corner{
@@ -2277,7 +2276,10 @@
 "vW" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/hokma,
-/turf/open/floor/carpet/black,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "we" = (
 /obj/machinery/light/small{
@@ -2624,6 +2626,16 @@
 "zy" = (
 /obj/structure/table/glass,
 /obj/machinery/light,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zB" = (
@@ -2697,7 +2709,10 @@
 /area/department_main/training)
 "zX" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/carpet/black,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Aa" = (
 /obj/effect/turf_decal/bot,
@@ -2804,13 +2819,13 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "BD" = (
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
 /obj/structure/rack,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
+/obj/item/folder/red,
 /turf/open/floor/carpet/black,
 /area/department_main/training)
 "BE" = (
@@ -4194,7 +4209,8 @@
 /area/department_main/command)
 "Qq" = (
 /obj/machinery/door/airlock/wood,
-/turf/open/floor/carpet/orange,
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Qs" = (
 /obj/structure/table/wood/poker,
@@ -4882,8 +4898,10 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "WF" = (
-/turf/closed/indestructible/rock,
-/area/department_main/control)
+/obj/structure/rack,
+/obj/item/toner/extreme,
+/turf/open/floor/carpet/black,
+/area/department_main/training)
 "WG" = (
 /obj/machinery/cryopod,
 /obj/effect/decal/cleanable/dirt,
@@ -36912,7 +36930,7 @@ ZL
 ZL
 ZL
 ZL
-WF
+ZL
 rg
 eT
 ah
@@ -42591,8 +42609,8 @@ ZL
 ZL
 ZL
 zW
-zW
 xH
+Mc
 Mc
 vW
 qO
@@ -42847,9 +42865,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
 zW
 BD
+Mc
 Mc
 zW
 op
@@ -43104,8 +43122,8 @@ ZL
 ZL
 ZL
 ZL
-ZL
 zW
+WF
 dr
 Mc
 tO

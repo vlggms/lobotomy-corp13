@@ -12,7 +12,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_dead = "banana-dead"
 	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/banana/mime, /obj/item/seeds/banana/bluespace)
+	mutatelist = list(/obj/item/seeds/banana/mime)
 	reagents_add = list(/datum/reagent/consumable/banana = 0.1, /datum/reagent/potassium = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.02)
 	graft_gene = /datum/plant_gene/trait/slip
 
@@ -103,38 +103,6 @@
 	desc = "A mimana peel."
 	icon_state = "mimana_peel"
 	inhand_icon_state = "mimana_peel"
-
-// Bluespace Banana
-/obj/item/seeds/banana/bluespace
-	name = "pack of bluespace banana seeds"
-	desc = "They're seeds that grow into bluespace banana trees. When grown, keep away from bluespace clown."
-	icon_state = "seed-banana-blue"
-	species = "bluespacebanana"
-	icon_grow = "banana-grow"
-	plantname = "Bluespace Banana Tree"
-	instability = 40
-	product = /obj/item/food/grown/banana/bluespace
-	mutatelist = list()
-	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/teleport, /datum/plant_gene/trait/repeated_harvest)
-	reagents_add = list(/datum/reagent/bluespace = 0.2, /datum/reagent/consumable/banana = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.02)
-	rarity = 30
-	graft_gene = /datum/plant_gene/trait/teleport
-
-/obj/item/food/grown/banana/bluespace
-	seed = /obj/item/seeds/banana/bluespace
-	name = "bluespace banana"
-	icon_state = "bluenana"
-	inhand_icon_state = "bluespace_peel"
-	trash_type = /obj/item/grown/bananapeel/bluespace
-	tastes = list("banana" = 1)
-	wine_power = 60
-	wine_flavor = "slippery hypercubes"
-
-/obj/item/grown/bananapeel/bluespace
-	seed = /obj/item/seeds/banana/bluespace
-	name = "bluespace banana peel"
-	desc = "A peel from a bluespace banana."
-	icon_state = "bluenana_peel"
 
 // Other
 /obj/item/grown/bananapeel/specialpeel     //used by /obj/item/clothing/shoes/clown_shoes/banana_shoes

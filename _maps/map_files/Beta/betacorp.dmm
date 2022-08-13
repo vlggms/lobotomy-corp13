@@ -2747,6 +2747,16 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/structure/table/reinforced,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qG" = (

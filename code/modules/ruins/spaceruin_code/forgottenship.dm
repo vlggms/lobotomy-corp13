@@ -228,7 +228,6 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	loot = list(/obj/item/gun/ballistic/automatic/pistol = 20,
 				/obj/item/gun/ballistic/revolver = 16,
 				/obj/item/gun/medbeam = 12,
-				/obj/item/seeds/gatfruit = 2
 
 				)
 

@@ -1695,13 +1695,9 @@
 	desc = "Any entrepreneuring botanist's dream. Contains fourteen different seeds, including one replica-pod seed and two mystery seeds!"
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_HYDROPONICS
-	contains = list(/obj/item/seeds/nettle,
-					/obj/item/seeds/replicapod,
-					/obj/item/seeds/plump,
+	contains = list(/obj/item/seeds/plump,
 					/obj/item/seeds/liberty,
 					/obj/item/seeds/amanita,
-					/obj/item/seeds/reishi,
-					/obj/item/seeds/bamboo,
 					/obj/item/seeds/eggplant/eggy,
 					/obj/item/seeds/rainbow_bunch,
 					/obj/item/seeds/shrub,
@@ -2082,7 +2078,6 @@
 	contains = list(/obj/item/poster/random_contraband,
 					/obj/item/poster/random_contraband,
 					/obj/item/food/grown/cannabis,
-					/obj/item/food/grown/cannabis/rainbow,
 					/obj/item/food/grown/cannabis/white,
 					/obj/item/storage/box/fireworks/dangerous,
 					/obj/item/storage/pill_bottle/zoom,

@@ -20,6 +20,8 @@
 	if(ishuman(target) && isliving(firer))
 		var/mob/living/carbon/human/H = target
 		var/mob/living/user = firer
+		if(firer==target)
+			return BULLET_ACT_BLOCK
 		if(user.faction_check_mob(H)) // Our faction
 			switch(damage_type)
 				if(WHITE_DAMAGE)
@@ -42,8 +44,9 @@
 
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
-	damage = 40
+	damage = 80
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
-	projectile_phasing = (ALL & (~PASSMOB))
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))

@@ -224,17 +224,6 @@
 	result = /obj/item/food/cubannachos
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/melonkeg
-	name ="Melon keg"
-	reqs = list(
-		/datum/reagent/consumable/ethanol/vodka = 25,
-		/obj/item/food/grown/holymelon = 1,
-		/obj/item/reagent_containers/food/drinks/bottle/vodka = 1
-	)
-	parts = list(/obj/item/reagent_containers/food/drinks/bottle/vodka = 1)
-	result = /obj/item/food/melonkeg
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/honeybar
 	name = "Honey nut bar"
 	reqs = list(

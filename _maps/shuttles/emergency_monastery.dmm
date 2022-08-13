@@ -225,7 +225,6 @@
 /area/shuttle/escape)
 "bK" = (
 /obj/machinery/hydroponics/soil,
-/obj/item/seeds/watermelon/holy,
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "bT" = (
@@ -1176,7 +1175,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/seeds/watermelon/holy,
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "nd" = (

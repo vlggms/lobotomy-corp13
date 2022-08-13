@@ -113,7 +113,7 @@
 		if(ALEPH_LEVEL)
 			maximum_attribute_level = 130
 	var/datum/attribute/user_attribute = user.attributes[attribute_type]
-	var/user_attribute_level = user_attribute.level
+	var/user_attribute_level = max(1, user_attribute.level)
 	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_pe))), 0, 16)
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)

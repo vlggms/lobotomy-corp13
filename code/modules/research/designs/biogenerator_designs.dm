@@ -58,36 +58,12 @@
 	make_reagents = list(/datum/reagent/consumable/flour = 10)
 	category = list("initial","Food")
 
-/datum/design/monkey_cube
-	name = "Monkey Cube"
-	id = "mcube"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass= 250)
-	build_path = /obj/item/food/monkeycube
-	category = list("initial","Food")
-
-/datum/design/strange_seeds // Tegu edit
-	name = "Pack of Strange Seeds"
-	id = "random"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass= 5000)
-	build_path = /obj/item/seeds/random
-	category = list("initial", "Food")
-
 /datum/design/ez_nut   //easy nut :)
 	name = "25u E-Z Nutrient"
 	id = "ez_nut"
 	build_type = BIOGENERATOR
 	materials = list(/datum/material/biomass= 10)
 	make_reagents = list(/datum/reagent/plantnutriment/eznutriment = 25)
-	category = list("initial","Botany Chemicals")
-
-/datum/design/l4z_nut
-	name = "25u Left 4 Zed"
-	id = "l4z_nut"
-	build_type = BIOGENERATOR
-	materials = list(/datum/material/biomass= 20)
-	make_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 25)
 	category = list("initial","Botany Chemicals")
 
 /datum/design/rh_nut

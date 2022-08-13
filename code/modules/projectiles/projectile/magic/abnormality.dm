@@ -34,10 +34,6 @@
 	damage = 25
 	spread = 15
 
-/obj/projectile/hatred/Initialize()
-	. = ..()
-	icon_state = "qoh[pick(1,2,3)]"
-
 /obj/projectile/melting_blob
 	name = "slime projectile"
 	icon_state = "slime"

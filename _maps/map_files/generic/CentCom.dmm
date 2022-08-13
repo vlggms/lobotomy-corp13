@@ -3976,7 +3976,6 @@
 "yM" = (
 /obj/structure/table/wood/bar,
 /obj/structure/safe/floor,
-/obj/item/seeds/cherry/bomb,
 /turf/open/floor/wood,
 /area/centcom/holding)
 "yP" = (

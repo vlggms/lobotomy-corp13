@@ -15,7 +15,7 @@
 	icon_grow = "berry-grow" // Uses one growth icons set for all the subtypes
 	icon_dead = "berry-dead" // Same for the dead icon
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/berry/glow, /obj/item/seeds/berry/poison)
+	mutatelist = list(/obj/item/seeds/berry/glow)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/food/grown/berries
@@ -29,53 +29,6 @@
 	juice_results = list(/datum/reagent/consumable/berryjuice = 0)
 	tastes = list("berry" = 1)
 	distill_reagent = /datum/reagent/consumable/ethanol/gin
-
-// Poison Berries
-/obj/item/seeds/berry/poison
-	name = "pack of poison-berry seeds"
-	desc = "These seeds grow into poison-berry bushes."
-	icon_state = "seed-poisonberry"
-	species = "poisonberry"
-	plantname = "Poison-Berry Bush"
-	product = /obj/item/food/grown/berries/poison
-	mutatelist = list(/obj/item/seeds/berry/death)
-	reagents_add = list(/datum/reagent/toxin/cyanide = 0.15, /datum/reagent/toxin/staminatoxin = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	rarity = 10 // Mildly poisonous berries are common in reality
-
-/obj/item/food/grown/berries/poison
-	seed = /obj/item/seeds/berry/poison
-	name = "bunch of poison-berries"
-	desc = "Taste so good, you might die!"
-	icon_state = "poisonberrypile"
-	foodtypes = FRUIT | TOXIC
-	juice_results = list(/datum/reagent/consumable/poisonberryjuice = 0)
-	tastes = list("poison-berry" = 1)
-	distill_reagent = null
-	wine_power = 35
-
-// Death Berries
-/obj/item/seeds/berry/death
-	name = "pack of death-berry seeds"
-	desc = "These seeds grow into death berries."
-	icon_state = "seed-deathberry"
-	species = "deathberry"
-	plantname = "Death Berry Bush"
-	product = /obj/item/food/grown/berries/death
-	lifespan = 30
-	potency = 50
-	mutatelist = list()
-	reagents_add = list(/datum/reagent/toxin/coniine = 0.08, /datum/reagent/toxin/staminatoxin = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
-	rarity = 30
-
-/obj/item/food/grown/berries/death
-	seed = /obj/item/seeds/berry/death
-	name = "bunch of death-berries"
-	desc = "Taste so good, you will die!"
-	icon_state = "deathberrypile"
-	foodtypes = FRUIT | TOXIC
-	tastes = list("death-berry" = 1)
-	distill_reagent = null
-	wine_power = 50
 
 // Glow Berries
 /obj/item/seeds/berry/glow
@@ -228,7 +181,7 @@
 	species = "greengrape"
 	plantname = "Green-Grape Vine"
 	product = /obj/item/food/grown/grapes/green
-	reagents_add = list( /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/medicine/c2/aiuri = 0.2)
+	reagents_add = list( /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1)
 
 /obj/item/food/grown/grapes/green
 	seed = /obj/item/seeds/grape/green

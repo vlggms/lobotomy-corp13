@@ -238,7 +238,6 @@
 /obj/item/seeds/onion,
 /obj/item/seeds/garlic,
 /obj/item/seeds/carrot,
-/obj/item/seeds/ambrosia,
 /obj/item/seeds/apple,
 /turf/open/floor/plasteel,
 /area/mine/laborcamp)

@@ -153,7 +153,7 @@
 	else
 		to_chat(user, "<span class='notice'>You insert [I] into [src], adding [cash_money] ahn to the linked account.</span>")
 
-	to_chat(user, "<span class='notice'>The linked account now reports a balance of [registered_account.account_balance] cr.</span>")
+	to_chat(user, "<span class='notice'>The linked account now reports a balance of [registered_account.account_balance] ahn.</span>")
 	qdel(I)
 
 /obj/item/card/id/proc/mass_insert_money(list/money, mob/user)
