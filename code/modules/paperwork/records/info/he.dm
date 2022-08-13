@@ -78,7 +78,7 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Silent Girl
-/obj/item/paper/fluff/he/info/silent_girl
+/obj/item/paper/fluff/info/he/silent_girl
 	name = "T-01-115"
 	info = {"<h1><center>T-01-115</center></h1>    <br>
 	Name : Silent Girl    <br>
@@ -86,6 +86,7 @@
 	Max PE Boxes : 18    <br>
 	Qliphoth Counter : 3    <br>
 	- When an Agent with less a Prudence level 3 worked on Silent Girl, regardless of the work result the Qliphoth counter lowered.    <br>
+	- When the Work Result was poor, the Qliphoth counter lowered.	<br>
 	- When the Qliphoth counter lowered, the working Agent NAME felt a heavy weight upon their shoulders, we have dubbed this effect 'Guilt'    <br>
 	- When NAME who was under the 'Guilt' attempted to work with Silent Girl, they immediately panicked and began attempting to breach the nearest Abnormality.	<br>
 	- Agents under the effect of 'Guilt' have reported significantly decreased work success rate.	<br>
@@ -99,7 +100,7 @@
 	<h4>Repression:</h4> High<br>"}
 
 //Blue Shep
-/obj/item/paper/fluff/he/info/blue_shep
+/obj/item/paper/fluff/info/he/blue_shep
 	name = "F-01-117"
 	info = {"<h1><center>F-01-117</center></h1>    <br>
 	Name : Blue Smocked Shepard    <br>
@@ -117,7 +118,7 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Rudolta
-/obj/item/paper/fluff/he/info/rudolta
+/obj/item/paper/fluff/info/he/rudolta
 	name = "F-02-49"
 	info = {"<h1><center>F-02-49</center></h1>    <br>
 	Name : Rudolta of the Sleigh    <br>
@@ -133,7 +134,7 @@
 	<h4>Repression:</h4> Very Low<br>"}
 
 //Der Freischutz
-/obj/item/paper/fluff/he/info/derfreishutz
+/obj/item/paper/fluff/info/he/derfreishutz
 	name = "F-01-69"
 	info = {"<h1><center>F-01-69</center></h1>    <br>
 	Name : Der Freischütz    <br>
