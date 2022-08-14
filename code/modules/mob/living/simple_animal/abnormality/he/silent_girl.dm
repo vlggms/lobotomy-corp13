@@ -26,21 +26,25 @@
 	var/mob/living/carbon/human/guilty_people = list()
 	var/mutable_appearance/guilt_icon  // Icon for the effect
 
+/mob/living/simple_animal/hostile/abnormality/silent_girl/Initialize(mapload)
+	. = ..()
+	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER) // Doesn't like me assigning this in the definition, so I assign it here.
+
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/DriveInsane(mob/living/carbon/human/target)
-	target.adjustSanityLoss(-500)
-	QDEL_NULL(ai_controller)
+	if (!target.sanity_lost)
+		target.adjustSanityLoss(-500)
+	QDEL_NULL(target.ai_controller)
 	target.ai_controller = /datum/ai_controller/insane/release/silent_girl
-	ghostize(1)
 	target.InitializeAIController()
-	addtimer(CALLBACK(src, .proc/killguilty, target), 600) // If panicked after a minute, KILLS THEM | ADDENDUM: Will eventually function like this, given AI removal becomes prevalent
+	addtimer(CALLBACK(src, .proc/Kill_Guilty, target), 60 SECONDS) // If panicked after a minute, KILLS THEM
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/killguilty(mob/living/carbon/human/target)
-	target.adjustBruteLoss(500)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Kill_Guilty(mob/living/carbon/human/target)
+	if (target in guilty_people && target.sanity_lost)
+		target.adjustBruteLoss(500)
 	return
-	// INSERT AI REMOVAL CODE HERE
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/guilty_work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Guilty_Work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if (((user in guilty_people) == 0) || work_type != ABNORMALITY_WORK_ATTACHMENT)
 		return
@@ -56,25 +60,24 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	if((user in guilty_people) == 1) // In statement uses 0 for not present, 1 for present
-		return ..()
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60 && !(user in guilty_people))
 		Guilt_Effect(user)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Guilt_Effect(mob/living/carbon/human/user)
+	if (user in guilty_people)
+		return
 	datum_reference.qliphoth_change(-1)
 	guilty_people += user
 	user.physiology.work_success_mod *= 0.75 // Reduces global success rate by 25%
 	to_chat(user, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
-	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
 	user.add_overlay(guilt_icon)
 	playsound(get_turf(user), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
-	RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/guilty_work)
+	RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/Guilty_Work)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/attempt_work(mob/living/carbon/human/user, work_type)
-	if ((user in guilty_people) == 1)
+	if (user in guilty_people)
 		DriveInsane(user) //If a guilty person works on her, they panic.
 	return ..()
 
@@ -84,12 +87,19 @@
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
 	if (!LAZYLEN(guilty_people)) // No Guilty on 0 counter? Find a random person and take them <3
-		for(var/mob/living/carbon/human/sucker in GLOB.mob_living_list)
-			if(!sucker.sanity_lost && sucker.stat != DEAD)
-				guilty_people += sucker
-				break
-	for(var/i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
-		DriveInsane(i)
+		var/list/potential_guilt = list()
+		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
+			if(H.stat >= HARD_CRIT || H.sanity_lost || z != H.z) // Dead or in hard crit, insane, or on a different Z level.
+				continue
+			potential_guilt += H
+		if(LAZYLEN(potential_guilt))
+			Guilt_Effect(pick(potential_guilt))
+		else
+			manual_emote("giggles.")
+			playsound(get_turf(src), 'sound/voice/human/womanlaugh.ogg', 50, 0, 6, ignore_walls = TRUE)
+	for(var/mob/living/carbon/human/i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
+		to_chat(i, "<span class='userdanger'>You feel your head begin to split!</span>")
+		addtimer(CALLBACK(src, .proc/DriveInsane, i), 10 SECONDS)
 	datum_reference.qliphoth_change(3)
 	return
 
