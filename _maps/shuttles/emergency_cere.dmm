@@ -477,10 +477,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aR" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "aS" = (
@@ -572,10 +569,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "bn" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "bo" = (
@@ -594,10 +588,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "bq" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "bs" = (
@@ -640,10 +631,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bv" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape/brig)
 "bw" = (
@@ -659,9 +647,6 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "bA" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Cargo"
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -672,6 +657,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "bB" = (
@@ -697,15 +683,13 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bE" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dwidth = 15;
 	height = 20;
 	name = "Cere emergency shuttle";
 	width = 42
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bF" = (
@@ -936,9 +920,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bY" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bZ" = (
@@ -980,9 +962,6 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "ce" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Emergency Shuttle Medbay"
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -993,6 +972,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "cf" = (
@@ -1418,10 +1398,6 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "cP" = (
-/obj/machinery/door/airlock/engineering/glass{
-	name = "Engine Room";
-	req_one_access_txt = "10;24"
-	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
@@ -1432,6 +1408,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/door/airlock/engineering/glass,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "cQ" = (

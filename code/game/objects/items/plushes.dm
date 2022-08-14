@@ -398,7 +398,7 @@
 
 /obj/item/toy/plush/myo
 	name = "myo plushie"
-	desc = "A plushie depicting a mercenary leader."
+	desc = "A plushie depicting a mercenary captain."
 	icon_state = "myo"
 	gender = FEMALE
 	squeak_override = list('sound/effects/yem.ogg'=1)

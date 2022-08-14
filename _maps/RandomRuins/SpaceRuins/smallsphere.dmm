@@ -332,7 +332,7 @@
 /area/ruin/space/has_grav/powered/biosphere/dorm_m)
 "bh" = (
 /obj/structure/closet,
-/obj/item/clothing/under/syndicate/tacticool{
+/obj/item/clothing/under/mercenary/tacticool{
 	desc = "A cheap copy of a real tactical turtleneck. You can see the 'Lobotomy Corporation' label on it.";
 	name = "tactical turtleneck"
 	},

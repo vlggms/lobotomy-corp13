@@ -55,15 +55,13 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "k" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dwidth = 3;
 	height = 5;
 	name = "Secure Transport Vessel 5";
 	width = 14
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "l" = (
@@ -94,9 +92,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "q" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "r" = (

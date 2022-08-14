@@ -79,16 +79,11 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "o" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Escape Shuttle Cell";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "p" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "q" = (
@@ -108,9 +103,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "u" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "x" = (
@@ -144,9 +137,6 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "B" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dir = 8;
 	dwidth = 8;
@@ -154,6 +144,7 @@
 	name = "Mini emergency shuttle";
 	width = 21
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "D" = (
@@ -180,10 +171,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "I" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Escape Shuttle Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "J" = (

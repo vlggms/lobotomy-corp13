@@ -140,11 +140,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/mob_spawn/human/corpse,
-/obj/item/gun/ballistic/automatic/pistol/m1911,
+/obj/item/gun/ego_gun/clerk,
+/obj/item/food/cakeslice/birthday,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/food/cakeslice/birthday,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "x" = (

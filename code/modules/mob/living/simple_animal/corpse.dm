@@ -17,7 +17,7 @@
 
 /datum/outfit/syndicatesoldiercorpse
 	name = "Syndicate Operative Corpse"
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -36,7 +36,7 @@
 
 /datum/outfit/syndicatecommandocorpse
 	name = "Syndicate Commando Corpse"
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
@@ -56,7 +56,7 @@
 
 /datum/outfit/syndicatestormtroopercorpse
 	name = "Syndicate Stormtrooper Corpse"
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat
@@ -127,7 +127,7 @@
 
 /datum/outfit/russiancorpse/ranged/trooper
 	name = "Ranged Russian Trooper Corpse"
-	uniform = /obj/item/clothing/under/syndicate/camo
+	uniform = /obj/item/clothing/under/mercenary/camo
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat
@@ -195,7 +195,7 @@
 
 /datum/outfit/nanotrasenassaultsoldiercorpse
 	name = "NT Assault Officer Corpse"
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat

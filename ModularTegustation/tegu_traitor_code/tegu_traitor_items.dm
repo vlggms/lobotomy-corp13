@@ -78,7 +78,7 @@
 	new /obj/item/clothing/mask/balaclava(src) //0 TC, haha
 	new /obj/item/radio/headset/syndicate/alt(src)
 	new /obj/item/clothing/gloves/combat(src) //1 TC?
-	new /obj/item/clothing/under/syndicate/coldres(src) //2-3 TC?
+	new /obj/item/clothing/under/mercenary/coldres(src) //2-3 TC?
 	new /obj/item/clothing/shoes/combat(src) //Free, idk
 	new /obj/item/gun/ballistic/automatic/pistol(src) //7 TC
 	new /obj/item/ammo_box/magazine/m9mm(src) //1TC

@@ -7,7 +7,7 @@
 	var/jb_name = "Syndicate Operative"
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
-	uniform = /obj/item/clothing/under/syndicate/combat
+	uniform = /obj/item/clothing/under/mercenary/combat
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	suit_store = /obj/item/gun/ballistic/automatic/pistol
 	mask = /obj/item/clothing/mask/balaclava
@@ -35,7 +35,7 @@
 /datum/outfit/lufr/elite
 	name = "LUFR Elite"
 	jb_name = "Syndicate Assault Operative"
-	uniform = /obj/item/clothing/under/syndicate/coldres
+	uniform = /obj/item/clothing/under/mercenary/coldres
 	suit_store = /obj/item/gun/ballistic/automatic/tommygun
 	mask = /obj/item/clothing/mask/gas/sechailer/swat
 	head = /obj/item/clothing/head/hos/syndicate

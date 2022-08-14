@@ -548,7 +548,7 @@
 /datum/outfit/ctf
 	name = "CTF"
 	ears = /obj/item/radio/headset
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/space/hardsuit/shielded/ctf
 	toggle_helmet = FALSE // see the whites of their eyes
 	shoes = /obj/item/clothing/shoes/combat

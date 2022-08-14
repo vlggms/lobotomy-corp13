@@ -1463,11 +1463,11 @@
 	req_one_access_txt = "150";
 	secure = 1
 	},
-/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/mercenary/combat,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat,
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/under/syndicate/skirt,
+/obj/item/clothing/under/mercenary/skirt,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9;
 	icon_state = "warningline"
@@ -1675,8 +1675,8 @@
 	},
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/under/syndicate,
-/obj/item/clothing/under/syndicate/skirt,
+/obj/item/clothing/under/mercenary,
+/obj/item/clothing/under/mercenary/skirt,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat,
 /obj/item/card/id/syndicate_command/captain_id{
@@ -1699,11 +1699,11 @@
 	req_one_access_txt = "150";
 	secure = 1
 	},
-/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/mercenary/combat,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/shoes/combat,
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/under/syndicate/skirt,
+/obj/item/clothing/under/mercenary/skirt,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10;
 	icon_state = "warningline"

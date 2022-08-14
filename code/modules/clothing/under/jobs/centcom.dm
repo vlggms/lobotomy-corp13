@@ -16,19 +16,19 @@
 	can_adjust = FALSE
 
 /obj/item/clothing/under/rank/centcom/officer
-	name = "\improper CentCom turtleneck suit"
-	desc = "A casual, yet refined green turtleneck, used by CentCom Officials. It has a fragrance of aloe."
+	name = "\improper R-Corporation turtleneck suit"
+	desc = "A green turtleneck, used by R-Corporation officers on the job, typically worn underneath a combat suit."
 	icon_state = "officer"
 	inhand_icon_state = "dg_suit"
 	alt_covers_chest = TRUE
 
 /obj/item/clothing/under/rank/centcom/officer/replica
-	name = "\improper CentCom turtleneck replica"
-	desc = "A cheap copy of the CentCom turtleneck! A Donk Co. logo can be seen on the collar."
+	name = "\improper R-Corporation turtleneck replica suit"
+	desc = "A cheap copy of the R-Corporation turtleneck! A J-Corporation logo can be seen on the collar inside."
 
 /obj/item/clothing/under/rank/centcom/officer_skirt
-	name = "\improper CentCom turtleneck skirt"
-	desc = "A skirt version of the CentCom turtleneck, rarer and more sought after than the original."
+	name = "\improper R-Corporation turtleneck skirt"
+	desc = "A skirt version of the R-Corporation combat turtleneck, phased out due to impracticality, it is not to be worn on the job."
 	icon_state = "officer_skirt"
 	inhand_icon_state = "dg_suit"
 	alt_covers_chest = TRUE

@@ -25,9 +25,9 @@
 	resistance_flags = FIRE_PROOF |  ACID_PROOF
 	clothing_traits = list(TRAIT_SILENT_FOOTSTEPS)
 
-/obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
-	name = "\improper SWAT boots"
-	desc = "High speed, no drag combat boots."
+/obj/item/clothing/shoes/combat/merc //overpowered boots for death squads
+	name = "\improper mercenary boots"
+	desc = "High speed, no drag combat boots. Worn by the professional mercenary."
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
 	armor = list(MELEE = 40, BULLET = 30, LASER = 25, ENERGY = 25, BOMB = 50, BIO = 30, RAD = 30, FIRE = 90, ACID = 50)

@@ -1,9 +1,9 @@
 
 
 /obj/item/clothing/head/centhat
-	name = "\improper CentCom hat"
+	name = "\improper R-Corporation hat"
 	icon_state = "centcom"
-	desc = "It's good to be emperor."
+	desc = "An armored hat for the R-Corporation employee who values tacticool over tactical."
 	inhand_icon_state = "that"
 	flags_inv = 0
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)

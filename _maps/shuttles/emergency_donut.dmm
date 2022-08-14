@@ -106,10 +106,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "au" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "av" = (
@@ -159,10 +156,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aD" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Containment Cell";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aE" = (
@@ -210,10 +204,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aL" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/brig)
 "aM" = (
@@ -236,10 +227,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aP" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/shuttle/escape/brig)
 "aQ" = (
@@ -255,13 +243,11 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aS" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	name = "Donut emergency shuttle";
 	width = 34
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aT" = (
@@ -314,9 +300,7 @@
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "bc" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bd" = (
@@ -491,6 +475,10 @@
 /obj/structure/table/optable,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
+"pI" = (
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/plating,
+/area/shuttle/escape)
 
 (1,1,1) = {"
 aa
@@ -514,9 +502,9 @@ aa
 aa
 aa
 ab
-aR
+pI
 ac
-aR
+pI
 ab
 aa
 ab
