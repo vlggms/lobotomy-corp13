@@ -117,10 +117,7 @@
 /turf/closed/wall/rust,
 /area/shuttle/escape)
 "at" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Glorious Leaders";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "au" = (
@@ -197,10 +194,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aI" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "aJ" = (
@@ -231,10 +225,7 @@
 /turf/open/floor/engine,
 /area/shuttle/escape)
 "aO" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plating,
 /area/shuttle/escape/brig)
 "aP" = (
@@ -279,9 +270,7 @@
 	height = 15;
 	name = "Mother Russia Bleeds"
 	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "aX" = (
@@ -417,9 +406,7 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/shuttle/escape)
 "br" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "bs" = (
@@ -436,20 +423,12 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
-"bu" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Cargo"
-	},
-/turf/open/floor/mineral/plastitanium,
-/area/shuttle/escape)
 "bv" = (
 /obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/shuttle/escape)
 "bw" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Emergency Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bx" = (
@@ -677,7 +656,7 @@ bc
 bc
 bc
 aR
-bu
+bw
 bx
 bx
 bG

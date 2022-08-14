@@ -15,7 +15,7 @@
 
 /datum/outfit/vr/syndicate
 	name = "Syndicate VR Operative - Basic"
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	back = /obj/item/storage/backpack

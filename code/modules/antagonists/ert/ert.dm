@@ -205,19 +205,19 @@
 	outfit = /datum/outfit/centcom/ert/commander/party
 
 /datum/antagonist/ert/security/rhino
-	role = "Pilot Mercenary"
+	role = "Sergeant"
 	outfit = /datum/outfit/centcom/ert/security/rhino
 
 /datum/antagonist/ert/commander/rhino
-	role = "Pilot Mercenary Leader"
+	role = "Staff Sergeant"
 	outfit = /datum/outfit/centcom/ert/commander/rhino
 
 /datum/antagonist/ert/security/rabbit
-	role = "Mercenary"
+	role = "Specialist"
 	outfit = /datum/outfit/centcom/ert/security/rabbit
 
 /datum/antagonist/ert/commander/rabbit
-	role = "Mercenary Leader"
+	role = "Lieutenant"
 	outfit = /datum/outfit/centcom/ert/commander/rabbit
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
@@ -247,11 +247,11 @@
 
 	to_chat(owner, "<B><font size=3 color=red>You are the [name].</font></B>")
 
-	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by Nanotrasen's Security Division."
+	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by R-Corporation."
 	if(leader) //If Squad Leader
-		missiondesc += " Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready."
+		missiondesc += " Lead your squad to ensure the completion of the mission. Disembark when your team is ready."
 	else
-		missiondesc += " Follow orders given to you by your squad leader."
+		missiondesc += " Follow orders given to you by your squad leader, listen to them. Stay together and operate as a team."
 	if(!rip_and_tear)
 		missiondesc += "Avoid civilian casualties when possible."
 

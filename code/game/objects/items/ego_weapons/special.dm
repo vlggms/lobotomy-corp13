@@ -1,6 +1,6 @@
 /obj/item/ego_weapon/rabbit_blade
 	name = "high-frequency combat blade"
-	desc = "A sharp high-frequency combat blade manufactured for use against abnormalities and other threats within L corp facilities."
+	desc = "A high-frequency combat blade made for use against abnormalities and other threats in Lobotomy Corporation and the outskirts."
 	icon_state = "rabbitblade"
 	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

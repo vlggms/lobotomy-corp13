@@ -554,7 +554,7 @@
 	icon_state = "woodenbarricade-snow"
 	max_integrity = 125
 
-/obj/item/clothing/under/syndicate/coldres
+/obj/item/clothing/under/mercenary/coldres
 	name = "insulated tactical turtleneck"
 	desc = "A nondescript and slightly suspicious-looking turtleneck with digital camouflage cargo pants. The interior has been padded with special insulation for both warmth and protection."
 	armor = list(MELEE = 20, BULLET = 10, LASER = 0,ENERGY = 5, BOMB = 0, BIO = 0, RAD = 0, FIRE = 25, ACID = 25)
@@ -599,7 +599,7 @@
 
 /datum/outfit/snowsyndie
 	name = "Syndicate Snow Operative"
-	uniform = /obj/item/clothing/under/syndicate/coldres
+	uniform = /obj/item/clothing/under/mercenary/coldres
 	shoes = /obj/item/clothing/shoes/combat/coldres
 	ears = /obj/item/radio/headset/syndicate/alt
 	r_pocket = /obj/item/gun/ballistic/automatic/pistol

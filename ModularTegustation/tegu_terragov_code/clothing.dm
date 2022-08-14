@@ -5,7 +5,7 @@
 	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 
 // Marines
-/obj/item/clothing/under/syndicate/citygov
+/obj/item/clothing/under/mercenary/citygov
 	name = "marine camo uniform"
 	desc = "A camouflage jumpsuit worn by marines of the city government."
 	icon_state = "camo_tgmc"

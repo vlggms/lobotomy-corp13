@@ -35,12 +35,6 @@
 	},
 /turf/open/floor/wood,
 /area/shuttle/escape)
-"hD" = (
-/obj/machinery/door/airlock/gold/glass{
-	req_access_txt = "19"
-	},
-/turf/open/floor/wood,
-/area/shuttle/escape)
 "hF" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/escape)
@@ -465,7 +459,7 @@ wf
 wn
 Ky
 Ky
-hD
+QO
 Cg
 Cg
 ZN

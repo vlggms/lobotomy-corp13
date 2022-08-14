@@ -101,7 +101,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/fries
-	name = "space fries"
+	name = "fries"
 	desc = "AKA: French Fries, Freedom Fries, etc."
 	icon_state = "fries"
 	trash_type = /obj/item/trash/plate

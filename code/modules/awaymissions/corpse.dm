@@ -385,14 +385,14 @@
 /////////////////Officers+Nanotrasen Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
-	name = "Bridge Officer"
-	id_job = "Bridge Officer"
+	name = "R-Corporation Second Lieutenant"
+	id_job = "Second Lieutenant"
 	id_access_list = list(ACCESS_CENT_CAPTAIN)
 	outfit = /datum/outfit/nanotrasenbridgeofficercorpse
 
 /datum/outfit/nanotrasenbridgeofficercorpse
-	name = "Bridge Officer Corpse"
-	ears = /obj/item/radio/headset/heads/manager
+	name = "R-Corporation Second Lieutenant"
+	ears = /obj/item/radio/headset/headset_cent/alt
 	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/sneakers/black
@@ -400,26 +400,26 @@
 	id = /obj/item/card/id
 
 /obj/effect/mob_spawn/human/commander
-	name = "Commander"
-	id_job = "Commander"
+	name = "R-Corporation Lieutenant Colonel"
+	id_job = "Lieutenant Colonel"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE)
 	outfit = /datum/outfit/nanotrasencommandercorpse
 
 /datum/outfit/nanotrasencommandercorpse
-	name = "\improper Nanotrasen Private Security Commander"
-	uniform = /obj/item/clothing/under/rank/centcom/commander
+	name = "\improper R-Corporation Lieutenant Colonel"
+	uniform = /obj/item/clothing/under/rank/centcom/officer
 	suit = /obj/item/clothing/suit/armor/bulletproof
-	ears = /obj/item/radio/headset/heads/manager
+	ears = /obj/item/radio/headset/headset_cent/alt
 	glasses = /obj/item/clothing/glasses/eyepatch
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
 	head = /obj/item/clothing/head/centhat
 	gloves = /obj/item/clothing/gloves/tackler/combat
-	shoes = /obj/item/clothing/shoes/combat/swat
+	shoes = /obj/item/clothing/shoes/combat/merc
 	r_pocket = /obj/item/lighter
 	id = /obj/item/card/id
 
 /obj/effect/mob_spawn/human/nanotrasensoldier
-	name = "\improper Nanotrasen Private Security Officer"
+	name = "\improper N-Corporation Security Official"
 	id_job = "Private Security Force"
 	id_access_list = list(ACCESS_CENT_CAPTAIN, ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_MEDICAL, ACCESS_CENT_STORAGE, ACCESS_SECURITY, ACCESS_MECH_SECURITY)
 	outfit = /datum/outfit/nanotrasensoldiercorpse

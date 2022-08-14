@@ -98,10 +98,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/door/airlock/shuttle{
-	name = "External Shuttle Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "ap" = (
@@ -317,12 +315,10 @@
 /area/shuttle/escape)
 "aH" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/airlock/shuttle{
-	name = "External Shuttle Airlock"
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "aI" = (
@@ -335,14 +331,6 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/plastitanium/red/brig,
-/area/shuttle/escape/brig)
-"aJ" = (
-/obj/effect/turf_decal/delivery,
-/obj/machinery/door/airlock/security/glass{
-	name = "Holding Area";
-	req_one_access_txt = "19"
-	},
-/turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "aK" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -386,10 +374,7 @@
 /area/shuttle/escape)
 "aN" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/door/airlock/command{
-	name = "Shuttle Control";
-	req_one_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "aO" = (
@@ -562,16 +547,13 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bb" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock";
-	req_one_access_txt = "63"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "bc" = (
@@ -672,10 +654,7 @@
 /area/shuttle/escape)
 "bm" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/airlock/security/glass{
-	name = "Holding Area";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape/brig)
 "bn" = (
@@ -699,15 +678,10 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bp" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bq" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -717,6 +691,7 @@
 /obj/docking_port/mobile/emergency{
 	name = "Kilo emergency shuttle"
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "br" = (
@@ -1069,15 +1044,13 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "bX" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "bY" = (
@@ -1158,13 +1131,11 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "cf" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/door/airlock/shuttle,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "cg" = (
@@ -1233,9 +1204,7 @@
 /area/shuttle/escape)
 "cn" = (
 /obj/effect/turf_decal/delivery,
-/obj/machinery/door/airlock/medical/glass{
-	name = "Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/escape)
 "co" = (
@@ -1820,7 +1789,7 @@ ad
 aj
 as
 aD
-aJ
+bm
 ac
 as
 as

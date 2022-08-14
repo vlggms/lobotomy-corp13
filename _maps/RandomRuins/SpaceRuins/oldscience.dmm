@@ -197,7 +197,7 @@
 	pixel_y = 4;
 	value = 1500
 	},
-/obj/item/clothing/under/syndicate/sniper,
+/obj/item/clothing/under/mercenary/sniper,
 /turf/open/floor/plasteel/dark,
 /area/ruin/has_grav/powered/syndi_science/main)
 "ho" = (

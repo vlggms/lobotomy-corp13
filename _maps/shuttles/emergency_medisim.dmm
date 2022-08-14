@@ -28,9 +28,9 @@
 /turf/open/floor/wood,
 /area/shuttle/escape/simulation)
 "dg" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/grass,
-/area/shuttle/escape/simulation)
+/obj/machinery/door/airlock/titanium,
+/turf/open/floor/mineral/titanium/blue,
+/area/shuttle/escape)
 "eb" = (
 /obj/effect/turf_decal/stripes{
 	dir = 4
@@ -52,12 +52,6 @@
 	},
 /obj/structure/railing,
 /turf/template_noop,
-/area/shuttle/escape)
-"fa" = (
-/obj/machinery/door/airlock/external{
-	name = "Engine Maintenance Access"
-	},
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "ft" = (
 /obj/machinery/computer/med_data,
@@ -591,10 +585,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape/simulation)
 "Aw" = (
-/obj/machinery/door/airlock/external{
-	name = "Engine Maintenance Access";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/external,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Be" = (
@@ -821,9 +812,6 @@
 	},
 /turf/open/floor/circuit/green/anim,
 /area/shuttle/escape)
-"GQ" = (
-/turf/open/floor/plating/grass,
-/area/shuttle/escape/simulation)
 "Ho" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 1
@@ -923,9 +911,7 @@
 /turf/open/floor/plating/grass,
 /area/shuttle/escape/simulation)
 "Mt" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "MN" = (
@@ -946,19 +932,14 @@
 	},
 /area/shuttle/escape/simulation)
 "NN" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "NS" = (
 /turf/open/floor/stone,
 /area/shuttle/escape/simulation)
 "NX" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Cargo Bay Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/yellow,
 /area/shuttle/escape)
 "Ob" = (
@@ -1025,9 +1006,6 @@
 /turf/open/floor/plating/grass,
 /area/shuttle/escape/simulation)
 "QS" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dir = 1;
 	dwidth = 6;
@@ -1035,6 +1013,7 @@
 	name = "Medisim emergency shuttle";
 	width = 25
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "Rj" = (
@@ -1063,10 +1042,7 @@
 /turf/open/floor/wood,
 /area/shuttle/escape/simulation)
 "RK" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "RV" = (
@@ -1533,7 +1509,7 @@ EN
 (5,1,1) = {"
 Xv
 Xv
-fa
+Aw
 Xv
 kB
 qC
@@ -1555,7 +1531,7 @@ wX
 Zf
 ZM
 Xv
-fa
+Aw
 Xv
 Xv
 "}
@@ -1673,7 +1649,7 @@ Xv
 Xv
 EZ
 cc
-aB
+dg
 "}
 (10,1,1) = {"
 sS
@@ -2092,13 +2068,13 @@ NS
 pF
 wc
 MN
-GQ
+MN
 Pv
-GQ
-GQ
-GQ
-GQ
-GQ
+MN
+MN
+MN
+MN
+MN
 MN
 VF
 pF
@@ -2128,7 +2104,7 @@ MN
 MN
 Ry
 SA
-dg
+Pv
 MN
 pF
 pF
@@ -2154,7 +2130,7 @@ MN
 MN
 MN
 MN
-dg
+Pv
 MN
 MN
 MN
@@ -2298,11 +2274,11 @@ zJ
 MN
 Is
 MN
-dg
+Pv
 QR
 MN
 ST
-dg
+Pv
 MN
 pF
 pF
@@ -2324,12 +2300,12 @@ sH
 pF
 xi
 MN
-GQ
-GQ
-GQ
-GQ
-GQ
-GQ
+MN
+MN
+MN
+MN
+MN
+MN
 Pv
 MN
 XQ

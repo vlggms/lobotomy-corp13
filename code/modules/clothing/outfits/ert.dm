@@ -2,8 +2,8 @@
 	name = "ERT Common"
 
 	mask = /obj/item/clothing/mask/gas/sechailer
-	uniform = /obj/item/clothing/under/rank/centcom/officer
-	shoes = /obj/item/clothing/shoes/combat/swat
+	uniform = /obj/item/clothing/under/mercenary/tacticool
+	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)

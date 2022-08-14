@@ -2822,7 +2822,7 @@
 	desc = "The spare ID from the syndicate battlecruiser's captain himself.";
 	name = "captain's spare ID"
 	},
-/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/mercenary,
 /obj/item/ammo_box/a357,
 /obj/item/ammo_box/a357,
 /obj/item/shield/riot/tele,
@@ -4161,7 +4161,7 @@
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/effect/spawner/lootdrop/donkpockets,
 /obj/effect/spawner/lootdrop/donkpockets,
-/obj/item/clothing/under/syndicate/sniper,
+/obj/item/clothing/under/mercenary/sniper,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/sbc/crew)
 "iY" = (

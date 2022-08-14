@@ -7,8 +7,8 @@
 	desc = "A storage closet for syndicate conflict resolution operatives.";
 	name = "red closet"
 	},
-/obj/item/clothing/under/syndicate/tacticool,
-/obj/item/clothing/under/syndicate/tacticool/skirt,
+/obj/item/clothing/under/mercenary/tacticool,
+/obj/item/clothing/under/mercenary/tacticool/skirt,
 /turf/open/floor/mineral/plastitanium,
 /area/mafia)
 "c" = (
@@ -59,8 +59,8 @@
 	desc = "A storage closet for syndicate conflict resolution operatives.";
 	name = "red closet"
 	},
-/obj/item/clothing/under/syndicate/tacticool,
-/obj/item/clothing/under/syndicate/tacticool/skirt,
+/obj/item/clothing/under/mercenary/tacticool,
+/obj/item/clothing/under/mercenary/tacticool/skirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -78,8 +78,8 @@
 	desc = "A storage closet for syndicate conflict resolution operatives.";
 	name = "red closet"
 	},
-/obj/item/clothing/under/syndicate/tacticool,
-/obj/item/clothing/under/syndicate/tacticool/skirt,
+/obj/item/clothing/under/mercenary/tacticool,
+/obj/item/clothing/under/mercenary/tacticool/skirt,
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -251,8 +251,8 @@
 	desc = "A storage closet for syndicate conflict resolution operatives.";
 	name = "red closet"
 	},
-/obj/item/clothing/under/syndicate/tacticool,
-/obj/item/clothing/under/syndicate/tacticool/skirt,
+/obj/item/clothing/under/mercenary/tacticool,
+/obj/item/clothing/under/mercenary/tacticool/skirt,
 /turf/open/floor/plasteel/dark,
 /area/mafia)
 "G" = (
@@ -266,12 +266,12 @@
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
-/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/under/mercenary/tacticool,
 /obj/structure/closet/syndicate{
 	desc = "A storage closet for syndicate conflict resolution operatives.";
 	name = "red closet"
 	},
-/obj/item/clothing/under/syndicate/tacticool/skirt,
+/obj/item/clothing/under/mercenary/tacticool/skirt,
 /turf/open/floor/plasteel/dark,
 /area/mafia)
 "H" = (

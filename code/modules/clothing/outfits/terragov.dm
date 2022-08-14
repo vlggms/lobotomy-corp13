@@ -4,7 +4,7 @@
 
 	uniform = /obj/item/clothing/under/suit/black_really/citygov
 	suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/combat/swat
+	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	ears = /obj/item/radio/headset/headset_head/alt
@@ -31,7 +31,7 @@
 /datum/outfit/terragov/marine
 	name = "CityGov Marine"
 	jb_name = "CityGov Marine"
-	uniform = /obj/item/clothing/under/syndicate/citygov
+	uniform = /obj/item/clothing/under/mercenary/citygov
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/thermal
 	mask = /obj/item/clothing/mask/gas
 	suit_store = /obj/item/gun/ballistic/automatic/t12

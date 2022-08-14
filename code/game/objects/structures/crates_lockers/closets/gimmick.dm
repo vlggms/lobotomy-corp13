@@ -45,12 +45,12 @@
 	new /obj/item/clothing/head/helmet/swat(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
 	new /obj/item/clothing/mask/gas/sechailer/swat(src)
-	new /obj/item/clothing/shoes/combat/swat(src)
-	new /obj/item/clothing/shoes/combat/swat(src)
+	new /obj/item/clothing/shoes/combat/merc(src)
+	new /obj/item/clothing/shoes/combat/merc(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad(src)
 	new /obj/item/clothing/suit/space/hardsuit/deathsquad(src)
-	new /obj/item/clothing/under/syndicate/tacticool(src)
-	new /obj/item/clothing/under/syndicate/tacticool(src)
+	new /obj/item/clothing/under/mercenary/tacticool(src)
+	new /obj/item/clothing/under/mercenary/tacticool(src)
 
 
 /obj/structure/closet/thunderdome

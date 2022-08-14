@@ -101,7 +101,7 @@
 	teamsize = 6
 	opendoors = FALSE
 	rename_team = "Rabbit Team"
-	mission = "Dispose of any breaching abnormalities and/or panicking employees of L Corp."
+	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
 	polldesc = "a Rabbit Team"
 	code = "Orange"
 
@@ -111,6 +111,6 @@
 	teamsize = 1
 	opendoors = TRUE
 	rename_team = "Rhino Team"
-	mission = "Dispose of any breaching abnormalities and/or panicking employees of L Corp."
+	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
 	polldesc = "a Rhino Team"
 	code = "Orange"
