@@ -179,13 +179,13 @@
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.2
+		var/heal_amt = force*0.15
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			heal_amt = 0 // In case damage_coeff is 0 or doesn't exist
-			if(S.damage_coeff[damtype])
-				if(S.damage_coeff[damtype] > 0)
-					heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff[damtype] > 0)
+				heal_amt *= S.damage_coeff[damtype]
+			else
+				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
 	..()
 
