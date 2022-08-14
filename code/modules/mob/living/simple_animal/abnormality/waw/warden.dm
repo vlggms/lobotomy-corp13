@@ -9,7 +9,7 @@
 	health = 1700
 	pixel_x = -8
 	base_pixel_x = -8
-	damage_coeff = list(BRUTE = 0.7, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
 	melee_damage_lower = 38
 	melee_damage_upper = 38
