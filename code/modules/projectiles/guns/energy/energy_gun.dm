@@ -149,8 +149,9 @@
 				. += "[icon_state]_fail_2"
 
 /obj/item/gun/energy/e_gun/rabbit
-	name = "R-Corporation Graze Rifle"
-	desc = "A ballistics weapon produced specifically to suppress threats within Lobotomy Corporation, it has four ammo types to switch between."
+	name = "R-Corporation Lawnmower 3000"
+	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
+	icon_state = "rabbit"
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
