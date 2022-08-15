@@ -103,7 +103,7 @@
 	teleport_cooldown = world.time + teleport_cooldown_time
 	var/targets_in_range = 0
 	for(var/mob/living/L in view(10, src))
-		if(!faction_check_mob(L) && L.stat != DEAD)
+		if(!faction_check_mob(L) && L.stat != DEAD && !(L.status_flags & GODMODE))
 			targets_in_range += 1
 	if(targets_in_range >= 3)
 		return FALSE
