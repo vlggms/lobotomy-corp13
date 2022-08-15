@@ -79,8 +79,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/infinite_hatred
-	name = "infinite hatred"
+/obj/item/clothing/suit/armor/ego_gear/christmas
+	name = "christmas"
 	desc = "When the rusty sleigh bells are ajingle, Christmas begins."
-	icon_state = "infinite_hatred"
+	icon_state = "christmas"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -30, PALE_DAMAGE = 25)

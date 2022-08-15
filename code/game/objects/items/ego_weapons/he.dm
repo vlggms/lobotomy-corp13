@@ -166,12 +166,12 @@
 			to_chat(person,"<span class='userdanger'>[owner.real_name] parries the attack!</span>")
 	return ..()
 
-/obj/item/ego_weapon/infinite_hatred
-	name = "infinite hatred"
+/obj/item/ego_weapon/christmas
+	name = "christmas"
 	desc = "With my infinite hatred, I give you this gift."
 	special = "This weapon has a slower attack speed. \
 	This weapon has knockback."
-	icon_state = "infinite_hatred"
+	icon_state = "christmas"
 	force = 50
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE

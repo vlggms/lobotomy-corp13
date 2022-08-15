@@ -106,10 +106,12 @@
 		blocked = 0
 		to_chat(user,"<span class='warning'>You take a defensive stance to block bullets. You find your attacks less effective</span>")
 		force = 20
+		return
 	if (mode==1)
 		mode = 0
 		to_chat(user,"<span class='warning'>You reset your stance, prepared to fight</span>")
 		force = 32
+		return
 
 /obj/item/ego_weapon/oppression/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && mode == 1)

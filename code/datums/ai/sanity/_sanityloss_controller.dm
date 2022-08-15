@@ -224,7 +224,11 @@
 
 	var/list/potential_computers = list()
 	for(var/obj/machinery/computer/abnormality/AC in GLOB.abnormality_consoles)
+		if(!AC.can_meltdown)
+			continue
 		if(!AC.datum_reference)
+			continue
+		if(!(AC.datum_reference.current.status_flags & GODMODE))
 			continue
 		if((AC.datum_reference.qliphoth_meter_max > 0) && (AC.datum_reference.qliphoth_meter > 0))
 			if(get_dist(pawn, AC) < 40)

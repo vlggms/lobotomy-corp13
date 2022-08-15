@@ -59,12 +59,12 @@
 	item_path = /obj/item/ego_weapon/daredevil
 	cost = 35
 
-// Rudolta - Infinite Hatred
-/datum/ego_datum/weapon/infinite_hatred
-	item_path = /obj/item/ego_weapon/infinite_hatred
+// Rudolta - Christmas
+/datum/ego_datum/weapon/christmas
+	item_path = /obj/item/ego_weapon/christmas
 	cost = 35
 
-/datum/ego_datum/armor/infinite_hatred
-	item_path = /obj/item/clothing/suit/armor/ego_gear/infinite_hatred
+/datum/ego_datum/armor/christmas
+	item_path = /obj/item/clothing/suit/armor/ego_gear/christmas
 	cost = 35
 
