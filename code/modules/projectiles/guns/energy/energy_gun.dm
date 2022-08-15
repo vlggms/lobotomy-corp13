@@ -149,8 +149,9 @@
 				. += "[icon_state]_fail_2"
 
 /obj/item/gun/energy/e_gun/rabbit
-	name = "R corp energy gun"
-	desc = "An energy gun specifically produces to fight threats commonly seen in the L corp facilities."
+	name = "R-Corporation Lawnmower 3000"
+	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
+	icon_state = "rabbit"
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,

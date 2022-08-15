@@ -93,10 +93,7 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "s" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "t" = (
@@ -135,10 +132,7 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "z" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "security airlock";
-	req_access_txt = "63"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "A" = (
@@ -299,10 +293,7 @@
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Z" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "bridge door";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape/brig)
 

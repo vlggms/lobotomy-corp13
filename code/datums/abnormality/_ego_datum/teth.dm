@@ -65,3 +65,12 @@
 /datum/ego_datum/armor/daredevil
 	item_path = /obj/item/clothing/suit/armor/ego_gear/daredevil
 	cost = 20
+
+// 1.76 MHz - Noise
+/datum/ego_datum/weapon/noise
+	item_path = /obj/item/gun/ego_gun/noise
+	cost = 20
+
+/datum/ego_datum/armor/noise
+	item_path = /obj/item/clothing/suit/armor/ego_gear/noise
+	cost = 20

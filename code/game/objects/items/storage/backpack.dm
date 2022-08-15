@@ -363,7 +363,7 @@
 
 /obj/item/storage/backpack/duffelbag/cursed/examine(mob/user)
 	. = ..()
-	
+
 	if(hunger > 25)
 		. += "<span class='danger'>The bag is growling for food...</span>"
 
@@ -699,7 +699,7 @@
 	desc = "A large duffel bag containing a New Russian pyro backpack sprayer, Elite hardsuit, a Stechkin APS pistol, minibomb, ammo, and other equipment."
 
 /obj/item/storage/backpack/duffelbag/syndie/firestarter/PopulateContents()
-	new /obj/item/clothing/under/syndicate/soviet(src)
+	new /obj/item/clothing/under/mercenary/soviet(src)
 	new /obj/item/watertank/op(src)
 	new /obj/item/clothing/suit/space/hardsuit/syndi/elite(src)
 	new /obj/item/gun/ballistic/automatic/pistol/aps(src)

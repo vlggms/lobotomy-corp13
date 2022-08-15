@@ -1074,8 +1074,8 @@
 
 // Rabbit team
 /obj/item/clothing/head/helmet/space/hardsuit/rabbit
-	name = "\improper Rabbit Team Helmet"
-	desc = "A tactical helmet worn by the R. Corp mercenaries."
+	name = "\improper rabbit team helmet"
+	desc = "An armored combat helmet worn by R-Corporation mercenaries in the field."
 	icon_state = "rabbit1"
 	inhand_icon_state = "deathsquad"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
@@ -1086,8 +1086,8 @@
 	actions_types = list()
 
 /obj/item/clothing/suit/space/hardsuit/rabbit
-	name = "\improper Rabbit Team Suit"
-	desc = "An armored suit produced for use by R. Corp mercenary teams."
+	name = "\improper rabbit team suit"
+	desc = "An armored combat suit worn by R-Corporation mercenaries in the field."
 	icon_state = "rabbit1"
 	inhand_icon_state = "swat_suit" // TODO
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
@@ -1101,12 +1101,12 @@
 	allowed = GLOB.security_hardsuit_allowed
 
 /obj/item/clothing/head/helmet/space/hardsuit/rabbit/leader
-	name = "\improper Rabbit Team Leader Helmet"
+	name = "\improper rabbit team command helmet"
 	icon_state = "rabbit2"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 
 /obj/item/clothing/suit/space/hardsuit/rabbit/leader
-	name = "\improper Rabbit Team Leader Suit"
+	name = "\improper rabbit team command suit"
 	icon_state = "rabbit2"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 

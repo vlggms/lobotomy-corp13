@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, but only a few."
 	icon_state = "headset"
 	inhand_icon_state = "headset"
 	worn_icon_state = null
@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/alt
 	name = "bowman headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. Protect ears from flashbangs."
+	desc = "An updated, modular intercom that fits over the head. Protect ears from flashbangs. Takes encryption keys, but only a few."
 	icon_state = "headset_alt"
 	inhand_icon_state = "headset_alt"
 
@@ -120,55 +120,55 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_control
 	name = "control radio headset"
-	desc = "This is used by control department."
+	desc = "This is used by the control department."
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/encryptionkey/headset_control
 
 /obj/item/radio/headset/headset_information
 	name = "information radio headset"
-	desc = "This is used by information department."
+	desc = "This is used by the information department."
 	icon_state = "sci_headset"
 	keyslot = new /obj/item/encryptionkey/headset_information
 
 /obj/item/radio/headset/headset_safety
 	name = "safety radio headset"
-	desc = "This is used by safety department."
+	desc = "This is used by the safety department."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_safety
 
 /obj/item/radio/headset/headset_training
 	name = "training radio headset"
-	desc = "This is used by training department."
+	desc = "This is used by the training department."
 	icon_state = "rob_headset"
 	keyslot = new /obj/item/encryptionkey/headset_training
 
 /obj/item/radio/headset/headset_command
 	name = "command radio headset"
-	desc = "This is used by central command department."
+	desc = "This is used by the central command department."
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
 
 /obj/item/radio/headset/headset_welfare
 	name = "welfare radio headset"
-	desc = "This is used by welfare department."
+	desc = "This is used by the welfare department."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_welfare
 
 /obj/item/radio/headset/headset_discipline
 	name = "disciplinary headset"
-	desc = "This is used by disciplinary department."
+	desc = "This is used by the disciplinary department."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_discipline
 
 /obj/item/radio/headset/headset_architecture
 	name = "architecture headset"
-	desc = "A headset used by mysterious architecture department. Is that a thing?"
+	desc = "A headset used by the mysterious architecture department. Is that a thing?"
 	icon_state = "med_headset"
 	keyslot = new /obj/item/encryptionkey/headset_architecture
 
 /obj/item/radio/headset/headset_com
-	name = "command radio headset"
-	desc = "A headset with a commanding channel."
+	name = "command headset"
+	desc = "This is used by the central command department."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
 
@@ -177,14 +177,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/headset_command
 
 /obj/item/radio/headset/heads/agent_captain
-	name = "\proper the agent captain's headset"
-	desc = "The headset worn by an agent captain."
+	name = "\proper the captain's headset"
+	desc = "A headset used by agents in Lobotomy Corporation who have earned the rank of captain."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/agent_captain
 
 /obj/item/radio/headset/heads/agent_captain/alt
-	name = "\proper the agent captain's bowman headset"
-	desc = "The headset worn by an agent captain. Protects ears from flashbangs."
+	name = "\proper the captain's bowman headset"
+	desc = "A headset used by agents in Lobotomy Corporation who have earned the rank of captain. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
 	inhand_icon_state = "com_headset_alt"
 
@@ -194,13 +194,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/heads/manager
 	name = "\proper the manager's headset"
-	desc = "The headset of the boss."
+	desc = "The headset of the manager of a Lobotomy Corporation facility."
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/heads/manager
 
 /obj/item/radio/headset/heads/manager/alt
 	name = "\proper the manager's bowman headset"
-	desc = "The headset of the boss. Protects ears from flashbangs."
+	desc = "The headset of the manager of a Lobotomy Corporation facility. Protects ears from flashbangs."
 	icon_state = "com_headset_alt"
 	inhand_icon_state = "com_headset_alt"
 
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_head
 	name = "\improper Head headset"
-	desc = "A headset used by the 'A' Corp."
+	desc = "A headset used by the A-Corporation."
 	icon_state = "head_headset"
 	keyslot = new /obj/item/encryptionkey/headset_head
 
@@ -223,8 +223,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/headset_cent
-	name = "\improper CentCom headset"
-	desc = "A headset used by the upper echelons of Nanotrasen."
+	name = "\improper R-Corporation headset"
+	desc = "A headset used by the upper echelons of R-Corporation, a powerful private security corporation."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/heads/manager
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
@@ -237,8 +237,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/heads/manager
 
 /obj/item/radio/headset/headset_cent/alt
-	name = "\improper CentCom bowman headset"
-	desc = "A headset especially for emergency response personnel. Protects ears from flashbangs."
+	name = "\improper R-Corporation bowman headset"
+	desc = "A headset especially for emergency response personnel from R-Corporation."
 	icon_state = "cent_headset_alt"
 	inhand_icon_state = "cent_headset_alt"
 	keyslot = null

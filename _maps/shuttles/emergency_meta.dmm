@@ -10,9 +10,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "af" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "ag" = (
@@ -20,9 +18,6 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ah" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	dir = 2;
 	dwidth = 5;
@@ -30,6 +25,7 @@
 	name = "Meta emergency shuttle";
 	width = 25
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "al" = (
@@ -238,10 +234,7 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aH" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "aI" = (
@@ -329,24 +322,16 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aW" = (
-/obj/machinery/door/airlock/command{
-	name = "Emergency Recovery Airlock";
-	req_access_txt = "19"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aY" = (
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/security/glass,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aZ" = (
-/obj/machinery/door/airlock/medical/glass{
-	name = "Escape Shuttle Infirmary"
-	},
+/obj/machinery/door/airlock/medical/glass,
 /turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "ba" = (
@@ -354,10 +339,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bb" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Cargo Bay Airlock"
-	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bd" = (

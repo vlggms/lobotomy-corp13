@@ -207,8 +207,8 @@
 
 /datum/map_template/shuttle/emergency/bar
 	suffix = "bar"
-	name = "The Emergency Escape Bar"
-	description = "Features include sentient bar staff (a Bardrone and a Barmaid), bathroom, a quality lounge for the heads, and a large gathering table."
+	name = "Lobotomy Corporation Welfare Transport"
+	description = "Features the combined efforts of the Information and Welfare departments to provide bar staff (a Bardrone and a Barmaid), a bathroom, a quality lounge for the officers, and a large gathering table. After a hard day of mass death to sustain humanity, crack open a drink!"
 	admin_notes = "Bardrone and Barmaid are GODMODE, will be automatically sentienced by the fun balloon at 60 seconds before arrival. \
 	Has medical facilities."
 	credit_cost = CARGO_CRATE_VALUE * 10
@@ -216,63 +216,39 @@
 /datum/map_template/shuttle/emergency/pod
 	suffix = "pod"
 	name = "Emergency Pods"
-	description = "We did not expect an evacuation this quickly. All we have available is two escape pods."
+	description = "We did not expect an evacuation this quickly. All we have available is two escape pods. How did you manage this?"
 	admin_notes = "For player punishment."
 	can_be_bought = FALSE
 
 /datum/map_template/shuttle/emergency/russiafightpit
 	suffix = "russiafightpit"
-	name = "Mother Russia Bleeds"
-	description = "Dis is a high-quality shuttle, da. Many seats, lots of space, all equipment! Even includes entertainment! Such as lots to drink, and a fighting arena for drunk crew to have fun! If arena not fun enough, simply press button of releasing bears. Do not worry, bears trained not to break out of fighting pit, so totally safe so long as nobody stupid or drunk enough to leave door open. Try not to let asimov babycons ruin fun!"
+	name = "RFS Mother Russia Bleeds"
+	description = "Dis is a high-quality shuttle, da. Many seats, lots of space, all equipment! Even includes entertainment! Such as lots to drink, and a fighting arena for drunk workers to have fun! If arena not fun enough, simply press button of releasing bears. Do not worry, bears trained not to break out of fighting pit, so totally safe so long as nobody stupid or drunk enough to leave door open. As long as we never forget our history, Mother Russia never dies!"
 	admin_notes = "Includes a small variety of weapons. And bears. Only captain-access can release the bears. Bears won't smash the windows themselves, but they can escape if someone lets them."
 	credit_cost = CARGO_CRATE_VALUE * 10 // While the shuttle is rusted and poorly maintained, trained bears are costly.
-
-/datum/map_template/shuttle/emergency/meteor
-	suffix = "meteor"
-	name = "Asteroid With Engines Strapped To It"
-	description = "A hollowed out asteroid with engines strapped to it, the hollowing procedure makes it very difficult to hijack but is very expensive. Due to its size and difficulty in steering it, this shuttle may damage the docking area."
-	admin_notes = "This shuttle will likely crush escape, killing anyone there."
-	credit_cost = CARGO_CRATE_VALUE * 30
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/monastery
 	suffix = "monastery"
 	name = "Grand Corporate Monastery"
-	description = "Originally built for a public station, this grand edifice to religion, due to budget cuts, is now available as an escape shuttle for the right... donation. Due to its large size and callous owners, this shuttle may cause collateral damage."
+	description = "Originally built by a group of wealthy proselytizing nest residents to preach from a safe distance, this grand edifice to religion, due to budget cuts, is now available as a transport for the right... donation. Due to its large size and careless owners, this transport may cause collateral damage."
 	admin_notes = "WARNING: This shuttle WILL destroy a fourth of the station, likely picking up a lot of objects with it."
 	credit_cost = CARGO_CRATE_VALUE * 250
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 5)
 
-/datum/map_template/shuttle/emergency/luxury
-	suffix = "luxury"
-	name = "Luxury Shuttle"
-	description = "A luxurious golden shuttle complete with an indoor swimming pool. Each crewmember wishing to board must bring 500 ahn, payable in cash and mineral coin."
-	extra_desc = "This shuttle costs 500 ahn to board."
-	admin_notes = "Due to the limited space for non paying crew, this shuttle may cause a riot."
-	credit_cost = CARGO_CRATE_VALUE * 20
-
 /datum/map_template/shuttle/emergency/medisim
 	suffix = "medisim"
-	name = "Medieval Reality Simulation Dome"
-	description = "A state of the art simulation dome, loaded onto your shuttle! Watch and laugh at how petty humanity used to be before it reached the stars. Guaranteed to be at least 40% historically accurate."
+	name = "Medieval Reality Simulation Dome Transport"
+	description = "A state of the art simulation dome, loaded onto your shuttle! Watch and laugh at how petty humanity used to be before the city. Guaranteed to be at least 40% historically accurate."
 	admin_notes = "Ghosts can spawn in and fight as knights or archers. The CTF auto restarts, so no admin intervention necessary."
 	credit_cost = 20000
 
 /datum/map_template/shuttle/emergency/medisim/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM]
 
-/datum/map_template/shuttle/emergency/discoinferno
-	suffix = "discoinferno"
-	name = "Disco Inferno"
-	description = "The glorious results of centuries of plasma research done by Nanotrasen employees. This is the reason why you are here. Get on and dance like you're on fire, burn baby burn!"
-	admin_notes = "Flaming hot. The main area has a dance machine as well as plasma floor tiles that will be ignited by players every single time."
-	credit_cost = CARGO_CRATE_VALUE * 20
-	can_be_bought = FALSE
-
 /datum/map_template/shuttle/emergency/arena
 	suffix = "arena"
 	name = "The Arena"
-	description = "The crew must pass through an otherworldy arena to board this shuttle. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this shuttle."
+	description = "The passengers must pass through an otherworldy arena to board this transport. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this vessel."
 	admin_notes = "RIP AND TEAR."
 	credit_cost = CARGO_CRATE_VALUE * 20
 	/// Whether the arena z-level has been created
@@ -294,26 +270,26 @@
 
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
-	name = "Birdboat Station Emergency Shuttle"
-	description = "Though a little on the small side, this shuttle is feature complete, which is more than can be said for the pattern of station it was commissioned for."
+	name = "N-Corporation Birdboat Transport"
+	description = "Though a little on the small side, this shuttle is feature complete, which is more than can be said for the pattern of station it was commissioned for, decommissioned by N-Corporation early into orbital construction."
 	credit_cost = CARGO_CRATE_VALUE * 2
 
 /datum/map_template/shuttle/emergency/box
 	suffix = "box"
-	name = "Box Station Emergency Shuttle"
+	name = "N-Corporation Box Transport"
 	credit_cost = CARGO_CRATE_VALUE * 4
-	description = "The gold standard in emergency exfiltration, this tried and true design is equipped with everything the crew needs for a safe flight home."
+	description = "The gold standard in orbital employee transit, this tried and true design is equipped with everything the crew needs for a safe flight home. Coined the Box due to the lack of creativity in engineering majors, and its box shape."
 
 /datum/map_template/shuttle/emergency/alpha
 	suffix = "alpha"
-	name = "A-098 Transport WARP Train"
+	name = "A-098 WARP Train Transport"
 	credit_cost = CARGO_CRATE_VALUE * 4
-	description = "A W-Corp commissioned transport train. Go anywhere in just 10 seconds!"
+	description = "A Warp-Corporation commissioned transport train. All the other shuttles take ages with their old engines and fuel. Go anywhere in just 10 seconds!"
 
 /datum/map_template/shuttle/emergency/donut
 	suffix = "donut"
-	name = "Donutstation Emergency Shuttle"
-	description = "The perfect spearhead for any crude joke involving the station's shape, this shuttle supports a separate containment cell for prisoners and a compact medical wing."
+	name = "Vice-Admiral Kirk Memoriam Transport"
+	description = "The perfect spearhead for any crude joke involving a von Braun wheel station's shape, this shuttle supports a separate containment cell for prisoners and a compact medical wing."
 	admin_notes = "Has airlocks on both sides of the shuttle and will probably intersect near the front on some stations that build past departures."
 	credit_cost = CARGO_CRATE_VALUE * 5
 
@@ -323,7 +299,7 @@
 	description = "Hey kids and grownups! \
 	Are you bored of DULL and TEDIOUS shuttle journeys after you're evacuating for probably BORING reasons. Well then order the Snappop(tm) today! \
 	We've got fun activities for everyone, an all access cockpit, and no boring security brig! Boo! Play dress up with your friends! \
-	Collect all the bedsheets before your neighbour does! Check if the AI is watching you with our patent pending \"Peeping Tom AI Multitool Detector\" or PEEEEEETUR for short. \
+	Collect all the bedsheets before your neighbour does! Check if the Head is watching you with our patent pending \"Peeping Tom Multitool Detector\" or PEEEEEETUR for short. \
 	Have a fun ride!"
 	admin_notes = "Brig is replaced by anchored greentext book surrounded by lavaland chasms, stationside door has been removed to prevent accidental dropping. No brig."
 	credit_cost = CARGO_CRATE_VALUE * 16
@@ -331,27 +307,27 @@
 /datum/map_template/shuttle/emergency/cramped
 	suffix = "cramped"
 	name = "Secure Transport Vessel 5 (STV5)"
-	description = "Well, looks like CentCom only had this ship in the area, they probably weren't expecting you to need evac for a while. \
-	Probably best if you don't rifle around in whatever equipment they were transporting. I hope you're friendly with your coworkers, because there is very little space in this thing.\n\
+	description = "Well, looks like the city only had this ship on standby, they probably weren't expecting you to need evac for a while. \
+	Probably best if you don't rifle around in whatever salvage they were transporting. I hope you're friendly with your coworkers, because there is very little space in this thing.\n\
 	\n\
-	Contains contraband armory guns, maintenance loot, and abandoned crates!"
+	Contains contraband armory guns, space station loot, and abandoned crates!"
 	admin_notes = "Due to origin as a solo piloted secure vessel, has an active GPS onboard labeled STV5. Has roughly as much space as Hi Daniel, except with explosive crates."
 
 /datum/map_template/shuttle/emergency/meta
 	suffix = "meta"
-	name = "Meta Station Emergency Shuttle"
+	name = "N-Corporation Meta Transport"
 	credit_cost = CARGO_CRATE_VALUE * 8
-	description = "A fairly standard shuttle, though larger and slightly better equipped than the Box Station variant."
+	description = "A fairly standard shuttle, though larger and slightly better equipped than the usual N-Corporation vessel."
 
 /datum/map_template/shuttle/emergency/kilo
 	suffix = "kilo"
-	name = "Kilo Station Emergency Shuttle"
+	name = "N-Corporation Atlas Transport"
 	credit_cost = CARGO_CRATE_VALUE * 10
-	description = "A fully functional shuttle including a complete infirmary, storage facilties and regular amenities."
+	description = "A fully functional shuttle including a complete infirmary, storage facilties and regular amenities. Fit for corporate expeditions far from known space."
 
 /datum/map_template/shuttle/emergency/mini
 	suffix = "mini"
-	name = "Ministation emergency shuttle"
+	name = "N-Corporation Sardine Transport"
 	credit_cost = CARGO_CRATE_VALUE * 2
 	description = "Despite its namesake, this shuttle is actually only slightly smaller than standard, and still complete with a brig and medbay."
 
@@ -359,14 +335,14 @@
 	suffix = "scrapheap"
 	name = "Standby Evacuation Vessel \"Scrapheap Challenge\""
 	credit_cost = CARGO_CRATE_VALUE * -2
-	description = "Due to a lack of functional emergency shuttles, we bought this second hand from a scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile."
+	description = "Due to a lack of functional emergency shuttles, we bought this second hand from an orbital scrapyard and pressed it into service. Please do not lean too heavily on the exterior windows, they are fragile!"
 	admin_notes = "An abomination with no functional medbay, sections missing, and some very fragile windows. Surprisingly airtight."
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
 
 /datum/map_template/shuttle/emergency/narnar
 	suffix = "narnar"
-	name = "Shuttle 667"
-	description = "Looks like this shuttle may have wandered into the darkness between the stars on route to the station. Let's not think too hard about where all the bodies came from."
+	name = "N-Corporation Horizon Transport"
+	description = "Looks like this shuttle may have wandered into the darkness between the stars on route to the city. Let's not think too hard about where all the bodies came from."
 	admin_notes = "Contains real cult ruins, mob eyeballs, and inactive constructs. Cult mobs will automatically be sentienced by fun balloon. \
 	Cloning pods in 'medbay' area are showcases and nonfunctional."
 	credit_cost = 6667 ///The joke is the number so no defines
@@ -383,31 +359,17 @@
 
 /datum/map_template/shuttle/emergency/cere
 	suffix = "cere"
-	name = "Cere Station Emergency Shuttle"
+	name = "Ceres Station Transport II"
 	description = "The large, beefed-up version of the box-standard shuttle. Includes an expanded brig, fully stocked medbay, enhanced cargo storage with mech chargers, \
-	an engine room stocked with various supplies, and a crew capacity of 80+ to top it all off. Live large, live Cere."
+	an engine room stocked with various supplies, and a crew capacity of 80+ to top it all off. Live large, Beltah Loadah."
 	admin_notes = "Seriously big, even larger than the Delta shuttle."
 	credit_cost = CARGO_CRATE_VALUE * 20
 
-/datum/map_template/shuttle/emergency/supermatter
-	suffix = "supermatter"
-	name = "Hyperfractal Gigashuttle"
-	description = "\"I dunno, this seems kinda needlessly complicated.\"\n\
-	\"This shuttle has very a very high safety record, according to CentCom Officer Cadet Yins.\"\n\
-	\"Are you sure?\"\n\
-	\"Yes, it has a safety record of N-A-N, which is apparently larger than 100%.\""
-	admin_notes = "Supermatter that spawns on shuttle is special anchored 'hugbox' supermatter that cannot take damage and does not take in or emit gas. \
-	Outside of admin intervention, it cannot explode. \
-	It does, however, still dust anything on contact, emits high levels of radiation, and induce hallucinations in anyone looking at it without protective goggles. \
-	Emitters spawn powered on, expect admin notices, they are harmless."
-	credit_cost = CARGO_CRATE_VALUE * 200
-	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
-
 /datum/map_template/shuttle/emergency/imfedupwiththisworld
 	suffix = "imfedupwiththisworld"
-	name = "Oh, Hi Daniel"
-	description = "How was space work today? Oh, pretty good. We got a new space station and the company will make a lot of money. What space station? I cannot tell you; it's space confidential. \
-	Aw, come space on. Why not? No, I can't. Anyway, how is your space roleplay life?"
+	name = "Oh, Hi Roland"
+	description = "How was work today? Oh, pretty good. We got a new outskirts facility and the company will make a lot of energy. What facility? I cannot tell you; it's confidential. \
+	Aw, come space on. Why not? No, I can't. Anyway, how is your dead wife?"
 	admin_notes = "Tiny, with a single airlock and wooden walls. What could go wrong?"
 	can_be_bought = FALSE
 	movement_force = list("KNOCKDOWN" = 3, "THROW" = 2)
@@ -415,42 +377,43 @@
 /datum/map_template/shuttle/emergency/goon
 	suffix = "goon"
 	name = "NES Port"
-	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known Nanotrasen facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities."
+	description = "The N-Corporation Emergency Shuttle Port (NES Port for short) is a shuttle used at other less known N-Corporation facilities and has a more open inside for larger crowds, but fewer onboard shuttle facilities. Reserved for distant outposts dedicated to mining or experimental research."
 	credit_cost = CARGO_CRATE_VALUE
 
 /datum/map_template/shuttle/emergency/rollerdome
 	suffix = "rollerdome"
 	name = "Uncle Pete's Rollerdome"
-	description = "Developed by a member of Nanotrasen's R&D crew that claims to have travelled from the year 2028. \
+	description = "Developed by a member of Lobotomy Corporation's Welfare team that claims to have travelled from the year 2028. \
 	He says this shuttle is based off an old entertainment complex from the 1990s, though our database has no records on anything pertaining to that decade."
 	admin_notes = "ONLY NINETIES KIDS REMEMBER. Uses the fun balloon and drone from the Emergency Bar."
 	credit_cost = CARGO_CRATE_VALUE * 5
 
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
-	name = "NT Lepton Violet"
+	name = "USS Lepton Violet"
 	description = "The research team based on this vessel went missing one day, and no amount of investigation could discover what happened to them. \
 	The only occupants were a number of dead rodents, who appeared to have clawed each other to death. \
-	Needless to say, no engineering team wanted to go near the thing, and it's only being used as an Emergency Escape Shuttle because there is literally nothing else available."
+	Needless to say, no engineering team wanted to go near the thing, and it's only being used as a transport shuttle because there is literally nothing else available. \
+	It has sat completely untouched since before the city, recovered from an orbital graveyard by an N-Corporation salvage team."
 	admin_notes = "If the crew can solve the puzzle, they will wake the wabbajack statue. It will likely not end well. There's a reason it's boarded up. Maybe they should have just left it alone."
 	credit_cost = CARGO_CRATE_VALUE * 30
 
 /datum/map_template/shuttle/emergency/omega
 	suffix = "omega"
-	name = "Omegastation Emergency Shuttle"
+	name = "N-Corporation Mackerel Transport"
 	description = "On the smaller size with a modern design, this shuttle is for the crew who like the cosier things, while still being able to stretch their legs."
 	credit_cost = CARGO_CRATE_VALUE * 2
 
 /datum/map_template/shuttle/emergency/cruise
 	suffix = "cruise"
-	name = "The NTSS Independence"
-	description = "Ordinarily reserved for special functions and events, the Cruise Shuttle Independence can bring a summery cheer to your next station evacuation for a 'modest' fee!"
+	name = "The ISS Partyboat"
+	description = "Ordinarily reserved for special functions and events, this retrofitted cruise ship can bring a summery cheer to your next joyride in low orbit for a 'modest' fee!"
 	admin_notes = "This motherfucker is BIG. You might need to force dock it."
 	credit_cost = CARGO_CRATE_VALUE * 100
 
 /datum/map_template/shuttle/emergency/monkey
 	suffix = "nature"
-	name = "Dynamic Environmental Interaction Shuttle"
+	name = "Crazy Monkey Business Transport"
 	description = "A large shuttle with a center biodome that is flourishing with life. Frolick with the monkeys! (Extra monkeys are stored on the bridge.)"
 	admin_notes = "Pretty freakin' large, almost as big as Raven or Cere. Excercise caution with it."
 	credit_cost = CARGO_CRATE_VALUE * 16
@@ -485,7 +448,7 @@
 /datum/map_template/shuttle/ferry/kilo
 	suffix = "kilo"
 	name = "kilo transport ferry"
-	description = "Standard issue CentCom Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
+	description = "Standard issue N-Corporation Ferry for Kilo pattern stations. Includes additional equipment and rechargers."
 
 /datum/map_template/shuttle/whiteship/box
 	suffix = "box"
@@ -537,14 +500,14 @@
 
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
-	name = "Delta Station Emergency Shuttle"
+	name = "N-Corporation Gecko Transport"
 	description = "A large shuttle for a large station, this shuttle can comfortably fit all your overpopulation and crowding needs. Complete with all facilities plus additional equipment."
 	admin_notes = "Go big or go home."
 	credit_cost = CARGO_CRATE_VALUE * 15
 
 /datum/map_template/shuttle/emergency/raven
 	suffix = "raven"
-	name = "N-Corporation Raven Corvette"
+	name = "N-Corporation Raven Corvette Vessel"
 	description = "The N-Corporation Raven Corvette is a high-risk exploration vessel, on loan at great expense to your facility. \
 	Always first to secure the scene before N-Corporation salvage tugs pick through orbital warzones for valuable remains, it also serves as transportation for executives who like to travel in style. \
 	N-Corporation denies there are any threats in space for their personnel aside from defunct automated security systems in old orbital stations and vessels. Any rumors of alien life or ancient AI cores in orbit are blatantly false.\

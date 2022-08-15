@@ -389,7 +389,7 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/mask/facehugger/impregnated,
-/obj/item/clothing/under/syndicate,
+/obj/item/clothing/under/mercenary,
 /obj/item/clothing/glasses/night,
 /turf/open/floor/plating/asteroid{
 	heat_capacity = 1e+006;

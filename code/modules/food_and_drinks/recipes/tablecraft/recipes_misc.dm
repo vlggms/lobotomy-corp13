@@ -189,8 +189,7 @@
 		/obj/item/food/grown/apple = 1,
 		/obj/item/food/grown/citrus/orange = 1,
 		/obj/item/food/grown/citrus/lemon = 1,
-		/obj/item/food/grown/banana = 1,
-		/obj/item/food/grown/ambrosia = 1
+		/obj/item/food/grown/banana = 1
 	)
 	result = /obj/item/food/melonfruitbowl
 	subcategory = CAT_MISCFOOD

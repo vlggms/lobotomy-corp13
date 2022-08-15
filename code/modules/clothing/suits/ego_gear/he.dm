@@ -48,8 +48,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/wings
 	name = "torn off wings"
-	desc = "If she hadn’t thrown her slipper at the right time, if she hadn’t outfitted me with the pensioned colonel’s sword,\
-		I’d be lying in my grave."
+	desc = "If she hadn’t thrown her slipper at the right time, if she hadn’t outfitted me with the pensioned colonel’s sword, \
+	I’d be lying in my grave."
 	icon_state = "wings"
 	//Just Kinda meh. A lot of WAWs do black at the time of writing so
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
@@ -78,3 +78,9 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/infinite_hatred
+	name = "infinite hatred"
+	desc = "When the rusty sleigh bells are ajingle, Christmas begins."
+	icon_state = "infinite_hatred"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -30, PALE_DAMAGE = 25)

@@ -135,10 +135,7 @@
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "az" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/carpet,
 /area/shuttle/escape)
 "aA" = (
@@ -209,21 +206,15 @@
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aJ" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Emergency Shuttle Brig";
-	req_access_txt = "2"
-	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/door/airlock/public/glass,
 /turf/open/floor/plasteel,
 /area/shuttle/escape/brig)
 "aK" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "2"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/mineral/plastitanium/red/brig,
 /area/shuttle/escape/brig)
 "aL" = (
@@ -291,9 +282,6 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aT" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency{
 	name = "The Emergency Escape Bar"
 	},
@@ -301,6 +289,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "aU" = (
@@ -370,13 +359,11 @@
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bg" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
 "bi" = (
@@ -402,9 +389,7 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "bo" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel/freezer,
 /area/shuttle/escape)
 "bp" = (

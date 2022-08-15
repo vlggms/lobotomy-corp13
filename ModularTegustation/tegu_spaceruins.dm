@@ -153,7 +153,7 @@ There is no point for a testament, but maybe a confession is appropriate. I've n
 	name = "Syndicate Engineer"
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/engie
 	mask = /obj/item/clothing/mask/breath
-	uniform = /obj/item/clothing/under/syndicate
+	uniform = /obj/item/clothing/under/mercenary
 	suit = /obj/item/clothing/suit/space/syndicate/black/engie
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat

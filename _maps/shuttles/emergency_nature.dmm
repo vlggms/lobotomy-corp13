@@ -712,10 +712,7 @@
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "zE" = (
-/obj/machinery/door/airlock/security{
-	name = "Brig";
-	req_access_txt = "63; 42"
-	},
+/obj/machinery/door/airlock/security,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape/brig)
 "Ai" = (
@@ -742,10 +739,7 @@
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "Bm" = (
-/obj/machinery/door/airlock/command/glass{
-	name = "Cockpit";
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/command/glass,
 /turf/open/floor/plasteel/dark,
 /area/shuttle/escape)
 "Bo" = (
@@ -1130,9 +1124,6 @@
 	dir = 1
 	},
 /obj/structure/chair,
-/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
-	pixel_x = 30
-	},
 /turf/open/floor/plasteel{
 	dir = 1
 	},
@@ -1169,9 +1160,7 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "SS" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "ST" = (
@@ -1318,10 +1307,8 @@
 /turf/open/floor/grass,
 /area/shuttle/escape)
 "Yp" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Emergency Shuttle Airlock"
-	},
 /obj/docking_port/mobile/emergency,
+/obj/machinery/door/airlock/titanium,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "Yu" = (

@@ -8,7 +8,7 @@
 					/obj/item/ammo_box/magazine/ak47/aks74u,
 					/obj/item/clothing/mask/bandana/black,
 					/obj/item/clothing/suit/armor/vest/alt,
-					/obj/item/clothing/under/syndicate/camo,
+					/obj/item/clothing/under/mercenary/camo,
 					/obj/item/clothing/shoes/jackboots)
 
 /datum/supply_pack/emergency/freedom_fighter/generate(atom/A, datum/bank_account/paying_account)

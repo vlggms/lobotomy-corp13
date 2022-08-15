@@ -261,7 +261,7 @@
 	STR.set_holdable(list(
 		/obj/item/clothing/head/helmet/infiltrator,
 		/obj/item/clothing/suit/armor/vest/infiltrator,
-		/obj/item/clothing/under/syndicate/bloodred,
+		/obj/item/clothing/under/mercenary/bloodred,
 		/obj/item/clothing/gloves/color/infiltrator,
 		/obj/item/clothing/mask/infiltrator,
 		/obj/item/clothing/shoes/combat/sneakboots,
@@ -273,7 +273,7 @@
 /obj/item/storage/toolbox/infiltrator/PopulateContents()
 	new /obj/item/clothing/head/helmet/infiltrator(src)
 	new /obj/item/clothing/suit/armor/vest/infiltrator(src)
-	new /obj/item/clothing/under/syndicate/bloodred(src)
+	new /obj/item/clothing/under/mercenary/bloodred(src)
 	new /obj/item/clothing/gloves/color/infiltrator(src)
 	new /obj/item/clothing/mask/infiltrator(src)
 	new /obj/item/clothing/shoes/combat/sneakboots(src)
