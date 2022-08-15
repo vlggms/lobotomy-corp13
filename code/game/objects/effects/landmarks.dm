@@ -458,3 +458,19 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	..()
 	GLOB.department_centers += get_turf(src)
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/abnormality_spawn/training_rabbit
+	name = "training rabbit spawn"
+
+/obj/effect/landmark/abnormality_spawn/training_rabbit/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/abnormality_spawn/training_rabbit/LateInitialize()
+	..()
+	datum_reference = new(src, /mob/living/simple_animal/hostile/abnormality/training_rabbit)
+	//incredibly dumb idea that only works if there's one training rabbit console
+	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.abnormality_consoles, src)
+	if(istype(AR))
+		AR.datum_reference = datum_reference
+	return

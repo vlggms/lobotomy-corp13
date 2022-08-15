@@ -29,8 +29,8 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/infinite_hatred,
-		/datum/ego_datum/armor/infinite_hatred
+		/datum/ego_datum/weapon/christmas,
+		/datum/ego_datum/armor/christmas
 		)
 
 	var/pulse_cooldown

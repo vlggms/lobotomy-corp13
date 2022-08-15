@@ -11,6 +11,8 @@
 	var/meltdown = FALSE
 	/// How much ticks left to pass before the effect of meltdown occurs?
 	var/meltdown_time = 0
+	/// Can the abnormality even meltdown?
+	var/can_meltdown = TRUE
 
 /obj/machinery/computer/abnormality/Initialize()
 	..()
@@ -83,11 +85,12 @@
 	add_fingerprint(usr)
 	updateUsrDialog()
 
-/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
+/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type, training = FALSE)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
-	SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
+	if(!training)
+		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 	user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
 		finish_work(user, work_type, 0, work_time) // Assume total failure
@@ -124,7 +127,7 @@
 			break // Dying
 		if(!(datum_reference.current.status_flags & GODMODE))
 			break // Somehow it escaped
-	finish_work(user, work_type, success_boxes, work_time, work_speed)
+	finish_work(user, work_type, success_boxes, work_time, work_speed, training)
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
@@ -133,15 +136,19 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -3)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS, training)
 	working = FALSE
-	SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
+	if(!training)
+		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(max_pe != 0)
 		visible_message("<span class='notice'>[work_type] work finished. [pe]/[max_pe] PE acquired.")
 	if(istype(user))
-		datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
+		if(!training)
+			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
+		else
+			datum_reference.current.work_complete(user, work_type, pe, datum_reference.success_boxes, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
@@ -171,3 +178,10 @@
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
 	return TRUE
+
+//special console just for training rabbit
+/obj/machinery/computer/abnormality/training_rabbit
+	can_meltdown = FALSE
+
+/obj/machinery/computer/abnormality/training_rabbit/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
+	..(user, work_type, training = training)

@@ -103,6 +103,11 @@
 	pixel_x = initial(pixel_x)
 	if(datum_reference?.qliphoth_meter == 2)
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "I swore I would protect everyone to the end…"))
+	if(datum_reference?.qliphoth_meter != 2)
+		var/turf/my_turf = get_turf(src)
+		var/obj/effect/qoh_sygil/S = new(my_turf)
+		S.icon_state = "qoh2"
+		addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 5 SECONDS)
 	..()
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -187,7 +192,7 @@
 	if(breach_max_death && (death_counter >= breach_max_death))
 		GoHysteric()
 	//if CONTAINED and not crazy
-	else if((status_flags & GODMODE) && (datum_reference?.qliphoth_meter == 2) && (death_counter > 6)) // Omagah a lot of dead people!
+	else if((status_flags & GODMODE) && (datum_reference?.qliphoth_meter == 2) && (death_counter > 5)) // Omagah a lot of dead people!
 		breach_effect() // We must help them!
 	return TRUE
 
@@ -245,34 +250,35 @@
 	var/beam_damage_final = beam_damage
 	if(datum_reference?.qliphoth_meter == 2)
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "ARCANA SLAVE!"))
+	else
+		accumulated_beam_damage = 150
 	for(var/h = 1 to beam_maximum_ticks)
 		var/list/already_hit = list()
-		if(datum_reference?.qliphoth_meter != 2 && (h < 20))
-			h = 20
-			accumulated_beam_damage = 150
+		if(datum_reference?.qliphoth_meter != 2)
+			h += 19
 		if((h >= 20))
-			if(accumulated_beam_damage < 150)
-				break
-			if(beam_stage < 2)
-				beam_stage = 2
-				beam_damage_final *= 1.5
-				var/matrix/M = matrix()
-				M.Scale(3, 1)
-				current_beam.visuals.transform = M
-				current_beam.visuals.color = COLOR_YELLOW
+			if(accumulated_beam_damage >= 150)
+				if(beam_stage < 2)
+					beam_stage = 2
+					beam_damage_final *= 1.5
+					var/matrix/M = matrix()
+					M.Scale(3, 1)
+					current_beam.visuals.transform = M
+					current_beam.visuals.color = COLOR_YELLOW
 		if((h >= 40))
-			if(accumulated_beam_damage < 300)
-				break
-			if(beam_stage < 3)
-				beam_stage = 3
-				beam_damage_final *= 1.5
-				var/matrix/M = matrix()
-				M.Scale(6, 1)
-				current_beam.visuals.transform = M
-				current_beam.visuals.color = COLOR_SOFT_RED
+			if(accumulated_beam_damage >= 300)
+				if(beam_stage < 3)
+					beam_stage = 3
+					beam_damage_final *= 1.5
+					var/matrix/M = matrix()
+					M.Scale(6, 1)
+					current_beam.visuals.transform = M
+					current_beam.visuals.color = COLOR_SOFT_RED
 		for(var/turf/TF in hit_line)
 			for(var/mob/living/L in range(beam_stage-1, TF))
-				if (L == src) //stop hitting yourself
+				if(L.status_flags & GODMODE)
+					continue
+				if(L == src) //stop hitting yourself
 					continue
 				if(L in already_hit)
 					continue
@@ -280,17 +286,21 @@
 					continue
 				already_hit += L
 				if(faction_check_mob(L))
-					accumulated_beam_damage += (beam_damage_final * 0.5)
 					L.adjustBruteLoss(-beam_damage_final * 0.5)
 					if(ishuman(L))
 						var/mob/living/carbon/human/H = L
 						H.adjustSanityLoss(beam_damage_final * 0.5)
 					continue
+				var/damage_before = L.get_damage_amount(BRUTE)
 				L.apply_damage(beam_damage_final, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-				if((datum_reference?.qliphoth_meter != 2) && !(L.status_flags & GODMODE))
-					adjustBruteLoss(-beam_damage_final) //QoH heals from laser damage when hostile
-				accumulated_beam_damage += beam_damage_final
-		SLEEP_CHECK_DEATH(5)
+				var/damage_dealt = abs(L.get_damage_amount(BRUTE)-damage_before)
+				if(datum_reference?.qliphoth_meter != 2)
+					if(ishuman(L))
+						adjustBruteLoss(-damage_dealt) //QoH heals from laser damage when hostile
+					else
+						adjustBruteLoss(-damage_dealt/4) //less healing from nonhumans
+				accumulated_beam_damage += damage_dealt
+		SLEEP_CHECK_DEATH(2)
 	beamloop.stop()
 	QDEL_NULL(current_beam)
 	for(var/obj/effect/qoh_sygil/S in spawned_effects)
@@ -307,10 +317,9 @@
 			return FALSE
 		if(target && !client) // Actively fighting
 			return FALSE
-		teleport_cooldown = world.time + teleport_cooldown_time
 		var/targets_in_range = 0
 		for(var/mob/living/L in view(8, src))
-			if(!faction_check_mob(L) && L.stat != DEAD)
+			if(!faction_check_mob(L) && L.stat != DEAD && !(L.status_flags & GODMODE))
 				targets_in_range += 1
 				break
 		if(targets_in_range >= 1)
@@ -320,6 +329,9 @@
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE)
 			continue
+		if(!forced)
+			if(datum_reference?.qliphoth_meter != 2 && !ishuman(L))
+				continue
 		var/turf/T = get_turf(L)
 		if(!faction_check_mob(L) && L.stat != DEAD)
 			teleport_potential += T
@@ -340,7 +352,7 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TeleportExplode()
 	visible_message("<span class='danger'>[src] explodes!</span>")
 	new /obj/effect/temp_visual/voidout(get_turf(src))
-	for(var/turf/open/T in view(3, src))
+	for(var/turf/open/T in view(2, src))
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
@@ -415,7 +427,7 @@
 		for(var/mob/living/carbon/human/saving_humans in GLOB.mob_living_list) //gets all alive people
 			if((saving_humans.stat != DEAD) && saving_humans.z == z)
 				breach_max_death++
-		breach_max_death /= 5
+		breach_max_death /= 4
 		if(breach_max_death == 0) //make it 1 if it's somehow zero
 			breach_max_death++
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "In the name of Love and Justice~ Here comes Magical Girl!"))
@@ -432,8 +444,7 @@
 	fear_level = WAW_LEVEL //fear her
 	beam_startup = 1.5 SECONDS //WAW level beam
 	beam_cooldown_time = 10 SECONDS //it's her only move while hostile
-	teleport_cooldown_time = 15 SECONDS
-	beam_maximum_ticks = 79
+	teleport_cooldown_time = 10 SECONDS
 	breach_max_death = 0 //who cares about humans anymore?
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
 	return

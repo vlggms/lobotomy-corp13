@@ -233,6 +233,8 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/goldrush_damage = 130
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/gold_rush/attack(mob/living/target, mob/living/user)
@@ -259,6 +261,7 @@
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
+		goldrush_damage = initial(goldrush_damage)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
