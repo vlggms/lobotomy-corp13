@@ -191,3 +191,101 @@
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/logging
+	name = "logging"
+	desc = "A versatile equipment made to cut down trees and people alike."
+	special = "This weapon builds up attack speed as you attack before releasing it in a large burst."
+	icon_state = "logging"
+	force = 33
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = "chops"
+	attack_verb_simple = "chop"
+	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/ramping = 1.5
+	var/smashing = FALSE
+
+/obj/item/ego_weapon/logging/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	if (isliving(target))
+		user.changeNext_move(CLICK_CD_MELEE * ramping) // Starts slow, but....
+		if (ramping <= 0.5)
+			ramping = 1.5
+			if(!smashing)
+				to_chat(user, MESSAGE_TYPE_WARNING, "You smash the axe down repeatedly!")
+				Smash(user, target)
+		else
+			ramping -= 0.1
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 1.1)
+
+
+/obj/item/ego_weapon/logging/proc/Smash(mob/user, atom/target)
+	var/dir_to_target = get_dir(get_turf(user), get_turf(target))
+	var/turf/source_turf = get_turf(user)
+	var/turf/area_of_effect = list()
+	var/turf/upper_bound
+	var/turf/lower_bound
+	for(var/i = 0; i < 2; i++)
+		switch(dir_to_target) // This doesn't need any "did this walk into a wall" checking because it doesn't go far enough to hit the other-side
+			if(EAST)
+				source_turf = get_step(source_turf, EAST)
+				upper_bound = get_step(source_turf, NORTH)
+				lower_bound = get_step(source_turf, SOUTH)
+				for(var/turf/TF in getline(upper_bound, lower_bound))
+					if(TF.density || (TF in area_of_effect))
+						continue
+					area_of_effect += TF
+			if(WEST)
+				source_turf = get_step(source_turf, WEST)
+				upper_bound = get_step(source_turf, NORTH)
+				lower_bound = get_step(source_turf, SOUTH)
+				for(var/turf/TF in getline(upper_bound, lower_bound))
+					if(TF.density || (TF in area_of_effect))
+						continue
+					area_of_effect += TF
+			if(SOUTH)
+				source_turf = get_step(source_turf, SOUTH)
+				upper_bound = get_step(source_turf, WEST)
+				lower_bound = get_step(source_turf, EAST)
+				for(var/turf/TF in getline(upper_bound, lower_bound))
+					if(TF.density || (TF in area_of_effect))
+						continue
+					area_of_effect += TF
+			if(NORTH)
+				source_turf = get_step(source_turf, NORTH)
+				upper_bound = get_step(source_turf, WEST)
+				lower_bound = get_step(source_turf, EAST)
+				for(var/turf/TF in getline(upper_bound, lower_bound))
+					if(TF.density || (TF in area_of_effect))
+						continue
+					area_of_effect += TF
+			else
+				return
+	smashing = TRUE
+	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
+	for (var/i = 0; i < 3; i++)
+		var/list/been_hit = list()
+		for(var/turf/T in area_of_effect)
+			new /obj/effect/temp_visual/smash_effect(T)
+			for(var/mob/living/L in T)
+				if(L in been_hit)
+					continue
+				if (L == user)
+					continue
+				been_hit += L
+				if (i > 2)
+					L.apply_damage(40*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				else
+					L.apply_damage(10*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if (i > 2)
+			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 75, 0, 5) // BAM
+		else
+			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_attack.ogg', 50, 0, 2)
+		sleep(0.25 SECONDS)
+	smashing = FALSE
+	return
