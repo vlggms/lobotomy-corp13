@@ -161,6 +161,11 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/beeper = TRUE
 	var/beep_cooldown = 50
 	var/next_beep = 0
+	var/morgue_open
+	var/morgue_closed
+	var/morgue_occupied
+	var/morgue_revivable
+	var/morgue_items
 
 /obj/structure/bodycontainer/morgue/examine(mob/user)
 	. = ..()
@@ -173,6 +178,28 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = !beeper
 	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
 
+/obj/structure/bodycontainer/morgue/update_icon() //Morgue Slab Indicators
+	if (!connected || connected.loc != src) // Open or tray is gone.
+		icon_state = morgue_open
+	else
+		if(contents.len == 1)  // Empty
+			icon_state = morgue_closed
+		else
+			icon_state = morgue_occupied // Dead, brainded mob.
+			var/list/compiled = get_all_contents_type(/mob/living) // Search for mobs in all contents.
+			if(!length(compiled)) // No mobs?
+				icon_state = morgue_items
+				return
+
+			for(var/mob/living/M in compiled)
+				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
+				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)))
+					icon_state = morgue_revivable // Revivable
+					if(mob_occupant.stat == DEAD && beeper)
+						if(world.time > next_beep)
+							playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
+							next_beep = world.time + beep_cooldown
+					break
 
 //Standard Morgue Slab
 /obj/structure/bodycontainer/morgue/standard
@@ -183,36 +210,16 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = TRUE
 	beep_cooldown = 50
 	next_beep = 0
+	morgue_open = "morgue0"
+	morgue_closed = "morgue1"
+	morgue_occupied = "morgue2"
+	morgue_revivable = "morgue4"
+	morgue_items = "morgue3"
 
 /obj/structure/bodycontainer/morgue/standard/Initialize()
 	. = ..()
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
-
-//Morgue Slab Indicators
-/obj/structure/bodycontainer/morgue/standard/update_icon()
-	if (!connected || connected.loc != src) // Open or tray is gone.
-		icon_state = "morgue0"
-	else
-		if(contents.len == 1)  // Empty
-			icon_state = "morgue1"
-		else
-			icon_state = "morgue2" // Dead, brainded mob.
-			var/list/compiled = get_all_contents_type(/mob/living) // Search for mobs in all contents.
-			if(!length(compiled)) // No mobs?
-				icon_state = "morgue3"
-				return
-
-			for(var/mob/living/M in compiled)
-				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
-				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)))
-					icon_state = "morgue4" // Revivable
-					if(mob_occupant.stat == DEAD && beeper)
-						if(world.time > next_beep)
-							playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
-							next_beep = world.time + beep_cooldown
-					break
-
 
 /obj/item/paper/guides/jobs/medical/morgue
 	name = "morgue memo"
@@ -230,34 +237,16 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	beeper = TRUE
 	beep_cooldown = 50
 	next_beep = 0
+	morgue_open = "extract_morgue_open"
+	morgue_closed = "extract_morgue_empty"
+	morgue_occupied = "extract_morgue_occupied"
+	morgue_revivable = "extract_morgue_clogged"
+	morgue_items = "extract_morgue_clogged"
 
 /obj/structure/bodycontainer/morgue/extraction/Initialize()
 	. = ..()
 	connected = new/obj/structure/tray/e_tray(src)
 	connected.connected = src
-
-/obj/structure/bodycontainer/morgue/extraction/update_icon()
-	if (!connected || connected.loc != src) // Open or tray is gone.
-		icon_state = "extract_morgue_open"
-	else
-		if(contents.len == 1)  // Empty
-			icon_state = "extract_morgue_empty"
-		else
-			icon_state = "extract_morgue_occupied" // Dead, brainded mob.
-			var/list/compiled = get_all_contents_type(/mob/living) // Search for mobs in all contents.
-			if(!length(compiled)) // No mobs?
-				icon_state = "extract_morgue_clogged"
-				return
-
-			for(var/mob/living/M in compiled)
-				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
-				if(mob_occupant.client && !mob_occupant.suiciding && !(HAS_TRAIT(mob_occupant, TRAIT_BADDNA)))
-					icon_state = "extract_morgue_clogged" // Revivable
-					if(mob_occupant.stat == DEAD && beeper)
-						if(world.time > next_beep)
-							playsound(src, 'sound/weapons/gun/general/empty_alarm.ogg', 50, FALSE) //Revive them you blind fucks
-							next_beep = world.time + beep_cooldown
-					break
 
 /*
  * Crematorium
