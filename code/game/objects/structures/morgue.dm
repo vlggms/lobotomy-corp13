@@ -162,6 +162,18 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	var/beep_cooldown = 50
 	var/next_beep = 0
 
+/obj/structure/bodycontainer/morgue/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
+
+/obj/structure/bodycontainer/morgue/AltClick(mob/user)
+	..()
+	if(!user.canUseTopic(src, !issilicon(user)))
+		return
+	beeper = !beeper
+	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
+
+
 //Standard Morgue Slab
 /obj/structure/bodycontainer/morgue/standard
 	name = "morgue"
@@ -176,17 +188,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	. = ..()
 	connected = new/obj/structure/tray/m_tray(src)
 	connected.connected = src
-
-/obj/structure/bodycontainer/morgue/standard/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
-
-/obj/structure/bodycontainer/morgue/standard/AltClick(mob/user)
-	..()
-	if(!user.canUseTopic(src, !issilicon(user)))
-		return
-	beeper = !beeper
-	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
 
 //Morgue Slab Indicators
 /obj/structure/bodycontainer/morgue/standard/update_icon()
@@ -234,17 +235,6 @@ GLOBAL_LIST_EMPTY(bodycontainers) //Let them act as spawnpoints for revenants an
 	. = ..()
 	connected = new/obj/structure/tray/e_tray(src)
 	connected.connected = src
-
-/obj/structure/bodycontainer/morgue/extraction/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The speaker is [beeper ? "enabled" : "disabled"]. Alt-click to toggle it.</span>"
-
-/obj/structure/bodycontainer/morgue/extraction/AltClick(mob/user)
-	..()
-	if(!user.canUseTopic(src, !issilicon(user)))
-		return
-	beeper = !beeper
-	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "on" : "off"].</span>")
 
 /obj/structure/bodycontainer/morgue/extraction/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
