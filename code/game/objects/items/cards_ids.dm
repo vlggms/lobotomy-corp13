@@ -548,9 +548,14 @@ update_label()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
 	. = ..()
 
+/obj/item/card/id/ert/engineer/foreman
+	registered_name = "Hardhead Office Foreman"
+	assignment = "Hardhead Office Foreman"
+	icon_state = "ert_engineer"
+
 /obj/item/card/id/ert/engineer
-	registered_name = "Engineering Response Officer"
-	assignment = "Engineering Response Officer"
+	registered_name = "Hardhead Office Handyman"
+	assignment = "Hardhead Office Handyman"
 	icon_state = "ert_engineer"
 
 /obj/item/card/id/ert/engineer/Initialize()

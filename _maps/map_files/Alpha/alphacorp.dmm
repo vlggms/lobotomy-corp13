@@ -5402,6 +5402,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"ZI" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/clothing/head/safety,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "ZK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -31994,7 +31999,7 @@ gz
 oW
 gI
 OR
-gI
+ZI
 Fs
 JX
 gz

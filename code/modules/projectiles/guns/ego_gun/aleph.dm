@@ -31,7 +31,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
-	fire_delay = 15
+	fire_delay = 5 SECONDS
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

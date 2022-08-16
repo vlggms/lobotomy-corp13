@@ -456,9 +456,9 @@
 	clothing_flags = LARGE_WORN_ICON
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/intern
-	name = "\improper Zwei Association Captain beancap"
-	desc = "A horrifying mix of beanie and softcap in CentCom green. You'd have to be pretty desperate for power over your peers to agree to wear this."
+/obj/item/clothing/head/safety
+	name = "\improper Safety Department beancap"
+	desc = "A horrifying mix of beanie and softcap in Safety green. They who claim it supposedly become leader of the Safety Team."
 	icon_state = "intern_hat"
 	inhand_icon_state = "intern_hat"
 

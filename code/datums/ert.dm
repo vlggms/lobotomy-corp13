@@ -71,9 +71,9 @@
 	mission = "Clean up EVERYTHING."
 	polldesc = "a Nanotrasen Janitorial Response Team"
 
-/datum/ert/intern
-	roles = list(/datum/antagonist/ert/intern)
-	leader_role = /datum/antagonist/ert/intern/leader
+/datum/ert/zwei
+	roles = list(/datum/antagonist/ert/zwei)
+	leader_role = /datum/antagonist/ert/zwei/captain
 	teamsize = 7
 	opendoors = FALSE
 	rename_team = "Zwei Association Raid"
@@ -81,10 +81,19 @@
 	polldesc = "an opportunity for fixers to make a name for themselves, or die"
 	random_names = FALSE
 
-/datum/ert/intern/unarmed
-	roles = list(/datum/antagonist/ert/intern/unarmed)
-	leader_role = /datum/antagonist/ert/intern/leader/unarmed
+/datum/ert/zwei/unarmed
+	roles = list(/datum/antagonist/ert/zwei/unarmed)
+	leader_role = /datum/antagonist/ert/zwei/captain/unarmed
 	rename_team = "Unarmed Zwei Association Raid"
+
+/datum/ert/hardhead
+	roles = list(/datum/antagonist/ert/engineer)
+	leader_role = /datum/antagonist/ert/engineer/foreman
+	opendoors = FALSE
+	rename_team = "Hardhead Office Contract"
+	mission = "You aren't getting paid by the hour, so work fast. Lobotomy Corporation wants some wrecking done, hardhead style."
+	polldesc = "a wave of fixers with black damage and forklift certification"
+	random_names = FALSE
 
 /datum/ert/erp
 	roles = list(/datum/antagonist/ert/security/party, /datum/antagonist/ert/clown/party, /datum/antagonist/ert/engineer/party, /datum/antagonist/ert/janitor/party)

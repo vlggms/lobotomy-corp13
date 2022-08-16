@@ -93,6 +93,17 @@
 	resistance_flags = NONE
 	species_exception = list(/datum/species/golem)
 
+/obj/item/clothing/suit/hazardvest/hardhead
+	name = "hardhead office vest"
+	desc = "A high-visibility vest used in demolition work, from condemned buildings to condemned robots to condemned men."
+	icon_state = "hazard"
+	inhand_icon_state = "hazard"
+	blood_overlay_type = "armor"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman, /obj/item/t_scanner, /obj/item/radio)
+	resistance_flags = NONE
+	species_exception = list(/datum/species/golem)
+
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
 	name = "blue suit jacket"

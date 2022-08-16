@@ -208,8 +208,8 @@
 	icon_state = "ert_medical"
 
 /obj/item/storage/backpack/ert/engineer
-	name = "emergency response team engineer backpack"
-	desc = "A spacious backpack with lots of pockets, worn by Engineers of an Emergency Response Team."
+	name = "hardhead office handyman backpack"
+	desc = "A spacious backpack with lots of pockets, worn by handymen of the Hardhead Office Team."
 	icon_state = "ert_engineering"
 
 /obj/item/storage/backpack/ert/janitor
