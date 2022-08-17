@@ -255,11 +255,6 @@
 /obj/item/clothing/accessory/armband/lobotomy/discipline,
 /obj/item/clothing/accessory/armband/lobotomy/discipline,
 /obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "bl" = (
@@ -1739,6 +1734,18 @@
 "kD" = (
 /turf/open/floor/plating,
 /area/facility_hallway/north)
+"kE" = (
+/obj/structure/table/wood,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/obj/item/encryptionkey/headset_welfare,
+/turf/open/floor/carpet/royalblue,
+/area/department_main/welfare)
 "kG" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
@@ -2523,6 +2530,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"oj" = (
+/obj/structure/table/reinforced,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/turf/open/floor/carpet,
+/area/department_main/control)
 "ok" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -2736,6 +2755,21 @@
 /obj/structure/chair/office{
 	dir = 8
 	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
+"pI" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "pO" = (
@@ -4135,9 +4169,7 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "xl" = (
-/obj/structure/chair/plastic{
-	dir = 1
-	},
+/obj/structure/rack,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "xo" = (
@@ -5420,11 +5452,6 @@
 /obj/item/clothing/accessory/armband/lobotomy/welfare,
 /obj/item/clothing/accessory/armband/lobotomy/welfare,
 /obj/item/clothing/accessory/armband/lobotomy/welfare,
-/obj/item/clothing/accessory/armband/lobotomy/welfare,
-/obj/item/clothing/accessory/armband/lobotomy/welfare,
-/obj/item/clothing/accessory/armband/lobotomy/welfare,
-/obj/item/clothing/accessory/armband/lobotomy/welfare,
-/obj/item/clothing/accessory/armband/lobotomy/welfare,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
 "Fh" = (
@@ -6394,6 +6421,14 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "KG" = (
@@ -7816,6 +7851,18 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"SK" = (
+/obj/structure/table/wood,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "SO" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -7867,6 +7914,11 @@
 /obj/item/storage/box/handcuffs,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"Tk" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/rack,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "Tp" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Central Command Department"
@@ -8944,6 +8996,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"Yy" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "YC" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -33175,7 +33239,7 @@ Iu
 PR
 wi
 mg
-ME
+oj
 Ha
 Iu
 OO
@@ -36295,8 +36359,8 @@ YX
 oR
 rN
 Ns
-Ns
-Ns
+Tk
+Tk
 Ns
 Qi
 on
@@ -39393,7 +39457,7 @@ JB
 JB
 vN
 Ce
-Zq
+kE
 Fe
 Zq
 uF
@@ -40352,7 +40416,7 @@ Pe
 cy
 Pe
 gv
-dj
+Yy
 Pe
 ri
 rg
@@ -43492,7 +43556,7 @@ Zg
 MP
 xO
 bq
-xO
+pI
 gN
 DD
 DD
@@ -45500,7 +45564,7 @@ rV
 sX
 SY
 vh
-vh
+SK
 jv
 LR
 EE
