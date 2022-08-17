@@ -2,7 +2,7 @@
 	name = "hornet armor"
 	desc = "A dark coat with yellow details. You feel as if you can hear faint buzzing coming out of it."
 	icon_state = "hornet"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 25)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 							)
@@ -61,7 +61,7 @@
 	name = "totalitarianism"
 	desc = "Or are you trapped here by me?"
 	icon_state = "totalitarianism"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20)		//First and foremost: Good against red buddy. then itself.
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20)		//First and foremost: Good against blue shep. then itself.
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 40
