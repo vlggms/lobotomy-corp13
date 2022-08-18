@@ -267,6 +267,11 @@
 		else
 			user.take_bodypart_damage(2*force)
 		return
+	if (target.stat != DEAD)
+		if(istype(target, /mob/living/simple_animal/hostile/ordeal))
+			var/mob/living/simple_animal/hostile/ordeal/cooler_target = target
+			if (!(user in cooler_target.contributers))
+				cooler_target.contributers += user
 	if(iscyborg(target))
 		// We don't stun if we're on harm.
 		if (user.a_intent != INTENT_HARM)

@@ -22,6 +22,10 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
+	suppression_attribute_bonus = TEMPERANCE_ATTRIBUTE
+	exp_value = 15
+	max_stat = 80
+
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
@@ -76,6 +80,10 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.05)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
+
+	suppression_attribute_bonus = TEMPERANCE_ATTRIBUTE
+	exp_value = 50 // It's a Midnight AND there's only 1. Let's make this a massive pinata.
+	max_stat = 130
 
 	//How many people has she eaten
 	var/belly = 0

@@ -20,6 +20,10 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
 
+	suppression_attribute_bonus = JUSTICE_ATTRIBUTE
+	exp_value = 10
+	max_stat = 60
+
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 
@@ -101,6 +105,10 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
 
+	suppression_attribute_bonus = JUSTICE_ATTRIBUTE
+	exp_value = 15
+	max_stat = 80
+
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
 	/// When at 10 - it will start "reloading"
@@ -178,6 +186,10 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
+
+	suppression_attribute_bonus = JUSTICE_ATTRIBUTE
+	exp_value = 20
+	max_stat = 100
 
 	var/spawn_progress = 20
 	var/list/spawned_mobs = list()

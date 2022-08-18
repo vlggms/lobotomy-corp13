@@ -55,6 +55,7 @@
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
 	for(var/action_type in attack_action_types)
@@ -167,6 +168,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user)
 	return
+
 
 // Actions
 /datum/action/innate/abnormality_attack

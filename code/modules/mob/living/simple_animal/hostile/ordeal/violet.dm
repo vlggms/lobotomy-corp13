@@ -18,6 +18,10 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
+	suppression_attribute_bonus = PRUDENCE_ATTRIBUTE
+	exp_value = 10
+	max_stat = 60
+
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), 80 SECONDS)
@@ -66,6 +70,10 @@
 	maxHealth = 1200
 	health = 1200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+
+	suppression_attribute_bonus = PRUDENCE_ATTRIBUTE
+	exp_value = 15
+	max_stat = 80
 
 	var/next_pulse = INFINITY
 

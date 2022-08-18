@@ -273,7 +273,8 @@
 	else
 		slimeconv(H)
 
-/* Big Slimes (WAW) */
+
+/* Big Slimes */
 /mob/living/simple_animal/hostile/slime/big
 	name = "Big Slime"
 	desc = "The skeletal remains of the former gifted employee is floating in it..."

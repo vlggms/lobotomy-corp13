@@ -16,6 +16,10 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
+	suppression_attribute_bonus = FORTITUDE_ATTRIBUTE
+	exp_value = 10
+	max_stat = 60
+
 	/// When it hits console 15 times - reduce qliphoth and teleport
 	var/console_attack_counter = 0
 
@@ -104,6 +108,10 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
 
+	suppression_attribute_bonus = FORTITUDE_ATTRIBUTE
+	exp_value = 15 // HE?
+	max_stat = 80 // Yeah, HE.
+
 	/// How many mobs we spawn on death
 	var/mob_spawn_amount = 3
 
@@ -150,6 +158,10 @@
 	attack_sound = 'sound/effects/ordeals/crimson/dusk_attack.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_spawn_amount = 2
+
+	suppression_attribute_bonus = FORTITUDE_ATTRIBUTE
+	exp_value = 20 // Politically Accurate WAW
+	max_stat = 100
 
 	var/roll_num = 36
 	var/roll_cooldown

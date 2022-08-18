@@ -19,6 +19,11 @@
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return FALSE
+	if (target.stat != DEAD)
+		if(istype(target, /mob/living/simple_animal/hostile/ordeal))
+			var/mob/living/simple_animal/hostile/ordeal/cooler_target = target
+			if (!(user in cooler_target.contributers))
+				cooler_target.contributers += user
 	return ..()
 
 /obj/item/ego_weapon/examine(mob/user)

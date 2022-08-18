@@ -109,3 +109,4 @@
 		H.emote("scream")
 		H.gib()
 		new /mob/living/simple_animal/hostile/worker_bee(T)
+

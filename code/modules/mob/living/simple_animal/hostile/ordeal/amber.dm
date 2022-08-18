@@ -23,6 +23,10 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
 
+	suppression_attribute_bonus = FORTITUDE_ATTRIBUTE
+	exp_value = 10
+	max_stat = 60
+
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	..()
 	base_pixel_x = rand(-6,6)
@@ -93,6 +97,10 @@
 	alpha = 0 // It burrows in on spawn
 	density = FALSE
 
+	suppression_attribute_bonus = FORTITUDE_ATTRIBUTE
+	exp_value = 25 // The big bois get slightly higher than WAW value. They're very limited and EVERYONE will be hitting them so they should have more value.
+	max_stat = 100
+
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
 	var/burrow_cooldown_time = 20 SECONDS
@@ -152,6 +160,7 @@
 			continue
 		var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/nb = new(T)
 		spawned_mobs += nb
+		nb.max_stat = 80 // While north worth more individually, they come in larger swarms and later on. So they should be able to raise you higher.
 		if(ordeal_reference)
 			nb.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nb
