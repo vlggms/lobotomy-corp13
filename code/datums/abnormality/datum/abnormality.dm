@@ -93,8 +93,10 @@
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
 	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
-	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
+	if(pe >= 100)
+		pe - 100
+	stored_boxes += pe
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
 	if(max_pe <= 0) // Work failure

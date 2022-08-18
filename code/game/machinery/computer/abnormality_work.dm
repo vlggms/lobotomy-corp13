@@ -13,6 +13,10 @@
 	var/meltdown_time = 0
 	/// Can the abnormality even meltdown?
 	var/can_meltdown = TRUE
+	/// Will the abnormality send it's information along?
+	var/ignore_ordeal = FALSE
+	//Ahem, due to my total incompetence, the above proc currently adds 100 to the amount, then subtracts it later.
+	//Scream at me, Kirie Saito.
 
 /obj/machinery/computer/abnormality/Initialize()
 	..()
@@ -139,12 +143,16 @@
 
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS, training)
 	working = FALSE
+	var/displaype = pe	//We're shipping one variable across 3 files, but hey baby, it works!
+	if(ignore_ordeal)
+		pe+=100
+		ignore_ordeal = FALSE
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(max_pe != 0)
-		visible_message("<span class='notice'>[work_type] work finished. [pe]/[max_pe] PE acquired.")
+		visible_message("<span class='notice'>[work_type] work finished. [displaype]/[max_pe] PE acquired.")
 	if(istype(user))
 		if(!training)
 			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
@@ -166,6 +174,7 @@
 /obj/machinery/computer/abnormality/proc/start_meltdown()
 	meltdown_time = rand(60, 90)
 	meltdown = TRUE
+	ignore_ordeal = TRUE
 	datum_reference.current.meltdown_start()
 	update_icon()
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 75, FALSE, 3)
@@ -173,6 +182,7 @@
 
 /obj/machinery/computer/abnormality/proc/qliphoth_meltdown_effect()
 	meltdown = FALSE
+	ignore_ordeal = FALSE
 	update_icon()
 	datum_reference.qliphoth_change(-9)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))

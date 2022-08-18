@@ -60,7 +60,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/WorkComplete(amount)
-	QliphothUpdate()
+	//Okay, so you may be wondering, "Why is this coded this way"
+	//Well, I was having trouble sending more than one variable across 3 fuckign files, so I did the 1980s hack approach of slamming the information into one variable.
+	//PE boxes go to a max of 30, and well..... I earlier added 100 to it, if it's melting down.
+	//I'm going to ask egor for help.	-Kirie
+	if(amount<100)
+		QliphothUpdate()
+	else
+		amount-=100
 	AdjustBoxes(amount)
 
 /datum/controller/subsystem/lobotomy_corp/proc/AdjustBoxes(amount)
