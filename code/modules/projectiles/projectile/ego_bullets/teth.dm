@@ -20,5 +20,6 @@
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
-	damage = 3
-	damage_type = BLACK_DAMAGE
+	damage = 4
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

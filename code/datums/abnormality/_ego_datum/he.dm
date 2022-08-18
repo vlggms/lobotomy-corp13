@@ -59,7 +59,7 @@
 	item_path = /obj/item/ego_weapon/daredevil
 	cost = 35
 
-// Rudolta - Christmas
+// Rudolta - Merriment
 /datum/ego_datum/weapon/christmas
 	item_path = /obj/item/ego_weapon/christmas
 	cost = 35

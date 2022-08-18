@@ -84,3 +84,6 @@
 	desc = "When the rusty sleigh bells are ajingle, Christmas begins."
 	icon_state = "christmas"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -30, PALE_DAMAGE = 25)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
