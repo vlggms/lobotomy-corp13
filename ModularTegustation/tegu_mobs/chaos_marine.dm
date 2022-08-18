@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/chaos_marine
 	name = "chaos marine"
 	desc = "Forever a servant of the dark gods, a chaos marine is always in state of eternal battle."
-	health = 2400
-	maxHealth = 2400
+	health = 3500
+	maxHealth = 3500
 	icon_state = "chaos_marine"
 	icon_living = "chaos_marine"
 	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
@@ -11,7 +11,7 @@
 	light_color = "#FFFFFF"
 	movement_type = GROUND
 	speak_emote = list("roars")
-	speed = 6
+	speed = 4
 	light_range = 6
 	projectiletype = /obj/projectile/bullet/chaos_bomb
 	projectilesound = 'sound/weapons/gun/l6/shot.ogg'
@@ -19,7 +19,7 @@
 	ranged_cooldown_time = 20
 	rapid_melee = 2
 	vision_range = 10
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	loot = list(/obj/item/nullrod/scythe/talking/chainsword/chaos, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos)
 	crusher_loot = list(/obj/item/nullrod/scythe/talking/chainsword/chaos, /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos, /obj/item/upgradescroll)
 	wander = FALSE
@@ -145,17 +145,17 @@
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/adjustCMspeed()
 	if(health <= maxHealth*0.25)
-		speed = 4
+		speed = 2
 		dash_mod = 0.4
 		dash_num = 5
 		rapid_melee = 3.5
 	else if(health <= maxHealth*0.5)
-		speed = 4.8
+		speed = 2.4
 		dash_mod = 0.5
 		dash_num = 4
 		rapid_melee = 3
 	else if(health <= maxHealth*0.75)
-		speed = 5.4
+		speed = 2.8
 		dash_mod = 0.7
 		dash_num = initial(dash_num)
 		rapid_melee = 2
@@ -208,17 +208,12 @@
 	name ="bolter bullet"
 	desc = "Oh god oh fu..."
 	icon_state = "bolter"
-	damage = 20
-
-/obj/projectile/bullet/chaos_bomb/on_hit(atom/target, blocked = FALSE)
-	..()
-	explosion(target, -1, 0, 0, 0, 0, flame_range = 2)
-	return BULLET_ACT_HIT
+	damage = 60
 
 /obj/projectile/bullet/chaos_bomb/blood
 	name = "blood bolt"
 	icon_state = "mini_leaper"
-	damage = 10
+	damage = 75
 	nondirectional_sprite = TRUE
 	impact_effect_type = /obj/effect/temp_visual/dir_setting/bloodsplatter
 
@@ -271,9 +266,8 @@
 		if(!faction_check_mob(L))
 			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
 			to_chat(L, "<span class='userdanger'>[src] pierces you with a chain-sword!</span>")
-			explosion(L, -1, 0, 0, 0, 0, flame_range = 2)
-			shake_camera(L, 4, 3)
-			L.adjustBruteLoss(30)
+			shake_camera(L, 2, 1)
+			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			playsound(L,"sound/effects/wounds/pierce[pick(1,2,3)].ogg", 200, 1)
 	addtimer(CALLBACK(src, .proc/blood_dash_2, move_dir, (times_ran + 1)), (1.5 * dash_mod))
 
@@ -432,12 +426,12 @@
 
 /obj/item/clothing/suit/space/hardsuit/ert/paranormal/berserker/chaos/process()
 	. = ..()
-	var/mob/living/carbon/C = loc
-	if(istype(C) && prob(4))
+	var/mob/living/carbon/human/H = loc
+	if(istype(H) && prob(5))
 		if(prob(25))
-			C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 60)
-			to_chat(C, "<span class='danger'>[pick("Voices... Voices everywhere", "Your mind shatters.", "Voices echo inside your head.")].</span>")
-		SEND_SOUND(C, sound(pick('sound/hallucinations/over_here3.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/magic/exit_blood.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg')))
+			H.adjustSanityLoss(-20)
+			to_chat(H, "<span class='danger'>[pick("Voices... Voices everywhere", "Your mind shatters.", "Voices echo inside your head.")].</span>")
+		SEND_SOUND(H, sound(pick('sound/hallucinations/over_here3.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/magic/exit_blood.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg')))
 
 //DEMONS
 /mob/living/simple_animal/hostile/chaos
@@ -462,13 +456,13 @@
 	attack_sound = 'sound/magic/demon_attack1.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	faction = list("chaos")
-	maxHealth = 80
-	health = 80
+	maxHealth = 100
+	health = 100
 	vision_range = 16
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	mob_size = MOB_SIZE_HUGE
-	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_lower = 16
+	melee_damage_upper = 18
 	see_in_dark = 8
 	light_color = "#FF0000"
 	light_range = 2
@@ -483,11 +477,11 @@
 	icon_state = "daemon"
 	icon_living = "daemon"
 	desc = "A powerful creature that was brought here straight from a hellish realm."
-	melee_damage_lower = 10
-	melee_damage_upper = 14
+	melee_damage_lower = 22
+	melee_damage_upper = 28
 	light_range = 4
-	maxHealth = 140
-	health = 140
+	maxHealth = 180
+	health = 180
 
 /mob/living/simple_animal/hostile/chaos/ex_act(severity, target)
 	return //Resistant to explosions
