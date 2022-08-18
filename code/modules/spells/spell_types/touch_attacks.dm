@@ -93,3 +93,13 @@
 	charge_max = 60
 	clothes_req = FALSE
 	cooldown_min = 20
+
+/obj/effect/proc_holder/spell/targeted/touch/necrotic_revival
+	name = "Necrotic Revival"
+	desc = "A dangerous spell that will revive a dead person in a form of a skeleton, if one is lucky..."
+	hand_path = /obj/item/melee/touch_attack/necrotic_revival
+	action_icon_state = "skeleton"
+	school = SCHOOL_TRANSMUTATION
+	charge_max = 300
+	clothes_req = TRUE
+	cooldown_min = 100
