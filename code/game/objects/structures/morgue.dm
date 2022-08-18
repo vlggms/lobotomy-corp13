@@ -429,13 +429,6 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	icon_state = "morguet"
 	pass_flags_self = PASSTABLE
 
-/obj/structure/tray/m_tray/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-	if(locate(/obj/structure/table) in get_turf(mover))
-		return TRUE
-
 /*
  * Morgue tray (Extraction Variant)
  */
@@ -443,12 +436,3 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	name = "morgue tray"
 	desc = "Apply corpse before closing."
 	icon_state = "extract_morgue_tray"
-	pass_flags_self = PASSTABLE
-
-/obj/structure/tray/e_tray/CanAllowThrough(atom/movable/mover, turf/target)
-	. = ..()
-	if(.)
-		return
-	if(locate(/obj/structure/table) in get_turf(mover))
-		return TRUE
-
