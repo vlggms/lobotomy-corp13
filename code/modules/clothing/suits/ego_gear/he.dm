@@ -87,3 +87,14 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/logging
+	name = "logging"
+	desc = "Despite it's sturdy construction, the wearer always feel hollow inside."
+	icon_state = "logging"
+	flags_inv = HIDESHOES
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 25)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
