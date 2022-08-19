@@ -338,14 +338,14 @@
 	uniform = /obj/item/clothing/under/rank/civilian/curator/zwei_association
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
-	ears = /obj/item/radio/headset/headset_cent
+	ears = /obj/item/radio/headset/headset_cent/zwei
 	suit = /obj/item/clothing/suit/armor/vest/zwei
 	l_hand = /obj/item/clothing/accessory/fixer_badge
 	r_hand = /obj/item/claymore
 	back = /obj/item/storage/backpack/satchel
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
-	id = /obj/item/card/id/centcom
+	id = /obj/item/card/id/centcom/zwei
 	backpack_contents = list(/obj/item/storage/box/survival = 1)
 
 /datum/outfit/centcom/zwei_crew/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -373,6 +373,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/megaphone
 	r_hand = /obj/item/claymore
+	id = /obj/item/card/id/centcom/zwei/captain
 	head = /obj/item/clothing/head/collectable/zwei
 
 /datum/outfit/centcom/zwei_crew/captain/unarmed // i'll be nice and let the leader keep their baton and vest

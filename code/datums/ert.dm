@@ -76,15 +76,15 @@
 	leader_role = /datum/antagonist/ert/zwei/captain
 	teamsize = 7
 	opendoors = FALSE
-	rename_team = "Zwei Association Raid"
+	rename_team = "Zwei Association Contract"
 	mission = "Assist in conflict resolution for Lobotomy Corporation."
-	polldesc = "an opportunity for fixers to make a name for themselves, or die"
+	polldesc = "Stick together and cut down disruptive forces in the facility."
 	random_names = FALSE
 
 /datum/ert/zwei/unarmed
 	roles = list(/datum/antagonist/ert/zwei/unarmed)
 	leader_role = /datum/antagonist/ert/zwei/captain/unarmed
-	rename_team = "Unarmed Zwei Association Raid"
+	rename_team = "Unarmed Zwei Association Contract"
 
 /datum/ert/hardhead
 	roles = list(/datum/antagonist/ert/engineer)
@@ -92,7 +92,7 @@
 	opendoors = FALSE
 	rename_team = "Hardhead Office Contract"
 	mission = "You aren't getting paid by the hour, so work fast. Lobotomy Corporation wants some wrecking done, hardhead style."
-	polldesc = "a wave of fixers with black damage and forklift certification"
+	polldesc = "Use your fixer know-how and forklift certification to clear out the facility."
 	random_names = FALSE
 
 /datum/ert/erp
@@ -111,7 +111,7 @@
 	opendoors = FALSE
 	rename_team = "Rabbit Team"
 	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
-	polldesc = "a Rabbit Team"
+	polldesc = "A heavily armed team of mercenaries who clear out threats room by room."
 	code = "Orange"
 
 /datum/ert/rhino
@@ -121,5 +121,5 @@
 	opendoors = TRUE
 	rename_team = "Rhino Team"
 	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
-	polldesc = "a Rhino Team"
+	polldesc = "A heavily armored team of mercenaries in big mech suits for destroying enemies."
 	code = "Orange"
