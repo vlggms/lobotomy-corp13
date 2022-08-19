@@ -138,6 +138,7 @@
 	l_hand = /obj/item/storage/toolbox/mechanical/hardhead
 	head = /obj/item/clothing/head/hardhat/white
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/storage/cans/sixbeer,\
 		/obj/item/storage/firstaid/regular)
 
 
@@ -166,6 +167,7 @@
 	l_hand = /obj/item/shovel/hardhead
 	head = /obj/item/clothing/head/hardhat
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/storage/cans/sixbeer,\
 		/obj/item/storage/firstaid/regular)
 
 
