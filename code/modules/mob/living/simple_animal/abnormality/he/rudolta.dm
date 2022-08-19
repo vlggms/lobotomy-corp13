@@ -59,7 +59,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/proc/WhitePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
-	new /obj/effect/gibspawner/generic/silent(get_turf(src))
+	if(prob(25))
+		new /obj/effect/gibspawner/generic/silent(get_turf(src))
 	playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))

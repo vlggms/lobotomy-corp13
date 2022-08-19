@@ -55,7 +55,7 @@
 		head.dismember()
 		user.adjustBruteLoss(500)
 		return
-	if(work_type == ABNORMALITY_WORK_REPRESSION)
+	if(user.stat != DEAD && work_type == ABNORMALITY_WORK_REPRESSION)
 		if (src.icon_state == "megalovania")
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase1)) // From Courage to Recklessness
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)

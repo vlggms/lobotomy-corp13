@@ -126,7 +126,7 @@
 	forceMove(teleport_target)
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/success_effect(mob/living/carbon/human/user, work_type, pe)
-	if(!blessed_human && istype(user))
+	if(user.stat != DEAD && !blessed_human && istype(user))
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
