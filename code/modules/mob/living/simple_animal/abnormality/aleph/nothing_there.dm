@@ -37,7 +37,7 @@
 		/datum/ego_datum/weapon/mimicry,
 		/datum/ego_datum/armor/mimicry
 		)
-
+	gift_type =  /datum/ego_gifts/mimicry
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -264,3 +264,4 @@
 			new /obj/effect/temp_visual/flesh(T)
 		forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
+

@@ -39,7 +39,7 @@
 		/datum/ego_datum/weapon/despair,
 		/datum/ego_datum/armor/despair
 		)
-
+	gift_type =  /datum/ego_gifts/tears
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS
@@ -145,3 +145,5 @@
 	icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 	return
+
+

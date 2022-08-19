@@ -43,6 +43,7 @@
 		/datum/ego_datum/weapon/hatred,
 		/datum/ego_datum/armor/hatred
 		)
+	gift_type =  /datum/ego_gifts/love_and_hate
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/qoh_beam,
@@ -448,3 +449,5 @@
 	breach_max_death = 0 //who cares about humans anymore?
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
 	return
+
+

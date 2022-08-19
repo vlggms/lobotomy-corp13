@@ -37,7 +37,7 @@
 		/datum/ego_datum/weapon/grinder,
 		/datum/ego_datum/armor/grinder
 		)
-
+	gift_type =  /datum/ego_gifts/grinder
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
@@ -171,3 +171,5 @@
 	..()
 	update_icon()
 	GiveTarget(user)
+
+

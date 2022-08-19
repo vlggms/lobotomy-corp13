@@ -37,7 +37,7 @@
 		/datum/ego_datum/weapon/correctional,
 		/datum/ego_datum/armor/correctional
 		)
-
+	gift_type =  /datum/ego_gifts/correctional
 	var/finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
@@ -96,3 +96,4 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
+

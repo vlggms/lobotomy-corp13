@@ -21,7 +21,7 @@
 		/datum/ego_datum/weapon/soda,
 		/datum/ego_datum/armor/soda
 		)
-
+	gift_type = /datum/ego_gifts/soda
 /mob/living/simple_animal/hostile/abnormality/wellcheers/success_effect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
 	switch(work_type)
@@ -49,6 +49,7 @@
 	animate(user, alpha = 0, time = 2 SECONDS)
 	QDEL_IN(user, 3.5 SECONDS) // Bye bye!
 	return
+
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red

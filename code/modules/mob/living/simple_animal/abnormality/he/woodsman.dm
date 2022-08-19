@@ -38,7 +38,7 @@
 		/datum/ego_datum/weapon/logging,
 		/datum/ego_datum/armor/logging
 		)
-
+	gift_type =  /datum/ego_gifts/loggging
 	var/meltdown_breach = FALSE
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
@@ -243,6 +243,7 @@
 	. = ..()
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)

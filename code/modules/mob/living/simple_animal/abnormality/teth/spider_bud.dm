@@ -21,6 +21,7 @@
 		/datum/ego_datum/weapon/eyes,
 		/datum/ego_datum/armor/eyes
 		)
+	gift_type =  /datum/ego_gifts/redeyes
 
 /mob/living/simple_animal/hostile/abnormality/spider/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider
@@ -29,3 +30,5 @@
 		user.gib()
 		SLEEP_CHECK_DEATH(50)
 		icon_state = "spider_closed"
+		return
+

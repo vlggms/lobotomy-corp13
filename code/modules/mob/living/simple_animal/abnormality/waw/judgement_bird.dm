@@ -39,7 +39,7 @@
 		/datum/ego_datum/weapon/justitia,
 		/datum/ego_datum/armor/justitia
 		)
-
+	gift_type =  /datum/ego_gifts/justitia
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 65
@@ -92,3 +92,4 @@
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
+

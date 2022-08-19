@@ -37,6 +37,7 @@
 		/datum/ego_datum/weapon/star_sound,
 		/datum/ego_datum/armor/star_sound
 		)
+	gift_type =  /datum/ego_gifts/star
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 9 SECONDS
@@ -108,3 +109,4 @@
 	forceMove(T)
 	BluePulse()
 	return
+

@@ -36,7 +36,7 @@
 		/datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/fragment
 		)
-
+	gift_type =  /datum/ego_gifts/fragments
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 4 // Dealt 8 times
@@ -99,3 +99,4 @@
 	else // Breaching
 		icon_state = "fragment_breach"
 	icon_living = icon_state
+

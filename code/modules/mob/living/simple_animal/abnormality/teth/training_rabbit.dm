@@ -22,6 +22,7 @@
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
 	//ego_list = list(datum/ego_datum/weapon/training, datum/ego_datum/armor/training)
+	gift_type =  /datum/ego_gifts/standard
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/breach_effect(mob/living/carbon/human/user)
 	..()
@@ -36,3 +37,4 @@
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/proc/kill_dummy()
 	QDEL_NULL(src)
+

@@ -82,3 +82,6 @@
 
 	/// Boolean for sanity points loss effects
 	var/sanity_lost = FALSE
+
+	/// List of EGO Gifts
+	var/list/ego_gift_list = list()
