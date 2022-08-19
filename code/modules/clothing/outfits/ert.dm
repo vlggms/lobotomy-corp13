@@ -313,9 +313,9 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent
-	belt = /obj/item/melee/sabre
 	suit = /obj/item/clothing/suit/armor/vest/zwei
 	l_hand = /obj/item/clothing/accessory/fixer_badge
+	r_hand = /obj/item/melee/sabre
 	back = /obj/item/storage/backpack/satchel
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
@@ -335,8 +335,8 @@
 
 /datum/outfit/centcom/zwei_crew/unarmed
 	name = "Zwei Association Crew (Unarmed)"
-	belt = null
 	l_hand = null
+	r_hand = null
 	l_pocket = null
 	r_pocket = null
 
@@ -346,10 +346,13 @@
 
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/megaphone
+	r_hand = /obj/item/melee/sabre
 	head = /obj/item/clothing/head/collectable/zwei
 
 /datum/outfit/centcom/zwei_crew/captain/unarmed // i'll be nice and let the leader keep their baton and vest
 	name = "Zwei Association Captain (Unarmed)"
+	l_hand = null
+	r_hand = null
 	l_pocket = null
 	r_pocket = null
 
