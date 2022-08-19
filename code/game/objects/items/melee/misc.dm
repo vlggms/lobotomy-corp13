@@ -73,6 +73,14 @@
 	attack_verb_simple = list("slash", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 1000)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20,
+							PRUDENCE_ATTRIBUTE = 20
+							)
+
+/obj/item/melee/sabre/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.25) // Slow
 
 /obj/item/melee/sabre/Initialize()
 	. = ..()
