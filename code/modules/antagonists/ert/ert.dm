@@ -83,8 +83,12 @@
 	outfit = /datum/outfit/centcom/ert/security/alert
 
 /datum/antagonist/ert/engineer
-	role = "Engineer"
+	role = "Hardhead"
 	outfit = /datum/outfit/centcom/ert/engineer
+
+/datum/antagonist/ert/engineer/foreman
+	role = "Foreman"
+	outfit = /datum/outfit/centcom/ert/engineer/foreman
 
 /datum/antagonist/ert/engineer/red
 	outfit = /datum/outfit/centcom/ert/engineer/alert
@@ -162,13 +166,13 @@
 	name = "Zwei Association Crew"
 	outfit = /datum/outfit/centcom/zwei_crew
 	random_names = FALSE
-	role = "Zwei Association Crew"
+	role = "Zwei Crewmate"
 
 /datum/antagonist/ert/zwei/captain
 	name = "Zwei Association Captain"
 	outfit = /datum/outfit/centcom/zwei_crew/captain
 	random_names = FALSE
-	role = "Zwei Association Captain"
+	role = "Zwei Captain"
 
 /datum/antagonist/ert/zwei/unarmed
 	outfit = /datum/outfit/centcom/zwei_crew/unarmed

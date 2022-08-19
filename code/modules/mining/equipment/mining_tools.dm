@@ -150,6 +150,21 @@
 	user.visible_message("<span class='suicide'>[user] couldn't do it!</span>")
 	return SHAME
 
+/obj/item/shovel/hardhead
+	name = "hardhead shovel"
+	desc = "A large tool for cracking skulls and digging holes, nobody finds bodies in the foundation."
+	icon_state = "shovel"
+	worn_icon_state = "shovel"
+	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	force = 30
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	throwforce = 4
+	inhand_icon_state = "shovel"
+	w_class = WEIGHT_CLASS_NORMAL
+
 /obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."

@@ -124,20 +124,49 @@
 		/obj/item/reagent_containers/hypospray/combat/nanites=1,\
 		/obj/item/gun/medbeam=1)
 
+/datum/outfit/centcom/ert/engineer/foreman
+	name = "Hardhead Office Foreman"
+
+	id = /obj/item/card/id/ert/engineer/foreman
+	mask = /obj/item/clothing/mask/gas/explorer
+	uniform = /obj/item/clothing/under/suit/black
+	shoes = /obj/item/clothing/shoes/laceup
+	suit = /obj/item/clothing/suit/hazardvest/hardhead
+	suit_store = /obj/item/flashlight
+	glasses =  /obj/item/clothing/glasses/regular
+	back = /obj/item/storage/backpack/ert/engineer
+	l_hand = /obj/item/storage/toolbox/mechanical/hardhead
+	head = /obj/item/clothing/head/hardhat/white
+	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
+		/obj/item/storage/firstaid/regular)
+
+
+/datum/outfit/centcom/ert/engineer/foreman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+
+	if(visualsOnly)
+		return
+
+	var/obj/item/radio/R = H.ears
+	R.keyslot = new /obj/item/encryptionkey/heads/manager
+	R.recalculateChannels()
+
 /datum/outfit/centcom/ert/engineer
-	name = "ERT Engineer"
+	name = "Hardhead Office Handyman"
 
 	id = /obj/item/card/id/ert/engineer
-	suit = /obj/item/clothing/suit/space/hardsuit/ert/engi
-	suit_store = /obj/item/gun/energy/e_gun
+	mask = /obj/item/clothing/mask/gas/explorer
+	uniform = /obj/item/clothing/under/rank/engineering/hazard
+	shoes = /obj/item/clothing/shoes/workboots
+	suit = /obj/item/clothing/suit/hazardvest/hardhead
+	suit_store = /obj/item/flashlight
 	glasses =  /obj/item/clothing/glasses/meson/engine
 	back = /obj/item/storage/backpack/ert/engineer
 	belt = /obj/item/storage/belt/utility/full
-	l_pocket = /obj/item/rcd_ammo/large
-	l_hand = /obj/item/storage/firstaid/regular
+	l_hand = /obj/item/shovel/hardhead
+	head = /obj/item/clothing/head/hardhat
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/melee/baton/loaded=1,\
-		/obj/item/construction/rcd/loaded=1)
+		/obj/item/storage/firstaid/regular)
 
 
 /datum/outfit/centcom/ert/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -151,14 +180,9 @@
 	R.recalculateChannels()
 
 /datum/outfit/centcom/ert/engineer/alert
-	name = "ERT Engineer - High Alert"
+	name = "Hardhead Office Handyman - High Alert"
 
-	mask = /obj/item/clothing/mask/gas/sechailer/swat
-	backpack_contents = list(/obj/item/storage/box/survival/engineer=1,\
-		/obj/item/melee/baton/loaded=1,\
-		/obj/item/gun/energy/pulse/pistol/loyalpin=1,\
-		/obj/item/construction/rcd/combat=1)
-
+	r_hand = /obj/item/reagent_containers/food/drinks/beer
 
 /datum/outfit/centcom/centcom_official
 	name = "CentCom Official"
@@ -315,7 +339,7 @@
 	ears = /obj/item/radio/headset/headset_cent
 	suit = /obj/item/clothing/suit/armor/vest/zwei
 	l_hand = /obj/item/clothing/accessory/fixer_badge
-	r_hand = /obj/item/melee/sabre
+	r_hand = /obj/item/claymore
 	back = /obj/item/storage/backpack/satchel
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
@@ -346,7 +370,7 @@
 
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/megaphone
-	r_hand = /obj/item/melee/sabre
+	r_hand = /obj/item/claymore
 	head = /obj/item/clothing/head/collectable/zwei
 
 /datum/outfit/centcom/zwei_crew/captain/unarmed // i'll be nice and let the leader keep their baton and vest

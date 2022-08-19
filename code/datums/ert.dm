@@ -86,6 +86,15 @@
 	leader_role = /datum/antagonist/ert/zwei/captain/unarmed
 	rename_team = "Unarmed Zwei Association Raid"
 
+/datum/ert/hardhead
+	roles = list(datum/antagonist/ert/engineer)
+	leader_role = /datum/antagonist/ert/engineer/foreman
+	opendoors = FALSE
+	rename_team = "Hardhead Office Contract"
+	mission = "You aren't getting paid by the hour, so work fast. Lobotomy Corporation wants some wrecking done, hardhead style."
+	polldesc = "a wave of fixers with black damage and forklift certification"
+	random_names = FALSE
+
 /datum/ert/erp
 	roles = list(/datum/antagonist/ert/security/party, /datum/antagonist/ert/clown/party, /datum/antagonist/ert/engineer/party, /datum/antagonist/ert/janitor/party)
 	leader_role = /datum/antagonist/ert/commander/party

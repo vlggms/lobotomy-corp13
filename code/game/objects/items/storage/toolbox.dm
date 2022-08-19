@@ -82,6 +82,16 @@
 	new /obj/item/analyzer(src)
 	new /obj/item/wirecutters(src)
 
+/obj/item/storage/toolbox/mechanical/hardhead
+	name = "hardhead toolbox"
+	desc = "For when strike negotiations can't get what you need."
+	force = 40
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	icon_state = "blue"
+	inhand_icon_state = "toolbox_blue"
+	material_flags = NONE
+
 /obj/item/storage/toolbox/mechanical/old
 	name = "rusty blue toolbox"
 	icon_state = "toolbox_blue_old"

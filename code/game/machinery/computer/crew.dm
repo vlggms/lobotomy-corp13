@@ -101,7 +101,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Research Officer" = 213,
 		"R-Corporation Lieutenant" = 220,
 		"R-Corporation Specialist" = 221,
-		"Engineer Response Officer" = 222,
+		"Hardhead Office Foreman" = 222,
+		"Hardhead Office Handyman" = 222,
 		"Medical Response Officer" = 223
 	)
 
