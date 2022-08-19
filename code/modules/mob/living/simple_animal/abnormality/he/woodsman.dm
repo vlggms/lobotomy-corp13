@@ -258,14 +258,16 @@
 		RegisterSignal(src, COMSIG_WORK_STARTED, .proc/Take_Heart)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Take_Heart(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
+	if (GODMODE in user.status_flags)
+		return
 	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
 	breach_effect()
 	user.gib()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	. = ..()
-	if (!ishuman(M))
-		return
+	if (!ishuman(M) || (GODMODE in M.status_flags))
+		return FALSE
 	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	for(var/obj/item/organ/O in M.getorganszone(BODY_ZONE_CHEST, TRUE))

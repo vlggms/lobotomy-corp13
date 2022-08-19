@@ -24,7 +24,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/spider/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40 || work_type == ABNORMALITY_WORK_INSIGHT)
+	if((get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40 || work_type == ABNORMALITY_WORK_INSIGHT) && !(GODMODE in user.status_flags))
 		icon_state = "spider_open"
 		user.gib()
 		SLEEP_CHECK_DEATH(50)
