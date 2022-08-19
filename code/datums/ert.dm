@@ -87,7 +87,7 @@
 	rename_team = "Unarmed Zwei Association Raid"
 
 /datum/ert/hardhead
-	roles = list(datum/antagonist/ert/engineer)
+	roles = list(/datum/antagonist/ert/engineer)
 	leader_role = /datum/antagonist/ert/engineer/foreman
 	opendoors = FALSE
 	rename_team = "Hardhead Office Contract"
