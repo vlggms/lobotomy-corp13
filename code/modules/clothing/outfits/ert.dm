@@ -157,7 +157,7 @@
 
 	id = /obj/item/card/id/ert/engineer
 	mask = /obj/item/clothing/mask/gas/explorer
-	uniform = /obj/item/clothing/under/rank/engineering/hazard
+	uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
 	shoes = /obj/item/clothing/shoes/workboots
 	suit = /obj/item/clothing/suit/hazardvest/hardhead
 	suit_store = /obj/item/flashlight
