@@ -69,11 +69,12 @@
 	flags_inv = 0
 	strip_delay = 80
 
-/obj/item/clothing/suit/armor/vest/warden
-	name = "warden's jacket"
-	desc = "A navy-blue armored jacket with blue shoulder designations and '/Warden/' stitched into one of the chest pockets."
+/obj/item/clothing/suit/armor/vest/zwei
+	name = "zwei association jacket"
+	desc = "A navy-blue armored jacket with blue shoulder designations and '/Zwei Association/' stitched into one of the chest pockets."
 	icon_state = "warden_alt"
 	inhand_icon_state = "armor"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
 	body_parts_covered = CHEST|GROIN|ARMS
 	cold_protection = CHEST|GROIN|ARMS|HANDS
 	heat_protection = CHEST|GROIN|ARMS|HANDS
@@ -81,7 +82,7 @@
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
 
-/obj/item/clothing/suit/armor/vest/warden/alt
+/obj/item/clothing/suit/armor/vest/zwei/alt
 	name = "warden's armored jacket"
 	desc = "A red jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"

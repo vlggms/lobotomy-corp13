@@ -76,15 +76,15 @@
 	leader_role = /datum/antagonist/ert/intern/leader
 	teamsize = 7
 	opendoors = FALSE
-	rename_team = "Horde of Interns"
-	mission = "Assist in conflict resolution."
-	polldesc = "an unpaid internship opportunity with Nanotrasen"
+	rename_team = "Zwei Association Raid"
+	mission = "Assist in conflict resolution for Lobotomy Corporation."
+	polldesc = "an opportunity for fixers to make a name for themselves, or die"
 	random_names = FALSE
 
 /datum/ert/intern/unarmed
 	roles = list(/datum/antagonist/ert/intern/unarmed)
 	leader_role = /datum/antagonist/ert/intern/leader/unarmed
-	rename_team = "Unarmed Horde of Interns"
+	rename_team = "Unarmed Zwei Association Raid"
 
 /datum/ert/erp
 	roles = list(/datum/antagonist/ert/security/party, /datum/antagonist/ert/clown/party, /datum/antagonist/ert/engineer/party, /datum/antagonist/ert/janitor/party)

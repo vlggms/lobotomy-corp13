@@ -191,15 +191,15 @@
 	inhand_icon_state = "viropack"
 
 /obj/item/storage/backpack/ert
-	name = "emergency response team commander backpack"
-	desc = "A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team."
+	name = "r-corporation officer backpack"
+	desc = "A spacious backpack with lots of pockets, worn by officers of the R-Corporation private military."
 	icon_state = "ert_commander"
 	inhand_icon_state = "securitypack"
 	resistance_flags = FIRE_PROOF
 
 /obj/item/storage/backpack/ert/security
-	name = "emergency response team security backpack"
-	desc = "A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team."
+	name = "r-corporation grunt backpack"
+	desc = "A spacious backpack with lots of pockets, worn by employees of the R-Corporation private military."
 	icon_state = "ert_security"
 
 /obj/item/storage/backpack/ert/medical

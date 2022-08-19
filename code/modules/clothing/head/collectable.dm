@@ -47,9 +47,9 @@
 
 	dog_fashion = /datum/dog_fashion/head/captain
 
-/obj/item/clothing/head/collectable/police
-	name = "collectable police officer's hat"
-	desc = "A collectable police officer's Hat. This hat emphasizes that you are THE LAW."
+/obj/item/clothing/head/collectable/zwei
+	name = "zwei association hat"
+	desc = "It's a special hat issued to the captain of a zwei association patrol."
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 

@@ -592,55 +592,59 @@
 	AddElement(/datum/element/processable, TOOL_KNIFE,  /obj/item/food/meat/rawcutlet/plain/human, 3, 30)
 
 /obj/item/food/meat/slab/human/mutant/slime
-	icon_state = "slimemeat"
 	desc = "Because jello wasn't offensive enough to vegans."
+	icon_state = "slimemeat"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC
 
 /obj/item/food/meat/slab/human/mutant/sweeper
+	name = "meat slurry"
+	desc = "Cobalt metal holding the liquified remains of a human, it smells rancid. It has the taste and texture of Surströmming."
 	icon_state = "sweepermeat"
-	desc = "The butchered remains of a sweeper. It's edible, although just barely."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
 	tastes = list("tender meat" = 1)
-	foodtypes = MEAT | RAW | GROSS
+	foodtypes = MEAT | RAW | TOXIC | GROSS
 
 /obj/item/food/meat/slab/human/mutant/fruit
+	name = "curious meat"
+	desc = "Wretched rubbery meat cut from a gigantic heart. It tastes of anxiety and has the texture of uncooked squid."
 	icon_state = "fruitmeat"
-	desc = "The innards of a violet ordeal. If you can get past all of the horrible chemicals and textures, it's quite delicious."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
 	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
 	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
 
 /obj/item/food/meat/slab/human/mutant/worm
+	name = "the perfect meat"
+	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of jelly."
 	icon_state = "wormmeat"
-	desc = "An awful tasting gelatinous meat harvested from a worm."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC | GROSS
 
 /obj/item/food/meat/slab/human/mutant/robot
+	name = "nihilist component"
+	desc = "Ancient metal, filaments and cogwheels all absolutely ruined. It tastes of metal and has the texture of, metal."
 	icon_state = "robotmeat"
-	desc = "The ancient scrap of ruined machinery. It's as flavorful as a lump of metal."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
 	tastes = list("metal" = 1)
 	foodtypes = MEAT | RAW | GROSS
 
 /obj/item/food/meat/slab/human/mutant/golem
-	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future."
+	icon_state = "golemmeat"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/iron = 3)
 	tastes = list("rock" = 1)
 	foodtypes = MEAT | RAW | GROSS
 
 /obj/item/food/meat/slab/human/mutant/golem/adamantine
-	icon_state = "agolemmeat"
 	desc = "From the slime pen to the rune to the kitchen, science."
+	icon_state = "agolemmeat"
 	foodtypes = MEAT | RAW | GROSS
 
 /obj/item/food/meat/slab/human/mutant/lizard
-	icon_state = "lizardmeat"
 	desc = "Delicious dino damage."
+	icon_state = "lizardmeat"
 	tastes = list("meat" = 4, "scales" = 1)
 	foodtypes = MEAT | RAW
 

@@ -99,8 +99,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Custodian" = 211,
 		"Medical Officer" = 212,
 		"Research Officer" = 213,
-		"Emergency Response Team Commander" = 220,
-		"Security Response Officer" = 221,
+		"R-Corporation Lieutenant" = 220,
+		"R-Corporation Specialist" = 221,
 		"Engineer Response Officer" = 222,
 		"Medical Response Officer" = 223
 	)

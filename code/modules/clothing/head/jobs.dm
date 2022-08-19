@@ -174,8 +174,8 @@
 	desc = "A black beret with thick armor padding inside. Stylish and robust."
 
 /obj/item/clothing/head/warden
-	name = "warden's police hat"
-	desc = "It's a special armored hat issued to the Warden of a security force. Protects the head from impacts."
+	name = "zwei association hat"
+	desc = "It's a special armored hat issued to the captain of a zwei association patrol. Protects the head from impacts."
 	icon_state = "policehelm"
 	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 60, WOUND = 6)
 	strip_delay = 60

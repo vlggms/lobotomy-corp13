@@ -512,9 +512,9 @@ update_label()
 		..()
 
 /obj/item/card/id/centcom
-	name = "\improper CentCom ID"
-	id_type_name = "\improper CentCom ID"
-	desc = "An ID straight from Central Command."
+	name = "\improper Zwei Association ID"
+	id_type_name = "\improper Zwei Association ID"
+	desc = "An ID straight from the Zwei."
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "Central Command"
@@ -526,12 +526,12 @@ update_label()
 	. = ..()
 
 /obj/item/card/id/ert
-	name = "\improper CentCom ID"
-	id_type_name = "\improper CentCom ID"
-	desc = "An ERT ID card."
+	name = "\improper R-Corporation ID"
+	id_type_name = "\improper R-Corporation ID"
+	desc = "An R-Corporation ID card."
 	icon_state = "ert_commander"
-	registered_name = "Emergency Response Team Commander"
-	assignment = "Emergency Response Team Commander"
+	registered_name = "R-Corporation Lieutenant"
+	assignment = "R-Corporation Lieutenant"
 	uses_overlays = FALSE
 	registered_age = null
 
@@ -540,8 +540,8 @@ update_label()
 	. = ..()
 
 /obj/item/card/id/ert/security
-	registered_name = "Security Response Officer"
-	assignment = "Security Response Officer"
+	registered_name = "R-Corporation Specialist"
+	assignment = "R-Corporation Specialist"
 	icon_state = "ert_security"
 
 /obj/item/card/id/ert/security/Initialize()

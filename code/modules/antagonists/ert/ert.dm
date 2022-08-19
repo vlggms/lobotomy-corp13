@@ -159,22 +159,22 @@
 	role = "Officer"
 
 /datum/antagonist/ert/intern
-	name = "CentCom Intern"
-	outfit = /datum/outfit/centcom/centcom_intern
+	name = "Zwei Association Crew"
+	outfit = /datum/outfit/centcom/zwei_crew
 	random_names = FALSE
-	role = "Intern"
+	role = "Zwei Association Crew"
 
 /datum/antagonist/ert/intern/leader
-	name = "CentCom Head Intern"
-	outfit = /datum/outfit/centcom/centcom_intern/leader
+	name = "Zwei Association Captain"
+	outfit = /datum/outfit/centcom/zwei_crew/captain
 	random_names = FALSE
-	role = "Head Intern"
+	role = "Zwei Association Captain"
 
 /datum/antagonist/ert/intern/unarmed
-	outfit = /datum/outfit/centcom/centcom_intern/unarmed
+	outfit = /datum/outfit/centcom/zwei_crew/unarmed
 
 /datum/antagonist/ert/intern/leader/unarmed
-	outfit = /datum/outfit/centcom/centcom_intern/leader/unarmed
+	outfit = /datum/outfit/centcom/zwei_crew/captain/unarmed
 
 /datum/antagonist/ert/clown
 	role = "Clown"

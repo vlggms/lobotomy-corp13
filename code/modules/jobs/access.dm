@@ -112,9 +112,9 @@
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_THUNDER)
 		if("CentCom Official")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_LIVING)
-		if("CentCom Intern")
+		if("Zwei Association Crew")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_LIVING)
-		if("CentCom Head Intern")
+		if("Zwei Association Captain")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_LIVING)
 		if("Medical Officer")
 			return list(ACCESS_CENT_GENERAL, ACCESS_CENT_LIVING, ACCESS_CENT_MEDICAL)
@@ -128,9 +128,9 @@
 			return get_all_centcom_access()
 		if("CentCom Commander")
 			return get_all_centcom_access()
-		if("Emergency Response Team Commander")
+		if("R-Corporation Lieutenant")
 			return get_ert_access("commander")
-		if("Security Response Officer")
+		if("R-Corporation Specialist")
 			return get_ert_access("sec")
 		if("Engineer Response Officer")
 			return get_ert_access("eng")
@@ -376,7 +376,7 @@
 	return list("Clerk", "Agent", "Senior Agent", "Agent Captain", "Explorer", "Fixer", "Pathfinder", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Rabbit Team", "Rabbit Team Leader")
 
 /proc/get_all_job_icons() //For all existing HUD icons
-	return get_all_jobs() + list("Emergency Response Team Commander", "Security Response Officer", "Engineering Response Officer", "Medical Response Officer", "Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "TerraGov Official", "TerraGov Marine") //Tegu edit right there
+	return get_all_jobs() + list("R-Corporation Lieutenant", "R-Corporation Specialist", "Engineering Response Officer", "Medical Response Officer", "Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "TerraGov Official", "TerraGov Marine") //Tegu edit right there
 
 /proc/get_all_centcom_jobs()
 	return list("Central Command","VIP Guest","Custodian","Thunderdome Overseer","CentCom Official","Medical Officer","Research Officer","Special Ops Officer","Admiral","CentCom Commander","CentCom Bartender","Private Security Force")

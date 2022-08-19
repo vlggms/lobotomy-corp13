@@ -101,11 +101,11 @@
 
 /obj/structure/closet/secure_closet/warden/PopulateContents()
 	..()
-	new /obj/item/clothing/suit/armor/vest/warden(src)
+	new /obj/item/clothing/suit/armor/vest/zwei(src)
 	new /obj/item/clothing/head/warden(src)
 	new /obj/item/clothing/head/warden/drill(src)
 	new /obj/item/clothing/head/beret/sec/navywarden(src)
-	new /obj/item/clothing/suit/armor/vest/warden/alt(src)
+	new /obj/item/clothing/suit/armor/vest/zwei/alt(src)
 	new /obj/item/clothing/under/rank/security/warden/formal(src)
 	new /obj/item/clothing/under/rank/security/warden/skirt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)

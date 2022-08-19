@@ -54,26 +54,25 @@
 	AddComponent(/datum/component/butchering, 60, 80) //very imprecise
 
 /obj/item/melee/sabre
-	name = "officer's sabre"
-	desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+	name = "mercenary sabre"
+	desc = "An elegant weapon, its honed edge is capable of cutting through flesh and bone with ease."
 	icon_state = "sabre"
 	inhand_icon_state = "sabre"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
-	force = 15
+	force = 40
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	throwforce = 10
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
-	armour_penetration = 75
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("slashes", "cuts")
 	attack_verb_simple = list("slash", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	custom_materials = list(/datum/material/iron = 1000)
-	wound_bonus = 10
-	bare_wound_bonus = 25
 
 /obj/item/melee/sabre/Initialize()
 	. = ..()

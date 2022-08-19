@@ -305,24 +305,24 @@
 	for(var/datum/mutation/human/clumsy/M in H.dna.mutations)
 		M.mutadone_proof = TRUE
 
-/datum/outfit/centcom/centcom_intern
-	name = "CentCom Intern"
-	var/jb_name = "CentCom Intern" // It is required for unarmed type.
+/datum/outfit/centcom/zwei_crew
+	name = "Zwei Association Crew"
+	var/jb_name = "Zwei Association Crew" // It is required for unarmed type.
 
-	uniform = /obj/item/clothing/under/rank/centcom/intern
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	uniform = /obj/item/clothing/under/rank/civilian/curator/zwei_association
+	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent
-	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/melee/classic_baton
-	l_hand = /obj/item/gun/ballistic/rifle/boltaction/brand_new
+	belt = /obj/item/melee/sabre
+	suit = /obj/item/clothing/suit/armor/vest/zwei
+	l_hand = /obj/item/clothing/accessory/fixer_badge
 	back = /obj/item/storage/backpack/satchel
-	l_pocket = /obj/item/ammo_box/a762
-	r_pocket = /obj/item/ammo_box/a762
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
 	id = /obj/item/card/id/centcom
 	backpack_contents = list(/obj/item/storage/box/survival = 1)
 
-/datum/outfit/centcom/centcom_intern/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/centcom/zwei_crew/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -333,26 +333,23 @@
 	W.registered_name = H.real_name
 	W.update_label()
 
-/datum/outfit/centcom/centcom_intern/unarmed
-	name = "CentCom Intern (Unarmed)"
+/datum/outfit/centcom/zwei_crew/unarmed
+	name = "Zwei Association Crew (Unarmed)"
 	belt = null
 	l_hand = null
 	l_pocket = null
 	r_pocket = null
 
-/datum/outfit/centcom/centcom_intern/leader
-	name = "CentCom Head Intern"
-	jb_name = "CentCom Head Intern"
+/datum/outfit/centcom/zwei_crew/captain
+	name = "Zwei Association Captain"
+	jb_name = "Zwei Association Captain"
 
-	belt = /obj/item/melee/baton/loaded
-	suit = /obj/item/clothing/suit/armor/vest
-	suit_store = /obj/item/gun/ballistic/rifle/boltaction/brand_new
+	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/megaphone
-	head = /obj/item/clothing/head/intern
+	head = /obj/item/clothing/head/collectable/zwei
 
-/datum/outfit/centcom/centcom_intern/leader/unarmed // i'll be nice and let the leader keep their baton and vest
-	name = "CentCom Head Intern (Unarmed)"
-	suit_store = null
+/datum/outfit/centcom/zwei_crew/captain/unarmed // i'll be nice and let the leader keep their baton and vest
+	name = "Zwei Association Captain (Unarmed)"
 	l_pocket = null
 	r_pocket = null
 
