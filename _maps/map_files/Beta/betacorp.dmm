@@ -4052,6 +4052,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
+"wK" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/clothing/head/safety,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "wR" = (
 /obj/machinery/shower{
 	dir = 1
@@ -40090,7 +40095,7 @@ an
 an
 fg
 Pe
-dj
+wK
 Pe
 am
 Tz
