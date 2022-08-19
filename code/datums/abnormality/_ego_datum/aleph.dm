@@ -42,7 +42,7 @@
 // Melting Love - Adoration
 /datum/ego_datum/weapon/adoration
 	item_path = /obj/item/gun/ego_gun/adoration
-	cost = 100
+	cost = 122
 
 /datum/ego_datum/armor/adoration
 	item_path = /obj/item/clothing/suit/armor/ego_gear/adoration
@@ -56,3 +56,16 @@
 /datum/ego_datum/armor/smile
 	item_path = /obj/item/clothing/suit/armor/ego_gear/smile
 	cost = 100
+
+// Staining Rose - Blooming & Flowering Night
+/datum/ego_datum/weapon/blooming
+	item_path = /obj/item/ego_weapon/blooming
+	cost = 100
+
+/datum/ego_datum/armor/blooming
+	item_path = /obj/item/clothing/suit/armor/ego_gear/blooming
+	cost = 100
+
+/datum/ego_datum/armor/flowering
+	item_path = /obj/item/clothing/suit/armor/ego_gear/flowering
+	cost = 250	//You have to constantly be working on this, I'll reward you by letting you buy a much better armor

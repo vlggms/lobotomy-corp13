@@ -100,7 +100,8 @@
 	- If anyone other than the chosen worked on the rose, they became permanently weaker.	<br>
 	- If the employee worked on the rose with justice 4 or lower, they became permanently weaker.	<br>
 	- Every 5 minutes, the Qliphoth Counter lowered.	<br>
-	- When the chosen worked on the rose, the Qliphoth Counter increased.	<br>
+	- When the Staining Rose was worked on, the Qliphoth Counter increased.	<br>
+	- When the employee's justice was under 5, the Qliphoth Counter increased.	<br>
 	<br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
@@ -115,8 +116,10 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 3	<br>
-	- When the work result was Bad or Normal, the Qliphoth Counter lowered.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
 	- Melting Love gave a lump of slime to the first employee (D-03-109-1) who performed any work other than Repression with it. The lump healed D-03-109-1’s SP and raised their work success rate. However, further observation is needed to determine how the lump’s effects change according to the state of Melting Love.	<br>
+	- D-03-109-1 <strong>does not</strong> spread any disease.	<br>
 	- When D-03-109-1 completed Repression Work, the Qliphoth Counter lowered.	<br>
 	- The Qliphoth Counter dropped to 0 when D-03-109-1 died.	<br>
 	<br>

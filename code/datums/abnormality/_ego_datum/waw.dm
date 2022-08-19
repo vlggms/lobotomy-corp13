@@ -53,3 +53,12 @@
 /datum/ego_datum/weapon/magicbullet
 	item_path = /obj/item/gun/ego_gun/magicbullet
 	cost = 50
+
+// Blue Smocked Shepard - Oppression
+/datum/ego_datum/weapon/oppression
+	item_path = /obj/item/ego_weapon/oppression
+	cost = 50
+
+/datum/ego_datum/armor/oppression
+	item_path = /obj/item/clothing/suit/armor/ego_gear/oppression
+	cost = 50

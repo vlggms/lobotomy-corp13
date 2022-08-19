@@ -58,3 +58,21 @@
 /datum/ego_datum/weapon/daredevil
 	item_path = /obj/item/ego_weapon/daredevil
 	cost = 35
+
+// Rudolta - Merriment
+/datum/ego_datum/weapon/christmas
+	item_path = /obj/item/ego_weapon/christmas
+	cost = 35
+
+/datum/ego_datum/armor/christmas
+	item_path = /obj/item/clothing/suit/armor/ego_gear/christmas
+	cost = 35
+
+// Warm-Hearted Woodsman
+/datum/ego_datum/weapon/logging
+	item_path = /obj/item/ego_weapon/logging
+	cost = 35
+
+/datum/ego_datum/armor/logging
+	item_path = /obj/item/clothing/suit/armor/ego_gear/logging
+	cost = 35

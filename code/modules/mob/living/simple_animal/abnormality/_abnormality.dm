@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality
 	name = "Abnormality"
-	desc = "An abnormality..?"
+	desc = "An abnormality..? You should report this to the Head!"
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
 	stat_attack = DEAD
@@ -15,6 +15,7 @@
 	aggro_vision_range = 20
 	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
 	pull_force = MOVE_FORCE_STRONG
+	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
@@ -40,38 +41,10 @@
 	var/small_sprite_type
 	/// Work types and chances
 	var/list/work_chances = list(
-							ABNORMALITY_WORK_INSTINCT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_INSIGHT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_ATTACHMENT = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														),
-							ABNORMALITY_WORK_REPRESSION = list(
-														1 = 50,
-														2 = 50,
-														3 = 50,
-														4 = 50,
-														5 = 50,
-														6 = 50
-														)
+							ABNORMALITY_WORK_INSTINCT = list(50, 55, 60, 65, 70),
+							ABNORMALITY_WORK_INSIGHT = list(50, 55, 60, 65, 70),
+							ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
+							ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70)
 							)
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2

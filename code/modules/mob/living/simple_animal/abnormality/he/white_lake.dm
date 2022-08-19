@@ -55,23 +55,37 @@
 		return
 	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
-	champion = null
 	H.equipOutfit(whitelake)	//Get outfit
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)
 	//Replaces AI with murder one
+	if (!H.sanity_lost)
+		H.adjustSanityLoss(-500)
+	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
-	H.ghostize()
 	H.InitializeAIController()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
-	H.dropItemToGround(held) 	//Drop weapon
+	H.dropItemToGround(held) //Drop weapon
+	RegisterSignal(H, COMSIG_LIVING_DEATH, .proc/Champion_Death_Sword)
+	ADD_TRAIT(wep, TRAIT_NODROP, wep)
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE
+
+// If Champ dies, sword is droppable
+/mob/living/simple_animal/hostile/abnormality/whitelake/proc/Champion_Death_Sword(mob/living/gibbed)
+	var/obj/item/ego_weapon/flower_waltz/sword
+	if (istype(gibbed.get_active_held_item(), /obj/item/ego_weapon/flower_waltz))
+		sword = gibbed.get_active_held_item()
+		REMOVE_TRAIT(sword, TRAIT_NODROP, src)
+	if (istype(gibbed.get_inactive_held_item(), /obj/item/ego_weapon/flower_waltz))
+		sword = gibbed.get_inactive_held_item()
+		REMOVE_TRAIT(sword, TRAIT_NODROP, src)
+	UnregisterSignal(gibbed, COMSIG_LIVING_DEATH)
 
 //Outfit and Attacker's sword.
 /datum/outfit/whitelake
@@ -87,14 +101,32 @@
 /obj/item/ego_weapon/flower_waltz
 	name = "waltz of the flowers"
 	desc = "It's awfully fun to write a march for tin soldiers, a waltz of the flowers."
+	special = "Cannot be dropped until moved from your hands. Twice as effective against monsters."
 	icon_state = "flower_waltz"
-	force = 18
+	force = 22
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	//No requirements because who knows who will use it.
+
+// Sets the weapon to not be droppable until it's moved from the main hand. No more leg sweeping.
+/obj/item/ego_weapon/flower_waltz/equipped(mob/user, slot, initial = FALSE)
+	.=..()
+	if (slot != ITEM_SLOT_HANDS)
+		REMOVE_TRAIT(src, TRAIT_NODROP, src)
+
+/obj/item/ego_weapon/flower_waltz/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	if (!ishuman(A) && istype(A, /mob/living))
+		force = 44
+	return
+
+/obj/item/ego_weapon/flower_waltz/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	force = 22
+	return
 
 //Slightly different AI lines
 /datum/ai_controller/insane/murder/whitelake
@@ -122,19 +154,18 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		//To avoid bugs, I am instead reducing by a flat amount, so that you can't change it by applying a separate defense mod while it is active
-		L.physiology.red_mod -= 0.7
-		L.physiology.white_mod -= 0.9
-		L.physiology.black_mod -= 0.9
-		L.physiology.pale_mod -= 0.8
+		L.physiology.red_mod *= 0.3
+		L.physiology.white_mod *= 0.1
+		L.physiology.black_mod *= 0.1
+		L.physiology.pale_mod *= 0.2
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod += 0.7
-		L.physiology.white_mod += 0.9
-		L.physiology.black_mod += 0.9
-		L.physiology.pale_mod += 0.8
+		L.physiology.red_mod /= 0.3
+		L.physiology.white_mod /= 0.1
+		L.physiology.black_mod /= 0.1
+		L.physiology.pale_mod /= 0.2
 
 #undef STATUS_EFFECT_CHAMPION

@@ -145,7 +145,7 @@
 		to_chat(user, "<span class='warning'>The burden of [duffelvictim]'s duffel bag becomes too much, shoving them to the floor!</span>")
 		to_chat(duffelvictim, "<span class='warning'>The weight of this bag becomes overburdening!</span>")
 		return ..()
-	
+
 	var/obj/item/storage/backpack/duffelbag/cursed/conjuredduffel= new get_turf(target)
 
 	duffelvictim.visible_message("<span class='danger'>A growling duffel bag appears on [duffelvictim]!</span>", \
@@ -161,4 +161,47 @@
 				duffelvictim.put_in_hands(conjuredduffel)
 			else
 				return ..()
+	return ..()
+
+/obj/item/melee/touch_attack/necrotic_revival
+	name = "\improper Necromancer's touch"
+	desc = "An overwhelmingly powerful energy that can revive dead creatures on touch."
+	catchphrase = "Rise again!"
+	on_use_sound = 'sound/magic/voidblink.ogg'
+	icon_state = "necrotic_revival"
+	inhand_icon_state = "necrotic_revival"
+
+/obj/item/melee/touch_attack/necrotic_revival/afterattack(atom/target, mob/living/carbon/user, proximity)
+	if(!proximity || target == user || !ishuman(target) || !iscarbon(user))
+		return
+	if(!(user.mobility_flags & MOBILITY_USE))
+		to_chat(user, "<span class='warning'>You can't reach out!</span>")
+		return
+	if(!user.can_speak_vocal())
+		to_chat(user, "<span class='warning'>You can't get the words out!</span>")
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.anti_magic_check())
+		to_chat(user, "<span class='warning'>The spell can't seem to affect [H]!</span>")
+		..()
+		return
+	if(H.stat != DEAD)
+		if(isskeleton(target) || isvampire(target) || iszombie(target))
+			H.revive(full_heal = TRUE, admin_revive = TRUE)
+			to_chat(H, "<span class='userdanger'>You have been healed by [user.real_name]!</span>")
+			return ..()
+		to_chat(user, "<span class='warning'>The spell can only affect the dead, or living dead!</span>")
+		return
+	var/mob/dead/observer/ghost = H.get_ghost(TRUE, TRUE)
+	if(!H.client)
+		if(ghost?.can_reenter_corpse)
+			ghost.reenter_corpse()
+		else
+			to_chat(user, "<span class='warning'>[H] has no soul!</span>")
+			return
+
+	H.set_species(/datum/species/skeleton/necromancer, icon_update=0)
+	H.revive(full_heal = TRUE, admin_revive = TRUE)
+	to_chat(H, "<span class='userdanger'>You have been revived by [user.real_name]!</span>")
+
 	return ..()

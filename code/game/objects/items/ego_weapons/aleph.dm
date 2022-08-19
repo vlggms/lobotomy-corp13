@@ -157,6 +157,7 @@
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
+	special = "This weapon heals you on hit."
 	icon_state = "mimicry"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -179,13 +180,13 @@
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.2
+		var/heal_amt = force*0.15
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			heal_amt = 0 // In case damage_coeff is 0 or doesn't exist
-			if(S.damage_coeff[damtype])
-				if(S.damage_coeff[damtype] > 0)
-					heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff[damtype] > 0)
+				heal_amt *= S.damage_coeff[damtype]
+			else
+				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
 	..()
 
@@ -225,7 +226,9 @@
 /obj/item/ego_weapon/gold_rush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
+	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gold_rush"
+	force = 130
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -233,6 +236,8 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/goldrush_damage = 130
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/gold_rush/attack(mob/living/target, mob/living/user)
@@ -243,8 +248,7 @@
 		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
 						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
-
-
+		goldrush_damage = force
 		//I gotta regrab  justice here
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
@@ -259,6 +263,7 @@
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
+		goldrush_damage = initial(goldrush_damage)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
@@ -293,3 +298,39 @@
 	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth*0.1)	//Heal 10% HP. Moved here from the armor, because that's a nightmare to code
+
+/obj/item/ego_weapon/blooming
+	name = "blooming"
+	desc = "A rose is a rose, by any other name."
+	special = "Use this weapon to change it's damage type between red, white and pale."	//like a different rabbit knife. No black though
+	icon_state = "rosered"
+	force = 70 //Less damage, can swap damage type
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "slices")
+	attack_verb_simple = list("cuts", "slices")
+	hitsound = 'sound/weapons/ego/rapier2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/ego_weapon/blooming/attack_self(mob/living/user)
+	switch(damtype)
+		if(RED_DAMAGE)
+			damtype = WHITE_DAMAGE
+			force = 60 //Prefers red, you can swap to white if needed
+			icon_state = "rosewhite"
+		if(WHITE_DAMAGE)
+			damtype = PALE_DAMAGE
+			force = 40	//I'm not making this more than 40.
+			icon_state = "rosepale"
+		if(PALE_DAMAGE)
+			damtype = RED_DAMAGE
+			force = 70
+			icon_state = "rosered"
+	armortype = damtype
+	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")
+	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
