@@ -152,6 +152,10 @@
 	name = "R-Corporation Lawnmower 3000"
 	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
 	icon_state = "rabbit"
+<<<<<<< HEAD
+=======
+
+>>>>>>> fbe1e5b2a631cce54fd825c0b44000da6a4c24e0
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
