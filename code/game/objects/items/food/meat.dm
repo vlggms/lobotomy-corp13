@@ -615,7 +615,7 @@
 	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
 
 /obj/item/food/meat/slab/human/mutant/worm
-	name = "the perfect meat"
+	name = "perfect meat"
 	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of jelly."
 	icon_state = "wormmeat"
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
