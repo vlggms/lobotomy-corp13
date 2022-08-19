@@ -223,8 +223,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
 
 /obj/item/radio/headset/headset_cent
-	name = "\improper Zwei Association headset"
-	desc = "A headset used by fixers of the Zwei Association, an office dedicated to peacekeeping and civil protection."
+	name = "\improper R-Corporation headset"
+	desc = "A headset used by the upper echelons of R-Corporation, a powerful private security corporation."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/heads/manager
 	keyslot2 = new /obj/item/encryptionkey/headset_cent
@@ -246,6 +246,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/headset_cent/alt/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/earprotection, list(ITEM_SLOT_EARS))
+
+/obj/item/radio/headset/headset_cent/zwei
+	name = "\improper Zwei Association headset"
+	desc = "A headset used by fixers of the Zwei Association, an office dedicated to peacekeeping and civil protection."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/heads/manager
+	keyslot2 = new /obj/item/encryptionkey/headset_cent
 
 /obj/item/radio/headset/silicon/pai
 	name = "\proper mini Integrated Subspace Transceiver "

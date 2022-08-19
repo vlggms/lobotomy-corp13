@@ -512,9 +512,9 @@ update_label()
 		..()
 
 /obj/item/card/id/centcom
-	name = "\improper Zwei Association ID"
-	id_type_name = "\improper Zwei Association ID"
-	desc = "An ID straight from the Zwei."
+	name = "\improper Hana Association ID"
+	id_type_name = "\improper Hana Association ID"
+	desc = "An ID straight from the Hana Association."
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "Central Command"
@@ -524,6 +524,26 @@ update_label()
 /obj/item/card/id/centcom/Initialize()
 	access = get_all_centcom_access()
 	. = ..()
+
+/obj/item/card/id/centcom/zwei
+	name = "\improper Zwei Association ID"
+	id_type_name = "\improper Zwei Association ID"
+	desc = "An ID straight from the Zwei Association, fixers with a professional attitude."
+	icon_state = "centcom"
+	registered_name = "Zwei Association Crew"
+	assignment = "Zwei Association Crew"
+	uses_overlays = FALSE
+	registered_age = null
+
+/obj/item/card/id/centcom/zwei/captain
+	name = "\improper Zwei Captain ID"
+	id_type_name = "\improper Zwei Captain ID"
+	desc = "An ID straight from the Zwei Association, fixers with a professional attitude."
+	icon_state = "centcom"
+	registered_name = "Zwei Association Captain"
+	assignment = "Zwei Association Captain"
+	uses_overlays = FALSE
+	registered_age = null
 
 /obj/item/card/id/ert
 	name = "\improper R-Corporation ID"
