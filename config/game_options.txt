@@ -74,12 +74,12 @@ HUMANS_NEED_SURNAMES
 
 
 ## ALERT LEVELS ###
-ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
-ALERT_BLUE_UPTO The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, searches are permitted within a reason.
-ALERT_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
-ALERT_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised. Additionally, access requirements on some doors have been lifted.
-ALERT_RED_DOWNTO The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
-ALERT_DELTA Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
+ALERT_GREEN Warning level has been reset. All dangerous abnormalities have been re-contained and situation is under control.
+ALERT_BLUE_UPTO First warning level achieved. Few dangerous abnormalities have breached the containment.
+ALERT_BLUE_DOWNTO Warning level reset to first. Most dangerous abnormalities have been re-contained, but situation is still threatening.
+ALERT_RED_UPTO Second warning level achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control.
+ALERT_RED_DOWNTO Warning level reset to second. Facility's integrity is no longer in danger, but most abnormalities are still not re-contained.
+ALERT_DELTA Warning level three achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost.
 
 ## INFILTRATOR SPAWN MESSAGES ###
 INFILTRATOR_SYNDICATE_MESSAGE You are a syndicate infiltrator, and you are free to complete your objectives in any way you desire, as long as it helps to finish them, of course.

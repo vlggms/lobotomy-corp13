@@ -138,7 +138,7 @@
 					return
 
 			var/new_sec_level = seclevel2num(params["newSecurityLevel"])
-			if (new_sec_level != SEC_LEVEL_GREEN && new_sec_level != SEC_LEVEL_BLUE)
+			if (new_sec_level != SEC_LEVEL_GREEN && new_sec_level != SEC_LEVEL_BLUE && new_sec_level != SEC_LEVEL_RED && new_sec_level != SEC_LEVEL_DELTA)
 				return
 			if (GLOB.security_level == new_sec_level)
 				return
