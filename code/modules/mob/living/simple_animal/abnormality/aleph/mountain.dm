@@ -168,7 +168,7 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
 	if(increase)
-		if(belly >= 5)
+		if(belly >= 3)
 			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
