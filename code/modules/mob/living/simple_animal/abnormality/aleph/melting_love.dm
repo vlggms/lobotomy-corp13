@@ -22,10 +22,10 @@
 	melee_damage_upper = 50
 	projectiletype = /obj/projectile/melting_blob
 	ranged = TRUE
-	minimum_distance = 1
+	minimum_distance = 0
 	ranged_cooldown_time = 5 SECONDS
 	speed = 2
-	move_to_delay = 5
+	move_to_delay = 4
 	/* Works */
 	start_qliphoth = 3
 	can_breach = TRUE
@@ -79,23 +79,9 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/PickTarget(list/Targets) // We attack corpses first if there are any thanks mobs
-	var/list/highest_priority = list()
-	var/list/lower_priority = list()
-	for(var/mob/living/L in Targets)
-		if(!CanAttack(L))
-			continue
-		if(L.health < 0 || L.stat == DEAD)
-			if(ishuman(L))
-				highest_priority += L
-			else
-				lower_priority += L
-		else if(L.health < L.maxHealth*0.5)
-			lower_priority += L
-	if(LAZYLEN(highest_priority))
-		return pick(highest_priority)
-	if(LAZYLEN(lower_priority))
-		return pick(lower_priority)
+/mob/living/simple_animal/hostile/abnormality/melting_love/MoveToTarget(list/possible_targets)
+	if(ranged_cooldown <= world.time)
+		OpenFire(target)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
@@ -219,7 +205,7 @@
 	melee_damage_upper = 24
 	rapid_melee = 2
 	speed = 2
-	move_to_delay = 4
+	move_to_delay = 3
 	/* Sounds */
 	deathsound = 'sound/effects/blobattack.ogg'
 	attack_sound = 'sound/effects/attackblob.ogg'
@@ -241,25 +227,6 @@
 		var/mob/living/L = target
 		if(L.stat == DEAD)
 			return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/slime/PickTarget(list/Targets) // We attack corpses first if there are any thanks mobs
-	var/list/highest_priority = list()
-	var/list/lower_priority = list()
-	for(var/mob/living/L in Targets)
-		if(!CanAttack(L))
-			continue
-		if(L.health < 0 || L.stat == DEAD)
-			if(ishuman(L))
-				highest_priority += L
-			else
-				lower_priority += L
-		else if(L.health < L.maxHealth*0.5)
-			lower_priority += L
-	if(LAZYLEN(highest_priority))
-		return pick(highest_priority)
-	if(LAZYLEN(lower_priority))
-		return pick(lower_priority)
 	return ..()
 
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
@@ -288,7 +255,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 24
 	melee_damage_upper = 40
-	move_to_delay = 3
 
 /mob/living/simple_animal/hostile/slime/big/Initialize()
 	. = ..()

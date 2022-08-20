@@ -38,8 +38,8 @@
 	name = "slime projectile"
 	icon_state = "slime"
 	desc = "A glob of infectious slime. It's going for your heart."
-	damage = 0
-	spread = 15
+	nodamage = TRUE
+	spread = 10
 	speed = 1.2
 	hitsound = "sound/effects/footstep/slime1.ogg"
 	var/maxdmg = null
@@ -59,13 +59,18 @@
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
-		else
-			H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
-			H.apply_damage(rand(mindmg,maxdmg), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
-			if(!isbot(H) && isliving(H))
-				for(var/i = 1 to 10)
-					addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
-				return BULLET_ACT_HIT
+		if(H.stat == DEAD && ishuman(H))
+			var/turf/T = get_turf(H)
+			visible_message("<span class='danger'>[src] submerge in slime \the [H] and another Slime Pawn appears!</span>")
+			H.gib()
+			new /mob/living/simple_animal/hostile/slime(T)
+			return BULLET_ACT_HIT
+		H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
+		H.apply_damage(rand(mindmg,maxdmg), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+		if(!isbot(H) && isliving(H))
+			for(var/i = 1 to 10)
+				addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
+			return BULLET_ACT_HIT
 	. = ..()
 
 /obj/projectile/mountain_spit
