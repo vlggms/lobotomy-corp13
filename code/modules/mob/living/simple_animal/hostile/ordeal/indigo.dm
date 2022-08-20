@@ -48,6 +48,29 @@
 	L.gib()
 	return TRUE
 
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/PickTarget(list/Targets)
+	if(health <= maxHealth * 0.6) // If we're damaged enough
+		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/sweeper in view(7, src)) // And there is no sweepers even more damaged than us
+			if(sweeper.stat != DEAD && (health > sweeper.health))
+				sweeper.PickTarget(Targets) // Let this sweeper see the same targets as we do
+				return ..()
+		var/list/highest_priority = list()
+		for(var/mob/living/L in Targets)
+			if(!CanAttack(L))
+				continue
+			if(L.health < 0 || L.stat == DEAD)
+				highest_priority += L
+		if(LAZYLEN(highest_priority))
+			return pick(highest_priority)
+	var/list/lower_priority = list() // We aren't exactly damaged, but it'd be a good idea to finish the wounded first
+	for(var/mob/living/L in Targets)
+		if(!CanAttack(L))
+			continue
+		if(L.health < L.maxHealth*0.5 && (L.stat < UNCONSCIOUS))
+			lower_priority += L
+	if(LAZYLEN(lower_priority))
+		return pick(lower_priority)
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight
 	name = "Matriarch"
@@ -73,7 +96,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.05)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
 
@@ -169,9 +192,9 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.1)
-	move_to_delay -= move_to_delay*0.4
-	speed += speed*0.4
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
+	move_to_delay -= move_to_delay*0.3
+	speed -= speed*0.3
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -188,9 +211,9 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.2)
-	move_to_delay -= move_to_delay*0.4
-	speed += speed*0.4
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
+	move_to_delay -= move_to_delay*0.3
+	speed -= speed*0.3
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15

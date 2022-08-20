@@ -82,12 +82,12 @@
 	faction = list("green_ordeal")
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 900
+	health = 900
 	speed = 3
 	move_to_delay = 6
-	melee_damage_lower = 26 // Full damage is done on the entire turf of target
-	melee_damage_upper = 30
+	melee_damage_lower = 22 // Full damage is done on the entire turf of target
+	melee_damage_upper = 26
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
@@ -120,7 +120,7 @@
 	if(reloading)
 		return FALSE
 	fire_count += 1
-	if(fire_count >= 8)
+	if(fire_count >= 6)
 		StartReloading()
 		return FALSE
 	return ..()
@@ -179,7 +179,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
 
-	var/spawn_progress = 20
+	var/spawn_progress = 10
 	var/list/spawned_mobs = list()
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
@@ -201,13 +201,13 @@
 		if(L.stat == DEAD || QDELETED(L))
 			spawned_mobs -= L
 	update_icon()
-	if(length(spawned_mobs) >= 15)
+	if(length(spawned_mobs) >= 9)
 		return
 	if(spawn_progress < 20)
 		spawn_progress += 1
 		return
 	flick("green_dusk_create", src)
-	spawn_progress = -2 // Basically, puts us on a tiny cooldown
+	spawn_progress = -5 // Basically, puts us on a tiny cooldown
 	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
