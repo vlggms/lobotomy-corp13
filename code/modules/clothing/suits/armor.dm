@@ -320,15 +320,26 @@ I don't want them gaming ego right off the bat beacuse this one actually looks p
 It's not great though.
 */
 /obj/item/clothing/suit/armor/extraction
-	name = "Patchwork Coat"
+	name = "patchwork coat"
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the extraction officer"
 	icon_state = "extraction"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 
+/obj/item/clothing/suit/armor/extraction/arbiter
+	name = "arbiter's armored coat"
+	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
+	w_class = WEIGHT_CLASS_BULKY
+	slowdown = 1.5
+	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
+
 /obj/item/clothing/suit/armor/records
-	name = "Old Coat"
+	name = "old coat"
 	icon = 'icons/obj/clothing/suits.dmi'
 	worn_icon = 'icons/mob/clothing/suit.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed grey. Worn by the records officer"

@@ -242,6 +242,10 @@
 	icon_state = "1"
 	duration = 5
 
+/obj/effect/temp_visual/sparks
+	icon_state = "sparks"
+	duration = 5
+
 /obj/effect/temp_visual/revenant
 	name = "spooky lights"
 	icon_state = "purplesparkles"

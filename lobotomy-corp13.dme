@@ -1728,6 +1728,7 @@
 #include "code\modules\antagonists\valentines\heartbreaker.dm"
 #include "code\modules\antagonists\valentines\valentine.dm"
 #include "code\modules\antagonists\wishgranter\wishgranter.dm"
+#include "code\modules\antagonists\wizard\arbiter.dm"
 #include "code\modules\antagonists\wizard\wizard.dm"
 #include "code\modules\antagonists\wizard\equipment\artefact.dm"
 #include "code\modules\antagonists\wizard\equipment\soulstone.dm"

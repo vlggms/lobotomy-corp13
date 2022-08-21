@@ -74,6 +74,7 @@
 
 /obj/effect/proc_holder/spell/aimed/proc/fire_projectile(mob/living/user, atom/target)
 	current_amount--
+	var/list/fired_projs = list()
 	for(var/i in 1 to projectiles_per_fire)
 		var/obj/projectile/P = new projectile_type(user.loc)
 		P.firer = user
@@ -83,7 +84,8 @@
 				P.vv_edit_var(V, projectile_var_overrides[V])
 		ready_projectile(P, target, user, i)
 		P.fire()
-	return TRUE
+		fired_projs += P
+	return fired_projs
 
 /obj/effect/proc_holder/spell/aimed/proc/ready_projectile(obj/projectile/P, atom/target, mob/user, iteration)
 	return
@@ -185,3 +187,48 @@
 	P.pixel_x = rand(-projectile_location_spread_amount, projectile_location_spread_amount)
 	P.pixel_y = rand(-projectile_location_spread_amount, projectile_location_spread_amount)
 	P.preparePixelProjectile(target, user, null, current_angle)
+
+/obj/effect/proc_holder/spell/aimed/fairy
+	name = "Fairy"
+	desc = "Fire a line of damaging essence using power of the Fairy singularity."
+	school = SCHOOL_EVOCATION
+	charge_max = 100
+	clothes_req = FALSE
+	projectile_amount = 5
+	invocation_type = "none"
+	base_icon_state = "lightning"
+	action_icon_state = "lightning0"
+	sound = 'sound/magic/arbiter/fairy.ogg'
+	active_msg = "You activate the power of Fairy singularity!"
+	deactive_msg = "You let the energy flow out of your hands back into its storage space..."
+	projectile_type = /obj/projectile/beam/fairy
+
+/obj/effect/proc_holder/spell/aimed/pillar
+	name = "Pillar"
+	desc = "Fire a heavy pillar that will initiate meltdown process for each console it hits and throw enemies around."
+	school = SCHOOL_EVOCATION
+	charge_max = 300
+	clothes_req = FALSE
+	invocation_type = "none"
+	base_icon_state = "immrod"
+	action_icon_state = "immrod"
+	sound = 'sound/magic/arbiter/pillar_start.ogg'
+	active_msg = "You prepare the pillar."
+	deactive_msg = "You remove the pillar from this plane, for now..."
+	projectile_type = /obj/projectile/magic/aoe/pillar
+	var/fire_delay = 1 SECONDS
+
+/obj/effect/proc_holder/spell/aimed/pillar/fire_projectile(mob/living/user, atom/target)
+	current_amount--
+	var/list/fired_projs = list()
+	for(var/i in 1 to projectiles_per_fire)
+		var/obj/projectile/P = new projectile_type(get_turf(user))
+		P.firer = user
+		P.preparePixelProjectile(target, user)
+		for(var/V in projectile_var_overrides)
+			if(P.vars[V])
+				P.vv_edit_var(V, projectile_var_overrides[V])
+		ready_projectile(P, target, user, i)
+		addtimer(CALLBACK (P, .obj/projectile/proc/fire), fire_delay)
+		fired_projs += P
+	return fired_projs
