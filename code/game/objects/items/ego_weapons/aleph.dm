@@ -295,7 +295,7 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if(target.health<=target.maxHealth *0.1	|| target.stat == DEAD)	//Makes up for the lack of damage by automatically killing things under 10% HP
+	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth*0.1)	//Heal 10% HP. Moved here from the armor, because that's a nightmare to code
 

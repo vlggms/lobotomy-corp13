@@ -134,6 +134,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
+	if (GODMODE in user.status_flags)
+		return
 	if(!gifted_human && istype(user) && work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
 		gifted_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)

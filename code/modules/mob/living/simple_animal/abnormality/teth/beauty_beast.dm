@@ -42,7 +42,7 @@
 			injured = TRUE
 			icon_state = "beauty_injured"
 
-		else //If you already did repression, die.
+		else if (!(GODMODE in user.status_flags))//If you already did repression, die.
 			user.gib()
 			death()
 

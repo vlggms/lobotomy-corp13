@@ -236,6 +236,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	if (GODMODE in user.status_flags)
+		return
 	disguise_as(user)
 	return
 
