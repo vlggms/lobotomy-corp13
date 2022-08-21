@@ -52,7 +52,7 @@
 	I’d be lying in my grave."
 	icon_state = "wings"
 	//Just Kinda meh. A lot of WAWs do black at the time of writing so
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -72,20 +72,21 @@
 	desc = "The Devil ultimately wished for despair.\
 		For despair wears down the mind and drains one's will to go forward. When one feels there's nothing left to go for, their soul falls down to Hell, the Devil's domain."
 	icon_state = "magic_bullet"
-	// Magic Bullet has WAW-tier requirements and goes with a WAW-tier gun, but is not quite WAW-tier itself. Still, valuable if you're a well-rounded agent doing well-rounded work.
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	// Magic Bullet has WAW-tier requirements and goes with a WAW-tier gun, but is not quite WAW-tier itself. Still, valuable if you're a well-rounded agent doing well-rounded work. - NB
+	// I kept it well-rounded, and lowered the requirements, It's now LIKE a waw with it's good, well-rounded defenses, but it was generally lowered.
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/christmas
 	name = "christmas"
 	desc = "When the rusty sleigh bells are ajingle, Christmas begins."
 	icon_state = "christmas"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -30, PALE_DAMAGE = 25)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -10, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
+							FORTITUDE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/logging
