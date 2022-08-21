@@ -12,7 +12,7 @@
 	damage = 88
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	spread = 15
+	spread = 10
 	speed = 1.2
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
