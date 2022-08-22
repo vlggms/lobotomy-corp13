@@ -85,19 +85,17 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	// Update list of abnormalities that can be affected by meltdown
-	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 20 MINUTES)
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 30 MINUTES)
 		qliphoth_meltdown_affected -= ZAYIN_LEVEL
-	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 40 MINUTES)
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 60 MINUTES)
 		qliphoth_meltdown_affected -= TETH_LEVEL
-	if((HE_LEVEL in qliphoth_meltdown_affected) && world.time >= 70 MINUTES)
-		qliphoth_meltdown_affected -= HE_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.2)
+	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.3)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
