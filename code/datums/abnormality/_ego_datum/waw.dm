@@ -49,7 +49,6 @@
 	cost = 50
 
 // Der Freischutz - Magic Bullet
-
 /datum/ego_datum/weapon/magicbullet
 	item_path = /obj/item/gun/ego_gun/magicbullet
 	cost = 50
@@ -71,3 +70,12 @@
 /datum/ego_datum/weapon/solemnlament
 	item_path = /obj/item/gun/ego_gun/solemnlament
 	cost = 25
+	
+// General Bee - Loyalty
+/datum/ego_datum/weapon/loyalty
+	item_path = /obj/item/gun/ego_gun/loyalty
+	cost = 50
+
+/datum/ego_datum/armor/loyalty
+	item_path = /obj/item/clothing/suit/armor/ego_gear/loyalty
+	cost = 50

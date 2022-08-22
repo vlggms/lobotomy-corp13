@@ -44,6 +44,7 @@
 
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
+	icon_state = "magic_bullet"
 	damage = 80
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
@@ -62,3 +63,26 @@
 	icon_state = "blackfly"
 	damage = 15
 	damage_type = BLACK_DAMAGE
+	
+//Smartgun
+/obj/projectile/ego_bullet/ego_loyalty
+	name = "loyalty"
+	icon_state = "loyalty"
+	damage = 8
+	speed = 0.2
+	nodamage = TRUE	//Damage is calculated later
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+
+/obj/projectile/ego_bullet/ego_loyalty/on_hit(atom/target, blocked = FALSE)
+	if(!ishuman(target))
+		nodamage = FALSE
+	else
+		return
+	..()
+	if(!ishuman(target))
+		qdel(src)
+
+

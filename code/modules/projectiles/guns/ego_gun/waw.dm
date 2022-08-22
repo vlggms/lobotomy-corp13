@@ -101,3 +101,20 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 60
 	)
+
+/obj/item/gun/ego_gun/loyalty
+	name = "loyalty"
+	desc = "Courtesy of the 16th Ego rifleman's brigade."
+	icon_state = "loyalty"
+	inhand_icon_state = "beak"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
+	weapon_weight = WEAPON_HEAVY
+	spread = 8
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/loyalty/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.07 SECONDS)
