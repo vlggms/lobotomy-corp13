@@ -17,3 +17,8 @@
 	name = "magic bullet casing"
 	desc = "A magic casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_magicbullet
+
+/obj/item/ammo_casing/caseless/ego_loyalty
+	name = "loyalty casing"
+	desc = "A loyalty casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_loyalty

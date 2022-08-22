@@ -193,3 +193,23 @@
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Very High<br>"}
 
+//Old Lady
+/obj/item/paper/fluff/info/teth/oldlady
+	name = "O-01-12"
+	info = {"<h1><center>O-01-12</center></h1>	<br>
+	Name : Old Lady	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 4	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- Over time, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached 0, black shapes formed inside the Containment Unit. We’ve decided to dub these shapes SOLITUDE based on the condition in which they form.	<br>
+	- When the solitude piled up, NAME had to clear it manually.	<br>
+	- NAME had to deal with continuous WHITE damage until the solitude eventually fell off. Until it was gone, they could not move or do any other work.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Low<br>"}
+
