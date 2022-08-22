@@ -1,0 +1,176 @@
+/mob/living/simple_animal/hostile/abnormality/general_b
+	name = "General Bee"
+	desc = "A bee humanoid creature."
+	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	icon_state = "generalbee"
+	icon_living = "generalbee"
+	faction = list("hostile")
+	speak_emote = list("buzzes")
+	pixel_x = -8
+	base_pixel_x = -8
+	threat_level = WAW_LEVEL
+	start_qliphoth = 1
+	work_chances = list(
+						ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 45, 50),
+						ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
+						)
+	work_damage_amount = 10
+	work_damage_type = RED_DAMAGE
+	ego_list = list(
+		/datum/ego_datum/weapon/loyalty,
+		/datum/ego_datum/armor/loyalty
+		)
+	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	melee_damage_lower = 40
+	melee_damage_upper = 52
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	//She has a Quad Artillery Cannon
+	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
+	var/fire_cooldown
+	var/fireball_range = 30
+	var/volley_count
+
+/mob/living/simple_animal/hostile/abnormality/general_b/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40))
+		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/general_b/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/general_b/zero_qliphoth(mob/living/carbon/human/user)
+	if(!(status_flags & GODMODE)) // If it's breaching right now
+		return	//Yeah don't increase Qliphoth
+	spawn_bees()
+	datum_reference.qliphoth_change(1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/general_b/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((fire_cooldown < world.time))
+		fireshell()
+
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
+	fire_cooldown = world.time + fire_cooldown_time
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		targets += L
+	new /obj/effect/beeshell(get_turf(pick(targets)))
+	volley_count+=1
+	if(volley_count>=4)
+		volley_count=0
+		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
+
+/mob/living/simple_animal/hostile/abnormality/general_b/breach_effect()
+	icon_state = "generalbee_breach"
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
+	SLEEP_CHECK_DEATH(80)
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	icon_living = "general_breach"
+	icon_state = icon_living
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(2, orgin)
+	for(var/turf/Y in all_turfs)
+		if(prob(60))
+			new /mob/living/simple_animal/hostile/worker_bee/soldier(Y)
+		else if(prob(20))
+			new /mob/living/simple_animal/hostile/artillery_bee(T)
+	..()
+	datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/spawn_bees()
+	var/X = pick(GLOB.xeno_spawn)
+	var/turf/T = get_turf(X)
+	new /mob/living/simple_animal/hostile/artillery_bee(T)
+	for(var/y = 1 to 5)
+		new /mob/living/simple_animal/hostile/worker_bee/soldier(T)
+
+/* Soldier bees */
+/mob/living/simple_animal/hostile/worker_bee/soldier
+	name = "soldier bee"
+	desc = "A disfigured creature with nasty fangs, and a snazzy cap"
+	icon_state = "soldier_bee"
+	icon_living = "soldier_bee"
+
+/* Artillery bees */
+/mob/living/simple_animal/hostile/artillery_bee
+	name = "artillery bee"
+	desc = "A disfigured creature with nasty fangs, and an oversized thorax"
+	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	icon_state = "artillerysergeant"
+	icon_living = "artillerysergeant"
+	friendly_verb_continuous = "scorns"
+	friendly_verb_simple = "scorns"
+	pixel_x = -8
+	base_pixel_x = -8
+	pixel_y = -8
+	base_pixel_y = -8
+
+	var/fire_cooldown_time = 10 SECONDS
+	var/fire_cooldown
+	var/fireball_range = 30
+
+/mob/living/simple_animal/hostile/artillery_bee/Initialize()
+	fire_cooldown = world.time + fire_cooldown_time
+	..()
+
+/mob/living/simple_animal/hostile/artillery_bee/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((fire_cooldown < world.time))
+		fireshell()
+
+/mob/living/simple_animal/hostile/artillery_bee/proc/fireshell()
+	fire_cooldown = world.time + fire_cooldown_time
+	var/list/targets = list()
+	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		targets += L
+	new /obj/effect/beeshell(get_turf(pick(targets)))
+
+/obj/effect/beeshell
+	name = "bee shell"
+	desc = "A target warning you of incoming pain"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "beetillery"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/boom_damage = 100 //Half Red, Half Black
+
+/obj/effect/beeshell/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/explode), 2 SECONDS)
+
+//Smaller Scorched Girl bomb
+/obj/effect/beeshell/proc/explode()
+	playsound(get_turf(src), 'sound/effects/explosion2.ogg', 50, 0, 8)
+	for(var/mob/living/carbon/human/H in view(3, src))
+		H.apply_damage(boom_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.apply_damage(boom_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		if(H.health < 0)
+			H.gib()
+	new /obj/effect/temp_visual/explosion(get_turf(src))
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(3, get_turf(src))
+	S.start()
+	qdel(src)
+

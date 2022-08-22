@@ -27,3 +27,8 @@
 	name = "solemn casing"
 	desc = "a solemn casing"
 	projectile_type = /obj/projectile/ego_bullet/ego_solemnvow
+	
+/obj/item/ammo_casing/caseless/ego_loyalty
+	name = "loyalty casing"
+	desc = "A loyalty casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_loyalty

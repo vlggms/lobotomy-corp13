@@ -153,3 +153,28 @@
 	<h4>Black Resistance:</h4> Ineffective	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
 
+//General Bee
+/obj/item/paper/fluff/info/waw/generalbee
+	name = "T-01-118"
+	info = {"<h1><center>T-01-118</center></h1>	<br>
+	Name : General Bee	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
+	- When the Qliphoth Counter reached 0, General Bee dispatched a squad of soldiers to the facility..	<br>
+	WARNING - Do not let Queen Bee spores come in contact with General Bee.	<br>
+	<br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Escape Damage Type:</h4> Red/Black	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Ineffective	<br>
+	<h4>Black Resistance:</h4> Ineffective	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}

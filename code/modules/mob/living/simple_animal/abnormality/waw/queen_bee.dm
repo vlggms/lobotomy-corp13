@@ -27,6 +27,7 @@
 		)
 	gift_type =  /datum/ego_gifts/hornet
 	var/datum/looping_sound/queenbee/soundloop
+	var/breached_others = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Initialize()
 	. = ..()
@@ -48,6 +49,10 @@
 			if(prob(90))
 				var/datum/disease/bee_spawn/D = new()
 				H.ForceContractDisease(D, FALSE, TRUE)
+		for(var/mob/living/simple_animal/hostile/abnormality/general_b/Y in T.contents)
+			if(breached_others == FALSE)
+				Y.breach_effect()
+				breached_others = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
