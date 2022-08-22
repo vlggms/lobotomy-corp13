@@ -31,11 +31,16 @@
 	var/chosen
 	var/meltdown_cooldown_time = 300 SECONDS
 	var/meltdown_cooldown
+	var/worked
 
+/mob/living/simple_animal/hostile/abnormality/staining_rose/attempt_work(mob/living/carbon/human/user, work_type)
+	worked = TRUE
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	datum_reference.qliphoth_change(1)
+	worked = FALSE
 	if (chosen == null)
 		chosen = user
 		user.visible_message("<span class='warning'>You are now the rose's chosen.</span>")
@@ -63,7 +68,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Life()
 	. = ..()
-	if(meltdown_cooldown < world.time)
+	if(meltdown_cooldown < world.time && !worked)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		datum_reference.qliphoth_change(-1)
 
