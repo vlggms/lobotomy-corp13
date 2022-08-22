@@ -34,8 +34,9 @@
 	var/worked
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/attempt_work(mob/living/carbon/human/user, work_type)
-	worked = TRUE
-	..()
+	. = ..()
+	if(.)
+		worked = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
