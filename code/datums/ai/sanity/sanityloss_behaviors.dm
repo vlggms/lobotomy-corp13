@@ -29,9 +29,11 @@
 /datum/ai_behavior/say_line/insanity_wander/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	var/sanity_damage = get_user_level(living_pawn) * 5
+	var/sanity_damage = get_user_level(living_pawn) * 8
 	for(var/mob/living/carbon/human/H in view(7, living_pawn))
-		H.adjustWhiteLoss(sanity_damage, forced = TRUE)
+		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+			continue
+		H.adjustWhiteLoss(sanity_damage)
 
 /datum/ai_behavior/say_line/insanity_release
 	lines = list(
