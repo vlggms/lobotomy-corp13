@@ -64,3 +64,37 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+//Funeral guns have two different names;
+//Solemn Lament is the white gun, Solemn Vow is the black gun.
+//Likewise, they emit butterflies of those respective colors.
+/obj/item/gun/ego_gun/solemnlament
+	name = "solemn lament"
+	desc = "A pistol which carries with it a lamentation for those that live.  \
+	Can feathers gain their own wings?"
+	icon_state = "solemn_lament"
+	inhand_icon_state = "solemn_lament"
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
+	burst_size = 1
+	fire_delay = 0
+	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/solemnvow
+	name = "solemn vow"
+	desc = "A pistol which carries with it grief for those who have perished.  \
+	Even with wings, no feather can leave this place."
+	icon_state = "solemn_vow"
+	inhand_icon_state = "solemn_vow"
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
+	burst_size = 1
+	fire_delay = 0
+	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 60
+	)

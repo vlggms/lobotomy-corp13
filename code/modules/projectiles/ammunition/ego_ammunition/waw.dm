@@ -17,3 +17,13 @@
 	name = "magic bullet casing"
 	desc = "A magic casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_magicbullet
+
+/obj/item/ammo_casing/caseless/ego_solemnlament //I don't know why, but VS code is yelling at me about the FUCKING SPACES.
+	name = "solemn casing"
+	desc = "a solemn casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_solemnlament
+
+/obj/item/ammo_casing/caseless/ego_solemnvow
+	name = "solemn casing"
+	desc = "a solemn casing"
+	projectile_type = /obj/projectile/ego_bullet/ego_solemnvow

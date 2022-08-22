@@ -85,4 +85,3 @@
 /obj/projectile/mountain_spit/Initialize()
 	. = ..()
 	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
-
