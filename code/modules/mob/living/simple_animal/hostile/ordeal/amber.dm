@@ -72,8 +72,8 @@
 	icon_living = "amber_dusk"
 	icon_dead = "amber_dusk_dead"
 	faction = list("amber_ordeal")
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 2200
+	health = 2200
 	speed = 4
 	move_to_delay = 7
 	density = FALSE
@@ -95,7 +95,7 @@
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
-	var/burrow_cooldown_time = 20 SECONDS
+	var/burrow_cooldown_time = 18 SECONDS
 
 	/// If TRUE - cannot move nor attack
 	var/burrowing = TRUE
@@ -142,10 +142,10 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	if(length(spawned_mobs) >= 20)
+	if(length(spawned_mobs) >= 25)
 		return
 	visible_message("<span class='danger'>Three smaller bugs appear out of [src]!</span>")
-	for(var/i = 1 to 4)
+	for(var/i = 1 to 5)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
 			i -= 1
