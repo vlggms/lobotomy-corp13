@@ -256,12 +256,12 @@
 	return ..()
 
 /mob/living/simple_animal/apocalypse_egg/death(gibbed)
-	if(istype(bird))
-		bird.EggDeath(src)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBCC", flash_time = 50)
+	if(istype(bird))
+		bird.EggDeath(src)
 	..()
 
 /mob/living/simple_animal/apocalypse_egg/adjustHealth(amount, updating_health = TRUE, forced = FALSE)

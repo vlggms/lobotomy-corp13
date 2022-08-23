@@ -3550,7 +3550,6 @@
 #include "ModularTegustation\tegu_disco_elysium\tegu_disco_elysium.dm"
 #include "ModularTegustation\tegu_drinks\drinks.dm"
 #include "ModularTegustation\tegu_drinks\twistedtea.dm"
-#include "ModularTegustation\tegu_items\apostle_items.dm"
 #include "ModularTegustation\tegu_jobs\gamemode_overwrite.dm"
 #include "ModularTegustation\tegu_medical_code\tegu_medical.dm"
 #include "ModularTegustation\tegu_mentorhelp\ahelp-reject.dm"

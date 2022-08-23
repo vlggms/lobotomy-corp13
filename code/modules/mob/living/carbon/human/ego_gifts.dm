@@ -59,8 +59,6 @@
 	if(!isnull(ego_gift_list[given.slot]))
 		var/datum/ego_gifts/removed_gift = ego_gift_list[given.slot]
 		removed_gift.Remove(src)
-	//if (!isnull(src.ego_gift_list[given.slot]))
-	//	src.ego_gift_list[given.slot].Remove(src)
 	given.Initialize(src)
 
 /// All Zayin EGO Gifts
@@ -69,21 +67,25 @@
 	icon_state = "soda"
 	fortitude_bonus = 2
 	slot = MOUTH_2
+
 /datum/ego_gifts/penitence
 	name = "Penitence"
 	icon_state = "penitence"
 	prudence_bonus = 2
 	slot = HAT
+
 /datum/ego_gifts/wingbeat
 	name = "Wingbeat"
 	icon_state = "wingbeat"
 	temperance_bonus = 2
 	slot = HAND_2
+
 /datum/ego_gifts/alice
 	name = "Little Alice"
 	icon_state = "alice"
 	temperance_bonus = 2
 	slot = NECKWEAR
+
 /datum/ego_gifts/tough
 	name = "Tough"
 	icon_state = "tough"
@@ -97,26 +99,31 @@
 	fortitude_bonus = 2
 	prudence_bonus = 2
 	slot = HAT
+
 /datum/ego_gifts/redeyes
 	name = "Red Eyes"
 	icon_state = "redeyes"
 	temperance_bonus = 3
 	slot = EYE
+
 /datum/ego_gifts/match
 	name = "Fourth Match Flame"
 	icon_state = "match"
 	fortitude_bonus = 4
 	slot = MOUTH_2
+
 /datum/ego_gifts/beak
 	name = "Beak"
 	icon_state = "beak"
 	justice_bonus = 2
 	slot = NECKWEAR
+
 /datum/ego_gifts/fragments
 	name = "Fragments From Somewhere"
 	icon_state = "fragments"
 	temperance_bonus = 2
 	slot = BROOCH
+
 /datum/ego_gifts/horn
 	name = "Horn"
 	icon_state = "horn"
@@ -131,29 +138,34 @@
 	fortitude_bonus = 2
 	temperance_bonus = 2
 	slot = BROOCH
+
 /datum/ego_gifts/harvest
 	name = "Harvest"
 	icon_state = "harvest"
 	prudence_bonus = 4
 	slot = NECKWEAR
+
 /datum/ego_gifts/christmas
 	name = "Christmas"
 	icon_state = "christmas"
 	fortitude_bonus = -4
 	prudence_bonus = 8
 	slot = HAT
+
 /datum/ego_gifts/grinder
 	name = "Grinder Mk4"
 	icon_state = "grinder"
 	temperance_bonus = 4
 	insight_mod = 3
 	slot = EYE
+
 /datum/ego_gifts/bearpaw
 	name = "Bear Paws"
 	icon_state = "bearpaws"
 	prudence_bonus = 4
 	attachment_mod = 3
 	slot = HAT
+
 /datum/ego_gifts/magicbullet
 	name = "Magic Bullet"
 	icon_state = "magicbullet"
@@ -169,30 +181,35 @@
 	fortitude_bonus = 3
 	justice_bonus = 3
 	slot = FACE
+
 /datum/ego_gifts/hornet
 	name = "Hornet"
 	icon_state = "hornet"
 	fortitude_bonus = 2
 	prudence_bonus = 4
 	slot = HELMET
+
 /datum/ego_gifts/justitia
 	name = "Justitia"
 	icon_state = "justitia"
 	justice_bonus = 6
 	repression_mod = 6
 	slot = EYE
+
 /datum/ego_gifts/love_and_hate
 	name = "In the Name of Love and Hate"
 	icon_state = "lovehate"
 	temperance_bonus = 2
 	justice_bonus = 4
 	slot = HAT
+
 /datum/ego_gifts/tears
 	name = "Sword Sharpened With Tears"
 	icon_state = "tears"
 	prudence_bonus = 2
 	justice_bonus = 4
 	slot = CHEEK
+
 /datum/ego_gifts/lamp
 	name = "Lamp"
 	icon_state = "lamp"
@@ -208,22 +225,26 @@
 	prudence_bonus = 10
 	justice_bonus = 10
 	slot = LEFTBACK
+
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
 	temperance_bonus = 4
 	slot = EYE
+
 /datum/ego_gifts/mimicry
 	name = "Mimicry"
 	icon_state = "mimicry"
 	fortitude_bonus = 10
 	slot = CHEEK
+
 /datum/ego_gifts/smile
 	name = "Smile"
 	icon_state = "smile"
 	fortitude_bonus = 5
 	prudence_bonus = 5
 	slot = EYE
+
 /datum/ego_gifts/amogus
 	name = "Imposter"
 	icon_state = "amogus"
@@ -231,6 +252,7 @@
 	prudence_bonus = -5
 	justice_bonus = 15
 	slot = EYE
+
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
@@ -238,11 +260,13 @@
 	prudence_bonus = 10
 	temperance_bonus = -5
 	slot = HELMET
+
 /datum/ego_gifts/star
 	name = "Sound of a Star"
 	icon_state = "star"
 	justice_bonus = 10
 	slot = EYE
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"

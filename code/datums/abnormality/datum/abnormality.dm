@@ -125,7 +125,8 @@
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.zero_qliphoth(user)
 		return
-	current?.OnQliphothChange(user)
+	if(pre_qlip != qliphoth_meter)
+		current?.OnQliphothChange(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	var/acquired_chance = available_work[workType]
