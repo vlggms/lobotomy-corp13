@@ -26,7 +26,7 @@
 	dog_fashion = /datum/dog_fashion/back
 
 /obj/item/clothing/suit/armor/vest/alt
-	desc = "A Type I armored vest that provides decent protection against most types of damage."
+	desc = "A cheap plastic vest that provides practically no protection against abnormalities."
 	icon_state = "armor"
 	inhand_icon_state = "armor"
 
