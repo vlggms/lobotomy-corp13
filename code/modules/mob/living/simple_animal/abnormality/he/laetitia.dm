@@ -46,6 +46,12 @@
 	attack_verb_simple = "pokes"
 	attack_sound = 'sound/abnormalities/fragment/attack.ogg'
 
+/mob/living/simple_animal/hostile/gift/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
 //Tricked
 //Explodes after 5 minutes
 /datum/status_effect/tricked
