@@ -241,14 +241,14 @@
 /datum/outfit/centcom/commander
 	name = "CentCom Commander"
 
-	uniform = /obj/item/clothing/under/rank/centcom/commander
+	uniform = /obj/item/clothing/under/rank/k_corporation/command
 	suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
 	ears = /obj/item/radio/headset/headset_cent/commander
 	glasses = /obj/item/clothing/glasses/eyepatch
 	mask = /obj/item/clothing/mask/cigarette/cigar/cohiba
-	head = /obj/item/clothing/head/centhat
+	head = /obj/item/clothing/head/k_corp_hat
 	belt = /obj/item/gun/ballistic/revolver/mateba
 	r_pocket = /obj/item/lighter
 	l_pocket = /obj/item/ammo_box/a357
@@ -377,7 +377,7 @@
 /datum/outfit/centcom/death_commando
 	name = "Death Commando"
 
-	uniform = /obj/item/clothing/under/rank/centcom/commander
+	uniform = /obj/item/clothing/under/rank/k_corporation/command
 	suit = /obj/item/clothing/suit/space/hardsuit/deathsquad
 	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/tackler/combat/insulated

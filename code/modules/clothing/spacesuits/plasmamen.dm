@@ -309,20 +309,20 @@
 	inhand_icon_state = "captain_envirohelm"
 	armor = list(MELEE = 20, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 100, RAD = 0, FIRE = 100, ACID = 75, WOUND = 10)
 
-/obj/item/clothing/head/helmet/space/plasmaman/centcom_commander
-	name = "CentCom commander plasma envirosuit helmet"
-	desc = "A special containment helmet designed for the Higher Central Command Staff. Not many of these exist, as CentCom does not usually employ plasmamen to higher staff positions due to their complications."
+/obj/item/clothing/head/helmet/space/plasmaman/k_corp_command
+	name = "K-Corporation command envirosuit helmet"
+	desc = "A special containment helmet designed for K-Corporation command personnel. Sometimes even commanders are affected by experiments gone wrong, rarely."
 	icon_state = "commander_envirohelm"
 	inhand_icon_state = "commander_envirohelm"
 
-/obj/item/clothing/head/helmet/space/plasmaman/centcom_official
-	name = "CentCom official plasma envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. They sure do love their green."
+/obj/item/clothing/head/helmet/space/plasmaman/k_corp_official
+	name = "K-Corporation envirosuit helmet"
+	desc = "A special containment helmet designed for K-Corporation personnel. Sealing away the outside world for your benefit."
 	icon_state = "official_envirohelm"
 	inhand_icon_state = "official_envirohelm"
 
-/obj/item/clothing/head/helmet/space/plasmaman/centcom_intern
-	name = "CentCom intern plasma envirosuit helmet"
-	desc = "A special containment helmet designed for CentCom Staff. You know, so any coffee spills don't kill the poor sod."
+/obj/item/clothing/head/helmet/space/plasmaman/k_corp_assistant
+	name = "K-Corporation assistant envirosuit helmet"
+	desc = "A special containment helmet designed for K-Corporation personnel. For when you want to keep an assistant alive after horrible mutation."
 	icon_state = "intern_envirohelm"
 	inhand_icon_state = "intern_envirohelm"

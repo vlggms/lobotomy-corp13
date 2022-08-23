@@ -220,6 +220,18 @@
 	role = "Lieutenant"
 	outfit = /datum/outfit/centcom/ert/commander/rabbit
 
+/datum/antagonist/ert/zwei_shield
+	role = "Shield"
+	outfit = /datum/outfit/zwei_shield
+
+/datum/antagonist/ert/zwei_shield/veteran
+	role = "Veteran Shield"
+	outfit = /datum/outfit/zwei_shield/veteran
+
+/datum/antagonist/ert/zwei_shield/captain
+	role = "Shield Captain"
+	outfit = /datum/outfit/zwei_shield/captain
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team
