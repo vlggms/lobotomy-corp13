@@ -134,4 +134,13 @@
 	acquired_chance += overload_chance
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
+	switch (workType)
+		if (ABNORMALITY_WORK_INSTINCT)
+			acquired_chance += user.physiology.instinct_success_mod
+		if (ABNORMALITY_WORK_INSIGHT)
+			acquired_chance += user.physiology.insight_success_mod
+		if (ABNORMALITY_WORK_ATTACHMENT)
+			acquired_chance += user.physiology.attachment_success_mod
+		if (ABNORMALITY_WORK_REPRESSION)
+			acquired_chance += user.physiology.repression_success_mod
 	return acquired_chance

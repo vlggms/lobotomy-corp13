@@ -54,6 +54,9 @@
 	var/max_boxes = null
 	/// List of ego equipment datums
 	var/list/ego_list = list()
+	/// EGO Gifts
+	var/datum/ego_gifts/gift_type = null
+	var/gift_chance = null
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -65,6 +68,20 @@
 		small_action.Grant(src)
 	if(fear_level == null)
 		fear_level = threat_level
+	if (isnull(gift_chance))
+		switch(threat_level)
+			if(ZAYIN_LEVEL)
+				gift_chance = 5
+			if(TETH_LEVEL)
+				gift_chance = 4
+			if(HE_LEVEL)
+				gift_chance = 3
+			if(WAW_LEVEL)
+				gift_chance = 2
+			if(ALEPH_LEVEL)
+				gift_chance = 1
+			else
+				gift_chance = 0
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -116,6 +133,8 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	if (prob(gift_chance) && !isnull(gift_type))
+		user.Apply_Gift(new gift_type)
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
 		return

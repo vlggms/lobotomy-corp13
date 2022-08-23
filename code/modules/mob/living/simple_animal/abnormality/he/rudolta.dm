@@ -32,7 +32,7 @@
 		/datum/ego_datum/weapon/christmas,
 		/datum/ego_datum/armor/christmas
 		)
-
+	gift_type =  /datum/ego_gifts/christmas
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 15 // Scales with distance
@@ -66,3 +66,4 @@
 			continue
 		L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+

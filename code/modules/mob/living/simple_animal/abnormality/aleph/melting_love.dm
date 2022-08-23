@@ -48,6 +48,7 @@
 	var/sanityheal_cooldown = 15 SECONDS
 	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
+	gift_type =  /datum/ego_gifts/adoration
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
 	. = ..()
@@ -185,6 +186,7 @@
 	gifted_human.gib()
 	var /mob/living/simple_animal/hostile/slime/big/S = new(T)
 	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
+
 
 /* Slimes (HE) */
 /mob/living/simple_animal/hostile/slime

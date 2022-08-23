@@ -21,6 +21,7 @@
 		/datum/ego_datum/weapon/little_alice,
 		/datum/ego_datum/armor/little_alice
 		)
+	gift_type =  /datum/ego_gifts/alice
 	max_boxes = 10
 	var/cake = 5	//How many cake charges are there
 
@@ -50,6 +51,7 @@
 		if(cake > 0)
 			user.adjustBruteLoss(-500) // It heals you to full if you eat it
 			icon_state = "bottle2"	//cake looks eaten
-
 	return ..()
+
+
 

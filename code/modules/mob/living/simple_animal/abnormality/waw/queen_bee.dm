@@ -25,7 +25,7 @@
 		/datum/ego_datum/weapon/hornet,
 		/datum/ego_datum/armor/hornet
 		)
-
+	gift_type =  /datum/ego_gifts/hornet
 	var/datum/looping_sound/queenbee/soundloop
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Initialize()
@@ -63,6 +63,7 @@
 	emit_spores()
 	datum_reference.qliphoth_change(1)
 	return
+
 
 /* Worker bees */
 /mob/living/simple_animal/hostile/worker_bee

@@ -44,6 +44,7 @@
 		/datum/ego_datum/weapon/lamp,
 		/datum/ego_datum/armor/lamp
 		)
+	gift_type =  /datum/ego_gifts/lamp
 
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
@@ -146,3 +147,5 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
+
+

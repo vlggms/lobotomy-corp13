@@ -19,6 +19,7 @@
 		/datum/ego_datum/weapon/magicbullet,
 		/datum/ego_datum/armor/magicbullet
 		)
+	gift_type =  /datum/ego_gifts/magicbullet
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
@@ -121,3 +122,4 @@
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
+

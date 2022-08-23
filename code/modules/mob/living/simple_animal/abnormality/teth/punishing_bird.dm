@@ -48,7 +48,7 @@
 		/datum/ego_datum/weapon/beak,
 		/datum/ego_datum/armor/beak
 		)
-
+	gift_type =  /datum/ego_gifts/beak
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
@@ -219,3 +219,4 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
+

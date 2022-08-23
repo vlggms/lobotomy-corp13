@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/wingbeat,
 		/datum/ego_datum/armor/wingbeat
 		)
-
+	gift_type =  /datum/ego_gifts/wingbeat
 	var/heal_duration = 90 SECONDS
 	var/heal_amount = 0.02
 	var/heal_cooldown = 2 SECONDS
@@ -75,3 +75,5 @@
 		protected_people.Remove(user)
 		user.gib()
 	return
+
+
