@@ -1,17 +1,17 @@
-/obj/item/clothing/under/plasmaman/centcom_commander
-	name = "CentCom commander plasma envirosuit"
-	desc = "It's an envirosuit worn by CentCom's highest-tier Commanders."
+/obj/item/clothing/under/plasmaman/k_corp_command
+	name = "K-Corporation command envirosuit"
+	desc = "It's an envirosuit worn by K-Corporation command personnel."
 	icon_state = "commander_envirosuit"
 	inhand_icon_state = "commander_envirosuit"
 
-/obj/item/clothing/under/plasmaman/centcom_official
-	name = "CentCom official plasma envirosuit"
-	desc = "It's an envirosuit worn by CentCom Officers."
+/obj/item/clothing/under/plasmaman/k_corp_official
+	name = "K-Corporation envirosuit"
+	desc = "It's an envirosuit worn by K-Corporation personnel."
 	icon_state = "official_envirosuit"
 	inhand_icon_state = "official_envirosuit"
 
-/obj/item/clothing/under/plasmaman/centcom_intern
-	name = "CentCom intern plasma envirosuit"
-	desc = "It's an envirosuit worn by those interning for CentCom. The top is styled after a polo shirt for easy identification."
+/obj/item/clothing/under/plasmaman/k_corp_assistant
+	name = "K-Corporation assistant envirosuit"
+	desc = "It's an envirosuit worn by those working for K-Corporation."
 	icon_state = "intern_envirosuit"
 	inhand_icon_state = "intern_envirosuit"

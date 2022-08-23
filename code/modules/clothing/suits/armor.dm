@@ -69,19 +69,20 @@
 	flags_inv = 0
 	strip_delay = 80
 
-/obj/item/clothing/suit/armor/vest/warden
-	name = "warden's jacket"
-	desc = "A navy-blue armored jacket with blue shoulder designations and '/Warden/' stitched into one of the chest pockets."
+/obj/item/clothing/suit/armor/vest/zwei_jacket
+	name = "zwei association jacket"
+	desc = "A navy-blue armored jacket with blue shoulder designations and '/Zwei Association/' stitched into the left chest pocket."
 	icon_state = "warden_alt"
 	inhand_icon_state = "armor"
 	body_parts_covered = CHEST|GROIN|ARMS
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
 	cold_protection = CHEST|GROIN|ARMS|HANDS
 	heat_protection = CHEST|GROIN|ARMS|HANDS
 	strip_delay = 70
 	resistance_flags = FLAMMABLE
 	dog_fashion = null
 
-/obj/item/clothing/suit/armor/vest/warden/alt
+/obj/item/clothing/suit/armor/vest/zwei_jacket/alt
 	name = "warden's armored jacket"
 	desc = "A red jacket with silver rank pips and body armor strapped on top."
 	icon_state = "warden_jacket"
@@ -190,9 +191,9 @@
 
 //All of the armor below is mostly unused
 
-/obj/item/clothing/suit/armor/centcom
-	name = "\improper CentCom armor"
-	desc = "A suit that protects against some damage."
+/obj/item/clothing/suit/armor/k_corporation
+	name = "\improper K-Corporation combat suit"
+	desc = "A suit that protects against some damage, for K-Corporation command personnel."
 	icon_state = "centcom"
 	inhand_icon_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY
@@ -306,9 +307,9 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
-/obj/item/clothing/suit/armor/vest/centcom_formal
-	name = "\improper CentCom Formal Coat"
-	desc = "A stylish coat given to CentCom Commanders. Perfect for sending ERTs to suicide missions with style!"
+/obj/item/clothing/suit/armor/vest/k_corp_formal
+	name = "\improper K-Corporation Formal Coat"
+	desc = "A stylish coat given to K-Corporation command personnel. Worn for formal events and officers who prefer fashion over survival!"
 	icon_state = "centcom_formal"
 	inhand_icon_state = "centcom"
 	body_parts_covered = CHEST|GROIN|ARMS

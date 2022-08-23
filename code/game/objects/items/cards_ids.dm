@@ -602,6 +602,30 @@ update_label()
 	assignment = "Death Commando"
 	uses_overlays = FALSE
 
+/obj/item/card/id/ert/zwei_shield
+	name = "\improper Zwei Association ID"
+	id_type_name = "\improper Zwei Association ID"
+	desc = "A Zwei Association ID card."
+	icon_state = "ert_security"
+	registered_name = "Shield"
+	assignment = "Shield"
+
+/obj/item/card/id/ert/zwei_shield/veteran
+	name = "\improper Zwei Association ID"
+	id_type_name = "\improper Zwei Association ID"
+	desc = "A Zwei Association ID card."
+	icon_state = "ert_security"
+	registered_name = "Veteran Shield"
+	assignment = "Veteran Shield"
+
+/obj/item/card/id/ert/zwei_shield/captain
+	name = "\improper Zwei Association ID"
+	id_type_name = "\improper Zwei Association ID"
+	desc = "A Zwei Association ID card."
+	icon_state = "ert_commander"
+	registered_name = "Shield Captain"
+	assignment = "Shield Captain"
+
 /obj/item/card/id/debug
 	name = "\improper Debug ID"
 	desc = "A debug ID card. Has ALL the all access, you really shouldn't have this."

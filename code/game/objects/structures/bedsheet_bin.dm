@@ -198,9 +198,9 @@ LINEN BINS
 	inhand_icon_state = "sheetblack"
 	dream_messages = list("black")
 
-/obj/item/bedsheet/centcom
-	name = "\improper CentCom bedsheet"
-	desc = "Woven with advanced nanothread for warmth as well as being very decorated, essential for all officials."
+/obj/item/bedsheet/k_corporation
+	name = "\improper K-Corporation bedsheet"
+	desc = "Woven with advanced nanothread for warmth as well as being very decorated, essential for all command personnel."
 	icon_state = "sheetcentcom"
 	inhand_icon_state = "sheetcentcom"
 	dream_messages = list("a unique ID", "authority", "artillery", "an ending")
