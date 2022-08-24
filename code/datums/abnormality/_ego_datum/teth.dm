@@ -74,3 +74,8 @@
 /datum/ego_datum/armor/noise
 	item_path = /obj/item/clothing/suit/armor/ego_gear/noise
 	cost = 20
+
+// Old Lady - Solitude
+/datum/ego_datum/weapon/solitude
+	item_path = /obj/item/gun/ego_gun/solitude
+	cost = 20

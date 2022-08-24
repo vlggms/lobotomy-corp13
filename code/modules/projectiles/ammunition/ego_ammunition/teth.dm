@@ -14,3 +14,8 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_noise
 	pellets = 5
 	variance = 20
+
+/obj/item/ammo_casing/caseless/ego_solitude
+	name = "solitude casing"
+	desc = "A solitude casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_solitude
