@@ -23,14 +23,14 @@
 	var/meltdown_cooldown_time = 120 SECONDS
 	var/meltdown_cooldown
 
-/mob/living/simple_animal/hostile/abnormality/old_lady/Initialize()
-	meltdown_cooldown = world.time + meltdown_cooldown_time
-
 /mob/living/simple_animal/hostile/abnormality/old_lady/Life()
 	. = ..()
 	if(meltdown_cooldown < world.time)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/queen_bee/zero_qliphoth(mob/living/carbon/human/user)
+	icon_state = "solitude"
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Clear Solitude" && datum_reference.qliphoth_meter == 0)
@@ -42,4 +42,5 @@
 /mob/living/simple_animal/hostile/abnormality/old_lady/work_complete(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Clear Solitude")
 		datum_reference.qliphoth_change(4)
+		icon_state = "old_lady"
 	return ..()
