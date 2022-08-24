@@ -7,8 +7,8 @@
 	icon_state = "rudolta"
 	icon_living = "rudolta"
 	icon_dead = "rudolta_dead"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 1200
+	health = 1200
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -35,7 +35,7 @@
 	gift_type =  /datum/ego_gifts/christmas
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 3 SECONDS
-	var/pulse_damage = 15 // Scales with distance
+	var/pulse_damage = 20 // Scales with distance
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
