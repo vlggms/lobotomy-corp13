@@ -40,6 +40,16 @@
 	owner.store_memory("Your team's shared tracking beacon frequency is [ert_team.ert_frequency].")
 	. = ..()
 
+/datum/antagonist/ert/apply_innate_effects(mob/living/mob_override)
+	..()
+	var/mob/living/carbon/human/H = mob_override || owner.current
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, "ERT Antagonist")
+
+/datum/antagonist/ert/remove_innate_effects(mob/living/mob_override)
+	..()
+	var/mob/living/carbon/human/H = mob_override || owner.current
+	REMOVE_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, "ERT Antagonist")
+
 /datum/antagonist/ert/get_team()
 	return ert_team
 
@@ -219,6 +229,18 @@
 /datum/antagonist/ert/commander/rabbit
 	role = "Lieutenant"
 	outfit = /datum/outfit/centcom/ert/commander/rabbit
+
+/datum/antagonist/ert/zwei_shield
+	role = "Shield"
+	outfit = /datum/outfit/zwei_shield
+
+/datum/antagonist/ert/zwei_shield/veteran
+	role = "Veteran Shield"
+	outfit = /datum/outfit/zwei_shield/veteran
+
+/datum/antagonist/ert/zwei_shield/captain
+	role = "Shield Captain"
+	outfit = /datum/outfit/zwei_shield/captain
 
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))

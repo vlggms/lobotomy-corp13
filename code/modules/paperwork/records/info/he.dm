@@ -151,4 +151,22 @@
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Very Low<br>"}
 
-
+// Warm-Hearted Woodsman
+/obj/item/paper/fluff/info/he/woodsman
+	name = "F-05-32"
+	info = {"<h1><center>F-05-32</center></h1>    <br>
+	Name : Warm-Hearted Woodsman    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : 1    <br>
+	- When the work result was Bad, the Qliphoth Counter lowered.    <br>
+	- When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
+	- When an employee enters attempts work while the Counter is at 0, they will immediately die. Then, the Abnormality will escape.    <br>
+	- Whenever a body, living or dead, was placed into the Woodsman's chest while it was about to escape, it sat down, seemingly satisified.    <br>
+	- WARNING: When a body was placed into the Woodsman's chest when it was not getting close to breaching, it breached immediately.	<br>
+	- WARNING: When the Woodsman suffered a meltdown while at 0 Qliphoth, it got up and begun searching for hearts.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Common<br>"}

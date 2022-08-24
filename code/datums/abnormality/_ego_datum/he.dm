@@ -68,3 +68,20 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/christmas
 	cost = 35
 
+// Warm-Hearted Woodsman - Logging
+/datum/ego_datum/weapon/logging
+	item_path = /obj/item/ego_weapon/logging
+	cost = 35
+
+/datum/ego_datum/armor/logging
+	item_path = /obj/item/clothing/suit/armor/ego_gear/logging
+	cost = 35
+
+// Laetitia - Funny Prank
+/datum/ego_datum/weapon/prank
+	item_path = /obj/item/gun/ego_gun/prank
+	cost = 35
+
+/datum/ego_datum/armor/prank
+	item_path = /obj/item/clothing/suit/armor/ego_gear/prank
+	cost = 35

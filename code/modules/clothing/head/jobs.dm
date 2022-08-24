@@ -173,15 +173,15 @@
 	name = "syndicate beret"
 	desc = "A black beret with thick armor padding inside. Stylish and robust."
 
-/obj/item/clothing/head/warden
-	name = "warden's police hat"
-	desc = "It's a special armored hat issued to the Warden of a security force. Protects the head from impacts."
+/obj/item/clothing/head/zwei
+	name = "zwei association hat"
+	desc = "It's a special armored hat issued to those who reach the rank of Zwei Association Captain. Clean and professional."
 	icon_state = "policehelm"
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 30, ACID = 60, WOUND = 6)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
 	strip_delay = 60
-	dog_fashion = /datum/dog_fashion/head/warden
+	dog_fashion = /datum/dog_fashion/head/zwei
 
-/obj/item/clothing/head/warden/drill
+/obj/item/clothing/head/zwei/drill
 	name = "warden's campaign hat"
 	desc = "A special armored campaign hat with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
 	icon_state = "wardendrill"
@@ -189,7 +189,7 @@
 	dog_fashion = null
 	var/mode = DRILL_DEFAULT
 
-/obj/item/clothing/head/warden/drill/screwdriver_act(mob/living/carbon/human/user, obj/item/I)
+/obj/item/clothing/head/zwei/drill/screwdriver_act(mob/living/carbon/human/user, obj/item/I)
 	if(..())
 		return TRUE
 	switch(mode)
@@ -206,25 +206,25 @@
 			to_chat(user, "<span class='danger'>You adjust voice circuit but nothing happens, probably because it's broken.</span>")
 	return TRUE
 
-/obj/item/clothing/head/warden/drill/wirecutter_act(mob/living/user, obj/item/I)
+/obj/item/clothing/head/zwei/drill/wirecutter_act(mob/living/user, obj/item/I)
 	..()
 	if(mode != DRILL_CANADIAN)
 		to_chat(user, "<span class='danger'>You broke the voice circuit!</span>")
 		mode = DRILL_CANADIAN
 	return TRUE
 
-/obj/item/clothing/head/warden/drill/equipped(mob/M, slot)
+/obj/item/clothing/head/zwei/drill/equipped(mob/M, slot)
 	. = ..()
 	if (slot == ITEM_SLOT_HEAD)
 		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/clothing/head/warden/drill/dropped(mob/M)
+/obj/item/clothing/head/zwei/drill/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
 
-/obj/item/clothing/head/warden/drill/proc/handle_speech(datum/source, mob/speech_args)
+/obj/item/clothing/head/zwei/drill/proc/handle_speech(datum/source, mob/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		switch (mode)
@@ -257,9 +257,10 @@
 	strip_delay = 60
 	dog_fashion = null
 
-/obj/item/clothing/head/beret/sec/navyhos
-	name = "head of security's navy beret"
-	desc = "A special beret with the Head of Security's insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction."
+/obj/item/clothing/head/beret/sec/zwei
+	name = "zwei association beret"
+	desc = "A special beret with the Zwei Association insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction. We are your shield."
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
 	icon_state = "hosberet"
 
 /obj/item/clothing/head/beret/sec/navywarden
@@ -281,9 +282,9 @@
 	desc = "A dark beret with the security insignia emblazoned on it. For officers with class."
 	icon_state = "officerberetblack"
 
-/obj/item/clothing/head/beret/sec/centcom
-	name = "centcom beret"
-	desc = "A dark-green beret worn by CentCom officers and high-ranking soldiers."
+/obj/item/clothing/head/beret/sec/k_corporation
+	name = "k-corporation beret"
+	desc = "A dark-green beret worn by K-Corporation command and security personnel."
 	icon_state = "centberet"
 
 //Science

@@ -39,7 +39,7 @@
 		/datum/ego_datum/weapon/despair,
 		/datum/ego_datum/armor/despair
 		)
-
+	gift_type =  /datum/ego_gifts/tears
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS
@@ -126,7 +126,7 @@
 	forceMove(teleport_target)
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/success_effect(mob/living/carbon/human/user, work_type, pe)
-	if(!blessed_human && istype(user))
+	if(user.stat != DEAD && !blessed_human && istype(user))
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
@@ -145,3 +145,5 @@
 	icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 	return
+
+

@@ -43,6 +43,7 @@
 		/datum/ego_datum/weapon/hatred,
 		/datum/ego_datum/armor/hatred
 		)
+	gift_type =  /datum/ego_gifts/love_and_hate
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/qoh_beam,
@@ -108,7 +109,7 @@
 		var/obj/effect/qoh_sygil/S = new(my_turf)
 		S.icon_state = "qoh2"
 		addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 5 SECONDS)
-	..()
+	addtimer(CALLBACK(src, ..(), gibbed), 1) //parent call
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	QDEL_NULL(beamloop)
@@ -274,6 +275,10 @@
 					M.Scale(6, 1)
 					current_beam.visuals.transform = M
 					current_beam.visuals.color = COLOR_SOFT_RED
+		for(var/turf/TF in range((beam_stage-1), MT))
+			if((TF != get_turf(src)) && (TF != MT))
+				var/obj/effect/temp_visual/L = new /obj/effect/temp_visual/revenant(TF)
+				L.color = current_beam.visuals.color
 		for(var/turf/TF in hit_line)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
@@ -336,6 +341,8 @@
 		if(!faction_check_mob(L) && L.stat != DEAD)
 			teleport_potential += T
 	if(!LAZYLEN(teleport_potential))
+		if(!LAZYLEN(GLOB.department_centers))
+			return
 		var/turf/P = pick(GLOB.department_centers)
 		teleport_potential += P
 	var/turf/teleport_target = pick(teleport_potential)
@@ -448,3 +455,5 @@
 	breach_max_death = 0 //who cares about humans anymore?
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
 	return
+
+

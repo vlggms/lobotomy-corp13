@@ -19,9 +19,9 @@
 		/datum/ego_datum/weapon/daredevil,
 		/datum/ego_datum/armor/daredevil
 		)
-
+	gift_type = null
+	gift_chance = 100
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	var/foolish_samurai_warrior[0]
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
 	. = ..()
@@ -33,17 +33,15 @@
 	SIGNAL_HANDLER
 	if (work_type != ABNORMALITY_WORK_ATTACHMENT)
 		return
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	var/obj/item/bodypart/head/head = user.get_bodypart("head")
 	//Thanks Red Queen
 	if(!istype(head))
 		return FALSE
-	user.cut_overlay(mutable_appearance(buff_icon, "courage", -ABOVE_MOB_LAYER))
-	user.cut_overlay(mutable_appearance(buff_icon, "recklessFirst", -ABOVE_MOB_LAYER))
-	user.cut_overlay(mutable_appearance(buff_icon, "recklessSecond", -ABOVE_MOB_LAYER))
-	user.cut_overlay(mutable_appearance(buff_icon, "foolish", -ABOVE_MOB_LAYER))
+	if(!isnull(user.ego_gift_list[HAT]) && istype(user.ego_gift_list[HAT], /datum/ego_gifts))
+		var/datum/ego_gifts/removed_gift = user.ego_gift_list[HAT]
+		removed_gift.Remove(user)
+		//user.ego_gift_list[HAT].Remove(user)
 	head.dismember()
-	foolish_samurai_warrior -= user
 	user.adjustBruteLoss(500)
 	return TRUE
 
@@ -57,42 +55,120 @@
 		head.dismember()
 		user.adjustBruteLoss(500)
 		return
-	if(work_type == ABNORMALITY_WORK_REPRESSION)
-		if (user in foolish_samurai_warrior)
-			switch (foolish_samurai_warrior[user])
-				if(1) // From Courage to Recklessness
-					playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-					user.cut_overlay(mutable_appearance(buff_icon, "courage", -ABOVE_MOB_LAYER))
-					user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
-					user.add_overlay(mutable_appearance(buff_icon, "recklessFirst", -ABOVE_MOB_LAYER))
-					to_chat(user, "<span class='userdanger'>Your muscles flex with strength!</span>")
-					foolish_samurai_warrior[user] = 2
-					return
-				if(2) // From Recklessness to Foolishness
-					playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-					user.cut_overlay(mutable_appearance(buff_icon, "recklessFirst", -ABOVE_MOB_LAYER))
-					user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
-					user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
-					user.add_overlay(mutable_appearance(buff_icon, "recklessSecond", -ABOVE_MOB_LAYER))
-					to_chat(user, "<span class='userdanger'>You feel like you could take on the world!</span>")
-					foolish_samurai_warrior[user] = 3
-					return
-				if(3) // From Foolishness to Suicidal
-					playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-					user.cut_overlay(mutable_appearance(buff_icon, "recklessSecond", -ABOVE_MOB_LAYER))
-					user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
-					user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
-					user.add_overlay(mutable_appearance(buff_icon, "foolish", -ABOVE_MOB_LAYER))
-					to_chat(user, "<span class='userdanger'>You are a God among men!</span>")
-					foolish_samurai_warrior[user] = 4
-					return
-				if(4) // You can progress no further down this fool-hardy path
-					return
-		else // Give Courage
-			playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-			user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
-			user.add_overlay(mutable_appearance(buff_icon, "courage", -ABOVE_MOB_LAYER))
-			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
+	if(user.stat != DEAD && work_type == ABNORMALITY_WORK_REPRESSION)
+		if (src.icon_state == "megalovania")
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase1)) // From Courage to Recklessness
+				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/phase2)
+				to_chat(user, "<span class='userdanger'>How much more will it take?</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase2)) // From Recklessness to Foolishness
+				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/phase3)
+				to_chat(user, "<span class='userdanger'>You need more strength!</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase3)) // From Foolishness to Suicidal
+				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/phase4)
+				to_chat(user, "<span class='userdanger'>DETERMINATION.</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase4)) // You can progress no further down this fool-hardy path
+				return
+			playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
+			user.Apply_Gift(new /datum/ego_gifts/phase1)
 			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
-			foolish_samurai_warrior[user] = 1
+			to_chat(user, "<span class='userdanger'>Just a drop of blood is what it takes...</span>")
+		else
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage)) // From Courage to Recklessness
+				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/recklessCourage)
+				to_chat(user, "<span class='userdanger'>Your muscles flex with strength!</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessCourage)) // From Recklessness to Foolishness
+				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/recklessFoolish)
+				to_chat(user, "<span class='userdanger'>You feel like you could take on the world!</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessFoolish)) // From Foolishness to Suicidal
+				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
+				user.Apply_Gift(new /datum/ego_gifts/foolish)
+				to_chat(user, "<span class='userdanger'>You are a God among men!</span>")
+				return
+			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/foolish)) // You can progress no further down this fool-hardy path
+				return
+			playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
+			user.Apply_Gift(new /datum/ego_gifts/courage)
+			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
 	return
+
+/datum/ego_gifts/courage
+	name = "Inspired Courage"
+	icon_state = "courage"
+	justice_bonus = 10
+	slot = HAT
+/datum/ego_gifts/courage/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/recklessCourage
+	name = "Reckless Courage"
+	icon_state = "recklessFirst"
+	fortitude_bonus = -5
+	justice_bonus = 10
+	slot = HAT
+/datum/ego_gifts/recklessCourage/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/recklessFoolish
+	name = "Reckless Foolishness"
+	icon_state = "recklessSecond"
+	fortitude_bonus = -10
+	justice_bonus = 15
+	slot = HAT
+/datum/ego_gifts/recklessFoolish/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/foolish
+	name = "Reckless Foolishness"
+	icon_state = "foolish"
+	fortitude_bonus = -20
+	justice_bonus = 20
+	slot = HAT
+/datum/ego_gifts/foolish/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/phase1
+	name = "Lv 4"
+	icon_state = "phase1"
+	justice_bonus = 10
+	slot = HAT
+/datum/ego_gifts/phase1/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/phase2
+	name = "Lv 10"
+	icon_state = "phase2"
+	fortitude_bonus = -5
+	justice_bonus = 10
+	slot = HAT
+/datum/ego_gifts/phase2/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/phase3
+	name = "Lv 15"
+	icon_state = "phase3"
+	fortitude_bonus = -10
+	justice_bonus = 15
+	slot = HAT
+/datum/ego_gifts/phase3/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+/datum/ego_gifts/phase4
+	name = "Lv 19"
+	icon_state = "phase4"
+	fortitude_bonus = -20
+	justice_bonus = 20
+	slot = HAT
+/datum/ego_gifts/phase4/Remove(mob/living/carbon/human/user)
+	.=..()
+	UnregisterSignal(user, COMSIG_WORK_STARTED)

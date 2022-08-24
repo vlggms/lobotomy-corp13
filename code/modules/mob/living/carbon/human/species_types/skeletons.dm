@@ -55,3 +55,8 @@
 					H.emote("sigh")
 		H.reagents.remove_reagent(chem.type, chem.metabolization_rate)
 		return TRUE
+
+/datum/species/skeleton/necromancer
+	// 2spooky
+	name = "necromantic skeleton"
+	species_traits = list(NOBLOOD, HAS_BONE, NOEYESPRITES, NO_DNA_COPY, NOTRANSSTING)

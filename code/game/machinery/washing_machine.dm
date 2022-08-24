@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_REDCOAT = /obj/item/clothing/under/costume/redcoat,
 		DYE_PRISONER = /obj/item/clothing/under/rank/prisoner,
 		DYE_SYNDICATE = /obj/item/clothing/under/mercenary,
-		DYE_CENTCOM = /obj/item/clothing/under/rank/centcom/commander
+		DYE_CENTCOM = /obj/item/clothing/under/rank/k_corporation/command
 	),
 	DYE_REGISTRY_JUMPSKIRT = list(
 		DYE_RED = /obj/item/clothing/under/color/jumpskirt/red,
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(dye_registry, list(
 		DYE_CMO = /obj/item/bedsheet/cmo,
 		DYE_COSMIC = /obj/item/bedsheet/cosmos,
 		DYE_SYNDICATE = /obj/item/bedsheet/syndie,
-		DYE_CENTCOM = /obj/item/bedsheet/centcom
+		DYE_CENTCOM = /obj/item/bedsheet/k_corporation
 	),
 	DYE_LAWYER_SPECIAL = list(
 		DYE_COSMIC = /obj/item/clothing/under/rank/civilian/lawyer/galaxy,

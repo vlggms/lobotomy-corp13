@@ -38,6 +38,10 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
+/datum/job/command/after_spawn(mob/living/H, mob/M)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
 	jobtype = /datum/job/command
@@ -48,7 +52,6 @@
 /datum/job/command/records
 	title = "Records Officer"
 	outfit = /datum/outfit/job/command/records
-
 
 /datum/outfit/job/command/records
 	name = "Records Officer"

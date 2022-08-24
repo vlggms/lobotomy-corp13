@@ -14,6 +14,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/qliphoth_max = 4
 	// How many abnormalities will be affected. Cannot be more than current amount of abnos
 	var/qliphoth_meltdown_amount = 1
+	// What abnormality threat levels are affected by meltdowns
+	var/list/qliphoth_meltdown_affected = list(
+		ZAYIN_LEVEL,
+		TETH_LEVEL,
+		HE_LEVEL,
+		WAW_LEVEL,
+		ALEPH_LEVEL
+		)
 
 	// Assoc list of ordeals by level
 	var/list/all_ordeals = list(
@@ -26,8 +34,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/next_ordeal_time = 1
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
-	// Minimum time for each ordeal level to occur. If requirement is not meant - normal meltdown will occur
-	var/list/ordeal_timelock = list(15 MINUTES, 30 MINUTES, 50 MINUTES, 65 MINUTES)
+	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
+	var/list/ordeal_timelock = list(15 MINUTES, 30 MINUTES, 45 MINUTES, 60 MINUTES)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
 
@@ -83,13 +91,18 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		QliphothEvent()
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
+	// Update list of abnormalities that can be affected by meltdown
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 30 MINUTES)
+		qliphoth_meltdown_affected -= ZAYIN_LEVEL
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 60 MINUTES)
+		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.2)
+	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.3)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -97,10 +110,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			return
-	InitiateMeltdown(qliphoth_meltdown_amount)
+	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
-/datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1)
+/datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE)
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
@@ -111,6 +124,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!cmp.datum_reference || !cmp.datum_reference.current)
 			continue
 		if(!(cmp.datum_reference.current.status_flags & GODMODE))
+			continue
+		if(!(cmp.datum_reference.threat_level in qliphoth_meltdown_affected) && !forced)
 			continue
 		computer_list += cmp
 	for(var/i = 1 to meltdown_amount)

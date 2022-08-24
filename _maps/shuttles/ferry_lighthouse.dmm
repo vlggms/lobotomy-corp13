@@ -186,7 +186,7 @@
 /area/shuttle/transport)
 "aT" = (
 /obj/structure/bed,
-/obj/item/bedsheet/centcom,
+/obj/item/bedsheet/k_corporation,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/transport)
 "aU" = (

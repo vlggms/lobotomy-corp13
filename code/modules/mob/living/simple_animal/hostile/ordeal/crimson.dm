@@ -16,8 +16,17 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-	/// When it hits console 15 times - reduce qliphoth and teleport
+	/// When it hits console 12 times - reduce qliphoth and teleport
 	var/console_attack_counter = 0
+	var/teleporting = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(!target && prob(25))
+		TeleportAway()
+	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/CanAttack(atom/the_target)
 	if(istype(the_target, /obj/machinery/computer/abnormality))
@@ -30,7 +39,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget()
 	if(istype(target, /obj/machinery/computer/abnormality))
 		var/obj/machinery/computer/abnormality/CA = target
-		if(console_attack_counter < 15)
+		if(console_attack_counter < 12)
 			console_attack_counter += 1
 			visible_message("<span class='warning'>[src] hits [CA]'s buttons at random!</span>")
 			playsound(get_turf(CA), "sound/machines/terminal_button0[rand(1,8)].ogg", 50, 1)
@@ -49,6 +58,9 @@
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/TeleportAway()
+	if(teleporting)
+		return
+	teleporting = TRUE
 	var/list/potential_computers = list()
 	for(var/obj/machinery/computer/abnormality/CA in GLOB.abnormality_consoles)
 		if(!CanTeleportTo(CA))
@@ -64,11 +76,10 @@
 		forceMove(T)
 		target = teleport_computer
 		animate(src, transform = init_transform, time = 5, easing = BACK_EASING)
+	teleporting = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/CanTeleportTo(obj/machinery/computer/abnormality/CA)
-	if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
-		return FALSE
-	if(type in view(5, get_turf(CA))) // There's already a similar clown nearby
+	if(!CA.can_meltdown || CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
 		return FALSE
 	return TRUE
 
@@ -78,7 +89,7 @@
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(15, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
 // Crimson noon
@@ -128,7 +139,7 @@
 		ordeal_reference = null
 	gib()
 
-// Crimson noon
+// Crimson dusk
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk
 	name = "struggle of the peak"
 	desc = "A round clown amalgamation holding a hammer and an axe."
@@ -252,7 +263,7 @@
 			to_chat(L, "<span class='userdanger'>[src] rolls past you!</span>")
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(40, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(!(L in been_hit))
 				been_hit += L
 	addtimer(CALLBACK(src, .proc/do_roll, move_dir, (times_ran + 1)), 1.5)

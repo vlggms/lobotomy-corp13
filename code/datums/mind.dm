@@ -716,6 +716,11 @@
 	spell_list += S
 	S.action.Grant(current)
 
+// Removes action itself, but does not qdel the spell
+/datum/mind/proc/TempRemoveSpell(obj/effect/proc_holder/spell/S)
+	spell_list -= S
+	S.action.Remove(current)
+
 //To remove a specific spell from a mind
 /datum/mind/proc/RemoveSpell(obj/effect/proc_holder/spell/spell)
 	if(!spell)

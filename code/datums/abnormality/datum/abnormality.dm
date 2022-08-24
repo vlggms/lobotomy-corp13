@@ -92,10 +92,10 @@
 	return TRUE
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
-	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
 	SSlobotomy_corp.WorkComplete(pe)
 	if(pe >= 100)
 		pe -= 100
+	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
 	stored_boxes += pe
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
@@ -136,4 +136,13 @@
 	acquired_chance += overload_chance
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
+	switch (workType)
+		if (ABNORMALITY_WORK_INSTINCT)
+			acquired_chance += user.physiology.instinct_success_mod
+		if (ABNORMALITY_WORK_INSIGHT)
+			acquired_chance += user.physiology.insight_success_mod
+		if (ABNORMALITY_WORK_ATTACHMENT)
+			acquired_chance += user.physiology.attachment_success_mod
+		if (ABNORMALITY_WORK_REPRESSION)
+			acquired_chance += user.physiology.repression_success_mod
 	return acquired_chance

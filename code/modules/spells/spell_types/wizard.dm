@@ -286,8 +286,8 @@
 		if(distfromcaster == 0)
 			if(isliving(AM))
 				var/mob/living/M = AM
-				M.Paralyze(100)
-				M.adjustBruteLoss(5)
+				M.Paralyze(stun_amt * 2)
+				M.adjustRedLoss(15)
 				to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
 		else
 			new sparkle_path(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
@@ -296,6 +296,7 @@
 				M.Paralyze(stun_amt)
 				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
 			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
+	return thrownatoms
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
 	name = "Tail Sweep"
@@ -305,7 +306,6 @@
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 2
-	cooldown_min = 150
 	invocation_type = "none"
 	sparkle_path = /obj/effect/temp_visual/dir_setting/tailsweep
 	action_icon = 'icons/mob/actions/actions_xeno.dmi'
@@ -313,12 +313,31 @@
 	action_background_icon_state = "bg_alien"
 	anti_magic_check = FALSE
 
-/obj/effect/proc_holder/spell/aoe_turf/repulse/xeno/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/aoe_turf/repulse/xeno/cast(list/targets, mob/user = usr)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		playsound(C.loc, 'sound/voice/hiss5.ogg', 80, TRUE, TRUE)
 		C.spin(6,1)
 	..(targets, user, 60)
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/arbiter
+	sound = 'sound/magic/arbiter/repulse.ogg'
+	charge_max = 150
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	anti_magic_check = FALSE
+	range = 5
+	invocation_type = "none"
+	sparkle_path = /obj/effect/temp_visual/sparks
+	var/repulse_damage = 50
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/arbiter/cast(list/targets, mob/user = usr)
+	. = ..(targets, user, 20)
+	var/list/thrown_atoms = .
+	for(var/mob/living/L in thrown_atoms)
+		if(user.faction_check_mob(L))
+			continue
+		L.apply_damage(repulse_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
 /obj/effect/proc_holder/spell/targeted/sacred_flame
 	name = "Sacred Flame"

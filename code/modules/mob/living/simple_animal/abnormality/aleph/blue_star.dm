@@ -37,6 +37,7 @@
 		/datum/ego_datum/weapon/star_sound,
 		/datum/ego_datum/armor/star_sound
 		)
+	gift_type =  /datum/ego_gifts/star
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 9 SECONDS
@@ -91,14 +92,28 @@
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 
+/mob/living/simple_animal/hostile/abnormality/bluestar/attempt_work(mob/living/carbon/human/user, work_type)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
+		datum_reference.qliphoth_change(-1)
+		playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 25, FALSE, 28)
+		user.death()
+		animate(user, transform = user.transform*0.01, time = 5)
+		QDEL_IN(user, 5)
+		return FALSE
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)
-		datum_reference.qliphoth_change(-1)
-	if(work_time > 40 SECONDS)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)
 		datum_reference.qliphoth_change(-1)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
+	if(work_time > 40 SECONDS)
+		datum_reference.qliphoth_change(-1)
+		playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 25, FALSE, 28)
+		user.death()
+		animate(user, transform = user.transform*0.01, time = 5)
+		QDEL_IN(user, 5)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)
@@ -108,3 +123,4 @@
 	forceMove(T)
 	BluePulse()
 	return
+

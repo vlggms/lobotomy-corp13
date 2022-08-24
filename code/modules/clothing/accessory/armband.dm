@@ -3,6 +3,7 @@
 	icon = 'icons/obj/clothing/ego_gear/armband.dmi'
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is red and brown."
 	icon_state = "control"
+	above_suit = TRUE
 
 /obj/item/clothing/accessory/armband/lobotomy/command
 	name = "command department armband"
@@ -44,4 +45,7 @@
 	desc = "An armband, worn by personnel to display which department they're assigned to. This one is black and white."
 	icon_state = "record"
 
-
+/obj/item/clothing/accessory/armband/lobotomy/architecture
+	name = "architecture department armband"
+	desc = "An armband, worn by personnel to display which department they're assigned to. This one is black and white, with a letter 'K' on it."
+	icon_state = "architecture"

@@ -4,14 +4,14 @@
 				"You left me behind!",
 				"You are the problem, YOU!!",
 				"I'll destroy everything...",
-				"It will end quickly, so relax. I’ll free you from this prison we call flesh."
+				"It will end quickly, so relax. Iâ€™ll free you from this prison we call flesh."
 				)
 
 /datum/ai_behavior/say_line/insanity_suicide
 	lines = list(
-				"It's all my fault. It’s my responsibility...",
-				"I can hear someone. It’s the sound of back home. I just can’t stop hearing it…",
-				"There’s no hope left. My mind’s collapsing. Everything’s collapsing...",
+				"It's all my fault. Itâ€™s my responsibility...",
+				"I can hear someone. Itâ€™s the sound of back home. I just canâ€™t stop hearing it",
+				"Thereâ€™s no hope left. My mindâ€™s collapsing. Everythingâ€™s collapsing...",
 				"We will all sink and perish, devoured by madness...",
 				"There is no hope left...",
 				"It will all end, soon..."
@@ -21,7 +21,7 @@
 	lines = list(
 				"Manager?! Manager! Open the emergency door! PLEASE LET ME OUT!!",
 				"HELP ME!!",
-				"DON'T SEND ME IN THERE! DON’T KILL ME!!",
+				"DON'T SEND ME IN THERE! DONâ€™T KILL ME!!",
 				"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
 				"I will never get out of here..."
 				)
@@ -29,17 +29,19 @@
 /datum/ai_behavior/say_line/insanity_wander/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	var/sanity_damage = get_user_level(living_pawn) * 5
+	var/sanity_damage = get_user_level(living_pawn) * 8
 	for(var/mob/living/carbon/human/H in view(7, living_pawn))
-		H.adjustWhiteLoss(sanity_damage, forced = TRUE)
+		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+			continue
+		H.adjustWhiteLoss(sanity_damage)
 
 /datum/ai_behavior/say_line/insanity_release
 	lines = list(
 				"Let us find peace from them.",
-				"I’m so sorry dear friends, I’ll let you out now.",
+				"Iâ€™m so sorry dear friends, Iâ€™ll let you out now.",
 				"We will find our redemption through the Abnormalities.",
 				"Let us reach the paradise beyond death, together with the Abnormalities.",
-				"Let me introduce you to my imaginary friends! They asked me to! They’re screaming to be let out!"
+				"Let me introduce you to my imaginary friends! They asked me to! Theyâ€™re screaming to be let out!"
 				)
 
 /datum/ai_behavior/insanity_attack_mob
@@ -172,12 +174,17 @@
 	if(!istype(target) || !istype(target.datum_reference))
 		finish_action(controller, FALSE)
 		return
-	if(DT_PROB(5, delta_time) && living_pawn.Adjacent(target) && isturf(target.loc))
-		living_pawn.visible_message("<span class='danger'>[living_pawn] smashes panel on \the [target]!</span>")
+	if(DT_PROB(5*get_user_level(living_pawn), delta_time) && living_pawn.Adjacent(target) && isturf(target.loc))
+		living_pawn.visible_message("<span class='danger'>[living_pawn] smashes the panel on \the [target]!</span>")
 		playsound(living_pawn.loc, 'sound/effects/hit_on_shattered_glass.ogg', 75, TRUE, -1)
-		if(!target.finish_work(living_pawn))
+		if(target.datum_reference.qliphoth_meter == 1)
+			target.datum_reference.qliphoth_change(-1)
 			finish_action(controller, TRUE)
+			return
+		target.datum_reference.qliphoth_change(-1)
 
 /datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
+	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	controller.blackboard[BB_INSANE_BLACKLISTITEMS][target] = world.time + 60 SECONDS
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null

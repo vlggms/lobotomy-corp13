@@ -179,3 +179,8 @@
 
 /obj/item/clothing/neck/cloak/skill_reward/playing/check_wearable(mob/user)
 	return user.client?.get_exp_living(TRUE) >= PLAYTIME_VETERAN
+
+/obj/item/clothing/neck/cloak/arbiter
+	name = "arbiter's cloak"
+	desc = "A fancy cloak worn by the Arbiters of the Head."
+	icon_state = "arbitercloak"

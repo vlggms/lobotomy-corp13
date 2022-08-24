@@ -494,8 +494,8 @@
 	req_access = null
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/clothing/under/rank/centcom/commander,
-/obj/item/clothing/head/centhat,
+/obj/item/clothing/under/rank/k_corporation/command,
+/obj/item/clothing/head/k_corp_hat,
 /obj/item/clothing/suit/armor/vest{
 	layer = 2.9
 	},
@@ -503,7 +503,7 @@
 	layer = 2.9
 	},
 /obj/structure/closet/cabinet,
-/obj/item/clothing/suit/armor/vest/centcom_formal,
+/obj/item/clothing/suit/armor/vest/k_corp_formal,
 /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch,
 /turf/open/floor/wood/airless,
 /area/ruin/has_grav/prototype/Captain)

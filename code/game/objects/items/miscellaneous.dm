@@ -250,7 +250,7 @@
 /obj/item/storage/box/hero/PopulateContents()
 	new /obj/item/clothing/head/fedora/curator(src)
 	new /obj/item/clothing/suit/curator(src)
-	new /obj/item/clothing/under/rank/civilian/curator/treasure_hunter(src)
+	new /obj/item/clothing/under/rank/civilian/curator/zwei_shield(src)
 	new /obj/item/clothing/shoes/workboots/mining(src)
 	new /obj/item/melee/curator_whip(src)
 

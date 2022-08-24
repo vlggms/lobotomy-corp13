@@ -194,13 +194,16 @@
 		human_pawn.visible_message("<span class='danger'>[human_pawn] is twisting their neck, they are trying to commit suicide!</span>")
 		human_pawn.adjustBruteLoss(400)
 		human_pawn.jitteriness = 0
-		var/sanity_damage = get_user_level(human_pawn) * 30
+		var/sanity_damage = get_user_level(human_pawn) * 50
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
+			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+				continue
 			H.adjustWhiteLoss(sanity_damage)
 
 /datum/ai_controller/insane/wander
 	lines_type = /datum/ai_behavior/say_line/insanity_wander
 	var/last_message
+	var/suicide_enter = 0
 
 /datum/ai_controller/insane/wander/PerformIdleBehavior(delta_time)
 	var/mob/living/living_pawn = pawn
@@ -210,6 +213,14 @@
 	if(DT_PROB(10, delta_time) && world.time + 5 SECONDS > last_message)
 		last_message = world.time
 		current_behaviors += GET_AI_BEHAVIOR(lines_type)
+	if(world.time > suicide_enter)
+		if(DT_PROB(10, delta_time))
+			living_pawn.visible_message("<span class='danger'>[living_pawn] freezes with an expression of despair on their face!</span>")
+			QDEL_NULL(living_pawn.ai_controller)
+			living_pawn.ai_controller = /datum/ai_controller/insane/suicide
+			living_pawn.InitializeAIController()
+		else
+			suicide_enter = world.time + 30 SECONDS
 
 /datum/ai_controller/insane/release
 	lines_type = /datum/ai_behavior/say_line/insanity_release
@@ -229,6 +240,8 @@
 		if(!AC.datum_reference)
 			continue
 		if(!(AC.datum_reference.current.status_flags & GODMODE))
+			continue
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][AC] > world.time)
 			continue
 		if((AC.datum_reference.qliphoth_meter_max > 0) && (AC.datum_reference.qliphoth_meter > 0))
 			if(get_dist(pawn, AC) < 40)

@@ -29,7 +29,7 @@
 
 /datum/job/manager/after_spawn(mob/living/H, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT) // God bless the manager
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/manager
 	name = "Manager"

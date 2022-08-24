@@ -80,7 +80,7 @@
 	var/wound_damage_multiplier = 1
 
 	/// This number is subtracted from all wound rolls on this bodypart, higher numbers mean more defense, negative means easier to wound
-	var/wound_resistance = 0
+	var/wound_resistance = 20
 	/// When this bodypart hits max damage, this number is added to all wound rolls. Obviously only relevant for bodyparts that have damage caps.
 	var/disabled_wound_penalty = 15
 

@@ -66,11 +66,6 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(60))
-		datum_reference.qliphoth_change(-1)
-	return
-
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return

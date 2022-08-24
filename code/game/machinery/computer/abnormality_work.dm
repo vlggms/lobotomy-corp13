@@ -95,7 +95,8 @@
 	var/work_time = datum_reference.max_boxes
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
-	user.adjustSanityLoss(sanity_damage)
+	if(!HAS_TRAIT(user, TRAIT_WORKFEAR_IMMUNE))
+		user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
 		finish_work(user, work_type, 0, work_time) // Assume total failure
 		return
@@ -157,7 +158,7 @@
 		if(!training)
 			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 		else
-			datum_reference.current.work_complete(user, work_type, pe, datum_reference.success_boxes, work_speed*max_pe)
+			datum_reference.current.work_complete(user, work_type, pe, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)

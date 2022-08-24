@@ -37,7 +37,7 @@
 		/datum/ego_datum/weapon/mimicry,
 		/datum/ego_datum/armor/mimicry
 		)
-
+	gift_type =  /datum/ego_gifts/mimicry
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -236,6 +236,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	if (GODMODE in user.status_flags)
+		return
 	disguise_as(user)
 	return
 
@@ -262,3 +264,4 @@
 			new /obj/effect/temp_visual/flesh(T)
 		forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
+

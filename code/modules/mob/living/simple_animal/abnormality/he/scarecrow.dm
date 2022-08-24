@@ -38,7 +38,7 @@
 		/datum/ego_datum/weapon/harvest,
 		/datum/ego_datum/armor/harvest
 		)
-
+	gift_type =  /datum/ego_gifts/harvest
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 
@@ -98,3 +98,5 @@
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living
 	GiveTarget(user)
+
+

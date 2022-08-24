@@ -47,7 +47,16 @@
 	desc = "A black jumpsuit with a grey vest jacket, embroidered with hexagonal gold patterns. Worn by clerks from the extraction department."
 	icon_state = "extraction"
 
+/obj/item/clothing/under/suit/lobotomy/extraction/arbiter
+	name = "arbiter's uniform"
+	desc = "A dark uniform worn by the Arbiters of the Head."
+
 /obj/item/clothing/under/suit/lobotomy/records
 	name = "record department uniform"
 	desc = "A white qipao and black trousers with grey cloud patterns. Buttons up at the chest, and fastened around the waist with a belt of fabric. Worn by clerks from the records department."
 	icon_state = "records"
+
+/obj/item/clothing/under/suit/lobotomy/architecture
+	name = "architecture department uniform"
+	desc = "A black-and-white suit. Worn by clerks from the architecture department."
+	icon_state = "architecture"
