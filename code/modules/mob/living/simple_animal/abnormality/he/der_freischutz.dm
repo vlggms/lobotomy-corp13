@@ -40,7 +40,7 @@
 	var/targetx
 	var/targety
 	for(var/mob/M in GLOB.mob_living_list)
-		if(istype(M,/mob/living/simple_animal/bot) || istype(M,/mob/living/simple_animal/hostile/abnormality/der_freischutz) || (src.z != M.z) || (M.stat == DEAD))
+		if(istype(M,/mob/living/simple_animal/bot) || (src.z != M.z) || (M.stat == DEAD) || (M.status_flags & GODMODE))
 			continue
 		targets += M
 	var/mob/target = pick(targets)

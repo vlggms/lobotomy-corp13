@@ -128,14 +128,14 @@
 	<h4>Repression:</h4> Common<br>"}
 
 //Crumbling Armor
-/obj/item/paper/fluff/info/teth/mhz
+/obj/item/paper/fluff/info/teth/crumbling
 	name = "O-05-61"
 	info = {"<h1><center>O-05-61</center></h1>	<br>
 	Name : Crumbling Armor	<br>
 	Risk Class : Teth	<br>
 	Max PE Boxes : 12	<br>
 	Qliphoth Counter : X	<br>
-	- When an Agent with less than 2 Fortitude completed the work, they were found with their head cut clean off.	<br>
+	- When an Agent with Level 1 Fortitude completed the work, they were found with their head cut clean off.	<br>
 	- Upon completing a Repression work with Crumbling Armor, the Agent gained a glowing aura.	<br>
 	- This aura seemed to grant them an increase to their Justice attribute.	<br>
 	- As the employee completed more Repression work with Crumbling Armor, the aura intensified.	<br>

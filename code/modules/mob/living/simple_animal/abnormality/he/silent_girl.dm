@@ -65,7 +65,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Guilt_Effect(mob/living/carbon/human/user)
-	if (user in guilty_people)
+	if ((user.stat == DEAD) || (user in guilty_people))
 		return
 	datum_reference.qliphoth_change(-1)
 	guilty_people += user

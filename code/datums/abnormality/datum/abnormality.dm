@@ -92,7 +92,7 @@
 	return TRUE
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
-	current.work_complete(user, work_type, pe, success_boxes, work_time) // Cross-referencing gone wrong
+	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
 	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
 	if(overload_chance > overload_chance_limit)

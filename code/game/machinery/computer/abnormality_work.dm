@@ -150,7 +150,7 @@
 		if(!training)
 			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 		else
-			datum_reference.current.work_complete(user, work_type, pe, datum_reference.success_boxes, work_speed*max_pe)
+			datum_reference.current.work_complete(user, work_type, pe, work_speed*max_pe)
 	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
 		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
