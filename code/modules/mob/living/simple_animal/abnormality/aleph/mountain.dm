@@ -39,7 +39,7 @@
 		/datum/ego_datum/weapon/smile,
 		/datum/ego_datum/armor/smile
 		)
-
+	gift_type =  /datum/ego_gifts/smile
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -62,6 +62,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
 	if(prob(1)) // Kirie, why
 		icon_state = "amog"
+		gift_type =  /datum/ego_gifts/amogus
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -168,7 +169,7 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
 	if(increase)
-		if(belly >= 5)
+		if(belly >= 3)
 			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
@@ -283,3 +284,5 @@
 	GiveTarget(user)
 	icon_living = "mosb_breach"
 	icon_state = icon_living
+
+

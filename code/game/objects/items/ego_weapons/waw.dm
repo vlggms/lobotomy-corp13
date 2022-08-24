@@ -63,9 +63,9 @@
 /obj/item/ego_weapon/totalitarianism
 	name = "totalitarianism"
 	desc = "When one is oppressed, sometimes they try to break free."
-	special = "This weapon attacks extremely slowly"
+	special = "This weapon attacks extremely slowly. Use in hand to unlock it's full power."
 	icon_state = "totalitarianism"
-	force = 120
+	force = 80
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -74,10 +74,22 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+	var/charged = FALSE
 
 /obj/item/ego_weapon/totalitarianism/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 3) // Slow
+
+/obj/item/ego_weapon/totalitarianism/attack(mob/living/M, mob/living/user)
+	..()
+	force = 80
+	charged = FALSE
+
+/obj/item/ego_weapon/totalitarianism/attack_self(mob/user)
+	if(do_after(user, 12))
+		charged = TRUE
+		force = 120	//FULL POWER
+		to_chat(user,"<span class='warning'>You put your strength behind this attack.</span>")
 
 /obj/item/ego_weapon/oppression
 	name = "oppression"
@@ -101,7 +113,7 @@
 	user.changeNext_move(CLICK_CD_MELEE * 0.3) // It's a fast weapon
 
 /obj/item/ego_weapon/oppression/attack_self(mob/user)
-	if (charged == FALSE)
+	if (!charged)
 		charged = TRUE
 		to_chat(user,"<span class='warning'>You focus your energy, adding [meter] damage to your next attack.</span>")
 		force += meter
@@ -115,7 +127,6 @@
 	..()
 
 	if(charged == TRUE)
-		user.changeNext_move(CLICK_CD_MELEE * 1) // You just did your finisher
 		charged = FALSE
 		force = 15
 
@@ -124,7 +135,7 @@
 	desc = "A hammer and nail, unwieldy and impractical against most. \
 	Any crack, no matter how small, will be pried open by this E.G.O."
 	icon_state = "remorse"
-	force = 80 // Extremely powerful, but extremely slow
+	force = 70 // Extremely powerful, but extremely slow
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("Smashes", "Pierces", "Cracks")

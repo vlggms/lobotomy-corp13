@@ -300,3 +300,25 @@
 	if(isopenturf(target) || istype(target, /turf/closed/indestructible))//shrunk floors wouldnt do anything except look weird, i-walls shouldn't be bypassable
 		return
 	target.AddComponent(/datum/component/shrink, shrink_time)
+
+/obj/projectile/beam/fairy
+	name = "fairy"
+	icon_state = "fairy"
+	damage = 50
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+
+	light_color = LIGHT_COLOR_YELLOW
+	beam_type = list("fairy", 'icons/effects/beam.dmi')
+	hitscan = TRUE
+	hitscan_light_intensity = 2
+	hitscan_light_range = 1
+	hitscan_light_color_override = LIGHT_COLOR_YELLOW
+	muzzle_flash_intensity = 3
+	muzzle_flash_range = 2
+	muzzle_flash_color_override = LIGHT_COLOR_YELLOW
+	impact_light_intensity = 4
+	impact_light_range = 3
+	impact_light_color_override = LIGHT_COLOR_YELLOW

@@ -33,6 +33,7 @@
 		/datum/ego_datum/weapon/paw,
 		/datum/ego_datum/armor/paw
 		)
+	gift_type =  /datum/ego_gifts/bearpaw
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
 	src.hugging = TRUE
@@ -76,3 +77,4 @@
 		return FALSE
 	src.last_worker = user
 	. = ..()
+

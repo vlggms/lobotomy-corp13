@@ -20,7 +20,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), 80 SECONDS)
+	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 80 SECONDS))
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/CanAttack(atom/the_target)
 	return FALSE
@@ -32,7 +32,7 @@
 	new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
 	for(var/mob/living/carbon/human/H in view(7, src))
 		new /obj/effect/temp_visual/revenant(get_turf(H))
-		H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+		H.apply_damage(6, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
@@ -41,12 +41,12 @@
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = spiral_range_turfs(24, target_c)
 	visible_message("<span class='danger'>[src] releases a stream of nauseating gas!</span>")
-	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 10)
+	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 16)
 	adjustWhiteLoss(maxHealth) // Die
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in urange(24, target_c, contents_include = TRUE))
+	for(var/mob/living/carbon/human/H in livinginrange(24, target_c))
 		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(24, target_c))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
@@ -63,8 +63,8 @@
 	base_pixel_x = -8
 	pixel_x = -8
 	faction = list("violet_ordeal")
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 1400
+	health = 1400
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 
 	var/next_pulse = INFINITY
@@ -91,7 +91,7 @@
 		return
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(7, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+			L.apply_damage(9, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
 	density = FALSE
@@ -114,7 +114,7 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			var/distance_decrease = get_dist(src, L) * 30
+			var/distance_decrease = get_dist(src, L) * 20
 			L.apply_damage((150 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(L.health < 0)
 				L.gib()

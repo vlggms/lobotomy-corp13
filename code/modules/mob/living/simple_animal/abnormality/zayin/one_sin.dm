@@ -23,6 +23,12 @@
 		/datum/ego_datum/armor/penitence
 		)
 	max_boxes = 10
+	gift_type =  /datum/ego_gifts/penitence
+
+/mob/living/simple_animal/hostile/abnormality/onesin/work_chance(mob/living/carbon/human/user, chance)
+	. = ..()
+	if (istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
+		return chance + 10
 
 /mob/living/simple_animal/hostile/abnormality/onesin/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
@@ -57,6 +63,8 @@
 			if(M.client)
 				M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)
 		return
+	if (prob(5)) // Will be 5%
+		user.Apply_Gift(new /datum/ego_gifts/penitence)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/success_effect(mob/living/carbon/human/user, work_type, pe)
@@ -65,3 +73,4 @@
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			H.adjustSanityLoss(10)
 	..()
+

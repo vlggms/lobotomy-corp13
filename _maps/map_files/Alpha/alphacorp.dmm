@@ -3151,6 +3151,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"Dr" = (
+/obj/structure/table/glass,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/obj/item/encryptionkey/headset_control,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "DC" = (
 /obj/structure/sign/poster/official/help_others,
 /turf/closed/indestructible/reinforced,
@@ -3265,6 +3277,18 @@
 /obj/structure/sign/poster/official/we_watch,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/west)
+"ET" = (
+/obj/structure/table/reinforced,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Fc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/elevatorshaft,
@@ -3780,10 +3804,17 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/item/reagent_containers/food/drinks/beer,
 /obj/structure/sign/poster/official/fruit_bowl{
 	pixel_y = -32
 	},
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Kn" = (
@@ -5323,6 +5354,18 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/noslip,
 /area/facility_hallway/central)
+"Zd" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/obj/item/encryptionkey/headset_safety,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "Ze" = (
 /obj/machinery/cryopod{
 	dir = 1
@@ -30710,7 +30753,7 @@ gI
 gI
 gz
 fa
-gI
+Zd
 OD
 PU
 pX
@@ -38656,7 +38699,7 @@ Mi
 lJ
 Ep
 FV
-oF
+Dr
 oF
 fq
 Mi
@@ -38719,7 +38762,7 @@ TM
 LX
 mX
 YM
-Nr
+ET
 YM
 YM
 Sg

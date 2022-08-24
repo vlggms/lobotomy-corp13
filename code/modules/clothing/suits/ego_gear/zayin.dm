@@ -32,7 +32,7 @@
 	name = "little alice"	//Looks like alice from Shin Megami Tensei
 	desc = "Oh, they are so very beautiful."
 	icon_state = "little_alice"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/wingbeat
 	name = "wingbeat"

@@ -21,15 +21,8 @@
 		/datum/ego_datum/weapon/soda,
 		/datum/ego_datum/armor/soda
 		)
-
-	// Chance will be decreasing if you work on it too much. Don't abuse "free" healing, lads!
-	var/success_counter = 0
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/Move()
-	return FALSE
-
+	gift_type = /datum/ego_gifts/soda
 /mob/living/simple_animal/hostile/abnormality/wellcheers/success_effect(mob/living/carbon/human/user, work_type, pe)
-	success_counter += 1
 	var/obj/item/dropped_can
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -55,15 +48,8 @@
 	user.AdjustSleeping(10 SECONDS)
 	animate(user, alpha = 0, time = 2 SECONDS)
 	QDEL_IN(user, 3.5 SECONDS) // Bye bye!
-	success_counter = 0 // Reset counter, you can get more soda safely now
 	return
 
-/mob/living/simple_animal/hostile/abnormality/wellcheers/work_chance(mob/living/carbon/human/user, chance)
-	return chance - success_counter
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/meltdown_start()
-	..()
-	success_counter = 0
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red

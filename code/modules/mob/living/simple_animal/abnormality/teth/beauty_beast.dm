@@ -26,7 +26,7 @@
 		/datum/ego_datum/weapon/horn,
 		/datum/ego_datum/armor/horn
 		)
-
+	gift_type =  /datum/ego_gifts/horn
 	var/injured = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/beauty/death(gibbed)
@@ -42,7 +42,7 @@
 			injured = TRUE
 			icon_state = "beauty_injured"
 
-		else //If you already did repression, die.
+		else if (!(GODMODE in user.status_flags))//If you already did repression, die.
 			user.gib()
 			death()
 
@@ -50,3 +50,5 @@
 		injured = FALSE
 		icon_state = icon_living
 	return
+
+

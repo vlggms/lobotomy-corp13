@@ -53,7 +53,7 @@
 	icon_state = "policehelm"
 	dynamic_hair_suffix = ""
 
-	dog_fashion = /datum/dog_fashion/head/warden
+	dog_fashion = /datum/dog_fashion/head/zwei
 
 /obj/item/clothing/head/collectable/beret
 	name = "collectable beret"

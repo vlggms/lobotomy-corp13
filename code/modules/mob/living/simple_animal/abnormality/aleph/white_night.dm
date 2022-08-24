@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	ego_list = list(
 		/datum/ego_datum/armor/paradise
 		)
-
+	gift_type =  /datum/ego_gifts/paradise
 	var/holy_revival_cooldown = 30 SECONDS
 	var/holy_revival_cooldown_base = 30 SECONDS
 	var/holy_revival_damage = 28 // Pale damage, scales with distance
@@ -449,3 +449,5 @@ GLOBAL_LIST_EMPTY(apostles)
 	..()
 	GiveTarget(user)
 	return
+
+

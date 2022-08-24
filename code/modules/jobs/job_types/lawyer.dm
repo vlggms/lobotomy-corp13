@@ -31,7 +31,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/storage/briefcase/lawyer
 	l_pocket = /obj/item/laser_pointer
-	r_pocket = /obj/item/clothing/accessory/lawyers_badge
+	r_pocket = /obj/item/clothing/accessory/fixer_badge
 
 	chameleon_extras = /obj/item/stamp/law
 

@@ -78,7 +78,7 @@
 	opendoors = FALSE
 	rename_team = "Horde of Interns"
 	mission = "Assist in conflict resolution."
-	polldesc = "an unpaid internship opportunity with Nanotrasen"
+	polldesc = "an unpaid internship opportunity with K-Corporation"
 	random_names = FALSE
 
 /datum/ert/intern/unarmed
@@ -114,3 +114,11 @@
 	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
 	polldesc = "a Rhino Team"
 	code = "Orange"
+
+/datum/ert/zwei
+	roles = list(/datum/antagonist/ert/zwei_shield, /datum/antagonist/ert/zwei_shield/veteran)
+	leader_role = /datum/antagonist/ert/zwei_shield/captain
+	opendoors = TRUE
+	rename_team = "Zwei Shield Unit"
+	mission = "Preserve the lives of the client employees, remove all clear and evident threats to their safety."
+	polldesc = "Zwei Shieldbearers, swordsmen with squad tactics and professional attitude."

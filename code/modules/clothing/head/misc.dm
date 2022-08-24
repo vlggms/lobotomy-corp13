@@ -1,9 +1,9 @@
 
 
-/obj/item/clothing/head/centhat
-	name = "\improper R-Corporation hat"
+/obj/item/clothing/head/k_corp_hat
+	name = "\improper K-Corporation hat"
 	icon_state = "centcom"
-	desc = "An armored hat for the R-Corporation employee who values tacticool over tactical."
+	desc = "An armored hat for the K-Corporation employee who values tacticool over tactical."
 	inhand_icon_state = "that"
 	flags_inv = 0
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
@@ -456,9 +456,9 @@
 	clothing_flags = LARGE_WORN_ICON
 	dynamic_hair_suffix = ""
 
-/obj/item/clothing/head/intern
-	name = "\improper CentCom Head Intern beancap"
-	desc = "A horrifying mix of beanie and softcap in CentCom green. You'd have to be pretty desperate for power over your peers to agree to wear this."
+/obj/item/clothing/head/safety
+	name = "\improper Safety Department beancap"
+	desc = "A horrifying mix of beanie and softcap in Safety green. Whoever designed this must have been ridiculously high."
 	icon_state = "intern_hat"
 	inhand_icon_state = "intern_hat"
 
@@ -481,10 +481,10 @@
 	icon_state = "weddingveil"
 	inhand_icon_state = "weddingveil"
 
-/obj/item/clothing/head/centom_cap
-	name = "\improper CentCom Commander Cap"
+/obj/item/clothing/head/k_corp_cap
+	name = "\improper K-Corporation Command Cap"
 	icon_state = "centcom_cap"
-	desc = "Worn by the finest of CentCom Commanders. Inside the lining of the cap, lies two faint initials."
+	desc = "Worn by the finest of K-Corporation command personnel."
 	inhand_icon_state = "that"
 	flags_inv = 0
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)

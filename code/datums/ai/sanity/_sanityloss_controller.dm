@@ -194,8 +194,10 @@
 		human_pawn.visible_message("<span class='danger'>[human_pawn] is twisting their neck, they are trying to commit suicide!</span>")
 		human_pawn.adjustBruteLoss(400)
 		human_pawn.jitteriness = 0
-		var/sanity_damage = get_user_level(human_pawn) * 30
+		var/sanity_damage = get_user_level(human_pawn) * 50
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
+			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+				continue
 			H.adjustWhiteLoss(sanity_damage)
 
 /datum/ai_controller/insane/wander

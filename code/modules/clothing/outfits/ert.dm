@@ -163,7 +163,7 @@
 /datum/outfit/centcom/centcom_official
 	name = "CentCom Official"
 
-	uniform = /obj/item/clothing/under/rank/centcom/officer/alt
+	uniform = /obj/item/clothing/under/rank/k_corporation/officer/duty
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent
@@ -309,7 +309,7 @@
 	name = "CentCom Intern"
 	var/jb_name = "CentCom Intern" // It is required for unarmed type.
 
-	uniform = /obj/item/clothing/under/rank/centcom/intern
+	uniform = /obj/item/clothing/under/rank/k_corporation/intern
 	shoes = /obj/item/clothing/shoes/sneakers/black
 	gloves = /obj/item/clothing/gloves/color/black
 	ears = /obj/item/radio/headset/headset_cent
@@ -348,7 +348,7 @@
 	suit = /obj/item/clothing/suit/armor/vest
 	suit_store = /obj/item/gun/ballistic/rifle/boltaction/brand_new
 	l_hand = /obj/item/megaphone
-	head = /obj/item/clothing/head/intern
+	head = /obj/item/clothing/head/safety
 
 /datum/outfit/centcom/centcom_intern/leader/unarmed // i'll be nice and let the leader keep their baton and vest
 	name = "CentCom Head Intern (Unarmed)"
@@ -502,3 +502,32 @@
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
 	..()
+
+/datum/outfit/zwei_shield
+	name = "Zwei Shield"
+
+	id = /obj/item/card/id/ert/zwei_shield
+	uniform = /obj/item/clothing/under/rank/civilian/curator/zwei_shield
+	suit = /obj/item/clothing/suit/armor/vest/zwei_jacket
+	shoes = /obj/item/clothing/shoes/combat/merc
+	gloves = /obj/item/clothing/gloves/combat
+	ears = /obj/item/radio/headset/headset_cent/alt
+	l_hand = /obj/item/claymore
+	r_hand = /obj/item/clothing/accessory/fixer_badge
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
+	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)
+
+/datum/outfit/zwei_shield/veteran
+	name = "Zwei Veteran Shield"
+
+	id = /obj/item/card/id/ert/zwei_shield/veteran
+	head = /obj/item/clothing/head/beret/sec/zwei
+	glasses = /obj/item/clothing/glasses/sunglasses
+
+/datum/outfit/zwei_shield/captain
+	name = "Zwei Shield Captain"
+
+	id = /obj/item/card/id/ert/zwei_shield/captain
+	head = /obj/item/clothing/head/zwei
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses

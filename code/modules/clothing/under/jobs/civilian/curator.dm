@@ -19,9 +19,9 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	fitted = FEMALE_UNIFORM_TOP
 
-/obj/item/clothing/under/rank/civilian/curator/treasure_hunter
-	name = "treasure hunter uniform"
-	desc = "A rugged uniform suitable for treasure hunting."
+/obj/item/clothing/under/rank/civilian/curator/zwei_shield
+	name = "zwei association uniform"
+	desc = "A rugged uniform suitable for a professional mercenary."
 	icon = 'icons/obj/clothing/under/civilian.dmi'
 	icon_state = "curator"
 	inhand_icon_state = "curator"

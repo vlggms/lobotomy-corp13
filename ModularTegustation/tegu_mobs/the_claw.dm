@@ -168,6 +168,8 @@
 	serumW_cooldown = world.time + serumW_cooldown_time
 	var/list/mob/living/carbon/human/death_candidates = list()
 	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
+		if(faction_check_mob(maybe_victim))
+			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	var/mob/living/carbon/human/H = null
@@ -218,6 +220,8 @@
 	triserum_cooldown = world.time + triserum_cooldown_time
 	var/list/mob/living/carbon/human/death_candidates = list()
 	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
+		if(faction_check_mob(maybe_victim))
+			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	var/mob/living/carbon/human/H = null

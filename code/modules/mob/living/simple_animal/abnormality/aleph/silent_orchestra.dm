@@ -29,7 +29,7 @@
 		/datum/ego_datum/weapon/da_capo,
 		/datum/ego_datum/armor/da_capo
 		)
-
+	gift_type =  /datum/ego_gifts/dacapo
 	/// Range of the damage
 	var/symphony_range = 18
 	/// Amount of white damage
@@ -140,3 +140,4 @@
 	forceMove(T)
 	DamagePulse()
 	return
+

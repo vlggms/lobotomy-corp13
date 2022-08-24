@@ -85,7 +85,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed,
-/obj/item/bedsheet/centcom,
+/obj/item/bedsheet/k_corporation,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/machinery/airalarm/all_access{
 	dir = 8;
@@ -96,7 +96,7 @@
 "am" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/bed,
-/obj/item/bedsheet/centcom,
+/obj/item/bedsheet/k_corporation,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -694,8 +694,8 @@
 	dir = 1
 	},
 /obj/item/storage/wallet/random,
-/obj/item/clothing/under/rank/centcom/officer,
-/obj/item/clothing/under/rank/centcom/commander,
+/obj/item/clothing/under/rank/k_corporation/officer,
+/obj/item/clothing/under/rank/k_corporation/command,
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1259,7 +1259,7 @@
 	desc = "They look like human remains, and have clearly been gnawed at."
 	},
 /obj/effect/decal/cleanable/blood/gibs/old,
-/obj/item/clothing/head/centhat{
+/obj/item/clothing/head/k_corp_hat{
 	desc = "There's a gouge through the top where something has clawed clean through it. Whoever was wearing it probably doesn't need a hat any more.";
 	name = "\improper damaged CentCom hat";
 	pixel_x = 2;

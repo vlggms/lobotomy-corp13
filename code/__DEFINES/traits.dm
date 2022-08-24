@@ -174,6 +174,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NEVER_WOUNDED		"never_wounded"
 #define TRAIT_TOXINLOVER		"toxinlover"
 #define TRAIT_SANITYIMMUNE		"sanity_immune"
+#define TRAIT_WORKFEAR_IMMUNE		"work_fear_immune"
+#define TRAIT_COMBATFEAR_IMMUNE		"combat_fear_immune"
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
 #define TRAIT_FASTMED "fast_med_use"
 #define TRAIT_NOBREATH			"no_breath"

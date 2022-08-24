@@ -174,17 +174,17 @@
 	icon_state = "rdplasma"
 	inhand_icon_state = "rdplasma"
 
-/obj/item/clothing/gloves/color/plasmaman/centcom_commander
-	name = "CentCom commander envirogloves"
+/obj/item/clothing/gloves/color/plasmaman/k_corp_command
+	name = "K-Corporation command envirogloves"
 	icon_state = "commanderplasma"
 	inhand_icon_state = "commanderplasma"
 
-/obj/item/clothing/gloves/color/plasmaman/centcom_official
-	name = "CentCom official envirogloves"
+/obj/item/clothing/gloves/color/plasmaman/k_corp_official
+	name = "K-Corporation official envirogloves"
 	icon_state = "officialplasma"
 	inhand_icon_state = "officialplasma"
 
-/obj/item/clothing/gloves/color/plasmaman/centcom_intern
-	name = "CentCom intern envirogloves"
+/obj/item/clothing/gloves/color/plasmaman/k_corp_assistant
+	name = "K-Corporation assistant envirogloves"
 	icon_state = "internplasma"
 	inhand_icon_state = "internplasma"

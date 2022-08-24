@@ -21,7 +21,8 @@
 		/datum/ego_datum/weapon/tough,
 		/datum/ego_datum/armor/tough
 		)
-
+	gift_type =  /datum/ego_gifts/tough
+	gift_chance = 10
 	var/list/balding_list = list(
 							"Bald"
 							)
@@ -38,7 +39,6 @@
 		return
 	bald_users |= user.ckey
 	update_icon()
-
 	switch(length(bald_users))
 		if(2)
 			for(var/mob/living/carbon/human/H in range(14, user))
@@ -70,3 +70,4 @@
 			icon_state = "bald3"
 		else
 			icon_state = "bald1"
+
