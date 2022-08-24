@@ -2570,6 +2570,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\crumbling_armor.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\dingle_dangle.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\fragment.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\old_lady.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\punishing_bird.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\scorched_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\spider_bud.dm"
