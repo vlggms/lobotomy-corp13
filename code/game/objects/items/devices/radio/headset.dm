@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/heads
 	command = TRUE
-	keyslot = new /obj/item/encryptionkey/headset_command
+	keyslot = new /obj/item/encryptionkey/headset_architecture
 
 /obj/item/radio/headset/heads/agent_captain
 	name = "\proper the captain's headset"
