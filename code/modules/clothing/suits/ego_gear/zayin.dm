@@ -38,4 +38,4 @@
 	name = "wingbeat"
 	desc = "Most of the employees do not know the true meaning of The Fairies’ Care."
 	icon_state = "wingbeat"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 00, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
