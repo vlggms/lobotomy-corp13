@@ -39,6 +39,9 @@
 	var/overload_chance_amount = 0
 	/// Limit on overload_chance; By default equal to amount * 10
 	var/overload_chance_limit = 100
+	/// Simulated Observation Bonuses
+	var/understanding = 0
+	var/max_understanding = 0
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -65,6 +68,8 @@
 	current.toggle_ai(AI_OFF)
 	current.status_flags |= GODMODE
 	current.setDir(EAST)
+	if (understanding == max_understanding)
+		current.gift_chance *= 1.5
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
@@ -76,10 +81,18 @@
 	neutral_boxes = round(max_boxes * 0.4)
 	available_work = current.work_chances
 	switch(threat_level)
+		if(ZAYIN_LEVEL)
+			max_understanding = 10
+		if(TETH_LEVEL)
+			max_understanding = 10
+		if(HE_LEVEL)
+			max_understanding = 8
 		if(WAW_LEVEL)
 			overload_chance_amount = -2
+			max_understanding = 6
 		if(ALEPH_LEVEL)
 			overload_chance_amount = -4
+			max_understanding = 6
 	overload_chance_limit = overload_chance_amount * 10
 
 /datum/abnormality/proc/FillEgoList()
@@ -93,6 +106,14 @@
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
 	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
+	if (understanding != max_understanding) // This should render "full_understood" not required.
+		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
+			understanding = clamp((understanding + (max_understanding/10)), 0, max_understanding)
+		else
+			if (pe >= neutral_boxes) // Otherwise if they got a Neutral result, adds 5% understanding up to 100%
+				understanding = clamp((understanding + (max_understanding/20)), 0, max_understanding)
+		if (understanding == max_understanding) // Checks for max understanding after the fact
+			current.gift_chance *= 1.5
 	stored_boxes += pe
 	SSlobotomy_corp.WorkComplete(pe)
 	if(overload_chance > overload_chance_limit)
@@ -149,5 +170,6 @@
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
 	acquired_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	acquired_chance += overload_chance
 	return clamp(acquired_chance, 0, 100)
