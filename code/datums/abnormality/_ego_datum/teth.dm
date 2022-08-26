@@ -74,3 +74,11 @@
 /datum/ego_datum/armor/noise
 	item_path = /obj/item/clothing/suit/armor/ego_gear/noise
 	cost = 20
+
+// Bloodbath - Wrist Cutter
+/datum/ego_datum/weapon/bloodbath
+	item_path = /obj/item/ego_weapon/bloodbath
+	cost = 20
+/datum/ego_datum/armor/bloodbath
+	item_path = /obj/item/clothing/suit/armor/ego_gear/bloodbath
+	cost = 20
