@@ -315,3 +315,44 @@
 	)
 	H.equip_in_one_of_slots(camera, camera_slots , qdel_on_fail = TRUE)
 	H.regenerate_icons()
+
+/datum/quirk/bongin
+	name = "Bong Bong"
+	desc = "Bong Bong, Bong, Bongbong."
+	value = 0
+	gain_text = "<span class='notice'>Bong, Bong Bong.</span>"
+	lose_text = "<span class='danger'>Bong.</span>"
+	///The user's starting stuffs, for smiting purpose, obviously
+	var/old_hair
+	var/old_facial
+	var/old_skin_tone
+	var/old_eyes
+	var/old_name
+
+/datum/quirk/bongin/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	old_hair = H.hairstyle
+	old_skin_tone = H.skin_tone
+	old_eyes = H.eye_color
+	old_facial = H.facial_hairstyle
+	old_name = H.real_name
+	H.hairstyle = "Floorlength Bedhead"
+	H.skin_tone = "albino"
+	H.eye_color = "000"
+	H.hair_color = "0033CC"
+	H.real_name = "Bong Bong"
+	H.facial_hairstyle = "Shaved"
+	H.update_hair()
+	H.update_body()
+	H.grant_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
+
+/datum/quirk/bongin/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.hairstyle = old_hair
+	H.skin_tone = old_skin_tone
+	H.eye_color = old_eyes
+	H.facial_hairstyle = old_facial
+	H.real_name = old_name
+	H.update_hair()
+	H.update_body()
+	H.remove_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
