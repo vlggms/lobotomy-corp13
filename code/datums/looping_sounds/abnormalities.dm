@@ -17,6 +17,13 @@
 	volume = 50
 	extra_range = 10
 
+/datum/looping_sound/apostle_beam
+	mid_sounds = 'sound/abnormalities/whitenight/staff_attack.ogg'
+	mid_length = 3.7 SECONDS
+	end_sound = 'sound/abnormalities/whitenight/staff_end.ogg'
+	volume = 75
+	extra_range = 14
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
