@@ -28,7 +28,7 @@
 		icon = 'ModularTegustation/Teguicons/48x64.dmi'
 		icon_state = "bloodbath_a[hands]"
 		user.dust()
-		src.visible_message("<span class='warning'>[src] drags [user] into themself!</span>")
+		visible_message("<span class='warning'>[src] drags [user] into itself!</span>")
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')
 		playsound(get_turf(src),'sound/effects/footstep/water1.ogg')
 		SLEEP_CHECK_DEATH(3 SECONDS)
