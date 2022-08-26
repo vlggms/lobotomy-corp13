@@ -27,8 +27,14 @@
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40 || get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40 || (hands == 3 && prob(50)))
 		icon = 'ModularTegustation/Teguicons/48x64.dmi'
 		icon_state = "bloodbath_a[hands]"
+		user.Stun(30 SECONDS)
+		step_towards(user, src)
+		sleep(0.5 SECONDS)
+		step_towards(user, src)
+		sleep(0.5 SECONDS)
+		SLEEP_CHECK_DEATH (3 SECONDS)
 		user.dust()
-		src.visible_message("<span class='warning'>[src] drags [user] into themself!</span>")
+		visible_message("<span class='warning'>[src] drags [user] into itself!</span>")
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')
 		playsound(get_turf(src),'sound/effects/footstep/water1.ogg')
 		SLEEP_CHECK_DEATH(3 SECONDS)
@@ -41,7 +47,3 @@
 			max_boxes = 14
 			icon_state = "bloodbath"
 		return
-
-
-
-
