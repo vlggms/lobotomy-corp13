@@ -134,6 +134,7 @@
 	name = "remorse"
 	desc = "A hammer and nail, unwieldy and impractical against most. \
 	Any crack, no matter how small, will be pried open by this E.G.O."
+	special = "This weapon hits slower than usual."
 	icon_state = "remorse"
 	force = 70 // Extremely powerful, but extremely slow
 	damtype = WHITE_DAMAGE

@@ -18,9 +18,10 @@
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 40
+	damage = 30
 	alpha = 0
 	spread = 45
+	projectile_phasing = (ALL & (~PASSMOB))
 
 /obj/projectile/apocalypse/Initialize()
 	. = ..()

@@ -719,3 +719,14 @@
 
 /obj/effect/temp_visual/censored/proc/fade_out()
 	animate(src, alpha = 0, time = 2)
+
+/obj/effect/temp_visual/beakbite
+	name = "bite"
+	icon_state = "bite"
+	color = COLOR_RED
+
+/obj/effect/temp_visual/apocaspiral
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	name = "apocaspiral"
+	icon_state = "apocalypse_enchant_effect"
+	layer = ABOVE_ALL_MOB_LAYER

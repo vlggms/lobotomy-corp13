@@ -258,7 +258,7 @@
 
 
 /obj/item/ego_weapon/logging/proc/Smash(mob/user, atom/target)
-	var/dir_to_target = get_dir(get_turf(user), get_turf(target))
+	var/dir_to_target = get_cardinal_dir(get_turf(user), get_turf(target))
 	var/turf/source_turf = get_turf(user)
 	var/turf/area_of_effect = list()
 	var/turf/upper_bound
