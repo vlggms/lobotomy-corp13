@@ -6,8 +6,8 @@
 
 /datum/job/agent/captain
 	alt_titles = list()
-	senior_title = null
-	ultra_senior_title = null
+	senior_title = "Senior Agent Captain"
+	ultra_senior_title = "Veteran Agent Captain"
 
 /// Service
 /datum/job/assistant
