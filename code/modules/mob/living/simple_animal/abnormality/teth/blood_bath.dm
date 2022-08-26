@@ -33,6 +33,7 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		SLEEP_CHECK_DEATH (3 SECONDS)
+		
 		user.dust()
 		visible_message("<span class='warning'>[src] drags [user] into itself!</span>")
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')
