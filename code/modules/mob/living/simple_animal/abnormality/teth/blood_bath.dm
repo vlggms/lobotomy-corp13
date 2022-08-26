@@ -16,8 +16,8 @@
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 14
 	ego_list = list(
-		//datum/ego_datum/weapon/bloodbath,
-		//datum/ego_datum/armor/bloodbath
+		datum/ego_datum/weapon/bloodbath,
+		datum/ego_datum/armor/bloodbath
 	)
 	//gift_type =  /datum/ego_gifts/bloodbath
 	var/hands = 0
