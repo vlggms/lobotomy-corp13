@@ -16,8 +16,8 @@
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 14
 	ego_list = list(
-		//datum/ego_datum/weapon/bloodbath,
-		//datum/ego_datum/armor/bloodbath
+		/datum/ego_datum/weapon/bloodbath,
+		/datum/ego_datum/armor/bloodbath
 	)
 	//gift_type =  /datum/ego_gifts/bloodbath
 	var/hands = 0
@@ -31,8 +31,7 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		step_towards(user, src)
-		SLEEP_CHECK_DEATH (3 SECONDS)
-		
+		sleep(0.5 SECONDS)
 		user.dust()
 		visible_message("<span class='warning'>[src] drags [user] into itself!</span>")
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')

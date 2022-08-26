@@ -55,6 +55,11 @@
 	desc = "This is a recording of the day we must never forget."
 	icon_state = "noise"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0) // 20
+/obj/item/clothing/suit/armor/ego_gear/bloodbath
+	name = "bloodbath"
+	desc = "it may cause recurring sorrowful dreams that they shan’t recall once they wake up."
+	icon_state = "bloodbath"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/alleyway
 	name = "alleyway"
