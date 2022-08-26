@@ -47,11 +47,14 @@
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
 
-
 //Records
 /datum/job/command/records
 	title = "Records Officer"
 	outfit = /datum/outfit/job/command/records
+
+/datum/job/command/records/after_spawn(mob/living/H, mob/M)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 
 /datum/outfit/job/command/records
 	name = "Records Officer"

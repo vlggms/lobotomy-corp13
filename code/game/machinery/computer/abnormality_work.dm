@@ -55,7 +55,10 @@
 		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
 	dat += "<br>"
 	for(var/wt in datum_reference.available_work)
-		dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
+		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)) // Might be temporary until we add upgrades
+			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
+		else
+			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
 	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 300)
 	popup.set_content(dat)
 	popup.open()
@@ -111,9 +114,6 @@
 	update_icon()
 	working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
-	work_chance *= user.physiology.work_success_mod // Applies Pre-Temperence now.
-	work_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
-	work_chance = clamp(work_chance, 0, 100)
 	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
@@ -133,9 +133,9 @@
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
-		playsound(src, 'sound/machines/synth_yes.ogg', 25, FALSE, -3)
+		playsound(src, 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
 		return TRUE
-	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -3)
+	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
 /obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS, training)
@@ -151,10 +151,6 @@
 			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
 		else
 			datum_reference.current.work_complete(user, work_type, pe, work_speed*max_pe)
-	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
-		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
-		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
-		return FALSE
 	return TRUE
 
 /obj/machinery/computer/abnormality/process()
@@ -175,10 +171,7 @@
 /obj/machinery/computer/abnormality/proc/qliphoth_meltdown_effect()
 	meltdown = FALSE
 	update_icon()
-	datum_reference.qliphoth_change(-9)
-	if((datum_reference.qliphoth_meter_max > 0) && (datum_reference.qliphoth_meter <= 0))
-		visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
-		playsound(src, 'sound/effects/alertbeep.ogg', 50, FALSE)
+	datum_reference.qliphoth_change(-999)
 	return TRUE
 
 //special console just for training rabbit

@@ -124,14 +124,17 @@
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.zero_qliphoth(user)
+		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
+		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		return
 	current?.OnQliphothChange(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
+	if(!istype(user))
+		return 0
 	var/acquired_chance = available_work[workType]
 	if(islist(acquired_chance))
 		acquired_chance = acquired_chance[get_user_level(user)]
-	acquired_chance += overload_chance
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
 	switch (workType)
@@ -143,4 +146,7 @@
 			acquired_chance += user.physiology.attachment_success_mod
 		if (ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
-	return acquired_chance
+	acquired_chance *= user.physiology.work_success_mod
+	acquired_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	acquired_chance += overload_chance
+	return clamp(acquired_chance, 0, 100)
