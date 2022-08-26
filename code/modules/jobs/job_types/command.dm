@@ -41,6 +41,7 @@
 /datum/job/command/after_spawn(mob/living/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
 
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
