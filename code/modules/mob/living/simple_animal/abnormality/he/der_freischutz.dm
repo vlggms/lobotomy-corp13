@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30, // Can you believe he has actual attachment work rates in LC proper, despite that you can't do attachment work on him there?
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60)
 		)
-	work_damage_amount = 4
+	work_damage_amount = 8 // This was halved what it should be.
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(

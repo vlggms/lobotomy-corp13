@@ -22,7 +22,7 @@
 	can_buckle = TRUE
 	can_breach = TRUE
 	threat_level = HE_LEVEL
-	start_qliphoth = 1
+	start_qliphoth = 2
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 45,
 						ABNORMALITY_WORK_INSIGHT = 45,
@@ -39,7 +39,6 @@
 		/datum/ego_datum/armor/logging
 		)
 	gift_type =  /datum/ego_gifts/loggging
-	var/meltdown_breach = FALSE
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7
@@ -123,7 +122,7 @@
 		return
 	if (get_dist(src, target) > 3)
 		return
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 	var/turf/source_turf = get_turf(src)
 	var/turf/area_of_effect = list()
 	var/turf/upper_bound
@@ -249,26 +248,28 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/zero_qliphoth(mob/living/carbon/human/user)
-	if (meltdown_breach)
-		breach_effect()
-		meltdown_breach = FALSE
-	else
-		icon_state = "woodsman_prepare"
-		meltdown_breach = TRUE
-		RegisterSignal(src, COMSIG_WORK_STARTED, .proc/Take_Heart)
+/mob/living/simple_animal/hostile/abnormality/woodsman/OnQliphothChange(mob/living/carbon/human/user)
+	. = ..()
+	switch(datum_reference.qliphoth_meter)
+		if(1)
+			icon_state = "woodsman_prepare"
+			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 75, 0, 5)
+		if(2)
+			icon_state = "woodsman"
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/proc/Take_Heart(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/woodsman/attempt_work(mob/living/carbon/human/user, work_type)
+	. = ..()
 	if (GODMODE in user.status_flags)
 		return
-	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
-	breach_effect()
-	user.gib()
+	if(datum_reference.qliphoth_meter == 1)
+		to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
+		datum_reference.qliphoth_change(-1)
+		user.gib()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	. = ..()
 	if (!ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
+	. = ..()
 	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	for(var/obj/item/organ/O in M.getorganszone(BODY_ZONE_CHEST, TRUE))
@@ -277,21 +278,18 @@
 			QDEL_NULL(O)
 			break
 	M.gib()
-	if (datum_reference.qliphoth_meter == 0)
+	if (datum_reference.qliphoth_meter == 1)
 		to_chat(user, "<span class='nicegreen'>Rests it on the ground.</span>")
 		datum_reference.qliphoth_change(1)
 		icon_state = "woodsman"
-		meltdown_breach = FALSE
-		UnregisterSignal(src, COMSIG_WORK_STARTED, .proc/Take_Heart)
 	else
 		to_chat(user, "<span class='userdanger'>Stands up!</span>")
-		breach_effect(user)
+		datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/breach_effect(mob/living/carbon/human/user)
-	..()
+	.=..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living
 	if (!isnull(user))
 		GiveTarget(user)
-	UnregisterSignal(src, COMSIG_WORK_STARTED, .proc/Take_Heart)
 

@@ -6,6 +6,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 2	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Extreme	<br>
 	- When the work result was Good, the Qliphoth Counter lowered.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
 	- The music that is played by The Silent Orchestra when it escapes consists of 4 Movements. As the piece progresses, the employees listening will suffer WHITE damage, meanwhile the size of the audible area of the music expands.	<br>
@@ -13,7 +15,14 @@
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"}
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> Moderate/Moderate/Extreme/High/High	<br>
+	<h4>Red Resistance:</h4> Immune/Immune/Immune/Normal/Immune	<br>
+	<h4>White Resistance:</h4> Immune/Immune/Normal/Immune/Immune	<br>
+	<h4>Black Resistance:</h4> Immune/Normal/Immune/Immune/Immune	<br>
+	<h4>Pale Resistance:</h4> Normal/Immune/Immune/Immune/Immune	<br>"}
 
 //Blue Star
 /obj/item/paper/fluff/info/aleph/bluestar
@@ -23,6 +32,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 2	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Extreme	<br>
 	- "Agents with Temperance Level 3 or lower immediately threw themselves into Blue Star upon working with the Abnormality."
 	- When an Agent with Prudence Level 4 or lower completed their work, the Qliphoth Counter lowered.	<br>
 	- When more than 40 seconds of work time had taken place, the Qliphoth Counter lowered by 1, and the Agent who was working with Blue Star threw themself in.	<br>
@@ -31,7 +42,14 @@
 	<h4>Instinct:</h4> Low<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Ineffective	<br>
+	<h4>White Resistance:</h4> Ineffective	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}
 
 //White Night
 /obj/item/paper/fluff/info/aleph/whitenight
@@ -41,13 +59,22 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 2	<br>
+	Work Damage Type : Pale	<br>
+	Work Damage : Extreme	<br>
 	- Once the Qliphoth Counter reaches 0, WhiteNight and His disciples shall advent again.	<br>
 	- When the work result was Good, the Qliphoth Counter increased with a high probablility; the physical and mental health of every employee in the facility could also be healed.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br><br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Pale	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Absorbed	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Ineffective	<br>"}
 
 //Nothing There
 /obj/item/paper/fluff/info/aleph/nothingthere
@@ -57,6 +84,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Extreme	<br>
 	- The lower the working employee’s Fortitude, the lower the success rate was and the less stable the work was. <br>
 	- When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.	<br>
 	- When the work result was Bad, NAME was attacked and turned into Nothing There’s shell.	<br>
@@ -65,7 +94,14 @@
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Very Low<br>"}
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Ineffective/Immune/Immune	<br>
+	<h4>White Resistance:</h4> Endured/Endured/Ineffective	<br>
+	<h4>Black Resistance:</h4> Endured/Endured/Ineffective	<br>
+	<h4>Pale Resistance:</h4> Weak/Normal/Endured	<br>"}
 
 //The Mountain of Smiling Bodies
 /obj/item/paper/fluff/info/aleph/mountain
@@ -75,6 +111,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Extreme	<br>
 	- When NAME died or was critically injured while working with Mountain of Smiling Bodies, the Qliphoth Counter lowered. <br>
 	- When a wounded employee began work on The Mountain of Smiling Bodies, the Qliphoth Counter lowered.	<br>
 	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
@@ -86,7 +124,14 @@
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red/Black	<br>
+	<h4>Escape Damage:</h4> High/Extreme	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Endured	<br>"}
 
 //Staining Rose
 /obj/item/paper/fluff/info/aleph/rose
@@ -96,6 +141,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 3	<br>
+	Work Damage Type : Pale	<br>
+	Work Damage : Extreme	<br>
 	- Once the Qliphoth Counter reaches 0, the rose would shed it's petals, and everyone in the facility became more vulnerable.	<br>
 	- The first person to work on the rose would become it's chosen.	<br>
 	- If anyone other than the chosen worked on the rose, they became permanently weaker.	<br>
@@ -117,6 +164,8 @@
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
 	Qliphoth Counter : 3	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Extreme	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
 	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
 	- Melting Love gave a lump of slime to the first employee (D-03-109-1) who performed any work other than Repression with it. The lump healed D-03-109-1’s SP and raised their work success rate. However, further observation is needed to determine how the lump’s effects change according to the state of Melting Love.	<br>
@@ -127,4 +176,11 @@
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Very Low<br>"}
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Absorbed	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Endured	<br>"}
