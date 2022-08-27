@@ -7,7 +7,8 @@
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 	var/list/potential_types = list(
-		/mob/living/simple_animal/hostile/ordeal/black_fixer
+		/mob/living/simple_animal/hostile/ordeal/black_fixer,
+		/mob/living/simple_animal/hostile/ordeal/white_fixer
 		)
 
 /datum/ordeal/white_dusk/Run()
