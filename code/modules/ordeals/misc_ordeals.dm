@@ -4,8 +4,8 @@
 	annonce_text = "Let's have one big jambouree, a party everlasting."
 	level = 4
 	reward_percent = 0.25
-	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
-	end_sound = 'sound/effects/ordeals/white_end.ogg'
+	annonce_sound = 'sound/effects/ordeals/pink_start.ogg'
+	end_sound = 'sound/effects/ordeals/pink_end.ogg'
 
 /datum/ordeal/pink_midnight/Run()
 	..()
