@@ -6,6 +6,8 @@
 	Risk Class : Zayin	<br>
 	Max PE Boxes : 10	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Low	<br>
 	- The cake on top of Bottle Of Tears is tasty, and has healing properties.	<br>
 	- Eat all the cake, and the room will fill with water, drowning you.<br><br>
 	<h4>Instinct:</h4> High<br>
@@ -21,6 +23,8 @@
 	Risk Class : Zayin	<br>
 	Max PE Boxes : 10	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Low	<br>
 	- One Sin and Hundreds of Good Deeds will restore the employee’s mental state when the work result is Good. Bong Bong, who received this benediction, commented that it felt refreshing.	<br>
 	- After the maximum number of PE-Boxes was produced with One Sin and Hundreds of Good Deeds, it restored the mental health of every employee in the department..<br><br>
 	<h4>Instinct:</h4> Common<br>
@@ -36,6 +40,8 @@
 	Risk Class : Zayin	<br>
 	Max PE Boxes : 10	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Very Low	<br>
 	- Upon completion of the work process, a canned beverage is discharged from the vending machine. The type of beverage that is emitted seems to vary in correlation with the work type.	<br>
 	- Test Result W-1: A red drink can is emitted. The employee who ingested the beverage said it had a distinctive aroma and sweetness, and expressed a feeling of heightened energy after. Following the test, the physical health of the subject was confirmed.<br>
 	- Test Result W-2: A blue drink can is emitted. It contains an odorless liquid that is highly carbonated. It has been found to be effective in restoring mental strength.	<br>
@@ -55,6 +61,8 @@
 	Risk Class: Zayin	<br>
 	Max PE Boxes : 6	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Low	<br>
 	- You still seem to be keeping your silky hair... You’ve been struck by the Bald-is-awesome! beam.	<br>
 	- If you don’t work now, every employee, including you, will lose all their hair and become bald within a month.<br>
 	- It’s not too late. 30... 29... 28...<br><br>
@@ -71,6 +79,8 @@
 	Risk Class : Zayin	<br>
 	Max PE Boxes : 10	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
 	- When the work result was Normal or Good, small fairies appeared around the employee.	<br>
 	- The small fairies will heal the employee’s HP over a limited time.<br>
 	- If an employee under the fairies' care is assigned to a different Containment Unit, they will immediately die and be consumed by the fairies.<br><br>
