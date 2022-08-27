@@ -15,6 +15,7 @@
 			)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	max_boxes = 16 // Accurate to base game
 
 	ego_list = list(
 		/datum/ego_datum/weapon/prank,
