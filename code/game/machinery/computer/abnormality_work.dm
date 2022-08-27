@@ -53,6 +53,8 @@
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
 	if(datum_reference.overload_chance != 0)
 		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
+	if(datum_reference.understanding != 0)
+		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span>"
 	dat += "<br>"
 	for(var/wt in datum_reference.available_work)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)) // Might be temporary until we add upgrades
@@ -114,7 +116,7 @@
 	update_icon()
 	working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
-	var/work_speed = 2 SECONDS / (1 + (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 100))
+	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	var/success_boxes = 0
 	for(var/i = 1 to work_time)
 		user.Stun(work_speed) // TODO: Probably temporary
