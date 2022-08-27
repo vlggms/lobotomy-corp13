@@ -100,9 +100,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
 			A.current.OnQliphothEvent()
+	var/ran_ordeal = FALSE
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
-			return
+			ran_ordeal = TRUE
+	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
+		O.update_icon()
+	if(ran_ordeal)
+		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
@@ -151,6 +156,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!next_ordeal)
 		return FALSE
 	if(ordeal_timelock[next_ordeal_level - 1] > world.time)
+		next_ordeal_time += 1
 		return FALSE // Time lock
 	next_ordeal.Run()
 	next_ordeal = null
