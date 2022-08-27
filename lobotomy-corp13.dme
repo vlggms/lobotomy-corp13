@@ -923,6 +923,7 @@
 #include "code\game\machinery\camera\tracking.dm"
 #include "code\game\machinery\computer\_computer.dm"
 #include "code\game\machinery\computer\abnormality_ego.dm"
+#include "code\game\machinery\computer\abnormality_queue.dm"
 #include "code\game\machinery\computer\abnormality_work.dm"
 #include "code\game\machinery\computer\aifixer.dm"
 #include "code\game\machinery\computer\apc_control.dm"
