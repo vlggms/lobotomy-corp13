@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/white_night
 	name = "White night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
-	health = 12000
-	maxHealth = 12000
+	health = 15000
+	maxHealth = 15000
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "white_night"
 	icon_living = "white_night"
@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	gift_type =  /datum/ego_gifts/paradise
 
 	var/holy_revival_cooldown
-	var/holy_revival_cooldown_base = 90 SECONDS
+	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance
 	var/holy_revival_range = 64
 	/// List of mobs that have been hit by the revival field to avoid double effect
@@ -181,8 +181,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
 	SpawnApostles()
-	SLEEP_CHECK_DEATH(10 SECONDS)
-	sound_to_playing_players('sound/abnormalities/whitenight/rapture2.ogg', 50)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 
 /* Apostles */
@@ -237,6 +236,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
 	invisibility = 0 // Visible again
+	can_act = TRUE // In case we died while performing special attack
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/gib(no_brain, no_organs, no_bodyparts)
