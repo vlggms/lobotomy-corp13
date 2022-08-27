@@ -204,15 +204,14 @@
 	Name : Warm-Hearted Woodsman    <br>
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
-	Qliphoth Counter : 1    <br>
+	Qliphoth Counter : 2    <br>
 	Work Damage Type : White	<br>
 	Work Damage : High	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.    <br>
 	- When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
-	- When an employee enters attempts work while the Counter is at 0, they will immediately die. Then, the Abnormality will escape.    <br>
-	- Whenever a body, living or dead, was placed into the Woodsman's chest while it was about to escape, it sat down, seemingly satisified.    <br>
+	- When an employee enters attempts work while the Counter is at 1, they will immediately die. Afterwards, the Qliphoth counter decreased and the Woodsman began searching for hearts.    <br>
+	- Whenever a body, living or dead, was placed into the Woodsman's chest while it's counter was at 1, the Qliphoth counter increased and it sat down, seemingly satisified.    <br>
 	- WARNING: When a body was placed into the Woodsman's chest when it was not getting close to breaching, it breached immediately.	<br>
-	- WARNING: When the Woodsman suffered a meltdown while at 0 Qliphoth, it got up and begun searching for hearts.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
