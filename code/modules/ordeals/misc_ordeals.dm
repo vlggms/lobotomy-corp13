@@ -6,6 +6,7 @@
 	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/pink_start.ogg'
 	end_sound = 'sound/effects/ordeals/pink_end.ogg'
+	color = COLOR_PINK
 
 /datum/ordeal/pink_midnight/Run()
 	..()

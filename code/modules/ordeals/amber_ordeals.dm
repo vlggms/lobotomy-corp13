@@ -6,6 +6,7 @@
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
+	color = "#FFBF00"
 	/// How many places are chosen for the spawn
 	var/spawn_places = 4
 	/// How many mobs to spawn per spot
