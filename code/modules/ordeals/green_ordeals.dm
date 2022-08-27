@@ -10,6 +10,7 @@
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
 	spawn_player_multiplicator = 0.05
+	color = COLOR_DARK_LIME
 
 // Noon
 /datum/ordeal/amber_dawn/green_noon
@@ -24,6 +25,7 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	place_player_multiplicator = 0.08
 	spawn_player_multiplicator = 0
+	color = COLOR_DARK_LIME
 
 // Dusk
 /datum/ordeal/green_dusk
@@ -33,6 +35,7 @@
 	reward_percent = 0.2
 	annonce_sound = 'sound/effects/ordeals/green_start.ogg'
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
+	color = COLOR_DARK_LIME
 	/// How many places are chosen for the spawn
 	var/spawn_places = 3
 
