@@ -34,7 +34,7 @@
 		return
 	var/regen_amt = regeneration_amount
 	for(var/mob/living/L in A)
-		if(!("neutral" in L.faction)) // Enemy spotted
+		if(!("neutral" in L.faction) && L.stat != DEAD) // Enemy spotted
 			regen_amt *= 0.5
 			break
 	if(burst)
