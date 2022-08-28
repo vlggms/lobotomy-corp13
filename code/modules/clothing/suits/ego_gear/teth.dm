@@ -55,3 +55,27 @@
 	desc = "This is a recording of the day we must never forget."
 	icon_state = "noise"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/alleyway
+	name = "alleyway"
+	desc = "You can't always see what you need you."
+	icon_state = "alley"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/solitude
+	name = "solitude"
+	desc = "Conversation is meaningless."
+	icon_state = "solitude"
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/wrist
+	name = "wrist cutter"
+	desc = "Depression is a disease of the mind. We are the first doctors who discovered how to be happy."
+	icon_state = "wrist"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 30, BLACK_DAMAGE = -30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/wedge
+	name = "screaming wedge"
+	desc = "One can assume that she is longing for someone."
+	icon_state = "wedge"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10)

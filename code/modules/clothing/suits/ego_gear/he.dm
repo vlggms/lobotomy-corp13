@@ -109,3 +109,40 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/harmony
+	name = "harmony"
+	desc = "Oh, the sound is so beautiful."
+	icon_state = "harmony"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/syrinx
+	name = "syrinx"
+	desc = "The mouth is for intimidation, and should not move"
+	icon_state = "syrinx"
+	flags_inv = HIDESHOES
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/frostsplinter
+	name = "frost splinter"
+	desc = "Surprisingly cold to the touch."
+	icon_state = "frost_splinter"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 50)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/sanguine
+	name = "sanguine desire"
+	desc = "Smells funny, and is surprisingly heavy."
+	icon_state = "sanguine"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
