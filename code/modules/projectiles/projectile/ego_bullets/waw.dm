@@ -53,12 +53,14 @@
 
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
+	icon_state = "whitefly"
 	damage = 15
 	damage_type = WHITE_DAMAGE
 	speed = 0.1
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
+	icon_state = "blackfly"
 	damage = 15
 	damage_type = BLACK_DAMAGE
 	speed = 0.1

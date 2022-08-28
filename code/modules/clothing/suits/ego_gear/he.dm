@@ -117,5 +117,5 @@
 	//The design philosophy was to be as faithful to the concept of Funeral of the Dead Butterflies as possible, but conversely be in line with the stat line with every other HE suit without having VAV tier resists.
 	armor = list (RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = -25) //75
 	attribute_requirements = list(
-		JUSTICE_ATTRIBUTE =
+		JUSTICE_ATTRIBUTE = 40
 	)
