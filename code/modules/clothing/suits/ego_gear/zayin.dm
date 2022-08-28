@@ -39,3 +39,9 @@
 	desc = "Most of the employees do not know the true meaning of The Fairies’ Care."
 	icon_state = "wingbeat"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/change
+	name = "change"
+	desc = "Everything can be changed if you try hard enough!"
+	icon_state = "change"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
