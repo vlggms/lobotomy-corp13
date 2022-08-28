@@ -2584,6 +2584,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\bottle.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\fairy_festival.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\one_sin.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\zayin\we_can_change_anything.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\wellcheers.dm"
 #include "code\modules\mob\living\simple_animal\bot\bot.dm"
 #include "code\modules\mob\living\simple_animal\bot\cleanbot.dm"

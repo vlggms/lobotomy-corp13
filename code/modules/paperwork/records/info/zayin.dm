@@ -88,3 +88,20 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> High<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//We can change anything
+/obj/item/paper/fluff/info/zayin/change
+	name = "T-09-85"
+	info = {"<h1><center>F-09-85</center></h1>	<br>
+	Name : We can change anything!	<br>
+	Risk Class : Zayin	<br>
+	Max PE Boxes : 10	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
+	- Once a work is done on we can change anything, the agent working will get hurt in exchange for a temporary buff.	<br>
+	- The buff will last only for 5 minutes.<br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> High<br>
+	<h4>Attachment:</h4> low<br>
+	<h4>Repression:</h4> common<br>"}
