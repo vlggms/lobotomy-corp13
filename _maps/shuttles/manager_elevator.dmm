@@ -1,15 +1,18 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/wall/mineral/titanium,
+/turf/closed/wall/mineral/plastitanium,
 /area/shuttle/mining)
 "d" = (
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"e" = (
+/turf/open/floor/pod/light,
 /area/shuttle/mining)
 "f" = (
 /obj/structure/chair{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/pod,
 /area/shuttle/mining)
 "m" = (
 /obj/machinery/computer/shuttle/mining{
@@ -21,10 +24,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/pod,
 /area/shuttle/mining)
 "w" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/shuttle/mining)
 "I" = (
 /obj/docking_port/mobile{
@@ -38,13 +41,13 @@
 /obj/machinery/door/airlock/public/glass{
 	normalspeed = 0
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/pod/light,
 /area/shuttle/mining)
 "P" = (
 /obj/machinery/door/airlock/public/glass{
 	normalspeed = 0
 	},
-/turf/open/floor/mineral/plastitanium,
+/turf/open/floor/pod/light,
 /area/shuttle/mining)
 
 (1,1,1) = {"
@@ -64,7 +67,7 @@ a
 (3,1,1) = {"
 P
 d
-d
+e
 d
 I
 "}
