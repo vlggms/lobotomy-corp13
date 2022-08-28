@@ -50,3 +50,15 @@
 	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+
+/obj/projectile/ego_bullet/ego_solemnlament
+	name = "solemn lament"
+	damage = 15
+	damage_type = WHITE_DAMAGE
+	speed = 0.1
+
+/obj/projectile/ego_bullet/ego_solemnvow
+	name = "solemn vow"
+	damage = 15
+	damage_type = BLACK_DAMAGE
+	speed = 0.1

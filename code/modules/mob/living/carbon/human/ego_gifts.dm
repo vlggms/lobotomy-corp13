@@ -174,6 +174,15 @@
 	justice_bonus = 10
 	slot = MOUTH_2
 
+/datum/ego_gifts/solemnlament
+	name = "Solemn Lament"
+	icon_state = "solemnlament"
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = RIGHTBACK
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"

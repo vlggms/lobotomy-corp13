@@ -85,3 +85,8 @@
 /datum/ego_datum/armor/prank
 	item_path = /obj/item/clothing/suit/armor/ego_gear/prank
 	cost = 35
+
+//Funeral of the Dead Butterflies - Solemn Lament
+/datum/ego_datum/armor/solemnlament
+	item_path = /obj/item/clothing/suit/armor/ego_gear/solemnlament
+	cost = 35
