@@ -146,3 +146,14 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/solemnlament
+	name = "solemn lament"
+	desc = "The undertaker's outfit belongs to those who pay tribute to the dead.\
+	Only a solemn mind is required to express condolences; there is no need for showy accessories."
+	icon_state ="solemnlament"
+	//The design philosophy was to be as faithful to the concept of Funeral of the Dead Butterflies as possible, but conversely be in line with the stat line with every other HE suit without having VAV tier resists.
+	armor = list (RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = -25) //75
+	attribute_requirements = list(
+		JUSTICE_ATTRIBUTE = 40
+	)
+

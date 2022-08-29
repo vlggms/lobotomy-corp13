@@ -62,3 +62,12 @@
 /datum/ego_datum/armor/oppression
 	item_path = /obj/item/clothing/suit/armor/ego_gear/oppression
 	cost = 50
+
+//Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
+/datum/ego_datum/weapon/solemnvow
+	item_path = /obj/item/gun/ego_gun/solemnvow
+	cost = 25
+
+/datum/ego_datum/weapon/solemnlament
+	item_path = /obj/item/gun/ego_gun/solemnlament
+	cost = 25

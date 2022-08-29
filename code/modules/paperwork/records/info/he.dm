@@ -242,3 +242,29 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> High<br>
 	<h4>Repression:</h4> Very Low<br>"}
+
+// Warm-Hearted Woodsman
+/obj/item/paper/fluff/info/he/funeral
+	name = "T-01-68"
+	info = {"<h1><center>T-01-68</center></h1>    <br>
+	Name : Funeral of the Dead Butterflies    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 2    <br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
+	- When employees of Justice Level 2 or lower finished working with Funeral of the Dead Butterflies, the Qliphoth Counter lowered.    <br>
+	- The above phenomenon also occurred when employees of Fortitude Level 4 or higher finished working with Funeral of the Dead Butterflies.    <br>
+	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.    <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> High<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
