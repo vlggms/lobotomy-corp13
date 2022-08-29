@@ -68,8 +68,6 @@
 	current.toggle_ai(AI_OFF)
 	current.status_flags |= GODMODE
 	current.setDir(EAST)
-	if (understanding == max_understanding)
-		current.gift_chance *= 1.5
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
@@ -93,6 +91,8 @@
 		if(ALEPH_LEVEL)
 			overload_chance_amount = -4
 			max_understanding = 6
+	if (understanding == max_understanding && max_understanding > 0)
+		current.gift_chance *= 1.5
 	overload_chance_limit = overload_chance_amount * 10
 
 /datum/abnormality/proc/FillEgoList()
