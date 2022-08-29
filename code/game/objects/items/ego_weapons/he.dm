@@ -106,13 +106,15 @@
 							)
 	var/attacking = FALSE
 	var/parry = 0
+	var/parry_success
+	var/naked_parry
 
 /obj/item/ego_weapon/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
-	if (myman.getarmor(null, RED_DAMAGE) <= 0 && myman.getarmor(null, WHITE_DAMAGE) <= 0 && myman.getarmor(null, BLACK_DAMAGE) <= 0 && myman.getarmor(null, PALE_DAMAGE) <= 0)
+	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		user.changeNext_move(CLICK_CD_MELEE * 0.33)
 		attacking = TRUE
 		addtimer(CALLBACK(src, .proc/drop_stance), 0.33 SECONDS)
@@ -125,30 +127,65 @@
 	attacking = FALSE
 
 /obj/item/ego_weapon/daredevil/attack_self(mob/user)
+	if (!ishuman(user))
+		return
 	if (parry == 0)
+		var/mob/living/carbon/human/cooler_user = user
 		parry = 1
-		if (!istype(user,/mob/living/carbon/human))
-			return
-		var/mob/living/carbon/human/myman = user
-		addtimer(CALLBACK(src, .proc/disable_parry, myman), 0.5 SECONDS) // I'd do 4 or 3, but you don't KNOW when the abno is going to attack a lot of the time. They seem to have a random delay
+		parry_success = FALSE
+		cooler_user.physiology.red_mod *= 0.01 // Which this could be better, but alas, this must do.
+		cooler_user.physiology.white_mod *= 0.01
+		cooler_user.physiology.black_mod *= 0.01
+		cooler_user.physiology.pale_mod *= 0.01
+		if (isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+			naked_parry = TRUE
+		else
+			naked_parry = FALSE
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/Announce_Parry)
+		addtimer(CALLBACK(src, .proc/disable_parry, cooler_user), 0.6 SECONDS) // Set to 3 for test,ing base is 0.6
 		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
 
 /obj/item/ego_weapon/daredevil/proc/disable_parry(mob/living/carbon/human/user)
-	parry = 2
-	addtimer(CALLBACK(src, .proc/parry_cooldown, user), 3 SECONDS)
+	user.physiology.red_mod /= 0.01
+	user.physiology.white_mod /= 0.01
+	user.physiology.black_mod /= 0.01
+	user.physiology.pale_mod /= 0.01
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	if (naked_parry)
+		addtimer(CALLBACK(src, .proc/parry_cooldown, user), 2 SECONDS)
+	else
+		addtimer(CALLBACK(src, .proc/parry_cooldown, user), 3 SECONDS) // Set to 1 for testing, base 3
+	if (!parry_success)
+		Parry_Fail(user)
+
+/obj/item/ego_weapon/daredevil/proc/parry_cooldown(mob/living/carbon/human/user)
+	parry = 0
+	to_chat(user,"<span class='nicegreen'>You rearm your blade</span>")
+
+/obj/item/ego_weapon/daredevil/proc/Parry_Fail(mob/living/carbon/human/user)
 	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
 	user.physiology.red_mod *= 1.2
 	user.physiology.white_mod *= 1.2
 	user.physiology.black_mod *= 1.2
 	user.physiology.pale_mod *= 1.2
+	if (naked_parry)
+		addtimer(CALLBACK(src, .proc/Remove_Debuff, user), 2 SECONDS)
+	else
+		addtimer(CALLBACK(src, .proc/Remove_Debuff, user), 3 SECONDS)
 
-/obj/item/ego_weapon/daredevil/proc/parry_cooldown(mob/living/carbon/human/user)
-	parry = 0
+/obj/item/ego_weapon/daredevil/proc/Remove_Debuff(mob/living/carbon/human/user)
 	to_chat(user,"<span class='nicegreen'>You recollect your stance</span>")
 	user.physiology.red_mod /= 1.2
 	user.physiology.white_mod /= 1.2
 	user.physiology.black_mod /= 1.2
 	user.physiology.pale_mod /= 1.2
+
+/obj/item/ego_weapon/daredevil/proc/Announce_Parry(mob/living/source, damage, damagetype, def_zone)
+	SIGNAL_HANDLER
+	parry_success = TRUE
+	playsound(get_turf(src), 'sound/weapons/ego/crumbling_parry.ogg', 75, 0, 7)
+	for(var/mob/living/carbon/human/person in view(7, source))
+		to_chat(person,"<span class='userdanger'>[source.real_name] parries the attack!</span>")
 
 /obj/item/ego_weapon/daredevil/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && attacking)
@@ -160,10 +197,6 @@
 		for(var/mob/living/carbon/human/person in other)
 			to_chat(person,"<span class='nicegreen'>[owner.real_name] deflects the projectile!</span>")
 		return ..()
-	if(parry == 1)
-		final_block_chance = 100 // Holy shit
-		for(var/mob/living/carbon/human/person in oview(7, owner))
-			to_chat(person,"<span class='userdanger'>[owner.real_name] parries the attack!</span>")
 	return ..()
 
 /obj/item/ego_weapon/christmas
