@@ -179,7 +179,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
 
-	var/spawn_progress = 10
+	var/spawn_progress = 18
 	var/list/spawned_mobs = list()
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
