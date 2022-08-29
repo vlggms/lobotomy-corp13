@@ -21,6 +21,7 @@
 		/datum/ego_datum/weapon/fury,
 		/datum/ego_datum/armor/fury
 		)
+	gift_type = /datum/ego_gifts/fury
 
 	var/liked
 

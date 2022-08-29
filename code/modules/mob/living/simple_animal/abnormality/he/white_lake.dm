@@ -28,6 +28,8 @@
 		/datum/ego_datum/weapon/wings,
 		/datum/ego_datum/armor/wings
 		)
+	gift_type = /datum/ego_gifts/waltz
+	gift_chance = 0
 
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/work_chance(mob/living/carbon/human/user, chance)
@@ -53,9 +55,8 @@
 	datum_reference.qliphoth_change(3)
 	if(!champion)
 		return
-	var/datum/outfit/whitelake = new /datum/outfit/whitelake
 	var/mob/living/carbon/human/H = champion
-	H.equipOutfit(whitelake)	//Get outfit
+	H.Apply_Gift(new gift_type)	//It's a gift now! Free shit! Oh wait you- oh god you just stabbed that man.
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)

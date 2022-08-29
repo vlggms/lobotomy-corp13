@@ -27,6 +27,7 @@
 		/datum/ego_datum/armor/blooming,
 		/datum/ego_datum/armor/flowering
 		)
+	gift_type = /datum/ego_gifts/blossoming
 
 	var/chosen
 	var/meltdown_cooldown_time = 300 SECONDS

@@ -53,6 +53,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/list/been_hit = list()
 	/// Currently spawned apostles by this mob
 	var/list/apostles = list()
+	/// List of Living People on Breach
+	var/list/heretics = list()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
 	return FALSE
@@ -72,6 +74,15 @@ GLOBAL_LIST_EMPTY(apostles)
 				var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
 				G.forceMove(T)
 			revive_humans()
+
+/mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
+	for(var/mob/living/carbon/human/heretic in heretics)
+		if(heretic.stat == DEAD || !heretic.ckey)
+			continue
+		heretic.Apply_Gift(new /datum/ego_gifts/blessing)
+		heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
+		to_chat(heretic, "<span class='userdanger'>[heretic], your Heresy will not be forgotten!</span>")
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
 	for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
@@ -174,6 +185,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	holy_revival_cooldown = world.time + holy_revival_cooldown_base
 	..()
 	for(var/mob/M in GLOB.player_list)
+		if(M.stat != DEAD && ishuman(M) && M.ckey)
+			heretics += M
 		flash_color(M, flash_color = COLOR_RED, flash_time = 100)
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg')
 	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))

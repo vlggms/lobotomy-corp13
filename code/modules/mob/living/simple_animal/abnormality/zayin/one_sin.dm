@@ -51,6 +51,7 @@
 		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 			if(WN.status_flags & GODMODE)
 				return FALSE
+			WN.heretics = list()
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
 			WN.loot = list() // No loot for you!
 			var/curr_health = WN.health

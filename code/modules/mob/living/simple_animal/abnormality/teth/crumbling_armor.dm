@@ -31,19 +31,22 @@
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
-	if (work_type != ABNORMALITY_WORK_ATTACHMENT)
-		return
-	var/obj/item/bodypart/head/head = user.get_bodypart("head")
-	//Thanks Red Queen
-	if(!istype(head))
-		return FALSE
-	if(!isnull(user.ego_gift_list[HAT]) && istype(user.ego_gift_list[HAT], /datum/ego_gifts))
-		var/datum/ego_gifts/removed_gift = user.ego_gift_list[HAT]
-		removed_gift.Remove(user)
-		//user.ego_gift_list[HAT].Remove(user)
-	head.dismember()
-	user.adjustBruteLoss(500)
-	return TRUE
+	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessCourage) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessFoolish) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/foolish) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase1) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase2) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase3) || istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase4))
+		if (work_type != ABNORMALITY_WORK_ATTACHMENT)
+			return
+		var/obj/item/bodypart/head/head = user.get_bodypart("head")
+		//Thanks Red Queen
+		if(!istype(head))
+			return FALSE
+		if(!isnull(user.ego_gift_list[HAT]) && istype(user.ego_gift_list[HAT], /datum/ego_gifts))
+			var/datum/ego_gifts/removed_gift = user.ego_gift_list[HAT]
+			removed_gift.Remove(user)
+			//user.ego_gift_list[HAT].Remove(user)
+		head.dismember()
+		user.adjustBruteLoss(500)
+		return TRUE
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
@@ -107,68 +110,44 @@
 	icon_state = "courage"
 	justice_bonus = 10
 	slot = HAT
-/datum/ego_gifts/courage/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/recklessCourage
 	name = "Reckless Courage"
 	icon_state = "recklessFirst"
 	fortitude_bonus = -5
 	justice_bonus = 10
 	slot = HAT
-/datum/ego_gifts/recklessCourage/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/recklessFoolish
 	name = "Reckless Foolishness"
 	icon_state = "recklessSecond"
 	fortitude_bonus = -10
 	justice_bonus = 15
 	slot = HAT
-/datum/ego_gifts/recklessFoolish/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/foolish
 	name = "Reckless Foolishness"
 	icon_state = "foolish"
 	fortitude_bonus = -20
 	justice_bonus = 20
 	slot = HAT
-/datum/ego_gifts/foolish/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/phase1
 	name = "Lv 4"
 	icon_state = "phase1"
 	justice_bonus = 10
 	slot = HAT
-/datum/ego_gifts/phase1/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/phase2
 	name = "Lv 10"
 	icon_state = "phase2"
 	fortitude_bonus = -5
 	justice_bonus = 10
 	slot = HAT
-/datum/ego_gifts/phase2/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/phase3
 	name = "Lv 15"
 	icon_state = "phase3"
 	fortitude_bonus = -10
 	justice_bonus = 15
 	slot = HAT
-/datum/ego_gifts/phase3/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
 /datum/ego_gifts/phase4
 	name = "Lv 19"
 	icon_state = "phase4"
 	fortitude_bonus = -20
 	justice_bonus = 20
 	slot = HAT
-/datum/ego_gifts/phase4/Remove(mob/living/carbon/human/user)
-	.=..()
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
