@@ -31,7 +31,6 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		step_towards(user, src)
-		sleep(0.5 SECONDS)
 		SLEEP_CHECK_DEATH (3 SECONDS)
 		
 		user.dust()
