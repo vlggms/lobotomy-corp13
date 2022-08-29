@@ -74,3 +74,6 @@
 /datum/ego_datum/armor/noise
 	item_path = /obj/item/clothing/suit/armor/ego_gear/noise
 	cost = 20
+/datum/ego_datum/armor/wrist
+	item_path = /obj/item/clothing/suit/armor/ego_gear/wrist
+	cost = 20
