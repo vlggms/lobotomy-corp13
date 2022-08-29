@@ -17,3 +17,13 @@
 	name = "magic bullet casing"
 	desc = "A magic casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_magicbullet
+
+/obj/item/ammo_casing/caseless/ego_solemnlament
+	name = "solemn casing"
+	desc = "a solemn casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_solemnlament
+
+/obj/item/ammo_casing/caseless/ego_solemnvow
+	name = "solemn casing"
+	desc = "a solemn casing"
+	projectile_type = /obj/projectile/ego_bullet/ego_solemnvow
