@@ -10,6 +10,7 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/violet_fruit
 	place_player_multiplicator = 0.05
 	spawn_player_multiplicator = 0.025
+	color = "#B642F5"
 
 // Noon
 /datum/ordeal/violet_noon
@@ -19,6 +20,7 @@
 	end_sound = 'sound/effects/ordeals/violet_end.ogg'
 	level = 2
 	reward_percent = 0.15
+	color = "#B642F5"
 	var/spawn_amount = 4
 
 /datum/ordeal/violet_noon/Run()
