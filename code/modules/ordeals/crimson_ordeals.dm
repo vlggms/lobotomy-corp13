@@ -3,10 +3,11 @@
 	name = "Dawn of Crimson"
 	annonce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
 	destined to snuff out one day."
-	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
-	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 1
 	reward_percent = 0.1
+	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
+	color = "#DC143C"
 
 /datum/ordeal/crimson_dawn/Run()
 	..()
@@ -33,6 +34,7 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon
 	place_player_multiplicator = 0.07
 	spawn_player_multiplicator = 0.02
+	color = "#DC143C"
 
 /datum/ordeal/amber_dawn/crimson_dusk
 	name = "Dusk of Crimson"
@@ -46,3 +48,4 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk
 	place_player_multiplicator = 0.05
 	spawn_player_multiplicator = 0
+	color = "#DC143C"

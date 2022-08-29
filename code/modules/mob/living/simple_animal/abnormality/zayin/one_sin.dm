@@ -34,10 +34,10 @@
 	if(work_type == "Confess")
 		if(isapostle(user))
 			for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
-				if(WN.apostle_num != 666)
+				if(WN.status_flags & GODMODE) // Contained
 					return FALSE
 			var/datum/antagonist/apostle/A = user.mind.has_antag_datum(/datum/antagonist/apostle, FALSE)
-			if(!A.betrayed && A.number == 12) // Heretic
+			if(!A.betrayed)
 				A.betrayed = TRUE // So no spam happens
 				for(var/mob/M in GLOB.player_list)
 					if(M.client)
@@ -49,14 +49,15 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/work_complete(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Confess")
 		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
-			if(WN.apostle_num != 666)
+			if(WN.status_flags & GODMODE)
 				return FALSE
 			to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
 			WN.loot = list() // No loot for you!
+			var/curr_health = WN.health
 			for(var/i = 1 to 12)
 				sleep(1.5 SECONDS)
 				playsound(get_turf(WN), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)
-				WN.adjustBruteLoss(WN.maxHealth/12)
+				WN.adjustBruteLoss(curr_health/12)
 			WN.adjustBruteLoss(666666)
 		sleep(5 SECONDS)
 		for(var/mob/M in GLOB.player_list)

@@ -675,3 +675,16 @@
 
 /obj/effect/temp_visual/flesh/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 4 SECONDS))
+
+/obj/effect/temp_visual/black_fixer_ability
+	name = "pulse"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "black_fixer"
+	pixel_y = 30
+	base_pixel_y = 30
+	duration = 4
+	alpha = 175
+
+/obj/effect/temp_visual/black_fixer_ability/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*4, time = 4)

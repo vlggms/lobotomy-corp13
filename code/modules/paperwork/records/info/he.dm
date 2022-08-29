@@ -6,6 +6,8 @@
 	Risk Class : He	<br>
 	Max PE Boxes : 15	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
 	- NAME died of asphyxiation after working with Happy Teddy Bear multiple times in a row.	<br>
 	- NAME was found dead in Happy Teddy Bear’s arms with a broken neck. It is believed that visiting Happy Teddy Bear’s Containment Unit several times in a row is what causes these unfortunate incidents. Please refer to the Old Letter document for more information.	<br><br>
 	<h4>Instinct:</h4> Very Low<br>
@@ -21,12 +23,21 @@
 	Risk Class : He	<br>
 	Max PE Boxes : 18	<br>
 	Qliphoth Counter : 2	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : High	<br>
 	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br><br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Fatal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
 //Red Queen
 /obj/item/paper/fluff/info/he/queen
@@ -36,6 +47,8 @@
 	Risk Class : He	<br>
 	Max PE Boxes : 18	<br>
 	Qliphoth Counter : X	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Extreme	<br>
 	- The Red Queen is fickle, and likes a different work type every day.	<br>
 	- Work is easy, but any small slip up will result in serious harm.	<br>
 	- If you do not do what the Red Queen likes, she may remove your head.	<br><br>
@@ -52,13 +65,22 @@
 	Risk Class : He	<br>
 	Max PE Boxes : 18	<br>
 	Qliphoth Counter : 1	<br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
 	- When an employee with Prudence Level 3 or higher finished their work, the Qliphoth Counter lowered.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
 	- When Scarecrow Searching for Wisdom was escaping and killed an employee, it sucked their brain out to recover its HP.	<br><br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> High<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
 //White Lake
 /obj/item/paper/fluff/info/he/whitelake
@@ -68,6 +90,8 @@
 	Risk Class : He	<br>
 	Max PE Boxes : 18	<br>
 	Qliphoth Counter : 3	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : High	<br>
 	- When an employee with Fortitude Level 3 or higher worked on White Lake, The work chance was lowered.	<br>
 	- When an employee with Fortitude Level 3 or higher finished their work, the Qliphoth Counter lowered.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
@@ -85,6 +109,8 @@
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
 	Qliphoth Counter : 3    <br>
+	Work Damage Type : White	<br>
+	Work Damage : None	<br>
 	- When an Agent with less a Prudence level 3 worked on Silent Girl, regardless of the work result the Qliphoth counter lowered.    <br>
 	- When the Work Result was poor, the Qliphoth counter lowered.	<br>
 	- When the Qliphoth counter lowered, the working Agent NAME felt a heavy weight upon their shoulders, we have dubbed this effect 'Guilt'    <br>
@@ -107,6 +133,8 @@
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
 	Qliphoth Counter : 4    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : High	<br>
 	- When two employees died, the Qliphoth Counter lowered.    <br>
 	- When Repression work was completed, the Qliphoth Counter increased.    <br>
 	- When Release work was completed, Blue Smocked Shepard breached,    <br>
@@ -115,7 +143,14 @@
 	<h4>Instinct:</h4> High<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"}
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
 
 //Rudolta
 /obj/item/paper/fluff/info/he/rudolta
@@ -125,13 +160,22 @@
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
 	Qliphoth Counter : 2    <br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
 	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.    <br>
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.    <br>
 	- When Rudolta of the Sleigh escaped, it slowly moved throughout the facility, inflicting WHITE damage to employees near it.    <br><br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> High<br>
 	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Very Low<br>"}
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endure	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
 //Der Freischutz
 /obj/item/paper/fluff/info/he/derfreishutz
@@ -141,6 +185,8 @@
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
 	Qliphoth Counter : 3    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
 	- The Qliphoth Counter lowered when NAME, whose Justice was lower than Level 3, completed work with Der Freischütz.    <br>
 	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.    <br>
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.    <br>
@@ -158,15 +204,41 @@
 	Name : Warm-Hearted Woodsman    <br>
 	Risk Class : HE    <br>
 	Max PE Boxes : 18    <br>
-	Qliphoth Counter : 1    <br>
+	Qliphoth Counter : 2    <br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.    <br>
 	- When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
-	- When an employee enters attempts work while the Counter is at 0, they will immediately die. Then, the Abnormality will escape.    <br>
-	- Whenever a body, living or dead, was placed into the Woodsman's chest while it was about to escape, it sat down, seemingly satisified.    <br>
+	- When an employee enters attempts work while the Counter is at 1, they will immediately die. Afterwards, the Qliphoth counter decreased and the Woodsman began searching for hearts.    <br>
+	- Whenever a body, living or dead, was placed into the Woodsman's chest while it's counter was at 1, the Qliphoth counter increased and it sat down, seemingly satisified.    <br>
 	- WARNING: When a body was placed into the Woodsman's chest when it was not getting close to breaching, it breached immediately.	<br>
-	- WARNING: When the Woodsman suffered a meltdown while at 0 Qliphoth, it got up and begun searching for hearts.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Common<br>"}
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+// Laetitia
+/obj/item/paper/fluff/info/he/laetitia
+	name = "O-01-67"
+	info = {"<h1><center>O-01-67</center></h1>    <br>
+	Name : Laetitia    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : X    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Normal, Laetitia gave a heartfelt gift to the working Agent at a high chance.    <br>
+	- After a few minutes, the Agent who had recieved the gift had <strong>REDACTED</strong> burst out from within them, dealing heavy red damage.    <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Very Low<br>"}
