@@ -38,6 +38,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/ordeal_timelock = list(15 MINUTES, 30 MINUTES, 45 MINUTES, 60 MINUTES)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
+	// Currently running core suppression
+	var/datum/suppression/core_suppression = null
 
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
@@ -106,6 +108,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			ran_ordeal = TRUE
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
 		O.update_icon()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_START, ran_ordeal)
 	if(ran_ordeal)
 		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
@@ -145,10 +148,23 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))
 		return FALSE
-	next_ordeal = pick(all_ordeals[next_ordeal_level])
+	var/list/available_ordeals = list()
+	if(istype(core_suppression))
+		for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
+			if(!O.can_run)
+				available_ordeals += O
+	else
+		for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
+			if(O.can_run)
+				available_ordeals += O
+	if(!LAZYLEN(available_ordeals))
+		return FALSE
+	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(3,6)
+	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(1,3)
 	next_ordeal_level += 1 // Increase difficulty!
+	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
+		O.update_icon()
 	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE
 

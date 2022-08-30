@@ -13,6 +13,8 @@
 	var/meltdown_time = 0
 	/// Can the abnormality even meltdown?
 	var/can_meltdown = TRUE
+	/// Work types will instead redirect to those, if listed
+	var/list/scramble_list = list()
 
 /obj/machinery/computer/abnormality/Initialize()
 	..()
@@ -57,10 +59,13 @@
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span>"
 	dat += "<br>"
 	for(var/wt in datum_reference.available_work)
+		var/work_display = "[wt] Work"
+		if(scramble_list[wt] != null)
+			work_display += "?"
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)) // Might be temporary until we add upgrades
-			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
+			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
-			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[wt] Work</A> <br>"
+			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
 	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 300)
 	popup.set_content(dat)
 	popup.open()
@@ -94,6 +99,8 @@
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
 	var/work_time = datum_reference.max_boxes
+	if(work_type in scramble_list)
+		work_type = scramble_list[work_type]
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 	if(!HAS_TRAIT(user, TRAIT_WORKFEAR_IMMUNE))
@@ -181,6 +188,16 @@
 	update_icon()
 	datum_reference.qliphoth_change(-999)
 	return TRUE
+
+// Scrambles work types
+// Yes, it means that work is random for each different abnormality
+// My sadist side awakened today, and I will make it everyone else's problem
+/obj/machinery/computer/abnormality/proc/Scramble()
+	var/list/normal_works = shuffle(list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION))
+	var/list/choose_from = normal_works.Copy()
+	for(var/work in normal_works)
+		scramble_list[work] = pick(choose_from - work)
+		choose_from -= scramble_list[work]
 
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit

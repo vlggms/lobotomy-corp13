@@ -29,6 +29,8 @@
 #define COMSIG_GLOB_CREWMEMBER_JOINED "!crewmember_joined"
 /// a human mob went insane (mob/living/carbon/human, attribute)
 #define COMSIG_GLOB_HUMAN_INSANE "!human_insane"
+/// a lobotomy_corp subsystem meltdown occured
+#define COMSIG_GLOB_MELTDOWN_START "!meltdown_started"
 
 /// signals from globally accessible objects
 
