@@ -22,6 +22,9 @@
 //	gift_type =  /datum/ego_gifts/solitude
 	var/meltdown_cooldown_time = 120 SECONDS
 	var/meltdown_cooldown
+//for solitude effects
+	var/solitude_cooldown_time = 1 SECONDS
+	var/solitude_cooldown
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/Life()
 	. = ..()
@@ -29,8 +32,10 @@
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/queen_bee/zero_qliphoth(mob/living/carbon/human/user)
-	icon_state = "solitude"
+	if(solitude_cooldown < world.time && datum_reference.qliphoth_meter == 0)
+		solitude_cooldown = world.time + meltdown_cooldown_time
+		for(var/turf/T in range(1 , src))
+			new /obj/effect/solitude (T)
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Clear Solitude" && datum_reference.qliphoth_meter == 0)
@@ -44,3 +49,19 @@
 		datum_reference.qliphoth_change(4)
 		icon_state = "old_lady"
 	return ..()
+
+//The Effect
+/obj/effect/solitude
+	name = "solitude gas"
+	desc = "You can hardly see through this."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "solitude"
+	move_force = INFINITY
+	pull_force = INFINITY
+
+/obj/effect/solitude/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/delete), 2 SECONDS)
+
+/obj/effect/solitude/proc/delete()
+	QDEL_NULL(src)
