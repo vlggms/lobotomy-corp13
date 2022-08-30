@@ -77,3 +77,4 @@
 /datum/ego_datum/armor/wrist
 	item_path = /obj/item/clothing/suit/armor/ego_gear/wrist
 	cost = 20
+	
