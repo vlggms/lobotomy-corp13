@@ -3,8 +3,20 @@
 	desc = "Used to select and view queued abnormality extraction process."
 	resistance_flags = INDESTRUCTIBLE
 
+/obj/machinery/computer/abnormality_queue/Initialize()
+	. = ..()
+	GLOB.abnormality_queue_consoles += src
+	flags_1 |= NODECONSTRUCT_1
+
+/obj/machinery/computer/abnormality_queue/Destroy()
+	GLOB.abnormality_queue_consoles -= src
+	..()
+
 /obj/machinery/computer/abnormality_queue/ui_interact(mob/user)
 	. = ..()
+	if(!LAZYLEN(SSabnormality_queue.picking_abnormalities) && !ispath(SSabnormality_queue.queued_abnormality))
+		to_chat(user, "<span class='boldannounce'>The console has no information stored!</span>")
+		return
 	var/dat
 	if(ispath(SSabnormality_queue.queued_abnormality))
 		var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
@@ -14,7 +26,7 @@
 		for(var/type in SSabnormality_queue.picking_abnormalities)
 			var/mob/living/simple_animal/hostile/abnormality/abno = type
 			dat += " <A href='byond://?src=[REF(src)];queue=[abno]'>\[[THREAT_TO_NAME[initial(abno.threat_level)]]\] [initial(abno.name)]</A><br>"
-	var/datum/browser/popup = new(user, "abno_queue", "Abnormality Queue Console", 400, 260)
+	var/datum/browser/popup = new(user, "abno_queue", "Abnormality Queue Console", 360, 240)
 	popup.set_content(dat)
 	popup.open()
 	return

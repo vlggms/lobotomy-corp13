@@ -67,8 +67,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	all_abnormality_datums += new_abno
 	return TRUE
 
-/datum/controller/subsystem/lobotomy_corp/proc/WorkComplete(amount)
-	QliphothUpdate()
+/datum/controller/subsystem/lobotomy_corp/proc/WorkComplete(amount = 0, qliphoth_change = TRUE)
+	if(qliphoth_change)
+		QliphothUpdate()
 	AdjustBoxes(amount)
 
 /datum/controller/subsystem/lobotomy_corp/proc/AdjustBoxes(amount)

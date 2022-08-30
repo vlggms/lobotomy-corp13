@@ -104,7 +104,7 @@
 		GLOB.ego_datums["[ED.name][ED.item_category]"] = ED
 	return TRUE
 
-/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, max_pe, work_time)
+/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
 	if (understanding != max_understanding) // This should render "full_understood" not required.
 		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
@@ -115,10 +115,9 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 	stored_boxes += pe
-	SSlobotomy_corp.WorkComplete(pe)
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
-	if(max_pe <= 0) // Work failure
+	if(pe <= 0) // Work failure
 		return
 	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
 	var/maximum_attribute_level = 0
@@ -135,7 +134,7 @@
 			maximum_attribute_level = 130
 	var/datum/attribute/user_attribute = user.attributes[attribute_type]
 	var/user_attribute_level = max(1, user_attribute.level)
-	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_pe))), 0, 16)
+	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 	user.adjust_attribute_level(attribute_type, attribute_given)
