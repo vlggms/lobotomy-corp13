@@ -65,6 +65,7 @@
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.InitializeAIController()
+	champion = null
 	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
