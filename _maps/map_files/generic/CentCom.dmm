@@ -349,6 +349,44 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"cL" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 39
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 27
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = 20;
+	pixel_y = 39
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = 20;
+	pixel_y = 27
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = -20;
+	pixel_y = 39
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = -20;
+	pixel_y = 27
+	},
+/obj/item/storage/photo_album/captain,
+/obj/item/documents,
+/obj/item/clothing/glasses/regular,
+/obj/item/stamp/denied,
+/obj/item/stamp,
+/obj/item/stamp/captain,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/manager)
 "cS" = (
 /obj/item/kirbyplants{
 	icon_state = "applebush"
@@ -2101,6 +2139,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"lw" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/button/door/indestructible{
+	id = "admindomeenter";
+	name = "Entrance Shutters";
+	pixel_y = 32;
+	req_access_txt = "102"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tdome/tdomeadmin)
 "lA" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/chair/sofa/corp/left{
@@ -2320,19 +2370,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
-"mW" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/vehicle/sealed/mecha/combat/rhino,
-/turf/open/floor/plasteel/dark,
-/area/centcom/ferry)
 "nb" = (
 /turf/closed/indestructible/abductor,
 /area/abductor_ship)
@@ -2588,6 +2625,19 @@
 /obj/structure/railing,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"pc" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/vehicle/sealed/mecha/combat/rhino,
+/turf/open/floor/plasteel/dark,
+/area/centcom/ferry)
 "pg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -2738,21 +2788,6 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"qr" = (
-/obj/machinery/requests_console{
-	department = "R-Corp Representative";
-	payment_department = "SEC";
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
 "qw" = (
 /obj/machinery/light{
 	dir = 4
@@ -4044,44 +4079,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
-"xe" = (
-/obj/structure/table/wood,
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 20;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 20;
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -20;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -20;
-	pixel_y = 27
-	},
-/obj/item/storage/photo_album/captain,
-/obj/item/documents,
-/obj/item/clothing/glasses/regular,
-/obj/item/stamp/denied,
-/obj/item/stamp,
-/obj/item/stamp/captain,
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "xf" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/centcom{
@@ -4398,6 +4395,21 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/engine,
 /area/centcom/ferry)
+"yA" = (
+/obj/machinery/requests_console{
+	department = "R-Corp Representative";
+	payment_department = "SEC";
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/manager)
 "yC" = (
 /obj/structure/chair/wood/wings,
 /turf/open/floor/engine/cult,
@@ -6306,18 +6318,6 @@
 /obj/item/gun/energy/e_gun/rabbit,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-"Jp" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/button/door/indestructible{
-	id = "admindomeenter";
-	name = "Entrance Shutters";
-	pixel_y = 32;
-	req_access_txt = "102"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tdome/tdomeadmin)
 "Jq" = (
 /obj/machinery/camera/motion/thunderdome{
 	pixel_x = 10
@@ -7085,18 +7085,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"Mh" = (
-/obj/effect/turf_decal/stripes/corner{
-	dir = 1
-	},
-/obj/machinery/button/door/indestructible{
-	id = "admindomeenter";
-	name = "Entrance Shutters";
-	pixel_y = 32;
-	req_access_txt = "102"
-	},
-/turf/open/floor/plasteel/dark,
-/area/tdome/tdomeadmin)
 "Mi" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -7123,6 +7111,18 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
+"Mo" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/machinery/button/door/indestructible{
+	id = "admindomeenter";
+	name = "Entrance Shutters";
+	pixel_y = 32;
+	req_access_txt = "102"
+	},
+/turf/open/floor/plasteel/dark,
+/area/tdome/tdomeadmin)
 "Mq" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -14145,7 +14145,7 @@ VR
 ip
 nm
 RK
-qr
+yA
 cK
 VR
 aa
@@ -16191,7 +16191,7 @@ aa
 aa
 aa
 VR
-xe
+cL
 UX
 UX
 UX
@@ -49503,7 +49503,7 @@ xl
 xS
 io
 mD
-mW
+pc
 zA
 By
 Ac
@@ -49792,7 +49792,7 @@ OK
 Iv
 Iv
 Iv
-Mh
+Mo
 WJ
 ys
 KC
@@ -50274,7 +50274,7 @@ xl
 xS
 io
 mD
-mW
+pc
 zA
 By
 By
@@ -52876,7 +52876,7 @@ bE
 Iv
 Iv
 Iv
-Jp
+lw
 WJ
 vT
 KC
