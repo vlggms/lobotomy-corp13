@@ -23,3 +23,9 @@
 	damage = 4
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_solitude
+	name = "solitude"
+	damage = 13
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

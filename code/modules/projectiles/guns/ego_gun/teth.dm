@@ -34,3 +34,15 @@
 	fire_delay = 10
 	recoil = 1		//Shakes your screen
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+
+/obj/item/gun/ego_gun/solitude
+	name = "solitude"
+	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
+	icon_state = "solitude"
+	inhand_icon_state = "solitude"
+	w_class = WEIGHT_CLASS_NORMAL
+	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
+	fire_delay = 15
+	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
