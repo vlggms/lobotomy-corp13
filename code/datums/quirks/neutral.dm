@@ -331,28 +331,8 @@
 
 /datum/quirk/bongin/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	old_hair = H.hairstyle
-	old_skin_tone = H.skin_tone
-	old_eyes = H.eye_color
-	old_facial = H.facial_hairstyle
-	old_name = H.real_name
-	H.hairstyle = "Floorlength Bedhead"
-	H.skin_tone = "albino"
-	H.eye_color = "000"
-	H.hair_color = "0033CC"
-	H.real_name = "Bong Bong"
-	H.facial_hairstyle = "Shaved"
-	H.update_hair()
-	H.update_body()
 	H.grant_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/quirk/bongin/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.hairstyle = old_hair
-	H.skin_tone = old_skin_tone
-	H.eye_color = old_eyes
-	H.facial_hairstyle = old_facial
-	H.real_name = old_name
-	H.update_hair()
-	H.update_body()
 	H.remove_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
