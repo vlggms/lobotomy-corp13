@@ -176,10 +176,16 @@
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 	SLEEP_CHECK_DEATH(5)
 	var/list/been_hit = list()
+	var/broken = FALSE
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)
-			break
+			if(broken)
+				break
+			else
+				broken = TRUE
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
+			if (TF.density)
+				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
 			for(var/mob/living/L in TF)
 				if(faction_check_mob(L))

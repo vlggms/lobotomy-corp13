@@ -14,9 +14,11 @@
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
+	blood_volume = 0
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE
+	density = FALSE
 	speed = 2
 	move_to_delay = 2
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -74,9 +76,47 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Move()
+	var/turf/floor = get_turf(src)
+	for(var/thing in floor)
+		if(istype(thing, /obj/effect/decal/cleanable/blood))
+			var/obj/effect/decal/cleanable/blood/blood_decal = thing
+			adjustBruteLoss(-clamp((maxHealth*0.005)*(blood_decal.bloodiness*0.01), 0, maxHealth)) // Heal up to 0.5% heath from bloody ground.
+			QDEL_NULL(blood_decal)
+			belly += 0.01
+			StageChange(TRUE)
+			continue
+		if(istype(thing, /obj/item/organ))
+			var/obj/item/organ/floor_organ = thing
+			adjustBruteLoss(-clamp((maxHealth*0.01), 0, maxHealth)) // Heal 1% health from Organs
+			QDEL_NULL(floor_organ)
+			belly += 0.05
+			StageChange(TRUE)
+			continue
+		if(istype(thing, /obj/item/bodypart))
+			var/obj/item/bodypart/floor_part = thing
+			adjustBruteLoss(-clamp((maxHealth*0.01), 0, maxHealth)) // Heal 1% health from Body Parts
+			QDEL_NULL(floor_part)
+			belly += 0.05 // Progresses toward getting bigger
+			StageChange(TRUE)
+			continue
 	if(finishing)
 		return FALSE
+	new /obj/effect/decal/cleanable/old_flesh(floor)
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/mountain/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+	. = ..()
+	var/messyArea = list()
+	var/validArea = view(2, src)
+	for(var/I = 1 to pick(list(3, 4, 5)))
+		var/turf/space = pick_n_take(validArea)
+		if (!(space in messyArea) && !space.density)
+			messyArea += space
+		else
+			I -= 1
+	playsound(src, 'sound/effects/blobattack.ogg', 75)
+	for(var/turf/T in messyArea)
+		new /obj/effect/decal/cleanable/old_flesh(T)
 
 //Nabbed from Big Bird
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/on_mob_death(datum/source, mob/living/died, gibbed)
@@ -147,7 +187,11 @@
 				StageChange(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
-	if(phase == 1)
+	if(phase == 1 || (phase == 2 && health <= maxHealth*0.5))
+		for (var/mob/living/carbon/human/body in view(20, src))
+			if (body.stat != DEAD || body.health < 0)
+				continue
+			Targets += body
 		var/list/highest_priority = list()
 		var/list/lower_priority = list()
 		for(var/mob/living/L in Targets)
@@ -179,6 +223,7 @@
 			icon = 'ModularTegustation/Teguicons/96x96.dmi'
 			pixel_x = -32
 			base_pixel_x = -32
+			density = TRUE
 			if(phase == 3)
 				icon_living = "mosb_breach2"
 				speed = 4
@@ -203,6 +248,7 @@
 		base_pixel_x = -16
 		speed = 2
 		move_to_delay = 2
+		density = FALSE
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
@@ -285,4 +331,15 @@
 	icon_living = "mosb_breach"
 	icon_state = icon_living
 
-
+/// Mountain's Unique Messes
+/obj/effect/decal/cleanable/old_flesh
+	name = "rotten flesh"
+	desc = "A dark and goey mess no longer resembling flesh."
+	icon = 'icons/mob/robots.dmi'
+	icon_state = "floor1"
+	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
+	blood_state = BLOOD_STATE_HUMAN
+	bloodiness = BLOOD_AMOUNT_PER_DECAL
+	beauty = -100
+	clean_type = CLEAN_TYPE_BLOOD
+	mergeable_decal = FALSE

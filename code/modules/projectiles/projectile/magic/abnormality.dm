@@ -86,3 +86,14 @@
 	. = ..()
 	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
 
+/obj/projectile/mountain_spit/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	var/turf/ground = get_turf(target)
+	if (ground.density)
+		ground = get_step(ground, get_dir(ground, firer))
+		if(prob(33))
+			ground = get_step(ground, get_dir(ground, firer))
+		if(ground.density)
+			return
+	new /obj/effect/decal/cleanable/old_flesh(ground) // Just fucking cover the ground in shit.
+
