@@ -1,24 +1,49 @@
-// Dusk
-/datum/ordeal/white_dusk
-	name = "Dusk of White"
-	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, so long as you pay them sufficiently."
-	level = 3
-	reward_percent = 0.2
+// Dawn
+/datum/ordeal/white_dawn
+	name = "Dawn of White"
+	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
+	so long as you pay them sufficiently."
+	level = 1
+	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
+	can_run = FALSE // Only runs during core suppressions
+	var/mobs_amount = 1
 	var/list/potential_types = list(
 		/mob/living/simple_animal/hostile/ordeal/black_fixer,
 		/mob/living/simple_animal/hostile/ordeal/white_fixer
 		)
 
-/datum/ordeal/white_dusk/Run()
+/datum/ordeal/white_dawn/Run()
 	..()
-	var/X = pick(GLOB.xeno_spawn)
-	var/turf/T = get_turf(X)
-	var/chosen_type = pick(potential_types)
-	var/mob/living/simple_animal/hostile/ordeal/C = new chosen_type(T)
-	ordeal_mobs += C
-	C.ordeal_reference = src
+	var/list/available_locs = GLOB.xeno_spawn.Copy()
+	for(var/i = 1 to mobs_amount)
+		if(!potential_types.len)
+			break
+		var/turf/T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		var/chosen_type = pick(potential_types)
+		potential_types -= chosen_type
+		var/mob/living/simple_animal/hostile/ordeal/C = new chosen_type(T)
+		ordeal_mobs += C
+		C.ordeal_reference = src
+
+/datum/ordeal/white_dawn/white_noon
+	name = "Noon of White"
+	annonce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
+	the Reliques of the Outskirts, the Artefacts of the Ruins…"
+	level = 2
+	reward_percent = 0.15
+	mobs_amount = 2
+
+/datum/ordeal/white_dawn/white_dusk
+	name = "Dusk of White"
+	annonce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
+	to be drawn to such a mystic place of life and death."
+	level = 3
+	reward_percent = 0.2
+	mobs_amount = 4
 
 // Midnight
 /datum/ordeal/white_midnight
@@ -29,6 +54,7 @@
 	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
+	can_run = FALSE
 	var/spawn_type = /mob/living/simple_animal/hostile/megafauna/claw
 
 /datum/ordeal/white_midnight/Run()
