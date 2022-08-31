@@ -676,6 +676,13 @@
 /obj/effect/temp_visual/flesh/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 4 SECONDS))
 
+/obj/effect/temp_visual/funeral_swarm
+	name = "funeral swarm"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "funeral_swarm"
+	layer = BELOW_MOB_LAYER
+	duration = 0.5 SECONDS
+
 /obj/effect/temp_visual/black_fixer_ability
 	name = "pulse"
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
