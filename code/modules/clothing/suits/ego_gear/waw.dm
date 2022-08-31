@@ -32,7 +32,7 @@
 	name = "armor sharpened with tears"
 	desc = "Tears fall like ash, embroidered as if they were constellations."
 	icon_state = "despair"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 60) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
