@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_REPRESSION = 30,
 		"Release" = 100
 		)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
@@ -43,6 +43,7 @@
 		/datum/ego_datum/weapon/oppression,
 		/datum/ego_datum/armor/oppression
 		)
+	gift_type = /datum/ego_gifts/oppression
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4

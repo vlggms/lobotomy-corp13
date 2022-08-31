@@ -21,6 +21,7 @@
 		/datum/ego_datum/weapon/prank,
 		/datum/ego_datum/armor/prank
 		)
+	gift_type = /datum/ego_gifts/prank
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(70))	//Not 100% of the time to be funny

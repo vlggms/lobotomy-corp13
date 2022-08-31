@@ -21,6 +21,7 @@
 		/datum/ego_datum/weapon/lutemia,
 		/datum/ego_datum/armor/lutemia
 		)
+	gift_type = /datum/ego_gifts/lutemis
 
 	var/injured = FALSE
 	var/dead = FALSE

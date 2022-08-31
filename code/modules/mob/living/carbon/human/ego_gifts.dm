@@ -60,6 +60,18 @@
 		var/datum/ego_gifts/removed_gift = ego_gift_list[given.slot]
 		removed_gift.Remove(src)
 	given.Initialize(src)
+	if(istype(ego_gift_list[LEFTBACK], /datum/ego_gifts/paradise) && istype(ego_gift_list[RIGHTBACK], /datum/ego_gifts/twilight)) // If you have both, makes them not overlap
+		var/datum/ego_gifts/twilight/right_wing = ego_gift_list[RIGHTBACK] // Have to do this messier because the gift_list isnt' a defined type... pain
+		var/datum/ego_gifts/paradise/left_wing = ego_gift_list[LEFTBACK]
+		left_wing.icon_state = "paradiselost_x"
+		right_wing.icon_state = "twilight_x"
+	else
+		if(istype(ego_gift_list[LEFTBACK], /datum/ego_gifts/paradise)) // If one gets overwritten it fixes them
+			var/datum/ego_gifts/paradise/left_wing = ego_gift_list[LEFTBACK]
+			left_wing.icon_state = "paradiselost"
+		if(istype(ego_gift_list[RIGHTBACK], /datum/ego_gifts/twilight))
+			var/datum/ego_gifts/twilight/right_wing = ego_gift_list[RIGHTBACK]
+			right_wing.icon_state = "twilight"
 
 /// All Zayin EGO Gifts
 /datum/ego_gifts/soda
@@ -137,6 +149,44 @@
 	prudence_bonus = 2
 	slot = HAT
 
+/datum/ego_gifts/wrist
+	name = "Wrist Cutter"
+	icon_state = "wrist"
+	temperance_bonus = 2
+	slot = HAND_2
+
+/datum/ego_gifts/cherry
+	name = "Cherry Blossom"
+	icon_state = "cherry"
+	fortitude_bonus = 2
+	justice_bonus = 2
+	slot = HAT
+
+/datum/ego_gifts/engulfing
+	name = "Engulfing Dream"
+	icon_state = "engulfing"
+	prudence_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/regret
+	name = "Regret"
+	icon_state = "regret"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	slot = MOUTH_1
+
+/datum/ego_gifts/noise
+	name = "Noise"
+	icon_state = "noise"
+	justice_bonus = 2
+	slot = BROOCH
+
+/datum/ego_gifts/lutemis
+	name = "Dear Lutemis"
+	icon_state = "lutemis"
+	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
+	slot = NECKWEAR
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -180,6 +230,63 @@
 	justice_bonus = 10
 	slot = MOUTH_2
 
+/datum/ego_gifts/oppression
+	name = "Oppression"
+	icon_state = "oppression"
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = MOUTH_1
+
+/datum/ego_gifts/prank
+	name = "Funny Prank"
+	icon_state = "prank"
+	prudence_bonus = 4
+	slot = HELMET
+
+/datum/ego_gifts/desire
+	name = "Sanguine Desire"
+	icon_state = "desire"
+	fortitude_bonus = 4
+	slot = MOUTH_2
+
+/datum/ego_gifts/frost
+	name = "Those who know the Cruelty of Winter and the Aroma of Roses"
+	icon_state = "frost"
+	fortitude_bonus = 6
+	prudence_bonus = 6
+	slot = CHEEK
+
+/datum/ego_gifts/harmony
+	name = "Harmony"
+	icon_state = "harmony"
+	fortitude_bonus = 8
+	prudence_bonus = -4
+	slot = CHEEK
+
+/datum/ego_gifts/waltz // Locked to Champions only, so Improved it
+	name = "Flower Waltz"
+	icon_state = "waltz"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = HELMET
+
+/datum/ego_gifts/remorse // All it takes is a single crack in one's psyche...
+	name = "Remorse"
+	icon_state = "remorse"
+	prudence_bonus = 10
+	justice_bonus = -5
+	slot = BROOCH
+
+/datum/ego_gifts/fury
+	name = "Blind Fury"
+	icon_state = "fury"
+	fortitude_bonus = 10
+	prudence_bonus = -2
+	temperance_bonus = -2
+	justice_bonus = -2
+	slot = EYE
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -222,6 +329,34 @@
 	prudence_bonus = 3
 	temperance_bonus = 3
 	slot = HELMET
+
+/datum/ego_gifts/crimson
+	name = "Crimson Scar"
+	icon_state = "crimson"
+	fortitude_bonus = 3
+	justice_bonus = 3
+	slot = MOUTH_1
+
+/datum/ego_gifts/cobalt
+	name = "Cobalt Scar"
+	icon_state = "cobalt"
+	fortitude_bonus = 4
+	justice_bonus = 2
+	slot = FACE
+
+/datum/ego_gifts/goldrush
+	name = "Gold Rush"
+	icon_state = "goldrush"
+	fortitude_bonus = 6
+	instinct_mod = 6
+	slot = HAND_1
+
+/datum/ego_gifts/aroma
+	name = "Faint Aroma"
+	icon_state = "aroma"
+	prudence_bonus = 4
+	temperance_bonus = 2 // This is techincally a buff from base game.
+	slot = HAT
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
@@ -273,6 +408,26 @@
 	justice_bonus = 10
 	slot = EYE
 
+/datum/ego_gifts/blossoming
+	name = "100 Paper Flowers"
+	icon_state = "blooming"
+	justice_bonus = 8
+	slot = SPECIAL
+
+/datum/ego_gifts/blossoming/Initialize(mob/living/carbon/human/user) // As a boost, undoes the debuff it applies to you
+	.=..()
+	user.physiology.red_mod *= 0.9
+	user.physiology.white_mod *= 0.9
+	user.physiology.black_mod *= 0.9
+	user.physiology.pale_mod *= 0.9
+
+/datum/ego_gifts/blossoming/Remove(mob/living/carbon/human/user) // Niceness can be taken away, I suppose
+	user.physiology.red_mod /= 0.9
+	user.physiology.white_mod /= 0.9
+	user.physiology.black_mod /= 0.9
+	user.physiology.pale_mod /= 0.9
+	.=..()
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
@@ -282,3 +437,20 @@
 	temperance_bonus = 7
 	justice_bonus = 7
 	slot = RIGHTBACK
+
+/datum/ego_gifts/blessing
+	name = "Blessing"
+	icon_state = "blessing"
+	fortitude_bonus = 4
+	prudence_bonus = 4
+	temperance_bonus = 4
+	justice_bonus = 4
+	slot = SPECIAL
+
+/datum/ego_gifts/blessing/Initialize(mob/living/carbon/human/user) // Lowered Stats but Pale Resist
+	.=..()
+	user.physiology.pale_mod *= 0.8
+
+/datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
+	user.physiology.pale_mod /= 0.8
+	.=..()

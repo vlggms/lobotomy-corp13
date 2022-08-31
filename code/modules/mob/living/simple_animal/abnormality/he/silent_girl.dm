@@ -23,6 +23,8 @@
 		/datum/ego_datum/weapon/remorse,
 		/datum/ego_datum/armor/remorse
 		)
+	gift_type = /datum/ego_gifts/remorse
+
 	var/mob/living/carbon/human/guilty_people = list()
 	var/mutable_appearance/guilt_icon  // Icon for the effect
 
