@@ -9,7 +9,8 @@
 	Work Damage Type : Black	<br>
 	Work Damage : Low	<br>
 	- The cake on top of Bottle Of Tears is tasty, and has healing properties.	<br>
-	- Eat all the cake, and the room will fill with water, drowning you.<br><br>
+	- Eat all the cake, and the room will fill with water, drowning you.<br>
+	- Drink the water, and you will be weakened temporarily.<br><br>
 	<h4>Instinct:</h4> High<br>
 	<h4>Insight:</h4> High<br>
 	<h4>Attachment:</h4> High<br>

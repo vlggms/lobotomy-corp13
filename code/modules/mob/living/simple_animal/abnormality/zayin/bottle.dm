@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_TEARS /datum/status_effect/tears
 /mob/living/simple_animal/hostile/abnormality/bottle
 	name = "Bottle of Tears"
 	desc = "A bottle filled with water with a cake on top"
@@ -12,7 +13,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),	//How the fuck do you beat up a cake?
-		"Consume" = 100			//You can instead decide to eat the cake.
+		"Dining" = 100,		//You can instead decide to eat the cake.
+		"Drink" = 100			//Or Drink the water
 		)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
@@ -27,12 +29,16 @@
 
 /mob/living/simple_animal/hostile/abnormality/bottle/attempt_work(mob/living/carbon/human/user, work_type)
 	if(cake==0)
-		if(work_type == "Consume")
+		if(work_type == "Dining")
 			return FALSE
+		if(work_type == "Drink")
+			return TRUE
+	if(work_type == "Drink")
+		return FALSE
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/bottle/work_complete(mob/living/carbon/human/user, work_type, pe)
-	if(work_type == "Consume")
+	if(work_type == "Dining")
 		cake -= 1		//Eat some cake
 		if(cake == 0)
 			//Drowns you like Wellcheers does, so I mean the code checks out
@@ -51,7 +57,43 @@
 		if(cake > 0)
 			user.adjustBruteLoss(-500) // It heals you to full if you eat it
 			icon_state = "bottle2"	//cake looks eaten
+
+	if(work_type == "Drink")
+		user.apply_status_effect(STATUS_EFFECT_TEARS)
+
 	return ..()
 
 
+/datum/status_effect/tears
+	id = "tears"
+	status_type = STATUS_EFFECT_MULTIPLE	//You should be able to stack this, I hope
+	duration = 6000		//Lasts 10 minutes.
+	alert_type = /atom/movable/screen/alert/status_effect/tears
+
+/atom/movable/screen/alert/status_effect/tears
+	name = "Tearful"
+	desc = "You feel weakened, for a short period of time."
+	icon_state = "regenerative_core"
+
+/datum/status_effect/tears/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(owner, "<span class='userdanger'>You feel your strength sapping away...</span>")
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -20)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -20)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
+
+/datum/status_effect/tears/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(owner, "<span class='nicegreen'>You feel your strength returned to you.</span>")
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 20)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
+
+#undef STATUS_EFFECT_TEARS
 
