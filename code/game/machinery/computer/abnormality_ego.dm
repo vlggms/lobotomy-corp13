@@ -15,7 +15,7 @@
 		for(var/datum/ego_datum/E in A.ego_datums)
 			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A><br>"
 		dat += "<br>"
-	var/datum/browser/popup = new(user, "ego_purchase", "EGO Purchase Console", 440, 600)
+	var/datum/browser/popup = new(user, "ego_purchase", "EGO Purchase Console", 440, 640)
 	popup.set_content(dat)
 	popup.open()
 	return

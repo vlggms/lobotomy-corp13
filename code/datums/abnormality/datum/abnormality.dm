@@ -42,6 +42,8 @@
 	/// Simulated Observation Bonuses
 	var/understanding = 0
 	var/max_understanding = 0
+	/// A list of performed works on it
+	var/list/work_logs = list()
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -106,6 +108,12 @@
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
+	var/user_job_title = "Unidentified Employee"
+	var/obj/item/card/id/W = user.get_idcard()
+	if(istype(W))
+		user_job_title = W.assignment
+	work_logs += "\[[worldtime2text()]\] [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
+	SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
 	if (understanding != max_understanding) // This should render "full_understood" not required.
 		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
 			understanding = clamp((understanding + (max_understanding/10)), 0, max_understanding)

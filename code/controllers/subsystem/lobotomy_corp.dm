@@ -40,6 +40,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/datum/ordeal/next_ordeal = null
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
+	// Work logs from all abnormalities
+	var/list/work_logs = list()
 
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
