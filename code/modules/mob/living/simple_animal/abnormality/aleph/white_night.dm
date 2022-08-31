@@ -237,6 +237,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/can_act = TRUE
+	var/death_counter = 0
 
 /mob/living/simple_animal/hostile/apostle/Move()
 	if(!can_act)
@@ -245,11 +246,18 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/death(gibbed)
 	invisibility = 30 // So that other mobs cannot attack them
+	death_counter += 1
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
 	invisibility = 0 // Visible again
 	can_act = TRUE // In case we died while performing special attack
+	if(death_counter == 1)
+		health = 1000
+	else if(death_counter == 2) // There has to be SOME incentive to suppressing the Apostles. Even if that's just making them easier to kill again. 2k HP with good resitsances is too much to chunk through considering they respawn with that FREQUENTLY.
+		health = 750
+	else if (death_counter >= 3)
+		health = 500
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/gib(no_brain, no_organs, no_bodyparts)

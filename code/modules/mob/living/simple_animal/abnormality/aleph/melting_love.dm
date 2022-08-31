@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "melting_love"
 	icon_living = "melting_love"
+	dir = SOUTH
 	pixel_x = -16
 	base_pixel_x = -16
 	faction = list("slime")

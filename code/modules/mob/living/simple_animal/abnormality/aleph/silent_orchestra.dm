@@ -31,7 +31,7 @@
 		)
 	gift_type =  /datum/ego_gifts/dacapo
 	/// Range of the damage
-	var/symphony_range = 18
+	var/symphony_range = 20 // Little longer will do him wonders
 	/// Amount of white damage
 	var/symphony_damage = 8
 	/// When to perform next movement
