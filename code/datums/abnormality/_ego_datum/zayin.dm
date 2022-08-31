@@ -42,3 +42,12 @@
 /datum/ego_datum/armor/little_alice
 	item_path = /obj/item/clothing/suit/armor/ego_gear/little_alice
 	cost = 12
+
+// We can change anything - Change
+/datum/ego_datum/weapon/change
+	item_path = /obj/item/ego_weapon/change
+	cost = 20
+
+/datum/ego_datum/armor/change
+	item_path = /obj/item/clothing/suit/armor/ego_gear/change
+	cost = 20

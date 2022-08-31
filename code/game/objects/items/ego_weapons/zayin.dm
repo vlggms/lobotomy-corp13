@@ -28,3 +28,13 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
+
+/obj/item/ego_weapon/change
+	name = "change"
+	desc = "A hammer made with the desire to change anything"
+	icon_state = "change"
+	force = 14
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")

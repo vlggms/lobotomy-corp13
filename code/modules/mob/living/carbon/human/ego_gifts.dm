@@ -91,6 +91,12 @@
 	icon_state = "tough"
 	justice_bonus = 2
 	slot = EYE
+	
+/datum/ego_gifts/change
+	name = "Change"
+	icon_state = "change"
+	fortitude_bonus = 2
+	slot = BROOCH
 
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
