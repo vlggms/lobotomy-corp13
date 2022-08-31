@@ -87,7 +87,7 @@
 		if(prob(60))
 			new /mob/living/simple_animal/hostile/worker_bee/soldier(Y)
 		else if(prob(20))
-			new /mob/living/simple_animal/hostile/artillery_bee(T)
+			new /mob/living/simple_animal/hostile/artillery_bee(Y)
 	..()
 	datum_reference.qliphoth_change(-1)
 
