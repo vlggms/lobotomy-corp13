@@ -78,3 +78,8 @@
 /datum/ego_datum/armor/censored
 	item_path = /obj/item/clothing/suit/armor/ego_gear/censored
 	cost = 100
+
+// The King Of Greed - Gold Rush
+/datum/ego_datum/weapon/goldrush
+	item_path = /obj/item/ego_weapon/goldrush
+	cost = 100
