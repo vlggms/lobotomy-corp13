@@ -70,6 +70,9 @@
 	if(!clerk_check(user))
 		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
+	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/safety))
+		to_chat(user,"<span class='warning'>[src] seems to be remotely disabled.</span>")
+		return
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
 		to_chat(user, "<span class='warning'>The injector is empty!</span>")

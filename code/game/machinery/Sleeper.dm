@@ -31,12 +31,17 @@
 
 /obj/machinery/sleeper/Initialize(mapload)
 	. = ..()
+	GLOB.sleepers += src
 	if(mapload)
 		LAZYREMOVE(component_parts, circuit)
 		QDEL_NULL(circuit)
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
 	reset_chem_buttons()
+
+/obj/machinery/regenerator/Destroy()
+	GLOB.sleepers -= src
+	..()
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E

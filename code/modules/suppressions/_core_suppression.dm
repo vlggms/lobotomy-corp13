@@ -11,20 +11,16 @@
 	var/end_sound = null
 
 // Runs the event itself
-/datum/suppression/proc/Run()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+/datum/suppression/proc/Run(run_white = TRUE)
 	priority_announce(run_text, name, sound=annonce_sound)
-	SSlobotomy_corp.next_ordeal_level = 1
-	SSlobotomy_corp.RollOrdeal()
+	if(run_white)
+		SSlobotomy_corp.next_ordeal_level = 6 // White dawn
+		SSlobotomy_corp.RollOrdeal()
 	return
 
 // Ends the event
 /datum/suppression/proc/End()
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	priority_announce(end_text, name, sound=end_sound)
+	SSlobotomy_corp.core_suppression = null
 	qdel(src)
-	return
-
-// On lobotomy_corp meltdown event
-/datum/suppression/proc/OnMeltdown(datum/source, ordeal = FALSE)
 	return

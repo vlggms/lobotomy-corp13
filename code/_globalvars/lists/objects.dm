@@ -9,6 +9,8 @@ GLOBAL_LIST_EMPTY(navigation_computers)				//list of all /obj/machinery/computer
 GLOBAL_LIST_EMPTY(abnormality_consoles)				//list of all abnormality work consoles
 GLOBAL_LIST_EMPTY(abnormality_queue_consoles)		//list of all abnormality queue consoles
 GLOBAL_LIST_EMPTY(ordeal_monitors)					//list of all ordeal monitors
+GLOBAL_LIST_EMPTY(regenerators)						//list of all regenerator machines
+GLOBAL_LIST_EMPTY(sleepers)							//list of all sleepers
 GLOBAL_LIST_EMPTY(syndicate_shuttle_boards)	        //important to keep track of for managing nukeops war declarations.
 GLOBAL_LIST_EMPTY(navbeacons)					    //list of all bot nagivation beacons, used for patrolling.
 GLOBAL_LIST_EMPTY(teleportbeacons)			        //list of all tracking beacons used by teleporters

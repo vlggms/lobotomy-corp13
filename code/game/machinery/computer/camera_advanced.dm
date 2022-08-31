@@ -194,6 +194,8 @@
 
 /mob/camera/ai_eye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
+	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+		see_invisible = INVISIBILITY_LIGHTING // Can't see mobs
 	user.sight = SEE_TURFS | SEE_BLACKNESS
 	user.see_in_dark = 2
 	return 1
