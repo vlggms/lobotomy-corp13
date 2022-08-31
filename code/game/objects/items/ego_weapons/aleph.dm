@@ -222,7 +222,7 @@
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
 
-/obj/item/ego_weapon/gold_rush
+/obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals it's damage after a short windup."
@@ -239,7 +239,7 @@
 	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
-/obj/item/ego_weapon/gold_rush/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(do_after(user, 4, target))

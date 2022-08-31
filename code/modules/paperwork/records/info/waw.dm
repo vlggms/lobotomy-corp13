@@ -345,3 +345,29 @@
 	<h4>White Resistance:</h4> Immune	<br>
 	<h4>Black Resistance:</h4> Endured	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
+	
+//King of Greed
+/obj/item/paper/fluff/info/waw/greedking
+	name = "O-01-64"
+	info = {"<h1><center>O-01-64</center></h1>	<br>
+	Name : The King of Greed	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
+	- The King of Greed's behavioral pattern is to engulf anything that lies in her path when escaping. When suppressing her, please pay attention to which direction the Abnormality is moving	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+
+	<h4>Red Resistance:</h4> Immune	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}
