@@ -17,7 +17,7 @@
 	var/list/scramble_list = list()
 
 /obj/machinery/computer/abnormality/Initialize()
-	..()
+	. = ..()
 	GLOB.abnormality_consoles += src
 	flags_1 |= NODECONSTRUCT_1
 
@@ -56,7 +56,7 @@
 	if(datum_reference.overload_chance != 0)
 		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
 	if(datum_reference.understanding != 0)
-		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span>"
+		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
 	for(var/wt in datum_reference.available_work)
 		var/work_display = "[wt] Work"
@@ -106,7 +106,7 @@
 	if(!HAS_TRAIT(user, TRAIT_WORKFEAR_IMMUNE))
 		user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
-		finish_work(user, work_type, 0, work_time) // Assume total failure
+		finish_work(user, work_type, 0) // Assume total failure
 		return
 	switch(sanity_result)
 		if(-INFINITY to -1)
@@ -138,7 +138,7 @@
 			break // Dying
 		if(!(datum_reference.current.status_flags & GODMODE))
 			break // Somehow it escaped
-	finish_work(user, work_type, success_boxes, work_time, work_speed, training)
+	finish_work(user, work_type, success_boxes, work_speed, training)
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
@@ -147,15 +147,14 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, max_pe = 0, work_speed = 2 SECONDS, training)
-	working = FALSE
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE)
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
-	if(max_pe != 0)
-		visible_message("<span class='notice'>[work_type] work finished. [pe]/[max_pe] PE acquired.</span>")
-		if (pe >= datum_reference.success_boxes)
+	if(datum_reference.max_boxes != 0)
+		visible_message("<span class='notice'>[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired.</span>")
+		if(pe >= datum_reference.success_boxes)
 			visible_message("<span class='notice'>Work Result: Good</span>")
 		else if(pe >= datum_reference.neutral_boxes)
 			visible_message("<span class='notice'>Work Result: Neutral</span>")
@@ -163,9 +162,12 @@
 			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
 		if(!training)
-			datum_reference.work_complete(user, work_type, pe, max_pe, work_speed*max_pe)
+			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
+			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 		else
-			datum_reference.current.work_complete(user, work_type, pe, work_speed*max_pe)
+			datum_reference.current.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
+	meltdown_time = 0
+	working = FALSE
 	return TRUE
 
 /obj/machinery/computer/abnormality/process()
