@@ -97,6 +97,11 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/loyalty
 	cost = 50
 
+// The King of Greed - Gold Rush
+/datum/ego_datum/armor/goldrush
+	item_path = /obj/item/clothing/suit/armor/ego_gear/goldrush
+	cost = 50
+
 // Shrimp Association Executive - Executive
 /datum/ego_datum/armor/executive
 	item_path = /obj/item/clothing/suit/armor/ego_gear/executive
