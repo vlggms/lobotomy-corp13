@@ -34,8 +34,8 @@
 	Qliphoth Counter : 2	<br>
 	Work Damage Type : White	<br>
 	Work Damage : Extreme	<br>
-	- "Agents with Temperance Level 3 or lower immediately threw themselves into Blue Star upon working with the Abnormality."
-	- When an Agent with Prudence Level 4 or lower completed their work, the Qliphoth Counter lowered.	<br>
+	- Agents with Temperance Level 2 or lower immediately threw themselves into Blue Star upon working with the Abnormality.	<br>
+	- When an Agent with Prudence Level 3 or lower completed their work, the Qliphoth Counter lowered.	<br>
 	- When more than 40 seconds of work time had taken place, the Qliphoth Counter lowered by 1, and the Agent who was working with Blue Star threw themself in.	<br>
 	- While Blue Star is outside of its containment, all sounds will be reduced to silence, with a low pitched tone emerging. The pitch will accompany a visually disruptive effect.	<br>
 	- While Blue Star is outside of its containment, all panicking employees in the facility will be sucked into the center of the Abnormality and vanish.	<br><br>
