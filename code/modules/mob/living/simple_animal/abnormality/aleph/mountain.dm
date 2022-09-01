@@ -77,7 +77,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Move()
 	var/turf/floor = get_turf(src)
-	for(var/thing in floor)
+	for(var/obj/thing in floor)
 		if(istype(thing, /obj/effect/decal/cleanable/blood))
 			var/obj/effect/decal/cleanable/blood/blood_decal = thing
 			adjustBruteLoss(-clamp((maxHealth*0.005)*(blood_decal.bloodiness*0.01), 0, maxHealth)) // Heal up to 0.5% heath from bloody ground.
@@ -108,7 +108,7 @@
 	. = ..()
 	var/messyArea = list()
 	var/validArea = view(2, src)
-	for(var/I = 1 to pick(list(3, 4, 5)))
+	for(var/I = 1 to rand(1, 3))
 		var/turf/space = pick_n_take(validArea)
 		if (!(space in messyArea) && !space.density)
 			messyArea += space
@@ -186,10 +186,19 @@
 				belly += 1
 				StageChange(TRUE)
 
+/* In EXTREME testing and not to be tested on the server yet. More Alpha for his body locating abilities.
+/mob/living/simple_animal/hostile/abnormality/mountain/ListTargets()
+	. = ..()
+	if (phase == 1 || (phase == 2 && health <= maxHealth*0.5) )
+		for (var/mob/living/carbon/human/body in range(20, src))
+			if (body.stat != DEAD || body in .)
+				continue
+			. += body
+*/
 /mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
 	if(phase == 1 || (phase == 2 && health <= maxHealth*0.5))
 		for (var/mob/living/carbon/human/body in view(20, src))
-			if (body.stat != DEAD || body in Targets)
+			if (body.stat != DEAD || body in Targets) // Don't add pre-existing targets again and don't add non-dead bodies at increased range.
 				continue
 			Targets += body
 		var/list/highest_priority = list()
@@ -210,6 +219,25 @@
 			return pick(lower_priority)
 	return ..()
 
+/* ALL OF THIS IS IN TESTING, I'm NOT merging this for testing yet.
+/mob/living/simple_animal/hostile/abnormality/mountain/Goto(target, delay, minimum_distance)
+	if(!istype(target, /mob) || (target in view(8, src)))
+		return ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/cooler_target = target
+		if(cooler_target.stat != DEAD)
+			return ..()
+	if(target == src.target)
+		approaching_target = TRUE
+	else
+		approaching_target = FALSE
+	var/mob/cooler_target = target
+	var/path = AStar(src, cooler_target.loc, /turf/proc/Distance, FALSE)
+	if (isnull(path))
+		say("FUCK, NO PATH")
+		return FALSE
+	walk_to(src, path, minimum_distance, delay)
+*/
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
 	if(increase)
@@ -342,4 +370,6 @@
 	bloodiness = BLOOD_AMOUNT_PER_DECAL
 	beauty = -100
 	clean_type = CLEAN_TYPE_BLOOD
-	mergeable_decal = FALSE
+
+/obj/effect/decal/cleanable/old_flesh/replace_decal(obj/effect/decal/cleanable/C)
+	return TRUE // No Stacking.
