@@ -5,7 +5,6 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "melting_love"
 	icon_living = "melting_love"
-	dir = SOUTH
 	pixel_x = -16
 	base_pixel_x = -16
 	faction = list("slime")
@@ -55,6 +54,10 @@
 	. = ..()
 	if(gifted_human)
 		sanityheal()
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/Initialize(mapload)
+	. = ..()
+	dir = SOUTH
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
 	..()
