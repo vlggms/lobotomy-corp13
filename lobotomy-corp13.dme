@@ -2641,6 +2641,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\greed_king.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\hatred_queen.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\judgement_bird.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\luna.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\naked_nest.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\queen_bee.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"

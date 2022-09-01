@@ -266,3 +266,14 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+							
+/obj/item/clothing/suit/armor/ego_gear/moonlight
+	name = "moonlight"
+	desc = "A classic, dark dress whose edge resembles an ink cap. \
+			You may take a step towards the truth of the moon that was so difficult to understand if you wear it. "
+	icon_state = "moonlight"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 140
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80
+							)
+

@@ -744,12 +744,66 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
+
+/obj/item/ego_weapon/moonlight
+	name = "moonlight"
+	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
+	special = "Use this weapon in hand to heal the sanity of those around you."
+	icon_state = "moonlight"
+	force = 32					//One of the best support weapons. Does HE damage in it's stead.
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("beats", "jabs")
+	attack_verb_simple = list("beat", "jab")
+	var/inuse
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/moonlight/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+
+	if(inuse)
+		return
+	inuse = TRUE
+	if(do_after(user, 30))	//3 seconds for a big heal.
+		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
+			L.adjustSanityLoss(-10)
+	inuse = FALSE
+
+
+/obj/item/ego_weapon/heaven
+	name = "heaven"
+	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
+	special = "This weapon has a longer reach. \
+			This deals bonus throwing damage. \
+			This weapon attacks slower than usual."
+	icon_state = "heaven"
+	force = 40
+	reach = 2		//Has 2 Square Reach.
+	throwforce = 80		//It costs like 50 PE I guess you can go nuts
+	throw_speed = 5
+	throw_range = 7
+	attack_speed = 1.2
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+
 /obj/item/ego_weapon/dipsia
 	name = "dipsia"
 	desc = "The thirst will never truly be quenched."
 	special = "This weapon heals you on hit."
 	icon_state = "dipsia"
-	force = 32
+	force = 32	
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
