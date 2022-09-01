@@ -93,7 +93,7 @@
 	animate(src, transform = init_transform, time = 5)
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/attempt_work(mob/living/carbon/human/user, work_type)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60) // This is level 3, NOT 80. That's level 4.
 		datum_reference.qliphoth_change(-1)
 		playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 25, FALSE, 28)
 		user.death()
@@ -104,7 +104,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	..()
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80) // This is level 4, NOT 100. That's Level 5.
 		datum_reference.qliphoth_change(-1)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
