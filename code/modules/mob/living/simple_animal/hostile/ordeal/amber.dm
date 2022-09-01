@@ -18,7 +18,7 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
