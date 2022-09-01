@@ -246,7 +246,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/death(gibbed)
 	invisibility = 30 // So that other mobs cannot attack them
-	death_counter += 1
+	death_counter = clamp(death_counter + 1, 0, 3)
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
