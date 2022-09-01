@@ -178,3 +178,28 @@
 	<h4>White Resistance:</h4> Ineffective	<br>
 	<h4>Black Resistance:</h4> Ineffective	<br>
 	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+//Shrimp
+/obj/item/paper/fluff/info/waw/shrimpexec
+	name = "O-02-119"
+	info = {"<h1><center>O-02-119</center></h1>	<br>
+	Name : A Shrimp Association Executive	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Bad, the executive called for help.	<br>
+	- When the work result was Good, the executive ordered a gift for NAME.	<br>
+	- After work completed, A Shrimp Association Executive requested something from NAME	<br>
+	- Doing the requested work with A Shrimp Association Executive increased success rate significantly. All materials were kept in it's containment, NAME was just required to do the corresponding work.	<br>
+	- The gifts included : <br>
+	Various Shrimp Corporation brand firearms.	<br>
+	A "Shrimp in a grenade"<br>
+	A can of Wellcheers-Brand soda<br>
+	<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Very Low<br>"}
+
