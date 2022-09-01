@@ -92,8 +92,10 @@
 			if(!(datum_reference.current.status_flags & GODMODE))
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
-			if(!datum_reference.current.attempt_work(usr, href_list["do_work"]))
-				to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
+			var/work_attempt = datum_reference.current.attempt_work(usr, href_list["do_work"])
+			if(!work_attempt)
+				if(work_attempt == FALSE)
+					to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
 				return
 			start_work(usr, href_list["do_work"])
 
