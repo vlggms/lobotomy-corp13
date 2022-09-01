@@ -3,11 +3,10 @@
 	name = "Dawn of White"
 	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
 	so long as you pay them sufficiently."
-	level = 1
+	level = 6
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
-	can_run = FALSE // Only runs during core suppressions
 	var/mobs_amount = 1
 	var/list/potential_types = list(
 		/mob/living/simple_animal/hostile/ordeal/black_fixer,
@@ -33,7 +32,7 @@
 	name = "Noon of White"
 	annonce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
 	the Reliques of the Outskirts, the Artefacts of the Ruins…"
-	level = 2
+	level = 7
 	reward_percent = 0.15
 	mobs_amount = 2
 
@@ -41,7 +40,7 @@
 	name = "Dusk of White"
 	annonce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
 	to be drawn to such a mystic place of life and death."
-	level = 3
+	level = 8
 	reward_percent = 0.2
 	mobs_amount = 4
 
@@ -50,11 +49,10 @@
 	name = "Midnight of White"
 	annonce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
-	level = 4
+	level = 9
 	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
-	can_run = FALSE
 	var/spawn_type = /mob/living/simple_animal/hostile/megafauna/claw
 
 /datum/ordeal/white_midnight/Run()

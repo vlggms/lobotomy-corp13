@@ -19,6 +19,15 @@
 	var/long_duration = 60 SECONDS
 	var/reset_timer = 0
 
+/obj/machinery/regenerator/Initialize()
+	. = ..()
+	GLOB.regenerators += src
+	flags_1 |= NODECONSTRUCT_1
+
+/obj/machinery/regenerator/Destroy()
+	GLOB.regenerators -= src
+	..()
+
 /obj/machinery/regenerator/process()
 	..()
 	if(reset_timer <= world.time)

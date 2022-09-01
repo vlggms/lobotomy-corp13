@@ -28,7 +28,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 							1 = list(),
 							2 = list(),
 							3 = list(),
-							4 = list()
+							4 = list(),
+							5 = list(),
+							6 = list(),
+							7 = list(),
+							8 = list(),
+							9 = list()
 							)
 	// At what qliphoth_state next ordeal will happen
 	var/next_ordeal_time = 1
@@ -152,14 +157,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))
 		return FALSE
 	var/list/available_ordeals = list()
-	if(istype(core_suppression))
-		for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
-			if(!O.can_run)
-				available_ordeals += O
-	else
-		for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
-			if(O.can_run)
-				available_ordeals += O
+	for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
+		if(O.can_run)
+			available_ordeals += O
 	if(!LAZYLEN(available_ordeals))
 		return FALSE
 	next_ordeal = pick(available_ordeals)
