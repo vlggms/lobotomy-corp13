@@ -252,12 +252,13 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
 	invisibility = 0 // Visible again
 	can_act = TRUE // In case we died while performing special attack
-	if(death_counter == 1)
-		health = 1000
-	else if(death_counter == 2) // There has to be SOME incentive to suppressing the Apostles. Even if that's just making them easier to kill again. 2k HP with good resitsances is too much to chunk through considering they respawn with that FREQUENTLY.
-		health = 750
-	else if (death_counter >= 3)
-		health = 500
+	switch(death_counter)
+		if(1)
+			health = 1000
+		if(2) // There has to be SOME incentive to suppressing the Apostles. Even if that's just making them easier to kill again. 2k HP with good resitsances is too much to chunk through considering they respawn with that FREQUENTLY.
+			health = 750
+		if(3)
+			health = 500
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/gib(no_brain, no_organs, no_bodyparts)
