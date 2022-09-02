@@ -77,9 +77,13 @@
 
 //Bloodbath - Wrist Cutter
 /datum/ego_datum/armor/wrist
+	item_path = /obj/item/ego_weapon/bloodbath
+	cost = 20
+
+/datum/ego_datum/armor/wrist
 	item_path = /obj/item/clothing/suit/armor/ego_gear/wrist
 	cost = 20
-	
+
 // Old Lady - Solitude
 /datum/ego_datum/weapon/solitude
 	item_path = /obj/item/gun/ego_gun/solitude
