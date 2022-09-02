@@ -198,7 +198,7 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
 	if(phase == 1 || (phase == 2 && health <= maxHealth*0.5))
 		for (var/mob/living/carbon/human/body in view(20, src))
-			if (body.stat != DEAD || body in Targets) // Don't add pre-existing targets again and don't add non-dead bodies at increased range.
+			if (body.stat != DEAD || (body in Targets)) // Don't add pre-existing targets again and don't add non-dead bodies at increased range.
 				continue
 			Targets += body
 		var/list/highest_priority = list()
