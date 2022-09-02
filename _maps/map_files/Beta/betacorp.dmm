@@ -1264,6 +1264,7 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "hJ" = (
@@ -1649,6 +1650,7 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "jU" = (
@@ -2656,7 +2658,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "oB" = (
-/obj/effect/landmark/department_center,
+/obj/structure/table/wood/fancy/green,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "oD" = (
@@ -4058,6 +4061,7 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "vY" = (
@@ -7687,6 +7691,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"Rb" = (
+/obj/effect/turf_decal/siding/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/hypospray/emais,
+/turf/open/floor/carpet/royalblue,
+/area/department_main/welfare)
 "Rc" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/north)
@@ -8144,6 +8157,7 @@
 /area/department_main/control)
 "Tz" = (
 /mob/living/simple_animal/bot/cleanbot,
+/obj/effect/landmark/department_center,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "TE" = (
@@ -8411,6 +8425,12 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/control)
+"UQ" = (
+/obj/machinery/computer/abnormality_logs{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/information)
 "US" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -8484,7 +8504,6 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/hypospray/emais,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -8496,10 +8515,6 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/emais,
-/obj/item/reagent_containers/hypospray/emais,
-/obj/item/reagent_containers/hypospray/emais,
-/obj/item/reagent_containers/hypospray/emais,
 /obj/machinery/status_display{
 	pixel_y = -32
 	},
@@ -8930,7 +8945,6 @@
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/reagent_containers/hypospray/emais,
 /obj/structure/sign/ordealmonitor{
 	pixel_y = -32
 	},
@@ -38680,7 +38694,7 @@ Rn
 uh
 vN
 vN
-JB
+vN
 JB
 JB
 JB
@@ -38936,7 +38950,7 @@ rH
 vN
 vN
 KR
-vN
+Rb
 vN
 vN
 vN
@@ -40142,7 +40156,7 @@ Pe
 jy
 Pe
 vq
-dj
+oB
 Pe
 IM
 qK
@@ -40400,7 +40414,7 @@ am
 Tz
 jn
 dj
-oB
+Pe
 eW
 rb
 an
@@ -44318,7 +44332,7 @@ DD
 ic
 Md
 ZH
-sj
+UQ
 sj
 WR
 Io
