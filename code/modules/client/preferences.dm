@@ -89,6 +89,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_NONE
+	var/prefered_agent_department = "None"
 
 	//Quirk list
 	var/list/all_quirks = list()
@@ -273,7 +274,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Custom Job Preferences:</b><BR>"
 			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
-			dat += "<a href='?_src_=prefs;preference=sec_dept;task=input'><b>Preferred Security Department:</b> [prefered_security_department]</a><BR>"
+			dat += "<a href='?_src_=prefs;preference=agent_dept;task=input'><b>Preferred Agent Department:</b> [prefered_agent_department]</a><BR>"
 			dat += "<br>"
 
 			dat += "<h2>Background Information:</h2>"
@@ -1592,10 +1593,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(ai_core_icon)
 						preferred_ai_core_display = ai_core_icon
 
-				if("sec_dept")
-					var/department = input(user, "Choose your preferred security department:", "Security Departments") as null|anything in GLOB.security_depts_prefs
+				if("agent_dept")
+					var/department = input(user, "Choose your preferred agent department:", "Agent Departments") as null|anything in GLOB.agent_depts_prefs
 					if(department)
-						prefered_security_department = department
+						prefered_agent_department = department
 
 				// The lore stuff
 				if("govrelation")

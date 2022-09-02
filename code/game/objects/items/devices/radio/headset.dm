@@ -148,6 +148,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
 
+/obj/item/radio/headset/headset_command/agent
+	keyslot = null
+
 /obj/item/radio/headset/headset_welfare
 	name = "welfare radio headset"
 	desc = "This is used by the welfare department."
@@ -159,6 +162,18 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "This is used by the disciplinary department."
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/headset_discipline
+
+/obj/item/radio/headset/headset_extraction
+	name = "extraction headset"
+	desc = "This is used by the extraction department."
+	icon_state = "extraction_headset"
+	//keyslot = new /obj/item/encryptionkey/headset_extraction //Waiting for someone to add in radio channels for them because i cannot find a way to add it in.
+
+/obj/item/radio/headset/headset_records
+	name = "records headset"
+	desc = "This is used by the records department."
+	icon_state = "records_headset"
+	//keyslot = new /obj/item/encryptionkey/headset_records
 
 /obj/item/radio/headset/headset_architecture
 	name = "architecture headset"
