@@ -1087,7 +1087,6 @@
 /area/department_main/training)
 "jy" = (
 /obj/structure/table/glass,
-/obj/structure/table/glass,
 /obj/item/paper/guides/jobs/aleph{
 	pixel_x = 5
 	},
@@ -1162,7 +1161,6 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "ks" = (
-/obj/structure/table/glass,
 /obj/item/paper/guides/jobs/he{
 	pixel_x = 5
 	},
@@ -1172,6 +1170,7 @@
 /obj/item/paper/guides/jobs/zayin{
 	pixel_x = -5
 	},
+/obj/structure/table/glass,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "ku" = (
@@ -1253,9 +1252,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "ll" = (
-/obj/machinery/icecream_vat,
-/turf/closed/indestructible/rock,
-/area/space)
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "lp" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/railing,
@@ -1357,8 +1357,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
 "lJ" = (
-/obj/structure/table/glass,
 /obj/item/toy/plush/malkuth,
+/obj/structure/table/glass,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "lK" = (
@@ -3465,7 +3465,6 @@
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
-/obj/structure/table/glass,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Er" = (
@@ -3895,10 +3894,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "IC" = (
-/obj/effect/landmark/department_center,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/dark,
-/area/department_main/information)
+/obj/machinery/computer/abnormality_logs{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/training)
 "ID" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -5358,7 +5358,6 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/safety)
 "Wl" = (
-/obj/structure/rack,
 /obj/structure/rack,
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
 /obj/item/clothing/accessory/armband/lobotomy/extraction,
@@ -38608,9 +38607,9 @@ Gr
 bU
 mQ
 mQ
-IC
 mQ
 mQ
+ll
 mQ
 mQ
 mQ
@@ -45243,7 +45242,7 @@ ZL
 zW
 GI
 Mc
-Mc
+IC
 vW
 qO
 Qi
@@ -53213,7 +53212,7 @@ ZL
 ZL
 ZL
 ZL
-ll
+ZL
 ZL
 ZL
 ZL
