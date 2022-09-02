@@ -424,6 +424,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
+	READ_FILE(S["prefered_agent_department"], prefered_agent_department)
 
 	//Lore
 	READ_FILE(S["terragov_relation"], terragov_relation)
@@ -575,7 +576,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S[savefile_slot_name],custom_names[custom_name_id])
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
-	WRITE_FILE(S["prefered_security_department"] , prefered_security_department)
+	WRITE_FILE(S["prefered_agent_department"] , prefered_agent_department)
 
 	//Lore
 	WRITE_FILE(S["terragov_relation"], terragov_relation)

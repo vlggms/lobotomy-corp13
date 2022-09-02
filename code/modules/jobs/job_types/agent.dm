@@ -22,7 +22,57 @@
 
 	var/normal_attribute_level = 20 // Scales with round time
 
-/datum/job/agent/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
+/datum/job/agent/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	// Assign department security
+	var/department
+	if(M && M.client && M.client.prefs)
+		department = M.client.prefs.prefered_agent_department
+		if(department == "None")
+			return
+	var/ears = null
+	var/accessory = null
+	switch(department)
+		if("Control")
+			ears = /obj/item/radio/headset/headset_control
+			accessory = /obj/item/clothing/accessory/armband/lobotomy
+		if("Command")
+			ears = /obj/item/radio/headset/headset_command/agent
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
+		if("Training")
+			ears = /obj/item/radio/headset/headset_training
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
+		if("Information")
+			ears = /obj/item/radio/headset/headset_information
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/info
+		if("Safety")
+			ears = /obj/item/radio/headset/headset_safety
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/safety
+		if("Disciplinary")
+			ears = /obj/item/radio/headset/headset_discipline
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
+		if("Welfare")
+			ears = /obj/item/radio/headset/headset_welfare
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/welfare
+		if("Extraction")
+			ears = /obj/item/radio/headset/headset_extraction
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/extraction
+		if("Record")
+			ears = /obj/item/radio/headset/headset_records
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
+
+	if(accessory)
+		var/obj/item/clothing/under/U = H.w_uniform
+		U.attach_accessory(new accessory)
+	if(H.mind.assigned_role == "Agent")
+		if(ears)
+			if(H.ears)
+				qdel(H.ears)
+			H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
+	if(department)
+		to_chat(M, "<b>You have been assigned to [department]!</b>")
+	else
+		to_chat(M, "<b>You have not been assigned to any department.</b>")
+
 	var/set_attribute = normal_attribute_level
 	if(world.time >= 75 MINUTES) // Full facility expected
 		set_attribute *= 4
@@ -39,6 +89,7 @@
 		roundstart_attributes[A] = round(set_attribute)
 
 	return ..()
+
 
 /datum/outfit/job/agent
 	name = "Agent"
