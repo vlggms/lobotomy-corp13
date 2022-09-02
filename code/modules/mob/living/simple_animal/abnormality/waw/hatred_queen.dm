@@ -75,7 +75,7 @@
 	var/list/spawned_effects = list()
 	//hostile breach vars
 	var/hp_teleport_counter = 3
-	var/explode_damage = 35
+	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
 
 /datum/action/innate/abnormality_attack/qoh_beam
@@ -432,7 +432,10 @@
 	var/turf/teleport_target = pick(teleport_potential)
 	animate(src, alpha = 0, time = 5)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
-	SLEEP_CHECK_DEATH(5)
+	var/obj/effect/qoh_sygil/S = new(teleport_target)
+	S.icon_state = "qoh2"
+	addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 2 SECONDS)
+	SLEEP_CHECK_DEATH(2 SECONDS)
 	animate(src, alpha = 255, time = 5)
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	forceMove(teleport_target)

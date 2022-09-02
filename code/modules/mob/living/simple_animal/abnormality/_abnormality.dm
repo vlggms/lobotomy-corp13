@@ -113,22 +113,53 @@
 	for(var/mob/living/carbon/human/H in view(7, src))
 		if(H in breach_affected)
 			continue
-		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
-			continue
 		breach_affected += H
-		var/sanity_result = round(fear_level - get_user_level(H))
-		var/sanity_damage = -(max(((H.maxSanity * 0.26) * (sanity_result)), 0))
-		H.adjustSanityLoss(sanity_damage)
-		if(H.sanity_lost)
+		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
+			to_chat(H, "<span class='notice'>This again...?")
+			H.apply_status_effect(/datum/status_effect/panicked_lvl_0)
 			continue
+		var/sanity_result = clamp(fear_level - get_user_level(H), -1, 5)
+		var/sanity_damage = 0
+		var/result_text = FearEffectText(H, sanity_result)
 		switch(sanity_result)
+			if(-INFINITY to 0)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_0)
+				to_chat(H, "<span class='notice'>[result_text]</span>")
+				continue
 			if(1)
-				to_chat(H, "<span class='warning'>Here it comes!")
+				sanity_damage = -(H.maxSanity*0.1)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
+				to_chat(H, "<span class='warning'>[result_text]</span>")
 			if(2)
-				to_chat(H, "<span class='danger'>Not that thing...")
-			if(3 to INFINITY)
-				to_chat(H, "<span class='userdanger'>I'm not ready for this!")
+				sanity_damage = -(H.maxSanity*0.3)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
+				to_chat(H, "<span class='danger'>[result_text]</span>")
+			if(3)
+				sanity_damage = -(H.maxSanity*0.6)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
+				to_chat(H, "<span class='userdanger'>[result_text]</span>")
+			if(4)
+				sanity_damage = -(H.maxSanity*0.95)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
+				to_chat(H, "<span class='userdanger'><b>[result_text]</b></span>")
+			if(5)
+				sanity_damage = -(H.maxSanity)
+				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
+		H.adjustSanityLoss(sanity_damage)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/proc/FearEffectText(mob/affected_mob, level = 0)
+	level = num2text(clamp(level, -1, 5))
+	var/list/result_text_list = list(
+		"-1" = list("I've got this.", "How boring.", "Doesn't even phase me."),
+		"0" = list("Just calm down, do what we always do.", "Just don't lose your head and stick to the manual.", "Focus..."),
+		"1" = list("Hah, I'm getting nervous.", "Breathe in, breathe out...", "It'll be fine if we focus, I think..."),
+		"2" = list("There's no room for error here.", "My legs are trembling...", "Damn, it's scary."),
+		"3" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
+		"4" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
+		"5" = list("......")
+		)
+	return pick(result_text_list[level])
 
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()

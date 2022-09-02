@@ -46,6 +46,15 @@
 
 	var/can_act = TRUE
 
+/mob/living/simple_animal/hostile/abnormality/censored/FearEffectText(mob/affected_mob, level = 0)
+	level = num2text(clamp(level, 3, 5))
+	var/list/result_text_list = list(
+		"3" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
+		"4" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
+		"5" = list("It's all over...", "What...")
+		)
+	return pick(result_text_list[level])
+
 /* Combat */
 /mob/living/simple_animal/hostile/abnormality/censored/Move()
 	if(!can_act)
@@ -180,7 +189,8 @@
 		return FALSE
 	if(status_flags & GODMODE)
 		return FALSE
-	addtimer(CALLBACK(src, .proc/ShakePixels), rand(7, 14))
+	for(var/i = 1 to 2)
+		addtimer(CALLBACK(src, .proc/ShakePixels), i*5 + rand(1, 4))
 	ShakePixels()
 	FearEffect()
 	return
@@ -200,5 +210,5 @@
 		H.adjustSanityLoss(-20)
 		if(H.sanity_lost)
 			continue
-		to_chat(H, "<span class='warning'>Here it comes!")
+		to_chat(H, "<span class='warning'>Damn, it's scary.</span>")
 	return

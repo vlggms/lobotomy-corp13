@@ -10,7 +10,7 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
-	if((status_flags & GODMODE) || !attributes)
+	if((status_flags & GODMODE) || !attributes || stat == DEAD)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
 		amount = maxSanity+1
@@ -26,10 +26,12 @@
 		QDEL_NULL(ai_controller)
 		sanity_lost = FALSE
 		grab_ghost(force = TRUE)
+		remove_status_effect(/datum/status_effect/panicked_type)
 		visible_message("<span class='notice'>[src] comes back to [p_their(TRUE)] senses!</span>", \
 						"<span class='notice'>You are back to normal!</span>")
 	else if(!sanity_lost && sanityhealth <= 0)
 		sanity_lost = TRUE
+		apply_status_effect(/datum/status_effect/panicked)
 		var/highest_atr = PRUDENCE_ATTRIBUTE
 		if(LAZYLEN(attributes))
 			var/highest_level = -1
@@ -55,17 +57,22 @@
 		if(FORTITUDE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/murder
 			warning_text = "[src] screams for a moment, murderous intent shining in [p_their()] eyes."
+			apply_status_effect(/datum/status_effect/panicked_type/murder)
 		if(PRUDENCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/suicide
 			warning_text = "[src] stops moving entirely, [p_they()] lost all hope..."
+			apply_status_effect(/datum/status_effect/panicked_type/suicide)
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
 			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for an exit."
+			apply_status_effect(/datum/status_effect/panicked_type/wander)
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release
 			warning_text = "[src] laughs for a moment, as [p_they()] start[p_s()] approaching nearby containment zones."
+			apply_status_effect(/datum/status_effect/panicked_type/release)
 	visible_message("<span class='danger'>[warning_text]</span>", \
 					"<span class='userdanger'>You've been overwhelmed by what is going on in this place... There's no hope!</span>")
 	ghostize(1)
 	InitializeAIController()
+	SpreadPanic(FALSE)
 	return TRUE
