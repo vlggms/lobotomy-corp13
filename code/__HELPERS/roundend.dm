@@ -334,7 +334,7 @@
 		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
-	parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
+	parts += "[FOURSPACES]Facility Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
 	var/total_players = GLOB.joined_player_list.len
 	if(total_players)
 		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
@@ -358,6 +358,25 @@
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
+/datum/controller/subsystem/ticker/proc/abnormality_report()
+	var/list/parts = list()
+	var/datum/abnormality/highest_abno = null
+	var/full_abno_count = 0
+	var/list/abno_count = list(0, 0, 0, 0, 0)
+	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+		if(!highest_abno || A.work_logs.len > highest_abno.work_logs.len)
+			highest_abno = A
+		abno_count[A.threat_level] += 1
+		full_abno_count += 1
+	parts += "[FOURSPACES]<b>The facility had [full_abno_count] abnormalities:</b>"
+	for(var/i = 1 to 5)
+		if(abno_count[i] < 1)
+			continue
+		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
+	if(istype(highest_abno))
+		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_abno.work_logs.len] sessions.<br>"
+	return parts.Join("<br>")
+
 /client/proc/roundend_report_file()
 	return "data/roundend_reports/[ckey].html"
 
@@ -375,6 +394,9 @@
 	var/list/parts = list()
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.survivor_report
+	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
+	parts += GLOB.abnormality_report
 	parts += "</div>"
 	parts += GLOB.common_report
 	var/content = parts.Join()
@@ -433,12 +455,16 @@
 	parts += "<br>"
 	parts += GLOB.survivor_report
 	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
+	parts += GLOB.abnormality_report
+	parts += "</div>"
 
 	return parts.Join()
 
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
 	GLOB.survivor_report = survivor_report(popcount)
+	GLOB.abnormality_report = abnormality_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
 		show_roundend_report(C)

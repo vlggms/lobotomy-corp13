@@ -1,14 +1,3 @@
-
-
-// Called from sound.dm to find a track to play
-/client/proc/returncreditsmusic() // TEGUSTATION
-	if (prob(15))
-		return 'ModularTegustation/tegusounds/Uhoh_Stinky.ogg'
-	if (prob(5))
-		return 'ModularTegustation/tegusounds/Tegu_Piano_Old.ogg'
-	return 'ModularTegustation/tegusounds/Tegu_Piano.ogg'
-
-
 // Can someone see the turf indicated? //
 //
 /proc/check_location_seen(atom/subject, turf/T)
@@ -58,6 +47,14 @@
 	set waitfor = FALSE
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
 		SEND_SOUND(src, sound(returncreditsmusic(), repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // TEGUSTATION: Play end music! SO SAD!
+
+// Called from sound.dm to find a track to play
+/client/proc/returncreditsmusic() // TEGUSTATION
+	if (prob(15))
+		return 'ModularTegustation/tegusounds/Uhoh_Stinky.ogg'
+	if (prob(5))
+		return 'ModularTegustation/tegusounds/Tegu_Piano_Old.ogg'
+	return 'ModularTegustation/tegusounds/Tegu_Piano.ogg'
 
 /mob/living/carbon/proc/getBruteLoss_nonProsthetic()
 	var/amount = 0
