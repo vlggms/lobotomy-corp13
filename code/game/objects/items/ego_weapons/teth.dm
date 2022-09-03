@@ -12,7 +12,7 @@
 	name = "fragments from somewhere"
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
-	special = "This weapon has a longer reach.\
+	special = "This weapon has a longer reach. \
 			This weapon attacks slower than usual."
 	icon_state = "fragment"
 	force = 22
@@ -31,8 +31,9 @@
 	name = "horn"
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
+	special = "This weapon deals more throwing damage."
 	force = 22
-	throwforce = 45		//You can only hold two so go nuts.
+	throwforce = 50		//You can only hold two so go nuts.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -53,7 +54,7 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
-	special = "Knocks certain enemies backwards.\
+	special = "Knocks certain enemies backwards. \
 			This weapon hits slower than usual. "
 	icon_state = "eyes"
 	force = 35					//Still less DPS, replaces baseball bat
@@ -103,14 +104,17 @@
 	/*So here's how it works, If you got the stats for it, you also scale with fort. It's pretty unremarkable otherwise.
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+
 /obj/item/ego_weapon/bloodbath
 	name = "Wrist Cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
+	special = "This weapon attacks very fast."
 	icon_state = "wrist"
 	force = 6
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
 /obj/item/ego_weapon/bloodbath/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 0.30)

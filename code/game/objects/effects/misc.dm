@@ -97,3 +97,13 @@
 
 /obj/effect/abstract/directional_lighting
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/temp_visual/remorse
+	name = "remorse nail"
+	desc = "A target warning you of incoming pain"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "remorse"
+	randomdir = FALSE
+	duration = 2 SECONDS
+	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what hit you
+
