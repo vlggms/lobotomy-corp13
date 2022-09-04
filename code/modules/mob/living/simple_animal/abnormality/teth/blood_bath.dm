@@ -15,11 +15,14 @@
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 14
+
 	ego_list = list(
-		/datum/ego_datum/weapon/bloodbath,
+		/datum/ego_datum/weapon/wrist,
 		/datum/ego_datum/armor/wrist
 	)
+
 	//gift_type =  /datum/ego_gifts/bloodbath
+
 	var/hands = 0
 
 /mob/living/simple_animal/hostile/abnormality/bloodbath/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
