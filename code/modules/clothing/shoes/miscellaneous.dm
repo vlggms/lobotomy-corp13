@@ -172,7 +172,7 @@
 
 /obj/item/clothing/shoes/workboots
 	name = "work boots"
-	desc = "Nanotrasen-issue Engineering lace-up work boots for the especially blue-collar."
+	desc = "Office-issued lace-up work boots for the average mercenary with a blue-collar twist."
 	icon_state = "workboots"
 	inhand_icon_state = "jackboots"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'

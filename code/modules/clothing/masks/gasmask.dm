@@ -22,6 +22,10 @@
 	permeability_coefficient = 0.001
 	resistance_flags = FIRE_PROOF
 
+/obj/item/clothing/mask/gas/atmos/hardhead
+	name = "old gas mask"
+	desc = "When the terrible smoke rolled thick, not many fixers went into the fray; but for the brave and mad of a new syndicate."
+
 /obj/item/clothing/mask/gas/atmos/captain
 	name = "captain's gas mask"
 	desc = "Nanotrasen cut corners and repainted a spare atmospheric gas mask, but don't tell anyone."

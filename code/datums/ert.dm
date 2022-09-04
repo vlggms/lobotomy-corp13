@@ -7,7 +7,7 @@
 	var/roles = list(/datum/antagonist/ert/security, /datum/antagonist/ert/medic, /datum/antagonist/ert/engineer) //List of possible roles to be assigned to ERT members.
 	var/rename_team
 	var/code
-	var/mission = "Assist the station."
+	var/mission = "Assist the facility."
 	var/teamsize = 5
 	var/polldesc
 	/// If TRUE, gives the team members "[role] [random last name]" style names
@@ -19,7 +19,7 @@
 
 /datum/ert/New()
 	if (!polldesc)
-		polldesc = "a Code [code] Nanotrasen Emergency Response Team"
+		polldesc = "a Code [code] N-Corporation Emergency Response Team"
 
 /datum/ert/blue
 	opendoors = FALSE
@@ -39,7 +39,7 @@
 	rename_team = "Deathsquad"
 	code = "Delta"
 	mission = "Leave no witnesses."
-	polldesc = "an elite Nanotrasen Strike Team"
+	polldesc = "an elite N-Corporation Strike Team"
 
 /datum/ert/centcom_official
 	code = "Green"
@@ -101,8 +101,8 @@
 	teamsize = 6
 	opendoors = FALSE
 	rename_team = "Rabbit Team"
-	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
-	polldesc = "a Rabbit Team"
+	mission = "Dispose of any breaching abnormalities and avoid casualties if possible. Destroy any traitors immediately."
+	polldesc = "Rabbit Squad, R-Corporation's combat team that specializes in fighting abnormals as a unit."
 	code = "Orange"
 
 /datum/ert/rhino
@@ -111,8 +111,8 @@
 	teamsize = 1
 	opendoors = TRUE
 	rename_team = "Rhino Team"
-	mission = "Dispose of any breaching abnormalities and/or panicking employees of Lobotomy Corporation."
-	polldesc = "a Rhino Team"
+	mission = "Dispose of any breaching abnormalities and try not to damage the facility, but the last one's a soft rule."
+	polldesc = "Rhino Squad, R-Corporation's full force combat team, each in a powerful combat mech suit."
 	code = "Orange"
 
 /datum/ert/zwei
@@ -122,3 +122,11 @@
 	rename_team = "Zwei Shield Unit"
 	mission = "Preserve the lives of the client employees, remove all clear and evident threats to their safety."
 	polldesc = "Zwei Shieldbearers, swordsmen with squad tactics and professional attitude."
+
+/datum/ert/hardhead
+	roles = list(/datum/antagonist/ert/hardhead, /datum/antagonist/ert/hardhead/fireaxe, /datum/antagonist/ert/hardhead/shotgun)
+	leader_role = /datum/antagonist/ert/hardhead/foreman
+	opendoors = TRUE
+	rename_team = "Hardhead Wrecking Crew"
+	mission = "You've been hired to wreck whatever's causing a mess with your buddies by your side. Get 'er done!"
+	polldesc = "Hardhead Office, former wageslaves who formed an office that clears piles of rubble, yet usually make more of it."

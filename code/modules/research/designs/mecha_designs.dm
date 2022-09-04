@@ -360,7 +360,7 @@
 
 /datum/design/mech_repair_droid
 	name = "Exosuit Module (Repair Droid Module)"
-	desc = "Automated Repair Droid. BEEP BOOP"
+	desc = "Automated . BEEP BOOP"
 	id = "mech_repair_droid"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid

@@ -531,3 +531,58 @@
 	id = /obj/item/card/id/ert/zwei_shield/captain
 	head = /obj/item/clothing/head/zwei
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+
+/datum/outfit/hardhead
+    name = "Equipment Operator Hardhead"
+
+    id = /obj/item/card/id/ert/hardhead
+    uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
+    suit = /obj/item/clothing/suit/space/hardsuit/ancient/hardhead
+    shoes = /obj/item/clothing/shoes/workboots
+    gloves = /obj/item/clothing/gloves/color/fyellow/old
+    ears = /obj/item/radio/headset/headset_cent/alt
+    l_hand = /obj/item/reagent_containers/food/drinks/beer
+    r_hand = /obj/item/clothing/accessory/fixer_badge
+    l_pocket = /obj/item/ego_weapon/wrench
+    r_pocket = /obj/item/ego_weapon/crowbar
+    implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)
+
+/datum/outfit/hardhead/fireaxe
+    name = "Safety Specialist Hardhead"
+
+	id = /obj/item/card/id/ert/hardhead/fireaxe
+    uniform = /obj/item/clothing/under/pants/jeans/hardhead
+	mask = /obj/item/clothing/mask/gas/atmos/hardhead
+	head = /obj/item/clothing/head/hardhat/atmos/hardhead
+    suit = /obj/item/clothing/suit/fire/atmos/hardhead
+    gloves = /obj/item/clothing/gloves/color/black
+    l_hand = /obj/item/ego_weapon/fireaxe
+    l_pocket = /obj/item/reagent_containers/food/drinks/beer
+    r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/hardhead/shotgun
+    name = "Machinist Hardhead"
+
+	id = /obj/item/card/id/ert/hardhead/shotgun
+    uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
+	head = /obj/item/clothing/head/hardhat/hardhead
+    suit = /obj/item/clothing/suit/hazardvest/hardhead
+    gloves = /obj/item/clothing/gloves/fingerless
+	glasses = /obj/item/clothing/glasses/welding
+    l_hand = /obj/item/gun/ego_gun/hardened_shotgun
+    l_pocket = /obj/item/reagent_containers/food/drinks/beer
+    r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/hardhead/foreman
+    name = "Foreman Hardhead"
+
+	id = /obj/item/card/ert/hardhead/foreman
+	uniform = /obj/item/clothing/under/suit/black
+	head = /obj/item/clothing/head/hardhat/weldhat/white/hardhead
+	suit = /obj/item/clothing/suit/hazardvest/hardhead
+	shoes = /obj/item/clothing/shoes/laceup
+	gloves = null
+	glasses = /obj/item/clothing/glasses/regular
+	l_hand = /obj/item/ego_weapon/clipboard
+	l_pocket = /obj/item/reagent_containers/food/drinks/beer/light
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid

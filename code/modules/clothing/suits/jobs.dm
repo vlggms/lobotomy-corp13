@@ -93,6 +93,11 @@
 	resistance_flags = NONE
 	species_exception = list(/datum/species/golem)
 
+/obj/item/clothing/suit/hazardvest/hardhead
+	name = "hardhead vest"
+	desc = "A high-visibility vest used in work zones, and to prevent friendly fire in the field."
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
+
 //Lawyer
 /obj/item/clothing/suit/toggle/lawyer
 	name = "blue suit jacket"

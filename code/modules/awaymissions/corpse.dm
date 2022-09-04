@@ -385,17 +385,17 @@
 /////////////////Officers+Nanotrasen Security//////////////////////
 
 /obj/effect/mob_spawn/human/bridgeofficer
-	name = "R-Corporation Second Lieutenant"
-	id_job = "Second Lieutenant"
+	name = "K-Corporation Scientist"
+	id_job = "K-Corporation Scientist"
 	id_access_list = list(ACCESS_CENT_CAPTAIN)
 	outfit = /datum/outfit/nanotrasenbridgeofficercorpse
 
 /datum/outfit/nanotrasenbridgeofficercorpse
-	name = "K-Corporation Second Lieutenant"
+	name = "K-Corporation Scientist"
 	ears = /obj/item/radio/headset/headset_cent/alt
 	uniform = /obj/item/clothing/under/rank/k_corporation/officer
-	suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	suit = /obj/item/clothing/suit/toggle/labcoat
+	shoes = /obj/item/clothing/shoes/laceup
 	glasses = /obj/item/clothing/glasses/sunglasses
 	id = /obj/item/card/id
 

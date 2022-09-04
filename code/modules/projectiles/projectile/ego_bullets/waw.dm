@@ -50,3 +50,8 @@
 	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+
+/obj/projectile/ego_bullet/hardhead_shotgun
+	name = "hardhead"
+	damage = 5
+	damage_type = BLACK_DAMAGE

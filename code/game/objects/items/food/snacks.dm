@@ -59,7 +59,7 @@
 /obj/item/food/sosjerky
 	name = "\improper Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
-	desc = "Beef jerky made from the finest space cows."
+	desc = "Beef jerky made from the finest nest cows."
 	trash_type = /obj/item/trash/sosjerky
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/consumable/sugar = 2, /datum/reagent/consumable/salt = 2)
 	junkiness = 25
@@ -69,7 +69,7 @@
 
 /obj/item/food/sosjerky/healthy
 	name = "homemade beef jerky"
-	desc = "Homemade beef jerky made from the finest space cows."
+	desc = "Homemade beef jerky made from the finest nest cows."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/nutriment/vitamin = 1)
 	junkiness = 0
 
@@ -92,7 +92,7 @@
 /obj/item/food/no_raisin
 	name = "4no raisins"
 	icon_state = "4no_raisins"
-	desc = "Best raisins in the universe. Not sure why."
+	desc = "Best raisins in the city. Not sure why."
 	trash_type = /obj/item/trash/raisins
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sugar = 4)
 	junkiness = 25
@@ -103,14 +103,14 @@
 
 /obj/item/food/no_raisin/healthy
 	name = "homemade raisins"
-	desc = "Homemade raisins, the best in all of spess."
+	desc = "Homemade raisins, the best in all the city."
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 2)
 	junkiness = 0
 	foodtypes = FRUIT
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/spacetwinkie
-	name = "space twinkie"
+/obj/item/food/twinkie
+	name = "twinkie"
 	icon_state = "space_twinkie"
 	desc = "Guaranteed to survive longer than you will."
 	food_reagents = list(/datum/reagent/consumable/sugar = 4)

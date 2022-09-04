@@ -605,7 +605,7 @@ update_label()
 /obj/item/card/id/ert/zwei_shield
 	name = "\improper Zwei Association ID"
 	id_type_name = "\improper Zwei Association ID"
-	desc = "A Zwei Association ID card."
+	desc = "A Zwei Association ID card, clean and recently issued."
 	icon_state = "ert_security"
 	registered_name = "Shield"
 	assignment = "Shield"
@@ -613,18 +613,50 @@ update_label()
 /obj/item/card/id/ert/zwei_shield/veteran
 	name = "\improper Zwei Association ID"
 	id_type_name = "\improper Zwei Association ID"
-	desc = "A Zwei Association ID card."
+	desc = "A Zwei Association ID card, clean as when it was first issued."
 	icon_state = "ert_security"
 	registered_name = "Veteran Shield"
 	assignment = "Veteran Shield"
 
 /obj/item/card/id/ert/zwei_shield/captain
 	name = "\improper Zwei Association ID"
-	id_type_name = "\improper Zwei Association ID"
-	desc = "A Zwei Association ID card."
+	id_type_name = "\improper Zwei Association Captain ID"
+	desc = "A Zwei Association Captain's ID card, clean as when it was first issued."
 	icon_state = "ert_commander"
 	registered_name = "Shield Captain"
 	assignment = "Shield Captain"
+
+/obj/item/card/id/ert/hardhead
+	name = "\improper Hardhead Office ID"
+	id_type_name = "\improper Hardhead Office ID"
+	desc = "A Hardhead Office ID, the edges are frayed with use; this user is forklift certified."
+	icon_state = "ert_engineer"
+	registered_name = "Equipment Operator"
+	assignment = "Equipment Operator"
+
+/obj/item/card/id/ert/hardhead/fireaxe
+	name = "\improper Hardhead Office ID"
+	id_type_name = "\improper Hardhead Office ID"
+	desc = "A Hardhead Office ID, the edges are frayed with use; the plastic smells like it was burned."
+	icon_state = "ert_engineer"
+	registered_name = "Safety Specialist"
+	assignment = "Safety Specialist"
+
+/obj/item/card/id/ert/hardhead/shotgun
+	name = "\improper Hardhead Office ID"
+	id_type_name = "\improper Hardhead Office ID"
+	desc = "A Hardhead Office ID, the edges are frayed with use; this employee chews up ammo with zero regret."
+	icon_state = "ert_engineer"
+	registered_name = "Machinist"
+	assignment = "Machinist"
+
+/obj/item/card/id/ert/hardhead/foreman
+	name = "\improper Hardhead Office ID"
+	id_type_name = "\improper Hardhead Office ID"
+	desc = "A Hardhead Office ID, the edges are frayed with use; this weathered card shows a face young and cheerful."
+	icon_state = "ert_commander"
+	registered_name = "Foreman"
+	assignment = "Foreman"
 
 /obj/item/card/id/debug
 	name = "\improper Debug ID"

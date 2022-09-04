@@ -1261,7 +1261,7 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/item/clothing/head/k_corp_hat{
 	desc = "There's a gouge through the top where something has clawed clean through it. Whoever was wearing it probably doesn't need a hat any more.";
-	name = "\improper damaged CentCom hat";
+	name = "\improper damaged K-Corporation hat";
 	pixel_x = 2;
 	pixel_y = 2
 	},

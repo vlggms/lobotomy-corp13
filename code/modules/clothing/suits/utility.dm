@@ -44,11 +44,15 @@
 
 /obj/item/clothing/suit/fire/atmos
 	name = "firesuit"
-	desc = "An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame."
+	desc = "An expensive firesuit that protects against even the most deadly of fires. Designed to protect even if the wearer is set aflame."
 	icon_state = "atmos_firesuit"
 	inhand_icon_state = "firesuit_atmos"
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
+/obj/item/clothing/suit/fire/atmos/hardhead
+	name = "scorched firesuit"
+	desc = "When the strike turned violent, those on the front were given the best protection available. Over time those first were seen with reverence."
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
 /*
  * Bomb protection
  */

@@ -10,9 +10,9 @@
 	desc = "It's time to rise up, friends! No longer shall the Nanotrasen scum opress our kind! Join L.U.Fr - TODAY!"
 	icon_state = "poster-lufr"
 
-/obj/structure/sign/poster/contraband/isc
-	name = "Independent Space Confederation"
-	desc = "Fight the TerraGov's dictatorship! Join ISC today!"
+/obj/structure/sign/poster/contraband/ura
+	name = "United Revolutionary Action"
+	desc = "Fight the corporate dictatorship! Join URA today!"
 	icon_state = "poster-isc"
 
 // Legit

@@ -426,8 +426,8 @@
 	custom_price = PAYCHECK_EASY
 
 /obj/item/reagent_containers/food/drinks/beer/light
-	name = "Carp Lite"
-	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
+	name = "light beer"
+	desc = "Brewed with \"Pure Spring Water\", more of that than booze by the taste of it."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
 
 /obj/item/reagent_containers/food/drinks/ale

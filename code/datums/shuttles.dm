@@ -245,29 +245,6 @@
 /datum/map_template/shuttle/emergency/medisim/prerequisites_met()
 	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_MEDISIM]
 
-/datum/map_template/shuttle/emergency/arena
-	suffix = "arena"
-	name = "The Arena"
-	description = "The passengers must pass through an otherworldy arena to board this transport. Expect massive casualties. The source of the Bloody Signal must be tracked down and eliminated to unlock this vessel."
-	admin_notes = "RIP AND TEAR."
-	credit_cost = CARGO_CRATE_VALUE * 20
-	/// Whether the arena z-level has been created
-	var/arena_loaded = FALSE
-
-/datum/map_template/shuttle/emergency/arena/prerequisites_met()
-	return SSshuttle.shuttle_purchase_requirements_met[SHUTTLE_UNLOCK_BUBBLEGUM]
-
-/datum/map_template/shuttle/emergency/arena/post_load(obj/docking_port/mobile/M)
-	. = ..()
-	if(!arena_loaded)
-		arena_loaded = TRUE
-		var/datum/map_template/arena/arena_template = new()
-		arena_template.load_new_z()
-
-/datum/map_template/arena
-	name = "The Arena"
-	mappath = "_maps/templates/the_arena.dmm"
-
 /datum/map_template/shuttle/emergency/birdboat
 	suffix = "birdboat"
 	name = "N-Corporation Birdboat Transport"

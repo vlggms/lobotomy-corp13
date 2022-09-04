@@ -5,7 +5,7 @@
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from district twelve.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
 	light_mask = "snack-light-mask"
-	products = list(/obj/item/food/spacetwinkie = 6,
+	products = list(/obj/item/food/twinkie = 6,
 					/obj/item/food/cheesiehonkers = 6,
 					/obj/item/food/candy = 6,
 		            /obj/item/food/chips = 6,

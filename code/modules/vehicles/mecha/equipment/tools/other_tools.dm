@@ -1,6 +1,6 @@
 
 // Teleporter, Wormhole generator, Gravitational catapult, Armor booster modules,
-// Repair droid, Tesla Energy relay, Generators
+// , Tesla Energy relay, Generators
 
 ////////////////////////////////////////////// TELEPORTER ///////////////////////////////////////////////
 
@@ -188,12 +188,12 @@
 	return TRUE
 
 
-////////////////////////////////// REPAIR DROID //////////////////////////////////////////////////
+//////////////////////////////////  //////////////////////////////////////////////////
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
-	name = "exosuit repair droid"
-	desc = "An automated repair droid for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
+	name = "exosuit "
+	desc = "An automated  for exosuits. Scans for damage and repairs it. Can fix almost all types of external or internal damage."
 	icon_state = "repair_droid"
 	energy_drain = 50
 	range = 0

@@ -242,6 +242,22 @@
 	role = "Shield Captain"
 	outfit = /datum/outfit/zwei_shield/captain
 
+/datum/antagonist/ert/hardhead
+	role = "Equipment Operator"
+	outfit = /datum/outfit/hardhead
+
+/datum/antagonist/ert/hardhead/fireaxe
+	role = "Safety Specialist"
+	outfit = /datum/outfit/hardhead/fireaxe
+
+/datum/antagonist/ert/hardhead/shotgun
+	role = "Machinist"
+	outfit = /datum/outfit/hardhead/shotgun
+
+/datum/antagonist/ert/hardhead/foreman
+	role = "Foreman"
+	outfit = /datum/outfit/hardhead/foreman
+
 /datum/antagonist/ert/create_team(datum/team/ert/new_team)
 	if(istype(new_team))
 		ert_team = new_team

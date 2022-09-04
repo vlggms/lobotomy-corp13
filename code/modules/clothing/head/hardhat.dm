@@ -45,6 +45,11 @@
 /obj/item/clothing/head/hardhat/proc/turn_off(mob/user)
 	set_light_on(FALSE)
 
+/obj/item/clothing/head/hardhat/hardhead
+	name = "hardhead hardhat"
+	desc = "Plastered with stickers such as; \"Not my circus not my monkeys\", \"Forklift certified\", and \"I'm not the foreman because my ideas make sense\"."
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30, FIRE = 100, ACID = 50)
+
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"
 	inhand_icon_state = "hardhat0_orange"
@@ -91,12 +96,12 @@
 	dog_fashion = null
 
 /obj/item/clothing/head/hardhat/atmos
+	name = "atmospheric technician's firefighting helmet"
+	desc = "A firefighter's helmet, able to keep the user cool in any situation."
 	icon_state = "hardhat0_atmos"
 	inhand_icon_state = "hardhat0_atmos"
 	hat_type = "atmos"
 	dog_fashion = null
-	name = "atmospheric technician's firefighting helmet"
-	desc = "A firefighter's helmet, able to keep the user cool in any situation."
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | BLOCK_GAS_SMOKE_EFFECT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	heat_protection = HEAD
@@ -104,6 +109,11 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH | PEPPERPROOF
+
+/obj/item/clothing/head/hardhat/atmos/hardhead
+	name = "scorched firefighter helmet"
+	desc = "In the end, the foremen were fed to the furnace they so gleefully fed, before they finally snuffed out."
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30, FIRE = 100, ACID = 50)
 
 /obj/item/clothing/head/hardhat/weldhat
 	name = "welding hard hat"
@@ -163,6 +173,11 @@
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	cold_protection = HEAD
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
+
+/obj/item/clothing/head/hardhat/weldhat/white/hardhead
+	name = "head hardhead hardhat"
+	desc = "A hardhead hardhat worn by the head hardhead, hard to get that around your head?"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30, FIRE = 100, ACID = 50)
 
 /obj/item/clothing/head/hardhat/weldhat/dblue
 	icon_state = "hardhat0_dblue"

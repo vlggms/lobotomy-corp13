@@ -59,7 +59,7 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/working/ripley/mk2
-	desc = "Autonomous Power Loader Unit MK-II. This prototype Ripley is refitted with a pressurized cabin, trading its prior speed for atmospheric protection and armor."
+	desc = "A mechsuit developed by a now defunct company for use in hazardous environments, it still serves its purpose, albiet improvised."
 	name = "\improper APLU MK-II \"Ripley\""
 	icon_state = "ripleymkii"
 	base_icon_state = "ripleymkii"
@@ -67,12 +67,25 @@
 	slow_pressure_step_in = 4 //step_in while in normal pressure conditions
 	movedelay = 4
 	max_temperature = 30000
-	max_integrity = 250
-	armor = list(MELEE = 40, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 0, RAD = 70, FIRE = 100, ACID = 100)
+	max_integrity = 800
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 50, BOMB = 60, BIO = 0, RAD = 70, FIRE = 100, ACID = 100)
 	wreckage = /obj/structure/mecha_wreckage/ripley/mk2
 	enclosed = TRUE
 	enter_delay = 40
 	silicon_icon_state = null
+
+/////WORKERS OF THE CITY, UNITE. WITH BIG GUNS BABY./////
+/obj/vehicle/sealed/mecha/working/ripley/mk2/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/gravcatapult(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/repair_droid(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/hydraulic_clamp(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/extinguisher(src)
+	ME.attach(src)
+	max_ammo()
 
 /obj/vehicle/sealed/mecha/working/ripley/mk2/generate_actions()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_eject)

@@ -48,8 +48,8 @@
 	species_exception = list(/datum/species/golem/uranium)
 
 /obj/item/clothing/under/rank/engineering/engineer/hazard
-	name = "engineer's hazard jumpsuit"
-	desc = "A high visibility jumpsuit made from heat and radiation resistant materials."
+	name = "hardhead jumpsuit"
+	desc = "A high visibility jumpsuit, once worn by the subdued, now symbol of the hardheaded free mercenary."
 	icon_state = "hazard"
 	inhand_icon_state = "suit-orange"
 	alt_covers_chest = TRUE

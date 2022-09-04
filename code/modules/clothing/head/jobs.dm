@@ -165,8 +165,8 @@
 	desc = "A black cap fit for a high ranking syndicate officer."
 
 /obj/item/clothing/head/hos/beret
-	name = "captain beret"
-	desc = "A robust beret for the department captain, for looking stylish while not sacrificing protection."
+	name = "official beret"
+	desc = "A robust beret for the corporate official, for looking stylish while not sacrificing protection."
 	icon_state = "hosberetblack"
 
 /obj/item/clothing/head/hos/beret/syndicate
@@ -177,7 +177,7 @@
 	name = "zwei association hat"
 	desc = "It's a special armored hat issued to those who reach the rank of Zwei Association Captain. Clean and professional."
 	icon_state = "policehelm"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 50, ACID = 60)
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/zwei
 
@@ -260,7 +260,7 @@
 /obj/item/clothing/head/beret/sec/zwei
 	name = "zwei association beret"
 	desc = "A special beret with the Zwei Association insignia emblazoned on it. A symbol of excellence, a badge of courage, a mark of distinction. We are your shield."
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 50, ACID = 60)
 	icon_state = "hosberet"
 
 /obj/item/clothing/head/beret/sec/navywarden

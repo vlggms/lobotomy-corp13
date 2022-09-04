@@ -301,7 +301,7 @@
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
-	desc = "Protects the eyes from bright flashes; approved by the mad scientist association."
+	desc = "Protects the eyes from bright flashes; does not protect the eyes from untold horror made manifest."
 	icon_state = "welding-g"
 	inhand_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)

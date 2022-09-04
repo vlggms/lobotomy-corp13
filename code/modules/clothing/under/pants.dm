@@ -59,6 +59,10 @@
 	desc = "A nondescript pair of tough blue jeans."
 	icon_state = "jeans"
 
+/obj/item/clothing/under/pants/jeans/hardhead
+	name = "scorched jeans"
+	desc = "When you're more of a blue-collar fixer than white-collar, and you're damn proud of it too."
+
 /obj/item/clothing/under/pants/khaki
 	name = "khaki pants"
 	desc = "A pair of dust beige khaki pants."

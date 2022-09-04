@@ -8270,7 +8270,7 @@
 /area/ctf)
 "Zw" = (
 /obj/structure/table,
-/obj/structure/sign/poster/contraband/isc{
+/obj/structure/sign/poster/contraband/ura{
 	pixel_y = 32
 	},
 /obj/item/book/manual/wiki/grenades,

@@ -419,7 +419,7 @@
 		/obj/item/food/chips,
 		/obj/item/food/sosjerky,
 		/obj/item/food/syndicake,
-		/obj/item/food/spacetwinkie,
+		/obj/item/food/twinkie,
 		/obj/item/food/cheesiehonkers,
 		/obj/item/food/nachos,
 		/obj/item/food/cheesynachos,

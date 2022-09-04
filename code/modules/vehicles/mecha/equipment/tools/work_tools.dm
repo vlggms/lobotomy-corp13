@@ -6,6 +6,8 @@
 	name = "hydraulic clamp"
 	desc = "Equipment for engineering exosuits. Lifts objects and loads them into cargo."
 	icon_state = "mecha_clamp"
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	equip_cooldown = 15
 	energy_drain = 10
 	tool_behaviour = TOOL_RETRACTOR
@@ -16,7 +18,7 @@
 	///Bool for whether we beat the hell out of things we punch (and tear off their arms)
 	var/killer_clamp = FALSE
 	///How much base damage this clamp does
-	var/clamp_damage = 20
+	var/clamp_damage = 80
 	///Var for the chassis we are attached to, needed to access ripley contents and such
 	var/obj/vehicle/sealed/mecha/working/ripley/cargo_holder
 	///Audio for using the hydraulic clamp
