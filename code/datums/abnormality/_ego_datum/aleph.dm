@@ -69,3 +69,8 @@
 /datum/ego_datum/armor/flowering
 	item_path = /obj/item/clothing/suit/armor/ego_gear/flowering
 	cost = 250	//You have to constantly be working on this, I'll reward you by letting you buy a much better armor
+
+// CENSORED - CENSORED
+/datum/ego_datum/weapon/censored
+	item_path = /obj/item/ego_weapon/censored
+	cost = 200

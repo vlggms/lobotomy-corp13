@@ -334,3 +334,91 @@
 	armortype = damtype
 	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
+
+/obj/item/ego_weapon/censored
+	name = "CENSORED"
+	desc = "(CENSORED) has the ability to (CENSORED), but this is a horrendous sight for those watching. \
+			Looking at the E.G.O for more than 3 seconds will make you sick."
+	special = "This weapon increases its user resistance to all damage sources by 40% while equipped. \
+			Using it in hand will activate its special ability. To perform this attack - click on a distant target."
+	icon_state = "censored"
+	force = 75
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("attacks")
+	attack_verb_simple = list("attack")
+	hitsound = 'sound/weapons/ego/censored1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/special_attack = FALSE
+	var/special_damage = 300
+	var/special_cooldown
+	var/special_cooldown_time = 10 SECONDS
+	var/special_checks_faction = TRUE
+
+/obj/item/ego_weapon/censored/attack_self(mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(special_cooldown > world.time)
+		return
+	special_attack = !special_attack
+	if(special_attack)
+		to_chat(user, "<span class='notice'>You prepare special attack.</span>")
+	else
+		to_chat(user, "<span class='notice'>You decide to not use special attack.</span>")
+
+/obj/item/ego_weapon/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(special_cooldown > world.time)
+		return
+	if(!special_attack)
+		return
+	special_attack = FALSE
+	var/turf/target_turf = get_ranged_target_turf_direct(user, A, 4)
+	var/list/turfs_to_hit = getline(user, target_turf)
+	for(var/turf/T in turfs_to_hit)
+		if(T.density)
+			break
+		new /obj/effect/temp_visual/cult/sparks(T)
+	playsound(user, 'sound/weapons/ego/censored2.ogg', 75)
+	special_cooldown = world.time + special_cooldown_time
+	if(!do_after(user, 7))
+		return
+	playsound(user, 'sound/weapons/ego/censored3.ogg', 75)
+	var/turf/MT = get_turf(user)
+	MT.Beam(target_turf, "censored", time=5)
+	for(var/turf/T in turfs_to_hit)
+		if(T.density)
+			break
+		for(var/mob/living/L in T)
+			if(special_checks_faction && user.faction_check_mob(L))
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(!H.sanity_lost)
+						continue
+				else
+					continue
+			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/censored/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot != ITEM_SLOT_HANDS)
+		return
+	var/mob/living/carbon/human/H = user
+	H.physiology.damage_resistance += 40
+
+/obj/item/ego_weapon/censored/dropped(mob/user, silent = FALSE)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	H.physiology.damage_resistance -= 40
