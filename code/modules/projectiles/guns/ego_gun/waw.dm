@@ -118,3 +118,9 @@
 /obj/item/gun/ego_gun/loyalty/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.07 SECONDS)
+
+//Just a funny gold soda pistol. Not special at all.
+/obj/item/gun/ego_gun/soda/executive
+	name = "executive"
+	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
+	icon_state = "executive"

@@ -129,5 +129,14 @@
 	icon_state = "loyalty"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/executive
+	name = "executive"
+	desc = "A VERY expensive suit. Just by looking at it, you can tell it's the cream of the crop. And so are you."
+	icon_state = "executive"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) // 140
+	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
