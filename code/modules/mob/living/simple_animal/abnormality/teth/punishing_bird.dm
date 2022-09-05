@@ -66,6 +66,7 @@
 	melee_damage_lower = 400
 	melee_damage_upper = 500
 	obj_damage = 2500
+	density = TRUE
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
@@ -80,6 +81,7 @@
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)
 	obj_damage = initial(obj_damage)
+	density = initial(density)
 	environment_smash = initial(environment_smash)
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
