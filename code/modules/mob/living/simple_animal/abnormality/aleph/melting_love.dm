@@ -1,4 +1,3 @@
-
 /mob/living/simple_animal/hostile/abnormality/melting_love
 	name = "Melting Love"
 	desc = "A pink slime creature, resembling a female humanoid."

@@ -463,3 +463,9 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
+
+/datum/ego_gifts/censored
+	name = "CENSORED"
+	icon_state = "censored"
+	prudence_bonus = 10
+	slot = EYE

@@ -31,6 +31,7 @@
 						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	move_to_delay = 4
 	base_pixel_x = -16
 	pixel_x = -16
 

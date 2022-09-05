@@ -184,3 +184,29 @@
 	<h4>White Resistance:</h4> Normal	<br>
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+//Censored
+/obj/item/paper/fluff/info/aleph/censored
+	name = "O-03-89"
+	info = {"<h1><center>O-03-89</center></h1>	<br>
+	Name : CENSORED<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Extreme	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the employee panicked during work, the Qliphoth Counter lowered.	<br>
+	- Performing special work type increased Qliphoth Counter. The employee performing it will not be seen again.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> High<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Resistant	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}

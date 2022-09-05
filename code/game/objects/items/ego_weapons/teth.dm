@@ -105,7 +105,7 @@
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
 
-/obj/item/ego_weapon/bloodbath
+/obj/item/ego_weapon/wrist
 	name = "Wrist Cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "This weapon attacks very fast."
@@ -115,6 +115,6 @@
 	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-/obj/item/ego_weapon/bloodbath/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/wrist/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 0.30)

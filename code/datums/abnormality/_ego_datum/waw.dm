@@ -79,3 +79,12 @@
 /datum/ego_datum/armor/loyalty
 	item_path = /obj/item/clothing/suit/armor/ego_gear/loyalty
 	cost = 50
+
+// Shrimp Association Executive - Executive
+/datum/ego_datum/armor/executive
+	item_path = /obj/item/clothing/suit/armor/ego_gear/executive
+	cost = 50
+
+/datum/ego_datum/weapon/executive
+	item_path = /obj/item/gun/ego_gun/soda/executive
+	cost = 50

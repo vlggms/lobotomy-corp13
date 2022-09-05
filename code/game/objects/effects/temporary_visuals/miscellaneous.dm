@@ -695,3 +695,38 @@
 /obj/effect/temp_visual/black_fixer_ability/Initialize()
 	..()
 	animate(src, alpha = 0, transform = transform*4, time = 4)
+
+/obj/effect/temp_visual/censored
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "censored_kill"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 20
+	alpha = 0
+	pixel_x = -48
+	base_pixel_x = -48
+	pixel_y = -48
+	base_pixel_y = -48
+
+/obj/effect/temp_visual/censored/Initialize()
+	..()
+	animate(src, alpha = 255, time = 2)
+	addtimer(CALLBACK(src, .proc/fade_out), 17)
+	for(var/i = 1 to 9)
+		addtimer(CALLBACK(src, .proc/shake), 2*i)
+
+/obj/effect/temp_visual/censored/proc/shake()
+	animate(src, pixel_x = base_pixel_x + rand(-4, 4), pixel_y = base_pixel_y + rand(-4, 4), time = 1)
+
+/obj/effect/temp_visual/censored/proc/fade_out()
+	animate(src, alpha = 0, time = 2)
+
+/obj/effect/temp_visual/beakbite
+	name = "bite"
+	icon_state = "bite"
+	color = COLOR_RED
+
+/obj/effect/temp_visual/apocaspiral
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	name = "apocaspiral"
+	icon_state = "apocalypse_enchant_effect"
+	layer = ABOVE_ALL_MOB_LAYER

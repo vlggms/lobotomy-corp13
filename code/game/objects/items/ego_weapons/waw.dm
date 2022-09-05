@@ -145,6 +145,7 @@
 	name = "remorse"
 	desc = "A hammer and nail, unwieldy and impractical against most. \
 	Any crack, no matter how small, will be pried open by this E.G.O."
+	special = "This weapon hits slower than usual."
 	icon_state = "remorse"
 	special = "This weapon marks targets for death. Use the weapon in hand to attack all marked targets at a range."
 	force = 30	//Does more damage later.
