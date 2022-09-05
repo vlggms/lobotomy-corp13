@@ -83,7 +83,7 @@
 	Work Damage : High	<br>
 	- When the work result was Good, the Qliphoth Counter increased.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
-	- When 5 employees died, the Qliphoth Counter lowered.	<br>
+	- When 3 employees died, the Qliphoth Counter lowered.	<br>
 	- When the bird swung the lamp, employees around it felt sleepy.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
@@ -110,8 +110,8 @@
 	Work Damage : High	<br>
 	- The first employee who completes their work with a Good result will receive The Knight of Despair�s blessing. (From then on, the employee will be referred to as O-01-73-1.)	<br>
 	- O-01-73-1 could only aid in suppressing Abnormalities. Furthermore, thanks to the blessing, RED, WHITE, and BLACK damage dealt to them was halved, however, PALE was doubled.	<br>
-	- The Knight of Despair's blessing dissipated when O-01-73-1 died. After the blessing was gone, a new employee could receive it.	<br>
-	- When O-01-73-1 died, The Knight of Despair escaped from its Containment Unit.	<br>
+	- The Knight of Despair's blessing dissipated when O-01-73-1 died or went insane. After the blessing was gone, a new employee could receive it.	<br>
+	- When O-01-73-1 died or went insane, The Knight of Despair escaped from its Containment Unit.	<br>
 	<br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
@@ -136,8 +136,8 @@
 	Work Damage Type : Black	<br>
 	Work Damage : Moderate	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
-	- If 6 employees died while queen of hatred was at maximum, Qliphoth, she breaches to assist in combat	<br>
-	- When a Qliphoth Meltdown occurred in the facility without the death of 3 or more employees, the Qliphoth Counter lowered.	<br>
+	- If 4 employees died while queen of hatred was at maximum, Qliphoth, she breached to assist in suppresions. However, if 50% of our employees die while help is provided, the state of the Abnormality will change and will need to be suppressed immediately.	<br>
+	- When 3 Qliphoth Meltdowns occurred in the facility without the death of an employee, the Qliphoth Counter lowered.	<br>
 	- The Queen of Hatred's status changed when her Qliphoth Counter became 1. The work success rate was low when in said status. This status has been designated as "Hysteric" due to her anxiety and compulsive disorders.	<br>
 	- When she was Hysteric, generating 16+ PE-Boxes raised her Qliphoth Counter."	<br>
 	- When she was Hysteric, generating 15 or fewer PE-Boxes lowered her Qliphoth Counter."	<br>

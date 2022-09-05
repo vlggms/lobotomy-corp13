@@ -211,6 +211,10 @@
 /obj/machinery/computer/secure_data,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"vi" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/cafeteria,
+/area/department_main)
 "wy" = (
 /obj/machinery/light{
 	dir = 4
@@ -4619,7 +4623,7 @@ az
 az
 az
 TZ
-az
+vi
 av
 Hv
 az

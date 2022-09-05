@@ -109,11 +109,12 @@
 		var/obj/effect/qoh_sygil/S = new(my_turf)
 		S.icon_state = "qoh2"
 		addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 5 SECONDS)
+	QDEL_NULL(beamloop)
+	QDEL_NULL(current_beam)
 	addtimer(CALLBACK(src, ..(), gibbed), 1) //parent call
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	QDEL_NULL(beamloop)
-	QDEL_NULL(current_beam)
+
 	for(var/obj/effect/qoh_sygil/S in spawned_effects)
 		S.fade_out()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -193,7 +194,7 @@
 	if(breach_max_death && (death_counter >= breach_max_death))
 		GoHysteric()
 	//if CONTAINED and not crazy
-	else if((status_flags & GODMODE) && (datum_reference?.qliphoth_meter == 2) && (death_counter > 5)) // Omagah a lot of dead people!
+	else if((status_flags & GODMODE) && (datum_reference?.qliphoth_meter == 2) && (death_counter > 3)) // Omagah a lot of dead people!
 		breach_effect() // We must help them!
 	return TRUE
 
@@ -345,6 +346,7 @@
 			return
 		var/turf/P = pick(GLOB.department_centers)
 		teleport_potential += P
+	can_act = FALSE
 	var/turf/teleport_target = pick(teleport_potential)
 	animate(src, alpha = 0, time = 5)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
@@ -354,6 +356,7 @@
 	forceMove(teleport_target)
 	if(datum_reference?.qliphoth_meter != 2)
 		TeleportExplode()
+	can_act = TRUE
 	teleport_cooldown = world.time + teleport_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TeleportExplode()
@@ -434,7 +437,7 @@
 		for(var/mob/living/carbon/human/saving_humans in GLOB.mob_living_list) //gets all alive people
 			if((saving_humans.stat != DEAD) && saving_humans.z == z)
 				breach_max_death++
-		breach_max_death /= 4
+		breach_max_death /= 2
 		if(breach_max_death == 0) //make it 1 if it's somehow zero
 			breach_max_death++
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "In the name of Love and Justice~ Here comes Magical Girl!"))
