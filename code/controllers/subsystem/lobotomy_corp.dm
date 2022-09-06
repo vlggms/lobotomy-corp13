@@ -74,6 +74,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!istype(new_abno))
 		return FALSE
 	all_abnormality_datums += new_abno
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_SPAWN, new_abno)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/WorkComplete(amount = 0, qliphoth_change = TRUE)
