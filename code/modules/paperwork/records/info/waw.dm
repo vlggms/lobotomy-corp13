@@ -186,10 +186,11 @@
 	Name : A Shrimp Association Executive	<br>
 	Risk Class : Waw	<br>
 	Max PE Boxes : 24	<br>
-	Qliphoth Counter : X	<br>
+	Qliphoth Counter : 1	<br>
 	Work Damage Type : White	<br>
 	Work Damage : Moderate	<br>
-	- When the work result was Bad, the executive called for help.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached 0, the executive called for help.	<br>
 	- When the work result was Good, the executive ordered a gift for NAME.	<br>
 	- After work completed, A Shrimp Association Executive requested something from NAME	<br>
 	- Doing the requested work with A Shrimp Association Executive increased success rate significantly. All materials were kept in it's containment, NAME was just required to do the corresponding work.	<br>
