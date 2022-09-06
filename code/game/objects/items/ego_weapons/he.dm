@@ -241,6 +241,8 @@
 							)
 	var/ramping = 1.5
 	var/smashing = FALSE
+	var/flurry_width = 1
+	var/flurry_length = 2
 
 /obj/item/ego_weapon/logging/melee_attack_chain(mob/user, atom/target, params)
 	..()
@@ -261,44 +263,76 @@
 	var/dir_to_target = get_cardinal_dir(get_turf(user), get_turf(target))
 	var/turf/source_turf = get_turf(user)
 	var/turf/area_of_effect = list()
-	var/turf/upper_bound
-	var/turf/lower_bound
-	for(var/i = 0; i < 2; i++)
-		switch(dir_to_target) // This doesn't need any "did this walk into a wall" checking because it doesn't go far enough to hit the other-side
-			if(EAST)
-				source_turf = get_step(source_turf, EAST)
-				upper_bound = get_step(source_turf, NORTH)
-				lower_bound = get_step(source_turf, SOUTH)
-				for(var/turf/TF in getline(upper_bound, lower_bound))
-					if(TF.density || (TF in area_of_effect))
+	var/turf/middle_line
+	switch(dir_to_target)
+		if(EAST)
+			middle_line = getline(get_step(source_turf, EAST), get_ranged_target_turf(source_turf, EAST, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, flurry_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += TF
-			if(WEST)
-				source_turf = get_step(source_turf, WEST)
-				upper_bound = get_step(source_turf, NORTH)
-				lower_bound = get_step(source_turf, SOUTH)
-				for(var/turf/TF in getline(upper_bound, lower_bound))
-					if(TF.density || (TF in area_of_effect))
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
 						continue
-					area_of_effect += TF
-			if(SOUTH)
-				source_turf = get_step(source_turf, SOUTH)
-				upper_bound = get_step(source_turf, WEST)
-				lower_bound = get_step(source_turf, EAST)
-				for(var/turf/TF in getline(upper_bound, lower_bound))
-					if(TF.density || (TF in area_of_effect))
+					area_of_effect += U
+		if(WEST)
+			middle_line = getline(get_step(source_turf, WEST), get_ranged_target_turf(source_turf, WEST, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, flurry_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += TF
-			if(NORTH)
-				source_turf = get_step(source_turf, NORTH)
-				upper_bound = get_step(source_turf, WEST)
-				lower_bound = get_step(source_turf, EAST)
-				for(var/turf/TF in getline(upper_bound, lower_bound))
-					if(TF.density || (TF in area_of_effect))
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
 						continue
-					area_of_effect += TF
-			else
-				return
+					area_of_effect += U
+		if(SOUTH)
+			middle_line = getline(get_step(source_turf, SOUTH), get_ranged_target_turf(source_turf, SOUTH, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, flurry_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(NORTH)
+			middle_line = getline(get_step(source_turf, NORTH), get_ranged_target_turf(source_turf, NORTH, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, flurry_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
 	smashing = TRUE
 	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
 	for (var/i = 0; i < 3; i++)

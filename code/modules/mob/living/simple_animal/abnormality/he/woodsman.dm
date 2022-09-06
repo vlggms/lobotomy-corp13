@@ -12,7 +12,7 @@
 	attack_verb_simple = "chop"
 	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
-	stat_attack = HARD_CRIT
+	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
@@ -45,6 +45,8 @@
 	var/flurry_count = 7
 	var/flurry_small = 12
 	var/flurry_big = 60 // It was requested that he beats their ass harder
+	var/flurry_length = 3
+	var/flurry_width = 2
 	var/can_act = TRUE
 
 /datum/action/innate/abnormality_attack/woodsman_flurry
@@ -64,7 +66,7 @@
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(H.stat == DEAD || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)))
+		if(H.stat == DEAD || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)) || H.health <= -30)
 			Heal(H)
 			return ..()
 	if(isliving(target) && flurry_cooldown <= world.time && get_dist(src, target) <= 2 && prob(30))
@@ -90,6 +92,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
+	src.visible_message("<span class='warning'>[src] plunges their hand into [body]'s chest and rips out their heart!</span>", \
+		"<span class='notice'>You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough.</span>", \
+		"<span class='hear'>You hear a metal clange and squishing.</span>")
 	src.adjustBruteLoss(-666) // Actually just the conversion of health he heals scaled to equivalent health that Helper has.
 	for(var/obj/item/organ/O in body.getorganszone(BODY_ZONE_CHEST, TRUE))
 		if(istype(O,/obj/item/organ/heart))
@@ -126,92 +131,83 @@
 	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 	var/turf/source_turf = get_turf(src)
 	var/turf/area_of_effect = list()
-	var/turf/upper_bound
-	var/turf/lower_bound
+	var/turf/middle_line = list()
 	switch(dir_to_target)
 		if(EAST)
-			for (var/i = 0; i < 3; i++)
-				source_turf = get_step(source_turf, EAST)
-				if (source_turf.density)
+			middle_line = getline(get_step(source_turf, EAST), get_ranged_target_turf(source_turf, EAST, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
 					break
-				upper_bound = source_turf
-				lower_bound = source_turf
-				for (var/k = 0; k < 2; k++)
-					if (get_step(upper_bound, NORTH).density)
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, flurry_width)))
+					if (Y.density)
 						break
-					upper_bound = get_step(upper_bound, NORTH)
-				for (var/m = 0; m < 2; m++)
-					if (get_step(lower_bound, SOUTH).density)
-						break
-					lower_bound = get_step(lower_bound, SOUTH)
-				for(var/turf/T in getline(upper_bound, lower_bound))
-					if (T.density || (T in area_of_effect))
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += T
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
 		if(WEST)
-			for (var/i = 0; i < 3; i++)
-				source_turf = get_step(source_turf, WEST)
-				if (source_turf.density)
+			middle_line = getline(get_step(source_turf, WEST), get_ranged_target_turf(source_turf, WEST, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
 					break
-				upper_bound = source_turf
-				lower_bound = source_turf
-				for (var/k = 0; k < 2; k++)
-					if (get_step(upper_bound, NORTH).density)
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, flurry_width)))
+					if (Y.density)
 						break
-					upper_bound = get_step(upper_bound, NORTH)
-				for (var/m = 0; m < 2; m++)
-					if (get_step(lower_bound, SOUTH).density)
-						break
-					lower_bound = get_step(lower_bound, SOUTH)
-				for(var/turf/T in getline(upper_bound, lower_bound))
-					if (T.density || (T in area_of_effect))
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += T
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
 		if(SOUTH)
-			for (var/i = 0; i < 3; i++)
-				source_turf = get_step(source_turf, SOUTH)
-				if (source_turf.density)
+			middle_line = getline(get_step(source_turf, SOUTH), get_ranged_target_turf(source_turf, SOUTH, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
 					break
-				upper_bound = source_turf
-				lower_bound = source_turf
-				for (var/k = 0; k < 2; k++)
-					if (get_step(upper_bound, EAST).density)
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, flurry_width)))
+					if (Y.density)
 						break
-					upper_bound = get_step(upper_bound, EAST)
-				for (var/m = 0; m < 2; m++)
-					if (get_step(lower_bound, WEST).density)
-						break
-					lower_bound = get_step(lower_bound, WEST)
-				for(var/turf/T in getline(upper_bound, lower_bound))
-					if (T.density || (T in area_of_effect))
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += T
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
 		if(NORTH)
-			for (var/i = 0; i < 3; i++)
-				source_turf = get_step(source_turf, NORTH)
-				if (source_turf.density)
+			middle_line = getline(get_step(source_turf, NORTH), get_ranged_target_turf(source_turf, NORTH, flurry_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
 					break
-				upper_bound = source_turf
-				lower_bound = source_turf
-				for (var/k = 0; k < 2; k++)
-					if (get_step(upper_bound, EAST).density)
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, flurry_width)))
+					if (Y.density)
 						break
-					upper_bound = get_step(upper_bound, EAST)
-				for (var/m = 0; m < 2; m++)
-					if (get_step(lower_bound, WEST).density)
-						break
-					lower_bound = get_step(lower_bound, WEST)
-				for(var/turf/T in getline(upper_bound, lower_bound))
-					if (T.density || (T in area_of_effect))
+					if (Y in area_of_effect)
 						continue
-					area_of_effect += T
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, flurry_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
 		else
 			return
 	if (!LAZYLEN(area_of_effect))
 		return
 	flurry_cooldown = world.time + flurry_cooldown_time
 	can_act = FALSE
-	face_atom(dir_to_target)
+	dir = dir_to_target
 	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 75, 0, 5)
 	icon_state = "woodsman_prepare"
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
