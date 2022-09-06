@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"map_name": "Facility D-317",
+	"map_path": "map_files/Delta",
+	"map_file": [
+		"deltacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none"
+}
