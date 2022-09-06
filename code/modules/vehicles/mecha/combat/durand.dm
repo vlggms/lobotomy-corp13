@@ -1,6 +1,6 @@
 /obj/vehicle/sealed/mecha/combat/durand
 	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
-	name = "\improper Rhinoceros Unit"
+	name = "\improper Rhinoceros Unit MK2"
 	icon_state = "durand"
 	base_icon_state = "durand"
 	operation_req_access = list(ACCESS_CENT_GENERAL)
@@ -9,7 +9,7 @@
 	dir_in = 1 //Facing North.
 	max_integrity = 1000
 	deflect_chance = 20
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 10, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
@@ -152,7 +152,7 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	icon_state = "shield_null"
 	invisibility = INVISIBILITY_MAXIMUM //no showing on right-click
 	pixel_y = 5
-	obj_integrity = 100
+	obj_integrity = 30
 	anchored = TRUE
 	light_system = MOVABLE_LIGHT
 	light_range = MINIMUM_USEFUL_LIGHT_RANGE
