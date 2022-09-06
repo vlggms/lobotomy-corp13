@@ -1,3 +1,47 @@
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn
+	name = "unknown scout"
+	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "indigo_dawn"
+	icon_living = "indigo_dawn"
+	icon_dead = "indigo_dawn_dead"
+	faction = list("indigo_ordeal")
+	maxHealth = 110
+	health = 110
+	move_to_delay = 1.3	//Super fast, but squishy and weak.
+	stat_attack = DEAD
+	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
+	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	blood_volume = BLOOD_VOLUME_NORMAL
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
+	. = ..()
+	if(. && isliving(target))
+		var/mob/living/L = target
+		if(L.stat != DEAD)
+			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
+				devour(L)
+		else
+			devour(L)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
+	if(!L)
+		return FALSE
+	visible_message(
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	adjustBruteLoss(-(maxHealth/2))
+	L.gib()
+	return TRUE
+
 /mob/living/simple_animal/hostile/ordeal/indigo_noon
 	name = "sweeper"
 	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands."
