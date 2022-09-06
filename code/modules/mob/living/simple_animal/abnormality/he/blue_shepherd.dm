@@ -81,8 +81,6 @@
 				" is going on a rampage, you guys really can't do your job right huh?",
 				" has breached and you're still wasting your time on me? I'm flattered.",
 				)
-
-
 	//lines shepperd say when an abno hasn't breached (yet)
 	var/list/abno_safe_lines = list(
 				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
