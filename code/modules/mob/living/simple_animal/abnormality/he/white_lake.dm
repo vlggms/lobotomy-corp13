@@ -34,7 +34,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/work_chance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
-		var/newchance = chance-30 //You suck, die. I hate you
+		var/newchance = chance - 20 //You suck, die. I hate you
 		return newchance
 	return chance
 
@@ -44,16 +44,19 @@
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
-	return
 
-/mob/living/simple_animal/hostile/abnormality/whitelake/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)	//Lower it again.
 		datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
-	if(!champion)
+	if(!champion)	//no champion? Fuck you.
+		for(var/mob/living/L in GLOB.player_list)
+			if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/whitelake(get_turf(L))
+			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		return
 	var/mob/living/carbon/human/H = champion
 	H.Apply_Gift(new gift_type)	//It's a gift now! Free shit! Oh wait you- oh god you just stabbed that man.
@@ -156,6 +159,8 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
+		ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
+		ADD_TRAIT(L, TRAIT_PUSHIMMUNE, type)
 		L.physiology.red_mod *= 0.3
 		L.physiology.white_mod *= 0.1
 		L.physiology.black_mod *= 0.1
@@ -165,6 +170,8 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
+		REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
+		REMOVE_TRAIT(L, TRAIT_PUSHIMMUNE, type)
 		L.physiology.red_mod /= 0.3
 		L.physiology.white_mod /= 0.1
 		L.physiology.black_mod /= 0.1

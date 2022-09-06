@@ -93,8 +93,9 @@
 	Work Damage Type : Red	<br>
 	Work Damage : High	<br>
 	- When an employee with Fortitude Level 3 or higher worked on White Lake, The work chance was lowered.	<br>
-	- When an employee with Fortitude Level 3 or higher finished their work, the Qliphoth Counter lowered.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the work result was Bad, and the employee had Fortitude Level 3 or higher, the Qliphoth Counter lowered again.	<br>
+	- When Qliphoth counter reached zero, if there was no champion, all employees took a large amount of white damage.	<br>
 	- When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.	<br><br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> High<br>
