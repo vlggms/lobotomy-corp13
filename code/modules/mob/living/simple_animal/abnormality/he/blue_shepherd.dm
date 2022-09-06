@@ -95,13 +95,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
-	//makes a list of people and abno to shit talk
-	fill_abno_list()
+	//makes a list of people to shit talk
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 			if(H.stat != DEAD)
 				people_list += H
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/on_new_crew)//add stuff to the list when newbies arrive
 
@@ -114,6 +112,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums)) //updates up the abno list every work
+		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+			if(initial(A.abno_path.can_breach) && A.name != "Blue Smocked Shepherd")
+				abno_list += A
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(1)
 	else if(work_type == "Release")
@@ -149,7 +151,6 @@
 				say(subject.name + pick(people_alive_lines))
 		else
 			say("Trust me, you gotta let me out of here!") //if he has somehow nothing to lie about
-	fill_abno_list()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
@@ -225,7 +226,3 @@
 		people_list += H
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/fill_abno_list()
-	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
-		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-			if(initial(A.abno_path.can_breach) && A.name != "Blue Smocked Shepherd") //gotta make the lie convincing
-				abno_list += A
