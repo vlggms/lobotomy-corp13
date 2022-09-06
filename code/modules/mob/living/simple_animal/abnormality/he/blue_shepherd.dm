@@ -130,7 +130,10 @@
 		else
 			lie = FALSE
 		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
-			var/mob/living/simple_animal/hostile/abnormality/abno = pick(abno_list).current
+			var/abno_datum = pick(abno_list)
+			if(!istype(abno_datum,/datum/abnormality))
+				return ..()
+			var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
 			if(isnull(abno))//if the abno's been supressed or is missing for whatever reason, this one can't be a lie since it also acts as an anti-runtime
 				say("No matter how many of them you supress, they will always come back")
 			else if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
