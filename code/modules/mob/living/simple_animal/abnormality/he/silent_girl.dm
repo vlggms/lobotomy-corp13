@@ -8,6 +8,7 @@
 	icon_state = "silent_girl"
 	maxHealth = 650
 	health = 650
+	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.
 	threat_level = HE_LEVEL
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 25,
@@ -42,8 +43,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Kill_Guilty(mob/living/carbon/human/target)
-	if (target in guilty_people && target.sanity_lost)
-		target.adjustBruteLoss(500)
+	if ((target in guilty_people) && target.sanity_lost)
+		target.death(FALSE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Guilty_Work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
@@ -88,6 +89,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
+	var/dead_list = guilty_people
+	for(var/mob/living/carbon/human/dead_body in dead_list)
+		if(dead_body.stat == DEAD)
+			guilty_people -= dead_body
 	if (!LAZYLEN(guilty_people)) // No Guilty on 0 counter? Find a random person and take them <3
 		var/list/potential_guilt = list()
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
