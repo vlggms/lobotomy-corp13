@@ -52,7 +52,7 @@
 	var/slashing = FALSE
 	var/range = 2
 	var/hired = FALSE
-	var/lie_chance = 30 // % chance to lie, mostly used for testing purposes
+	var/lie_chance = 30 // % chance to lie
 	//lines said during combat
 	var/list/combat_lines = list(
 				"Have at you!",
@@ -102,9 +102,10 @@
 				people_list += H
 	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-			if(A?.current?.can_breach && A.name != "Blue Smocked Shepherd") //gotta make the lie convincing
+			if(initial(A.abno_path.can_breach) && A.name != "Blue Smocked Shepherd") //gotta make the lie convincing
 				abno_list += A
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/on_new_crew)//add stuff to the list when newbies arrive
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -132,17 +133,18 @@
 			lie = FALSE
 		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
 			var/mob/living/simple_animal/hostile/abnormality/abno = pick(abno_list)?.current
-			if(abno == null) //if the abno is killed or something
-				say("That one has already been supressed, what a shame.")
+			if(isnull(abno))//if the abno's been supressed or is missing for whatever reason, this one can't be a lie since it also acts as an anti-runtime
+				say("No matter how many of them you supress, they will always come back")
 			else if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
 				say(abno.name + pick(abno_breach_lines))
 			else
 				say(abno.name + pick(abno_safe_lines))
 		else if(LAZYLEN(people_list))
 			var/mob/living/carbon/human/subject = pick(people_list)
-			if(!subject) //if there's a NULL in the list
-				say("there's nothing left of them, no one can survive such opression after all.")
+			if(isnull(subject))
 				people_list -= subject
+			else if(subject == user)
+				say("It's only a matter of time until I get out, but you could have me as a friend rather than foe.")
 			else if((subject.stat == DEAD && !lie) || (subject.stat != DEAD && lie))
 				say(subject.name + pick(people_dead_lines))
 			else
@@ -217,7 +219,8 @@
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/fill_lists()
 
-
-
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_new_crew(datum_source,mob/living/H)
+	SIGNAL_HANDLER
+	if(ishuman(H))
+		people_list += H
