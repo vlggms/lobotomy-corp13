@@ -222,5 +222,3 @@
 	SIGNAL_HANDLER
 	if(ishuman(H))
 		people_list += H
-
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/fill_abno_list()
