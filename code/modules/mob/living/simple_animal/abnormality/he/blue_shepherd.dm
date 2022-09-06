@@ -52,15 +52,58 @@
 	var/slashing = FALSE
 	var/range = 2
 	var/hired = FALSE
-	var/list/lines = list(
+	var/lie_chance = 30 // % chance to lie, mostly used for testing purposes
+	//lines said during combat
+	var/list/combat_lines = list(
 				"Have at you!",
 				"Take this!",
 				"I'll kill you!",
 				"This is for locking me up!",
 				"Die!"
 				)
+	//lines shepperd say when someone's dead
+	var/list/people_dead_lines = list(
+				" didn't last long huh?",
+				" died, if only I was here to help...",
+				"'s dead? what a shame, I kinda liked them.",
+				)
+	//lines shepperd say when someone is still alive
+	var/list/people_alive_lines = list(
+				" is still alive somehow, won't last long though.",
+				" is doing much better than you, but I can take care of them if you want.",
+				"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
+				"'s would have released me by now, why can't you do the same?",
+				)
+	//lines shepperd say when something has breached
+	var/list/abno_breach_lines = list(
+				" has breached, I could help you know?",
+				" is out, are you sure you're strong enough to take care of it by yourself?",
+				" is going on a rampage, you guys really can't do your job right huh?",
+				" has breached and you're still wasting your time on me? I'm flattered.",
+				)
+
+
+	//lines shepperd say when an abno hasn't breached (yet)
+	var/list/abno_safe_lines = list(
+				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
+				"'s hasn't breached yet, but I wouldn't count on it staying that way.",
+				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
+				"'s doing fine, don't you have a manager to check those things for you?",
+				)
+	var/list/people_list = list() //list of people shepperd can mention
+	var/list/abno_list = list() //list of abnormalities shepperd can mention
+
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
+	//makes a list of people and abno to shit talk
+	if(LAZYLEN(GLOB.mob_living_list))
+		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
+			if(H.stat != DEAD)
+				people_list += H
+	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+			if(A?.current?.can_breach && A.name != "Blue Smocked Shepherd") //gotta make the lie convincing
+				abno_list += A
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
@@ -80,8 +123,32 @@
 		datum_reference.qliphoth_change(-4)
 	else
 		datum_reference.qliphoth_change(-1)
-		say("Trust me, you gotta let me out of here!")
 		SLEEP_CHECK_DEATH(10)
+	if(status_flags & GODMODE)
+		var/lie //if shepperd's lying or not
+		if(prob(lie_chance))
+			lie = TRUE
+		else
+			lie = FALSE
+		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
+			var/mob/living/simple_animal/hostile/abnormality/abno = pick(abno_list)?.current
+			if(abno == null) //if the abno is killed or something
+				say("That one has already been supressed, what a shame.")
+			else if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
+				say(abno.name + pick(abno_breach_lines))
+			else
+				say(abno.name + pick(abno_safe_lines))
+		else if(LAZYLEN(people_list))
+			var/mob/living/carbon/human/subject = pick(people_list)
+			if(!subject) //if there's a NULL in the list
+				say("there's nothing left of them, no one can survive such opression after all.")
+				people_list -= subject
+			else if((subject.stat == DEAD && !lie) || (subject.stat != DEAD && lie))
+				say(subject.name + pick(people_dead_lines))
+			else
+				say(subject.name + pick(people_alive_lines))
+		else
+			say("Trust me, you gotta let me out of here!") //if he has somehow nothing to lie about
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
@@ -98,7 +165,7 @@
 	slash_current-=1
 	if(slash_current == 0)
 		slash_current = slash_cooldown
-		say(pick(lines))
+		say(pick(combat_lines))
 		SLEEP_CHECK_DEATH(10)
 		slashing = TRUE
 		slash()
@@ -150,3 +217,7 @@
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/fill_lists()
+
+
+
