@@ -1,3 +1,17 @@
+// Dawn
+/datum/ordeal/amber_dawn/indigo_dawn
+	name = "Dawn of Indigo"
+	annonce_text = "They come searching for what they so desperately need."
+	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
+	level = 1
+	spawn_places = 5
+	spawn_amount = 2
+	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+	place_player_multiplicator = 0.08
+	spawn_player_multiplicator = 0
+	color = "#3F00FF"
+
 // Noon
 /datum/ordeal/amber_dawn/indigo_noon
 	name = "Noon of Indigo"
