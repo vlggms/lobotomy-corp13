@@ -32,6 +32,7 @@
 		ACM.c_tag = "Containment zone: [abno_datum.name]"
 	SSabnormality_queue.postspawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_SPAWN, abno_datum)
 
 GLOBAL_LIST_EMPTY(abnormality_room_spawners)
 
