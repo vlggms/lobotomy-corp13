@@ -237,6 +237,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/can_act = TRUE
+	var/death_counter = 0
 
 /mob/living/simple_animal/hostile/apostle/Move()
 	if(!can_act)
@@ -245,11 +246,13 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/death(gibbed)
 	invisibility = 30 // So that other mobs cannot attack them
+	death_counter = clamp(death_counter + 1, 0, 3)
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
 	invisibility = 0 // Visible again
 	can_act = TRUE // In case we died while performing special attack
+	adjustBruteLoss(maxHealth * (0.25 + (death_counter * 0.15)), TRUE)
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/gib(no_brain, no_organs, no_bodyparts)
@@ -317,7 +320,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	scythe_range = 3
+	scythe_cooldown_time = 8 SECONDS // More often, since the damage increase was disliked.
 	scythe_damage_type = PALE_DAMAGE
+	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
 
 /mob/living/simple_animal/hostile/apostle/spear
 	name = "spear apostle"

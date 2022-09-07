@@ -65,6 +65,7 @@
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	return
 
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
