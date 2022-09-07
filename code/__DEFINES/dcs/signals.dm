@@ -31,6 +31,8 @@
 #define COMSIG_GLOB_HUMAN_INSANE "!human_insane"
 /// a lobotomy_corp subsystem meltdown occured
 #define COMSIG_GLOB_MELTDOWN_START "!meltdown_started"
+/// a new abnormality has spawned with their room (/datum/abnormality)
+#define COMSIG_GLOB_ABNORMALITY_SPAWN "!abno_datum"
 
 /// signals from globally accessible objects
 

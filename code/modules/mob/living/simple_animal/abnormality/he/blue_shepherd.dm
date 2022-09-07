@@ -53,6 +53,8 @@
 	var/range = 2
 	var/hired = FALSE
 	var/lie_chance = 30 // % chance to lie
+	var/list/people_list = list() //list of people shepperd can mention
+	var/list/abno_list = list() //list of abnormalities shepperd can mention
 	//lines said during combat
 	var/list/combat_lines = list(
 				"Have at you!",
@@ -88,21 +90,27 @@
 				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
 				"'s doing fine, don't you have a manager to check those things for you?",
 				)
-	var/list/people_list = list() //list of people shepperd can mention
-	var/list/abno_list = list() //list of abnormalities shepperd can mention
+
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
-	//makes a list of people to shit talk
+	//makes a list of people and abno to shit talk
+	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums)) //updates up the abno list every work
+		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+			if(initial(A.abno_path.can_breach) && A.name != name)
+				abno_list += A
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 			if(H.stat != DEAD)
 				people_list += H
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/on_new_crew)//add stuff to the list when newbies arrive
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/on_abno_spawn)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
@@ -110,10 +118,6 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums)) //updates up the abno list every work
-		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-			if(initial(A.abno_path.can_breach) && A.name != "Blue Smocked Shepherd")
-				abno_list += A
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(1)
 	else if(work_type == "Release")
@@ -219,7 +223,12 @@
 		datum_reference.qliphoth_change(-1)
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_new_crew(datum_source,mob/living/H)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_new_crew(datum_source, mob/living/H)
 	SIGNAL_HANDLER
-	if(ishuman(H))
+	if(ishuman(H)) //WHY IS THIS DOG WORKING AS AN AGENT
 		people_list += H
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_abno_spawn(datum_source, datum/abnormality/A)
+	SIGNAL_HANDLER
+	if(A.name != name)
+		abno_list += A
