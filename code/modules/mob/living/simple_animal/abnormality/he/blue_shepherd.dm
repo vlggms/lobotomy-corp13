@@ -54,7 +54,6 @@
 	var/hired = FALSE
 	var/lie_chance = 30 // % chance to lie
 	var/list/people_list = list() //list of people shepperd can mention
-	var/list/abno_list = list() //list of abnormalities shepperd can mention
 	//lines said during combat
 	var/list/combat_lines = list(
 				"Have at you!",
@@ -86,7 +85,7 @@
 	//lines shepperd say when an abno hasn't breached (yet)
 	var/list/abno_safe_lines = list(
 				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
-				"'s hasn't breached yet, but I wouldn't count on it staying that way.",
+				" hasn't breached yet, but I wouldn't count on it staying that way.",
 				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
 				"'s doing fine, don't you have a manager to check those things for you?",
 				)
@@ -95,22 +94,16 @@
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
 	//makes a list of people and abno to shit talk
-	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums)) //updates up the abno list every work
-		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-			if(initial(A.abno_path.can_breach) && A.name != name)
-				abno_list += A
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 			if(H.stat != DEAD)
 				people_list += H
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/on_new_crew)//add stuff to the list when newbies arrive
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/on_abno_spawn)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
@@ -133,12 +126,11 @@
 			lie = TRUE
 		else
 			lie = FALSE
+		var/list/abno_list = AbnoListGen()
 		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
 			var/datum/abnormality/abno_datum = pick(abno_list)
 			var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
-			if(isnull(abno))//if the abno's been supressed or is missing for whatever reason, this one can't be a lie since it also acts as an anti-runtime
-				say("No matter how many of them you supress, they will always come back")
-			else if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
+			if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
 				say(abno.name + pick(abno_breach_lines))
 			else
 				say(abno.name + pick(abno_safe_lines))
@@ -223,12 +215,24 @@
 		datum_reference.qliphoth_change(-1)
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_new_crew(datum_source, mob/living/H)
-	SIGNAL_HANDLER
-	if(ishuman(H)) //WHY IS THIS DOG WORKING AS AN AGENT
-		people_list += H
+///makes a list of abno datum that can breach and aren't dead/null
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/AbnoListGen()
+	var/list/abno_list = list()
+	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+			if(isnull(A.current))
+				continue
+			if(A.current.can_breach && A.name != name)
+				abno_list += A
+	return abno_list
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_abno_spawn(datum_source, datum/abnormality/A)
+///add stuff to the list when newbies arrive and removes duplicates so the list isn't full of the same respawned guy(s)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/OnNewCrew(datum_source, mob/living/newbie)
 	SIGNAL_HANDLER
-	if(A.name != name)
-		abno_list += A
+	if(!ishuman(newbie)) //dogs stealing our job
+		return
+	if(LAZYLEN(people_list))
+		for(var/mob/living/carbon/human/person in people_list)
+			if(newbie.real_name == person.real_name)
+				people_list -= person
+	people_list += newbie
