@@ -5,5 +5,8 @@
 	inhand_icon_state = "prank"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
+	force = 20
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'

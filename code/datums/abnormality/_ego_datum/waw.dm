@@ -65,11 +65,11 @@
 //Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
 /datum/ego_datum/weapon/solemnvow
 	item_path = /obj/item/gun/ego_gun/solemnvow
-	cost = 25
+	cost = 35
 
 /datum/ego_datum/weapon/solemnlament
 	item_path = /obj/item/gun/ego_gun/solemnlament
-	cost = 25
+	cost = 35
 
 // General Bee - Loyalty
 /datum/ego_datum/weapon/loyalty

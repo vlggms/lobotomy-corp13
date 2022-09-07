@@ -2,9 +2,11 @@
 	name = "lamp"
 	desc = "Big Bird's eyes gained another in number for every creature it saved. \
 	On this weapon, the radiant pride is apparent."
-	special = "This weapon has a slightly slower attack speed."
+	special = "This weapon has a slightly slower attack speed. \
+			This weapon attacks all non-humans in an AOE. \
+			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
-	force = 50
+	force = 25
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -15,15 +17,27 @@
 							PRUDENCE_ATTRIBUTE = 60
 							)
 
+/obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
+	..()
+	for(var/mob/living/L in livinginrange(1, M))
+		var/aoe = 25
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+
 /obj/item/ego_weapon/lamp/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.25) // Slow
+	user.changeNext_move(CLICK_CD_MELEE * 1.3) // Slow
 
 /obj/item/ego_weapon/despair
 	name = "sword sharpened with tears"
 	desc = "A sword suitable for swift thrusts. \
 	Even someone unskilled in dueling can rapidly puncture an enemy using this E.G.O with remarkable agility."
-	special = "This weapon has a combo system.\
+	special = "This weapon has a combo system. \
 			This weapon has a fast attack speed"
 	icon_state = "despair"
 	force = 20
@@ -46,16 +60,14 @@
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
-	switch(combo)
-
-		if(4)
-			combo = 0
-			user.changeNext_move(CLICK_CD_MELEE * 3)
-			force *= 2
-			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-			to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
-		else
-			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	if(combo==4)
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force *= 4	// Should actually keep up with normal damage.
+		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
 	combo += 1
 	force = initial(force)
@@ -101,7 +113,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
-	hitsound = 'sound/weapons/ego/hammer.ogg'
+	hitsound = 'sound/weapons/slash.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
@@ -125,7 +137,6 @@
 	if(meter != 50)
 		meter += 1
 	..()
-
 	if(charged == TRUE)
 		charged = FALSE
 		force = 15
@@ -136,7 +147,8 @@
 	Any crack, no matter how small, will be pried open by this E.G.O."
 	special = "This weapon hits slower than usual."
 	icon_state = "remorse"
-	force = 70 // Extremely powerful, but extremely slow
+	special = "This weapon marks targets for death. Use the weapon in hand to attack all marked targets at a range."
+	force = 30	//Does more damage later.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("Smashes", "Pierces", "Cracks")
@@ -146,8 +158,22 @@
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+	var/list/targets = list()
+	var/ranged_damage = 60	//Fuckload of white on ability. Be careful!
 
-/obj/item/ego_weapon/remorse/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/remorse/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(!(M in targets))
+		targets+= M
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 2) // Extremely slow
-	hitsound = "sound/weapons/ego/remorse.ogg"
+
+/obj/item/ego_weapon/remorse/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 6))
+		for(var/mob/living/M in targets)
+			playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
+			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/remorse(get_turf(M))
+		targets = list()

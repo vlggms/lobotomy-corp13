@@ -93,7 +93,8 @@
 /obj/item/ego_weapon/daredevil
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
-	special = "This weapon blocks ranged attacks while attacking and has a parry on command."
+	special = "This weapon blocks ranged attacks while attacking and has a parry on command. \
+				This weapon has a fast attack speed"
 	icon_state = "daredevil"
 	force = 12
 	damtype = PALE_DAMAGE

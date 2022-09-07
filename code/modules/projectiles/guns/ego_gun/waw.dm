@@ -106,7 +106,7 @@
 	name = "loyalty"
 	desc = "Courtesy of the 16th Ego rifleman's brigade."
 	icon_state = "loyalty"
-	inhand_icon_state = "beak"
+	inhand_icon_state = "loyalty"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
 	spread = 8

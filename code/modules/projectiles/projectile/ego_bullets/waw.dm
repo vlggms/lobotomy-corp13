@@ -50,7 +50,6 @@
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
-	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
 
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
@@ -63,7 +62,7 @@
 	icon_state = "blackfly"
 	damage = 15
 	damage_type = BLACK_DAMAGE
-	
+
 //Smartgun
 /obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
@@ -74,7 +73,6 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	projectile_piercing = PASSMOB
-	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
 
 /obj/projectile/ego_bullet/ego_loyalty/on_hit(atom/target, blocked = FALSE)
 	if(!ishuman(target))
