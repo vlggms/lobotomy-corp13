@@ -1006,6 +1006,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"fC" = (
+/obj/machinery/rnd/server,
+/obj/machinery/light,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/information)
 "fI" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/fakeglass,
@@ -1435,6 +1440,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"iE" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/welfare)
 "iI" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment,
@@ -1568,7 +1576,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/rack,
+/obj/structure/easel,
+/obj/item/canvas/nineteen_nineteen,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "jD" = (
@@ -2098,6 +2107,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/safety_kit,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "lO" = (
@@ -2474,6 +2484,10 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"ny" = (
+/obj/machinery/rnd/server,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/welfare)
 "nz" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -3031,6 +3045,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"qV" = (
+/obj/structure/chair/stool,
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "rb" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -3791,6 +3809,7 @@
 /obj/item/camera,
 /obj/item/camera_film,
 /obj/item/clothing/neck/scarf/purple,
+/obj/item/safety_kit,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "uk" = (
@@ -3914,6 +3933,11 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"uX" = (
+/obj/machinery/telecomms/server/presets/service,
+/obj/machinery/light,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/safety)
 "uY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5209,6 +5233,13 @@
 /obj/item/clipboard,
 /turf/open/floor/carpet,
 /area/department_main/control)
+"Dj" = (
+/obj/machinery/telecomms/message_server/preset,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "Do" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -5843,9 +5874,9 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "GB" = (
-/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/command)
 "GD" = (
 /obj/structure/chair{
 	dir = 1
@@ -5921,6 +5952,13 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"Hg" = (
+/obj/machinery/telecomms/server/presets/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/welfare)
 "Hh" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -6004,9 +6042,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "HC" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/turf/closed/indestructible/fakeglass,
+/area/department_main/command)
 "HG" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -6382,6 +6419,10 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"JE" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
 "JG" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -6413,6 +6454,13 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"Kg" = (
+/obj/structure/rack,
+/obj/structure/sign/painting/library{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "Kh" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -6597,7 +6645,6 @@
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 1
 	},
-/obj/machinery/light,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "KO" = (
@@ -6652,6 +6699,10 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"Lc" = (
+/obj/machinery/rnd/server,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "Le" = (
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -6821,9 +6872,8 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "Mb" = (
-/obj/machinery/telecomms/message_server/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/turf/closed/indestructible/fakeglass,
+/area/department_main/safety)
 "Mc" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -7231,7 +7281,7 @@
 "Om" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/command)
 "Oo" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -7306,6 +7356,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"OL" = (
+/obj/machinery/telecomms/server/presets/security,
+/obj/machinery/light/cold,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/discipline)
 "ON" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -7332,6 +7387,9 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"OS" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/training)
 "OT" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -7415,6 +7473,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/sign/painting/library{
+	pixel_x = 32
+	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Px" = (
@@ -7436,6 +7497,10 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
+"PB" = (
+/obj/machinery/telecomms/server/presets/science,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/information)
 "PE" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -7616,6 +7681,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
+/obj/machinery/light,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "QG" = (
@@ -7880,7 +7946,15 @@
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "RV" = (
+/obj/structure/sign/painting/library{
+	pixel_x = -32
+	},
 /obj/structure/rack,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/toy/crayon/spraycan,
+/obj/item/storage/crayons,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "RW" = (
@@ -8262,9 +8336,12 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Ud" = (
-/obj/machinery/telecomms/server/presets/science,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/training)
 "Ue" = (
 /obj/machinery/camera/autoname{
 	dir = 6
@@ -8422,9 +8499,10 @@
 /turf/open/floor/plasteel,
 /area/department_main/command)
 "UO" = (
-/obj/machinery/telecomms/server/presets/medical,
+/obj/machinery/rnd/server,
+/obj/machinery/light/cold,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/control)
+/area/department_main/discipline)
 "UQ" = (
 /obj/machinery/computer/abnormality_logs{
 	dir = 8
@@ -31691,9 +31769,9 @@ kY
 WX
 Ii
 kG
-JB
-JB
-JB
+jF
+jF
+jF
 JB
 JB
 JB
@@ -31948,9 +32026,9 @@ AT
 Gx
 jN
 kG
-JB
-JB
-JB
+Dj
+JE
+jF
 JB
 JB
 JB
@@ -32205,8 +32283,8 @@ jF
 GA
 jF
 jF
-jF
-jF
+pV
+pV
 jF
 jF
 jF
@@ -32704,10 +32782,10 @@ JB
 JB
 JB
 JB
-jF
-jF
-jF
-jF
+JB
+JB
+JB
+JB
 jF
 Cu
 Uz
@@ -32962,9 +33040,9 @@ jF
 jF
 jF
 jF
-Ud
-Mb
-UO
+JB
+JB
+JB
 jF
 jF
 Ht
@@ -33219,9 +33297,9 @@ Rw
 Rw
 Nz
 jF
-pV
-pV
-pV
+jF
+jF
+jF
 jF
 Dh
 RZ
@@ -34247,9 +34325,9 @@ Rw
 Rw
 NS
 jF
-pV
-pV
-pV
+jF
+jF
+jF
 jF
 Dh
 RZ
@@ -34504,9 +34582,9 @@ jF
 jF
 jF
 jF
-HC
-Om
-GB
+JB
+JB
+JB
 jF
 jF
 Nv
@@ -34760,10 +34838,10 @@ JB
 JB
 JB
 JB
-jF
-jF
-jF
-jF
+JB
+JB
+JB
+JB
 jF
 Ej
 OZ
@@ -35338,8 +35416,8 @@ Uu
 NO
 mu
 rS
-JB
-JB
+rS
+rS
 JB
 JB
 JB
@@ -35594,9 +35672,9 @@ sa
 lG
 lG
 mu
+TF
+OL
 rS
-JB
-JB
 JB
 CE
 pd
@@ -37650,9 +37728,9 @@ qR
 RJ
 ql
 DE
+TF
+UO
 rS
-JB
-JB
 JB
 JB
 uh
@@ -37908,8 +37986,8 @@ Jr
 Gv
 DP
 rS
-JB
-JB
+rS
+rS
 JB
 JB
 uh
@@ -38178,9 +38256,9 @@ yy
 Qd
 Hn
 uh
-JB
-JB
-JB
+vN
+vN
+vN
 JB
 JB
 JB
@@ -38435,9 +38513,9 @@ TU
 Qd
 Eg
 uh
-JB
-JB
-JB
+ny
+Hg
+vN
 JB
 JB
 JB
@@ -38654,7 +38732,7 @@ Wj
 Wj
 XL
 Bk
-RV
+Kg
 Xq
 AI
 AI
@@ -38692,8 +38770,8 @@ ZV
 Ah
 Rn
 uh
-vN
-vN
+iE
+iE
 vN
 JB
 JB
@@ -38902,7 +38980,7 @@ JB
 AI
 Bk
 Bk
-Bk
+qV
 Bk
 Bk
 Bk
@@ -40161,8 +40239,8 @@ Pe
 IM
 qK
 an
-JB
-JB
+an
+an
 JB
 Rc
 Xt
@@ -40417,9 +40495,9 @@ dj
 Pe
 eW
 rb
+Mb
+uX
 an
-JB
-JB
 JB
 Rc
 YO
@@ -40675,8 +40753,8 @@ Pe
 ri
 rg
 an
-JB
-JB
+an
+an
 JB
 Rc
 zn
@@ -42761,9 +42839,9 @@ AI
 AI
 AI
 AI
-AI
-AI
-AI
+HC
+HC
+HC
 AI
 AI
 AI
@@ -43017,11 +43095,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+AI
+Om
+Lc
+GB
+AI
 JB
 JB
 JB
@@ -43274,11 +43352,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+AI
+AI
+AI
+AI
+AI
 JB
 JB
 JB
@@ -45359,9 +45437,9 @@ DD
 Fn
 LL
 KM
+Zg
+PB
 Io
-JB
-JB
 JB
 JB
 JB
@@ -45616,9 +45694,9 @@ DD
 QO
 ay
 Bh
+Zg
+fC
 Io
-JB
-JB
 JB
 JB
 JB
@@ -45874,8 +45952,8 @@ Io
 Io
 Io
 Io
-JB
-JB
+Io
+Io
 JB
 JB
 JB
@@ -48911,7 +48989,7 @@ Si
 Si
 MV
 SY
-SY
+OS
 SY
 SY
 JB
@@ -49168,8 +49246,8 @@ aY
 SY
 SY
 SY
-JB
-JB
+Ud
+SY
 JB
 JB
 JB
@@ -49424,9 +49502,9 @@ FM
 HG
 Lk
 zL
-JB
-JB
-JB
+SY
+SY
+SY
 JB
 JB
 JB
