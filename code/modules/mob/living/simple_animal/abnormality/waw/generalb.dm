@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/loyalty,
 		/datum/ego_datum/armor/loyalty
 		)
-	loot = /obj/item/clothing/suit/armor/ego_gear/praetorian
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/praetorian) // Don't think it was dropping before, this should make it do so
 	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
 	health = 3000
 	maxHealth = 3000
@@ -31,6 +31,7 @@
 	melee_damage_upper = 52
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
+	stat_attack = HARD_CRIT
 	//She has a Quad Artillery Cannon
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
 	var/fire_cooldown
@@ -50,7 +51,11 @@
 /mob/living/simple_animal/hostile/abnormality/general_b/zero_qliphoth(mob/living/carbon/human/user)
 	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return	//Yeah don't increase Qliphoth
-	spawn_bees()
+	var/artillerbee_count = 0
+	for(var/mob/living/simple_animal/hostile/artillery_bee/artillerbee in GLOB.mob_living_list)
+		artillerbee_count++
+	if(artillerbee_count < 4)
+		spawn_bees()
 	datum_reference.qliphoth_change(1)
 	return
 
@@ -142,6 +147,10 @@
 	base_pixel_y = -8
 	health = 200
 	maxHealth = 200
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1) // Just so it's declared.
+	del_on_death = TRUE
+	deathsound = 'sound/abnormalities/bee/death.ogg'
+	speak_emote = list("buzzes")
 
 	var/fire_cooldown_time = 10 SECONDS
 	var/fire_cooldown
@@ -195,7 +204,7 @@
 			H.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
-	S.set_up(5, get_turf(src))	//Make the smoke bigger
+	S.set_up(4, get_turf(src))	//Make the smoke bigger
 	S.start()
 	qdel(src)
 
