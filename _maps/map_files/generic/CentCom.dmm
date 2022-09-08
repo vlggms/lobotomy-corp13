@@ -2330,7 +2330,7 @@
 	color = "#CC5500";
 	dir = 4
 	},
-/obj/vehicle/sealed/mecha/combat/durand,
+/obj/vehicle/sealed/mecha/combat/rhino,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
 "nb" = (
@@ -2740,9 +2740,9 @@
 /area/centcom/ferry)
 "qr" = (
 /obj/machinery/requests_console{
-	pixel_x = -32;
+	department = "R-Corp Representative";
 	payment_department = "SEC";
-	department = "R-Corp Representative"
+	pixel_x = -32
 	},
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -4047,32 +4047,32 @@
 "xe" = (
 /obj/structure/table/wood,
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 39;
-	network = list("ss13")
+	network = list("ss13");
+	pixel_y = 39
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	network = list("ss13")
+	network = list("ss13");
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
+	network = list("ss13");
 	pixel_x = 20;
-	pixel_y = 39;
-	network = list("ss13")
+	pixel_y = 39
 	},
 /obj/machinery/computer/security/telescreen{
+	network = list("ss13");
 	pixel_x = 20;
-	pixel_y = 27;
-	network = list("ss13")
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
+	network = list("ss13");
 	pixel_x = -20;
-	pixel_y = 39;
-	network = list("ss13")
+	pixel_y = 39
 	},
 /obj/machinery/computer/security/telescreen{
+	network = list("ss13");
 	pixel_x = -20;
-	pixel_y = 27;
-	network = list("ss13")
+	pixel_y = 27
 	},
 /obj/item/storage/photo_album/captain,
 /obj/item/documents,
@@ -6313,8 +6313,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "admindomeenter";
 	name = "Entrance Shutters";
-	req_access_txt = "102";
-	pixel_y = 32
+	pixel_y = 32;
+	req_access_txt = "102"
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
@@ -7092,8 +7092,8 @@
 /obj/machinery/button/door/indestructible{
 	id = "admindomeenter";
 	name = "Entrance Shutters";
-	req_access_txt = "102";
-	pixel_y = 32
+	pixel_y = 32;
+	req_access_txt = "102"
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
