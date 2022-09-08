@@ -1616,6 +1616,13 @@
 "gp" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"gr" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "gs" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
@@ -5203,6 +5210,11 @@
 "tY" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
+"ub" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "uc" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/command)
@@ -6837,6 +6849,12 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/west)
+"Bq" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Bs" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -7770,6 +7788,7 @@
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "EE" = (
@@ -7867,6 +7886,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/control)
+"ES" = (
+/obj/structure/table,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "EW" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -8447,8 +8472,8 @@
 	dir = 4
 	},
 /obj/machinery/newscaster{
-	pixel_y = -32;
-	pixel_x = -32
+	pixel_x = -32;
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -8528,6 +8553,15 @@
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/command)
+"HA" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "HB" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -10095,8 +10129,8 @@
 	id = "deltaincinerator"
 	},
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = -25;
-	id = "deltaincinerator"
+	id = "deltaincinerator";
+	pixel_y = -25
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -58546,7 +58580,7 @@ Gh
 Gh
 Gj
 IK
-Kp
+ES
 Kp
 Mw
 EE
@@ -60865,7 +60899,7 @@ My
 MO
 Nk
 Nl
-Nl
+gr
 Cu
 JB
 JB
@@ -61111,7 +61145,7 @@ Ai
 os
 JB
 Cu
-EC
+HA
 Gj
 Gh
 Gj
@@ -61634,9 +61668,9 @@ Cu
 Lz
 Mz
 MP
-Nl
+Bq
 NN
-Nl
+ub
 Cu
 JB
 JB

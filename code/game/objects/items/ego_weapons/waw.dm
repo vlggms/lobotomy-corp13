@@ -171,7 +171,7 @@
 /obj/item/ego_weapon/remorse/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
-	if(do_after(user, 6))
+	if(do_after(user, 10))
 		for(var/mob/living/M in targets)
 			playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
 			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)

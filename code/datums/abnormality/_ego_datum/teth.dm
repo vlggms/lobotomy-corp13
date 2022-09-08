@@ -86,7 +86,7 @@
 
 // Old Lady - Solitude
 /datum/ego_datum/weapon/solitude
-	item_path = /obj/item/gun/ego_gun/solitude
+	item_path = /obj/item/gun/ego_gun/pistol/solitude
 	cost = 20
 
 /datum/ego_datum/armor/solitude

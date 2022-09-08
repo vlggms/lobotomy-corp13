@@ -624,6 +624,7 @@
 /area/facility_hallway/control)
 "lw" = (
 /obj/structure/table/reinforced,
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "lB" = (
@@ -817,6 +818,7 @@
 /area/department_main/information)
 "pj" = (
 /obj/structure/table/reinforced,
+/obj/item/storage/belt/ego,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "pt" = (
@@ -1678,6 +1680,11 @@
 /obj/structure/table/optable,
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/safety)
+"Dx" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "DC" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -2409,6 +2416,11 @@
 /area/department_main/training)
 "Pw" = (
 /obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
+"Pz" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "PB" = (
@@ -48999,7 +49011,7 @@ XE
 XE
 XE
 XE
-WK
+Pz
 WK
 XE
 Pw
@@ -49768,7 +49780,7 @@ Ln
 My
 WK
 XE
-WK
+Pz
 AO
 Zt
 fT
@@ -50280,7 +50292,7 @@ QD
 XE
 dN
 My
-WK
+Pz
 XE
 yL
 AO
@@ -50289,7 +50301,7 @@ Ml
 Xj
 My
 EJ
-Bp
+Dx
 tH
 pw
 uI

@@ -70,6 +70,7 @@
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
+/obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "aS" = (
@@ -432,6 +433,20 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
+"dI" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/departments/control{
+	pixel_y = 32
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel,
+/area/facility_hallway/north)
 "dN" = (
 /obj/item/kirbyplants{
 	anchored = 1;
@@ -518,8 +533,8 @@
 /area/department_main/command)
 "eI" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/vest/alt,
-/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "eL" = (
@@ -973,6 +988,12 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"iF" = (
+/obj/machinery/light,
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "iG" = (
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/plating/grass,
@@ -1012,6 +1033,15 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/department_main/training)
+"ja" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 4
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel,
+/area/facility_hallway/north)
 "je" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 8
@@ -1535,12 +1565,12 @@
 	dir = 4
 	},
 /obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_y = 17;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 17
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_y = 17;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 17
 	},
 /obj/item/reagent_containers/glass/rag{
 	pixel_y = 7
@@ -1563,6 +1593,14 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/east)
+"oi" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "ok" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2855,8 +2893,8 @@
 /obj/structure/table/glass,
 /obj/item/paper/guides/jobs/teth/guide/spiderbud,
 /obj/item/paper/guides/jobs/teth/lore/spiderbud{
-	pixel_y = -3;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -3
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -3807,6 +3845,15 @@
 "Hv" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
+"Hx" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/plasteel,
+/area/facility_hallway/north)
 "HG" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 9
@@ -4297,6 +4344,7 @@
 "Lv" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "Lw" = (
@@ -4317,6 +4365,7 @@
 	dir = 5
 	},
 /obj/structure/rack,
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "LD" = (
@@ -5811,6 +5860,7 @@
 "Zn" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "Zs" = (
@@ -38112,12 +38162,12 @@ oF
 oF
 fq
 Mi
-Ct
+iF
 rg
 cN
 Zw
 Zw
-cs
+Hx
 Nc
 cs
 Zw
@@ -38371,7 +38421,7 @@ fq
 Mi
 eL
 rg
-Na
+dI
 oA
 oA
 oA
@@ -39146,7 +39196,7 @@ Ly
 jh
 YW
 oK
-oK
+ja
 oK
 YW
 GS
@@ -39397,7 +39447,7 @@ KP
 KP
 Wc
 Mi
-Ln
+oi
 rg
 vs
 Ax

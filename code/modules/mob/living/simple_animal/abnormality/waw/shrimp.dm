@@ -46,7 +46,7 @@
 	var/list/dispenseitem= list(
 				/obj/item/grenade/spawnergrenade/shrimp,
 				/obj/item/grenade/spawnergrenade/shrimp/super,
-				/obj/item/gun/ego_gun/soda,
+				/obj/item/gun/ego_gun/pistol/soda,
 				/obj/item/gun/ego_gun/sodasmg,
 				/obj/item/gun/ego_gun/sodashotty,
 				/obj/item/gun/ego_gun/sodarifle,
