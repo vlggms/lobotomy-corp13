@@ -18,7 +18,7 @@
 	tiled_dirt = FALSE
 
 /turf/open/floor/wood/setup_broken_states()
-	return list("wood-broken", "wood-broken2", "wood-broken3", "wood-broken4", "wood-broken5", "wood-broken6", "wood-broken7")
+	return list("wood")
 
 /turf/open/floor/wood/examine(mob/user)
 	. = ..()

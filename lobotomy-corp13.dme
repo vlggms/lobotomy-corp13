@@ -1442,6 +1442,7 @@
 #include "code\game\turfs\open\floor.dm"
 #include "code\game\turfs\open\glass.dm"
 #include "code\game\turfs\open\lava.dm"
+#include "code\game\turfs\open\lobotomy.dm"
 #include "code\game\turfs\open\openspace.dm"
 #include "code\game\turfs\open\river.dm"
 #include "code\game\turfs\open\water.dm"

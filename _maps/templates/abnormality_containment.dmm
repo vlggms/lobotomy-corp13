@@ -6,44 +6,44 @@
 /obj/machinery/requests_console{
 	pixel_y = 26
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "f" = (
 /obj/machinery/door/airlock/vault,
 /turf/open/floor/plasteel/dark,
 /area/containment_zone)
 "g" = (
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "D" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "J" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "N" = (
 /obj/effect/landmark/abnormality_spawn,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "O" = (
 /obj/machinery/camera/autoname,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "Q" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 "W" = (
 /obj/machinery/computer/abnormality,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/facility/dark,
 /area/containment_zone)
 
 (1,1,1) = {"
