@@ -33,7 +33,7 @@
 	desc = "Let's all dangle down."
 	icon_state = "lutemis"
 	//White armor, weak to red. Red is pretty valuable.
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 65, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 85, Special armor.
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
