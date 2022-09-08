@@ -422,3 +422,6 @@
 		return
 	var/mob/living/carbon/human/H = user
 	H.physiology.damage_resistance -= 40
+
+/obj/item/ego_weapon/censored/get_clamped_volume()
+	return 50
