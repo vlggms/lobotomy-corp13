@@ -98,7 +98,7 @@
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 			if(H.stat != DEAD)
 				people_list += H
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
@@ -201,7 +201,7 @@
 		SLEEP_CHECK_DEATH(3)
 	slashing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_mob_death(datum/source, mob/living/died, gibbed)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
 	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return FALSE
