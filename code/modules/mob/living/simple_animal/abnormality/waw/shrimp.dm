@@ -8,6 +8,7 @@
 	faction = list("neutral")
 	speak_emote = list("burbles")
 	threat_level = WAW_LEVEL
+	start_qliphoth = 1
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 30,
 						ABNORMALITY_WORK_INSIGHT = 30,
@@ -56,7 +57,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/work_chance(mob/living/carbon/human/user, chance)
 	if(happy)
-		chance+=40
+		chance+=30
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/success_effect(mob/living/carbon/human/user, work_type, pe)
@@ -67,7 +68,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/zero_qliphoth(mob/living/carbon/human/user)
 	pissed()
+	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/attempt_work(mob/living/carbon/human/user, work_type)
@@ -90,7 +96,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/proc/pissed()
 	for(var/turf/T in orange(1, src))
-		new /mob/living/simple_animal/hostile/shrimp(T)
+		if(prob(70))
+			new /mob/living/simple_animal/hostile/shrimp(T)
+		else
+			new /mob/living/simple_animal/hostile/shrimp_soldier(T)
 
 /* Shrimpo boys */
 /mob/living/simple_animal/hostile/shrimp
@@ -116,12 +125,11 @@
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/shrimp_soldier
-	name = "wellcheers corp liquidation officer"
+	name = "wellcheers corp hired liquidation officer"
 	desc = "A shrimp that is there to guard an area."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "wellcheers_soldier"
-	icon_living = "wellcheers_soldier"
-	faction = list("neutral")
+	icon_state = "wellcheers_bad"
+	icon_living = "wellcheers_bad"
 	health = 500	//They're here to help
 	maxHealth = 500
 	melee_damage_type = RED_DAMAGE
@@ -142,11 +150,17 @@
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 
+/mob/living/simple_animal/hostile/shrimp_soldier/friendly
+	name = "wellcheers corp assault officer"
+	icon_state = "wellcheers_soldier"
+	icon_living = "wellcheers_soldier"
+	faction = list("neutral")
+
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"
 	desc = "A grenade used to call for a shrimp task force."
 	icon_state = "shrimpnade"
-	spawner_type = /mob/living/simple_animal/hostile/shrimp_soldier
+	spawner_type = /mob/living/simple_animal/hostile/shrimp_soldier/friendly
 	deliveryamt = 3
 
 /obj/item/grenade/spawnergrenade/shrimp/super
