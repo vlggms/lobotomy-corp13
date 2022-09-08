@@ -34,8 +34,8 @@
 		)
 	gift_type =  /datum/ego_gifts/christmas
 	var/pulse_cooldown
-	var/pulse_cooldown_time = 3 SECONDS
-	var/pulse_damage = 20 // Scales with distance
+	var/pulse_cooldown_time = 1.8 SECONDS
+	var/pulse_damage = 20
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
@@ -59,8 +59,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/proc/WhitePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
-	if(prob(25))
-		new /obj/effect/gibspawner/generic/silent(get_turf(src))
 	playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
