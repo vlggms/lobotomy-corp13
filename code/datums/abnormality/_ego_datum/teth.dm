@@ -92,3 +92,12 @@
 /datum/ego_datum/armor/solitude
 	item_path = /obj/item/clothing/suit/armor/ego_gear/solitude
 	cost = 20
+
+// Forsaken Murderer - Regret
+/datum/ego_datum/weapon/regret
+	item_path = /obj/item/ego_weapon/regret
+	cost = 20
+
+/datum/ego_datum/armor/regret
+	item_path = /obj/item/clothing/suit/armor/ego_gear/regret
+	cost = 20

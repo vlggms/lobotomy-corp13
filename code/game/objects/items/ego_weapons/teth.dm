@@ -118,3 +118,18 @@
 /obj/item/ego_weapon/wrist/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 0.30)
+
+/obj/item/ego_weapon/regret
+	name = "regret"
+	desc = "Before swinging this weapon, expressing one’s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
+	special = "This weapon attacks extremely slowly."
+	icon_state = "regret"
+	force = 60					//Lots of damage, way less DPS
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
+	attack_verb_simple = list("smash", "bludgeon", "crush")
+
+/obj/item/ego_weapon/regret/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	user.changeNext_move(CLICK_CD_MELEE * 2) // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6

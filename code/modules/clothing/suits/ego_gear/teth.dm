@@ -79,3 +79,9 @@
 	desc = "One can assume that she is longing for someone."
 	icon_state = "wedge"
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10)
+
+/obj/item/clothing/suit/armor/ego_gear/regret
+	name = "regret"
+	desc = "Now the straitjacket is nothing but an accessory to the hatred and anger that remains."
+	icon_state = "regret"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
