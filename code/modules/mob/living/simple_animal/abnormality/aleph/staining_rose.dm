@@ -64,7 +64,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Life()
 	. = ..()
-	if(meltdown_cooldown < world.time)
+	if(meltdown_cooldown < world.time && !datum_reference.working)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		datum_reference.qliphoth_change(-1)
 

@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
 		if(!cmp.can_meltdown)
 			continue
-		if(cmp.meltdown || cmp.working)
+		if(cmp.meltdown || cmp.datum_reference.working)
 			continue
 		if(!cmp.datum_reference || !cmp.datum_reference.current)
 			continue
