@@ -127,6 +127,23 @@
 				to_chat(H, "<span class='userdanger'>I'm not ready for this!")
 	return
 
+// Called by datum_reference when the abnormality has been fully spawned
+/mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
+	return
+
+// transfers a var to the datum to be used later
+/mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
+	if(isnull(datum_reference))
+		return
+	LAZYSET(datum_reference.transferable_var, value, index)
+
+// Access an item in the "transferable_var" list of the abnormality's datum
+/mob/living/simple_animal/hostile/abnormality/proc/RememberVar(index)
+	if(isnull(datum_reference))
+		return
+	return LAZYACCESS(datum_reference.transferable_var, index)
+
+
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/work_chance(mob/living/carbon/human/user, chance)
 	return chance
