@@ -104,6 +104,7 @@
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
+	LAZYCLEARLIST(people_list)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
