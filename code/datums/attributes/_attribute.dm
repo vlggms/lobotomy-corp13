@@ -110,3 +110,19 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 		if(6) // 420+
 			return "EX"
 	return "N/A"
+
+/mob/living/carbon/human/proc/get_attribute_text_level(attribute_level)
+	switch(clamp(round(attribute_level / 20), 1, 6))
+		if(-INFINITY to 1) // 20
+			return "I"
+		if(2) // 40
+			return "II"
+		if(3) // 60
+			return "III"
+		if(4) // 80
+			return "IV"
+		if(5) // 100
+			return "V"
+		if(6 to INFINITY) // 120+
+			return "EX"
+	return "N/A"

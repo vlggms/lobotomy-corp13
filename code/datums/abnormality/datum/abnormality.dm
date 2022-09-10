@@ -163,7 +163,8 @@
 		return 0
 	var/acquired_chance = available_work[workType]
 	if(islist(acquired_chance))
-		acquired_chance = acquired_chance[get_user_level(user)]
+		var/work_level = clamp(round(get_attribute_level(user, WORK_TO_ATTRIBUTE[workType])/20), 1, 5)
+		acquired_chance = acquired_chance[work_level]
 	if(current)
 		acquired_chance = current.work_chance(user, acquired_chance)
 	switch (workType)

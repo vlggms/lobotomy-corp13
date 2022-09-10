@@ -63,7 +63,7 @@
 	dat += "Level [get_text_level()]<br>"
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
+		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
 	popup.set_content(dat.Join("<br>"))
