@@ -51,6 +51,9 @@
 	var/goodbye_cooldown_time = 20 SECONDS
 	var/goodbye_damage = 500
 
+	var/last_heal_time = 0
+	var/heal_percent_per_second = 0.0085
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -109,8 +112,20 @@
 	if(status_flags & GODMODE) // Contained
 		return
 	if(.)
+		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
+			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
+			if(health <= maxHealth*0.3)
+				heal_amount *= 2
+			adjustBruteLoss(-heal_amount)
+			last_heal_time = world.time
 		if(next_transform && (world.time > next_transform))
 			next_stage()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+	. = ..()
+	if(damagetype == RED_DAMAGE || damage < 5)
+		return
+	last_heal_time = world.time + 5 SECONDS // Heal delayed when taking damage.
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
 	if(!(status_flags & GODMODE)) // Already breaching
@@ -176,15 +191,18 @@
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 	SLEEP_CHECK_DEATH(5)
 	var/list/been_hit = list()
+	var/broken = FALSE
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if(T.density)
-			break
+			if(broken)
+				break
+			broken = TRUE
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
+			if (TF.density)
+				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
 			for(var/mob/living/L in TF)
-				if(faction_check_mob(L))
-					continue
-				if(L in been_hit)
+				if(faction_check_mob(L) || (L in been_hit))
 					continue
 				been_hit += L
 				L.apply_damage(hello_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
