@@ -58,7 +58,7 @@
 	var/special_cooldown_time = 15 SECONDS
 
 	var/meltdown_cooldown
-	var/meltdown_cooldown_time = 120 SECONDS
+	var/meltdown_cooldown_time = 180 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/Initialize()
 	. = ..()
@@ -607,7 +607,7 @@
 	for(var/i = 1 to 8)
 		if(!LAZYLEN(current_path))
 			break
-		addtimer(CALLBACK(src, .proc/Movement, controller), i*0.16 SECONDS, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/Movement, controller), i*0.2 SECONDS, TIMER_UNIQUE)
 
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
