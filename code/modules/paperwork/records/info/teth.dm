@@ -125,8 +125,8 @@
 	Work Damage : Moderate	<br>
 	- An employee with Level 3 or higher Prudence was consumed after completing their work.	<br>
 	- When the work result was Bad, the employee was consumed with a normal probability	<br><br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Low<br>
+	<h4>Instinct:</h4> High/Low<br>
+	<h4>Insight:</h4> Low/High<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
 
