@@ -67,7 +67,7 @@
 	if(!ruined)
 		original_name = name // can't use initial because of random posters
 		name = "poster - [name]"
-		desc = "A large piece of space-resistant printed paper. [desc]"
+		desc = "A large piece of printed paper. [desc]"
 
 	AddComponent(/datum/component/beauty, 300)
 
@@ -614,5 +614,83 @@
 	name = "Dick Gumshue"
 	desc = "A poster advertising the escapades of Dick Gumshue, mouse detective. Encouraging crew to bring the might of justice down upon wire saboteurs."
 	icon_state = "poster36_legit"
+
+//lobotomy corp posters
+
+/obj/structure/sign/poster/lobotomycorp
+	poster_item_name = "motivational lobotomy corp poster"
+	poster_item_desc = "An official Lobotomy-Corp-issued poster to foster a compliant and obedient workforce. It comes with state-of-the-art adhesive backing, for easy pinning to any vertical surface."
+	poster_item_icon_state = "rolled_legit"
+
+/obj/structure/sign/poster/lobotomycorp/random
+	name = "random official lobotomy corp poster"
+	random_basetype = /obj/structure/sign/poster/lobotomycorp
+	icon_state = "random_official"
+	never_random = TRUE
+
+/obj/structure/sign/poster/lobotomycorp/attributes
+	name = "Attributes"
+	desc = "A poster depicting the four attributes important for employees."
+	icon_state = "lc_attributes"
+
+/obj/structure/sign/poster/lobotomycorp/qliphoth
+	name = "Qliphoth"
+	desc = "A poster instructing the viewer to regularly check the abnormalities' qliphoth deterrence counter."
+	icon_state = "lc_qliphoth"
+
+/obj/structure/sign/poster/lobotomycorp/cleancorpses
+	name = "Clean Corpses"
+	desc = "A poster instructing the viewer to ask their local clerk to dispose of dead bodies."
+	icon_state = "lc_cleancorpses"
+
+/obj/structure/sign/poster/lobotomycorp/clerk_lives_matter
+	name = "Clerk Lives Matter"
+	desc = "This poster reminds employees to thank clerks for their contributions to the corporation."
+	icon_state = "lc_CLM"
+
+/obj/structure/sign/poster/lobotomycorp/wellcheers
+	name = "Wellcheers"
+	desc = "Otherworldly soda! I will send you to the new world!"
+	icon_state = "lc_wellcheers"
+
+/obj/structure/sign/poster/lobotomycorp/suckmyenegy
+	name = "Suck My Enegy"
+	desc = "A poster advertising an energy drink brand."
+	icon_state = "lc_suckmyenegy"
+
+/obj/structure/sign/poster/lobotomycorp/joinforces
+	name = "Join Forces"
+	desc = "A poster instructing the viewer to work with others when suppressing threats to the facility."
+	icon_state = "lc_joinforces"
+
+/obj/structure/sign/poster/lobotomycorp/egoinfo
+	name = "EGO Info"
+	desc = "A poster educating the viewer about EGOs, shorthand for Extermination of Geometrical Organ."
+	icon_state = "lc_EGOinfo"
+
+/obj/structure/sign/poster/lobotomycorp/rabbit_team
+	name = "Rabbit Team"
+	desc = "A poster depicting R-Corp's Rabbit Team logo."
+	icon_state = "lc_rabbit-team"
+
+/obj/structure/sign/poster/lobotomycorp/gobald
+	name = "Go Bald"
+	desc = "Keep calm and go bald."
+	icon_state = "lc_gobald"
+
+/obj/structure/sign/poster/lobotomycorp/welfare_ad
+	name = "Welfare Ad"
+	desc = "A poster advertising the facilities designed to improve the well-being of employees."
+	icon_state = "lc_welfare-ad"
+
+/obj/structure/sign/poster/lobotomycorp/hhpp
+	name = "HamHamPangPang"
+	desc = "HamHamPangPang, a sandwich franchise originating in District 13, is a favorite of many in the City. Come check it out!"
+	icon_state = "lc_hhpp"
+
+/obj/structure/sign/poster/lobotomycorp/bearbeer
+	name = "Bear Beer"
+	desc = "A poster depicting a beer brand endorsed by a certain employee."
+	icon_state = "lc_bearbeer"
 
 #undef PLACE_SPEED
