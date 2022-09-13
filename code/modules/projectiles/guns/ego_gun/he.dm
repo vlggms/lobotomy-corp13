@@ -10,3 +10,7 @@
 	armortype = BLACK_DAMAGE
 	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
