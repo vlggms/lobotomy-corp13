@@ -44,6 +44,8 @@
 	var/max_understanding = 0
 	/// A list of performed works on it
 	var/list/work_logs = list()
+	///a list of variable the abno wants to remember after death
+	var/list/transferable_var
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -96,6 +98,7 @@
 	if (understanding == max_understanding && max_understanding > 0)
 		current.gift_chance *= 1.5
 	overload_chance_limit = overload_chance_amount * 10
+	current.PostSpawn()
 
 /datum/abnormality/proc/FillEgoList()
 	if(!current || !current.ego_list)
@@ -105,6 +108,7 @@
 		ego_datums += ED
 		GLOB.ego_datums["[ED.name][ED.item_category]"] = ED
 	return TRUE
+
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong

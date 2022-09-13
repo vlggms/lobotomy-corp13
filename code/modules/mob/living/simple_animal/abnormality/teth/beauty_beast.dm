@@ -29,6 +29,20 @@
 	gift_type =  /datum/ego_gifts/horn
 	var/injured = FALSE
 
+//it needs to use PostSpawn or we can't get the datum of beauty
+/mob/living/simple_animal/hostile/abnormality/beauty/PostSpawn()
+	var/cursed = RememberVar(1)
+	if(!cursed)
+		return
+	for(var/mob/dead/observer/O in GLOB.player_list) //we grab the last person that died to beauty and yeet them in there
+		if(O.ckey == cursed)
+			O.mind.transfer_to(src)
+			src.ckey = cursed
+			to_chat(src, "<span class='userdanger'>You begin to have hundreds of eyes burst from your mouth, while a pair of horns expel from your eye sockets, adorning themselves with flowers. Now the Beast, you forever search for someone to lift your curse.</span>")
+			to_chat(src, "<span class='notice'>(If you wish to leave this body you can simply ghost with the ooc tab > ghost, there is no consequence for doing so.)</span>")
+			TransferVar(1, null) //we reset the cursed just in case
+			return
+
 /mob/living/simple_animal/hostile/abnormality/beauty/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
@@ -43,6 +57,7 @@
 			icon_state = "beauty_injured"
 
 		else if (!(GODMODE in user.status_flags))//If you already did repression, die.
+			TransferVar(1, user.ckey)
 			user.gib()
 			death()
 
