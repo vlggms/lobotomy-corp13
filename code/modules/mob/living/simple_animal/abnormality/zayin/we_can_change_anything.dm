@@ -23,6 +23,7 @@
 		)
 
 	gift_type =  /datum/ego_gifts/change
+	gift_message = "Your heart beats with new vigor."
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/work_complete(mob/living/carbon/human/user, work_type, pe)
 	user.apply_damage(100, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
@@ -32,7 +33,7 @@
 /datum/status_effect/we_can_change_anything
 	id = "change"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 mins 
+	duration = 3000		//Lasts 5 mins
 	alert_type = /atom/movable/screen/alert/status_effect/we_can_change_anything
 
 /atom/movable/screen/alert/status_effect/we_can_change_anything
