@@ -339,8 +339,7 @@
 	name = "CENSORED"
 	desc = "(CENSORED) has the ability to (CENSORED), but this is a horrendous sight for those watching. \
 			Looking at the E.G.O for more than 3 seconds will make you sick."
-	special = "This weapon increases its user resistance to all damage sources by 40% while equipped. \
-			Using it in hand will activate its special ability. To perform this attack - click on a distant target."
+	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
 	force = 75
 	damtype = BLACK_DAMAGE
@@ -407,21 +406,3 @@
 			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
-/obj/item/ego_weapon/censored/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(!ishuman(user))
-		return
-	if(slot != ITEM_SLOT_HANDS)
-		return
-	var/mob/living/carbon/human/H = user
-	H.physiology.damage_resistance += 40
-
-/obj/item/ego_weapon/censored/dropped(mob/user, silent = FALSE)
-	. = ..()
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	H.physiology.damage_resistance -= 40
-
-/obj/item/ego_weapon/censored/get_clamped_volume()
-	return 50
