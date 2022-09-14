@@ -341,21 +341,21 @@
 			Looking at the E.G.O for more than 3 seconds will make you sick."
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
-	force = 75
+	force = 85
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 110,
+							PRUDENCE_ATTRIBUTE = 90,
+							TEMPERANCE_ATTRIBUTE = 90,
+							JUSTICE_ATTRIBUTE = 90
 							)
 
 	var/special_attack = FALSE
-	var/special_damage = 300
+	var/special_damage = 360
 	var/special_cooldown
 	var/special_cooldown_time = 10 SECONDS
 	var/special_checks_faction = TRUE
@@ -406,3 +406,5 @@
 			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
+/obj/item/ego_weapon/censored/get_clamped_volume()
+	return 50
