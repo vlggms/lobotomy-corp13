@@ -4,6 +4,7 @@
 	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
 	so long as you pay them sufficiently."
 	level = 6
+	delay = 1
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
@@ -50,6 +51,7 @@
 	annonce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
 	level = 9
+	delay = 1
 	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
