@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
 
 	med_hud_set_sanity() // Change it to death state
-	to_chat(src, "<span class='warning'>You have died. Barring complete bodyloss, you can in most cases be revived by other players. If you do not wish to be brought back, use the \"Do Not Resuscitate\" verb in the ghost tab.</span>")
+	to_chat(src, "<span class='warning'>You have died. To continue playing, use the \"Respawn\" verb in the OOC tab.</span>")
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)

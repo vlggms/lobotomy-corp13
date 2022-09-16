@@ -28,9 +28,7 @@
 
 	// Tegu Description
 	s += "<br>Map: <b>\[[SSmapping.config?.map_name || "Loading..."]</b>\]"
-	s += "<br>Roleplay: \[<b>Medium</b>\]"
-	if(GLOB.master_mode)
-		s += "<br>Mode: \[<b>" + (GLOB.master_mode == "secret_extended" ? "secret" : GLOB.master_mode) + "</b>"//\]"
+	s += "<br>Roleplay: \[<b>Medium</b>\]"//\]"
 		// NOTE: If this is the LAST THING to be added to the description, then it'll end with a ] anyway. So don't include it here
 
 	var/players = GLOB.clients.len
