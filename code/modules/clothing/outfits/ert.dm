@@ -433,7 +433,9 @@
 /datum/outfit/centcom/ert/commander/rabbit
 	name = "Rabbit Team Leader"
 
-	suit = /obj/item/clothing/suit/space/hardsuit/rabbit/leader
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	head = /obj/item/clothing/head/rabbit_helmet
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	belt = /obj/item/ego_weapon/rabbit_blade
@@ -450,7 +452,10 @@
 
 /datum/outfit/centcom/ert/security/rabbit
 	name = "Rabbit Team"
-	suit = /obj/item/clothing/suit/space/hardsuit/rabbit
+
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	head = /obj/item/clothing/head/rabbit_helmet/grunt
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	belt = /obj/item/ego_weapon/rabbit_blade
@@ -467,6 +472,8 @@
 
 /datum/outfit/centcom/ert/commander/rhino
 	name = "Rhino Team Leader"
+
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
 	suit = null
 	suit_store = null
 	glasses = /obj/item/clothing/glasses/hud/health/night
@@ -486,6 +493,8 @@
 
 /datum/outfit/centcom/ert/security/rhino
 	name = "Rhino Team"
+
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
 	suit = null
 	suit_store = null
 	glasses = /obj/item/clothing/glasses/hud/health/night
