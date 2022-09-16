@@ -63,12 +63,18 @@
 	M.AdjustUnconscious(-5)
 	M.AdjustParalyzed(-5)
 	M.AdjustImmobilized(-5)
+	if(prob(1))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(3*REM) // That's healing
 	..()
 	. = 1
 
 /datum/reagent/drug/nicotine/overdose_process(mob/living/M)
 	M.adjustToxLoss(0.1*REM, 0)
 	M.adjustOxyLoss(1.1*REM, 0)
+	if(prob(10))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(-5*REM) // That's BAD
 	..()
 	. = 1
 
