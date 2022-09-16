@@ -567,6 +567,10 @@
 	icon_state = "judge"
 	duration = 20
 
+/obj/effect/temp_visual/whitelake
+	icon_state = "whitelake"
+	duration = 20
+
 /obj/effect/temp_visual/judgement/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/fade_out), 10)
