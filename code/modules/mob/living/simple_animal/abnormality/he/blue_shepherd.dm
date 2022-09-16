@@ -52,19 +52,59 @@
 	var/slashing = FALSE
 	var/range = 2
 	var/hired = FALSE
-	var/list/lines = list(
+	var/lie_chance = 30 // % chance to lie
+	var/list/people_list = list() //list of people shepperd can mention
+	//lines said during combat
+	var/list/combat_lines = list(
 				"Have at you!",
 				"Take this!",
 				"I'll kill you!",
 				"This is for locking me up!",
 				"Die!"
 				)
+	//lines shepperd say when someone's dead
+	var/list/people_dead_lines = list(
+				" didn't last long huh?",
+				" died, if only I was here to help...",
+				"'s dead? what a shame, I kinda liked them.",
+				)
+	//lines shepperd say when someone is still alive
+	var/list/people_alive_lines = list(
+				" is still alive somehow, won't last long though.",
+				" is doing much better than you, but I can take care of them if you want.",
+				"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
+				"'s would have released me by now, why can't you do the same?",
+				)
+	//lines shepperd say when something has breached
+	var/list/abno_breach_lines = list(
+				" has breached, I could help you know?",
+				" is out, are you sure you're strong enough to take care of it by yourself?",
+				" is going on a rampage, you guys really can't do your job right huh?",
+				" has breached and you're still wasting your time on me? I'm flattered.",
+				)
+	//lines shepperd say when an abno hasn't breached (yet)
+	var/list/abno_safe_lines = list(
+				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
+				" hasn't breached yet, but I wouldn't count on it staying that way.",
+				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
+				"'s doing fine, don't you have a manager to check those things for you?",
+				)
+
+
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Alright, here we go again
+	//makes a list of people and abno to shit talk
+	if(LAZYLEN(GLOB.mob_living_list))
+		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
+			if(H.stat != DEAD)
+				people_list += H
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
+	LAZYCLEARLIST(people_list)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
@@ -80,8 +120,33 @@
 		datum_reference.qliphoth_change(-4)
 	else
 		datum_reference.qliphoth_change(-1)
-		say("Trust me, you gotta let me out of here!")
 		SLEEP_CHECK_DEATH(10)
+	if(status_flags & GODMODE)
+		var/lie //if shepperd's lying or not
+		if(prob(lie_chance))
+			lie = TRUE
+		else
+			lie = FALSE
+		var/list/abno_list = AbnoListGen()
+		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
+			var/datum/abnormality/abno_datum = pick(abno_list)
+			var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
+			if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
+				say(abno.name + pick(abno_breach_lines))
+			else
+				say(abno.name + pick(abno_safe_lines))
+		else if(LAZYLEN(people_list))
+			var/mob/living/carbon/human/subject = pick(people_list)
+			if(isnull(subject))
+				people_list -= subject
+			else if(subject == user)
+				say("It's only a matter of time until I get out, but you could have me as a friend rather than foe.")
+			else if((subject.stat == DEAD && !lie) || (subject.stat != DEAD && lie))
+				say(subject.name + pick(people_dead_lines))
+			else
+				say(subject.name + pick(people_alive_lines))
+		else
+			say("Trust me, you gotta let me out of here!") //if he has somehow nothing to lie about
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
@@ -98,7 +163,7 @@
 	slash_current-=1
 	if(slash_current == 0)
 		slash_current = slash_cooldown
-		say(pick(lines))
+		say(pick(combat_lines))
 		SLEEP_CHECK_DEATH(10)
 		slashing = TRUE
 		slash()
@@ -137,7 +202,7 @@
 		SLEEP_CHECK_DEATH(3)
 	slashing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/on_mob_death(datum/source, mob/living/died, gibbed)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
 	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return FALSE
@@ -150,3 +215,25 @@
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
+
+///makes a list of abno datum that can breach and aren't dead/null
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/AbnoListGen()
+	var/list/abno_list = list()
+	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+			if(isnull(A.current))
+				continue
+			if(A.current.can_breach && A.name != name)
+				abno_list += A
+	return abno_list
+
+///add stuff to the list when newbies arrive and removes duplicates so the list isn't full of the same respawned guy(s)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/OnNewCrew(datum_source, mob/living/newbie)
+	SIGNAL_HANDLER
+	if(!ishuman(newbie)) //dogs stealing our job
+		return
+	if(LAZYLEN(people_list))
+		for(var/mob/living/carbon/human/person in people_list)
+			if(newbie.real_name == person.real_name)
+				people_list -= person
+	people_list += newbie
