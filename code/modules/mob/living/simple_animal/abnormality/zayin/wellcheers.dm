@@ -22,6 +22,8 @@
 		/datum/ego_datum/armor/soda
 		)
 	gift_type = /datum/ego_gifts/soda
+	gift_message = "You feel like you've been doing this your whole life."
+
 /mob/living/simple_animal/hostile/abnormality/wellcheers/success_effect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
 	switch(work_type)

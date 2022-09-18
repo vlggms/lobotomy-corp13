@@ -1,17 +1,17 @@
-#define HAT "Hat_Slot"
-#define HELMET "Helmet_Slot"
-#define EYE "Eye_Slot"
-#define FACE "Face_Slot"
-#define MOUTH_1 "Mouth_Slot_1"
-#define MOUTH_2 "Mouth_Slot_2"
-#define CHEEK "Cheek_Slot"
-#define BROOCH "Brooch_Slot"
-#define NECKWEAR "Neckwear_Slot"
-#define LEFTBACK "Left_Back_Slot"
-#define RIGHTBACK "Right_Back_Slot"
-#define HAND_1 "Hand_Slot_1"
-#define HAND_2 "Hand_Slot_2"
-#define SPECIAL "Special_Other_Slot"
+#define HAT "Hat Slot"
+#define HELMET "Helmet Slot"
+#define EYE "Eye Slot"
+#define FACE "Face Slot"
+#define MOUTH_1 "Mouth Slot 1"
+#define MOUTH_2 "Mouth Slot 2"
+#define CHEEK "Cheek Slot"
+#define BROOCH "Brooch Slot"
+#define NECKWEAR "Neckwear Slot"
+#define LEFTBACK "Left Back Slot"
+#define RIGHTBACK "Right Back Slot"
+#define HAND_1 "Hand Slot 1"
+#define HAND_2 "Hand Slot 2"
+#define SPECIAL "Special/Other Slot"
 /datum/ego_gifts // Currently Covers most EGO Gift Functions, most others can be done via armors
 	var/name = ""
 	var/icon = 'icons/mob/clothing/ego_gear/ego_gifts.dmi'
@@ -26,6 +26,8 @@
 	var/insight_mod = 0
 	var/attachment_mod = 0
 	var/repression_mod = 0
+	var/locked = FALSE
+	var/mob/living/carbon/human/owner
 
 /datum/ego_gifts/proc/Initialize(mob/living/carbon/human/user)
 	user.ego_gift_list[src.slot] = src
@@ -38,6 +40,7 @@
 	user.physiology.insight_success_mod += src.insight_mod
 	user.physiology.attachment_success_mod += src.attachment_mod
 	user.physiology.repression_success_mod += src.repression_mod
+	owner = user
 	return
 
 /datum/ego_gifts/proc/Remove(mob/living/carbon/human/user)
@@ -53,25 +56,44 @@
 	QDEL_NULL(src)
 	return
 
+/datum/ego_gifts/Topic()
+	locked = locked ? FALSE : TRUE
+	owner.ShowGifts()
+
 /mob/living/carbon/human/proc/Apply_Gift(datum/ego_gifts/given) // Gives the gift and removes the effects of the old one if necessary
 	if(!istype(given))
 		return
 	if(!isnull(ego_gift_list[given.slot]))
 		var/datum/ego_gifts/removed_gift = ego_gift_list[given.slot]
+		if(removed_gift.locked)
+			return
 		removed_gift.Remove(src)
 	given.Initialize(src)
 	if(istype(ego_gift_list[LEFTBACK], /datum/ego_gifts/paradise) && istype(ego_gift_list[RIGHTBACK], /datum/ego_gifts/twilight)) // If you have both, makes them not overlap
 		var/datum/ego_gifts/twilight/right_wing = ego_gift_list[RIGHTBACK] // Have to do this messier because the gift_list isnt' a defined type... pain
 		var/datum/ego_gifts/paradise/left_wing = ego_gift_list[LEFTBACK]
+		src.cut_overlay(mutable_appearance(left_wing.icon, left_wing.icon_state, left_wing.layer))
+		src.cut_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
 		left_wing.icon_state = "paradiselost_x"
 		right_wing.icon_state = "twilight_x"
+		src.add_overlay(mutable_appearance(left_wing.icon, left_wing.icon_state, left_wing.layer))
+		src.add_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
 	else
 		if(istype(ego_gift_list[LEFTBACK], /datum/ego_gifts/paradise)) // If one gets overwritten it fixes them
 			var/datum/ego_gifts/paradise/left_wing = ego_gift_list[LEFTBACK]
+			src.cut_overlay(mutable_appearance(left_wing.icon, left_wing.icon_state, left_wing.layer))
 			left_wing.icon_state = "paradiselost"
+			src.add_overlay(mutable_appearance(left_wing.icon, left_wing.icon_state, left_wing.layer))
 		if(istype(ego_gift_list[RIGHTBACK], /datum/ego_gifts/twilight))
 			var/datum/ego_gifts/twilight/right_wing = ego_gift_list[RIGHTBACK]
+			src.cut_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
 			right_wing.icon_state = "twilight"
+			src.add_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
+
+/// Empty EGO GIFT Slot
+/datum/ego_gifts/empty
+	name = "Empty"
+	icon_state = ""
 
 /// All Zayin EGO Gifts
 /datum/ego_gifts/soda
