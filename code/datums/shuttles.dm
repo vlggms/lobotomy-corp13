@@ -174,11 +174,19 @@
 	port_id = "manager"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/epsilon
+	port_id = "epsilon"
+	can_be_bought = FALSE
+
 // Shuttles start here:
 
 /datum/map_template/shuttle/manager/elevator
 	suffix = "elevator"
 	name = "manager elevator"
+
+/datum/map_template/shuttle/epsilon/elevator
+	suffix = "elevator"
+	name = "epsilon elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
