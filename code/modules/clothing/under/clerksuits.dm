@@ -60,3 +60,8 @@
 	name = "architecture department uniform"
 	desc = "A black-and-white suit. Worn by clerks from the architecture department."
 	icon_state = "architecture"
+
+/obj/item/clothing/under/suit/lobotomy/rabbit
+	name = "\improper r-corp uniform"
+	desc = "A black uniform with a orange line worn by R-corps mercenaries."
+	icon_state = "rabbit"

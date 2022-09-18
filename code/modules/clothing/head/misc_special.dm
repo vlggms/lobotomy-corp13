@@ -371,3 +371,28 @@
 	. = ..()
 	if(!warped)
 		warp_up()
+
+/obj/item/clothing/head/rabbit_helmet //No armor since the ego-gears do it's job.
+	name = "\improper rabbit team command helmet"
+	desc = "An Combat helmet worn by R-Corporation mercenaries in the field, this one look rather unique"
+	icon_state = "rabbit"
+	icon = 'icons/obj/clothing/ego_gear/head.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
+	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDEEYES | HIDEEARS | HIDEHAIR | HIDESNOUT
+	visor_flags_inv = 0
+	dynamic_hair_suffix = ""
+
+/obj/item/clothing/head/rabbit_helmet/grunt
+	name = "\improper rabbit team helmet"
+	desc = "An Combat helmet worn by R-Corporation mercenaries in the field."
+	icon_state = "rabbit"
+
+
+/obj/item/clothing/head/rabbit_helmet/grunt/Initialize(mapload)
+	. = ..()
+	icon_state = pick("rabbit_grunt", "rabbit_grunt_one", "rabbit_grunt_two", "rabbit_grunt_three")
+	if(prob(1))
+		desc = "I'm all ears, honestly."
+		worn_icon = 'icons/mob/clothing/big_hat.dmi'
+		icon_state = "rabbit_grunt"
+		worn_icon_state = "rabbit_grunt_four"
