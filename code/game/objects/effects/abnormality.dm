@@ -108,3 +108,18 @@
 	..()
 	animate(src, alpha = 255, time = 1, easing = JUMP_EASING)
 	QDEL_IN(src, 33)
+
+/obj/effect/scaredy_stun
+	name = "Together"
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	icon_state = "scaredy_stun"
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -10
+	base_pixel_x = -10
+	pixel_y = 25
+	base_pixel_y = 25
+
+/obj/effect/scaredy_stun/Initialize()
+	..()
+	animate(src, alpha = 0, time = 20 SECONDS)
+	QDEL_IN(src, 20 SECONDS)
