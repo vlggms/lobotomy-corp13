@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
-	wait = 5 MINUTES
+	wait = INFINITY
 
 	/// List of(preferably) 3 abnormalities available for manager to choose from.
 	var/list/picking_abnormalities = list()
@@ -26,8 +26,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 		pick_abno()
 	addtimer(CALLBACK(src, .proc/HandleStartingAbnormalities), 180 SECONDS)
 	rooms_start = GLOB.abnormality_room_spawners.len
-	wait -= min(30, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
-	wait -= min(30, GLOB.clients.len * 0.05) MINUTES // 20 players will ALSO decrease wait time by 1 minute
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -83,6 +81,11 @@ SUBSYSTEM_DEF(abnormality_queue)
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
 		picking_abno |= possible_abnormalities[lev]
+	if(spawned_abnos < 1) // No more "bricked" starts because of 0 manager and getting only stat-checking instant kill Abnos. It's just not fun.
+		picking_abno -= /mob/living/simple_animal/hostile/abnormality/crumbling_armor
+		picking_abno -= /mob/living/simple_animal/hostile/abnormality/bloodbath
+		picking_abno -= /mob/living/simple_animal/hostile/abnormality/spider
+		picking_abno -= /mob/living/simple_animal/hostile/abnormality/we_can_change_anything
 	for(var/i = 1 to 3)
 		if(!LAZYLEN(picking_abno))
 			break
@@ -95,10 +98,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = GLOB.clients.len
-	if(player_count < 6)
-		return
 	var/i
-	for(i=1 to round(player_count / 6))
+	for(i=1 to max(1, round(player_count / 6))) // Always spawn one guy at least.
 		fire()
 		sleep(10 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 	message_admins("[i] round-start abnormalities have been spawned.")

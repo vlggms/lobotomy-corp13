@@ -74,15 +74,17 @@
 		to_chat(M, "<b>You have not been assigned to any department.</b>")
 
 	var/set_attribute = normal_attribute_level
-	if(world.time >= 75 MINUTES) // Full facility expected
+	var/interval = SSabnormality_queue.spawned_abnos
+	var/max = GLOB.abnormality_room_spawners.len
+	if(interval >= round(max * (5/6))) // Full facility expected
 		set_attribute *= 4
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
+	else if(interval >= round(max * (2/3))) // More than one ALEPH
 		set_attribute *= 3
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
+	else if(interval >= round(max * (1/2))) // Wowzer, an ALEPH?
 		set_attribute *= 2.5
-	else if(world.time >= 30 MINUTES) // Expecting WAW
+	else if(interval >= round(max * (1/3))) // Expecting WAW
 		set_attribute *= 2
-	else if(world.time >= 15 MINUTES) // Usual time for HEs
+	else if(interval >= round(max * (1/6))) // Usual time for HEs
 		set_attribute *= 1.5
 
 	for(var/A in roundstart_attributes)

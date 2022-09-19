@@ -47,6 +47,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/datum/suppression/core_suppression = null
 	// Work logs from all abnormalities
 	var/list/work_logs = list()
+	// How many meltdowns should occur before a new abno arrives
+	var/abno_wait_cooldown = 1
+	var/abno_wait = 0
+	var/player_ratio = 0.35
 
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
@@ -87,6 +91,15 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if((current_box >= box_goal) && !goal_reached) // Also TODO: Make it do something other than this
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
+		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
+		pizzatype_list -= /obj/item/food/pizza/arnold
+		for(var/mob/living/carbon/human/person in GLOB.mob_living_list)
+			var/obj/structure/closet/supplypod/centcompod/pod = new()
+			var/pizzatype = pick(pizzatype_list)
+			new pizzatype(pod)
+			pod.explosionSize = list(0,0,0,0)
+			to_chat(person, "<span class=danger>It's pizza time!</span>")
+			new /obj/effect/pod_landingzone(get_turf(person), pod)
 		return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
@@ -96,9 +109,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	// Update list of abnormalities that can be affected by meltdown
-	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 30 MINUTES)
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && SSabnormality_queue.spawned_abnos >= 9)
 		qliphoth_meltdown_affected -= ZAYIN_LEVEL
-	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 60 MINUTES)
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && SSabnormality_queue.spawned_abnos >= 15)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
@@ -112,7 +125,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(istype(A.current))
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
-	if(qliphoth_state >= next_ordeal_time)
+	if(qliphoth_state >= next_ordeal_time) // Leaving this for now.
 		if(OrdealEvent())
 			ran_ordeal = TRUE
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
@@ -121,6 +134,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(ran_ordeal)
 		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
+	if(abno_wait <= qliphoth_state)
+		SSabnormality_queue.fire() // Fired AFTER the meltdown occurs, so there's no situation where players are screwed because they were prepping for CENSORED and he arrives and instant meltdowns.
+		abno_wait_cooldown = round(clamp(1+(player_ratio*player_count), 2, INFINITY)) // Actively dynamic with the living players.
+		abno_wait = abno_wait_cooldown + qliphoth_state
 	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE)
