@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer //designed to be a very forgiving and standard abnormality.
 	name = "forsaken murderer"
 	desc = "A unhealthy looking human bound in a full body straightjacket. His neck is broken and in the middle of his forehead is a old wound that refuses to heal."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "forsakenmurdererinert"
 	icon_living = "forsakenmurdererinert"
 	icon_dead = "forsakenmurdererdead"
@@ -22,6 +22,8 @@
 	attack_sound = 'sound/effects/hit_kick.ogg' //used chrome to listen to these
 	attack_verb_continuous = "smashes"
 	attack_verb_simple = "smash"
+	friendly_verb_continuous = "bonks"
+	friendly_verb_simple = "bonk"
 	faction = list() //leaving the faction list blank only attributes them to one faction and thats its own unique mob number. With this forsaken murderer will even attack duplicates of themselves.
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
