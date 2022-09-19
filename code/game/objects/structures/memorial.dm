@@ -43,3 +43,8 @@ That’s how he would have wanted it.
 	icon_state = "medal_paperwork"
 	medaltype = "medal-gold"
 	custom_materials = list(/datum/material/gold=1000)
+
+/obj/structure/fluff/arc/angela
+	name = "\proper the cerebrum"
+	desc = "Welcome to Lobotomy Corp. Face the fear, build the future."
+	icon_state = "commandstatue"

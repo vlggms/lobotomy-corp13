@@ -24,6 +24,7 @@
 		)
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/penitence
+	gift_message = "From this day forth, you shall never forget his words."
 
 /mob/living/simple_animal/hostile/abnormality/onesin/work_chance(mob/living/carbon/human/user, chance)
 	. = ..()

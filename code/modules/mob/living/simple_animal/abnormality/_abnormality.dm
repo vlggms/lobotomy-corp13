@@ -57,6 +57,7 @@
 	/// EGO Gifts
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
+	var/gift_message = null
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -82,6 +83,8 @@
 				gift_chance = 1
 			else
 				gift_chance = 0
+	if(isnull(gift_message))
+		gift_message = "You are granted a gift by [src]!"
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -152,6 +155,7 @@
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if (prob(gift_chance) && !isnull(gift_type))
 		user.Apply_Gift(new gift_type)
+		to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
 		return

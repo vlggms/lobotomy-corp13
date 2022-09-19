@@ -253,6 +253,9 @@
 	M.AdjustSleeping(-40)
 	//310.15 is the normal bodytemp.
 	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(1*REM) // That's healing
 	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	..()
@@ -273,6 +276,9 @@
 	M.drowsyness = max(0,M.drowsyness-1)
 	M.jitteriness = max(0,M.jitteriness-3)
 	M.AdjustSleeping(-20)
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
@@ -322,6 +328,9 @@
 	M.AdjustSleeping(-40)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
 	M.Jitter(5)
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	..()
 	. = 1
 
@@ -359,6 +368,9 @@
 	M.dizziness = max(0,M.dizziness-2)
 	M.drowsyness = max(0,M.drowsyness-1)
 	M.AdjustSleeping(-40)
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
@@ -630,6 +642,9 @@
 	M.SetSleeping(0)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
 	M.Jitter(5)
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()
@@ -651,6 +666,9 @@
 	M.SetSleeping(0)
 	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
 	M.Jitter(5)
+	if(prob(5))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()

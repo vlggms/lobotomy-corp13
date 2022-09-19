@@ -498,28 +498,6 @@
 	REMOVE_TRAIT(L, TRAIT_STUNRESISTANCE, type)
 	..()
 
-/datum/reagent/medicine/mental_stabilizator
-	name = "Mental Stabilizator"
-	description = "Heals any potential issues with mental state of the patient."
-	reagent_state = LIQUID
-	color = "#CCFFFF"
-	metabolization_rate = 0.5 * REAGENTS_METABOLISM
-	overdose_threshold = 25
-
-/datum/reagent/medicine/mental_stabilizator/on_mob_life(mob/living/M)
-	if(!ishuman(M))
-		return
-	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(5*REM) // That's healing
-	..()
-	. = 1
-
-/datum/reagent/medicine/sal_acid/overdose_process(mob/living/M)
-	if(M.getBruteLoss()) //It only makes existing bruises worse
-		M.adjustBruteLoss(4.5*REM, FALSE, FALSE, BODYPART_ORGANIC) // it's going to be healing either 4 or 0.5
-		. = 1
-	..()
-
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/M)
 	if(prob(20) && iscarbon(M))
 		var/obj/item/I = M.get_active_held_item()
@@ -547,6 +525,38 @@
 		M.losebreath++
 		. = 1
 	return TRUE
+
+/datum/reagent/medicine/mental_stabilizator //Classic sanity restoration medicine.
+	name = "Mental Stabilizator"
+	description = "Heals any potential issues with mental state of the patient."
+	reagent_state = LIQUID
+	color = "#CCFFFF"
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	overdose_threshold = 25
+
+/datum/reagent/medicine/mental_stabilizator/on_mob_life(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	H.adjustSanityLoss(5*REM) // That's healing 5 units.
+	..()
+	. = 1
+
+/datum/reagent/medicine/mental_stabilizator/overdose_process(mob/living/M)
+	if(prob(5))
+		if(current_cycle >= 50)
+			var/mob/living/carbon/human/H = M
+			to_chat(M, "<span class='notice'>[pick("Your blood starts to move.", "Your memories are fading.", "'Do not fear for we are with you now.'", "The sound of knocking is deafening.")]</span>")
+			H.adjustSanityLoss(-0.30*H.maxSanity*REM) // That's hurting 10% of sanity
+		else
+			var/mob/living/carbon/human/H = M
+			to_chat(M, "<span class='notice'>[pick("Your head pounds.", "Your thoughts are not your own.", "'You are in danger you have to run NOW!'")]</span>")
+			H.adjustSanityLoss(-0.10*H.maxSanity*REM) // That's hurting 5% of sanity
+	else if(prob(50))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(-10*REM) // That's hurting 10 units.
+		. = 1
+	..()
 
 /datum/reagent/medicine/diphenhydramine
 	name = "Diphenhydramine"
@@ -1193,9 +1203,9 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		C.disgust = max(0, C.disgust-6)
-	var/datum/component/mood/mood = M.GetComponent(/datum/component/mood)
-	if(mood != null && mood.sanity <= SANITY_NEUTRAL) // only take effect if in negative sanity and then...
-		mood.setSanity(min(mood.sanity+5, SANITY_NEUTRAL)) // set minimum to prevent unwanted spiking over neutral
+	if(prob(10))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(1*REM) // That's healing
 	..()
 	. = 1
 

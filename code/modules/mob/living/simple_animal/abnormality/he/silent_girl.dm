@@ -91,7 +91,7 @@
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
 	var/dead_list = guilty_people
 	for(var/mob/living/carbon/human/dead_body in dead_list)
-		if(dead_body.stat == DEAD)
+		if(dead_body.stat == DEAD || isnull(dead_body))
 			guilty_people -= dead_body
 	if (!LAZYLEN(guilty_people)) // No Guilty on 0 counter? Find a random person and take them <3
 		var/list/potential_guilt = list()
@@ -103,7 +103,7 @@
 			Guilt_Effect(pick(potential_guilt))
 		else
 			manual_emote("giggles.")
-			playsound(get_turf(src), 'sound/voice/human/womanlaugh.ogg', 50, 0, 6, ignore_walls = TRUE)
+			playsound(get_turf(src), 'sound/voice/human/womanlaugh.ogg', 50, 0, 20, ignore_walls = TRUE)
 	for(var/mob/living/carbon/human/i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
 		to_chat(i, "<span class='userdanger'>You feel your head begin to split!</span>")
 		addtimer(CALLBACK(src, .proc/DriveInsane, i), 10 SECONDS)
