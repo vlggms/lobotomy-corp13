@@ -73,4 +73,4 @@
 // CENSORED - CENSORED
 /datum/ego_datum/weapon/censored
 	item_path = /obj/item/ego_weapon/censored
-	cost = 200
+	cost = 250
