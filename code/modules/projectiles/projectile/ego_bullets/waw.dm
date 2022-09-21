@@ -55,21 +55,19 @@
 	name = "solemn lament"
 	icon_state = "whitefly"
 	damage = 15
-	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
 	damage = 15
-	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
 //Smartgun
 /obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 5
+	damage = 6
 	speed = 0.2
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
@@ -92,78 +90,5 @@
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 9
+	damage = 14
 	damage_type = RED_DAMAGE
-
-/obj/projectile/ego_bullet/ego_ecstasy
-	name = "ecstasy"
-	icon_state = "ecstasy"
-	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
-	damage = 10
-	speed = 1.3
-	range = 6
-
-/obj/projectile/ego_bullet/ego_ecstasy/Initialize()
-	. = ..()
-	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_MAGENTA, COLOR_ORANGE)
-
-//Smartpistol
-/obj/projectile/ego_bullet/ego_praetorian
-	name = "praetorian"
-	icon_state = "loyalty"
-	damage = 21
-	nodamage = TRUE	//Damage is calculated later
-	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
-	projectile_piercing = PASSMOB
-	homing = TRUE
-//	var/homing_range = 15
-//	var/list/targetslist = list()
-
-/obj/projectile/ego_bullet/ego_praetorian/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
-		nodamage = FALSE
-	else
-		return
-	..()
-	if(!ishuman(target))
-		qdel(src)
-
-/* Not quite ready.
-/obj/projectile/ego_bullet/ego_praetorian/Initialize()
-	..()
-	for(var/mob/living/L in livinginrange(homing_range, src))
-		if(ishuman(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	homing_target = pick(targetslist)*/
-
-
-/obj/projectile/ego_bullet/ego_magicpistol
-	name = "magic pistol"
-	icon_state = "magic_bullet"
-	damage = 62
-	speed = 0.1
-	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
-	projectile_piercing = PASSMOB
-
-//tommygun
-/obj/projectile/ego_bullet/ego_intention
-	name = "good intentions"
-	damage = 8
-	speed = 0.2
-	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
-
-//laststop
-/obj/projectile/ego_bullet/ego_laststop
-	name = "laststop"
-	damage = 145
-	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE

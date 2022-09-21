@@ -31,8 +31,6 @@
 	special = "This weapon deals more throwing damage."
 	force = 22
 	throwforce = 50		//You can only hold two so go nuts.
-	throw_speed = 5
-	throw_range = 7
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -104,7 +102,8 @@
 /obj/item/ego_weapon/mini/wrist
 	name = "Wrist Cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon attacks very fast. "
+	special = "This weapon attacks very fast. \
+			This weapon fits in ego weapon belts."
 	icon_state = "wrist"
 	force = 6
 	attack_speed = 0.3
@@ -112,40 +111,3 @@
 	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-/obj/item/ego_weapon/regret
-	name = "regret"
-	desc = "Before swinging this weapon, expressing one’s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
-	special = "This weapon attacks extremely slowly."
-	icon_state = "regret"
-	force = 38				//Lots of damage, way less DPS
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
-	attack_verb_simple = list("smash", "bludgeon", "crush")
-
-/obj/item/ego_weapon/regret/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 2) // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
-	
-/obj/item/ego_weapon/mini/blossom
-	name = "Blossoms"
-	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon deals bonus throwing damage. \
-			Upon throwing, this weapon returns to the user."
-	icon_state = "blossoms"
-	force = 17
-	throwforce = 30
-	throw_speed = 1
-	throw_range = 7
-	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
-	hitsound = 'sound/weapons/bladeslice.ogg'
-
-/obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
-	if(thrownby && !caught)
-		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
-	if(caught)
-		return
-	else
-		return ..()

@@ -157,16 +157,6 @@
 		JUSTICE_ATTRIBUTE = 40
 	)
 
-/obj/item/clothing/suit/armor/ego_gear/courage
-	name = "courage"
-	desc = "Their weapons did not hurt me, but when I looked back and you were not there; It felt as if I was on the verge of death."
-	icon_state = "courage"
-	//because SC is essentially physically immortal but a coward, he has good physical resistances and god awful "sanity" resistances
-	armor = list (RED_DAMAGE = 40, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 50) //80
-	attribute_requirements = list(
-								FORTITUDE_ATTRIBUTE = 40
-								)
-
 /obj/item/clothing/suit/armor/ego_gear/brick
 	name = "yellow brick"
 	desc = "The heavy dress weighs you down, smacking against your knees."

@@ -236,3 +236,17 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
 	)
+
+/obj/item/gun/ego_gun/pistol/crimson
+	name = "crimson scar"
+	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
+	icon_state = "crimsonscar"
+	inhand_icon_state = "crimsonscar"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
+	fire_delay = 12
+	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	fire_sound_volume = 30
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+	)

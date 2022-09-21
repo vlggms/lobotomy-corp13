@@ -427,3 +427,37 @@
 
 /obj/machinery/navbeacon/wayfinding/disposals
 	location = "Disposals"
+
+//LC13
+	//Asiyah Upper Departments
+/obj/machinery/navbeacon/wayfinding/controldepartment
+	location = "Control"
+
+/obj/machinery/navbeacon/wayfinding/informationdepartment
+	location = "Information"
+
+/obj/machinery/navbeacon/wayfinding/trainingdepartment
+	location = "Training"
+
+/obj/machinery/navbeacon/wayfinding/safetydepartment
+	location = "Safety"
+
+	//Briah Middle Departments
+/obj/machinery/navbeacon/wayfinding/centralcommanddepartment
+	location = "Central Command"
+
+/obj/machinery/navbeacon/wayfinding/welfaredepartment
+	location = "Welfare"
+
+/obj/machinery/navbeacon/wayfinding/disciplinarydepartment
+	location = "Disciplinary"
+
+	//Atziluth Bottom Departments
+/obj/machinery/navbeacon/wayfinding/recorddepartment
+	location = "Record"
+
+/obj/machinery/navbeacon/wayfinding/extractiondepartment
+	location = "Extraction"
+
+/obj/machinery/navbeacon/wayfinding/architecturedepartment
+	location = "Architecture"

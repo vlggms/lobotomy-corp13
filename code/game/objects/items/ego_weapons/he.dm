@@ -2,7 +2,6 @@
 	name = "grinder MK4"
 	desc = "The sharp sawtooth of the grinder makes a clean cut through its enemy. \
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
-	special = "This weapon pierces to hit everything on the target's tile."
 	icon_state = "grinder"
 	force = 30
 	damtype = RED_DAMAGE
@@ -13,21 +12,6 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
-
-/obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
-	..()
-	var/turf/T = get_turf(target)
-	//damage calculations
-	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	force*=justicemod
-	for(var/mob/living/L in T.contents)
-		if(L == user || L == target)
-			continue
-		if(L.stat >= DEAD)
-			continue
-		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	force = 30
 
 /obj/item/ego_weapon/harvest
 	name = "harvest"
@@ -42,39 +26,6 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
 							)
-	var/can_spin = TRUE
-
-/obj/item/ego_weapon/harvest/attack(mob/living/target, mob/living/user)
-	..()
-	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 12)
-
-/obj/item/ego_weapon/harvest/proc/spin_reset()
-	can_spin = TRUE
-
-/obj/item/ego_weapon/harvest/attack_self(mob/user)
-	if(!CanUseEgo(user))
-		return
-	if(!can_spin)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
-		return
-	can_spin = FALSE
-	if(do_after(user, 12))
-		addtimer(CALLBACK(src, .proc/spin_reset), 12)
-		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
-		for(var/turf/T in orange(1, user))
-			new /obj/effect/temp_visual/smash_effect(T)
-
-		for(var/mob/living/L in livinginrange(1, user))
-			var/aoe = 30
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			aoe*=justicemod
-			if(L == user || ishuman(L))
-				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-
-
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
@@ -248,7 +199,7 @@
 	special = "This weapon has a slower attack speed. \
 	This weapon has knockback."
 	icon_state = "christmas"
-	force = 54	//Still lower DPS
+	force = 50
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
@@ -396,38 +347,3 @@
 		sleep(0.25 SECONDS)
 	smashing = FALSE
 	return
-
-/obj/item/ego_weapon/courage
-	name = "courage"
-	desc = "Can I follow you forever? So I can tear them apart..."
-	special = "This weapon deals more damage the more allies you can see."
-	icon_state = "courage"
-	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-	attack_verb_continuous = "slash"
-	attack_verb_simple = "slash"
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
-							)
-
-/obj/item/ego_weapon/courage/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	var/friend_count = 0
-	for(var/mob/living/carbon/human/friend in oview(user, 10))
-		if(friend_count > 4) //the cap is 4 because thematically that's the rest of the oz crew (not including scaredy cat himself)
-			break
-		if(friend.ckey && friend.stat != DEAD && friend != user)
-			force += 15
-			friend_count++
-	if(!friend_count && icon_state == "courage")
-		to_chat(user, "<span class='warning'>Your weapon cowers and shatters in your hand!")
-		icon_state = "courage_broken"
-	else if(friend_count && icon_state == "courage_broken")
-		to_chat(user, "<span class='nicegreen'>Your weapon puffs back up to impress your allies!")
-		icon_state = "courage"
-	user.update_icon_state()
-	..()
-	force = initial(force)

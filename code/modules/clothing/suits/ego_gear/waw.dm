@@ -53,7 +53,7 @@
 	name = "oppression"
 	desc = "And I shall hold you here, forever."
 	icon_state = "oppression"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) //140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) //
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -141,7 +141,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ecstasy
+/obj/item/clothing/suit/armor/ego_gear/ecstacy
 	name = "ecstasy"
 	desc = "The colorful pattern is fancy, quite akin to a child's costume."
 	icon_state = "ecstasy"
@@ -164,12 +164,3 @@
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60)
-
-/obj/item/clothing/suit/armor/ego_gear/thirteen
-	name = "for whom the bell tolls"
-	desc = "It tolls for thee."
-	icon_state = "thirteen"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
-							)

@@ -151,6 +151,7 @@
 		if(do_after(user, work_speed, src))
 			if(!CheckStatus(user))
 				break
+			user.remove_status_effect(/datum/status_effect/interventionshield, /datum/status_effect/interventionshield/white, /datum/status_effect/interventionshield/black, /datum/status_effect/interventionshield/pale)
 			if(do_work(work_chance))
 				success_boxes++
 			else

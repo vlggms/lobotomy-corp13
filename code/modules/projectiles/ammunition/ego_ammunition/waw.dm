@@ -44,28 +44,3 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_crimson
 	pellets = 3
 	variance = 14
-
-/obj/item/ammo_casing/caseless/ego_ecstasy
-	name = "executive casing"
-	desc = "An executive casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_ecstasy
-
-/obj/item/ammo_casing/caseless/ego_praetorian
-	name = "praetorian casing"
-	desc = "A praetorian casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_praetorian
-
-/obj/item/ammo_casing/caseless/ego_magicpistol
-	name = "magic pistol casing"
-	desc = "A magic casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_magicpistol
-
-/obj/item/ammo_casing/caseless/ego_laststop
-	name = "last stop casing"
-	desc = "A last stop casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_laststop
-
-/obj/item/ammo_casing/caseless/ego_intentions
-	name = "intentions casing"
-	desc = "intentions casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_intention
