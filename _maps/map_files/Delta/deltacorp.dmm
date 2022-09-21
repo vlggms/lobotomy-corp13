@@ -7542,13 +7542,13 @@
 /turf/open/floor/plating/grass,
 /area/facility_hallway/command)
 "DF" = (
-/obj/structure/bodycontainer/morgue{
+/obj/structure/bodycontainer/extraction{
 	dir = 2
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
 "DJ" = (
-/obj/structure/bodycontainer/morgue{
+/obj/structure/bodycontainer/extraction{
 	dir = 2
 	},
 /obj/machinery/light/cold/no_nightlight{
