@@ -67,7 +67,7 @@
 /obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 8
+	damage = 6
 	speed = 0.2
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
@@ -83,4 +83,7 @@
 	if(!ishuman(target))
 		qdel(src)
 
-
+/obj/projectile/ego_bullet/ego_executive
+	name = "executive"
+	damage = 10
+	damage_type = PALE_DAMAGE	//hehe

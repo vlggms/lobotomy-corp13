@@ -4,7 +4,7 @@
 	I come from the end, and I am here to stay for but a moment.\""
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
-	force = 40
+	force = 60
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
@@ -18,7 +18,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 40
+	var/ranged_damage = 60
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -46,10 +46,6 @@
 		H.adjustBruteLoss(-damage_dealt*0.1)
 		H.adjustFireLoss(-damage_dealt*0.1)
 		H.adjustSanityLoss(damage_dealt*0.1)
-
-/obj/item/ego_weapon/paradise/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force] [damtype] damage in melee.\n\
-	Use it on a distant target to perform special attack that can heal you.</span>"
 
 /obj/item/ego_weapon/justitia
 	name = "justitia"
@@ -112,7 +108,7 @@
 	name = "da capo"
 	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
 	If there were a score for this song, it would be one that sings of the apocalypse."
-	special = "This weapon has a combo system."
+	special = "This weapon has a combo system, but only on a single enemy."
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	damtype = WHITE_DAMAGE
@@ -130,20 +126,25 @@
 	var/combo = 0 // I am copy-pasting justitia "combo" system and nobody can stop me
 	var/combo_time
 	var/combo_wait = 14
+	var/waltz_partner
+	//I'm making Da Capo a waltzing weapon, It should play like a rhythm game. - Kirie.
 
 /obj/item/ego_weapon/da_capo/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
 		combo = 0
+	if(!waltz_partner || waltz_partner != M)
+		waltz_partner = M
+		combo = 0
 	combo_time = world.time + combo_wait
 	switch(combo)
 		if(1)
 			hitsound = 'sound/weapons/ego/da_capo2.ogg'
-			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(2)
 			hitsound = 'sound/weapons/ego/da_capo3.ogg'
-			user.changeNext_move(CLICK_CD_MELEE * 0.7)
+			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 			force *= 1.5
 			combo = -1
 		else
@@ -196,7 +197,7 @@
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
 	icon_state = "twilight"
-	force = 25
+	force = 40
 	damtype = RED_DAMAGE // It's all damage types, actually
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -304,7 +305,7 @@
 	desc = "A rose is a rose, by any other name."
 	special = "Use this weapon to change it's damage type between red, white and pale."	//like a different rabbit knife. No black though
 	icon_state = "rosered"
-	force = 70 //Less damage, can swap damage type
+	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "slices")
@@ -321,15 +322,15 @@
 	switch(damtype)
 		if(RED_DAMAGE)
 			damtype = WHITE_DAMAGE
-			force = 60 //Prefers red, you can swap to white if needed
+			force = 70 //Prefers red, you can swap to white if needed
 			icon_state = "rosewhite"
 		if(WHITE_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 40	//I'm not making this more than 40.
+			force = 50	//I'm not making this more than 40.
 			icon_state = "rosepale"
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 70
+			force = 80
 			icon_state = "rosered"
 	armortype = damtype
 	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")

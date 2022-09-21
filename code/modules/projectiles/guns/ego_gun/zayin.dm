@@ -1,4 +1,4 @@
-/obj/item/gun/ego_gun/tough
+/obj/item/gun/ego_gun/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
 	icon_state = "bald"
@@ -6,7 +6,6 @@
 	worn_icon_state = "gun"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 0
@@ -23,12 +22,11 @@
 /obj/item/gun/ego_gun/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"
 
-/obj/item/gun/ego_gun/soda
+/obj/item/gun/ego_gun/pistol/soda
 	name = "soda pistol"
 	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
 	icon_state = "soda"
 	inhand_icon_state = "soda"
-	w_class = WEIGHT_CLASS_NORMAL
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	burst_size = 1
 	fire_delay = 0

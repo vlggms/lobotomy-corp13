@@ -16,6 +16,7 @@
 							TEMPERANCE_ATTRIBUTE = 0,
 							JUSTICE_ATTRIBUTE = 0
 							)
+	var/special
 
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
@@ -24,6 +25,8 @@
 /obj/item/gun/ego_gun/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
+	if(special)
+		. += "<span class='notice'>[special]</span>"
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
@@ -84,3 +87,8 @@
 /obj/item/gun/ego_gun/shoot_with_empty_chamber(mob/living/user)
 	before_firing(user = user)
 	return ..()
+
+/obj/item/gun/ego_gun/pistol
+	name = "ego pistol"
+	desc = "Something that fits into an ego gunbelt."
+
