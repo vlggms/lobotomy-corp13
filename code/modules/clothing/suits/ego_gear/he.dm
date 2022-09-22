@@ -157,3 +157,11 @@
 		JUSTICE_ATTRIBUTE = 40
 	)
 
+/obj/item/clothing/suit/armor/ego_gear/brick
+	name = "yellow brick"
+	desc = "The heavy dress weighs you down, smacking against your knees."
+	icon_state = "brick"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 15)
+	attribute_requirements = list(
+							INSIGHT_ATTRIBUTE = 40
+							)

@@ -7,6 +7,7 @@
 			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
 	force = 25
+	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -29,9 +30,6 @@
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
-/obj/item/ego_weapon/lamp/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.3) // Slow
 
 /obj/item/ego_weapon/despair
 	name = "sword sharpened with tears"
@@ -78,6 +76,7 @@
 	special = "This weapon attacks extremely slowly. Use in hand to unlock it's full power."
 	icon_state = "totalitarianism"
 	force = 80
+	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -87,10 +86,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	var/charged = FALSE
-
-/obj/item/ego_weapon/totalitarianism/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 3) // Slow
 
 /obj/item/ego_weapon/totalitarianism/attack(mob/living/M, mob/living/user)
 	..()
@@ -109,6 +104,7 @@
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
 	force = 15
+	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -119,10 +115,6 @@
 							)
 	var/charged = FALSE
 	var/meter = 0
-
-/obj/item/ego_weapon/oppression/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.3) // It's a fast weapon
 
 /obj/item/ego_weapon/oppression/attack_self(mob/user)
 	if (!charged)
@@ -177,3 +169,14 @@
 			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/remorse(get_turf(M))
 		targets = list()
+
+/obj/item/ego_weapon/mini/crimson
+	name = "crimson claw"
+	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage. "
+	special = "This weapon fits in ego weapon belts."
+	icon_state = "crimsonclaw"
+	force = 32
+	attack_speed = 0.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/bladeslice.ogg'
