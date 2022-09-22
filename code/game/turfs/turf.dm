@@ -442,7 +442,6 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	return abs(x - T.x) + abs(y - T.y)
 
 ////////////////////////////////////////////////////
-
 /turf/singularity_act()
 	if(intact)
 		for(var/obj/O in contents) //this is for deleting things like wires contained in the turf
