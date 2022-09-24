@@ -26,6 +26,7 @@
 		for(var/type in SSabnormality_queue.picking_abnormalities)
 			var/mob/living/simple_animal/hostile/abnormality/abno = type
 			dat += " <A href='byond://?src=[REF(src)];queue=[abno]'>\[[THREAT_TO_NAME[initial(abno.threat_level)]]\] [initial(abno.name)]</A><br>"
+	dat += " <A href='byond://?src=[REF(src)];call_abno'>Request Abno</A><br>"
 	var/datum/browser/popup = new(user, "abno_queue", "Abnormality Queue Console", 360, 240)
 	popup.set_content(dat)
 	popup.open()
@@ -54,3 +55,17 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
+		else
+			if(SSlobotomy_corp.abno_wait > 0)
+				SSlobotomy_corp.abno_wait = 0
+				to_chat(usr, "<span class='notice'>Abnormality will arrive after next meltdown!</span>")
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+				updateUsrDialog()
+				return TRUE
+			else
+				to_chat(usr, "<span class='warning'>Abnormality already requested!</span>")
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				updateUsrDialog() // Forcibly update it, in case someone doesn't understand why it won't work
+				return FALSE
+
+

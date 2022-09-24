@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// How many meltdowns should occur before a new abno arrives
 	var/abno_wait_cooldown = 1
 	var/abno_wait = 0
-	var/player_ratio = 0.35
+	var/player_ratio = 0.2
 
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.3)
+	qliphoth_max = 4 + round(abno_amount * 0.20) + round(player_count * 0.1)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -136,7 +136,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	if(abno_wait <= qliphoth_state)
 		SSabnormality_queue.fire() // Fired AFTER the meltdown occurs, so there's no situation where players are screwed because they were prepping for CENSORED and he arrives and instant meltdowns.
-		abno_wait_cooldown = round(clamp(1+(player_ratio*player_count), 2, INFINITY)) // Actively dynamic with the living players.
+		abno_wait_cooldown = round(clamp(1+(player_ratio*player_count), 1, INFINITY)) // Actively dynamic with the living players.
 		abno_wait = abno_wait_cooldown + qliphoth_state
 	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
@@ -182,7 +182,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(1,3)
+	next_ordeal_time = qliphoth_state*1.5 + (next_ordeal_level * 2) + rand(1,3) // Increased
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
 		O.update_icon()
