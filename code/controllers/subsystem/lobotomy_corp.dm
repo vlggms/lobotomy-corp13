@@ -182,7 +182,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state*1.5 + (next_ordeal_level * 2) + rand(1,3) // Increased
+	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(1,3)
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
 		O.update_icon()

@@ -75,7 +75,7 @@
 
 	var/set_attribute = normal_attribute_level
 	var/interval = SSabnormality_queue.spawned_abnos
-	var/max = GLOB.abnormality_room_spawners.len
+	var/max = SSabnormality_queue.rooms_start
 	if(interval >= round(max * (5/6))) // Full facility expected
 		set_attribute *= 4
 	else if(interval >= round(max * (2/3))) // More than one ALEPH
