@@ -54,6 +54,12 @@
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
 
+	//Speaking Variables, not sure if I want to use the automated speach at the moment.
+	var/heard_words = list()
+	var/listen_chance = 20 // 20 for testing, 10 for base
+	var/utterance = 10 // 10 for testing, 5 for base
+	var/worker = null
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -109,9 +115,26 @@
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Life()
 	. = ..()
+	var/speak_list = list()
 	if(status_flags & GODMODE) // Contained
+		if(prob(utterance) && LAZYLEN(heard_words))
+			speak_list = pick(heard_words)
+			speak_list = heard_words[speak_list]
+			say(pick(speak_list))
 		return
 	if(.)
+		if(!isnull(disguise) && LAZYLEN(heard_words[disguise]) && prob(utterance*2))
+			speak_list = heard_words[disguise]
+			say(pick(speak_list))
+		else
+			if(LAZYLEN(heard_words) && prob(utterance))
+				var/mob/living/carbon/human/speaker = pick(heard_words)
+				speak_list = heard_words[speaker]
+				var/line = pick(speak_list)
+				if((findtext(line, "uwu") || findtext(line, "owo") || findtext(line, "daddy") || findtext(line, "what the dog doin")) && !isnull(speaker) && speaker.stat != DEAD)
+					forceMove(get_turf(speaker))
+					GiveTarget(speaker)
+				say(line)
 		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
 			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
 			if(health <= maxHealth*0.3)
@@ -121,11 +144,22 @@
 		if(next_transform && (world.time > next_transform))
 			next_stage()
 
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	. = ..()
+	if(speaker == worker) // More likely to pick things up from those working on it
+		listen_chance *= 2
+	if(prob(listen_chance) && istype(speaker, /mob/living/carbon/human))
+		if(LAZYLEN(heard_words[speaker]))
+			heard_words[speaker] = list()
+		if(!(raw_message in heard_words[speaker]))
+			heard_words[speaker] += raw_message
+	listen_chance = initial(listen_chance)
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
 	if(damagetype == RED_DAMAGE || damage < 5)
 		return
-	last_heal_time = world.time + 5 SECONDS // Heal delayed when taking damage.
+	last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
 	if(!(status_flags & GODMODE)) // Already breaching
@@ -237,6 +271,7 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there/attempt_work(mob/living/carbon/human/user, work_type)
 	if(istype(disguise))
 		return FALSE
+	worker = user
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_chance(mob/living/carbon/human/user, chance)
@@ -248,6 +283,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
+	worker = null
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		if(!istype(disguise)) // Not work failure
 			datum_reference.qliphoth_change(-1)
