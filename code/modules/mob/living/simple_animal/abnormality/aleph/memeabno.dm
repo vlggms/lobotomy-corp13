@@ -1,5 +1,5 @@
 //This is a joke abnormality that is stupid. It is painfully designed to be as painful as possible.
-/mob/living/simple_animal/hostile/abnormality/cube
+/mob/living/simple_animal/hostile/abnormality/memeabno
 	name = "The Thing That Kills You"
 	desc = "Lobotomy Corporation fans love this abnormality. They enjoy not using the wiki, so they can have fun with this one."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -15,6 +15,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
+	can_spawn = FALSE //Can't be chosen
 
 	ego_list = list(
 	//No ego, sorry nothing
