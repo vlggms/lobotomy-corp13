@@ -10,6 +10,7 @@
 	health = 1350
 
 	ranged = TRUE
+	minimum_distance = 2
 
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 2)
@@ -90,7 +91,6 @@
 	can_act = FALSE
 	visible_message("<span class='userdanger'>[src] levels one of its arms at [cooler_target]!</span>")
 	cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
-	gun_cooldown = world.time + gun_cooldown_time
 	dir = get_cardinal_dir(src, target)
 	SLEEP_CHECK_DEATH(1.75 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/funeral/spiritgun.ogg', 75, 1, 3)
@@ -104,6 +104,7 @@
 				kickass_grade1_target.apply_damage(9999, PALE_DAMAGE, null, kickass_grade1_target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	//This should be brute. But also, it's funny.
 	can_act = TRUE
+	gun_cooldown = world.time + gun_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/ButterflySwarm(target)
 	if(swarm_cooldown > world.time)
@@ -187,7 +188,6 @@
 			return
 	if (!LAZYLEN(area_of_effect))
 		return
-	swarm_cooldown += world.time
 	can_act = FALSE
 	dir = dir_to_target
 	visible_message("<span class='danger'>[src] prepares to open its coffin!</span>")
@@ -212,6 +212,7 @@
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 	icon_state = icon_living
 	can_act = TRUE
+	swarm_cooldown += world.time
 	//Do I know how to code instant death? Yes. Can I just do an absurd amount of pale damage? Also yes.
 	//the spaghetti would be hilarious if this does spaghetti, though.
 /mob/living/simple_animal/hostile/abnormality/funeral/Move()
