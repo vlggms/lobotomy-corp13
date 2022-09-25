@@ -3,7 +3,7 @@
 	name = "The Thing That Kills You"
 	desc = "Lobotomy Corporation fans love this abnormality. They enjoy not using the wiki, so they can have fun with this one."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "cube"
+	icon_state = "trollface"
 	maxHealth = 650
 	health = 650
 	threat_level = ZAYIN_LEVEL
@@ -24,12 +24,12 @@
 	var/death
 	var/liked
 
-/mob/living/simple_animal/hostile/abnormality/cube/Initialize(mapload)
+/mob/living/simple_animal/hostile/abnormality/memeabno/Initialize(mapload)
 	. = ..()
 	//What does it like
 	liked = rand(1,10)
 
-/mob/living/simple_animal/hostile/abnormality/cube/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/memeabno/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	death = FALSE
 	switch(liked)
