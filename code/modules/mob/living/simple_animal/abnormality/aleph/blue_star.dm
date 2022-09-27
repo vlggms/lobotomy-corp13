@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar
-	name = "Blue star"
+	name = "Blue Star"
 	desc = "Floating heart-shaped object. It's alive, and soon you will become one with it."
 	health = 4000
 	maxHealth = 4000
@@ -25,6 +25,7 @@
 						)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
+	can_patrol = FALSE
 
 	wander = FALSE
 	light_color = COLOR_BLUE_LIGHT

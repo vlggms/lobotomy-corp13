@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen
-	name = "Queen of hatred"
-	desc = "A an abnormality resembling pale-skinned girl in a rather bizzare outfit. \
+	name = "Queen of Hatred"
+	desc = "An abnormality resembling pale-skinned girl in a rather bizzare outfit. \
 	Right behind her is what you presume to be a magic wand."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "hatred"
@@ -27,6 +27,7 @@
 	speed = 2
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
+	can_patrol = FALSE
 
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(30, 40, 40, 50, 50),
@@ -542,6 +543,7 @@
 	beam_cooldown_time = 10 SECONDS //it's her only move while hostile
 	teleport_cooldown_time = 10 SECONDS
 	breach_max_death = 0 //who cares about humans anymore?
+	retreat_distance = null //this is annoying
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
 	return
 

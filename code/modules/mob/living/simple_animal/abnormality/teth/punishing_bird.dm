@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird
-	name = "Punishing bird"
+	name = "Punishing Bird"
 	desc = "A white bird with tiny beak. Looks harmless."
 	icon = 'icons/mob/punishing_bird.dmi'
 	icon_state = "pbird"
@@ -199,7 +199,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
-	if(!target && icon_state != "pbird_red")
+	if(!(status_flags & GODMODE) && !target && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
 		addtimer(CALLBACK(src, .proc/kill_bird), 120 SECONDS)

@@ -56,6 +56,7 @@
 	var/spit_cooldown_time = 18 SECONDS
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
 	var/spit_amount = 32
+	patrol_cooldown_time = 10 SECONDS //stage 1 - 10s, stage 2 - 20s, stage 3 - 30s
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
@@ -183,10 +184,12 @@
 				icon_living = "mosb_breach2"
 				speed = 4
 				move_to_delay = 5
+				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
 				speed = 3
 				move_to_delay = 4
+				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
 		return
 	// Decrease stage
@@ -203,12 +206,14 @@
 		base_pixel_x = -16
 		speed = 2
 		move_to_delay = 2
+		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
 		speed = 3
 		move_to_delay = 4
+		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
 	return TRUE
 
