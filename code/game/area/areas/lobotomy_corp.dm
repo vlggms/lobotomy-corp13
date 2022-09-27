@@ -62,6 +62,9 @@
 /area/department_main/extraction
 	name = "Extraction Main Room"
 
+/area/department_main/human
+	name = "Human Resources Room"
+
 
 /area/facility_hallway
 	name = "Hallway"
@@ -113,3 +116,6 @@
 
 /area/facility_hallway/extraction
 	name = "Extraction Hallway"
+
+/area/facility_hallway/human
+	name = "Human Resources Hallway"

@@ -394,6 +394,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_age = 0
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
+		to_chat(src, "<span class='userdanger'>It's your first time connecting! We have a tutorial ghost role for if you are unfamiliar with Lobotomy Corporation.</span>")
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))

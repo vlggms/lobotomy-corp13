@@ -244,3 +244,10 @@
 
 /obj/machinery/computer/abnormality/training_rabbit/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
 	..(user, work_type, training = training)
+
+//No meltdown console for tutorials
+/obj/machinery/computer/abnormality/tutorial
+	can_meltdown = FALSE
+
+/obj/machinery/computer/abnormality/tutorial/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
+	..(user, work_type, training = training)

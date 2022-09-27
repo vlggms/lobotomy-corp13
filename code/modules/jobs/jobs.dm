@@ -32,6 +32,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Agent Captain",
 	"Senior Agent",
 	"Agent",
+	"Agent Intern",
 	))
 
 

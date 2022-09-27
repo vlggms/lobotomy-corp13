@@ -474,3 +474,33 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
 	return
+
+
+/obj/effect/landmark/abnormality_spawn/tutorial
+	name = "tutorial spawn (bill)"
+	var/chosen = /mob/living/simple_animal/hostile/abnormality/bill
+
+/obj/effect/landmark/abnormality_spawn/tutorial/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/abnormality_spawn/tutorial/LateInitialize()
+	..()
+	datum_reference = new(src, chosen)
+	//Pick the closest console
+	var/obj/machinery/computer/abnormality/tutorial/AR = get_closest_atom(/obj/machinery/computer/abnormality/tutorial, GLOB.abnormality_consoles, src)
+	if(istype(AR))
+		AR.datum_reference = datum_reference
+	return
+
+/obj/effect/landmark/abnormality_spawn/tutorial/shadow
+	name = "tutorial spawn (shadow)"
+	chosen = /mob/living/simple_animal/hostile/abnormality/shadow
+
+/obj/effect/landmark/abnormality_spawn/tutorial/cube
+	name = "tutorial spawn (cube)"
+	chosen = /mob/living/simple_animal/hostile/abnormality/cube
+
+/obj/effect/landmark/abnormality_spawn/tutorial/fairy
+	name = "tutorial spawn (fairy)"
+	chosen = /mob/living/simple_animal/hostile/abnormality/fairy_swarm
