@@ -25,7 +25,11 @@
 
 	//Funny drags everything to it
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_All()
-	for(var/mob/living/simple_animal/hostile/abnormality/A)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
+		//These two abnormalities kill everything else no matter what faction we set them to
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/hatred_queen) || istype(A, /mob/living/simple_animal/hostile/abnormality/white_night))
+			return
+
 		if(A.can_breach && (A.status_flags & GODMODE))
 			A.breach_effect()
 			var/turf/orgin = get_turf(src)
