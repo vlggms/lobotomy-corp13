@@ -150,9 +150,13 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
-	if(livinginrange(4, src) && hired == FALSE)
+	var/sighted = FALSE
+	for(var/mob/living/carbon/human/L in view(4, src))
+		sighted = TRUE
+		break
+
+	if(sighted && hired == FALSE)
 		say("I've had it with you!")
-		GiveTarget(user)
 	else
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
