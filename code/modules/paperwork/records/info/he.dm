@@ -195,8 +195,8 @@
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> High<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Very Low<br>"}
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> High<br>"}
 
 // Warm-Hearted Woodsman
 /obj/item/paper/fluff/info/he/woodsman

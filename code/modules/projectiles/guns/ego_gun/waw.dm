@@ -85,6 +85,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
 		fire_delay = 16
+	..()
 
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
