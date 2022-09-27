@@ -1,20 +1,3 @@
-/obj/machinery/jukebox
-	name = "jukebox"
-	desc = "A classic music player."
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "jukebox"
-	verb_say = "states"
-	density = TRUE
-	req_access = list(ACCESS_BAR)
-	var/active = FALSE
-	var/list/rangers = list()
-	var/stop = 0
-	var/list/songs = list()
-	var/datum/track/selection = null
-	/// Volume of the songs played
-	var/volume = 100
-	COOLDOWN_DECLARE(jukebox_error_cd)
-
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
 	desc = "The first three prototypes were discontinued after mass casualty incidents."
