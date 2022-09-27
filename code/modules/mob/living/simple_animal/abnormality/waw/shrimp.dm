@@ -108,6 +108,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers"
 	icon_living = "wellcheers"
+	faction = list("shrimp")
 	health = 400
 	maxHealth = 400
 	melee_damage_type = RED_DAMAGE
@@ -130,6 +131,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_bad"
 	icon_living = "wellcheers_bad"
+	faction = list("shrimp")
 	health = 500	//They're here to help
 	maxHealth = 500
 	melee_damage_type = RED_DAMAGE
@@ -154,7 +156,7 @@
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
-	faction = list("neutral")
+	faction = list("neutral", "shrimp")
 
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"
