@@ -32,6 +32,10 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
+	light_color = COLOR_ORANGE
+	light_range = 5
+	light_power = 7
+
 	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
