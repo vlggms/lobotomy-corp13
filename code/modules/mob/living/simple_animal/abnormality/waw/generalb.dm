@@ -114,6 +114,7 @@
 	icon_state = "soldier_bee"
 	icon_living = "soldier_bee"
 	base_pixel_x = -8
+	pixel_x = -8
 	health = 450
 	maxHealth = 450
 	melee_damage_type = RED_DAMAGE
@@ -187,12 +188,12 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 100 //Half Red, Half Black
+	var/boom_damage = 80 //Half Red, Half Black
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/beeshell/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/explode), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/explode), 3.5 SECONDS)
 
 //Smaller Scorched Girl bomb
 /obj/effect/beeshell/proc/explode()
