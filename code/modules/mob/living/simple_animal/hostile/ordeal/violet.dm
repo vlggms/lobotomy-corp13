@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
 	..()
-	next_pulse = world.time + 20 SECONDS
+	next_pulse = world.time + 30 SECONDS
 	addtimer(CALLBACK(src, .proc/FallDown))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/CanAttack(atom/the_target)
@@ -135,5 +135,5 @@
 			potential_computers += A
 	if(LAZYLEN(potential_computers))
 		CA = pick(potential_computers)
-		CA.datum_reference.qliphoth_change(pick(-1, -2))
+		CA.datum_reference.qliphoth_change(-1)
 	icon_state = "violet_noon_attack"
