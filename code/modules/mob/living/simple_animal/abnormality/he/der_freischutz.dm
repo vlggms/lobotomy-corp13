@@ -70,6 +70,15 @@
 	datum_reference.qliphoth_change(3)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/Machine_Gun(mob/living/target = null, shots = 7)
+	for(var/i = 0 to shots)
+		if(!isnull(target))
+			if(target.health <= 0)
+				break
+			fire_magic_bullet(target)
+		else
+			fire_magic_bullet()
+
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/fire_magic_bullet(target = pick(GLOB.xeno_spawn), freidir = pick(EAST,WEST))
 	src.icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	src.update_icon()
