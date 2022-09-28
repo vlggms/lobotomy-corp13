@@ -92,3 +92,22 @@
 		fillCurrent()
 		virgin = FALSE
 	return ..()
+
+//Tools
+/obj/structure/filingcabinet/toolinfo
+	name = "tool abnormality information cabinet"
+	icon_state = "employmentcabinet"
+	var/virgin = TRUE
+
+/obj/structure/filingcabinet/toolinfo/proc/fillCurrent()
+	var/list/queue = subtypesof(/obj/item/paper/fluff/info/tool)
+	for(var/sheet in queue)
+		new sheet(src)
+
+
+/obj/structure/filingcabinet/toolinfo/interact(mob/user)
+	if(virgin)
+		fillCurrent()
+		virgin = FALSE
+	return ..()
+
