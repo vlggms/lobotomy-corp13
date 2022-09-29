@@ -44,6 +44,12 @@
 	var/max_understanding = 0
 	/// A list of performed works on it
 	var/list/work_logs = list()
+	/*
+	* Moved this variable from work Console for a two reasons
+	* First, this allows both the console AND the abnormality to check on the current working status. Useful overall.
+	* Second, there's no real reason for it to NOT be here unless we SOMEHOW, for SOME REASON, get duplicate abnormalities. Even then I don't know if that'd conflict.
+	*/
+	var/working = FALSE
 	///a list of variable the abno wants to remember after death
 	var/list/transferable_var
 
@@ -160,6 +166,12 @@
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		return
 	if(pre_qlip != qliphoth_meter)
+		if(pre_qlip < qliphoth_meter) // Alerts on change of counter. It's just nice to know instead of inspecting the console every time. Also helps for those nearby if something goes to shit.
+			current?.visible_message("<span class='notice'>Qliphoth level increased by [qliphoth_meter-pre_qlip]!</span>")
+			playsound(get_turf(current), 'sound/machines/synth_yes.ogg', 50, FALSE)
+		else
+			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
+			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
 		current?.OnQliphothChange(user)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)

@@ -5,8 +5,6 @@
 
 	/// Datum reference of the abnormality this console is related to
 	var/datum/abnormality/datum_reference = null
-	/// Is someone currently using it?
-	var/working = FALSE
 	/// Is the abnormality in process of qliphoth meltdown?
 	var/meltdown = FALSE
 	/// How much ticks left to pass before the effect of meltdown occurs?
@@ -83,7 +81,7 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
-			if(working)
+			if(datum_reference.working)
 				to_chat(usr, "<span class='warning'>Console is currently being operated!</span>")
 				return
 			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
@@ -128,24 +126,49 @@
 			to_chat(user, "<span class='userdanger'>I'm not ready for this!")
 	meltdown = FALSE // Reset meltdown
 	update_icon()
-	working = TRUE
+	datum_reference.working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
 	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	var/success_boxes = 0
-	for(var/i = 1 to work_time)
-		user.Stun(work_speed) // TODO: Probably temporary
-		sleep(work_speed)
-		if(do_work(work_chance))
-			success_boxes += 1
+	var/total_boxes = 0
+	ADD_TRAIT(user, TRAIT_STUNIMMUNE, src)
+	ADD_TRAIT(user, TRAIT_PUSHIMMUNE, src)
+	user.density = FALSE // If they can be walked through they can't be switched! I didn't wanna add chairs because if there WAS it'd nullify the ability to DODGE issues that appear.
+	user.set_anchored(TRUE)
+	while(total_boxes < work_time)
+		if(!CheckStatus(user))
+			break
+		if(do_after(user, work_speed, src))
+			if(!CheckStatus(user))
+				break
+			if(do_work(work_chance))
+				success_boxes++
+			else
+				datum_reference.current.worktick_failure(user)
+			total_boxes++
 		else
-			datum_reference.current.worktick_failure(user)
-		if(user.sanity_lost)
-			break // Lost sanity
-		if(user.health < 0)
-			break // Dying
-		if(!(datum_reference.current.status_flags & GODMODE))
-			break // Somehow it escaped
+			if(!CheckStatus(user)) // No punishment if the thing is already breached or any other issue is prevelant.
+				break
+			for(var/i = 0 to round((work_time - total_boxes)*(1-((work_chance*0.5)/100)), 1)) // Take double of what you'd fail on average as NE box damage.
+				datum_reference.current.worktick_failure(user)
+			playsound(src, 'sound/machines/synth_no.ogg', 75, FALSE, -4)
+			to_chat(user, "<span class='warning'>The Abnormality grows frustrated as you cut your work short!")
+			success_boxes = 0
+			break
+	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, src)
+	REMOVE_TRAIT(user, TRAIT_PUSHIMMUNE, src)
+	user.density = TRUE
+	user.set_anchored(FALSE)
 	finish_work(user, work_type, success_boxes, work_speed, training)
+
+/obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
+	if(user.sanity_lost)
+		return FALSE // Lost sanity
+	if(user.health < 0)
+		return FALSE // Dying
+	if(!(datum_reference.current.status_flags & GODMODE))
+		return FALSE // Somehow it escaped
+	return TRUE
 
 /obj/machinery/computer/abnormality/proc/do_work(chance)
 	if(prob(chance))
@@ -174,7 +197,7 @@
 		else
 			datum_reference.current.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
 	meltdown_time = 0
-	working = FALSE
+	datum_reference.working = FALSE
 	return TRUE
 
 /obj/machinery/computer/abnormality/process()

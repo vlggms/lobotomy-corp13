@@ -299,6 +299,34 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		IC.forceMove(src)
 
 /*
+ * Extraction slab morgue
+ */
+
+/obj/structure/bodycontainer/extraction
+	name = "extraction slab"
+	desc = "A container for corpses provided by the Extraction Department."
+	icon_state = "extra1"
+	dir = EAST
+
+/obj/structure/bodycontainer/extraction/Initialize()
+	. = ..()
+	connected = new/obj/structure/tray/e_tray(src)
+	connected.connected = src
+
+/obj/structure/bodycontainer/extraction/update_icon()
+	if (!connected || connected.loc != src) // Open or tray is gone.
+		icon_state = "extra0"
+	else
+		if(contents.len == 1)  // Empty
+			icon_state = "extra1"
+		else
+			icon_state = "extra2" // Dead, brainded mob.
+			var/list/compiled = get_all_contents_type(/mob/living) // Search for mobs in all contents.
+			if(!length(compiled)) // No mobs?
+				icon_state = "extra3"
+				return
+
+/*
  * Generic Tray
  * Parent class for morguetray and crematoriumtray
  * For overriding only
@@ -385,6 +413,22 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	pass_flags_self = PASSTABLE
 
 /obj/structure/tray/m_tray/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if(locate(/obj/structure/table) in get_turf(mover))
+		return TRUE
+
+/*
+ * Extraction morgue tray
+ */
+/obj/structure/tray/e_tray
+	name = "extraction tray"
+	desc = "Apply corpse before closing."
+	icon_state = "extrat"
+	pass_flags_self = PASSTABLE
+
+/obj/structure/tray/e_tray/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.)
 		return

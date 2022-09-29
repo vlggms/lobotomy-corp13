@@ -17,6 +17,12 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 /datum/attribute/proc/get_level() // Returns current level of attribute + buff
 	return level + level_buff
 
+/datum/attribute/proc/get_raw_level() // Returns current level of attribute
+	return level
+
+/datum/attribute/proc/get_level_buff() // Returns current level of buff
+	return level_buff
+
 /datum/attribute/proc/on_update(mob/living/carbon/user)
 	return
 
@@ -61,6 +67,24 @@ GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_level())
+
+//Getting raw level, mostly for tools.
+/proc/get_raw_level(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
+		return 1
+	var/datum/attribute/atr = user.attributes[attribute]
+	if(!istype(atr))
+		return 1
+	return max(1, atr.get_raw_level())
+
+//Get level buff, mostly for tools
+/proc/get_level_buff(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
+		return 1
+	var/datum/attribute/atr = user.attributes[attribute]
+	if(!istype(atr))
+		return 1
+	return max(1, atr.get_level_buff())
 
 // Attribute buffs
 

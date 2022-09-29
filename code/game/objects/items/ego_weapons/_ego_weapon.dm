@@ -7,12 +7,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	slot_flags = ITEM_SLOT_BELT
-	var/list/attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 0,
-							PRUDENCE_ATTRIBUTE = 0,
-							TEMPERANCE_ATTRIBUTE = 0,
-							JUSTICE_ATTRIBUTE = 0
-							)
+	var/list/attribute_requirements = list()
 
 	var/special
 
