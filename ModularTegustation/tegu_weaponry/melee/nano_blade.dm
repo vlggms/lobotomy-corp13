@@ -10,10 +10,10 @@
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_EDGED
-	force = 25
+	force = 45
 	throw_speed = 4
 	throw_range = 5
-	throwforce = 12
+	throwforce = 15
 	block_chance = 40
 	armour_penetration = 50
 	hitsound = 'sound/weapons/bladeslice.ogg'

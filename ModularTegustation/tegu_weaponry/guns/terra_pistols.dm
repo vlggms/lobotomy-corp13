@@ -1,11 +1,11 @@
 /obj/item/gun/ballistic/automatic/pistol/terragov
 	name = "Makarov PM"
 	desc = "A modern reproduction of the ancient 9mm handgun. Has a threaded barrel for suppressors."
+	icon = 'ModularTegustation/TeguIcons/tegu_guns.dmi'
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	rack_sound = 'sound/weapons/gun/pistol/rack.ogg'
 	lock_back_sound = 'sound/weapons/gun/pistol/slide_lock.ogg'
 	bolt_drop_sound = 'sound/weapons/gun/pistol/slide_drop.ogg'
-	icon = 'ModularTegustation/TeguIcons/tegu_guns.dmi'
 
 /obj/item/gun/ballistic/automatic/pistol/terragov/beretta
 	name = "Beretta M9"
@@ -14,7 +14,7 @@
 	icon_state = "beretta"
 	can_suppress = FALSE
 
-/obj/item/gun/ballistic/automatic/pistol/citygov/sig
+/obj/item/gun/ballistic/automatic/pistol/terragov/sig
 	name = "SIG Sauer"
 	desc = "A classic handgun with a larger than average magazine capacity."
 	fire_sound = 'ModularTegustation/Tegusounds/weapons/guns/pistol_large.ogg'
@@ -61,7 +61,7 @@
 	caliber = CALIBER_38
 	max_ammo = 6
 
-/obj/item/gun/ballistic/automatic/proto/citygov
+/obj/item/gun/ballistic/automatic/proto/terragov
 	name = "\improper SABR SMG"
 	desc = "A three-round burst 9mm submachine gun. Used by CityGov military personnel. Has a threaded barrel for suppressors."
 	w_class = WEIGHT_CLASS_NORMAL

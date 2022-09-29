@@ -2,7 +2,7 @@
 // Sidearm
 /obj/item/choice_beacon/terragov_sidearm
 	name = "sidearm choice"
-	desc = "CityGov has collected a armament of service pistols over history. Most of them are still in service and can be ordered here."
+	desc = "TerraGov has collected a armament of service pistols over history. Most of them are still in service and can be ordered here."
 	beacon_msg = "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from the Military Command of Terra. Message as follows: <span class='bold'>Item request received. Your package is inbound, please stand back from the landing site.</span> Message ends.\""
 
 /obj/item/choice_beacon/terragov_sidearm/generate_display_names()
@@ -52,7 +52,7 @@
 	name = "Sig Sauer kit"
 
 /obj/item/storage/box/terragov_sidearm/sig/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/citygov/sig(src)
+	new /obj/item/gun/ballistic/automatic/pistol/terragov/sig(src)
 	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
 	new /obj/item/ammo_box/magazine/m9mm_aps/sig(src)
 
@@ -89,10 +89,10 @@
 // Special
 /obj/item/storage/backpack/duffelbag/captain/specialist
 	name = "SABR smg kit"
-	desc = "A kit that contains a standard SMG used by CityGov forces."
+	desc = "A kit that contains a standard SMG used by TerraGov forces."
 
 /obj/item/storage/backpack/duffelbag/captain/specialist/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/proto/citygov(src)
+	new /obj/item/gun/ballistic/automatic/proto/terragov(src)
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
 	new /obj/item/ammo_box/magazine/smgm9mm(src)
