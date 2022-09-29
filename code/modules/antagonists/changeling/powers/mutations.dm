@@ -155,7 +155,7 @@
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
-	force = 25
+	force = 55 // Around WAW-ALEPH damage
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
@@ -163,8 +163,8 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	sharpness = SHARP_EDGED
-	wound_bonus = -20
-	bare_wound_bonus = 20
+	wound_bonus = -40
+	bare_wound_bonus = -25
 	var/can_drop = FALSE
 	var/fake = FALSE
 
@@ -298,7 +298,8 @@
 	icon_state = "tentacle_end"
 	pass_flags = PASSTABLE
 	damage = 0
-	damage_type = BRUTE
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 	range = 8
 	hitsound = 'sound/weapons/thudswoosh.ogg'
 	var/chain
@@ -536,7 +537,7 @@
 	icon_state = "lingarmor"
 	item_flags = DROPDEL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 50, BOMB = 10, BIO = 4, RAD = 0, FIRE = 90, ACID = 90)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
 	flags_inv = HIDEJUMPSUIT
 	cold_protection = 0
 	heat_protection = 0
@@ -552,7 +553,7 @@
 	desc = "A tough, hard covering of black chitin with transparent chitin in front."
 	icon_state = "lingarmorhelmet"
 	item_flags = DROPDEL
-	armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 50, BOMB = 10, BIO = 4, RAD = 0, FIRE = 90, ACID = 90)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEEYES|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT
 
 /obj/item/clothing/head/helmet/changeling/Initialize()

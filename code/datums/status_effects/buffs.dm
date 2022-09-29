@@ -188,10 +188,11 @@
 	owner.adjustBruteLoss(-10, FALSE)
 	owner.adjustFireLoss(-5, FALSE)
 	owner.adjustOxyLoss(-10)
-	if(!iscarbon(owner))
+	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/C = owner
-	QDEL_LIST(C.all_scars)
+	var/mob/living/carbon/human/H = owner
+	H.adjustSanityLoss(10)
+	QDEL_LIST(H.all_scars)
 
 /atom/movable/screen/alert/status_effect/fleshmend
 	name = "Fleshmend"

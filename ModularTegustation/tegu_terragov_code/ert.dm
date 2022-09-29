@@ -1,6 +1,6 @@
 // TerraGov Marines
 /datum/antagonist/ert/terragov
-	name = "CityGov Marine"
+	name = "TerraGov Marine" // They are from another universe, ooOooOoo!
 	outfit = /datum/outfit/terragov/marine
 	role = "Marine"
 
@@ -9,8 +9,8 @@
 		return
 
 	to_chat(owner, "<B><font size=3 color=red>You are a [name].</font></B>")
-	to_chat(owner, "<B><font size=4 color=red>You are NOT a Lobotomy Corporation Employee!</font></B>")
-	var/missiondesc = "Your squad is being sent on a mission to [station_name()] CityGov high command."
+	to_chat(owner, "<B><font size=3 color=red>You have come to this place from another universe!</font></B>")
+	var/missiondesc = "Your squad is being sent on a mission to [station_name()] by TerraGov high command."
 	if(leader) //If Squad Leader
 		missiondesc += " Lead your squad to ensure the completion of the mission. Board the shuttle when your team is ready."
 	else
@@ -35,7 +35,7 @@
 
 // TerraGov Official
 /datum/antagonist/ert/terragov/official
-	name = "Citygov Official"
+	name = "TerraGov Official"
 	show_name_in_check_antagonists = TRUE
 	var/datum/objective/mission
 	role = "Inspector"
@@ -46,7 +46,7 @@
 
 /datum/antagonist/ert/terragov/official/greet()
 	to_chat(owner, "<B><font size=3 color=red>You are a TerraGov Official.</font></B>")
-	to_chat(owner, "<B><font size=4 color=red>You are NOT a Nanotrasen Employee!</font></B>")
+	to_chat(owner, "<B><font size=3 color=red>You have come to this place from another universe!</font></B>")
 
 	if (ert_team)
 		to_chat(owner, "CityGov is sending you to [station_name()] with the task: [ert_team.mission.explanation_text]")
@@ -78,7 +78,8 @@
 	leader_role = /datum/antagonist/ert/terragov/leader/heavy
 	roles = list(/datum/antagonist/ert/terragov/heavy)
 	code = "TG - B"
-	polldesc = "a heavy TerraGov Intervention Squad"
+	rename_team = "Heavy TerraGov Intervention Squad"
+	polldesc = "a Heavy TerraGov Intervention Squad"
 
 /datum/ert/terragov/official
 	code = "TG - D"

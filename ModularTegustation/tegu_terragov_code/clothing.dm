@@ -1,14 +1,15 @@
 // Officials
-/obj/item/clothing/under/suit/black_really/citygov
+/obj/item/clothing/under/suit/black_really/terragov
 	name = "armored executive suit"
-	desc = "A formal black suit made out of protective material. Used by non-military personnel of city government."
-	armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
+	desc = "A formal black suit made out of protective material. Used by non-military personnel of terran government."
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10)
 
 // Marines
-/obj/item/clothing/under/mercenary/citygov
+/obj/item/clothing/under/mercenary/terragov
 	name = "marine camo uniform"
 	desc = "A camouflage jumpsuit worn by marines of the city government."
 	icon_state = "camo_tgmc"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10)
 	can_adjust = FALSE
 
 // Other stuff
@@ -26,12 +27,12 @@
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 // Armbands
-/obj/item/clothing/accessory/armband/citygov
+/obj/item/clothing/accessory/armband/terragov
 	name = "\improper CityGov armband"
 	desc = "An armband usually worn by city government officials."
 	icon_state = "terraband"
 
-/obj/item/clothing/accessory/armband/citygov/un
+/obj/item/clothing/accessory/armband/terragov/un
 	name = "\improper UN armband"
 	desc = "A light-blue armband that was worn by the old world government. Some say humanity once lived beyond the city."
 	icon_state = "tgunband"
