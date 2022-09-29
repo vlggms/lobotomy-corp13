@@ -30,6 +30,7 @@
 			ordeal_mobs += M
 			M.ordeal_reference = src
 
+// Dusk
 /datum/ordeal/amber_dawn/amber_dusk
 	name = "Dusk of Amber"
 	annonce_text = "To accustom oneself to the taste was an inevitable process."
@@ -40,3 +41,25 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_dusk
 	place_player_multiplicator = 0.05
 	spawn_player_multiplicator = 0
+
+// Midnight
+/datum/ordeal/amber_midnight
+	name = "Midnight of Amber"
+	annonce_text = "They fought amongst themselves to eat the others."
+	level = 4
+	reward_percent = 0.25
+	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
+	end_sound = 'sound/effects/ordeals/amber_end.ogg'
+	color = "#FFBF00"
+	/// How many mobs to spawn
+	var/spawn_amount = 1
+
+/datum/ordeal/amber_midnight/Run()
+	..()
+	if(GLOB.clients.len >= 15)
+		spawn_amount += round(GLOB.clients.len / 15)
+	for(var/i = 1 to spawn_amount)
+		var/turf/T = pick(GLOB.department_centers)
+		var/mob/living/simple_animal/hostile/ordeal/amber_midnight/M = new(T)
+		ordeal_mobs += M
+		M.ordeal_reference = src

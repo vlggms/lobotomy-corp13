@@ -29,3 +29,8 @@
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
 	mid_length = 0.55 SECONDS
 	volume = 20
+
+/datum/looping_sound/ambermidnight
+	mid_sounds = 'sound/effects/ordeals/amber/midnight_ambience.ogg'
+	mid_length = 3.8 SECONDS
+	volume = 20

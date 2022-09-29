@@ -3,6 +3,8 @@
 	var/name = "Dawn of Death"
 	/// Level from 1 to 4. It only answers for the order of the ordeals happening, so ordeal 1 will be first and so on.
 	var/level = 0
+	/// Added meltdown delay. The higher it is - the longer it'll take for the ordeal to occur. If null - uses level.
+	var/delay = null
 	/// Announcement text. Self-explanatory
 	var/annonce_text = "Oh my god we're going to die!"
 	/// Sound to play on announcement, if any
@@ -17,6 +19,11 @@
 	var/color = COLOR_VERY_LIGHT_GRAY
 	/// If ordeal can be normally chosen
 	var/can_run = TRUE
+
+/datum/ordeal/New()
+	..()
+	if(delay == null)
+		delay = level
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
