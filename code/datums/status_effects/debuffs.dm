@@ -1106,7 +1106,7 @@
 		owner.adjustBruteLoss(max(0, stacks - burn_res))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
-	
+
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
 		if(new_stack)
@@ -1155,3 +1155,10 @@
 		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
 	else
 		B.add_stacks(stacks)
+
+//Smoke
+/datum/status_effect/smoke
+	id = "Smoke"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50
+	alert_type = null

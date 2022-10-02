@@ -42,3 +42,14 @@
 							TEMPERANCE_ATTRIBUTE = 40,
 							JUSTICE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/city/district23/ham
+	name = "Ham"
+	desc = "A ham on a bone, it doesn't smell good."
+	icon_state = "ham"
+	force = 5
+	attack_speed = 0.5
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("Slaps")
+	attack_verb_simple = list("slaps")
+
