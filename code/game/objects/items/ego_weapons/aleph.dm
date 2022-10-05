@@ -111,6 +111,7 @@
 	special = "This weapon has a combo system, but only on a single enemy."
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
+	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -141,15 +142,12 @@
 	switch(combo)
 		if(1)
 			hitsound = 'sound/weapons/ego/da_capo2.ogg'
-			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(2)
 			hitsound = 'sound/weapons/ego/da_capo3.ogg'
-			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 			force *= 1.5
 			combo = -1
 		else
 			hitsound = 'sound/weapons/ego/da_capo1.ogg'
-			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 	..()
 	combo += 1
 	force = initial(force)
@@ -229,14 +227,14 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gold_rush"
-	force = 130
+	force = 150
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/goldrush_damage = 130
+	var/goldrush_damage = 150
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
@@ -275,7 +273,8 @@
 	special = "This weapon has a slightly slower attack speed.\
 			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
 	icon_state = "smile"
-	force = 100 //Slightly less damage, has an ability
+	force = 110 //Slightly less damage, has an ability
+	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -287,10 +286,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-
-/obj/item/ego_weapon/smile/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.5) // Slow
 
 /obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -342,21 +337,21 @@
 			Looking at the E.G.O for more than 3 seconds will make you sick."
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
-	force = 85
+	force = 70	//there's a focus on the ranged atttack here.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 110,
-							PRUDENCE_ATTRIBUTE = 90,
-							TEMPERANCE_ATTRIBUTE = 90,
-							JUSTICE_ATTRIBUTE = 90
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
 							)
 
 	var/special_attack = FALSE
-	var/special_damage = 360
+	var/special_damage = 240
 	var/special_cooldown
 	var/special_cooldown_time = 10 SECONDS
 	var/special_checks_faction = TRUE

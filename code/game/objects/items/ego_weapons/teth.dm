@@ -17,15 +17,12 @@
 	icon_state = "fragment"
 	force = 22
 	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-
-/obj/item/ego_weapon/fragment/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.2) // Has Longer reach, should be a little slower
 
 /obj/item/ego_weapon/horn
 	name = "horn"
@@ -58,14 +55,11 @@
 			This weapon hits slower than usual. "
 	icon_state = "eyes"
 	force = 35					//Still less DPS, replaces baseball bat
+	attack_speed = 1.6
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
-
-/obj/item/ego_weapon/eyes/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.6) // Really Slow, is a baseball bat. Don't want to stunlock people
 
 /obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
 	. = ..()
@@ -105,16 +99,15 @@
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
 
-/obj/item/ego_weapon/wrist
+/obj/item/ego_weapon/mini/wrist
 	name = "Wrist Cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon attacks very fast."
+	special = "This weapon attacks very fast. \
+			This weapon fits in ego weapon belts."
 	icon_state = "wrist"
 	force = 6
+	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-/obj/item/ego_weapon/wrist/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.30)

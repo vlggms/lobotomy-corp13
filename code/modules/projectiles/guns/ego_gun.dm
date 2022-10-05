@@ -88,7 +88,7 @@
 	before_firing(user = user)
 	return ..()
 
-/obj/item/gun/ego_gun/pistol
-	name = "ego pistol"
-	desc = "Something that fits into an ego gunbelt."
-
+//Examine text for pistols.
+/obj/item/gun/ego_gun/pistol/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This weapon fits in an ego weapon belt.</span>"
