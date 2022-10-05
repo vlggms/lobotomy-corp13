@@ -9,7 +9,7 @@ Fortitude attribute directly increases your maximum health and Prudence inceases
 Temperance attribute increases your work speed and success chance. It is crucial to have high temperance while working on the more dangerous abnormalities.
 Justice attribute increases your movement speed and melee damage. The maximum damage buff you can receive this way is 230%.
 The longer the round goes on, the higher attributes agents will have when joining.
-Big bird's qliphoth counter will reduce if 3 people have died in the facility.
+Big bird's qliphoth counter will reduce if 2 people have died in the facility.
 Punishing bird is harmless for as long as nobody attacks it.
 The scarecrow searching for wisdom will restore 30% of its health when killing someone. You can interrupt the process by dragging their victim away.
 When exploding, the scorched girl will deal 250 red damage to anyone in its sight. It's usually the best idea to run when you hear the burning fuse.
