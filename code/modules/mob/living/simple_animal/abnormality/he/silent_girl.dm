@@ -28,6 +28,9 @@
 
 	var/mob/living/carbon/human/guilty_people = list()
 	var/mutable_appearance/guilt_icon  // Icon for the effect
+	var/insanity_long = 30 SECONDS
+	var/insanity_short = 10 SECONDS
+	var/population_threshold = 5
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/Initialize(mapload)
 	. = ..()
@@ -89,6 +92,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
+	var/insanity_timer = insanity_short
 	var/dead_list = guilty_people
 	for(var/mob/living/carbon/human/dead_body in dead_list)
 		if(dead_body.stat == DEAD || isnull(dead_body))
@@ -100,13 +104,17 @@
 				continue
 			potential_guilt += H
 		if(LAZYLEN(potential_guilt))
+			if(LAZYLEN(potential_guilt) < population_threshold)
+				insanity_timer = insanity_long
+			else
+				insanity_timer = insanity_short
 			Guilt_Effect(pick(potential_guilt))
 		else
 			manual_emote("giggles.")
 			playsound(get_turf(src), 'sound/voice/human/womanlaugh.ogg', 50, 0, 20, ignore_walls = TRUE)
 	for(var/mob/living/carbon/human/i in guilty_people) // Drive all Guilty people insane on Qliphoth 0
 		to_chat(i, "<span class='userdanger'>You feel your head begin to split!</span>")
-		addtimer(CALLBACK(src, .proc/DriveInsane, i), 10 SECONDS)
+		addtimer(CALLBACK(src, .proc/DriveInsane, i), insanity_timer)
 	datum_reference.qliphoth_change(3)
 	return
 
