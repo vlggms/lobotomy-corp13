@@ -27,8 +27,6 @@
 	var/department
 	if(M && M.client && M.client.prefs)
 		department = M.client.prefs.prefered_agent_department
-		if(department == "None")
-			return
 	var/ears = null
 	var/accessory = null
 	switch(department)
@@ -68,7 +66,7 @@
 			if(H.ears)
 				qdel(H.ears)
 			H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
-	if(department)
+	if(department != "None" && department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else
 		to_chat(M, "<b>You have not been assigned to any department.</b>")
