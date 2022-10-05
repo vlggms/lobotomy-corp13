@@ -94,11 +94,11 @@
 /mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
 	var/insanity_timer = insanity_short
 	var/dead_list = guilty_people
-	var/list/potential_guilt = list()
 	for(var/mob/living/carbon/human/dead_body in dead_list)
 		if(dead_body.stat == DEAD || isnull(dead_body))
 			guilty_people -= dead_body
 	if (!LAZYLEN(guilty_people)) // No Guilty on 0 counter? Find a random person and take them <3
+		var/list/potential_guilt = list()
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 			if(H.stat >= HARD_CRIT || H.sanity_lost || z != H.z) // Dead or in hard crit, insane, or on a different Z level.
 				continue
