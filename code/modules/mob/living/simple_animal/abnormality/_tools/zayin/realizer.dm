@@ -52,6 +52,27 @@
 	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/fragment))
 		output = /obj/item/clothing/suit/armor/ego_gear/realization/universe
 
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/beak))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/mouth
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/lamp))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/eyes
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/justitia))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/head
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/daredevil))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/fear
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/executive))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/capitalism
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/smile))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/laughter
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/oppression))
+		output = /obj/item/clothing/suit/armor/ego_gear/realization/cruelty
+
 	if(output)
 		qdel(I)
 		realized += user.ckey
