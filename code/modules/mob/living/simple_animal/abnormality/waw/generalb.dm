@@ -38,6 +38,12 @@
 	var/fire_cooldown
 	var/fireball_range = 30
 	var/volley_count
+	var/breached_before = FALSE // No longer controlled by Queen Bee. Can only ever breach once.
+
+/mob/living/simple_animal/hostile/abnormality/general_b/PostSpawn()
+	. = ..()
+	if(!isnull(RememberVar("breach")))
+		breached_before = RememberVar("breach")
 
 /mob/living/simple_animal/hostile/abnormality/general_b/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
@@ -83,6 +89,10 @@
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
 
 /mob/living/simple_animal/hostile/abnormality/general_b/breach_effect()
+	if(breached_before)
+		return
+	breached_before = TRUE
+	TransferVar("breach", breached_before)
 	icon_state = "generalbee_breach"
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
 	SLEEP_CHECK_DEATH(80)
@@ -94,9 +104,11 @@
 	var/list/all_turfs = RANGE_TURFS(2, orgin)
 	for(var/turf/Y in all_turfs)
 		if(prob(60))
-			new /mob/living/simple_animal/hostile/soldier_bee(Y)
+			var/mob/living/simple_animal/hostile/soldier_bee/SB = new(Y)
+			SB.faction = src.faction
 		else if(prob(20))
-			new /mob/living/simple_animal/hostile/artillery_bee(Y)
+			var/mob/living/simple_animal/hostile/artillery_bee/AB = new(Y)
+			AB.faction = src.faction
 	..()
 	datum_reference.qliphoth_change(-1)
 

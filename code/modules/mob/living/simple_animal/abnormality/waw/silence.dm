@@ -20,7 +20,6 @@
 		/datum/ego_datum/armor/thirteen,
 		)
 //	gift_type = /datum/ego_gifts/thirteen
-
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown
 	var/worldwide_damage = 70	//If you're unarmored, it obliterates you
@@ -68,3 +67,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/silence/proc/Reset()
 	datum_reference.qliphoth_change(1)
+
+/mob/living/simple_animal/hostile/abnormality/silence/breach_effect(mob/living/carbon/human/user)
+	meltdown_cooldown = world.time + 5 MINUTES
+	safe = FALSE
+	sound_to_playing_players_on_level('sound/abnormalities/silence/ambience.ogg', 50, zlevel = z)
+	for(var/mob/H in GLOB.player_list)
+		if(H.client && H.z == z)
+			to_chat(H, "<span class='userdanger'>The Thirteen Hour is upon thee; Answer my call lest thee pay the price.</span>")

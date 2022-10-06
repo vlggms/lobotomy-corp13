@@ -76,6 +76,19 @@
 	datum_reference.qliphoth_change(1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/breach_effect(mob/living/carbon/human/user, funny = FALSE)
+	if(funny)
+		..()
+		return
+	var/turf/center = pick(GLOB.department_centers)
+	for(var/turf/T in orange(1, center))
+		var/mob/living/simple_animal/hostile/soldier
+		if(prob(70))
+			soldier = new /mob/living/simple_animal/hostile/shrimp(T)
+		else
+			soldier = new /mob/living/simple_animal/hostile/shrimp_soldier(T)
+		soldier.faction += "pink_midnight"
+
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == liked)
 		happy = TRUE
@@ -149,6 +162,7 @@
 	ranged = 1
 	retreat_distance = 2
 	minimum_distance = 3
+	check_friendly_fire = TRUE
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 

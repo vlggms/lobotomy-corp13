@@ -6,6 +6,7 @@
 	icon_living = "bald1"
 	maxHealth = 50
 	health = 50
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -16,6 +17,10 @@
 						)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
+
+	melee_damage_lower = -1
+	melee_damage_upper = -1
+	melee_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/tough,
@@ -72,4 +77,16 @@
 			icon_state = "bald3"
 		else
 			icon_state = "bald1"
+
+/mob/living/simple_animal/hostile/abnormality/bald/ListTargets()
+	. = ..()
+	for(var/mob/living/carbon/human/not_bald in .)
+		if(not_bald.hairstyle in balding_list)
+			. -= not_bald
+
+/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget()
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		do_bald(H)
 

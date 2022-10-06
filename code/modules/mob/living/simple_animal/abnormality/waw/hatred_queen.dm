@@ -78,6 +78,7 @@
 	var/hp_teleport_counter = 3
 	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
+	var/pinked = FALSE
 
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
@@ -514,16 +515,22 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/breach_effect(mob/living/carbon/human/user)
 	death_counter = 0
+	if(pinked)
+		datum_reference?.qliphoth_change(999) // Oh what a joy what a joy~!
 	if(datum_reference?.qliphoth_meter == 2) // Helpful/Passive breach
 		fear_level = TETH_LEVEL
 		beam_cooldown = world.time + beam_cooldown_time //no immediate beam
 		addtimer(CALLBACK(src, .proc/TryTeleport), 5)
-		for(var/mob/living/carbon/human/saving_humans in GLOB.mob_living_list) //gets all alive people
-			if((saving_humans.stat != DEAD) && saving_humans.z == z)
+		if(pinked)
+			faction = list("pink_midnight")
+			breach_max_death = null // Okay but evil magical girl.
+		else
+			for(var/mob/living/carbon/human/saving_humans in GLOB.mob_living_list) //gets all alive people
+				if((saving_humans.stat != DEAD) && saving_humans.z == z)
+					breach_max_death++
+			breach_max_death /= 2
+			if(breach_max_death == 0) //make it 1 if it's somehow zero
 				breach_max_death++
-		breach_max_death /= 2
-		if(breach_max_death == 0) //make it 1 if it's somehow zero
-			breach_max_death++
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
 	visible_message("<span class='danger'>[src] transforms!</span>") //Begin Hostile breach

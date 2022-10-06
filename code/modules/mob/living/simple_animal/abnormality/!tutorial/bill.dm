@@ -24,6 +24,7 @@
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
+	pinkable = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bill/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)

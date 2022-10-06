@@ -9,6 +9,7 @@
 	maxHealth = 650
 	health = 650
 	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	threat_level = HE_LEVEL
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 25,
@@ -19,7 +20,8 @@
 	work_damage_amount = 0
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
-
+	retreat_distance = 0
+	faction = list("hostile", "neutral")
 	ego_list = list(
 		/datum/ego_datum/weapon/remorse,
 		/datum/ego_datum/armor/remorse
@@ -31,10 +33,66 @@
 	var/insanity_long = 30 SECONDS
 	var/insanity_short = 10 SECONDS
 	var/population_threshold = 5
+	var/call_cooldown = 20 SECONDS
+	var/party_cooldown = 5 MINUTES
+	COOLDOWN_DECLARE(backup)
+	COOLDOWN_DECLARE(party_leader)
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/Initialize(mapload)
 	. = ..()
 	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER) // Doesn't like me assigning this in the definition, so I assign it here.
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/Life()
+	. = ..()
+	if(!.)
+		return
+	if(status_flags & GODMODE)
+		return
+	if(COOLDOWN_FINISHED(src, backup))
+		var/list/human_list = list()
+		for(var/mob/living/carbon/human/H in view(vision_range, src))
+			human_list += H
+		if(LAZYLEN(human_list))
+			better_summon_backup(human_list)
+	if(COOLDOWN_FINISHED(src, party_leader))
+		for(var/obj/machinery/computer/abnormality/AW in shuffle(range(6, src)))
+			if(isnull(AW.datum_reference.current))
+				continue
+			if(!(AW.datum_reference.current?.status_flags & GODMODE))
+				continue
+			AW.datum_reference.qliphoth_change(-1, src)
+			COOLDOWN_START(src, party_leader, party_cooldown)
+			playsound(get_turf(AW), 'sound/voice/human/womanlaugh.ogg', 75, 0, 20, ignore_walls = TRUE)
+			break
+
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/breach_effect(mob/living/carbon/human/user)
+	. = ..()
+	fear_level++
+	COOLDOWN_START(src, party_leader, party_cooldown)
+	COOLDOWN_START(src, backup, call_cooldown)
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/better_summon_backup(list/human_list = list())
+	COOLDOWN_START(src, backup, call_cooldown)
+	manual_emote("giggles.")
+	playsound(get_turf(src), 'sound/voice/human/womanlaugh.ogg', 50, 0, 20, ignore_walls = TRUE)
+	var/allies = 0
+	for(var/mob/living/simple_animal/hostile/M in orange(20, src))
+		if(faction_check_mob(M))
+			if(M.AIStatus == AI_OFF)
+				continue
+			allies++
+			if(LAZYLEN(human_list))
+				if(allies > human_list.len)
+					continue
+				M.GiveTarget(human_list[allies])
+				var/mob/living/carbon/human/H = human_list[allies]
+				M.Goto(H,M.move_to_delay,M.minimum_distance)
+				to_chat(H, "<span class='warning'>You feel a since of dread over take you...</span>")
+			else
+				M.Goto(src,M.move_to_delay,M.minimum_distance)
+		if(allies >= 3 && !LAZYLEN(human_list))
+			return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/DriveInsane(mob/living/carbon/human/target)
 	if (!target.sanity_lost)
@@ -120,6 +178,9 @@
 
 //Whitelake makes a good point with the different lines, so I thought it'd be cool
 /datum/ai_controller/insane/release/silent_girl
+	lines_type = /datum/ai_behavior/say_line/insanity_silent_girl
+
+/datum/ai_controller/insane/suicide/silent_girl
 	lines_type = /datum/ai_behavior/say_line/insanity_silent_girl
 
 /datum/ai_behavior/say_line/insanity_silent_girl

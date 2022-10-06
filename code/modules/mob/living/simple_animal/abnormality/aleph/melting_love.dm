@@ -126,6 +126,15 @@
 	breach_effect()
 	return
 
+/mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
+	if(!isnull(gifted_human)) // Revokes buff on Pink Midnight breach
+		gifted_human.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
+		UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
+		UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
+		to_chat(gifted_human, "<span class='notice'>The gift sloshes away as you hear a gooey cry in the distance...</span>")
+		gifted_human = null
+	..()
+
 /* Gift */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER

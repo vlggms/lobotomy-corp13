@@ -59,6 +59,7 @@
 	var/protect_cooldown_time = 5 SECONDS
 	var/protect_cooldown
 	var/obj/effect/scaredy_stun/stunned_effect
+	var/pinked = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Initialize()
 	. = ..()
@@ -69,6 +70,16 @@
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/Life()
+	. = ..()
+	if(wait_for_friend && pinked)
+		for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_living_list)
+			if(A.status_flags & GODMODE)
+				continue
+			if(LAZYFIND(prefered_abno_list, A.name)) // During Pink Midnight he will keep protecting his allies until all Oz Abnormalities have been suppressed.
+				ProtectFriend(A)
+				break
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/breach_effect(mob/living/carbon/human/user)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach

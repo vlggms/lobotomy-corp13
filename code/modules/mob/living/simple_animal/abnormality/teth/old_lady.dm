@@ -6,6 +6,8 @@
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
+	faction = list("hostile")
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 0.8)
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(45, 45, 40, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 50, 50, 50),
@@ -25,18 +27,36 @@
 //for solitude effects
 	var/solitude_cooldown_time = 1 SECONDS
 	var/solitude_cooldown
+//for breach effects... wait what
+	var/old_cooldown_time = 3 SECONDS
+	var/old_cooldown
+	var/old_damage = 10
+
+/mob/living/simple_animal/hostile/abnormality/old_lady/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/old_lady/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/Life()
 	. = ..()
-	if(meltdown_cooldown < world.time && !datum_reference.working) // Doesn't decrease while working but will afterwards
-		meltdown_cooldown = world.time + meltdown_cooldown_time
-		datum_reference.qliphoth_change(-1)
+	if(status_flags & GODMODE) // Contained
+		if(meltdown_cooldown < world.time && !datum_reference.working) // Doesn't decrease while working but will afterwards
+			meltdown_cooldown = world.time + meltdown_cooldown_time
+			datum_reference.qliphoth_change(-1)
 
-	if(solitude_cooldown < world.time && datum_reference.qliphoth_meter == 0)
-		solitude_cooldown = world.time + solitude_cooldown_time
-		for(var/turf/open/T in range(2 , src))
-			if(prob(70))
-				new /obj/effect/solitude (T)
+		if(solitude_cooldown < world.time && datum_reference.qliphoth_meter == 0)
+			solitude_cooldown = world.time + solitude_cooldown_time
+			for(var/turf/open/T in range(2 , src))
+				if(prob(70))
+					new /obj/effect/solitude (T)
+	else
+		if(old_cooldown < world.time)
+			old_cooldown = world.time + old_cooldown_time
+			BeOld()
+			for(var/turf/open/T in oview(6, src))
+				if(prob(75))
+					new /obj/effect/solitude (T)
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Clear Solitude" && datum_reference.qliphoth_meter == 0)
@@ -50,6 +70,18 @@
 		datum_reference.qliphoth_change(4)
 		icon_state = "old_lady"
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/old_lady/breach_effect()
+	. = ..()
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	old_cooldown = world.time
+
+/mob/living/simple_animal/hostile/abnormality/old_lady/proc/BeOld()
+	for(var/mob/living/target in view(7, src))
+		if(faction_check_mob(target))
+			continue
+		target.apply_damage(old_damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 //The Effect
 /obj/effect/solitude

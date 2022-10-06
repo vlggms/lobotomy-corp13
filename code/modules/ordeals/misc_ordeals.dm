@@ -15,3 +15,9 @@
 	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/C = new(T)
 	ordeal_mobs += C
 	C.ordeal_reference = src
+	addtimer(CALLBACK(src, .proc/Add_Mobs), 10 SECONDS)
+
+/datum/ordeal/pink_midnight/proc/Add_Mobs()
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
+		if("pink_midnight" in A.faction)
+			ordeal_mobs += A

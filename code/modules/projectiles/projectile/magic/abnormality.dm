@@ -87,3 +87,77 @@
 	. = ..()
 	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
 
+/obj/projectile/wellcheers
+	name = "shaken can of 'Wellcheers' soda"
+	desc = "A shaken can of soda."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "wellcheers_red"
+	nodamage = TRUE
+
+/obj/projectile/wellcheers/red
+	name = "shaken can of cherry 'Wellcheers' soda"
+	desc = "A shaken can of cherry-flavored soda."
+
+/obj/projectile/wellcheers/red/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/cooler_target = target
+		cooler_target.apply_status_effect(/datum/status_effect/wellcheers_bad/red)
+
+/obj/projectile/wellcheers/white
+	name = "shaken can of 'Wellcheers' soda"
+	desc = "A shaken can of soda."
+	icon_state = "wellcheers_white"
+
+/obj/projectile/wellcheers/white/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/cooler_target = target
+		cooler_target.apply_status_effect(/datum/status_effect/wellcheers_bad/white)
+
+/obj/projectile/wellcheers/purple
+	name = "shaken can of grape 'Wellcheers' soda"
+	desc = "A shaken can of grape-flavored soda."
+	icon_state = "wellcheers_purple"
+
+/obj/projectile/wellcheers/purple/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/cooler_target = target
+		cooler_target.apply_status_effect(/datum/status_effect/wellcheers_bad/purple)
+
+/obj/projectile/queen_diamond
+	name = "red diamond"
+	desc = "A red diamond, symbolizing the power of royalty soaked in blood."
+	icon_state = "queen_diamond"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	damage = 40
+	alpha = 0
+	spread = 20
+	projectile_piercing = PASSMOB
+	nodamage = TRUE
+
+/obj/projectile/queen_diamond/Initialize()
+	. = ..()
+	hitsound = 'sound/weapons/guillotine.ogg'
+	animate(src, alpha = 255, time = 3)
+	def_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_L_LEG)
+
+/obj/projectile/queen_diamond/on_hit(atom/target, blocked = FALSE)
+	if(!ishuman(target))
+		if(ishostile(target) && !isnull(firer))
+			var/mob/living/simple_animal/hostile/hostile_mob = target
+			var/mob/living/simple_animal/hostile/abnormality/red_queen/RQ = firer
+			if(RQ.faction_check_mob(hostile_mob, FALSE))
+				return BULLET_ACT_BLOCK
+		else
+			return BULLET_ACT_BLOCK
+	nodamage = FALSE
+	var/mob/living/L = target
+	..()
+	if(L.health <= 0)
+		if(def_zone != BODY_ZONE_CHEST && L.get_bodypart(def_zone))
+			var/obj/item/bodypart/BP = L.get_bodypart(def_zone)
+			BP.dismember() // Chop Chop
+	qdel(src)

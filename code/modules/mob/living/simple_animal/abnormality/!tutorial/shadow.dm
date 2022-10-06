@@ -25,6 +25,7 @@
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
+	pinkable = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/shadow/breach_effect(mob/living/carbon/human/user)
 	..()

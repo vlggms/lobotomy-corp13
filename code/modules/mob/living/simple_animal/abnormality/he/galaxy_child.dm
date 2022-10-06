@@ -24,6 +24,8 @@
 		)
 //	gift_type = /datum/ego_gifts/galaxy
 
+	pinkable = FALSE
+
 	var/heal_cooldown_time = 2 SECONDS
 	var/heal_cooldown
 	var/list/galaxy_friend = list()

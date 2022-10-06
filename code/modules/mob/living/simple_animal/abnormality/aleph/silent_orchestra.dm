@@ -114,7 +114,7 @@
 						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 50, 1)
 				SLEEP_CHECK_DEATH(4 SECONDS)
 				animate(src, alpha = 0, time = 2 SECONDS)
-				QDEL_IN(src, 2 SECONDS)
+				addtimer(CALLBACK(src, death()), 2 SECONDS) // Qdel breaks anything that needs him to DIE
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/proc/spawn_performer(distance = 1, direction = EAST)
 	var/turf/T = get_turf(src)

@@ -9,8 +9,18 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 666
-	health = 666
+	maxHealth = 2000
+	health = 2000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ranged = TRUE
+	melee_damage_lower = 40
+	melee_damage_upper = 60
+	attack_verb_simple = "kick"
+	attack_verb_continuous = "kicks"
+	friendly_verb_continuous = "punts"
+	friendly_verb_simple = "punt"
+	stat_attack = HARD_CRIT
+
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 45, 45, 40, 40),
@@ -30,13 +40,32 @@
 	var/chance_modifier = 1
 	var/previous_mood
 	var/next_mood
-	var/mood_cooldown 
+	var/mood_cooldown
+	var/breach_mood = 1 // 1-5, 5 happiest, 1 angriest
+	var/list/breached_moods = list()
+	var/obj/item/clothing/mask/shy_look/current_mask = null
+	var/can_act = TRUE
+	var/scream_cooldown = null
+	var/scream_damage = 20
+	COOLDOWN_DECLARE(scream)
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/Initialize(mapload)
+	. = ..()
+	breached_moods = list(
+		mutable_appearance('icons/effects/32x64.dmi', "shy_pissed", -HALO_LAYER),
+		mutable_appearance('icons/effects/32x64.dmi', "shy_sad", -HALO_LAYER),
+		mutable_appearance('icons/effects/32x64.dmi', "shy_neutral", -HALO_LAYER),
+		mutable_appearance('icons/effects/32x64.dmi', "shy_happy", -HALO_LAYER),
+		mutable_appearance('icons/effects/32x64.dmi', "shy_ecstatic", -HALO_LAYER)
+	)
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/work_chance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/Life()
 	. = ..()
+	if(!(status_flags & GODMODE))
+		return
 	if(mood_cooldown < world.time && !datum_reference.working)
 		ChangeMood()
 
@@ -97,3 +126,143 @@
 		user.adjustSanityLoss(0.2*user.maxSanity)
 	ChangeMood() //Prevents spamming work on the same mood
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/breach_effect(mob/living/carbon/human/user)
+	. = ..()
+	src.add_overlay(breached_moods[1])
+	current_mask = new /obj/item/clothing/mask/shy_look/sad(get_turf(pick(GLOB.xeno_spawn)))
+	scream_cooldown = 15 SECONDS
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "bill" // We love bill
+	pixel_x = 0
+	base_pixel_x = 0
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/Moved()
+	. = ..()
+	switch(breach_mood)
+		if(1)
+			playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3) // Angrily stomping around
+		if(2)
+			playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 25, 0, 3) // Calming down a bit
+	return // No others play walking sounds.
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/OpenFire(atom/A)
+	if(COOLDOWN_FINISHED(src, scream) && (breach_mood < 3) && can_act)
+		COOLDOWN_START(src, scream, scream_cooldown)
+		Scream()
+	return
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/MeleeAction(patience)
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/AttackingTarget(atom/attacked_target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.body_position == LYING_DOWN) // CURB STOMP
+			step_towards(src, H)
+			melee_damage_lower *= 2
+			melee_damage_upper *= 2
+			. = ..()
+			melee_damage_lower /= 2
+			melee_damage_upper /= 2
+			H.visible_message("<span class='danger'>[src] stomps on [H]'s head!</span>", "<span class='userdanger'>[src] stomps on your head!</span>")
+			if(H.stat == DEAD || H.health < 0)
+				var/obj/item/bodypart/head = H.get_bodypart(HEAD)
+				if(head)
+					head.dismember()
+					H.regenerate_icons()
+					new /obj/effect/gibspawner/human/bodypartless(get_turf(H))
+					QDEL_NULL(head)
+			return
+		else if(breach_mood < 4)
+			melee_damage_lower /= 2
+			melee_damage_upper /= 2
+			. = ..()
+			melee_damage_lower *= 2
+			melee_damage_upper *= 2
+			if(prob(50/breach_mood))
+				H.Knockdown(13, FALSE)
+				H.visible_message("<span class='danger'>[src] smashes [H]'s leg in!</span>", "<span class='userdanger'>[src] smashes your leg, knocking you down!</span>")
+			return
+	return ..()
+
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/proc/Scream()
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/voice/human/femalescream_3.ogg', 35*(3-breach_mood), 0, 4)
+	for(var/i = 1 to 8)
+		new /obj/effect/temp_visual/fragment_song(get_turf(src))
+		playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 40, 0, 3) // throwing a temper trantrum
+		for(var/mob/living/L in view(8, src))
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			L.apply_damage(scream_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/attacked_by(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/clothing/mask/shy_look))
+		BreachedMoodChange() // This means you can technically use duplicates but....
+		QDEL_NULL(I)
+		return
+	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/proc/BreachedMoodChange()
+	src.cut_overlay(breached_moods[breach_mood])
+	breach_mood++
+	src.add_overlay(breached_moods[breach_mood])
+	melee_damage_upper -= 10
+	melee_damage_lower -= 10
+	for(var/dam_type in damage_coeff)
+		if(dam_type == BRUTE)
+			continue
+		damage_coeff[dam_type] *= 2
+	switch(breach_mood)
+		if(2)
+			current_mask = new /obj/item/clothing/mask/shy_look/neutral(get_turf(pick(GLOB.xeno_spawn)))
+			scream_cooldown = 45 SECONDS
+			scream_damage /= 2
+		if(3)
+			current_mask = new /obj/item/clothing/mask/shy_look/happy(get_turf(pick(GLOB.xeno_spawn)))
+		if(4)
+			current_mask = new /obj/item/clothing/mask/shy_look/ecstatic(get_turf(pick(GLOB.xeno_spawn)))
+			ranged = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/shy_look/death(gibbed)
+	QDEL_NULL(current_mask)
+	. = ..()
+
+/obj/item/clothing/mask/shy_look
+	name = "Skin Mask"
+	desc = "Oh, that's really gross... Is she looking for this?"
+	icon = 'icons/obj/clothing/masks.dmi'
+	worn_icon = 'icons/mob/clothing/mask.dmi'
+	lefthand_file = null
+	righthand_file = null
+	inhand_icon_state = null
+	//These are mostly cosmetic if you wanna wear them but otherwise they're for suppression.
+
+/obj/item/clothing/mask/shy_look/sad
+	icon_state = "shy_sad"
+	worn_icon_state = "shy_sad"
+
+/obj/item/clothing/mask/shy_look/neutral
+	icon_state = "shy_neutral"
+	worn_icon_state = "shy_neutral"
+
+/obj/item/clothing/mask/shy_look/happy
+	icon_state = "shy_happy"
+	worn_icon_state = "shy_happy"
+
+/obj/item/clothing/mask/shy_look/ecstatic
+	icon_state = "shy_ecstatic"
+	worn_icon_state = "shy_ecstatic"

@@ -26,6 +26,7 @@
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
+	pinkable = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/fairy_swarm/breach_effect(mob/living/carbon/human/user)
 	..()

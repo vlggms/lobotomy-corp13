@@ -7,6 +7,9 @@
 	icon_living = "wellcheers_vendor"
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
+	maxHealth = 400
+	health = 400
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
 						ABNORMALITY_WORK_INSIGHT = list(70, 70, 60, 60, 60),
@@ -16,6 +19,16 @@
 	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
+	blood_volume = 0
+	ranged = TRUE
+	ranged_message = "launches a can"
+	ranged_cooldown_time = 3 SECONDS
+	retreat_distance = 4
+	check_friendly_fire = TRUE
+	faction = list("shrimp")
+	projectiletype = /obj/projectile/wellcheers/red
+	projectilesound = 'sound/machines/machine_vend.ogg'
+	stat_attack = HARD_CRIT
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soda,
@@ -23,6 +36,8 @@
 		)
 	gift_type = /datum/ego_gifts/soda
 	gift_message = "You feel like you've been doing this your whole life."
+
+	var/projectile_list = list(/obj/projectile/wellcheers/red, /obj/projectile/wellcheers/white, /obj/projectile/wellcheers/purple)
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/success_effect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
@@ -52,6 +67,22 @@
 	QDEL_IN(user, 3.5 SECONDS) // Bye bye!
 	return
 
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/OpenFire(atom/A)
+	. = ..()
+	projectiletype = pick(projectile_list) // It's VENDING TIME.
+	switch(projectiletype)
+		if(/obj/projectile/wellcheers/red)
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+		if(/obj/projectile/wellcheers/white)
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+		if(/obj/projectile/wellcheers/purple)
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+		else
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/AttackingTarget()
+	return FALSE
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red

@@ -57,7 +57,7 @@
 			var/obj/item/bodypart/bp = pick(parts)
 			bp.dismember()
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
-			QDEL_NULL(src)
+			death()
 			// Taken from eldritch_demons.dm
 	return Smash(target)
 

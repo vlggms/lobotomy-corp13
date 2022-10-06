@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_CHAMPION /datum/status_effect/champion
+#define STATUS_EFFECT_CHAMPION_PINK /datum/status_effect/champion/pink
 //White Lake from wonderlabs, by Kirie saito
 //It's very buggy, and I can't test it alone
 /mob/living/simple_animal/hostile/abnormality/whitelake
@@ -9,6 +10,7 @@
 	icon_living = "white_lake"
 	maxHealth = 600
 	health = 600
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 10,
@@ -16,6 +18,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 30
 	)
+	faction = list("hostile", "whitelake")
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	/// Grab her champion
@@ -30,6 +33,67 @@
 		)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
+	var/teleport_cooldown = 60 SECONDS
+	var/teleport_cooldown_time
+	var/water_cooldown = 18 SECONDS
+	var/water_cooldown_time
+	var/water_damage_r = 20
+	var/water_damage_w = 10
+	var/list/second_champions = list()
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/MeleeAction(patience)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/Life()
+	. = ..()
+	if(!.)
+		return
+	if((status_flags & GODMODE))
+		return
+	if(water_cooldown_time < world.time)
+		water_cooldown_time = world.time + water_cooldown
+		var/radius = 1
+		for(var/turf/NW in getline(src, get_ranged_target_turf(src, NORTH, 10)))
+			if(NW.is_blocked_turf(TRUE))
+				radius = max(get_dist(NW, get_turf(src)), radius)
+				break
+		for(var/turf/NE in getline(src, get_ranged_target_turf(src, EAST, 10)))
+			if(NE.is_blocked_turf(TRUE))
+				radius = max(get_dist(NE, get_turf(src)), radius)
+				break
+		radius++
+		var/list/affected_mob = list()
+		var/list/affected_turfs = list()
+		for(var/step_up = 1 to radius)
+			var/list/target_area = list()
+			for(var/turf/IT in oview(step_up, src))
+				target_area += IT
+			target_area -= affected_turfs
+			affected_turfs += target_area
+			for(var/turf/open/OT in target_area)
+				new /obj/effect/temp_visual/whitelake_stage(OT)
+				for(var/mob/living/L in OT.contents)
+					if(faction_check_mob(L, FALSE))
+						if(ishuman(L))
+							if(!(L in second_champions))
+								second_champions += L
+								say("Welcome to our grand ball [L], my champion~")
+								L.apply_status_effect(STATUS_EFFECT_CHAMPION_PINK)
+							L.adjustStaminaLoss(-10)
+							L.adjustBruteLoss(-(water_damage_r + water_damage_w))
+						continue
+					L.adjustStaminaLoss(30)
+					L.apply_damage(water_damage_r, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+					L.apply_damage(water_damage_w, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					affected_mob += L
+			SLEEP_CHECK_DEATH(4)
+		if(LAZYLEN(affected_mob))
+			say("We don't need filthy murderers like [pick(affected_mob)] interupting our grand ball~!")
+	if(teleport_cooldown_time < world.time)
+		Teleport()
 
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/work_chance(mob/living/carbon/human/user, chance)
@@ -69,6 +133,7 @@
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.InitializeAIController()
+	H.faction += "whitelake" // This is a surprise tool that'll help us later.
 	champion = null
 	return
 
@@ -80,6 +145,24 @@
 	ADD_TRAIT(wep, TRAIT_NODROP, wep)
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/breach_effect(mob/living/carbon/human/user)
+	. = ..()
+	water_cooldown_time = world.time + water_cooldown
+	Teleport()
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/proc/Teleport()
+	if(teleport_cooldown_time > world.time)
+		return FALSE
+	teleport_cooldown_time = world.time + teleport_cooldown
+	var/turf/target = pick(GLOB.department_centers)
+	for(var/turf/T in range(2, target))
+		if(!T.is_blocked_turf(FALSE, src))
+			target = T
+			break
+	forceMove(target)
+	water_cooldown_time = world.time + 5 SECONDS
+	return TRUE
 
 // If Champ dies, sword is droppable
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/Champion_Death_Sword(mob/living/gibbed)
@@ -147,7 +230,7 @@
 //Sets the defenses of the champion
 /datum/status_effect/champion
 	id = "champion"
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REPLACE // Changed from unique to replace for second version
 	duration = 6000		//Lasts 10 minutes, guaranteed.
 	alert_type = /atom/movable/screen/alert/status_effect/champion
 
@@ -165,6 +248,8 @@
 		L.physiology.white_mod *= 0.1
 		L.physiology.black_mod *= 0.1
 		L.physiology.pale_mod *= 0.2
+		L.remove_status_effect(/datum/status_effect/panicked_type)
+		L.apply_status_effect(/datum/status_effect/panicked_type/murder)
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
@@ -178,3 +263,27 @@
 		L.physiology.pale_mod /= 0.2
 
 #undef STATUS_EFFECT_CHAMPION
+
+/datum/status_effect/champion/pink // Special lower duration version for Pink Midnight.
+	duration = 2 MINUTES
+
+/datum/status_effect/champion/pink/on_apply()
+	. = ..()
+	owner.faction += "pink_midnight"
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		if(!L.sanity_lost)
+			L.adjustSanityLoss(-500) // Instant panick and then
+		QDEL_NULL(L.ai_controller)
+		L.ai_controller = /datum/ai_controller/insane/murder/whitelake
+		L.InitializeAIController()
+
+/datum/status_effect/champion/pink/on_remove()
+	. = ..()
+	owner.faction -= "pink_midnight"
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		if(L.sanity_lost)
+			L.adjustSanityLoss(500) // Recover after 2 minutes
+
+#undef STATUS_EFFECT_CHAMPION_PINK

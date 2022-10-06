@@ -1,6 +1,7 @@
 #define STATUS_EFFECT_WILTING /datum/status_effect/wilting
 #define STATUS_EFFECT_SCHISMATIC /datum/status_effect/schismatic
 #define STATUS_EFFECT_SACRIFICE /datum/status_effect/sacrifice
+#define STATUS_EFFECT_WONDERLAND /datum/status_effect/wonderland
 //Coded by me, Kirie Saito!
 /mob/living/simple_animal/hostile/abnormality/staining_rose
 	name = "Staining Rose"
@@ -31,6 +32,8 @@
 		)
 	gift_type = /datum/ego_gifts/blossoming
 
+	pinkable = FALSE
+
 	var/chosen
 	var/list/sacrificed = list()
 	var/list/heretics = list()
@@ -38,6 +41,7 @@
 	var/meltdown_cooldown
 	var/safe = FALSE //work on it and you're safe for 15 minutes
 	var/reset_time = 3 MINUTES //Qliphoth resets after this time
+	var/pink_applied = FALSE
 
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Initialize()
@@ -80,6 +84,17 @@
 		if(!safe)
 			datum_reference.qliphoth_change(-1)
 		safe = FALSE
+	if(!pink_applied && !isnull(chosen))
+		var/pink_midnight
+		for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
+			if(A != src)
+				if("pink_midnight" in A.faction)
+					pink_midnight = TRUE
+					break
+		if(pink_midnight && ishuman(chosen))
+			var/mob/living/carbon/human/blessed = chosen
+			blessed.apply_status_effect(STATUS_EFFECT_WONDERLAND)
+			pink_applied = TRUE
 	return
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/proc/pissed()
@@ -226,3 +241,33 @@
 #undef STATUS_EFFECT_WILTING
 #undef STATUS_EFFECT_SCHISMATIC
 #undef STATUS_EFFECT_SACRIFICE
+
+/datum/status_effect/wonderland
+	id = "wonderland"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 10 MINUTES
+	alert_type = /atom/movable/screen/alert/status_effect/wonderland
+
+/datum/status_effect/wonderland/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(L, "<span class='notice'>An unfamiliar strength fills you.</span>")
+		L.physiology.black_mod *= 0.7
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/wonderland/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(L, "<span class='notice'>It passess by, as all things shall.</span>")
+		L.physiology.black_mod /= 0.7
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+
+/atom/movable/screen/alert/status_effect/wonderland
+	name = "Face the Fear, Build the Future"
+	desc = "Only one can show her the way home from Wonderland."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "fairy_bastard"
+
+#undef STATUS_EFFECT_WONDERLAND

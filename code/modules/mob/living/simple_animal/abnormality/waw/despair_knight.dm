@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_DESPAIR_BLESSING /datum/status_effect/despair_blessed
 /mob/living/simple_animal/hostile/abnormality/despair_knight
 	name = "Knight of Despair"
 	desc = "A tall humanoid abnormality in a blue dress. \
@@ -85,14 +86,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
-	blessed_human.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
-	UnregisterSignal(blessed_human, COMSIG_LIVING_DEATH)
-	UnregisterSignal(blessed_human, COMSIG_HUMAN_INSANE)
-	blessed_human.physiology.red_mod /= 0.5
-	blessed_human.physiology.white_mod /= 0.5
-	blessed_human.physiology.black_mod /= 0.5
-	blessed_human.physiology.pale_mod /= 2
-	blessed_human = null
 	breach_effect()
 	return TRUE
 
@@ -131,18 +124,56 @@
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
-		to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
-		user.physiology.red_mod *= 0.5
-		user.physiology.white_mod *= 0.5
-		user.physiology.black_mod *= 0.5
-		user.physiology.pale_mod *= 2
-		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
-		playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+		user.apply_status_effect(STATUS_EFFECT_DESPAIR_BLESSING)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/breach_effect(mob/living/carbon/human/user)
 	..()
+	if(!isnull(blessed_human))
+		UnregisterSignal(blessed_human, COMSIG_LIVING_DEATH)
+		UnregisterSignal(blessed_human, COMSIG_HUMAN_INSANE)
+		blessed_human.remove_status_effect(STATUS_EFFECT_DESPAIR_BLESSING)
+		blessed_human = null
 	icon_living = "despair_breach"
 	icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 	return
+
+/datum/status_effect/despair_blessed
+	id = "despair_bless"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+	alert_type = /atom/movable/screen/alert/status_effect/despair_blessed
+
+/atom/movable/screen/alert/status_effect/despair_blessed
+	name = "Knight's Oath"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "despair_status"
+	desc = "All that remains is the hollow pride of a weathered knight."
+
+/datum/status_effect/despair_blessed/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		to_chat(H, "<span class='nicegreen'>You feel protected.</span>")
+		H.physiology.red_mod *= 0.5
+		H.physiology.white_mod *= 0.5
+		H.physiology.black_mod *= 0.5
+		H.physiology.pale_mod *= 2
+		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
+		playsound(get_turf(H), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+
+/datum/status_effect/despair_blessed/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		if(H.stat != DEAD)
+			to_chat(H, "<span class='danger'><i>Feelings of loneliness overtake you; You no longer feel protected.</i></span>")
+		H.physiology.red_mod /= 0.5
+		H.physiology.white_mod /= 0.5
+		H.physiology.black_mod /= 0.5
+		H.physiology.pale_mod /= 2
+		H.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
+		playsound(get_turf(H), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+
+#undef STATUS_EFFECT_DESPAIR_BLESSING

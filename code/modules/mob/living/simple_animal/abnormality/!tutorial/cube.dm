@@ -21,6 +21,7 @@
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
+	pinkable = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 6

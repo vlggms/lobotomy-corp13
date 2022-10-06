@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	/// List of Living People on Breach
 	var/list/heretics = list()
 
+	var/pinked = FALSE // Whether or not it's being breached by Pink Midnight
+
 /mob/living/simple_animal/hostile/abnormality/white_night/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 1, 5))
 	var/list/result_text_list = list(
@@ -80,11 +82,17 @@ GLOBAL_LIST_EMPTY(apostles)
 		return FALSE
 	if(!(status_flags & GODMODE))
 		if(holy_revival_cooldown < world.time)
-			for(var/mob/living/simple_animal/hostile/apostle/scythe/guardian/G in apostles)
-				if(G in view(10, src)) // Only teleport them if they are not in view.
-					continue
-				var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
-				G.forceMove(T)
+			if(pinked)
+				for(var/mob/living/simple_animal/hostile/abnormality/guardian in apostles)
+					if(("guardian" in guardian.faction) && !(guardian in view(10, src)))
+						var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
+						guardian.forceMove(T)
+			else
+				for(var/mob/living/simple_animal/hostile/apostle/scythe/guardian/G in apostles)
+					if(G in view(10, src)) // Only teleport them if they are not in view.
+						continue
+					var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
+					G.forceMove(T)
 			revive_humans()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
@@ -97,9 +105,17 @@ GLOBAL_LIST_EMPTY(apostles)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
-	for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
-		A.death()
-		QDEL_IN(A, 1.5 SECONDS)
+	for(var/mob/living/simple_animal/hostile/A in apostles)
+		if(!pinked)
+			A.death()
+			QDEL_IN(A, 1.5 SECONDS)
+		else
+			A.adjustBruteLoss(A.health*0.5) // Lose half their current health.
+			A.remove_filter("apostle", 1, rays_filter(size = 32, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
+			if(A.health <= 0)
+				QDEL_IN(A, 1.5 SECONDS)
+			else
+				A.del_on_death = initial(A.del_on_death)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
@@ -128,6 +144,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		return
 	been_hit += L
 	if(!(faction_check in L.faction))
+		if(pinked && istype(L, /mob/living/simple_animal/hostile)) // Spare your allies from ye wrath
+			return
 		playsound(L.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 		// The farther you are from white night - the less damage it deals
 		var/dealt_damage = max(5, holy_revival_damage - attack_range)
@@ -136,7 +154,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			L.emote("scream")
 		to_chat(L, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
 	else
-		if(istype(L, /mob/living/simple_animal/hostile/apostle) && L.stat == DEAD)
+		if((istype(L, /mob/living/simple_animal/hostile/apostle) || ("guardian" in L.faction)) && L.stat == DEAD)
 			L.revive(full_heal = TRUE, admin_revive = FALSE)
 			L.grab_ghost(force = TRUE)
 			to_chat(L, "<span class='notice'>The holy light compels you to live!</span>")
@@ -167,6 +185,30 @@ GLOBAL_LIST_EMPTY(apostles)
 			A.forceMove(T)
 			if(length(possible_locs) > 1)
 				possible_locs -= T
+
+/mob/living/simple_animal/hostile/abnormality/white_night/proc/DesignateApostles()
+	for(var/mob/living/simple_animal/hostile/abnormality/A in view(vision_range, src))
+		if(A == src)
+			continue
+		if(A.status_flags & GODMODE)
+			continue
+		if(A.threat_level >= WAW_LEVEL)
+			A.faction += "apostle"
+			apostles += A
+			A.name += " the [apostles.len]\th Apostle"
+			A.desc += " Empowered by the righteous False God."
+			A.add_filter("apostle", 1, rays_filter(size = 32, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
+		if(apostles.len >= 12)
+			break
+	if(apostles.len >= 2)
+		var/guardian_list = shuffle(apostles)
+		var/guardians = 0
+		for(var/mob/living/simple_animal/hostile/abnormality/guardian in guardian_list)
+			guardian.faction += "guardian"
+			guardians++
+			guardian.del_on_death = FALSE
+			if(guardians >= 2)
+				break
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/white_night/OnQliphothChange(mob/living/carbon/human/user)
@@ -205,7 +247,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(LAZYLEN(GLOB.department_centers))
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
-	SpawnApostles()
+	if(!pinked)
+		SpawnApostles()
+	else
+		addtimer(CALLBACK(src, .proc/DesignateApostles), 5 SECONDS)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 

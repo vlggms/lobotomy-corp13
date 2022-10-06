@@ -26,6 +26,8 @@
 		/datum/ego_datum/weapon/laststop
 		)
 
+	pinkable = FALSE // While this is in development it seems I'll be excluding it.
+
 	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer
 	var/lightscount = 0

@@ -58,6 +58,7 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
+	var/pinkable = TRUE
 	/// Patrol Code
 	var/can_patrol = TRUE
 	var/patrol_cooldown
@@ -239,13 +240,20 @@
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
 	return
 
-// transfers a var to the datum to be used later
+/*
+ * Places a variable into the Datum for later reference.
+ * The variable's index MUST be a non-number, non-boolean value.
+ */
 /mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
 	if(isnull(datum_reference))
 		return
-	LAZYSET(datum_reference.transferable_var, value, index)
+	LAZYSET(datum_reference.transferable_var, index, value)
 
-// Access an item in the "transferable_var" list of the abnormality's datum
+/*
+ * Access an item in the "transferable_var" list of the abnormality's datum.
+ * You must reference with the previously declared Index/Indexes.
+ * See previous instances of "TransferVar" for reference.
+ */
 /mob/living/simple_animal/hostile/abnormality/proc/RememberVar(index)
 	if(isnull(datum_reference))
 		return

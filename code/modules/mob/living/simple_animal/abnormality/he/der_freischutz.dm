@@ -14,12 +14,83 @@
 	work_damage_amount = 8 // This was halved what it should be.
 	work_damage_type = BLACK_DAMAGE
 
+	pinkable = FALSE
+
 	ego_list = list(
 		/datum/ego_datum/weapon/magicbullet,
 		/datum/ego_datum/weapon/magicpistol,
 		/datum/ego_datum/armor/magicbullet
 		)
 	gift_type =  /datum/ego_gifts/magicbullet
+	var/pink_cooldown = 30 SECONDS
+	var/pink_shots = 0
+	var/pink_declared = FALSE
+	COOLDOWN_DECLARE(pink)
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Life()
+	. = ..()
+	var/pink_midnight = FALSE
+	for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
+		if(A != src)
+			if("pink_midnight" in A.faction)
+				pink_midnight = TRUE
+				break
+	if(pink_midnight)
+		if(!pink_declared)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "And so he once again picked up his gun for the one he loved.", 25))
+			pink_declared = TRUE
+		if(COOLDOWN_FINISHED(src, pink))
+			if(pink_shots >= 7)
+				pink_shots = 0
+			pink_shots++
+
+			var/list/targets = list()
+			var/turf/targetturf
+			var/targetx
+			var/targety
+			for(var/mob/M in GLOB.mob_living_list)
+				if(pink_shots != 7)
+					if(istype(M,/mob/living/simple_animal/hostile) || (src.z != M.z) || (M.stat == DEAD) || (M.status_flags & GODMODE))
+						continue
+					targets += M
+				else
+					if(!("pink_midnight" in M.faction))
+						continue
+					targets += M
+			if(targets.len < 1)
+				return
+			COOLDOWN_START(src, pink, pink_cooldown)
+			var/mob/target = pick(targets)
+			targetturf = target.loc
+			targetx = targetturf.x
+			targety = targetturf.y
+			var/turf/centralturf
+			var/centralx
+			var/centraly
+			for(var/turf/T in GLOB.department_centers)
+				if(istype(get_area(T),/area/department_main/command))
+					centralturf = T
+					centralx = centralturf.x
+					centraly = centralturf.y
+			var/freidir
+			if(abs(centralx - targetx) >= abs(centraly - targety))
+				if(centralx > targetx)
+					freidir = EAST
+				else
+					freidir = WEST
+			else
+				if(centraly > targety)
+					freidir = NORTH
+				else
+					freidir = SOUTH
+			src.fire_magic_bullet(targetturf, freidir)
+	if(!pink_midnight && pink_declared)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "The marksman, now a devil himself, continues to pull the trigger to gather the souls of others.", 25))
+		pink_declared = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Initialize(mapload)
+	. = ..()
+	COOLDOWN_START(src, pink, pink_cooldown)
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)

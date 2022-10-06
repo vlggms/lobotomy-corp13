@@ -24,11 +24,18 @@
 	//ego_list = list(datum/ego_datum/weapon/training, datum/ego_datum/armor/training)
 	gift_type =  /datum/ego_gifts/standard
 	can_patrol = FALSE
+	var/pinked = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/breach_effect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
+	if(!pinked)
+		addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
+	else
+		can_patrol = TRUE
+		melee_damage_lower = 1
+		melee_damage_upper = 20
+		melee_damage_type = RED_DAMAGE
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/work_complete(mob/living/carbon/human/user, work_type, pe)
 	..()
@@ -38,4 +45,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/proc/kill_dummy()
 	QDEL_NULL(src)
+
+/mob/living/simple_animal/hostile/abnormality/training_rabbit/AttackingTarget()
+	. = ..()
+	melee_damage_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 

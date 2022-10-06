@@ -26,6 +26,8 @@
 		/datum/ego_datum/armor/blossom
 		)
 //	gift_type = /datum/ego_gifts/blossom
+
+	pinkable = FALSE
 	var/numbermarked = 5
 
 

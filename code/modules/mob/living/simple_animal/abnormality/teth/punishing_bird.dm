@@ -227,7 +227,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !target && icon_state != "pbird_red")
-		QDEL_NULL(src)
+		death() // QDel BREAKS anything that requires him to DIE
 	else
 		addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS)
 

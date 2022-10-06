@@ -759,6 +759,23 @@
 	..()
 	animate(src, alpha = 0, time = duration)
 
+/obj/effect/temp_visual/whitelake_stage
+	name = "swan lake"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "riverwater_motion"
+	layer = BELOW_MOB_LAYER
+	alpha = 0
+	density = FALSE
+	duration = 15 SECONDS
+
+/obj/effect/temp_visual/whitelake_stage/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/fade_out), 8 SECONDS)
+
+/obj/effect/temp_visual/whitelake_stage/proc/fade_out()
+	animate(src, alpha = 0, time = (duration - 8 SECONDS))
+
 /obj/effect/temp_visual/cross
 	name = "holy cross"
 	icon = 'icons/effects/32x64.dmi'

@@ -6,6 +6,7 @@
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_INSIGHT = 40,
@@ -22,6 +23,10 @@
 	gift_type = null
 	gift_chance = 100
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	var/buff_cooldown = 30 SECONDS
+	var/buff_cooldown_time
+	var/sound_cooldown = 14 SECONDS // Double sound duration
+	var/sound_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
 	. = ..()
@@ -105,6 +110,37 @@
 			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
 	return
 
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/breach_effect(mob/living/carbon/human/user)
+	. = ..()
+	forceMove(pick(GLOB.department_centers))
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/Life()
+	. = ..()
+	if(status_flags & GODMODE) // Contained
+		return
+	if(buff_cooldown_time < world.time)
+		buff_cooldown_time = buff_cooldown + world.time
+		for(var/mob/living/simple_animal/hostile/potential in view(vision_range, src))
+			potential.apply_status_effect(/datum/status_effect/great_war)
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/bullet_act(obj/projectile/P)
+	if(!isliving(P.firer))
+		return
+	var/mob/living/shooter = P.firer
+	to_chat(shooter, "<span class='warning'>You feel a sharp pain in your neck!</span>")
+	shooter.apply_damage(5, RED_DAMAGE, null, shooter.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	if(sound_cooldown_time < world.time)
+		sound_cooldown_time = world.time + sound_cooldown
+		playsound(get_turf(src), 'sound/abnormalities/crumbling/blocked.ogg', 75, 0, 7)
+		visible_message("<span class='userdanger'>You hope to defeat me while hiding behind your guns? COME. FACE ME!</span>")
+	P.Destroy()
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/CanAttack(atom/the_target)
+	return FALSE
+
 /datum/ego_gifts/courage
 	name = "Inspired Courage"
 	icon_state = "courage"
@@ -151,3 +187,22 @@
 	fortitude_bonus = -20
 	justice_bonus = 20
 	slot = HAT
+
+/datum/status_effect/great_war
+	id = "crumbling_buff"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 30 SECONDS
+
+/datum/status_effect/great_war/on_apply()
+	. = ..()
+	if(ishostile(owner))
+		var/mob/living/simple_animal/hostile/angry_owner = owner
+		angry_owner.move_to_delay *= 0.85
+		angry_owner.speed *= 0.85
+
+/datum/status_effect/great_war/on_remove()
+	. = ..()
+	if(ishostile(owner))
+		var/mob/living/simple_animal/hostile/angry_owner = owner
+		angry_owner.move_to_delay /= 0.85
+		angry_owner.speed /= 0.85

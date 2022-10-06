@@ -36,3 +36,53 @@
 		SLEEP_CHECK_DEATH(50)
 		icon_state = "spider_closed"
 		return
+
+/mob/living/simple_animal/hostile/abnormality/spider/breach_effect(mob/living/carbon/human/user)
+
+	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/pink = null
+	for(var/mob/living/simple_animal/hostile/ordeal/pink_midnight/target in GLOB.mob_living_list)
+		pink = target
+		break
+	for(var/i = 1 to 3)
+		if(!isnull(pink))
+			var/turf/target_turf = get_turf(pink)
+			var/mob/living/simple_animal/hostile/spiderbud_small/new_spider = new /mob/living/simple_animal/hostile/spiderbud_small(target_turf)
+			new_spider.faction += "pink_midnight"
+		else
+			new /mob/living/simple_animal/hostile/spiderbud_small(get_turf(src))
+	return
+
+/mob/living/simple_animal/hostile/spiderbud_small
+	name = "\improper Spiderling"
+	desc = "Their red eyes gleam in the darkness."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "spiderling"
+	icon_living = "spiderling"
+	maxHealth = 200
+	health = 200
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
+	faction = list("hostile", "spider")
+	melee_damage_lower = 8
+	melee_damage_upper = 12
+	melee_damage_type = RED_DAMAGE
+	rapid_melee = 1.5
+	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
+	density = FALSE
+	move_to_delay = 2.5
+	del_on_death = TRUE
+	stat_attack = DEAD
+
+/mob/living/simple_animal/hostile/spiderbud_small/Initialize()
+	. = ..()
+	AddComponent(/datum/component/swarming)
+	summon_backup()
+
+/mob/living/simple_animal/hostile/spiderbud_small/summon_backup(distance = 6)
+	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
+		if(faction_check_mob(M, TRUE))
+			if(M.AIStatus == AI_OFF)
+				return
+			else
+				M.Goto(src,M.move_to_delay,M.minimum_distance)

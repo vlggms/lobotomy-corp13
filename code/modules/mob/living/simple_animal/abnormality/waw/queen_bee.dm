@@ -27,7 +27,6 @@
 		)
 	gift_type =  /datum/ego_gifts/hornet
 	var/datum/looping_sound/queenbee/soundloop
-	var/breached_others = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Initialize()
 	. = ..()
@@ -50,9 +49,7 @@
 				var/datum/disease/bee_spawn/D = new()
 				H.ForceContractDisease(D, FALSE, TRUE)
 		for(var/mob/living/simple_animal/hostile/abnormality/general_b/Y in T.contents)
-			if(breached_others == FALSE)
-				Y.breach_effect()
-				breached_others = TRUE
+			Y.breach_effect()
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
@@ -68,6 +65,14 @@
 	emit_spores()
 	datum_reference.qliphoth_change(1)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/queen_bee/breach_effect(mob/living/carbon/human/user)
+	for(var/z = 1 to 3) // Essentially stolen from General Bee, just altered a bit.
+		var/X = pick(GLOB.xeno_spawn)
+		var/turf/T = get_turf(X)
+		for(var/y = 1 to 4)
+			var/mob/living/simple_animal/hostile/worker_bee/WB = new /mob/living/simple_animal/hostile/worker_bee(T)
+			WB.faction += "pink_midnight"
 
 
 /* Worker bees */
@@ -114,4 +119,5 @@
 		visible_message("<span class='danger'>[src] bites hard on \the [H] as another bee appears!</span>")
 		H.emote("scream")
 		H.gib()
-		new /mob/living/simple_animal/hostile/worker_bee(T)
+		var/mob/living/simple_animal/hostile/worker_bee/WB = new(T)
+		WB.faction = src.faction

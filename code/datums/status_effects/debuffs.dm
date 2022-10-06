@@ -968,3 +968,41 @@
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()
 	QDEL_NULL(mob_overlay)
+
+/datum/status_effect/wellcheers_bad
+	id = "soda_bad"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 10 SECONDS
+	tick_interval = 1 SECONDS
+	var/damage_type = null
+	var/debuff_damage = 6
+
+/datum/status_effect/wellcheers_bad/tick()
+	. = ..()
+	if(isnull(damage_type))
+		return
+	owner.apply_damage(debuff_damage, damage_type, null, owner.run_armor_check(null, damage_type))
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad
+	name = "Shrimp Soda"
+	desc = "Oh my god it smells like fish oil..."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "wellcheers_red"
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad/white
+	icon_state = "wellcheers_white"
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad/purple
+	icon_state = "wellcheers_purple"
+
+/datum/status_effect/wellcheers_bad/red
+	damage_type = RED_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad
+
+/datum/status_effect/wellcheers_bad/white
+	damage_type = WHITE_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad/white
+
+/datum/status_effect/wellcheers_bad/purple
+	damage_type = BLACK_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad/purple

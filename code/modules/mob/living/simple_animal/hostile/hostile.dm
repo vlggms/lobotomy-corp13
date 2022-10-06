@@ -376,11 +376,11 @@
 	LoseTarget()
 	..(gibbed)
 
-/mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)
+/mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match = TRUE)
 	do_alert_animation()
 	playsound(loc, 'sound/machines/chime.ogg', 50, TRUE, -1)
 	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
-		if(faction_check_mob(M, TRUE))
+		if(faction_check_mob(M, exact_faction_match)) // Why was this not a thing
 			if(M.AIStatus == AI_OFF)
 				return
 			else
@@ -617,6 +617,8 @@
  * Proc that throws the mob at the target after the windup.
  */
 /mob/living/simple_animal/hostile/proc/handle_charge_target(atom/target)
+	if(charge_state)
+		return FALSE // Don't charge if you already are charging
 	charge_state = TRUE
 	throw_at(target, charge_distance, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/charge_end))
 	COOLDOWN_START(src, charge_cooldown, charge_frequency)
