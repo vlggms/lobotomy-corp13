@@ -2,7 +2,7 @@
 /datum/outfit/job/command
 	name = "Command Outfit"
 	glasses = /obj/item/clothing/glasses/sunglasses
-	belt = /obj/item/pda/captain
+	belt = /obj/item/pda/lawyer
 	ears = /obj/item/radio/headset/heads
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	head = /obj/item/clothing/head/hos/beret
