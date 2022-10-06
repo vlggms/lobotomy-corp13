@@ -5,7 +5,7 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag"
 	density = FALSE
-	mob_storage_capacity = 2
+	mob_storage_capacity = 3
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
 	open_sound_volume = 15
@@ -15,7 +15,7 @@
 	delivery_icon = null //unwrappable
 	anchorable = FALSE
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-	drag_slowdown = 0
+	drag_slowdown = 1 //Yeah people started to drag a bunch of shit around with them. This should stop them, but allow peopel to take off the ego gear from a body
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/tagged = FALSE // so closet code knows to put the tag overlay back
