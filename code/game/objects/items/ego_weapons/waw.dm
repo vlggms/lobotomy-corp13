@@ -179,3 +179,38 @@
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/thirteen
+	name = "for whom the bell tolls"
+	desc = "There is nothing else than now. There is neither yesterday, certainly, nor is there any tomorrow."
+	special = "This weapon deals an absurd amount of damage on the 13th hit."
+	icon_state = "thirteen"
+	force = 35
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 60
+							)
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 3 SECONDS
+
+//On the 13th hit, Deals user justice x 2
+/obj/item/ego_weapon/thirteen/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo==13)
+		combo = 0
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		force = userjust*2
+		new /obj/effect/temp_visual/thirteen(get_turf(M))
+		playsound(src, 'sound/abnormalities/silence/bong.ogg', 20, FALSE, 9)
+	..()
+	combo += 1
+	force = initial(force)

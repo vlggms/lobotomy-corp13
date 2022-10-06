@@ -88,3 +88,12 @@
 /datum/ego_datum/weapon/executive
 	item_path = /obj/item/gun/ego_gun/pistol/soda/executive
 	cost = 50
+
+// Price Of Silence - For Whom the Bell Tolls
+/datum/ego_datum/armor/thirteen
+	item_path = /obj/item/clothing/suit/armor/ego_gear/thirteen
+	cost = 50
+
+/datum/ego_datum/weapon/thirteen
+	item_path = /obj/item/ego_weapon/thirteen
+	cost = 50
