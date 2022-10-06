@@ -56,6 +56,17 @@ GLOBAL_LIST_EMPTY(apostles)
 	/// List of Living People on Breach
 	var/list/heretics = list()
 
+/mob/living/simple_animal/hostile/abnormality/white_night/FearEffectText(mob/affected_mob, level = 0)
+	level = num2text(clamp(level, 1, 5))
+	var/list/result_text_list = list(
+		"1" = list("There's no room for error here.", "My legs are trembling...", "Damn, it's scary."),
+		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
+		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
+		"4" = list("So this is God...", "My existence is meaningless...", "We are petty beings..."),
+		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe...")
+		)
+	return pick(result_text_list[level])
+
 /mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
 	return FALSE
 

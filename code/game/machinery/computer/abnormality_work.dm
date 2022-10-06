@@ -102,7 +102,16 @@
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type, training = FALSE)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
-	var/sanity_damage = -(max(((user.maxSanity * 0.26) * (sanity_result)), 0))
+	var/sanity_damage = 0
+	switch(sanity_result)
+		if(1)
+			sanity_damage = -(user.maxSanity*0.1)
+		if(2)
+			sanity_damage = -(user.maxSanity*0.3)
+		if(3)
+			sanity_damage = -(user.maxSanity*0.6)
+		if(4 to INFINITY)
+			sanity_damage = -(user.maxSanity)
 	var/work_time = datum_reference.max_boxes
 	if(work_type in scramble_list)
 		work_type = scramble_list[work_type]
@@ -115,15 +124,15 @@
 		return
 	switch(sanity_result)
 		if(-INFINITY to -1)
-			to_chat(user, "<span class='nicegreen'>This assignment is too easy!")
+			to_chat(user, "<span class='nicegreen'>This assignment is too easy!</span>")
 		if(0)
-			to_chat(user, "<span class='notice'>I'll handle it as I always do.")
+			to_chat(user, "<span class='notice'>I'll handle it as I always do.</span>")
 		if(1)
-			to_chat(user, "<span class='warning'>Just follow standard procedures...")
+			to_chat(user, "<span class='warning'>Just follow standard procedures...</span>")
 		if(2)
-			to_chat(user, "<span class='danger'>Calm down... Calm down...")
+			to_chat(user, "<span class='danger'>Calm down... Calm down...</span>")
 		if(3 to INFINITY)
-			to_chat(user, "<span class='userdanger'>I'm not ready for this!")
+			to_chat(user, "<span class='userdanger'>I'm not ready for this!</span>")
 	meltdown = FALSE // Reset meltdown
 	update_icon()
 	datum_reference.working = TRUE
