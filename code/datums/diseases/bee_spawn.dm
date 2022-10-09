@@ -22,7 +22,7 @@
 		return
 
 	var/mob/living/carbon/human/H = affected_mob
-	H.apply_damage(stage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(stage*2, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)

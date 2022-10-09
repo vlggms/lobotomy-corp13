@@ -40,8 +40,8 @@
 	gift_type =  /datum/ego_gifts/star
 
 	var/pulse_cooldown
-	var/pulse_cooldown_time = 9 SECONDS
-	var/pulse_damage = 40 // Scales with distance
+	var/pulse_cooldown_time = 12 SECONDS
+	var/pulse_damage = 80 // Scales with distance
 
 	var/datum/looping_sound/bluestar/soundloop
 
@@ -80,7 +80,7 @@
 	for(var/mob/living/L in livinginrange(48, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((pulse_damage - round(get_dist(src, L) * 0.75)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage((pulse_damage - round(get_dist(src, L) * 1.5)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue
