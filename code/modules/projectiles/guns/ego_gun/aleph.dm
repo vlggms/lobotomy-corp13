@@ -11,6 +11,7 @@
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
+	autofire = 0.25 SECONDS
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -19,22 +20,19 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/gun/ego_gun/star/Initialize()
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.25 SECONDS)
-
 /obj/item/gun/ego_gun/adoration
 	name = "adoration"
 	desc = "A big mug filled with mysterious slime that never runs out. \
 	It’s the byproduct of some horrid experiment in a certain laboratory that eventually failed."
 	icon_state = "adoration"
 	inhand_icon_state = "adoration"
-	special = "This weapon does black damage over time on hit."
+	special = "This weapon does black damage over time on direct hit. \
+				This weapon has an AOE attack dealing 30 damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_adoration
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
-	fire_delay = 5 SECONDS
+	fire_delay = 2.4 SECONDS
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

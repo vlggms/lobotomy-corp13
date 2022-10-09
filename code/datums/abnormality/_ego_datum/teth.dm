@@ -7,9 +7,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/training
 	cost = 20
 
-// Punishing bird - Beak
+// Punishing bird - Beak & Beak MK2
 /datum/ego_datum/weapon/beak
 	item_path = /obj/item/gun/ego_gun/beak
+	cost = 20
+
+/datum/ego_datum/weapon/beakmagnum
+	item_path = /obj/item/gun/ego_gun/pistol/beakmagnum
 	cost = 20
 
 /datum/ego_datum/armor/beak

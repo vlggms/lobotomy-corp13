@@ -19,3 +19,16 @@
 	if(chambered && chambered.BB)
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] [chambered.BB.damage_type] damage, and [force] [damtype] melee damage</span>"
 	return
+
+/obj/item/gun/ego_gun/pistol/gaze
+	name = "gaze"
+	desc = "A magnum pistol featuring excellent burst firing potential."
+	icon_state = "gaze"
+	inhand_icon_state = "executive"
+	special = "This weapon requires 2 hands."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
+	fire_delay = 15
+	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+	vary_fire_sound = FALSE
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 70

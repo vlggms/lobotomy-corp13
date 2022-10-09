@@ -17,6 +17,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/magicbullet,
+		/datum/ego_datum/weapon/magicpistol,
 		/datum/ego_datum/armor/magicbullet
 		)
 	gift_type =  /datum/ego_gifts/magicbullet
