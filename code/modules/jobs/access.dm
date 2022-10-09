@@ -373,7 +373,7 @@
 			return "Code Scotch"
 
 /proc/get_all_jobs()
-	return list("Clerk", "Agent", "Senior Agent", "Veteran Agent", "Agent Captain", "Explorer", "Fixer", "Pathfinder", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Rabbit Team", "Rabbit Team Leader")
+	return list("Clerk","Agent Intern", "Agent", "Senior Agent", "Veteran Agent", "Agent Captain", "Explorer", "Fixer", "Pathfinder", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Rabbit Team", "Rabbit Team Leader")
 
 /proc/get_all_job_icons() //For all existing HUD icons
 	return get_all_jobs() + list("Emergency Response Team Commander", "Security Response Officer", "Engineering Response Officer", "Medical Response Officer", "Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "TerraGov Official", "TerraGov Marine") //Tegu edit right there

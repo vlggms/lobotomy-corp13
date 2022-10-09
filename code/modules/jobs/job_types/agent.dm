@@ -6,9 +6,10 @@
 	spawn_positions = -1
 	supervisors = "the manager"
 	selection_color = "#ccaaaa"
+	exp_requirements = 60
 
 	outfit = /datum/outfit/job/agent
-	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	display_order = JOB_DISPLAY_ORDER_WARDEN
 
 	access = list() // LC13:To-Do
 	minimal_access = list()
@@ -93,6 +94,7 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
+	head = /obj/item/clothing/head/beret/sec
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -123,3 +125,24 @@
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
+
+// Trainee, for new players
+/datum/job/agent/intern
+	title = "Agent Intern"
+	selection_color = "#ccaaaa"
+	total_positions = -1
+	spawn_positions = -1
+	outfit = /datum/outfit/job/agent/intern
+	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	normal_attribute_level = 20
+
+/datum/outfit/job/agent/intern
+	name = "Agent Intern"
+	jobtype = /datum/job/agent/intern
+	head = null
+	backpack_contents = list(/obj/item/melee/classic_baton=1,
+		/obj/item/paper/fluff/tutorial/levels=1 ,
+		/obj/item/paper/fluff/tutorial/risk=1,
+		/obj/item/paper/fluff/tutorial/damage=1,
+		/obj/item/paper/fluff/tutorial/tips=1,)
+

@@ -79,3 +79,11 @@
 	is_editable = FALSE
 
 
+/obj/structure/sign/departments/human
+	name = "\improper Human Resources sign"
+	sign_change_name = "Department - Human Resources"
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The Human Resources department. A baby blue, you feel like you are new, and belong here."
+	icon_state = "human"
+	is_editable = FALSE
+
