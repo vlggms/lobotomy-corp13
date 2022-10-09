@@ -259,6 +259,13 @@
 	justice_bonus = 2
 	slot = MOUTH_1
 
+/datum/ego_gifts/totalitarianism
+	name = "Totalitarianism"
+	icon_state = "totalitarianism"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = CHEEK
+
 /datum/ego_gifts/prank
 	name = "Funny Prank"
 	icon_state = "prank"
