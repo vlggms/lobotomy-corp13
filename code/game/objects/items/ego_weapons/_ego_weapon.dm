@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	slot_flags = ITEM_SLOT_BELT
 	var/list/attribute_requirements = list()
-
+	var/attack_speed
 	var/special
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
@@ -54,3 +54,13 @@
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
+
+/obj/item/ego_weapon/attack(mob/living/M, mob/living/user)
+	..()
+	if(attack_speed)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+
+//Examine text for mini weapons.
+/obj/item/ego_weapon/mini/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This weapon fits in an ego weapon belt.</span>"

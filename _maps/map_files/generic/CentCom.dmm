@@ -250,6 +250,9 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/tdome/arena)
+"bI" = (
+/turf/open/floor/wood,
+/area/department_main/human)
 "bJ" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
@@ -332,6 +335,9 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"cI" = (
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/human)
 "cK" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -439,6 +445,13 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"dg" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/department_main/human)
 "dj" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -536,6 +549,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"dX" = (
+/obj/effect/landmark/abnormality_spawn/tutorial,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
+"ec" = (
+/obj/machinery/door/airlock/glass_large,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ee" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -550,6 +571,10 @@
 /obj/item/food/pie/cream,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
+"ek" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/wood,
+/area/department_main/human)
 "en" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -571,6 +596,10 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"et" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ev" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/green,
@@ -604,6 +633,13 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"eF" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/human)
 "eG" = (
 /obj/structure/sink{
 	dir = 4;
@@ -700,6 +736,10 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fy" = (
+/obj/machinery/computer/abnormality/tutorial,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "fz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
@@ -1835,6 +1875,9 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"jx" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "jy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -1883,6 +1926,12 @@
 	dir = 10
 	},
 /area/tdome/tdomeadmin)
+"jR" = (
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "jV" = (
 /turf/closed/indestructible/fakedoor{
 	name = "CentCom Warehouse"
@@ -2132,6 +2181,20 @@
 /obj/item/holosign_creator/security,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"ls" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/turf/open/floor/wood,
+/area/department_main/human)
 "lt" = (
 /obj/machinery/door/airlock/centcom{
 	name = "R-Corp Training Facility";
@@ -2202,6 +2265,10 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/holofloor/hyperspace,
 /area/centcom/supplypod/supplypod_temp_holding)
+"lU" = (
+/obj/effect/spawner/randomsnackvend,
+/turf/open/floor/wood,
+/area/department_main/human)
 "lV" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -2550,6 +2617,9 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"on" = (
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "oy" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -2603,6 +2673,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"oT" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "oV" = (
 /obj/machinery/light{
 	dir = 8
@@ -3761,6 +3837,13 @@
 /obj/machinery/status_display/supply,
 /turf/closed/indestructible/riveted,
 /area/centcom/supply)
+"vJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/mob_spawn/human/tutorial,
+/turf/open/floor/wood,
+/area/department_main/human)
 "vK" = (
 /obj/machinery/light{
 	dir = 1
@@ -4001,6 +4084,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"wF" = (
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "wM" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -5085,6 +5171,12 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/centcom/evac)
+"BP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "BQ" = (
 /obj/effect/landmark/abductor/scientist{
 	team_number = 3
@@ -5614,6 +5706,10 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/tdome/tdomeadmin)
+"Fu" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Fv" = (
 /obj/machinery/door/airlock/centcom{
 	name = "R-Corp Training Facility";
@@ -5689,6 +5785,12 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
+"Gl" = (
+/obj/machinery/shower{
+	pixel_y = 15
+	},
+/turf/open/floor/noslip,
+/area/department_main/human)
 "Gm" = (
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
@@ -5946,6 +6048,20 @@
 "Il" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeobserve)
+"Im" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/obj/item/clothing/suit/armor/ego_gear/rookie,
+/turf/open/floor/wood,
+/area/department_main/human)
 "In" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/clothing/under/rank/security/officer/spacepol,
@@ -6150,6 +6266,12 @@
 /obj/effect/landmark/thunderdome/one,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
+"IO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "IQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -6612,6 +6734,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"Kx" = (
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Kz" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
@@ -7280,6 +7408,14 @@
 "Nd" = (
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
+"Nf" = (
+/obj/effect/landmark/abnormality_spawn/tutorial/fairy,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
+"Nh" = (
+/obj/effect/landmark/abnormality_spawn/tutorial/shadow,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Nm" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/autodrobe,
@@ -7331,6 +7467,15 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/centcom/hub)
+"Nt" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "Nu" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -7558,6 +7703,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"OT" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/obj/item/ego_weapon/tutorial,
+/turf/open/floor/wood,
+/area/department_main/human)
 "OU" = (
 /obj/item/clothing/under/costume/jabroni,
 /obj/item/clothing/under/costume/geisha,
@@ -8052,6 +8211,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"RE" = (
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "RK" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -8214,6 +8382,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"SZ" = (
+/obj/machinery/camera/autoname,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Tb" = (
 /obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/wood,
@@ -8358,6 +8533,20 @@
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/centcom/hub)
+"Ua" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/obj/item/ego_weapon/tutorial/white,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Ud" = (
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
@@ -8433,6 +8622,11 @@
 /obj/structure/chair/plastic,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"UA" = (
+/obj/machinery/regenerator,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/department_main/human)
 "UC" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/donkpockets,
@@ -8446,6 +8640,10 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
+"UH" = (
+/obj/effect/landmark/abnormality_spawn/tutorial/cube,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "UI" = (
 /obj/docking_port/stationary{
 	dwidth = 25;
@@ -8462,6 +8660,10 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UO" = (
+/obj/structure/sign/departments/human,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "UP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8479,6 +8681,20 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"US" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/obj/item/ego_weapon/tutorial/pale,
+/turf/open/floor/wood,
+/area/department_main/human)
 "UT" = (
 /obj/structure/chair/wood/wings{
 	dir = 1
@@ -8503,6 +8719,13 @@
 /obj/item/key/security,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"Vd" = (
+/obj/structure/mirror{
+	pixel_x = -32
+	},
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/human)
 "Vi" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/tile{
@@ -8677,6 +8900,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Wu" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/obj/item/clothing/suit/armor/ego_gear/apprentice,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Wy" = (
 /obj/structure/table,
 /obj/item/toy/figure/dsquad{
@@ -8801,10 +9038,39 @@
 "Xh" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Xj" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/obj/item/clothing/suit/armor/ego_gear/fledgling,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Xq" = (
+/obj/structure/rack,
+/obj/structure/rack,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/obj/item/ego_weapon/tutorial/black,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Xr" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -8880,6 +9146,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"XH" = (
+/obj/structure/sign/departments/human{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "XL" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
@@ -8930,6 +9202,12 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Yb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Yd" = (
 /obj/structure/table/reinforced/ctf,
 /turf/open/floor/plasteel/dark,
@@ -8996,6 +9274,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Yr" = (
+/obj/structure/sign/departments/human{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Yt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -9090,6 +9374,12 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
+"Zf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Zi" = (
 /obj/machinery/vending/snack/orange,
 /obj/effect/turf_decal/tile/blue{
@@ -24676,15 +24966,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+cI
 aa
 aa
 aa
@@ -24933,15 +25223,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+IO
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -25190,15 +25480,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Nh
+jx
+cI
+Zf
+jx
+jx
+cI
 aa
 aa
 aa
@@ -25447,15 +25737,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -25704,15 +25994,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+SZ
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -25961,15 +26251,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+jx
+jx
+Fu
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -26218,15 +26508,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -26479,11 +26769,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -26732,15 +27022,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -26989,15 +27279,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+IO
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -27246,15 +27536,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Nf
+jx
+cI
+Zf
+jx
+jx
+cI
 aa
 aa
 aa
@@ -27503,15 +27793,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -27760,15 +28050,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+SZ
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -28017,15 +28307,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+jx
+jx
+Fu
+Yr
+jx
+Yr
+cI
 aa
 aa
 aa
@@ -28272,18 +28562,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+oT
+wF
+wF
+wF
 aa
 aa
 aa
@@ -28529,18 +28819,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+Gl
+Vd
+UO
+Im
+Xj
+Wu
+ls
+bI
+bI
+UA
+wF
 aa
 aa
 aa
@@ -28786,18 +29076,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+et
+wF
+BP
+bI
+on
+on
+on
+bI
+Kx
+wF
 aa
 aa
 aa
@@ -29043,18 +29333,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+Nt
+bI
+wF
+bI
+on
+on
+on
+on
+on
+ek
+wF
 aa
 aa
 aa
@@ -29300,18 +29590,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+RE
+bI
+ec
+bI
+on
+on
+on
+on
+on
+ek
+wF
 aa
 aa
 aa
@@ -29557,18 +29847,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+jR
+bI
+bI
+bI
+on
+on
+on
+on
+on
+lU
+wF
 aa
 aa
 aa
@@ -29814,18 +30104,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+vJ
+bI
+wF
+bI
+on
+on
+on
+on
+on
+lU
+wF
 aa
 aa
 aa
@@ -30071,18 +30361,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+et
+wF
+BP
+bI
+on
+on
+on
+bI
+lU
+wF
 aa
 aa
 aa
@@ -30329,17 +30619,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+eF
+UO
+OT
+Ua
+Xq
+US
+bI
+bI
+dg
+wF
 aa
 aa
 aa
@@ -30586,17 +30876,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+oT
+wF
+wF
+wF
 aa
 aa
 aa
@@ -30844,15 +31134,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+IO
+jx
+cI
+XH
+jx
+XH
+cI
 aa
 aa
 aa
@@ -31101,15 +31391,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+dX
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -31358,15 +31648,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+Zf
+jx
+jx
+cI
 aa
 aa
 aa
@@ -31615,15 +31905,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+SZ
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -31872,15 +32162,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+jx
+jx
+Fu
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -32129,15 +32419,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -32390,11 +32680,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -32643,15 +32933,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -32900,15 +33190,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+IO
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -33157,15 +33447,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+UH
+jx
+cI
+Zf
+jx
+jx
+cI
 aa
 aa
 aa
@@ -33414,15 +33704,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -33671,15 +33961,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+SZ
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -33928,15 +34218,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+jx
+jx
+Fu
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -34185,15 +34475,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+cI
 aa
 aa
 aa

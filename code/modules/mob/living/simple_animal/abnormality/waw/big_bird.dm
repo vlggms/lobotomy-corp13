@@ -139,7 +139,7 @@
 	if(!died.ckey)
 		return FALSE
 	death_counter += 1
-	if(death_counter >= 3)
+	if(death_counter >= 2)
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE

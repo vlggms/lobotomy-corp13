@@ -83,7 +83,7 @@
 	Work Damage : High	<br>
 	- When the work result was Good, the Qliphoth Counter increased.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
-	- When 3 employees died, the Qliphoth Counter lowered.	<br>
+	- When 2 employees died, the Qliphoth Counter lowered.	<br>
 	- When the bird swung the lamp, employees around it felt sleepy.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>

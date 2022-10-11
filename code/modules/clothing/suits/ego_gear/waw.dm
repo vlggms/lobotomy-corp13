@@ -82,7 +82,7 @@
 	name = "tiara"
 	desc = "Who will look after you when I am gone?"
 	icon_state = "tiara"
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 50)
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60
 							)
@@ -91,7 +91,7 @@
 	name = "my own wife"
 	desc = "And so, I have created you, my most beautiful wife"
 	icon_state = "wife"
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
 							)
@@ -102,7 +102,7 @@
 	icon_state = "cobalt_scar"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/spore
@@ -129,7 +129,7 @@
 	icon_state = "loyalty"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60)
+							FORTITUDE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/executive
 	name = "executive"
@@ -140,3 +140,27 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/ecstacy
+	name = "ecstasy"
+	desc = "The colorful pattern is fancy, quite akin to a child's costume."
+	icon_state = "ecstasy"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 10, PALE_DAMAGE = 20)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/throne
+	name = "false throne"
+	desc = "And here I sit upon a throne of lies."
+	icon_state = "throne"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)
+	attribute_requirements = list(
+							INSIGHT_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/intentions
+	name = "good intentions"
+	desc = "All aboard!"
+	icon_state = "intentions"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60)

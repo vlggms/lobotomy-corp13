@@ -37,3 +37,10 @@
 	name = "executive casing"
 	desc = "An executive casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_executive
+
+/obj/item/ammo_casing/caseless/ego_crimson
+	name = "crimson casing"
+	desc = "A crimson casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_crimson
+	pellets = 3
+	variance = 14

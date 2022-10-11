@@ -87,3 +87,8 @@
 	name = "executive"
 	damage = 10
 	damage_type = PALE_DAMAGE	//hehe
+
+/obj/projectile/ego_bullet/ego_crimson
+	name = "crimson"
+	damage = 14
+	damage_type = RED_DAMAGE

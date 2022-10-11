@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state + (next_ordeal_level * 2) + rand(1,3)
+	next_ordeal_time = qliphoth_state + (next_ordeal.delay * 2) + rand(1,2)
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
 		O.update_icon()
@@ -175,7 +175,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealEvent()
 	if(!next_ordeal)
 		return FALSE
-	if(ordeal_timelock[next_ordeal_level - 1] > world.time)
+	if(ordeal_timelock[next_ordeal_level - 1] && (ordeal_timelock[next_ordeal_level - 1] > world.time))
 		next_ordeal_time += 1
 		return FALSE // Time lock
 	next_ordeal.Run()

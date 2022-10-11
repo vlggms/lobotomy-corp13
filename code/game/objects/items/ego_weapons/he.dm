@@ -33,6 +33,7 @@
 	special = "This weapon has a slower attack speed."
 	icon_state = "fury"
 	force = 45
+	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
@@ -42,16 +43,13 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/fury/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 1.5) // Slow
-
 /obj/item/ego_weapon/paw
 	name = "bear paw"
 	desc = "The paws made form, and given life."
 	special = "This weapon has a very fast attack speed."
 	icon_state = "bear_paw"
 	force = 12
+	attack_speed = 0.3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "jabs", "slaps")
@@ -64,7 +62,6 @@
 //ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
 /obj/item/ego_weapon/paw/melee_attack_chain(mob/user, atom/target, params)
 	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.30)
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
 
 
@@ -76,6 +73,7 @@
 	special = "This weapon has a very fast attack speed."
 	icon_state = "wings"
 	force = 12
+	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "claws")
@@ -84,11 +82,6 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-
-//ATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATATAT
-/obj/item/ego_weapon/wings/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 0.30)
 
 /obj/item/ego_weapon/daredevil
 	name = "life for a daredevil"
@@ -207,6 +200,7 @@
 	This weapon has knockback."
 	icon_state = "christmas"
 	force = 50
+	attack_speed = 2
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
@@ -214,10 +208,6 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
-
-/obj/item/ego_weapon/christmas/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 2) // Slow
 
 /obj/item/ego_weapon/christmas/attack(mob/living/target, mob/living/user)
 	. = ..()

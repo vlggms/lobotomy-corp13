@@ -77,7 +77,7 @@
 
 //Bloodbath - Wrist Cutter
 /datum/ego_datum/weapon/wrist
-	item_path = /obj/item/ego_weapon/wrist
+	item_path = /obj/item/ego_weapon/mini/wrist
 	cost = 20
 
 /datum/ego_datum/armor/wrist

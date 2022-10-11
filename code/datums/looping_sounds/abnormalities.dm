@@ -24,8 +24,19 @@
 	volume = 75
 	extra_range = 14
 
+/datum/looping_sound/dreamingcurrent
+	mid_sounds = 'sound/abnormalities/dreamingcurrent/ambience.ogg'
+	mid_length = 9.8 SECONDS
+	volume = 25
+	extra_range = -3
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
 	mid_length = 0.55 SECONDS
+	volume = 20
+
+/datum/looping_sound/ambermidnight
+	mid_sounds = 'sound/effects/ordeals/amber/midnight_ambience.ogg'
+	mid_length = 3.8 SECONDS
 	volume = 20

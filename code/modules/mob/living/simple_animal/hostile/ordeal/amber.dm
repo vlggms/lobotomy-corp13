@@ -58,10 +58,10 @@
 	guaranteed_butcher_results = list()
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/death(gibbed)
-		density = FALSE
-		animate(src, alpha = 0, time = 5 SECONDS)
-		QDEL_IN(src, 5 SECONDS)
-		..()
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
 
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
@@ -133,7 +133,8 @@
 		BurrowIn()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/death(gibbed)
-	alpha = 255
+	if(LAZYLEN(butcher_results))
+		alpha = 255
 	soundloop.stop()
 	..()
 
@@ -142,9 +143,10 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	if(length(spawned_mobs) >= 25)
+	var/max_spawn = clamp(GLOB.clients.len * 5, 5, 25)
+	if(length(spawned_mobs) >= max_spawn)
 		return
-	visible_message("<span class='danger'>Three smaller bugs appear out of [src]!</span>")
+	visible_message("<span class='danger'>Five smaller bugs appear out of [src]!</span>")
 	for(var/i = 1 to 5)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
@@ -183,3 +185,145 @@
 		if(!faction_check_mob(L))
 			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	burrowing = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned
+	butcher_results = list()
+	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/death(gibbed)
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
+// Amber midnight
+/mob/living/simple_animal/hostile/ordeal/amber_midnight
+	name = "eternal meal"
+	desc = "A giant insect-like creature with a ton of sharp rocky teeth."
+	health = 15000
+	maxHealth = 15000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	icon_state = "ambermidnight"
+	icon_living = "ambermidnight"
+	icon_dead = "ambermidnight_dead"
+	faction = list("amber_ordeal")
+
+	light_color = COLOR_YELLOW
+	light_range = 4
+	light_power = 1
+
+	density = FALSE
+	alpha = 0
+	pixel_x = -96
+	base_pixel_x = -96
+	pixel_y = -16
+	base_pixel_y = -16
+
+	blood_volume = BLOOD_VOLUME_NORMAL
+	deathsound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
+
+	var/burrowing = FALSE
+	var/burrow_cooldown
+	var/burrow_cooldown_time = 20 SECONDS
+	var/list/spawned_mobs = list()
+
+	var/datum/looping_sound/ambermidnight/soundloop
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/Initialize()
+	..()
+	burrow_cooldown = world.time + 20 SECONDS
+	soundloop = new(list(src), TRUE)
+	addtimer(CALLBACK(src, .proc/BurrowOut))
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/Destroy()
+	QDEL_NULL(soundloop)
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/death(gibbed)
+	alpha = 255
+	soundloop.stop()
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(!burrowing && world.time > burrow_cooldown)
+		BurrowIn()
+		return
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/AttemptBirth()
+	listclearnulls(spawned_mobs)
+	for(var/mob/living/L in spawned_mobs)
+		if(L.stat == DEAD)
+			spawned_mobs -= L
+	var/max_spawn = clamp(GLOB.clients.len * 0.6, 2, 8)
+	if(length(spawned_mobs) >= max_spawn)
+		return FALSE
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_create.ogg', 50, FALSE)
+	visible_message("<span class='danger'>Two large bugs appear out of [src]!</span>")
+	for(var/i = 1 to 2)
+		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/nb = new(T)
+		spawned_mobs += nb
+		if(ordeal_reference)
+			nb.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nb
+	return TRUE
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowIn()
+	if(AttemptBirth())
+		SLEEP_CHECK_DEATH(2 SECONDS)
+	burrowing = TRUE
+	density = FALSE
+	visible_message("<span class='danger'>[src] burrows into the ground!</span>")
+	playsound(src, 'sound/effects/ordeals/amber/midnight_in.ogg', 50, FALSE, 7)
+	animate(src, alpha = 0, time = 7)
+	for(var/turf/open/OT in range(2, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
+	icon_state = "ambermidnight_leave"
+	new /obj/effect/temp_visual/ambermidnight_hole(get_turf(src))
+	SLEEP_CHECK_DEATH(7)
+	var/turf/my_turf = get_turf(src)
+	var/list/centers = GLOB.department_centers.Copy()
+	if(my_turf in centers)
+		centers -= my_turf
+	if(!LAZYLEN(centers))
+		return
+	var/turf/T = pick(centers)
+	forceMove(T)
+	BurrowOut()
+
+/mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowOut()
+	alpha = 0
+	density = FALSE
+	animate(src, pixel_z = 0, alpha = 255, time = 6)
+	icon_state = "ambermidnight_bite"
+	SLEEP_CHECK_DEATH(4)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out.ogg', 75, FALSE, 7)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 25, FALSE, 20)
+	SLEEP_CHECK_DEATH(2)
+	density = TRUE
+	visible_message("<span class='danger'>[src] burrows out from the ground!</span>")
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+	animate(D, alpha = 0, transform = matrix()*1.25, time = 3)
+	SLEEP_CHECK_DEATH(2)
+	for(var/turf/open/T in view(7, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	for(var/mob/living/L in view(7, src))
+		if(faction_check_mob(L))
+			continue
+		var/distance_decrease = get_dist(src, L) * 75
+		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		if(L.health < 0)
+			L.gib()
+	SLEEP_CHECK_DEATH(5)
+	burrow_cooldown = world.time + burrow_cooldown_time
+	burrowing = FALSE
+	icon_state = icon_living

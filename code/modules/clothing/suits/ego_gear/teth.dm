@@ -80,8 +80,9 @@
 	icon_state = "wedge"
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10)
 
-/obj/item/clothing/suit/armor/ego_gear/regret
-	name = "regret"
-	desc = "Now the straitjacket is nothing but an accessory to the hatred and anger that remains."
-	icon_state = "regret"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+/obj/item/clothing/suit/armor/ego_gear/blossoms
+	name = "cherry blossoms"
+	desc = "Sitting under the tree’s shadow makes you feel like these gloomy days will flutter away like the petals of a flower."
+	icon_state = "blossoms"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = -30)
+

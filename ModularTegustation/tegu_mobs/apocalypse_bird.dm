@@ -58,10 +58,11 @@
 	var/special_cooldown_time = 15 SECONDS
 
 	var/meltdown_cooldown
-	var/meltdown_cooldown_time = 180 SECONDS
+	var/meltdown_cooldown_time = 120 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/Initialize()
 	. = ..()
+	meltdown_cooldown = world.time + 30 SECONDS
 	var/list/potential_locs = shuffle(GLOB.department_centers)
 	for(var/E in egg_types)
 		if(!ispath(E, /mob/living/simple_animal/apocalypse_egg))
@@ -299,7 +300,7 @@
 		if(get_dist(maybe_victim, src) < 9)
 			continue
 		enchant_candidates += maybe_victim
-		to_chat(maybe_victim, "<span class='boldwarning'>You see a light overtaking your vision!")
+		to_chat(maybe_victim, "<span class='boldwarning'>You see a light glowing in the distance!")
 	for(var/i = 1 to 6)
 		new /obj/effect/temp_visual/apocaspiral(locate(src.loc.x-3,src.loc.y,src.loc.z))
 		SLEEP_CHECK_DEATH(1 SECONDS)
@@ -373,7 +374,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	pixel_x = -8
 	base_pixel_x = -8
-	faction = list("Apocalypse")
+	faction = list("Apocalypse", "hostile")
 	maxHealth = 15000
 	health = 15000
 	move_resist = MOVE_FORCE_STRONG
@@ -468,7 +469,7 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	layer = LARGE_MOB_LAYER
-	faction = list("Apocalypse")
+	faction = list("Apocalypse", "hostile")
 	maxHealth = 30000
 	health = 30000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
@@ -607,7 +608,7 @@
 	for(var/i = 1 to 8)
 		if(!LAZYLEN(current_path))
 			break
-		addtimer(CALLBACK(src, .proc/Movement, controller), i*0.2 SECONDS, TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/Movement, controller), i*0.25 SECONDS, TIMER_UNIQUE)
 
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
