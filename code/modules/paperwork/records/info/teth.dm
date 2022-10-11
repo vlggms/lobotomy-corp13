@@ -229,3 +229,26 @@
 	<h4>Attachment:</h4> High<br>
 	<h4>Repression:</h4> Low<br>"}
 
+//Forsaken Murderer
+/obj/item/paper/fluff/info/teth/T0154
+	name = "T-01-54"
+	info = {"<h1><center>O-01-12</center></h1>	<br>
+	Name : Forsaken Murderer	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 14	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	<br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>"
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Vulnerable	<br>"}

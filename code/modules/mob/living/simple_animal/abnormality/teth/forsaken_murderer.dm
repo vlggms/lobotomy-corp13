@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer //designed to be a very forgiving and standard abnormality.
-	name = "forsaken murderer"
+	name = "Forsaken Murderer"
 	desc = "A unhealthy looking human bound in a full body straightjacket. His neck is broken and in the middle of his forehead is a old wound that refuses to heal."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "forsakenmurdererinert"
@@ -27,7 +27,7 @@
 	faction = list() //leaving the faction list blank only attributes them to one faction and thats its own unique mob number. With this forsaken murderer will even attack duplicates of themselves.
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
-	start_qliphoth = 2
+	start_qliphoth = 1
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(60, 60, 50, 50, 50),
 						ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
