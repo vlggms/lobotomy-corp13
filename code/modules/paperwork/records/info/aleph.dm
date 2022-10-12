@@ -140,16 +140,15 @@
 	Name : Staining Rose<br>
 	Risk Class : Aleph	<br>
 	Max PE Boxes : 30	<br>
-	Qliphoth Counter : 3	<br>
+	Qliphoth Counter : 1	<br>
 	Work Damage Type : Pale	<br>
 	Work Damage : Extreme	<br>
 	- Once the Qliphoth Counter reaches 0, the rose would shed it's petals, and everyone in the facility became more vulnerable.	<br>
 	- The first person to work on the rose would become it's chosen.	<br>
-	- If anyone other than the chosen worked on the rose, they became permanently weaker.	<br>
-	- If the employee worked on the rose with justice 4 or lower, they became permanently weaker.	<br>
-	- Every 5 minutes, the Qliphoth Counter lowered.	<br>
-	- When the Staining Rose was worked on, the Qliphoth Counter increased.	<br>
-	- When the employee's justice was under 5, the Qliphoth Counter increased.	<br>
+	- If anyone other than the chosen worked on the rose, they became weaker until the rose wilted.	<br>
+	- If the employee worked on the rose with justice 4 or lower, they became weaker until the rose wilted..	<br>
+	- Every 15 minutes, the Qliphoth Counter lowered, unless the rose was worked on.	<br>
+	- When the employee's justice was under 5, the timer was reset.	<br>
 	<br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
