@@ -269,3 +269,33 @@
 	<h4>White Resistance:</h4> Weak	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Scaredy Cat
+/obj/item/paper/fluff/info/he/scaredycat
+	name = "F-02-126"
+	info = {"<h1><center>F-02-126</center></h1>    <br>
+	Name : Scaredy Cat    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 3    <br>
+	Work Damage Type : Red	<br>
+	Work Damage : Moderate	<br>
+	- When another abnormality breached containment, the Qliphoth counter lowered    <br>
+	- When another "Oz" abnormality breached containment, Scaredy cat immediately breached containment   <br>
+	- When an employee with Fortitude Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
+	- When another anormality was supressed , Scaredy cat's counter increased  <br>
+	- When the Qliphoth Counter hit 0, Scaredy Cat teleported out of his cell to protect another breached abnormality.    <br>
+	- Scaredy cat could not be fully supressed as long as the abnormality it protected was alive   <br>
+	- Scaredy cat became harmless without an abnormality to protect, however if another abnormality breached while he was in his harmless state, he would protect that abnormality instead   <br>
+	<br>
+	<h4>Instinct:</h4> Very High<br>
+	<h4>Insight:</h4> high<br>
+	<h4>Attachment:</h4> high<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Medium	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Fatal	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Endured	<br>"}

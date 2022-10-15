@@ -90,3 +90,12 @@
 /datum/ego_datum/armor/solemnlament
 	item_path = /obj/item/clothing/suit/armor/ego_gear/solemnlament
 	cost = 35
+
+//Scaredy Cat - Courage
+/datum/ego_datum/armor/courage
+	item_path = /obj/item/clothing/suit/armor/ego_gear/courage
+	cost = 35
+
+/datum/ego_datum/weapon/courage
+	item_path = /obj/item/ego_weapon/courage
+	cost = 35

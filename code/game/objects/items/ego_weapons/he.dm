@@ -347,3 +347,31 @@
 		sleep(0.25 SECONDS)
 	smashing = FALSE
 	return
+
+/obj/item/ego_weapon/courage
+	name = "courage"
+	desc = "Can I follow you forever? So I can tear them apart..."
+	special = "This weapon deals more damage the more allies you can see."
+	icon_state = "courage"
+	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = "slash"
+	attack_verb_simple = "slash"
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/courage/attack(mob/user, atom/target)
+	if(!CanUseEgo(user))
+		return
+	var/friend_count = 0
+	for(var/mob/living/carbon/human/friend in oview(user, 10))
+		if(friend_count > 4) //the cap is 4 because thematically that's the rest of the oz crew (not including scaredy cat himself)
+			break
+		if(friend.ckey && friend.stat != DEAD && friend != user)
+			force += 15
+			friend_count++
+	..()
+	force = initial(force)

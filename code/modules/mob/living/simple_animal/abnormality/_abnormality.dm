@@ -227,6 +227,7 @@
 /mob/living/simple_animal/hostile/abnormality/proc/breach_effect(mob/living/carbon/human/user)
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()

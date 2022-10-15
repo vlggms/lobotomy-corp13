@@ -33,6 +33,8 @@
 #define COMSIG_GLOB_MELTDOWN_START "!meltdown_started"
 /// a new abnormality has spawned with their room (/datum/abnormality)
 #define COMSIG_GLOB_ABNORMALITY_SPAWN "!abno_spawned"
+///an abnormality has breached
+#define COMSIG_GLOB_ABNORMALITY_BREACH "!abno_breach"
 
 /// signals from globally accessible objects
 

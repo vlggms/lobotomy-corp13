@@ -2579,6 +2579,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\red_queen.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\rudolta.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\scarecrow.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\scaredy_cat.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\silent_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\white_lake.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\woodsman.dm"
