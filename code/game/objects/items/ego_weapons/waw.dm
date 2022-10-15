@@ -176,7 +176,6 @@
 	special = "This weapon fits in ego weapon belts."
 	icon_state = "crimsonclaw"
 	force = 32
-	attack_speed = 0.3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
