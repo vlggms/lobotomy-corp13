@@ -41,6 +41,10 @@
 		/datum/ego_datum/armor/cute
 		)
 	gift_type =  /datum/ego_gifts/cute
+	
+/mob/living/simple_animal/hostile/abnormality/ppodae/Initialize()
+	. = ..()
+	var/turf/T = get_turf(src)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget()
 	. = ..()
