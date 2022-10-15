@@ -578,6 +578,10 @@
 /obj/effect/temp_visual/judgement/proc/fade_out()
 	animate(src, alpha = 0, time = duration-10)
 
+/obj/effect/temp_visual/thirteen
+	icon_state = "thirteen"
+	duration = 20
+
 /obj/effect/temp_visual/paradise_attack
 	icon_state = "paradise_attack"
 	duration = 10

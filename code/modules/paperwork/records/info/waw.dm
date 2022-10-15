@@ -204,3 +204,20 @@
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> Very Low<br>"}
 
+//Silence
+/obj/item/paper/fluff/info/waw/silence
+	name = "O-04-120"
+	info = {"<h1><center>O-02-120</center></h1>	<br>
+	Name : The Price Of Silence	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Pale	<br>
+	Work Damage : Moderate	<br>
+	- Every 13 minutes, the bell tolled.	<br>
+	- If The Price of Silence was not worked on between the bells tolling, every employee took massive pale damage.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Common<br>"}

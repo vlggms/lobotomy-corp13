@@ -164,3 +164,12 @@
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/thirteen
+	name = "for whom the bell tolls"
+	desc = "It tolls for thee."
+	icon_state = "thirteen"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 60
+							)
