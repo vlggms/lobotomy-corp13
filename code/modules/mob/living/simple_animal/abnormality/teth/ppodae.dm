@@ -81,4 +81,3 @@
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
-	T = get_turf(src)
