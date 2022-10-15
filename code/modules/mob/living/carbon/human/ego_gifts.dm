@@ -209,6 +209,13 @@
 	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
 	slot = NECKWEAR
 
+/datum/ego_gifts/cute
+	name = "SO CUTE!!!"
+	icon_state = "cute"
+	fortitude_bonus = 4
+	temperance_bonus = -2
+	slot = HAT
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -317,14 +324,6 @@
 	temperance_bonus = 1
 	justice_bonus = 1
 	slot = RIGHTBACK
-
-/datum/ego_gifts/courage_cat //crumbling armor also has an ego gift called courage so the name has to be slightly different
-	name = "Courage"
-	icon_state = "courage_cat"
-	fortitude_bonus = 4
-	justice_bonus = -4 //people will hate that one for sure
-	insight_mod = 6
-	slot = EYE
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional

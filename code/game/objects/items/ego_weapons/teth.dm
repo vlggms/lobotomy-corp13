@@ -125,3 +125,12 @@
 /obj/item/ego_weapon/regret/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	user.changeNext_move(CLICK_CD_MELEE * 2) // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
+
+/obj/item/ego_weapon/cute
+	name = "SO CUTE!!!"
+	desc = "One may think, 'How can a weapon drawn from such a cute Abnormality be any good?' \
+		However, the claws are actually quite durable and sharp."
+	icon_state = "cute"
+	force = 15
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
