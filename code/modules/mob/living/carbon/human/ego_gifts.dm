@@ -325,6 +325,14 @@
 	justice_bonus = 1
 	slot = RIGHTBACK
 
+/datum/ego_gifts/courage_cat //crumbling armor also has an ego gift called courage so the name has to be slightly different
+	name = "Courage"
+	icon_state = "courage_cat"
+	fortitude_bonus = 4
+	justice_bonus = -4 //people will hate that one for sure
+	insight_mod = 6
+	slot = EYE
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
