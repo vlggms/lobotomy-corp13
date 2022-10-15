@@ -175,3 +175,12 @@
 	attribute_requirements = list(
 							INSIGHT_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/pleasure
+	name = "pleasure"
+	desc = "Dying happy was my only wish, and you granted it. What more could I ask for?"
+	icon_state = "pleasure"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) //80 because requiring a level 4 stat on a HE is pretty big
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
