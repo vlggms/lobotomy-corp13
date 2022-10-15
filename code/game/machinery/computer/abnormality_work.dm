@@ -133,6 +133,7 @@
 			to_chat(user, "<span class='danger'>Calm down... Calm down...</span>")
 		if(3 to INFINITY)
 			to_chat(user, "<span class='userdanger'>I'm not ready for this!</span>")
+	var/was_melting = meltdown //to remember if it was melting down before the work started
 	meltdown = FALSE // Reset meltdown
 	update_icon()
 	datum_reference.working = TRUE
@@ -168,7 +169,7 @@
 	REMOVE_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = TRUE
 	user.set_anchored(FALSE)
-	finish_work(user, work_type, success_boxes, work_speed, training)
+	finish_work(user, work_type, success_boxes, work_speed, training, was_melting)
 
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
 	if(user.sanity_lost)
@@ -186,7 +187,7 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE, was_melting)
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 	if(!work_type)
@@ -201,7 +202,7 @@
 			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
 		if(!training)
-			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
+			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting)
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 		else
 			datum_reference.current.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
