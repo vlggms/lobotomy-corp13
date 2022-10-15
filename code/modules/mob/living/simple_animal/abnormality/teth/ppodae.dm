@@ -1,4 +1,3 @@
-var/turf/T //For getting spawn location, honestly need a better way
 // can't find sprites for ego weapon/suit/gift, for the love of god please change my sprites
 
 /mob/living/simple_animal/hostile/abnormality/ppodae
@@ -29,8 +28,8 @@ var/turf/T //For getting spawn location, honestly need a better way
 	start_qliphoth = 2
 	vision_range = 14
 	aggro_vision_range = 20
-	melee_damage_lower = 5
-	melee_damage_upper = 8
+	melee_damage_lower = 7
+	melee_damage_upper = 10
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/effects/tableslam.ogg'
 	stat_attack = HARD_CRIT
