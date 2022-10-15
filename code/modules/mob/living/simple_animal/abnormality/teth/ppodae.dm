@@ -1,5 +1,9 @@
 // can't find sprites for ego weapon/suit/gift, for the love of god please change my sprites
 
+var/turf/T 
+//Setting a local var for getting spawn location, honestly need a better way
+//get_turf(src) in Initialize didn't work
+
 /mob/living/simple_animal/hostile/abnormality/ppodae
 	name = "Ppodae"
 	desc = "The Goodest Boy in the World"
@@ -41,10 +45,6 @@
 		/datum/ego_datum/armor/cute
 		)
 	gift_type =  /datum/ego_gifts/cute
-	
-/mob/living/simple_animal/hostile/abnormality/ppodae/Initialize()
-	. = ..()
-	var/turf/T = get_turf(src)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget()
 	. = ..()
@@ -81,3 +81,4 @@
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
+	T = get_turf(src)
