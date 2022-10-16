@@ -515,7 +515,6 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/breach_effect(mob/living/carbon/human/user)
-	..()
 	death_counter = 0
 	if(datum_reference?.qliphoth_meter == 2) // Helpful/Passive breach
 		fear_level = TETH_LEVEL
@@ -528,7 +527,7 @@
 		if(breach_max_death == 0) //make it 1 if it's somehow zero
 			breach_max_death++
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "In the name of Love and Justice~ Here comes Magical Girl!"))
-		return
+		return ..()
 	visible_message("<span class='danger'>[src] transforms!</span>") //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	adjustBruteLoss(-maxHealth)
@@ -545,6 +544,6 @@
 	breach_max_death = 0 //who cares about humans anymore?
 	retreat_distance = null //this is annoying
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
-	return
+	return ..()
 
 
