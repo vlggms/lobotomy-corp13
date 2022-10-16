@@ -1,6 +1,5 @@
 // can't find sprites for ego weapon/suit/gift, for the love of god please change my sprites
 
-var/turf/T 
 //Setting a local var for getting spawn location, honestly need a better way
 //get_turf(src) in Initialize didn't work
 
@@ -39,7 +38,8 @@ var/turf/T
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "smashes"
 	attack_verb_simple = "smash"
-	
+	var/turf/ppodae_location
+
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
 		/datum/ego_datum/armor/cute
@@ -63,7 +63,7 @@ var/turf/T
 				var/obj/item/bodypart/bp = pick(parts)
 				bp.dismember()
 				L.adjustBruteLoss(200)
-				bp.loc = T // Teleports limb to containment
+				bp.forceMove(ppodae_location) // Teleports limb to containment
 				QDEL_NULL(src)
 				// Taken from eldritch_demons.dm
 
@@ -81,4 +81,4 @@ var/turf/T
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
-	T = get_turf(src)
+	ppodae_location = get_turf(src)
