@@ -363,7 +363,7 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/courage/attack(mob/user, atom/target)
+/obj/item/ego_weapon/courage/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	var/friend_count = 0
@@ -373,5 +373,13 @@
 		if(friend.ckey && friend.stat != DEAD && friend != user)
 			force += 15
 			friend_count++
+	say("friend count is [friend_count]")
+	if(!friend_count && icon_state == "courage")
+		to_chat(user, "<span class='warning'>Your weapon cowers and shatters in your hand!")
+		icon_state = "courage_broken"
+	else if(friend_count && icon_state == "courage_broken")
+		to_chat(user, "<span class='nicegreen'>Your weapon puffs back up to impress your allies!")
+		icon_state = "courage"
+	user.update_icon_state()
 	..()
 	force = initial(force)
