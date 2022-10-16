@@ -373,7 +373,6 @@
 		if(friend.ckey && friend.stat != DEAD && friend != user)
 			force += 15
 			friend_count++
-	say("friend count is [friend_count]")
 	if(!friend_count && icon_state == "courage")
 		to_chat(user, "<span class='warning'>Your weapon cowers and shatters in your hand!")
 		icon_state = "courage_broken"
