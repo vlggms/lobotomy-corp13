@@ -89,6 +89,9 @@
 	. = ..()
 	if(!friend || status_flags & GODMODE || stat == DEAD) //for some reason life() works on death ain't that something
 		return
+	if(QDELETED(friend)) //if the friend is deleted instead of dying first somehow (looking at you pbird)
+		Courage(FALSE)
+		return
 	if(protect_cooldown < world.time)
 		protect_cooldown = world.time + protect_cooldown_time
 		if(!can_see(src, friend, vision_range))
@@ -165,6 +168,9 @@
 		icon_living = "cat_courage"
 		icon_dead = "dead_courage"
 	else
+		friend = null //just to make sure it's actually empty
+		if(stat != DEAD)
+			wait_for_friend = TRUE //kill him fast before he finds another friend
 		faction = list("neutral")
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper) //it shouldn't attack in that form in the first place but...
@@ -191,8 +197,6 @@
 	if(died == friend)
 		friend = null
 		Courage(FALSE)
-		if(stat != DEAD)
-			wait_for_friend = TRUE //kill him fast before he finds another friend
 		return TRUE
 	return FALSE
 
