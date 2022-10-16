@@ -71,9 +71,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/success_effect(mob/living/carbon/human/user, work_type, pe)
-	user.adjustSanityLoss(10) // It's healing
+	user.adjustSanityLoss(30) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(10)
+			H.adjustSanityLoss(30)
 	..()
 
