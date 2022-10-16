@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival
-	name = "Fairy festival"
+	name = "Fairy Festival"
 	desc = "The abnormality is similar to a fairy, having two pairs of wings and a small body. The small fairies around it act as a cluster."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fairy"

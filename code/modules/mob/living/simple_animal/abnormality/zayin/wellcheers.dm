@@ -1,6 +1,6 @@
 // A vending machine that is a mob type. My descent into madness continues.
 /mob/living/simple_animal/hostile/abnormality/wellcheers
-	name = "Wellcheers vending machine"
+	name = "Wellcheers Vending Machine"
 	desc = "A vending machine selling cans of \"Wellcheers\"."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wellcheers_vendor"

@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat
-	name = "Scaredy cat"
+	name = "Scaredy Cat"
 	desc = "An abnormality ressembling a small defenseless kitten."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "scaredy_cat"
@@ -33,6 +33,7 @@
 						) //higher work chance than the rest of oz because he can breach so easily
 	work_damage_amount = 7 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
+	can_patrol = FALSE
 	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
