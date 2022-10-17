@@ -58,12 +58,6 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
-	/// Patrol Code
-	var/can_patrol = TRUE
-	var/patrol_cooldown
-	var/patrol_cooldown_time = 30 SECONDS
-	var/list/patrol_path = list()
-	var/patrol_tries = 0 //max of 5
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
