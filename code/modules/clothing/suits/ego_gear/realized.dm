@@ -10,10 +10,6 @@
 							JUSTICE_ATTRIBUTE = 130
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/realization/item_action_slot_check(slot)
-	if(slot == ITEM_SLOT_OCLOTHING) // Abilities are only granted when worn properly
-		return TRUE
-
 /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience
 	name = "gold experience"
 	desc = "A jacket made of gold is hardly light. But it shines like the sun."
@@ -31,12 +27,6 @@
 	desc = "The blades are not just decorative."
 	icon_state = "grinder"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)
-
-/obj/item/clothing/suit/armor/ego_gear/realization/grinder/Initialize()
-	. = ..()
-	var/obj/effect/proc_holder/ability/aimed/helper_dash/HD = new
-	var/datum/action/spell_action/ability/item/A = HD.action
-	A.SetItem(src)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/alcoda
 	name = "al coda"
@@ -73,12 +63,6 @@
 	desc = "Come my child. Tell me your sins."
 	icon_state = "confessional"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)
-
-/obj/item/clothing/suit/armor/ego_gear/realization/confessional/Initialize()
-	. = ..()
-	var/obj/effect/proc_holder/ability/aimed/cross_spawn/CS = new
-	var/datum/action/spell_action/ability/item/A = CS.action
-	A.SetItem(src)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/universe
 	name = "one with the universe"
