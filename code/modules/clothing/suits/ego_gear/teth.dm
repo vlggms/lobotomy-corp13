@@ -84,7 +84,7 @@
 	name = "cherry blossoms"
 	desc = "Sitting under the tree’s shadow makes you feel like these gloomy days will flutter away like the petals of a flower."
 	icon_state = "blossoms"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = -30)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -50, PALE_DAMAGE = -20)
 
 /obj/item/clothing/suit/armor/ego_gear/regret
 	name = "regret"

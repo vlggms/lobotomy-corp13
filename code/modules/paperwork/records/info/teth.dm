@@ -192,6 +192,7 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Very High<br>"}
+
 /obj/item/paper/fluff/info/teth/bloodbath
 	name = "T-05-51"
 	info = {"<h1><center>T-05-51</center></h1>	<br>
@@ -230,9 +231,9 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Forsaken Murderer
-/obj/item/paper/fluff/info/teth/T0154
+/obj/item/paper/fluff/info/teth/murderer
 	name = "T-01-54"
-	info = {"<h1><center>O-01-12</center></h1>	<br>
+	info = {"<h1><center>T-01-54</center></h1>	<br>
 	Name : Forsaken Murderer	<br>
 	Risk Class : Teth	<br>
 	Max PE Boxes : 14	<br>
@@ -299,3 +300,23 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
+	
+//Cherry blossom
+/obj/item/paper/fluff/info/teth/cherryblossom
+	name = "O-04-100"
+	info = {"<h1><center>O-04-100</center></h1>	<br>
+	Name : Cherry Blossom<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Good, the Qliphoth Counter lowered.	<br>
+	- When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.	<br>
+	- Upon the death of one of these employees, the HP and SP of every employee in the facility was healed and all marks were removed.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>"}
