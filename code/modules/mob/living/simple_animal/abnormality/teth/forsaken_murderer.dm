@@ -8,14 +8,14 @@
 	var/icon_aggro = "forsakenmurdererbreach" //code stolen from /mob/living/simple_animal/hostile/asteroid/basilisk/watcher
 	var/lc13admin_mode_variable = 0 //for variables that are edited during a round.
 	del_on_death = FALSE
-	maxHealth = 900 //originally was 270. Fragment health is 800 with a original game health of 230 so techically forsaken murderer has more health than fragment? Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
-	health = 900 //Was suggested to give them more health, Rationalization of this is that despite being a human body the forsaken murderer is immortal and has a metal head.
+	maxHealth = 1100 //originally was 270. Fragment health is 800 with a original game health of 230 so techically forsaken murderer has more health than fragment? Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
+	health = 1100 //Was suggested to give them more health, Rationalization of this is that despite being a human body the forsaken murderer is immortal and has a metal head.
 	rapid_melee = 1 //attack speed modifier. 2 is twice the normal.
 	melee_queue_distance = 2 //If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
 	move_to_delay = 5 //speed? lower is faster.
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2) //Red damage is applied to health. White damage is applied to sanity with only a few abnormalities using that to instantly kill the victem. Black damage is applied to both health and sanity "10 black damage would do 10 health damage and 10 sanity damage. Pale damage is a % of health. Weird i know.
-	melee_damage_lower = 8 //the lowest damage in regular attacks. Normal murderer is 2~4 so we double it.
-	melee_damage_upper = 16 // fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage. Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe. Most HE level abnormalities do 20+ damange.
+	melee_damage_lower = 10 //the lowest damage in regular attacks. Normal murderer is 2~4 so we double it.
+	melee_damage_upper = 18 // fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage. Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe. Most HE level abnormalities do 20+ damange.
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE //is the second half of melee damage type. This the armor type checked when attacking someone.
 	stat_attack = CONSCIOUS //originally was HARD_CRIT. This setting makes forsaken murderer attack you until you go into crit.
