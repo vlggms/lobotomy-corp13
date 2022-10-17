@@ -752,20 +752,3 @@
 /obj/effect/temp_visual/ambermidnight_hole/Initialize()
 	..()
 	animate(src, alpha = 0, time = duration)
-
-/obj/effect/temp_visual/cross
-	name = "holy cross"
-	icon = 'icons/effects/32x64.dmi'
-	icon_state = "cross"
-	duration = 2 SECONDS
-
-/obj/effect/temp_visual/cross/fall
-	icon_state = "cross_fall"
-	duration = 8 SECONDS
-
-/obj/effect/temp_visual/cross/fall/Initialize()
-	..()
-	addtimer(CALLBACK(src, .proc/FadeOut), 6 SECONDS)
-
-/obj/effect/temp_visual/cross/fall/proc/FadeOut()
-	animate(src, alpha = 0, time = 2 SECONDS)
