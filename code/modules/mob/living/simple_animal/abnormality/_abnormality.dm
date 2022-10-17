@@ -104,8 +104,6 @@
 	if(status_flags & GODMODE)
 		return FALSE
 	FearEffect()
-	if(!can_patrol || client)
-		return
 	return
 
 // Applies fear damage to everyone in range
