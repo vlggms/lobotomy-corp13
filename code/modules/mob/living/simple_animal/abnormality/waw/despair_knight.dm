@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/despair_knight
-	name = "Knight of Despair"
+	name = "Knight of despair"
 	desc = "A tall humanoid abnormality in a blue dress. \
 	Half of her head is black with sharp horn segments protruding out of it."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
@@ -25,7 +25,6 @@
 	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
-	can_patrol = FALSE
 
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
