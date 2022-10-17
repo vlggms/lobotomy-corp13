@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/silentorchestra
-	name = "Silent Orchestra"
+	name = "Silent orchestra"
 	desc = "From break and ruin, the most beautiful performance begins."
 	health = 4000
 	maxHealth = 4000
@@ -18,7 +18,6 @@
 						)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
-	can_patrol = FALSE
 
 	wander = FALSE
 	light_system = MOVABLE_LIGHT
