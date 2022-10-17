@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/bloodbath
-	name = "Bloodbath"
+	name = "bloodbath"
 	desc = "A constantly dripping bath of blood"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
