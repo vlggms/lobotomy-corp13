@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/scorched_girl
-	name = "Scorched Girl"
+	name = "Scorched girl"
 	desc = "An abnormality resembling a girl burnt to ashes. \
 	Even though there's nothing left to burn, the fire still doesn't extinguish."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -37,23 +37,6 @@
 	var/boom_cooldown
 	/// Amount of RED damage done on explosion
 	var/boom_damage = 250
-	patrol_cooldown_time = 10 SECONDS //Scorched be zooming
-
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/patrol_select()
-	var/turf/target_center
-	var/highestcount = 0
-	for(var/turf/T in GLOB.department_centers)
-		var/targets_at_tile = 0
-		for(var/mob/living/L in view(10, T))
-			if(!faction_check_mob(L) && L.stat != DEAD)
-				targets_at_tile++
-		if(targets_at_tile > highestcount)
-			target_center = T
-			highestcount = targets_at_tile
-	if(!target_center)
-		..()
-	else
-		patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/OpenFire()
 	if(client)
@@ -62,8 +45,7 @@
 
 	var/amount_inview = 0
 	for(var/mob/living/carbon/human/H in view(7, src))
-		if(!faction_check_mob(H) && H.stat != DEAD)
-			amount_inview += 1
+		amount_inview += 1
 	if(prob(amount_inview*20))
 		explode()
 
@@ -73,9 +55,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/CanAttack(atom/the_target)
-	if(..())
-		if(ishuman(the_target))
-			return TRUE
+	if(ishuman(the_target))
+		return TRUE
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/AttackingTarget(atom/attacked_target)
