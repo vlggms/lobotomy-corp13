@@ -2576,6 +2576,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\happy_teddy_bear.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\helper.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\laetitia.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\red_buddy.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\red_queen.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\rudolta.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\scarecrow.dm"

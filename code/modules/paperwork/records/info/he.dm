@@ -140,7 +140,11 @@
 	- When Repression work was completed, the Qliphoth Counter increased.    <br>
 	- When Release work was completed, Blue Smocked Shepard breached,    <br>
 	- When any other work was completed, the Qliphoth Counter lowered. <br>
-	- Blue Smocked Shepard mercilessly attacked everyone in the area.<br><br>
+	- Blue Smocked Shepard mercilessly attacked everyone in the area.<br>
+	- If Reddened Buddy is in the facility, his work chance increase proportionally to the amount of pain Reddened Buddy is experiencing <br>
+	- If Reddened Buddy's pain was too high however, the Qliphoth Counter lowered on work completion <br>
+	- Blue Smocked Shepard mercilessly attacked everyone in the area. <br>
+	WARNING - No matter what, Blue Smocked Shepherd and Reddened Buddy must not be allowed to meet <br><br>
 	<h4>Instinct:</h4> High<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
@@ -151,6 +155,38 @@
 	<h4>Red Resistance:</h4> Endured	<br>
 	<h4>White Resistance:</h4> Normal	<br>
 	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+//Reddened Buddy
+/obj/item/paper/fluff/info/he/red_buddy
+	name = "F-02-127"
+	info = {"<h1><center>F-01-127</center></h1>    <br>
+	Name : Reddened Buddy    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : 3    <br>
+	Work Damage Type : Red	<br>
+	Work Damage : N/A	<br>
+	- Whenever an agent failed a work, Reddened Buddy's pain increased    <br>
+	- Whenever Reddened buddy's pain increased, the work damage increased accordingly    <br>
+	- When Reddened Buddy was in too much pain, the Qliphoth Counter would decrease on all work but instinct    <br>
+	- When repression work was completed, the pain of Reddened Buddy greatly increased. <br>
+	- When instinct work was completed, the pain of Reddened Buddy lessened. <br>
+	- When any work's result other than instinct was bad, the Qliphoth Counter decreased. <br>
+	- If Blue Smocked Shepherd tells a lie and Reddened Buddy is not worked on in the following 90 seconds, the Qliphoth Counter decreased by 2 <br>
+	- When Blue Smocked Shepherd mentionned Reddened Buddy, the effect above also occured <br>
+	- When Reddened Buddy escaped, he periodically howled, dealing white damage in an area around him, Reddened Buddy is hurt greatly by his own howling <br>
+	WARNING - No matter what, Reddened Buddy and Blue Smocked Shepherd must not be allowed to meet<br><br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Very High	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Normal	<br>"}
 
 //Rudolta

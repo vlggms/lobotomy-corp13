@@ -62,6 +62,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/oppression
 	cost = 50
 
+// Reddened Buddy - Totalitarianism
+/datum/ego_datum/weapon/totalitarianism
+	item_path = /obj/item/ego_weapon/totalitarianism
+	cost = 50
+
+/datum/ego_datum/armor/totalitarianism
+	item_path = /obj/item/clothing/suit/armor/ego_gear/totalitarianism
+	cost = 50
+
 //Funeral of the Dead Butterflies - Solemn Vow and Solemn Lament
 /datum/ego_datum/weapon/solemnvow
 	item_path = /obj/item/gun/ego_gun/pistol/solemnvow
