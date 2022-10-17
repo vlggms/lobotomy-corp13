@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/dreaming_current
-	name = "\proper The Dreaming Current"
+	name = "Dreaming current"
 	desc = "An abnormality resembling a cobalt blue shark with legs. \
 	There's a syringe embedded in a side of its body, and there are multiple injection holes on its lower body."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
@@ -28,7 +28,6 @@
 
 	can_breach = TRUE
 	start_qliphoth = 2
-	can_patrol = FALSE
 
 	var/list/movement_path = list()
 	var/list/been_hit = list()
