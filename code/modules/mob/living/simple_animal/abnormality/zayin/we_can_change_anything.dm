@@ -1,6 +1,6 @@
 #define STATUS_EFFECT_CHANGE /datum/status_effect/we_can_change_anything
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything
-	name = "We Can Change Anything"
+	name = "We can change anything"
 	desc = "A human sized container with spikes inside it, you shouldn't enter it"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wecanchange"
