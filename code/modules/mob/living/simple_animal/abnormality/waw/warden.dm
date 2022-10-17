@@ -5,12 +5,14 @@
 	icon_state = "warden"
 	icon_living = "warden"
 	icon_dead = "warden_dead"
-	maxHealth = 1700
-	health = 1700
+	maxHealth = 2100
+	health = 2100
 	pixel_x = -8
 	base_pixel_x = -8
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
+	speed = 4
+	move_to_delay = 5
 	melee_damage_lower = 38
 	melee_damage_upper = 38
 	melee_damage_type = BLACK_DAMAGE
@@ -97,3 +99,6 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
+	visible_message("<span class='userdanger'>The [P] bounces off [src]!</span>")
+	P.Destroy()
