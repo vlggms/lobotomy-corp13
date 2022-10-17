@@ -612,29 +612,7 @@
 		return ab.cost_check(ab.check_turf,owner,1)
 	return FALSE
 
-/datum/action/spell_action/ability
 
-/datum/action/spell_action/ability/IsAvailable()
-	if(!target)
-		return FALSE
-	var/obj/effect/proc_holder/ability/A = target
-	if(owner)
-		return A.can_cast(owner)
-	return FALSE
-
-/datum/action/spell_action/ability/item
-	var/obj/item/set_item = null
-
-/datum/action/spell_action/ability/item/proc/SetItem(obj/item/new_item)
-	LAZYINITLIST(new_item.actions)
-	new_item.actions += src
-	set_item = new_item
-
-/datum/action/spell_action/ability/item/Destroy()
-	set_item.actions -= src
-	UNSETEMPTY(set_item.actions)
-	set_item = null
-	return ..()
 
 //Preset for general and toggled actions
 /datum/action/innate
