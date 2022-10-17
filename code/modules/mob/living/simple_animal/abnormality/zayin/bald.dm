@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/bald
-	name = "You are Bald"
+	name = "You are bald"
 	desc = "A helpful sphere, you think."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bald1"
