@@ -1,8 +1,3 @@
-// can't find sprites for ego weapon/suit/gift, for the love of god please change my sprites
-
-//Setting a local var for getting spawn location, honestly need a better way
-//get_turf(src) in Initialize didn't work
-
 /mob/living/simple_animal/hostile/abnormality/ppodae
 	name = "Ppodae"
 	desc = "The Goodest Boy in the World"
