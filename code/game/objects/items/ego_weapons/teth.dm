@@ -135,3 +135,4 @@
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/slashmiss.ogg'
