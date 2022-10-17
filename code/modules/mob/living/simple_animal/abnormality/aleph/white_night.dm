@@ -1,7 +1,7 @@
 GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/abnormality/white_night
-	name = "WhiteNight"
+	name = "White night"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
 	health = 15000
 	maxHealth = 15000
@@ -34,7 +34,6 @@ GLOBAL_LIST_EMPTY(apostles)
 						)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
-	can_patrol = FALSE
 
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_VERY_SOFT_YELLOW
