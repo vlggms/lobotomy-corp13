@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/training_rabbit
-	name = "Standard Training-Dummy Rabbit"
+	name = "Standard training-dummy rabbit"
 	desc = "A rabbit-like training dummy. Should be completely harmless."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "training_rabbit"
@@ -23,7 +23,6 @@
 	can_spawn = FALSE // Normally doesn't appear
 	//ego_list = list(datum/ego_datum/weapon/training, datum/ego_datum/armor/training)
 	gift_type =  /datum/ego_gifts/standard
-	can_patrol = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/breach_effect(mob/living/carbon/human/user)
 	..()
