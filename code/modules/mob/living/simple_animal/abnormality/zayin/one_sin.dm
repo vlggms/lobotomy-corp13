@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/onesin
-	name = "One Sin and Hundreds of Good Deeds"
+	name = "One sin and hundreds of good deeds"
 	desc = "A giant skull that is attached to a cross, it wears a crown of thorns."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin"
@@ -71,9 +71,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/success_effect(mob/living/carbon/human/user, work_type, pe)
-	user.adjustSanityLoss(30) // It's healing
+	user.adjustSanityLoss(10) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(30)
+			H.adjustSanityLoss(10)
 	..()
 
