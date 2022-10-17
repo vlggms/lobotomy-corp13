@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/queen_bee
-	name = "Queen Bee"
+	name = "Queen bee"
 	desc = "A disfigured creature resembling a bee queen."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "queen_bee"
