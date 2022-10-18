@@ -11,8 +11,6 @@
 	faction = list("hostile")
 	response_help_continuous = "pet"
 	response_help_simple = "pet"
-	response_disarm_continuous = "stroke"
-	response_disarm_simple = "stroke"
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 60,
 						ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
@@ -57,7 +55,6 @@
 			if(length(parts))
 				var/obj/item/bodypart/bp = pick(parts)
 				bp.dismember()
-				L.adjustBruteLoss(200)
 				bp.forceMove(ppodae_location) // Teleports limb to containment
 				QDEL_NULL(src)
 				// Taken from eldritch_demons.dm
