@@ -14,7 +14,10 @@
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return FALSE
-	return ..()
+	. = ..()
+	if(attack_speed)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+	return
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
@@ -54,11 +57,6 @@
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
-
-/obj/item/ego_weapon/attack(mob/living/M, mob/living/user)
-	..()
-	if(attack_speed)
-		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 //Examine text for mini weapons.
 /obj/item/ego_weapon/mini/examine(mob/user)

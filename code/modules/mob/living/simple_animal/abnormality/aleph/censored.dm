@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/censored/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
-		var/mob/living/L = target
+		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
