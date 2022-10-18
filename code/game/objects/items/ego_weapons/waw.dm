@@ -216,3 +216,51 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+
+
+/obj/item/ego_weapon/stem
+	name = "green stem"
+	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
+	special = "This weapon has a longer reach. \
+			This weapon attacks slower than usual."
+	icon_state = "green_stem"
+	force = 32 //original 8-16
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.2
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	equip_sound = 'sound/creatures/venus_trap_hit.ogg'
+	pickup_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+	var/vine_cooldown
+	var/vine_delay = 1 SECONDS
+
+/obj/item/ego_weapon/stem/Initialize(mob/user)
+	.=..()
+	vine_cooldown = world.time
+
+/obj/item/ego_weapon/stem/attack_self(mob/user) //spawn bitter flora
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+	if(vine_cooldown <= world.time)
+		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
+		for(var/obj/structure/alien/weeds/F0442/F in range(0, get_turf(user)))
+			if(F)
+				playsound(src, 'sound/creatures/venus_trap_hurt.ogg', 10, FALSE, 5)
+				qdel(F)
+				return
+		var/mob/living/carbon/human/L = user
+		L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
+		new /obj/structure/alien/weeds/F0442(get_turf(user))
+		L.adjust_nutrition(-10)
+		vine_cooldown = world.time + vine_delay
+
+
+

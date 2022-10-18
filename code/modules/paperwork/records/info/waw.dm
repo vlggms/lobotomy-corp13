@@ -204,45 +204,30 @@
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> Very Low<br>"}
 
-//Silence
-/obj/item/paper/fluff/info/waw/silence
-	name = "O-04-120"
-	info = {"<h1><center>O-02-120</center></h1>	<br>
-	Name : The Price Of Silence	<br>
+//SnowWhitesApple
+/obj/item/paper/fluff/info/waw/snowwhitesapple
+	name = "F-04-42"
+	info = {"<h1><center>O-02-40</center></h1>	<br>
+	Name : Snow Whites Apple	<br>
 	Risk Class : Waw	<br>
-	Max PE Boxes : 24	<br>
+	Max PE Boxes : 20	<br>
 	Qliphoth Counter : 1	<br>
-	Work Damage Type : Pale	<br>
+	Work Damage Type : Black	<br>
 	Work Damage : Moderate	<br>
-	- Every 13 minutes, the bell tolled.	<br>
-	- If The Price of Silence was not worked on between the bells tolling, every employee took massive pale damage.	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
+	- When Snow White's Apple escaped from its containment, it began to spread its roots and branches along the ground of the area it was in.	<br>
+	- The bitter flora produced by F-04-42 becomes dormant when not in the presence of F-04-42.	<br>
+	- F-04-42 can only attack through her roots and branches. It is suggested agents avoid traversing extentions of the entity when in combat.	<br>
 	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Very Low<br>
-	<h4>Attachment:</h4> Low<br>
-	<h4>Repression:</h4> Common<br>"}
-
-//The Dreaming Current
-/obj/item/paper/fluff/info/waw/current
-	name = "T-02-71"
-	info = {"<h1><center>T-02-71</center></h1>	<br>
-	Name : The Dreaming Current	<br>
-	Risk Class : Waw	<br>
-	Max PE Boxes : 24	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- When an employee panicked during work, the Qliphoth Counter lowered.	<br>
-	- When an employee with Temperance Level 1 finished their work, the Qliphoth Counter lowered.	<br>
-	- Upon breaching, the dreaming current will charge around the facility and deal massive RED damage to all entities in it's path.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Very Low<br>
-	<h4>Attachment:</h4> Common<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Common<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
 	<h4>Escape Damage:</h4> Extreme	<br>
-	<h4>Red Resistance:</h4> Weak	<br>
-	<h4>White Resistance:</h4> Endured	<br>
-	<h4>Black Resistance:</h4> Normal	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Immune	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}

@@ -123,3 +123,12 @@
 /datum/ego_datum/weapon/ecstasy
 	item_path = /obj/item/gun/ego_gun/ecstasy
 	cost = 50
+
+//Snow Whites Apple - Green_Stem
+/datum/ego_datum/armor/stem
+	item_path = /obj/item/clothing/suit/armor/ego_gear/stem
+	cost = 50
+
+/datum/ego_datum/weapon/stem
+	item_path = /obj/item/ego_weapon/stem
+	cost = 50

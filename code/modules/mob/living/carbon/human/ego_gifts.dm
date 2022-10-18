@@ -418,6 +418,12 @@
 	temperance_bonus = 2 // This is techincally a buff from base game.
 	slot = HAT
 
+/datum/ego_gifts/stem
+	name = "Green Stem"
+	icon_state = "green_stem"
+	prudence_bonus = 6 //originally a SP bonus
+	slot = BROOCH
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
