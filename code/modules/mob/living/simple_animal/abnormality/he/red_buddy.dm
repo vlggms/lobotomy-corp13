@@ -17,10 +17,10 @@
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 10, 30, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = list(0, 20, 30, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 55, 60, 60),
-						ABNORMALITY_WORK_REPRESSION = list(20, 45, 55, 60, 60)
+						ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
+						ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
+						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
 						)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 50
