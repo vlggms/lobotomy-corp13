@@ -26,6 +26,12 @@
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
-	damage = 22	//Slow as balls
+	damage = 24	//Slow as balls
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_beakmagnum
+	name = "beak"
+	damage = 17	//Slow as balls
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

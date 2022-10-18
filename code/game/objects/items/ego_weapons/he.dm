@@ -2,6 +2,7 @@
 	name = "grinder MK4"
 	desc = "The sharp sawtooth of the grinder makes a clean cut through its enemy. \
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
+	special = "This weapon pierces to hit everything on the target's tile."
 	icon_state = "grinder"
 	force = 30
 	damtype = RED_DAMAGE
@@ -12,6 +13,21 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
+	..()
+	var/turf/T = get_turf(target)
+	//damage calculations
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	force*=justicemod
+	for(var/mob/living/L in T.contents)
+		if(L == user || L == target)
+			continue
+		if(L.stat >= DEAD)
+			continue
+		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	force = 30
 
 /obj/item/ego_weapon/harvest
 	name = "harvest"
@@ -26,6 +42,39 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
 							)
+	var/can_spin = TRUE
+
+/obj/item/ego_weapon/harvest/attack(mob/living/target, mob/living/user)
+	..()
+	can_spin = FALSE
+	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+
+/obj/item/ego_weapon/harvest/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/harvest/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		return
+	can_spin = FALSE
+	if(do_after(user, 12))
+		addtimer(CALLBACK(src, .proc/spin_reset), 12)
+		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
+		for(var/turf/T in orange(1, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+
+		for(var/mob/living/L in livinginrange(1, user))
+			var/aoe = 30
+			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
@@ -199,7 +248,7 @@
 	special = "This weapon has a slower attack speed. \
 	This weapon has knockback."
 	icon_state = "christmas"
-	force = 50
+	force = 54	//Still lower DPS
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE

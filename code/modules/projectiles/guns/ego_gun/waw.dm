@@ -130,16 +130,13 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
-	special = "This weapon fires 850 rounds per minute. \
+	special = "This weapon fires 750 rounds per minute. \
 		This weapon has IFF capabilities."
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 	)
-
-/obj/item/gun/ego_gun/loyalty/Initialize()
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.07 SECONDS)
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
 /obj/item/gun/ego_gun/pistol/soda/executive
@@ -147,10 +144,12 @@
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
 	inhand_icon_state = "executive"
+	special = "This gun scales with justice."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 40
+							JUSTICE_ATTRIBUTE = 60
 	)
+
 
 /obj/item/gun/ego_gun/pistol/crimson
 	name = "crimson scar"
@@ -161,7 +160,79 @@
 	fire_delay = 12
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	fire_sound_volume = 30
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/ecstasy
+	name = "ecstasy"
+	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
+	icon_state = "ecstasy"
+	inhand_icon_state = "ecstasy"
+	special = "This weapon fires 750 rounds per minute."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
+	weapon_weight = WEAPON_HEAVY
+	spread = 40
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	autofire = 0.08 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/pistol/praetorian
+	name = "praetorian"
+	desc = "And with her guard, she conquered all."
+	icon_state = "praetorian"
+	inhand_icon_state = "executive"
+	special = "This weapon fires IFF bullets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound_volume = 30
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/pistol/magic_pistol
+	name = "magic pistol"
+	desc = "All the power of magic bullet, in a smaller package."
+	icon_state = "magic_pistol"
+	inhand_icon_state = "magic_pistol"
+	special = "This weapon fires extremely slowly. \
+		This weapon pierces all targets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 24
+	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+
+/obj/item/gun/ego_gun/pistol/laststop
+	name = "magic pistol"
+	desc = "There are no clocks to alert the arrival times."
+	icon_state = "laststop"
+	inhand_icon_state = "laststop"
+	special = "This weapon fires ungodly slow. You have been warned."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_laststop
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10 SECONDS 	// I mean it's
+	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+							)
+
+/obj/item/gun/ego_gun/intentions
+	name = "good intentions"
+	desc = "Go ahead and rattle 'em boys."
+	icon_state = "intentions"
+	inhand_icon_state = "intentions"
+	special = "This weapon fires 850 rounds per minute."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_intentions
+	weapon_weight = WEAPON_HEAVY
+	spread = 40
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	autofire = 0.07 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
 	)

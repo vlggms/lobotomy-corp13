@@ -17,16 +17,21 @@
 							JUSTICE_ATTRIBUTE = 0
 							)
 	var/special
+	var/autofire	//In Rounds per second
 
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
 	chambered = new ammo_type(src)
+	if(autofire)
+		AddComponent(/datum/component/automatic_fire, autofire)
 
 /obj/item/gun/ego_gun/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
 	if(special)
 		. += "<span class='notice'>[special]</span>"
+	if(weapon_weight == WEAPON_HEAVY)
+		. += "<span class='notice'>This weapon requires two hands.</span>"
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 

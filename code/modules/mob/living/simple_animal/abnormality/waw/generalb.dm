@@ -20,6 +20,7 @@
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/loyalty,
+		/datum/ego_datum/weapon/praetorian,
 		/datum/ego_datum/armor/loyalty
 		)
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/praetorian) // Don't think it was dropping before, this should make it do so

@@ -30,6 +30,11 @@
 	start_qliphoth = 2
 	can_patrol = FALSE
 
+	ego_list = list(
+		/datum/ego_datum/weapon/ecstasy,
+		/datum/ego_datum/armor/ecstasy
+		)
+
 	var/list/movement_path = list()
 	var/list/been_hit = list()
 	var/charging = FALSE

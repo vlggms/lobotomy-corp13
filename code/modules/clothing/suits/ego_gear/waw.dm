@@ -141,7 +141,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ecstacy
+/obj/item/clothing/suit/armor/ego_gear/ecstasy
 	name = "ecstasy"
 	desc = "The colorful pattern is fancy, quite akin to a child's costume."
 	icon_state = "ecstasy"

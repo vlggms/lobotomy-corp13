@@ -173,12 +173,14 @@
 /obj/item/ego_weapon/mini/crimson
 	name = "crimson claw"
 	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage. "
-	special = "This weapon fits in ego weapon belts."
 	icon_state = "crimsonclaw"
 	force = 32
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+							)
 
 /obj/item/ego_weapon/thirteen
 	name = "for whom the bell tolls"
@@ -208,7 +210,7 @@
 	if(combo==13)
 		combo = 0
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-		force = userjust*2
+		force = userjust
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
 		playsound(src, 'sound/abnormalities/silence/bong.ogg', 20, FALSE, 9)
 	..()

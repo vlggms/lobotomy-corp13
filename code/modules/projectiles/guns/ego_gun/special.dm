@@ -29,7 +29,5 @@
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	autofire = 0.15 SECONDS
 
-/obj/item/gun/ego_gun/sodasmg/Initialize()
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.15 SECONDS)
