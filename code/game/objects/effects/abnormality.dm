@@ -123,3 +123,27 @@
 	..()
 	animate(src, alpha = 0, time = 20 SECONDS)
 	QDEL_IN(src, 20 SECONDS)
+
+/obj/effect/express_light
+	name = "Express Train Light"
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	icon_state = "express_light1"
+	layer = ABOVE_MOB_LAYER
+	pixel_y = 32
+	base_pixel_y = 32
+
+/obj/effect/express_light/proc/disappear()
+	animate(src, alpha = 0, time = 10)
+	QDEL_IN(src, 10)
+
+/obj/effect/express_engine
+	name = "Express Train to Hell"
+	desc = "Oh no."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "express_engine"
+
+/obj/effect/express_car
+	name = "Express Train to Hell"
+	desc = "Oh no."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "express_car"
