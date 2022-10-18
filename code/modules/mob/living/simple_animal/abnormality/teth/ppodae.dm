@@ -57,7 +57,6 @@
 			if(length(parts))
 				var/obj/item/bodypart/bp = pick(parts)
 				bp.dismember()
-				L.adjustBruteLoss(200)
 				bp.forceMove(ppodae_location) // Teleports limb to containment
 				QDEL_NULL(src)
 				// Taken from eldritch_demons.dm
