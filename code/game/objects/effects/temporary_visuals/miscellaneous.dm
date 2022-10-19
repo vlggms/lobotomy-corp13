@@ -769,3 +769,8 @@
 
 /obj/effect/temp_visual/cross/fall/proc/FadeOut()
 	animate(src, alpha = 0, time = 2 SECONDS)
+
+
+/obj/effect/temp_visual/healing
+	icon_state = "healing"
+	duration = 10

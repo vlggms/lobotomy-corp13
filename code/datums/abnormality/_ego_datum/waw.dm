@@ -123,3 +123,12 @@
 /datum/ego_datum/weapon/ecstasy
 	item_path = /obj/item/gun/ego_gun/ecstasy
 	cost = 50
+
+// Flesh Idol - Bleeding Heart
+/datum/ego_datum/armor/heart
+	item_path = /obj/item/clothing/suit/armor/ego_gear/heart
+	cost = 50
+
+/datum/ego_datum/weapon/heart
+	item_path = /obj/item/ego_weapon/mini/heart
+	cost = 50

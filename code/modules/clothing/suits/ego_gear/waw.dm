@@ -173,3 +173,11 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/heart
+	name = "bleeding heart"
+	desc = "And the prayer shall inevitably end with the eternal despair of its worshiper."
+	icon_state = "heart"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 50) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60)

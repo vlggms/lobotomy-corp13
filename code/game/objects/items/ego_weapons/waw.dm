@@ -174,7 +174,9 @@
 	name = "crimson claw"
 	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage. "
 	icon_state = "crimsonclaw"
-	force = 32
+	special = "This weapon hits faster than usual."
+	force = 18
+	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -216,3 +218,27 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/mini/heart
+	name = "bleeding heart"
+	desc = "The supplicant will suffer various ordeals in a manner like being put through a trial."
+	icon_state = "heart"
+	special = "Hit yourself to heal others."
+	inhand_icon_state = "bloodbath"
+	force = 30
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 60)
+
+/obj/item/ego_weapon/mini/heart/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(M==user)
+		for(var/mob/living/carbon/human/L in livinginrange(10, src))
+			if(L==user)
+				continue
+			L.adjustBruteLoss(-15)
+			new /obj/effect/temp_visual/healing(get_turf(L))
+

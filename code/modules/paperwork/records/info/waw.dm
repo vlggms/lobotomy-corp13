@@ -221,3 +221,22 @@
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//Flesh Idol
+/obj/item/paper/fluff/info/waw/flesh_idol
+	name = "T-09-79"
+	info = {"<h1><center>T-09-79</center></h1>	<br>
+	Name : Flesh Idol	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Moderate	<br>
+	- When work was complete, everyone in the facility was healed.	<br>
+	- When work was completed 4 times, The Qliphoth counter lowered.	<br>
+	- When the Qliphoth counter reached 0, two abnormalities breached containment.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
