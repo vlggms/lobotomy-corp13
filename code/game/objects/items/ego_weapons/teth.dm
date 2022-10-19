@@ -149,3 +149,14 @@
 		return
 	else
 		return ..()
+
+/obj/item/ego_weapon/cute
+	name = "SO CUTE!!!"
+	desc = "One may think, 'How can a weapon drawn from such a cute Abnormality be any good?' \
+		However, the claws are actually quite durable and sharp."
+	icon_state = "cute"
+	force = 13
+	attack_speed = 0.5
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/slashmiss.ogg'

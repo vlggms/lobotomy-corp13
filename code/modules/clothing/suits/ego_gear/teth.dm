@@ -91,3 +91,9 @@
 	desc = "Now the straitjacket is nothing but an accessory to the hatred and anger that remains."
 	icon_state = "regret"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/cute
+	name = "SO CUTE!!!"
+	desc = "Ppodae is oh so fluffy and soft. It’s so sweet it could cure your depression."
+	icon_state = "cute"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
