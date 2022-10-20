@@ -234,7 +234,7 @@
 	Work Damage : Moderate	<br>
 	- When work was complete, everyone in the facility was healed.	<br>
 	- When work was completed 4 times, The Qliphoth counter lowered.	<br>
-	- When the Qliphoth counter reached 0, two abnormalities breached containment.	<br>
+	- When the Qliphoth counter reached 0, an abnormality breached containment.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
