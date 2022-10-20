@@ -51,8 +51,6 @@
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 			continue
-
-		stoplag(1)
 		new /obj/effect/temp_visual/thirteen(get_turf(L))	//A visual effect if it hits
 		L.apply_damage(worldwide_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	addtimer(CALLBACK(src, .proc/Reset), reset_time)
