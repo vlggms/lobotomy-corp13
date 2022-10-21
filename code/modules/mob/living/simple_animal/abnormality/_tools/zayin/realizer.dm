@@ -13,6 +13,7 @@
 /obj/structure/toolabnormality/realization/attackby(obj/item/I, mob/living/carbon/human/user)
 	..()
 	output = null
+	stat_total = 0
 
 	if(user.ckey in realized)
 		to_chat(user, "<span class='nicegreen'>You have realized your full potential already.</span>")
