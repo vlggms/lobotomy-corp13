@@ -12,7 +12,7 @@
 	health = 2200
 	speed = 4
 	move_to_delay = 7
-	rapid_melee = 2
+	rapid_melee = 1
 	del_on_death = FALSE
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
 	threat_level = HE_LEVEL
