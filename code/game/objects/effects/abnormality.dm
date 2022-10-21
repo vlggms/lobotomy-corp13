@@ -118,8 +118,3 @@
 	base_pixel_x = -10
 	pixel_y = 25
 	base_pixel_y = 25
-
-/obj/effect/scaredy_stun/Initialize()
-	..()
-	animate(src, alpha = 0, time = 20 SECONDS)
-	QDEL_IN(src, 20 SECONDS)

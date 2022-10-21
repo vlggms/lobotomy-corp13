@@ -42,8 +42,8 @@
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
 	///The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
-										"Warm-Hearted Woodsman" ,
-										"Scarecrow searching for wisdom"
+										/mob/living/simple_animal/hostile/abnormality/woodsman ,
+										/mob/living/simple_animal/hostile/abnormality/scarecrow
 										)
 	///If scaredy cat is breaching but has no "friend" to follow, he'll wait for the next abno breach to follow them
 	var/wait_for_friend = FALSE
@@ -108,12 +108,16 @@
 	density = FALSE
 	anchored = TRUE
 	if(friend)
-		addtimer(CALLBACK(src, .proc/Regenerate), 20 SECONDS)
+		var/revive_cooldown = FriendThreat()
+		addtimer(CALLBACK(src, .proc/Regenerate), revive_cooldown)
 		stunned_effect = new(get_turf(src))
+		animate(stunned_effect, alpha = 0, time = revive_cooldown)
+		QDEL_IN(stunned_effect, revive_cooldown)
 	else
 		animate(src, alpha = 0, time = 10 SECONDS)
 		QDEL_IN(src, 10 SECONDS)
 	..()
+
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -131,6 +135,22 @@
 		return
 	animate(src, alpha = 0, time = 3 SECONDS)
 	QDEL_IN(src, 3 SECONDS)
+
+///sets the revive cooldown according to his friend's threat level so he's not as much of an annoyance on particularly tanky enemies
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/proc/FriendThreat()
+	var/revive_cooldown = 20 SECONDS //by default
+	switch(friend.threat_level)
+		if(ZAYIN_LEVEL) //I don't think zayins should be capable of breaching in the first place without pink midnight but it should still be linked to a weakling
+			revive_cooldown = 5 SECONDS
+		if(TETH_LEVEL)
+			revive_cooldown = 10 SECONDS
+		if(HE_LEVEL)
+			revive_cooldown = 20 SECONDS
+		if(WAW_LEVEL)
+			revive_cooldown = 40 SECONDS
+		if(ALEPH_LEVEL)
+			revive_cooldown = 60 SECONDS
+	return revive_cooldown
 
 ///teleports to his friend if he can't see them
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/proc/GoToFriend()
@@ -205,13 +225,13 @@
 	if(abno.name == "Standard training-dummy rabbit" || z != abno.z)
 		return
 	if(status_flags & GODMODE)
-		if(LAZYFIND(prefered_abno_list, abno.name))
+		if(LAZYFIND(prefered_abno_list, abno.type))
 			priority_friend = abno
 			datum_reference.qliphoth_change(-3) //for all intents and purposes he instantly breach
 		else
 			datum_reference.qliphoth_change(-1)
 		return
-	if(LAZYFIND(prefered_abno_list, abno.name) && !LAZYFIND(prefered_abno_list, friend.name))
+	if(LAZYFIND(prefered_abno_list, abno.type) && !LAZYFIND(prefered_abno_list, friend.type))
 		friend = abno //literally ditches his old friend if an oz abno gets out and he's not already friend with one
 	if(stat == DEAD || !wait_for_friend)
 		return
