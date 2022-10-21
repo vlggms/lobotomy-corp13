@@ -24,3 +24,8 @@
 	name = "beak mganum casing"
 	desc = "A beak casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_beakmagnum
+
+/obj/item/ammo_casing/caseless/ego_shy
+	name = "expression casing"
+	desc = "An expression casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_shy

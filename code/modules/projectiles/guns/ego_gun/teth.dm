@@ -57,3 +57,15 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 	dual_wield_spread = 0
+
+/obj/item/gun/ego_gun/pistol/shy
+	name = "today's expression"
+	desc = "Many different expressions are padded on the equipment like patches. \
+	When throbbing emotions surge up from time to time, it's best to simply cover the face."
+	icon_state = "shy"
+	inhand_icon_state = "shy"
+	special = "This weapon has autofire"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_shy
+	fire_sound = 'sound/effects/meatslap.ogg'
+	vary_fire_sound = FALSE
+	autofire = 0.2 SECONDS
