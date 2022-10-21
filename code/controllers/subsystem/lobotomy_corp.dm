@@ -40,13 +40,29 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
-	var/list/ordeal_timelock = list(15 MINUTES, 30 MINUTES, 45 MINUTES, 60 MINUTES)
+	var/list/ordeal_timelock = list(15 MINUTES, 30 MINUTES, 45 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0, 0)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
 	// Work logs from all abnormalities
 	var/list/work_logs = list()
+	// Assoc list of all potential roguelite manager cards, sorted by tiers
+	var/list/manager_cards = list(
+							1 = list(),
+							2 = list(),
+							3 = list(),
+							4 = list(),
+							5 = list()
+							)
+	// Currently available cards for choice on the consoles. Also associative, by tiers.
+	var/list/manager_cards_current = list(
+							1 = list(),
+							2 = list(),
+							3 = list(),
+							4 = list(),
+							5 = list()
+							)
 
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
@@ -54,8 +70,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
+	addtimer(CALLBACK(src, .proc/SetGoal), 15 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
+	InitializeCards()
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.1
@@ -68,6 +85,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		var/datum/ordeal/O = new type()
 		all_ordeals[O.level] += O
 	RollOrdeal()
+	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/InitializeCards()
+	// Build a list of all manager roguelite cards
+	for(var/type in subtypesof(/datum/manager_card))
+		var/datum/manager_card/C = new type()
+		manager_cards[C.tier] += C
+	addtimer(CALLBACK(src, .proc/RollCards), 5 MINUTES)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/NewAbnormality(datum/abnormality/new_abno)
@@ -182,3 +207,26 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
+
+/datum/controller/subsystem/lobotomy_corp/proc/RollCards(roll_tier = 1)
+	// If there is no cards to choose from
+	if(!islist(manager_cards[roll_tier]) || !LAZYLEN(manager_cards[roll_tier]))
+		return FALSE
+	// If there are already cards up for choice in this tier
+	if(islist(manager_cards_current[roll_tier]) && LAZYLEN(manager_cards_current[roll_tier]))
+		return FALSE
+	// Make it a list
+	if(!islist(manager_cards_current[roll_tier]))
+		manager_cards_current[roll_tier] = list()
+	for(var/datum/manager_card/C in shuffle(manager_cards[roll_tier]))
+		if(manager_cards_current[roll_tier].len >= 3)
+			break
+		if(C.Available())
+			manager_cards_current[roll_tier] += C
+	if(!LAZYLEN(manager_cards_current[roll_tier]))
+		return FALSE
+	for(var/obj/machinery/computer/roguelite_manager/R in GLOB.roguelite_consoles)
+		R.audible_message("<span class='notice'>Tier [roll_tier] interference options are available!</span>")
+		playsound(get_turf(R), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
+		R.updateUsrDialog()
+	return TRUE
