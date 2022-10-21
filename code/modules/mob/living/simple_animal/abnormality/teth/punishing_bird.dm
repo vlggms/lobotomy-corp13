@@ -54,6 +54,8 @@
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
 
+	var/death_timer
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
 	if(locate(/obj/structure/pbird_perch) in get_turf(src))
@@ -259,14 +261,14 @@
 	base_pixel_x = initial(base_pixel_x)
 	base_pixel_y = initial(base_pixel_y)
 	update_icon()
-	addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS)
+	death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS, TIMER_STOPPABLE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !isliving(target) && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
-		addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS)
+		death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS, TIMER_STOPPABLE)
 
 // Modified patrolling
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/patrol_select()
