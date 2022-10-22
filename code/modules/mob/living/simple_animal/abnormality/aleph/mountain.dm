@@ -104,6 +104,13 @@
 	QDEL_IN(src, 10 SECONDS)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/mountain/gib()
+	if(phase > 1)
+		if(health < maxHealth * 0.2) // MoSB hammer, usually
+			return StageChange(FALSE)
+		return
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/mountain/OpenFire()
 	if(finishing)
 		return
@@ -267,6 +274,44 @@
 		SLEEP_CHECK_DEATH(2)
 	finishing = FALSE
 
+// Modified patrolling
+/mob/living/simple_animal/hostile/abnormality/mountain/patrol_select()
+	if(phase >= 3) // Ignore dead stuff from now on
+		return ..()
+
+	var/list/low_priority_turfs = list() // Oh, you're wounded, how nice.
+	var/list/medium_priority_turfs = list() // You're about to die and you are close? Splendid.
+	var/list/high_priority_turfs = list() // IS THAT A DEAD BODY?
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(H.z != z) // Not on our level
+			continue
+		if(get_dist(src, H) < 4) // Way too close
+			continue
+		if(H.stat != DEAD) // Not dead people
+			if(H.health < H.maxHealth*0.5)
+				if(get_dist(src, H) > 24) // Way too far
+					low_priority_turfs += get_turf(H)
+					continue
+				medium_priority_turfs += get_turf(H)
+			continue
+		if(get_dist(src, H) > 24) // Those are dead people
+			medium_priority_turfs += get_turf(H)
+			continue
+		high_priority_turfs += get_turf(H)
+
+	var/turf/target_turf
+	if(LAZYLEN(high_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
+	else if(LAZYLEN(medium_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
+	else if(LAZYLEN(low_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
+
+	if(istype(target_turf))
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/mountain/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
@@ -289,5 +334,3 @@
 	GiveTarget(user)
 	icon_living = "mosb_breach"
 	icon_state = icon_living
-
-

@@ -41,6 +41,8 @@
 	var/dash_cooldown
 	var/dash_cooldown_time = 8 SECONDS
 	var/dash_damage = 200
+	/// Delay between each subsequent move when charging
+	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
 	var/dash_nodes = 4
 	var/datum/looping_sound/dreamingcurrent/soundloop
@@ -107,6 +109,8 @@
 		potential_turfs -= T
 	icon_state = "current_prepare"
 	playsound(src, "sound/effects/bubbles.ogg", 50, TRUE, 7)
+	for(var/turf/T in movement_path) // Warning before charging
+		new /obj/effect/temp_visual/sparks/quantum(T)
 	SLEEP_CHECK_DEATH(18)
 	been_hit = list()
 	icon_state = "current_attack"
@@ -116,7 +120,7 @@
 		if(!Adjacent(T))
 			break
 		ChargeAt(T)
-		SLEEP_CHECK_DEATH(0.8)
+		SLEEP_CHECK_DEATH(dash_speed)
 	charging = FALSE
 	icon_state = icon_living
 	dash_cooldown = world.time + dash_cooldown_time
@@ -132,7 +136,10 @@
 	if(prob(33))
 		playsound(T, "sound/abnormalities/dreamingcurrent/move.ogg", 10, TRUE, 3)
 	for(var/turf/TF in view(1, T))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
+		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(TF)
+		var/list/potential_colors = list(COLOR_LIGHT_GRAYISH_RED, COLOR_SOFT_RED, COLOR_YELLOW, \
+			COLOR_VIBRANT_LIME, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PINK, COLOR_PURPLE)
+		S.add_atom_colour(pick(potential_colors), FIXED_COLOUR_PRIORITY)
 		for(var/mob/living/L in TF)
 			if(!faction_check_mob(L))
 				if(L in been_hit)

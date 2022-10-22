@@ -300,7 +300,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		ScytheAttack()
 		return
 
-	if(get_dist(src, target) <= 3 && scythe_cooldown <= world.time)
+	if(get_dist(src, target) <= scythe_range && scythe_cooldown <= world.time)
 		ScytheAttack()
 
 /mob/living/simple_animal/hostile/apostle/scythe/proc/ScytheAttack()

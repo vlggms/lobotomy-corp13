@@ -13,8 +13,8 @@
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
-	melee_damage_lower = 45
-	melee_damage_upper = 55
+	melee_damage_lower = 55
+	melee_damage_upper = 65
 	speed = 2
 	move_to_delay = 3
 	ranged = TRUE
@@ -56,13 +56,23 @@
 
 	//Speaking Variables, not sure if I want to use the automated speach at the moment.
 	var/heard_words = list()
-	var/listen_chance = 20 // 20 for testing, 10 for base
-	var/utterance = 10 // 10 for testing, 5 for base
+	var/listen_chance = 10 // 20 for testing, 10 for base
+	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/Destroy()
+	TransferVar(1, heard_words)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
+	var/list/old_heard = RememberVar(1)
+	if(islist(old_heard) && LAZYLEN(old_heard))
+		heard_words = old_heard
+	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/examine(mob/user)
 	if(istype(disguise))
@@ -149,7 +159,7 @@
 	if(speaker == worker) // More likely to pick things up from those working on it
 		listen_chance *= 2
 	if(prob(listen_chance) && istype(speaker, /mob/living/carbon/human))
-		if(LAZYLEN(heard_words[speaker]))
+		if(!(speaker in heard_words)) // No words stored yet
 			heard_words[speaker] = list()
 		if(!(raw_message in heard_words[speaker]))
 			heard_words[speaker] += raw_message
@@ -178,13 +188,16 @@
 	addtimer(CALLBACK(src, .proc/zero_qliphoth), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
+	if(!istype(disguise))
+		return
 	next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
-	if(istype(disguise))
-		appearance = saved_appearance
-		disguise.forceMove(get_turf(src))
-		disguise.gib()
-		disguise = null
-		fear_level = ALEPH_LEVEL
+	move_to_delay = initial(move_to_delay)
+	appearance = saved_appearance
+	disguise.forceMove(get_turf(src))
+	disguise.gib()
+	disguise = null
+	fear_level = ALEPH_LEVEL
+	FearEffect()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/next_stage()
 	next_transform = null
@@ -299,23 +312,26 @@
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
 	..()
-	if(istype(disguise)) // Teleport us somewhere where nobody will see us at first
-		fear_level = 0 // So it doesn't inflict fear to those around them
-		var/list/priority_list = list()
-		for(var/turf/T in GLOB.xeno_spawn)
-			var/people_in_range = 0
-			for(var/mob/living/L in view(9, T))
-				if(L.client && L.stat < UNCONSCIOUS)
-					people_in_range += 1
-					continue
-			if(people_in_range > 0)
-				continue
-			priority_list += T
-		var/turf/target_turf = pick(GLOB.xeno_spawn)
-		if(LAZYLEN(priority_list))
-			target_turf = pick(priority_list)
-		for(var/turf/open/T in view(3, src))
-			new /obj/effect/temp_visual/flesh(T)
-		forceMove(target_turf)
-	addtimer(CALLBACK(src, .proc/drop_disguise), rand(30 SECONDS, 40 SECONDS))
-
+	if(!istype(disguise))
+		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
+		return
+	// Teleport us somewhere where nobody will see us at first
+	fear_level = 0 // So it doesn't inflict fear to those around them
+	move_to_delay = 1.2 // This will make them move at a speed similar to normal players
+	var/list/priority_list = list()
+	for(var/turf/T in GLOB.xeno_spawn)
+		var/people_in_range = 0
+		for(var/mob/living/L in view(9, T))
+			if(L.client && L.stat < UNCONSCIOUS)
+				people_in_range += 1
+				break
+		if(people_in_range > 0)
+			continue
+		priority_list += T
+	var/turf/target_turf = pick(GLOB.xeno_spawn)
+	if(LAZYLEN(priority_list))
+		target_turf = pick(priority_list)
+	for(var/turf/open/T in view(3, src))
+		new /obj/effect/temp_visual/flesh(T)
+	forceMove(target_turf)
+	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
