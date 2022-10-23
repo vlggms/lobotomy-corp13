@@ -150,15 +150,16 @@
 		melee_damage_lower = 60
 		melee_damage_upper = 80
 		move_to_delay = 4 //this doesn't matter as much as you'd think because he can't move before shepherd
+		can_patrol = FALSE //just in case
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
-	if(!awakened_master)
-		return ..()
+	if(!awakened_master || AIStatus == AI_OFF)
+		return . = ..()
 	var/turf/orgin = get_turf(awakened_master)
 	var/list/all_turfs = RANGE_TURFS(1, orgin)
-	if(!LAZYFIND(all_turfs,newloc))
+	if(!LAZYFIND(all_turfs, newloc))
 		return FALSE //he doesn't get to move outside of his master's range
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/breach_effect()
 	..()
