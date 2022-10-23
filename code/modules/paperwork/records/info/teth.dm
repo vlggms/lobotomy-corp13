@@ -252,3 +252,28 @@
 	<h4>White Resistance:</h4> Normal	<br>
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Vulnerable	<br>"}
+
+//Ppodae
+/obj/item/paper/fluff/info/teth/ppodae
+	name = "D-02-107"
+	info = {"<h1><center>D-02-107</center></h1>	<br>
+	Name : Ppodae	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
+	- Ppodae wuvs Instinct work the most. Please don’t do work other than Instinct with him, or else the Qliphoth Counter has a medium probability of lowering.	<br>
+	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
+	- When Ppodae escaped, it voluntarily returned to its unit after attacking an employee and taking █████ from their corpse.	<br><br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Low	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}

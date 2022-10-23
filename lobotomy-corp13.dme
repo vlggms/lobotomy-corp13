@@ -2591,6 +2591,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\forsaken_murderer.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\fragment.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\old_lady.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\ppodae.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\punishing_bird.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\scorched_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\spider_bud.dm"

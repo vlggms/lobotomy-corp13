@@ -105,3 +105,12 @@
 /datum/ego_datum/armor/regret
 	item_path = /obj/item/clothing/suit/armor/ego_gear/regret
 	cost = 20
+
+// Ppodae - SO CUTE!!!
+/datum/ego_datum/weapon/cute
+	item_path = /obj/item/ego_weapon/cute
+	cost = 20
+
+/datum/ego_datum/armor/cute
+	item_path = /obj/item/clothing/suit/armor/ego_gear/cute
+	cost = 20

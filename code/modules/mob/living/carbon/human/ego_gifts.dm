@@ -209,6 +209,13 @@
 	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
 	slot = NECKWEAR
 
+/datum/ego_gifts/cute
+	name = "SO CUTE!!!"
+	icon_state = "cute"
+	fortitude_bonus = 4
+	temperance_bonus = -2
+	slot = HAT
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
