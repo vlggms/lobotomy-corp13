@@ -11,7 +11,7 @@
 	var/pulse_cooldown_time = 1 SECONDS
 	var/pulse_damage = -0.5
 
-/obj/item/ego_weapon/penitence/equipped(mob/user, slot, initial = FALSE)
+/obj/item/ego_weapon/penitence/equipped(mob/user, slot = ITEM_SLOT_HANDS, initial = FALSE)
 	. = ..()
 	if(!ishuman(user))
 		return
