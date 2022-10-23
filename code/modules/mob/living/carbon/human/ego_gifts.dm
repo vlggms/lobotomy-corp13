@@ -208,6 +208,13 @@
 	icon_state = "lutemis"
 	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
 	slot = NECKWEAR
+	
+/datum/ego_gifts/shy
+	name = "Today's Expression"
+	icon_state = "shy"
+	prudence_bonus = -2
+	temperance_bonus = 4
+	slot = EYE
 
 /datum/ego_gifts/cute
 	name = "SO CUTE!!!"

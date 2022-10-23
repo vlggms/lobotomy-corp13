@@ -277,3 +277,25 @@
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	
+//Today's Shy Look
+/obj/item/paper/fluff/info/teth/shy
+	name = "O-01-92"
+	info = {"<h1><center>O-01-92</center></h1>	<br>
+	Name : Today's Shy Look	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- This Abnormality changes their facial expression at certain intervals. However, when faced with another person, their changes halt.	<br>
+	- From smiles to anger, they have 5 levels of facial expression dubbed Faces 1, 2, 3, 4, and 5.	<br>
+	- No special circumstances came from Face 3. Face 2 showed an increased success rate and the employee healed SP when work was successfully completed.	<br>
+	- Face 4 showed 150% damage dealt during work, and the success rate declined.	<br>
+	- Face 5 showed 200% damage dealt during work, and the success rate drastically declined.	<br>
+	- Face 1 showed 50% damage dealt during work, and the success rate increased. In addition, each time work was successful, the employee’s HP and SP recovered.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
