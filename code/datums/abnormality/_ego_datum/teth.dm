@@ -114,7 +114,7 @@
 /datum/ego_datum/armor/cute
 	item_path = /obj/item/clothing/suit/armor/ego_gear/cute
 	cost = 20
-	
+
 // Today's Shy Look - Today's Expression
 /datum/ego_datum/weapon/shy
 	item_path = /obj/item/gun/ego_gun/pistol/shy
@@ -122,4 +122,13 @@
 
 /datum/ego_datum/armor/shy
 	item_path = /obj/item/clothing/suit/armor/ego_gear/shy
+	cost = 20
+	
+//Grave of Cherry Blossoms - Blossom
+/datum/ego_datum/weapon/blossom
+	item_path = /obj/item/ego_weapon/mini/blossom
+	cost = 20
+
+/datum/ego_datum/armor/blossom
+	item_path = /obj/item/clothing/suit/armor/ego_gear/blossoms
 	cost = 20
