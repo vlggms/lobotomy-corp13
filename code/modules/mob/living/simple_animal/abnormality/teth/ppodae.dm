@@ -29,8 +29,6 @@
 	var/smash_width = 1
 	var/can_act = TRUE
 
-	var/turf/ppodae_location
-
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
 		/datum/ego_datum/armor/cute
@@ -58,7 +56,7 @@
 		if(length(parts))
 			var/obj/item/bodypart/bp = pick(parts)
 			bp.dismember()
-			bp.forceMove(ppodae_location) // Teleports limb to containment
+			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
 			QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
 	return Smash(target)
@@ -155,7 +153,8 @@
 			if (L == src)
 				continue
 			L.apply_damage(smash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			playsound(get_turf(src), 'sound/effects/tableslam.ogg', 75, 0, 5)
+			playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
+			playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
 
@@ -173,4 +172,3 @@
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
-	ppodae_location = get_turf(src)
