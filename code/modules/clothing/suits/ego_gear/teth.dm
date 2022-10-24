@@ -99,7 +99,7 @@
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/shy
-	name = "today's expression"
+	name = "todays expression"
 	desc = "One sunny day, just like that day they sincerely dried the laundry, they dried their own skin."
 	icon_state = "shy"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -40, PALE_DAMAGE = 0)

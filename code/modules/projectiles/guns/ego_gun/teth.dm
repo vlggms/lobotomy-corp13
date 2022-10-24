@@ -59,7 +59,7 @@
 	dual_wield_spread = 0
 
 /obj/item/gun/ego_gun/pistol/shy
-	name = "today's expression"
+	name = "todays expression"
 	desc = "Many different expressions are padded on the equipment like patches. \
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
