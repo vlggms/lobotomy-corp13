@@ -123,7 +123,7 @@
 /datum/ego_datum/armor/shy
 	item_path = /obj/item/clothing/suit/armor/ego_gear/shy
 	cost = 20
-	
+
 //Grave of Cherry Blossoms - Blossom
 /datum/ego_datum/weapon/blossom
 	item_path = /obj/item/ego_weapon/mini/blossom
@@ -131,4 +131,13 @@
 
 /datum/ego_datum/armor/blossom
 	item_path = /obj/item/clothing/suit/armor/ego_gear/blossoms
+	cost = 20
+
+//Gone with a Simple Smile - Hat Trick
+/datum/ego_datum/weapon/trick
+	item_path = /obj/item/ego_weapon/mini/trick
+	cost = 20
+
+/datum/ego_datum/armor/trick
+	item_path = /obj/item/clothing/suit/armor/ego_gear/trick
 	cost = 20

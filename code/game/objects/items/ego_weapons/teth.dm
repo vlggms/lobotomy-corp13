@@ -159,3 +159,18 @@
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/slashmiss.ogg'
+
+/obj/item/ego_weapon/mini/trick
+	name = "hat trick"
+	desc = "Imagination is the only weapon in the war with reality."
+	icon_state = "trick"
+	special = "This weapon deals more throwing damage."
+	force = 17
+	throwforce = 25		//You can only hold 4 so go nuts.
+	throw_speed = 5
+	throw_range = 7
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("jabs")
+	attack_verb_simple = list("jabs")
+	hitsound = 'sound/weapons/slashmiss.ogg'
