@@ -503,6 +503,8 @@
 
 
 /mob/living/simple_animal/hostile/proc/FindHidden()
+	if(isnull(target))
+		return 0
 	if(istype(target.loc, /obj/structure/closet) || istype(target.loc, /obj/machinery/disposal) || istype(target.loc, /obj/machinery/sleeper))
 		var/atom/A = target.loc
 		Goto(A,move_to_delay,minimum_distance)

@@ -178,7 +178,8 @@
 		if(L.stat == DEAD)
 			continue
 		targets += L
-	new /obj/effect/beeshell(get_turf(pick(targets)))
+	if(targets.len > 0)
+		new /obj/effect/beeshell(get_turf(pick(targets)))
 
 /obj/effect/beeshell
 	name = "bee shell"
