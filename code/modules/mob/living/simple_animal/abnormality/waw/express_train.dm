@@ -17,35 +17,62 @@
 						)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
-	var/tick = 60 SECONDS
-	var/timer = 0 SECONDS
-	var/list/lights = list() // A list that will only ever contain one object, so that I can declare the list out here and refer to it anywhere. This feels like the wrong solution.
+	bound_width = 64
+
+	ego_list = list(
+		)
+
+	var/meltdown_tick = 20 SECONDS
+	var/meltdown_timer
+	var/lightscount = 0
 
 /mob/living/simple_animal/hostile/abnormality/express_train/Initialize()
-	timer = world.time + tick
+	meltdown_timer = world.time + meltdown_tick
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/express_train/Life()
-	if(world.time < timer)
-		timer = world.time + tick
-		if(datum_reference.qliphoth_meter > 0)
-			datum_reference.qliphoth_change(-1)
-			if(!LAZYLEN(lights))
-				var/obj/effect/express_light/L = new(get_turf(src))
-				lights += L
-				say("Let there be light.")
-			else
-				var/lightsnum = 4 - datum_reference.qliphoth_meter
-				for(var/obj/effect/express_light/L in lights)
-					L.icon_state = "express_light[lightsnum]"
-				say("Counting down.")
-		else
-			for(var/obj/effect/express_light/L in lights)
-				L.disappear()
-			say("Timer at zero.")
-			datum_reference.qliphoth_change(4)
+	if(meltdown_timer < world.time && !datum_reference.working)
+		meltdown_timer = world.time + meltdown_tick
+		datum_reference.qliphoth_change(-1)
+		lightscount = 4 - datum_reference.qliphoth_meter
+		src.update_overlays()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/express_train/zero_qliphoth(mob/living/carbon/human/user)
-	say("You buffoon. You imbecile. You absolute fucking donkey. You've let yourself run out of time.")
+/mob/living/simple_animal/hostile/abnormality/express_train/attempt_work(mob/living/carbon/human/user, work_type)
+	meltdown_timer += 100 SECONDS
+	switch(datum_reference.qliphoth_meter)
+		if(0)
+			for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
+				H.adjustSanityLoss(50)
+				H.adjustBruteLoss(-50)
+		if(1)
+			for(var/mob/living/carbon/human/H in livinginrange(30))
+				H.adjustSanityLoss(50)
+				H.adjustBruteLoss(-50)
+		if(2)
+			user.adjustSanityLoss(80)
+			user.adjustBruteLoss(-80)
+		if(3)
+			user.adjustSanityLoss(40)
+			user.adjustBruteLoss(-40)
+		if(4)
+			say("No tickets available. Thank you for your interest.")
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/express_train/work_complete(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(4)
+	meltdown_timer = world.time + meltdown_tick
+	src.update_overlays()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/express_train/update_overlays()
+	. = ..()
+	var/mutable_appearance/lights_overlay = mutable_appearance(icon, "express_light1")
+	if(lightscount)
+		lights_overlay.icon_state = "express_light[lightscount]"
+		say("Updating lights.")
+	else
+		say("Killing the lights.")
+		cut_overlays()
+		return
+	. += lights_overlay
