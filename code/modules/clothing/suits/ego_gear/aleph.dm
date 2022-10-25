@@ -18,7 +18,7 @@
 	name = "justitia"
 	desc = "A black, bandaged coat with golden linings covering it."
 	icon_state = "justitia"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 75) // 245
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -31,7 +31,7 @@
 	desc = "At the heart of the armor is a shard that emits an arcane gleam. \
 	The gentle glow feels somehow more brilliant than a flashing light."
 	icon_state = "star"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 75, BLACK_DAMAGE = 60, PALE_DAMAGE = 50) // 245
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -44,7 +44,7 @@
 	desc = "A splendid tailcoat perfect for a symphony. \
 	Superb leadership is required to create a perfect ensemble."
 	icon_state = "da_capo"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 25) // 245
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 20) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -133,7 +133,7 @@
 	name = "praetorian"
 	desc = "The queen's last line of defense."
 	icon_state = "praetorian"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)	//Armor was made before the abnormality.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

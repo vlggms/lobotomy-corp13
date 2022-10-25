@@ -4,7 +4,7 @@
 	name = "grinder MK4"
 	desc = "A sleek coat covered with bloodstains of an unknown origin."
 	icon_state = "grinder"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -13,7 +13,7 @@
 	name = "harvest"
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	icon_state = "harvest"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -23,7 +23,7 @@
 	desc = "And all she saw was red."
 	icon_state = "fury"
 	//all in on red, minor negatives on all else
-	armor = list(RED_DAMAGE = 65, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 5
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 10
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -33,7 +33,7 @@
 	desc = "Let's all dangle down."
 	icon_state = "lutemis"
 	//White armor, weak to red. Red is pretty valuable.
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 65, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 85, Special armor.
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80, Special armor.
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -42,7 +42,7 @@
 	name = "bear paw"
 	desc = "The equipment is made of a material that may have been fluffy once, but now it just looks shabby."
 	icon_state = "bear_paw"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -53,7 +53,7 @@
 	I’d be lying in my grave."
 	icon_state = "wings"
 	//Just Kinda meh. A lot of WAWs do black at the time of writing so
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = -20, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = -20, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -63,7 +63,7 @@
 	desc = "While the armor serves to protect the users mind from the influence of others, they can never seem to quiet their own thoughts."
 	icon_state = "remorse"
 	//Resistant to White and Pale but weaker to the physical aspects.
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
@@ -74,7 +74,7 @@
 	icon_state = "magic_bullet"
 	// Magic Bullet has WAW-tier requirements and goes with a WAW-tier gun, but is not quite WAW-tier itself. Still, valuable if you're a well-rounded agent doing well-rounded work. - NB
 	// I kept it well-rounded, and lowered the requirements, It's now LIKE a waw with it's good, well-rounded defenses, but it was generally lowered.
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 25) // 85
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40,
 							JUSTICE_ATTRIBUTE = 40
@@ -84,7 +84,7 @@
 	name = "christmas"
 	desc = "When the rusty sleigh bells are ajingle, Christmas begins."
 	icon_state = "christmas"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -10, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -94,7 +94,7 @@
 	desc = "Despite it's sturdy construction, the wearer always feel hollow inside."
 	icon_state = "logging"
 	flags_inv = HIDESHOES
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -104,7 +104,7 @@
 	desc = "The little kid who couldn't leave her friends behind came up with a brilliant idea."
 	icon_state = "prank"
 	flags_inv = HIDESHOES
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 25) // 75
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -152,7 +152,7 @@
 	Only a solemn mind is required to express condolences; there is no need for showy accessories."
 	icon_state ="solemnlament"
 	//The design philosophy was to be as faithful to the concept of Funeral of the Dead Butterflies as possible, but conversely be in line with the stat line with every other HE suit without having VAV tier resists.
-	armor = list (RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = -25) //75
+	armor = list (RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = -30) //70
 	attribute_requirements = list(
 		JUSTICE_ATTRIBUTE = 40
 	)
@@ -171,7 +171,7 @@
 	name = "yellow brick"
 	desc = "The heavy dress weighs you down, smacking against your knees."
 	icon_state = "brick"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 15)
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
 	attribute_requirements = list(
 							INSIGHT_ATTRIBUTE = 40
 							)
