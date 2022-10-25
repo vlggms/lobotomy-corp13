@@ -10,6 +10,7 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
+	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
@@ -54,11 +55,13 @@
 	var/range = 2
 	var/hired = FALSE
 	var/lie_chance = 30 // % chance to lie
-	var/datum/abnormality/buddy //the red buddy linked to this shepherd
+	var/datum/abnormality/buddy //the red buddy datum linked to this shepherd
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
+	var/abuse = FALSE //if shepherd is attacking buddy
 	var/list/people_list = list() //list of people shepperd can mention
 	//lines said during combat
+	var/buddy_hit = FALSE
 	var/list/combat_lines = list(
 				"Have at you!",
 				"Take this!",
@@ -153,37 +156,7 @@
 		datum_reference.qliphoth_change(-1)
 		SLEEP_CHECK_DEATH(10)
 	if(status_flags & GODMODE)
-		var/lie //if shepperd's lying or not
-		if(prob(lie_chance))
-			lie = TRUE
-			if(buddy_abno)
-				buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
-				buddy_abno.lying = TRUE
-		else
-			lie = FALSE
-		if(lie && buddy.current && prob(25)) //pretty unlikely to mention red buddy overall, but it's a very easy to spot "lie"
-			say(pick(red_buddy_lines))
-			return ..()
-		var/list/abno_list = AbnoListGen()
-		if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
-			var/datum/abnormality/abno_datum = pick(abno_list)
-			var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
-			if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
-				say(abno.name + pick(abno_breach_lines))
-			else
-				say(abno.name + pick(abno_safe_lines))
-		else if(LAZYLEN(people_list))
-			var/mob/living/carbon/human/subject = pick(people_list)
-			if(isnull(subject))
-				people_list -= subject
-			else if(subject == user)
-				say("It's only a matter of time until I get out, but you could have me as a friend rather than foe.")
-			else if((subject.stat == DEAD && !lie) || (subject.stat != DEAD && lie))
-				say(subject.name + pick(people_dead_lines))
-			else
-				say(subject.name + pick(people_alive_lines))
-		else
-			say("Trust me, you gotta let me out of here!") //if he has somehow nothing to lie about
+		Lying(buddy_abno, user)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
@@ -205,9 +178,10 @@
 	if(slash_current == 0)
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
-		SLEEP_CHECK_DEATH(10)
 		slashing = TRUE
 		slash()
+	if(awakened_buddy && !abuse)
+		awakened_buddy.GiveTarget(target)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/death(gibbed)
@@ -219,35 +193,46 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Life()
-	..()
-	if(status_flags & GODMODE)
+	. = ..()
+	if(status_flags & GODMODE || abuse)
 		return
 	var/mob/living/buddy_abno = buddy?.current
-	if(!isnull(buddy_abno) && !awakened && can_see(src, buddy_abno, 10))
+	if(!buddy_abno)
+		return
+
+	if(!awakened && can_see(src, buddy_abno, 10))
 		awakened_buddy = buddy_abno
 		awakened = TRUE //ho god ho fuck
-		slash_cooldown = 2
+		slash_cooldown = 3
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		move_to_delay = 2
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
-		adjustHealth(-maxHealth)
+		move_to_delay = 2.5
+		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
+		set_health(health * 4)
+		med_hud_set_health()
+		med_hud_set_status()
+		update_health_hud() //I have to do this shit manually because adjustHealth is just fucked when changing max HP
+	if(!awakened_buddy)
+		return
+
+	if(health <= maxHealth * 0.5 && awakened_buddy.health <= awakened_buddy.maxHealth * 0.5) //if both shepherd and buddy are under half health, they fight each other
+		Infighting()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/Infighting()
+	abuse = TRUE
+	if(!awakened_buddy.rebel)
+		awakened_buddy.Infighting()
+	faction -= "blueshep"
+	GiveTarget(awakened_buddy)
+	say("a wolf, A WOLF. I WANT YOU TO BE A WOLF YOU USELESS THING!")
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Move()
-	if(!isnull(awakened_buddy) && pulling != awakened_buddy)
-		var/turf/orgin = get_turf(src)
-		var/list/all_turfs = RANGE_TURFS(1, orgin)
-		var/turf/open/Y = pick(all_turfs - orgin)
-		awakened_buddy.forceMove(Y) //the lazy solution that forces buddy to get pulled by shepherd, ideally this should only happen once.
-		src.start_pulling(awakened_buddy)
 	if(slashing)
 		return FALSE
 	if(awakened_buddy)
-		awakened_buddy.AIStatus = AI_OFF //we stop buddy from moving while being dragged to avoid jank, player controlled buddy will probably fuck this up but eeeh
+		awakened_buddy.LoseTarget()
 	. = ..()
-	if(awakened_buddy)
-		awakened_buddy.AIStatus = AI_ON //turning the AI status on and off isn't performance consuming as far as I can tell from mob code
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it
@@ -272,15 +257,24 @@
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
-			playsound(src, 'sound/weapons/guillotine.ogg', 75, FALSE, 4)
-			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
-				if(L == src)
-					continue
-				L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			all_turfs -= T
-		SLEEP_CHECK_DEATH(3)
-	slashing = FALSE
+			addtimer(CALLBACK(src, .proc/SlashHit, T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/SlashHit(turf/T, list/all_turfs, slash_count, buddy_hit)
+	if(stat == DEAD)
+		return
+	playsound(src, 'sound/weapons/guillotine.ogg', 75, FALSE, 4)
+	new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in T)
+		if(L == src)
+			continue
+		if(L == awakened_buddy && !abuse && !buddy_hit)
+			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
+			awakened_buddy.adjustHealth(225) //it would take approximatively 12 slashes to take buddy to half health (accounting for the extra normal damage of slash)
+		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		all_turfs -= T
+	if(slash_count >= range)
+		buddy_hit = FALSE
+		slashing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
@@ -295,6 +289,43 @@
 		death_counter = 0
 		datum_reference.qliphoth_change(-1)
 	return TRUE
+
+
+//I put it into its own proc because it's a big chunk of code that bloat the entire work complete segment
+//when shepherd has work done on him, he has a 50% chance to lie about abno breach or people being alive or dead
+//mentions of red buddy are ALWAYS a lie and trigger a counter on red buddy.
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/Lying(mob/living/simple_animal/hostile/abnormality/red_buddy/buddy_abno, mob/living/carbon/human/user)
+	var/lie //if shepperd's lying or not
+	if(prob(lie_chance))
+		lie = TRUE
+		if(buddy_abno)
+			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
+			buddy_abno.lying = TRUE
+	else
+		lie = FALSE
+	if(lie && !isnull(buddy?.current) && prob(25)) //pretty unlikely to mention red buddy overall, but it's a very easy to spot "lie"
+		say(pick(red_buddy_lines))
+		return
+	var/list/abno_list = AbnoListGen()
+	if(prob(50) && LAZYLEN(abno_list)) //decide which subject to pick
+		var/datum/abnormality/abno_datum = pick(abno_list)
+		var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
+		if((!(abno.status_flags & GODMODE) && !lie) || ((abno.status_flags & GODMODE) && lie))
+			say(abno.name + pick(abno_breach_lines))
+		else
+			say(abno.name + pick(abno_safe_lines))
+	else if(LAZYLEN(people_list))
+		var/mob/living/carbon/human/subject = pick(people_list)
+		if(isnull(subject))
+			people_list -= subject
+		else if(subject == user)
+			say("It's only a matter of time until I get out, but you could have me as a friend rather than foe.")
+		else if((subject.stat == DEAD && !lie) || (subject.stat != DEAD && lie))
+			say(subject.name + pick(people_dead_lines))
+		else
+			say(subject.name + pick(people_alive_lines))
+	else
+		say("Trust me, you gotta let me out of here!") //if he has somehow nothing to lie about
 
 ///makes a list of abno datum that can breach and aren't dead/null
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/AbnoListGen()

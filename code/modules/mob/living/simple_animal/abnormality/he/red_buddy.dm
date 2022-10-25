@@ -12,6 +12,7 @@
 	health = 2200
 	speed = 4
 	move_to_delay = 7
+	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1
 	del_on_death = FALSE
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
@@ -60,6 +61,12 @@
 	var/awoo_cooldown = 0
 	///the time between each howling
 	var/awoo_cooldown_time = 30 SECONDS
+	///how much damage buddy has taken after it awakens
+	var/accumulated_damage = 0
+	///how many times buddy howled while awakened, is in decimals because of the equation it's used in
+	var/awoo_count = 0.1
+	///if buddy starts fighting back against shepherd
+	var/rebel = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Initialize()
 	. = ..()
@@ -132,33 +139,52 @@
 		icon_state = "redbuddy"
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Life()
-	..()
+	. = ..()
 	if(status_flags & GODMODE)
 		return
 	if(awoo_cooldown <= world.time && !awakened)
 		Awoo()
 	var/mob/living/master_abno = master?.current
-	if(!master_abno || awakened)
+	if(!master_abno || rebel)
 		return
 	if(master_abno.status_flags & GODMODE) //no reason to look for shepherd if he's not out
 		return
-	if(can_see(src, master_abno, 10))
-		awakened_master = master_abno
+
+	if(can_see(src, master_abno, 10) && !awakened)
+		maxHealth = maxHealth * 3 //6600 HP, a LOT but gets hurt by shepherd's slash a metric ton to counter act it
+		set_health(health * 3)
 		awakened = TRUE
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
-		adjustHealth(-maxHealth)
+		awakened_master = master_abno
+		var/turf/orgin = get_turf(awakened_master)
+		var/list/all_turfs = RANGE_TURFS(1, orgin)
+		var/turf/open/Y = pick(all_turfs - orgin)
+		forceMove(Y) //the lazy solution that forces buddy to get pulled by shepherd, ideally this should only happen once.
+		awakened_master.start_pulling(src)
+		med_hud_set_health()
+		med_hud_set_status()
+		update_health_hud()
+		awoo_cooldown_time = 15 SECONDS //awoo now only triggers when buddy takes 10% of their health instead of every X seconds but still has a min cooldown
+		awoo_cooldown = 0 //resets the awoo cooldown too
 		melee_damage_lower = 60
 		melee_damage_upper = 80
 		move_to_delay = 4 //this doesn't matter as much as you'd think because he can't move before shepherd
+		vision_range = 3
+		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
 		can_patrol = FALSE //just in case
 
+	if(!awakened_master)
+		return
+
+	if(awakened_master.health <= awakened_master.maxHealth * 0.5 && health <= maxHealth * 0.5) //if both shepherd and buddy are under half health, they fight each other
+		Infighting()
+
+///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
-	if(!awakened_master || AIStatus == AI_OFF)
+	if(!awakened_master || (moving_diagonally && !target))
 		return . = ..()
-	var/turf/orgin = get_turf(awakened_master)
-	var/list/all_turfs = RANGE_TURFS(1, orgin)
-	if(!LAZYFIND(all_turfs, newloc))
-		return FALSE //he doesn't get to move outside of his master's range
+
+	if(!awakened_master.Adjacent(newloc) && !awakened_master.moving_diagonally)
+		return FALSE
 	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/breach_effect()
@@ -167,26 +193,47 @@
 	icon_state = "redbuddy_active"
 
 ///basically a stronger fragment song that hurts red buddy, it's slower hitting than fragment however
-/mob/living/simple_animal/hostile/abnormality/red_buddy/proc/Awoo()
+/mob/living/simple_animal/hostile/abnormality/red_buddy/proc/Awoo(abused = FALSE)
 	awoo_cooldown = world.time + awoo_cooldown_time
-	playsound(get_turf(src), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/shepherd = master?.current
 	if(shepherd?.status_flags & GODMODE)
 		shepherd.hired = TRUE //it's more likely for them to run into each other this way
 		master.qliphoth_change(-1) //shepherd doesn't breach instantly but it's only a matter of time
 	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
 	for(var/i = 1 to 4)
-		var/heard_awoo = FALSE //red buddy is only hurt by his howl if someone hears it
-		for(var/mob/living/L in view(7, src))
-			if(faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			heard_awoo = TRUE
-		if(health >= 75 && heard_awoo)
-			adjustHealth(75)
-		SLEEP_CHECK_DEATH(1 SECONDS)
+		addtimer(CALLBACK(src, .proc/AwooDamage, abused), 1 SECONDS * (i))
+
+/mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AwooDamage(abused = FALSE)
+	var/heard_awoo = FALSE //red buddy is only hurt by his howl if someone hears it
+	for(var/mob/living/L in view(7, src))
+		if(faction_check_mob(L, FALSE) && L != awakened_master) //it can't hurt other pink midnight abnos but can still hurt his master
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(L == awakened_master)
+			awakened_master.adjustHealth(125) //500 damage in total, takes approximatively 5 howls to take shepherd to half health
+		L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		heard_awoo = TRUE
+	if(health >= 75 && heard_awoo && !abused)
+		adjustHealth(75)
+
+/mob/living/simple_animal/hostile/abnormality/red_buddy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	..()
+	if(!awakened_master || rebel)
+		return
+	accumulated_damage += amount
+
+	if(accumulated_damage >= (maxHealth * awoo_count) && awoo_cooldown <= world.time)
+		awoo_count += 0.1 //this also mean you can get howling you "missed" during a cooldown
+		Awoo(TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/red_buddy/proc/Infighting()
+	rebel = TRUE
+	if(!awakened_master.abuse)
+		awakened_master.Infighting()
+	faction -= "blueshep"
+	GiveTarget(awakened_master)
+	say("Master? Master? What do you want from me master? I'll hurt you if that what you want, that's what a wolf would do.")
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AdjustSuffering(pain)
 	suffering = clamp(pain + suffering, 0, 50)
@@ -198,6 +245,12 @@
 	lying = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/death(gibbed)
+	if(awakened_master)
+		awakened_master.melee_damage_lower = 10
+		awakened_master.melee_damage_upper = 15
+		awakened_master.slash_damage = 20
+		awakened_master.move_to_delay = 1.7 //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
+		awakened_master.say("A wolf. A wolf. Why won't you believe me? it's right there. IT WAS RIGHT THERE!")
 	awakened_master = null
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
