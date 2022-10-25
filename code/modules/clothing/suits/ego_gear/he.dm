@@ -182,5 +182,12 @@
 	icon_state = "pleasure"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) //80 because requiring a level 4 stat on a HE is pretty big
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
-							)
+							TEMPERANCE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/galaxy
+	name = "galaxy"
+	desc = "The pebble dropped into your hand sparkles, sways, tickles, and eventually becomes the universe. "
+	icon_state = "galaxy"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40)

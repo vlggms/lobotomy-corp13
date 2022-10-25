@@ -368,3 +368,24 @@
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
+
+	
+//Child of the Galaxy
+/obj/item/paper/fluff/info/he/galaxy_child
+	name = "O-01-55"
+	info = {"<h1><center>O-01-55</center></h1>    <br>
+	Name : Child of the Galaxy    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 5    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- Successful work completion will cause a healing Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of people holding a token.    <br>
+	- The Qliphoth Counter increased when NAME completed their work with the Token    <br>
+	- When an employee with Child of the Galaxy’s Token of Friendship died, the Qliphoth Counter lowered by 4.    <br>
+	- When the Qliphoth Counter reached 0, all employees with the Token took massive black damage    <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
