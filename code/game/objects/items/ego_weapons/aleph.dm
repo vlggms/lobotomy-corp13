@@ -195,7 +195,7 @@
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
 	icon_state = "twilight"
-	force = 40
+	force = 35
 	damtype = RED_DAMAGE // It's all damage types, actually
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -293,7 +293,7 @@
 	..()
 	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
-		user.adjustBruteLoss(-user.maxHealth*0.2)	//Heal 20% HP. Moved here from the armor, because that's a nightmare to code
+		user.adjustBruteLoss(-user.maxHealth*0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
 
 /obj/item/ego_weapon/blooming
 	name = "blooming"
@@ -337,7 +337,7 @@
 			Looking at the E.G.O for more than 3 seconds will make you sick."
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
-	force = 70	//there's a focus on the ranged atttack here.
+	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("attacks")

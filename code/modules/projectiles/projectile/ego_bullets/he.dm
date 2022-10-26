@@ -19,12 +19,12 @@
 	flag = BLACK_DAMAGE
 	homing = TRUE
 	speed = 1.5
-	var/homing_range = 15
+	var/homing_range = 9
 	var/list/targetslist = list()
 
 /obj/projectile/ego_bullet/ego_galaxy/Initialize()
 	..()
-	for(var/mob/living/L in livinginview(homing_range, src))
+	for(var/mob/living/L in livinginrange(homing_range, src))
 		if(ishuman(L) || isbot(L))
 			continue
 		if(L.stat == DEAD)
@@ -33,3 +33,9 @@
 	if(!LAZYLEN(targetslist))
 		return
 	homing_target = pick(targetslist)
+
+/obj/projectile/ego_bullet/ego_unrequited
+	name = "unrequited"
+	damage = 9
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
