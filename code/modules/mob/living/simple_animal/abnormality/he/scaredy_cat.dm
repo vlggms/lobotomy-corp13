@@ -42,8 +42,8 @@
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
 	///The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
-										"Warm-Hearted Woodsman" ,
-										"Scarecrow searching for wisdom"
+										/mob/living/simple_animal/hostile/abnormality/woodsman ,
+										/mob/living/simple_animal/hostile/abnormality/scarecrow
 										)
 	///If scaredy cat is breaching but has no "friend" to follow, he'll wait for the next abno breach to follow them
 	var/wait_for_friend = FALSE
@@ -202,16 +202,16 @@
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
-	if(abno.name == "Standard training-dummy rabbit" || z != abno.z)
+	if(istype(abno.type, /mob/living/simple_animal/hostile/abnormality/training_rabbit) || z != abno.z)
 		return
 	if(status_flags & GODMODE)
-		if(LAZYFIND(prefered_abno_list, abno.name))
+		if(LAZYFIND(prefered_abno_list, abno.type))
 			priority_friend = abno
 			datum_reference.qliphoth_change(-3) //for all intents and purposes he instantly breach
 		else
 			datum_reference.qliphoth_change(-1)
 		return
-	if(LAZYFIND(prefered_abno_list, abno.name) && !LAZYFIND(prefered_abno_list, friend.name))
+	if(LAZYFIND(prefered_abno_list, abno.type) && !LAZYFIND(prefered_abno_list, friend.type))
 		friend = abno //literally ditches his old friend if an oz abno gets out and he's not already friend with one
 	if(stat == DEAD || !wait_for_friend)
 		return
