@@ -316,6 +316,12 @@
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user)
 	return
 
+///implants the abno with a slime radio implant, only really relevant during admeme or sentient abno rounds
+/mob/living/simple_animal/hostile/abnormality/proc/AbnoRadio()
+	var/obj/item/implant/radio/slime/imp = new(src)
+	imp.implant(src, src) //acts as if the abno is both the implanter and the one being implanted, which is technically true I guess?
+	datum_reference.abno_radio = TRUE
+
 // Actions
 /datum/action/innate/abnormality_attack
 	name = "Megafauna Attack"
