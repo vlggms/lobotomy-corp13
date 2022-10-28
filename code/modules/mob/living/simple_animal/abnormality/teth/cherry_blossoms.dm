@@ -53,7 +53,9 @@
 		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
 		potentialmarked += L
+		to_chat(L, "<span class='danger'>It's cherry blossom season.</span>")
 
+	SLEEP_CHECK_DEATH(10 SECONDS)
 	for(var/i=numbermarked, i>=1, i--)
 		var/mob/living/Y = pick(potentialmarked)
 		if(faction_check_mob(Y, FALSE) || Y.z != z || Y.stat == DEAD)
@@ -83,10 +85,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 10
-		L.physiology.white_mod *= 10
-		L.physiology.black_mod *= 10
-		L.physiology.pale_mod *= 10
+		L.physiology.red_mod *= 4
+		L.physiology.white_mod *= 4
+		L.physiology.black_mod *= 4
+		L.physiology.pale_mod *= 4
 
 /datum/status_effect/markedfordeath/tick()
 	var/mob/living/carbon/human/Y = owner
@@ -103,9 +105,9 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 10
-		L.physiology.white_mod /= 10
-		L.physiology.black_mod /= 10
-		L.physiology.pale_mod /= 10
+		L.physiology.red_mod /= 4
+		L.physiology.white_mod /= 4
+		L.physiology.black_mod /= 4
+		L.physiology.pale_mod /= 4
 
 #undef STATUS_EFFECT_MARKEDFORDEATH
