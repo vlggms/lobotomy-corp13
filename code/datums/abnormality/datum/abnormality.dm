@@ -116,8 +116,8 @@
 	return TRUE
 
 
-/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting)
-	current.work_complete(user, work_type, pe, work_time) // Cross-referencing gone wrong
+/datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
+	current.work_complete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
 	var/user_job_title = "Unidentified Employee"
 	var/obj/item/card/id/W = user.get_idcard()
 	if(istype(W))

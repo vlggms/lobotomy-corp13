@@ -142,6 +142,7 @@
 	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	var/success_boxes = 0
 	var/total_boxes = 0
+	var/canceled = FALSE
 	ADD_TRAIT(user, TRAIT_STUNIMMUNE, src)
 	ADD_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = FALSE // If they can be walked through they can't be switched! I didn't wanna add chairs because if there WAS it'd nullify the ability to DODGE issues that appear.
@@ -165,12 +166,13 @@
 			playsound(src, 'sound/machines/synth_no.ogg', 75, FALSE, -4)
 			to_chat(user, "<span class='warning'>The Abnormality grows frustrated as you cut your work short!")
 			success_boxes = 0
+			canceled = TRUE
 			break
 	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, src)
 	REMOVE_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = TRUE
 	user.set_anchored(FALSE)
-	finish_work(user, work_type, success_boxes, work_speed, training, was_melting)
+	finish_work(user, work_type, success_boxes, work_speed, training, was_melting, canceled)
 
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
 	if(user.sanity_lost)
@@ -188,7 +190,7 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE, was_melting)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE, was_melting, canceled = FALSE)
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_COMPLETED, datum_reference, user, work_type)
@@ -199,12 +201,12 @@
 		if(pe >= datum_reference.success_boxes)
 			visible_message("<span class='notice'>Work Result: Good</span>")
 		else if(pe >= datum_reference.neutral_boxes)
-			visible_message("<span class='notice'>Work Result: Neutral</span>")
+			visible_message("<span class='notice'>Work Result: Normal</span>")
 		else
 			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
 		if(!training)
-			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting)
+			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 		else
 			datum_reference.current.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)

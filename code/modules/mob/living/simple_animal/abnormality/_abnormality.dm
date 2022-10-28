@@ -257,7 +257,7 @@
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if (prob(gift_chance) && !isnull(gift_type))
 		user.Apply_Gift(new gift_type)
 		to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
