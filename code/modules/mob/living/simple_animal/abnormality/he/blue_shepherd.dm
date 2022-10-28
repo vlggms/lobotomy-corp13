@@ -239,11 +239,15 @@
 		var/turf/orgin = get_turf(src)
 		var/list/all_turfs = RANGE_TURFS(1, orgin)
 		var/turf/open/Y = pick(all_turfs - orgin)
-		awakened_buddy.forceMove(Y) //the lazy solution that forces buddy to get pulled by shepherd
-		src.pulled(awakened_buddy)
+		awakened_buddy.forceMove(Y) //the lazy solution that forces buddy to get pulled by shepherd, ideally this should only happen once.
+		src.start_pulling(awakened_buddy)
 	if(slashing)
 		return FALSE
-	..()
+	if(awakened_buddy)
+		awakened_buddy.AIStatus = AI_OFF //we stop buddy from moving while being dragged to avoid jank, player controlled buddy will probably fuck this up but eeeh
+	. = ..()
+	if(awakened_buddy)
+		awakened_buddy.AIStatus = AI_ON //turning the AI status on and off isn't performance consuming as far as I can tell from mob code
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it
