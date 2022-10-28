@@ -278,7 +278,7 @@
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
-	
+
 //Today's Shy Look
 /obj/item/paper/fluff/info/teth/shy
 	name = "O-01-92"
@@ -300,7 +300,7 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
-	
+
 //Cherry blossom
 /obj/item/paper/fluff/info/teth/cherryblossom
 	name = "O-04-100"
@@ -320,3 +320,30 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Low<br>"}
+
+//Gone with a Simple Smile
+/obj/item/paper/fluff/info/teth/smile
+	name = "F-02-128"
+	info = {"<h1><center>F-02-128</center></h1>	<br>
+	Name : Gone with a Simple Smile	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Low	<br>
+	- For every stat at or above level 2, the work chance was reduced.	<br>
+	- When all stats were above level 2, the Qliphoth counter decreased.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached zero, Gone with a Simple Smile breached containment	<br><br>
+	<h4>Instinct:</h4> Very High<br>
+	<h4>Insight:</h4> Very High<br>
+	<h4>Attachment:</h4> Very High<br>
+	<h4>Repression:</h4> Very High<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Low	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
