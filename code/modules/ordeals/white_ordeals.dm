@@ -11,7 +11,8 @@
 	var/mobs_amount = 1
 	var/list/potential_types = list(
 		/mob/living/simple_animal/hostile/ordeal/black_fixer,
-		/mob/living/simple_animal/hostile/ordeal/white_fixer
+		/mob/living/simple_animal/hostile/ordeal/white_fixer,
+		/mob/living/simple_animal/hostile/ordeal/red_fixer
 		)
 
 /datum/ordeal/white_dawn/Run()
