@@ -112,13 +112,22 @@
 	var/mob/living/living_pawn = pawn
 
 	if(!locate(/obj/item) in living_pawn.held_items)
-		blackboard[BB_MONKEY_BEST_FORCE_FOUND] = 10
+		blackboard[BB_INSANE_BEST_FORCE_FOUND] = 10
 
 	var/obj/item/W
+	for(var/obj/item/i in living_pawn.get_equipped_items())
+		if(!istype(i))
+			continue
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][i] || i.force < blackboard[BB_INSANE_BEST_FORCE_FOUND])
+			continue
+		blackboard[BB_INSANE_PICKUPTARGET] = i
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
+		return TRUE
+
 	for(var/obj/item/i in view(7, living_pawn))
 		if(!istype(i))
 			continue
-		if(blackboard[BB_INSANE_BLACKLISTITEMS][i] || i.force > blackboard[BB_INSANE_BEST_FORCE_FOUND])
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][i] || i.force < blackboard[BB_INSANE_BEST_FORCE_FOUND])
 			continue
 		W = i
 		break
@@ -194,7 +203,7 @@
 		human_pawn.visible_message("<span class='danger'>[human_pawn] is twisting their neck, they are trying to commit suicide!</span>")
 		human_pawn.adjustBruteLoss(400)
 		human_pawn.jitteriness = 0
-		var/sanity_damage = get_user_level(human_pawn) * 50
+		var/sanity_damage = get_user_level(human_pawn) * 70
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue
@@ -202,15 +211,36 @@
 
 /datum/ai_controller/insane/wander
 	lines_type = /datum/ai_behavior/say_line/insanity_wander
-	var/last_message
+	var/last_message = 0
 	var/suicide_enter = 0
+
+/datum/ai_controller/insane/wander/PossessPawn(atom/new_pawn)
+	. = ..()
+	suicide_enter = world.time + 60 SECONDS
+
+/datum/ai_controller/insane/wander/SelectBehaviors(delta_time)
+	..()
+	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
+		return
+
+	var/list/possible_locs = list()
+	for(var/turf/T in GLOB.department_centers)
+		if(get_dist(pawn, T) < 5)
+			continue
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][T] > world.time)
+			continue
+		possible_locs += T
+	var/turf/open/T = get_closest_atom(/turf/open, possible_locs, pawn)
+	if(T)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander_center)
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = T
 
 /datum/ai_controller/insane/wander/PerformIdleBehavior(delta_time)
 	var/mob/living/living_pawn = pawn
 	if((living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
 		var/move_dir = pick(GLOB.alldirs)
 		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
-	if(DT_PROB(10, delta_time) && world.time + 5 SECONDS > last_message)
+	if(world.time > last_message + 6 SECONDS)
 		last_message = world.time
 		current_behaviors += GET_AI_BEHAVIOR(lines_type)
 	if(world.time > suicide_enter)
@@ -224,6 +254,11 @@
 
 /datum/ai_controller/insane/release
 	lines_type = /datum/ai_behavior/say_line/insanity_release
+	var/next_smash = 0
+
+/datum/ai_controller/insane/release/PossessPawn(atom/new_pawn)
+	. = ..()
+	next_smash = world.time + 10 SECONDS
 
 /datum/ai_controller/insane/release/SelectBehaviors(delta_time)
 	..()
@@ -244,7 +279,7 @@
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][AC] > world.time)
 			continue
 		if((AC.datum_reference.qliphoth_meter_max > 0) && (AC.datum_reference.qliphoth_meter > 0))
-			if(get_dist(pawn, AC) < 40)
+			if(get_dist(pawn, AC) < 50)
 				potential_computers += AC
 	if(LAZYLEN(potential_computers))
 		var/obj/machinery/computer/abnormality/chosen = get_closest_atom(/obj/machinery/computer/abnormality, potential_computers, pawn)
