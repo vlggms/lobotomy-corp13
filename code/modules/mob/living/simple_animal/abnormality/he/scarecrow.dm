@@ -98,5 +98,3 @@
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living
 	GiveTarget(user)
-
-

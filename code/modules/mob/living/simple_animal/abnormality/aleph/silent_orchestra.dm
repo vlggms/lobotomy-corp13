@@ -33,8 +33,8 @@
 	gift_type =  /datum/ego_gifts/dacapo
 	/// Range of the damage
 	var/symphony_range = 20
-	/// Amount of white damage
-	var/symphony_damage = 8
+	/// Amount of white damage every tick
+	var/symphony_damage = 10
 	/// When to perform next movement
 	var/next_movement_time
 	/// Current movement
@@ -65,7 +65,7 @@
 		for(var/mob/living/L in livinginrange(symphony_range, get_turf(src)))
 			if(faction_check_mob(L))
 				continue
-			var/dealt_damage = max(4, symphony_damage - round(get_dist(src, L) * 0.2))
+			var/dealt_damage = max(6, symphony_damage - round(get_dist(src, L) * 0.1))
 			L.apply_damage(dealt_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 	if(world.time >= next_movement_time) // Next movement
@@ -86,13 +86,13 @@
 			if(3)
 				next_movement_time = world.time + 11.5 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
-				symphony_damage = 15
+				symphony_damage = 18
 				movement_volume = 3 // No more tinnitus
 				spawn_performer(1, EAST)
 			if(4)
 				next_movement_time = world.time + 23 SECONDS
 				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
-				symphony_damage = 10
+				symphony_damage = 12
 				spawn_performer(2, EAST)
 			if(5)
 				next_movement_time = world.time + 999 SECONDS // Never

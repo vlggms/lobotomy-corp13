@@ -16,6 +16,7 @@
 	health = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
+	move_to_delay = 2
 	harm_intent_damage = 10
 	melee_damage_lower = 1
 	melee_damage_upper = 2
@@ -56,7 +57,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
-	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/Destroy()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
 	visible_message("<span class='danger'>\The [src] turns its insides out as a giant bloody beak appears!</span>")
@@ -64,6 +71,7 @@
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
+	rapid_melee = 1
 	melee_damage_lower = 400
 	melee_damage_upper = 500
 	obj_damage = 2500
@@ -78,6 +86,7 @@
 	icon_living = initial(icon_living)
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
+	rapid_melee = initial(rapid_melee)
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)
 	obj_damage = initial(obj_damage)
@@ -87,27 +96,46 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	update_icon()
 
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
+	SIGNAL_HANDLER
+	if(!(status_flags & GODMODE)) // If it's breaching right now
+		return FALSE
+	if(abno_datum == datum_reference) // They worked on us!
+		return FALSE
+	if(prob(20 - (abno_datum.threat_level * 5))) // So working on WAWs/ALEPHs won't do anything
+		datum_reference.qliphoth_change(-1)
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/OnHumanInsane(datum/source, mob/living/carbon/human/H, attribute)
+	SIGNAL_HANDLER
+	if(!(status_flags & GODMODE))
+		return FALSE
+	if(!H.mind) // That wasn't a player at all...
+		return FALSE
+	if(prob(33))
+		datum_reference.qliphoth_change(-1)
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
 	if(..())
 		if(obj_damage > 0) // Already transformed
 			return
-		if(prob(4))
-			var/list/around = view(src, vision_range)
-			var/list/priority_mobs = list()
-			var/list/potential_mobs = list()
-			for(var/mob/living/carbon/human/H in around)
-				if(H.ckey && H.client && !faction_check_mob(H))
-					if(H.sanity_lost)
-						priority_mobs += H
-					else if(!(H in already_punished))
-						potential_mobs += H
+		var/list/around = view(src, vision_range)
+		var/list/priority_mobs = list()
+		var/list/potential_mobs = list()
+		for(var/mob/living/carbon/human/H in around)
+			if(H.mind && !faction_check_mob(H))
+				if(H.sanity_lost)
+					priority_mobs += H
+				else if(!(H in already_punished) && prob(10))
+					potential_mobs += H
 
-			if(LAZYLEN(potential_mobs))
-				var/mob/living/carbon/le_target = pick(priority_mobs)
-				pecking_targets |= le_target
-			else if(LAZYLEN(potential_mobs))
-				var/mob/living/carbon/le_target = pick(potential_mobs)
-				pecking_targets |= le_target
+		if(LAZYLEN(priority_mobs))
+			var/mob/living/carbon/le_target = pick(priority_mobs)
+			pecking_targets |= le_target
+		else if(LAZYLEN(potential_mobs))
+			var/mob/living/carbon/le_target = pick(potential_mobs)
+			pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
 	. = ..()
@@ -117,16 +145,15 @@
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
-					H.adjustSanityLoss(5) // Heal sanity
+					H.adjustSanityLoss(10) // Heal sanity
 					return
-			if(prob(10) || L.health < 50)
+			if(prob(5) || L.health < L.maxHealth*0.4)
 				if(L in enemies)
 					enemies -= L
-					target = null
 				if(L in pecking_targets)
 					pecking_targets -= L
 					already_punished |= L
-					target = null
+				target = null
 		else if(L.health <= 0)
 			visible_message("<span class='danger'>\The [src] devours [L]!</span>")
 			L.gib()
@@ -153,6 +180,10 @@
 	return see
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
+	if((health < maxHealth * 0.9) && (obj_damage <= 0))
+		enemies = list() // This is done so it stops attacking random people that punched it before transformation
+		TransformRed()
+
 	if(isliving(A))
 		var/mob/living/M = A
 		if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
@@ -162,11 +193,6 @@
 		if(LAZYLEN(M.occupants))
 			enemies |= M
 			enemies |= M.occupants
-
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(enemies.len && (health < maxHealth * 0.9) && (obj_damage <= 0))
-		TransformRed()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/attack_hand(mob/living/carbon/human/M)
 	..()
@@ -196,14 +222,38 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/breach_effect(mob/living/carbon/human/user)
 	..()
-	addtimer(CALLBACK(src, .proc/kill_bird), 240 SECONDS)
+	addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !target && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
-		addtimer(CALLBACK(src, .proc/kill_bird), 120 SECONDS)
+		addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS)
+
+// Modified patrolling
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/patrol_select()
+	if(obj_damage > 0) // Already transformed
+		return ..()
+
+	var/list/target_turfs = list() // Insane people
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(H.z != z) // Not on our level
+			continue
+		if(!H.mind) // Absolutely not a player
+			continue
+		if(H.stat >= UNCONSCIOUS)
+			continue
+		if(get_dist(src, H) < 4) // Way too close
+			continue
+		if(H.sanity_lost) // Hey, they are insane!
+			target_turfs += get_turf(H)
+
+	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
+	if(istype(target_turf))
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
+	return ..()
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)

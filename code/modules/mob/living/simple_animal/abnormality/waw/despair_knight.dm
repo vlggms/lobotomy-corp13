@@ -146,5 +146,3 @@
 	icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 	return
-
-

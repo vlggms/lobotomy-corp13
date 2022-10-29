@@ -115,7 +115,7 @@
 	//check if red buddy is in the facility
 	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-			if(A.name == "Reddened Buddy")
+			if(ispath(A.abno_path, /mob/living/simple_animal/hostile/abnormality/red_buddy))
 				buddy = A
 				return
 	if(!buddy)

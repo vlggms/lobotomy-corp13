@@ -36,4 +36,3 @@
 		SLEEP_CHECK_DEATH(50)
 		icon_state = "spider_closed"
 		return
-

@@ -190,7 +190,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 80 //Half Red, Half Black
+	var/boom_damage = 160 //Half Red, Half Black
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/beeshell/Initialize()
@@ -201,8 +201,8 @@
 /obj/effect/beeshell/proc/explode()
 	playsound(get_turf(src), 'sound/effects/explosion2.ogg', 50, 0, 8)
 	for(var/mob/living/carbon/human/H in view(2, src))
-		H.apply_damage(boom_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		H.apply_damage(boom_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.apply_damage(boom_damage*0.5, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.apply_damage(boom_damage*0.5, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		if(H.health < 0)
 			H.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

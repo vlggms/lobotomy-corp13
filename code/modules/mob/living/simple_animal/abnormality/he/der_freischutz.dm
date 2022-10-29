@@ -5,7 +5,6 @@
 	icon_state = "derfreischutz"
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
-	pixel_y = 4
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 50,
