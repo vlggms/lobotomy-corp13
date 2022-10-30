@@ -35,3 +35,9 @@
 	damage = 17	//Slow as balls
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_shy
+	name = "today's expression"
+	damage = 3 //Can dual wield, full auto
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE

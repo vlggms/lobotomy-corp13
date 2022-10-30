@@ -246,6 +246,9 @@
 	icon_state = "sparks"
 	duration = 5
 
+/obj/effect/temp_visual/sparks/quantum
+	icon_state = "quantum_sparks"
+
 /obj/effect/temp_visual/revenant
 	name = "spooky lights"
 	icon_state = "purplesparkles"
@@ -769,3 +772,9 @@
 
 /obj/effect/temp_visual/cross/fall/proc/FadeOut()
 	animate(src, alpha = 0, time = 2 SECONDS)
+
+/obj/effect/temp_visual/markedfordeath
+	name = "marked"
+	icon_state = "markdeath"
+	duration = 13
+

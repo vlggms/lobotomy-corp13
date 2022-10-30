@@ -54,6 +54,9 @@
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)
 		return
+	if(dash_cooldown <= world.time && prob(10) && !client)
+		helper_dash(target)
+		return
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/helper/Move()

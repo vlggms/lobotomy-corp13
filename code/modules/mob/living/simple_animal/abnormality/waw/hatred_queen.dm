@@ -138,7 +138,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget()
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()
@@ -156,8 +156,6 @@
 				TryTeleport()
 			if(5)
 				if(datum_reference?.qliphoth_meter == 2) //only able to use normal if passive
-					if(prob(5))
-						addtimer(CALLBACK(src, .atom/movable/proc/say, "With love!"))
 					return ..()
 		return
 
@@ -169,7 +167,7 @@
 	if((beats_cooldown <= world.time) && prob(50))
 		ArcanaBeats(target)
 		return
-	if(prob(5))
+	if(prob(2))
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "With love!"))
 	return ..()
 
@@ -230,7 +228,6 @@
 	visible_message("<span class='danger'>[src] prepares to mark the enemies of justice!</span>")
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 4)
 	var/list/turfs_to_hit = getline(src, target_turf)
-	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 10)
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh1"
 	addtimer(CALLBACK(src, .atom/movable/proc/say, "Go! Arcana Beats~!"))
@@ -254,6 +251,7 @@
 			S.pixel_y += 16
 			S.layer -= 0.1
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 10)
 	icon_state = "hatredrecoil"
 	beats_hit = list()
 	var/i = 1
@@ -545,5 +543,3 @@
 	retreat_distance = null //this is annoying
 	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
 	return ..()
-
-

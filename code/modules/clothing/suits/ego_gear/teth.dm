@@ -84,10 +84,28 @@
 	name = "cherry blossoms"
 	desc = "Sitting under the tree’s shadow makes you feel like these gloomy days will flutter away like the petals of a flower."
 	icon_state = "blossoms"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = -30)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -50, PALE_DAMAGE = -20)
 
 /obj/item/clothing/suit/armor/ego_gear/regret
 	name = "regret"
 	desc = "Now the straitjacket is nothing but an accessory to the hatred and anger that remains."
 	icon_state = "regret"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/cute
+	name = "SO CUTE!!!"
+	desc = "Ppodae is oh so fluffy and soft. It’s so sweet it could cure your depression."
+	icon_state = "cute"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/shy
+	name = "todays expression"
+	desc = "One sunny day, just like that day they sincerely dried the laundry, they dried their own skin."
+	icon_state = "shy"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -40, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/trick
+	name = "hat trick"
+	desc = "Only a few find the way, some don’t recognize it when they do – some… don’t ever want to."
+	icon_state = "trick"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)

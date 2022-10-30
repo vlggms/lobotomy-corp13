@@ -259,6 +259,8 @@
 							)
 
 /obj/item/ego_weapon/christmas/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)

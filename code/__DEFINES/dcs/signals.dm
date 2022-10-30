@@ -1051,4 +1051,6 @@
 
 // Abnormality Work Signals
 #define COMSIG_WORK_STARTED "work_started" // Work Start/Attempt
+#define COMSIG_GLOB_WORK_STARTED "!work_started" // Same, but global
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
+#define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto

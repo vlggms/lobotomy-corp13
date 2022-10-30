@@ -159,7 +159,7 @@
 	else
 		patrol_reset()
 		return FALSE
-	addtimer(CALLBACK(src, .proc/patrol_move, dest), (move_to_delay+speed))
+	addtimer(CALLBACK(src, .proc/patrol_move, dest), move_to_delay)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/proc/patrol_step(dest)

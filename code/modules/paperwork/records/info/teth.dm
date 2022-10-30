@@ -192,6 +192,7 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Very High<br>"}
+
 /obj/item/paper/fluff/info/teth/bloodbath
 	name = "T-05-51"
 	info = {"<h1><center>T-05-51</center></h1>	<br>
@@ -230,9 +231,9 @@
 	<h4>Repression:</h4> Low<br>"}
 
 //Forsaken Murderer
-/obj/item/paper/fluff/info/teth/T0154
+/obj/item/paper/fluff/info/teth/murderer
 	name = "T-01-54"
-	info = {"<h1><center>O-01-12</center></h1>	<br>
+	info = {"<h1><center>T-01-54</center></h1>	<br>
 	Name : Forsaken Murderer	<br>
 	Risk Class : Teth	<br>
 	Max PE Boxes : 14	<br>
@@ -252,3 +253,97 @@
 	<h4>White Resistance:</h4> Normal	<br>
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Vulnerable	<br>"}
+
+//Ppodae
+/obj/item/paper/fluff/info/teth/ppodae
+	name = "D-02-107"
+	info = {"<h1><center>D-02-107</center></h1>	<br>
+	Name : Ppodae	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
+	- Ppodae wuvs Instinct work the most. Please don’t do work other than Instinct with him, or else the Qliphoth Counter has a medium probability of lowering.	<br>
+	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
+	- When Ppodae escaped, it voluntarily returned to its unit after attacking an employee and taking █████ from their corpse.	<br><br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Low	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Today's Shy Look
+/obj/item/paper/fluff/info/teth/shy
+	name = "O-01-92"
+	info = {"<h1><center>O-01-92</center></h1>	<br>
+	Name : Today's Shy Look	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- This Abnormality changes their facial expression at certain intervals. However, when faced with another person, their changes halt.	<br>
+	- From smiles to anger, they have 5 levels of facial expression dubbed Faces 1, 2, 3, 4, and 5.	<br>
+	- No special circumstances came from Face 3. Face 2 showed an increased success rate and the employee healed SP when work was successfully completed.	<br>
+	- Face 4 showed 150% damage dealt during work, and the success rate declined.	<br>
+	- Face 5 showed 200% damage dealt during work, and the success rate drastically declined.	<br>
+	- Face 1 showed 50% damage dealt during work, and the success rate increased. In addition, each time work was successful, the employee’s HP and SP recovered.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Cherry blossom
+/obj/item/paper/fluff/info/teth/cherryblossom
+	name = "O-04-100"
+	info = {"<h1><center>O-04-100</center></h1>	<br>
+	Name : Cherry Blossom<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Good, the Qliphoth Counter lowered.	<br>
+	- When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.	<br>
+	- Upon the death of one of these employees, the HP and SP of every employee in the facility was healed and all marks were removed.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>"}
+
+//Gone with a Simple Smile
+/obj/item/paper/fluff/info/teth/smile
+	name = "F-02-128"
+	info = {"<h1><center>F-02-128</center></h1>	<br>
+	Name : Gone with a Simple Smile	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Low	<br>
+	- For every stat at or above level 2, the work chance was reduced.	<br>
+	- When all stats were above level 2, the Qliphoth counter decreased.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached zero, Gone with a Simple Smile breached containment	<br><br>
+	<h4>Instinct:</h4> Very High<br>
+	<h4>Insight:</h4> Very High<br>
+	<h4>Attachment:</h4> Very High<br>
+	<h4>Repression:</h4> Very High<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Low	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+

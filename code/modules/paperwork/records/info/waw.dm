@@ -221,3 +221,28 @@
 	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//The Dreaming Current
+/obj/item/paper/fluff/info/waw/current
+	name = "T-02-71"
+	info = {"<h1><center>T-02-71</center></h1>	<br>
+	Name : The Dreaming Current	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When an employee panicked during work, the Qliphoth Counter lowered.	<br>
+	- When an employee with Temperance Level 1 finished their work, the Qliphoth Counter lowered.	<br>
+	- Upon breaching, the dreaming current will charge around the facility and deal massive RED damage to all entities in it's path.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}

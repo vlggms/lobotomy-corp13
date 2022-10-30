@@ -330,9 +330,13 @@
 	var/old_name
 
 /datum/quirk/bongin/add()
+	if(isnull(quirk_holder))
+		return
 	var/mob/living/carbon/human/H = quirk_holder
 	H.grant_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)
 
 /datum/quirk/bongin/remove()
+	if(isnull(quirk_holder))
+		return
 	var/mob/living/carbon/human/H = quirk_holder
 	H.remove_language(/datum/language/bong, TRUE, TRUE, LANGUAGE_MIND)

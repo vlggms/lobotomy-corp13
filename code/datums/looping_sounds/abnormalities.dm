@@ -30,6 +30,12 @@
 	volume = 25
 	extra_range = -3
 
+/datum/looping_sound/silence
+	mid_sounds = 'sound/abnormalities/silence/ambience.ogg'
+	mid_length = 5.7 SECONDS
+	volume = 25
+	extra_range = -3
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'

@@ -74,8 +74,8 @@
 
 /* Attacks */
 /mob/living/simple_animal/hostile/abnormality/melting_love/CanAttack(atom/the_target)
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
+	if(isliving(the_target) && !ishuman(the_target))
+		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
@@ -101,7 +101,7 @@
 	if(!H)
 		return FALSE
 	var/turf/T = get_turf(H)
-	visible_message("<span class='danger'>[src] glomp on \the [H] as another Slime Pawn appears!</span>")
+	visible_message("<span class='danger'>[src] glomps on \the [H] as another Slime Pawn appears!</span>")
 	H.gib()
 	new /mob/living/simple_animal/hostile/slime(T)
 	return TRUE

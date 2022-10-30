@@ -12,15 +12,15 @@
 	health = 2200
 	speed = 4
 	move_to_delay = 7
-	rapid_melee = 2
+	rapid_melee = 1
 	del_on_death = FALSE
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 10, 30, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = list(0, 20, 30, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 55, 60, 60),
-						ABNORMALITY_WORK_REPRESSION = list(20, 45, 55, 60, 60)
+						ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
+						ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
+						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
 						)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 50
@@ -150,15 +150,16 @@
 		melee_damage_lower = 60
 		melee_damage_upper = 80
 		move_to_delay = 4 //this doesn't matter as much as you'd think because he can't move before shepherd
+		can_patrol = FALSE //just in case
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
-	if(!awakened_master)
-		return ..()
+	if(!awakened_master || AIStatus == AI_OFF)
+		return . = ..()
 	var/turf/orgin = get_turf(awakened_master)
 	var/list/all_turfs = RANGE_TURFS(1, orgin)
-	if(!LAZYFIND(all_turfs,newloc))
+	if(!LAZYFIND(all_turfs, newloc))
 		return FALSE //he doesn't get to move outside of his master's range
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/breach_effect()
 	..()
