@@ -126,7 +126,7 @@
 	name = "loyalty"
 	desc = "And god have mercy on anyone who hurt her queen."
 	icon_state = "loyalty"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60)
 

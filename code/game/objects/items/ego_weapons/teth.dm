@@ -64,6 +64,8 @@
 	attack_verb_simple = list("beat", "smack")
 
 /obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
@@ -102,9 +104,9 @@
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
 
 /obj/item/ego_weapon/mini/wrist
-	name = "Wrist Cutter"
+	name = "wrist cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon attacks very fast. "
+	special = "This weapon attacks very fast."
 	icon_state = "wrist"
 	force = 6
 	attack_speed = 0.3
@@ -120,13 +122,10 @@
 	force = 38				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
+	attack_speed = 2 // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 
-/obj/item/ego_weapon/regret/melee_attack_chain(mob/user, atom/target, params)
-	..()
-	user.changeNext_move(CLICK_CD_MELEE * 2) // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
-	
 /obj/item/ego_weapon/mini/blossom
 	name = "Blossoms"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
@@ -159,4 +158,19 @@
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/slashmiss.ogg'
+
+/obj/item/ego_weapon/mini/trick
+	name = "hat trick"
+	desc = "Imagination is the only weapon in the war with reality."
+	icon_state = "trick"
+	special = "This weapon deals more throwing damage."
+	force = 17
+	throwforce = 25		//You can only hold 4 so go nuts.
+	throw_speed = 5
+	throw_range = 7
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("jabs")
+	attack_verb_simple = list("jabs")
 	hitsound = 'sound/weapons/slashmiss.ogg'

@@ -26,10 +26,16 @@
 	var/worldwide_damage = 70	//If you're unarmored, it obliterates you
 	var/safe = FALSE //work on it and you're safe for 13 minutes
 	var/reset_time = 3 MINUTES //Don't hit everyone with the global pale if it was hit in a small period of time
+	var/datum/looping_sound/silence/soundloop // Tick-tock, tick-tock
 
 /mob/living/simple_animal/hostile/abnormality/silence/Initialize()
-	..()
+	. = ..()
 	meltdown_cooldown = world.time + meltdown_cooldown_time
+	soundloop = new(list(src), TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/silence/Destroy()
+	QDEL_NULL(soundloop)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/success_effect(mob/living/carbon/human/user, work_type, pe)
 	safe = TRUE
@@ -40,7 +46,7 @@
 	. = ..()
 	if(meltdown_cooldown < world.time)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
-		sound_to_playing_players('sound/abnormalities/silence/bong.ogg')	//Church bells ringing, whether it happens or not.
+		sound_to_playing_players_on_level('sound/abnormalities/silence/ambience.ogg', 50, zlevel = z)
 		if(!safe)
 			datum_reference.qliphoth_change(-1)
 		safe = FALSE
@@ -48,13 +54,15 @@
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/silence/zero_qliphoth(mob/living/carbon/human/user)
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
+	// You have mere seconds to live
+	SLEEP_CHECK_DEATH(5 SECONDS)
+	sound_to_playing_players_on_level('sound/abnormalities/silence/price.ogg', 50, zlevel = z)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(faction_check_mob(H, FALSE) || H.z != z || H.stat == DEAD)
 			continue
 
-		stoplag(1)
-		new /obj/effect/temp_visual/thirteen(get_turf(L))	//A visual effect if it hits
-		L.apply_damage(worldwide_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/thirteen(get_turf(H))	//A visual effect if it hits
+		H.apply_damage(worldwide_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	addtimer(CALLBACK(src, .proc/Reset), reset_time)
 	return
 

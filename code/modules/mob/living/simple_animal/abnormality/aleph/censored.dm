@@ -22,8 +22,8 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 75
 	melee_damage_upper = 80
-	speed = 4
-	move_to_delay = 5
+	speed = 3
+	move_to_delay = 4
 	/* Works */
 	start_qliphoth = 2
 	can_breach = TRUE
@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/censored/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
-		var/mob/living/L = target
+		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
@@ -123,11 +123,11 @@
 		sleep(0.3 SECONDS)
 		playsound(src, 'sound/abnormalities/censored/sacrifice.ogg', 45, FALSE, 10)
 		user.death()
+		QDEL_NULL(user)
 		for(var/i = 1 to 3)
 			new /obj/effect/gibspawner/generic/silent(get_turf(src))
 			sleep(5.4)
 		datum_reference.qliphoth_change(1)
-		QDEL_NULL(user)
 		return null
 	return TRUE
 
@@ -167,8 +167,8 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 20
-	speed = 3
-	move_to_delay = 4
+	speed = 2
+	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE

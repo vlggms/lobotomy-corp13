@@ -207,12 +207,11 @@
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
-	if(combo==13)
+	if(combo >= 13)
 		combo = 0
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-		force = userjust
+		force = get_attribute_level(user, JUSTICE_ATTRIBUTE)
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
-		playsound(src, 'sound/abnormalities/silence/bong.ogg', 20, FALSE, 9)
+		playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	..()
 	combo += 1
 	force = initial(force)
