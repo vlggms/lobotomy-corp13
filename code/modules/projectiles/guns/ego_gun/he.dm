@@ -57,10 +57,12 @@
 
 /obj/item/gun/ego_gun/unrequited
 	name = "unrequited love"
-	desc = "A big, boxy rifle, imprinted with a heart on the back.."
+	desc = "This weapon yearns for affection and will do anything to get your attention. Of course it will misunderstand your care for something else."
 	icon_state = "unrequited"
 	inhand_icon_state = "unrequited"
-	special = "This weapon requires 2 hands."
+	special = "This weapon requires 2 hands. This weapon will sometimes jam. \
+			Use this weapon in hand to unjam it. \
+			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_unrequited
 	fire_delay = 3
 	burst_size = 3
@@ -71,4 +73,57 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
+	var/jam_cooldown
+	var/jam_cooldown_time //this will actually be semi-randomized just so you can get the true surprise jam experience while red buddy is chasing you
+	var/jammed = FALSE
+	var/jam_noticed = FALSE
 
+/obj/item/gun/ego_gun/unrequited/Initialize()
+	..()
+	jam_cooldown_time = rand(1, 5) MINUTES
+	jam_cooldown = jam_cooldown_time + world.time
+	START_PROCESSING(SSobj, src)
+
+/obj/item/gun/ego_gun/unrequited/process()
+	if(jammed)
+		return
+	if(jam_cooldown < world.time)
+		jammed = TRUE
+
+/obj/item/gun/ego_gun/unrequited/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/gun/ego_gun/unrequited/proc/ResetDelay()
+	fire_delay = 3
+	burst_size = 3
+
+/obj/item/gun/ego_gun/unrequited/SpecialEgoCheck(mob/living/carbon/human/H)
+	if(!jammed)
+		return TRUE
+
+	if(jam_noticed)
+		playsound(src, dry_fire_sound, 30, TRUE)
+	else
+		playsound(src, 'sound/weapons/gun/general/bolt_drop.ogg', 50, TRUE)
+		jam_noticed = TRUE
+
+	to_chat(H, "<span class='notice'>[src] is jammed!</span>")
+	return FALSE
+
+/obj/item/gun/ego_gun/unrequited/attack_self(mob/user)
+	to_chat(user,"<span class='notice'>You try to unjam [src].</span>")
+	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+	if(do_after(user, 3 SECONDS)) //it's a massive annoyance to unjam in the middle of a fight but the extra damage should make it more than worth it.
+		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
+		if(!jammed)
+			to_chat(user,"<span class='notice'>Turns out the weapon is working just fine.</span>")
+			return
+		jammed = FALSE
+		jam_noticed = FALSE
+		fire_delay = 2
+		burst_size = 5
+		addtimer(CALLBACK(src, .proc/ResetDelay), 15 SECONDS)
+		to_chat(user,"<span class='notice'>You succesfully unjammed [src]!</span>")
+		jam_cooldown_time = rand(1, 5) MINUTES
+		jam_cooldown = jam_cooldown_time + world.time

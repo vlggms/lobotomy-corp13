@@ -195,7 +195,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/unrequited
 	name = "unrequited love"
-	desc = "Why won't you pick me?"
+	desc = "You said that you loved them. It made no sense, why not me? I'm the one who was here for you all this time.\
+	I earned this, loving me back is the least you could've done."
 	icon_state = "unrequited"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
 	attribute_requirements = list(

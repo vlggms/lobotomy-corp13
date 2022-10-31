@@ -189,7 +189,7 @@
 		else
 			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
-		current?.OnQliphothChange(user)
+		current?.OnQliphothChange(user, amount)
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	if(!istype(user))

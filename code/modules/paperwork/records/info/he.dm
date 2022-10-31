@@ -389,3 +389,33 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//Piscine Mermaid
+/obj/item/paper/fluff/info/he/pisc_mermaid
+	name = "O-01-129" //I'll figure out the serial number later,
+	info = {"<h1><center>O-01-129</center></h1>    <br>
+	Name : Piscine Mermaid    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 3    <br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was bad or medium, the Qliphoth counter decreased.   <br>
+	- When the work result was good, Piscine Mermaid offered a gift if no other version of that gift was present in the facility.    <br>
+	- The employee that wore the gift received greatly increased work rates. but the Qliphoth counter would periodically decrease as long as the gift was worn.    <br>
+	- When the work result was good and was done by an employee wearing the gift, the Qliphoth counter increased.   <br>
+	- When the employee wearing the gift took it off, Piscine Mermaid breached immediately.   <br>
+	- When Piscine mermaid breached containment, she slowly suffocated everyone she could see and destroyed the gift if one was present.   <br>
+	- If someone wore the gift at the moment of her breach, she would teleport to them and greatly reduced their speed, the gifted could not breath as long as Piscine Mermaid was alive.   <br>
+	- Piscine Mermaid took very little damage from anyone that wasn't the gifted, her resistances would come back to normal after the gifted's death.  <br>
+	<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Very High<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Low	 <br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}

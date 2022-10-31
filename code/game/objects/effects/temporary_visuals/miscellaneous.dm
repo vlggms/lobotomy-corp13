@@ -781,6 +781,16 @@
 	icon_state = "markdeath"
 	duration = 13
 
+/obj/effect/temp_visual/mermaid_drowning
+	name = "lovely drowning"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "mermaid_drowning"
+	duration = 0.5 SECONDS
+
+/obj/effect/temp_visual/mermaid_drowning/Initialize()
+	..()
+	animate(src, alpha = 0, pixel_y = pixel_y + 5 , time = duration)
+
 /obj/effect/temp_visual/alriune_attack
 	name = "petals"
 	icon_state = "alriune_attack"

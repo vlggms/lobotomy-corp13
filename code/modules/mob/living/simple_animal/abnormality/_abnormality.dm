@@ -321,7 +321,7 @@
 /mob/living/simple_animal/hostile/abnormality/proc/meltdown_start()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0)
 	return
 
 ///implants the abno with a slime radio implant, only really relevant during admeme or sentient abno rounds
