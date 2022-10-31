@@ -123,3 +123,12 @@
 	..()
 	animate(src, alpha = 0, time = 20 SECONDS)
 	QDEL_IN(src, 20 SECONDS)
+
+/obj/effect/express_train
+	name = "Express Train to Hell"
+	desc = "Oh no."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "express_engine"
+
+/obj/effect/express_train/proc/damage_tiles()
+	return
