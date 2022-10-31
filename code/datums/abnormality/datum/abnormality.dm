@@ -52,6 +52,8 @@
 	var/working = FALSE
 	///a list of variable the abno wants to remember after death
 	var/list/transferable_var
+	///if the abno spawns with a slime radio or not
+	var/abno_radio = FALSE
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -104,6 +106,8 @@
 	if (understanding == max_understanding && max_understanding > 0)
 		current.gift_chance *= 1.5
 	overload_chance_limit = overload_chance_amount * 10
+	if(abno_radio)
+		current.AbnoRadio()
 	current.PostSpawn()
 
 /datum/abnormality/proc/FillEgoList()
