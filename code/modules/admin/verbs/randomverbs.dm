@@ -1093,6 +1093,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/obj/item/food/bread/plain/bread = new(get_turf(target))
 	target.forceMove(bread)
 
+///Give EVERY current abnormality a radio for the round even after respawn, this needs to be used again if an abnormality arrives after you used this
+/client/proc/AbnoRadio()
+	set category = "Admin.Fun"
+	set name = "Abnormality radio"
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+
+	if(!LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+		return
+	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+		if(A.abno_radio)
+			continue
+		if(isnull(A.current))
+			A.abno_radio = TRUE
+			continue
+		A.current.AbnoRadio()
+
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
  *
