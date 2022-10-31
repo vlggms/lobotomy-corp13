@@ -65,8 +65,6 @@
 	var/accumulated_damage = 0
 	///how many times buddy howled while awakened, is in decimals because of the equation it's used in
 	var/awoo_count = 0.1
-	///if buddy starts fighting back against shepherd
-	var/rebel = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Initialize()
 	. = ..()
@@ -145,7 +143,7 @@
 	if(awoo_cooldown <= world.time && !awakened)
 		Awoo()
 	var/mob/living/master_abno = master?.current
-	if(!master_abno || rebel)
+	if(!master_abno)
 		return
 	if(master_abno.status_flags & GODMODE) //no reason to look for shepherd if he's not out
 		return
@@ -171,12 +169,6 @@
 		vision_range = 3
 		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
 		can_patrol = FALSE //just in case
-
-	if(!awakened_master)
-		return
-
-	if(awakened_master.health <= awakened_master.maxHealth * 0.5 && health <= maxHealth * 0.5) //if both shepherd and buddy are under half health, they fight each other
-		Infighting()
 
 ///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
@@ -211,7 +203,7 @@
 		if(L.stat == DEAD)
 			continue
 		if(L == awakened_master)
-			awakened_master.adjustHealth(125) //500 damage in total, takes approximatively 5 howls to take shepherd to half health
+			awakened_master.adjustHealth(150) //800 damage in total, takes approximatively 8 howls to take shepherd down
 		L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		heard_awoo = TRUE
 	if(health >= 75 && heard_awoo && !abused)
@@ -219,21 +211,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	..()
-	if(!awakened_master || rebel)
+	if(!awakened_master)
 		return
 	accumulated_damage += amount
 
 	if(accumulated_damage >= (maxHealth * awoo_count) && awoo_cooldown <= world.time)
 		awoo_count += 0.1 //this also mean you can get howling you "missed" during a cooldown
 		Awoo(TRUE)
-
-/mob/living/simple_animal/hostile/abnormality/red_buddy/proc/Infighting()
-	rebel = TRUE
-	if(!awakened_master.abuse)
-		awakened_master.Infighting()
-	faction -= "blueshep"
-	GiveTarget(awakened_master)
-	say("Master? Master? What do you want from me master? I'll hurt you if that what you want, that's what a wolf would do.")
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AdjustSuffering(pain)
 	suffering = clamp(pain + suffering, 0, 50)

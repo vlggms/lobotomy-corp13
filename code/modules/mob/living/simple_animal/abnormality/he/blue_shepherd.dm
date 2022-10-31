@@ -58,7 +58,6 @@
 	var/datum/abnormality/buddy //the red buddy datum linked to this shepherd
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
-	var/abuse = FALSE //if shepherd is attacking buddy
 	var/list/people_list = list() //list of people shepperd can mention
 	//lines said during combat
 	var/buddy_hit = FALSE
@@ -180,7 +179,7 @@
 		say(pick(combat_lines))
 		slashing = TRUE
 		slash()
-	if(awakened_buddy && !abuse)
+	if(awakened_buddy)
 		awakened_buddy.GiveTarget(target)
 	..()
 
@@ -194,7 +193,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Life()
 	. = ..()
-	if(status_flags & GODMODE || abuse)
+	if(status_flags & GODMODE)
 		return
 	var/mob/living/buddy_abno = buddy?.current
 	if(!buddy_abno)
@@ -215,17 +214,6 @@
 		update_health_hud() //I have to do this shit manually because adjustHealth is just fucked when changing max HP
 	if(!awakened_buddy)
 		return
-
-	if(health <= maxHealth * 0.5 && awakened_buddy.health <= awakened_buddy.maxHealth * 0.5) //if both shepherd and buddy are under half health, they fight each other
-		Infighting()
-
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/Infighting()
-	abuse = TRUE
-	if(!awakened_buddy.rebel)
-		awakened_buddy.Infighting()
-	faction -= "blueshep"
-	GiveTarget(awakened_buddy)
-	say("a wolf, A WOLF. I WANT YOU TO BE A WOLF YOU USELESS THING!")
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Move()
 	if(slashing)
@@ -267,9 +255,9 @@
 	for(var/mob/living/L in T)
 		if(L == src)
 			continue
-		if(L == awakened_buddy && !abuse && !buddy_hit)
+		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
-			awakened_buddy.adjustHealth(225) //it would take approximatively 12 slashes to take buddy to half health (accounting for the extra normal damage of slash)
+			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
 		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		all_turfs -= T
 	if(slash_count >= range)
