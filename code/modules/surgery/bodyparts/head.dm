@@ -197,7 +197,8 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
-/obj/item/bodypart/head/get_limb_icon(dropped)
+//get_normal_head is used if you want to get a non messed up head that still looks as if it was on the original body
+/obj/item/bodypart/head/get_limb_icon(dropped, get_normal_head = FALSE)
 	cut_overlays()
 	. = ..()
 	if(dropped) //certain overlays only appear when the limb is being detached from its owner.
@@ -213,7 +214,7 @@
 					. += facial_overlay
 
 			//Applies the debrained overlay if there is no brain
-			if(!brain)
+			if(!brain && !get_normal_head)
 				var/image/debrain_overlay = image(layer = -HAIR_LAYER, dir = SOUTH)
 				if(animal_origin == ALIEN_BODYPART)
 					debrain_overlay.icon = 'icons/mob/animal_parts.dmi'
@@ -241,8 +242,10 @@
 			. += lips_overlay
 
 		// eyes
-		var/image/eyes_overlay = image('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER, SOUTH)
-		. += eyes_overlay
+		var/image/eyes_overlay
+		if(!get_normal_head)
+			eyes_overlay = image('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER, SOUTH)
+			. += eyes_overlay
 		if(eyes)
 			eyes_overlay.icon_state = eyes.eye_icon_state
 
