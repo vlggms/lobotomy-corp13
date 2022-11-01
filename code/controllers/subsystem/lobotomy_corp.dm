@@ -87,6 +87,17 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if((current_box >= box_goal) && !goal_reached) // Also TODO: Make it do something other than this
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
+		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
+		pizzatype_list -= /obj/item/food/pizza/arnold // No murder pizza
+		pizzatype_list -= /obj/item/food/pizza/margherita/robo // No robo pizza
+		for(var/mob/living/carbon/human/person in GLOB.mob_living_list)
+			// Yes, this delivers to dead bodies. It's REALLY FUNNY.
+			var/obj/structure/closet/supplypod/centcompod/pod = new()
+			var/pizzatype = pick(pizzatype_list)
+			new pizzatype(pod)
+			pod.explosionSize = list(0,0,0,0)
+			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
+			new /obj/effect/pod_landingzone(get_turf(person), pod)
 		return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
