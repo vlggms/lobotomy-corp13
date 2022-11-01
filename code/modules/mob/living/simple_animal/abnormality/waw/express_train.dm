@@ -2,29 +2,37 @@
 	name = "express train to hell"
 	desc = "A creature with glowing eyes inside of an odd-looking ticket booth."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
-	icon_state = "express_booth"
-	icon_living = "express_booth"
+	icon_state = "express_booth0"
+	icon_living = "express_booth0"
 	faction = list("hostile")
 	speak_emote = list("drones")
 
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 20,
-						ABNORMALITY_WORK_INSIGHT = list(20, 30, 50, 65, 70),
-						ABNORMALITY_WORK_ATTACHMENT = 20,
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 50, 65, 70)
+						ABNORMALITY_WORK_INSTINCT = 35,
+						ABNORMALITY_WORK_INSIGHT = 35,
+						ABNORMALITY_WORK_ATTACHMENT = 35,
+						ABNORMALITY_WORK_REPRESSION = 35
 						)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
-	bound_width = 64
+	pixel_x = -16
+	base_pixel_x = -16
 
 	ego_list = list(
+		/datum/ego_datum/weapon/intentions,
+		/datum/ego_datum/armor/intentions,
+		/datum/ego_datum/weapon/laststop
 		)
 
-	var/meltdown_tick = 20 SECONDS
+	var/meltdown_tick = 5 SECONDS
 	var/meltdown_timer
 	var/lightscount = 0
+	var/list/tickets = list()
+	var/maxSegments = 5
+	var/list/segments = list()
+	var/list/damaged = list()
 
 /mob/living/simple_animal/hostile/abnormality/express_train/Initialize()
 	meltdown_timer = world.time + meltdown_tick
@@ -32,10 +40,18 @@
 
 /mob/living/simple_animal/hostile/abnormality/express_train/Life()
 	if(meltdown_timer < world.time && !datum_reference.working)
-		meltdown_timer = world.time + meltdown_tick
-		datum_reference.qliphoth_change(-1)
-		lightscount = 4 - datum_reference.qliphoth_meter
-		src.update_overlays()
+		if(datum_reference.qliphoth_meter)
+			meltdown_timer = world.time + meltdown_tick
+			datum_reference.qliphoth_change(-1)
+			lightscount = 4 - datum_reference.qliphoth_meter
+			update_icon_state()
+		else
+			callTrain()
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
+			meltdown_timer = world.time + meltdown_tick + 10 SECONDS
+			datum_reference.qliphoth_change(4)
+			lightscount = 0
+			update_icon_state()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/express_train/attempt_work(mob/living/carbon/human/user, work_type)
@@ -45,34 +61,135 @@
 			for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
 				H.adjustSanityLoss(50)
 				H.adjustBruteLoss(-50)
+			tickets |= user
 		if(1)
 			for(var/mob/living/carbon/human/H in livinginrange(30))
 				H.adjustSanityLoss(50)
 				H.adjustBruteLoss(-50)
+			tickets |= user
 		if(2)
 			user.adjustSanityLoss(80)
 			user.adjustBruteLoss(-80)
+			tickets |= user
 		if(3)
 			user.adjustSanityLoss(40)
 			user.adjustBruteLoss(-40)
+			tickets |= user
 		if(4)
 			say("No tickets available. Thank you for your interest.")
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/express_train/work_chance(mob/living/carbon/human/user, chance)
+	chance += lightscount * 10
+	return chance
+
 /mob/living/simple_animal/hostile/abnormality/express_train/work_complete(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(4)
 	meltdown_timer = world.time + meltdown_tick
-	src.update_overlays()
+	lightscount = 0
+	update_icon_state()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/express_train/update_overlays()
-	. = ..()
-	var/mutable_appearance/lights_overlay = mutable_appearance(icon, "express_light1")
-	if(lightscount)
-		lights_overlay.icon_state = "express_light[lightscount]"
-		say("Updating lights.")
+/mob/living/simple_animal/hostile/abnormality/express_train/update_icon_state()
+	icon_state = "express_booth[lightscount]"
+	icon_living = icon_state
+
+// This proc starts the automatic train-firing process by finding the point to aim at.
+
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/callTrain()
+	for(var/mob/living/M in damaged)
+		damaged -= M
+	var/aimpoint = 0
+	var/count = 0
+	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
+		if(H.z != src.z)
+			continue
+		if(H in tickets) // YOUR TICKETS, SIR
+			for(var/i = 0, i < 4, i++)
+				aimpoint += H.y
+				count += 1
+			tickets -= H
+		else
+			aimpoint += H.y
+			count += 1
+	aimpoint /= count
+	if(!aimpoint)
+		aimpoint = src.y
+	aimpoint -= 1
+	fireTrain(aimpoint, pick(EAST, WEST))
+
+// This one actually makes and fires the train. I'll probably improve this so you can set a starting X as well sometime, or maybe adjust the number of segments...
+
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/fireTrain(aimpoint, direction)
+	var/spawnX
+	var/xIncrement
+	var/persX
+	if(direction == EAST)
+		spawnX = 42
+		xIncrement = -4
 	else
-		say("Killing the lights.")
-		cut_overlays()
-		return
-	. += lights_overlay
+		spawnX = 214
+		xIncrement = 4
+	var/spawnPoint = locate(spawnX, aimpoint, src.z)
+	for(var/i = 0, i < maxSegments * 2, i++)
+		if(!(i % 2)) // True whenever i is even- this is the start of each segment
+			persX += xIncrement*0.75 // Makes persX (effectively) one smaller for this iteration
+		else
+			persX += xIncrement
+		spawnPoint = locate(spawnX + persX, aimpoint, src.z)
+		var/obj/effect/expresstrain/seg = new(spawnPoint)
+		seg.dir = direction
+		if(i < 2)
+			seg.icon_state = "expressengine_[i % 2 + 1]"
+			if(i % 2)
+				persX -= xIncrement/4
+			if(i == 0)
+				notify_ghosts("[seg] is preparing to depart!", source = seg, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
+		else
+			seg.icon_state = "expresscar_[i % 2 + 1]"
+			if(round(i / 2) % 2) // True when the current car is odd-numbered
+				seg.pixel_x = xIncrement * 4
+				seg.base_pixel_x = xIncrement * 4
+			else if(i % 2)
+				persX -= xIncrement/4
+		segments += seg
+	addtimer(CALLBACK(src, .proc/moveTrain), 10 SECONDS)
+	/*
+	The logic is pretty simple in what it's SUPPOSED to produce.
+	Every train segment is comprised of 2 effects; the spawn positions of these effects are four tiles offset from one another. This number cannot change.
+	However, the distance between the start of one segment and the end of another is roughly two and a half tiles.
+	I am not touching the math that achieves this any more. If someone wants to refactor it to not cause headaches to look at, be my guest.
+	*/
+
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/moveTrain()
+	// I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS
+	if(LAZYLEN(src.segments))
+		addtimer(CALLBACK(src, .proc/moveTrain), 1)
+		for(var/obj/effect/expresstrain/seg in segments)
+			if((seg.x < 10 && seg.dir == WEST) || (seg.x > 245 && seg.dir == EAST))
+				QDEL_IN(seg, 1)
+				src.segments -= seg
+			else
+				seg.forceMove(get_step(seg, seg.dir))
+		damageTiles()
+
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/damageTiles()
+	for(var/obj/effect/expresstrain/seg in segments)
+		// I wanted to use bound_width and bound_height. For some GOD FORSAKEN REASON, they don't work. Welcome to hell.
+		var/list/coveredTurfs = list()
+		for(var/i = 0, i < 5, i++)
+			for(var/j = 0, j < 4, j++)
+				var/turf/T = locate(seg.x + i, seg.y + j, seg.z)
+				coveredTurfs |= T
+		for(var/turf/T in coveredTurfs)
+			for(var/mob/living/M in T.contents)
+				if(M in src.damaged)
+					continue
+				src.damaged += M
+				if(!seg.noise && seg.icon_state == "expressengine_1") // choo choo
+					if(rand())
+						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_horn.ogg', 100, 0, 40)
+					else
+						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
+					seg.noise = 1
+				M.apply_damage(400, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
