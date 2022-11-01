@@ -123,3 +123,27 @@
 	..()
 	animate(src, alpha = 0, time = 20 SECONDS)
 	QDEL_IN(src, 20 SECONDS)
+
+/obj/effect/expresstrain
+	name = "Express Train to Hell"
+	desc = "Oh no."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "expressengine_2"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/list/damaged = list()
+	animate_movement = SLIDE_STEPS
+	var/datum/looping_sound/expresstrain/soundloop
+	var/clickety = 0
+	var/noise = 0
+
+/obj/effect/expresstrain/Moved()
+	if(icon_state != "expressengine_1")
+		return ..()
+	if(clickety == 21)
+		playsound(get_turf(src), 'sound/abnormalities/expresstrain/express_move_loop.ogg', 100, 0, 20)
+		clickety = 0
+	clickety += 1
+	return ..()

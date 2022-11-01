@@ -209,7 +209,7 @@
 							)
 
 /obj/item/gun/ego_gun/pistol/laststop
-	name = "magic pistol"
+	name = "last stop"
 	desc = "There are no clocks to alert the arrival times."
 	icon_state = "laststop"
 	inhand_icon_state = "laststop"

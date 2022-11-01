@@ -231,3 +231,24 @@
 	<h4>White Resistance:</h4> Normal	<br>
 	<h4>Black Resistance:</h4> Immune	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
+
+//Express Train to Hell
+/obj/item/paper/fluff/info/waw/express
+	name = "T-09-86"
+	info = {"<h1><center>T-09-86</center></h1>	<br>
+	Name : Express Train to Hell	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 4	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- Every one minute, one of the lights on top of the abnormality lit and its counter decreased by 1.	<br>
+	- When a work was initiated with lights on, all lights were turned off and the success rate was increased.	<br>
+	- When a work was initiated with 1 or 2 lights on, NAME was healed. When a work was initiated with 3 or 4 lights on, many employees were healed.	<br>
+	- When one minute was allowed to pass while all 4 lights were on, all lights turned off on their own, and a train was summoned.	<br>
+	- The train deals massive BLACK damage to all it impacts on its direct horizontal path through the facility.	<br>
+	<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Low<br> "}
