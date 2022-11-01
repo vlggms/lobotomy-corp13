@@ -26,7 +26,7 @@
 		/datum/ego_datum/weapon/laststop
 		)
 
-	var/meltdown_tick = 5 SECONDS
+	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer
 	var/lightscount = 0
 	var/list/tickets = list()
