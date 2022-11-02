@@ -273,6 +273,10 @@
 		var/mob/living/carbon/human/victem = L
 		if(istype(victem, /mob/living/simple_animal/hostile/abnormality/snow_whites_apple) || ("pink_midnight" in victem.faction))
 			return
+		if(istype(victem, /mob/living/simple_animal/hostile/abnormality/scaredy_cat)) //scardy cat consideration?
+			var/mob/living/simple_animal/hostile/abnormality/scaredy_cat/catally
+			if(catally.friend == /mob/living/simple_animal/hostile/abnormality/snow_whites_apple)
+				return
 		if(victem.stat != DEAD)
 			L.adjustBlackLoss(30)
 			new /obj/effect/temp_visual/vinespike(get_turf(L))
