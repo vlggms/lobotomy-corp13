@@ -433,3 +433,46 @@
 	user.update_icon_state()
 	..()
 	force = initial(force)
+
+/obj/item/ego_weapon/pleasure
+	name = "pleasure"
+	desc = "If the goal of life is happiness, does it really matter how we get it?"
+	special = "If you hit yourself with this weapon, it will deal additional damage proportional to your missing sanity for 20 seconds. this weapon deals armor piercing white damage to you."
+	icon_state = "pleasure"
+	force = 30
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = "slash"
+	attack_verb_simple = "slash"
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/happy = FALSE
+
+/obj/item/ego_weapon/pleasure/attack(mob/living/M, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	var/missing_sanity = 0
+	var/original_force = force
+	if(M == user && !happy && istype(user))
+		var/mob/living/carbon/human/H = user
+		var/justice_mod = 1 + (get_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
+		H.adjustSanityLoss(-(force * justice_mod)) //we artificially inflict the justice + force damage so it bypass armor. the sanity damage should always feel like a gamble even with armor.
+		missing_sanity = (1 - (H.sanityhealth / H.maxSanity)) * 40 //the weapon gets 40% of your missing % of sanity as force so 90% missing sanity means +36 force.
+		force = 0
+		happy = TRUE
+		icon_state = "pleasure_active"
+		to_chat(H, "<span class='notice'>The thorns start secreting some strange substance.</span>")
+		playsound(H, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 50, FALSE, 4)
+		playsound(H, 'sound/weapons/bladeslice.ogg', 50, FALSE, 4)
+		addtimer(CALLBACK(src, .proc/Withdrawal), 20 SECONDS)
+	..()
+	force = round(missing_sanity + original_force)
+
+/obj/item/ego_weapon/pleasure/proc/Withdrawal(mob/living/M, mob/living/user)
+	playsound(user, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 50, FALSE, 4)
+	to_chat(user, "<span class='notice'>The [src] is returning back to normal.</span>")
+	icon_state = "pleasure"
+	happy = FALSE
+	force = 30

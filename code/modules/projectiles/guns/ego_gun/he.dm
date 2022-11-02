@@ -32,3 +32,14 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
+
+/obj/item/gun/ego_gun/galaxy
+	name = "galaxy"
+	desc = "A shimmering wand."
+	icon_state = "galaxy"
+	special = "This weapon homes in on a random target within 15 metres.	\
+			WARNING: This feature is not accurate."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
+	fire_delay = 11
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 70
