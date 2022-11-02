@@ -131,6 +131,7 @@
 
 /datum/ego_datum/weapon/stem
 	item_path = /obj/item/ego_weapon/stem
+	cost = 50
 
 // Express Train to Hell - Good Intentions & Last Stop
 /datum/ego_datum/armor/intentions
