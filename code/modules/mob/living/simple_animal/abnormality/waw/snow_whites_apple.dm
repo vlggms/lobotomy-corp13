@@ -233,8 +233,7 @@
 		var/mob/living/carbon/human/lonely = L
 		var/obj/item/trimming = lonely.get_active_held_item()
 		var/brooch = lonely.ego_gift_list[BROOCH]
-		var/broochrefine = "[brooch]"
-		if(broochrefine == "Green Stem")
+		if(istype(brooch, /datum/ego_gifts/stem))
 			suiter_reaction(lonely)
 			return
 		if(!isnull(trimming))
