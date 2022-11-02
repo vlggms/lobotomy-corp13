@@ -1,11 +1,11 @@
 /mob/living/simple_animal/hostile/abnormality/ppodae
 	name = "Ppodae"
 	desc = "The Goodest Boy in the World"
-	icon = 'icons/mob/ppodae.dmi'
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
-	maxHealth = 400 //fast but low hp abno
-	health = 400
+	maxHealth = 550 //fast but low hp abno
+	health = 550
 	threat_level = TETH_LEVEL
 	move_to_delay = 1
 	faction = list("hostile")
@@ -71,7 +71,7 @@
 	var/turf/middle_line = list()
 	switch(dir_to_target)
 		if(EAST)
-			middle_line = getline(get_step(source_turf, EAST), get_ranged_target_turf(source_turf, EAST, smash_length))
+			middle_line = getline(source_turf, get_ranged_target_turf(source_turf, EAST, smash_length))
 			for(var/turf/T in middle_line)
 				if(T.density)
 					break
@@ -88,7 +88,7 @@
 						continue
 					area_of_effect += U
 		if(WEST)
-			middle_line = getline(get_step(source_turf, WEST), get_ranged_target_turf(source_turf, WEST, smash_length))
+			middle_line = getline(source_turf, get_ranged_target_turf(source_turf, WEST, smash_length))
 			for(var/turf/T in middle_line)
 				if(T.density)
 					break
@@ -105,7 +105,7 @@
 						continue
 					area_of_effect += U
 		if(SOUTH)
-			middle_line = getline(get_step(source_turf, SOUTH), get_ranged_target_turf(source_turf, SOUTH, smash_length))
+			middle_line = getline(source_turf, get_ranged_target_turf(source_turf, SOUTH, smash_length))
 			for(var/turf/T in middle_line)
 				if(T.density)
 					break
@@ -122,7 +122,7 @@
 						continue
 					area_of_effect += U
 		if(NORTH)
-			middle_line = getline(get_step(source_turf, NORTH), get_ranged_target_turf(source_turf, NORTH, smash_length))
+			middle_line = getline(source_turf, get_ranged_target_turf(source_turf, NORTH, smash_length))
 			for(var/turf/T in middle_line)
 				if(T.density)
 					break
@@ -139,12 +139,17 @@
 						continue
 					area_of_effect += U
 		else
-			return
+			for(var/turf/T in view(1, src))
+				if (T.density)
+					break
+				if (T in area_of_effect)
+					continue
+				area_of_effect |= T
 	if (!LAZYLEN(area_of_effect))
 		return
 	can_act = FALSE
 	dir = dir_to_target
-	var/smash_damage = rand(6, 10)
+	var/smash_damage = rand(8, 14)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/L in T)
