@@ -309,8 +309,8 @@
 	expanding_head.layer = -BODY_FRONT_LAYER
 	expanding_head.plane = FLOAT_PLANE
 	expanding_head.mouse_opacity = 0
-	expanding_head.vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_DIR //FOR SOME REASON THE DIRECTION OF THE HEAD WON'T UPDATE SO INSTEAD WE KEEP THIS CREEPY HEAD THAT ALWAYS LOOKS FORWARD
-	expanding_head.add_overlay(head.get_limb_icon(TRUE, TRUE))
+	expanding_head.vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_DIR
+	expanding_head.add_overlay(head.get_limb_icon(TRUE, TRUE, TRUE))
 	addict.vis_contents += expanding_head
 	addict.managed_vis_overlays += expanding_head
 	animate(expanding_head, transform = matrix()*2, color = "#FF0000", pixel_y = expanding_head.pixel_y - 5, time = 2 SECONDS) //you can actually still somewhat see the head under it but the overlay should hide it well enough
