@@ -142,8 +142,12 @@
 /obj/effect/expresstrain/Moved()
 	if(icon_state != "expressengine_1")
 		return ..()
-	if(clickety == 21)
+	if(clickety == 22)
 		playsound(get_turf(src), 'sound/abnormalities/expresstrain/express_move_loop.ogg', 100, 0, 20)
 		clickety = 0
 	clickety += 1
+	if(clickety % 2)
+		var/obj/effect/particle_effect/smoke/s = new(locate(src.x, src.y + 2, src.z))
+		if(dir == EAST)
+			s.x += 3
 	return ..()

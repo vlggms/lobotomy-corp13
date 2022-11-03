@@ -99,24 +99,8 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/callTrain()
 	for(var/mob/living/M in damaged)
 		damaged -= M
-	var/aimpoint = 0
-	var/count = 0
-	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
-		if(H.z != src.z)
-			continue
-		if(H in tickets) // YOUR TICKETS, SIR
-			for(var/i = 0, i < 4, i++)
-				aimpoint += H.y
-				count += 1
-			tickets -= H
-		else
-			aimpoint += H.y
-			count += 1
-	aimpoint /= count
-	if(!aimpoint)
-		aimpoint = src.y
-	aimpoint -= 1
-	fireTrain(aimpoint, pick(EAST, WEST))
+	var/turf/aimTurf = pick(GLOB.department_centers)
+	fireTrain(aimTurf.y, pick(EAST, WEST))
 
 // This one actually makes and fires the train. I'll probably improve this so you can set a starting X as well sometime, or maybe adjust the number of segments...
 
@@ -171,6 +155,7 @@
 				src.segments -= seg
 			else
 				seg.forceMove(get_step(seg, seg.dir))
+				seg.forceMove(get_step(seg, seg.dir))
 		damageTiles()
 
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/damageTiles()
@@ -193,3 +178,12 @@
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
 				M.apply_damage(400, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				var/atom/throw_target = locate(M)
+				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
+				if(!M.anchored)
+					M.throw_at(throw_target, rand(1, 2), 2, src)
+				if(iscarbon(M))
+					var/mob/living/carbon/C = M
+					for(var/obj/item/bodypart/part in C.bodyparts)
+						if(part.dismemberable && prob(20) && part.body_part != HEAD && part.body_part != CHEST && C.stat == DEAD)
+							part.dismember()
