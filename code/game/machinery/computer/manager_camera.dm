@@ -55,6 +55,7 @@
 
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT, .proc/on_shift_click)
+	RegisterSignal(user, COMSIG_MOB_MIDDLECLICKON, .proc/managerbolt)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
@@ -67,6 +68,7 @@
 /obj/machinery/computer/camera_advanced/manager/remove_eye_control(mob/living/user)
 	UnregisterSignal(user, COMSIG_MOB_CTRL_CLICKED)
 	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT)
+	UnregisterSignal(user, COMSIG_MOB_MIDDLECLICKON)
 	..()
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
@@ -79,6 +81,12 @@
 	if(isabnormalitymob(clicked_atom))
 		clickedabno(source, clicked_atom)
 		return
+
+/obj/machinery/computer/camera_advanced/manager/proc/managerbolt(mob/living/user, obj/machinery/door/airlock/A)
+	if(A.locked)
+		A.unbolt()
+	else
+		A.bolt()
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
 	if(ammo >= 1)
@@ -162,6 +170,7 @@
 
 /datum/action/innate/door_bolt
 	name = "Bolt Airlock"
+	desc = "Hotkey = Middle Mouse Button."
 	icon_icon = 'icons/mob/actions/actions_construction.dmi'
 	button_icon_state = "airlock_select"
 
