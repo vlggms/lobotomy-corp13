@@ -70,6 +70,11 @@
 	desc = "intentions casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_intention
 
+/obj/item/ammo_casing/caseless/ego_aroma
+	name = "aroma casing"
+	desc = "aroma casing"
+	projectile_type = /obj/projectile/ego_bullet/ego_aroma
+
 /obj/item/ammo_casing/caseless/ego_assonance
 	name = "assonance casing"
 	desc = "assonance casing."

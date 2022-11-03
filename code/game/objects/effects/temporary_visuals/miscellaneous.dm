@@ -781,3 +781,7 @@
 	icon_state = "markdeath"
 	duration = 13
 
+/obj/effect/temp_visual/alriune_attack
+	name = "petals"
+	icon_state = "alriune_attack"
+	duration = 6

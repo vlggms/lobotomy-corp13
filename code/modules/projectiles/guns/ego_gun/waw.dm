@@ -229,6 +229,20 @@
 							PRUDENCE_ATTRIBUTE = 60
 	)
 
+/obj/item/gun/ego_gun/aroma
+	name = "faint aroma"
+	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
+			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
+	icon_state = "aroma"
+	inhand_icon_state = "aroma"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_aroma
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 25
+	fire_sound = 'sound/weapons/ego/crossbow.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
+	)
+
 /obj/item/gun/ego_gun/assonance
 	name = "assonance"
 	desc = "However, the world is more than simply warmth and light. The sky exists, for so does the land; darkness exists, \
