@@ -154,9 +154,11 @@
 				break
 			if(do_work(work_chance))
 				success_boxes++
+				datum_reference.current.worktick_success(user)
 			else
 				datum_reference.current.worktick_failure(user)
 			total_boxes++
+			datum_reference.current.worktick(user)
 		else
 			if(!CheckStatus(user)) // No punishment if the thing is already breached or any other issue is prevelant.
 				break
