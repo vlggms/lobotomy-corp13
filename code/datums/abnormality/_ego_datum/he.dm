@@ -99,3 +99,22 @@
 /datum/ego_datum/weapon/courage
 	item_path = /obj/item/ego_weapon/courage
 	cost = 35
+
+//Porccubus - Pleasure
+/datum/ego_datum/armor/pleasure
+	item_path = /obj/item/clothing/suit/armor/ego_gear/pleasure
+	cost = 35
+
+/datum/ego_datum/weapon/pleasure
+	item_path = /obj/item/ego_weapon/pleasure
+	cost = 35
+	
+//Child of the Galaxy - Galaxy
+/datum/ego_datum/armor/galaxy
+	item_path = /obj/item/clothing/suit/armor/ego_gear/galaxy
+	cost = 35
+
+/datum/ego_datum/weapon/galaxy
+	item_path = /obj/item/gun/ego_gun/galaxy
+	cost = 35
+

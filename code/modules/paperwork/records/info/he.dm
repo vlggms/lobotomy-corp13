@@ -335,3 +335,57 @@
 	<h4>White Resistance:</h4> Fatal	<br>
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+
+//Porccubus
+/obj/item/paper/fluff/info/he/porccubus
+	name = "O-02-98"
+	info = {"<h1><center>O-02-98</center></h1>    <br>
+	Name : Porccubus    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 2    <br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
+	- When the work result was Bad, the Qliphoth counter lowered.   <br>
+	- When the work result was good, the Qliphoth counter increased.    <br>
+	- When employees with Temperance Level 3 or lower had a Good work result, They were drugged.<br>
+	- The same employee could get another dose of the drug from porccubus even if their temperance was above 80.<br>
+	- The drug greatly increased the attribute and healed their sanity periodically, however over time withdrawal resulted in lowered attributes and eventually death. <br>
+	- When Porccubus drove someone insane by damaging them directly during work or a breach, they were drugged beyond saving. <br>
+	- When the Qliphoth Counter reached 0, Porccubus rooted itself to a random part of the facility. <br>
+	- Porccubus was immune to ranged weaponry but was mostly unable to move apart from some periodical "jumps" toward its targets. <br>
+
+	<br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> Very High	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}
+
+	
+//Child of the Galaxy
+/obj/item/paper/fluff/info/he/galaxy_child
+	name = "O-01-55"
+	info = {"<h1><center>O-01-55</center></h1>    <br>
+	Name : Child of the Galaxy    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 5    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- Successful work completion will cause a healing Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of people holding a token.    <br>
+	- The Qliphoth Counter increased when NAME completed their work with the Token    <br>
+	- When an employee with Child of the Galaxy’s Token of Friendship died, the Qliphoth Counter lowered by 4.    <br>
+	- When the Qliphoth Counter reached 0, all employees with the Token took massive black damage    <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
