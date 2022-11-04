@@ -26,6 +26,11 @@
 	command_cooldown = world.time
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/recharge_meltdown)
 
+/obj/machinery/computer/camera_advanced/manager/examine(mob/user)
+	. = ..()
+	if(ammo)
+		. += "<span class='notice'>It has [ammo] BULLETS loaded.</span>"
+
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user)
 	..()
 
@@ -108,7 +113,7 @@
 				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 				return
 		ammo--
-		to_chat(owner, "<span class='warning'>BLAM.</span>")
+		to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
 		return
 	if(ammo <= 0)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
@@ -122,7 +127,7 @@
 		if(bullettype == 7)
 			ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
 			ammo--
-			to_chat(owner, "<span class='warning'>BLAM.</span>")
+			to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
 			return
 		else
 			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
@@ -271,13 +276,13 @@
 							to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 							return
 					X.ammo--
-					to_chat(owner, "<span class='warning'>BLAM.</span>")
+					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
 					return
 			if(7)
 				for(var/mob/living/simple_animal/hostile/abnormality/ABNO in T.contents)
 					ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
 					X.ammo--
-					to_chat(owner, "<span class='warning'>BLAM.</span>")
+					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
 					return
 	if(X.ammo < 1)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
