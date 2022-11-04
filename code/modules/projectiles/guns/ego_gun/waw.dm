@@ -23,7 +23,7 @@
 	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
@@ -125,7 +125,7 @@
 	spread = 8
 	special = "This weapon fires 750 rounds per minute. \
 		This weapon has IFF capabilities."
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
@@ -151,8 +151,7 @@
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
 	fire_delay = 12
-	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
-	fire_sound_volume = 30
+	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 	)
@@ -166,7 +165,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
 	weapon_weight = WEAPON_HEAVY
 	spread = 40
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
@@ -180,7 +179,7 @@
 	special = "This weapon fires IFF bullets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
