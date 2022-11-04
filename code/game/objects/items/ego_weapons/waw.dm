@@ -35,7 +35,7 @@
 	name = "sword sharpened with tears"
 	desc = "A sword suitable for swift thrusts. \
 	Even someone unskilled in dueling can rapidly puncture an enemy using this E.G.O with remarkable agility."
-	special = "This weapon has a combo system. \
+	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "despair"
 	force = 20
@@ -50,18 +50,30 @@
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
+	var/combo_on = TRUE
+
+/obj/item/ego_weapon/despair/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will no longer perform a finisher.</span>")
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will now perform a finisher.</span>")
+		combo_on =TRUE
+		return
 
 //This is like an anime character attacking like 4 times with the 4th one as a finisher attack.
 /obj/item/ego_weapon/despair/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(world.time > combo_time)
+	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
 		combo = 0
 	combo_time = world.time + combo_wait
 	if(combo==4)
 		combo = 0
 		user.changeNext_move(CLICK_CD_MELEE * 2)
-		force *= 4	// Should actually keep up with normal damage.
+		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
 		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
 	else
@@ -103,7 +115,7 @@
 	desc = "Even light forms of contraint can be considered totalitarianism"
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
-	force = 15
+	force = 13
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
@@ -115,6 +127,7 @@
 							)
 	var/charged = FALSE
 	var/meter = 0
+	var/meter_counter = 1
 
 /obj/item/ego_weapon/oppression/attack_self(mob/user)
 	if (!charged)
@@ -126,12 +139,15 @@
 /obj/item/ego_weapon/oppression/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(meter != 50)
-		meter += 1
+	meter += meter_counter
+	meter_counter += 1
+
+	meter = min(meter, 60)
 	..()
 	if(charged == TRUE)
 		charged = FALSE
 		force = 15
+		meter_counter = 0
 
 /obj/item/ego_weapon/remorse
 	name = "remorse"
@@ -139,7 +155,9 @@
 	Any crack, no matter how small, will be pried open by this E.G.O."
 	special = "This weapon hits slower than usual."
 	icon_state = "remorse"
-	special = "This weapon marks targets for death. Use the weapon in hand to attack all marked targets at a range."
+	special = "Use this weapon in hand to change it's mode. \
+		The Nail mode marks targets for death. \
+		The Hammer mode deals bonus damage to all marked."
 	force = 30	//Does more damage later.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
@@ -152,23 +170,37 @@
 							)
 	var/list/targets = list()
 	var/ranged_damage = 60	//Fuckload of white on ability. Be careful!
+	var/mode = FALSE		//False for nail, true for hammer
 
 /obj/item/ego_weapon/remorse/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(!(M in targets))
-		targets+= M
+
+	if(!mode)
+		if(!(M in targets))
+			targets+= M
+
+	if(mode)
+		if(M in targets)
+			playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
+			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/remorse(get_turf(M))
+			targets -= M
 	..()
 
 /obj/item/ego_weapon/remorse/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
-	if(do_after(user, 10))
-		for(var/mob/living/M in targets)
-			playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
-			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			new /obj/effect/temp_visual/remorse(get_turf(M))
+	if(mode)	//Turn to nail
+		mode = FALSE
+		to_chat(user,"<span class='warning'>You swap to nail mode, clearing all marks.</span>")
 		targets = list()
+		return
+
+	if(!mode)	//Turn to hammer
+		mode = TRUE
+		to_chat(user,"<span class='warning'>You swap to hammer mode.</span>")
+		return
 
 /obj/item/ego_weapon/mini/crimson
 	name = "crimson claw"

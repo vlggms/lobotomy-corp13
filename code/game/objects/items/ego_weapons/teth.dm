@@ -106,13 +106,26 @@
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon attacks very fast."
+	special = "This weapon attacks very fast. Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
-	force = 6
+	force = 7
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	var/dodgelanding
+
+/obj/item/ego_weapon/mini/wrist/attack_self(mob/living/carbon/user)
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
 /obj/item/ego_weapon/regret
 	name = "regret"
