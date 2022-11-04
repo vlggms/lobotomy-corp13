@@ -282,6 +282,14 @@
 /mob/living/simple_animal/hostile/abnormality/proc/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	return
 
+// Additional effect on each work tick, whether successful or not
+/mob/living/simple_animal/hostile/abnormality/proc/worktick(mob/living/carbon/human/user)
+	return
+
+// Additional effect on each individual work tick success
+/mob/living/simple_animal/hostile/abnormality/proc/worktick_success(mob/living/carbon/human/user)
+	return
+
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/worktick_failure(mob/living/carbon/human/user)
 	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
