@@ -27,26 +27,43 @@
 	gift_message = "Welcome to your very own Wonderland~"
 
 	max_boxes = 10
-	var/cake = 5	//How many cake charges are there
+	var/cake = 5	//How many cake charges are there (4)
 
 /mob/living/simple_animal/hostile/abnormality/bottle/attempt_work(mob/living/carbon/human/user, work_type)
-	if(cake==0)
+	if(cake)
+		if(work_type == "Drink")
+			return FALSE
+	else
 		if(work_type == "Dining")
 			return FALSE
 		if(work_type == "Drink")
-			return TRUE
-	if(work_type == "Drink")
-		return FALSE
+			//it's just work speed
+			var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
+			to_chat(user, "<span class='warning'>You begin to drink the water...</span>")
+			datum_reference.working = TRUE
+			if(!do_after(user, consume_speed * max_boxes, target = user))
+				to_chat(user, "<span class='warning'>You decide to not drink the water.</span>")
+				datum_reference.working = FALSE
+				return null
+			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
+			user.apply_status_effect(STATUS_EFFECT_TEARS)
+			datum_reference.working = FALSE
+			return null
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/bottle/work_complete(mob/living/carbon/human/user, work_type, pe)
-	if(work_type == "Dining")
+/mob/living/simple_animal/hostile/abnormality/bottle/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	if(work_type == "Dining" && !canceled)
 		cake -= 1		//Eat some cake
-		if(cake == 0)
+		if(cake > 0)
+			user.adjustBruteLoss(-500) // It heals you to full if you eat it
+			to_chat(user, "<span class='nicegreen'>You consume the cake. Delicious!</span>")
+			icon_state = "bottle2"	//cake looks eaten
+		else
 			//Drowns you like Wellcheers does, so I mean the code checks out
 			for(var/turf/open/T in view(7, src))
 				new /obj/effect/temp_visual/water_waves(T)
 			to_chat(user, "<span class='userdanger'>The room is filling with water! You're going to drown!</span>")
+			playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
 			icon_state = "bottle3"	//cake all gone
 
 			var/location = get_turf(user)
@@ -55,16 +72,7 @@
 			user.AdjustSleeping(10 SECONDS)
 			animate(user, alpha = 0, time = 2 SECONDS)
 			QDEL_IN(user, 3.5 SECONDS)
-
-		if(cake > 0)
-			user.adjustBruteLoss(-500) // It heals you to full if you eat it
-			icon_state = "bottle2"	//cake looks eaten
-
-	if(work_type == "Drink")
-		user.apply_status_effect(STATUS_EFFECT_TEARS)
-
 	return ..()
-
 
 /datum/status_effect/tears
 	id = "tears"
@@ -74,14 +82,14 @@
 
 /atom/movable/screen/alert/status_effect/tears
 	name = "Tearful"
-	desc = "You feel weakened, for a short period of time."
-	icon_state = "regenerative_core"
+	desc = "You are weakened for a short period of time."
+	icon_state = "tearful"
 
 /datum/status_effect/tears/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(owner, "<span class='userdanger'>You feel your strength sapping away...</span>")
+		to_chat(owner, "<span class='danger'>Something once important to you is gone now. You feel like crying.</span>")
 		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -20)
 		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -20)
 		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)

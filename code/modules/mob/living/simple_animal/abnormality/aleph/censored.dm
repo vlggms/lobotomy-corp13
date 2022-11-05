@@ -43,6 +43,7 @@
 		)
 
 	gift_type =  /datum/ego_gifts/censored
+	gift_message = "You feel disgusted just looking at it."
 
 	var/can_act = TRUE
 
@@ -112,8 +113,10 @@
 /mob/living/simple_animal/hostile/abnormality/censored/attempt_work(mob/living/carbon/human/user, work_type)
 	if(work_type == "Sacrifice")
 		to_chat(user, "<span class='warning'>You hesitate for a moment...</span>")
+		datum_reference.working = TRUE
 		if(!do_after(user, 3 SECONDS, target = user))
 			to_chat(user, "<span class='warning'>You decide it's not worth it.</span>")
+			datum_reference.working = FALSE
 			return null
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
@@ -122,12 +125,16 @@
 		new /obj/effect/temp_visual/censored(get_turf(src))
 		sleep(0.3 SECONDS)
 		playsound(src, 'sound/abnormalities/censored/sacrifice.ogg', 45, FALSE, 10)
-		user.death()
-		QDEL_NULL(user)
-		for(var/i = 1 to 3)
-			new /obj/effect/gibspawner/generic/silent(get_turf(src))
-			sleep(5.4)
-		datum_reference.qliphoth_change(1)
+		if(status_flags & GODMODE) //If CENSORED is still contained within this small time frame
+			datum_reference.qliphoth_change(1)
+			user.death()
+			for(var/i = 1 to 3)
+				new /obj/effect/gibspawner/generic/silent(get_turf(src))
+				sleep(5.4)
+			QDEL_NULL(user)
+		else
+			user.AdjustStun(-999) //run for your life
+		datum_reference.working = FALSE
 		return null
 	return TRUE
 
