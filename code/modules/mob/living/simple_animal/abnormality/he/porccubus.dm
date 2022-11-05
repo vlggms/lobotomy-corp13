@@ -16,8 +16,9 @@
 		ABNORMALITY_WORK_REPRESSION = 30
 			) //for some reason all its work rates are uniform through attribute levels in LC
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	ranged = TRUE
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	rapid_melee = 3 //you can withdraw out of its range very easily so it needs to be a little harder to melee it
 	work_damage_amount = 12
 	can_patrol = FALSE //it can't move anyway but why not
@@ -127,6 +128,11 @@
 		forceMove(T)
 		damage_taken = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/porccubus/OpenFire()
+	if(!target)
+		return
+	PorcDash(target)
+
 /mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount)
 	..()
 	if(amount > 0)
@@ -136,6 +142,14 @@
 //additionally, it can dash to its target every 15 seconds if it's out of range, the dash itself doesn't hurt them but it does bring porccubus into melee range
 /mob/living/simple_animal/hostile/abnormality/porccubus/CheckAndAttack()
 	if(!target)
+		return
+
+	if(targets_from && isturf(targets_from.loc) && get_dist(target, src) <= 2 && !incapacitated()) //a slightly modified check that includes people on a 2 tile radius
+		AttackingTarget()
+		return
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(mob/living/target)
+	if(!istype(target))
 		return
 	var/dist = get_dist(target, src)
 	if(dist > 2 && dash_cooldown < world.time)
@@ -147,10 +161,6 @@
 			SLEEP_CHECK_DEATH(0.8)
 		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 		dash_cooldown = world.time + dash_cooldown_time
-
-	if(targets_from && isturf(targets_from.loc) && dist <= 2 && !incapacitated()) //a slightly modified check that includes people on a 2 tile radius
-		AttackingTarget()
-		return
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H
