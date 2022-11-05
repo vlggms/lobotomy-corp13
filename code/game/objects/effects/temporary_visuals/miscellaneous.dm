@@ -228,6 +228,9 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
+/obj/effect/temp_visual/small_smoke/fixer_w
+	name = "mental smoke"
+
 /obj/effect/temp_visual/small_smoke/halfsecond
 	duration = 5
 
