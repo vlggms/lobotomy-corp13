@@ -231,7 +231,13 @@
 	if(world.time > combo_time)
 		combo = 1
 	combo_time = world.time + combo_wait
-	hitsound = "sound/abnormalities/redhood/attack_[clamp(combo, 1, 3)].ogg"
+	switch(combo)
+		if(2)
+			hitsound = 'sound/abnormalities/redhood/attack_2.ogg'
+		if(3)
+			hitsound = 'sound/abnormalities/redhood/attack_3.ogg'
+		else
+			hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	force *= (1 + (combo * 0.15))
 	user.changeNext_move(CLICK_CD_MELEE * (1 + (combo * 0.2)))
 	if(combo >= 3)
