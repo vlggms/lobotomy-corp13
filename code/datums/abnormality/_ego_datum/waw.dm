@@ -145,3 +145,12 @@
 /datum/ego_datum/weapon/laststop
 	item_path = /obj/item/gun/ego_gun/pistol/laststop
 	cost = 50
+
+// Yang - Assonance
+/datum/ego_datum/armor/assonance
+	item_path = /obj/item/clothing/suit/armor/ego_gear/assonance
+	cost = 50
+
+/datum/ego_datum/weapon/assonance
+	item_path = /obj/item/gun/ego_gun/assonance
+	cost = 50

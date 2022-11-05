@@ -173,8 +173,9 @@
 	icon_state = "brick"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
 	attribute_requirements = list(
-							INSIGHT_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
+
 
 /obj/item/clothing/suit/armor/ego_gear/pleasure
 	name = "pleasure"
@@ -191,3 +192,11 @@
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/unrequited
+	name = "unrequited love"
+	desc = "Why won't you pick me?"
+	icon_state = "unrequited"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40)	//Fuck

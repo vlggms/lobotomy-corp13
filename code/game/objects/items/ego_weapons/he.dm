@@ -79,9 +79,10 @@
 /obj/item/ego_weapon/fury
 	name = "blind fury"
 	desc = "A fancy black and white halberd with a sharp blade. Whose head will it cut off next?"
-	special = "This weapon has a slower attack speed."
+	special = "This weapon has a slower attack speed.	\
+			On kill, deal massive damage on next attack."
 	icon_state = "fury"
-	force = 45
+	force = 41
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -91,6 +92,25 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+	var/rage = FALSE
+
+/obj/item/ego_weapon/fury/attack(mob/living/target, mob/living/carbon/human/user)
+	var/living = FALSE
+	if(!CanUseEgo(user))
+		return
+	if(target.stat != DEAD)
+		living = TRUE
+	..()
+	if(force != initial(force))
+		force = initial(force)
+
+	if(target.stat == DEAD && living)
+		if(!rage)
+			to_chat(user, "<span class='userdanger'>LONG LIVE THE QUEEN!</span>")
+			rage = FALSE
+		force *= 3
+		rage = TRUE
+		living = FALSE
 
 /obj/item/ego_weapon/paw
 	name = "bear paw"

@@ -117,9 +117,6 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	projectile_piercing = PASSMOB
-	homing = TRUE
-//	var/homing_range = 15
-//	var/list/targetslist = list()
 
 /obj/projectile/ego_bullet/ego_praetorian/on_hit(atom/target, blocked = FALSE)
 	if(!ishuman(target))
@@ -129,20 +126,6 @@
 	..()
 	if(!ishuman(target))
 		qdel(src)
-
-/* Not quite ready.
-/obj/projectile/ego_bullet/ego_praetorian/Initialize()
-	..()
-	for(var/mob/living/L in livinginrange(homing_range, src))
-		if(ishuman(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	homing_target = pick(targetslist)*/
-
 
 /obj/projectile/ego_bullet/ego_magicpistol
 	name = "magic pistol"
@@ -167,3 +150,29 @@
 	damage = 145
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
+
+//Assonance, our one hitscan laser
+/obj/projectile/beam/assonance
+	name = "assonance"
+	icon_state = "omnilaser"
+	hitsound = null
+	damage = 35
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	hitscan = TRUE
+
+	//CHANGE THESE OUT FOR WHITE AS SOON AS YANG GETS MERGED!
+	muzzle_type = /obj/effect/projectile/muzzle/laser/emitter
+	tracer_type = /obj/effect/projectile/tracer/laser/emitter
+	impact_type = /obj/effect/projectile/impact/laser/emitter
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+/obj/projectile/ego_bullet/ego_feather
+	name = "feather"
+	icon_state = "lava"
+	damage = 40
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	homing = TRUE
+	speed = 1.5

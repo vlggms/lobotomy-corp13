@@ -154,7 +154,7 @@
 	icon_state = "throne"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)
 	attribute_requirements = list(
-							INSIGHT_ATTRIBUTE = 60)
+							PRUDENCE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/intentions
 	name = "good intentions"
@@ -171,4 +171,22 @@
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/assonance
+	name = "Assonance"
+	desc = "What is good if there is no evil?"
+	icon_state = "assonance"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/aroma
+	name = "Faint Aroma"
+	desc = "It was adored by people, its pupils soulful."
+	icon_state = "aroma"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
 							)
