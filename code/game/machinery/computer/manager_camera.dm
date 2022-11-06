@@ -177,7 +177,7 @@
 				new /obj/effect/temp_visual/commandFightB(get_turf(T))
 			else
 				to_chat(C, "<span class='warning'>CALIBRATION ERROR.</span>")
-	commandtimer()
+		commandtimer()
 
 /obj/machinery/computer/camera_advanced/manager/proc/commandtimer()
 	command_cooldown = world.time + command_delay
@@ -398,7 +398,7 @@
 
 			else
 				to_chat(owner, "<span class='warning'>CALIBRATION ERROR.</span>")
-	X.commandtimer()
+		X.commandtimer()
 
 // Temp Effects
 

@@ -200,6 +200,8 @@
 	desc = "A device that projects holographic images from a distance."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget3"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
 	var/commandtype = 1
 	var/commanddelay = 1.5 SECONDS
 	var/cooldown = 0
@@ -269,6 +271,8 @@
 	desc = "A template for a battery powered tool, the battery compartment is screwed shut in order to prevent people from eating the batteries."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
 	force = 5
 	var/default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
 	var/opened = FALSE
@@ -345,7 +349,7 @@
 				update_icon()
 				return
 			else
-				to_chat(user, "<span class='warning'>[src] already has \a [cell] installed!</span>")
+				to_chat(user, "<span class='warning'>[src] already has a [cell] installed!</span>")
 				return
 
 	if(cantbeused(user))
@@ -382,7 +386,7 @@
 	//Detector
 /obj/item/powered_gadget/abnormalitydetector
 	name = "Enkaphlin Drain Monitor"
-	desc = "This device detects abnormalities by taking advantage of their siphon of Enkaphlin."
+	desc = "This device detects abnormalities by taking advantage of their siphon of Enkaphlin. Use in hand to activate."
 	icon_state = "gadget2_low"
 	default_icon = "gadget2" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 1000 //10 uses
@@ -420,7 +424,7 @@
 	//Ordeal detector
 /obj/item/powered_gadget/ordealdetector
 	name = "R-corp Keen Sense Rangefinder" //placeholder name
-	desc = "Through the joint research of L and R corp this device can detect the proximity of hostile creatures without having employees or abnormalities caught in its range."
+	desc = "Through the joint research of L and R corp this device can detect the proximity of hostile creatures without having employees or abnormalities caught in its range. Use in hand to activate."
 	icon_state = "gadget2r-low"
 	default_icon = "gadget2r" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 1000  // 10 uses
@@ -561,6 +565,7 @@
 	desc = "A collection of tools used for scanning the physical form of an entity."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	color = "gold"
 	var/check1a
 	var/check1b
@@ -578,7 +583,7 @@
 		check1b = measuredamage(mon.damage_coeff[WHITE_DAMAGE])
 		check1c = measuredamage(mon.damage_coeff[BLACK_DAMAGE])
 		check1d = measuredamage(mon.damage_coeff[PALE_DAMAGE])
-		M.visible_message("<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+		to_chat(M, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 /obj/item/deepscanner/proc/measuredamage(amount)
