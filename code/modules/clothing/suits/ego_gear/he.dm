@@ -113,7 +113,7 @@
 	name = "harmony"
 	desc = "Oh, the sound is so beautiful."
 	icon_state = "harmony"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 10)
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
