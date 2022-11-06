@@ -201,7 +201,16 @@
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget3"
 	var/commandtype = 1
+	var/commanddelay = 1.5 SECONDS
 	var/cooldown = 0
+	var/static/list/commandtypes = typecacheof(list(
+		/obj/effect/temp_visual/commandMove,
+		/obj/effect/temp_visual/commandWarn,
+		/obj/effect/temp_visual/commandGaurd,
+		/obj/effect/temp_visual/commandHeal,
+		/obj/effect/temp_visual/commandFightA,
+		/obj/effect/temp_visual/commandFightB
+		))
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
@@ -232,6 +241,10 @@
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(cooldown <= world.time)
+		for(var/obj/effect/temp_visual/V in range(get_turf(target), 0))
+			if(is_type_in_typecache(V, commandtypes))
+				qdel(V)
+				return
 		switch(commandtype)
 			if(1)
 				new /obj/effect/temp_visual/commandMove(get_turf(target))
@@ -247,7 +260,7 @@
 				new /obj/effect/temp_visual/commandFightB(get_turf(target))
 			else
 				to_chat(user, "<span class='warning'>CALIBRATION ERROR.</span>")
-		cooldown = world.time + 10
+		cooldown = world.time + commanddelay
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 //Gadgets require batteries or fuel to function!

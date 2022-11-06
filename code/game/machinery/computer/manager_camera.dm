@@ -12,8 +12,16 @@
 	var/maxAmmo = 5
 	var/bullettype = 0
 	var/commandtype = 1
-	var/command_delay = 0.2 SECONDS
+	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
+	var/static/list/commandtypes = typecacheof(list(
+		/obj/effect/temp_visual/commandMove,
+		/obj/effect/temp_visual/commandWarn,
+		/obj/effect/temp_visual/commandGaurd,
+		/obj/effect/temp_visual/commandHeal,
+		/obj/effect/temp_visual/commandFightA,
+		/obj/effect/temp_visual/commandFightB
+		))
 
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
@@ -150,6 +158,10 @@
 	if(command_cooldown <= world.time)
 		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		playsound(get_turf(T), 'sound/machines/terminal_success.ogg', 8, 3, 3)
+		for(var/obj/effect/temp_visual/V in range(T, 0))
+			if(is_type_in_typecache(V, commandtypes))
+				qdel(V)
+				return
 		switch(commandtype)
 			if(1)
 				new /obj/effect/temp_visual/commandMove(get_turf(T))
@@ -169,6 +181,7 @@
 
 /obj/machinery/computer/camera_advanced/manager/proc/commandtimer()
 	command_cooldown = world.time + command_delay
+	return
 
 /obj/machinery/computer/camera_advanced/manager/proc/alterbullettype(amount)
 	bullettype = bullettype + amount
@@ -367,16 +380,22 @@
 		switch(X.commandtype)
 			if(1)
 				new /obj/effect/temp_visual/commandMove(get_turf(E))
+
 			if(2)
 				new /obj/effect/temp_visual/commandWarn(get_turf(E))
+
 			if(3)
 				new /obj/effect/temp_visual/commandGaurd(get_turf(E))
+
 			if(4)
 				new /obj/effect/temp_visual/commandHeal(get_turf(E))
+
 			if(5)
 				new /obj/effect/temp_visual/commandFightA(get_turf(E))
+
 			if(6)
 				new /obj/effect/temp_visual/commandFightB(get_turf(E))
+
 			else
 				to_chat(owner, "<span class='warning'>CALIBRATION ERROR.</span>")
 	X.commandtimer()
@@ -386,29 +405,30 @@
 /obj/effect/temp_visual/commandMove
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Move_here_wagie"
-	duration = 40
+	duration = 150 		//15 Seconds
 
 /obj/effect/temp_visual/commandWarn
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Watch_out_wagie"
-	duration = 40
+	duration = 150
 
 /obj/effect/temp_visual/commandGaurd
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Guard_this_wagie"
-	duration = 40
+	duration = 150
 
 /obj/effect/temp_visual/commandHeal
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Heal_this_wagie"
-	duration = 40
+	duration = 150
 
 /obj/effect/temp_visual/commandFightA
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Fight_this_wagie1"
-	duration = 40
+	duration = 150
 
 /obj/effect/temp_visual/commandFightB
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	icon_state = "Fight_this_wagie2"
-	duration = 40
+	duration = 150
+
