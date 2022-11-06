@@ -12,7 +12,13 @@
 	name = "galaxy casing"
 	desc = "A galaxy casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_galaxy
-	
+
+/obj/item/ammo_casing/caseless/ego_galaxy/homing
+	name = "galaxy homing casing"
+	desc = "A galaxy casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_galaxy/homing
+
+
 /obj/item/ammo_casing/caseless/ego_unrequited
 	name = "unrequited casing"
 	desc = "An unrequited casing."
