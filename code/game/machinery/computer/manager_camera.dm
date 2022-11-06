@@ -66,6 +66,7 @@
 	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
 		ammo++
 		to_chat(user, "<span class='notice'>You load [O] in to the [src]. It now has [ammo] bullets stored.</span>")
+		playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
 		qdel(O)
 		return
 	..()
@@ -98,9 +99,9 @@
 		var/mob/living/carbon/human/H = employee
 		switch(bullettype)
 			if(1)
-				H.adjustBruteLoss(-10)
+				H.adjustBruteLoss(-0.15*H.maxHealth)
 			if(2)
-				H.adjustSanityLoss(10)
+				H.adjustSanityLoss(0.15*H.maxSanity)
 			if(3)
 				H.apply_status_effect(/datum/status_effect/interventionshield)
 			if(4)
@@ -113,9 +114,12 @@
 				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 				return
 		ammo--
+		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
 		return
 	if(ammo <= 0)
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
 	else
 		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
@@ -127,12 +131,15 @@
 		if(bullettype == 7)
 			ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
 			ammo--
+			playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+			playsound(get_turf(ABNO), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 			to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
 			return
 		else
 			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 			return
 	if(ammo <= 0)
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
 	else
 		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
@@ -141,6 +148,8 @@
 /obj/machinery/computer/camera_advanced/manager/proc/on_shift_click(mob/living/user, turf/open/T)
 	var/mob/living/C = user
 	if(command_cooldown <= world.time)
+		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
+		playsound(get_turf(T), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		switch(commandtype)
 			if(1)
 				new /obj/effect/temp_visual/commandMove(get_turf(T))
@@ -170,6 +179,7 @@
 	return
 
 /obj/machinery/computer/camera_advanced/manager/proc/recharge_meltdown()
+	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
 	maxAmmo += 0.25
 	ammo = maxAmmo
 
@@ -200,6 +210,7 @@
 
 /datum/action/innate/cyclemanagerbullet/Activate()
 	var/obj/machinery/computer/camera_advanced/manager/X = target
+	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
 	switch(X.bullettype)
 		if(0) //if 0 change to 1
 			to_chat(owner, "<span class='notice'>HP-N BULLET INITIALIZED.</span>")
@@ -258,12 +269,12 @@
 	if(X.ammo >= 1)
 		switch(X.bullettype)
 			if(1 to 6)
-				for(var/mob/living/carbon/human/H in T.contents)
+				for(var/mob/living/carbon/human/H in range(0, T))
 					switch(X.bullettype)
 						if(1)
-							H.adjustBruteLoss(-10)
+							H.adjustBruteLoss(-0.15*H.maxHealth)
 						if(2)
-							H.adjustSanityLoss(10)
+							H.adjustSanityLoss(0.15*H.maxSanity)
 						if(3)
 							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
 						if(4)
@@ -276,6 +287,8 @@
 							to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 							return
 					X.ammo--
+					playsound(get_turf(C), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+					playsound(get_turf(T), 'ModularTegustation/Tegusounds/weapons/guns/manager_shock.ogg', 10, 0, 3)
 					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
 					return
 			if(7)
@@ -286,6 +299,7 @@
 					return
 	if(X.ammo < 1)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 	else
 		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
 		return
@@ -348,6 +362,8 @@
 	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
 	var/cooldown = X.command_cooldown
 	if(cooldown <= world.time)
+		playsound(get_turf(C), 'sound/machines/terminal_success.ogg', 8, 3, 3)
+		playsound(get_turf(E), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		switch(X.commandtype)
 			if(1)
 				new /obj/effect/temp_visual/commandMove(get_turf(E))

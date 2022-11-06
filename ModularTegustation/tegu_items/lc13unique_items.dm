@@ -79,10 +79,13 @@
 		shieldhealth = shieldhealth - damagetaken
 		amount = 0
 		var/shielddiagnostics = shieldhealth / 100
-		if(shielddiagnostics < 0.20 && faltering != 1)
+		if(shielddiagnostics < 0.95 && faltering != 1)
 			faltering = 1
-			owner.visible_message("<span class='warning'>The shield around [owner] begins to falter.</span>")
 		return
+	if(damagetaken >= shieldhealth && faltering != 1) //When you prep a shield before a big attack.
+		amount = 0
+		owner.visible_message("<span class='warning'>The shield around [owner] focuses all its energy on absorbing the damage.</span>")
+		duration = 1 SECONDS
 	else
 		qdel(src)
 	return
@@ -409,6 +412,11 @@
 	default_icon = "gadget2r" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 1000  // 10 uses
 
+/obj/item/powered_gadget/ordealdetector/Initialize()
+	..()
+	if(prob(2))
+		name = "R-corp Peen Sense Rangefinder"
+
 /obj/item/powered_gadget/ordealdetector/attack_self(mob/user)
 	..()
 	if(cell && cell.charge >= batterycost)
@@ -535,3 +543,44 @@
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
+/obj/item/deepscanner //intended for ordeals
+	name = "deep scan kit"
+	desc = "A collection of tools used for scanning the physical form of an entity."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "maint_kit"
+	color = "gold"
+	var/check1a
+	var/check1b
+	var/check1c
+	var/check1d
+
+/obj/item/deepscanner/attack(mob/living/M, mob/user)
+	if(ishuman(M))
+		return
+	else
+		var/mob/living/simple_animal/hostile/mon = M
+		if((mon.status_flags & GODMODE))
+			return
+		check1a = measuredamage(mon.damage_coeff[RED_DAMAGE])
+		check1b = measuredamage(mon.damage_coeff[WHITE_DAMAGE])
+		check1c = measuredamage(mon.damage_coeff[BLACK_DAMAGE])
+		check1d = measuredamage(mon.damage_coeff[PALE_DAMAGE])
+		M.visible_message("<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+
+/obj/item/deepscanner/proc/measuredamage(amount)
+	switch(amount)
+		if(0)
+			return "IMMUNE"
+		if(0.1 to 0.4)
+			return "INEFFECTIVE"
+		if(0.5 to 0.9)
+			return "ENDURED"
+		if(1)
+			return "NORMAL"
+		if(1.1 to 1.5)
+			return "WEAK"
+		if(1.6 to 2)
+			return "FATAL"
+		else
+			return "ERROR"

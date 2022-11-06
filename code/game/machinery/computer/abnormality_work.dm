@@ -152,7 +152,7 @@
 		if(do_after(user, work_speed, src))
 			if(!CheckStatus(user))
 				break
-			user.remove_status_effect(/datum/status_effect/interventionshield)
+			user.remove_status_effect(/datum/status_effect/interventionshield) //removing status effect doesnt seem to effect all of parent. -IP
 			user.remove_status_effect(/datum/status_effect/interventionshield/white)
 			user.remove_status_effect(/datum/status_effect/interventionshield/black)
 			user.remove_status_effect(/datum/status_effect/interventionshield/pale)
