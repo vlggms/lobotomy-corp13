@@ -23,6 +23,19 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.15 SECONDS
 
+/obj/item/gun/ego_gun/pistol/beakmagnum
+	name = "beak mk2"
+	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
+	icon_state = "beakmagnum"
+	inhand_icon_state = "beak"
+	special = "This weapon has pinpoint accuracy when duel wielded."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+	dual_wield_spread = 0
+
 /obj/item/gun/ego_gun/noise
 	name = "noise"
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
@@ -41,22 +54,9 @@
 	inhand_icon_state = "solitude"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
 	fire_delay = 15
-	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
+	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
-
-/obj/item/gun/ego_gun/pistol/beakmagnum
-	name = "beak mk2"
-	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
-	icon_state = "beakmagnum"
-	inhand_icon_state = "beak"
-	special = "This weapon has pinpoint accuracy when duel wielded."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
-	fire_delay = 10
-	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
-	vary_fire_sound = FALSE
-	fire_sound_volume = 70
-	dual_wield_spread = 0
 
 /obj/item/gun/ego_gun/pistol/shy
 	name = "todays expression"

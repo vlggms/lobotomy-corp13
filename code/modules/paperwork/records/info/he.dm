@@ -345,7 +345,7 @@
 	Risk Class : HE    <br>
 	Max PE Boxes : 16    <br>
 	Qliphoth Counter : 2    <br>
-	Work Damage Type : White	<br>
+	Work Damage Type : Black	<br>
 	Work Damage : High	<br>
 	- When the work result was Bad, the Qliphoth counter lowered.   <br>
 	- When the work result was good, the Qliphoth counter increased.    <br>

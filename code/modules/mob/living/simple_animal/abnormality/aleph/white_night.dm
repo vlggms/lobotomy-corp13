@@ -49,7 +49,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance
-	var/holy_revival_range = 64
+	var/holy_revival_range = 48
 	/// List of mobs that have been hit by the revival field to avoid double effect
 	var/list/been_hit = list()
 	/// Currently spawned apostles by this mob

@@ -204,15 +204,104 @@
 
 /obj/item/ego_weapon/mini/crimson
 	name = "crimson claw"
-	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage. "
+	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage."
+	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	force = 32
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 							)
+
+	var/combo = 1
+	var/combo_time
+	var/combo_wait = 20
+	// "Throwing" attack
+	var/special_attack = FALSE
+	var/special_damage = 100
+	var/special_cooldown
+	var/special_cooldown_time = 8 SECONDS
+	var/special_checks_faction = FALSE
+
+/obj/item/ego_weapon/mini/crimson/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time)
+		combo = 1
+	combo_time = world.time + combo_wait
+	switch(combo)
+		if(2)
+			hitsound = 'sound/abnormalities/redhood/attack_2.ogg'
+		if(3)
+			hitsound = 'sound/abnormalities/redhood/attack_3.ogg'
+		else
+			hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
+	force *= (1 + (combo * 0.15))
+	user.changeNext_move(CLICK_CD_MELEE * (1 + (combo * 0.2)))
+	if(combo >= 3)
+		combo = 0
+	..()
+	combo += 1
+	force = initial(force)
+
+/obj/item/ego_weapon/mini/crimson/attack_self(mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(special_cooldown > world.time)
+		return
+	special_attack = !special_attack
+	if(special_attack)
+		to_chat(user, "<span class='notice'>You prepare to throw [src].</span>")
+	else
+		to_chat(user, "<span class='notice'>You decide to not throw [src], for now.</span>")
+
+/obj/item/ego_weapon/mini/crimson/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(special_cooldown > world.time)
+		return
+	if(!special_attack)
+		return
+	special_attack = FALSE
+	special_cooldown = world.time + special_cooldown_time
+	var/turf/target_turf = get_ranged_target_turf_direct(user, A, 8)
+	var/list/turfs_to_hit = list()
+	for(var/turf/T in getline(user, target_turf))
+		if(T.density)
+			break
+		if(locate(/obj/machinery/door) in T)
+			continue
+		turfs_to_hit += T
+	if(!LAZYLEN(turfs_to_hit))
+		return
+	playsound(user, 'sound/abnormalities/redhood/throw.ogg', 75, TRUE, 3)
+	user.visible_message("<span class='warning'>[user] throws [src] towards [A]!</span>")
+	var/dealing_damage = special_damage // Damage reduces a little with each mob hit
+	for(var/i = 1 to turfs_to_hit.len) // Basically, I copied my code from helper's realized ability. Yep.
+		var/turf/open/T = turfs_to_hit[i]
+		if(!istype(T))
+			continue
+		// Effects
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, src)
+		var/matrix/M = matrix(D.transform)
+		M.Turn(45 * i)
+		D.transform = M
+		D.alpha = min(150 + i*15, 255)
+		animate(D, alpha = 0, time = 2 + i*2)
+		// Actual damage
+		for(var/obj/structure/window/W in T)
+			W.obj_destruction("[src.name]")
+		for(var/mob/living/L in T)
+			if(L == user)
+				continue
+			if(special_checks_faction && user.faction_check_mob(L))
+				continue
+			to_chat(L, "<span class='userdanger'>You are hit by [src]!</span>")
+			L.apply_damage(dealing_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+			dealing_damage = max(dealing_damage * 0.9, special_damage * 0.3)
 
 /obj/item/ego_weapon/thirteen
 	name = "for whom the bell tolls"
