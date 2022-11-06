@@ -36,6 +36,18 @@
 	volume = 25
 	extra_range = -3
 
+/datum/looping_sound/singing_grinding
+	mid_sounds = 'sound/abnormalities/singingmachine/motor.ogg'
+	mid_length = 4 SECONDS
+	volume = 15
+	extra_range = 0
+
+/datum/looping_sound/singing_music
+	mid_sounds = 'sound/abnormalities/singingmachine/music.ogg'
+	mid_length = 4 SECONDS
+	volume = 100
+	extra_range = 20
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
