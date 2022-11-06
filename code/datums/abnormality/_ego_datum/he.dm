@@ -108,7 +108,7 @@
 /datum/ego_datum/weapon/pleasure
 	item_path = /obj/item/ego_weapon/pleasure
 	cost = 35
-	
+
 //Child of the Galaxy - Galaxy
 /datum/ego_datum/armor/galaxy
 	item_path = /obj/item/clothing/suit/armor/ego_gear/galaxy
@@ -118,3 +118,7 @@
 	item_path = /obj/item/gun/ego_gun/galaxy
 	cost = 35
 
+//Singing Machine - Harmony
+/datum/ego_datum/armor/harmony
+	item_path = /obj/item/clothing/suit/armor/ego_gear/harmony
+	cost = 35
