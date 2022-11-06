@@ -2,10 +2,7 @@
 Coded by nutterbutter, "senior" junior developer, during hell week 2022.
 Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a miracle. Praise be.
 TODO:
-1. EGO. (Currently deferred.)
-2. Hybrid damage, SP restore, status effect. (Done.)
-3. Counter 0 behavior; harsher works, ranged white (Done.)
-4. Counter restoration pass/fail effects
+1. EGO.
 */
 #define STATUS_EFFECT_MUSIC /datum/status_effect/singing_machine
 /mob/living/simple_animal/hostile/abnormality/singing_machine
@@ -28,6 +25,7 @@ TODO:
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
+		/datum/ego_datum/armor/harmony
 		)
 	pixel_x = -8
 	base_pixel_x = -8
@@ -37,11 +35,11 @@ TODO:
 	var/statChecked = 0
 	var/bonusRed = 0
 	var/grindRed = 4
-	var/minceRed = 12
+	var/minceRed = 8
 	var/playTiming = 5 SECONDS
 	var/playLength = 60 SECONDS
 	var/playStatus = 0
-	var/playRange = 30
+	var/playRange = 20
 	var/datum/looping_sound/singing_grinding/grindNoise
 	var/datum/looping_sound/singing_music/musicNoise
 	var/list/musicalAddicts = list()
