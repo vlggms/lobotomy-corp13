@@ -20,23 +20,16 @@
 	The projectiles relive the legacy of the kingdom as they travel toward the target."
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
-	special = "This weapon fires as fast as you pull the trigger"
+	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 0.3
-	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
-	force = 30
+	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 							)
-
-/obj/item/gun/ego_gun/hornet/EgoAttackInfo(mob/user)
-	if(chambered && chambered.BB)
-		return "<span class='notice'>Its bullets deal [chambered.BB.damage] [chambered.BB.damage_type] damage. Weapon does [force] [damtype] damage in melee.</span>"
-	return
 
 
 /obj/item/gun/ego_gun/hatred
@@ -132,7 +125,7 @@
 	spread = 8
 	special = "This weapon fires 750 rounds per minute. \
 		This weapon has IFF capabilities."
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
@@ -158,8 +151,7 @@
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
 	fire_delay = 12
-	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
-	fire_sound_volume = 30
+	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 	)
@@ -173,7 +165,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
 	weapon_weight = WEAPON_HEAVY
 	spread = 40
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
@@ -187,7 +179,7 @@
 	special = "This weapon fires IFF bullets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
@@ -200,7 +192,7 @@
 	inhand_icon_state = "magic_pistol"
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
+	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 24
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
@@ -235,4 +227,35 @@
 	autofire = 0.07 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/assonance
+	name = "assonance"
+	desc = "However, the world is more than simply warmth and light. The sky exists, for so does the land; darkness exists, \
+				for so does light; life exists for so does death; hope exists for so does despair."
+	icon_state = "assonance"
+	inhand_icon_state = "assonance"
+	special = "This weapon fires a hitscan beam."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60
+	)
+
+//It's a magic sword. Cope Egor
+/obj/item/gun/ego_gun/feather
+	name = "feather of honor"
+	desc = "A flaming, but very sharp, feather."
+	icon_state = "featherofhonor"
+	inhand_icon_state = "featherofhonor"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_feather
+	weapon_weight = WEAPON_HEAVY
+	special = "This weapon deals 35 white in melee."
+	force = 35
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	fire_delay = 24
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
 	)

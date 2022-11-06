@@ -69,3 +69,13 @@
 	name = "intentions casing"
 	desc = "intentions casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_intention
+
+/obj/item/ammo_casing/caseless/ego_assonance
+	name = "assonance casing"
+	desc = "assonance casing."
+	projectile_type = /obj/projectile/beam/assonance
+
+/obj/item/ammo_casing/caseless/ego_feather
+	name = "feather casing"
+	desc = "A feather casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_feather
