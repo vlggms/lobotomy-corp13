@@ -30,9 +30,9 @@
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
-	special = "This weapon homes in on a random target within 15 metres.	\
+	special = "Use in hand to turn on homing mode. This mode homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
+	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
 	fire_delay = 11
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_HEAVY
@@ -40,6 +40,20 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
+	var/homing = FALSE
+
+/obj/item/gun/ego_gun/galaxy/attack_self(mob/user)
+	..()
+	if(homing)
+		to_chat(user,"<span class='warning'>You release your energy, and turn off homing.</span>")
+		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
+		homing = FALSE
+		return
+	if(!homing)
+		to_chat(user,"<span class='warning'>You channel your energy, enabling homing.</span>")
+		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy/homing
+		homing = TRUE
+		return
 
 /obj/item/gun/ego_gun/unrequited
 	name = "unrequited love"
