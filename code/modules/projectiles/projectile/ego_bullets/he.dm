@@ -10,29 +10,40 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
-//Homing weapon (Galaxy)
+//Homing weapon with no homing
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
 	damage = 40
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	homing = TRUE
 	speed = 1.5
-	var/homing_range = 9
-	var/list/targetslist = list()
 
-/obj/projectile/ego_bullet/ego_galaxy/Initialize()
+//Homing weapon (Galaxy)
+/obj/projectile/ego_bullet/ego_galaxy/homing
+	homing = TRUE
+	homing_turn_speed = 30		//Angle per tick.
+	var/homing_range = 9
+
+/obj/projectile/ego_bullet/ego_galaxy/homing/Initialize()
 	..()
+	addtimer(CALLBACK(src, .proc/fireback), 3)
+
+/obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
+	icon_state = "magich"
+	var/list/targetslist = list()
 	for(var/mob/living/L in livinginrange(homing_range, src))
 		if(ishuman(L) || isbot(L))
 			continue
 		if(L.stat == DEAD)
 			continue
+		if(L.status_flags & GODMODE)
+			continue
 		targetslist+=L
 	if(!LAZYLEN(targetslist))
 		return
 	homing_target = pick(targetslist)
+
 
 /obj/projectile/ego_bullet/ego_unrequited
 	name = "unrequited"
