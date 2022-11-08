@@ -133,6 +133,8 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
+	pixel_y = -32
+	pixel_x = -32
 	var/list/damaged = list()
 	animate_movement = SLIDE_STEPS
 	var/datum/looping_sound/expresstrain/soundloop
@@ -148,6 +150,7 @@
 	clickety += 1
 	if(clickety % 2)
 		var/obj/effect/particle_effect/smoke/s = new(locate(src.x, src.y + 2, src.z))
-		if(dir == EAST)
-			s.x += 3
+		s.pixel_y += 16
+		if(src.dir != EAST)
+			s.x += 2
 	return ..()
