@@ -39,15 +39,14 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/express_train/Life()
-	if(meltdown_timer < world.time && !datum_reference.working)
+	if(meltdown_timer < world.time && !datum_reference?.working)
 		if(datum_reference.qliphoth_meter)
 			meltdown_timer = world.time + meltdown_tick
 			datum_reference.qliphoth_change(-1)
-			lightscount = 4 - datum_reference.qliphoth_meter
+			lightscount = 4 - datum_reference?.qliphoth_meter
 			update_icon_state()
 		else
 			callTrain()
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
 			meltdown_timer = world.time + meltdown_tick + 10 SECONDS
 			datum_reference.qliphoth_change(4)
 			lightscount = 0
@@ -99,28 +98,12 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/callTrain()
 	for(var/mob/living/M in damaged)
 		damaged -= M
-	var/aimpoint = 0
-	var/count = 0
-	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
-		if(H.z != src.z)
-			continue
-		if(H in tickets) // YOUR TICKETS, SIR
-			for(var/i = 0, i < 4, i++)
-				aimpoint += H.y
-				count += 1
-			tickets -= H
-		else
-			aimpoint += H.y
-			count += 1
-	aimpoint /= count
-	if(!aimpoint)
-		aimpoint = src.y
-	aimpoint -= 1
-	fireTrain(aimpoint, pick(EAST, WEST))
+	var/turf/aimTurf = pick(GLOB.department_centers)
+	fireTrain(aimTurf.y, pick(EAST, WEST), aimTurf.z)
 
 // This one actually makes and fires the train. I'll probably improve this so you can set a starting X as well sometime, or maybe adjust the number of segments...
 
-/mob/living/simple_animal/hostile/abnormality/express_train/proc/fireTrain(aimpoint, direction)
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/fireTrain(aimpoint, direction = pick(EAST, WEST), aimZ = src.z)
 	var/spawnX
 	var/xIncrement
 	var/persX
@@ -130,13 +113,13 @@
 	else
 		spawnX = 214
 		xIncrement = 4
-	var/spawnPoint = locate(spawnX, aimpoint, src.z)
+	var/spawnPoint = locate(spawnX, aimpoint, aimZ)
 	for(var/i = 0, i < maxSegments * 2, i++)
 		if(!(i % 2)) // True whenever i is even- this is the start of each segment
 			persX += xIncrement*0.75 // Makes persX (effectively) one smaller for this iteration
 		else
 			persX += xIncrement
-		spawnPoint = locate(spawnX + persX, aimpoint, src.z)
+		spawnPoint = locate(spawnX + persX, aimpoint, aimZ)
 		var/obj/effect/expresstrain/seg = new(spawnPoint)
 		seg.dir = direction
 		if(i < 2)
@@ -148,11 +131,12 @@
 		else
 			seg.icon_state = "expresscar_[i % 2 + 1]"
 			if(round(i / 2) % 2) // True when the current car is odd-numbered
-				seg.pixel_x = xIncrement * 4
-				seg.base_pixel_x = xIncrement * 4
+				seg.pixel_x += xIncrement * 4
+				seg.base_pixel_x += xIncrement * 4
 			else if(i % 2)
 				persX -= xIncrement/4
 		segments += seg
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
 	addtimer(CALLBACK(src, .proc/moveTrain), 10 SECONDS)
 	/*
 	The logic is pretty simple in what it's SUPPOSED to produce.
@@ -164,7 +148,7 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/moveTrain()
 	// I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS
 	if(LAZYLEN(src.segments))
-		addtimer(CALLBACK(src, .proc/moveTrain), 1)
+		addtimer(CALLBACK(src, .proc/moveTrain), 0.5)
 		for(var/obj/effect/expresstrain/seg in segments)
 			if((seg.x < 10 && seg.dir == WEST) || (seg.x > 245 && seg.dir == EAST))
 				QDEL_IN(seg, 1)
@@ -177,8 +161,8 @@
 	for(var/obj/effect/expresstrain/seg in segments)
 		// I wanted to use bound_width and bound_height. For some GOD FORSAKEN REASON, they don't work. Welcome to hell.
 		var/list/coveredTurfs = list()
-		for(var/i = 0, i < 5, i++)
-			for(var/j = 0, j < 4, j++)
+		for(var/i = -1, i < 4, i++)
+			for(var/j = -1, j < 3, j++)
 				var/turf/T = locate(seg.x + i, seg.y + j, seg.z)
 				coveredTurfs |= T
 		for(var/turf/T in coveredTurfs)
@@ -193,3 +177,12 @@
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
 				M.apply_damage(400, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				var/atom/throw_target = locate(M)
+				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
+				if(!M.anchored)
+					M.throw_at(throw_target, rand(1, 2), 2, src)
+				if(iscarbon(M))
+					var/mob/living/carbon/C = M
+					for(var/obj/item/bodypart/part in C.bodyparts)
+						if(part.dismemberable && prob(20) && part.body_part != HEAD && part.body_part != CHEST && C.stat == DEAD)
+							part.dismember()
