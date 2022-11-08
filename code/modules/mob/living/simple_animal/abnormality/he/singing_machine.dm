@@ -25,7 +25,8 @@ TODO:
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
-		/datum/ego_datum/armor/harmony
+		/datum/ego_datum/armor/harmony,
+		/datum/ego_datum/weapon/harmony
 		)
 	pixel_x = -8
 	base_pixel_x = -8

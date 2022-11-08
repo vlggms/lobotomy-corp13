@@ -122,3 +122,7 @@
 /datum/ego_datum/armor/harmony
 	item_path = /obj/item/clothing/suit/armor/ego_gear/harmony
 	cost = 35
+
+/datum/ego_datum/weapon/harmony
+	item_path = /obj/item/gun/ego_gun/harmony
+	cost = 35
