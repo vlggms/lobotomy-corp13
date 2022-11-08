@@ -26,7 +26,7 @@
 		qdel(src)
 	..()
 
-/obj/item/managerbullet/proc/bulletshatter(mob/living/L)
+/obj/item/managerbullet/proc/bulletshatter(mob/living/L) //apply effect slot
 	return
 
 
@@ -265,6 +265,49 @@
 		cooldown = world.time + commanddelay
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
+/obj/item/deepscanner //intended for ordeals
+	name = "deep scan kit"
+	desc = "A collection of tools used for scanning the physical form of an entity."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "maint_kit"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	color = "gold"
+	var/check1a
+	var/check1b
+	var/check1c
+	var/check1d
+
+/obj/item/deepscanner/attack(mob/living/M, mob/user)
+	if(ishuman(M))
+		return
+	else
+		var/mob/living/simple_animal/hostile/mon = M
+		if((mon.status_flags & GODMODE))
+			return
+		check1a = measuredamage(mon.damage_coeff[RED_DAMAGE])
+		check1b = measuredamage(mon.damage_coeff[WHITE_DAMAGE])
+		check1c = measuredamage(mon.damage_coeff[BLACK_DAMAGE])
+		check1d = measuredamage(mon.damage_coeff[PALE_DAMAGE])
+		to_chat(M, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+
+/obj/item/deepscanner/proc/measuredamage(amount)
+	switch(amount)
+		if(0)
+			return "IMMUNE"
+		if(0.1 to 0.4)
+			return "INEFFECTIVE"
+		if(0.5 to 0.9)
+			return "ENDURED"
+		if(1)
+			return "NORMAL"
+		if(1.1 to 1.5)
+			return "WEAK"
+		if(1.6 to 2)
+			return "FATAL"
+		else
+			return "ERROR"
+
 //Gadgets require batteries or fuel to function!
 /obj/item/powered_gadget
 	name = "gadget template"
@@ -383,89 +426,6 @@
 			. += "[default_icon]-nobat"
 		else
 			. += "[default_icon]"
-	//Detector
-/obj/item/powered_gadget/abnormalitydetector
-	name = "Enkaphlin Drain Monitor"
-	desc = "This device detects abnormalities by taking advantage of their siphon of Enkaphlin. Use in hand to activate."
-	icon_state = "gadget2_low"
-	default_icon = "gadget2" //roundabout way of making update item easily changed. Used in updateicon proc.
-	batterycost = 1000 //10 uses
-
-/obj/item/powered_gadget/abnormalitydetector/attack_self(mob/user)
-	..()
-	if(cell && cell.charge >= batterycost)
-		cell.charge = cell.charge - batterycost
-		var/turf/my_loc = get_turf(src)
-		var/list/mob/living/simple_animal/hostile/abnormality/nearbyentities = list()
-		for(var/mob/living/simple_animal/hostile/abnormality/ABNO in livinginrange(21, get_turf(src)))
-			if(!(ABNO.status_flags & GODMODE))
-				var/their_loc = get_turf(ABNO)
-				var/distance = get_dist_euclidian(my_loc, their_loc)
-				nearbyentities[ABNO] = (20 ** 1) - (distance ** 1)
-		var/nearestentity = pickweight(nearbyentities)
-		var/target_loc = get_turf(nearestentity)
-		var/abnodistance = get_dist_euclidian(my_loc, target_loc)
-		calcdistance(abnodistance)
-	if(cell && cell.charge <= batterycost)
-		icon_state = "gadget2-nobat"
-
-/obj/item/powered_gadget/abnormalitydetector/proc/calcdistance(distance)
-	switch(distance)
-		if(0 to 10) // the abnormality is within your sight or 10 tiles away from you
-			icon_state = "gadget2_high"
-			playsound(src, 'sound/machines/beep.ogg', 20, TRUE)
-		if(11 to 20) //the abnormality is one screen away
-			icon_state = "gadget2_mid"
-			playsound(src, 'sound/machines/beep.ogg', 10, TRUE)
-		if(21) //the abnormality is too far away to be registered.
-			icon_state = "gadget2_low"
-			playsound(src, 'sound/machines/beep.ogg', 4, TRUE)
-
-	//Ordeal detector
-/obj/item/powered_gadget/ordealdetector
-	name = "R-corp Keen Sense Rangefinder" //placeholder name
-	desc = "Through the joint research of L and R corp this device can detect the proximity of hostile creatures without having employees or abnormalities caught in its range. Use in hand to activate."
-	icon_state = "gadget2r-low"
-	default_icon = "gadget2r" //roundabout way of making update item easily changed. Used in updateicon proc.
-	batterycost = 1000  // 10 uses
-
-/obj/item/powered_gadget/ordealdetector/Initialize()
-	..()
-	if(prob(2))
-		name = "R-corp Peen Sense Rangefinder"
-
-/obj/item/powered_gadget/ordealdetector/attack_self(mob/user)
-	..()
-	if(cell && cell.charge >= batterycost)
-		cell.charge = cell.charge - batterycost
-		var/turf/my_loc = get_turf(src)
-		var/list/mob/living/simple_animal/hostile/ordeal/nearbyentities = list()
-		for(var/mob/living/simple_animal/hostile/ordeal/MON in livinginrange(21, get_turf(src)))
-			if(!(MON.status_flags & GODMODE))
-				var/their_loc = get_turf(MON)
-				var/distance = get_dist_euclidian(my_loc, their_loc)
-				nearbyentities[MON] = (20 ** 1) - (distance ** 1)
-		var/nearestentity = pickweight(nearbyentities)
-		var/target_loc = get_turf(nearestentity)
-		var/entitydistance = get_dist_euclidian(my_loc, target_loc)
-		calcdistance(entitydistance)
-	if(cell && cell.charge <= batterycost)
-		icon_state = "gadget2r-nobat"
-
-/obj/item/powered_gadget/ordealdetector/proc/calcdistance(distance)
-	switch(distance)
-		if(0 to 5)
-			icon_state = "gadget2r-max"
-			playsound(src, 'sound/machines/beep.ogg', 20, TRUE)
-		if(6 to 10)
-			icon_state = "gadget2r-high"
-			playsound(src, 'sound/machines/beep.ogg', 20, TRUE)
-		if(11 to 20) //the entity is one screen away
-			icon_state = "gadget2r-mid"
-			playsound(src, 'sound/machines/beep.ogg', 10, TRUE)
-		if(21) //the entity is too far away to be registered.
-			icon_state = "gadget2r-low"
-			playsound(src, 'sound/machines/beep.ogg', 4, TRUE)
 
 	//Trapspawner
 /obj/item/powered_gadget/slowingtrapmk1
@@ -560,45 +520,134 @@
 //update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 // 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
-/obj/item/deepscanner //intended for ordeals
-	name = "deep scan kit"
-	desc = "A collection of tools used for scanning the physical form of an entity."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "maint_kit"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
-	color = "gold"
-	var/check1a
-	var/check1b
-	var/check1c
-	var/check1d
+	//improved detector code WARNING USES PROCESS
 
-/obj/item/deepscanner/attack(mob/living/M, mob/user)
-	if(ishuman(M))
+/obj/item/powered_gadget/detector_gadget
+	name = "incomplete detector"
+	desc = "This is the incomplete assembly of a detector gadget."
+	icon_state = "gadget2_low"
+	default_icon = "gadget2" //roundabout way of making update item easily changed. Used in updateicon proc.
+	batterycost = 40 // 1 minute
+	var/on = 0
+	var/entitydistance
+	var/nearestentity
+
+/obj/item/powered_gadget/detector_gadget/attack_self(mob/user)
+	..()
+	if(on == 1)
+		on = 0
+		STOP_PROCESSING(SSobj, src)
 		return
-	else
-		var/mob/living/simple_animal/hostile/mon = M
-		if((mon.status_flags & GODMODE))
+	if(cell && cell.charge >= batterycost)
+		if(on == 0)
+			on = 1
+			START_PROCESSING(SSobj, src)
 			return
-		check1a = measuredamage(mon.damage_coeff[RED_DAMAGE])
-		check1b = measuredamage(mon.damage_coeff[WHITE_DAMAGE])
-		check1c = measuredamage(mon.damage_coeff[BLACK_DAMAGE])
-		check1d = measuredamage(mon.damage_coeff[PALE_DAMAGE])
-		to_chat(M, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
-	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+	if(cell && cell.charge < batterycost)
+		icon_state = "[default_icon]-nobat"
 
-/obj/item/deepscanner/proc/measuredamage(amount)
-	switch(amount)
-		if(0)
-			return "IMMUNE"
-		if(0.1 to 0.4)
-			return "INEFFECTIVE"
-		if(0.5 to 0.9)
-			return "ENDURED"
-		if(1)
-			return "NORMAL"
-		if(1.1 to 1.5)
-			return "WEAK"
-		if(1.6 to 2)
-			return "FATAL"
-		else
-			return "ERROR"
+/obj/item/powered_gadget/detector_gadget/proc/calcdistance(distance)
+	switch(distance)
+		if(0 to 9) // the abnormality is within your sight or 10 tiles away from you
+			icon_state = "[default_icon]_high"
+			playsound(src, 'sound/machines/beep.ogg', 20, TRUE)
+		if(10 to 20) //the abnormality is one screen away
+			icon_state = "[default_icon]_mid"
+			playsound(src, 'sound/machines/beep.ogg', 10, TRUE)
+		else //the abnormality is too far away to be registered.
+			icon_state = "[default_icon]_low"
+
+/obj/item/powered_gadget/detector_gadget/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/powered_gadget/detector_gadget/process(delta_time)
+	if(cell && cell.charge >= batterycost)
+		cell.charge = cell.charge - batterycost
+		var/turf/my_loc = get_turf(src)
+		detectthing()
+		var/target_loc = get_turf(nearestentity)
+		var/entitydistance = get_dist_euclidian(my_loc, target_loc)
+		calcdistance(entitydistance)
+		return
+	on = 0
+	icon_state = "[default_icon]-nobat"
+	STOP_PROCESSING(SSobj, src)
+
+/obj/item/powered_gadget/detector_gadget/proc/detectthing(mob/user)
+	user.visible_message("<span class='notice'>The [src] falls apart.</span>", "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
+	qdel(src)
+	return
+
+	//Abnormality Detector
+/obj/item/powered_gadget/detector_gadget/abnormality
+	name = "Enkaphlin Drain Monitor"
+	desc = "This device detects abnormalities by taking advantage of their siphon of Enkaphlin. Use in hand to activate."
+	icon_state = "gadget2_low"
+	default_icon = "gadget2" //roundabout way of making update item easily changed. Used in updateicon proc.
+
+/obj/item/powered_gadget/detector_gadget/abnormality/calcdistance(distance)
+	switch(distance)
+		if(0 to 9) // the abnormality is within your sight or 10 tiles away from you
+			icon_state = "[default_icon]_high"
+			playsound(src, 'sound/machines/beep.ogg', 8, TRUE)
+		if(10 to 20) //the abnormality is one screen away
+			icon_state = "[default_icon]_mid"
+			playsound(src, 'sound/machines/beep.ogg', 5, TRUE)
+		else //the abnormality is too far away to be registered.
+			icon_state = "[default_icon]_low"
+			return
+	if(nearestentity)
+		threatbubble(nearestentity)
+
+/obj/item/powered_gadget/detector_gadget/abnormality/proc/threatbubble(mob/living/simple_animal/hostile/abnormality/THREAT)
+	if(THREAT.threat_level == ALEPH_LEVEL)
+		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 8, TRUE)
+		return
+
+/obj/item/powered_gadget/detector_gadget/abnormality/detectthing()
+	var/turf/my_loc = get_turf(src)
+	var/list/mob/living/simple_animal/hostile/abnormality/nearbyentities = list()
+	for(var/mob/living/simple_animal/hostile/abnormality/ABNO in livinginrange(21, get_turf(src)))
+		if(!(ABNO.status_flags & GODMODE))
+			var/their_loc = get_turf(ABNO)
+			var/distance = get_dist_euclidian(my_loc, their_loc)
+			nearbyentities[ABNO] = (20 ** 1) - (distance ** 1)
+			nearestentity = pickweight(nearbyentities)
+
+	//Ordeal Detector
+/obj/item/powered_gadget/detector_gadget/ordeal
+	name = "R-corp Keen Sense Rangefinder" //placeholder name
+	desc = "Through the joint research of L and R corp this device can detect the proximity of hostile creatures without having employees or abnormalities caught in its range. Use in hand to activate."
+	icon_state = "gadget2r-low"
+	default_icon = "gadget2r" //roundabout way of making update item easily changed. Used in updateicon proc.
+
+/obj/item/powered_gadget/detector_gadget/ordeal/Initialize()
+	..()
+	if(prob(2))
+		name = "R-corp Peen Sense Rangefinder"
+
+/obj/item/powered_gadget/detector_gadget/ordeal/calcdistance(distance)
+	switch(distance)
+		if(0 to 5)
+			icon_state = "[default_icon]-max"
+			playsound(src, 'sound/machines/beep.ogg', 14, TRUE)
+		if(6 to 9)
+			icon_state = "[default_icon]-high"
+			playsound(src, 'sound/machines/beep.ogg', 8, TRUE)
+		if(10 to 20) //the entity is one screen away
+			icon_state = "[default_icon]-mid"
+			playsound(src, 'sound/machines/beep.ogg', 5, TRUE)
+		else //the entity is too far away to be registered.
+			icon_state = "[default_icon]-low"
+
+/obj/item/powered_gadget/detector_gadget/ordeal/detectthing()
+	var/turf/my_loc = get_turf(src)
+	var/list/mob/living/simple_animal/hostile/ordeal/nearbyentities = list()
+	for(var/mob/living/simple_animal/hostile/ordeal/MON in livinginrange(21, get_turf(src)))
+		if(!(MON.status_flags & GODMODE))
+			var/their_loc = get_turf(MON)
+			var/distance = get_dist_euclidian(my_loc, their_loc)
+			nearbyentities[MON] = (20 ** 1) - (distance ** 1)
+			nearestentity = pickweight(nearbyentities)
+
