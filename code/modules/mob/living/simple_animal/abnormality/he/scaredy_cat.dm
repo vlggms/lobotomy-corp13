@@ -156,6 +156,7 @@
 			continue
 		playsound(src, 'sound/abnormalities/scaredycat/cateleport.ogg', 50, FALSE, 4)
 		forceMove(T)
+		LoseTarget()
 		for(var/mob/living/carbon/human/enemy in oview(src, vision_range))
 			if(enemy.stat != DEAD)
 				GiveTarget(enemy) //the moment he teleports he's already on the offensive
