@@ -197,8 +197,9 @@
 		I.pixel_y = px_y
 	add_overlay(standing)
 
-//get_normal_head is used if you want to get a non messed up head that still looks as if it was on the original body
-/obj/item/bodypart/head/get_limb_icon(dropped, get_normal_head = FALSE)
+//get_normal_head is used if you want to get a non messed up head that still looks as if it was on the original body.
+//get_all_dir means you automatically get every direction of the head, otherwise just get the south facing version.
+/obj/item/bodypart/head/get_limb_icon(dropped, get_normal_head = FALSE, get_all_dir = FALSE)
 	cut_overlays()
 	. = ..()
 	if(dropped) //certain overlays only appear when the limb is being detached from its owner.
@@ -208,7 +209,9 @@
 			if(facial_hairstyle)
 				var/datum/sprite_accessory/S = GLOB.facial_hairstyles_list[facial_hairstyle]
 				if(S)
-					var/image/facial_overlay = image(S.icon, "[S.icon_state]", -HAIR_LAYER, SOUTH)
+					var/image/facial_overlay = image(S.icon, "[S.icon_state]", -HAIR_LAYER, dir = SOUTH)
+					if(get_all_dir)
+						facial_overlay = image(S.icon, "[S.icon_state]", -HAIR_LAYER)
 					facial_overlay.color = "#" + facial_hair_color
 					facial_overlay.alpha = hair_alpha
 					. += facial_overlay
@@ -216,6 +219,8 @@
 			//Applies the debrained overlay if there is no brain
 			if(!brain && !get_normal_head)
 				var/image/debrain_overlay = image(layer = -HAIR_LAYER, dir = SOUTH)
+				if(get_all_dir)
+					debrain_overlay = image(layer = -HAIR_LAYER)
 				if(animal_origin == ALIEN_BODYPART)
 					debrain_overlay.icon = 'icons/mob/animal_parts.dmi'
 					debrain_overlay.icon_state = "debrained_alien"
@@ -229,7 +234,9 @@
 			else
 				var/datum/sprite_accessory/S2 = GLOB.hairstyles_list[hairstyle]
 				if(S2)
-					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, SOUTH)
+					var/image/hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER, dir = SOUTH)
+					if(get_all_dir)
+						hair_overlay = image(S2.icon, "[S2.icon_state]", -HAIR_LAYER)
 					hair_overlay.color = "#" + hair_color
 					hair_overlay.alpha = hair_alpha
 					. += hair_overlay
@@ -237,14 +244,17 @@
 
 		// lipstick
 		if(lip_style)
-			var/image/lips_overlay = image('icons/mob/human_face.dmi', "lips_[lip_style]", -BODY_LAYER, SOUTH)
+			var/image/lips_overlay = image('icons/mob/human_face.dmi', "lips_[lip_style]", -BODY_LAYER, dir = SOUTH)
+			if(get_all_dir)
+				lips_overlay = image('icons/mob/human_face.dmi', "lips_[lip_style]", -BODY_LAYER)
 			lips_overlay.color = lip_color
 			. += lips_overlay
 
 		// eyes
-		var/image/eyes_overlay
+		var/image/eyes_overlay = image('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER, dir = SOUTH)
 		if(!get_normal_head)
-			eyes_overlay = image('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER, SOUTH)
+			if(get_all_dir)
+				eyes_overlay = image('icons/mob/human_face.dmi', "eyes_missing", -BODY_LAYER)
 			. += eyes_overlay
 		if(eyes)
 			eyes_overlay.icon_state = eyes.eye_icon_state
