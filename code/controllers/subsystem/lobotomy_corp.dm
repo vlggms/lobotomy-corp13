@@ -58,8 +58,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
-	var/player_mod = GLOB.clients.len * 0.1
-	box_goal = clamp(round(4000 * player_mod), 3000, 24000)
+	var/player_mod = GLOB.clients.len * 0.15
+	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
@@ -117,12 +117,15 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 4 + round(abno_amount * 0.25) + round(player_count * 0.3)
+	qliphoth_max = 4 + round(player_count * 0.5)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
+	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
+		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > world.time) // And it's on timelock
+			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			ran_ordeal = TRUE
@@ -186,8 +189,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealEvent()
 	if(!next_ordeal)
 		return FALSE
-	if(ordeal_timelock[next_ordeal_level - 1] && (ordeal_timelock[next_ordeal_level - 1] > world.time))
-		next_ordeal_time += 1
+	if(ordeal_timelock[next_ordeal.level] > world.time)
 		return FALSE // Time lock
 	next_ordeal.Run()
 	next_ordeal = null
