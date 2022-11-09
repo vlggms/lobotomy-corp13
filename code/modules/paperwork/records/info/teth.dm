@@ -202,7 +202,7 @@
 	Qliphoth Counter : X	<br>
 	Work Damage Type : White	<br>
 	Work Damage : Low	<br>
-	- When an Agent, who had Level 1 Fortitude, completed the work process, a hand stretched out of Bloodbath and dragged them into its depths. The same phenomenon occurred with an Agent who had Level 1 Temperance.	<br>
+	- When an Agent, who had Level 1 Fortitude and Level 1 Temperance, completed the work process, a hand stretched out of Bloodbath and dragged them into its depths.	<br>
 	- A pale hand surfaced from Bloodbath after it had absorbed an employee. As the number of hands increased, the number of PE-Boxes produced with it also increased.	<br>
 	- WARNING: When Bloodbath has three hands, the safety of the next worker cannot be guaranteed. It seems Bloodbath will absorb employees regardless of the work result or virtue levels.	<br>
 	<h4>Instinct:</h4> Common<br>
