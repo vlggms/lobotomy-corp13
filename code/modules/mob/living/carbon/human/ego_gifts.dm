@@ -71,10 +71,25 @@
 					PE += (datum_reference.threat_level * datum_reference.threat_level)
 					if(istype(src, /datum/ego_gifts/blossoming) || istype(src, /datum/ego_gifts/paradise)) // Why though
 						PE *= 2
-					to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!")
-					datum_reference.stored_boxes += PE
+					if(ispath(datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
+						switch(tgui_alert(owner, "To think one would commit such a shameful act... what have ye, weaker body or mind?", "Cowardice", list("Body", "Mind"), 0))
+							if("Body")
+								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
+							if("Mind")
+								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
+							else
+								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='userdanger'>Even now you try and run? Clearly you are lacking in both!</span>")
+						to_chat(owner, "<span class='warning'>The once cool flames now burn your flesh!</span>")
+						owner.adjustBruteLoss(100)
+					else
+						to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!</span>")
+						datum_reference.stored_boxes += PE
 				else
-					to_chat(owner, "<span class='notice'>The [src] has dissolved into... light?")
+					to_chat(owner, "<span class='notice'>The [src] has dissolved into... light?</span>")
 				owner.Apply_Gift(E)
 		else
 			CRASH("Gift Topic Error in [src]. [owner] clicked a non-existant button!?")
