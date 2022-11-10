@@ -146,6 +146,15 @@
 	item_path = /obj/item/gun/ego_gun/pistol/laststop
 	cost = 50
 
+// Alriune - Aroma
+/datum/ego_datum/armor/aroma
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aroma
+	cost = 50
+
+/datum/ego_datum/weapon/aroma
+	item_path = /obj/item/gun/ego_gun/aroma
+	cost = 50
+
 // Yang - Assonance
 /datum/ego_datum/armor/assonance
 	item_path = /obj/item/clothing/suit/armor/ego_gear/assonance

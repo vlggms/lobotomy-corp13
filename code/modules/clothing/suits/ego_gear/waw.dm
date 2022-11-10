@@ -164,6 +164,16 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60)
 
+/obj/item/clothing/suit/armor/ego_gear/aroma
+	name = "faint aroma"
+	desc = "The ceramic surface is tough as if it had been glazed several times. \
+			It may crumble back into primal clay if it is exposed to a powerful mental attack."
+	icon_state = "aroma"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/thirteen
 	name = "for whom the bell tolls"
 	desc = "It tolls for thee."
@@ -174,19 +184,10 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/assonance
-	name = "Assonance"
+	name = "assonance"
 	desc = "What is good if there is no evil?"
 	icon_state = "assonance"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30) // 140
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
-							)
-
-/obj/item/clothing/suit/armor/ego_gear/aroma
-	name = "Faint Aroma"
-	desc = "It was adored by people, its pupils soulful."
-	icon_state = "aroma"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
 							)

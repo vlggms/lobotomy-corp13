@@ -151,6 +151,13 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
+/obj/projectile/ego_bullet/ego_aroma
+	name = "aroma"
+	icon_state = "arrow_aroma"
+	damage = 140
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+
 //Assonance, our one hitscan laser
 /obj/projectile/beam/assonance
 	name = "assonance"
