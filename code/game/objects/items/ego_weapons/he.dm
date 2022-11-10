@@ -171,6 +171,7 @@
 	var/parry = 0
 	var/parry_success
 	var/naked_parry
+	var/list/reductions = list(90, 90, 90, 30, 1)
 
 /obj/item/ego_weapon/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	..()
@@ -191,28 +192,34 @@
 
 /obj/item/ego_weapon/daredevil/attack_self(mob/user)
 	if (!ishuman(user))
-		return
+		return FALSE
+
 	if (parry == 0)
 		var/mob/living/carbon/human/cooler_user = user
+		if(!CanUseEgo(cooler_user))
+			return FALSE
+		if(cooler_user.physiology.armor.bomb) // We have NOTHING that should be modifying this, so I'm using it as an existant parry checker.
+			to_chat(cooler_user,"<span class='warning'>You're still off-balance!</span>")
+			return FALSE
+		for(var/obj/machinery/computer/abnormality/AC in range(1, cooler_user))
+			if(AC.datum_reference.working) // No parrying during work.
+				to_chat(cooler_user,"<span class='notice'>You attempt to parry the monotony of this job!</span>")
+				return FALSE
 		parry = 1
 		parry_success = FALSE
-		cooler_user.physiology.red_mod *= 0.01 // Which this could be better, but alas, this must do.
-		cooler_user.physiology.white_mod *= 0.01
-		cooler_user.physiology.black_mod *= 0.01
-		cooler_user.physiology.pale_mod *= 0.01
-		if (isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
-			naked_parry = TRUE
+		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		if(naked_parry)
+			reductions = list(95, 95, 95, 100, 1)
 		else
-			naked_parry = FALSE
+			reductions = list(90, 90, 90, 30, 1)
+		cooler_user.physiology.armor = cooler_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = reductions[5])
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/Announce_Parry)
-		addtimer(CALLBACK(src, .proc/disable_parry, cooler_user), 0.6 SECONDS) // Set to 3 for test,ing base is 0.6
+		addtimer(CALLBACK(src, .proc/disable_parry, cooler_user), 0.5 SECONDS) // Set to 3 for testing base is 0.5, was 0.6
 		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
+		return TRUE
 
 /obj/item/ego_weapon/daredevil/proc/disable_parry(mob/living/carbon/human/user)
-	user.physiology.red_mod /= 0.01
-	user.physiology.white_mod /= 0.01
-	user.physiology.black_mod /= 0.01
-	user.physiology.pale_mod /= 0.01
+	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -reductions[5])
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	if (naked_parry)
 		addtimer(CALLBACK(src, .proc/parry_cooldown, user), 2 SECONDS)
@@ -223,6 +230,7 @@
 
 /obj/item/ego_weapon/daredevil/proc/parry_cooldown(mob/living/carbon/human/user)
 	parry = 0
+	force = 12
 	to_chat(user,"<span class='nicegreen'>You rearm your blade</span>")
 
 /obj/item/ego_weapon/daredevil/proc/Parry_Fail(mob/living/carbon/human/user)
@@ -243,12 +251,24 @@
 	user.physiology.black_mod /= 1.2
 	user.physiology.pale_mod /= 1.2
 
-/obj/item/ego_weapon/daredevil/proc/Announce_Parry(mob/living/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/daredevil/proc/Announce_Parry(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
 	parry_success = TRUE
+	var/src_message = "<span class='userdanger'>[source.real_name] parries the attack!</span>"
+	var/other_message = src_message
+	if(naked_parry)
+		src_message = "<span class='userdanger'>[source.real_name] is untouchable!</span>"
+		other_message = src_message
+		force = 18 // bonus damage for like, 2 seconds.
+	else if(damagetype == PALE_DAMAGE)
+		src_message = "<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>"
+
 	playsound(get_turf(src), 'sound/weapons/ego/crumbling_parry.ogg', 75, 0, 7)
 	for(var/mob/living/carbon/human/person in view(7, source))
-		to_chat(person,"<span class='userdanger'>[source.real_name] parries the attack!</span>")
+		if(person == source)
+			to_chat(person, src_message)
+		else
+			to_chat(person, other_message)
 
 /obj/item/ego_weapon/daredevil/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && attacking)
