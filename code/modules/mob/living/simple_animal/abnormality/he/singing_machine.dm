@@ -174,9 +174,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 /datum/ai_behavior/say_line/insanity_singing_machine
 	lines = list(
 		"A corpse, I need a corpse...",
-		"I’ll listen to that song at any cost.",
-		"Don’t struggle, you’ll love its melodies too.",
-		"I’m sorry, but I have to hear that song again.",
+		"Iâ€™ll listen to that song at any cost.",
+		"Donâ€™t struggle, youâ€™ll love its melodies too.",
+		"Iâ€™m sorry, but I have to hear that song again.",
 		"Now, I am reborn."
 		)
 
