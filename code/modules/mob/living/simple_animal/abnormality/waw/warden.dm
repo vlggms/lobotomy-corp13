@@ -13,8 +13,8 @@
 
 	speed = 4
 	move_to_delay = 5
-	melee_damage_lower = 38
-	melee_damage_upper = 38
+	melee_damage_lower = 70
+	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
@@ -65,6 +65,10 @@
 			move_to_delay -= move_to_delay*0.2
 			speed += speed*0.2
 
+			if(melee_damage_lower>30)
+				melee_damage_lower -=5
+				melee_damage_upper -=5
+
 			adjustBruteLoss(-(maxHealth*0.1)) // Heals 10% HP, fuck you that's why. Still not as bad as judgement or big bird
 
 			finishing = FALSE
@@ -100,5 +104,5 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>The [P] bounces off [src]!</span>")
+	visible_message("<span class='userdanger'>[P] bounces off [src]!</span>")
 	P.Destroy()
