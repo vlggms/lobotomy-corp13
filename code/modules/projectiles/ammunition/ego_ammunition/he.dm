@@ -28,5 +28,3 @@
 	name = "harmony saw"
 	desc = "A harmony saw."
 	projectile_type = /obj/projectile/ego_bullet/ego_harmony
-	//pellets = 4
-	//variance = 20

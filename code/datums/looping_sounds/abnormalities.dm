@@ -39,14 +39,14 @@
 /datum/looping_sound/singing_grinding
 	mid_sounds = 'sound/abnormalities/singingmachine/motor.ogg'
 	mid_length = 4 SECONDS
-	volume = 15
-	extra_range = 0
+	volume = 5
+	extra_range = -8
 
 /datum/looping_sound/singing_music
 	mid_sounds = 'sound/abnormalities/singingmachine/music.ogg'
 	mid_length = 4 SECONDS
-	volume = 100
-	extra_range = 20
+	volume = 25
+	extra_range = 2
 
 // Ordeals
 /datum/looping_sound/amberdusk

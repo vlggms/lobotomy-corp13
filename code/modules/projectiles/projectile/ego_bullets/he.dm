@@ -58,7 +58,7 @@
 	damage = 16
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
-	speed = 1.1
+	speed = 1.3
 	projectile_piercing = PASSMOB
 	ricochets_max = 3
 	ricochet_chance = 99999999 // JUST FUCKING DO IT
