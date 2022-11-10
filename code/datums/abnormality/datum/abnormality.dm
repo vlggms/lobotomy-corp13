@@ -67,6 +67,17 @@
 	RespawnAbno()
 	FillEgoList()
 
+/datum/abnormality/Destroy()
+	SSlobotomy_corp.all_abnormality_datums -= src
+	for(var/datum/ego_datum/ED in ego_datums)
+		qdel(ED)
+	QDEL_NULL(landmark)
+	QDEL_NULL(current)
+	ego_datums = null
+	landmark = null
+	current = null
+	..()
+
 /datum/abnormality/proc/RespawnAbno()
 	if(!ispath(abno_path))
 		CRASH("Abnormality tried to respawn a mob, but abnormality path wasn't valid.")
