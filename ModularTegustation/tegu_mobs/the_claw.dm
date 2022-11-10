@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Claw"
 	desc = "A strange humanoid creature with several gadgets attached to it."
-	health = 7000
-	maxHealth = 7000
+	health = 8000
+	maxHealth = 8000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
@@ -11,7 +11,7 @@
 	icon_living = "claw"
 	icon_dead = "claw_dead"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
-	faction = list("Head")
+	faction = list("hostile", "Head")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = COLOR_LIGHT_GRAYISH_RED
 	light_range = 3
@@ -40,18 +40,20 @@
 							   /datum/action/innate/megafauna_attack/tri_serum,
 							   )
 	var/serumW_cooldown = 0
-	var/serumW_cooldown_time = 40 SECONDS
+	var/serumW_cooldown_time = 30 SECONDS
 	var/charging = FALSE
+	var/dash_damage = 100
 	var/dash_num_short = 5
 	var/dash_num_long = 18
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 5 // cooldown_time * distance:
 	// 5 * 5 = 25 (2.5 seconds)
 	// 5 * 18 = 90 (9 seconds)
+	var/serumA_damage = 60
 	var/serumA_cooldown = 0
-	var/serumA_cooldown_time = 13 SECONDS
+	var/serumA_cooldown_time = 10 SECONDS
 	var/triserum_cooldown
-	var/triserum_cooldown_time = 70 SECONDS
+	var/triserum_cooldown_time = 60 SECONDS
 
 	var/datum/ordeal/ordeal_reference
 
@@ -106,7 +108,7 @@
 /mob/living/simple_animal/hostile/megafauna/claw/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
-	serumW_cooldown = world.time + 15 SECONDS
+	serumW_cooldown = world.time + 10 SECONDS
 
 /mob/living/simple_animal/hostile/megafauna/claw/death(gibbed)
 	if(ordeal_reference)
@@ -129,22 +131,25 @@
 			return
 		switch(chosen_attack)
 			if(1)
-				serumW()
+				INVOKE_ASYNC(src, .proc/SerumW)
 			if(2)
-				swift_dash(target, dash_num_short, 5)
+				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
 			if(3)
-				swift_dash(target, dash_num_long, 20)
+				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_long, 20)
 			if(4)
-				serumA(target)
-			if(4)
-				TriSerum()
+				INVOKE_ASYNC(src, .proc/SerumA, target)
+			if(5)
+				INVOKE_ASYNC(src, .proc/TriSerum)
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
 	if(serumA_cooldown <= world.time && !charging)
-		serumA(target)
+		INVOKE_ASYNC(src, .proc/SerumA, target)
 	else if(dash_cooldown <= world.time && !charging)
-		swift_dash(target, dash_num_short, 5)
+		if(prob(15) && (health < maxHealth*0.5))
+			INVOKE_ASYNC(src, .proc/ContinuousDash, target, 5)
+			return
+		INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
 	if(charging)
@@ -158,11 +163,11 @@
 	if(.) // Alive and well
 		if(!client)
 			if(serumW_cooldown <= world.time)
-				serumW() // So we don't get stuck
+				INVOKE_ASYNC(src, .proc/SerumW) // So we don't get stuck
 			if(triserum_cooldown <= world.time && (health < maxHealth*0.2))
-				TriSerum()
+				INVOKE_ASYNC(src, .proc/TriSerum)
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/serumW()
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumW()
 	if(serumW_cooldown > world.time)
 		return
 	serumW_cooldown = world.time + serumW_cooldown_time
@@ -282,43 +287,45 @@
 			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash(target, distance, wait_time)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(target, distance, wait_time)
 	if(dash_cooldown > world.time)
 		return
 	dash_cooldown = world.time + (dash_cooldown_time * distance)
 	charging = TRUE
-	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
-	var/turf/T = get_step(get_turf(src), dir_to_target)
-	for(var/i in 1 to distance)
+	var/turf/end_turf = get_ranged_target_turf_direct(src, target, distance, 0)
+	var/list/turf_list = getline(src, end_turf)
+	for(var/turf/T in turf_list)
 		new /obj/effect/temp_visual/cult/sparks(T)
-		T = get_step(T, dir_to_target)
-	addtimer(CALLBACK(src, .proc/swift_dash2, dir_to_target, 0, distance), wait_time)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	icon_state = "claw_prepare"
 	face_atom(target)
-
-/mob/living/simple_animal/hostile/megafauna/claw/proc/swift_dash2(move_dir, times_ran, distance_run)
-	if(times_ran > distance_run)
-		charging = FALSE
-		icon_state = icon_living
-		return
-	var/turf/T = get_step(get_turf(src), move_dir)
-	if(!T)
-		charging = FALSE
-		icon_state = icon_living
-		return
-	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	SLEEP_CHECK_DEATH(wait_time)
 	icon_state = "claw_dash"
-	forceMove(T)
-	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
-	for(var/mob/living/L in T.contents)
-		if(faction_check_mob(L))
-			continue
-		L.apply_damage(100, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
-		new /obj/effect/temp_visual/cleave(L.loc)
-	addtimer(CALLBACK(src, .proc/swift_dash2, move_dir, (times_ran + 1), distance_run), 0.5)
+	for(var/turf/T in turf_list)
+		if(!T)
+			charging = FALSE
+			icon_state = icon_living
+			break
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		forceMove(T)
+		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			new /obj/effect/temp_visual/cleave(L.loc)
+		if(T != turf_list[turf_list.len]) // Not the last turf
+			SLEEP_CHECK_DEATH(0.5)
+	charging = FALSE
+	icon_state = icon_living
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/serumA(target)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/ContinuousDash(target, times_to_dash = 2)
+	// All it does is call dash multiple times in a row
+	for(var/i = 1 to times_to_dash)
+		dash_cooldown = 0
+		SwiftDash(target, 5, 5)
+
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumA(target)
 	if(serumA_cooldown > world.time)
 		return
 	if(!isliving(target))
@@ -341,6 +348,19 @@
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
+	if(!LT)
+		var/list/potential_people = list()
+		for(var/mob/living/L in view(9, src))
+			if(faction_check_mob(L))
+				continue
+			if(L == src)
+				continue
+			if(L.stat == DEAD)
+				continue
+			potential_people += L
+		if(!LAZYLEN(potential_people))
+			return FALSE
+		LT = pick(potential_people)
 	var/turf/start_turf = get_turf(src)
 	var/turf/target_turf = get_step(get_turf(LT), pick(1,2,4,5,6,8,9,10))
 	for(var/i = 1 to 2) // For fancy effect
@@ -357,6 +377,6 @@
 			if(faction_check_mob(victim))
 				continue
 			to_chat(victim, "<span class='userdanger'>\The [src] slashes you!</span>")
-			victim.apply_damage(50, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
+			victim.apply_damage(serumA_damage, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
 			new /obj/effect/temp_visual/cleave(victim.loc)
 			playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
