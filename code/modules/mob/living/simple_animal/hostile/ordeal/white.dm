@@ -51,6 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/black_fixer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(amount < -10)
 		pulse_cooldown = world.time + (pulse_cooldown_time * 0.5)
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/AttackingTarget()
 	if(busy)
