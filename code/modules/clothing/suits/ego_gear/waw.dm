@@ -118,10 +118,9 @@
 	name = "green stem"
 	desc = "Letting go of the obsession may ease the suffering a little."
 	icon_state = "green_stem"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 40)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 70, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
-							)
+							PRUDENCE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/loyalty
 	name = "loyalty"
