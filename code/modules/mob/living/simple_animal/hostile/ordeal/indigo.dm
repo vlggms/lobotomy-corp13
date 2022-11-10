@@ -239,6 +239,7 @@
 	//How often does she slam?
 	var/slam_cooldown = 3
 	var/slam_current = 3
+	var/slam_damage = 100
 	var/slamming = FALSE
 
 	var/pulse_cooldown
@@ -247,7 +248,7 @@
 
 	//Spawning sweepers
 	var/pissed_count
-	var/pissed_threshold = 22
+	var/pissed_threshold = 16
 
 	//phase speedchange
 	var/phase2speed = 2.4
@@ -273,7 +274,7 @@
 	if(slam_current == 0)
 		slamming = TRUE
 		slam_current = slam_cooldown
-		aoe(2, 2)
+		aoe(2, 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/devour(mob/living/L)
 	if(!L)
@@ -385,7 +386,7 @@
 				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
-				L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(slam_damage, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				shake_camera(L, 2, 1)
 			all_turfs -= T
 		sleep(delay)
