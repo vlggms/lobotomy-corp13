@@ -229,3 +229,12 @@
 	icon_state = "metal"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/homing_instinct
+	name = "homing instinct"
+	desc = "A suit that reminds you of home."
+	icon_state = "homing_instinct"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)

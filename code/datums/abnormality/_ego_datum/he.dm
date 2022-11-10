@@ -179,3 +179,12 @@
 /datum/ego_datum/weapon/giant
 	item_path = /obj/item/ego_weapon/shield/giant
 	cost = 35
+
+//Homing Instinct - The Road Home
+/datum/ego_datum/armor/homing_instinct
+	item_path = /obj/item/clothing/suit/armor/ego_gear/homing_instinct
+	cost = 35
+
+/datum/ego_datum/weapon/homing_instinct
+	item_path = /obj/item/ego_weapon/homing_instinct
+	cost = 35

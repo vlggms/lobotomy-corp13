@@ -614,3 +614,47 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+//gains 0.25 force for every step you take, up to 100 damage. However it deals 0 damage by default, making it more useful as a sidearm rather than a main weapon.
+/obj/item/ego_weapon/homing_instinct
+	name = "homing instinct"
+	desc = "It's about the journey AND the destination!"
+	special = "This weapon's damage scale with the number of steps you've taken before striking."
+	icon_state = "homing_instinct"
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	force = 0 //Literally does no damage by default
+	attack_speed = 3
+	attack_verb_continuous = list("pierces", "stabs")
+	attack_verb_simple = list("pierce", "stab")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/mob/current_holder
+
+/obj/item/ego_weapon/homing_instinct/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	current_holder = user
+
+/obj/item/ego_weapon/homing_instinct/Destroy(mob/user)
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+	return ..()
+
+/obj/item/ego_weapon/homing_instinct/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+
+/obj/item/ego_weapon/homing_instinct/attack(mob/living/M, mob/living/carbon/human/user)
+	..()
+	force = round(force/2) //It doesn't lose all its force in one go after each hit.
+
+/obj/item/ego_weapon/homing_instinct/proc/UserMoved()
+	SIGNAL_HANDLER
+	if(force < 100)
+		force += 0.25 //It charges pretty slowly, but people walk pretty fast thanks to justice.

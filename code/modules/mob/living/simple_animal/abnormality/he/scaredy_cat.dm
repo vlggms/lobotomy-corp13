@@ -13,7 +13,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
 	melee_damage_lower = 1
 	melee_damage_upper = 1
-	speed = 4 //stupidly fast
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	vision_range = 7 //nerfed vision range so he doesn't go 2 continents away from his friend
@@ -44,7 +43,8 @@
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
 									/mob/living/simple_animal/hostile/abnormality/woodsman,
-									/mob/living/simple_animal/hostile/abnormality/scarecrow
+									/mob/living/simple_animal/hostile/abnormality/scarecrow,
+									/mob/living/simple_animal/hostile/abnormality/road_home
 									)
 	/// Types of abnormalities that we will ignore when they are breaching
 	var/list/ignore_abno_list = list(
