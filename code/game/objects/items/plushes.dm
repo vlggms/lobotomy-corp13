@@ -320,7 +320,14 @@
 	attack_verb_simple = list("hug", "squeeze")
 	squeak_override = list('sound/weapons/thudswoosh.ogg'=1)
 
-// LC plushes
+/* LC plushes */
+// The good guys
+/obj/item/toy/plush/ayin
+	name = "ayin plushie"
+	desc = "A plushie depicting a researcher that did <b>nothing wrong</b>." // Fight me
+	icon_state = "ayin"
+	gender = MALE
+
 // Sephirots
 /obj/item/toy/plush/malkuth
 	name = "malkuth plushie"
@@ -403,6 +410,13 @@
 	gender = FEMALE
 	squeak_override = list('sound/effects/yem.ogg'=1)
 
+/obj/item/toy/plush/rabbit
+	name = "rabbit plushie"
+	desc = "A plushie depicting a mercenary."
+	icon_state = "rabbit"
+	squeak_override = list('sound/effects/radio_clear.ogg'=1)
+
+// Abnormalities
 /obj/item/toy/plush/qoh
 	name = "queen of hatred plushie"
 	desc = "A plushie depicting a magical girl whose goal is fighting all evil in the universe!"
@@ -424,12 +438,20 @@
 	desc = "A plushie depicting a slime girl, you think."
 	icon_state = "melt"
 
+/obj/item/toy/plush/scorched
+	name = "scorched girl plushie"
+	desc = "A plushie depicting scorched girl."
+	icon_state = "scorched"
+	gender = FEMALE
+	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
+
+// Others
 /obj/item/toy/plush/bongbong
 	name = "bongbong plushie"
 	desc = "A plushie depicting the Lobotomy Corporation"
 	icon_state = "bongbong"
 
 /obj/item/toy/plush/fumo
-	name = "Fumo"
+	name = "cirno fumo"
 	desc = "A plushie depicting an adorable ice fairy. It's cold to the touch."
 	icon_state = "fumo_cirno"
