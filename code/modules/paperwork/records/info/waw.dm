@@ -295,3 +295,29 @@
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Yang
+/obj/item/paper/fluff/info/waw/yang
+	name = "O-05-103"
+	info = {"<h1><center>O-05-103</center></h1>	<br>
+	Name : Yang	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- Yang was helpful during the suppression of REDACTED, healing all humans near it and dealing damage to REDACTED	<br>
+	- WARNING: Upon Yang's death, vacate immediately.	<br>
+	<br>
+	<h4>Instinct:</h4> Very Lown<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Resistant	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+

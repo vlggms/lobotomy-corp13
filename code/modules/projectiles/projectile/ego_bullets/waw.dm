@@ -167,14 +167,13 @@
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 	hitscan = TRUE
-
-	//CHANGE THESE OUT FOR WHITE AS SOON AS YANG GETS MERGED!
-	muzzle_type = /obj/effect/projectile/muzzle/laser/emitter
-	tracer_type = /obj/effect/projectile/tracer/laser/emitter
-	impact_type = /obj/effect/projectile/impact/laser/emitter
+	muzzle_type = /obj/effect/projectile/muzzle/laser/white
+	tracer_type = /obj/effect/projectile/tracer/laser/white
+	impact_type = /obj/effect/projectile/impact/laser/white
 	wound_bonus = -100
 	bare_wound_bonus = -100
 
+//feather of honor
 /obj/projectile/ego_bullet/ego_feather
 	name = "feather"
 	icon_state = "lava"
