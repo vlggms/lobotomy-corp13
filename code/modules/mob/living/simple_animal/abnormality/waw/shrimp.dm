@@ -77,7 +77,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/attempt_work(mob/living/carbon/human/user, work_type)
-	if(work_type == liked)
+	if(work_type == liked || !liked)
 		happy = TRUE
 	else
 		happy = FALSE
@@ -95,7 +95,9 @@
 			say(pick(attachment))
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/proc/pissed()
-	for(var/turf/T in orange(1, src))
+	var/turf/W = pick(GLOB.department_centers)
+	for(var/turf/T in orange(1, W))
+		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(70))
 			new /mob/living/simple_animal/hostile/shrimp(T)
 		else
