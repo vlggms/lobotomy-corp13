@@ -1,7 +1,7 @@
 // White night - Paradise lost
 /datum/ego_datum/armor/paradise
 	item_path = /obj/item/clothing/suit/armor/ego_gear/paradise
-	cost = 250
+	cost = 200
 
 // Judgement bird - Justitia
 /datum/ego_datum/weapon/justitia

@@ -4,10 +4,10 @@
 	icon = 'icons/obj/clothing/ego_gear/realization.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/realized.dmi'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 130,
-							PRUDENCE_ATTRIBUTE = 130,
-							TEMPERANCE_ATTRIBUTE = 130,
-							JUSTICE_ATTRIBUTE = 130
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/item_action_slot_check(slot)
@@ -135,4 +135,11 @@
 	desc = "In the face of pain there are no heroes."
 	icon_state = "cruelty"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
+	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
+
+/obj/item/clothing/suit/armor/ego_gear/realization/prophet
+	name = "prophet"
+	desc = "And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death."
+	icon_state = "prophet"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 80)
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES

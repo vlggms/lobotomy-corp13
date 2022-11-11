@@ -1,12 +1,11 @@
-// ALEPH armor, go wild, but attempt to keep total armor at ~245 total.
-// Paradise lost and Twilight are the only exceptions.
+// ALEPH armor, go wild, but attempt to keep total armor at ~240 total.
 
 /obj/item/clothing/suit/armor/ego_gear/paradise
 	name = "paradise lost"
 	desc = "\"My loved ones, do not worry; I have heard your prayers. \
 	Have you not yet realized that pain is but a speck to a determined mind?\""
 	icon_state = "paradise"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 80) // 320
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 70) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
