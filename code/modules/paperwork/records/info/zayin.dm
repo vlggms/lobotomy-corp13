@@ -99,8 +99,8 @@
 	Max PE Boxes : 10	<br>
 	Qliphoth Counter : X	<br>
 	Work Damage Type : Red	<br>
-	Work Damage : See Below	<br>
-	- No matter if a worktick fails or succeeds, the employee working on T-09-85 took damage.	<br>
+	Work Damage : Low	<br>
+	- The employee working on T-09-85 took continuous damage during work	<br>
 	- Once a work is done on we can change anything, the agent working will recieve a temporary buff.	<br>
 	- The buff will last only for 5 minutes.<br>
 	<h4>Instinct:</h4> High<br>
