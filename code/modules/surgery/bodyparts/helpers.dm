@@ -218,6 +218,8 @@
 			. = "fff4e6"
 		if("orange")
 			. = "ffc905"
+		if("serpentgreen") //Cheap alteration for Naked Nest Abnormality -IP
+			. = "8a8a50"
 
 /mob/living/carbon/proc/Digitigrade_Leg_Swap(swap_back)
 	var/body_plan_changed = FALSE

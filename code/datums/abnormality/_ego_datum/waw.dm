@@ -163,3 +163,12 @@
 /datum/ego_datum/weapon/assonance
 	item_path = /obj/item/gun/ego_gun/assonance
 	cost = 50
+
+// Naked Nest - Exuviae
+/datum/ego_datum/weapon/exuviae
+	item_path = /obj/item/gun/ego_gun/exuviae
+	cost = 50
+
+/datum/ego_datum/armor/exuviae
+	item_path = /obj/item/clothing/suit/armor/ego_gear/exuviae
+	cost = 50

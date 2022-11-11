@@ -191,3 +191,12 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/exuviae
+	name = "exuviae"
+	desc = "Its scales are multi layered, suitable for protection against external threats."
+	icon_state = "exuviae"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60
+							)

@@ -273,3 +273,21 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 	)
+
+/obj/item/gun/ego_gun/exuviae
+	name = "exuviae"
+	desc = "A chunk of the naked nest inigrated with a launching mechanism."
+	icon_state = "exuviae"
+	inhand_icon_state = "exuviae"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_exuviae
+	weapon_weight = WEAPON_HEAVY
+	special = "This weapon takes a while to reload. \
+				Upon hit the targets RED vulnerability is increased by 0.2."
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	fire_delay = 50
+	fire_sound = 'sound/misc/moist_impact.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60
+	)
