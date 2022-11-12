@@ -60,7 +60,7 @@
 	desc = "This weapon yearns for affection and will do anything to get your attention. Of course it will misunderstand your care for something else."
 	icon_state = "unrequited"
 	inhand_icon_state = "unrequited"
-	special = "This weapon requires 2 hands. This weapon will sometimes jam. \
+	special = "This weapon will sometimes jam. \
 			Use this weapon in hand to unjam it. \
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_unrequited
