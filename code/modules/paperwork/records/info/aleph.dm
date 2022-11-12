@@ -44,7 +44,7 @@
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Common<br>
 	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
 	<h4>Escape Damage:</h4> Moderate	<br>
 	<h4>Red Resistance:</h4> Ineffective	<br>
 	<h4>White Resistance:</h4> Ineffective	<br>

@@ -264,7 +264,7 @@
 	Work Damage Type : Pale	<br>
 	Work Damage : Moderate	<br>
 	- Every 13 minutes, the bell tolled.	<br>
-	- If The Price of Silence was not worked on between the bells tolling, every employee took massive pale damage.	<br>
+	- If The Price of Silence did not get a good work between the bells tolling, every employee took massive pale damage.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>
@@ -321,3 +321,27 @@
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
+//Alriune
+/obj/item/paper/fluff/info/waw/alriune
+	name = "T-04-53"
+	info = {"<h1><center>T-04-53</center></h1>	<br>
+	Name : Alriune	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Good, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- All employees who went insane from T-04-53's attacks, died insantly. <br> <br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Immune	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}

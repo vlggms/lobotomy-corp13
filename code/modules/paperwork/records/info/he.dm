@@ -280,7 +280,7 @@
 	<h4>Attachment:</h4> High<br>
 	<h4>Repression:</h4> Very Low<br>"}
 
-// Warm-Hearted Woodsman
+// Funeral
 /obj/item/paper/fluff/info/he/funeral
 	name = "T-01-68"
 	info = {"<h1><center>T-01-68</center></h1>    <br>
@@ -293,6 +293,7 @@
 	- When employees of Justice Level 2 or lower finished working with Funeral of the Dead Butterflies, the Qliphoth Counter lowered.    <br>
 	- The above phenomenon also occurred when employees of Fortitude Level 4 or higher finished working with Funeral of the Dead Butterflies.    <br>
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.    <br>
+	- All employees who went insane from T-01-68's attacks, died instantly. <br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
