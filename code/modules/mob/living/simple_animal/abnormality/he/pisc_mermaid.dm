@@ -9,11 +9,15 @@
 	icon_state = "pmermaid_standing"
 	icon_living = "pmermaid_standing"
 	icon_dead = "pmermaid_laying" //she shouldn't die while contained so this is more of a placeholder death icon
+	deathsound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
+	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
+	del_on_death = FALSE
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -12
 	base_pixel_x = -12
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //not that bad without a lover
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
+	rapid_melee = 2
 	melee_damage_lower = 15
 	melee_damage_upper = 20 //really subpar damage and speed but most of her damage is oxyloss anyway
 	stat_attack = HARD_CRIT
@@ -21,23 +25,23 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	speed = 4
-	move_to_delay = 4
+	move_to_delay = 2.8
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 40, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 60, 60, 60),
-						ABNORMALITY_WORK_REPRESSION = list(40, 45, 55, 60, 60),
+						ABNORMALITY_WORK_INSIGHT = list(30, 30, 35, 35, 35),
+						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
+						ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
 						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 
-	/*ego_list = list(
-		/datum/ego_datum/weapon/unrequited_love,
-		/datum/ego_datum/armor/unrequited_love
+	ego_list = list(
+		/datum/ego_datum/weapon/unrequited,
+		/datum/ego_datum/armor/unrequited
 		)
-	gift_type =  /datum/ego_gifts/unrequited_love */
+	//gift_type =  /datum/ego_gifts/unrequited_love
 
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"
@@ -52,13 +56,30 @@
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/success_effect(mob/living/carbon/human/user, work_type, pe)
 	if(!crown)
-		GiveGift()
+		GiveGift(user)
+		return
 	if(crown?.loved == user)
 		if(crown.loved)
 			datum_reference.qliphoth_change(1)
 		return
+
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/attempt_work(mob/living/carbon/human/user, work_type)
+	if(status_flags & GODMODE)
+		icon_living = "pmermaid_laying"
+		icon_state = "pmermaid_laying"
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(status_flags & GODMODE)
+		icon_living = "pmermaid_standing"
+		icon_state = "pmermaid_standing"
+	..()
 
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
@@ -68,20 +89,38 @@
 	icon_living = "pmermaid_breach"
 	icon_dead = "pmermaid_slain"
 	icon_state = icon_living
+	pixel_y = -16
+	base_pixel_y = -16
 	if(!isnull(crown?.loved))
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5) //others can still help but it'll take much longer
+		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3) //others can still help but it's going to take a lot of damage
 		love_target = crown.loved
 		qdel(crown)
 		love_target.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/unrequited_slowdown)
 		var/turf/orgin = get_turf(love_target)
-		var/list/all_turfs = RANGE_TURFS(1, orgin)
-		var/turf/open/Y = pick(all_turfs - orgin)
-		forceMove(Y)
-		GiveTarget(love_target) //ANON YOU HAVEN'T REPLIED TO MY TEXTS IN THE PAST 15 MINUTES DON'T YOU LOVE ME ANYMORE?
-
-	if(crown) //in the rare case mermaid breach without anyone wearing the crown, we delete it anyway.
+		var/list/all_turfs = RANGE_TURFS(1, orgin) //if the target is somehow surrounded by nothing but walls it might fuck up her teleport but you're still drowning
+		for(var/turf/T in all_turfs)
+			if(T.is_blocked_turf(exclude_mobs = TRUE) || T == orgin)
+				all_turfs -= T
+		var/turf/T = pick(all_turfs)
+		if(T)
+			forceMove(T)
+			GiveTarget(love_target) //ANON YOU HAVEN'T REPLIED TO MY TEXTS IN THE PAST 15 MINUTES DON'T YOU LOVE ME ANYMORE?
+			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 50, 1)
+		to_chat(love_target, "<span class='userdanger'>You can't breath!</span>")
+	if(crown)
 		qdel(crown)
 
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/death(gibbed)
+	if(love_target)
+		love_target.remove_movespeed_modifier(/datum/movespeed_modifier/unrequited_slowdown)
+		say("[love_target.name]... You promised we'd be...")
+		love_target = null
+	if(crown)
+		qdel(crown) //this shouldn't be possible for a crown to exist after her breach but we might as well
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/Life()
 	. = ..()
@@ -92,34 +131,45 @@
 	if(!love_target)
 		for(var/mob/living/carbon/human/H in oview(src, vision_range))
 			//if there's no love target, they suffocate everyone they can see but you can just get out of her view to stop it
-			H.adjustOxyLoss(2.5, updating_health=TRUE, forced=TRUE)
+			H.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
+		return
+
+	if(love_target.stat == DEAD)
+		say("[love_target.name]? Are you okay? I'm sorry, is it my fault? Will you come back if I love you enough? Will you love me back in death at least?")
+		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //back to being a pushover
+		love_target = null
 		return
 	//Not having a cooldown on the oxyloss sounds bad, but people's breathing is dictated by Life(), so it's actually the perfect pace of oxyloss
 	love_target.adjustOxyLoss(2.5, updating_health=TRUE, forced=TRUE)
+	new /obj/effect/temp_visual/mermaid_drowning(get_turf(love_target))
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/attackby(obj/item/W, mob/user, params)
 	. = ..()
 	if(.) //fun fact, the attack chain STOPS when it returns TRUE. This isn't confusing at all.
 		return
 	if(love_target == user)
-		say("I'm taking [W.force] extra damage")
-		adjustHealth(W.force)
+		adjustHealth(W.force * 1.25)
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostSpawn()
 	..()
 	for(var/turf/open/O in range(1, src))
+		var/water_filled = FALSE
+		for(var/obj/effect/mermaid_water/MW in O.contents)
+			water_filled = TRUE
+			break
+		if(water_filled) //this solution is pretty inelegant but it avoids pisc mermaid spamming water on top of water every spawn.
+			continue
 		var/obj/effect/mermaid_water/MW = new(O) //we basically flood her cell so that her water looks more natural
 		var/water_dir = get_cardinal_dir(get_turf(MW), get_turf(src)) //this is so buckled people face mermaid, face_atom doesn't work on effects
-		MW.dir = water_dir //this doesn't actually
-
+		MW.dir = water_dir
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/bullet_act(obj/projectile/P)
 	. = ..()
 	if(!crown?.loved)
 		return
 	if(P.firer == crown.loved)
-		say("I'm taking [P.damage] extra damage")
-		adjustHealth(P.damage) //The damage is basically the bullet damage multiplied by 1.5 because the bullet first hits normally and THEN adjust the health.
+		adjustHealth(P.damage * 1.25)
 
 //We adjust the crown wearer success mod according to the counter.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/OnQliphothChange(mob/living/carbon/human/user, amount)
@@ -137,9 +187,13 @@
 		crown.loved.physiology.work_success_mod += crown_mod
 
 //Gives a crown thing when you get good work on her. Anyone can wear the crown, even those that didn't work on her and there can only be one gift at a time.
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/GiveGift()
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/GiveGift(mob/living/carbon/human/user)
+	FluffSpeak("Do you like it? You do right? I worked so hard on it...")
+	addtimer(CALLBACK(src, .proc/FluffSpeak, "If you don't like it then can you find someone who do? Bring them to me please."), 3 SECONDS)
 	var/obj/item/clothing/head/unrequited_crown/UC = new(get_turf(src))
 	crown = UC
+	crown.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
+	playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/bigsplash.ogg', 50, 1)
 	UC.mermaid = src
 
 //this is basically just teddy bear hugging but you're buckled to the water and the death is much much slower, you can technically survive it if a clerk is giving CPR
@@ -155,9 +209,9 @@
 		drowning = TRUE
 	if(!drowning)
 		return //the most likely scenario is that someone is already buckled here and currently dying
-	petter.losebreath += 75
-	say("I'm really sorry, but it's fine right? Isn't it wonderful to be loved?")
-	addtimer(CALLBACK(src, .proc/FluffSpeak, "Do you understand why I want to be loved so much now? Why life is unbearable without reciprocated feelings?"), 5 SECONDS)
+	petter.losebreath += 500
+	FluffSpeak("I'm really sorry, but it's fine right? Isn't it wonderful to be loved?")
+	addtimer(CALLBACK(src, .proc/FluffSpeak, "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "You can breath underwater right?"), 30 SECONDS)
 
 //This is a dating sim now fuck you
@@ -173,22 +227,22 @@
 	petter = current_petter
 	switch(pet_count)
 		if(5)
-			say("You won't leave right? You love me right?")
+			FluffSpeak("You won't leave right? You love me right?")
 		if(10)
 			response_help_continuous = "hugs"
 			response_help_simple = "hug"
 		if(12)
-			say("I swear I'll be nice, you can just stay with me, even if I'm a monster...")
+			FluffSpeak("I swear I'll be nice, you can just stay with me, even if I'm a monster...")
 		if(15)
 			response_help_continuous = "hold hands"
 			response_help_simple = "hold hands"
 		if(17)
-			say("Are you sure you want to stay? I love you so much, I can't- I don't want to see you go.")
+			FluffSpeak("Are you sure you want to stay? I love you so much, I can't- I don't want to see you go.")
 		if(20)
 			ExcessiveLove()
 
 //just so I don't have to handle timers and her saying stuff she shouldn't say while breached
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/FluffSpeak(var/sentence)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/FluffSpeak(sentence)
 	if(status_flags & GODMODE)
 		say(sentence)
 
@@ -198,10 +252,12 @@
 /obj/item/clothing/head/unrequited_crown
 	name = "Unrequited Gift"
 	desc = "Love me, please love me. I'll take off my arms, I'll cut down my legs. Just love me back."
-	icon_state = "beanie" //temporary sprite
+	icon_state = "unrequited_gift"
+	icon = 'icons/obj/clothing/ego_gear/head.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 	var/success_mod = 15
 	var/love_cooldown
-	var/love_cooldown_time = 5 MINUTES //It takes around 15 minutes for mermaid to breach if left unchecked
+	var/love_cooldown_time = 2.5 MINUTES //It takes around 7.5 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
 	var/mob/living/carbon/human/loved //What's wrong anon? Unconditional love is what you wanted right?
 
@@ -227,14 +283,14 @@
 	if((love_cooldown < world.time) && loved)
 		mermaid.datum_reference.qliphoth_change(-1)
 		new /obj/effect/temp_visual/heart(get_turf(loved))
-		to_chat(loved, "<span class='userdanger'>You feel as if you're forgetting someone...</span>")
+		to_chat(loved, "<span class='warning'>You feel as though you're forgetting someone...</span>")
 		love_cooldown = world.time + love_cooldown_time
 
 
 //Mermaid bath water
 /obj/effect/mermaid_water
 	name = "Lovely water"
-	desc = "This water is as desperate for love as the one that reside in it"
+	desc = "This water is as desperate for love as the one that resides in it"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "mermaid_water"
 	layer = BELOW_OBJ_LAYER
@@ -247,4 +303,4 @@
 ///the loved's movespeed is nerfed by a LOT while she's out, meaning if you're in the process of being chased by big bird, I have bad news for you.
 /datum/movespeed_modifier/unrequited_slowdown
 	variable = TRUE
-	multiplicative_slowdown = 1.5
+	multiplicative_slowdown = 2

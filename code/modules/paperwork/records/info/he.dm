@@ -369,7 +369,7 @@
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
 
-
+	
 //Child of the Galaxy
 /obj/item/paper/fluff/info/he/galaxy_child
 	name = "O-01-55"
@@ -390,26 +390,32 @@
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
 
-//Singing Machine
-/obj/item/paper/fluff/info/he/singing_machine
-	name = "O-05-30"
-	info = {"<h1><center>O-05-30</center></h1>    <br>
-	Name : Singing Machine    <br>
+//Piscine Mermaid
+/obj/item/paper/fluff/info/he/pisc_mermaid
+	name = "O-01-129" //I'll figure out the serial number later,
+	info = {"<h1><center>O-01-129</center></h1>    <br>
+	Name : Piscine Mermaid    <br>
 	Risk Class : HE    <br>
 	Max PE Boxes : 16    <br>
-	Qliphoth Counter : 2    <br>
+	Qliphoth Counter : 3    <br>
 	Work Damage Type : White	<br>
 	Work Damage : Moderate	<br>
-	- When the work result was Bad, the Qliphoth Counter decreased. When the work result was Neutral, the Qliphoth counter lowered at a moderate chance.    <br>
-	- When NAME, whose Fortitude was level IV, attempted to do any work other than Instinct, Singing Machine's behavior was more erratic. The same occurred to NAME, whose Temperance was under III.    <br>
-	- When NAME performed Instinct work on Singing Machine, it activated and dealt them small, repeated red damage. Employees who heard its song reported greater mental stability.     <br>
-	- NAME, who performed Instinct work on Singing Machine, reported hearing Singing Machine more clearly than others while it operated. This has been termed Musical Addiction, and seems to decay after five minutes.    <br>
-	- When the Qliphoth Counter reached 0, Singing Machine opened and began to grind its gears, dealing constant white damage in audible range. In this state, performing Instinct work dealt severe red damage to NAME and did not confer any benefits.    <br>
-	- When NAME performed neutral or bad work while it was open, Singing Machine took their body, closed, and began to play, dealing even more severe white damage and driving all afflicted by Musical Addiction into a frenzy. Its counter increased by 2, however.    <br>
-	- The above also occurred when NAME went insane or died during work. However, upon performing a Good work, Singing Machine also closed, its counter increased by 2, and the noise stopped.    <br>
+	- When the work result was bad or medium, the Qliphoth counter decreased.   <br>
+	- When the work result was good, Piscine Mermaid offered a gift if no other version of that gift was present in the facility.    <br>
+	- The employee that wore the gift received greatly increased work rates. but the Qliphoth counter would periodically decrease as long as the gift was worn.    <br>
+	- When the work result was good and was done by an employee wearing the gift, the Qliphoth counter increased.   <br>
+	- When the employee wearing the gift took it off, Piscine Mermaid breached immediately.   <br>
+	- When Piscine mermaid breached containment, she slowly suffocated everyone she could see and destroyed the gift if one was present.   <br>
+	- If someone wore the gift at the moment of her breach, she would teleport to them and greatly reduced their speed, the gifted could not breath as long as Piscine Mermaid was alive.   <br>
+	- Piscine Mermaid took very little damage from anyone that wasn't the gifted, her resistances would come back to normal after the gifted's death.  <br>
 	<br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Common<br>"}
-
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Very High<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Low	 <br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
