@@ -369,7 +369,7 @@
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
 
-	
+
 //Child of the Galaxy
 /obj/item/paper/fluff/info/he/galaxy_child
 	name = "O-01-55"
@@ -427,7 +427,7 @@
 	Name : Singing Machine    <br>
 	Risk Class : HE    <br>
 	Max PE Boxes : 16    <br>
-	Qliphoth Counter : 3    <br>
+	Qliphoth Counter : 2    <br>
 	Work Damage Type : White	<br>
 	Work Damage : Moderate	<br>
 	- When the work result was Bad, the Qliphoth Counter decreased. When the work result was Neutral, the Qliphoth counter lowered at a moderate chance.    <br>

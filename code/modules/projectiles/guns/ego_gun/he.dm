@@ -127,3 +127,17 @@
 		to_chat(user,"<span class='notice'>You succesfully unjammed [src]!</span>")
 		jam_cooldown_time = rand(1, 5) MINUTES
 		jam_cooldown = jam_cooldown_time + world.time
+
+/obj/item/gun/ego_gun/harmony
+	name = "harmony"
+	desc = "A massive blocky launcher with some suspicious stains on it."
+	icon_state = "harmony"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
+	fire_sound = 'sound/weapons/ego/harmony1.ogg'
+	vary_fire_sound = FALSE
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 70
+	autofire = 0.4 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
