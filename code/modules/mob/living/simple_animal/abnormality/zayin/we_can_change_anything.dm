@@ -39,6 +39,8 @@
 /atom/movable/screen/alert/status_effect/we_can_change_anything
 	name = "The desire to change"
 	desc = "Your lost kneecaps have made you stronger, enjoy."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "change"
 
 /datum/status_effect/we_can_change_anything/on_apply()
 	. = ..()

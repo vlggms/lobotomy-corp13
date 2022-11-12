@@ -173,6 +173,8 @@
 /atom/movable/screen/alert/status_effect/schismatic
 	name = "Schismatic"
 	desc = "You have ruined the sanctity between the rose and it's chosen and have been punished."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "schismatic"
 
 /datum/status_effect/schismatic/on_apply()
 	. = ..()
@@ -204,6 +206,8 @@
 /atom/movable/screen/alert/status_effect/sacrifice
 	name = "Sacrifice"
 	desc = "You have sacrificed a bit of yourself to the rose."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "sacrifice"
 
 /datum/status_effect/sacrifice/on_apply()
 	. = ..()

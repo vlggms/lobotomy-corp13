@@ -80,6 +80,8 @@
 /atom/movable/screen/alert/status_effect/marked
 	name = "Marked For Death"
 	desc = "You are marked for death. You will die when struck."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "marked_for_death"
 
 /datum/status_effect/markedfordeath/on_apply()
 	. = ..()

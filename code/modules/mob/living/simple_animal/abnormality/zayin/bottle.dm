@@ -83,6 +83,7 @@
 /atom/movable/screen/alert/status_effect/tears
 	name = "Tearful"
 	desc = "You are weakened for a short period of time."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "tearful"
 
 /datum/status_effect/tears/on_apply()

@@ -92,5 +92,7 @@
 /atom/movable/screen/alert/status_effect/friendship
 	name = "Order of the Galaxy"
 	desc = "You are a friend of Child of the Galaxy, and will receive healing for it."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "friendship"
 
 #undef STATUS_EFFECT_FRIENDSHIP

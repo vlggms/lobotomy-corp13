@@ -154,6 +154,8 @@
 /atom/movable/screen/alert/status_effect/champion
 	name = "The Champion"
 	desc = "You are White Lake's champion, and she has empowered you temporarily."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "champion"
 
 /datum/status_effect/champion/on_apply()
 	. = ..()
