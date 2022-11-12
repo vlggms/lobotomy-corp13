@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 60, 60),
 		ABNORMALITY_WORK_REPRESSION = list(55, 60, 65, 70, 75)
 		)
-	work_damage_amount = 4
+	work_damage_amount = 0
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
 
@@ -25,8 +25,11 @@
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
 
+
+/mob/living/simple_animal/hostile/abnormality/we_can_change_anything/worktick(mob/living/carbon/human/user)
+	user.apply_damage(4, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
+
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/work_complete(mob/living/carbon/human/user, work_type, pe)
-	user.apply_damage(40, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
 	user.apply_status_effect(STATUS_EFFECT_CHANGE)
 	..()
 
