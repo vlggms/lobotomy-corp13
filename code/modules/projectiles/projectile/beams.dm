@@ -28,6 +28,13 @@
 	wound_bonus = -100
 	bare_wound_bonus = -100
 
+/obj/projectile/beam/laser/prehit_pierce(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if("rabbit" in L.faction) // RABBIT
+			return PROJECTILE_PIERCE_PHASE
+	return ..()
+
 /obj/projectile/beam/laser/red
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
@@ -41,7 +48,6 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/black
-	damage = 10
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
@@ -49,7 +55,6 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/pale
-	damage = 8
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
@@ -102,14 +107,6 @@
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "blueheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
-
-/obj/projectile/beam/laser/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.IgniteMob()
-	else if(isturf(target))
-		impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser/wall
 
 /obj/projectile/beam/weak
 	damage = 10
