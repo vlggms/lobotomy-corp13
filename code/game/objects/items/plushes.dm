@@ -328,6 +328,18 @@
 	icon_state = "ayin"
 	gender = MALE
 
+/obj/item/toy/plush/benjamin
+	name = "benjamin plushie"
+	desc = "A plushie depicting a researcher that resembles Hokma a bit too much."
+	icon_state = "benjamin"
+	gender = MALE
+
+/obj/item/toy/plush/carmen
+	name = "carmen plushie"
+	desc = "A plushie depicting an ambitious and altruistic researcher."
+	icon_state = "carmen"
+	gender = FEMALE
+
 // Sephirots
 /obj/item/toy/plush/malkuth
 	name = "malkuth plushie"
