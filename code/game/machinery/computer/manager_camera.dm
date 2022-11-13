@@ -69,6 +69,8 @@
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT, .proc/on_shift_click)
 	RegisterSignal(user, COMSIG_MOB_MIDDLECLICKON, .proc/managerbolt)
+	RegisterSignal(user, COMSIG_MOB_ALTCLICKON, .proc/ManagerExaminate)
+	to_chat(user, "<span class='notice'>You can examine things with alt-click.</span>")
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
@@ -83,6 +85,7 @@
 	UnregisterSignal(user, COMSIG_MOB_CTRL_CLICKED)
 	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT)
 	UnregisterSignal(user, COMSIG_MOB_MIDDLECLICKON)
+	UnregisterSignal(user, COMSIG_MOB_ALTCLICKON)
 	..()
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
@@ -152,6 +155,9 @@
 	else
 		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
 		return
+
+/obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
+	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_shift_click(mob/living/user, turf/open/T)
 	var/mob/living/C = user
