@@ -216,6 +216,8 @@
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
+	move_to_delay = 3
+	speed = 3
 	rapid_melee = 2
 	melee_damage_lower = 60
 	melee_damage_upper = 60
@@ -237,11 +239,26 @@
 	//How often does she slam?
 	var/slam_cooldown = 3
 	var/slam_current = 3
+	var/slam_damage = 100
+	var/slamming = FALSE
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS
 	var/pulse_damage = 10 // More over time
 
+	//Spawning sweepers
+	var/pissed_count
+	var/pissed_threshold = 16
+
+	//phase speedchange
+	var/phase2speed = 2.4
+	var/phase3speed = 1.8
+
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
+	if(slamming)
+		return FALSE
+	..()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
 	. = ..()
@@ -255,8 +272,9 @@
 
 	slam_current-=1
 	if(slam_current == 0)
+		slamming = TRUE
 		slam_current = slam_cooldown
-		aoe(2, 2)
+		aoe(2, 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/devour(mob/living/L)
 	if(!L)
@@ -276,6 +294,16 @@
 		phase3()
 	return TRUE
 
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/bullet_act(obj/projectile/P)
+	..()
+	pissed_count += 1
+	if(pissed_count >= pissed_threshold)
+		pissed_count = 0
+		for(var/turf/T in orange(1, src))
+			if(T.density)
+				continue
+			if(prob(20))
+				new /obj/effect/sweeperspawn(T)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Life()
 	. = ..()
@@ -307,8 +335,8 @@
 
 	maxHealth = 4000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
-	move_to_delay -= move_to_delay*0.3
-	speed -= speed*0.3
+	move_to_delay = phase2speed
+	speed = phase2speed
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -326,8 +354,8 @@
 
 	maxHealth = 3000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
-	move_to_delay -= move_to_delay*0.3
-	speed -= speed*0.3
+	move_to_delay = phase3speed
+	speed = phase3speed
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -341,6 +369,9 @@
 
 /// cannibalized from wendigo
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/aoe(range, delay)
+	for(var/turf/W in range(range, src))
+		new /obj/effect/temp_visual/guardian/phase(W)
+	sleep(10)
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(range, orgin)
 	for(var/i = 0 to range)
@@ -355,8 +386,49 @@
 				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
-				L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(slam_damage, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				shake_camera(L, 2, 1)
 			all_turfs -= T
 		sleep(delay)
+	slamming = FALSE
 
+/obj/effect/sweeperspawn
+	name = "bloodpool"
+	desc = "A target warning you of incoming pain"
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "bloodin"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
+
+/obj/effect/sweeperspawn/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/spawnscout), 6)
+
+/obj/effect/sweeperspawn/proc/spawnscout()
+	new /mob/living/simple_animal/hostile/ordeal/indigo_spawn(get_turf(src))
+	qdel(src)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_spawn
+	name = "sweeper scout"
+	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "indigo_dawn"
+	icon_living = "indigo_dawn"
+	icon_dead = "indigo_dawn_dead"
+	faction = list("indigo_ordeal")
+	maxHealth = 110
+	health = 110
+	move_to_delay = 1.3	//Super fast, but squishy and weak.
+	stat_attack = HARD_CRIT
+	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	melee_damage_lower = 21
+	melee_damage_upper = 24
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
+	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	blood_volume = BLOOD_VOLUME_NORMAL
