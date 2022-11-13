@@ -312,6 +312,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Toggle Door'>[PDAIMG(rdoor)]Toggle Remote Door</a></li>"
 					if (cartridge.access & CART_DRONEPHONE)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Drone Phone'>[PDAIMG(dronephone)]Drone Phone</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=9'>[PDAIMG(notes)]Gift Exchange</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=3'>[PDAIMG(atmos)]Atmospheric Scan</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=Light'>[PDAIMG(flashlight)][light_on ? "Disable" : "Enable"] Flashlight</a></li>"
 				if (pai)
@@ -420,6 +421,26 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
 				dat += "<br>"
+			if(9)
+				dat += "<h4>[PDAIMG(notes)] Gift Exchange</h4>"
+				dat += "<br>"
+				if(!ishuman(user))
+					dat += "ERROR, invalid user detected."
+				else
+					dat += "<div align='center'>Name</div><br>"
+					dat += "<div align='center'>( Fortitude | Prudence | Temperance | Justice )</div><br>"
+					var/mob/living/carbon/human/H = user
+					for(var/beta_gift in H.ego_gift_list) // These show the benefits of each one and at level 4+ you can lock the gift in place.
+						var/datum/ego_gifts/alpha_gift = H.ego_gift_list[beta_gift]
+						if(istype(alpha_gift, /datum/ego_gifts/empty))
+							continue
+						dat += "[alpha_gift.name] <a href='byond://?src=[REF(alpha_gift)];choice=dissolve'>[PDAIMG(crate)]Dissolve</a><br>"
+						dat += "( [alpha_gift.fortitude_bonus >= 0 ? "+[alpha_gift.fortitude_bonus]":"[alpha_gift.fortitude_bonus]"] | \
+							[alpha_gift.prudence_bonus >= 0 ? "+[alpha_gift.prudence_bonus]":"[alpha_gift.prudence_bonus]"] | \
+							[alpha_gift.temperance_bonus >= 0 ? "+[alpha_gift.temperance_bonus]":"[alpha_gift.temperance_bonus]"] | \
+							[alpha_gift.justice_bonus >= 0 ? "+[alpha_gift.justice_bonus]":"[alpha_gift.justice_bonus]"] )<br>"
+
+
 			else//Else it links to the cart menu proc. Although, it really uses menu hub 4--menu 4 doesn't really exist as it simply redirects to hub.
 				dat += cartridge.generate_menu()
 
@@ -522,6 +543,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
 			if("4")//Redirects to hub
 				mode = 0
+				if(!silent)
+					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
+			if("9")
+				mode = 9
 				if(!silent)
 					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
 

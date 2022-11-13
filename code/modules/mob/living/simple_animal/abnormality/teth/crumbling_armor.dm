@@ -62,45 +62,61 @@
 		if (src.icon_state == "megalovania")
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase1)) // From Courage to Recklessness
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/phase2)
+				var/datum/ego_gifts/phase2/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>How much more will it take?</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase2)) // From Recklessness to Foolishness
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/phase3)
+				var/datum/ego_gifts/phase3/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>You need more strength!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase3)) // From Foolishness to Suicidal
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/phase4)
+				var/datum/ego_gifts/phase4/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>DETERMINATION.</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase4)) // You can progress no further down this fool-hardy path
 				return
 			playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
-			user.Apply_Gift(new /datum/ego_gifts/phase1)
+			var/datum/ego_gifts/phase1/CAEG = new
+			CAEG.datum_reference = datum_reference
+			user.Apply_Gift(CAEG)
 			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
 			to_chat(user, "<span class='userdanger'>Just a drop of blood is what it takes...</span>")
 		else
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage)) // From Courage to Recklessness
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/recklessCourage)
+				var/datum/ego_gifts/recklessCourage/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>Your muscles flex with strength!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessCourage)) // From Recklessness to Foolishness
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/recklessFoolish)
+				var/datum/ego_gifts/recklessFoolish/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>You feel like you could take on the world!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessFoolish)) // From Foolishness to Suicidal
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-				user.Apply_Gift(new /datum/ego_gifts/foolish)
+				var/datum/ego_gifts/foolish/CAEG = new
+				CAEG.datum_reference = datum_reference
+				user.Apply_Gift(CAEG)
 				to_chat(user, "<span class='userdanger'>You are a God among men!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/foolish)) // You can progress no further down this fool-hardy path
 				return
 			playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
-			user.Apply_Gift(new /datum/ego_gifts/courage)
+			var/datum/ego_gifts/courage/CAEG = new
+			CAEG.datum_reference = datum_reference
+			user.Apply_Gift(CAEG)
 			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
 			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
 	return

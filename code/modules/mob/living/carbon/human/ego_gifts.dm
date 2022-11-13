@@ -28,6 +28,7 @@
 	var/repression_mod = 0
 	var/locked = FALSE
 	var/mob/living/carbon/human/owner
+	var/datum/abnormality/datum_reference = null
 
 /datum/ego_gifts/proc/Initialize(mob/living/carbon/human/user)
 	user.ego_gift_list[src.slot] = src
@@ -56,9 +57,42 @@
 	QDEL_NULL(src)
 	return
 
-/datum/ego_gifts/Topic()
-	locked = locked ? FALSE : TRUE
-	owner.ShowGifts()
+/datum/ego_gifts/Topic(href, list/href_list)
+	switch(href_list["choice"])
+		if("lock")
+			locked = locked ? FALSE : TRUE
+			owner.ShowGifts()
+		if("dissolve")
+			var/datum/ego_gifts/empty/E = new
+			E.slot = src.slot
+			if(tgui_alert(owner, "Are you sure you want to dissolve the [src]?", "Dissolve Gift", list("Yes", "No"), 0) == "Yes") // We only go if they hit "Yes" specifically.
+				if(datum_reference)
+					var/PE = 0
+					PE += (datum_reference.threat_level * datum_reference.threat_level)
+					if(istype(src, /datum/ego_gifts/blossoming) || istype(src, /datum/ego_gifts/paradise)) // Why though
+						PE *= 2
+					if(ispath(datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
+						switch(tgui_alert(owner, "To think one would commit such a shameful act... what have ye, weaker body or mind?", "Cowardice", list("Body", "Mind"), 0))
+							if("Body")
+								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
+							if("Mind")
+								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
+							else
+								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+								to_chat(owner, "<span class='userdanger'>Even now you try and run? Clearly you are lacking in both!</span>")
+						to_chat(owner, "<span class='warning'>The once cool flames now burn your flesh!</span>")
+						owner.adjustBruteLoss(100)
+					else
+						to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!</span>")
+						datum_reference.stored_boxes += PE
+				else
+					to_chat(owner, "<span class='notice'>The [src] has dissolved into... light?</span>")
+				owner.Apply_Gift(E)
+		else
+			CRASH("Gift Topic Error in [src]. [owner] clicked a non-existant button!?")
 
 /mob/living/carbon/human/proc/Apply_Gift(datum/ego_gifts/given) // Gives the gift and removes the effects of the old one if necessary
 	if(!istype(given))
@@ -208,7 +242,7 @@
 	icon_state = "lutemis"
 	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
 	slot = NECKWEAR
-	
+
 /datum/ego_gifts/shy
 	name = "Today's Expression"
 	icon_state = "shy"

@@ -258,8 +258,10 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if (prob(gift_chance) && !isnull(gift_type))
-		user.Apply_Gift(new gift_type)
+	if (prob(gift_chance) && !isnull(gift_type) && pe > 0)
+		var/datum/ego_gifts/EG = new gift_type
+		EG.datum_reference = src.datum_reference
+		user.Apply_Gift(EG)
 		to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
 	if(pe >= datum_reference.success_boxes)
 		success_effect(user, work_type, pe)
