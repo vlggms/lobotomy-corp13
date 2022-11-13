@@ -257,7 +257,7 @@
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 	var/success_mod = 15
 	var/love_cooldown
-	var/love_cooldown_time = 2.5 MINUTES //It takes around 7.5 minutes for mermaid to breach if left unchecked
+	var/love_cooldown_time = 1 MINUTES //It takes around 3 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
 	var/mob/living/carbon/human/loved //What's wrong anon? Unconditional love is what you wanted right?
 
