@@ -73,7 +73,7 @@
 							)
 
 /obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
-	fire_delay = 24
+	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
@@ -89,15 +89,21 @@
 	Can feathers gain their own wings?"
 	icon_state = "solemnlament"
 	inhand_icon_state = "solemnlament"
+	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
 	burst_size = 1
 	fire_delay = 0
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
+	attribute_requirements = list(JUSTICE_ATTRIBUTE = 60)
 
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
-	)
+/obj/item/gun/ego_gun/pistol/solemnlament/process_fire(atom/target, mob/living/user)
+	for(var/obj/item/gun/ego_gun/pistol/solemnvow/Vow in user.held_items)
+		projectile_damage_multiplier = 1.5
+		break
+	..()
+	projectile_damage_multiplier = 1
+
 
 /obj/item/gun/ego_gun/pistol/solemnvow
 	name = "solemn vow"
@@ -105,15 +111,22 @@
 	Even with wings, no feather can leave this place."
 	icon_state = "solemnvow"
 	inhand_icon_state = "solemnvow"
+	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
 	burst_size = 1
 	fire_delay = 0
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
 
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
-	)
+	attribute_requirements = list(JUSTICE_ATTRIBUTE = 60)
+
+/obj/item/gun/ego_gun/pistol/solemnvov/process_fire(atom/target, mob/living/user)
+	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)
+		projectile_damage_multiplier = 1.5
+		break
+	..()
+	projectile_damage_multiplier = 1
+
 
 /obj/item/gun/ego_gun/loyalty
 	name = "loyalty"
@@ -122,14 +135,26 @@
 	inhand_icon_state = "loyalty"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
-	spread = 8
+	spread = 20
 	special = "This weapon fires 750 rounds per minute. \
-		This weapon has IFF capabilities."
+		This weapon has IFF capabilities.\
+		Use in hand to turn off IFF."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
 	)
+
+/obj/item/gun/ego_gun/loyalty/attack_self(mob/user)
+	..()
+	if(ammo_type == /obj/item/ammo_casing/caseless/ego_loyaltynoiff)
+		to_chat(user,"<span class='warning'>You hit the switch, enabling IFF and decreasing damage.</span>")
+		ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
+		return
+	if(ammo_type == /obj/item/ammo_casing/caseless/ego_loyalty)
+		to_chat(user,"<span class='warning'>You hit the fire selector, disabling IFF and increasing damage.</span>")
+		ammo_type = /obj/item/ammo_casing/caseless/ego_loyaltynoiff
+		return
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
 /obj/item/gun/ego_gun/pistol/soda/executive
@@ -178,8 +203,8 @@
 	inhand_icon_state = "executive"
 	special = "This weapon fires IFF bullets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
-	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
+	autofire = 0.12 SECONDS
 	fire_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60
@@ -193,7 +218,6 @@
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
-	weapon_weight = WEAPON_HEAVY
 	fire_delay = 24
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(

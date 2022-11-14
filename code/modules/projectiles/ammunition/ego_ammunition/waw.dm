@@ -29,6 +29,11 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_solemnvow
 
 /obj/item/ammo_casing/caseless/ego_loyalty
+	name = "loyalty IFF casing"
+	desc = "A loyalty IFF casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_loyalty/iff
+
+/obj/item/ammo_casing/caseless/ego_loyaltynoiff
 	name = "loyalty casing"
 	desc = "A loyalty casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_loyalty
@@ -37,6 +42,14 @@
 	name = "executive casing"
 	desc = "An executive casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_executive
+
+//The only justice scaling gun is a shitty 10 pale pistol
+/obj/item/ammo_casing/caseless/ego_executive/ready_proj(atom/target, mob/living/user, quiet, zone_override = "", atom/fired_from)
+	..()
+	if(isgun(fired_from) && ishuman(user))
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		BB.damage *= justicemod
 
 /obj/item/ammo_casing/caseless/ego_crimson
 	name = "crimson casing"
