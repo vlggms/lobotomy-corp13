@@ -10,6 +10,8 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	w_class = WEIGHT_CLASS_BULKY								//No more stupid 10 egos in bag
 	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
+	drag_slowdown = 1
+	var/equip_slowdown = 3 SECONDS
 
 	var/list/attribute_requirements = list()
 
@@ -20,7 +22,11 @@
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
 		if(!CanUseEgo(H))
 			return FALSE
+		if(equip_slowdown > 0)
+			if(!do_after(H, equip_slowdown, target = H))
+				return FALSE
 	return ..()
+
 
 /obj/item/clothing/suit/armor/ego_gear/proc/CanUseEgo(mob/living/carbon/human/user)
 	if(!ishuman(user))
