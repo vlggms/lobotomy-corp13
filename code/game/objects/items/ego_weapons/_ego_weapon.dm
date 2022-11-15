@@ -12,7 +12,7 @@
 	var/attack_speed
 	var/special
 
-/obj/item/ego_weapon/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
@@ -61,7 +61,12 @@
 		display_text += SpecialGearRequirements()
 		to_chat(usr, display_text)
 
-/obj/item/ego_weapon/proc/CanUseEgo(mob/living/carbon/human/user)
+/obj/item/ego_weapon/proc/CanUseEgo(mob/living/user)
+	if(istype(user, /mob/living/simple_animal/bot/cleanbot))
+		for(var/atr in attribute_requirements)
+			if(attribute_requirements[atr] > 40)
+				return FALSE
+		return TRUE
 	if(!ishuman(user))
 		return FALSE
 

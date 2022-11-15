@@ -229,6 +229,9 @@
 	if((H == oldpatient) && (world.time < last_found + 200))
 		return
 
+	if(H.is_working)
+		return
+
 	if(assess_patient(H))
 		last_found = world.time
 		if((last_newpatient_speak + 300) < world.time) //Don't spam these messages!
