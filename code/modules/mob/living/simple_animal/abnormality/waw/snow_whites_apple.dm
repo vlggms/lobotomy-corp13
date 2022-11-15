@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(vine_list)
+
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple
 	name = "Snow Whites Apple"
 	desc = "An abnormality taking form of a tall humanoid with an apple for a head."
@@ -82,6 +84,15 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Destroy()
+	for(var/obj/structure/alien/weeds/apple_vine/vine in GLOB.vine_list)
+		vine.can_expand = FALSE
+		var/del_time = rand(4,10) //all the vines dissapear at different interval so it looks more organic.
+		animate(vine, alpha = 0, time = del_time SECONDS)
+		QDEL_IN(vine, del_time SECONDS)
+		GLOB.vine_list -= vine
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/TryTeleport() //stolen from knight of despair
 	dir = 2
 	if(teleport_cooldown > world.time)
@@ -111,9 +122,9 @@
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))
 		return
-	if(locate(/obj/structure/alien/weeds/F0442) in get_turf(src))
+	if(locate(/obj/structure/alien/weeds/apple_vine) in get_turf(src))
 		return
-	new /obj/structure/alien/weeds/F0442(loc)
+	new /obj/structure/alien/weeds/apple_vine(loc)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Life()
 	. = ..()
@@ -123,7 +134,7 @@
 	if(!plants_off && plant_cooldown<=0)
 		plant_cooldown = initial(plant_cooldown)
 		SpreadPlants()
-	for(var/obj/structure/alien/weeds/F0442/W in range(15, src))
+	for(var/obj/structure/alien/weeds/apple_vine/W in range(15, src))
 		if(W.last_expand <= world.time)
 			if(W.expand())
 				W.last_expand = world.time + 50
@@ -147,13 +158,13 @@
 		vinespike()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/vinespike()
-	for(var/obj/structure/alien/weeds/F0442/W in view(18, src))
+	for(var/obj/structure/alien/weeds/apple_vine/W in view(18, src))
 		W.vinespike()
 	vine_cooldown = world.time + vine_cooldown_time
 
 
 //stolen alien weed code
-/obj/structure/alien/weeds/F0442
+/obj/structure/alien/weeds/apple_vine
 	gender = PLURAL
 	name = "bitter flora"
 	desc = "Branches that grow from wilting stems."
@@ -172,11 +183,15 @@
 	growth_cooldown_low = 0
 	var/list/static/ignore_typecache
 	var/list/static/atom_remove_condition
+	var/can_expand = TRUE
 	color = "#808000"
 
 
-/obj/structure/alien/weeds/F0442/Initialize()
+/obj/structure/alien/weeds/apple_vine/Initialize()
 	. = ..()
+
+	GLOB.vine_list += src
+
 	pixel_x = 0
 	pixel_y = 0
 
@@ -200,26 +215,29 @@
 
 	last_expand = world.time + growth_cooldown_low
 
-/obj/structure/alien/weeds/F0442/set_base_icon()
+/obj/structure/alien/weeds/apple_vine/set_base_icon()
 	return
 
-/obj/structure/alien/weeds/F0442/expand()
+/obj/structure/alien/weeds/apple_vine/expand()
+	if(!can_expand)
+		return
+
 	var/turf/U = get_turf(src)
 	if(is_type_in_typecache(U, blacklisted_turfs))
 		qdel(src)
 		return FALSE
 
 	for(var/turf/T in U.GetAtmosAdjacentTurfs())
-		if(locate(/obj/structure/alien/weeds/F0442) in T)
+		if(locate(/obj/structure/alien/weeds/apple_vine) in T)
 			continue
 
 		if(is_type_in_typecache(T, blacklisted_turfs))
 			continue
 
-		new /obj/structure/alien/weeds/F0442(T)
+		new /obj/structure/alien/weeds/apple_vine(T)
 	return TRUE
 
-/obj/structure/alien/weeds/F0442/Crossed(atom/movable/AM)
+/obj/structure/alien/weeds/apple_vine/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, atom_remove_condition))
 		qdel(src)
@@ -228,7 +246,7 @@
 	if(isliving(AM))
 		vine_effect(AM)
 
-/obj/structure/alien/weeds/F0442/proc/vine_effect(mob/living/L)
+/obj/structure/alien/weeds/apple_vine/proc/vine_effect(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/lonely = L
 		var/obj/item/trimming = lonely.get_active_held_item()
@@ -256,8 +274,7 @@
 	if(!ishuman(L))
 		L.adjustStaminaLoss(10, TRUE, TRUE) //nonhumans are hindered more
 
-
-/obj/structure/alien/weeds/F0442/proc/suiter_reaction(mob/living/carbon/human/lonely)
+/obj/structure/alien/weeds/apple_vine/proc/suiter_reaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
 		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>") //it would be uncouth for the vines to hinder one gifted by the princess.
@@ -268,7 +285,7 @@
 				"Even after they left, my form would not decay.","She cast me aside and left with her prince. After many days i wondered why i continued to exist.",
 				"How long has it been since the witch died... Where am i?"))
 
-/obj/structure/alien/weeds/F0442/proc/vinespike()
+/obj/structure/alien/weeds/apple_vine/proc/vinespike()
 	for(var/mob/living/L in range(0, src))
 		var/mob/living/carbon/human/victem = L
 		if(istype(victem, /mob/living/simple_animal/hostile/abnormality/snow_whites_apple) || ("pink_midnight" in victem.faction))
