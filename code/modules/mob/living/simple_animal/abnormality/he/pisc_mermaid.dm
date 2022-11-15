@@ -267,9 +267,7 @@
 		if(loved)
 			STOP_PROCESSING(SSobj, src)
 			mermaid.datum_reference.qliphoth_change(-3)
-			loved.physiology.work_success_mod -= success_mod
 			mermaid.breach_effect()
-			loved = user
 			qdel(src)
 		return
 	if(ishuman(user))
@@ -286,6 +284,10 @@
 		to_chat(loved, "<span class='warning'>You feel as though you're forgetting someone...</span>")
 		love_cooldown = world.time + love_cooldown_time
 
+/obj/item/clothing/head/unrequited_crown/Destroy()
+	if(loved)
+		loved.physiology.work_success_mod -= success_mod
+	return ..()
 
 //Mermaid bath water
 /obj/effect/mermaid_water
