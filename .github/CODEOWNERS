@@ -7,12 +7,13 @@
 # EgorDinamit
 /_maps/RandomRuins/LavaRuins/lavaland_surface_techcult.dmm @EgorDinamit
 /_maps/RandomRuins/SpaceRuins/forgottenship.dmm @EgorDinamit
+/code/controllers/subsystem/abnormality_queue.dm @EgorDinamit
+/code/controllers/subsystem/lobotomy_corp.dm @EgorDinamit
+/code/datums/abnormality/datum/abnormality.dm @EgorDinamit
+/code/datums/abnormality/_ego_datum/_ego_datum.dm @EgorDinamit
 /code/modules/antagonists/infiltrator @EgorDinamit
 /code/modules/antagonists/starfurybc @EgorDinamit
 /code/modules/events/starfurybc.dm @EgorDinamit
+/code/modules/mob/living/simple_animal/abnormality/_abnormality.dm @EgorDinamit
 /code/modules/ruins/lavalandruin_code/techcult.dm @EgorDinamit
 /code/modules/ruins/spaceruin_code/forgottenship.dm @EgorDinamit
-
-# JohnFulpWillard
-
-# Samuuu3
