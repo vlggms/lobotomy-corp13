@@ -48,7 +48,6 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	desc = "The ground is covered in volcanic ash."
 	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock //I assume this will be a chasm eventually, once this becomes an actual surface
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	attachment_holes = FALSE
 	footstep = FOOTSTEP_SAND

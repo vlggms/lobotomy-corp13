@@ -144,3 +144,14 @@
 /area/facility_hallway/human
 	name = "Human Resources Hallway"
 	icon_state = "hall_hr"
+
+/area/city
+	name = "City Streets"
+	icon_state = "hallA"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_AREA_STANDARD_STATION
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/city/house
+	name = "Employee Housing"
