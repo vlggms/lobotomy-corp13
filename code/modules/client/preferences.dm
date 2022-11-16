@@ -144,6 +144,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/broadcast_login_logout = TRUE
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
+	///Language that will be used for some of the strings
+	var/client_language = CLIENT_LANGUAGE_ENGLISH
 
 	// Lore Stuff - Currently unused...
 	///What does the player think of TerraGov.
@@ -236,15 +238,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>When Antagonist: [(randomise[RANDOM_NAME_ANTAG]) ? "Yes" : "No"]</a>"
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>Hardcore Random: [(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a>"
-			dat += "<br><b>Name:</b> "
+			dat += "<br><b>[TeguTranslate("Name", src)]:</b> "
 			dat += "<a href='?_src_=prefs;preference=name;task=input'>[real_name]</a><BR>"
 
 			if(!(AGENDER in pref_species.species_traits))
 				var/dispGender
 				if(gender == MALE)
-					dispGender = "Male"
+					dispGender = TeguTranslate("Male", src)
 				else if(gender == FEMALE)
-					dispGender = "Female"
+					dispGender = TeguTranslate("Female", src)
 				else
 					dispGender = "Other"
 				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a>"
@@ -314,12 +316,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_BACKPACK]'>[(randomise[RANDOM_BACKPACK]) ? "Lock" : "Unlock"]</A>"
 
 			if((HAS_FLESH in pref_species.species_traits) || (HAS_BONE in pref_species.species_traits))
-				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? "Enabled" : "Disabled"]</A>"
+				dat += "<BR><b>Temporal Scarring:</b><BR><a href='?_src_=prefs;preference=persistent_scars'>[(persistent_scars) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</A>"
 				dat += "<a href='?_src_=prefs;preference=clear_scars'>Clear scar slots</A>"
 
 			dat += "<br><b>Uplink Spawn Location:</b><BR><a href ='?_src_=prefs;preference=uplink_loc;task=input'>[uplink_spawn_loc]</a><BR></td>"
 			if (user.client.get_exp_living(TRUE) >= PLAYTIME_VETERAN)
-				dat += "<br><b>Don The Ultimate Gamer Cloak?:</b><BR><a href ='?_src_=prefs;preference=playtime_reward_cloak'>[(playtime_reward_cloak) ? "Enabled" : "Disabled"]</a><BR></td>"
+				dat += "<br><b>Don The Ultimate Gamer Cloak?:</b><BR><a href ='?_src_=prefs;preference=playtime_reward_cloak'>[(playtime_reward_cloak) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><BR></td>"
 			var/use_skintones = pref_species.use_skintones
 			if(use_skintones)
 
@@ -578,13 +580,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if (1) // Game Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
-			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
-			dat += "<b>tgui Window Mode:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
-			dat += "<b>tgui Window Placement:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
-			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>[TeguTranslate("UI Style", src)]:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
+			dat += "<b>[TeguTranslate("tgui Window Mode", src)]:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
+			dat += "<b>[TeguTranslate("tgui Window Placement", src)]:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
+			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
-			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
-			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<br>"
 			dat += "<b>Action Buttons:</b> <a href='?_src_=prefs;preference=action_buttons'>[(buttons_locked) ? "Locked In Place" : "Unlocked"]</a><br>"
 			dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Hotkeys" : "Default"]</a><br>"
@@ -648,10 +650,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "High"
 			dat += "</a><br>"
 
-			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
+				dat += "<b>[TeguTranslate("Widescreen", src)]:</b> <a href='?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "[TeguTranslate("Enabled", src)] ([CONFIG_GET(string/default_view)])" : "[TeguTranslate("Enabled", src)] ([CONFIG_GET(string/default_view_square)])"]</a><br>"
 
 			button_name = pixel_size
 			dat += "<b>Pixel Scaling:</b> <a href='?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a><br>"
@@ -705,19 +707,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(days_remaining)
 						dat += "<b>Be [capitalize(special_role)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
 					else
-						dat += "<b>Be [capitalize(special_role)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[special_role]'>[(special_role in be_special) ? "Enabled" : "Disabled"]</a><br>"
+						dat += "<b>Be [capitalize(special_role)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[special_role]'>[(special_role in be_special) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<br>"
-			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "</td></tr></table>"
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
-			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<b>[TeguTranslate("Interface Language", src)]:</b> <a href='?_src_=prefs;preference=clientlanguage;task=input'>[TeguTranslate(client_language, src)]</a><BR>"
 			dat += "<br>"
-			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Play End of Round Sounds:</b> <a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
+			dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=winflash'>[(windowflashing) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<br>"
+			dat += "<b>[TeguTranslate("Play Admin MIDIs", src)]:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>[TeguTranslate("Play Lobby Music", src)]:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>[TeguTranslate("Play End of Round Sounds", src)]:</b> <a href='?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<br>"
 
 
@@ -737,9 +741,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<h2>Admin Settings</h2>"
 
-				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"Enabled":"Disabled"]</a><br>"
-				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS)?"Enabled":"Disabled"]</a><br>"
-				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"Enabled":"Disabled"]</a><br>"
+				dat += "<b>Adminhelp Sounds:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+				dat += "<b>Prayer Sounds:</b> <a href = '?_src_=prefs;preference=hear_prayers'>[(toggles & SOUND_PRAYERS) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
+				dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "<br>"
@@ -761,7 +765,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(CONFIG_GET(flag/auto_deadmin_players) && !timegate)
 					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
 				else
-					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Enabled":"Disabled"]</a><br>"
+					dat += "<b>Always Deadmin:</b> [timegate ? "(Time Locked) " : ""]<a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 					if(!(toggles & DEADMIN_ALWAYS))
 						dat += "<br>"
 						if(!CONFIG_GET(flag/auto_deadmin_antagonists) || (CONFIG_GET(flag/auto_deadmin_antagonists) && !timegate))
@@ -1652,6 +1656,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+
+				if("clientlanguage")
+					var/new_lang = input(user, "Choose your interface language", "Client Language") as null|anything in GLOB.allowed_client_languages
+					if(!(new_lang in GLOB.allowed_client_languages)) // Invalid language
+						new_lang = CLIENT_LANGUAGE_ENGLISH
+					client_language = new_lang
 
 		else
 			switch(href_list["preference"])

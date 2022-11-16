@@ -45,6 +45,7 @@
 		body += " \[<A href='?_src_=holder;[HrefToken()];revive=[REF(M)]'>Heal</A>\] "
 
 	if(M.client)
+		body += "<br>Their interface language is <b>[M.client.prefs.client_language]</b>"
 		body += "<br>\[<b>First Seen:</b> [M.client.player_join_date]\]\[<b>Byond account registered on:</b> [M.client.account_join_date]\]"
 		body += "<br><br><b>CentCom Galactic Ban DB: </b> "
 		if(CONFIG_GET(string/centcom_ban_db))

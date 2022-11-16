@@ -49,27 +49,27 @@
 
 	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
 	asset_datum.send(client)
-	var/list/output = list("<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>Setup Character</a></p>")
+	var/list/output = list("<center><p><a href='byond://?src=[REF(src)];show_preferences=1'>[TeguTranslate("Setup Character", src)]</a></p>")
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		switch(ready)
 			if(PLAYER_NOT_READY)
-				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | <b>Not Ready</b> | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
+				output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | <b>[TeguTranslate("Not Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
 			if(PLAYER_READY_TO_PLAY)
-				output += "<p>\[ <b>Ready</b> | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
+				output += "<p>\[ <b>[TeguTranslate("Ready", src)]</b> | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | [LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)] \]</p>"
 			if(PLAYER_READY_TO_OBSERVE)
-				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
+				output += "<p>\[ [LINKIFY_READY(TeguTranslate("Ready", src), PLAYER_READY_TO_PLAY)] | [LINKIFY_READY(TeguTranslate("Not Ready", src), PLAYER_NOT_READY)] | <b> [TeguTranslate("Observe", src)] </b> \]</p>"
 	else
-		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>View the Crew Manifest</a></p>"
-		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>Join Game!</a></p>"
-		output += "<p>[LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)]</p>"
+		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>[TeguTranslate("View the Crew Manifest", src)]</a></p>"
+		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>[TeguTranslate("Join Game!", src)]</a></p>"
+		output += "<p>[LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)]</p>"
 
 	if(!IsGuestKey(src.key))
 		output += playerpolls()
 
 	output += "</center>"
 
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 250, 265)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>[TeguTranslate("New Player Options", src)]</div>", 260, 280)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output.Join())
 	popup.open(FALSE)
@@ -151,7 +151,7 @@
 
 	if(href_list["late_join"])
 		if(!SSticker?.IsRoundInProgress())
-			to_chat(usr, "<span class='boldwarning'>The round is either not ready, or has already finished...</span>")
+			to_chat(usr, "<span class='boldwarning'>[TeguTranslate("The round is either not ready, or has already finished...", src)]</span>")
 			return
 
 		if(href_list["late_join"] == "override")
@@ -177,16 +177,16 @@
 
 	if(href_list["SelectedJob"])
 		if(!SSticker?.IsRoundInProgress())
-			to_chat(usr, "<span class='danger'>The round is either not ready, or has already finished...</span>")
+			to_chat(usr, "<span class='danger'>[TeguTranslate("The round is either not ready, or has already finished...", src)]</span>")
 			return
 
 		if(!GLOB.enter_allowed)
-			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
+			to_chat(usr, "<span class='notice'>[TeguTranslate("There is an administrative lock on entering the game!", src)]</span>")
 			return
 
 		if(SSticker.queued_players.len && !(ckey(key) in GLOB.admin_datums))
 			if((living_player_count() >= relevant_cap) || (src != SSticker.queued_players[1]))
-				to_chat(usr, "<span class='warning'>Server is full.</span>")
+				to_chat(usr, "<span class='warning'>[TeguTranslate("Server is full.", src)]</span>")
 				return
 
 		AttemptLateSpawn(href_list["SelectedJob"])
@@ -213,9 +213,9 @@
 		ready = PLAYER_NOT_READY
 		return FALSE
 
-	var/this_is_like_playing_right = alert(src,"Are you sure you wish to observe? You will not be able to play this round!","Player Setup","Yes","No")
+	var/this_is_like_playing_right = alert(src, TeguTranslate("Are you sure you wish to observe?", src),"Player Setup",TeguTranslate("Yes", src),TeguTranslate("No", src))
 
-	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
+	if(QDELETED(src) || !src.client || this_is_like_playing_right != TeguTranslate("Yes", src)) // This is an atrocity on so many levels
 		ready = PLAYER_NOT_READY
 		src << browse(null, "window=playersetup") //closes the player setup window
 		new_player_panel()
@@ -227,11 +227,11 @@
 	observer.started_as_observer = TRUE
 	close_spawn_windows()
 	var/obj/effect/landmark/observer_start/O = locate(/obj/effect/landmark/observer_start) in GLOB.landmarks_list
-	to_chat(src, "<span class='notice'>Now teleporting.</span>")
+	to_chat(src, "<span class='notice'>[TeguTranslate("Now teleporting.", src)]</span>")
 	if (O)
 		observer.forceMove(O.loc)
 	else
-		to_chat(src, "<span class='notice'>Teleporting failed. Ahelp an admin please</span>")
+		to_chat(src, "<span class='notice'>[TeguTranslate("Teleporting failed. Ahelp an admin please.", src)]</span>")
 		stack_trace("There's no freaking observer landmark available on this map or you're making observers before the map is initialised")
 	observer.key = key
 	observer.client = client
@@ -247,20 +247,20 @@
 	qdel(src)
 	return TRUE
 
-/proc/get_job_unavailable_error_message(retval, jobtitle)
+/mob/dead/new_player/proc/get_job_unavailable_error_message(retval, jobtitle)
 	switch(retval)
 		if(JOB_AVAILABLE)
-			return "[jobtitle] is available."
+			return "[jobtitle] [TeguTranslate("is available", src)]."
 		if(JOB_UNAVAILABLE_GENERIC)
-			return "[jobtitle] is unavailable."
+			return "[jobtitle] [TeguTranslate("is unavailable", src)]."
 		if(JOB_UNAVAILABLE_BANNED)
-			return "You are currently banned from [jobtitle]."
+			return "[TeguTranslate("You are currently banned from", src)] [jobtitle]."
 		if(JOB_UNAVAILABLE_PLAYTIME)
-			return "You do not have enough relevant playtime for [jobtitle]."
+			return "[TeguTranslate("You do not have enough relevant playtime for", src)] [jobtitle]."
 		if(JOB_UNAVAILABLE_ACCOUNTAGE)
-			return "Your account is not old enough for [jobtitle]."
+			return "[TeguTranslate("Your account is not old enough for", src)] [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
-			return "[jobtitle] is already filled to capacity."
+			return "[jobtitle] [TeguTranslate("is already filled to capacity", src)]."
 	return "Error: Unknown job availability."
 
 /mob/dead/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
@@ -385,14 +385,14 @@
 
 
 /mob/dead/new_player/proc/LateChoices()
-	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	var/list/dat = list("<div class='notice'>[TeguTranslate("Round Duration", src)]: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(SSshuttle.emergency)
 		switch(SSshuttle.emergency.mode)
 			if(SHUTTLE_ESCAPE)
-				dat += "<div class='notice red'>The station has been evacuated.</div><br>"
+				dat += "<div class='notice red'>[TeguTranslate("The station has been evacuated", src)].</div><br>"
 			if(SHUTTLE_CALL)
 				if(!SSshuttle.canRecall())
-					dat += "<div class='notice red'>The station is currently undergoing evacuation procedures.</div><br>"
+					dat += "<div class='notice red'>[TeguTranslate("The station is currently undergoing evacuation procedures", src)].</div><br>"
 	for(var/datum/job/prioritized_job in SSjob.prioritized_jobs)
 		if(prioritized_job.current_positions >= prioritized_job.total_positions)
 			SSjob.prioritized_jobs -= prioritized_job

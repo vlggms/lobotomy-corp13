@@ -128,3 +128,8 @@
 
 //recommened client FPS
 #define RECOMMENDED_FPS 40
+
+//client languages
+#define CLIENT_LANGUAGE_ENGLISH "English"
+#define CLIENT_LANGUAGE_RUSSIAN "Russian"
+#define CLIENT_LANGUAGE_GERMAN "German"
