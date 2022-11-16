@@ -65,3 +65,8 @@
 	var/mob/living/simple_animal/hostile/megafauna/claw/C = new(T)
 	ordeal_mobs += C
 	C.ordeal_reference = src
+
+/datum/ordeal/white_midnight/End()
+	if(istype(SSlobotomy_corp.core_suppression)) // If it all was a part of core suppression
+		SSlobotomy_corp.core_suppression_state = 3
+	return ..()
