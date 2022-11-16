@@ -448,6 +448,7 @@
 
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
+	H.faction |= "rabbit"
 	..()
 
 /datum/outfit/centcom/ert/security/rabbit
@@ -468,6 +469,7 @@
 
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
+	H.faction |= "rabbit"
 	..()
 
 /datum/outfit/centcom/ert/commander/rhino
@@ -489,6 +491,7 @@
 
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
+	H.faction |= "rabbit"
 	..()
 
 /datum/outfit/centcom/ert/security/rhino
@@ -510,6 +513,7 @@
 
 	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
 	L.implant(H, null, 1)
+	H.faction |= "rabbit"
 	..()
 
 /datum/outfit/zwei_shield
