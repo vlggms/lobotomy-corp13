@@ -371,14 +371,14 @@
 		return
 	if(vine_cooldown <= world.time)
 		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
-		for(var/obj/structure/alien/weeds/F0442/F in range(0, get_turf(user)))
+		for(var/obj/structure/alien/weeds/apple_vine/F in range(0, get_turf(user)))
 			if(F)
 				playsound(src, 'sound/creatures/venus_trap_hurt.ogg', 10, FALSE, 5)
 				qdel(F)
 				return
 		var/mob/living/carbon/human/L = user
 		L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
-		new /obj/structure/alien/weeds/F0442(get_turf(user))
+		new /obj/structure/alien/weeds/apple_vine(get_turf(user))
 		L.adjust_nutrition(-10)
 		vine_cooldown = world.time + vine_delay
 
