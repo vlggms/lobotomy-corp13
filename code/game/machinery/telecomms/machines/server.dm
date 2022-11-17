@@ -92,17 +92,6 @@
 	freq_listening = list(FREQ_TRAINING)
 	autolinkers = list("training")
 
-/obj/machinery/telecomms/server/presets/common
-	id = "Common Server"
-	freq_listening = list(FREQ_ARCHITECTURE)
-	autolinkers = list("common", "architecture")
-
-//Common and other radio frequencies for people to freely use
-/obj/machinery/telecomms/server/presets/common/Initialize()
-	. = ..()
-	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
-		freq_listening |= i
-
 /obj/machinery/telecomms/server/presets/command
 	id = "Command Server"
 	freq_listening = list(FREQ_COMMAND)
@@ -114,9 +103,20 @@
 	autolinkers = list("welfare")
 
 /obj/machinery/telecomms/server/presets/security
-	id = "Security Server"
+	id = "Discipline Server"
 	freq_listening = list(FREQ_DISCIPLINE)
 	autolinkers = list("discipline")
+
+/obj/machinery/telecomms/server/presets/common
+	id = "Common Server"
+	freq_listening = list(FREQ_ARCHITECTURE)
+	autolinkers = list("common", "architecture")
+
+//Common and other radio frequencies for people to freely use
+/obj/machinery/telecomms/server/presets/common/Initialize()
+	. = ..()
+	for(var/i = MIN_FREQ, i <= MAX_FREQ, i += 2)
+		freq_listening |= i
 
 /obj/machinery/telecomms/server/presets/common/birdstation/Initialize()
 	. = ..()
