@@ -5,13 +5,13 @@
 	icon_state = "mosb"
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 1500
+	health = 1500
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 25
+	melee_damage_upper = 35
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	rapid_melee = 2
@@ -19,6 +19,7 @@
 	ranged = TRUE
 	speed = 2
 	move_to_delay = 2
+	generic_canpass = FALSE
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -47,15 +48,15 @@
 	var/belly = 0
 	var/phase = 1
 	var/scream_cooldown
-	var/scream_cooldown_time = 7 SECONDS
+	var/scream_cooldown_time = 6 SECONDS
 	var/scream_damage = 40
 	var/slam_cooldown
-	var/slam_cooldown_time = 4 SECONDS
+	var/slam_cooldown_time = 2 SECONDS
 	var/slam_damage = 30
 	var/spit_cooldown
-	var/spit_cooldown_time = 18 SECONDS
+	var/spit_cooldown_time = 8 SECONDS
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
-	var/spit_amount = 32
+	var/spit_amount = 16
 	patrol_cooldown_time = 10 SECONDS //stage 1 - 10s, stage 2 - 20s, stage 3 - 30s
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
@@ -69,46 +70,28 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/mountain/CanAttack(atom/the_target)
-	if(finishing)
-		return FALSE
-	return ..()
+/* Movement */
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Move()
 	if(finishing)
 		return FALSE
 	return ..()
 
-//Nabbed from Big Bird
-/mob/living/simple_animal/hostile/abnormality/mountain/proc/on_mob_death(datum/source, mob/living/died, gibbed)
-	SIGNAL_HANDLER
-	if(!(status_flags & GODMODE)) // If it's breaching right now
-		return FALSE
-	if(!ishuman(died))
-		return FALSE
-	if(!died.ckey)
-		return FALSE
-	death_counter += 1
-	if(death_counter >= 3)
-		death_counter = 0
-		datum_reference.qliphoth_change(-1)
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/mountain/death()
-	//Make sure we didn't get cheesed
-	if(health > 0)
+/mob/living/simple_animal/hostile/abnormality/mountain/Goto(target, delay, minimum_distance)
+	if(LAZYLEN(patrol_path)) // This is here so projectiles won't cause it to go off track
 		return
-	if(StageChange(FALSE)) // We go down by one stage
-		return
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/mountain/gib()
-	if(phase > 1)
-		if(health < maxHealth * 0.2) // MoSB hammer, usually
-			return StageChange(FALSE)
-		return
+/mob/living/simple_animal/hostile/abnormality/mountain/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+	if(phase <= 1 && isliving(blocker)) // Phase 1 MoSB cannot be blocked by mobs when it's moving towards corpses
+		return TRUE
+	return ..()
+
+/* Attacking */
+
+/mob/living/simple_animal/hostile/abnormality/mountain/CanAttack(atom/the_target)
+	if(finishing)
+		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/OpenFire()
@@ -154,8 +137,40 @@
 				belly += 1
 				StageChange(TRUE)
 
+/mob/living/simple_animal/hostile/abnormality/mountain/attacked_by(obj/item/I, mob/living/user)
+	if(LAZYLEN(patrol_path) && CanAttack(user)) // Basically, it will retaliate while patrolling without stopping or chasing after them
+		user.attack_animal(src)
+	return ..()
+
+/* Death and "Death" */
+
+/mob/living/simple_animal/hostile/abnormality/mountain/death()
+	//Make sure we didn't get cheesed
+	if(health > 0)
+		return
+	if(StageChange(FALSE)) // We go down by one stage
+		return
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/mountain/gib()
+	if(phase > 1)
+		if(health < maxHealth * 0.2) // MoSB hammer, usually
+			return StageChange(FALSE)
+		return
+	return ..()
+
+/* Targeting */
+
+/mob/living/simple_animal/hostile/abnormality/mountain/GiveTarget(new_target)
+	if(LAZYLEN(patrol_path))
+		if(locate(/mob/living/carbon/human) in patrol_path[patrol_path.len]) // FOOD
+			return // IGNORE EVERYTHING, CHARGE!!!!
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/mountain/PickTarget(list/Targets) // We attack corpses first if there are any
-	if(phase == 1)
+	if((phase <= 1) || (health <= maxHealth * 0.5))
 		var/list/highest_priority = list()
 		var/list/lower_priority = list()
 		for(var/mob/living/L in Targets)
@@ -174,14 +189,30 @@
 			return pick(lower_priority)
 	return ..()
 
+/* Own procs */
+
+/mob/living/simple_animal/hostile/abnormality/mountain/proc/on_mob_death(datum/source, mob/living/died, gibbed)
+	SIGNAL_HANDLER
+	if(!(status_flags & GODMODE)) // If it's breaching right now
+		return FALSE
+	if(!ishuman(died))
+		return FALSE
+	if(!died.ckey)
+		return FALSE
+	death_counter += 1
+	if(death_counter >= 2)
+		death_counter = 0
+		datum_reference.qliphoth_change(-1)
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/StageChange(increase = TRUE)
 	// Increase stage
 	if(increase)
-		if(belly >= 3)
+		if(belly >= 2)
 			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
-				maxHealth += 500
+				maxHealth += 1000
 				phase += 1
 				belly = 0
 			icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -204,7 +235,7 @@
 		return FALSE
 	playsound(get_turf(src), 'sound/abnormalities/mountain/level_down.ogg', 75, 1)
 	adjustHealth(-5000)
-	maxHealth -= 500
+	maxHealth -= 1000
 	phase -= 1
 	icon_living = "mosb_breach"
 	if(phase == 1)
@@ -223,6 +254,8 @@
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
 	return TRUE
+
+/* Special attacks */
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Scream()
 	if(scream_cooldown > world.time)
@@ -274,7 +307,17 @@
 		SLEEP_CHECK_DEATH(2)
 	finishing = FALSE
 
-// Modified patrolling
+/* Modified patrolling */
+
+/mob/living/simple_animal/hostile/abnormality/mountain/CanStartPatrol()
+	if(phase <= 1) // Still phase one, we need corpses and can't really fight
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/mountain/patrol_reset()
+	. = ..()
+	FindTarget() // Start eating corpses IMMEDIATELLY
+
 /mob/living/simple_animal/hostile/abnormality/mountain/patrol_select()
 	if(phase >= 3) // Ignore dead stuff from now on
 		return ..()
@@ -312,6 +355,8 @@
 		return
 	return ..()
 
+/* Abnormality work */
+
 /mob/living/simple_animal/hostile/abnormality/mountain/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
@@ -328,6 +373,8 @@
 	if(user.health != user.maxHealth)
 		agent_hurt = TRUE
 	return TRUE
+
+/* Abnormality breach */
 
 /mob/living/simple_animal/hostile/abnormality/mountain/breach_effect(mob/living/carbon/human/user)
 	..()

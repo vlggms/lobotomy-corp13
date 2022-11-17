@@ -113,10 +113,10 @@
 	Qliphoth Counter : 2	<br>
 	Work Damage Type : Black	<br>
 	Work Damage : Extreme	<br>
-	- When NAME died or was critically injured while working with Mountain of Smiling Bodies, the Qliphoth Counter lowered. <br>
-	- When a wounded employee began work on The Mountain of Smiling Bodies, the Qliphoth Counter lowered.	<br>
+	- When NAME died or was critically injured while working with Mountain of Smiling Bodies, the Qliphoth Counter decreased. <br>
+	- When a wounded employee began work on The Mountain of Smiling Bodies, the Qliphoth Counter decreased.	<br>
 	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
-	- When 3 employees die inside the facility, the Qliphoth Counter will lower.	<br>
+	- When an employee died within the facility, the Qliphoth Counter decreased.	<br>
 	- While Mountain of Smiling Bodies is escaping, it will show sensitive reactions to corpses. During suppression, ensure that no one dies due to the Abnormality; if casualties do happen, try to keep Mountain of Smiling Bodies away from the dead.	<br>
 	- If Mountain of Smiling Bodies’s suppression could not be completed on the previous level, you must be very careful to prevent any death inside the section where Mountain of Smiling Bodies is located.	<br>
 	- After other entities spawned from Mountain of Smiling Bodies’s main body while escaping, reducing its HP to 0 did not fully suppress it. Mountain of Smiling Bodies will only be quelled by attacking the main body after continuously reducing its HP and defeating the other spawned entities	<br>

@@ -78,7 +78,7 @@
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	damage = 10 // Launches 32(96) of those, for a whooping 320(960) black damage
+	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
 	spread = 60
 	slur = 3
 	eyeblur = 3
@@ -86,4 +86,10 @@
 /obj/projectile/mountain_spit/Initialize()
 	. = ..()
 	speed += pick(0, 0.1, 0.2, 0.3) // Randomized speed
+	animate(src, transform = src.transform*pick(1.8, 2.4, 2.8, 3.2), time = rand(1,4))
 
+/obj/projectile/mountain_spit/Range()
+	for(var/mob/living/L in range(1, get_turf(src)))
+		if(L.stat != DEAD && L != firer && !L.faction_check_mob(firer, FALSE))
+			return Bump(L)
+	..()
