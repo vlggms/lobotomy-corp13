@@ -8,10 +8,22 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"ae" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "ah" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "al" = (
 /mob/living/simple_animal/bot/cleanbot,
 /obj/effect/turf_decal/siding/brown,
@@ -19,6 +31,7 @@
 /area/facility_hallway/north)
 "am" = (
 /obj/effect/turf_decal/siding/yellow,
+/obj/structure/railing,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "aq" = (
@@ -53,7 +66,10 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
 	},
-/obj/machinery/regenerator,
+/obj/structure/table/wood/fancy/blue,
+/obj/item/statuebust{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "aH" = (
@@ -63,6 +79,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
+"aJ" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/item/clothing/suit/armor/vest/alt,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "aO" = (
 /obj/structure/sign/poster/official/obey,
 /turf/closed/indestructible/reinforced,
@@ -122,20 +144,11 @@
 "bj" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/table/wood/fancy/blue,
+/obj/structure/railing,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "bs" = (
-/obj/structure/closet,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
-/obj/item/bodypart/r_arm/robot,
+/obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "bu" = (
@@ -161,9 +174,8 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/item/kirbyplants{
-	anchored = 1;
-	icon_state = "plant-21"
+/obj/item/kirbyplants/photosynthetic{
+	anchored = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -198,6 +210,12 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "bU" = (
@@ -222,9 +240,10 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
 "cd" = (
-/obj/machinery/telecomms/server/presets/medical,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/obj/structure/table/optable,
+/obj/effect/turf_decal/bot_red,
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "ce" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
@@ -332,25 +351,28 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "cZ" = (
-/obj/structure/table/optable,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/medigel/sterilizine{
+	pixel_y = 6;
+	pixel_x = -5
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_y = 5;
+	pixel_x = 5
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "da" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
+/obj/machinery/regenerator,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "dd" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/department_main/training)
+/obj/machinery/aug_manipulator,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "df" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -367,6 +389,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
+"du" = (
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/sign/poster/official/safety_eye_protection{
+	pixel_x = 32
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/training)
 "dw" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
@@ -390,21 +422,23 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "dz" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/machinery/light,
-/obj/structure/sign/departments/custodian{
-	pixel_y = -32
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
 	},
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/department_main/command)
 "dB" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/siding/brown{
-	dir = 8
+	dir = 9
 	},
+/obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "dE" = (
@@ -430,16 +464,35 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "dJ" = (
-/obj/machinery/fat_sucker,
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
-"dN" = (
-/obj/item/kirbyplants{
-	anchored = 1;
-	icon_state = "plant-21"
+"dM" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/obj/structure/rack{
+	pixel_x = -1
+	},
+/obj/item/clothing/gloves/botanic_leather,
+/obj/item/clothing/suit/apron,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
+"dN" = (
 /obj/structure/sign/directions/evac{
 	pixel_y = -32
+	},
+/obj/item/kirbyplants/photosynthetic{
+	anchored = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -460,12 +513,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "ed" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel,
+/obj/structure/chair/stool,
+/obj/machinery/navbeacon/wayfinding/trainingdepartment,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ef" = (
 /obj/structure/table,
@@ -478,7 +528,8 @@
 	dir = 1
 	},
 /obj/item/kirbyplants{
-	icon_state = "plant-02"
+	icon_state = "plant-02";
+	anchored = 1
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -498,6 +549,8 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "eu" = (
@@ -623,6 +676,9 @@
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "extraction"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "fq" = (
@@ -690,10 +746,9 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
 "fY" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/hub/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/obj/machinery/navbeacon/wayfinding/architecturedepartment,
+/turf/open/floor/plasteel,
+/area/department_main/control)
 "fZ" = (
 /obj/structure/rack,
 /obj/item/roller,
@@ -737,6 +792,10 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"gv" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "gz" = (
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -746,6 +805,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"gG" = (
+/obj/machinery/fat_sucker,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "gI" = (
 /obj/structure/table/wood/fancy/green,
 /turf/open/floor/carpet/green,
@@ -780,11 +843,16 @@
 /turf/open/floor/plating/grass,
 /area/department_main/safety)
 "gT" = (
-/obj/structure/toolabnormality/touch,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/machinery/door/window/northleft,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "gX" = (
-/obj/machinery/telecomms/server/presets/supply,
+/obj/machinery/telecomms/server/presets/command{
+	name = "Command Server"
+	},
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/central)
 "ha" = (
@@ -846,6 +914,17 @@
 /obj/machinery/photocopier,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"hJ" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "hL" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -863,19 +942,17 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "hO" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/obj/structure/chair/stool,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "hP" = (
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/carpet/red,
-/area/department_main/control)
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/mosb,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "hX" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/camera/autoname{
@@ -884,8 +961,28 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "hZ" = (
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/facility/dark,
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/obj/machinery/camera/autoname,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
+"ic" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/fluff/hedge,
+/turf/open/floor/plating,
+/area/facility_hallway/west)
+"if" = (
+/obj/machinery/telecomms/server/presets/engineering{
+	name = "Training Server"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/training)
 "ii" = (
 /obj/structure/disposalpipe/segment{
@@ -943,14 +1040,14 @@
 /turf/open/floor/plating/grass,
 /area/department_main/command)
 "is" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 9
-	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/machinery/vending/dinnerware,
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "iu" = (
@@ -1004,23 +1101,20 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "iX" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/beer,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "ja" = (
-/obj/structure/toolabnormality/mirror,
-/turf/open/floor/carpet/black,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/box/white,
+/obj/structure/toolabnormality/skin,
+/turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "je" = (
 /obj/effect/turf_decal/siding/red/corner{
@@ -1038,12 +1132,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "jl" = (
-/obj/effect/landmark/start,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/department_main/command)
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "jn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
@@ -1057,16 +1147,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "jq" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks,
-/obj/machinery/camera/autoname,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/rollingpin,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "jr" = (
@@ -1086,14 +1173,31 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -5;
-	pixel_y = 5
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
 	},
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/effect/turf_decal/siding/brown,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "jy" = (
@@ -1125,7 +1229,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "jK" = (
-/obj/machinery/scanner_gate,
+/obj/machinery/scanner_gate{
+	scangate_mode = "Guns"
+	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -1161,7 +1267,13 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "jX" = (
-/obj/structure/weightmachine/stacklifter,
+/obj/structure/table/wood,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/encryptionkey/headset_training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
+/obj/item/clothing/accessory/armband/lobotomy/training,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "kd" = (
@@ -1171,6 +1283,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"ki" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "kr" = (
 /obj/structure/disposalpipe/junction{
 	dir = 2
@@ -1226,14 +1344,47 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/item/paper_bin/bundlenatural{
+	pixel_y = 17
+	},
+/obj/item/paper_bin{
+	pixel_x = -7
+	},
+/obj/item/paper_bin/carbon{
+	pixel_x = 7
+	},
+/obj/item/pen{
+	pixel_x = 7
+	},
+/obj/item/pen{
+	pixel_x = -7
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "kO" = (
-/obj/structure/flora/ausbushes/grassybush,
 /obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/fluff/arc/angela{
+	pixel_y = 11
+	},
 /obj/structure/railing,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
+"kP" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/storage/box/drinkingglasses{
+	pixel_y = 11;
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "kT" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -1292,14 +1443,14 @@
 "ll" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/department_center,
+/obj/machinery/navbeacon/wayfinding/informationdepartment,
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "lp" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
+/obj/effect/spawner/randomsnackvend,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "lr" = (
@@ -1372,40 +1523,12 @@
 /turf/open/floor/noslip,
 /area/facility_hallway/central)
 "lI" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
 	},
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1
-	},
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/wood,
+/area/department_main/command)
 "lJ" = (
 /obj/item/toy/plush/malkuth,
 /obj/structure/table/glass,
@@ -1437,40 +1560,23 @@
 /turf/open/floor/plasteel/solarpanel,
 /area/facility_hallway/south)
 "lW" = (
-/obj/structure/rack,
-/obj/item/toner/extreme,
-/obj/item/encryptionkey/headset_architecture,
-/obj/item/encryptionkey/headset_architecture,
-/obj/item/encryptionkey/headset_architecture,
-/obj/item/encryptionkey/headset_command,
-/obj/item/encryptionkey/headset_command,
-/obj/item/encryptionkey/headset_command,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_safety,
-/obj/item/encryptionkey/headset_safety,
-/obj/item/encryptionkey/headset_safety,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_welfare,
-/obj/item/encryptionkey/headset_welfare,
-/obj/item/encryptionkey/headset_welfare,
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet/alephinfo{
+	pixel_x = -1
+	},
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 9
+	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "mb" = (
-/obj/effect/turf_decal/box,
-/obj/machinery/camera/autoname,
-/obj/item/target,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/obj/effect/turf_decal/box/white,
+/obj/structure/toolabnormality/mirror,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "mc" = (
 /turf/open/floor/facility,
 /area/facility_hallway/east)
@@ -1483,6 +1589,12 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"mu" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/facility_hallway/north)
 "mw" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -1501,9 +1613,31 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "mC" = (
-/obj/machinery/camera/autoname,
-/turf/closed/indestructible/reinforced,
-/area/department_main/training)
+/obj/structure/table/reinforced,
+/obj/item/folder/red{
+	pixel_x = -7
+	},
+/obj/item/folder/red{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/obj/item/folder/red{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/folder/blue{
+	pixel_x = 7
+	},
+/obj/item/folder/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/folder/blue{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "mF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/small{
@@ -1519,8 +1653,25 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/blue,
+/obj/structure/railing/corner{
+	dir = 8
+	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"mH" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/machinery/seed_extractor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "mJ" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/leafybush,
@@ -1585,6 +1736,11 @@
 /area/department_main/control)
 "nm" = (
 /obj/structure/chair/comfy/black,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -32;
+	pixel_x = -32
+	},
+/obj/item/pen,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "nq" = (
@@ -1597,6 +1753,8 @@
 "nr" = (
 /obj/effect/landmark/department_center,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/navbeacon/wayfinding/controldepartment,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "nG" = (
@@ -1642,6 +1800,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
+"oj" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-21";
+	anchored = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "ok" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -1657,20 +1822,18 @@
 /obj/structure/sign/departments/records{
 	pixel_y = 32
 	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ot" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/structure/sink/kitchen{
-	pixel_y = 14
-	},
-/turf/open/floor/plasteel/white,
+/obj/structure/chair/stool,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ov" = (
 /obj/effect/turf_decal/siding/purple{
@@ -1694,20 +1857,26 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "oE" = (
-/obj/machinery/telecomms/server/presets/science,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "oF" = (
 /obj/structure/table/glass,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "oG" = (
+/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/siding/brown{
-	dir = 10
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
@@ -1726,12 +1895,11 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "oN" = (
-/obj/machinery/modular_computer/console/preset/civilian{
-	dir = 4
-	},
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/structure/table/wood,
+/obj/item/papercutter,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "oP" = (
@@ -1757,13 +1925,13 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/sign/departments/training{
 	pixel_x = 32
 	},
 /obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/disposalpipe/junction/flip{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -1785,16 +1953,19 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "pa" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/med/surgery{
+	pixel_y = 10
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_x = -32
 	},
-/obj/machinery/seed_extractor,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "pc" = (
 /obj/machinery/light,
 /turf/open/floor/carpet/orange,
@@ -1803,7 +1974,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "pf" = (
@@ -1818,7 +1991,7 @@
 /area/department_main/information)
 "pj" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/message_server/preset,
+/obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "pl" = (
@@ -1829,7 +2002,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "pu" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/chair/comfy/beige,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "pF" = (
@@ -1837,10 +2010,8 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/machinery/griddle,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
+/obj/machinery/door/window/southleft,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "pH" = (
@@ -1911,6 +2082,18 @@
 /obj/structure/rack,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"qa" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "qc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1992,6 +2175,16 @@
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_arm/robot,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "qK" = (
@@ -1999,7 +2192,12 @@
 /turf/open/floor/facility,
 /area/facility_hallway/north)
 "qL" = (
-/obj/machinery/light,
+/obj/structure/rack,
+/obj/item/soap,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "qO" = (
@@ -2055,15 +2253,26 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
+/obj/structure/railing{
+	dir = 10
+	},
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "rf" = (
-/obj/structure/rack,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "rg" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/control)
@@ -2073,12 +2282,17 @@
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "rt" = (
-/obj/effect/turf_decal/box,
-/obj/item/target,
-/obj/machinery/light{
+/obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/department_main/training)
 "ru" = (
 /obj/machinery/light{
@@ -2107,10 +2321,14 @@
 /turf/open/floor/plasteel/solarpanel,
 /area/facility_hallway/south)
 "rJ" = (
-/obj/effect/turf_decal/box,
-/obj/item/target/alien,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/window{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "rM" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2128,10 +2346,10 @@
 /turf/open/floor/plating/grass,
 /area/department_main/command)
 "rR" = (
-/obj/effect/turf_decal/box,
-/obj/item/target/clown,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/obj/effect/turf_decal/box/white,
+/obj/machinery/vending/lobotomyheadset,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "rS" = (
 /obj/machinery/camera/autoname,
 /obj/machinery/modular_computer/console/preset/research{
@@ -2144,17 +2362,12 @@
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "sa" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/computer/secure_data{
+	dir = 4;
+	req_one_access = "0"
 	},
-/obj/item/gun/energy/laser/practice{
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/siding/brown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "sc" = (
 /obj/structure/rack,
 /obj/item/clothing/accessory/armband/lobotomy/safety,
@@ -2214,6 +2427,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"sF" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/department_main/training)
 "sH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2221,6 +2438,14 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "sJ" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/syringe/penacid,
+/obj/item/reagent_containers/syringe/antiviral{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe/multiver{
+	pixel_y = 10
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "sN" = (
@@ -2241,6 +2466,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"sV" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "sW" = (
 /obj/effect/turf_decal/siding/green,
 /obj/structure/sign/poster/official/safety_report{
@@ -2271,15 +2500,44 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"tp" = (
+"tb" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/drinkingglasses,
+/obj/structure/sign/poster/official/work_for_a_future{
+	pixel_x = 32
+	},
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"th" = (
+/obj/machinery/accounting,
+/obj/structure/table/reinforced,
+/obj/item/soapstone,
+/obj/item/key/displaycase,
+/turf/open/floor/carpet/black,
+/area/department_main/records)
+"tp" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "tu" = (
 /obj/structure/sign/poster/contraband/starkist{
 	pixel_y = 32
@@ -2295,17 +2553,10 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "tw" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/sign/warning/firingrange{
+	pixel_x = 32
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown,
-/obj/machinery/light,
-/obj/structure/sink/kitchen{
-	dir = 1
-	},
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ty" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -2349,17 +2600,9 @@
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
 "tM" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/recharger{
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/siding/brown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/facility/dark,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/plating,
 /area/department_main/training)
 "tO" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -2402,17 +2645,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "tY" = (
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
 /obj/structure/table/glass,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
+/obj/item/clothing/accessory/armband/lobotomy/info,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "ue" = (
@@ -2466,12 +2702,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "uo" = (
-/obj/structure/chair/comfy/beige{
-	dir = 4
-	},
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+/obj/structure/table/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "uu" = (
@@ -2491,17 +2725,10 @@
 /obj/item/clothing/accessory/armband/lobotomy/command,
 /obj/item/clothing/accessory/armband/lobotomy/command,
 /obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
-/obj/item/clothing/accessory/armband/lobotomy/command,
 /obj/item/encryptionkey/headset_command,
 /obj/item/encryptionkey/headset_command,
 /obj/item/encryptionkey/headset_command,
-/obj/item/encryptionkey/headset_command,
+/obj/structure/railing/corner,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "uE" = (
@@ -2509,27 +2736,66 @@
 /obj/structure/railing,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
-"uL" = (
-/obj/structure/table/wood,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/obj/item/encryptionkey/headset_training,
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
-"vb" = (
-/obj/structure/statue/sandstone/venus{
-	anchored = 1;
+"uF" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/brown{
 	dir = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/department_main/training)
+"uL" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/department_main/training)
+"uY" = (
+/obj/structure/table/reinforced,
+/obj/machinery/camera/autoname,
+/obj/item/folder/yellow{
+	pixel_x = -11
+	},
+/obj/item/folder/yellow{
+	pixel_x = -11;
+	pixel_y = 3
+	},
+/obj/item/folder/yellow{
+	pixel_x = -11;
+	pixel_y = 6
+	},
+/obj/item/folder{
+	pixel_x = 3
+	},
+/obj/item/folder{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/folder{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
+"vb" = (
+/obj/structure/displaycase/trophy{
+	alert = 0
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/department_main/command)
 "ve" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
@@ -2560,15 +2826,21 @@
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "vl" = (
-/obj/structure/table/wood,
-/obj/item/paper/guides/jobs/zayin/guide/wellcheers,
-/obj/structure/sign/poster/official/fruit_bowl{
-	pixel_y = -32
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/obj/effect/turf_decal/siding/brown,
+/obj/machinery/light,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/obj/machinery/icecream_vat,
+/turf/open/floor/plasteel/white,
 /area/department_main/training)
 "vm" = (
 /obj/effect/turf_decal/siding/purple,
@@ -2577,13 +2849,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"vq" = (
+/obj/effect/turf_decal/box/white,
+/obj/machinery/vending/lobotomyuniform,
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "vr" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/siding/brown{
-	dir = 6
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
@@ -2627,10 +2908,19 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "vI" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/vest/alt,
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/drinks/beer{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "vO" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
@@ -2651,11 +2941,11 @@
 /area/facility_hallway/east)
 "vW" = (
 /obj/structure/table/reinforced,
-/obj/item/toy/plush/hokma,
-/obj/effect/turf_decal/siding/brown{
+/obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/obj/item/hourglass,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "wf" = (
 /obj/structure/table/glass,
@@ -2663,6 +2953,7 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+/obj/item/pen,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "wh" = (
@@ -2681,16 +2972,14 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 13
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/machinery/camera/autoname,
+/obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "wm" = (
@@ -2698,7 +2987,10 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
 	},
-/obj/effect/spawner/randomsnackvend,
+/obj/structure/table/wood/fancy/blue,
+/obj/item/statuebust{
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "wq" = (
@@ -2755,11 +3047,11 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/control)
 "wF" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
+/obj/machinery/door/airlock/highsecurity{
+	name = "Extraction Office"
 	},
-/turf/open/floor/plasteel/stairs/medium,
-/area/department_main/command)
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "wG" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Department"
@@ -2800,17 +3092,14 @@
 	pixel_x = -32
 	},
 /obj/structure/table/glass,
+/obj/machinery/cell_charger,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "wZ" = (
-/obj/structure/railing{
-	dir = 5
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/carpet/royalblue,
-/area/department_main/command)
+/obj/effect/turf_decal/box/white,
+/obj/machinery/vending/lobotomyarmband,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "xa" = (
 /obj/structure/chair/comfy/beige{
 	dir = 8
@@ -2818,13 +3107,14 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "xi" = (
-/obj/structure/rack,
-/obj/structure/sign/poster/official/twelve_gauge{
-	pixel_x = 32
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
-/obj/item/clothing/suit/armor/vest/alt,
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/obj/structure/chair/comfy/beige{
+	dir = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "xl" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -2832,23 +3122,58 @@
 /turf/open/floor/facility,
 /area/facility_hallway/central)
 "xu" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown,
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "xA" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"xC" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
 "xD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2882,18 +3207,17 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "xS" = (
-/obj/structure/table/wood,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/obj/item/clothing/accessory/armband/lobotomy/training,
-/turf/open/floor/carpet/orange,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/department_main/training)
 "xW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2933,6 +3257,9 @@
 /obj/structure/sign/poster/official/smile{
 	pixel_x = -32
 	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "yh" = (
@@ -2952,20 +3279,10 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "yt" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/suit/apron,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/plating,
+/area/department_main/records)
 "yy" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -2993,18 +3310,13 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "yJ" = (
-/obj/effect/turf_decal/siding{
-	color = "#212121";
-	dir = 1
-	},
-/obj/machinery/door/airlock/highsecurity{
-	name = "Extraction Office"
-	},
-/turf/open/floor/plasteel/dark,
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
 /area/department_main/control)
 "yL" = (
 /obj/item/kirbyplants{
-	icon_state = "plant-22"
+	icon_state = "plant-22";
+	anchored = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -3027,7 +3339,6 @@
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "yQ" = (
-/obj/structure/fluff/arc,
 /turf/open/floor/plating/grass,
 /area/department_main/command)
 "yY" = (
@@ -3130,6 +3441,9 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/newscaster{
+	pixel_y = -32
+	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zI" = (
@@ -3174,10 +3488,19 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "zT" = (
-/obj/structure/rack,
-/obj/item/toy/plush/binah,
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/machinery/vending/hydroseeds,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "zV" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/rock,
@@ -3187,10 +3510,10 @@
 /area/department_main/training)
 "zX" = (
 /obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/brown{
+/obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "zY" = (
 /obj/structure/bodycontainer/extraction{
@@ -3208,6 +3531,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/solarpanel,
 /area/facility_hallway/south)
+"Ae" = (
+/obj/structure/table/glass,
+/obj/item/storage/photo_album/library,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Ah" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -3232,6 +3560,15 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"At" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/north)
 "Aw" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
@@ -3277,6 +3614,12 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/north)
+"AJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "AN" = (
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/carpet/green,
@@ -3292,14 +3635,30 @@
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "AX" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
+/obj/machinery/door/window/northleft,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/facility/dark,
+/area/department_main/training)
+"AY" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/storage/box/lights/tubes,
+/obj/item/mop/advanced,
+/turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Bl" = (
 /obj/effect/turf_decal/tile/brown,
@@ -3338,12 +3697,18 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "BH" = (
-/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
@@ -3380,9 +3745,16 @@
 /obj/machinery/light/cold{
 	dir = 1
 	},
-/obj/item/kirbyplants,
+/obj/item/kirbyplants{
+	anchored = 1
+	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"Cl" = (
+/obj/effect/turf_decal/box/white,
+/obj/structure/toolabnormality/touch,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "Cn" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -3399,6 +3771,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"Cx" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/scanner_gate{
+	scangate_mode = "Guns"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Cy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/cryopod,
@@ -3430,16 +3809,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "CJ" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/machinery/light/cold,
+/obj/structure/table/wood/fancy/blue,
+/obj/machinery/newscaster{
+	pixel_y = -32
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/machinery/vending/hydroseeds,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/turf/open/floor/carpet/royalblue,
+/area/department_main/command)
 "CL" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
@@ -3454,15 +3830,13 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
 "CU" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/button/door/indestructible{
 	id = "extraction";
 	name = "Extraction Access Shutters";
 	pixel_y = 32;
 	req_one_access_txt = "19"
 	},
+/obj/structure/rack,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "CV" = (
@@ -3483,10 +3857,9 @@
 /turf/open/floor/plating,
 /area/department_main/training)
 "CZ" = (
-/obj/item/toy/plush/mosb,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/dark,
-/area/department_main/safety)
+/obj/machinery/status_display,
+/turf/closed/indestructible/reinforced,
+/area/department_main/training)
 "Df" = (
 /obj/effect/landmark/abnormality_spawn/training_rabbit,
 /turf/open/floor/facility/dark,
@@ -3513,11 +3886,6 @@
 /obj/item/encryptionkey/headset_control,
 /obj/item/encryptionkey/headset_control,
 /obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
-/obj/item/encryptionkey/headset_control,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "DC" = (
@@ -3536,11 +3904,16 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "DH" = (
-/obj/structure/rack,
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/handcuffs,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/obj/machinery/computer/message_monitor{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
+"DI" = (
+/obj/structure/table/glass,
+/obj/item/camera,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "DK" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/red,
@@ -3570,15 +3943,10 @@
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "DX" = (
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
 /obj/structure/table/glass,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Eg" = (
@@ -3589,15 +3957,14 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"Ek" = (
+/obj/structure/sign/poster/official/fruit_bowl{
+	pixel_y = -32
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Ep" = (
 /obj/structure/table/glass,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
-/obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/item/clothing/accessory/armband/lobotomy,
@@ -3628,20 +3995,35 @@
 /obj/structure/sign/poster/official/we_watch,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/west)
-"ET" = (
-/obj/effect/turf_decal/siding/brown{
+"EM" = (
+/obj/machinery/telecomms/server/presets/supply{
+	name = "Control Server"
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/control)
+"ET" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/structure/sign/poster/official/work_for_a_future{
-	pixel_x = 32
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 12
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
@@ -3667,9 +4049,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "Fo" = (
-/obj/machinery/light{
+/obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/structure/window,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "Fs" = (
@@ -3718,12 +4101,21 @@
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "FN" = (
-/obj/structure/toolabnormality/skin,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
+/obj/structure/rack,
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toner/extreme,
+/obj/effect/turf_decal/box/white,
+/obj/item/toy/plush/hokma,
+/turf/open/floor/plasteel/dark,
 /area/department_main/records)
+"FU" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "FV" = (
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -3757,9 +4149,13 @@
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Gj" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced/spawner,
-/turf/open/floor/carpet/orange,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Records Office"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Gr" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -3812,7 +4208,7 @@
 /area/facility_hallway/south)
 "GN" = (
 /obj/effect/turf_decal/siding/yellow/corner,
-/obj/structure/disposalpipe/segment,
+/obj/structure/railing/corner,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "GS" = (
@@ -3850,6 +4246,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/wrench,
 /turf/open/floor/wood,
 /area/facility_hallway/west)
 "GY" = (
@@ -3870,15 +4267,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"Hk" = (
+/obj/machinery/navbeacon/wayfinding/extractiondepartment,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 11
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "Hq" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Hs" = (
+/obj/item/target,
+/obj/effect/turf_decal/box,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/training)
 "Hv" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
+"Hz" = (
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 4
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-22";
+	anchored = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "HG" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 9
@@ -3918,6 +4341,12 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"Ia" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "Ib" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/warning/nosmoking{
@@ -3975,11 +4404,15 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Im" = (
-/obj/structure/sign/poster/official/cleanliness{
-	pixel_x = -32
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
 	},
-/turf/open/floor/facility/white,
-/area/department_main/safety)
+/obj/item/kirbyplants{
+	icon_state = "plant-22";
+	anchored = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "Iq" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -4058,18 +4491,25 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
-"IV" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/circuit/telecomms/mainframe,
+"IT" = (
+/obj/machinery/light,
+/obj/structure/bookcase/random,
+/turf/open/floor/carpet/purple,
 /area/department_main/information)
-"IY" = (
-/obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 10
+"IV" = (
+/obj/structure/chair/comfy/beige{
+	dir = 4
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/facility/white,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
+"IY" = (
+/obj/machinery/telecomms/server/presets/medical{
+	name = "Safety Server"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/safety)
 "IZ" = (
 /obj/structure/flora/ausbushes/fernybush,
@@ -4083,15 +4523,10 @@
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Jm" = (
-/obj/effect/landmark/start,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Jn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4104,15 +4539,10 @@
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "Jp" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/department_main/control)
 "Jr" = (
 /obj/machinery/light/cold{
 	dir = 8
@@ -4193,6 +4623,13 @@
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/floor/plating/grass,
 /area/department_main/safety)
+"JU" = (
+/obj/machinery/telecomms/message_server/preset,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/records)
 "JW" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_three,
@@ -4224,7 +4661,8 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
 "Kk" = (
-/obj/machinery/telecomms/server/presets/command,
+/obj/machinery/telecomms/hub/preset,
+/obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "Kn" = (
@@ -4238,38 +4676,51 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Kz" = (
-/obj/effect/landmark/start,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown/corner,
-/turf/open/floor/plasteel,
-/area/department_main/training)
-"KD" = (
-/obj/structure/rack,
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/crayon/spraycan/infinite,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
-"KE" = (
-/obj/structure/sign/warning/firingrange{
-	pixel_y = 32
-	},
-/obj/machinery/camera/autoname,
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
-"KH" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
-/obj/effect/landmark/department_center,
+/obj/effect/landmark/start,
 /turf/open/floor/plasteel,
+/area/department_main/training)
+"KD" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/melt,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
+"KE" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
+"KH" = (
+/obj/effect/landmark/department_center,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
+"KI" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/laser/practice{
+	pixel_y = 3
+	},
+/obj/item/gun/energy/laser/practice{
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "KJ" = (
 /obj/machinery/computer/security{
@@ -4303,20 +4754,14 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "KR" = (
-/obj/machinery/telecomms/server/presets/engineering,
+/obj/machinery/telecomms/server/presets/science,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/central)
 "KS" = (
-/obj/effect/landmark/start,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/department_main/training)
+/obj/effect/turf_decal/box/white,
+/obj/structure/toolabnormality/realization,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "Lc" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -4335,46 +4780,17 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Lh" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/storage/bag/trash/bluespace,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
 	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
 	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
 	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/plasteel,
 /area/department_main/training)
 "Lr" = (
 /obj/effect/turf_decal/siding/red/corner,
@@ -4427,6 +4843,9 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Training Department"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "LX" = (
@@ -4436,6 +4855,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility,
 /area/facility_hallway/central)
+"Mf" = (
+/obj/machinery/photocopier,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Mg" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -4448,7 +4871,11 @@
 /area/department_main/control)
 "Mk" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/carpet/orange,
+/obj/structure/window/reinforced,
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Mn" = (
 /obj/structure/rack,
@@ -4559,6 +4986,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Ng" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/paper/guides/jobs/zayin/guide/wellcheers,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Nl" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -4597,6 +5032,7 @@
 "Nu" = (
 /mob/living/simple_animal/bot/cleanbot,
 /obj/effect/landmark/department_center,
+/obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
 /turf/open/floor/wood,
 /area/department_main/command)
 "NC" = (
@@ -4609,6 +5045,18 @@
 /obj/structure/sign/warning,
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
+"NG" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/griddle,
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "NI" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -4638,8 +5086,19 @@
 /turf/open/floor/plating/grass,
 /area/department_main/safety)
 "NY" = (
-/obj/machinery/telecomms/server/presets/security,
-/turf/open/floor/circuit/telecomms/mainframe,
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-21";
+	anchored = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
+"Oa" = (
+/obj/structure/table/glass,
+/obj/item/papercutter,
+/turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Oi" = (
 /obj/structure/chair/comfy/beige,
@@ -4675,12 +5134,8 @@
 /turf/open/floor/plating,
 /area/facility_hallway/north)
 "Oz" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel,
+/obj/machinery/smartfridge/food,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "OA" = (
 /obj/effect/turf_decal/siding/purple{
@@ -4732,14 +5187,12 @@
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "OS" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/laser/practice{
-	pixel_y = 6
+/obj/structure/table/glass,
+/obj/machinery/computer/libraryconsole{
+	pixel_y = 10
 	},
-/obj/effect/turf_decal/siding/brown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "OT" = (
 /obj/effect/landmark/start,
 /turf/open/floor/wood,
@@ -4786,24 +5239,16 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "Po" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
-/obj/item/kitchen/knife,
-/obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
-"Pt" = (
-/obj/structure/toolabnormality/theresia{
-	pixel_y = 7
-	},
-/obj/structure/table/reinforced,
+/obj/machinery/navbeacon/wayfinding/recorddepartment,
 /turf/open/floor/carpet/black,
+/area/department_main/records)
+"Pt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/box/white,
+/obj/machinery/pdapainter,
+/turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "Pv" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4822,6 +5267,17 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"PF" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/knife,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "PH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/wood,
@@ -4840,14 +5296,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
 "PM" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/machinery/newscaster{
+	pixel_y = 32
 	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "PP" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
@@ -4900,15 +5353,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "Qi" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/department_main/training)
+/obj/machinery/libraryscanner,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Qm" = (
 /obj/machinery/light{
 	dir = 4
@@ -4922,12 +5369,19 @@
 "Qo" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/message_server/preset,
+/obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/central)
 "Qq" = (
-/obj/machinery/door/airlock/wood,
-/obj/structure/fans/tiny,
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/item/gun/ego_gun/clerk,
+/obj/item/clothing/ears/earmuffs,
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Qs" = (
@@ -4936,9 +5390,11 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Qt" = (
-/obj/machinery/scanner_gate,
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/scanner_gate{
+	scangate_mode = "Guns"
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Qz" = (
@@ -4963,10 +5419,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "QD" = (
-/obj/structure/closet/crate/trashcart,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/melt,
-/turf/open/floor/plasteel/dark,
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "QJ" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -4978,15 +5434,14 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/records)
 "QY" = (
-/obj/structure/rack,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/obj/item/folder/red,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/training)
 "Rb" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -5004,6 +5459,9 @@
 	dir = 6
 	},
 /obj/structure/table/wood/fancy/blue,
+/obj/structure/railing{
+	dir = 6
+	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Rf" = (
@@ -5013,12 +5471,16 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "Rj" = (
-/obj/structure/sign/departments/info{
+/obj/structure/rack,
+/obj/structure/sign/poster/official/twelve_gauge{
 	pixel_x = 32
 	},
-/obj/structure/table/glass,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "Rl" = (
 /obj/effect/turf_decal/siding/green/corner,
 /turf/open/floor/facility,
@@ -5036,15 +5498,12 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
 "Rq" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/ears/earmuffs{
-	pixel_y = 4
-	},
-/obj/item/clothing/ears/earmuffs,
-/obj/effect/turf_decal/siding/brown,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/facility/dark,
-/area/department_main/training)
+/obj/structure/rack,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Rr" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -5074,40 +5533,34 @@
 /turf/open/floor/facility,
 /area/facility_hallway/west)
 "RN" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/structure/window/reinforced,
 /obj/effect/turf_decal/siding/brown{
-	dir = 5
+	dir = 8
 	},
-/obj/machinery/biogenerator,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "RU" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 10
-	},
-/obj/machinery/chem_master/condimaster,
-/obj/structure/sign/poster/contraband/city_cola{
-	pixel_x = -32
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "RW" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/effect/turf_decal/siding/red{
+	dir = 4
 	},
-/obj/effect/turf_decal/siding/brown,
-/obj/machinery/processor,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Se" = (
 /obj/effect/landmark/start,
 /obj/structure/chair/office,
@@ -5145,17 +5598,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
-"SB" = (
-/obj/effect/landmark/start,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown/corner{
+"Sv" = (
+/obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/department_main/training)
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
+"SB" = (
+/obj/item/toy/plush/binah,
+/obj/structure/rack,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "SC" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
@@ -5176,15 +5632,27 @@
 /obj/item/toy/plush/netzach,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"SH" = (
+/obj/item/clothing/suit/armor/vest/alt,
+/obj/structure/rack,
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "SJ" = (
 /obj/structure/table,
 /obj/item/clothing/suit/armor/vest/alt,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "SK" = (
-/obj/machinery/smartfridge/food,
-/turf/open/floor/plating,
-/area/department_main/training)
+/obj/effect/turf_decal/box/white,
+/obj/structure/table/reinforced,
+/obj/structure/toolabnormality/theresia{
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "SQ" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/decal/cleanable/dirt,
@@ -5227,12 +5695,14 @@
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/central)
 "Tc" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Td" = (
 /obj/effect/turf_decal/siding/purple{
@@ -5246,6 +5716,9 @@
 /area/department_main/safety)
 "Tg" = (
 /obj/effect/turf_decal/siding/yellow/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
@@ -5263,11 +5736,20 @@
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Tm" = (
-/obj/machinery/camera/autoname,
-/obj/item/paper_bin,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
 /obj/structure/table/reinforced,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
+	pixel_y = 13
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "Ts" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -5280,6 +5762,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"Tz" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "TA" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -5327,6 +5815,9 @@
 /area/facility_hallway/central)
 "TO" = (
 /obj/machinery/computer/ego_purchase,
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "TX" = (
@@ -5343,6 +5834,12 @@
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"Ue" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "Uh" = (
 /obj/machinery/telecomms/server/presets/service,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -5376,8 +5873,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/item/modular_computer/laptop/preset,
-/obj/structure/table/glass,
+/obj/structure/bookcase/random,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Uu" = (
@@ -5396,23 +5892,14 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "UC" = (
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/storage/box/lights/tubes,
-/turf/open/floor/plasteel/dark,
-/area/department_main/training)
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/stairs/medium,
+/area/department_main/command)
 "UE" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
@@ -5421,6 +5908,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"UI" = (
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/landmark/start,
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/department_main/training)
 "UM" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -5428,23 +5927,44 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "UP" = (
-/obj/structure/statue/sandstone/venus{
-	anchored = 1
+/obj/structure/displaycase/trophy{
+	alert = 0
 	},
-/turf/open/floor/wood,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/department_main/command)
 "UQ" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "UT" = (
-/obj/structure/toolabnormality/realization,
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/structure/railing/corner,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "UX" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/facility/white,
-/area/department_main/safety)
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/obj/machinery/biogenerator,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "UZ" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/east)
@@ -5482,22 +6002,19 @@
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
+/obj/item/pen,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Vn" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+/obj/item/target/clown,
+/obj/effect/turf_decal/box,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/effect/turf_decal/siding/brown,
-/obj/machinery/icecream_vat,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/facility/dark,
 /area/department_main/training)
 "Vo" = (
-/obj/structure/sign/warning/firingrange{
-	pixel_y = 32
-	},
-/obj/machinery/vending/coffee,
+/obj/structure/table/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Vs" = (
@@ -5508,6 +6025,7 @@
 /area/department_main/safety)
 "Vt" = (
 /obj/effect/landmark/department_center,
+/obj/machinery/navbeacon/wayfinding/safetydepartment,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Vu" = (
@@ -5523,13 +6041,19 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "VA" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
+/obj/machinery/computer/med_data{
+	dir = 8;
+	req_one_access = "0"
 	},
-/turf/open/floor/wood,
-/area/department_main/command)
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "VB" = (
-/obj/machinery/light,
+/obj/machinery/computer/operating{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "VK" = (
@@ -5548,11 +6072,12 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
 "VS" = (
-/obj/machinery/vending/snack,
-/obj/machinery/status_display{
-	pixel_x = 31
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/obj/machinery/processor,
+/turf/open/floor/plasteel/white,
 /area/department_main/training)
 "VT" = (
 /obj/effect/turf_decal/tile/brown,
@@ -5594,6 +6119,16 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"VX" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Wb" = (
 /obj/machinery/modular_computer/console/preset/research{
 	name = "information department console"
@@ -5607,6 +6142,9 @@
 	},
 /obj/effect/landmark/start{
 	pixel_x = 3
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -5669,6 +6207,19 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"WE" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/department_main/training)
 "WF" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -5725,7 +6276,7 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Xl" = (
-/obj/structure/weightmachine/weightlifter,
+/obj/structure/chair/stool,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Xo" = (
@@ -5743,13 +6294,16 @@
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
 /area/department_main/control)
+"Xt" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "Xu" = (
-/obj/structure/railing{
-	dir = 9
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-21"
-	},
+/obj/structure/fluff/hedge,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Xw" = (
@@ -5785,15 +6339,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"XS" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
+"XR" = (
+/obj/structure/sign/departments/custodian{
+	pixel_y = -32
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/siding/brown,
-/obj/structure/chair/comfy/beige,
-/turf/open/floor/plasteel,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
+"XS" = (
+/obj/machinery/iv_drip,
+/obj/structure/bed/roller,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "XW" = (
 /obj/structure/filingcabinet{
 	pixel_x = -10
@@ -5888,14 +6445,11 @@
 /turf/open/floor/plating,
 /area/department_main/training)
 "YG" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11
+/obj/effect/turf_decal/siding/white{
+	dir = 8
 	},
-/obj/structure/filingcabinet/alephinfo{
-	pixel_x = -1
-	},
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 9
+/obj/structure/railing/corner{
+	dir = 4
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -6010,6 +6564,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"Zj" = (
+/obj/structure/rack,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Zk" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
@@ -6035,11 +6598,14 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Zx" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_x = 32
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
 	},
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/stairs/medium,
+/area/department_main/command)
 "Zy" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
@@ -6070,6 +6636,11 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"ZE" = (
+/obj/structure/table/glass,
+/obj/machinery/cell_charger,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "ZH" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 14
@@ -6102,6 +6673,24 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
+"ZP" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/structure/sign/poster/contraband/city_cola{
+	pixel_x = -32
+	},
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "ZU" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -28826,10 +29415,10 @@ cu
 cu
 cu
 cu
-cu
-cu
-cu
-cu
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -29080,12 +29669,12 @@ cu
 wz
 CC
 Ib
-CC
+oE
 cO
 cu
-PI
-Im
-UX
+cu
+cu
+cu
 cu
 ZL
 ZL
@@ -29335,13 +29924,13 @@ ZL
 ZL
 cu
 wR
-CC
+hP
 CC
 CC
 cO
 cu
 cZ
-sJ
+pa
 sJ
 cu
 ZL
@@ -29592,15 +30181,15 @@ ZL
 ZL
 cu
 zY
-CZ
+CC
 CC
 CC
 oi
 cu
-IY
-sJ
+PI
+jl
 VB
-fD
+cu
 ZL
 ZL
 ZL
@@ -29854,9 +30443,9 @@ CC
 CC
 cO
 cu
-cZ
-sJ
-sJ
+cd
+jl
+cd
 cu
 ZL
 ZL
@@ -30111,10 +30700,10 @@ CC
 CC
 cO
 cu
-PI
-sJ
-sJ
-cu
+XS
+jl
+XS
+fD
 ZL
 ZL
 ZL
@@ -30628,7 +31217,7 @@ Vs
 gz
 gz
 gz
-gz
+dd
 Pw
 cu
 ZL
@@ -31647,7 +32236,7 @@ ZL
 cu
 mJ
 FX
-AN
+gG
 OD
 PU
 ON
@@ -32937,7 +33526,7 @@ DC
 cu
 cu
 cu
-cu
+FX
 cu
 cu
 sH
@@ -33193,9 +33782,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+cu
+IY
+cu
 vs
 DN
 fQ
@@ -36291,7 +36880,7 @@ FJ
 Uu
 nP
 Ww
-zg
+ic
 Yk
 RH
 ST
@@ -37583,7 +38172,7 @@ HO
 CD
 xY
 lN
-wZ
+Xu
 ce
 ZX
 iu
@@ -37618,7 +38207,7 @@ oM
 pf
 bb
 Kk
-NY
+LX
 Kn
 Mr
 Zb
@@ -37874,8 +38463,8 @@ YM
 fP
 xH
 bb
-IV
-fY
+bV
+LX
 Kn
 bX
 Zb
@@ -38087,11 +38676,11 @@ ce
 ce
 Uz
 lp
-BW
+yG
 GN
-Xo
-Qn
-VA
+Zx
+WW
+WW
 WW
 WW
 OT
@@ -38131,8 +38720,8 @@ YM
 YM
 sf
 bb
-bV
 Zk
+LX
 Kn
 Bt
 Zb
@@ -38314,7 +38903,7 @@ GT
 Mi
 ks
 jy
-hP
+FV
 oF
 oF
 fq
@@ -38348,7 +38937,7 @@ yG
 am
 UP
 WW
-sO
+WW
 WW
 WW
 WW
@@ -38388,8 +38977,8 @@ YM
 YM
 dN
 LX
-bb
-bb
+LX
+LX
 Kn
 Kn
 Mv
@@ -38605,7 +39194,7 @@ yG
 mG
 re
 WW
-sO
+WW
 WW
 WW
 WW
@@ -38819,7 +39408,7 @@ dG
 il
 Zy
 kD
-kD
+fY
 kD
 mM
 FV
@@ -38862,7 +39451,7 @@ yG
 Iz
 bj
 oY
-jl
+OT
 Nu
 oP
 Qn
@@ -39088,7 +39677,7 @@ PV
 FV
 TE
 KJ
-fq
+GT
 Mi
 eL
 rg
@@ -39119,7 +39708,7 @@ yG
 uC
 Re
 WW
-sO
+WW
 WW
 sO
 WW
@@ -39160,7 +39749,7 @@ hx
 hx
 ND
 ZU
-jK
+Cx
 kY
 Kn
 Ty
@@ -39333,7 +39922,7 @@ wD
 bu
 rg
 rg
-rg
+Jp
 rg
 rg
 rg
@@ -39344,8 +39933,8 @@ lJ
 Ep
 FV
 Dr
-oF
-fq
+ZE
+GT
 Mi
 JK
 rg
@@ -39376,13 +39965,13 @@ yG
 am
 vb
 WW
-sO
+WW
 WW
 sO
 WW
 WW
 nS
-TY
+CJ
 ce
 Hv
 Hv
@@ -39404,7 +39993,7 @@ se
 gL
 TM
 LX
-YM
+PM
 YM
 YM
 YM
@@ -39416,8 +40005,8 @@ YM
 YM
 bx
 LX
-bb
-bb
+LX
+LX
 Kn
 Kn
 Mv
@@ -39589,9 +40178,9 @@ rg
 rg
 rg
 rg
-ZL
-ZL
-ZL
+rg
+EM
+rg
 ZL
 rg
 Eg
@@ -39631,9 +40220,9 @@ Uz
 vz
 yG
 Tg
-DL
+UC
 WW
-sO
+WW
 WW
 sO
 OT
@@ -39667,14 +40256,14 @@ DX
 YM
 YM
 Sg
+Mf
 YM
+Ae
 YM
-YM
-YM
-sf
+IT
 bb
 AC
-cR
+LX
 Kn
 Mr
 Zb
@@ -39846,9 +40435,9 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
 ZL
 rg
 FI
@@ -39859,7 +40448,7 @@ Ol
 Ol
 Ol
 Ol
-Ol
+RW
 XD
 SJ
 rg
@@ -39888,9 +40477,9 @@ Uz
 wm
 et
 vk
-wF
-BK
-fe
+Xo
+lI
+dz
 BK
 fe
 BK
@@ -39924,14 +40513,14 @@ tY
 pR
 YM
 Sg
-pf
+Qi
 YM
+DI
 YM
-fP
 Ur
 bb
-ah
-oE
+cR
+LX
 Kn
 bX
 Zb
@@ -40114,9 +40703,9 @@ FV
 FV
 Yg
 Qe
+Ia
 FV
-FV
-FV
+xu
 FV
 ZY
 rg
@@ -40181,14 +40770,14 @@ pf
 YM
 YM
 Sg
-pf
+OS
 Mg
 YM
-Rj
-pf
+Lt
+gv
 bb
 pj
-cd
+LX
 Kn
 Bt
 Zb
@@ -40378,7 +40967,7 @@ FZ
 rg
 rg
 vf
-mA
+mu
 vs
 mA
 mA
@@ -40439,7 +41028,7 @@ eu
 Lt
 Sg
 Vl
-pf
+Oa
 bs
 LX
 LX
@@ -40627,12 +41216,12 @@ TO
 ha
 AU
 AU
-vI
-Xr
+AU
+wF
 Iq
-Iq
-Iq
-gR
+ki
+sV
+tp
 rg
 vs
 vs
@@ -40882,11 +41471,11 @@ ZL
 rg
 CU
 AU
+Hk
 AU
-AU
-AU
+ci
 yJ
-Iq
+gR
 Iq
 Iq
 qL
@@ -41137,16 +41726,16 @@ ZL
 ZL
 ZL
 rg
-Wl
-vI
-xi
-zT
+ci
+AU
+ci
+AU
 ci
 Xr
-iA
-DH
+aJ
+Iq
+Iq
 EW
-rf
 rg
 ZL
 ZL
@@ -41394,16 +41983,16 @@ ZL
 ZL
 ZL
 rg
+Wl
+SH
+Rj
+SB
+ci
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+Zj
+iA
+iA
+Rq
 rg
 ZL
 ZL
@@ -41650,18 +42239,18 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
 ZL
 ZL
 vs
@@ -44241,7 +44830,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+Ue
 ZL
 vs
 vs
@@ -44252,8 +44841,8 @@ Yu
 oA
 Fy
 vs
-ZL
-ZL
+zW
+zW
 UZ
 UZ
 UZ
@@ -44506,11 +45095,11 @@ ZL
 ZL
 vs
 oV
-WT
+At
 Uq
 vs
-ZL
-ZL
+if
+zW
 ZL
 ZL
 ZL
@@ -44748,7 +45337,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+QT
 QT
 QT
 QT
@@ -44766,12 +45355,12 @@ ii
 LS
 zW
 zW
+tM
 zW
 zW
 zW
 zW
 zW
-ZL
 ZL
 ZL
 qc
@@ -45004,15 +45593,15 @@ ZL
 ZL
 ZL
 ZL
-ZL
 QT
 QT
+mb
 Pt
 FN
-KD
 QT
 QT
-yP
+mC
+th
 kN
 hG
 zW
@@ -45020,18 +45609,18 @@ yf
 oN
 hf
 iE
-qO
+Jm
 qO
 uo
-zW
+Vo
+Vo
+Fc
 Wu
-Zg
-CY
-Nm
-zV
-zV
-zV
-bd
+KD
+zW
+zW
+ZL
+qc
 ZL
 UZ
 vB
@@ -45259,36 +45848,36 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
 QT
+QT
+QT
+wZ
 UT
-AW
-AW
-AW
-AW
-QT
+rJ
 YG
+Im
+QT
+uY
+AW
 AW
 nm
 zX
+ot
+qO
+qO
+qO
+Jm
+qO
 qO
 Oi
-qO
-qO
-qO
-qO
-Qs
-Fc
 QD
-ZK
-yy
-zW
-ZL
-ZL
-ZL
-ZL
+Fc
+AY
+Zg
+CY
+Nm
+zV
+bd
 ZL
 UZ
 vB
@@ -45516,34 +46105,34 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
 QT
+JU
+yt
+rR
 Fo
-AW
+Cl
 gT
-AW
 AW
 qv
 AW
-AW
+Po
+VA
 le
 vW
+Tz
 qO
-Qi
 dB
-dB
+Lh
 BH
 oG
-xa
-Fc
-UC
+WE
+qO
+Vo
+wy
+xC
 ZK
-yy
-zW
-ZL
-ZL
+Zv
+fr
 ZL
 ZL
 ZL
@@ -45773,34 +46362,34 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
 QT
+QT
+QT
+vq
 dJ
-AW
-AW
-AW
-AW
+Sv
+ah
+Hz
 QT
-Tm
+yP
 AW
-AW
+sa
+DH
 zW
 op
-hO
+qO
 Kz
-bO
-SB
-Oz
+qO
+Jm
+qO
+UI
+qO
 pc
-wy
-Lh
+zW
+ZH
 ZK
-Zv
-fr
-ZL
-ZL
+yy
+zW
 ZL
 ZL
 ZL
@@ -46032,32 +46621,32 @@ ZL
 ZL
 ZL
 ZL
-ZL
 QT
 QT
+KS
 ja
-Qm
+SK
+QT
+QT
 lW
-QT
-QT
-QY
+AW
 Qm
 AW
 tO
 qO
-hO
-ed
-jX
-hO
-ed
 qO
-zW
-ZH
+uL
+Xl
+hO
+qO
+uL
+qO
+qO
+Ne
 ZK
-yy
+ZK
+qz
 zW
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -46290,7 +46879,7 @@ ZL
 ZL
 ZL
 ZL
-ZL
+QT
 QT
 QT
 QT
@@ -46302,19 +46891,19 @@ QT
 QT
 zW
 KE
-hO
-ed
-Xl
-hO
-XS
 qO
-Ne
-ZK
-ZK
-qz
+uL
+rv
+Ng
+Xl
+uL
+qO
+XR
 zW
-ZL
-ZL
+Gg
+WJ
+YC
+zW
 ZL
 ZL
 ZL
@@ -46551,27 +47140,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-mb
-ZA
-ZA
-ZA
+Ai
+Dl
+ZD
+yp
+zW
 hZ
-Ne
 qO
-hO
-ed
+uL
 pu
 KH
 ed
+uL
 qO
+Ek
 zW
-Gg
-WJ
-YC
 zW
-ZL
-ZL
+aO
+zW
+zW
 ZL
 ZL
 ZL
@@ -46808,27 +47397,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-rJ
-ZA
-ZA
-ZA
-hZ
-sa
+zT
+Ah
+Ah
+zd
+nH
+Vo
 qO
-hO
-ed
+uL
 jX
-hO
-ed
-vl
+ae
+Xl
+uL
+qO
+qO
+nH
+ZA
+pW
+ZA
 zW
-zW
-aO
-zW
-zW
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -47065,27 +47654,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-rt
-ZA
-ZA
-ZA
-hZ
-Rq
+YV
+Ah
+yN
+cr
+nH
+xa
 qO
-hO
-ed
+uL
 Xl
 hO
-ed
+qO
 uL
+qO
+xi
 nH
 ZA
-pW
+Df
 ZA
 zW
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -47322,27 +47911,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-rR
-ZA
-ZA
-ZA
-hZ
-OS
+rf
+Ah
+Ah
+zd
+nH
+oj
 qO
-hO
-KS
-dB
+Kz
+qO
 Jm
-ed
-rv
+qO
+UI
+qO
+Qs
 nH
 ZA
-Df
+ZA
 ZA
 zW
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -47579,27 +48168,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-sN
-ZA
-ZA
-ZA
-hZ
-tM
+UX
+Ah
+yN
+cr
+nH
+IV
 qO
-dd
-bO
-bO
+rt
+vr
 bO
 vr
 xS
-nH
-ZA
-ZA
-ZA
+qO
+VX
 zW
-ZL
-ZL
+Nr
+Nr
+aY
+zW
 ZL
 ZL
 ZL
@@ -47836,27 +48425,27 @@ ZL
 ZL
 ZL
 ZL
+ZL
 zW
-zW
-zW
-zW
-zW
-zW
-mC
+mH
+Ah
+Ah
+zd
+nH
 Vo
 qO
 qO
 qO
+Jm
 qO
 qO
-dz
+qO
+qO
+yh
+ZA
+ZA
+kw
 zW
-Nr
-Nr
-aY
-zW
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -48094,26 +48683,26 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-VS
+dM
+jS
+ok
+zS
+CZ
+xa
 qO
 qO
+FU
+AJ
 qO
 qO
-qO
-Zx
-yh
-ZA
-ZA
-kw
+tw
+NY
 zW
-ZL
-ZL
+zW
+zW
+zW
+zW
 ZL
 ZL
 ZL
@@ -48351,24 +48940,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
+Oz
+sF
+nH
+nH
 zW
-Mk
+Tc
+uF
 Mk
 Gj
 Qq
+KI
+RN
 zW
 zW
 zW
-zW
-zW
-zW
-zW
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -48608,24 +49197,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-is
-AX
-AX
-AX
-AX
+qa
 RU
-nH
-Ai
-Dl
-ZD
-yp
+RU
+RU
+ZP
+is
+Xt
+pF
+du
+AX
+Nr
+Nr
 zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -48865,24 +49454,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
+wj
+Bl
+Mo
+Pd
+kP
 iX
 Bl
-Bl
-Bl
-Bl
-RW
-nH
-CJ
-Ah
-Ah
-zd
+vl
 zW
+QY
+ZA
+ZA
+zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -49122,24 +49711,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
+NG
+Bl
+VS
+PF
+ET
 jq
 Bl
-Mo
-Pd
-Bl
-SE
-SK
-YV
-Ah
-yN
-cr
+VT
 zW
+ZA
+ZA
+ZA
+zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -49379,24 +49968,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-ot
+tu
+Bl
+Bl
+Bl
+Bl
+Bl
 Bl
 jw
-Po
-Bl
-Tc
-Qq
-Jp
-Ah
-Ah
-tw
 zW
+ZA
+ZA
+ZA
+zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -49636,24 +50225,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-pF
-Bl
-tp
-PM
-Bl
-Vn
-nH
-yt
+Tm
 Ah
-yN
-xu
+Ah
+Ah
+Ah
+Bl
+Bl
+SE
 zW
+sN
+Vn
+Hs
+zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -49893,24 +50482,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-tu
-Ah
-Ah
-Ah
-Ah
-VT
-nH
-pa
-Ah
-Ah
-zd
+Ij
+Ms
+uu
+uu
+tb
+hJ
+vI
+WU
 zW
+zW
+zW
+zW
+zW
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -50150,24 +50739,24 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
 zW
-wj
-Bl
-Bl
-Bl
-Bl
-lI
-nH
-RN
-jS
-ok
-zS
 zW
+zW
+zW
+zW
+zW
+zW
+zW
+zW
+zW
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -50412,19 +51001,19 @@ ZL
 ZL
 ZL
 ZL
-zW
-Ij
-Ms
-uu
-uu
-ET
-WU
-zW
-zW
-zW
-zW
-zW
-zW
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
@@ -50669,14 +51258,14 @@ ZL
 ZL
 ZL
 ZL
-zW
-zW
-zW
-zW
-zW
-zW
-zW
-zW
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 ZL
 ZL
