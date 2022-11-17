@@ -189,7 +189,7 @@
 //Gives a crown thing when you get good work on her. Anyone can wear the crown, even those that didn't work on her and there can only be one gift at a time.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/GiveGift(mob/living/carbon/human/user)
 	FluffSpeak("Do you like it? You do right? I worked so hard on it...")
-	addtimer(CALLBACK(src, .proc/FluffSpeak, "If you don't like it then can you find someone who do? Bring them to me please."), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/FluffSpeak, "If you don't like it then can you find someone who does? Bring them to me please."), 3 SECONDS)
 	var/obj/item/clothing/head/unrequited_crown/UC = new(get_turf(src))
 	crown = UC
 	crown.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
@@ -210,7 +210,7 @@
 	if(!drowning)
 		return //the most likely scenario is that someone is already buckled here and currently dying
 	petter.losebreath += 500
-	FluffSpeak("I'm really sorry, but it's fine right? Isn't it wonderful to be loved?")
+	FluffSpeak("I'm really sorry, but it's fine, right? Isn't it wonderful to be loved?")
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "You can breath underwater right?"), 30 SECONDS)
 
