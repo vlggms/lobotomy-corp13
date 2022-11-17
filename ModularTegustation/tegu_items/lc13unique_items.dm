@@ -1,3 +1,38 @@
+	//Admin Quick Leveler
+/obj/item/lc13_attribute_tester
+	name = "attribute injector"
+	desc = "A fluid used to drastically change a employee for tests. Use in hand to activate."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7"
+
+/obj/item/lc13_attribute_tester/attack_self(mob/living/carbon/human/user)
+	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
+	user.adjust_all_attribute_levels(100)
+	qdel(src)
+
+/obj/item/lc13_easygift_tester
+	name = "gift extractor"
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from a entity on demand."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "hammeroff"
+
+/obj/item/lc13_easygift_tester/attack(mob/living/simple_animal/hostile/abnormality/M, mob/living/carbon/human/user)
+	if(!isabnormalitymob(M))
+		to_chat(user, "<span class='warning'>Error: entity doesnt classify as an L Corp Abnormality.</span>")
+		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
+		return
+	if(!M.gift_type)
+		to_chat(user, "<span class='notice'>[src] has no gift type.</span>")
+		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
+		return
+	var/datum/ego_gifts/EG = new M.gift_type
+	EG.datum_reference = M.datum_reference
+	user.Apply_Gift(EG)
+	to_chat(user, "<span class='nicegreen'>[M.gift_message]</span>")
+	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
+	to_chat(user, "<span class='nicegreen'>You bonk the abnormality with the [src].</span>")
+	qdel(src)
+
 	//Defective Manager Bullet PLACEHOLDER OR PROTOTYPE SHIELDS
 /obj/item/managerbullet
 	name = "prototype manager bullet"
@@ -276,10 +311,35 @@
 	var/check1b
 	var/check1c
 	var/check1d
+	var/check1e
+	var/deep_scan_log
+
+/obj/item/deepscanner/examine(mob/living/M)
+	. = ..()
+	if(deep_scan_log)
+		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
-	if(ishuman(M))
+	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
+	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+	if(!do_after(user, 2 SECONDS, target = user))
 		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		check1a = measuredamage(H.physiology.red_mod)
+		check1b = measuredamage(H.physiology.white_mod)
+		check1c = measuredamage(H.physiology.black_mod)
+		check1d = measuredamage(H.physiology.pale_mod)
+		check1e = "Unknown"
+		if(suit)
+			check1a = measuredamage(1 - (H.getarmor(null, RED_DAMAGE) / 100))
+			check1b = measuredamage(1 - (H.getarmor(null, WHITE_DAMAGE) / 100))
+			check1c = measuredamage(1 - (H.getarmor(null, BLACK_DAMAGE) / 100))
+			check1d = measuredamage(1 - (H.getarmor(null, PALE_DAMAGE) / 100))
+		if(H.job)
+			check1e = H.job
+		to_chat(user, "<span class='notice'>[check1e] [H] [H.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	else
 		var/mob/living/simple_animal/hostile/mon = M
 		if((mon.status_flags & GODMODE))
@@ -288,7 +348,8 @@
 		check1b = measuredamage(mon.damage_coeff[WHITE_DAMAGE])
 		check1c = measuredamage(mon.damage_coeff[BLACK_DAMAGE])
 		check1d = measuredamage(mon.damage_coeff[PALE_DAMAGE])
-		to_chat(M, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 /obj/item/deepscanner/proc/measuredamage(amount)
@@ -531,6 +592,8 @@
 	var/on = 0
 	var/entitydistance
 	var/nearestentity
+	var/their_loc
+	var/distance
 
 /obj/item/powered_gadget/detector_gadget/attack_self(mob/user)
 	..()
@@ -575,7 +638,7 @@
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/powered_gadget/detector_gadget/proc/detectthing(mob/user)
-	user.visible_message("<span class='notice'>The [src] falls apart.</span>", "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
+	src.visible_message("<span class='notice'>The [src] falls apart.</span>", "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
 	qdel(src)
 	return
 
@@ -598,19 +661,19 @@
 			icon_state = "[default_icon]_low"
 			return
 	if(nearestentity)
-		threatbubble(nearestentity)
-
-/obj/item/powered_gadget/detector_gadget/abnormality/proc/threatbubble(mob/living/simple_animal/hostile/abnormality/THREAT)
-	if(THREAT.threat_level == ALEPH_LEVEL)
-		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 8, TRUE)
-		return
+		var/mob/living/simple_animal/hostile/abnormality/THREAT = nearestentity
+		if(THREAT.threat_level == ALEPH_LEVEL)
+			if(prob(25))
+				playsound(src, 'sound/hallucinations/over_here1.ogg', 5, TRUE)
+			playsound(src, 'sound/magic/voidblink.ogg', 12, TRUE)
+			return
 
 /obj/item/powered_gadget/detector_gadget/abnormality/detectthing()
 	var/turf/my_loc = get_turf(src)
 	var/list/mob/living/simple_animal/hostile/abnormality/nearbyentities = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/ABNO in livinginrange(21, get_turf(src)))
 		if(!(ABNO.status_flags & GODMODE))
-			var/their_loc = get_turf(ABNO)
+			their_loc = get_turf(ABNO)
 			var/distance = get_dist_euclidian(my_loc, their_loc)
 			nearbyentities[ABNO] = (20 ** 1) - (distance ** 1)
 			nearestentity = pickweight(nearbyentities)
@@ -644,10 +707,15 @@
 /obj/item/powered_gadget/detector_gadget/ordeal/detectthing()
 	var/turf/my_loc = get_turf(src)
 	var/list/mob/living/simple_animal/hostile/ordeal/nearbyentities = list()
+	if(nearestentity)
+		var/mob/living/simple_animal/hostile/ordeal/M = nearestentity
+		if(M.stat == DEAD)
+			nearbyentities -= nearestentity
+			nearestentity = null
 	for(var/mob/living/simple_animal/hostile/ordeal/MON in livinginrange(21, get_turf(src)))
-		if(!(MON.status_flags & GODMODE))
-			var/their_loc = get_turf(MON)
-			var/distance = get_dist_euclidian(my_loc, their_loc)
+		if(!(MON.status_flags & GODMODE) && MON.stat != DEAD)
+			their_loc = get_turf(MON)
+			distance = get_dist_euclidian(my_loc, their_loc)
 			nearbyentities[MON] = (20 ** 1) - (distance ** 1)
 			nearestentity = pickweight(nearbyentities)
 
