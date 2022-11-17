@@ -213,10 +213,14 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_wander
 	var/last_message = 0
 	var/suicide_enter = 0
+	var/list/locations_visited = list()
+	var/list/total_locations = list() // Primarily here so admins/maintainers can see where they can actually go.
 
 /datum/ai_controller/insane/wander/PossessPawn(atom/new_pawn)
 	. = ..()
 	suicide_enter = world.time + 60 SECONDS
+	total_locations |= GLOB.department_centers
+	total_locations |= GLOB.xeno_spawn
 
 /datum/ai_controller/insane/wander/SelectBehaviors(delta_time)
 	..()
@@ -224,16 +228,23 @@
 		return
 
 	var/list/possible_locs = list()
-	for(var/turf/T in GLOB.department_centers)
+	for(var/turf/T in total_locations)
 		if(get_dist(pawn, T) < 5)
 			continue
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][T] > world.time)
 			continue
+		if(T in locations_visited)
+			continue
 		possible_locs += T
-	var/turf/open/T = get_closest_atom(/turf/open, possible_locs, pawn)
+	var/turf/open/T = pick(possible_locs)
 	if(T)
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander_center)
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = T
+		locations_visited |= T
+		if(locations_visited.len > (total_locations.len*0.75)) // Should encourage diversity
+			locations_visited.Cut(1, 2)
+	else
+		locations_visited.Cut(1, 2) // Maybe we're too limited somehow...
 
 /datum/ai_controller/insane/wander/PerformIdleBehavior(delta_time)
 	var/mob/living/living_pawn = pawn

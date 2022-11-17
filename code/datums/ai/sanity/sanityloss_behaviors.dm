@@ -94,6 +94,13 @@
 	var/obj/item/weapon = null
 	var/highest_force = 5
 	for(var/obj/item/I in living_pawn.held_items)
+		if(istype(I, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/EW = I
+			if(!EW.CanUseEgo(living_pawn)) // I CAN'T USE THIS TO KILL!
+				living_pawn.dropItemToGround(EW, force = TRUE) // YEET
+				var/list/item_blacklist = controller.blackboard[BB_INSANE_BLACKLISTITEMS]
+				item_blacklist[EW] = TRUE
+				continue
 		if(I.force > highest_force)
 			weapon = I
 			highest_force = I.force
@@ -138,8 +145,21 @@
 		finish_action(controller, FALSE)
 		return
 
+	if(istype(target, /obj/item/ego_weapon)) // Oh, it's EGO!
+		var/obj/item/ego_weapon/EW = target
+		if(!EW.CanUseEgo(living_pawn)) // Can't use it? Stop trying to.
+			finish_action(controller, FALSE)
+			return
+
 	// Strong weapon
 	if(target.force > best_force)
+		var/obj/item/left_item = living_pawn.get_item_for_held_index(LEFT_HANDS)
+		var/obj/item/right_item = living_pawn.get_item_for_held_index(RIGHT_HANDS)
+		if((left_item != null) && (right_item != null))
+			if(left_item.force <= right_item.force) // Drop the old one, man...
+				living_pawn.dropItemToGround(left_item, force = TRUE)
+			else
+				living_pawn.dropItemToGround(right_item, force = TRUE)
 		living_pawn.put_in_hands(target)
 		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = target.force
 		finish_action(controller, TRUE)
@@ -166,6 +186,8 @@
 
 /datum/ai_behavior/insanity_wander_center
 	var/list/current_path = list()
+	var/move_attempts = 0
+	var/max_attempts = 5
 
 /datum/ai_behavior/insanity_wander_center/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
@@ -177,7 +199,8 @@
 
 	var/turf/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(current_path) && !living_pawn.Adjacent(target))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 120)
+		current_path.Cut(1, 2)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -201,13 +224,23 @@
 			controller.suicide_enter = world.time + 30 SECONDS
 	// Movement
 	if(LAZYLEN(current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		max_attempts = round(5+(get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)/20), 1) // The faster they are the more leeway they need.
 		var/target_turf = current_path[1]
 		if(target_turf && get_dist(living_pawn, target_turf) < 3)
-			step_towards(living_pawn, target_turf)
-			current_path.Cut(1, 2)
+			if(!step_towards(living_pawn, target_turf)) //If it fails to move
+				move_attempts++
+				if(move_attempts >= max_attempts)
+					move_attempts = 0
+					current_path = list()
+					finish_action(controller, TRUE)
+					return FALSE
+			else // Don't reset the attempts and remove the next if they didn't move there.
+				move_attempts = 0
+				current_path.Cut(1, 2)
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
+	move_attempts = 0
 	current_path = list() // Reset the path and stop
 	finish_action(controller, TRUE)
 	return FALSE
@@ -219,6 +252,8 @@
 
 /datum/ai_behavior/insanity_smash_console
 	var/list/current_path = list()
+	var/move_attempts = 0
+	var/max_attempts = 5
 
 /datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/release/controller)
 	. = ..()
@@ -231,6 +266,7 @@
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(current_path) && !living_pawn.Adjacent(target))
 		current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal, 0, 50)
+		current_path.Cut(1, 2)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -261,16 +297,27 @@
 		var/turf/T = get_closest_atom(/turf/open, GLOB.xeno_spawn, controller.pawn)
 		if(T)
 			current_path = get_path_to(controller.pawn, T, /turf/proc/Distance_cardinal, 0, 50)
+			current_path.Cut(1, 2)
 			MoveInPath(controller.pawn)
 
 /datum/ai_behavior/insanity_smash_console/proc/MoveInPath(mob/living/living_pawn)
 	if(LAZYLEN(current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		max_attempts = round(5+(get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)/20), 1) // The faster they are the more leeway they need.
 		var/target_turf = current_path[1]
 		if(target_turf && get_dist(living_pawn, target_turf) < 3)
-			step_towards(living_pawn, target_turf)
-			current_path.Cut(1, 2)
+			if(!step_towards(living_pawn, target_turf)) //If it fails to move
+				move_attempts++
+				if(move_attempts >= max_attempts)
+					move_attempts = 0
+					current_path = list()
+					finish_action(living_pawn.ai_controller, FALSE)
+					return FALSE
+			else // Don't reset the attempts and remove the next if they didn't move there.
+				move_attempts = 0
+				current_path.Cut(1, 2)
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
 			addtimer(CALLBACK(src, .proc/MoveInPath, living_pawn), move_delay)
 			return TRUE
+	move_attempts = 0
 	current_path = list() // Reset the path and stop
 	return FALSE
