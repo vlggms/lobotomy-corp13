@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 	var/on = TRUE
 	var/toggled = TRUE 	// Is it toggled on
-	var/long_range_link = FALSE  // Can you link it across Z levels or on the otherside of the map? (Relay & Hub)
+	var/long_range_link = FALSE  // Can you link it across Z levels
 	var/hide = FALSE  // Is it a hidden machine?
 
 	///Looping sounds for any servers
@@ -91,7 +91,9 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 
 /obj/machinery/telecomms/LateInitialize()
 	..()
-	for(var/obj/machinery/telecomms/T in (long_range_link ? GLOB.telecomms_list : urange(20, src, 1)))
+	for(var/obj/machinery/telecomms/T in GLOB.telecomms_list)
+		if(!long_range_link && T.loc.z != z) // Not on our z level and long range link is off
+			continue
 		add_link(T)
 
 /obj/machinery/telecomms/Destroy()
