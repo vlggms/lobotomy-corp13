@@ -53,25 +53,30 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HUMAN_INSANE, src, attribute)
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
+	var/datum/status_effect/panicked_type/status_effect_type
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/murder
 			warning_text = "[src] screams for a moment, murderous intent shining in [p_their()] eyes."
-			apply_status_effect(/datum/status_effect/panicked_type/murder)
+			status_effect_type = /datum/status_effect/panicked_type/murder
 		if(PRUDENCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/suicide
 			warning_text = "[src] stops moving entirely, [p_they()] lost all hope..."
-			apply_status_effect(/datum/status_effect/panicked_type/suicide)
+			status_effect_type = /datum/status_effect/panicked_type/suicide
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
 			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for an exit."
-			apply_status_effect(/datum/status_effect/panicked_type/wander)
+			status_effect_type = /datum/status_effect/panicked_type/wander
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release
 			warning_text = "[src] laughs for a moment, as [p_they()] start[p_s()] approaching nearby containment zones."
-			apply_status_effect(/datum/status_effect/panicked_type/release)
+			status_effect_type = /datum/status_effect/panicked_type/release
+	apply_status_effect(status_effect_type)
 	visible_message("<span class='danger'>[warning_text]</span>", \
 					"<span class='userdanger'>You've been overwhelmed by what is going on in this place... There's no hope!</span>")
+	var/turf/T = get_turf(src)
+	if(mind && mind.name && mind.active && !istype(T.loc, /area/ctf))
+		deadchat_broadcast(" has went insane(<i>[initial(status_effect_type.icon)]</i>) at <b>[get_area_name(T)]</b>.", "<b>[mind.name]</b>", follow_target = src, turf_target = T, message_type=DEADCHAT_DEATHRATTLE)
 	ghostize(1)
 	InitializeAIController()
 	SpreadPanic(FALSE)
