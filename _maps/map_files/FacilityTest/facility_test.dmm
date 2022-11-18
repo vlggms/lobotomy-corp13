@@ -72,7 +72,6 @@
 /area/facility_hallway/east)
 "gm" = (
 /obj/effect/landmark/observer_start,
-/obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
 /area/department_main)
 "gN" = (
@@ -158,9 +157,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
 "pw" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east)
+/obj/machinery/regenerator,
+/turf/open/floor/plasteel/cafeteria,
+/area/department_main)
 "pK" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -222,10 +221,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
-"wA" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west)
 "yq" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -266,12 +261,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/department_main)
-"EI" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east)
 "Hv" = (
-/obj/structure/table,
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel/cafeteria,
 /area/department_main)
@@ -404,10 +394,6 @@
 "Xh" = (
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
-"XI" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west)
 "XN" = (
 /obj/structure/ladder/unbreakable,
 /turf/open/floor/plasteel,
@@ -2508,15 +2494,15 @@ ZP
 ZP
 ZP
 Tt
-wA
-XI
+Ym
+Ym
 Tt
 ZP
 ZP
 ZP
 Tt
-XI
-wA
+Ym
+Ym
 Tt
 bb
 bb
@@ -4440,8 +4426,8 @@ az
 az
 TZ
 az
-av
-av
+az
+az
 az
 TZ
 az
@@ -4623,8 +4609,8 @@ az
 az
 az
 TZ
+az
 vi
-av
 Hv
 az
 TZ
@@ -4716,8 +4702,8 @@ az
 az
 TZ
 az
-av
-av
+az
+az
 az
 TZ
 az
@@ -4990,7 +4976,7 @@ Xh
 fb
 av
 av
-av
+pw
 az
 az
 az
@@ -6648,15 +6634,15 @@ gk
 gk
 gk
 aT
-EI
-pw
+aO
+aO
 aT
 gk
 gk
 gk
 aT
-pw
-EI
+aO
+aO
 aT
 bb
 bb

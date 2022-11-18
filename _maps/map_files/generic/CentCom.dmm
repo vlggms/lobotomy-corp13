@@ -279,7 +279,7 @@
 	pixel_x = -10
 	},
 /obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet{
+/obj/structure/filingcabinet/toolinfo{
 	pixel_x = 10
 	},
 /turf/open/floor/carpet/royalblack,
@@ -542,9 +542,6 @@
 	},
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
@@ -2423,7 +2420,6 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/obj/item/toy/plush/myo,
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
 	dir = 4
@@ -2435,6 +2431,7 @@
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
 	},
+/obj/item/toy/plush/rabbit,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "nb" = (
@@ -3076,13 +3073,6 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"ry" = (
-/obj/structure/chair/plastic,
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
 "rz" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
@@ -3491,12 +3481,6 @@
 /obj/machinery/door/poddoor/shuttledock,
 /turf/open/floor/plating,
 /area/centcom/evac)
-"tV" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "tW" = (
 /obj/structure/rack,
 /obj/item/nullrod/claymore{
@@ -5108,6 +5092,7 @@
 /area/centcom/supply)
 "Bw" = (
 /obj/structure/chair/office,
+/obj/item/toy/plush/ayin,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "Bx" = (
@@ -5762,6 +5747,12 @@
 	dir = 4
 	},
 /area/tdome/tdomeobserve)
+"FR" = (
+/obj/structure/railing,
+/obj/structure/table/wood,
+/obj/item/storage/lockbox/medal,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/manager)
 "FS" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
@@ -7359,6 +7350,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/newscaster/security_unit{
+	pixel_x = 32
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "MO" = (
@@ -7689,6 +7683,7 @@
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
 	},
+/obj/item/toy/plush/myo,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "OP" = (
@@ -8400,12 +8395,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"Td" = (
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/department_main/manager)
 "Th" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -8619,7 +8608,7 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
 "Ut" = (
-/obj/structure/chair/plastic,
+/obj/structure/chair/wood/wings,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "UA" = (
@@ -8862,6 +8851,8 @@
 	anchored = 1
 	},
 /obj/item/encryptionkey/heads/manager,
+/obj/item/radio/headset/heads/manager,
+/obj/item/card/id/captains_spare,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "Wh" = (
@@ -15971,7 +15962,7 @@ kC
 Ia
 UX
 ka
-WF
+FR
 PB
 PB
 PB
@@ -15979,7 +15970,7 @@ VR
 YC
 YC
 VR
-JX
+Ut
 eS
 oY
 Ht
@@ -16231,7 +16222,7 @@ UX
 Zd
 ZI
 PB
-tV
+PB
 VR
 rQ
 dC
@@ -16750,7 +16741,7 @@ VR
 rQ
 dC
 VR
-ry
+Ut
 dC
 eD
 Ht
@@ -17004,7 +16995,7 @@ PB
 PB
 PB
 VR
-Td
+YC
 YC
 VR
 Ut
@@ -17261,7 +17252,7 @@ PB
 PB
 VR
 VR
-dC
+JX
 dC
 VR
 VR
