@@ -1266,10 +1266,6 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/death(gibbed)
-	SpreadPanic(TRUE)
-	..()
-
 /mob/living/carbon/human/proc/SpreadPanic(death = TRUE)
 	var/list/result_text_list = list(
 		1 = list("Damn it all, someone died", "Comrade down! Comrade down!", "And they're gone forever..."),
@@ -1286,6 +1282,8 @@
 			)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		if(H == src) // Don't affect yourself
+			continue
+		if(H.stat == DEAD)
 			continue
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue

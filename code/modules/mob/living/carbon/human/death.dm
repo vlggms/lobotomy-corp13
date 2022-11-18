@@ -24,6 +24,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 	var/obj/item/organ/heart/H = getorganslot(ORGAN_SLOT_HEART)
 	if(H)
 		H.beat = BEAT_NONE
+	SpreadPanic(TRUE)
 
 	. = ..()
 

@@ -122,13 +122,13 @@
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
 
 /datum/status_effect/panicked_type/murder
-	icon = "beserk"
+	icon = "murder"
 
 /datum/status_effect/panicked_type/suicide
 	icon = "suicide"
 
 /datum/status_effect/panicked_type/wander
-	icon = "panic"
+	icon = "wander"
 
 /datum/status_effect/panicked_type/release
-	icon = "breakdown"
+	icon = "breach"
