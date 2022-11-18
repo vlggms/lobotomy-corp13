@@ -39,6 +39,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	var/playLength = 60 SECONDS
 	var/playStatus = 0
 	var/playRange = 20
+	var/noiseFactor = 2
 	var/datum/looping_sound/singing_grinding/grindNoise
 	var/datum/looping_sound/singing_music/musicNoise
 	var/list/musicalAddicts = list()
@@ -48,9 +49,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(rand(playStatus * 1, playStatus * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			if(H in musicalAddicts)
-				H.apply_damage(rand(playStatus * 1, playStatus * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				to_chat(H, "<span class='warning'>You can hear it again... it needs more...</span>")
 			else
 				to_chat(H, "<span class='warning'>That terrible grinding noise...</span>")
