@@ -3,7 +3,7 @@
 	filedesc = "Plexagon Crew List"
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and printing the current crew manifest"
-	transfer_access = ACCESS_COMMAND
+	//transfer_access = ACCESS_COMMAND //nullified due to LC13
 	requires_ntnet = TRUE
 	size = 4
 	tgui_id = "NtosCrewManifest"

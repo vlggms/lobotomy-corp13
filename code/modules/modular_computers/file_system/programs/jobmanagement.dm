@@ -3,7 +3,7 @@
 	filedesc = "Plexagon HR Core"
 	program_icon_state = "id"
 	extended_desc = "Program for viewing and changing job slot avalibility."
-	transfer_access = ACCESS_COMMAND
+	//transfer_access = ACCESS_COMMAND //nullified due to LC13
 	requires_ntnet = TRUE
 	size = 4
 	tgui_id = "NtosJobManager"

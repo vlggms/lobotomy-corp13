@@ -6,7 +6,7 @@
 	size = 12
 	requires_ntnet = FALSE
 	usage_flags = PROGRAM_CONSOLE | PROGRAM_LAPTOP
-	transfer_access = ACCESS_COMMAND
+	//transfer_access = ACCESS_COMMAND //nullified due to LC13
 	available_on_ntnet = TRUE
 	tgui_id = "NtosAiRestorer"
 	program_icon = "laptop-code"
