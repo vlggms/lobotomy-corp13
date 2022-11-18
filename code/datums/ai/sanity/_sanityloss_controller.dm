@@ -215,6 +215,7 @@
 	var/suicide_enter = 0
 	var/list/locations_visited = list()
 	var/list/total_locations = list() // Primarily here so admins/maintainers can see where they can actually go.
+	var/list/current_path = list()
 
 /datum/ai_controller/insane/wander/PossessPawn(atom/new_pawn)
 	. = ..()
@@ -266,6 +267,7 @@
 /datum/ai_controller/insane/release
 	lines_type = /datum/ai_behavior/say_line/insanity_release
 	var/next_smash = 0
+	var/list/current_path = list()
 
 /datum/ai_controller/insane/release/PossessPawn(atom/new_pawn)
 	. = ..()

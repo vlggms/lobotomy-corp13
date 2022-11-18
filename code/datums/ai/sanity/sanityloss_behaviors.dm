@@ -185,11 +185,14 @@
 	equip_item(controller)
 
 /datum/ai_behavior/insanity_wander_center
-	var/list/current_path = list()
-	var/move_attempts = 0
-	var/max_attempts = 5
+	/*
+	* Unique data can NOT be stored here.
+	* These behaviors are non-individual and are shared between all people with this behavior.
+	* Meaning if two people have "insanity_wander_center" and it stores it's path in it, then they will both attempt to walk that same path.
+	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
+	*/
 
-/datum/ai_behavior/insanity_wander_center/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/insanity_wander_center/perform(delta_time, datum/ai_controller/insane/wander/controller)
 	. = ..()
 
 	var/mob/living/living_pawn = controller.pawn
@@ -198,12 +201,12 @@
 		return
 
 	var/turf/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(!LAZYLEN(current_path) && !living_pawn.Adjacent(target))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 120)
-		current_path.Cut(1, 2)
-		if(!current_path) // Returned FALSE or null.
+	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
+		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 120)
+		if(!controller.current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
+		controller.current_path.Cut(1, 2)
 		MoveInPath(controller)
 
 /datum/ai_behavior/insanity_wander_center/proc/MoveInPath(datum/ai_controller/insane/wander/controller)
@@ -223,25 +226,24 @@
 		else
 			controller.suicide_enter = world.time + 30 SECONDS
 	// Movement
-	if(LAZYLEN(current_path) && !IS_DEAD_OR_INCAP(living_pawn))
-		max_attempts = round(5+(get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)/20), 1) // The faster they are the more leeway they need.
-		var/target_turf = current_path[1]
+	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		var/target_turf = controller.current_path[1]
 		if(target_turf && get_dist(living_pawn, target_turf) < 3)
 			if(!step_towards(living_pawn, target_turf)) //If it fails to move
-				move_attempts++
-				if(move_attempts >= max_attempts)
-					move_attempts = 0
-					current_path = list()
+				controller.pathing_attempts++
+				if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+					controller.pathing_attempts = 0
+					controller.current_path = list()
 					finish_action(controller, TRUE)
 					return FALSE
 			else // Don't reset the attempts and remove the next if they didn't move there.
-				move_attempts = 0
-				current_path.Cut(1, 2)
+				controller.pathing_attempts = 0
+				controller.current_path.Cut(1, 2)
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
-	move_attempts = 0
-	current_path = list() // Reset the path and stop
+	controller.pathing_attempts = 0
+	controller.current_path = list() // Reset the path and stop
 	finish_action(controller, TRUE)
 	return FALSE
 
@@ -251,9 +253,12 @@
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 /datum/ai_behavior/insanity_smash_console
-	var/list/current_path = list()
-	var/move_attempts = 0
-	var/max_attempts = 5
+	/*
+	* Unique data can NOT be stored here.
+	* These behaviors are non-individual and are shared between all people with this behavior.
+	* Meaning if two people have "insanity_wander_center" and it stores it's path in it, then they will both attempt to walk that same path.
+	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
+	*/
 
 /datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/release/controller)
 	. = ..()
@@ -264,12 +269,12 @@
 		return
 
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(!LAZYLEN(current_path) && !living_pawn.Adjacent(target))
-		current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal, 0, 50)
-		current_path.Cut(1, 2)
-		if(!current_path) // Returned FALSE or null.
+	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
+		controller.current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal, 0, 50)
+		if(!controller.current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
+		controller.current_path.Remove(controller.current_path[1]) // Remove the first tile as it tends to be directly under the pawn, meaning they can't move.
 		MoveInPath(living_pawn)
 
 	if(!istype(target) || !istype(target.datum_reference))
@@ -288,7 +293,7 @@
 			return
 		target.datum_reference.qliphoth_change(-1)
 
-/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/controller, succeeded)
+/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/insane/release/controller, succeeded)
 	. = ..()
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	controller.blackboard[BB_INSANE_BLACKLISTITEMS][target] = world.time + 60 SECONDS
@@ -296,28 +301,49 @@
 	if(succeeded)
 		var/turf/T = get_closest_atom(/turf/open, GLOB.xeno_spawn, controller.pawn)
 		if(T)
-			current_path = get_path_to(controller.pawn, T, /turf/proc/Distance_cardinal, 0, 50)
-			current_path.Cut(1, 2)
+			controller.current_path = get_path_to(controller.pawn, T, /turf/proc/Distance_cardinal, 0, 50)
+			if(!LAZYLEN(controller.current_path))
+				finish_action(controller, FALSE)
+				return
+			controller.current_path.Remove(controller.current_path[1]) // Remove the first tile as it tends to be directly under the pawn, meaning they can't move.
 			MoveInPath(controller.pawn)
 
 /datum/ai_behavior/insanity_smash_console/proc/MoveInPath(mob/living/living_pawn)
-	if(LAZYLEN(current_path) && !IS_DEAD_OR_INCAP(living_pawn))
-		max_attempts = round(5+(get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)/20), 1) // The faster they are the more leeway they need.
-		var/target_turf = current_path[1]
+	var/datum/ai_controller/insane/release/controller = living_pawn.ai_controller
+	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		var/target_turf = controller.current_path[1]
 		if(target_turf && get_dist(living_pawn, target_turf) < 3)
+			for(var/mob/living/carbon/human/H in orange(1, living_pawn))
+				if(!H.sanity_lost)
+					continue
+				if(H.stat == DEAD || H.stat == HARD_CRIT)
+					continue
+				if(!HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/release))
+					continue
+				var/datum/ai_controller/insane/release/R = H.ai_controller
+				if(!R)
+					continue
+				if(isnull(R.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]))
+					continue
+				if(R.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] == living_pawn.ai_controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]) // Are we both going after the same console?
+					if(prob(50)) // Chance to give up so they may not always both give up, just like Cleanbots do.
+						controller.pathing_attempts = 0
+						controller.current_path = list()
+						finish_action(living_pawn.ai_controller, FALSE)
+						return FALSE
 			if(!step_towards(living_pawn, target_turf)) //If it fails to move
-				move_attempts++
-				if(move_attempts >= max_attempts)
-					move_attempts = 0
-					current_path = list()
+				controller.pathing_attempts++
+				if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+					controller.pathing_attempts = 0
+					controller.current_path = list()
 					finish_action(living_pawn.ai_controller, FALSE)
 					return FALSE
 			else // Don't reset the attempts and remove the next if they didn't move there.
-				move_attempts = 0
-				current_path.Cut(1, 2)
+				controller.pathing_attempts = 0
+				controller.current_path.Cut(1, 2)
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
 			addtimer(CALLBACK(src, .proc/MoveInPath, living_pawn), move_delay)
 			return TRUE
-	move_attempts = 0
-	current_path = list() // Reset the path and stop
+	controller.pathing_attempts = 0
+	controller.current_path = list() // Reset the path and stop
 	return FALSE
