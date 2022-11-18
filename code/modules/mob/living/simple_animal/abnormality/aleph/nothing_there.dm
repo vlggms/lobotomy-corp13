@@ -54,6 +54,9 @@
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
 
+	var/datum/looping_sound/nothingthere_ambience/soundloop
+	var/datum/looping_sound/nothingthere_heartbeat/heartbeat
+
 	//Speaking Variables, not sure if I want to use the automated speach at the moment.
 	var/heard_words = list()
 	var/listen_chance = 10 // 20 for testing, 10 for base
@@ -63,15 +66,20 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
+	soundloop = new(list(src), FALSE)
+	heartbeat = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Destroy()
 	TransferVar(1, heard_words)
+	QDEL_NULL(soundloop)
+	QDEL_NULL(heartbeat)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
 	var/list/old_heard = RememberVar(1)
 	if(islist(old_heard) && LAZYLEN(old_heard))
 		heard_words = old_heard
+	soundloop.start() // We only play the ambience if we're spawned in containment
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/examine(mob/user)
@@ -153,6 +161,9 @@
 			last_heal_time = world.time
 		if(next_transform && (world.time > next_transform))
 			next_stage()
+		if(current_stage == 2) // Egg
+			var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+			animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
 	. = ..()
@@ -178,6 +189,7 @@
 		return
 	for(var/turf/open/T in view(4, src))
 		new /obj/effect/temp_visual/flesh(T)
+	soundloop.stop()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
 	to_chat(M, "<span class='userdanger'>Oh no...</span>")
@@ -207,6 +219,7 @@
 			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
 			can_act = FALSE
 			next_transform = world.time + rand(10 SECONDS, 25 SECONDS)
+			heartbeat.start()
 		if(2)
 			breach_affected = list() // Too spooky
 			FearEffect()
@@ -222,6 +235,7 @@
 			melee_damage_lower = 65
 			melee_damage_upper = 75
 			move_to_delay = 5
+			heartbeat.stop()
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
@@ -285,6 +299,9 @@
 	if(istype(disguise))
 		return FALSE
 	worker = user
+	var/growl_prob = (work_type in list(ABNORMALITY_WORK_REPRESSION, ABNORMALITY_WORK_INSIGHT)) ? 100 : 25
+	if(prob(growl_prob)) // Spooky
+		playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 25, 0)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_chance(mob/living/carbon/human/user, chance)
@@ -303,7 +320,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
-	if (GODMODE in user.status_flags)
+	if(GODMODE in user.status_flags)
 		return
 	disguise_as(user)
 	return
@@ -312,8 +329,10 @@
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
 	..()
+	soundloop.stop()
 	if(!istype(disguise))
 		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
+		playsound(get_turf(src), 'sound/abnormalities/nothingthere/breach.ogg', 50, 0, 5)
 		return
 	// Teleport us somewhere where nobody will see us at first
 	fear_level = 0 // So it doesn't inflict fear to those around them
