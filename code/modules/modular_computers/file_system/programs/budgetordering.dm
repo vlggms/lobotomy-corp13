@@ -4,7 +4,7 @@
 	program_icon_state = "request"
 	extended_desc = "A request network that utilizes the Nanotrasen Ordering network to purchase supplies using a department budget account."
 	requires_ntnet = TRUE
-	transfer_access = ACCESS_COMMAND
+	//transfer_access = ACCESS_COMMAND //nullified due to LC13
 	usage_flags = PROGRAM_LAPTOP | PROGRAM_TABLET
 	size = 20
 	tgui_id = "NtosCargo"
