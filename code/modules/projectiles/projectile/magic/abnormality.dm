@@ -13,6 +13,16 @@
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
 
+/obj/projectile/despair_rapier/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
+	if(!ishuman(target))
+		return ..()
+	var/mob/living/carbon/human/H = target
+	var/old_stat = H.stat
+	. = ..()
+	if(.) // Hit passed and damage applied
+		if((old_stat < DEAD) && (H.stat >= DEAD))
+			H.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "despair_kill"))
+
 /obj/projectile/apocalypse
 	name = "light"
 	icon_state = "apocalypse"

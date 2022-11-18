@@ -70,12 +70,15 @@
 			for(var/mob/living/L in livinginview(9, get_turf(src)))
 				if(faction_check_mob(L))
 					continue
+				if(L.stat == DEAD)
+					continue
 				L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 				new /obj/effect/temp_visual/alriune_attack(get_turf(L))
 				playsound(L, 'sound/abnormalities/alriune/damage.ogg', 25, TRUE)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)
+						H.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "alriune_kill"))
 						playsound(H, 'sound/abnormalities/alriune/kill.ogg', 75, TRUE)
 						H.death()
 			petals_next = world.time + (petals_next_time * 2)
