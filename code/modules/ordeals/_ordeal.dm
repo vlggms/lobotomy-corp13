@@ -51,3 +51,16 @@
 	if(!ordeal_mobs.len)
 		End()
 	return
+
+/// Returns the type of ordeal without spoilering the color; Basically level2name kind of proc.
+/datum/ordeal/proc/ReturnSecretName()
+	switch(level)
+		if(1, 6)
+			return "Dawn"
+		if(2, 7)
+			return "Noon"
+		if(3, 8)
+			return "Dusk"
+		if(4, 9)
+			return "Midnight"
+	return "Unknown"
