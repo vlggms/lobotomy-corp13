@@ -23,7 +23,7 @@
 
 	can_breach = TRUE
 	threat_level = HE_LEVEL
-	start_qliphoth = 3
+	start_qliphoth = 2
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
 						ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
@@ -38,6 +38,7 @@
 		/datum/ego_datum/armor/grinder
 		)
 	gift_type =  /datum/ego_gifts/grinder
+	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
@@ -162,12 +163,14 @@
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/helper/success_effect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(1)
+/mob/living/simple_animal/hostile/abnormality/helper/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/helper/failure_effect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/helper/breach_effect(mob/living/carbon/human/user)
