@@ -359,7 +359,7 @@
 /obj/structure/displaycase/trophy/dump()
 	if (showpiece)
 		if(added_roundstart)
-			visible_message("<span class='danger'>The [showpiece] crumbles to dust!</span>")
+			visible_message("<span class='danger'>\The [showpiece] crumbles to dust!</span>")
 			new /obj/effect/decal/cleanable/ash(loc)
 			QDEL_NULL(showpiece)
 		else
