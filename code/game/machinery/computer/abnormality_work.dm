@@ -147,6 +147,7 @@
 	ADD_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = FALSE // If they can be walked through they can't be switched! I didn't wanna add chairs because if there WAS it'd nullify the ability to DODGE issues that appear.
 	user.set_anchored(TRUE)
+	user.is_working = TRUE
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
@@ -178,6 +179,7 @@
 	REMOVE_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = TRUE
 	user.set_anchored(FALSE)
+	user.is_working = FALSE
 	finish_work(user, work_type, success_boxes, work_speed, training, was_melting, canceled)
 
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)

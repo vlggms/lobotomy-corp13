@@ -292,27 +292,32 @@
 	sound_to_playing_players_on_level('sound/abnormalities/apocalypse/enchant.ogg', 80, zlevel = z)
 	icon_state = "apocalypse_enchant"
 	var/list/enchant_candidates = list()
+	var/list/enchant_targets = list()
 	for(var/mob/living/carbon/human/maybe_victim in GLOB.player_list)
 		if(faction_check_mob(maybe_victim))
 			continue
-		if((maybe_victim in enchanted_list)|| maybe_victim.stat >= HARD_CRIT || maybe_victim.sanity_lost || z != maybe_victim.z)
+		if((maybe_victim in enchanted_list) || maybe_victim.stat >= HARD_CRIT || maybe_victim.sanity_lost || maybe_victim.is_working || z != maybe_victim.z)
 			continue
-		if(get_dist(maybe_victim, src) < 9)
+		if(get_dist(maybe_victim, src) < 7)
 			continue
 		enchant_candidates += maybe_victim
-		to_chat(maybe_victim, "<span class='boldwarning'>You see a light glowing in the distance!")
+	//Enchant 10% of potential targets, at least 1
+	var/enchantamount = max(1,(enchant_candidates.len * 0.1))
+	for(var/i = 1 to enchantamount)
+		if(LAZYLEN(enchant_candidates))
+			var/mob/living/carbon/human/H = pick(enchant_candidates)
+			enchant_targets.Add(H)
+			enchant_candidates.Remove(H)
+			to_chat(H, "<span class='boldwarning'>You see a light glowing in the distance!")
 	for(var/i = 1 to 6)
 		new /obj/effect/temp_visual/apocaspiral(locate(src.loc.x-3,src.loc.y,src.loc.z))
 		SLEEP_CHECK_DEATH(1 SECONDS)
-	for(var/i = 1 to 2)
-		if(LAZYLEN(enchant_candidates))
-			var/mob/living/carbon/human/H = pick(enchant_candidates)
-			H.ai_controller = /datum/ai_controller/insane/enchanted
-			H.InitializeAIController()
-			enchanted_list.Add(H)
-			H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
-			addtimer(CALLBACK(src,.proc/EndEnchant, H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
-			enchant_candidates.Remove(H)
+	for(var/mob/living/carbon/human/H in enchant_targets)
+		H.ai_controller = /datum/ai_controller/insane/enchanted
+		H.InitializeAIController()
+		enchanted_list.Add(H)
+		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
+		addtimer(CALLBACK(src,.proc/EndEnchant, H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	special_cooldown = world.time + special_cooldown_time
@@ -324,7 +329,7 @@
 		enchanted_list.Remove(victim)
 		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
 		if(istype(victim.ai_controller,/datum/ai_controller/insane/enchanted))
-			to_chat(victim, "<span class='warning'>You snap out of your trance!")
+			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
 			qdel(victim.ai_controller)
 
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/LightFire()
@@ -550,6 +555,8 @@
 
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
+	var/last_message = 0
+	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(
@@ -563,8 +570,6 @@
 	..()
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
 		return
-
-	current_behaviors += GET_AI_BEHAVIOR(lines_type)
 
 	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/bird
 	for(var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/M in GLOB.mob_living_list)
@@ -584,10 +589,8 @@
 		current_behaviors += GET_AI_BEHAVIOR(lines_type)
 
 /datum/ai_behavior/enchanted_move
-	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
-	var/list/current_path = list()
 
-/datum/ai_behavior/enchanted_move/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/enchanted_move/perform(delta_time, datum/ai_controller/insane/enchanted/controller)
 	. = ..()
 
 	var/mob/living/carbon/human/living_pawn = controller.pawn
@@ -600,38 +603,51 @@
 		finish_action(controller, FALSE)
 		return
 
-	if(!LAZYLEN(current_path))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
-		if(!current_path) // Returned FALSE or null.
+	if(!LAZYLEN(controller.current_path))
+		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		if(!controller.current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
-	for(var/i = 1 to 8)
-		if(!LAZYLEN(current_path))
-			break
-		addtimer(CALLBACK(src, .proc/Movement, controller), i*0.25 SECONDS, TIMER_UNIQUE)
+		controller.current_path.Remove(controller.current_path[1])
+		Movement(controller)
 
-	if(isturf(target.loc) && living_pawn.Adjacent(target))
-		finish_action(controller, TRUE)
-		return
-
-/datum/ai_behavior/enchanted_move/proc/Movement(datum/ai_controller/controller)
+/datum/ai_behavior/enchanted_move/proc/Movement(datum/ai_controller/insane/enchanted/controller)
 	var/mob/living/carbon/human/living_pawn = controller.pawn
 	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
-	if(!LAZYLEN(current_path))
-		return
-	var/target_turf = current_path[1]
-	step_towards(living_pawn, target_turf)
-	current_path.Cut(1, 2)
-	if(target)
-		if(isturf(target.loc) && living_pawn.Adjacent(target))
-			finish_action(controller, TRUE)
-			return
+	if(world.time > controller.last_message + 10 SECONDS)
+		controller.last_message = world.time
+		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
 
-/datum/ai_behavior/enchanted_move/finish_action(datum/ai_controller/controller, succeeded)
+	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		var/target_turf = controller.current_path[1]
+		if(target_turf && get_dist(living_pawn, target_turf) < 3)
+			if(!step_towards(living_pawn, target_turf))
+				controller.pathing_attempts++
+			if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+				finish_action(controller, FALSE)
+				return FALSE
+			else
+				if(get_turf(living_pawn) == target_turf)
+					controller.current_path.Remove(target_turf)
+					controller.pathing_attempts = 0
+					if(isturf(target.loc) && (target in view(3,living_pawn)))
+						finish_action(controller, TRUE)
+						return
+				else
+					controller.pathing_attempts++
+			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
+			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
+			return TRUE
+	finish_action(controller, FALSE)
+	return FALSE
+
+/datum/ai_behavior/enchanted_move/finish_action(datum/ai_controller/insane/enchanted/controller, succeeded)
 	. = ..()
 	var/mob/living/carbon/human/living_pawn = controller.pawn
 	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	controller.pathing_attempts = 0
+	controller.current_path = list()
 	if(succeeded)
 		target.EndEnchant(living_pawn)
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
