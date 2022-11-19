@@ -203,10 +203,10 @@
 	var/turf/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
 		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 120)
-		if(!controller.current_path) // Returned FALSE or null.
+		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
-		controller.current_path.Cut(1, 2)
+		controller.current_path.Remove(controller.current_path[1])
 		MoveInPath(controller)
 
 /datum/ai_behavior/insanity_wander_center/proc/MoveInPath(datum/ai_controller/insane/wander/controller)
@@ -237,8 +237,11 @@
 					finish_action(controller, TRUE)
 					return FALSE
 			else // Don't reset the attempts and remove the next if they didn't move there.
-				controller.pathing_attempts = 0
-				controller.current_path.Cut(1, 2)
+				if(get_turf(living_pawn) == target_turf)
+					controller.current_path.Remove(target_turf)
+					controller.pathing_attempts = 0
+				else
+					controller.pathing_attempts++
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
@@ -271,7 +274,7 @@
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
 		controller.current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal, 0, 50)
-		if(!controller.current_path) // Returned FALSE or null.
+		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
 		controller.current_path.Remove(controller.current_path[1]) // Remove the first tile as it tends to be directly under the pawn, meaning they can't move.
@@ -339,8 +342,11 @@
 					finish_action(living_pawn.ai_controller, FALSE)
 					return FALSE
 			else // Don't reset the attempts and remove the next if they didn't move there.
-				controller.pathing_attempts = 0
-				controller.current_path.Cut(1, 2)
+				if(get_turf(living_pawn) == target_turf)
+					controller.current_path.Remove(target_turf)
+					controller.pathing_attempts = 0
+				else
+					controller.pathing_attempts++
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
 			addtimer(CALLBACK(src, .proc/MoveInPath, living_pawn), move_delay)
 			return TRUE
