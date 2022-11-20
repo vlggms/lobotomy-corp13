@@ -53,22 +53,22 @@
 	user.apply_status_effect(STATUS_EFFECT_SG_GUILTY, datum_reference)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60 && !user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
 		Guilt_Effect(user)
-	return
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/AttemptWork(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/attempt_work(mob/living/carbon/human/user, work_type)
 	if (user.has_status_effect(STATUS_EFFECT_SG_GUILTY) || user.has_status_effect(STATUS_EFFECT_SG_ATTONEMENT))
 		user.apply_status_effect(STATUS_EFFECT_SG_ATTONEMENT, datum_reference) //If a guilty person works on her, they panic.
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	Guilt_Effect(user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/ZeroQliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/zero_qliphoth(mob/living/carbon/human/user)
 	var/list/guilty_people = list()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.has_status_effect(STATUS_EFFECT_SG_GUILTY))

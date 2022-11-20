@@ -163,17 +163,17 @@
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/helper/neutral_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/helper/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/helper/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/helper/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/helper/breach_effect(mob/living/carbon/human/user)
 	..()
 	update_icon()
 	GiveTarget(user)

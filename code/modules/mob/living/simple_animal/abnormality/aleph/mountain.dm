@@ -357,26 +357,26 @@
 
 /* Abnormality work */
 
-/mob/living/simple_animal/hostile/abnormality/mountain/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/mountain/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/mountain/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/mountain/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.health < 0)
 		datum_reference.qliphoth_change(-1)
 	if(agent_hurt)
 		datum_reference.qliphoth_change(-1)
 		agent_hurt = FALSE
-	return
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/mountain/AttemptWork(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/mountain/attempt_work(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
 		agent_hurt = TRUE
 	return TRUE
 
 /* Abnormality breach */
 
-/mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/mountain/breach_effect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 	icon_living = "mosb_breach"
