@@ -53,6 +53,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
 	var/goal_reached = FALSE
+	//possession conditions
+	var/enable_possession = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
