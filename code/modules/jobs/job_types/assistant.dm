@@ -30,7 +30,6 @@ Assistant
 	backpack_contents = list(
 		/obj/item/storage/firstaid/revival=1,
 		/obj/item/flashlight/seclite = 1,
-		/obj/item/storage/box/barrier= 1,
 		/obj/item/healthanalyzer = 1,
 		/obj/item/gun/ego_gun/clerk = 1,
 		/obj/item/kitchen/knife/hunting = 1)
