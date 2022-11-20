@@ -158,6 +158,7 @@
 		var/turf/open/Y = pick(all_turfs - orgin)
 		forceMove(Y) //the lazy solution that forces buddy to get pulled by shepherd, ideally this should only happen once.
 		awakened_master.start_pulling(src)
+		awakened_master.awakened_buddy = src
 		med_hud_set_health()
 		med_hud_set_status()
 		update_health_hud()
