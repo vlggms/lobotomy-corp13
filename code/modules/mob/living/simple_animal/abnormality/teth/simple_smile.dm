@@ -55,6 +55,8 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/L = target
 		L.Knockdown(20)
+		var/obj/item/held = L.get_active_held_item()
+		L.dropItemToGround(held) //Drop weapon
 
 
 	var/list/pullable = list()
