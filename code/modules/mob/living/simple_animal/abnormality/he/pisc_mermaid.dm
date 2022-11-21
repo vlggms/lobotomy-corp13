@@ -176,15 +176,12 @@
 	..()
 	if(crown?.loved)
 		var/crown_mod = crown.success_mod
-		crown.loved.physiology.work_success_mod -= crown_mod //We take the mod off temporarily so we don't accidentally add or take off too much.
-		switch(amount)
-			if(1) //it shouldn't move more than 1 counter at a time apart from meltdowns so that should be fine right?
-				crown_mod += 5
-			if(-1)
-				crown_mod -= 5
-		crown_mod = clamp(crown_mod, 0, 15)
+		crown.loved.physiology.work_success_mod /= crown_mod //We take the mod off temporarily so we don't accidentally add or take off too much.
+		if(amount)
+			crown_mod += amount*0.05 // If it increases, amount should be positive, if it decreases it should be negative.
+		crown_mod = clamp(crown_mod, 1, 1.15)
 		crown.success_mod = crown_mod
-		crown.loved.physiology.work_success_mod += crown_mod
+		crown.loved.physiology.work_success_mod *= crown_mod
 
 //Gives a crown thing when you get good work on her. Anyone can wear the crown, even those that didn't work on her and there can only be one gift at a time.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/GiveGift(mob/living/carbon/human/user)
@@ -255,7 +252,7 @@
 	icon_state = "unrequited_gift"
 	icon = 'icons/obj/clothing/ego_gear/head.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
-	var/success_mod = 15
+	var/success_mod = 1.15
 	var/love_cooldown
 	var/love_cooldown_time = 1 MINUTES //It takes around 3 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
@@ -273,7 +270,7 @@
 	if(ishuman(user))
 		START_PROCESSING(SSobj, src)
 		mermaid.datum_reference.qliphoth_change(3)
-		user.physiology.work_success_mod += success_mod
+		user.physiology.work_success_mod *= success_mod
 		loved = user //Because, you know? You know? I'm doing it for you after all~
 		love_cooldown = world.time + love_cooldown_time
 
@@ -286,7 +283,7 @@
 
 /obj/item/clothing/head/unrequited_crown/Destroy()
 	if(loved)
-		loved.physiology.work_success_mod -= success_mod
+		loved.physiology.work_success_mod /= success_mod
 	return ..()
 
 //Mermaid bath water
