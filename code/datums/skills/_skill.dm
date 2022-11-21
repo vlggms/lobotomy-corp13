@@ -67,7 +67,7 @@ GLOBAL_LIST_INIT(skill_types, subtypesof(/datum/skill))
 	if (new_level != SKILL_LEVEL_LEGENDARY)
 		return
 	if (!ispath(skill_cape_path))
-		to_chat(mind.current, "<span class='nicegreen'>My legendary [name] skill is quite impressive, though it seems the Professional [title] Association doesn't have any status symbols to commemorate my abilities with. I should let Centcom know of this travesty, maybe they can do something about it.</span>")
+		to_chat(mind.current, "<span class='nicegreen'>My legendary [name] skill is quite impressive, though it seems the Professional [title] Association doesn't have any status symbols to commemorate my abilities with. I should let HQ know of this travesty, maybe they can do something about it.</span>")
 		return
 	if (LAZYFIND(mind.skills_rewarded, src.type))
 		to_chat(mind.current, "<span class='nicegreen'>It seems the Professional [title] Association won't send me another status symbol.</span>")
