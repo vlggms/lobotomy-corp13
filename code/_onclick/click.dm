@@ -293,6 +293,9 @@
  * This is overridden in ai.dm
  */
 /mob/proc/ShiftClickOn(atom/A)
+	. = SEND_SIGNAL(src, COMSIG_MOB_SHIFTCLICKON, A)
+	if(. & COMSIG_MOB_CANCEL_CLICKON)
+		return
 	A.ShiftClick(src)
 	return
 

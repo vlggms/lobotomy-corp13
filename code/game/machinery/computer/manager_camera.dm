@@ -67,10 +67,9 @@
 		actions += command
 
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT, .proc/on_shift_click)
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(user, COMSIG_MOB_MIDDLECLICKON, .proc/managerbolt)
-	RegisterSignal(user, COMSIG_MOB_ALTCLICKON, .proc/ManagerExaminate)
-	to_chat(user, "<span class='notice'>You can examine things with alt-click.</span>")
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
@@ -83,9 +82,9 @@
 
 /obj/machinery/computer/camera_advanced/manager/remove_eye_control(mob/living/user)
 	UnregisterSignal(user, COMSIG_MOB_CTRL_CLICKED)
-	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT)
+	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT)
 	UnregisterSignal(user, COMSIG_MOB_MIDDLECLICKON)
-	UnregisterSignal(user, COMSIG_MOB_ALTCLICKON)
+	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
 	..()
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
@@ -159,7 +158,46 @@
 /obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
 	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later
 
-/obj/machinery/computer/camera_advanced/manager/proc/on_shift_click(mob/living/user, turf/open/T)
+	if(ishuman(clicked_atom))
+		var/mob/living/carbon/human/H = clicked_atom
+		to_chat(user, "<span class='notice'>Agent level [get_user_level(H)].</span>")
+		to_chat(user, "<span class='notice'>Fortitude level [get_attribute_level(H, FORTITUDE_ATTRIBUTE)].</span>")
+		to_chat(user, "<span class='notice'>Prudence level [get_attribute_level(H, PRUDENCE_ATTRIBUTE)].</span>")
+		to_chat(user, "<span class='notice'>Temperance level [get_attribute_level(H, TEMPERANCE_ATTRIBUTE)].</span>")
+		to_chat(user, "<span class='notice'>Justice level [get_attribute_level(H, JUSTICE_ATTRIBUTE)].</span>")
+		return
+
+	if(istype(clicked_atom, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/monster = clicked_atom
+		if(!LAZYLEN(monster.damage_coeff))
+			return
+
+		to_chat(user, "<span class='notice'>[clicked_atom]'s resistances are : </span>")
+		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+		for(var/i in damage_types)
+			var/resistance = monster.damage_coeff[i]
+			if(isnull(resistance))
+				continue
+
+//I could use the standard roman numeral system, but I prefer making the resistances more like records.
+			switch(resistance)
+				if(-INFINITY to -0.1)
+					resistance = "Absorbed"
+				if(0)
+					resistance = "Immune"
+				if(0 to 0.5)
+					resistance = "Endured"
+				if(0.5 to 0.9)
+					resistance = "Resistant"
+				if(0.9 to 1)
+					resistance = "Normal"
+				if(1 to 1.5)
+					resistance = "Weak"
+				if(1.5 to INFINITY)
+					resistance = "Fatal"
+			to_chat(user, "<span class='notice'>[i] : [resistance].</span>")
+
+/obj/machinery/computer/camera_advanced/manager/proc/on_alt_click(mob/living/user, turf/open/T)
 	var/mob/living/C = user
 	if(command_cooldown <= world.time)
 		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
@@ -369,7 +407,7 @@
 
 /datum/action/innate/managercommand
 	name = "Deploy Command"
-	desc = "Hotkey = Shift + Click"
+	desc = "Hotkey = Alt + Click"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "deploy_box"
 
@@ -438,3 +476,6 @@
 	icon_state = "Fight_this_wagie2"
 	duration = 150
 
+/turf/open/AltClick(mob/user)
+	SEND_SIGNAL(user, COMSIG_XENO_TURF_CLICK_ALT, src)
+	..()

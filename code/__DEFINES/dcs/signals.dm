@@ -385,6 +385,8 @@
 #define COMSIG_MOB_MIDDLECLICKON "mob_middleclickon"
 ///from base of mob/AltClickOn(): (atom/A)
 #define COMSIG_MOB_ALTCLICKON "mob_altclickon"
+///from base of mob/ShiftClickOn(): (atom/A)
+#define COMSIG_MOB_SHIFTCLICKON "mob_shiftclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
@@ -980,7 +982,7 @@
 #define COMSIG_ACTION_TRIGGER "action_trigger"
 	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)
 
-//Xenobio hotkeys
+//Xenobio and manager console hotkeys
 
 ///from slime CtrlClickOn(): (/mob)
 #define COMSIG_XENO_SLIME_CLICK_CTRL "xeno_slime_click_ctrl"
@@ -988,10 +990,10 @@
 #define COMSIG_XENO_SLIME_CLICK_ALT "xeno_slime_click_alt"
 ///from slime ShiftClickOn(): (/mob)
 #define COMSIG_XENO_SLIME_CLICK_SHIFT "xeno_slime_click_shift"
-///from turf ShiftClickOn(): (/mob)
+///from turf ShiftClick(): (/mob)
 #define COMSIG_XENO_TURF_CLICK_SHIFT "xeno_turf_click_shift"
-///from turf AltClickOn(): (/mob)
-#define COMSIG_XENO_TURF_CLICK_CTRL "xeno_turf_click_alt"
+///from turf AltClick(): (/mob)
+#define COMSIG_XENO_TURF_CLICK_ALT "xeno_turf_click_alt"
 ///from monkey CtrlClickOn(): (/mob)
 #define COMSIG_XENO_MONKEY_CLICK_CTRL "xeno_monkey_click_ctrl"
 
