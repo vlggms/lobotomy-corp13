@@ -118,7 +118,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
 	if(..())
-		if(obj_damage > 0) // Already transformed
+		if((obj_damage > 0) || client) // Already transformed or mob controlled
 			return
 		var/list/around = view(src, vision_range)
 		var/list/priority_mobs = list()
@@ -138,16 +138,22 @@
 			pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
-	. = ..()
 	if(isliving(target))
 		var/mob/living/L = target
+		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
+			to_chat(src, "<span class='warning'>You can't punish innocent people!</span>")
+			return
+		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
+			to_chat(src, "<span class='warning'>You can't keep punishing them!</span>")
+			return
+		..()
 		if(obj_damage <= 0) // Not transformed
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
 					H.adjustSanityLoss(10) // Heal sanity
 					return
-			if(prob(5) || L.health < L.maxHealth*0.4)
+			if(prob(5) || L.health < L.maxHealth*0.5)
 				if(L in enemies)
 					enemies -= L
 				if(L in pecking_targets)
@@ -158,6 +164,8 @@
 			visible_message("<span class='danger'>\The [src] devours [L]!</span>")
 			L.gib()
 			TransformBack()
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Found(atom/A)
 	if(isliving(A))
@@ -226,7 +234,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
-	if(!(status_flags & GODMODE) && !target && icon_state != "pbird_red")
+	if(!(status_flags & GODMODE) && !isliving(target) && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
 		addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS)
