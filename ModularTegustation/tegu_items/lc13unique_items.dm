@@ -32,6 +32,114 @@
 	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 	to_chat(user, "<span class='nicegreen'>You bonk the abnormality with the [src].</span>")
 	qdel(src)
+/obj/item/book/lc13_tool_catalog //mutation of aquarium fish catalog
+	name = "tool catalog"
+	desc = "Indexes oddities and artifacts currently in L corp storage."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "docs_blue"
+	dat = "Lot of weird stuff" //book wrappers could use cleaning so this is not necessary
+
+/obj/item/book/lc13_tool_catalog/on_read(mob/user)
+	ui_interact(user)
+
+/obj/item/book/lc13_tool_catalog/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LC13ItemCatalog", name) //apparently connected to LC13ItemCatalog.Js which is invisable to dreammaker but not to Visual Studio Code.
+		ui.open()
+
+/obj/item/book/lc13_tool_catalog/ui_static_data(mob/user)
+	. = ..()
+	var/static/lc13_tool_info
+	if(!lc13_tool_info)
+		lc13_tool_info = list()
+		for(var/_item_detail in subtypesof(/datum/lc13_item_log/item))
+			var/datum/lc13_item_log/item/item_detail = _item_detail
+			var/list/item_data = list()
+			if(!initial(item_detail.show_in_catalog))
+				continue
+			item_data["class_code"] = initial(item_detail.class_code)
+			item_data["name"] = initial(item_detail.name)
+			item_data["desc"] = initial(item_detail.desc)
+			item_data["risk_level"] = initial(item_detail.risk_level)
+			item_data["icon"] = sanitize_css_class_name("[initial(item_detail.icon)][initial(item_detail.icon_state)]")
+			item_data["color"] = initial(item_detail.color)
+			lc13_tool_info += list(item_data)
+
+	.["lc13_tool_info"] = lc13_tool_info
+
+/obj/item/book/lc13_tool_catalog/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/lc13_tool)
+	)
+
+/datum/lc13_item_log
+	var/name = "base item element"
+	var/desc = "<insert funny description here>"
+	var/unique = FALSE
+	var/icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi'
+	var/icon_state
+	var/color
+
+/datum/lc13_item_log/item
+	name = "Unknown"
+	icon_state = "touch"
+	var/risk_level = "Pending classification"
+	var/show_in_catalog = TRUE
+	var/class_code = "Pending classification"
+
+/datum/lc13_item_log/item/donttouch
+	class_code = "O-05-47"
+	name = "Dont Touch Me"
+	desc = "Why even touch it? Handling this tool and transporting it to your facility has resulted in a unacceptable amount of casualties. Do not touch the button, Do not touch the box connected to the button, do not remove the button from the records safe room. We will not be moving it again."
+	icon_state = "touch"
+
+/datum/lc13_item_log/item/realization
+	name = "Realization Engine"
+	desc = "A glowing yellow sapling that was recently recovered from the ruins of a facility that had to activate site burial protocal. When a individual interacts with the sapling while wearing a specific ego armor, said ego armor will be empowered with the attributes of the individual. Testing results and report to HQ pending."
+	icon_state = "realization"
+
+/datum/lc13_item_log/item/theresia
+	class_code = "T-09-09"
+	name = "Theresia"
+	risk_level = "Teth"
+	desc = "A music box with a ballerina on top. When activated, T-09-09 will begin to produce a tune that calms employees for 6 seconds. After 6 seconds a sound that harms the mental health of employees will be produced from the music box."
+	icon_state = "theresia"
+
+/datum/lc13_item_log/item/skin_prophecy
+	class_code = "T-09-90"
+	name = "Skin Prophecy"
+	risk_level = "Teth"
+	desc = "T-09-90 is a religious text that is entirely made from human skin. Those who had read from T-09-90 reported to be enlightend to unimaginable truths, leading to a increase in their prudence. No matter how much of the text is read by an individual, they will begin to be called by the prophets. During experiments the individual had lower than usual white resistance. Upon panicing said individual was abducted from the facility by flesh."
+	icon_state = "skin_prophecy"
+
+/datum/lc13_item_log/item/mirror
+	class_code = "O-09-81"
+	name = "Mirror of Adjustment"
+	risk_level = "Zayin"
+	desc = "O-09-81 is a full body mirror with a swirling black pool within it. When a individual approaches the mirror their appearance will be reflected. If the individual focuses on their reflection it will begin to warp and the personality of the individual will change. An individual who excelled at fortitude will suddenly have that proficency randomly distributed amongst their other attributes. Repeative use of the mirror results in the decay of the individuals personality along with their attributes. All recorded personality changes have been mostly mundane in nature with loyalty to lobotomy corp being unchanged."
+	icon_state = "mirror"
+
+	//
+/obj/item/testobj
+	name = "Facility Diagnostics"
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "gadget2_high"
+	var/list/currentabnormalities = list()
+	var/total_unique_boxes = 0
+	var/abnotokens
+
+/obj/item/testobj/attack_self(mob/living/carbon/user)
+	abnotokens = "Abnormality Tokens:"
+	total_unique_boxes = 0
+	currentabnormalities = SSlobotomy_corp.all_abnormality_datums
+	for(var/datum/abnormality/A in currentabnormalities)
+		currentabnormalities[A] = A.stored_boxes
+		total_unique_boxes += A.stored_boxes
+		abnotokens += "<br>[A.name] [A.stored_boxes]"
+	user.visible_message("<span class='notice'>Raw Energy Measure:[SSlobotomy_corp.current_box]/[SSlobotomy_corp.box_goal] <br>Total Abnormality Tokens:[total_unique_boxes]<br>[abnotokens]</span>")
+
 
 	//Defective Manager Bullet PLACEHOLDER OR PROTOTYPE SHIELDS
 /obj/item/managerbullet

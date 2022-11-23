@@ -537,3 +537,18 @@
 /proc/sanitize_css_class_name(name)
 	var/static/regex/regex = new(@"[^a-zA-Z0-9]","g")
 	return replacetext(name, regex, "")
+
+
+/datum/asset/spritesheet/lc13_tool	//Mutation of fish spritesheet. Put this in LC13ItemCatalog.Js with 32x32 at the end for it to work. className={classes(['lc13_tool32x32', currentitem.icon,
+	name = "lc13_tool"
+
+/datum/asset/spritesheet/lc13_tool/register()
+	for (var/path in subtypesof(/datum/lc13_item_log/item))
+		var/datum/lc13_item_log/item/item_detail = path
+		var/item_icon = initial(item_detail.icon)
+		var/item_icon_state = initial(item_detail.icon_state)
+		var/id = sanitize_css_class_name("[item_icon][item_icon_state]")
+		if(sprites[id]) //no dupes
+			continue
+		Insert(id, item_icon, item_icon_state)
+	..()
