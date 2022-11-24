@@ -795,3 +795,17 @@
 	name = "petals"
 	icon_state = "alriune_attack"
 	duration = 6
+
+/obj/effect/temp_visual/alriune_curtain
+	name = "flower curtain"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "alriune_curtain"
+	duration = 2 SECONDS
+
+/obj/effect/temp_visual/alriune_curtain/Initialize()
+	..()
+	animate(src, alpha = 255, time = 5)
+	addtimer(CALLBACK(src, .proc/FadeOut), 5)
+
+/obj/effect/temp_visual/alriune_curtain/proc/FadeOut()
+	animate(src, alpha = 0, time = 15)
