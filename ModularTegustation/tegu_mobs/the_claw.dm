@@ -23,6 +23,7 @@
 	stat_attack = HARD_CRIT
 	rapid_melee = 2
 	ranged = TRUE
+	ranged_cooldown_time = 5
 	speed = 2
 	move_to_delay = 2
 	pixel_x = -8

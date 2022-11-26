@@ -68,6 +68,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// Build ordeals global list
 	for(var/type in subtypesof(/datum/ordeal))
 		var/datum/ordeal/O = new type()
+		if(O.level < 1)
+			qdel(O)
+			continue
 		all_ordeals[O.level] += O
 	RollOrdeal()
 	return TRUE

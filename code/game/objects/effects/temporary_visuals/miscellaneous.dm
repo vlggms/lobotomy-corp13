@@ -661,6 +661,11 @@
 	icon_state = "slice"
 	duration = 4
 
+/obj/effect/temp_visual/dir_setting/slash
+	name = "slash"
+	icon_state = "slash"
+	duration = 4
+
 /obj/effect/temp_visual/hatred
 	name = "hatred"
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
