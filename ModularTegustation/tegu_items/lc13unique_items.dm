@@ -467,7 +467,6 @@
 		cell.update_icon()
 		user.put_in_hands(cell)
 		cell = null
-		update_icon()
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 
@@ -719,3 +718,38 @@
 			nearbyentities[MON] = (20 ** 1) - (distance ** 1)
 			nearestentity = pickweight(nearbyentities)
 
+/obj/item/powered_gadget/teleporter
+	name = "W-Corp instant transmission device"
+	desc = "A battery powered tool that can be used to jump between departments."
+	icon_state = "teleporter"
+	batterycost = 500 //20 uses before requires recharge
+	var/inuse
+	default_icon = "teleporter"
+
+/obj/item/powered_gadget/teleporter/attack_self(mob/user)
+	..()
+
+	if(cell && cell.charge >= batterycost)
+		cell.charge = cell.charge - batterycost
+		icon_state = default_icon
+	else if (cell && cell.charge < batterycost)
+		icon_state = "[default_icon]-empty"
+		to_chat(user, "<span class='notice'>The batteries are dead.</span>")
+		return
+	else if (!cell)
+		icon_state = "[default_icon]-nobat"
+		return
+
+	if(inuse)
+		return
+	inuse = TRUE
+	to_chat(user, "<span class='notice'>You press the button and begin to teleport.</span>")
+	if(do_after(user, 100))	//Ten seconds of not doing anything, then teleport.
+		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
+
+		//teleporting half
+		var/turf/T = pick(GLOB.department_centers)
+		user.forceMove(T)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+	inuse = FALSE
