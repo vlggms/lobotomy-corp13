@@ -49,6 +49,9 @@
 	if(!istype(datum_reference))
 		to_chat(user, "<span class='boldannounce'>The console has no information stored!</span>")
 		return
+	if(user.mind.assigned_role == "Clerk")
+		to_chat(user, "<span class='boldannounce'>This console isn't for you!</span>")
+		return
 	var/dat
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
 	if(datum_reference.overload_chance != 0)
