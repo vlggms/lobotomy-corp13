@@ -85,3 +85,6 @@
 
 	/// List of EGO Gifts
 	var/list/ego_gift_list = list()
+
+	/// Boolean for working status
+	var/is_working = FALSE
