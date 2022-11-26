@@ -110,6 +110,8 @@
  * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
  */
 /datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE)
+	return
+	/*
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || !L.is_organic_limb() || HAS_TRAIT(L.owner, TRAIT_NEVER_WOUNDED))
 		qdel(src)
 		return
@@ -160,7 +162,7 @@
 
 	if(!demoted)
 		wound_injury(old_wound)
-		second_wind()
+		second_wind()*/
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE)
