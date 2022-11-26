@@ -109,7 +109,7 @@
 
 /datum/status_effect/panicked_type
 	id = "panic_state_base"
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/icon = "berserk"
 
@@ -118,6 +118,10 @@
 	owner.add_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
 
 /datum/status_effect/panicked_type/on_remove()
+	. = ..()
+	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
+
+/datum/status_effect/panicked_type/be_replaced()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
 
