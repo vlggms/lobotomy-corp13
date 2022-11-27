@@ -1,4 +1,3 @@
-#define STATUS_EFFECT_MARKEDFORDEATH /datum/status_effect/markedfordeath
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms
 	name = "Grave of Cherry Blossoms"
 	desc = "A beautiful cherry tree."
@@ -46,70 +45,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/proc/mark_for_death()
-	var/list/potentialmarked = list()
-	var/list/marked = list()
+	var/mob/living/carbon/human/L = pick(GLOB.player_list)
+	L.gib
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.adjustBruteLoss(-500) // It heals everyone to full
+			H.adjustSanityLoss(500) // It heals everyone to full
 
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		potentialmarked += L
-		to_chat(L, "<span class='danger'>It's cherry blossom season.</span>")
-
-	SLEEP_CHECK_DEATH(10 SECONDS)
-	for(var/i=numbermarked, i>=1, i--)
-		var/mob/living/Y = pick(potentialmarked)
-		if(faction_check_mob(Y, FALSE) || Y.z != z || Y.stat == DEAD)
-			continue
-		if(Y in marked)
-			continue
-		marked+=Y
-		new /obj/effect/temp_visual/markedfordeath(get_turf(Y))
-		to_chat(Y, "<span class='userdanger'>You feel like you're going to die!</span>")
-		Y.apply_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
-
-
-
-//Mark for Death
-//A very quick, frantic 10 seconds of instadeath.
-/datum/status_effect/markedfordeath
-	id = "markedfordeath"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 100		//Lasts 10 seconds
-	alert_type = /atom/movable/screen/alert/status_effect/marked
-
-/atom/movable/screen/alert/status_effect/marked
-	name = "Marked For Death"
-	desc = "You are marked for death. You will die when struck."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "marked_for_death"
-
-/datum/status_effect/markedfordeath/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 4
-		L.physiology.white_mod *= 4
-		L.physiology.black_mod *= 4
-		L.physiology.pale_mod *= 4
-
-/datum/status_effect/markedfordeath/tick()
-	var/mob/living/carbon/human/Y = owner
-	if(Y.sanity_lost)
-		Y.death()
-	if(owner.stat == DEAD)
-		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(H.stat != DEAD)
-				H.adjustBruteLoss(-500) // It heals everyone to full
-				H.adjustSanityLoss(500) // It heals everyone to full
-				H.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
-
-/datum/status_effect/markedfordeath/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 4
-		L.physiology.white_mod /= 4
-		L.physiology.black_mod /= 4
-		L.physiology.pale_mod /= 4
-
-#undef STATUS_EFFECT_MARKEDFORDEATH
