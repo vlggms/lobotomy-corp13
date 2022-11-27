@@ -146,17 +146,7 @@
 /datum/status_effect/wilting/tick()
 	. = ..()
 	if(ishuman(owner))
-		owner.apply_damage(5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-
-/datum/status_effect/wilting/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.5
-		L.physiology.white_mod *= 0.5
-		L.physiology.black_mod *= 0.5
-		L.physiology.pale_mod *= 0.5
-
+		owner.apply_damage(5, PALE_DAMAGE, null, owner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
 //SCHISMATIC
 //Decrease defenses of heretics.
