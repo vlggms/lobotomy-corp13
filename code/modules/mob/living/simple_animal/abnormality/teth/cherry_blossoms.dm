@@ -46,7 +46,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/proc/mark_for_death()
 	var/mob/living/carbon/human/L = pick(GLOB.player_list)
-	L.gib
+	L.gib()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat != DEAD)
 			H.adjustBruteLoss(-500) // It heals everyone to full
