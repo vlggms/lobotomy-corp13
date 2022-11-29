@@ -27,4 +27,10 @@
 							WAW_LEVEL = COLOR_PURPLE,\
 							ALEPH_LEVEL = COLOR_RED,\
 							)
-
+#define THREAT_TO_CSS_COLOR list(\
+							ZAYIN_LEVEL = "green",\
+							TETH_LEVEL = "blue",\
+							HE_LEVEL = "orange",\
+							WAW_LEVEL = "purple",\
+							ALEPH_LEVEL = "red",\
+)
