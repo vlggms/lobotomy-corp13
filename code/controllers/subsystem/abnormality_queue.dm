@@ -1,3 +1,5 @@
+#define ABNORMALITY_DELAY 180 SECONDS
+
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
@@ -30,7 +32,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 			possible_abnormalities[initial(abno.threat_level)] += abno
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
-	addtimer(CALLBACK(src, .proc/HandleStartingAbnormalities), 180 SECONDS)
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(30, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
