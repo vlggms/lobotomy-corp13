@@ -213,7 +213,7 @@
 		GoHysteric()
 	//if CONTAINED and not crazy
 	else if((status_flags & GODMODE) && (datum_reference?.qliphoth_meter == 2) && (death_counter > 3)) // Omagah a lot of dead people!
-		breach_effect() // We must help them!
+		BreachEffect() // We must help them!
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/ArcanaBeats(target)
@@ -454,7 +454,7 @@
 				continue
 			L.apply_damage(explode_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OnQliphothEvent()
@@ -499,20 +499,20 @@
 	addtimer(CALLBACK(src, .atom/movable/proc/say, "I wasn’t able to protect anyone like she did…"))
 	addtimer(CALLBACK(datum_reference, .datum/abnormality/proc/qliphoth_change, -1), 10 SECONDS)
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference?.qliphoth_meter == 1)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/BreachEffect(mob/living/carbon/human/user)
 	death_counter = 0
 	if(datum_reference?.qliphoth_meter == 2) // Helpful/Passive breach
 		fear_level = TETH_LEVEL

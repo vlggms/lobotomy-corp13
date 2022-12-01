@@ -235,13 +235,12 @@
 	icon_state = icon_living
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/woodsman/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/woodsman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -254,7 +253,7 @@
 		if(2)
 			icon_state = "woodsman"
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/woodsman/AttemptWork(mob/living/carbon/human/user, work_type)
 	. = ..()
 	if (GODMODE in user.status_flags)
 		return
@@ -283,7 +282,7 @@
 		to_chat(user, "<span class='userdanger'>Stands up!</span>")
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)
 	.=..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living

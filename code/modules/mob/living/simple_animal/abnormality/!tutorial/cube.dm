@@ -25,13 +25,12 @@
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 6
 
-/mob/living/simple_animal/hostile/abnormality/cube/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
 
-/mob/living/simple_animal/hostile/abnormality/cube/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/cube/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(-1)
 	return

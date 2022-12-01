@@ -29,17 +29,17 @@
 	var/numbermarked = 5
 
 
-/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"
 
-/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms/ZeroQliphoth(mob/living/carbon/human/user)
 	mark_for_death()
 	icon_state = "graveofcherryblossoms_0"
 	datum_reference.qliphoth_change(3)

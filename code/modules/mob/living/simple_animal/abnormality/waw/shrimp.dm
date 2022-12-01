@@ -55,36 +55,35 @@
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
 				)
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/WorkChance(mob/living/carbon/human/user, chance)
 	if(happy)
 		chance+=30
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	var/gift = pick(dispenseitem)
 	new gift(dispense_turf)
 	say("Here you are, my dear friend. High-quality firepower courtesy of shrimpcorp.")
 	return
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/ZeroQliphoth(mob/living/carbon/human/user)
 	pissed()
 	datum_reference.qliphoth_change(1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == liked || !liked)
 		happy = TRUE
 	else
 		happy = FALSE
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/shrimp_exec/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT)
 	switch(liked)
 		if(ABNORMALITY_WORK_INSTINCT)

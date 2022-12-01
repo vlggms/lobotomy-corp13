@@ -53,14 +53,14 @@
 	var/obj/item/clothing/head/unrequited_crown/crown
 	var/mob/living/carbon/human/love_target
 
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!crown)
 		GiveGift(user)
 		return
@@ -69,21 +69,21 @@
 			datum_reference.qliphoth_change(1)
 		return
 
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_laying"
 		icon_state = "pmermaid_laying"
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_standing"
 		icon_state = "pmermaid_standing"
-	..()
+	return
 
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/breach_effect()
+/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/BreachEffect()
 	..()
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "pmermaid_breach"
@@ -264,7 +264,7 @@
 		if(loved)
 			STOP_PROCESSING(SSobj, src)
 			mermaid.datum_reference.qliphoth_change(-3)
-			mermaid.breach_effect()
+			mermaid.BreachEffect()
 			qdel(src)
 		return
 	if(ishuman(user))

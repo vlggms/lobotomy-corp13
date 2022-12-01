@@ -37,7 +37,7 @@
 	QDEL_NULL(soundloop)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/silence/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	safe = TRUE
 	to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
 	return
@@ -53,7 +53,7 @@
 	return
 
 //Meltdown
-/mob/living/simple_animal/hostile/abnormality/silence/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/silence/ZeroQliphoth(mob/living/carbon/human/user)
 	// You have mere seconds to live
 	SLEEP_CHECK_DEATH(5 SECONDS)
 	sound_to_playing_players_on_level('sound/abnormalities/silence/price.ogg', 50, zlevel = z)

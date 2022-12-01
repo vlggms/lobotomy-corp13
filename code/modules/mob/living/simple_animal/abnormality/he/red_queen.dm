@@ -31,8 +31,7 @@
 	//Pick it once so people can find out
 	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
 
-/mob/living/simple_animal/hostile/abnormality/red_queen/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/red_queen/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type != liked)
 		if(prob(20))
 			//The Red Queen is fickle, if you're unlucky, fuck you.

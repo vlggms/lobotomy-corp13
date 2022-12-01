@@ -84,22 +84,22 @@
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 
-/mob/living/simple_animal/hostile/abnormality/fragment/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/fragment/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fragment/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/fragment/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fragment/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/fragment/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/fragment/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/fragment/BreachEffect(mob/living/carbon/human/user)
 	..()
 	update_icon()
 	GiveTarget(user)

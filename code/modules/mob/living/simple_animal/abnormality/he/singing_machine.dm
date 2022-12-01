@@ -57,7 +57,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 				to_chat(H, "<span class='warning'>That terrible grinding noise...</span>")
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		if(datum_reference.qliphoth_meter > 0) // Sets bonus damage on instinct work.
 			bonusRed = grindRed // Should be weaker, for less lethal grinding.
@@ -71,11 +71,11 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		statChecked = 1 // I see you've failed one of the stat checks, but have also chosen not to feed yourself to the machine.
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/WorkChance(mob/living/carbon/human/user, chance)
 	chance -= statChecked * 15 // Perish.
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/worktick(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
 		user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(bonusRed < 6 && playStatus == 0)	// Should only happen when the machine isn't dealing damage.
@@ -87,7 +87,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 				H.adjustSanityLoss(rand(1,2))
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	bonusRed = 0 // Reset bonus red damage and the stat check.
 	statChecked = 0
 	if(user.sanity_lost || user.health < 0) // Did they die? Time to force a bad result.
@@ -98,9 +98,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		user.apply_status_effect(STATUS_EFFECT_MUSIC) // Time to addict them.
 		SEND_SOUND(user, 'sound/abnormalities/singingmachine/addiction.ogg')
 		addtimer(CALLBACK(src, .proc/removeAddict, user), 5 MINUTES)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference.qliphoth_meter == 0) // You did it! You survived a work at 0 qliphoth!
 		manual_emote("rests silent once more...") // The machine is now dormant.
 		playsound(src, 'sound/abnormalities/singingmachine/creak.ogg', 50, 0, 1)
@@ -110,21 +110,21 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		stopPlaying()
 		update_icon()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-(prob(40)))// If it's not already mad, it has a chance to get a little more mad.
 	else
 		eatBody(user) // If it is mad, you die.
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-1) // If it's not already completely mad, it gets madder.
 	else
 		eatBody(user) // If it is, you die.
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/zero_qliphoth(mob/living/carbon/human/user) // WARNING: Don't call this on its own. Several zero-qliphoth behaviors rely on its qliphoth actually being 0.
+/mob/living/simple_animal/hostile/abnormality/singing_machine/ZeroQliphoth(mob/living/carbon/human/user) // WARNING: Don't call this on its own. Several zero-qliphoth behaviors rely on its qliphoth actually being 0.
 	icon_state = "singingmachine_open_[cleanliness]" // Machine opens and starts making horrible empty grinding noises.
 	icon_living = icon_state
 	update_icon()

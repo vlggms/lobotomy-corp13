@@ -52,7 +52,7 @@
 		) //ego_list is the things you can buy with its unique type of PE
 	gift_type =  /datum/ego_gifts/regret //special thing you get from interacting with the abnormality
 
-/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/failure_effect(mob/living/carbon/human/user, work_type, pe) //when work type is bad the qliphoth counter lowers with no chance.
+/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/FailureEffect(mob/living/carbon/human/user, work_type, pe) //when work type is bad the qliphoth counter lowers with no chance.
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -62,7 +62,7 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/breach_effect(mob/living/carbon/human/user) //causes breach?
+/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/BreachEffect(mob/living/carbon/human/user) //causes breach?
 	..()
 	update_icon()
 	AddElement(/datum/element/waddling) //This made forsaken murderer waddle. Im supprised it was this easy to do this.

@@ -25,7 +25,7 @@
 
 	var/hands = 0
 
-/mob/living/simple_animal/hostile/abnormality/bloodbath/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/bloodbath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 // any work performed with level 1 Fort and Temperance makes you panic and die
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40 || (hands == 3 && prob(50)))
 		icon = 'ModularTegustation/Teguicons/48x64.dmi'

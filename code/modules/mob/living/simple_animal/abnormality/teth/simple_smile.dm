@@ -69,16 +69,16 @@
 
 	src.pulled(pick(pullable))
 
-/mob/living/simple_animal/hostile/abnormality/smile/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/smile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(lucky_counter > 3)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/smile/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/smile/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/smile/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/smile/WorkChance(mob/living/carbon/human/user, chance)
 	var/chance_modifier = 1
 	lucky_counter = 0	//Counts how many stats are above 40
 

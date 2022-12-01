@@ -93,7 +93,7 @@
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/bluestar/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
 		playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 25, FALSE, 28)
@@ -103,8 +103,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bluestar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)
 		datum_reference.qliphoth_change(-1)
 	if(user.sanity_lost)
@@ -117,7 +116,7 @@
 		QDEL_IN(user, 5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user)
 	..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()

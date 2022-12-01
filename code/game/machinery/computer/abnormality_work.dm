@@ -90,7 +90,7 @@
 			if(!(datum_reference.current.status_flags & GODMODE))
 				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
 				return
-			var/work_attempt = datum_reference.current.attempt_work(usr, href_list["do_work"])
+			var/work_attempt = datum_reference.current.AttemptWork(usr, href_list["do_work"])
 			if(!work_attempt)
 				if(work_attempt == FALSE)
 					to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
@@ -160,16 +160,16 @@
 			user.remove_status_effect(/datum/status_effect/interventionshield/pale)
 			if(do_work(work_chance))
 				success_boxes++
-				datum_reference.current.worktick_success(user)
+				datum_reference.current.WorktickSuccess(user)
 			else
-				datum_reference.current.worktick_failure(user)
+				datum_reference.current.WorktickFailure(user)
 			total_boxes++
-			datum_reference.current.worktick(user)
+			datum_reference.current.Worktick(user)
 		else
 			if(!CheckStatus(user)) // No punishment if the thing is already breached or any other issue is prevelant.
 				break
 			for(var/i = 0 to round((work_time - total_boxes)*(1-((work_chance*0.5)/100)), 1)) // Take double of what you'd fail on average as NE box damage.
-				datum_reference.current.worktick_failure(user)
+				datum_reference.current.WorktickFailure(user)
 			playsound(src, 'sound/machines/synth_no.ogg', 75, FALSE, -4)
 			to_chat(user, "<span class='warning'>The Abnormality grows frustrated as you cut your work short!")
 			success_boxes = 0
@@ -217,7 +217,7 @@
 			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 		else
-			datum_reference.current.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes)
+			datum_reference.current.WorkComplete(user, work_type, pe, work_speed*datum_reference.max_boxes)
 	meltdown_time = 0
 	datum_reference.working = FALSE
 	return TRUE
@@ -232,7 +232,7 @@
 /obj/machinery/computer/abnormality/proc/start_meltdown()
 	meltdown_time = rand(60, 90)
 	meltdown = TRUE
-	datum_reference.current.meltdown_start()
+	datum_reference.current.MeltdownStart()
 	update_icon()
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 75, FALSE, 3)
 	return TRUE

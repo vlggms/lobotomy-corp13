@@ -228,22 +228,20 @@
 	..()
 
 //he die
-/mob/living/simple_animal/hostile/abnormality/funeral/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/funeral/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(70))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/funeral/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/funeral/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80)
 		datum_reference.qliphoth_change(-1)
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/funeral/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
+
 //But most importantly
-/mob/living/simple_animal/hostile/abnormality/funeral/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/funeral/BreachEffect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 //He breach

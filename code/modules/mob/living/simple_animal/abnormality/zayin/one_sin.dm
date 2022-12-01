@@ -26,12 +26,12 @@
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 
-/mob/living/simple_animal/hostile/abnormality/onesin/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
 	. = ..()
 	if (istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
 		return chance + 10
 
-/mob/living/simple_animal/hostile/abnormality/onesin/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/onesin/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
 		if(isapostle(user))
 			for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
@@ -47,7 +47,7 @@
 		return FALSE
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/onesin/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/onesin/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Confess")
 		for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
 			if(WN.status_flags & GODMODE)
@@ -68,9 +68,9 @@
 		return
 	if (prob(5)) // Will be 5%
 		user.Apply_Gift(new /datum/ego_gifts/penitence)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/onesin/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	user.adjustSanityLoss(30) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)

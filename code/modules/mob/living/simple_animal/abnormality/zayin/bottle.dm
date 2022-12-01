@@ -29,7 +29,7 @@
 	max_boxes = 10
 	var/cake = 5	//How many cake charges are there (4)
 
-/mob/living/simple_animal/hostile/abnormality/bottle/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(cake)
 		if(work_type == "Drink")
 			return FALSE
@@ -51,7 +51,7 @@
 			return null
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/bottle/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+/mob/living/simple_animal/hostile/abnormality/bottle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type == "Dining" && !canceled)
 		cake -= 1		//Eat some cake
 		if(cake > 0)
@@ -72,7 +72,7 @@
 			user.AdjustSleeping(10 SECONDS)
 			animate(user, alpha = 0, time = 2 SECONDS)
 			QDEL_IN(user, 3.5 SECONDS)
-	return ..()
+	return
 
 /datum/status_effect/tears
 	id = "tears"

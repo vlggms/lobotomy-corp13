@@ -84,16 +84,16 @@
 				QDEL_NULL(O)
 			finishing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/scarecrow/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/scarecrow/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scarecrow/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living

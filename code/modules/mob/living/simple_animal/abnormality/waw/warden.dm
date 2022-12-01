@@ -74,16 +74,16 @@
 			finishing = FALSE
 			icon_state = "warden"
 
-/mob/living/simple_animal/hostile/abnormality/warden/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/warden/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/warden/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/warden/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/warden/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 

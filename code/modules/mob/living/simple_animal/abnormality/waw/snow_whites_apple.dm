@@ -50,15 +50,15 @@ GLOBAL_LIST_EMPTY(vine_list)
 	)
 	gift_type =  /datum/ego_gifts/stem
 
-/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/BreachEffect(mob/living/carbon/human/user)
 	..()
 	update_icon()
 	GiveTarget(user)

@@ -32,24 +32,24 @@
 	gift_chance = 0
 
 
-/mob/living/simple_animal/hostile/abnormality/whitelake/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		var/newchance = chance - 20 //You suck, die. I hate you
 		return newchance
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/whitelake/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/whitelake/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
 		champion = user
 
-/mob/living/simple_animal/hostile/abnormality/whitelake/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/whitelake/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)	//Lower it again.
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/whitelake/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/whitelake/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
 	if(!champion)	//no champion? Fuck you.
 		for(var/mob/living/L in GLOB.player_list)

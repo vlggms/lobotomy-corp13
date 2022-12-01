@@ -110,7 +110,7 @@
 	can_act = TRUE
 
 /* Work */
-/mob/living/simple_animal/hostile/abnormality/censored/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/censored/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Sacrifice")
 		to_chat(user, "<span class='warning'>You hesitate for a moment...</span>")
 		datum_reference.working = TRUE
@@ -138,17 +138,16 @@
 		return null
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/censored/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
+/mob/living/simple_animal/hostile/abnormality/censored/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/censored/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/censored/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/censored/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_living = "censored_breach"
 	icon_state = icon_living

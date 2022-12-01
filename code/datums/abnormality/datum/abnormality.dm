@@ -132,7 +132,7 @@
 
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
-	current.work_complete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
+	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
 	var/user_job_title = "Unidentified Employee"
 	var/obj/item/card/id/W = user.get_idcard()
 	if(istype(W))
@@ -178,7 +178,7 @@
 	var/pre_qlip = qliphoth_meter
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
-		current?.zero_qliphoth(user)
+		current?.ZeroQliphoth(user)
 		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		return
@@ -199,7 +199,7 @@
 		var/work_level = clamp(round(get_attribute_level(user, WORK_TO_ATTRIBUTE[workType])/20), 1, 5)
 		acquired_chance = acquired_chance[work_level]
 	if(current)
-		acquired_chance = current.work_chance(user, acquired_chance)
+		acquired_chance = current.WorkChance(user, acquired_chance, workType)
 	switch (workType)
 		if (ABNORMALITY_WORK_INSTINCT)
 			acquired_chance += user.physiology.instinct_success_mod

@@ -25,13 +25,12 @@
 	gift_type =  /datum/ego_gifts/standard
 	can_patrol = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/training_rabbit/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
 	addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
 
-/mob/living/simple_animal/hostile/abnormality/training_rabbit/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/training_rabbit/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(-1)
 	return

@@ -65,12 +65,12 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach
 	if(priority_friend) //if an oz abno escape they take absolute priority
 		ProtectFriend(priority_friend)

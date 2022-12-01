@@ -30,13 +30,12 @@
 							)
 	var/bald_users = list()
 
-/mob/living/simple_animal/hostile/abnormality/bald/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/bald/WorkChance(mob/living/carbon/human/user, chance)
 	if(user.hairstyle in balding_list)
 		return 95
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/bald/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bald/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!do_bald(user)) // Already bald
 		return
 	bald_users |= user.ckey

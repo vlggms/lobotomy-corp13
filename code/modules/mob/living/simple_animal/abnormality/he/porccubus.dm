@@ -49,7 +49,7 @@
 	var/damage_taken = FALSE
 
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/porccubus/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 	var/datum/status_effect/porccubus_addiction/PA = user.has_status_effect(STATUS_EFFECT_ADDICTION)
 
@@ -62,8 +62,7 @@
 		user.apply_status_effect(STATUS_EFFECT_ADDICTION) //psst, you want some happiness?
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
+/mob/living/simple_animal/hostile/abnormality/porccubus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost) //if the person is driven insane mid work
 		DrugOverdose(user, agent_ckey)
 	agent_ckey = null
@@ -91,18 +90,18 @@
 	if(nirvana)
 		PA.sanity_gain = 60 //this basically instantly snaps them out of insanity and they get to play god for like 2 minute
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/porccubus/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/porccubus/AttemptWork(mob/living/carbon/human/user, work_type)
 	. = ..()
 	if(.)
 		agent_ckey = user //just in case the agent goes insane midwork
 
 //Porccubus can't actually move so it's more of a "bring your friend to beat it to death it isn't going anywhere" type of thing.
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
-/mob/living/simple_animal/hostile/abnormality/porccubus/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
 	..()
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"

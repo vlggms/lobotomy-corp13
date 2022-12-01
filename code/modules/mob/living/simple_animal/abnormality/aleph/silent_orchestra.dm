@@ -127,15 +127,15 @@
 	performers += O
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/silentorchestra/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/silentorchestra/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/silentorchestra/BreachEffect(mob/living/carbon/human/user)
 	..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)

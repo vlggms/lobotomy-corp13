@@ -163,17 +163,16 @@
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/ppodae/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type != ABNORMALITY_WORK_INSTINCT && prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/ppodae/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
