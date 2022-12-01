@@ -38,7 +38,7 @@
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
 	- When the Qliphoth Counter reached 0, Queen Bee emitted spores in a large area.	<br>
 	- Upon observing the Abnormality, it has been confirmed that the spores attached to employees for a certain amount of time, and inflicted RED damage over that period.	<br>
-	- The spores were cured if the infected had constant medical attention	<br>
+	- The spores were cured if the infected had constant medical attention.	<br>
 	- When the HP of an employee infested with spores had depleted, a giant drone burst out of their body. The drone indiscriminately attacked nearby employees. From the corpses of attacked employees, more drones emerged.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
@@ -264,7 +264,7 @@
 	Work Damage Type : Pale	<br>
 	Work Damage : Moderate	<br>
 	- Every 13 minutes, the bell tolled.	<br>
-	- If The Price of Silence did not get a good work between the bells tolling, every employee took massive pale damage.	<br>
+	- If The Price of Silence did not have a Good work result between the bells tolling, every employee took massive pale damage.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Very Low<br>

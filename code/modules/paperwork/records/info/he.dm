@@ -144,7 +144,7 @@
 	- If Reddened Buddy is in the facility, his work chance increase proportionally to the amount of pain Reddened Buddy is experiencing <br>
 	- If Reddened Buddy's pain was too high however, the Qliphoth Counter lowered on work completion <br>
 	- Blue Smocked Shepard mercilessly attacked everyone in the area. <br>
-	WARNING - No matter what, Blue Smocked Shepherd and Reddened Buddy must not be allowed to meet <br><br>
+	- WARNING: No matter what, Blue Smocked Shepherd and Reddened Buddy must not be allowed to meet. <br><br>
 	<h4>Instinct:</h4> High<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
@@ -167,16 +167,16 @@
 	Qliphoth Counter : 3    <br>
 	Work Damage Type : Red	<br>
 	Work Damage : N/A	<br>
-	- Whenever an agent failed a work, Reddened Buddy's pain increased    <br>
-	- Whenever Reddened buddy's pain increased, the work damage increased accordingly    <br>
-	- When Reddened Buddy was in too much pain, the Qliphoth Counter would decrease on all work but instinct    <br>
-	- When repression work was completed, the pain of Reddened Buddy greatly increased. <br>
-	- When instinct work was completed, the pain of Reddened Buddy lessened. <br>
-	- When any work's result other than instinct was bad, the Qliphoth Counter decreased. <br>
-	- If Blue Smocked Shepherd tells a lie and Reddened Buddy is not worked on in the following 90 seconds, the Qliphoth Counter decreased by 2 <br>
-	- When Blue Smocked Shepherd mentionned Reddened Buddy, the effect above also occured <br>
-	- When Reddened Buddy escaped, he periodically howled, dealing white damage in an area around him, Reddened Buddy is hurt greatly by his own howling <br>
-	WARNING - No matter what, Reddened Buddy and Blue Smocked Shepherd must not be allowed to meet<br><br>
+	- Whenever an employee failed a work, Reddened Buddy's pain increased.    <br>
+	- Whenever Reddened Buddy's pain increased, the work damage increased accordingly.    <br>
+	- When Reddened Buddy was in too much pain, the Qliphoth Counter would decrease on all work but instinct.    <br>
+	- When Repression work was completed, the pain of Reddened Buddy greatly increased. <br>
+	- When Instinct work was completed, the pain of Reddened Buddy lessened. <br>
+	- When any work's result other than Instinct was bad, the Qliphoth Counter decreased. <br>
+	- If Blue Smocked Shepherd told a lie and Reddened Buddy was not worked on in the following 90 seconds, the Qliphoth Counter decreased by 2. <br>
+	- When Blue Smocked Shepherd mentioned Reddened Buddy, the effect above also occured. <br>
+	- When Reddened Buddy escaped, he periodically howled, dealing white damage in an area around him, Reddened Buddy is hurt greatly by his own howling. <br>
+	- WARNING: No matter what, Reddened Buddy and Blue Smocked Shepherd must not be allowed to meet.<br><br>
 	<h4>Instinct:</h4> Low<br>
 	<h4>Insight:</h4> Low<br>
 	<h4>Attachment:</h4> Common<br>
@@ -246,7 +246,7 @@
 	Work Damage : High	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered.    <br>
 	- When an employee with Temperance Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
-	- When an employee enters attempts work while the Counter is at 1, they will immediately die. Afterwards, the Qliphoth counter decreased and the Woodsman began searching for hearts.    <br>
+	- When an employee attempted work while the Counter is at 1, they would immediately die. Afterwards, the Qliphoth counter decreased and the Woodsman began searching for hearts.    <br>
 	- Whenever a body, living or dead, was placed into the Woodsman's chest while it's counter was at 1, the Qliphoth counter increased and it sat down, seemingly satisified.    <br>
 	- WARNING: When a body was placed into the Woodsman's chest when it was not getting close to breaching, it breached immediately.	<br>
 	<br>
@@ -272,8 +272,11 @@
 	Qliphoth Counter : X    <br>
 	Work Damage Type : Black	<br>
 	Work Damage : Moderate	<br>
-	- When the work result was Normal, Laetitia gave a heartfelt gift to the working Agent at a high chance.    <br>
-	- After a few minutes, the Agent who had recieved the gift had <strong>REDACTED</strong> burst out from within them, dealing heavy red damage.    <br>
+	- When the work result was Normal, Laetitia gave a heartfelt gift to the working employee at a high chance.    <br>
+	- Laetitia had a normal probability of taking the gift back when the work result was Good. However, the gift had a high probability of becoming active when the work result was Bad.    <br>
+	- Either of the two scenarios had a low probability of happening when the work result was Normal.   <br>
+	- After a few minutes, the employee who had recieved the gift had <strong>REDACTED</strong> burst out from within them, dealing heavy red damage.    <br>
+	- NOTICE: Employees with higher Prudence were better at identifying signs of Laetitia's pranks.    <br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Common<br>
@@ -317,13 +320,13 @@
 	Qliphoth Counter : 3    <br>
 	Work Damage Type : Red	<br>
 	Work Damage : Moderate	<br>
-	- When another abnormality breached containment, the Qliphoth counter lowered    <br>
-	- When another "Oz" abnormality breached containment, Scaredy cat immediately breached containment   <br>
+	- When another Abnormality breached containment, the Qliphoth Counter lowered.    <br>
+	- When another "Oz" Abnormality breached containment, Scaredy Cat immediately breached containment.   <br>
 	- When an employee with Fortitude Level 3 or higher completed their work, the Qliphoth Counter lowered.    <br>
-	- When another anormality was supressed , Scaredy cat's counter increased  <br>
-	- When the Qliphoth Counter hit 0, Scaredy Cat teleported out of his cell to protect another breached abnormality.    <br>
-	- Scaredy cat could not be fully supressed as long as the abnormality it protected was alive   <br>
-	- Scaredy cat became harmless without an abnormality to protect, however if another abnormality breached while he was in his harmless state, he would protect that abnormality instead   <br>
+	- When another Abnormality was supressed, the Qliphoth Counter increased.  <br>
+	- When the Qliphoth Counter hit 0, Scaredy Cat teleported out of his cell to protect another breached Abnormality.    <br>
+	- Scaredy Cat could not be fully supressed as long as the Abnormality it protected was alive.   <br>
+	- Scaredy Cat became harmless without an Abnormality to protect. However if another Abnormality breached while he was in his harmless state, he would protect that Abnormality instead.   <br>
 	<br>
 	<h4>Instinct:</h4> Very High<br>
 	<h4>Insight:</h4> high<br>

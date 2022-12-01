@@ -1,4 +1,4 @@
-#define STATUS_EFFECT_TRICKED /datum/status_effect/tricked
+#define STATUS_EFFECT_PRANKED /datum/status_effect/pranked
 /mob/living/simple_animal/hostile/abnormality/laetitia
 	name = "Laetitia"
 	desc = "A wee witch."
@@ -22,15 +22,37 @@
 		/datum/ego_datum/armor/prank
 		)
 	gift_type = /datum/ego_gifts/prank
+	gift_message = "I hope you're pleased with this!"
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(70))	//Not 100% of the time to be funny
-		user.apply_status_effect(STATUS_EFFECT_TRICKED)
+	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
+	if(P)
+		if(prob(15)) //15% chance to remove prank
+			user.remove_status_effect(STATUS_EFFECT_PRANKED)
+		else if(prob(15)) //15% chance to trigger explosion
+			P.triggerprank()
+	else
+		if(prob(70)) //not 100% of the time to be funny
+			var/datum/status_effect/pranked/SE = user.apply_status_effect(STATUS_EFFECT_PRANKED)
+			SE.laetitia_datum_reference = datum_reference
+	return
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/success_effect(mob/living/carbon/human/user, work_type, pe)
+	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
+	if(P && prob(30)) //30% to remove prank
+		user.remove_status_effect(STATUS_EFFECT_PRANKED)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/laetitia/failure_effect(mob/living/carbon/human/user, work_type, pe)
+	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
+	if(P && prob(70)) //70% to trigger explosion
+		P.triggerprank()
+	return
 
 //Her friend
 /mob/living/simple_animal/hostile/gift
 	name = "Little Witch's Friend"
-	desc = "It's a horrifying amalgamation of flesh and eyes"
+	desc = "It's a horrifying amalgamation of flesh and eyes."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "witchfriend"
 	icon_living = "witchfriend"
@@ -59,25 +81,73 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-//Tricked
-//Explodes after 5 minutes
-/datum/status_effect/tricked
-	id = "tricked"
+//Given Prank Gift
+//Explodes after 3 to 4 minutes
+/datum/status_effect/pranked
+	id = "pranked"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//blows up after 5 minutes
 	alert_type = null
+	var/laetitia_datum_reference
+	var/obj/prank_overlay
 
-/datum/status_effect/tricked/on_remove()
+/datum/status_effect/pranked/on_creation(mob/living/new_owner, ...)
+	duration = rand(1800,2400)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You feel something deep in your body explode!</span>")
-		var/location = get_turf(L)
-		new /mob/living/simple_animal/hostile/gift(location)
-		var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
-		var/atom/throw_target = get_edge_target_turf(L, rand_dir)
-		if(!L.anchored)
-			L.throw_at(throw_target, rand(1, 3), 7, L)
-		L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//Usually a kill, you can block it if you're good
 
-#undef STATUS_EFFECT_TRICKED
+/datum/status_effect/pranked/on_apply()
+	if(get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 80)
+		to_chat(owner, "<span class='warning'>You feel something slipped into your pocket.</span>")
+	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/WorkCheck)
+	return ..()
+
+/datum/status_effect/pranked/tick()
+	if((duration - world.time) <= 100) //at most a 10 second warning
+		if(!prank_overlay && (get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 60))
+			if(ishuman(owner))
+				var/mob/living/carbon/human/L = owner
+				//i swear this is all necessary
+				prank_overlay = new
+				prank_overlay.icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+				prank_overlay.icon_state = "prank_gift"
+				prank_overlay.layer = -BODY_FRONT_LAYER
+				prank_overlay.plane = FLOAT_PLANE
+				prank_overlay.mouse_opacity = 0
+				prank_overlay.vis_flags = VIS_INHERIT_ID
+				prank_overlay.alpha = 0
+				to_chat(L, "<span class='danger'>Your heart-shaped present begins to crack...</span>")
+				animate(prank_overlay, alpha = 255, time = (duration - world.time))
+				L.vis_contents += prank_overlay
+
+/datum/status_effect/pranked/on_remove()
+	UnregisterSignal(owner, COMSIG_WORK_STARTED)
+	if(prank_overlay in owner.vis_contents)
+		owner.vis_contents -= prank_overlay
+	if(duration < world.time) //if prank removed due to it expiring
+		if(ishuman(owner))
+			var/mob/living/carbon/human/L = owner
+			to_chat(L, "<span class='userdanger'>You feel something deep in your body explode!</span>")
+			L.vis_contents -= prank_overlay
+			var/location = get_turf(L)
+			new /mob/living/simple_animal/hostile/gift(location)
+			var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
+			var/atom/throw_target = get_edge_target_turf(L, rand_dir)
+			if(!L.anchored)
+				L.throw_at(throw_target, rand(1, 3), 7, L)
+			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//Usually a kill, you can block it if you're good
+
+/datum/status_effect/pranked/proc/triggerprank()
+	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining
+	var/newduration = duration - world.time
+	newduration = clamp(newduration, 0, 100)
+	duration = world.time + newduration
+
+//Half prank duration once if you work with another abnorm
+/datum/status_effect/pranked/proc/WorkCheck(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
+	SIGNAL_HANDLER
+	if(datum_sent != laetitia_datum_reference)
+		var/newduration = duration
+		newduration = (newduration - world.time)/2
+		duration = newduration + world.time
+		UnregisterSignal(owner, COMSIG_WORK_STARTED)
+
+#undef STATUS_EFFECT_PRANKED
