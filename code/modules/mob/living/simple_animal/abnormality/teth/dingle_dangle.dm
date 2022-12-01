@@ -22,13 +22,9 @@
 		/datum/ego_datum/armor/lutemia
 		)
 	gift_type = /datum/ego_gifts/lutemis
-
-	var/injured = FALSE
-	var/dead = FALSE
-
+	gift_message = "Let's all become fruits. Let's hang together."
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
 		//I mean it does this in wonderlabs
 		user.dust()
@@ -36,6 +32,7 @@
 		//But here's the twist: You get a better ego.
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/lutemis(location)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))

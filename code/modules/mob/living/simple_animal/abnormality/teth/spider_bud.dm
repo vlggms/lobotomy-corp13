@@ -22,6 +22,7 @@
 		/datum/ego_datum/armor/eyes
 		)
 	gift_type =  /datum/ego_gifts/redeyes
+	gift_message = "They wait for the spiderlings to feed on them as they succumb to the poison."
 
 /mob/living/simple_animal/hostile/abnormality/spider/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider
@@ -35,4 +36,4 @@
 		casing.density = FALSE
 		SLEEP_CHECK_DEATH(50)
 		icon_state = "spider_closed"
-		return
+		return ..()

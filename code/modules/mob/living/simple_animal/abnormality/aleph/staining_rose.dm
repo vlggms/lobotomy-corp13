@@ -38,14 +38,13 @@
 	var/meltdown_cooldown
 	var/safe = FALSE //work on it and you're safe for 15 minutes
 	var/reset_time = 3 MINUTES //Qliphoth resets after this time
-
+	gift_message = "You were a fool to give up your dreams for a demon."
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Initialize()
 	..()
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
 	safe = TRUE
 	if (chosen == null)
 		chosen = user
@@ -69,6 +68,7 @@
 			user.visible_message("<span class='warning'>The rose adds your strength to it, and it is born anew.</span>")
 			meltdown_cooldown = world.time + meltdown_cooldown_time	//There we go!
 		pissed()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Life()
 	. = ..()

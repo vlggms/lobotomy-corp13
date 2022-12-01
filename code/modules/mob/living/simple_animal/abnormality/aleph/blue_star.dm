@@ -39,6 +39,7 @@
 		/datum/ego_datum/armor/star_sound
 		)
 	gift_type =  /datum/ego_gifts/star
+	gift_message = "Let us meet again as stars."
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 12 SECONDS
@@ -104,7 +105,6 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)
 		datum_reference.qliphoth_change(-1)
 	if(user.sanity_lost)
@@ -115,7 +115,7 @@
 		user.death()
 		animate(user, transform = user.transform*0.01, time = 5)
 		QDEL_IN(user, 5)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/breach_effect(mob/living/carbon/human/user)
 	..()

@@ -154,10 +154,9 @@
 					been_hit += L
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)

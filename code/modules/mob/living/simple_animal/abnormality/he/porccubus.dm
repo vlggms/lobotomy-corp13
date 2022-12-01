@@ -63,10 +63,10 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
 	if(user.sanity_lost) //if the person is driven insane mid work
 		DrugOverdose(user, agent_ckey)
 	agent_ckey = null
+	return ..()
 
 ///apply 3 drugs at once and speedruns the withdrawal process, if nirvana is false then they will barely get any buffs. bypass ckey restrictions
 /mob/living/simple_animal/hostile/abnormality/porccubus/proc/DrugOverdose(mob/living/carbon/human/addict, ckey, nirvana = FALSE)

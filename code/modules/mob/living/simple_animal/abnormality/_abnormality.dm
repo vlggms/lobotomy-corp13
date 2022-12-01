@@ -91,6 +91,8 @@
 				gift_chance = 0
 	if(isnull(gift_message))
 		gift_message = "You are granted a gift by [src]!"
+	else
+		gift_message += "\nYou are granted a gift by [src]!"
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -261,18 +263,17 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if (prob(gift_chance) && !isnull(gift_type) && pe > 0)
+	if(pe >= datum_reference.success_boxes)
+		success_effect(user, work_type, pe)
+	else if(pe >= datum_reference.neutral_boxes)
+		neutral_effect(user, work_type, pe)
+	else
+		failure_effect(user, work_type, pe)
+	if(prob(gift_chance) && !isnull(gift_type) && pe > 0 && !canceled)
 		var/datum/ego_gifts/EG = new gift_type
 		EG.datum_reference = src.datum_reference
 		user.Apply_Gift(EG)
 		to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
-	if(pe >= datum_reference.success_boxes)
-		success_effect(user, work_type, pe)
-		return
-	if(pe >= datum_reference.neutral_boxes)
-		neutral_effect(user, work_type, pe)
-		return
-	failure_effect(user, work_type, pe)
 	return
 
 // Additional effects on good work result, if any

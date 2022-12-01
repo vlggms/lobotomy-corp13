@@ -40,6 +40,7 @@
 		/datum/ego_datum/armor/logging
 		)
 	gift_type =  /datum/ego_gifts/loggging
+	gift_message = "A kind person would carry a warmer heart."
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7
@@ -236,10 +237,9 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	. = ..()
 	if (get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)

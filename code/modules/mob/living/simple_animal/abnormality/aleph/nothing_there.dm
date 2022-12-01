@@ -38,6 +38,7 @@
 		/datum/ego_datum/armor/mimicry
 		)
 	gift_type =  /datum/ego_gifts/mimicry
+	gift_message = "And the many shells cried out one word, \"Manager\"."
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -312,12 +313,11 @@
 	return adjusted_chance
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	. = ..()
 	worker = null
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		if(!istype(disguise)) // Not work failure
 			datum_reference.qliphoth_change(-1)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
 	if(GODMODE in user.status_flags)

@@ -48,4 +48,4 @@
 			hands = 0
 			max_boxes = 14
 			icon_state = "bloodbath"
-		return
+		return ..()
