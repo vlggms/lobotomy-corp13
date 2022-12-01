@@ -487,3 +487,247 @@
 	beam_cooldown = world.time + beam_cooldown_time
 	busy = FALSE
 	icon_state = icon_living
+
+// Pale Fixer
+/mob/living/simple_animal/hostile/ordeal/pale_fixer
+	name = "Pale Fixer"
+	desc = "A humanoid creature in a business atire and a fedora. They have a sleek pistol in one hand \
+		and a suitcase in the other."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "fixer_p"
+	icon_living = "fixer_p"
+	faction = list("hostile", "Head")
+	maxHealth = 4000
+	health = 4000
+	melee_damage_type = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	melee_damage_lower = 40
+	melee_damage_upper = 45
+	rapid_melee = 2
+	minimum_distance = 2
+	ranged = TRUE
+	ranged_cooldown_time = 16
+	rapid = 3
+	rapid_fire_delay = 4
+	projectilesound = 'sound/effects/ordeals/white/pale_pistol.ogg'
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.0)
+	move_resist = MOVE_FORCE_OVERPOWERING
+	projectiletype = /obj/projectile/pale
+	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
+	del_on_death = TRUE
+
+	var/can_act = TRUE
+	var/multislash_cooldown
+	var/multislash_cooldown_time = 5 SECONDS
+	/// Amount of pale damage per slash
+	var/multislash_damage = 20
+	/// Amount of times we slash
+	var/multislash_amount = 10
+	/// How far the attack line goes
+	var/multislash_range = 3
+	/// How wide is the radius of attack throughout the line
+	var/multislash_radius = 1
+	/// Delay between slashs
+	var/multislash_speed = 1
+	var/tentacle_cooldown
+	var/tentacle_cooldown_time = 15 SECONDS
+	/// Pale damage dealt on direct hit by the beam
+	var/tentacle_damage = 200
+	var/tentacle_range = 15
+	var/tentacle_radius = 2
+	var/teleport_cooldown
+	var/teleport_cooldown_time = 10 SECONDS
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/Initialize()
+	. = ..()
+	teleport_cooldown = world.time + teleport_cooldown_time
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(can_act && !client && teleport_cooldown < world.time && ShouldTeleport())
+		TeleportAway()
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/AttackingTarget()
+	if(!can_act)
+		return
+	if(prob(60) && multislash_cooldown < world.time)
+		MultiSlash(target)
+		return
+	if(prob(40) && tentacle_cooldown < world.time)
+		TentacleAttack(target)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/OpenFire()
+	if(!can_act)
+		return
+	if(prob(60) && (get_dist(src, target) <= multislash_range) && (multislash_cooldown < world.time))
+		MultiSlash(target)
+		return
+	if(prob(40) && (get_dist(src, target) <= tentacle_range) && (tentacle_cooldown < world.time))
+		TentacleAttack(target)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/Shoot(atom/targeted_atom)
+	if(!client && (locate(/turf/closed) in getline(src, targeted_atom)))
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/MultiSlash(target)
+	if(multislash_cooldown > world.time)
+		return
+	multislash_cooldown = world.time + multislash_cooldown_time
+	can_act = FALSE
+	var/turf/slash_start = get_turf(src)
+	var/turf/slash_end = get_ranged_target_turf_direct(slash_start, target, multislash_range)
+	var/dir_to_target = get_dir(slash_start, slash_end)
+	face_atom(target)
+	var/list/hitline = list()
+	for(var/turf/T in getline(slash_start, slash_end))
+		if(T.density)
+			break
+		for(var/turf/open/TT in range(multislash_radius, T))
+			hitline |= TT
+	for(var/turf/open/T in hitline)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(3)
+	for(var/i = 1 to multislash_amount) // This is probably not the best way to do it
+		for(var/turf/open/T in hitline)
+			var/obj/effect/temp_visual/dir_setting/slash/S = new(T, dir_to_target)
+			S.pixel_x = rand(-8, 8)
+			S.pixel_y = rand(-8, 8)
+			animate(S, alpha = 0, time = 1.5)
+			for(var/mob/living/L in T)
+				if(faction_check_mob(L))
+					continue
+				to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
+				L.apply_damage(multislash_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
+		playsound(src, attack_sound, 50, TRUE, 3)
+		SLEEP_CHECK_DEATH(multislash_speed)
+	playsound(src, 'sound/effects/ordeals/white/pale_knife_end.ogg', 75, FALSE, 7)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/TentacleAttack(target)
+	if(tentacle_cooldown >= world.time)
+		return
+	tentacle_cooldown = world.time + tentacle_cooldown_time
+	can_act = FALSE
+	visible_message("<span class='danger'>[src] drops their suitcase on the ground!</span>")
+	face_atom(target)
+	var/turf/beam_start = get_step(src, dir)
+	var/turf/beam_end
+	var/list/hitline = list()
+	for(var/turf/T in getline(beam_start, get_ranged_target_turf_direct(beam_start, target, tentacle_range)))
+		if(T.density)
+			break
+		beam_end = T
+		for(var/turf/open/TT in range(tentacle_radius, T))
+			hitline |= TT
+	if(!beam_end)
+		tentacle_cooldown = world.time + 2 SECONDS
+		can_act = TRUE
+		return
+	var/obj/effect/pale_case/case = new(beam_start)
+	playsound(beam_start, 'sound/items/handling/cardboardbox_drop.ogg', 50, FALSE)
+	SLEEP_CHECK_DEATH(3)
+	for(var/turf/T in hitline)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(6)
+	case.icon_state = "pale_case_open"
+	visible_message("<span class='danger'>[case] suddenly opens!</span>")
+	playsound(beam_start, 'sound/effects/ordeals/white/pale_suitcase.ogg', 75, FALSE, tentacle_range)
+	var/datum/beam/B = beam_start.Beam(beam_end, "bsa_beam", time = 10)
+	var/matrix/M = matrix()
+	M.Scale(tentacle_radius * 3, 1)
+	B.visuals.transform = M
+	var/list/been_hit = list()
+	for(var/turf/T in hitline)
+		for(var/mob/living/L in T)
+			if(L in been_hit)
+				continue
+			if(faction_check_mob(L))
+				continue
+			to_chat(L, "<span class='userdanger'>A pale beam passes right through you!</span>")
+			L.apply_damage(tentacle_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			been_hit |= L
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+	SLEEP_CHECK_DEATH(5)
+	case.FadeOut()
+	SLEEP_CHECK_DEATH(5)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/ShouldTeleport()
+	if(!target)
+		return TRUE
+	if(isliving(target) && IsTooStrong(target)) // If our target is too strong - we will try to find someone else
+		return TRUE
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/IsTooStrong(mob/living/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/target_armor = H.getarmor(null, PALE_DAMAGE)
+		if((target_armor >= 60) && (H.health >= H.maxHealth*0.5))
+			return prob(target_armor)
+		return FALSE
+	if(isanimal(target))
+		var/mob/living/simple_animal/SA = target
+		if((SA.damage_coeff[PALE_DAMAGE] <= 0.3) && (SA.health >= SA.maxHealth*0.2))
+			return TRUE
+		return FALSE
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/TeleportAway()
+	if(teleport_cooldown >= world.time)
+		return
+	teleport_cooldown = world.time + teleport_cooldown_time
+	var/list/potential_teleports = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.loc.z != src.z)
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(IsTooStrong(H))
+			continue
+		if(get_dist(src, H) < 8)
+			continue
+		potential_teleports += pick(get_adjacent_open_turfs(H))
+	if(!LAZYLEN(potential_teleports))
+		return // Nowhere to run!
+	var/turf/target_turf = pick(potential_teleports)
+	can_act = FALSE
+	target = null
+	animate(src, alpha = 0, time = 5)
+	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
+	playsound(src, 'sound/effects/ordeals/white/pale_teleport_in.ogg', 50, FALSE, 4)
+	SLEEP_CHECK_DEATH(5)
+	animate(src, alpha = 255, time = 5)
+	new /obj/effect/temp_visual/guardian/phase/out(target_turf)
+	playsound(target_turf, 'sound/effects/ordeals/white/pale_teleport_out.ogg', 75, FALSE, 7)
+	forceMove(target_turf)
+	can_act = TRUE
+	for(var/mob/living/carbon/human/H in view(6, target_turf))
+		if(H.stat == DEAD)
+			continue
+		if(IsTooStrong(H))
+			continue
+		GiveTarget(H)
+		break
+
+/obj/projectile/pale
+	name = "pale bullet"
+	icon_state = "palebullet"
+	damage = 20
+	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE

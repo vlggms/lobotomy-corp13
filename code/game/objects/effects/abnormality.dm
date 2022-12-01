@@ -153,3 +153,14 @@
 		if(src.dir != EAST)
 			s.x += 2
 	return ..()
+
+/obj/effect/pale_case
+	name = "pale suitcase"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "pale_case"
+	density = FALSE
+	anchored = TRUE
+
+/obj/effect/pale_case/proc/FadeOut()
+	animate(src, alpha = 0, time = 5)
+	QDEL_IN(src, 5)
