@@ -31,7 +31,7 @@
 			return
 
 		if(A.can_breach && (A.status_flags & GODMODE))
-			A.breach_effect()
+			A.BreachEffect()
 			var/turf/orgin = get_turf(src)
 			var/list/all_turfs = RANGE_TURFS(4, orgin)
 			var/turf/open/Y = pick(all_turfs - orgin)

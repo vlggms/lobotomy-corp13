@@ -93,7 +93,7 @@
 	blessed_human.physiology.black_mod /= 0.5
 	blessed_human.physiology.pale_mod /= 2
 	blessed_human = null
-	breach_effect()
+	BreachEffect()
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/TryTeleport()
@@ -126,7 +126,7 @@
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	forceMove(teleport_target)
 
-/mob/living/simple_animal/hostile/abnormality/despair_knight/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/despair_knight/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(user.stat != DEAD && !blessed_human && istype(user))
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
@@ -140,7 +140,7 @@
 		playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/despair_knight/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_living = "despair_breach"
 	icon_state = icon_living

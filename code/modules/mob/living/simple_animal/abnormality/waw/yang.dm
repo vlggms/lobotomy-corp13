@@ -137,16 +137,16 @@
 	icon_state = "impact_white"
 
 
-/mob/living/simple_animal/hostile/abnormality/yang/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/yang/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/yang/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_state = "yang_breach"
 	//So they can breach yin later
 
-/mob/living/simple_animal/hostile/abnormality/yang/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/yang/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == "Release")
 		datum_reference.qliphoth_change(-2)
-
+	return

@@ -38,9 +38,8 @@
 		heal_cooldown = world.time + heal_cooldown_time
 		heal()
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
-	icon_state = "galaxy"	//I'd run an if statement but It's actually more optimal processor wise to not.
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+	icon_state = "galaxy" //I'd run an if statement but It's actually more optimal processor wise to not.
 
 	if(user in galaxy_friend)
 		datum_reference.qliphoth_change(1)
@@ -54,7 +53,7 @@
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/FriendDeath)
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/ZeroQliphoth(mob/living/carbon/human/user)
 	if(LAZYLEN(galaxy_friend))
 		for (var/mob/living/carbon/human/L in galaxy_friend)
 			L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)

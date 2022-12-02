@@ -107,17 +107,17 @@
 	S.start()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user)
 	..()
 	boom_cooldown = world.time + 5 SECONDS // So it doesn't instantly explode
 	update_icon()

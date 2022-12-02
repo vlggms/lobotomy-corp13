@@ -27,8 +27,7 @@
 	var/dead = FALSE
 
 
-/mob/living/simple_animal/hostile/abnormality/dingledangle/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
 		//I mean it does this in wonderlabs
 		user.dust()
@@ -37,7 +36,7 @@
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/lutemis(location)
 
-/mob/living/simple_animal/hostile/abnormality/dingledangle/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		//Yeah dust them too. No ego this time tho
 		user.dust()

@@ -29,7 +29,7 @@
 	var/fear_level = null
 	/// Maximum qliphoth level, passed to datum
 	var/start_qliphoth = 0
-	/// Can it breach? If TRUE - zero_qliphoth() calls breach_effect()
+	/// Can it breach? If TRUE - ZeroQliphoth() calls BreachEffect()
 	var/can_breach = FALSE
 	/// List of humans that witnessed the abnormality breaching
 	var/list/breach_affected = list()
@@ -256,62 +256,76 @@
 
 
 // Modifiers for work chance
-/mob/living/simple_animal/hostile/abnormality/proc/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/proc/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	return chance
 
 // Called by datum_reference when work is done
-/mob/living/simple_animal/hostile/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	if (prob(gift_chance) && !isnull(gift_type) && pe > 0)
-		var/datum/ego_gifts/EG = new gift_type
-		EG.datum_reference = src.datum_reference
-		user.Apply_Gift(EG)
-		to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
+/mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(pe >= datum_reference.success_boxes)
-		success_effect(user, work_type, pe)
-		return
-	if(pe >= datum_reference.neutral_boxes)
-		neutral_effect(user, work_type, pe)
-		return
-	failure_effect(user, work_type, pe)
+		SuccessEffect(user, work_type, pe)
+	else if(pe >= datum_reference.neutral_boxes)
+		NeutralEffect(user, work_type, pe)
+	else
+		FailureEffect(user, work_type, pe)
+	PostWorkEffect(user, work_type, pe, work_time, canceled)
+	GiftUser(user, pe)
+	return
+
+// Effects after work is done, regardless of result
+/mob/living/simple_animal/hostile/abnormality/proc/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Additional effects on good work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	return
 
 // Additional effects on neutral work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	return
 
 // Additional effects on work failure
-/mob/living/simple_animal/hostile/abnormality/proc/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	return
 
+// Giving an EGO gift to the user after work is complete
+/mob/living/simple_animal/hostile/abnormality/proc/GiftUser(mob/living/carbon/human/user, pe, chance = gift_chance)
+	if(!istype(user) || isnull(gift_type))
+		return FALSE
+	if(istype(user.ego_gift_list[initial(gift_type.slot)], gift_type)) // If we already have same gift - don't run the checks
+		return FALSE
+	if(pe <= 0 || !prob(chance))
+		return FALSE
+	var/datum/ego_gifts/EG = new gift_type
+	EG.datum_reference = src.datum_reference
+	user.Apply_Gift(EG)
+	to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
+	return TRUE
+
 // Additional effect on each work tick, whether successful or not
-/mob/living/simple_animal/hostile/abnormality/proc/worktick(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/Worktick(mob/living/carbon/human/user)
 	return
 
 // Additional effect on each individual work tick success
-/mob/living/simple_animal/hostile/abnormality/proc/worktick_success(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/WorktickSuccess(mob/living/carbon/human/user)
 	return
 
 // Additional effect on each individual work tick failure
-/mob/living/simple_animal/hostile/abnormality/proc/worktick_failure(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
 	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
 	return
 
 // Dictates whereas this type of work can be performed at the moment or not
-/mob/living/simple_animal/hostile/abnormality/proc/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/proc/AttemptWork(mob/living/carbon/human/user, work_type)
 	return TRUE
 
 // Effects when qliphoth reaches 0
-/mob/living/simple_animal/hostile/abnormality/proc/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/ZeroQliphoth(mob/living/carbon/human/user)
 	if(can_breach)
-		breach_effect(user)
+		BreachEffect(user)
 	return
 
 // Special breach effect for abnormalities with can_breach set to TRUE
-/mob/living/simple_animal/hostile/abnormality/proc/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/BreachEffect(mob/living/carbon/human/user)
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
@@ -324,7 +338,7 @@
 	return
 
 // When qliphoth meltdown begins
-/mob/living/simple_animal/hostile/abnormality/proc/meltdown_start()
+/mob/living/simple_animal/hostile/abnormality/proc/MeltdownStart()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0)

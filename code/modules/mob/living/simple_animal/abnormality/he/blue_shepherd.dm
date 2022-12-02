@@ -130,17 +130,17 @@
 	LAZYCLEARLIST(people_list)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/WorkChance(mob/living/carbon/human/user, chance)
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/buddy_abno = buddy?.current
 	if(buddy_abno)
 		chance += (buddy_abno.suffering * 0.5) //the more red buddy suffers, the higher your work chance on shepherd is
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/buddy_abno = buddy?.current
 	if(buddy_abno?.suffering >= 40)
 		user.Apply_Gift(new gift_type) //you get a free gift if you somehow made the dog suffer that much
@@ -156,9 +156,9 @@
 		SLEEP_CHECK_DEATH(10)
 	if(status_flags & GODMODE)
 		Lying(buddy_abno, user)
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE

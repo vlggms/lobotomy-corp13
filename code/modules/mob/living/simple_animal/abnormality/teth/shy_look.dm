@@ -30,9 +30,9 @@
 	var/chance_modifier = 1
 	var/previous_mood
 	var/next_mood
-	var/mood_cooldown 
+	var/mood_cooldown
 
-/mob/living/simple_animal/hostile/abnormality/shy_look/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/shy_look/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/Life()
@@ -89,11 +89,11 @@
 	var/mood_cooldown_time = rand(2, 5) SECONDS
 	mood_cooldown = world.time + mood_cooldown_time
 
-/mob/living/simple_animal/hostile/abnormality/shy_look/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/shy_look/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(previous_mood == 1 && pe > 0) // heals 20% hp&sp
 		user.adjustSanityLoss(0.2*user.maxSanity)
 		user.adjustBruteLoss(-0.2*user.maxHealth)
 	if(previous_mood == 2 && pe > 0)
 		user.adjustSanityLoss(0.2*user.maxSanity)
 	ChangeMood() //Prevents spamming work on the same mood
-	return ..()
+	return

@@ -39,17 +39,17 @@
 	var/fireball_range = 30
 	var/volley_count
 
-/mob/living/simple_animal/hostile/abnormality/general_b/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/general_b/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/general_b/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/general_b/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/general_b/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/general_b/ZeroQliphoth(mob/living/carbon/human/user)
 	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return	//Yeah don't increase Qliphoth
 	var/artillerbee_count = 0
@@ -82,7 +82,7 @@
 		volley_count=0
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
 
-/mob/living/simple_animal/hostile/abnormality/general_b/breach_effect()
+/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect()
 	icon_state = "generalbee_breach"
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
 	SLEEP_CHECK_DEATH(80)

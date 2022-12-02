@@ -82,26 +82,26 @@
 		master = abno
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	AdjustSuffering(3)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)
 	AdjustSuffering(10)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/worktick_failure(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/WorktickFailure(mob/living/carbon/human/user)
 	AdjustSuffering(1)
 	work_damage_amount = suffering
 	UpdateScars()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			suffering = 0
@@ -114,14 +114,14 @@
 	if(lying)
 		user.Apply_Gift(new gift_type)
 		lying = FALSE
-	return ..()
+	return
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/WorkChance(mob/living/carbon/human/user, chance)
 	if(lying)
 		chance += 15 //you get extra success chance for calling out a shepherd lie
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/red_buddy/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(lying_timer)
 		datum_reference.qliphoth_change(1)
 		deltimer(lying_timer)
@@ -180,7 +180,7 @@
 		return FALSE
 	. = ..()
 
-/mob/living/simple_animal/hostile/abnormality/red_buddy/breach_effect()
+/mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
 	..()
 	deltimer(lying_timer)
 	icon_state = "redbuddy_active"

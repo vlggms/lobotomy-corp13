@@ -182,18 +182,18 @@ GLOBAL_LIST_EMPTY(apostles)
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg', (25 * (3 - datum_reference.qliphoth_meter)))
 	return
 
-/mob/living/simple_animal/hostile/abnormality/white_night/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/white_night/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
 			revive_humans(48, "neutral") // Big heal
 	return
 
-/mob/living/simple_animal/hostile/abnormality/white_night/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/white_night/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user)
 	holy_revival_cooldown = world.time + holy_revival_cooldown_base
 	..()
 	for(var/mob/M in GLOB.player_list)

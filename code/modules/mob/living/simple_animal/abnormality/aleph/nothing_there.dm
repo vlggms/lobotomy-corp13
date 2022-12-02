@@ -197,7 +197,7 @@
 	appearance = M.appearance
 	M.death()
 	M.forceMove(src) // Hide them for examine message to work
-	addtimer(CALLBACK(src, .proc/zero_qliphoth), rand(20 SECONDS, 50 SECONDS))
+	addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
 	if(!istype(disguise))
@@ -295,7 +295,7 @@
 	icon_state = icon_living
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(istype(disguise))
 		return FALSE
 	worker = user
@@ -304,28 +304,27 @@
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 25, 0)
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/WorkChance(mob/living/carbon/human/user, chance)
 	var/adjusted_chance = chance
 	var/fort = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
 	if(fort < 100)
 		adjusted_chance -= (100 - fort) * 0.5
 	return adjusted_chance
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/nothing_there/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	worker = null
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
 		if(!istype(disguise)) // Not work failure
 			datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(GODMODE in user.status_flags)
 		return
 	disguise_as(user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/BreachEffect(mob/living/carbon/human/user)
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
 	..()

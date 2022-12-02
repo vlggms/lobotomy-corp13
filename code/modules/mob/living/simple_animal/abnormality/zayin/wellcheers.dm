@@ -24,7 +24,7 @@
 	gift_type = /datum/ego_gifts/soda
 	gift_message = "You feel like you've been doing this your whole life."
 
-/mob/living/simple_animal/hostile/abnormality/wellcheers/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -42,7 +42,7 @@
 	return
 
 // Death!
-/mob/living/simple_animal/hostile/abnormality/wellcheers/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
 	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)

@@ -118,17 +118,17 @@
 
 /* Work stuff */
 
-/mob/living/simple_animal/hostile/abnormality/alriune/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/alriune/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/alriune/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/alriune/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
 /* Qliphoth/Breach effects */
-/mob/living/simple_animal/hostile/abnormality/alriune/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user)
 	..()
 	petals_next = world.time + petals_next_time + 30
 	TeleportAway()

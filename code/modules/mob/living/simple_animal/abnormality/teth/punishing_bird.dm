@@ -228,7 +228,7 @@
 	..()
 	Retaliate(user)
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user)
 	..()
 	addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS)
 	return
@@ -264,18 +264,17 @@
 	return ..()
 
 /* Work effects */
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 	manual_emote("chirps!")
 	return
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 

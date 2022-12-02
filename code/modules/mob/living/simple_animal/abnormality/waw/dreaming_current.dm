@@ -153,17 +153,16 @@
 				if(!QDELETED(L))
 					been_hit += L
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/work_complete(mob/living/carbon/human/user, work_type, pe, work_time)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user)
 	..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	icon_living = "current_breach"

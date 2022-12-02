@@ -40,7 +40,7 @@
 	heal_cooldown = (world.time + heal_cooldown_base)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fairy_festival/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/fairy_festival/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(user.stat != DEAD && istype(user))
 		if(user in protected_people)
 			return
@@ -52,8 +52,8 @@
 		addtimer(CALLBACK(src, .proc/FairyEnd, user), heal_duration)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fairy_festival/neutral_effect(mob/living/carbon/human/user, work_type, pe)
-	success_effect(user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/fairy_festival/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	SuccessEffect(user, work_type, pe)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/Life()

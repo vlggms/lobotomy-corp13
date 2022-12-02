@@ -69,7 +69,7 @@
 	if(buckled_mob.stat == DEAD)
 		. = ..()
 
-/mob/living/simple_animal/hostile/abnormality/happyteddybear/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/happyteddybear/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user == src.last_worker)
 		Strangle(user)
 		return FALSE

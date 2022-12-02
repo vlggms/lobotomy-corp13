@@ -54,7 +54,7 @@
 	if(gifted_human)
 		sanityheal()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/breach_effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_living = "melting_breach"
@@ -107,23 +107,23 @@
 	return TRUE
 
 /* Qliphoth things */
-/mob/living/simple_animal/hostile/abnormality/melting_love/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/melting_love/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/melting_love/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/melting_love/ZeroQliphoth(mob/living/carbon/human/user)
 	if(gifted_human)
 		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
 		gifted_human.emote("scream")
 		gifted_human.gib()
 	UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
 	UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
-	breach_effect()
+	BreachEffect()
 	return
 
 /* Gift */
@@ -133,8 +133,7 @@
 	datum_reference.qliphoth_change(-9)
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/melting_love/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if (GODMODE in user.status_flags)
 		return
 	if(!gifted_human && istype(user) && work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
@@ -162,7 +161,7 @@
 		gifted_human.adjustSanityLoss(30)
 		sanityheal_cooldown = (world.time + sanityheal_cooldown_base)
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/melting_love/WorkChance(mob/living/carbon/human/user, chance)
 	if(user == gifted_human)
 		return chance + 10
 	return chance

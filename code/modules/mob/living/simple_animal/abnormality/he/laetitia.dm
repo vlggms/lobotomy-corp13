@@ -24,7 +24,7 @@
 	gift_type = /datum/ego_gifts/prank
 	gift_message = "I hope you're pleased with this!"
 
-/mob/living/simple_animal/hostile/abnormality/laetitia/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P)
 		if(prob(15)) //15% chance to remove prank
@@ -37,13 +37,13 @@
 			SE.laetitia_datum_reference = datum_reference
 	return
 
-/mob/living/simple_animal/hostile/abnormality/laetitia/success_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/laetitia/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P && prob(30)) //30% to remove prank
 		user.remove_status_effect(STATUS_EFFECT_PRANKED)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/laetitia/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/laetitia/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P && prob(70)) //70% to trigger explosion
 		P.triggerprank()

@@ -51,20 +51,20 @@
 				H.ForceContractDisease(D, FALSE, TRUE)
 		for(var/mob/living/simple_animal/hostile/abnormality/general_b/Y in T.contents)
 			if(breached_others == FALSE)
-				Y.breach_effect()
+				Y.BreachEffect()
 				breached_others = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/queen_bee/neutral_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/queen_bee/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/queen_bee/failure_effect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/queen_bee/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/queen_bee/zero_qliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/queen_bee/ZeroQliphoth(mob/living/carbon/human/user)
 	emit_spores()
 	datum_reference.qliphoth_change(1)
 	return

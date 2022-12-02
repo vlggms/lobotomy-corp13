@@ -48,8 +48,7 @@
 	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/crumbling_armor/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if (get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
 		var/obj/item/bodypart/head/head = user.get_bodypart("head")
 		//Thanks Red Queen

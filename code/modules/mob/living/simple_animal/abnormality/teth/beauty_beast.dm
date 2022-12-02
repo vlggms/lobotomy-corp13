@@ -49,8 +49,7 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/beauty/work_complete(mob/living/carbon/human/user, work_type, pe)
-	..()
+/mob/living/simple_animal/hostile/abnormality/beauty/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		if(!injured)
 			injured = TRUE

@@ -53,7 +53,7 @@
 			update_icon_state()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/express_train/attempt_work(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/express_train/AttemptWork(mob/living/carbon/human/user, work_type)
 	meltdown_timer += 100 SECONDS
 	switch(datum_reference.qliphoth_meter)
 		if(0)
@@ -78,16 +78,16 @@
 			say("No tickets available. Thank you for your interest.")
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/express_train/work_chance(mob/living/carbon/human/user, chance)
+/mob/living/simple_animal/hostile/abnormality/express_train/WorkChance(mob/living/carbon/human/user, chance)
 	chance += lightscount * 10
 	return chance
 
-/mob/living/simple_animal/hostile/abnormality/express_train/work_complete(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/express_train/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(4)
 	meltdown_timer = world.time + meltdown_tick
 	lightscount = 0
 	update_icon_state()
-	return ..()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/express_train/update_icon_state()
 	icon_state = "express_booth[lightscount]"
