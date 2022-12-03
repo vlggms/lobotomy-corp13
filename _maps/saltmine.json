@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"map_name": "Facility S-538",
+	"map_path": "map_files/Saltmine",
+	"map_file": [
+		"saltminecorp_-_further_editsagain.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none"
+}
