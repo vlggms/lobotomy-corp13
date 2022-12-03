@@ -7,6 +7,8 @@
 	supervisors = "the manager"
 	selection_color = "#ccaaaa"
 	exp_requirements = 60
+	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/agent
 	display_order = JOB_DISPLAY_ORDER_WARDEN
@@ -99,7 +101,6 @@
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	suit = /obj/item/clothing/suit/armor/vest/alt
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
@@ -125,6 +126,8 @@
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
+	l_pocket = /obj/item/commandprojector
+	suit = /obj/item/clothing/suit/armor/vest/alt
 
 // Trainee, for new players
 /datum/job/agent/intern
@@ -135,6 +138,7 @@
 	outfit = /datum/outfit/job/agent/intern
 	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
 	normal_attribute_level = 20
+	exp_requirements = 0
 
 /datum/outfit/job/agent/intern
 	name = "Agent Intern"
