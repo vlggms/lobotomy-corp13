@@ -1,10 +1,15 @@
 /obj/machinery/regenerator
 	name = "Regenerator"
 	desc = "A machine responsible for slowly restoring health and sanity of employees in the area."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "smoke1"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "regen"
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
+	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
+
+	//Icon States
+	var/broken_icon = "regen_dull"
+	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
 	var/regeneration_amount = 3
@@ -18,6 +23,8 @@
 	var/short_duration = 30 SECONDS
 	var/long_duration = 60 SECONDS
 	var/reset_timer = 0
+	var/colored_overlay
+	var/Threat = FALSE
 
 /obj/machinery/regenerator/Initialize()
 	. = ..()
@@ -36,15 +43,22 @@
 		hp_bonus = 0
 		sp_bonus = 0
 		critical_heal = FALSE
+		cut_overlays()
 	if(burst_cooldown)
+		icon_state = broken_icon
+		cut_overlays()
 		return
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
 	var/regen_amt = regeneration_amount
+	Threat = FALSE //Assume there is no enemies
 	for(var/mob/living/L in A)
 		if(!("neutral" in L.faction) && L.stat != DEAD) // Enemy spotted
 			regen_amt *= 0.5
+			if(!Threat)
+				icon_state = alert_icon
+				Threat = TRUE
 			break
 	if(burst)
 		regen_amt *= 7.5
@@ -59,6 +73,8 @@
 		H.adjustBruteLoss(-H.maxHealth * ((regen_amt+hp_bonus)/100))
 		H.adjustFireLoss(-H.maxHealth * ((regen_amt+hp_bonus)/100))
 		H.adjustSanityLoss(H.maxSanity * ((regen_amt+sp_bonus)/100))
+	if(icon_state != "regen" && !Threat)
+		icon_state = initial(icon_state)
 
 /obj/machinery/regenerator/examine(mob/user)
 	. = ..()
@@ -89,27 +105,53 @@
 					hp_bonus = 3
 					sp_bonus = -1
 					reset_timer = long_duration + world.time
+					ProduceIcon("#B90E0A", "regenspores") //Crimson
 				if(2)
 					to_chat(user, "<span class='notice'>You modify the [src] to restore more SP but less HP.</span>")
 					hp_bonus = -1
 					sp_bonus = 3
 					reset_timer = long_duration + world.time
+					ProduceIcon("#4ADED", "regenpuffs_heavy") //Teal
 				if(3)
 					to_chat(user, "<span class='notice'>You modify the [src] to restore more SP and HP.</span>")
 					hp_bonus = 1
 					sp_bonus = 1
 					reset_timer = short_duration + world.time
+					add_overlay("blueregenlight")
+					add_overlay(mutable_appearance('icons/effects/atmospherics.dmi', "miasma_old"))
+					ProduceIcon("#AF69EE", "regenpuffs") //Orchid
+					ProduceIcon("#B90E0A", "regenspores") //Crimson
 				if(4)
 					to_chat(user, "<span class='notice'>You modify the [src] to heal those in Critical Conditions.</span>")
 					critical_heal = TRUE
 					hp_bonus = -1
 					sp_bonus = -1
 					reset_timer = short_duration + world.time
+					add_overlay("redregenlight")
+					ProduceIcon("#E30B5D", "regenspores") //Raspberry
 				if(5)
 					to_chat(user, "<span class='warning'>You set the [src] to overload and heal those in the area for a large amount!</span>")
 					burst = TRUE
+					ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
+					ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
 					// No Timer as it's an "instant" effect. Also handles turning off over there
 			return TRUE
 		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
 		return FALSE
 	return ..()
+
+/obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
+	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
+	colored_overlay.color = Icon_Color
+	add_overlay(colored_overlay)
+
+	//Safety Plant Regenerator
+/obj/machinery/regenerator/safety
+	name = "Regenerator"
+	desc = "A machine responsible for slowly restoring health and sanity of employees in the area."
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	icon_state = "regen"
+	broken_icon = "regen_dull"
+	alert_icon = "regen_alert"
+	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
+
