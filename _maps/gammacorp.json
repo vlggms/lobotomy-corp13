@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"map_name": "Facility C-211",
+	"map_path": "map_files/Gamma",
+	"map_file": [
+		"gammacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none"
+}
