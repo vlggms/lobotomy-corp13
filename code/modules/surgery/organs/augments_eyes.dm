@@ -30,6 +30,7 @@
 	if(HUD_trait)
 		REMOVE_TRAIT(M, HUD_trait, ORGAN_TRAIT)
 	..()
+	qdel(src)
 
 /obj/item/organ/cyberimp/eyes/hud/medical
 	name = "Medical HUD implant"
