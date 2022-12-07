@@ -54,7 +54,7 @@
 	var/regen_amt = regeneration_amount
 	Threat = FALSE //Assume there is no enemies
 	for(var/mob/living/L in A)
-		if(!("neutral" in L.faction) && L.stat != DEAD) // Enemy spotted
+		if(!("neutral" in L.faction) && L.stat != DEAD && !(L.status_flags & GODMODE)) // Enemy spotted
 			regen_amt *= 0.5
 			if(!Threat)
 				icon_state = alert_icon
