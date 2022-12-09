@@ -103,6 +103,11 @@
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/ClickOn( atom/A, params )
+	if(IsContained())
+		return
+	..()
+
 /mob/living/simple_animal/hostile/abnormality/Life()
 	. = ..()
 	if(!.) // Dead
@@ -349,6 +354,10 @@
 	var/obj/item/implant/radio/slime/imp = new(src)
 	imp.implant(src, src) //acts as if the abno is both the implanter and the one being implanted, which is technically true I guess?
 	datum_reference.abno_radio = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
+	if(status_flags & GODMODE)
+		return TRUE
 
 // Actions
 /datum/action/innate/abnormality_attack
