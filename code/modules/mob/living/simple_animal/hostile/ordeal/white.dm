@@ -492,7 +492,7 @@
 /mob/living/simple_animal/hostile/ordeal/pale_fixer
 	name = "Pale Fixer"
 	desc = "A humanoid creature in a business atire and a fedora. They have a sleek pistol in one hand \
-		and a suitcase in the other."
+			and a suitcase in the other."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fixer_p"
 	icon_living = "fixer_p"
@@ -501,7 +501,7 @@
 	health = 4000
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	melee_damage_lower = 40
+	melee_damage_lower = 35
 	melee_damage_upper = 45
 	rapid_melee = 2
 	minimum_distance = 2
@@ -522,7 +522,7 @@
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 5 SECONDS
 	/// Amount of pale damage per slash
-	var/multislash_damage = 20
+	var/multislash_damage = 15
 	/// Amount of times we slash
 	var/multislash_amount = 10
 	/// How far the attack line goes
@@ -600,7 +600,7 @@
 			hitline |= TT
 	for(var/turf/open/T in hitline)
 		new /obj/effect/temp_visual/cult/sparks(T)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(4)
 	for(var/i = 1 to multislash_amount) // This is probably not the best way to do it
 		for(var/turf/open/T in hitline)
 			var/obj/effect/temp_visual/dir_setting/slash/S = new(T, dir_to_target)
@@ -628,9 +628,12 @@
 	var/turf/beam_start = get_step(src, dir)
 	var/turf/beam_end
 	var/list/hitline = list()
+	var/walls_in_way = 0
 	for(var/turf/T in getline(beam_start, get_ranged_target_turf_direct(beam_start, target, tentacle_range)))
 		if(T.density)
-			break
+			walls_in_way += 1
+			if(walls_in_way > 2)
+				break
 		beam_end = T
 		for(var/turf/open/TT in range(tentacle_radius, T))
 			hitline |= TT
@@ -640,14 +643,14 @@
 		return
 	var/obj/effect/pale_case/case = new(beam_start)
 	playsound(beam_start, 'sound/items/handling/cardboardbox_drop.ogg', 50, FALSE)
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(5)
 	for(var/turf/T in hitline)
 		new /obj/effect/temp_visual/cult/sparks(T)
-	SLEEP_CHECK_DEATH(6)
+	SLEEP_CHECK_DEATH(10)
 	case.icon_state = "pale_case_open"
 	visible_message("<span class='danger'>[case] suddenly opens!</span>")
 	playsound(beam_start, 'sound/effects/ordeals/white/pale_suitcase.ogg', 75, FALSE, tentacle_range)
-	var/datum/beam/B = beam_start.Beam(beam_end, "bsa_beam", time = 10)
+	var/datum/beam/B = beam_start.Beam(beam_end, "bsa_beam", time = 8)
 	var/matrix/M = matrix()
 	M.Scale(tentacle_radius * 3, 1)
 	B.visuals.transform = M
@@ -662,9 +665,9 @@
 			L.apply_damage(tentacle_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 			been_hit |= L
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
-	SLEEP_CHECK_DEATH(5)
+	SLEEP_CHECK_DEATH(8)
 	case.FadeOut()
-	SLEEP_CHECK_DEATH(5)
+	SLEEP_CHECK_DEATH(2)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/pale_fixer/proc/ShouldTeleport()
@@ -728,6 +731,6 @@
 /obj/projectile/pale
 	name = "pale bullet"
 	icon_state = "palebullet"
-	damage = 20
+	damage = 16
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
