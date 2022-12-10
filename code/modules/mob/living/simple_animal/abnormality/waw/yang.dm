@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "yang"
 	icon_living = "yang"
+	is_flying_animal = TRUE
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800
 	move_to_delay = 7

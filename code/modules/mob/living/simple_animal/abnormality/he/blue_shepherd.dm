@@ -250,7 +250,7 @@
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/SlashHit(turf/T, list/all_turfs, slash_count, buddy_hit)
 	if(stat == DEAD)
 		return
-	playsound(src, 'sound/weapons/guillotine.ogg', 75, FALSE, 4)
+	playsound(src, 'sound/weapons/slice.ogg', 75, FALSE, 4)
 	new /obj/effect/temp_visual/smash_effect(T)
 	for(var/mob/living/L in T)
 		if(L == src)
