@@ -20,6 +20,9 @@ Assistant
 	display_order = JOB_DISPLAY_ORDER_PRISONER
 
 
+//they start at -50 all, you max out at level 4
+/datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	H.adjust_all_attribute_buffs(-50)
 
 /datum/outfit/job/assistant
 	name = "Clerk"
