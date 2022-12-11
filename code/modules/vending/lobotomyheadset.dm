@@ -1,17 +1,17 @@
 /obj/machinery/vending/lobotomyheadset
 	name = "\improper Communications Vendor"
-	desc = "A vending machine for facility headsets, and encryption keys."
+	desc = "A vending machine for facility headsets and encryption keys."
 	icon_state = "generic" //Placeholder
 	icon_deny = null
 	req_access = null //Shouldn't need access on lc13, can be changed
-	vend_reply = "Uniform vended."
-	products = list(/obj/item/encryptionkey/headset_control = 4,
-					/obj/item/encryptionkey/headset_information = 4,
-					/obj/item/encryptionkey/headset_safety = 4,
-					/obj/item/encryptionkey/headset_training = 4,
-					/obj/item/encryptionkey/headset_command = 4,
-					/obj/item/encryptionkey/headset_welfare = 4,
-					/obj/item/encryptionkey/headset_discipline = 4)
+	vend_reply = "Encryption key vended."
+	products = list(/obj/item/encryptionkey/headset_control = 20,
+					/obj/item/encryptionkey/headset_information = 20,
+					/obj/item/encryptionkey/headset_safety = 20,
+					/obj/item/encryptionkey/headset_training = 20,
+					/obj/item/encryptionkey/headset_command = 20,
+					/obj/item/encryptionkey/headset_welfare = 20,
+					/obj/item/encryptionkey/headset_discipline = 20)
 					// /obj/item/encryptionkey/headset_extraction = 4, //Placeholder for when they're added.
 					// /obj/item/encryptionkey/headset_records = 4) //Same as above.
 
