@@ -174,6 +174,14 @@
 	prudence_bonus = 2
 	slot = HAT
 
+/datum/ego_gifts/bunny
+	name = "Bunny Rabbit"
+	icon_state = "bunny"
+	fortitude_bonus = -2
+	prudence_bonus = -2
+	temperance_bonus = 6
+	slot = HAT
+
 /datum/ego_gifts/redeyes
 	name = "Red Eyes"
 	icon_state = "redeyes"
