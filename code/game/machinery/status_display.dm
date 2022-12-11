@@ -353,6 +353,32 @@
 	set_picture(emotion_map[emotion])
 	return PROCESS_KILL
 
+//LC13 Energy Production Monitor
+/obj/machinery/status_display/ebox_counter
+	name = "facility energy counter"
+	desc = "A screen that shows how close the facility is to achiving the energy quota."
+	index1 = 1
+	index2 = 1
+
+/obj/machinery/status_display/ebox_counter/process()
+	check_lobotomySubsystem()
+	. = ..()
+
+/obj/machinery/status_display/ebox_counter/proc/check_lobotomySubsystem()
+	var/calculate_percent = round(SSlobotomy_corp.current_box / SSlobotomy_corp.box_goal)
+	index1 = 1
+	index2 = 1
+	if(!SSlobotomy_corp)
+		message1 = "ERROR"
+		message2 = "ERROR"
+	else if(SSlobotomy_corp.box_goal <= SSlobotomy_corp.current_box)
+		message1 = "Energy Quota Met!"
+		message2 = "Good Job :)c"
+	else
+		index2 = 0
+		message1 = "[SSlobotomy_corp.current_box]/[SSlobotomy_corp.box_goal]"
+		message2 = "[calculate_percent]%"
+
 #undef CHARS_PER_LINE
 #undef FONT_SIZE
 #undef FONT_COLOR
