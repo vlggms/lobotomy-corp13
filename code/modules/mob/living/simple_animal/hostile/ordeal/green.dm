@@ -7,6 +7,8 @@
 	icon_living = "green_bot"
 	icon_dead = "green_bot_dead"
 	faction = list("green_ordeal")
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 400
 	health = 400
 	speed = 2
@@ -60,6 +62,12 @@
 				H.apply_damage(20, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			finishing = FALSE
 
+/mob/living/simple_animal/hostile/ordeal/green_bot/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot/spawn_dust()
+	return
+
 //Green dawn factory spawn
 /mob/living/simple_animal/hostile/ordeal/green_bot/factory
 	butcher_results = list()
@@ -82,6 +90,8 @@
 	faction = list("green_ordeal")
 	pixel_x = -8
 	base_pixel_x = -8
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 900
 	health = 900
 	speed = 3
@@ -141,6 +151,12 @@
 				L.apply_damage(8, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			SLEEP_CHECK_DEATH(1)
 
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_dust()
+	return
+
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/StartReloading()
 	reloading = TRUE
 	icon_state = "green_bot_reload"
@@ -173,6 +189,8 @@
 	icon_dead = "green_dusk_dead"
 	bound_width = 64 // 2x1
 	faction = list("green_ordeal")
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 2500
 	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
@@ -236,3 +254,9 @@
 			progress_overlay.icon_state = "progress_4"
 
 	. += progress_overlay
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
+
+/mob/living/simple_animal/hostile/ordeal/green_dusk/spawn_dust()
+	return

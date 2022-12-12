@@ -60,8 +60,8 @@
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6", "gib7","gibdown1","gibdown1")
 
 /obj/effect/decal/cleanable/oil
-	name = "motor oil"
-	desc = "It's black and greasy. Looks like Beepsky made another mess."
+	name = "machine oil"
+	desc = "It's black and greasy."
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "floor1"
 	random_icon_states = list("floor1", "floor2", "floor3", "floor4", "floor5", "floor6", "floor7")
@@ -99,3 +99,11 @@
 /obj/effect/decal/cleanable/oil/slippery/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/slippery, 80, (NO_SLIP_WHEN_WALKING | SLIDE))
+
+//LC13 Debris
+/obj/effect/decal/cleanable/robot_debris/general_scrap
+	name = "scrap metal"
+	desc = "Twisted and beaten metal."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "scrap1"
+	random_icon_states = list("scrap1", "scrap2")

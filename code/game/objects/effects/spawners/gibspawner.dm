@@ -154,3 +154,17 @@
 		gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), GLOB.alldirs, GLOB.alldirs)
 	gibamounts[6] = pick(0, 1, 2)
 	return ..()
+
+
+/obj/effect/gibspawner/scrap_metal
+	sparks = 1
+	virusProb = 0
+	gibtypes = list(/obj/effect/decal/cleanable/robot_debris/general_scrap, /obj/effect/decal/cleanable/robot_debris/general_scrap, /obj/effect/decal/cleanable/robot_debris/general_scrap)
+	gibamounts = list(1, 1, 1)
+	gib_mob_type = /mob/living/simple_animal/hostile/ordeal/green_bot
+	sound_to_play = 'sound/items/foodcanopen.ogg'
+
+/obj/effect/gibspawner/scrap_metal/Initialize()
+	if(!gibdirections.len)
+		gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST), list())
+	return ..()
