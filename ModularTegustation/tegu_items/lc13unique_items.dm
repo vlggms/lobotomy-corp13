@@ -34,6 +34,30 @@
 	to_chat(user, "<span class='notice'>You got a prize!</span>")
 	new reward(get_turf(src))
 	qdel(src)
+	
+	//Pet Whistle
+/obj/item/pet_whistle
+	name = "Galtons whistle"
+	desc = "A common dog whistle. When used in hand, any nearby creature that is tamed will follow you."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "dogwhistle"
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	var/mode = 1
+
+/obj/item/pet_whistle/attack_self(mob/living/carbon/human/user) //i would make it work on actual /pets but those seem to lack the code for movement commands
+	to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
+	playsound(get_turf(user), 'sound/effects/whistlereset.ogg', 10, 3, 3)
+	for(var/mob/living/simple_animal/hostile/bud in oview(get_turf(user), 7))
+		if(!bud.client && bud.tame) //isnt based on faction since this would result in the abnormality Yang and large shrimp gangs following the user.
+			switch(mode)
+				if(1)
+					bud.Goto(user, bud.move_to_delay, 2)
+				else
+					bud.LoseTarget()
+	if(mode != 1)
+		mode = 1
+	else if(mode == 1)
+		mode = 0
 
 	//Admin Quick Leveler
 /obj/item/attribute_tester

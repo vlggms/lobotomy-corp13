@@ -357,3 +357,26 @@
 	set_vehicle_dir_offsets(NORTH, movable_parent.pixel_x, 0)
 	set_vehicle_dir_offsets(EAST, movable_parent.pixel_x, 0)
 	set_vehicle_dir_offsets(WEST, movable_parent.pixel_x, 0)
+
+/datum/component/riding/creature/no_monsteroffset // made by IP
+	can_use_abilities = TRUE
+
+/datum/component/riding/creature/no_monsteroffset/handle_specials()
+	. = ..()
+	var/atom/movable/movable_parent = parent
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, OBJ_LAYER)
+	set_vehicle_dir_layer(EAST, OBJ_LAYER)
+	set_vehicle_dir_layer(WEST, OBJ_LAYER)
+	set_vehicle_dir_offsets(SOUTH, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(NORTH, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(EAST, movable_parent.pixel_x, 0)
+	set_vehicle_dir_offsets(WEST, movable_parent.pixel_x, 0)
+
+/datum/component/riding/creature/no_monsteroffset/get_offsets(pass_index)
+	var/mob/living/carbon/human/H = parent
+	if(H.buckle_lying)
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list(0, 6))
+	else
+		return list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(0, 6), TEXT_WEST = list( 0, 6))
