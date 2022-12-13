@@ -446,3 +446,96 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Very Low<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//The Watchman
+/obj/item/paper/fluff/info/he/watchman
+	name = "O-01-132"
+	info = {"<h1><center>O-01-132</center></h1>    <br>
+	Name : The Watchman    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : 2    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Bad, the Qliphoth Counter decreased.    <br>
+	- When the work result was Neutral, the Qliphoth counter lowered at a moderate chance. <br>
+	- When employees with Temperance Level 3 or higher worked on The Watchman, the work rates were reduced.<br>
+	- While breached, The Watchman flooded the area around with darkness. Said darkness has the same propogation as light.<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> High<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Very Low<br>
+	<h4>Escape Damage:</h4> None	 <br>
+	<h4>Red Resistance:</h4> Normal	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Schadenfreude
+/obj/item/paper/fluff/info/he/schadenfreude
+	name = "O-05-76"
+	info = {"<h1><center>O-05-76</center></h1>    <br>
+	Name : Schadenfreude    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : 4    <br>
+	Work Damage Type : Red	<br>
+	Work Damage : Moderate	<br>
+	- Work with Schadenfreude must proceed while the Containment Unit is viewable by only one person.    <br>
+	- When Schadenfreude was in the view of more than 2 people, work rates decreased.  <br>
+	- When Schadenfreude was in the view of more than 3 people, the Qlipoth Counter decreased.  <br>
+	- Schadenfreude became completely stationary when it was only viewed by one person. Please take this into account when suppressing it. <br>
+	<br>
+	<h4>Instinct:</h4> Very Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> High	 <br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Resistant <br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+//F.A.N
+/obj/item/paper/fluff/info/he/fan
+	name = "T-05-134"
+	info = {"<h1><center>T-05-133</center></h1>    <br>
+	Name : F.A.N    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : X    <br>
+	Work Damage Type : Red	<br>
+	Work Damage : Low	<br>
+	- Work with F.A.N. is guaranteed to yield max PE.    <br>
+	- After working on F.A.N., NAME sat a little closer to the F.A.N during their next work.    <br>
+	- After working on F.A.N. more than three times, NAME was tossed into the fan and ripped to shreds.    <br>
+	<br>
+	<h4>Instinct:</h4> Very High<br>
+	<h4>Insight:</h4> Very High<br>
+	<h4>Attachment:</h4> Very High<br>
+	<h4>Repression:</h4> Very High<br>"}
+
+//680 KHz
+/obj/item/paper/fluff/info/he/khz
+	name = "T-06-135"
+	info = {"<h1><center>T-06-134</center></h1>    <br>
+	Name : 680 KHz    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : X    <br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- After working with 680 KHz, a message was recieved through it.    <br>
+	- After a message was recieved, employees could send a message back through the receiver.    <br>
+	- After inputting the correct sequence of numbers into the work console and starting work, the work chance was increased.    <br>
+	- Finishing work with the correct inputs healed the sanity of all agents.    <br>
+	- After inputting an incorrect sequence of numbers into the work console and starting work, the work chance was decreased.    <br>
+	- Finishing work with incorrect inputs damaged the sanity of all agents.    <br>
+	- Working without making any input had no effect.    <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}

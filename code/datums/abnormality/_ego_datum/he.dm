@@ -49,7 +49,6 @@
 	cost = 35
 
 // Der Freischutz - Magic Bullet
-
 /datum/ego_datum/armor/magicbullet
 	item_path = /obj/item/clothing/suit/armor/ego_gear/magicbullet
 	cost = 35
@@ -127,7 +126,6 @@
 	item_path = /obj/item/gun/ego_gun/unrequited
 	cost = 35
 
-
 //Singing Machine - Harmony
 /datum/ego_datum/armor/harmony
 	item_path = /obj/item/clothing/suit/armor/ego_gear/harmony
@@ -135,4 +133,40 @@
 
 /datum/ego_datum/weapon/harmony
 	item_path = /obj/item/gun/ego_gun/harmony
+	cost = 35
+
+//The Watchman - Alleyway
+/datum/ego_datum/armor/alleyway
+	item_path = /obj/item/clothing/suit/armor/ego_gear/alley
+	cost = 35
+
+/datum/ego_datum/weapon/alleyway
+	item_path = /obj/item/ego_weapon/mini/alleyway
+	cost = 35
+
+//Schadenfreude - Gaze
+/datum/ego_datum/armor/gaze
+	item_path = /obj/item/clothing/suit/armor/ego_gear/gaze
+	cost = 35
+
+/datum/ego_datum/weapon/gaze
+	item_path = /obj/item/gun/ego_gun/pistol/gaze
+	cost = 35
+
+//F.A.N - Bare Metal
+/datum/ego_datum/armor/metal
+	item_path = /obj/item/clothing/suit/armor/ego_gear/metal
+	cost = 35
+
+/datum/ego_datum/weapon/metal
+	item_path = /obj/item/ego_weapon/mini/metal
+	cost = 35
+
+//680 KHz - Transmission
+/datum/ego_datum/armor/transmission
+	item_path = /obj/item/clothing/suit/armor/ego_gear/transmission
+	cost = 35
+
+/datum/ego_datum/weapon/transmission
+	item_path = /obj/item/gun/ego_gun/transmission
 	cost = 35
