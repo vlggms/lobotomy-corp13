@@ -516,3 +516,35 @@
 	icon_state = "pleasure"
 	happy = FALSE
 	force = 30
+
+/obj/item/ego_weapon/mini/metal
+	name = "bare metal"
+	desc = "Looks to be a fan blade with a handle welded to it."
+	special = "This weapon attacks slower than usual."
+	icon_state = "metal"
+	force = 40
+	attack_speed = 1.5
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/mini/alleyway
+	name = "alleyway"
+	desc = "It's a small knife forged of black metal."
+	special = "This weapon attacks extremely fast."
+	icon_state = "alleyway"
+	force = 9
+	attack_speed = 0.3
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)

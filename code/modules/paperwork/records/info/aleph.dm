@@ -209,3 +209,61 @@
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Resistant	<br>
 	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+//Titania
+/obj/item/paper/fluff/info/aleph/titania
+	name = "F-01-130"
+	info = {"<h1><center>F-01-130</center></h1>	<br>
+	Name : Titania<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Extreme	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the employee worked on Titania for the first time since her last breach, the Qliphoth Counter lowered.	<br>
+	- When breaching, Titania designated a high-level employee as her "Nemesis".	<br>
+	- When Titania attacked her "Nemesis", her attacks had different properties.	<br>
+	- When Titania's "Nemesis" was slain by her, Titania's abilities increased.	<br>
+	- When a low level employee was attacked by Titania, they were immediately obliterated. 	<br>
+	- Titania continually summoned fairies until her demise. 	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Low<br>
+	<h4>Repression:</h4> Very Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red/Pale	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Vulnerable	<br>
+	<h4>White Resistance:</h4> Resistant	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+//Lady out of Space
+/obj/item/paper/fluff/info/aleph/space_lady
+	name = "O-01-131"
+	info = {"<h1><center>O-01-131</center></h1>	<br>
+	Name : Lady out of Space<br>
+	Risk Class : Aleph	<br>
+	Max PE Boxes : 30	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black/White	<br>
+	Work Damage : Extreme	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered by 2.	<br>
+	- When the work result was Neutral, the Qliphoth Counter lowered by 1.	<br>
+	- When the employee who worked on Lady out of Space was under level 5, the Qliphoth Counter lowered. It lowered again if the employee was under level 4.	<br>
+	- When the employee who worked on Lady out of Space was under level 3, they were consumed before work started and lowered the counter.<br>
+	- When work was done on Lady out of Space, the damage was split evenly between black and white.	<br>
+	<br>
+	<h4>Instinct:</h4> Very Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black/White	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Immune	<br>
+	<h4>Black Resistance:</h4> Immune	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}

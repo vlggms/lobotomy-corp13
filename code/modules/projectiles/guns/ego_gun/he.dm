@@ -141,3 +141,16 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/gun/ego_gun/transmission
+	name = "broken transmission"
+	desc = "It's an old wooden longrifle."
+	icon_state = "transmission"
+	inhand_icon_state = "transmission"
+	special = "This weapon fires as fast as you pull the trigger."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

@@ -143,3 +143,31 @@
 /datum/ego_datum/armor/trick
 	item_path = /obj/item/clothing/suit/armor/ego_gear/trick
 	cost = 20
+
+//Penitent Girl - Sorrow
+/datum/ego_datum/weapon/sorrow
+	item_path = /obj/item/ego_weapon/sorrow
+	cost = 20
+
+/datum/ego_datum/armor/sorrow
+	item_path = /obj/item/clothing/suit/armor/ego_gear/sorrow
+	cost = 20
+
+//Drowned Sisters - Sorority
+/datum/ego_datum/weapon/sorority
+	item_path = /obj/item/ego_weapon/sorority
+	cost = 20
+
+/datum/ego_datum/armor/sorority
+	item_path = /obj/item/clothing/suit/armor/ego_gear/sorority
+	cost = 20
+
+//Void Dream - Engulfing Dream
+/datum/ego_datum/weapon/dream
+	item_path = /obj/item/gun/ego_gun/dream
+	cost = 20
+
+/datum/ego_datum/armor/dream
+	item_path = /obj/item/clothing/suit/armor/ego_gear/dream
+	cost = 20
+

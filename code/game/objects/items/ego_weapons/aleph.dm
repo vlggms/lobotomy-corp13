@@ -405,11 +405,11 @@
 /obj/item/ego_weapon/censored/get_clamped_volume()
 	return 50
 
-/obj/item/ego_weapon/gunblade
-	name = "Gunblade"
-	desc = "Weapon of the future, today!"
+/obj/item/ego_weapon/soulmate
+	name = "Soulmate"
+	desc = "The course of true love never did run smooth."
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
-	icon_state = "gunblade"
+	icon_state = "soulmate"
 	force = 50
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -434,11 +434,11 @@
 	var/gun_cooldown_time = 1 SECONDS
 	var/mark_cooldown_time = 15 SECONDS
 
-/obj/item/ego_weapon/gunblade/Initialize()
+/obj/item/ego_weapon/soulmate/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	..()
 
-/obj/item/ego_weapon/gunblade/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/ego_weapon/soulmate/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		return
 	if(!proximity_flag && gun_cooldown <= world.time)
@@ -462,7 +462,7 @@
 		if(target in gunmark_targets)
 			gunmark_targets = list()
 			bladebuff = TRUE
-			icon_state = "gunblade_blade"
+			icon_state = "soulmate_blade"
 			update_icon()
 			attack_speed = 0.4
 			gunmark_cooldown = world.time + mark_cooldown_time
@@ -471,13 +471,13 @@
 		if(!(bladebuff) && blademark_cooldown <= world.time)
 			blademark_targets |= target
 
-/obj/item/ego_weapon/gunblade/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+/obj/item/ego_weapon/soulmate/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
 	if(isliving(target) && !(bladebuff))
 		if(target in blademark_targets)
 			blademark_targets = list()
 			gunbuff = TRUE
-			icon_state = "gunblade_gun"
+			icon_state = "soulmate_gun"
 			update_icon()
 			blademark_cooldown = world.time + mark_cooldown_time
 			addtimer(CALLBACK(src, .proc/GunRevert), 80)
@@ -486,16 +486,16 @@
 			gunmark_targets |= target
 	return TRUE
 
-/obj/item/ego_weapon/gunblade/proc/BladeRevert()
+/obj/item/ego_weapon/soulmate/proc/BladeRevert()
 	if(bladebuff)
-		icon_state = "gunblade"
+		icon_state = "soulmate"
 		update_icon()
 		attack_speed = 0.8
 		bladebuff = FALSE
 
-/obj/item/ego_weapon/gunblade/proc/GunRevert()
+/obj/item/ego_weapon/soulmate/proc/GunRevert()
 	if(gunbuff)
-		icon_state = "gunblade"
+		icon_state = "soulmate"
 		update_icon()
 		gunbuff = FALSE
 
@@ -505,3 +505,69 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	icon_state = "ice_1"
+
+
+/obj/item/ego_weapon/space
+	name = "out of space"
+	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
+	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
+	icon_state = "space"
+	force = 50	//Half white, half black.
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+	var/dodgelanding
+	var/canaoe
+
+/obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
+	if(!CanUseEgo(user))
+		return
+	user.density = FALSE
+	icon_state = "space_aoe"
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+	user.adjustStaminaLoss(15, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = FALSE)
+	canaoe = TRUE
+	sleep(3)
+	user.density = TRUE
+
+/obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+
+	if(!canaoe)
+		return
+	if(do_after(user, 5))
+		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
+		for(var/turf/T in orange(1, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+
+		for(var/mob/living/L in livinginrange(1, user))
+			var/aoe = force
+			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	user.density = TRUE
+	icon_state = "space"
+	canaoe = FALSE
+
+/obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
+	return "<span class='notice'>It deals [force] of both white and black damage.</span>"

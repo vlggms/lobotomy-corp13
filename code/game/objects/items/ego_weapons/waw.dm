@@ -382,5 +382,3 @@
 		L.adjust_nutrition(-10)
 		vine_cooldown = world.time + vine_delay
 
-
-

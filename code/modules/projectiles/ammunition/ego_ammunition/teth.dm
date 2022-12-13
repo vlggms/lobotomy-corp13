@@ -29,3 +29,8 @@
 	name = "expression casing"
 	desc = "An expression casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_shy
+
+/obj/item/ammo_casing/caseless/ego_dream
+	name = "dream casing"
+	desc = "A dream casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_dream
