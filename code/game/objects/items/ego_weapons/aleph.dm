@@ -404,3 +404,104 @@
 
 /obj/item/ego_weapon/censored/get_clamped_volume()
 	return 50
+
+/obj/item/ego_weapon/gunblade
+	name = "Gunblade"
+	desc = "Weapon of the future, today!"
+	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
+	icon_state = "gunblade"
+	force = 50
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_speed = 0.8
+	attack_verb_continuous = list("cuts", "slices")
+	attack_verb_simple = list("cuts", "slices")
+	hitsound = 'sound/weapons/blade1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+	var/bladebuff = FALSE
+	var/gunbuff = FALSE
+	var/list/blademark_targets = list()
+	var/list/gunmark_targets = list()
+	var/gun_cooldown
+	var/blademark_cooldown
+	var/gunmark_cooldown
+	var/gun_cooldown_time = 1 SECONDS
+	var/mark_cooldown_time = 15 SECONDS
+
+/obj/item/ego_weapon/gunblade/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	..()
+
+/obj/item/ego_weapon/gunblade/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
+		if(gunbuff)
+			G.damage = 80
+			G.icon_state = "red_laser"
+			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
+		else
+			G.fired_from = src //for signal check
+			playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+	if(proximity_flag && isliving(target) && !(gunbuff))
+		if(target in gunmark_targets)
+			gunmark_targets = list()
+			bladebuff = TRUE
+			icon_state = "gunblade_blade"
+			update_icon()
+			attack_speed = 0.4
+			gunmark_cooldown = world.time + mark_cooldown_time
+			addtimer(CALLBACK(src, .proc/BladeRevert), 50)
+			return
+		if(!(bladebuff) && blademark_cooldown <= world.time)
+			blademark_targets |= target
+
+/obj/item/ego_weapon/gunblade/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	if(isliving(target) && !(bladebuff))
+		if(target in blademark_targets)
+			blademark_targets = list()
+			gunbuff = TRUE
+			icon_state = "gunblade_gun"
+			update_icon()
+			blademark_cooldown = world.time + mark_cooldown_time
+			addtimer(CALLBACK(src, .proc/GunRevert), 80)
+			return TRUE
+		if(!(gunbuff) && gunmark_cooldown <= world.time)
+			gunmark_targets |= target
+	return TRUE
+
+/obj/item/ego_weapon/gunblade/proc/BladeRevert()
+	if(bladebuff)
+		icon_state = "gunblade"
+		update_icon()
+		attack_speed = 0.8
+		bladebuff = FALSE
+
+/obj/item/ego_weapon/gunblade/proc/GunRevert()
+	if(gunbuff)
+		icon_state = "gunblade"
+		update_icon()
+		gunbuff = FALSE
+
+/obj/projectile/ego_bullet/gunblade
+	name = "energy bullet"
+	damage = 40
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	icon_state = "ice_1"
