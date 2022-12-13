@@ -2,6 +2,7 @@
 	name = "abnormality queue console"
 	desc = "Used to select and view queued abnormality extraction process."
 	resistance_flags = INDESTRUCTIBLE
+	var/locked = FALSE
 
 /obj/machinery/computer/abnormality_queue/Initialize()
 	. = ..()
@@ -49,6 +50,11 @@
 	. = ..()
 	if(.)
 		return
+	if(locked)
+		to_chat(usr, "<span class='warning'>Abnormality cannot be changed.</span>")
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		return
+
 	switch(action)
 		if("change_current")
 			var/param = params["change_current"]
@@ -65,12 +71,35 @@
 				updateUsrDialog() // Forcibly update it, in case someone doesn't understand why it won't work
 				return FALSE
 
-			SSabnormality_queue.queued_abnormality = target_type
-			to_chat(usr, "<span class='notice'>[initial(target_type.name)] has been selected.</span>")
-			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-			log_game("[usr] has changed the queued anomaly to [initial(target_type.name)].")
+			UpdateAnomaly(target_type, "changed", FALSE)
+		if("lets_roll")
+			var/mob/living/simple_animal/hostile/abnormality/target_type = pick(SSabnormality_queue.picking_abnormalities)
+			UpdateAnomaly(target_type, "lets rolled", FALSE)
+		if("fuck_it_lets_roll")
+			var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
+			UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
+		if("hardcore_fuck_it_lets_roll")
+			var/mob/living/simple_animal/hostile/abnormality/target_type = pick(pick(SSabnormality_queue.possible_abnormalities))
+			UpdateAnomaly(target_type, "hardcore fucked it and rolled", TRUE)
 
 	update_icon()
+
+/obj/machinery/computer/abnormality_queue/proc/UpdateAnomaly(mob/living/simple_animal/hostile/abnormality/target_type, logstring, lock_after)
+	SSabnormality_queue.queued_abnormality = target_type
+	to_chat(usr, "<span class='notice'>[initial(target_type.name)] has been selected.</span>")
+	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+	log_game("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
+	if(lock_after)
+		message_admins("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
+		locked = TRUE
+		SSabnormality_queue.AnnounceLock()
+		SSabnormality_queue.ClearChoices()
+		SStgui.close_uis(src) // Hacky solution but I don't care
+		var/datum/tgui/ui = new(usr, src, "AbnormalityQueue")
+		ui.open()
+		SStgui.try_update_ui(usr, src, ui)
+
+	return
 
 /obj/machinery/computer/abnormality_queue/Topic(href, href_list)
 	. = ..()
@@ -79,3 +108,7 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		add_fingerprint(usr)
+
+/obj/machinery/computer/abnormality_queue/proc/ChangeLock(lockstatus)
+	locked = lockstatus
+	return
