@@ -291,7 +291,7 @@
 
 /datum/reagent/toxin/plantbgone/expose_obj(obj/exposed_obj, reac_volume)
 	. = ..()
-	if(istype(exposed_obj, /obj/structure/alien/weeds))
+	if(istype(exposed_obj, /obj/structure/alien/weeds) || istype(exposed_obj, /obj/structure/apple_vine))
 		var/obj/structure/alien/weeds/alien_weeds = exposed_obj
 		alien_weeds.take_damage(rand(15,35), BRUTE, 0) // Kills alien weeds pretty fast
 	else if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it

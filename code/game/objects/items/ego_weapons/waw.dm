@@ -343,7 +343,8 @@
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
 	special = "This weapon has a longer reach. \
-			This weapon attacks slower than usual."
+				Wielding this weapon grants an immunity to the slowing effects of the princesses vines. \
+				Place vines when used in hand."
 	icon_state = "green_stem"
 	force = 32 //original 8-16
 	reach = 2		//Has 2 Square Reach.
@@ -371,14 +372,14 @@
 		return
 	if(vine_cooldown <= world.time)
 		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
-		for(var/obj/structure/alien/weeds/apple_vine/F in range(0, get_turf(user)))
+		for(var/obj/structure/apple_vine/F in user.loc)
 			if(F)
 				playsound(src, 'sound/creatures/venus_trap_hurt.ogg', 10, FALSE, 5)
 				qdel(F)
 				return
 		var/mob/living/carbon/human/L = user
 		L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
-		new /obj/structure/alien/weeds/apple_vine(get_turf(user))
+		new /obj/structure/apple_vine(get_turf(user))
 		L.adjust_nutrition(-10)
 		vine_cooldown = world.time + vine_delay
 
