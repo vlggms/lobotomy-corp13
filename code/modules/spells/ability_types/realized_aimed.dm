@@ -4,7 +4,6 @@
 	desc = "An ability that allows its user to dash six tiles forward in any direction."
 	action_icon_state = "helper_dash0"
 	base_icon_state = "helper_dash"
-	base_action = /datum/action/spell_action/ability/item
 	cooldown_time = 10 SECONDS
 
 	var/dash_damage = 200
@@ -59,7 +58,6 @@
 	desc = "An ability that allows its user to summon a holy cross to damage the enemies and heal the mind of their allies."
 	action_icon_state = "cross_spawn0"
 	base_icon_state = "cross_spawn"
-	base_action = /datum/action/spell_action/ability/item
 	cooldown_time = 20 SECONDS
 
 	var/damage_amount = 200 // Amount of white damage dealt to enemies in the epicenter. Allies heal that amount of sanity instead.

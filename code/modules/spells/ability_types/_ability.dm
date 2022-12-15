@@ -27,6 +27,23 @@
 	qdel(action)
 	return ..()
 
+/obj/effect/proc_holder/ability/process(delta_time)
+	if(action && world.time > cooldown)
+		action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/ability/Click()
+	var/mob/living/user = usr
+	if(!istype(user))
+		return
+	if(!can_cast(user))
+		return
+	Perform(null, user)
+
+/obj/effect/proc_holder/ability/update_icon()
+	if(!action)
+		return
+	action.UpdateButtonIcon()
+
 /obj/effect/proc_holder/ability/proc/can_cast(mob/user = usr)
 	if(cooldown > world.time)
 		return FALSE
@@ -42,9 +59,11 @@
 
 	return TRUE
 
-/obj/effect/proc_holder/ability/process(delta_time)
-	if(action && world.time > cooldown)
-		action.UpdateButtonIcon()
+/obj/effect/proc_holder/ability/proc/Perform(target, user)
+	cooldown = world.time + cooldown_time
+	if(cooldown_time > 0)
+		remove_ranged_ability()
+	return
 
 /obj/effect/proc_holder/ability/aimed/Click()
 	var/mob/living/user = usr
@@ -83,9 +102,3 @@
 		return FALSE
 	Perform(target, user = ranged_ability_user)
 	return TRUE
-
-/obj/effect/proc_holder/ability/aimed/proc/Perform(target, user)
-	cooldown = world.time + cooldown_time
-	if(cooldown_time > 0)
-		remove_ranged_ability()
-	return
