@@ -34,8 +34,8 @@
 	Name : Skin Prophecy<br>
 	Risk Class : Teth	<br>
 	- The employee who reads this book will experience an increase in Prudence.	<br>
-	- The book can be read until one's Prudence reaches its limit.	<br>
-	- The more one reads, the more they will become vulnerable to WHITE damage.	<br>
+	- The book can be read until ones Prudence reaches its limit.	<br>
+	- For every time past the first reading, the employee will become vulnerable to WHITE damage.	<br>
 	- Any employee who panics after reading this book will perish immediately."}
 
 //Don't touch me

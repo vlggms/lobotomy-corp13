@@ -2558,6 +2558,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\!tutorial\fairies.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!tutorial\shadow.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\tool_abnormality.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\_tools\teth\behavior.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\teth\skin.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\teth\theresia.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\zayin\mirror.dm"
