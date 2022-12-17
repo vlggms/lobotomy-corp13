@@ -24,7 +24,7 @@
 	info = {"<h1><center>T-09-09</center></h1>	<br>
 	Name : Theresia<br>
 	Risk Class : Teth	<br>
-	- Those who listen to Theresia’s music will recover SP, including the employee playing the music box and everyone in the department where the Abnormality is located.	<br>
+	- Those who listen to Theresia's music will recover SP, including the employee playing the music box and everyone in the department where the Abnormality is located.	<br>
 	- When 20 to 30 seconds have passed after the music box begins playing, the SP of the employee operating the music box will begin to fall rapidly, causing them to panic."}
 
 //Skin Prophecy
@@ -34,14 +34,24 @@
 	Name : Skin Prophecy<br>
 	Risk Class : Teth	<br>
 	- The employee who reads this book will experience an increase in Prudence.	<br>
-	- The book can be read until one’s Prudence reaches its limit.	<br>
-	- The more one reads, the more they will become vulnerable to WHITE damage.	<br>
+	- The book can be read until ones Prudence reaches its limit.	<br>
+	- For every time past the first reading, the employee will become vulnerable to WHITE damage.	<br>
 	- Any employee who panics after reading this book will perish immediately."}
 
-//Skin Prophecy
+//Don't touch me
 /obj/item/paper/fluff/info/tool/touch
 	name = "O-05-47"
 	info = {"<h1><center>O-05-47</center></h1>	<br>
 	Name : Don't Touch Me<br>
 	Risk Class : Zayin	<br>
 	- DO NOT TOUCH THIS BUTTON UNDER ANY CIRCUMSTANCES"}
+
+//Wishing Well
+/obj/item/paper/fluff/info/tool/wishwell
+	name = "F-09-34"
+	info = {"<h1><center>F-09-34</center></h1>	<br>
+	Name : Wishing Well<br>
+	Risk Class: Zayin <br>
+	-The employee who drops ahn or EGO in the well will recieve a gift. <br>
+	-The greater the employee's sacrifice the greater the reward. <br>
+	-There is no way of knowing what will come out of the well."}

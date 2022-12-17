@@ -8,6 +8,7 @@
 	products = list(/obj/item/stack/medical/gauze = 8,
 					/obj/item/reagent_containers/syringe = 12,
 					/obj/item/reagent_containers/dropper = 3,
+					/obj/item/reagent_containers/glass/bottle/ethanol = 5,
 					/obj/item/healthanalyzer = 4,
 					/obj/item/wrench/medical = 1,
 					/obj/item/stack/sticky_tape/surgical = 3,

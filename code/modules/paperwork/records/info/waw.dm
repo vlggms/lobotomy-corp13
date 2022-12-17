@@ -366,8 +366,36 @@
 	<h4>Repression:</h4> Common<br>
 	<h4>Escape Damage Type:</h4> Red	<br>
 	<h4>Escape Damage:</h4> Extreme	<br>
-
 	<h4>Red Resistance:</h4> Immune	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}
+
+//Naked Nest
+/obj/item/paper/fluff/info/waw/nakednest
+	name = "O-02-74"
+	info = {"<h1><center>O-02-74</center></h1>	<br>
+	Name : Naked Nest	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 22	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Extreme	<br>
+	- When the work result was Good a cure was extracted and the serpents did not attempt to infest the employee.<br>
+	- When the work result was Normal, the chance of infestation was moderate.	<br>
+	- When the work result was Bad, the chance of infestation was high.	<br>
+	- Infestation chance is increased based on how physically wounded the host was.	<br>
+	- Infested individuals will experience no pain and will be noticably slower than usual. <br>
+	- Infested individuals must be identified and handled before 4 minutes. <br>
+	- Every duplication of the naked nest was unable to harbor more than a few instances of O-02-74-1. <br>
+	- The corpses of O-02-74-1 hosts must be incinerated or mulched to prevent transformation into O-02-74-2. <br>
+	- O-02-74-1 shows an aversion to cold tempatures. <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>
+	<h4>Red Resistance:</h4> Endured	<br>
 	<h4>White Resistance:</h4> Endured	<br>
 	<h4>Black Resistance:</h4> Weak	<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}

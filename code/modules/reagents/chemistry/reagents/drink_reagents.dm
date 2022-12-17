@@ -624,6 +624,8 @@
 
 /datum/reagent/consumable/ice/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
+	if(M.has_reagent(/datum/reagent/consumable/ice, 25)) //Stop eating ice what is wrong with you.
+		M.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, 200) //brings you down to around 274.657
 	..()
 
 /datum/reagent/consumable/soy_latte
