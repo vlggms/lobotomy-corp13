@@ -466,6 +466,13 @@
 	prudence_bonus = 6 //originally a SP bonus
 	slot = BROOCH
 
+/datum/ego_gifts/exuviae
+	name = "Exuviae"
+	icon_state = "exuviae"
+	prudence_bonus = 2
+	fortitude_bonus = 5
+	slot = HAND_2
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"

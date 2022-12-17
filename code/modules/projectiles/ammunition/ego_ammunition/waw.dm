@@ -84,3 +84,8 @@
 	name = "feather casing"
 	desc = "A feather casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_feather
+
+/obj/item/ammo_casing/caseless/ego_exuviae
+	name = "exuviae casing"
+	desc = "A casing from a exuviae cannon."
+	projectile_type = /obj/projectile/ego_bullet/ego_exuviae
