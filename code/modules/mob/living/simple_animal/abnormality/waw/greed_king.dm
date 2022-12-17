@@ -144,6 +144,7 @@
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(!T)
 		been_hit = list()
+		stop_charge = TRUE
 		return
 	if(T.density)
 		stop_charge = TRUE
@@ -160,6 +161,7 @@
 	if(stop_charge)
 		busy = TRUE
 		addtimer(CALLBACK(src, .proc/endCharge), 7 SECONDS)
+		been_hit = list()
 		return
 	forceMove(T)
 
