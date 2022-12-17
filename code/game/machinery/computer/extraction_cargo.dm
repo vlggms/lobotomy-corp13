@@ -87,6 +87,8 @@
 		new /datum/data/extraction_cargo("Absinthe ",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skateboard ",					/obj/item/melee/skateboard,											100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Gar Glasses ",				/obj/item/clothing/glasses/sunglasses/gar,							100, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skub ",						/obj/item/skub,														200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("1000 Ahn ",					/obj/item/stack/spacecash/c10000,									200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Margherita Pizza ",			/obj/item/food/pizza/margherita,									300, CAT_OTHER) = 1,

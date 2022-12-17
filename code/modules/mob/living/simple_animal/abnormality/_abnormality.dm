@@ -60,6 +60,21 @@
 	var/gift_chance = null
 	var/gift_message = null
 	var/abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	/// Abnormality Chemistry System
+	// Points to the abnormality's work console.
+	var/obj/machinery/computer/abnormality/abnormality_console
+	// Typepath of the abnormality's chemical.
+	var/chem_type
+	// Amount of abnochem produced by one harvest. One harvest is prepared per work completed.
+	var/chem_yield = 15
+	// Time delay between harvests. Shouldn't need to be changed in most cases, since the amount of harvests available is gated by work.
+	var/chem_cooldown = 5 SECONDS
+	var/chem_cooldown_timer = 0
+	// Harvest phrases.
+	var/harvest_phrase = "<span class='notice'>You harvest... something... into %VESSEL.</span>"
+	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
+	// Dummy chemicals - called if chem_type is null.
+	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -93,6 +108,11 @@
 		gift_message = "You are granted a gift by [src]!"
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
+	if(istype(get_area(src), /area/containment_zone))
+		var/turf/console_location = locate(src.x + 3, src.y + 1, src.z)
+		abnormality_console = locate() in console_location.contents
+		if(!abnormality_console)
+			CRASH("Abnormality cannot find its console. Was it spawned in an unusual location?")
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -132,6 +152,42 @@
 
 /mob/living/simple_animal/hostile/abnormality/CanStartPatrol()
 	return (AIStatus == AI_IDLE) && !(status_flags & GODMODE)
+
+/mob/living/simple_animal/hostile/abnormality/attackby(obj/O, mob/user, params)
+	if(!istype(O, /obj/item/reagent_containers))
+		return ..()
+	if(!(status_flags & GODMODE))
+		to_chat(user, "<span class='notice'>Now isn't the time!</span>")
+		return
+	var/obj/item/chemical_extraction_attachment/attachment = locate() in abnormality_console.contents
+	if(!attachment)
+		to_chat(user, "<span class='notice'>This abnormality's cell is not properly equipped for substance extraction.</span>")
+		return
+	if(world.time < chem_cooldown_timer)
+		to_chat(user, "<span class='notice'>You may need to wait a bit longer.</span>")
+		return
+	if(abnormality_console.chem_charges < 1)
+		to_chat(user, "<span class='notice'>No chemicals are ready for harvest. More work must be completed.</span>")
+		return
+	abnormality_console.chem_charges -= 1
+	var/obj/item/reagent_containers/my_container = O
+	HarvestChem(my_container, user)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
+	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))
+	if(chem_type)
+		C.reagents.add_reagent(chem_type, chem_yield)
+	else
+		C.reagents.add_reagent(pick(dummy_chems), chem_yield)
+	chem_cooldown_timer = world.time + chem_cooldown
+
+/mob/living/simple_animal/hostile/abnormality/proc/HarvestMessageProcess(str, user, vessel) // Jacked from announcement_system.dm
+	str = replacetext(str, "%PERSON", "[user]")
+	str = replacetext(str, "%VESSEL", "[vessel]")
+	str = replacetext(str, "%ABNO", "[src]")
+	return str
+
 
 // Applies fear damage to everyone in range
 /mob/living/simple_animal/hostile/abnormality/proc/FearEffect()
