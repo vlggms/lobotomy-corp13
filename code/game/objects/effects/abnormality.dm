@@ -53,23 +53,28 @@
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 1)
 
 /obj/effect/magic_bullet/proc/moveBullet() // Shamelessly stolen code from immovable rod and paradise lost, GO!
-	var/list/nearmiss = list()
+	var/list/nearMiss = list()
+	var/list/beenHit = list()
 	while(src.x < 245 && src.x > 10 && src.y < 245 && src.y > 10)
 		if(dir in list(EAST, WEST))
-			nearmiss |= get_step(src, SOUTH).contents
-			nearmiss |= get_step(src, NORTH).contents
+			nearMiss |= get_step(src, SOUTH).contents
+			nearMiss |= get_step(src, NORTH).contents
 		else
-			nearmiss |= get_step(src, EAST).contents
-			nearmiss |= get_step(src, WEST).contents
+			nearMiss |= get_step(src, EAST).contents
+			nearMiss |= get_step(src, WEST).contents
 		var/turf/T = get_turf(src)
 		for(var/mob/living/L in T.contents)
-			if(L in nearmiss)
+			if(L in beenHit)
 				continue
 			L.apply_damage(160, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			beenHit |= L
 			visible_message("<span class='boldwarning'>[src] pierces through [L]!</span>")
 			to_chat(L, "<span class='userdanger'>[src] slams through you!</span>")
-		for(var/mob/living/L in nearmiss)
+		for(var/mob/living/L in nearMiss)
+			if(L in beenHit)
+				continue
 			L.apply_damage(80, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			beenHit |= L
 			visible_message("<span class='warning'>[src] just barely brushes past [L]!</span>")
 			to_chat(L, "<span class='danger'>[src] grazes your side!</span>")
 		var/obj/effect/frei_trail/trayl = new(T)
