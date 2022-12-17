@@ -121,3 +121,9 @@
 	desc = "The more entrancing it is, the bigger the disappointment will be when dawn breaks."
 	icon_state = "dream"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)
+	
+/obj/item/clothing/suit/armor/ego_gear/bean
+	name = "magic bean"
+	desc = "The handful of magic beans grew into a massive, towering beanstalk."
+	icon_state = "bean"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 30, PALE_DAMAGE = -10) //20

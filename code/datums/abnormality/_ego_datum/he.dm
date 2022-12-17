@@ -170,3 +170,8 @@
 /datum/ego_datum/weapon/transmission
 	item_path = /obj/item/gun/ego_gun/transmission
 	cost = 35
+	
+//Beanstalk without Jack - Giant
+/datum/ego_datum/weapon/giant
+	item_path = /obj/item/ego_weapon/shield/giant
+	cost = 35

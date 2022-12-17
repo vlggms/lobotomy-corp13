@@ -548,3 +548,23 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+							
+/obj/item/ego_weapon/shield/giant
+	name = "giant"
+	desc = "I'll grind your bones to make my bread!"
+	special = "This weapon has a slow attack speed and deals atrocious damage."
+	icon_state = "giant"
+	force = 20
+	attack_speed = 3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("shoves", "bashes")
+	attack_verb_simple = list("shove", "bash")
+	hitsound = 'sound/weapons/genhit2.ogg'
+	reductions = list(40, 20, 40, 20, 1)
+	recovery_time = 3 SECONDS
+	block_time = 3 SECONDS
+	block_recovery = 3 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
