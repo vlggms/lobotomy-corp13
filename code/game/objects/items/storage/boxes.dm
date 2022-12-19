@@ -1179,7 +1179,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	illustration = null
 	foldable = null
-	custom_price = PAYCHECK_EASY
 
 /obj/item/storage/box/gum/ComponentInitialize()
 	. = ..()
