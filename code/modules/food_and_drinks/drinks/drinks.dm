@@ -270,7 +270,6 @@
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/salt = 3)
 	foodtype = GRAIN
 	isGlass = FALSE
-	custom_price = PAYCHECK_ASSISTANT * 0.9
 
 /obj/item/reagent_containers/food/drinks/waterbottle
 	name = "bottle of water"
