@@ -30,6 +30,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	base_pixel_x = -8
 	buckled_mobs = list()
 	buckle_lying = TRUE
+	max_boxes = 16
 	var/cleanliness = "clean"
 	var/statChecked = 0
 	var/bonusRed = 0
