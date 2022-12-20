@@ -347,3 +347,67 @@
 	<h4>Black Resistance:</h4> Endured	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
+//Penitent Girl
+/obj/item/paper/fluff/info/teth/penitent
+	name = "F-01-132"
+	info = {"<h1><center>F-01-132</center></h1>	<br>
+	Name : Penitent Girl<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When an Agent, who had Level 1 Temperance, completed the work process, They eventually cut off their own feet.	<br>
+	- When an Agent, who had Level 2 or higher Temperance, started the work process, Penitent Girl's work damage type changed.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Drowned Sisters
+/obj/item/paper/fluff/info/teth/drowned
+	name = "T-01-133"
+	info = {"<h1><center>T-01-133</center></h1>	<br>
+	Name : Drowned Sisters<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
+	- The work damage done to the employee working on Drowned Sisters increased inversely to their prudence.	<br>
+	- After work was completed with Drowned Sisters, the employee's sanity was restored slightly.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> High<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Low<br>"}
+
+//Void Dream
+/obj/item/paper/fluff/info/teth/void
+	name = "T-02-99"
+	info = {"<h1><center>T-02-99</center></h1>	<br>
+	Name : Void Dream	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Low	<br>
+	- Any employee with Temperance under Level 2 will fall asleep after working on the Abnormality.	<br>
+	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
+	- When Void Dream escaped, its light put every employee who came into contact with it asleep. They woke up when another agent shook them.	<br>
+	- WARNING Attempts to suppress the Abnormality will provoke it, transforming into an extremely hostile entity. (This second form is designated as Void Dream-1).	<br>
+	- Void Dream-1 occasionally crowed, dealing WHITE damage to an entire department. Employees who were asleep due to the Abnormality’s light awoke and panicked after hearing Void Dream-1’s sound.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> White	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Ineffective	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
+

@@ -48,7 +48,7 @@
 	name = "life for a daredevil"
 	desc = "The fear of death is natural, but in denying it you shall find untold strength."
 	icon_state = "daredevil"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = -50) // -30
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = -50) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/noise
 	name = "noise"
@@ -56,11 +56,11 @@
 	icon_state = "noise"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0) // 20
 
-/obj/item/clothing/suit/armor/ego_gear/alleyway
-	name = "alleyway"
-	desc = "You can't always see what you need you."
-	icon_state = "alley"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 40)
+/obj/item/clothing/suit/armor/ego_gear/sorrow
+	name = "sorrow"
+	desc = "You can't always see who needs you."
+	icon_state = "sorrow"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/solitude
 	name = "solitude"
@@ -72,7 +72,7 @@
 	name = "wrist cutter"
 	desc = "Depression is a disease of the mind. We are the first doctors who discovered how to be happy."
 	icon_state = "wrist"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 30, BLACK_DAMAGE = -30, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 30, BLACK_DAMAGE = -20, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/wedge
 	name = "screaming wedge"
@@ -109,3 +109,15 @@
 	desc = "Only a few find the way, some don’t recognize it when they do – some… don’t ever want to."
 	icon_state = "trick"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/sorority
+	name = "sorority"
+	desc = "Call upon your bretheren to fight."
+	icon_state = "sorority"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/dream
+	name = "engulfing dream"
+	desc = "The more entrancing it is, the bigger the disappointment will be when dawn breaks."
+	icon_state = "dream"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)

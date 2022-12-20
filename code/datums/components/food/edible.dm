@@ -270,10 +270,6 @@ Behavior that's still missing from this component that original food items had t
 	. = COMPONENT_CANCEL_ATTACK_CHAIN //Point of no return I suppose
 
 	if(eater == feeder)//If you're eating it yourself.
-		if(eat_time && !do_mob(feeder, eater, eat_time, timed_action_flags = food_flags & FOOD_FINGER_FOOD ? IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE : NONE)) //Gotta pass the minimal eat time
-			return
-		if(IsFoodGone(owner, feeder))
-			return
 		var/eatverb = pick(eatverbs)
 		if(junkiness && eater.satiety < -150 && eater.nutrition > NUTRITION_LEVEL_STARVING + 50 && !HAS_TRAIT(eater, TRAIT_VORACIOUS))
 			to_chat(eater, "<span class='warning'>You don't feel like eating any more junk food at the moment!</span>")
@@ -309,10 +305,6 @@ Behavior that's still missing from this component that original food items had t
 									"<span class='userdanger'>[feeder] forces you to eat [parent]!</span>")
 
 	TakeBite(eater, feeder)
-
-	//If we're not force-feeding and there's an eat delay, try take another bite
-	if(eater == feeder && eat_time)
-		INVOKE_ASYNC(src, .proc/TryToEat, eater, feeder)
 
 
 ///This function lets the eater take a bite and transfers the reagents to the eater.

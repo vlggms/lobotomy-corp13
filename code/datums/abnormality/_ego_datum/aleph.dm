@@ -83,3 +83,22 @@
 /datum/ego_datum/weapon/goldrush
 	item_path = /obj/item/ego_weapon/goldrush
 	cost = 100
+  
+// Titania - Soulmate
+/datum/ego_datum/weapon/soulmate
+	item_path = /obj/item/ego_weapon/soulmate
+	cost = 100
+
+/datum/ego_datum/armor/soulmate
+	item_path = /obj/item/clothing/suit/armor/ego_gear/soulmate
+	cost = 100
+
+// Lady out of Space - Out of Space
+/datum/ego_datum/armor/space
+	item_path = /obj/item/clothing/suit/armor/ego_gear/space
+	cost = 100
+
+/datum/ego_datum/weapon/space
+	item_path = /obj/item/ego_weapon/space
+	cost = 100
+

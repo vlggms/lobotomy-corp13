@@ -33,7 +33,6 @@
 	item_flags = EYE_STAB
 	sharpness = SHARP_POINTY
 	var/datum/reagent/forkload //used to eat omelette
-	custom_price = PAYCHECK_PRISONER
 
 /obj/item/kitchen/fork/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] stabs \the [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to take a bite out of [user.p_them()]self!</span>")
@@ -64,7 +63,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	custom_materials = list(/datum/material/plastic=80)
-	custom_price = PAYCHECK_PRISONER * 2
 	var/break_chance = 25
 
 /obj/item/kitchen/fork/plastic/afterattack(atom/target, mob/user)
@@ -124,7 +122,6 @@
 	attack_verb_continuous = list("prods", "whiffs", "scratches", "pokes")
 	attack_verb_simple = list("prod", "whiff", "scratch", "poke")
 	sharpness = SHARP_EDGED
-	custom_price = PAYCHECK_PRISONER * 2
 	var/break_chance = 25
 
 /obj/item/kitchen/knife/plastic/afterattack(mob/living/carbon/user)
@@ -178,7 +175,6 @@
 	attack_verb_continuous = list("cleaves", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("cleave", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	w_class = WEIGHT_CLASS_NORMAL
-	custom_price = PAYCHECK_EASY * 5
 
 /obj/item/kitchen/knife/hunting
 	name = "hunting knife"
@@ -270,7 +266,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("bashes", "batters", "bludgeons", "thrashes", "whacks")
 	attack_verb_simple = list("bash", "batter", "bludgeon", "thrash", "whack")
-	custom_price = PAYCHECK_EASY * 1.5
 	tool_behaviour = TOOL_ROLLINGPIN
 
 /obj/item/kitchen/rollingpin/suicide_act(mob/living/carbon/user)
@@ -291,7 +286,6 @@
 	attack_verb_continuous = list("whacks", "spoons", "taps")
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
 	custom_materials = list(/datum/material/iron=120)
-	custom_price = PAYCHECK_PRISONER * 5
 	tool_behaviour = TOOL_MINING
 	toolspeed = 25 // Literally 25 times worse than the base pickaxe
 
@@ -300,7 +294,6 @@
 	icon_state = "plastic_spoon"
 	force = 0
 	custom_materials = list(/datum/material/plastic=120)
-	custom_price = PAYCHECK_PRISONER * 2
 	toolspeed = 75 // The plastic spoon takes 5 minutes to dig through a single mineral turf... It's one, continuous, breakable, do_after...
 
 	/// The probability of this breaking every time it's used

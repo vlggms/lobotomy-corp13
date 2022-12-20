@@ -69,3 +69,15 @@
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
 	autofire = 0.2 SECONDS
+
+/obj/item/gun/ego_gun/dream
+	name = "engulfing dream"
+	desc = "And when the crying stops, dawn will break."
+	icon_state = "dream"
+	inhand_icon_state = "dream"
+	special = "This weapon has autofire."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	autofire = 0.22 SECONDS
+
