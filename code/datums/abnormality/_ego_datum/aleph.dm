@@ -84,6 +84,7 @@
 	item_path = /obj/item/ego_weapon/goldrush
 	cost = 100
 	
+  
 // Titania - Soulmate
 /datum/ego_datum/weapon/soulmate
 	item_path = /obj/item/ego_weapon/soulmate
