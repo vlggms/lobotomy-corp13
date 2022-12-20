@@ -201,3 +201,31 @@
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40)	//Fuck
+
+/obj/item/clothing/suit/armor/ego_gear/alley
+	name = "alleyway"
+	desc = "Sometimes in the dead of night, you catch a glimpse of someone watching."
+	icon_state = "alleyway"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -10, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/gaze
+	name = "gaze"
+	desc = "As long as this is equipped, ambush won't be a concern."
+	icon_state = "gaze"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/transmission
+	name = "transmission"
+	desc = "A snazzy military officer uniform."
+	icon_state = "transmission"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/metal
+	name = "bare metal"
+	desc = "the coat itself is made from metal sheets"
+	icon_state = "metal"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 40)

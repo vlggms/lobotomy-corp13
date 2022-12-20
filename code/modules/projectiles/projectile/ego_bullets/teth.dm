@@ -41,3 +41,11 @@
 	damage = 3 //Can dual wield, full auto
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_dream
+	name = "dream"
+	icon_state = "energy2"
+	damage = 9 //70% the speed of beak, converted damage is 8.5, but the bullets are slow.
+	speed = 1.5
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
