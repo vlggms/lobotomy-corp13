@@ -7,9 +7,9 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	del_on_death = TRUE
-	maxHealth = 2400		//It's fucking slow as hell
-	health = 2400
-	move_to_delay = 6
+	maxHealth = 1800		//It's fucking slow as hell, and you can beat it to death if you're alone for free
+	health = 1800
+	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
 	melee_damage_lower = 40		//Yeah it's super slow, and you're not gonna get hit by it too often
 	melee_damage_upper = 48
@@ -66,7 +66,7 @@
 	if(people_watching == 1)
 		seen = FALSE
 		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
-	else
+	else	//any amount of people that's not 1.
 		seen = TRUE
 		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
 
