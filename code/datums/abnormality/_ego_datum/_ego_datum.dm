@@ -23,6 +23,10 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	if(DA)
 		linked_abno = DA
 
+/datum/ego_datum/Destroy()
+	GLOB.ego_datums -= src
+	return ..()
+
 // Because I'm lazy to type it all
 /datum/ego_datum/weapon
 	item_category = "Weapon"
