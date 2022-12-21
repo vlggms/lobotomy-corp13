@@ -104,5 +104,5 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>[P] bounces off [src]!</span>")
+	visible_message("<span class='userdanger'>[src] is unfazed by \the [P]!</span>")
 	P.Destroy()

@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(vine_list)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple
-	name = "Snow Whites Apple"
-	desc = "An abnormality taking form of a tall humanoid with an apple for a head."
+	name = "Snow White’s Apple"
+	desc = "An abnormality taking the form of a tall humanoid with an apple for a head."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "snowwhitesapple_inert"
 	icon_living = "snowwhitesapple_inert"
@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	var/icon_aggro = "snowwhitesapple_active"
 	maxHealth = 1600
 	health = 1600
-	damage_coeff = list(BRUTE = 0.5, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	a_intent = "help"
 	melee_damage_type = BLACK_DAMAGE

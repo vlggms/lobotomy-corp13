@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/express_train
-	name = "express train to hell"
+	name = "Express Train to Hell"
 	desc = "A creature with glowing eyes inside of an odd-looking ticket booth."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "express_booth0"

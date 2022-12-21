@@ -8,12 +8,13 @@ Extreme: 12+
 
 Resistance Notation
 Absorbs: -X
-Immune: 0
-Ineffective: 0.1-0.4
-Endured: 0.5-0.9
-Normal: 1
-Weak: 1.1-1.5
-Fatal: 1.6-2
+0 - Immune
+>0 - 0.5 : Resistant
+>0.5 - <1 : Endured
+1 : Normal
+>1 - <1.5 : Weak
+1.5 - <2 - Vulnerable
+2 - Fatal
 
 For Escape damage, I think I'll just honestly ball-park how fast it could reasonably kill someone.
 */
