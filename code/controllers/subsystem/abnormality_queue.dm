@@ -23,6 +23,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn
 	var/next_abno_spawn_time = 4 MINUTES
+	/// Tracks if the current pick is forced
+	var/fucked_it_lets_rolled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
@@ -74,8 +76,14 @@ SUBSYSTEM_DEF(abnormality_queue)
 		return
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
+
 	if(istype(choice) && ispath(queued_abnormality))
 		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
+
+	if(fucked_it_lets_rolled)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+			Q.ChangeLock(FALSE)
+		fucked_it_lets_rolled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)
@@ -113,3 +121,23 @@ SUBSYSTEM_DEF(abnormality_queue)
 		sleep(10 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 	message_admins("[i] round-start abnormalities have been spawned.")
 	return
+
+/datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
+	fucked_it_lets_rolled = TRUE
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		Q.ChangeLock(TRUE)
+	return
+
+/datum/controller/subsystem/abnormality_queue/proc/ClearChoices()
+	picking_abnormalities = list() // LAZY BUT WHATEVER
+	return
+
+/datum/controller/subsystem/abnormality_queue/proc/GetRandomPossibleAbnormality()
+	var/list/picking_abno = list()
+
+	for(var/level in available_levels)
+		if(!LAZYLEN(possible_abnormalities[level]))
+			continue
+		picking_abno |= possible_abnormalities[level]
+
+	return pick(picking_abno)
