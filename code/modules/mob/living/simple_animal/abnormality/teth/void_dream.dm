@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/OpenFire()
 	if(!punched)
 		SleepyDart()
-		addtimer(CALLBACK (src, .proc/OpenFire), 6 SECONDS)
+		addtimer(CALLBACK (src, .proc/OpenFire), 12 SECONDS)
 	else
 		Crow()
 		addtimer(CALLBACK (src, .proc/OpenFire), 8 SECONDS)
@@ -61,13 +61,12 @@
 	if(!LAZYLEN(possibletargets))
 		return
 	playsound(get_turf(src), 'sound/magic/staff_change.ogg', 100, 0, 12)
-	for(var/i = 1 to 4)
-		var/obj/projectile/P = new /obj/projectile/sleepdart(get_turf(src))
-		P.firer = src
-		target = pick(possibletargets)
-		P.original = target
-		P.fire(Get_Angle(src, target))
-		target = null
+	var/obj/projectile/P = new /obj/projectile/sleepdart(get_turf(src))
+	P.firer = src
+	target = pick(possibletargets)
+	P.original = target
+	P.fire(Get_Angle(src, target))
+	target = null
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Crow()
 	playsound(get_turf(src), 'sound/magic/staff_change.ogg', 100, 0, 12)
