@@ -51,7 +51,7 @@
 	//Heal everyone and reset the bit calculator
 	if(bitcalculator == input && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(30)
+			H.adjustSanityLoss(10)
 			to_chat(H, "<span class='notice'>You feel a pleasant sound.</span>")
 
 	//If you fuck it up
