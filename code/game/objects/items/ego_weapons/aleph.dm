@@ -519,7 +519,10 @@
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
 							)
 	var/canaoe
 
