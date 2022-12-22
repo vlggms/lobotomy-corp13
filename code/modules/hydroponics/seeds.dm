@@ -158,12 +158,7 @@
 	adjust_weed_rate(rand(-wrmut, wrmut))
 	adjust_weed_chance(rand(-wcmut, wcmut))
 	if(prob(traitmut))
-		if(prob(50))
-			add_random_traits(1, 1)
-		else
-			add_random_reagents(1, 1)
-
-
+		add_random_traits(1, 1)
 
 /obj/item/seeds/bullet_act(obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
 	if(istype(Proj, /obj/projectile/energy/florayield))
