@@ -4,7 +4,7 @@
 	I come from the end, and I am here to stay for but a moment.\""
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
-	force = 60
+	force = 70
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
@@ -18,7 +18,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 60
+	var/ranged_damage = 70
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)

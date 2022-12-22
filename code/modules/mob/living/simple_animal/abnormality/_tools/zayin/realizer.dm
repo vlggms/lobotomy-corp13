@@ -1,87 +1,68 @@
 /obj/structure/toolabnormality/realization
-	name = "realization engine V1"
-	desc = "A strange artifact."
+	name = "realization engine"
+	desc = "An artifact used to find true potential within certains items."
 	icon_state = "realization"
-	var/output
-	var/realized = list()
-	var/stat_total
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/static/realized_users = list()
+	/// Assoc list 'input = output'
+	var/list/output = list(
+		// ZAYIN
+		/obj/item/clothing/suit/armor/ego_gear/penitence = /obj/item/clothing/suit/armor/ego_gear/realization/confessional,
+		/obj/item/storage/book/bible = /obj/item/clothing/suit/armor/ego_gear/realization/prophet, // TEMPORARY
+		// TETH
+		/obj/item/clothing/suit/armor/ego_gear/beak = /obj/item/clothing/suit/armor/ego_gear/realization/mouth,
+		/obj/item/clothing/suit/armor/ego_gear/fragment = /obj/item/clothing/suit/armor/ego_gear/realization/universe,
+		/obj/item/clothing/suit/armor/ego_gear/eyes = /obj/item/clothing/suit/armor/ego_gear/realization/death,
+		/obj/item/clothing/suit/armor/ego_gear/daredevil = /obj/item/clothing/suit/armor/ego_gear/realization/fear,
+		/obj/item/clothing/suit/armor/ego_gear/wrist = /obj/item/clothing/suit/armor/ego_gear/realization/exsanguination,
+		// HE
+		/obj/item/clothing/suit/armor/ego_gear/grinder = /obj/item/clothing/suit/armor/ego_gear/realization/grinder,
+		/obj/item/clothing/suit/armor/ego_gear/magicbullet = /obj/item/clothing/suit/armor/ego_gear/realization/bigiron,
+		/obj/item/clothing/suit/armor/ego_gear/solemnlament = /obj/item/clothing/suit/armor/ego_gear/realization/eulogy,
+		// WAW
+		/obj/item/clothing/suit/armor/ego_gear/goldrush = /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience,
+		/obj/item/clothing/suit/armor/ego_gear/lamp = /obj/item/clothing/suit/armor/ego_gear/realization/eyes,
+		/obj/item/clothing/suit/armor/ego_gear/oppression = /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
+		/obj/item/clothing/suit/armor/ego_gear/executive = /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,
+		// ALEPH
+		/obj/item/clothing/suit/armor/ego_gear/da_capo = /obj/item/clothing/suit/armor/ego_gear/realization/alcoda,
+		/obj/item/clothing/suit/armor/ego_gear/justitia = /obj/item/clothing/suit/armor/ego_gear/realization/head,
+		/obj/item/clothing/suit/armor/ego_gear/smile = /obj/item/clothing/suit/armor/ego_gear/realization/laughter,
+		// Other
+		/obj/item/ego_weapon/paradise = /obj/item/toy/plush/ayin, // He-he
+		/obj/item/toy/plush/hokma = /obj/item/toy/plush/benjamin,
+		/obj/item/toy/plush/angela = /obj/item/toy/plush/carmen,
+		)
 
 /obj/structure/toolabnormality/realization/attackby(obj/item/I, mob/living/carbon/human/user)
-	..()
-	output = null
-	stat_total = 0
-
-	if(user.ckey in realized)
-		to_chat(user, "<span class='nicegreen'>You have realized your full potential already.</span>")
+	. = ..()
+	if(!ishuman(user))
 		return
 
-	for(var/attribute in stats)
+	if(!(I.type in output))
+		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized.</span>")
+		return
+
+	if(user.ckey in realized_users)
+		to_chat(user, "<span class='warning'>You have realized your full potential already.</span>")
+		return
+
+	var/stat_total = 0
+	for(var/attribute in user.attributes)
 		stat_total += get_raw_level(user, attribute)
 
-	if(stat_total <= 500) //EX agents only. All armor requires 130, but I'll let you get it a little early.
-		to_chat(user, "<span class='userdanger'>You are too weak to use this machine.</span>")
+	if(stat_total <= 500) // ~125 in all stats required
+		to_chat(user, "<span class='warning'>You are too weak to use this machine.</span>")
 		return
 
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/goldrush))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience
+	var/atom/item_out = output[I.type]
+	to_chat(user, "<span class='notice'>The machine is slowly turning [I] into [initial(item_out.name)]...</span>")
+	if(!do_after(user, 5 SECONDS))
+		return
 
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/magicbullet))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/bigiron
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/grinder))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/grinder
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/da_capo))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/alcoda
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/wrist))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/exsanguination
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/solemnlament))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/eulogy
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/eyes))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/death
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/penitence))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/confessional
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/fragment))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/universe
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/beak))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/mouth
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/lamp))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/eyes
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/justitia))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/head
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/daredevil))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/fear
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/executive))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/capitalism
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/smile))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/laughter
-
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/oppression))
-		output = /obj/item/clothing/suit/armor/ego_gear/realization/cruelty
-
-	if(output)
-		qdel(I)
-		realized += user.ckey
-		var/location = get_turf(user)
-		new output(location)
-		to_chat(user, "<span class='nicegreen'>You realize your full potential.</span>")
-		user.adjust_all_attribute_levels(-30)
-
-	else
-		to_chat(user, "<span class='userdanger'>This armor is incompatible with the engine.</span>")
-
+	qdel(I)
+	realized_users |= user.ckey
+	user.adjust_all_attribute_levels(-10)
+	var/atom/new_item = new item_out(get_turf(user))
+	user.put_in_hands(new_item)
+	to_chat(user, "<span class='nicegreen'>You retrieve [new_item] from the [src]!</span>")
+	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)

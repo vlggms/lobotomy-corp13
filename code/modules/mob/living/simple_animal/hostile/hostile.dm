@@ -112,6 +112,17 @@
 	. = ..()
 	move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
 
+/mob/living/simple_animal/hostile/proc/SpeedChange(amount = 0)
+	move_to_delay += amount
+
+/mob/living/simple_animal/hostile/proc/TemporarySpeedChange(amount = 0, time = 0)
+	if(time <= 0)
+		return
+	if(amount == 0)
+		return
+	SpeedChange(amount)
+	addtimer(CALLBACK(src, .proc/SpeedChange, -amount), time) // Reset the speed to previous value
+
 /mob/living/simple_animal/hostile/proc/sidestep()
 	if(!target || !isturf(target.loc) || !isturf(loc) || stat == DEAD)
 		return
