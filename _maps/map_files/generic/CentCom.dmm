@@ -5092,7 +5092,6 @@
 /area/centcom/supply)
 "Bw" = (
 /obj/structure/chair/office,
-/obj/item/toy/plush/ayin,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "Bx" = (
