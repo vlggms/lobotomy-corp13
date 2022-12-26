@@ -27,12 +27,14 @@
 	var/attachment_mod = 0
 	var/repression_mod = 0
 	var/locked = FALSE
+	var/visible = TRUE
 	var/mob/living/carbon/human/owner
 	var/datum/abnormality/datum_reference = null
 
 /datum/ego_gifts/proc/Initialize(mob/living/carbon/human/user)
 	user.ego_gift_list[src.slot] = src
 	user.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+	visible = TRUE
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, src.temperance_bonus)
@@ -62,6 +64,12 @@
 		if("lock")
 			locked = locked ? FALSE : TRUE
 			owner.ShowGifts()
+		if("hide")
+			if(visible)
+				owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			else
+				owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			visible = !visible
 		if("dissolve")
 			var/datum/ego_gifts/empty/E = new
 			E.slot = src.slot
