@@ -285,7 +285,7 @@
 				Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	fire_delay = 50
+	fire_delay = 55 //5 less than the Rend Armor status effect
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
