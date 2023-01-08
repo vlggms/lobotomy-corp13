@@ -1,6 +1,192 @@
 //traits with no real impact that can be taken freely
 //MAKE SURE THESE DO NOT MAJORLY IMPACT GAMEPLAY. those should be positive or negative traits.
 
+/datum/quirk/nerd
+	name = "Nerd"
+	desc = "You take 5% less white damage, but take 10% more red damage in return. You gained this superpower by spending all your free time reading anime comics instead of training to not be killed."
+	value = 0
+	gain_text = "<span class='notice'>You feel nervous about leaving your anime books home.</span>"
+	medical_record_text = "This patient is a NEEEEEEEEEEEEEEEEERD, feel free to take a tooth or two outta their jaw if they annoy you. - Dr. Bright"
+
+/datum/quirk/resistant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.red_mod += 0.1
+	H.physiology.white_mod -= 0.05
+
+/datum/quirk/brawler
+	name = "Brawler"
+	desc = "You take 5% less red damage, but take 10% more white damage in return. You never went to school but instead chose to train to be the best fixer in the future that you could be."
+	value = 0
+	gain_text = "<span class='notice'>You feel ready to chew ass and kick bubblegum.</span>"
+	medical_record_text = "This patient is a little bit tougher physically than average people."
+
+/datum/quirk/resistant/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.red_mod -= 0.05
+	H.physiology.white_mod += 0.1
+
+// Special quirks end
+
+/datum/quirk/nearsighted //t. errorage
+	name = "Nearsighted"
+	desc = "You are nearsighted without prescription glasses, but spawn with a pair."
+	value = 0
+	gain_text = "<span class='danger'>Things far away from you start looking blurry.</span>"
+	lose_text = "<span class='notice'>You start seeing faraway things normally again.</span>"
+	medical_record_text = "Patient requires prescription glasses in order to counteract nearsightedness."
+
+/datum/quirk/nearsighted/add()
+	quirk_holder.become_nearsighted(ROUNDSTART_TRAIT)
+
+/datum/quirk/nearsighted/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
+	if(!H.equip_to_slot_if_possible(glasses, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE))
+		H.put_in_hands(glasses)
+
+/datum/quirk/pushover
+	name = "Pushover"
+	desc = "Your first instinct is always to let people push you around. Resisting out of grabs will take conscious effort."
+	value = 0
+	mob_trait = TRAIT_GRABWEAKNESS
+	gain_text = "<span class='danger'>You feel like a pushover.</span>"
+	lose_text = "<span class='notice'>You feel like standing up for yourself.</span>"
+	medical_record_text = "Patient presents a notably unassertive personality and is easy to manipulate."
+
+/datum/quirk/family_heirloom
+	name = "Family Heirloom"
+	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
+	value = 0
+	var/obj/item/heirloom
+	var/where
+	medical_record_text = "This patient takes their family heirloom everywhere."
+
+/datum/quirk/family_heirloom/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/heirloom_type
+
+	if(ismoth(H) && prob(50))
+		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
+	else
+		switch(quirk_holder.mind.assigned_role)
+			//Command
+			if("Manager")
+				heirloom_type = pick(/obj/item/toy/plush/angela)
+			if("Extraction Officer")
+				heirloom_type = pick(/obj/item/toy/plush/binah)
+			if("Records Officer")
+				heirloom_type = pick(/obj/item/toy/plush/hokma)
+			if("Agent Captain")
+				heirloom_type = pick(/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind)
+			//Common folk
+			if("Veteran Agent")
+				heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt, /obj/item/toy/plush/moth)
+			if("Senior Agent")
+				heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
+			if("Agent")
+				heirloom_type = pick(/obj/item/clothing/accessory/armband/lobotomy, /obj/item/clothing/accessory/armband/lobotomy/training, /obj/item/clothing/accessory/armband/lobotomy/safety, /obj/item/clothing/accessory/armband/lobotomy/command, /obj/item/clothing/accessory/armband/lobotomy/info, /obj/item/clothing/accessory/armband/lobotomy/discipline)
+			if("Agent Intern")
+				heirloom_type = pick(/obj/item/paper/guides/jobs/zayin/guide)
+			if("Clerk")
+				heirloom_type = pick(/obj/item/toy/crayon/spraycan/infinite)
+			//Technically un-obtainable, but im adding them anyway because why not.
+			if("Rabbit Team Leader")
+				heirloom_type = pick(/obj/item/toy/plush/myo)
+			if("Rabbit Team")
+				heirloom_type = pick(/obj/item/toy/plush/rabbit)
+			//Today im giving a GUN to HOD, lets see what happens :)
+			if("Sephirah")
+				heirloom_type = pick(/obj/item/gun/ego_gun/clerk)
+
+	if(!heirloom_type)
+		heirloom_type = pick(
+		/obj/item/toy/cards/deck,
+		/obj/item/lighter,
+		/obj/item/dice/d20)
+	heirloom = new heirloom_type(get_turf(quirk_holder))
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+/datum/quirk/family_heirloom/post_add()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
+
+	var/list/names = splittext(quirk_holder.real_name, " ")
+	var/family_name = names[names.len]
+
+	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
+
+/datum/quirk/empath
+	name = "Empath"
+	desc = "Whether it's a sixth sense or careful study of body language, it only takes you a quick glance at someone to understand how they feel."
+	value = 0
+	mob_trait = TRAIT_EMPATH
+	gain_text = "<span class='notice'>You feel in tune with those around you.</span>"
+	lose_text = "<span class='danger'>You feel isolated from others.</span>"
+	medical_record_text = "Patient is highly perceptive of and sensitive to social cues, or may possibly have ESP. Further testing needed."
+
+/datum/quirk/light_drinker
+	name = "Light Drinker"
+	desc = "You just can't handle your drinks and get drunk very quickly."
+	value = 0
+	mob_trait = TRAIT_LIGHT_DRINKER
+	gain_text = "<span class='notice'>Just the thought of drinking alcohol makes your head spin.</span>"
+	lose_text = "<span class='danger'>You're no longer severely affected by alcohol.</span>"
+	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
+	hardcore_value = 3
+
+/datum/quirk/bad_touch
+	name = "Bad Touch"
+	desc = "You don't like hugs. You'd really prefer if people just left you alone."
+	mob_trait = TRAIT_BADTOUCH
+	value = 0
+	gain_text = "<span class='danger'>You just want people to leave you alone.</span>"
+	lose_text = "<span class='notice'>You could use a big hug.</span>"
+	medical_record_text = "Patient has disdain for being touched. Potentially has undiagnosed haphephobia."
+
+/datum/quirk/bad_touch/add()
+	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT), .proc/uncomfortable_touch)
+
+/datum/quirk/bad_touch/remove()
+	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT))
+
+/datum/quirk/bad_touch/proc/uncomfortable_touch()
+	SIGNAL_HANDLER
+
+	new /obj/effect/temp_visual/annoyed(quirk_holder.loc)
+	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
+	if(mood.sanity <= SANITY_NEUTRAL)
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/very_bad_touch)
+	else
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/bad_touch)
+
+/datum/quirk/friendly
+	name = "Friendly"
+	desc = "You give the best hugs, even if they dont matter in this bloodshed enviroment."
+	value = 0
+	mob_trait = TRAIT_FRIENDLY
+	gain_text = "<span class='notice'>You want to hug someone.</span>"
+	lose_text = "<span class='danger'>You no longer feel compelled to hug others.</span>"
+	medical_record_text = "Patient demonstrates low-inhibitions for physical contact and well-developed arms. Requesting another doctor take over this case."
+
+/datum/quirk/badback
+	name = "Bad Back"
+	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
+	value = 0
+	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
+	lose_text = "<span class='notice'>Your back feels better.</span>"
+	medical_record_text = "Patient scans indicate severe and chronic back pain."
+
+/datum/quirk/badback/on_process()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(H.back && istype(H.back, /obj/item/storage/backpack))
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "back_pain", /datum/mood_event/back_pain)
+	else
+		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
+
 /datum/quirk/extrovert
 	name = "Extrovert"
 	desc = "You are energized by talking to others, and enjoy spending your free time in the bar."
