@@ -423,7 +423,6 @@
 		"NOTICE: Employees preforming repression work to destroy D-04-108's flowers prevented the transformation of employees who were transforming into D-04-108-1.") //yes i did put this hint in twice.
 
 //Dream of Black Swan
-//Parasite Tree
 /obj/item/paper/fluff/info/waw/black_swan
 	abno_type = /mob/living/simple_animal/hostile/abnormality/black_swan
 	abno_code = "F-02-70"
@@ -569,3 +568,12 @@
 	)
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Very High"
+	
+//Burrowing Heaven
+/obj/item/paper/fluff/info/waw/heaven
+	abno_type = /mob/living/simple_animal/hostile/abnormality/burrowingheaven
+	abno_code = "O-04-72"
+	abno_info = list(
+		"Work with The Burrowing Heaven must proceed while the Containment Unit is viewable by more than two people.",
+		"Commencing work while in the view of only one person will cause The Burrowing Heaven's counter to decrease.",
+		"Burrowing Heaven must be attacked with another abnormality in sight.",)
