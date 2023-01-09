@@ -1,11 +1,11 @@
 /mob/living/simple_animal/hostile/abnormality/schadenfreude
 	name = "Schadenfreude"
 	desc = "A box with a keyhole. You don't want to know what's inside."
-	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "schadenfreude"
 	icon_living = "schadenfreude"
-	pixel_x = -8
-	base_pixel_x = -8
+	pixel_x = -16
+	base_pixel_x = -16
 	del_on_death = TRUE
 	maxHealth = 1800		//It's fucking slow as hell, and you can beat it to death if you're alone for free
 	health = 1800
