@@ -241,4 +241,13 @@
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	inuse = FALSE
 
-
+/obj/item/ego_weapon/mini/bean
+	name = "magic bean"
+	desc = "...We may never find out what lies at the top, but perhaps those who made it are doing well up there."
+	icon_state = "bean"
+	force = 20
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'

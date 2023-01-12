@@ -411,3 +411,21 @@
 	<h4>Black Resistance:</h4> Endured	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
 
+//Beanstalk without Jack
+/obj/item/paper/fluff/info/teth/beanstalk
+	name = "F-03-16"
+	info = {"<h1><center>F-03-16</center></h1>	<br>
+	Name : Beanstalk without Jack	<br>
+	Risk Class : Teth	<br>
+	Max PE Boxes : 12	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate/Extreme	<br>
+	- When an Agent with Level 1 Temperance and Prudence completed the work, they climbed up the beanstalk and were never seen again.	<br>
+	- Upon attempting an Instinct work with level 4 Fortitude or above, the Agent climbed up the beanstalk willingly.	<br>
+	- No agent has ever returned from the top of the beanstalk, if it even has the concept of a top.	<br>
+	<br>
+	<h4>Instinct:</h4> Low/Very Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>"}

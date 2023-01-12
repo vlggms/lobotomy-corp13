@@ -265,6 +265,13 @@
 	temperance_bonus = -2
 	slot = HAT
 
+/datum/ego_gifts/bean
+	name = "Magic Bean"
+	icon_state = "bean"
+	prudence_bonus = 2
+	temperance_bonus = 2
+	slot = HAT
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
