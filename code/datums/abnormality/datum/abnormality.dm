@@ -170,8 +170,11 @@
 	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-	if(attribute_given == 0 && was_melting)
-		attribute_given = 2 //pity stats on meltdowns
+	if(attribute_given == 0)
+		if(was_melting)
+			attribute_given = 2 //pity stats on meltdowns
+		else
+			to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
 	user.adjust_attribute_level(attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
