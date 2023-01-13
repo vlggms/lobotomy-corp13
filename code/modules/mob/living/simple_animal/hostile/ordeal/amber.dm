@@ -20,8 +20,8 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 1)
+	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	..()
@@ -81,8 +81,8 @@
 	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 3)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/worm = 2)
+	butcher_results = list(/obj/item/food/meat/slab/worm = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 2)
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'

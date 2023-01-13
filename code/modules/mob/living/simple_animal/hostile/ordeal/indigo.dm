@@ -14,8 +14,8 @@
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 10
 	melee_damage_upper = 12
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -58,8 +58,8 @@
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -128,8 +128,8 @@
 	rapid_melee = 1
 	melee_damage_lower = 13
 	melee_damage_upper = 17
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -222,8 +222,8 @@
 	melee_damage_lower = 60
 	melee_damage_upper = 60
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 4)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 3)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 4)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 3)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'

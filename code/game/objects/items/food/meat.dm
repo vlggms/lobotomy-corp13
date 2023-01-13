@@ -598,38 +598,6 @@
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC
 
-/obj/item/food/meat/slab/human/mutant/sweeper
-	name = "meat slurry"
-	desc = "Cobalt metal holding the liquified remains of a human, it smells rancid. It has the taste and texture of Surströmming."
-	icon_state = "sweepermeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
-	tastes = list("tender meat" = 1, "metal" = 1)
-	foodtypes = MEAT | RAW | GROSS
-
-/obj/item/food/meat/slab/human/mutant/fruit
-	name = "curious meat"
-	desc = "Wretched rubbery meat cut from a gigantic heart. It tastes of anxiety and has the texture of uncooked squid."
-	icon_state = "fruitmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
-	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
-	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
-
-/obj/item/food/meat/slab/human/mutant/worm
-	name = "perfect meat"
-	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of spoiled jelly."
-	icon_state = "wormmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
-	tastes = list("slime" = 1, "jelly" = 1)
-	foodtypes = MEAT | RAW | TOXIC | GROSS
-
-/obj/item/food/meat/slab/human/mutant/robot
-	name = "nihilist component"
-	desc = "Ancient metal, filaments and cogwheels, all absolutely ruined. It tastes of metal and has the texture of metal. Its metal."
-	icon_state = "robotmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
-	tastes = list("metal" = 1)
-	foodtypes = MEAT | RAW | GROSS
-
 /obj/item/food/meat/slab/human/mutant/golem
 	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future."
@@ -929,6 +897,45 @@
 /obj/item/food/meat/slab/chicken/Initialize()
 	. = ..()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CHICKEN, CELL_VIRUS_TABLE_GENERIC_MOB)
+
+/obj/item/food/meat/slab/sweeper
+	name = "meat slurry"
+	desc = "Cobalt metal holding the liquified remains of a human, it smells rancid. It has the taste and texture of Surströmming."
+	icon_state = "sweepermeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tender meat" = 1, "metal" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/fruit
+	name = "curious meat"
+	desc = "Wretched rubbery meat cut from a gigantic heart. It tastes of anxiety and has the texture of uncooked squid."
+	icon_state = "fruitmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
+	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
+	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
+
+/obj/item/food/meat/slab/fruit/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/violet, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
+/obj/item/food/meat/slab/worm
+	name = "perfect meat"
+	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of spoiled jelly."
+	icon_state = "wormmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/yuck = 5)
+	tastes = list("slime" = 1, "jelly" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+/obj/item/food/meat/slab/worm/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/amber, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
+/obj/item/food/meat/slab/robot
+	name = "nihilist component"
+	desc = "Ancient metal, filaments and cogwheels, all absolutely ruined. It tastes of metal and has the texture of metal. Its metal."
+	icon_state = "robotmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
+	tastes = list("metal" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak
@@ -1026,6 +1033,20 @@
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
 	icon_state = "meatsteak_old"
 	tastes = list("meat" = 4, "cryoxandone" = 1)
+
+/obj/item/food/meat/steak/violet
+	name = "violet steak"
+	desc = "The most edible part of the violet ordeals, cooking it seems to have removed the glyphs."
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/lithium = 4)
+	icon_state = "violetsteak"
+	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1)
+
+/obj/item/food/meat/steak/amber
+	name = "amber steak"
+	desc = "Preparing the amber meat expresses the sophistication and control that the amber worms lacked."
+	icon_state = "ambersteak"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/organ_tissue = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
+	tastes = list("crab" = 1, "crunchy" = 1, "status quo" = 1)
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 

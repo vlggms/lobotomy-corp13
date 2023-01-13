@@ -19,8 +19,8 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
+	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
@@ -108,8 +108,8 @@
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 1)
+	butcher_results = list(/obj/item/food/meat/slab/robot = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -194,8 +194,8 @@
 	maxHealth = 2500
 	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 3)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/robot = 2)
+	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 
 	var/spawn_progress = 18
 	var/list/spawned_mobs = list()
