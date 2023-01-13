@@ -760,3 +760,12 @@
 		var/image/intent_icon = image(icon,src,"combo_[intent_text]")
 		intent_icon.pixel_x = 16 * (i - 1) - 8 * length(streak)
 		add_overlay(intent_icon)
+
+/atom/movable/screen/balance
+	name = "corruption_balance"
+	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
+	icon_state = "balanced"
+	screen_loc = ui_mood
+
+/atom/movable/screen/mood/attack_tk()
+	return
