@@ -51,7 +51,7 @@
 
 // Dingle-Dangle - Dear Lutemia
 /datum/ego_datum/weapon/lutemia
-	item_path = /obj/item/ego_weapon/lutemia
+	item_path = /obj/item/ego_weapon/shield/lutemia
 	cost = 20
 
 /datum/ego_datum/armor/lutemia
