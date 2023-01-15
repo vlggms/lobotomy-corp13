@@ -92,7 +92,7 @@
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()
-	if(busy || teleport_cooldown > world.time)
+	if(busy || teleport_cooldown > world.time || (status_flags & GODMODE))
 		return
 	teleport_cooldown = world.time + 4.9 SECONDS
 	//set busy, animate and call the proc that actually teleports.
@@ -133,6 +133,7 @@
 	switch(chosen_attack)
 		if(1)
 			var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+			busy = TRUE
 			charge(dir_to_target, 0, target)
 	return
 
