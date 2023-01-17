@@ -39,7 +39,7 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 
-/obj/item/ego_weapon/lutemia
+/obj/item/ego_weapon/shield/lutemia
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
@@ -49,6 +49,17 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	reductions = list(20, 20, 20, 0, 1)
+	recovery_time = 0 SECONDS //No ranged parry
+	block_time = 0.5 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/weapons/parry.ogg'
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	reposition_message = "You rearm your blade."
+
+/obj/item/ego_weapon/shield/lutemia/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	return 0 //Prevents ranged  parry
 
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
