@@ -99,6 +99,10 @@
 	item_path = /obj/item/ego_weapon/courage
 	cost = 35
 
+/datum/ego_datum/weapon/bravery
+	item_path = /obj/item/ego_weapon/shield/bravery
+	cost = 35
+
 //Porccubus - Pleasure
 /datum/ego_datum/armor/pleasure
 	item_path = /obj/item/clothing/suit/armor/ego_gear/pleasure

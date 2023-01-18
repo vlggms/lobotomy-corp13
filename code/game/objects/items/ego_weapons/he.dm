@@ -474,6 +474,52 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/shield/bravery
+	name = "bravery"
+	desc = "Together we are unstoppable."
+	special = "This weapon has a slow attack speed and deals atrocious damage.	\
+			Block for longer when surrounded by allies."
+	icon_state = "bravery"
+	force = 20
+	attack_speed = 3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("shoves", "bashes")
+	attack_verb_simple = list("shove", "bash")
+	hitsound = 'sound/weapons/bite.ogg'
+	reductions = list(60, 30, 30, 20, 1)
+	recovery_time = 3 SECONDS
+	block_time = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
+	block_recovery = 5 SECONDS //always 6 seconds total before blocking again
+	block_sound = 'sound/abnormalities/scaredycat/cateleport.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/shield/bravery/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	var/friend_count = 0
+	for(var/mob/living/carbon/human/friend in oview(user, 10))
+		if(friend_count > 4)
+			break
+		if(friend.ckey && friend.stat != DEAD && friend != user)
+			block_time += 0.5 SECONDS
+			block_recovery -= 0.5 SECONDS
+			friend_count++
+	if(!friend_count && icon_state == "bravery")
+		to_chat(user, "<span class='warning'>Your weapon cowers in your hand!")
+		icon_state = "bravery_broken"
+		playsound(src, 'sound/abnormalities/scaredycat/catchange.ogg', 25, FALSE, 4)
+	else if(friend_count && icon_state == "bravery_broken")
+		to_chat(user, "<span class='nicegreen'>Your weapon puffs back up to impress your allies!")
+		icon_state = "bravery"
+		playsound(src, 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, FALSE, 4)
+	user.update_icon_state()
+	..()
+	block_time = initial(block_time)
+	block_recovery = initial(block_recovery)
+
 /obj/item/ego_weapon/pleasure
 	name = "pleasure"
 	desc = "If the goal of life is happiness, does it really matter how we get it?"
