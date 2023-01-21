@@ -1,6 +1,6 @@
 /obj/projectile/ego_bullet/ego_tough
 	name = "9mm tough bullet"
-	damage = 8
+	damage = 10 // Being bald is the optimal gameplay choice!
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 

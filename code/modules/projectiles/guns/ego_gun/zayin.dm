@@ -13,14 +13,14 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/tough/SpecialEgoCheck(mob/living/carbon/human/H)
-	if(H.hairstyle in list("Bald", "Shaved"))
+/obj/item/gun/ego_gun/pistol/tough/SpecialEgoCheck(mob/living/carbon/human/H)
+	if(HAS_TRAIT(H, TRAIT_BALD))
 		return TRUE
-	to_chat(H, "<span class='notice'>Only the ones with clean hairstyle can use [src]!</span>")
+	to_chat(H, "<span class='notice'>Only the ones with dedication to clean hairstyle can use [src]!</span>")
 	return FALSE
 
-/obj/item/gun/ego_gun/tough/SpecialGearRequirements()
-	return "\n<span class='warning'>The user must have bald or shaved hair.</span>"
+/obj/item/gun/ego_gun/pistol/tough/SpecialGearRequirements()
+	return "\n<span class='warning'>The user must have clean hairstyle.</span>"
 
 /obj/item/gun/ego_gun/pistol/soda
 	name = "soda pistol"

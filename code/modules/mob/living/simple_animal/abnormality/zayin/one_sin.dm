@@ -27,9 +27,9 @@
 	gift_message = "From this day forth, you shall never forget his words."
 
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
-	. = ..()
-	if (istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
+	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
 		return chance + 10
+	return chance
 
 /mob/living/simple_animal/hostile/abnormality/onesin/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Confess")
@@ -66,14 +66,18 @@
 			if(M.client)
 				M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)
 		return
-	if (prob(5)) // Will be 5%
-		user.Apply_Gift(new /datum/ego_gifts/penitence)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	user.adjustSanityLoss(30) // It's healing
+	user.adjustSanityLoss(user.maxSanity * 0.5) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(30)
-	..()
-
+			if(H.z != z)
+				continue
+			if(H == user)
+				continue
+			var/heal_factor = 0.5
+			if(H.sanity_lost)
+				heal_factor = 0.25
+			H.adjustSanityLoss(H.maxSanity * heal_factor)
+	return ..()

@@ -31,7 +31,7 @@
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
 		if(ABNORMALITY_WORK_INSIGHT)
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
-		if(ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
+		else
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
 	if(!dropped_can)
 		return
