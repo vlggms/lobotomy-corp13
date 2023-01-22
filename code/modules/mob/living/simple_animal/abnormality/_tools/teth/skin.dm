@@ -7,32 +7,44 @@
 
 /obj/structure/toolabnormality/skin/attack_hand(mob/living/carbon/human/user)
 	..()
-	if(do_after(user, 6))
-		if(get_level_buff(user, PRUDENCE_ATTRIBUTE) >= 100)
-			to_chat(user, "<span class='userdanger'>You've learned all that you could.</span>")
-			return	//You don't need any more.
-		user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	if(!do_after(user, 6))
+		return
+	if(get_level_buff(user, PRUDENCE_ATTRIBUTE) >= 100)
+		to_chat(user, "<span class='notice'>You've learned all that you could.</span>")
+		return //You don't need any more.
 
-		if(!(user in readers))
-			readers+= user
-		else
-			user.physiology.white_mod *= 1.15
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	if(!(user in readers))
+		readers += user
+	else
+		user.physiology.white_mod *= 1.15
 
-		user.apply_status_effect(STATUS_EFFECT_SKIN)
-		to_chat(user, "<span class='userdanger'>You read the book, and take the time to burn these passages into your brain.</span>")
+	user.apply_status_effect(STATUS_EFFECT_SKIN)
+	to_chat(user, "<span class='userdanger'>You read the book, and take the time to burn these passages into your brain.</span>")
 
-//SKIN
-//this keeps track of dying
+// Status Effect
 /datum/status_effect/skin
 	id = "skin"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 	alert_type = null
 
-/datum/status_effect/skin/tick()
+/datum/status_effect/skin/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_HUMAN_INSANE, .proc/UserInsane)
+
+/datum/status_effect/skin/on_remove()
+	. = ..()
+	UnregisterSignal(owner, COMSIG_HUMAN_INSANE)
+
+/datum/status_effect/skin/proc/UserInsane()
 	var/mob/living/carbon/human/H = owner
-	if(H.sanity_lost)
-		new /obj/effect/temp_visual/dir_setting/cult/phase/out(get_turf(H))
-		QDEL_IN(H, 5)
+	if(!istype(H))
+		return
+	new /obj/effect/temp_visual/dir_setting/cult/phase/out(get_turf(H))
+	H.emote("scream")
+	H.death()
+	animate(H, alpha = 0, time = 5)
+	QDEL_IN(H, 5)
 
 #undef STATUS_EFFECT_SKIN
