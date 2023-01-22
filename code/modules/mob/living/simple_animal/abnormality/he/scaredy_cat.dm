@@ -37,6 +37,7 @@
 	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
+		/datum/ego_datum/weapon/bravery,
 		/datum/ego_datum/armor/courage
 		)
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
