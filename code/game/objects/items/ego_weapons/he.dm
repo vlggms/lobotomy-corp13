@@ -42,39 +42,35 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
 							)
-	var/can_spin = TRUE
-
-/obj/item/ego_weapon/harvest/attack(mob/living/target, mob/living/user)
-	..()
-	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 12)
-
-/obj/item/ego_weapon/harvest/proc/spin_reset()
-	can_spin = TRUE
+	var/spin_cooldown
+	var/spin_cooldown_time = 5 SECONDS
+	var/spin_delay = 1 SECONDS
+	var/spin_checks_faction = TRUE
+	/// Damage before justice buff
+	var/spin_damage = 30
 
 /obj/item/ego_weapon/harvest/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
-	if(!can_spin)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+	if(spin_cooldown > world.time)
+		to_chat(user,"<span class='warning'>You performed special attack too recently!</span>")
 		return
-	can_spin = FALSE
-	if(do_after(user, 12))
-		addtimer(CALLBACK(src, .proc/spin_reset), 12)
-		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
-		for(var/turf/T in orange(1, user))
-			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in livinginrange(1, user))
-			var/aoe = 30
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			aoe*=justicemod
-			if(L == user || ishuman(L))
-				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-
-
+	spin_cooldown = world.time + spin_delay // In case attack does not go through
+	if(!do_after(user, spin_delay))
+		return
+	spin_cooldown = world.time + spin_cooldown_time
+	playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE)
+	for(var/turf/T in range(1, user))
+		new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in range(1, user))
+		if(L == user)
+			continue
+		if(spin_checks_faction && user.faction_check_mob(L))
+			continue
+		var/userjust = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+		var/spin_damage_final = spin_damage * (1 + userjust/100)
+		L.apply_damage(spin_damage_final, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
@@ -594,7 +590,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-							
+
 /obj/item/ego_weapon/shield/giant
 	name = "giant"
 	desc = "I'll grind your bones to make my bread!"
