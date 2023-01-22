@@ -51,8 +51,7 @@
 			work_damage_amount = 7
 			climbing = FALSE
 			return
-			
-	if(climbing == TRUE && !user.sanity_lost && (!user.stat == HARD_CRIT) && (!user.stat == DEAD))
+
 		user.Stun(3 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
@@ -74,5 +73,5 @@
 /datum/ego_gifts/giant
 	name = "Giant"
 	icon_state = "giant"
-	fortitude_bonus = 10
+	fortitude_bonus = 8
 	slot = LEFTBACK
