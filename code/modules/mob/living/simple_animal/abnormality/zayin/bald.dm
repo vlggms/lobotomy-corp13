@@ -25,15 +25,17 @@
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
 
-	var/list/balding_list = list(
-							"Bald"
-							)
 	var/bald_users = list()
 
 /mob/living/simple_animal/hostile/abnormality/bald/WorkChance(mob/living/carbon/human/user, chance)
-	if(user.hairstyle in balding_list)
+	if(HAS_TRAIT(user, TRAIT_BALD))
 		return 95
 	return chance
+
+/mob/living/simple_animal/hostile/abnormality/bald/WorktickSuccess(mob/living/carbon/human/user)
+	if(HAS_TRAIT(user, TRAIT_BALD))
+		user.adjustSanityLoss(user.maxSanity * 0.05) // Half of sanity restored for bald people
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bald/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!do_bald(user)) // Already bald
@@ -42,12 +44,12 @@
 	update_icon()
 	switch(length(bald_users))
 		if(2)
-			for(var/mob/living/carbon/human/H in range(14, user))
-				if(prob(33))
+			for(var/mob/living/carbon/human/H in livinginrange(18, user))
+				if(prob(35))
 					do_bald(H)
 		if(4)
-			for(var/mob/living/carbon/human/H in range(28, user))
-				if(prob(66))
+			for(var/mob/living/carbon/human/H in livinginrange(36, user))
+				if(prob(35))
 					do_bald(H)
 		if(6) // Everyone is bald! Awesome!
 			for(var/mob/living/carbon/human/H in GLOB.human_list)
@@ -55,10 +57,10 @@
 					do_bald(H)
 
 /mob/living/simple_animal/hostile/abnormality/bald/proc/do_bald(mob/living/carbon/human/victim)
-	if(!(victim.hairstyle in balding_list))
+	if(!HAS_TRAIT(victim, TRAIT_BALD))
 		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
-		victim.hairstyle = pick(balding_list)
+		victim.hairstyle = "Bald"
 		victim.update_hair()
 		return TRUE
 	return FALSE

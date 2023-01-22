@@ -10,12 +10,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	var/obj/item/ammo_casing/ammo_type
-	var/list/attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 0,
-							PRUDENCE_ATTRIBUTE = 0,
-							TEMPERANCE_ATTRIBUTE = 0,
-							JUSTICE_ATTRIBUTE = 0
-							)
+	var/list/attribute_requirements = list()
 	var/special
 	var/autofire	//In Rounds per second
 
