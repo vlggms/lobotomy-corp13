@@ -31,7 +31,6 @@ First things first, we want to make it clear how you can contribute (if you've n
 TeguStation doesn't have a list of goals and features to add; we instead allow freedom for contributors to suggest and create their ideas for the game. That doesn't mean we aren't determined to squash bugs, which unfortunately pop up a lot due to the deep complexity of the game. Here are some useful starting guides, if you want to contribute or if you want to know what challenges you can tackle with zero knowledge about the game's code structure.
 
 If you want to contribute the first thing you'll need to do is [set up Git](http://tgstation13.org/wiki/Setting_up_git) so you can download the source code.
-After setting it up, optionally navigate your git commandline to the project folder and run the command: `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 
 We have a [list of guides on the wiki](http://www.tgstation13.org/wiki/Guides#Development_and_Contribution_Guides) that will help you get started contributing to TeguStation with Git and Dream Maker. For beginners, it is recommended you work on small projects like bugfixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
 
@@ -56,37 +55,23 @@ Maintainers can revert your changes if they feel they are not worth maintaining 
 
 These are the few directives we have for project maintainers.
 
-- Do not merge PRs you create.
+- Do not merge PRs you create, unless it is a follow-up fix to the previous one.
 - Do not merge PRs until 24 hours have passed since it was opened. Exceptions include:
   - Emergency fixes.
     - Try to get secondary maintainer approval before merging if you are able to.
-  - PRs with empty commits intended to generate a changelog.
 - Do not merge PRs that contain content from the [banned content list](./CONTRIBUTING.md#banned-content).
 
 These are not steadfast rules as maintainers are expected to use their best judgement when operating.
-
-Our team is entirely voluntary, as such we extend our thanks to maintainers, issue managers, and contributors alike for helping keep the project alive.
-
 </details>
 
-### Issue Managers
+### Developers
 
-Issue Managers help out the project by labelling bug reports and PRs and closing bug reports which are duplicates or are no longer applicable.
+Essentially experienced contributors and/or people that strive to become Maintainers. Their primary task on repository is helping other contributors and setting up the labels on Pull Requests and Issues.
 
-<details>
-<summary>What You Can and Can't Do as an Issue Manager</summary>
 
-This should help you understand what you can and can't do with your newfound github permissions.
 
-Things you **CAN** do:
-* Label issues appropriately
-* Close issues when appropriate
-* Label PRs when appropriate
+Our team is entirely voluntary, as such we extend our thanks to maintainers, developers, and contributors alike for helping keep the project alive.
 
-Things you **CAN'T** do:
-* [Close PRs](https://imgur.com/w2RqpX8.png): Only maintainers are allowed to close PRs. Do not hit that button.
-
-</details>
 
 ## Specifications
 
@@ -138,15 +123,15 @@ The previous code made compliant:
 	var/static/varname3
 	var/static/varname4
 
-/datum/datum1/proc/proc1()
+/datum/datum1/proc/Proc1()
 	code
-/datum/datum1/proc/proc2()
+/datum/datum1/proc/Proc2()
 	code
 /datum/datum1/datum2
 	varname1 = 0
-/datum/datum1/datum2/proc/proc3()
+/datum/datum1/datum2/proc/Proc3()
 	code
-/datum/datum1/datum2/proc2()
+/datum/datum1/datum2/Proc2()
 	. = ..()
 	code
 ```
@@ -192,7 +177,7 @@ eg: `/datum/thing`, not `datum/thing`
 ### Type paths must be snake case
 eg: `/datum/blue_bird`, not `/datum/BLUEBIRD` or `/datum/BlueBird` or `/datum/Bluebird` or `/datum/blueBird`
 
-### Datum type paths must began with "datum"
+### Datum type paths must begin with "datum"
 In DM, this is optional, but omitting it makes finding definitions harder.
 
 ### Do not use text/string based type paths
@@ -209,13 +194,19 @@ var/path_type = "/obj/item/baseball_bat"
 ### Use `var/name` format when declaring variables
 While DM allows other ways of declaring variables, this one should be used for consistency.
 
+### Variables paths must be snake case
+Same as above for type paths: `var/health_loss`, not `var/HealthLoss` or `var/healthLoss`
+
+### Procs(Functions) must be in CamelCase
+eg: `/mob/proc/StartAbility()`, not `mob/proc/start_ability()`
+
 ### Tabs, not spaces
 You must use tabs to indent your code, NOT SPACES.
 
 You may use spaces to align something, but you should tab to the block level first, then add the remaining spaces.
 
 ### No hacky code
-Hacky code, such as adding specific checks, is highly discouraged and only allowed when there is ***no*** other option. (Protip: "I couldn't immediately think of a proper way so thus there must be no other option" is not gonna cut it here! If you can't think of anything else, say that outright and admit that you need help with it. Maintainers exist for exactly that reason.)
+Hacky code, such as adding specific checks, is highly discouraged and only allowed when there is ***no*** other option. (Protip: "I couldn't immediately think of a proper way so thus there must be no other option" is not gonna cut it here! If you can't think of anything else, say that outright and admit that you need help with it. Maintainers and Developers exist for exactly that reason.)
 
 You can avoid hacky code by using object-oriented methodologies, such as overriding a function (called "procs" in DM) or sectioning code into functions and then overriding them as required.
 
@@ -268,11 +259,24 @@ This is clearer and enhances readability of your code! Get used to doing it!
 * No control statement may contain code on the same line as the statement (`if (blah) return`)
 * All control statements comparing a variable to a number should use the formula of `thing` `operator` `number`, not the reverse (eg: `if (count <= 10)` not `if (10 >= count)`)
 
+### Spaces after control statements
+DO NOT put spaces after control statements:
+This is bad:
+````DM
+	if (thing1 != thing2)
+		return
+````
+This is good:
+````DM
+	if(thing1 != thing2)
+		return
+````
+
 ### Use early return
 Do not enclose a proc in an if-block when returning on a condition is more feasible
 This is bad:
 ````DM
-/datum/datum1/proc/proc1()
+/datum/datum1/proc/Proc1()
 	if (thing1)
 		if (!thing2)
 			if (thing3 == 30)
@@ -280,7 +284,7 @@ This is bad:
 ````
 This is good:
 ````DM
-/datum/datum1/proc/proc1()
+/datum/datum1/proc/Proc1()
 	if (!thing1)
 		return
 	if (thing2)
@@ -302,14 +306,14 @@ The defines are as follows:
 
 This is bad:
 ````DM
-/datum/datum1/proc/proc1()
+/datum/datum1/proc/Proc1()
 	if(do_after(mob, 15))
 		mob.dothing()
 ````
 
 This is good:
 ````DM
-/datum/datum1/proc/proc1()
+/datum/datum1/proc/Proc1()
 	if(do_after(mob, 1.5 SECONDS))
 		mob.dothing()
 ````
@@ -320,7 +324,7 @@ This is good:
 
 This is bad:
 ```DM
-/datum/datum1/proc/simple_getter()
+/datum/datum1/proc/SimpleGetter()
 	return gotten_variable
 ```
 Prefer to either access the variable directly or use a macro/define.
@@ -330,10 +334,10 @@ Prefer to either access the variable directly or use a macro/define.
 
 These are bad:
 ```DM
-/datum/datum1/proc/complex_getter()
+/datum/datum1/proc/ComplexGetter()
 	return condition ? VALUE_A : VALUE_B
 
-/datum/datum1/child_datum/complex_getter()
+/datum/datum1/child_datum/ComplexGetter()
 	return condition ? VALUE_C : VALUE_D
 ```
 
@@ -342,16 +346,16 @@ This is good:
 /datum/datum1
 	var/getter_turned_into_variable
 
-/datum/datum1/proc/set_condition(new_value)
+/datum/datum1/proc/SetCondition(new_value)
 	if(condition == new_value)
 		return
 	condition = new_value
-	on_condition_change()
+	OnConditionChange()
 
-/datum/datum1/proc/on_condition_change()
+/datum/datum1/proc/OnConditionChange()
 	getter_turned_into_variable = condition ? VALUE_A : VALUE_B
 
-/datum/datum1/child_datum/on_condition_change()
+/datum/datum1/child_datum/OnConditionChange()
 	getter_turned_into_variable = condition ? VALUE_C : VALUE_D
 ```
 
@@ -418,7 +422,7 @@ This is good:
 ### Signal Handlers
 All procs that are registered to listen for signals using `RegisterSignal()` must contain at the start of the proc `SIGNAL_HANDLER` eg;
 ```
-/type/path/proc/signal_callback()
+/type/path/proc/SignalCallback()
 	SIGNAL_HANDLER
 	// rest of the code
 ```
@@ -456,8 +460,6 @@ The following coding styles are not only not enforced at all, but are generally 
 
 * English/British spelling on var/proc names
 	* Color/Colour - both are fine, but keep in mind that BYOND uses `color` as a base variable
-* Spaces after control statements
-	* `if()` and `if ()` - nobody cares!
 
 ### Operators
 #### Spacing
@@ -577,6 +579,8 @@ There is no strict process when it comes to merging pull requests. Pull requests
 * While we have no issue helping contributors (and especially new contributors) bring reasonably sized contributions up to standards via the pull request review process, larger contributions are expected to pass a higher bar of completeness and code quality *before* you open a pull request. Maintainers may close such pull requests that are deemed to be substantially flawed. You should take some time to discuss with maintainers or other contributors on how to improve the changes.
 
 * After leaving reviews on an open pull request, maintainers may convert it to a draft. Once you have addressed all their comments to the best of your ability, feel free to mark the pull as `Ready for Review` again.
+
+* After you consider your pull request to be ready - make sure to squash commits and ask a Maintainer to review it for approval or additionaly requests.
 
 ## Porting features/sprites/sounds/tools from other codebases
 
