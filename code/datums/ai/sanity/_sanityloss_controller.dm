@@ -12,6 +12,7 @@
 	if(!ishuman(new_pawn))
 		return AI_CONTROLLER_INCOMPATIBLE
 	RegisterSignal(new_pawn, COMSIG_PARENT_ATTACKBY, .proc/on_attackby)
+	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_ANIMAL, .proc/on_attackby_animal)
 	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_HAND, .proc/on_attack_hand)
 	RegisterSignal(new_pawn, COMSIG_ATOM_BULLET_ACT, .proc/on_bullet_act)
 	RegisterSignal(new_pawn, COMSIG_ATOM_HITBY, .proc/on_hitby)
@@ -38,9 +39,14 @@
 /datum/ai_controller/insane/proc/retaliate(mob/living/L)
 	if(L != pawn)
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
+		current_movement_target = L
 	return
 
 /datum/ai_controller/insane/proc/on_attackby(datum/source, obj/item/I, mob/user)
+	SIGNAL_HANDLER
+	return
+
+/datum/ai_controller/insane/proc/on_attackby_animal(datum/source, mob/living/simple_animal/animal)
 	SIGNAL_HANDLER
 	return
 
@@ -75,6 +81,33 @@
 /datum/ai_controller/insane/murder
 	lines_type = /datum/ai_behavior/say_line/insanity_murder
 	var/list/currently_scared = list()
+	var/timerid = null
+
+/datum/ai_controller/insane/murder/PerformMovement(delta_time)
+	if(!isnull(timerid))
+		return FALSE
+	return ..()
+
+/datum/ai_controller/insane/murder/MoveTo(delta_time)
+	var/mob/living/living_pawn = pawn
+	if(!current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
+		timerid = null
+		return FALSE
+	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), living_pawn.cached_multiplicative_slowdown)
+
+	var/turf/our_turf = get_turf(living_pawn)
+	var/turf/target_turf = get_step_towards(living_pawn, current_movement_target)
+	if(!is_type_in_typecache(target_turf, GLOB.dangerous_turfs))
+		living_pawn.Move(target_turf, get_dir(our_turf, target_turf))
+	if(get_dist(living_pawn, current_movement_target) > max_target_distance)
+		CancelActions()
+		pathing_attempts = 0
+	if(our_turf == get_turf(living_pawn) && !isliving(current_movement_target))
+		if(++pathing_attempts >= MAX_PATHING_ATTEMPTS)
+			CancelActions()
+			pathing_attempts = 0
+
+	return TRUE
 
 /datum/ai_controller/insane/murder/SelectBehaviors(delta_time)
 	..()
@@ -144,6 +177,11 @@
 	retaliate(user)
 	return
 
+/datum/ai_controller/insane/murder/on_attackby_animal(datum/source, mob/living/simple_animal/animal)
+	..()
+	retaliate(animal)
+	return
+
 /datum/ai_controller/insane/murder/on_attack_hand(datum/source, mob/living/L)
 	..()
 	retaliate(L)
@@ -207,7 +245,7 @@
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue
-			H.adjustWhiteLoss(sanity_damage)
+			H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 
 /datum/ai_controller/insane/wander
 	lines_type = /datum/ai_behavior/say_line/insanity_wander

@@ -204,6 +204,7 @@
 		return TRUE
 
 /mob/living/attack_animal(mob/living/simple_animal/M)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_ANIMAL, M)
 	M.face_atom(src)
 	if(M.melee_damage_upper == 0)
 		visible_message("<span class='notice'>\The [M] [M.friendly_verb_continuous] [src]!</span>", \
