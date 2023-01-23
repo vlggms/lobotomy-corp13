@@ -2,9 +2,6 @@
 	name = "wishing well"
 	desc = "A well constructed of stone and wood. From where does it draw water?"
 	icon_state = "wishwell"
-	var/output
-	var/gacha
-	var/gift
 
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
@@ -124,127 +121,125 @@
 
 //This proc removes the need to copypaste every single armor and weapon into a list.
 /obj/structure/toolabnormality/wishwell/Initialize()
-	..()
+	. = ..()
 
 //Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
-		var/datum/ego_datum/ego = new path()
+		var/datum/ego_datum/ego = path
 		switch(ego.cost)
-			if (250)
-				superEGO+=ego.item_path
-			if (100)
-				alephitem+=ego.item_path
-			if (50)
-				wawitem+=ego.item_path
-			if (35 to 40)
-				heitem+=ego.item_path
-			if (20 to 25)
-				tethitem+=ego.item_path
-			if (12)
-				zayinitem+=ego.item_path
+			if(200 to INFINITY)
+				superEGO += initial(ego.item_path)
+			if(100 to 200)
+				alephitem += initial(ego.item_path)
+			if(50 to 100)
+				wawitem += initial(ego.item_path)
+			if(35 to 50)
+				heitem += initial(ego.item_path)
+			if(20 to 35)
+				tethitem += initial(ego.item_path)
+			if(0 to 20)
+				zayinitem += initial(ego.item_path)
 
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
-	..()
-	output = null
-	gift = null
+	. = ..()
+	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
+	if(!do_after(user, 0.5 SECONDS))
+		return
 
-//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
-	if(do_after(user, 0.5 SECONDS))
-		if(istype(I, /obj/item/holochip))
-			output = "MONEY"
-			playsound(src, 'sound/items/coinflip.ogg', 80, TRUE, -3)
-			to_chat(user, "<span class='notice'>You hear a plop as the holochip comes in contact with the water...</span>")
-		else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
-			playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
-			to_chat(user, "<span class='notice'>You hear the ego dissolve as it comes in contact with the water...</span>")
-			if(locate(I) in tethitem)
-				output = "TETH"
-			else if(locate(I) in heitem)
-				output = "HE"
-			else if(locate(I) in wawitem)
-				output = "WAW"
-			else if((locate(I) in alephitem) || (locate(I) in superEGO))
-				output = "ALEPH"
-			else
-				output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
+	var/output = null
+	if(istype(I, /obj/item/holochip))
+		output = "MONEY"
+		playsound(src, 'sound/items/coinflip.ogg', 80, TRUE, -3)
+		to_chat(user, "<span class='notice'>You hear a plop as the holochip comes in contact with the water...</span>")
+	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
+		playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
+		to_chat(user, "<span class='notice'>You hear the ego dissolve as it comes in contact with the water...</span>")
+		if(locate(I) in tethitem)
+			output = "TETH"
+		else if(locate(I) in heitem)
+			output = "HE"
+		else if(locate(I) in wawitem)
+			output = "WAW"
+		else if((locate(I) in alephitem) || (locate(I) in superEGO))
+			output = "ALEPH"
 		else
-			to_chat(user, "<span class='userdanger'>The well rejects your item!</span>")
+			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
 	else
-		to_chat(user, "<span class='userdanger'>The item flies back into your hand!</span>")
+		to_chat(user, "<span class='userdanger'>The well rejects your item!</span>")
 
-//now for outputs
-	if(output)
-		gift = null
-		qdel(I)
-		gacha = rand(1,100)
-		if (gacha > 50)
-			output = null
-			if(do_after(user, 15 SECONDS))
-				playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
-				to_chat(user, "<span class='notice'>Nothing happens...</span>")
-			return
-		switch(output)
-			if ("MONEY")
-				switch(gacha)
-					if(1 to 5) //5% odds, spawn trash....
-						gift = pick(trash)
-					if(6 to 15)// 10% odds, down 1 risk level
-						gift = pick(baditem)
-					if(16 to 50)//35% odds, spawn an item of the same tier
-						gift = pick(normalitem)
-			if ("ZAYIN")
-				switch(gacha)
-					if(1 to 5)//5% odds, ...or a hostile mob if using EGO
-						gift = pick(pick(dawn),pick(trash))
-					if(6 to 15)
-						gift = pick(normalitem)
-					if(16 to 50)
-						gift = pick(zayinitem)
-			if ("TETH")
-				switch(gacha)
-					if(1 to 5)
-						gift = pick(dawn)
-					if(6 to 15)
-						gift = pick(zayinitem)
-					if(16 to 50)
-						gift = pick(tethitem)
-			if ("HE")
-				switch(gacha)
-					if(1 to 5)
-						gift = pick(noon)
-					if(6 to 15)
-						gift = pick(tethitem)
-					if(16 to 50)
-						gift = pick(heitem)
-			if ("WAW")
-				switch(gacha)
-					if(1 to 5)
-						gift = pick(dusk)
-					if(6 to 15)
-						gift = pick(heitem)
-					if(16 to 20)//5% odds to get a rarer item at WAW/ALEPH
-						gift = pick(/obj/item/ego_weapon/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
-					if(21 to 50)
-						gift = pick(wawitem)
-			if ("ALEPH")
-				switch(gacha)
-					if(1 to 5)
-						gift = pick(midnight)
-					if(6 to 15)
-						gift = pick(wawitem)
-					if(16 to 20)
-						gift = pick(pick(alephitem),/obj/item/toy/plush/bongbong) //egor says no PL/flowering/twilight
-					if(21 to 50)
-						gift = pick(alephitem)
+	// Now for outputs
+	if(!output)
+		return
 
-//Gacha now locked in
+	if(!do_after(user, 15 SECONDS))
+		to_chat(user, "<span class='userdanger'>The well goes silent as it detects your impatience.</span>")
+		return
+
+	var/gift = null
+	qdel(I)
+	var/gacha = rand(1,100)
+	if(gacha > 50)
+		playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
+		to_chat(user, "<span class='notice'>Nothing happens...</span>")
+		return
+
+	switch(output)
+		if("MONEY")
+			switch(gacha)
+				if(1 to 5) //5% odds, spawn trash....
+					gift = pick(trash)
+				if(6 to 15)// 10% odds, down 1 risk level
+					gift = pick(baditem)
+				if(16 to 50)//35% odds, spawn an item of the same tier
+					gift = pick(normalitem)
+		if("ZAYIN")
+			switch(gacha)
+				if(1 to 5)//5% odds, ...or a hostile mob if using EGO
+					gift = pick(pick(dawn),pick(trash))
+				if(6 to 15)
+					gift = pick(normalitem)
+				if(16 to 50)
+					gift = pick(zayinitem)
+		if("TETH")
+			switch(gacha)
+				if(1 to 5)
+					gift = pick(dawn)
+				if(6 to 15)
+					gift = pick(zayinitem)
+				if(16 to 50)
+					gift = pick(tethitem)
+		if("HE")
+			switch(gacha)
+				if(1 to 5)
+					gift = pick(noon)
+				if(6 to 15)
+					gift = pick(tethitem)
+				if(16 to 50)
+					gift = pick(heitem)
+		if("WAW")
+			switch(gacha)
+				if(1 to 5)
+					gift = pick(dusk)
+				if(6 to 15)
+					gift = pick(heitem)
+				if(16 to 20)//5% odds to get a rarer item at WAW/ALEPH
+					gift = pick(/obj/item/ego_weapon/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
+				if(21 to 50)
+					gift = pick(wawitem)
+		if("ALEPH")
+			switch(gacha)
+				if(1 to 5)
+					gift = pick(midnight)
+				if(6 to 15)
+					gift = pick(wawitem)
+				if(16 to 20)
+					gift = pick(pick(alephitem),/obj/item/toy/plush/bongbong) //egor says no PL/flowering/twilight
+				if(21 to 50)
+					gift = pick(alephitem)
+
+	//Gacha now locked in
 	if(gift)
-		output = null
-		if(do_after(user, 15 SECONDS))
-			playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
-			var/location = get_turf(user)
-			new gift(location)
-			to_chat(user, "<span class='userdanger'>Something comes out of the well!</span>")
-		else
-			to_chat(user, "<span class='userdanger'>The well goes silent as it detects your impatience.</span>")
+		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
+		new gift(get_turf(src))
+		visible_message("<span class='notice'>Something comes out of the well!</span>")

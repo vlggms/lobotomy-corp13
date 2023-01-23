@@ -6,4 +6,3 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
-
