@@ -105,8 +105,10 @@ have ways of interacting with a specific atom and control it. They posses a blac
 			current_behavior.perform(delta_time, src)
 
 	if(want_to_move)
-		MoveTo(delta_time) //Need to add some code to check if we can perform the actions now without too much overhead
+		PerformMovement(delta_time) //Need to add some code to check if we can perform the actions now without too much overhead
 
+/datum/ai_controller/proc/PerformMovement(delta_time)
+	return MoveTo(delta_time)
 
 ///Move somewhere using dumb movement (byond base)
 /datum/ai_controller/proc/MoveTo(delta_time)

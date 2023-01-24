@@ -35,7 +35,7 @@
 			continue
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue
-		H.adjustWhiteLoss(sanity_damage)
+		H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 
 /datum/ai_behavior/say_line/insanity_release
 	lines = list(
@@ -49,7 +49,7 @@
 /datum/ai_behavior/insanity_attack_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
 
-/datum/ai_behavior/insanity_attack_mob/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/insanity_attack_mob/perform(delta_time, datum/ai_controller/insane/murder/controller)
 	. = ..()
 
 	var/mob/living/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
@@ -58,7 +58,9 @@
 	if(!target || target.stat == DEAD)
 		finish_action(controller, TRUE) //Target == owned
 
-	if(living_pawn.Adjacent(target) && isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
+	if(isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
+		if(!living_pawn.Adjacent(target))
+			return
 		// check if target has a weapon
 		var/obj/item/W
 		for(var/obj/item/I in target.held_items)
@@ -69,10 +71,10 @@
 		// if the target has a weapon, chance to disarm them
 		if(W && DT_PROB(20, delta_time))
 			living_pawn.a_intent = INTENT_DISARM
-			attack(controller, target, delta_time)
 		else
 			living_pawn.a_intent = INTENT_HARM
-			attack(controller, target, delta_time)
+		attack(controller, target, delta_time)
+		addtimer(CALLBACK(src, .proc/attack, controller, target, delta_time), CLICK_CD_MELEE * 0.75)
 
 
 /datum/ai_behavior/insanity_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
@@ -82,9 +84,11 @@
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 /// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
-/datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/controller, mob/living/target, delta_time)
-
+/datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/insane/murder/controller, mob/living/target, delta_time)
 	var/mob/living/living_pawn = controller.pawn
+
+	if(!living_pawn.Adjacent(target))
+		return
 
 	if(living_pawn.next_move > world.time)
 		return
@@ -100,6 +104,10 @@
 				living_pawn.dropItemToGround(EW, force = TRUE) // YEET
 				var/list/item_blacklist = controller.blackboard[BB_INSANE_BLACKLISTITEMS]
 				item_blacklist[EW] = TRUE
+				continue
+		if(I.damtype == WHITE_DAMAGE && ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.sanity_lost) // So we don't restore sanity of insane
 				continue
 		if(I.force > highest_force)
 			weapon = I
