@@ -69,3 +69,9 @@
 	mid_sounds = 'sound/effects/ordeals/amber/midnight_ambience.ogg'
 	mid_length = 3.8 SECONDS
 	volume = 20
+
+/datum/looping_sound/arbiter_pillar_storm
+	mid_sounds = 'sound/magic/arbiter/storm_loop.ogg'
+	mid_length = 5.5 SECONDS
+	volume = 50
+	extra_range = 7

@@ -1474,11 +1474,11 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5)
+/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
 	if(!C)
 		return
 
-	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 11px;"
+	var/style = "font-family: 'Fixedsys'; text-align: [text_align]; color: [text_color]; -dm-text-outline: 1 [outline_color]; font-size: 11px;"
 	var/text = blurb_text
 	text = uppertext(text)
 
@@ -1489,7 +1489,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	T.layer = FLOAT_LAYER
 	T.plane = HUD_PLANE
 	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	T.screen_loc = "LEFT+1,BOTTOM+2"
+	T.screen_loc = screen_location
 
 	C.screen += T
 	animate(T, alpha = 255, time = 10)
@@ -1503,8 +1503,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	C.screen -= T
 	qdel(T)
 
-/proc/show_global_blurb(duration, blurb_text, fade_time = 5) // Shows a blurb to every client
+// Shows a blurb to every client
+/proc/show_global_blurb(duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
 	for(var/client/C in GLOB.clients)
-		show_blurb(C, duration, blurb_text, fade_time)
+		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))

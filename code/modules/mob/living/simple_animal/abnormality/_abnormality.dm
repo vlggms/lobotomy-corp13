@@ -19,6 +19,7 @@
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
+	can_patrol = TRUE
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -58,12 +59,6 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
-	/// Patrol Code
-	var/can_patrol = TRUE
-	var/patrol_cooldown
-	var/patrol_cooldown_time = 30 SECONDS
-	var/list/patrol_path = list()
-	var/patrol_tries = 0 //max of 5
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -115,78 +110,9 @@
 	if(status_flags & GODMODE)
 		return FALSE
 	FearEffect()
-	if(!can_patrol || client)
-		return
-	if(target && patrol_path) //if AI has acquired a target while on patrol, stop patrol
-		patrol_reset()
-		return
-	if(CanStartPatrol())
-		if(patrol_cooldown <= world.time)
-			if(!patrol_path || !patrol_path.len)
-				patrol_select()
-				if(patrol_path.len)
-					patrol_move(patrol_path[patrol_path.len])
 
-/mob/living/simple_animal/hostile/abnormality/proc/CanStartPatrol()
-	return AIStatus == AI_IDLE //if AI is idle, begin checking for patrol
-
-/mob/living/simple_animal/hostile/abnormality/proc/patrol_select()
-	var/turf/target_center
-	var/list/potential_centers = list()
-	for(var/pos_targ in GLOB.department_centers)
-		var/possible_center_distance = get_dist(src, pos_targ)
-		if(possible_center_distance > 4 && possible_center_distance < 46)
-			potential_centers += pos_targ
-	if(LAZYLEN(potential_centers))
-		target_center = pick(potential_centers)
-	else
-		target_center = pick(GLOB.department_centers)
-	patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
-
-/mob/living/simple_animal/hostile/abnormality/proc/patrol_reset()
-	patrol_path = null
-	patrol_tries = 0
-	stop_automated_movement = 0
-	patrol_cooldown = world.time + patrol_cooldown_time
-
-/mob/living/simple_animal/hostile/abnormality/proc/patrol_move(dest)
-	if(client || target || status_flags & GODMODE)
-		return FALSE
-	if(!dest || !patrol_path || !patrol_path.len) //A-star failed or a path/destination was not set.
-		return FALSE
-	stop_automated_movement = 1
-	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
-	var/turf/last_node = get_turf(patrol_path[patrol_path.len]) //This is the turf at the end of the path, it should be equal to dest.
-	if(get_turf(src) == dest) //We have arrived, no need to move again.
-		return TRUE
-	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
-		patrol_reset()
-		return FALSE
-	if(patrol_tries < 5)
-		patrol_step(dest)
-	else
-		patrol_reset()
-		return FALSE
-	addtimer(CALLBACK(src, .proc/patrol_move, dest), move_to_delay)
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/proc/patrol_step(dest)
-	if(client || target  || status_flags & GODMODE || !patrol_path || !patrol_path.len)
-		return FALSE
-	if(patrol_path.len > 1)
-		step_towards(src, patrol_path[1])
-		if(get_turf(src) == patrol_path[1]) //Successful move
-			if(!patrol_path || !patrol_path.len)
-				return
-			patrol_path.Cut(1, 2)
-			patrol_tries = 0
-		else
-			patrol_tries++
-			return FALSE
-	else if(patrol_path.len == 1)
-		step_to(src, dest)
-		patrol_reset()
-	return TRUE
+/mob/living/simple_animal/hostile/abnormality/CanStartPatrol()
+	return (AIStatus == AI_IDLE) && !(status_flags & GODMODE)
 
 // Applies fear damage to everyone in range
 /mob/living/simple_animal/hostile/abnormality/proc/FearEffect()

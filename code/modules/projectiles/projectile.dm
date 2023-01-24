@@ -161,6 +161,12 @@
 	///If TRUE, hit mobs even if they're on the floor and not our target
 	var/hit_stunned_targets = FALSE
 
+	///How much damage is added/deducted per tile
+	var/damage_falloff_tile = 0
+
+	///If TRUE and damage type is either WHITE or BLACK, it will heal sanity of insane humans
+	var/white_healing = TRUE
+
 	///For what kind of brute wounds we're rolling for, if we're doing such a thing. Lasers obviously don't care since they do burn instead.
 	var/sharpness = SHARP_NONE
 	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
@@ -176,6 +182,7 @@
 
 /obj/projectile/proc/Range()
 	range--
+	damage += damage_falloff_tile
 	if(wound_bonus != CANT_WOUND)
 		wound_bonus += wound_falloff_tile
 		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
