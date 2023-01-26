@@ -155,3 +155,14 @@
 
 /area/city/house
 	name = "Employee Housing"
+
+/area/city/shop
+	name = "Employee Services"
+
+/area/city/outskirts
+	name = "Outskirts"
+
+/area/city/fixers
+	name = "Fixer Office"
+
+
