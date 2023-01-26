@@ -63,6 +63,7 @@
 	cooldown = world.time + cooldown_time
 	if(cooldown_time > 0)
 		remove_ranged_ability()
+	update_icon()
 	return
 
 /obj/effect/proc_holder/ability/aimed/Click()

@@ -173,6 +173,7 @@
 	desc = "And the head of god spoke: You will be judged."
 	icon_state = "head"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 90)
+	realized_ability = /obj/effect/proc_holder/ability/judgement
 
 /obj/item/clothing/suit/armor/ego_gear/realization/laughter
 	name = "laughter"
