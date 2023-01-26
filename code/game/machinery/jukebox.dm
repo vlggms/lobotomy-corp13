@@ -12,7 +12,7 @@
 	var/list/songs = list()
 	var/datum/track/selection = null
 	/// Volume of the songs played
-	var/volume = 100
+	var/volume = 50
 	COOLDOWN_DECLARE(jukebox_error_cd)
 
 /obj/machinery/jukebox/disco
@@ -142,7 +142,6 @@
 					COOLDOWN_START(src, jukebox_error_cd, 15 SECONDS)
 					return
 				activate_music()
-				START_PROCESSING(SSobj, src)
 				return TRUE
 			else
 				stop = 0
@@ -439,10 +438,10 @@
 	lying_prev = 0
 
 /obj/machinery/jukebox/proc/dance_over()
-	for(var/mob/living/L in rangers)
-		if(!L || !L.client)
+	for(var/mob/M in rangers)
+		if(!M || !M.client)
 			continue
-		L.stop_sound_channel(CHANNEL_JUKEBOX)
+		M.stop_sound_channel(CHANNEL_JUKEBOX)
 	rangers = list()
 
 /obj/machinery/jukebox/disco/dance_over()
@@ -454,18 +453,18 @@
 	if(world.time < stop && active)
 		var/sound/song_played = sound(selection.song_path)
 
-		for(var/mob/M in range(10,src))
+		for(var/mob/M in view(10,src))
 			if(!M.client || !(M.client.prefs.toggles & SOUND_INSTRUMENTS))
 				continue
 			if(!(M in rangers))
 				rangers[M] = TRUE
-				M.playsound_local(get_turf(M), null, volume, channel = CHANNEL_JUKEBOX, S = song_played, use_reverb = FALSE)
-		for(var/mob/L in rangers)
-			if(get_dist(src,L) > 10)
-				rangers -= L
-				if(!L || !L.client)
+				M.playsound_local(get_turf(M), null, volume*0.5, channel = CHANNEL_JUKEBOX, S = song_played, use_reverb = FALSE)
+		for(var/mob/M in rangers)
+			if(get_dist(src,M) > 10)
+				rangers -= M
+				if(!M || !M.client)
 					continue
-				L.stop_sound_channel(CHANNEL_JUKEBOX)
+				M.stop_sound_channel(CHANNEL_JUKEBOX)
 	else if(active)
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
