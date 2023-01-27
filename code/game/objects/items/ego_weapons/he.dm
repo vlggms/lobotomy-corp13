@@ -74,8 +74,6 @@
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
-
-
 /obj/item/ego_weapon/fury
 	name = "blind fury"
 	desc = "A fancy black and white halberd with a sharp blade. Whose head will it cut off next?"
@@ -133,7 +131,6 @@
 	..()
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
 
-
 /obj/item/ego_weapon/wings
 	name = "torn off wings"
 	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
@@ -152,11 +149,10 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/daredevil
+/obj/item/ego_weapon/shield/daredevil
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
-	special = "This weapon blocks ranged attacks while attacking and has a parry on command. \
-				This weapon has a fast attack speed"
+	special = "This weapon has a fast attack speed"
 	icon_state = "daredevil"
 	force = 12
 	damtype = PALE_DAMAGE
@@ -164,123 +160,67 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	reductions = list(90, 90, 90, 30, 1)
+	recovery_time = 0.5 SECONDS
+	block_time = 0.5 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/weapons/ego/crumbling_parry.ogg'
+	projectile_block ="A God does not fear death!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	reposition_message = "You rearm your blade."
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
-	var/attacking = FALSE
-	var/parry = 0
-	var/parry_success
 	var/naked_parry
-	var/list/reductions = list(90, 90, 90, 30, 1)
 
-/obj/item/ego_weapon/daredevil/melee_attack_chain(mob/user, atom/target, params)
-	..()
+/obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
-		user.changeNext_move(CLICK_CD_MELEE * 0.33)
-		attacking = TRUE
-		addtimer(CALLBACK(src, .proc/drop_stance), 0.33 SECONDS)
-		return
-	user.changeNext_move(CLICK_CD_MELEE * 0.5)
-	attacking = TRUE
-	addtimer(CALLBACK(src, .proc/drop_stance), 0.5 SECONDS)
+		attack_speed = 0.33
+		recovery_time = 0.33 SECONDS
+	else
+		attack_speed = 0.5
+		recovery_time = 0.5 SECONDS
+	..()
 
-/obj/item/ego_weapon/daredevil/proc/drop_stance()
-	attacking = FALSE
-
-/obj/item/ego_weapon/daredevil/attack_self(mob/user)
-	if (!ishuman(user))
-		return FALSE
-
-	if (parry == 0)
+/obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
+	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
-		if(!CanUseEgo(cooler_user))
-			return FALSE
-		if(cooler_user.physiology.armor.bomb) // We have NOTHING that should be modifying this, so I'm using it as an existant parry checker.
-			to_chat(cooler_user,"<span class='warning'>You're still off-balance!</span>")
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, cooler_user))
-			if(AC.datum_reference.working) // No parrying during work.
-				to_chat(cooler_user,"<span class='notice'>You attempt to parry the monotony of this job!</span>")
-				return FALSE
-		parry = 1
-		parry_success = FALSE
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100, 1)
 		else
 			reductions = list(90, 90, 90, 30, 1)
-		cooler_user.physiology.armor = cooler_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = reductions[5])
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/Announce_Parry)
-		addtimer(CALLBACK(src, .proc/disable_parry, cooler_user), 0.5 SECONDS) // Set to 3 for testing base is 0.5, was 0.6
-		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
-		return TRUE
+	..()
 
-/obj/item/ego_weapon/daredevil/proc/disable_parry(mob/living/carbon/human/user)
-	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -reductions[5])
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+/obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
 	if (naked_parry)
-		addtimer(CALLBACK(src, .proc/parry_cooldown, user), 2 SECONDS)
+		block_recovery = 2 SECONDS
 	else
-		addtimer(CALLBACK(src, .proc/parry_cooldown, user), 3 SECONDS) // Set to 1 for testing, base 3
-	if (!parry_success)
-		Parry_Fail(user)
+		block_recovery = 3 SECONDS
+	..()
 
-/obj/item/ego_weapon/daredevil/proc/parry_cooldown(mob/living/carbon/human/user)
-	parry = 0
+/obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
 	force = 12
-	to_chat(user,"<span class='nicegreen'>You rearm your blade</span>")
+	..()
 
-/obj/item/ego_weapon/daredevil/proc/Parry_Fail(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
-	user.physiology.red_mod *= 1.2
-	user.physiology.white_mod *= 1.2
-	user.physiology.black_mod *= 1.2
-	user.physiology.pale_mod *= 1.2
+/obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
 	if (naked_parry)
-		addtimer(CALLBACK(src, .proc/Remove_Debuff, user), 2 SECONDS)
+		stance_recovery = 2 SECONDS
 	else
-		addtimer(CALLBACK(src, .proc/Remove_Debuff, user), 3 SECONDS)
+		stance_recovery = 3 SECONDS
+	..()
 
-/obj/item/ego_weapon/daredevil/proc/Remove_Debuff(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegreen'>You recollect your stance</span>")
-	user.physiology.red_mod /= 1.2
-	user.physiology.white_mod /= 1.2
-	user.physiology.black_mod /= 1.2
-	user.physiology.pale_mod /= 1.2
-
-/obj/item/ego_weapon/daredevil/proc/Announce_Parry(mob/living/carbon/human/source, damage, damagetype, def_zone)
-	SIGNAL_HANDLER
-	parry_success = TRUE
-	var/src_message = "<span class='userdanger'>[source.real_name] parries the attack!</span>"
-	var/other_message = src_message
+/obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	if(naked_parry)
-		src_message = "<span class='userdanger'>[source.real_name] is untouchable!</span>"
-		other_message = src_message
+		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(damagetype == PALE_DAMAGE)
-		src_message = "<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>"
-
-	playsound(get_turf(src), 'sound/weapons/ego/crumbling_parry.ogg', 75, 0, 7)
-	for(var/mob/living/carbon/human/person in view(7, source))
-		if(person == source)
-			to_chat(person, src_message)
-		else
-			to_chat(person, other_message)
-
-/obj/item/ego_weapon/daredevil/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(attack_type == PROJECTILE_ATTACK && attacking)
-		final_block_chance = 100 //Anime Katana time
-		to_chat(owner,"<span class='userdanger'>A God does not fear death!</span>")
-		var/mob/living/carbon/human/other = list()
-		other += oview(7, owner)
-		other -= owner
-		for(var/mob/living/carbon/human/person in other)
-			to_chat(person,"<span class='nicegreen'>[owner.real_name] deflects the projectile!</span>")
-		return ..()
-	return ..()
+		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
+	..()
 
 /obj/item/ego_weapon/christmas
 	name = "christmas"
@@ -594,7 +534,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-							
+
 /obj/item/ego_weapon/shield/giant
 	name = "giant"
 	desc = "I'll grind your bones to make my bread!"

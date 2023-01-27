@@ -55,7 +55,7 @@
 
 // Crumbling Armor - Life for a Daredevil
 /datum/ego_datum/weapon/daredevil
-	item_path = /obj/item/ego_weapon/daredevil
+	item_path = /obj/item/ego_weapon/shield/daredevil
 	cost = 35
 
 // Rudolta - Merriment
