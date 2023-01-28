@@ -106,13 +106,13 @@
 	dat += "<div align='center'>Slot | Name ( Fortitude | Prudence | Temperance | Justice )</div><br>"
 	for(var/beta_gift in ego_gift_list) // These show the benefits of each one and at level 4+ you can lock the gift in place.
 		var/datum/ego_gifts/alpha_gift = ego_gift_list[beta_gift]
-		dat += "[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=dissolve'>X</A>" : ""][alpha_gift.slot]: [alpha_gift.name] \
+		dat += "[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=dissolve'>X</A>" : ""][alpha_gift.slot]: ["<A href='byond://?src=[REF(alpha_gift)];choice=description'>[alpha_gift.name]</A>"] \
 			( [alpha_gift.fortitude_bonus >= 0 ? "+[alpha_gift.fortitude_bonus]":"[alpha_gift.fortitude_bonus]"] | \
 			[alpha_gift.prudence_bonus >= 0 ? "+[alpha_gift.prudence_bonus]":"[alpha_gift.prudence_bonus]"] | \
 			[alpha_gift.temperance_bonus >= 0 ? "+[alpha_gift.temperance_bonus]":"[alpha_gift.temperance_bonus]"] | \
 			[alpha_gift.justice_bonus >= 0 ? "+[alpha_gift.justice_bonus]":"[alpha_gift.justice_bonus]"] ) \
 			[get_user_level(src) > 3 && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=lock'>[alpha_gift.locked ? "Locked" : "Unlocked"]</A>" : ""] \
-			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>Hide</A>" : ""]"
+			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>[alpha_gift.visible ? "Hide" : "Show"]</A>" : ""]"
 	var/datum/browser/popup = new(viewer, "gifts", "<div align='center'>E.G.O. Gifts</div>", 600, 450)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)

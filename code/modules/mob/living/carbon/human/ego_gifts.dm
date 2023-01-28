@@ -12,8 +12,16 @@
 #define HAND_1 "Hand Slot 1"
 #define HAND_2 "Hand Slot 2"
 #define SPECIAL "Special/Other Slot"
+
+// Helper lists
+#define EGO_GIFT_BONUSES list("fortitude_bonus", "prudence_bonus", "temperance_bonus", "justice_bonus", \
+						"instinct_mod", "insight_mod", "attachment_mod", "repression_mod")
+
+#define EGO_GIFT_BONUS_WORKS list("instinct_mod", "insight_mod", "attachment_mod", "repression_mod")
+
 /datum/ego_gifts // Currently Covers most EGO Gift Functions, most others can be done via armors
 	var/name = ""
+	var/desc = null
 	var/icon = 'icons/mob/clothing/ego_gear/ego_gifts.dmi'
 	var/icon_state = ""
 	var/layer = -ABOVE_MOB_LAYER
@@ -34,7 +42,6 @@
 /datum/ego_gifts/proc/Initialize(mob/living/carbon/human/user)
 	user.ego_gift_list[src.slot] = src
 	user.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-	visible = TRUE
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, src.temperance_bonus)
@@ -93,12 +100,38 @@
 								to_chat(owner, "<span class='userdanger'>Even now you try and run? Clearly you are lacking in both!</span>")
 						to_chat(owner, "<span class='warning'>The once cool flames now burn your flesh!</span>")
 						owner.adjustBruteLoss(100)
-					else
-						to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!</span>")
-						datum_reference.stored_boxes += PE
+						return
+					to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!</span>")
+					datum_reference.stored_boxes += PE
 				else
 					to_chat(owner, "<span class='notice'>The [src] has dissolved into... light?</span>")
 				owner.Apply_Gift(E)
+		if("description")
+			var/dat = "<b>[name]</b>"
+			dat += "<hr><br>"
+			if(desc)
+				dat += desc
+				dat += "<hr><br>"
+			// Attempted to make it a define and failed, so here it is
+			var/list/text_list = list(
+				"fortitude_bonus" = FORTITUDE_ATTRIBUTE,
+				"prudence_bonus" = PRUDENCE_ATTRIBUTE,
+				"temperance_bonus" = TEMPERANCE_ATTRIBUTE,
+				"justice_bonus" = JUSTICE_ATTRIBUTE,
+				"instinct_mod" = "Instinct Work",
+				"insight_mod" = "Insight Work",
+				"attachment_mod" = "Attachment Work",
+				"repression_mod" = "Repression Work",
+				)
+			for(var/thing in EGO_GIFT_BONUSES)
+				var/thing_num = vars[thing]
+				if(thing_num == 0)
+					continue
+				var/thing_name = text_list[thing]
+				dat += "[thing_name]: [thing_num > 0 ? "+" : ""][thing_num][(thing in EGO_GIFT_BONUS_WORKS) ? "%" : ""]<br>"
+			var/datum/browser/popup = new(owner, "gift_description", "<div align='center'>[name]</div>", 300, 350)
+			popup.set_content(dat)
+			popup.open(FALSE)
 		else
 			CRASH("Gift Topic Error in [src]. [owner] clicked a non-existant button!?")
 
@@ -135,7 +168,8 @@
 /// Empty EGO GIFT Slot
 /datum/ego_gifts/empty
 	name = "Empty"
-	icon_state = ""
+	desc = "An empty slot for gifts."
+	icon_state = null
 
 /// All Zayin EGO Gifts
 /datum/ego_gifts/soda
@@ -146,6 +180,7 @@
 
 /datum/ego_gifts/penitence
 	name = "Penitence"
+	desc = "Provides a 10% bonus to works with corresponding abnormality."
 	icon_state = "penitence"
 	prudence_bonus = 2
 	slot = HAT
@@ -540,6 +575,7 @@
 
 /datum/ego_gifts/blossoming
 	name = "100 Paper Flowers"
+	desc = "Provides the user with 10% resistance to all damage sources."
 	icon_state = "blooming"
 	justice_bonus = 8
 	slot = SPECIAL
@@ -570,6 +606,7 @@
 
 /datum/ego_gifts/blessing
 	name = "Blessing"
+	desc = "Provides the user with 20% resistance to PALE damage."
 	icon_state = "blessing"
 	fortitude_bonus = 4
 	prudence_bonus = 4
