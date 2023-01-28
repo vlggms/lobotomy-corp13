@@ -263,18 +263,17 @@
 		user.gib()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	if (!ishuman(M) || (GODMODE in M.status_flags))
+	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
 	. = ..()
 	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
 	SLEEP_CHECK_DEATH(2 SECONDS)
-	for(var/obj/item/organ/O in M.getorganszone(BODY_ZONE_CHEST, TRUE))
-		if(istype(O,/obj/item/organ/heart))
-			O.Remove(M)
-			QDEL_NULL(O)
-			break
+	var/obj/item/organ/heart/O = M.getorgan(/obj/item/organ/heart)
+	if(istype(O))
+		O.Remove(M)
+		QDEL_NULL(O)
 	M.gib()
-	if (datum_reference.qliphoth_meter == 1)
+	if(datum_reference.qliphoth_meter == 1)
 		to_chat(user, "<span class='nicegreen'>Rests it on the ground.</span>")
 		datum_reference.qliphoth_change(1)
 		icon_state = "woodsman"
