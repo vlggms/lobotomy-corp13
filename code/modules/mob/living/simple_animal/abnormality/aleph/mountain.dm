@@ -193,11 +193,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(!(status_flags & GODMODE)) // If it's breaching right now
+	if(!IsContained()) // If it's breaching right now
 		return FALSE
 	if(!ishuman(died))
 		return FALSE
-	if(!died.ckey)
+	if(died.z != z)
+		return FALSE
+	if(!died.mind)
 		return FALSE
 	death_counter += 1
 	if(death_counter >= 2)

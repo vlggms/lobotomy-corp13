@@ -205,7 +205,9 @@
 	SIGNAL_HANDLER
 	if(!ishuman(died))
 		return FALSE
-	if(!died.ckey)
+	if(died.z != z)
+		return FALSE
+	if(!died.mind)
 		return FALSE
 	death_counter += 1
 	//if BREACHED, check if death_counter over the death limit
