@@ -2,15 +2,17 @@ You can view your current attributes in the IC tab by using "Show Attributes" ve
 Red damage is physical, whereas White is mental. Black is a combination of physical and mental, while Pale is done in percents of the max health.
 Different abnormalities have different weaknesses. Pick the best weapon to fight them when they breach!
 Working on higher level abnormalities will provide more attribute gains. Just make sure your character can survive the process.
-Abnormalities have a cap on how much attributes you can gain and it is equal to 26 multiplied by their threat level. Only by working with ALEPHs you can get to 130.
+Abnormalities have a limit on how much attributes you can gain from them. Zayins have a cap of 40, and it increases by 20 with each threat level. Only by working with ALEPHs you can get to 130.
 Working on abnormalities whose level is higher than yours will hit you with a sanity damage, depending on the level difference. Same thing will occur when witnessing breaching abnormalities.
 Each work type corresponds to the attribute type: Instinct = Fortitude. Insight = Prudence. Attachment = Temperance. Repression = Justice.
-Fortitude attribute directly increases your maximum health and Prudence inceases your maximum sanity.
+Fortitude attribute directly increases your maximum health and Prudence increases your maximum sanity.
 Temperance attribute increases your work speed and success chance. It is crucial to have high temperance while working on the more dangerous abnormalities.
 Justice attribute increases your movement speed and melee damage. The maximum damage buff you can receive this way is 230%.
 The longer the round goes on, the higher attributes agents will have when joining.
-Big bird's qliphoth counter will reduce if 2 people have died in the facility.
-Punishing bird is harmless for as long as nobody attacks it.
-The scarecrow searching for wisdom will restore 30% of its health when killing someone. You can interrupt the process by dragging their victim away.
-When exploding, the scorched girl will deal 250 red damage to anyone in its sight. It's usually the best idea to run when you hear the burning fuse.
-Wellcheers vending machine success chance decreases with each can dispensed. Don't abuse "free" healing!
+Big Bird's Qliphoth Counter will reduce every time a person dies in the facility.
+Punishing Bird is harmless for as long as nobody attacks it.
+Scarecrow Searching for Wisdom will restore 30% of its health when killing someone. You can interrupt the process by dragging their victim away.
+When exploding, Scorched Girl will deal 250 Red damage to anyone in its sight. It's usually the best idea to run when you hear the burning fuse.
+Insane people will act strangely and have a colored halo around their head. Attack them with White or Black damage to restore their sanity.
+Many abnormalities have telegraphed attacks telling when or where they will attack. Pay attention while fighting them!
+Stay in department rooms to heal from regenerators. You can also use the sleepers located in Safety and medipens for additional healing.

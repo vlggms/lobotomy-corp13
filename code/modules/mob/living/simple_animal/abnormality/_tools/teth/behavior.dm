@@ -1,6 +1,6 @@
 #define STATUS_EFFECT_BEHAVIOR /datum/status_effect/behavior
 /obj/structure/toolabnormality/behaviour
-	name = "behaviour adjustment"
+	name = "behavior adjustment"
 	desc = "A floating disk."
 	icon_state = "behavior"
 	var/list/active_users = list()
@@ -12,12 +12,12 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BEHAVIOR)
-		to_chat(user, "<span class='userdanger'>You put back the behavior adjustment disk.</span>")
+		to_chat(user, "<span class='userdanger'>You feel your intellect returning.</span>")
 		user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "behavior", -MUTATIONS_LAYER))
 	else
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_BEHAVIOR)
-		to_chat(user, "<span class='userdanger'>You pick up the behavior adjustment disk.</span>")
+		to_chat(user, "<span class='userdanger'>You feel as though you've been adjusted to become righteous.</span>")
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "behavior", -MUTATIONS_LAYER))
 
 // Status Effect
@@ -48,7 +48,7 @@
 	H.emote("laugh")
 	var/obj/item/organ/eyes/O = H.getorgan(/obj/item/organ/eyes)
 	if(istype(O))
-		H.visible_message("<span class='danger'>[H] tears [H.p_their(TRUE)] eyes out!</span>")
+		H.visible_message("<span class='danger'>[H] tears [H.p_their(FALSE)] eyes out!</span>")
 		playsound(get_turf(H), 'sound/abnormalities/behavior/eyes_out.ogg', 35, TRUE)
 		O.Remove(H)
 		O.forceMove(get_turf(H))

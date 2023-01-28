@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/abnormality/silentorchestra
-	name = "Silent Orchestra"
+	name = "The Silent Orchestra"
 	desc = "From break and ruin, the most beautiful performance begins."
 	health = 4000
 	maxHealth = 4000

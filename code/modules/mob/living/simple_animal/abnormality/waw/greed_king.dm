@@ -172,7 +172,7 @@
 			continue
 		been_hit+=L
 		visible_message("<span class='boldwarning'>[src] crunches [L]!</span>")
-		to_chat(L, "<span class='userdanger'>[src] rends you with it's teeth!</span>")
+		to_chat(L, "<span class='userdanger'>[src] rends you with its teeth!</span>")
 		playsound(L, attack_sound, 75, 1)
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
