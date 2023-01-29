@@ -1,6 +1,8 @@
 // Most of its effects are applied elsewhere
 /datum/suppression/information
 	name = "Information Core Suppression"
+	desc = "Assignments on the abnormality work consoles will be in random positions.\n\
+			Telecommunications and suit sensors will be negatively impacted."
 	run_text = "The core suppression of Information department has begun. The information and sensors will be distorted for its duration."
 
 /datum/suppression/information/Run(run_white = TRUE)

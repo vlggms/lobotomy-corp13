@@ -356,7 +356,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "cL" = (
-/obj/structure/table/wood,
 /obj/machinery/computer/security/telescreen{
 	network = list("ss13");
 	pixel_y = 39
@@ -385,12 +384,7 @@
 	pixel_x = -20;
 	pixel_y = 27
 	},
-/obj/item/storage/photo_album/captain,
-/obj/item/documents,
-/obj/item/clothing/glasses/regular,
-/obj/item/stamp/denied,
-/obj/item/stamp,
-/obj/item/stamp/captain,
+/obj/machinery/computer/abnormality_auxiliary,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "cS" = (

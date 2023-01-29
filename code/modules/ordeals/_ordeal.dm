@@ -43,6 +43,8 @@
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.playsound_local(get_turf(M), end_sound, 35, 0)
+	if(level == 4 && !istype(SSlobotomy_corp.core_suppression) && !LAZYLEN(SSlobotomy_corp.available_core_suppressions))
+		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions), 5 SECONDS)
 	qdel(src)
 	return
 

@@ -1,6 +1,12 @@
 /datum/suppression
 	/// This will be displayed as announcement title
 	var/name = "Nothing Core Suppression"
+	/// This is displayed in auxiliary manager's console when selected
+	var/desc = "Normal effects of core suppression will apply. Yell at coders to fix description."
+	/// Same as above, but what facility has to do to win
+	var/goal_text = "Complete the Midnight of White."
+	/// Ditto, but for reward
+	var/reward_text = "N/A"
 	/// Announcement text. Self-explanatory
 	var/run_text = "The core suppression of Nothing department has begun."
 	/// Announcement text on the end.

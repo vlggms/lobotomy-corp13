@@ -93,4 +93,5 @@
 /datum/ordeal/white_midnight/End()
 	if(istype(SSlobotomy_corp.core_suppression)) // If it all was a part of core suppression
 		SSlobotomy_corp.core_suppression_state = 3
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
 	return ..()
