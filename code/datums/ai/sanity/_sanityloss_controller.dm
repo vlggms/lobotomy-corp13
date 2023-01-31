@@ -90,7 +90,7 @@
 
 /datum/ai_controller/insane/murder/MoveTo(delta_time)
 	var/mob/living/living_pawn = pawn
-	if(!current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
+	if(!able_to_run() || !current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
 		timerid = null
 		return FALSE
 	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), living_pawn.cached_multiplicative_slowdown)
