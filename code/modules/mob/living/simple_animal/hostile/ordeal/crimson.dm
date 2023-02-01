@@ -127,8 +127,15 @@
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
 	for(var/i = 1 to mob_spawn_amount)
-		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
 		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/.proc/TeleportAway), 1)
 		if(ordeal_reference)
@@ -183,8 +190,15 @@
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
 	for(var/i = 1 to mob_spawn_amount)
-		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_noon/nc = new(T)
 		if(ordeal_reference)
 			nc.ordeal_reference = ordeal_reference
