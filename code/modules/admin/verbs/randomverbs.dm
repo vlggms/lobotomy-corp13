@@ -1110,6 +1110,34 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			continue
 		A.current.AbnoRadio()
 
+// Selects and starts a core suppression
+/client/proc/InitCoreSuppression()
+	set category = "Admin.Fun"
+	set name = "Start Core Suppression"
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+
+	if(istype(SSlobotomy_corp.core_suppression))
+		var/confirm = alert(src, "Another Core Suppression is already in progress. Are you sure you want to proceed?", "Replace suppression", "Yes", "No")
+		if(confirm != "Yes")
+			return
+	var/datum/suppression/core_type = input("Select core suppression type","Set Core Type") as null|anything in subtypesof(/datum/suppression)
+	if(!ispath(core_type))
+		return
+	var/run_white = alert(src, "Do you wish to queue white ordeals?", "White Ordeals", "Yes", "No", "Cancel")
+	var/white_ordeals = TRUE
+	if(!(run_white in list("Yes", "No")))
+		return
+	if(run_white == "No")
+		white_ordeals = FALSE
+	SSlobotomy_corp.core_suppression = new core_type
+	SSlobotomy_corp.core_suppression.Run(white_ordeals)
+
+	log_admin("[key_name(usr)] has initiated [SSlobotomy_corp.core_suppression.name].")
+	message_admins("[key_name(usr)] has initiated [SSlobotomy_corp.core_suppression.name].")
+
+	SSblackbox.record_feedback("nested tally", "admin_core_suppression", 1, list("Initiated Core Suppression", "[SSlobotomy_corp.core_suppression.name]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
  *

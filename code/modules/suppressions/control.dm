@@ -1,5 +1,6 @@
 /datum/suppression/control
 	name = "Control Core Suppression"
+	desc = "Assignments on the abnormality work consoles will be scrambled each meltdown/ordeal."
 	run_text = "The core suppression of Control department has begun. The work assignments will be scrambled each meltdown."
 
 /datum/suppression/control/Run(run_white = TRUE)

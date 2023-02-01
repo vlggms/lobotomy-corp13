@@ -45,6 +45,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/datum/ordeal/next_ordeal = null
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
+	// List of available core suppressions for manager to choose
+	var/list/available_core_suppressions = list()
 	// State of the core suppression
 	var/core_suppression_state = 0
 	// Work logs from all abnormalities
@@ -74,6 +76,22 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		all_ordeals[O.level] += O
 	RollOrdeal()
 	return TRUE
+
+// Called when any normal midnight ends
+/datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions()
+	if(istype(core_suppression))
+		return
+	var/list/cores = subtypesof(/datum/suppression)
+	for(var/i = 1 to 2)
+		var/core_type = pick(cores)
+		available_core_suppressions += core_type
+		cores -= core_type
+	if(!LAZYLEN(available_core_suppressions))
+		return
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='notice'>Core Suppressions are now available!</span>")
+		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
+		A.updateUsrDialog()
 
 /datum/controller/subsystem/lobotomy_corp/proc/NewAbnormality(datum/abnormality/new_abno)
 	if(!istype(new_abno))
