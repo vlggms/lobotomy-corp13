@@ -69,14 +69,18 @@
 /obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 5
+	damage = 7
 	speed = 0.2
-	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_loyalty/iff
+	name = "loyalty IFF"
+	damage = 5
+	nodamage = TRUE	//Damage is calculated later
 	projectile_piercing = PASSMOB
 
-/obj/projectile/ego_bullet/ego_loyalty/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/ego_bullet/ego_loyalty/iff/on_hit(atom/target, blocked = FALSE)
 	if(!ishuman(target))
 		nodamage = FALSE
 	else
@@ -89,6 +93,7 @@
 	name = "executive"
 	damage = 10
 	damage_type = PALE_DAMAGE	//hehe
+
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
@@ -112,11 +117,14 @@
 /obj/projectile/ego_bullet/ego_praetorian
 	name = "praetorian"
 	icon_state = "loyalty"
-	damage = 21
+	damage = 5
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	projectile_piercing = PASSMOB
+	homing = TRUE
+	homing_turn_speed = 30		//Angle per tick.
+	var/homing_range = 9
 
 /obj/projectile/ego_bullet/ego_praetorian/on_hit(atom/target, blocked = FALSE)
 	if(!ishuman(target))
@@ -127,10 +135,28 @@
 	if(!ishuman(target))
 		qdel(src)
 
+/obj/projectile/ego_bullet/ego_praetorian/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/fireback), 3)
+
+/obj/projectile/ego_bullet/ego_praetorian/proc/fireback()
+	var/list/targetslist = list()
+	for(var/mob/living/L in range(homing_range, src))
+		if(ishuman(L) || isbot(L))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		targetslist+=L
+	if(!LAZYLEN(targetslist))
+		return
+	homing_target = pick(targetslist)
+
 /obj/projectile/ego_bullet/ego_magicpistol
 	name = "magic pistol"
 	icon_state = "magic_bullet"
-	damage = 62
+	damage = 40
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE

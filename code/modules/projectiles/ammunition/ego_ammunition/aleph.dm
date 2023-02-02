@@ -14,3 +14,19 @@
 	name = "adoration slug"
 	desc = "A adoration slug."
 	projectile_type = /obj/projectile/ego_bullet/melting_blob
+	pellets = 3
+	variance = 20
+
+/obj/item/ammo_casing/caseless/ego_adoration/dot
+	name = "adoration slug"
+	desc = "A adoration slug."
+	projectile_type = /obj/projectile/ego_bullet/melting_blob/dot
+	pellets = 1
+	variance = 0
+
+/obj/item/ammo_casing/caseless/ego_adoration/aoe
+	name = "adoration slug"
+	desc = "A adoration slug."
+	projectile_type = /obj/projectile/ego_bullet/melting_blob/aoe
+	pellets = 1
+	variance = 0

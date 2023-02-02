@@ -38,7 +38,7 @@
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
 	icon_state = "magich"
 	var/list/targetslist = list()
-	for(var/mob/living/L in livinginrange(homing_range, src))
+	for(var/mob/living/L in range(homing_range, src))
 		if(ishuman(L) || isbot(L))
 			continue
 		if(L.stat == DEAD)

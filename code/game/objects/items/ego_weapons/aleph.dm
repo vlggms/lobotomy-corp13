@@ -227,14 +227,14 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gold_rush"
-	force = 150
+	force = 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/goldrush_damage = 150
+	var/goldrush_damage = 140
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
@@ -242,7 +242,7 @@
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(do_after(user, 4, target))
+	if(do_after(user, 6, target))
 
 		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
 						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, user)

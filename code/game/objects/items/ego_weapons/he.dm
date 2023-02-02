@@ -43,8 +43,11 @@
 							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
 							)
 	var/can_spin = TRUE
+	var/spinning = FALSE
 
 /obj/item/ego_weapon/harvest/attack(mob/living/target, mob/living/user)
+	if(spinning)
+		return FALSE
 	..()
 	can_spin = FALSE
 	addtimer(CALLBACK(src, .proc/spin_reset), 12)
@@ -59,13 +62,15 @@
 		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
 		return
 	can_spin = FALSE
+	spinning = TRUE
 	if(do_after(user, 12))
+		can_spin = TRUE
 		addtimer(CALLBACK(src, .proc/spin_reset), 12)
 		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in livinginrange(1, user))
+		for(var/mob/living/L in range(1, user))
 			var/aoe = 30
 			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
@@ -73,6 +78,8 @@
 			if(L == user || ishuman(L))
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	spinning = FALSE
+
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
