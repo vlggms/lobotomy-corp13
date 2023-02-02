@@ -1,4 +1,5 @@
 /mob/living/simple_animal/hostile/ordeal
+	mob_size = MOB_SIZE_HUGE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	a_intent = INTENT_HARM
