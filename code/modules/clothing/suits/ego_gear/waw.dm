@@ -84,7 +84,8 @@
 	icon_state = "tiara"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 50)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/wife
@@ -93,7 +94,7 @@
 	icon_state = "wife"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/cobalt
@@ -102,7 +103,7 @@
 	icon_state = "cobalt_scar"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/spore
@@ -111,6 +112,7 @@
 	icon_state = "spore"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 40)
 	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
 
@@ -120,6 +122,7 @@
 	icon_state = "green_stem"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 70, PALE_DAMAGE = 20)
 	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/loyalty
@@ -128,7 +131,7 @@
 	icon_state = "loyalty"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60)
+							FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/clothing/suit/armor/ego_gear/executive
 	name = "executive"
@@ -146,7 +149,7 @@
 	icon_state = "ecstasy"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 10, PALE_DAMAGE = 20)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60)
+							TEMPERANCE_ATTRIBUTE = 80)
 
 /obj/item/clothing/suit/armor/ego_gear/throne
 	name = "false throne"
@@ -154,7 +157,8 @@
 	icon_state = "throne"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60)
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/intentions
 	name = "good intentions"
@@ -162,6 +166,7 @@
 	icon_state = "intentions"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)
 	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
 							FORTITUDE_ATTRIBUTE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/aroma
@@ -171,7 +176,8 @@
 	icon_state = "aroma"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/thirteen
@@ -180,7 +186,7 @@
 	icon_state = "thirteen"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
+							JUSTICE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/assonance
@@ -189,7 +195,7 @@
 	icon_state = "assonance"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30) // 140
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/exuviae
@@ -198,5 +204,6 @@
 	icon_state = "exuviae"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)

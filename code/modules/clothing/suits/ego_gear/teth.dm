@@ -17,14 +17,14 @@
 	desc = "The archetype was already charred from the moment of extraction. \
 	Although the exterior is scorched, it has no adverse effects on the E.G.O's performance."
 	icon_state = "match"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/fragment
 	name = "fragments from somewhere"
 	desc = "Do not attempt to understand it, just use it. \
 	Sometimes, the wielder may see things we have long forgotten."
 	icon_state = "fragment"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/horn
 	name = "horn"
@@ -36,7 +36,7 @@
 	name = "dear lutemia"
 	desc = "Your sadness, woes, cast them all aside."
 	icon_state = "lutemia"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/eyes
 	name = "red eyes"
@@ -84,7 +84,7 @@
 	name = "cherry blossoms"
 	desc = "Sitting under the tree’s shadow makes you feel like these gloomy days will flutter away like the petals of a flower."
 	icon_state = "blossoms"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = -50, PALE_DAMAGE = -20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = -30, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/regret
 	name = "regret"
@@ -102,7 +102,7 @@
 	name = "todays expression"
 	desc = "One sunny day, just like that day they sincerely dried the laundry, they dried their own skin."
 	icon_state = "shy"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -40, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = -30, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/trick
 	name = "hat trick"
@@ -121,7 +121,7 @@
 	desc = "The more entrancing it is, the bigger the disappointment will be when dawn breaks."
 	icon_state = "dream"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)
-	
+
 /obj/item/clothing/suit/armor/ego_gear/bean
 	name = "magic bean"
 	desc = "The handful of magic beans grew into a massive, towering beanstalk."
