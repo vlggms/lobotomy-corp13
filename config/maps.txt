@@ -34,5 +34,8 @@ map psicorp
 	votable
 endmap
 
+map rcorp_test
+	votable
+endmap
 map runtimestation
 endmap

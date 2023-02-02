@@ -438,7 +438,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	belt = /obj/item/ego_weapon/rabbit_blade
+	belt = /obj/item/ego_weapon/city/rabbit_blade
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 
@@ -459,7 +459,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	belt = /obj/item/ego_weapon/rabbit_blade
+	belt = /obj/item/ego_weapon/city/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 

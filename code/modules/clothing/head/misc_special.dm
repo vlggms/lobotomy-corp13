@@ -396,3 +396,19 @@
 		worn_icon = 'icons/mob/clothing/big_hat.dmi'
 		icon_state = "rabbit_grunt"
 		worn_icon_state = "rabbit_grunt_four"
+
+/obj/item/clothing/head/rabbit_helmet/raven
+	name = "\improper raven captain helmet"
+	icon_state = "raven"
+
+/obj/item/clothing/head/rabbit_helmet/raven/grunt
+	name = "\improper raven team helmet"
+	icon_state = "raven_grunt"
+
+/obj/item/clothing/head/rabbit_helmet/reindeer
+	name = "\improper reindeer captain helmet"
+	icon_state = "reindeer"
+
+/obj/item/clothing/head/rabbit_helmet/reindeer/grunt
+	name = "\improper reindeer team helmet"
+	icon_state = "reindeer_grunt"
