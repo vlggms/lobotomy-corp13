@@ -207,3 +207,13 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/regent
+	name = "black regent"
+	desc = "Someone must endure the pain to spare the rest of suffering."
+	icon_state = "regent"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)

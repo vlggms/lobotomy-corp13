@@ -177,3 +177,12 @@
 /datum/ego_datum/armor/exuviae
 	item_path = /obj/item/clothing/suit/armor/ego_gear/exuviae
 	cost = 50
+
+// Ebony Queen's Apple - Regent
+/datum/ego_datum/armor/regent
+	item_path = /obj/item/clothing/suit/armor/ego_gear/regent
+	cost = 50
+
+/datum/ego_datum/weapon/regent
+	item_path = /obj/item/ego_weapon/regent
+	cost = 50
