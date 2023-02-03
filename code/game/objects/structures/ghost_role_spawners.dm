@@ -911,21 +911,22 @@
 	death = FALSE
 	roundstart = FALSE
 	random = FALSE
-	name = "sleeper"
+	name = "intern sleeper"
 	desc = "A humming sleeper with a silhouetted occupant inside. Its stasis function is broken and it's likely being used as a bed."
 	mob_name = "Intern"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/tutorial
 	short_desc = "Welcome to Lobotomy Corporation! In the onboarding process you will get to see exactly how our company works."
-	flavour_text = "Check your inventory to read the tutorial sheets, \
+	flavour_text = "Be sure to read the tutorial sheets, \
 	experiment, and have fun. When you are done, Cryo and respawn to join the game. \
-	Try out mechanics, and maybe breach some abnormalities to get a feel for the combat."
+	Try out the mechanics, and maybe breach some abnormalities to get a feel for the combat."
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
 
 /obj/effect/mob_spawn/human/tutorial/Destroy()
-	new/obj/effect/mob_spawn/human/tutorial(drop_location())
+	var/obj/effect/mob_spawn/human/tutorial/thing = new/obj/effect/mob_spawn/human/tutorial(drop_location())
+	thing.dir = src.dir
 	return ..()
 
 //Tutorial agent
@@ -943,13 +944,3 @@
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
 	back = /obj/item/storage/backpack
-
-	backpack_contents = list(/obj/item/paper/fluff/tutorial/levels=1 ,
-		/obj/item/paper/fluff/tutorial/risk=1,
-		/obj/item/paper/fluff/tutorial/damage=1,
-		/obj/item/paper/fluff/tutorial/tips=1,
-		/obj/item/paper/fluff/info/tutorial/bill = 1,
-		/obj/item/paper/fluff/info/tutorial/cube = 1,
-		/obj/item/paper/fluff/info/tutorial/shadow = 1,
-		/obj/item/paper/fluff/info/tutorial/fairy =1,)
-

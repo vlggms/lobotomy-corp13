@@ -95,6 +95,8 @@ Possible to do for anyone motivated enough:
 	flags_1 = NODECONSTRUCT_1
 	on_network = FALSE
 	var/proximity_range = 1
+	var/proximity_cooldown
+	var/proximity_cooldown_time = 30 SECONDS
 
 /obj/machinery/holopad/tutorial/Initialize(mapload)
 	. = ..()
@@ -119,8 +121,14 @@ Possible to do for anyone motivated enough:
 /obj/machinery/holopad/tutorial/HasProximity(atom/movable/AM)
 	if (!isliving(AM))
 		return
+	if(proximity_cooldown > world.time)
+		return
 	if(!replay_mode && (disk?.record))
 		replay_start()
+
+/obj/machinery/holopad/tutorial/replay_stop()
+	..()
+	proximity_cooldown = world.time + proximity_cooldown_time
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
@@ -640,7 +648,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(HOLORECORD_SOUND)
 			playsound(src,entry[2],50,TRUE)
 		if(HOLORECORD_DELAY)
-			addtimer(CALLBACK(src,.proc/replay_entry,entry_number+1),entry[2])
+			addtimer(CALLBACK(src,.proc/replay_entry,entry_number+1),entry[2],TIMER_UNIQUE|TIMER_OVERRIDE)
 			return
 		if(HOLORECORD_LANGUAGE)
 			var/datum/language_holder/holder = replay_holo.get_language_holder()

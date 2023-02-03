@@ -11,8 +11,8 @@
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
 						ABNORMALITY_WORK_INSIGHT = 80,
-						ABNORMALITY_WORK_ATTACHMENT = 80,
-						ABNORMALITY_WORK_REPRESSION = 80,
+						ABNORMALITY_WORK_ATTACHMENT = 65,
+						ABNORMALITY_WORK_REPRESSION = 45,
 						)
 	melee_damage_lower = 4
 	melee_damage_upper = 6
@@ -25,8 +25,14 @@
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
 
+/mob/living/simple_animal/hostile/abnormality/bill/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40))
+		datum_reference.qliphoth_change(-1)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/bill/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/bill/BreachEffect(mob/living/carbon/human/user)
