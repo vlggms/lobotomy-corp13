@@ -104,6 +104,9 @@
 	combo += 1
 	force = initial(force)
 
+/obj/item/ego_weapon/justitia/get_clamped_volume()
+	return 40
+
 /obj/item/ego_weapon/da_capo
 	name = "da capo"
 	desc = "A scythe that swings silently and with discipline like a conductor's gestures and baton. \
@@ -188,6 +191,9 @@
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
 	..()
+
+/obj/item/ego_weapon/mimicry/get_clamped_volume()
+	return 40
 
 /obj/item/ego_weapon/twilight
 	name = "twilight"
@@ -403,7 +409,7 @@
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/censored/get_clamped_volume()
-	return 50
+	return 30
 
 /obj/item/ego_weapon/soulmate
 	name = "Soulmate"

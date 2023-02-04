@@ -29,6 +29,9 @@
 		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	force = 30
 
+/obj/item/ego_weapon/grinder/get_clamped_volume()
+	return 40
+
 /obj/item/ego_weapon/harvest
 	name = "harvest"
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
