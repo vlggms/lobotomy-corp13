@@ -526,6 +526,13 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
+/obj/item/ego_weapon/mini/metal/attack_self(mob/user)
+	if(!CanUseEgo(user) || !do_after(user, 6, src))
+		return
+
+	goonchem_vortex(get_turf(src), 1, 2)
+	to_chat(user,"<span class='warning'>You spin the fanblade, pushing everything back.</span>")
+
 /obj/item/ego_weapon/mini/alleyway
 	name = "alleyway"
 	desc = "It's a small knife forged of black metal."
@@ -541,6 +548,58 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+	var/teleporting
+
+/obj/item/ego_weapon/mini/alleyway/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+
+	if(!do_after(user, 10, src))
+		return
+	if(teleporting)
+		teleporting = FALSE
+		to_chat(user,"<span class='warning'>You disable teleport.</span>")
+	else
+		teleporting = TRUE
+		to_chat(user,"<span class='warning'>You prepare to teleport.</span>")
+
+/obj/item/ego_weapon/mini/alleyway/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if(get_dist(user, target_turf) < 2)
+		return
+	..()
+
+	//Are you currently trying to teleport?
+	if(!teleporting)
+		return
+
+	var/targetfound
+	playsound(target_turf, 'sound/weapons/rapierhit.ogg', 100, TRUE)
+	for(var/mob/living/L in target_turf.contents)
+		L.apply_damage(force*2, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		targetfound = TRUE
+	//So you can't fucking teleport into a place where you are immune to all damage
+	if(!targetfound)
+		to_chat(user,"<span class='warning'>No target found!</span>")
+		return
+
+	new /obj/effect/temp_visual/kinetic_blast(target_turf)
+
+	//actually teleport
+	var/list/teleport_targets = list()
+	for(var/turf/open/Y in orange(1, target_turf))
+		teleport_targets+=Y
+	if(!LAZYLEN(teleport_targets))
+		to_chat(user,"<span class='warning'>Failed to Teleport!</span>")
+		return
+
+	new /obj/effect/temp_visual/guardian/phase (get_turf(user))
+	user.forceMove(pick(teleport_targets))
+
+	//set all to 0
+	teleporting = FALSE
 
 /obj/item/ego_weapon/shield/giant
 	name = "giant"
