@@ -41,6 +41,11 @@
 /obj/item/ego_weapon/proc/CanUseEgo(mob/living/carbon/human/user)
 	if(!ishuman(user))
 		return FALSE
+
+	if(user.mind)
+		if(user.mind.assigned_role == "Sephirah") //This is an RP role
+			return FALSE
+
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
 		if(attribute_requirements[atr] > get_attribute_level(H, atr))
