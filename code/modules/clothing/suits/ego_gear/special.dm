@@ -6,6 +6,12 @@
 	icon_state = "rabbit"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
 	equip_slowdown = 0
+	attribute_requirements = list(
+						FORTITUDE_ATTRIBUTE = 55,
+						PRUDENCE_ATTRIBUTE = 55,
+						TEMPERANCE_ATTRIBUTE = 55,
+						JUSTICE_ATTRIBUTE = 55
+						)
 
 /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
 	name = "\improper rabbit team suit"
