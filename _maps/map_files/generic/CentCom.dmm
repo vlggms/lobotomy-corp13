@@ -107,6 +107,15 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"aC" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp8,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "aG" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/pistol/m1911,
@@ -165,6 +174,12 @@
 /obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"aV" = (
+/obj/effect/landmark/portal_exit{
+	id = "tutorial3"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "aW" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdomehea";
@@ -246,6 +261,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"bB" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "bE" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
@@ -306,6 +327,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"ce" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic7,
+/turf/open/floor/wood,
+/area/department_main/human)
 "cg" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -410,12 +438,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"cW" = (
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/department_main/human)
 "cY" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp1,
+/turf/open/floor/wood,
+/area/department_main/human)
 "cZ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -439,11 +470,10 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"dg" = (
-/obj/machinery/sleeper{
-	dir = 8
+"dd" = (
+/obj/structure/mirror{
+	pixel_y = 28
 	},
-/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/human)
 "dj" = (
@@ -544,10 +574,6 @@
 /obj/effect/landmark/abnormality_spawn/tutorial,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
-"ec" = (
-/obj/machinery/door/airlock/glass_large,
-/turf/open/floor/wood,
-/area/department_main/human)
 "ee" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -587,10 +613,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"et" = (
-/obj/machinery/door/airlock/hatch,
-/turf/open/floor/wood,
-/area/department_main/human)
 "ev" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/green,
@@ -604,6 +626,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"ex" = (
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "ey" = (
 /obj/machinery/flasher{
 	id = "tdomeflash";
@@ -624,13 +652,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
-"eF" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/human)
 "eG" = (
 /obj/structure/sink{
 	dir = 4;
@@ -749,6 +770,37 @@
 /obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"fK" = (
+/obj/machinery/door/airlock/public/glass,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"fM" = (
+/obj/structure/fluff/arc{
+	desc = "An angelic creature wearing white and golden armor with a cannon-like weapon.";
+	icon = 'ModularTegustation/Teguicons/32x48.dmi';
+	icon_state = "fixer_w";
+	name = "White Fixer statue";
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/carpet/green,
+/area/facility_hallway/human)
+"fN" = (
+/obj/structure/table/reinforced,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/turf/open/floor/wood,
+/area/department_main/human)
 "fR" = (
 /obj/item/food/egg/rainbow{
 	desc = "I bet you think you're pretty clever... well you are.";
@@ -756,6 +808,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"fW" = (
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/wood,
+/area/department_main/human)
 "fX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
@@ -1739,6 +1795,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"iF" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/tutorialintro,
+/turf/open/floor/wood,
+/area/department_main/human)
 "iG" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -1901,6 +1962,13 @@
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
+"jK" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/levels{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "jM" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -1917,12 +1985,6 @@
 	dir = 10
 	},
 /area/tdome/tdomeadmin)
-"jR" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/human)
 "jV" = (
 /turf/closed/indestructible/fakedoor{
 	name = "CentCom Warehouse"
@@ -1947,6 +2009,21 @@
 /obj/item/toy/plush/angela,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
+"kc" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/satchel,
+/obj/item/storage/backpack/satchel,
+/obj/item/storage/backpack/satchel,
+/obj/item/storage/backpack/satchel,
+/obj/item/storage/backpack/satchel,
+/turf/open/floor/wood,
+/area/department_main/human)
+"kd" = (
+/obj/structure/sign/departments/human{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "ke" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -2056,6 +2133,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"kB" = (
+/obj/effect/mob_spawn/human/tutorial{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "kC" = (
 /obj/machinery/light{
 	dir = 1
@@ -2172,20 +2259,6 @@
 /obj/item/holosign_creator/security,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"ls" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/obj/item/clothing/suit/armor/ego_gear/freshman,
-/turf/open/floor/wood,
-/area/department_main/human)
 "lt" = (
 /obj/machinery/door/airlock/centcom{
 	name = "R-Corp Training Facility";
@@ -2193,6 +2266,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"lu" = (
+/obj/structure/sign/poster/lobotomycorp/attributes{
+	pixel_y = 32
+	},
+/obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/teth/lore{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "lw" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -2256,10 +2339,6 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/holofloor/hyperspace,
 /area/centcom/supplypod/supplypod_temp_holding)
-"lU" = (
-/obj/effect/spawner/randomsnackvend,
-/turf/open/floor/wood,
-/area/department_main/human)
 "lV" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -2269,6 +2348,9 @@
 	dir = 1
 	},
 /area/tdome/tdomeobserve)
+"lW" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/human)
 "lX" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien10"
@@ -2295,6 +2377,10 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"ml" = (
+/obj/machinery/jukebox,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/manager)
 "mm" = (
 /obj/machinery/light{
 	dir = 1
@@ -2307,6 +2393,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"mp" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp2,
+/turf/open/floor/wood,
+/area/department_main/human)
 "mq" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
@@ -2514,6 +2605,14 @@
 "nz" = (
 /turf/closed/indestructible/opsglass,
 /area/syndicate_mothership/control)
+"nB" = (
+/obj/structure/tutorialbox,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "nD" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -2530,6 +2629,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"nI" = (
+/obj/machinery/roulette,
+/turf/open/floor/wood,
+/area/department_main/human)
 "nM" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/turf_decal/bot,
@@ -2574,6 +2677,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"oa" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "oe" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "ccdroppod";
@@ -2611,6 +2721,11 @@
 "on" = (
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"oo" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp7,
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "oy" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -2664,12 +2779,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"oT" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Human Resources Department"
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/human)
 "oV" = (
 /obj/machinery/light{
 	dir = 8
@@ -2684,6 +2793,16 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"oX" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/effect/portal/permanent/one_way{
+	id = "tutorial3"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "oY" = (
 /obj/machinery/light{
 	dir = 8
@@ -2762,6 +2881,13 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"pI" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/tips{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "pM" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/brown,
@@ -2835,6 +2961,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
+"qc" = (
+/obj/machinery/regenerator,
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "qh" = (
 /obj/machinery/button/door/indestructible{
 	id = "ccdroppod";
@@ -2855,6 +2985,23 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"qm" = (
+/obj/structure/filingcabinet{
+	icon_state = "employmentcabinet";
+	name = "teth abnormality information cabinet"
+	},
+/obj/structure/filingcabinet{
+	icon_state = "employmentcabinet";
+	name = "zayin abnormality information cabinet";
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet{
+	icon_state = "employmentcabinet";
+	name = "he abnormality information cabinet";
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "qw" = (
 /obj/machinery/light{
 	dir = 4
@@ -3051,6 +3198,11 @@
 /obj/item/gun/energy/e_gun/rabbit,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
+"rq" = (
+/obj/structure/plasticflaps/opaque,
+/obj/machinery/scanner_gate/tutorialscanner,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ru" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -3067,6 +3219,23 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"rw" = (
+/obj/structure/filingcabinet{
+	icon_state = "employmentcabinet";
+	name = "aleph abnormality information cabinet"
+	},
+/obj/structure/filingcabinet{
+	icon_state = "employmentcabinet";
+	name = "waw abnormality information cabinet";
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet{
+	name = "tool abnormality information cabinet";
+	icon_state = "employmentcabinet";
+	pixel_x = 10
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "rz" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
@@ -3083,6 +3252,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"rJ" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "rK" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/dark,
@@ -3130,6 +3305,12 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"sc" = (
+/obj/structure/closet{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "se" = (
 /obj/machinery/light{
 	dir = 8
@@ -3236,6 +3417,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"sv" = (
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "sw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -3249,6 +3436,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"sD" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "sK" = (
 /obj/structure/chair/sofa/corp,
 /turf/open/floor/plasteel/dark,
@@ -3538,6 +3731,34 @@
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
+"ul" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/zayin{
+	pixel_x = -5;
+	anchored = 1
+	},
+/obj/item/paper/guides/jobs/teth{
+	pixel_y = 5;
+	anchored = 1
+	},
+/obj/item/paper/guides/jobs/he{
+	pixel_x = 5;
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"um" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic4,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/turf/open/floor/wood,
+/area/department_main/human)
 "us" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -3726,6 +3947,12 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
+"vr" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "vs" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/tile/green{
@@ -3779,6 +4006,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"vB" = (
+/obj/structure/table/reinforced,
+/obj/item/megaphone,
+/obj/item/megaphone,
+/obj/item/megaphone,
+/obj/item/megaphone,
+/obj/item/megaphone,
+/turf/open/floor/wood,
+/area/department_main/human)
 "vC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -3816,10 +4052,15 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/supply)
 "vJ" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/waw{
+	pixel_x = -5;
+	pixel_y = 5;
+	anchored = 1
 	},
-/obj/effect/mob_spawn/human/tutorial,
+/obj/item/paper/guides/jobs/aleph{
+	anchored = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "vK" = (
@@ -3881,6 +4122,17 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"vW" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/warning,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "vX" = (
 /obj/machinery/light,
 /obj/item/kirbyplants{
@@ -3928,6 +4180,11 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
+"we" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp3,
+/turf/open/floor/wood,
+/area/department_main/human)
 "wf" = (
 /obj/structure/closet{
 	anchored = 1;
@@ -4065,6 +4322,21 @@
 "wF" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/human)
+"wG" = (
+/obj/structure/fluff/arc{
+	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.";
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "sweeper_1";
+	name = "sweeper statue";
+	dir = 4;
+	pixel_x = -3
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/carpet/stellar,
+/area/facility_hallway/human)
 "wM" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -4347,6 +4619,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"xX" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic2,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ya" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -4785,6 +5064,13 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"zC" = (
+/obj/structure/railing/corner,
+/obj/structure/sign/ordealmonitor{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "zD" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -4806,6 +5092,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
+"zH" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/damage{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "zL" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -4857,6 +5150,10 @@
 	},
 /turf/open/floor/grass,
 /area/wizard_station)
+"zR" = (
+/obj/structure/railing,
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "zU" = (
 /obj/machinery/photocopier,
 /turf/open/floor/plasteel/dark,
@@ -4906,6 +5203,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"Al" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp9,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Ar" = (
 /obj/structure/railing{
 	dir = 4
@@ -5149,12 +5455,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/centcom/evac)
-"BP" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/human)
 "BQ" = (
 /obj/effect/landmark/abductor/scientist{
 	team_number = 3
@@ -5199,6 +5499,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"Cf" = (
+/obj/machinery/disposal/bin,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Cg" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-09"
@@ -5295,6 +5599,19 @@
 /obj/item/inducer,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"CR" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "CT" = (
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -5302,6 +5619,15 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Dc" = (
+/obj/structure/table/reinforced,
+/obj/item/evidencebag,
+/obj/item/evidencebag,
+/obj/item/evidencebag,
+/obj/item/evidencebag,
+/obj/item/evidencebag,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Df" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -5329,6 +5655,22 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"Dp" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic3,
+/turf/open/floor/wood,
+/area/department_main/human)
+"Dt" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Dw" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
@@ -5428,6 +5770,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"DX" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/lobcorp6,
+/turf/open/floor/wood,
+/area/department_main/human)
 "DZ" = (
 /obj/item/cautery/alien,
 /obj/effect/turf_decal/bot,
@@ -5532,6 +5881,16 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"EA" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/structure/sign/poster/lobotomycorp/egoinfo{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "EC" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -5705,6 +6064,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
+"FC" = (
+/obj/structure/sign/departments/human{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "FE" = (
 /obj/item/stack/package_wrap,
 /obj/item/hand_labeler,
@@ -5802,6 +6167,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"Gx" = (
+/obj/structure/chair/bronze,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Gy" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -5843,6 +6212,13 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"GG" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department";
+	normalspeed = 0
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "GH" = (
 /obj/effect/landmark/thunderdome/observe,
 /obj/structure/chair/sofa/corp/left,
@@ -5861,11 +6237,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
+"GK" = (
+/obj/effect/landmark/portal_exit{
+	id = "tutorial2"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "GM" = (
 /obj/effect/landmark/thunderdome/observe,
 /obj/structure/chair/sofa/corp/right,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
+"GN" = (
+/obj/machinery/button/tutorialmeltdown,
+/turf/open/indestructible/light,
+/area/facility_hallway/human)
 "GX" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
@@ -5890,6 +6276,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"Hg" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic1,
+/turf/open/floor/wood,
+/area/department_main/human)
+"Hi" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-10"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "Hk" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
@@ -5927,6 +6326,10 @@
 "Ht" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/manager)
+"Hu" = (
+/obj/structure/table/optable,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Hv" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -5934,6 +6337,12 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"Hy" = (
+/obj/effect/landmark/portal_exit{
+	id = "tutorial1"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "HB" = (
 /obj/machinery/status_display/supply,
 /turf/closed/indestructible/riveted,
@@ -5952,6 +6361,10 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"HD" = (
+/turf/open/floor/wood,
+/turf/open/floor/wood,
+/area/department_main/human)
 "HG" = (
 /obj/item/food/egg/rainbow{
 	desc = "I bet you think you're pretty clever... well you are.";
@@ -5972,6 +6385,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
+"HN" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"HP" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/basicmechanic6,
+/turf/open/floor/wood,
+/area/department_main/human)
 "HQ" = (
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -6250,12 +6675,6 @@
 /obj/effect/landmark/thunderdome/one,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"IO" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/human)
 "IQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -6364,6 +6783,14 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
+"Je" = (
+/obj/machinery/cryopod,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Jg" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6625,6 +7052,33 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
+"Kb" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/item/clothing/suit/armor/ego_gear/freshman,
+/obj/structure/sign/departments/human{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"Kg" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/item/paper/fluff/info/tutorial/bill{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Kk" = (
 /obj/docking_port/stationary{
 	dir = 4;
@@ -6644,6 +7098,9 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
+"Ko" = (
+/turf/closed/indestructible/reinforced,
+/area/space)
 "Kq" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6718,12 +7175,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"Kx" = (
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/structure/rack,
-/turf/open/floor/wood,
-/area/department_main/human)
 "Kz" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
@@ -6754,6 +7205,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
+"KG" = (
+/obj/structure/fluff/arc{
+	desc = "A tiny worm-like creature with tough chitin and a pair of sharp claws.";
+	dir = 4;
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "amber_bug";
+	name = "complete food statue"
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/facility_hallway/human)
 "KH" = (
 /turf/closed/wall/mineral/titanium,
 /area/centcom/evac)
@@ -7207,6 +7672,12 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/tdome/tdomeobserve)
+"Ml" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Mm" = (
 /turf/open/floor/grass,
 /area/centcom/holding)
@@ -7454,15 +7925,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/centcom/hub)
-"Nt" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/human)
 "Nu" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -7546,6 +8008,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"NM" = (
+/obj/machinery/holopad/tutorial,
+/obj/item/disk/holodisk/tutorial/lobcorp4,
+/turf/open/floor/wood,
+/area/department_main/human)
 "NS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -7598,6 +8065,10 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"Ol" = (
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Op" = (
 /obj/structure/sink{
 	dir = 4;
@@ -7732,10 +8203,32 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"Pe" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
+"Pg" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "Ph" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Pj" = (
+/obj/machinery/power/emitter/energycannon/tutorialemitter{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"Pk" = (
+/obj/machinery/cryopod,
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Pl" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -7764,6 +8257,15 @@
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Pu" = (
+/obj/structure/fluff/arc{
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	desc = "A tiny humanoid creature in jester's attire.";
+	icon_state = "crimson_clown";
+	name = "cheers for the start statue"
+	},
+/turf/open/floor/carpet,
+/area/facility_hallway/human)
 "Pv" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -8048,6 +8550,13 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"QV" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/risk{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "QW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	locked = 0
@@ -8060,6 +8569,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"QZ" = (
+/obj/item/disk/holodisk/tutorial/lobcorp5,
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "Rb" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8136,6 +8652,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"Rk" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/obj/structure/sign/ordealmonitor{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Rl" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -8170,6 +8695,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"Rv" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/human)
 "Rw" = (
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
@@ -8199,15 +8727,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"RE" = (
-/obj/machinery/cryopod{
-	dir = 4
+"RD" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department";
+	normalspeed = 0
 	},
-/obj/machinery/computer/cryopod{
-	pixel_y = 32
+/obj/machinery/scanner_gate/tutorialscanner{
+	check_bag = 0
 	},
 /turf/open/floor/wood,
-/area/department_main/human)
+/area/facility_hallway/human)
 "RK" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -8277,6 +8806,16 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sm" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/item/paper/fluff/info/tutorial/shadow{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Sw" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/light{
@@ -8294,6 +8833,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
+"Sx" = (
+/obj/effect/portal/permanent/one_way{
+	id = "tutorial2"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "SB" = (
 /obj/structure/curtain,
 /obj/structure/window/reinforced/tinted{
@@ -8312,6 +8857,26 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"SH" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/item/paper/fluff/info/tutorial/fairy{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
+"SK" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/item/paper/fluff/info/tutorial/cube{
+	anchored = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "SN" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -8370,13 +8935,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"SZ" = (
-/obj/machinery/camera/autoname,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/human)
 "Tb" = (
 /obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/wood,
@@ -8459,6 +9017,10 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/grass,
 /area/centcom/holding)
+"Ty" = (
+/obj/machinery/power/emitter/energycannon/tutorialemitter,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Tz" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -8505,6 +9067,14 @@
 	dir = 1
 	},
 /area/centcom/supply)
+"TU" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/turf/open/floor/wood,
+/area/department_main/human)
 "TV" = (
 /obj/machinery/shower{
 	dir = 8
@@ -8604,11 +9174,18 @@
 /obj/structure/chair/wood/wings,
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
-"UA" = (
-/obj/machinery/regenerator,
-/obj/machinery/light,
+"Uu" = (
+/obj/effect/portal/permanent/one_way{
+	id = "tutorial1"
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"UB" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "UC" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/donkpockets,
@@ -8642,10 +9219,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UO" = (
-/obj/structure/sign/departments/human,
-/turf/closed/indestructible/reinforced,
-/area/department_main/human)
 "UP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8701,13 +9274,6 @@
 /obj/item/key/security,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Vd" = (
-/obj/structure/mirror{
-	pixel_x = -32
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/human)
 "Vi" = (
 /obj/machinery/photocopier,
 /obj/effect/turf_decal/tile{
@@ -8747,6 +9313,13 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
+"Vo" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Vp" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/supply)
@@ -8808,6 +9381,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"VK" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/guides/jobs/teth/lore{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "VL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -8829,6 +9409,17 @@
 "VR" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/manager)
+"Wa" = (
+/obj/structure/fluff/arc{
+	desc = "A round purple creature. It is constantly leaking mind-damaging gas.";
+	icon = 'ModularTegustation/Teguicons/48x32.dmi';
+	icon_state = "violet_fruit";
+	name = "fruit of understanding statue";
+	pixel_x = -8;
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/purple,
+/area/facility_hallway/human)
 "Wb" = (
 /obj/structure/railing/corner,
 /obj/structure/table/wood,
@@ -8846,8 +9437,14 @@
 /obj/item/encryptionkey/heads/manager,
 /obj/item/radio/headset/heads/manager,
 /obj/item/card/id/captains_spare,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
+"Wg" = (
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "Wh" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/delivery,
@@ -8877,6 +9474,19 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"Ws" = (
+/obj/structure/fluff/arc{
+	desc = "A slim robot with a spear in place of its hand.";
+	icon = 'ModularTegustation/Teguicons/32x48.dmi';
+	icon_state = "green_bot";
+	name = "doubt statue"
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/carpet/green,
+/area/facility_hallway/human)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -8943,6 +9553,10 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"WO" = (
+/obj/machinery/cryopod,
+/turf/open/floor/wood,
+/area/department_main/human)
 "WQ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -8969,6 +9583,26 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/centcom/hub)
+"WV" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"WW" = (
+/obj/machinery/holopad/tutorial{
+	proximity_cooldown_time = 600
+	},
+/obj/item/disk/holodisk/tutorial/basicmechanic5,
+/turf/open/floor/wood,
+/area/department_main/human)
 "WX" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -9022,6 +9656,15 @@
 "Xh" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
+"Xi" = (
+/obj/structure/table/reinforced,
+/obj/item/megaphone/clown,
+/obj/item/megaphone/clown,
+/obj/item/megaphone/clown,
+/obj/item/megaphone/clown,
+/obj/item/megaphone/clown,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Xj" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/ego_gear/fledgling,
@@ -9130,12 +9773,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"XH" = (
-/obj/structure/sign/departments/human{
-	pixel_x = -32
+"XI" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department";
+	normalspeed = 0
 	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/human)
+/turf/open/floor/wood,
+/area/department_main/human)
 "XL" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
@@ -9153,6 +9797,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"XR" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/wood,
+/area/department_main/human)
 "XU" = (
 /obj/structure/sign/poster/ripped{
 	pixel_x = 32
@@ -9258,11 +9906,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yr" = (
-/obj/structure/sign/departments/human{
-	pixel_x = 32
+"Ys" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/wood,
 /area/facility_hallway/human)
 "Yt" = (
 /obj/effect/turf_decal/tile/brown,
@@ -9275,6 +9924,14 @@
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Yy" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Human Resources Department";
+	normalspeed = 0
+	},
+/obj/machinery/scanner_gate/tutorialscanner,
+/turf/open/floor/wood,
+/area/department_main/human)
 "YA" = (
 /turf/closed/indestructible/fakeglass,
 /area/centcom/hub)
@@ -9285,6 +9942,16 @@
 "YC" = (
 /turf/open/floor/plasteel,
 /area/department_main/manager)
+"YE" = (
+/obj/structure/sign/poster/lobotomycorp/egoinfo{
+	pixel_y = 32
+	},
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "YG" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -9326,6 +9993,12 @@
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"YT" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "YV" = (
 /obj/machinery/light{
 	dir = 8
@@ -9358,12 +10031,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
-"Zf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/human)
 "Zi" = (
 /obj/machinery/vending/snack/orange,
 /obj/effect/turf_decal/tile/blue{
@@ -9447,6 +10114,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
+"ZL" = (
+/obj/structure/plasticflaps,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ZN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9469,6 +10140,12 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
+"ZS" = (
+/obj/effect/spawner/randomsnackvend{
+	resistance_flags = 115
+	},
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "ZT" = (
 /mob/living/simple_animal/cow,
 /turf/open/floor/grass,
@@ -15184,7 +15861,7 @@ VR
 VR
 VR
 VR
-aa
+Ko
 aa
 VR
 Vi
@@ -15440,7 +16117,7 @@ aa
 VR
 fc
 We
-VR
+ml
 VR
 VR
 VR
@@ -15697,7 +16374,7 @@ VR
 VR
 UX
 UX
-cY
+UX
 Cb
 PB
 PB
@@ -24950,15 +25627,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-cI
-cI
-cI
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25207,15 +25884,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-IO
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25464,15 +26141,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-Nh
-jx
-cI
-Zf
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25721,15 +26398,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25978,15 +26655,15 @@ aa
 aa
 aa
 aa
-cI
-SZ
-Yb
-Yb
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26235,15 +26912,15 @@ aa
 aa
 aa
 aa
-cI
-fy
-jx
-jx
-Fu
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26492,15 +27169,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26753,11 +27430,11 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27006,15 +27683,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27263,15 +27940,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-IO
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27520,15 +28197,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-Nf
-jx
-cI
-Zf
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27777,15 +28454,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -28034,15 +28711,15 @@ aa
 aa
 aa
 aa
-cI
-SZ
-Yb
-Yb
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -28291,15 +28968,15 @@ aa
 aa
 aa
 aa
-cI
-fy
-jx
-jx
-Fu
-Yr
-jx
-Yr
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -28546,18 +29223,18 @@ aa
 aa
 aa
 aa
-wF
-wF
-wF
-wF
-wF
-wF
-wF
-wF
-oT
-wF
-wF
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -28803,18 +29480,18 @@ aa
 aa
 aa
 aa
-wF
-Gl
-Vd
-UO
-Im
-Xj
-Wu
-ls
-bI
-bI
-UA
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -29060,18 +29737,18 @@ aa
 aa
 aa
 aa
-wF
-wF
-et
-wF
-BP
-bI
-on
-on
-on
-bI
-Kx
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -29317,18 +29994,18 @@ aa
 aa
 aa
 aa
-wF
-Nt
-bI
-wF
-bI
-on
-on
-on
-on
-on
-ek
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -29574,18 +30251,18 @@ aa
 aa
 aa
 aa
-wF
-RE
-bI
-ec
-bI
-on
-on
-on
-on
-on
-ek
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -29831,18 +30508,18 @@ aa
 aa
 aa
 aa
-wF
-jR
-bI
-bI
-bI
-on
-on
-on
-on
-on
-lU
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30088,18 +30765,18 @@ aa
 aa
 aa
 aa
-wF
-vJ
-bI
-wF
-bI
-on
-on
-on
-on
-on
-lU
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30345,18 +31022,18 @@ aa
 aa
 aa
 aa
-wF
-wF
-et
-wF
-BP
-bI
-on
-on
-on
-bI
-lU
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30603,17 +31280,17 @@ aa
 aa
 aa
 aa
-wF
-eF
-UO
-OT
-Ua
-Xq
-US
-bI
-bI
-dg
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30860,17 +31537,17 @@ aa
 aa
 aa
 aa
-wF
-wF
-wF
-wF
-wF
-wF
-wF
-oT
-wF
-wF
-wF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31118,15 +31795,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-IO
-jx
-cI
-XH
-jx
-XH
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31375,15 +32052,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-dX
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31632,15 +32309,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
-Zf
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31889,15 +32566,15 @@ aa
 aa
 aa
 aa
-cI
-SZ
-Yb
-Yb
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32146,15 +32823,15 @@ aa
 aa
 aa
 aa
-cI
-fy
-jx
-jx
-Fu
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32403,15 +33080,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32664,11 +33341,11 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32917,15 +33594,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -33174,15 +33851,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-IO
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -33431,15 +34108,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-UH
-jx
-cI
-Zf
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -33688,15 +34365,15 @@ aa
 aa
 aa
 aa
-cI
-jx
-jx
-jx
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -33945,15 +34622,15 @@ aa
 aa
 aa
 aa
-cI
-SZ
-Yb
-Yb
-cI
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -34202,15 +34879,15 @@ aa
 aa
 aa
 aa
-cI
-fy
-jx
-jx
-Fu
-jx
-jx
-jx
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -34459,15 +35136,15 @@ aa
 aa
 aa
 aa
-cI
-cI
-cI
-cI
-cI
-cI
-cI
-cI
-cI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36792,9 +37469,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+wF
+wF
+wF
 aa
 aa
 aa
@@ -37046,15 +37723,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+bI
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -37300,18 +37977,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+bI
+HN
+cW
+nB
+YT
+HP
+bI
+wF
 aa
 aa
 aa
@@ -37553,22 +38230,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+wF
+oX
+wF
+wF
+ce
+bI
+wF
+bI
+bI
+HN
+bI
+wF
 aa
 aa
 aa
@@ -37810,22 +38487,22 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+aV
+bI
+wF
+wF
+ZL
+wF
+wF
+bI
+HN
+wF
+wF
+wF
+bB
+wF
+wF
 aa
 aa
 aa
@@ -38066,23 +38743,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+bI
+bI
+wF
+qm
+HN
+bI
+wF
+Rv
+ZL
+wF
+wF
+bI
+HN
+bI
+wF
 aa
 aa
 aa
@@ -38323,23 +39000,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+zH
+HN
+bI
+wF
+ul
+bI
+we
+wF
+Ty
+HN
+Pj
+wF
+Hu
+WW
+Ol
+wF
 aa
 aa
 aa
@@ -38580,23 +39257,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+zH
+bI
+NM
+wF
+vJ
+HN
+bI
+wF
+Ty
+bI
+Pj
+wF
+Cf
+HN
+fW
+wF
 aa
 aa
 aa
@@ -38837,23 +39514,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+zH
+HN
+bI
+wF
+rw
+bI
+QV
+wF
+Ty
+HN
+Pj
+wF
+Gx
+bI
+sc
+wF
 aa
 aa
 aa
@@ -39094,27 +39771,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+bI
+bI
+bI
+wF
+wF
+XI
+wF
+wF
+wF
+Sx
+wF
+wF
+wF
+Yy
+wF
+wF
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -39351,27 +40028,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+YE
+bI
+HN
+wF
+jK
+HN
+bI
+wF
+wF
+wF
+wF
+wF
+vB
+bI
+bI
+HD
+bI
+Dp
+kc
+wF
 aa
 aa
 aa
@@ -39608,27 +40285,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+Dt
+bI
+QZ
+wF
+jK
+bI
+mp
+wF
+ek
+Pg
+nI
+wF
+Xi
+um
+HD
+TU
+bI
+HN
+oa
+wF
 aa
 aa
 aa
@@ -39865,27 +40542,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+OT
+HN
+Im
+wF
+jK
+HN
+bI
+wF
+dd
+HN
+bI
+wF
+wF
+wF
+wF
+wF
+bI
+bI
+Dc
+wF
 aa
 aa
 aa
@@ -40122,27 +40799,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+Ua
+bI
+Xj
+wF
+wF
+XI
+wF
+wF
+Gl
+Hg
+bI
+fK
+bI
+HN
+bI
+TU
+bI
+HN
+wF
+wF
 aa
 aa
 aa
@@ -40379,26 +41056,26 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+Xq
+HN
+Wu
+wF
+VK
+HN
+bI
+wF
+bI
+HN
+bI
+XR
+bI
+bI
+bI
+HD
+xX
+bI
+wF
 aa
 aa
 aa
@@ -40636,26 +41313,26 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+US
+bI
+Kb
+wF
+lu
+bI
+cY
+wF
+Hy
+bI
+ex
+wF
+wF
+wF
+Hi
+CR
+fN
+WV
+wF
 aa
 aa
 aa
@@ -40881,38 +41558,38 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+cI
+wF
+wF
+wF
+wF
+wF
+wF
+XI
+wF
+wF
+VK
+HN
+bI
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -41138,31 +41815,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Vo
+jx
+cI
+jx
+jx
+jx
+wF
+ZS
+bI
+HN
+on
+EA
+bI
+on
+wF
+wF
+GK
+bI
+wF
+bI
+Uu
+bI
+wF
 aa
 aa
 aa
@@ -41395,31 +42072,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Nh
+jx
+cI
+jx
+jx
+jx
+wF
+bI
+on
+on
+on
+on
+on
+bI
+wF
+wF
+wF
+wF
+wF
+HN
+bI
+HN
+wF
 aa
 aa
 aa
@@ -41652,31 +42329,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+vW
+FC
+wF
+HN
+on
+bI
+bI
+bI
+on
+HN
+wF
+wF
+Sx
+HN
+rq
+bI
+iF
+bI
+wF
 aa
 aa
 aa
@@ -41909,31 +42586,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Yb
+Yb
+Yb
+cI
+jx
+jx
+jx
+vr
+on
+on
+bI
+DX
+bI
+on
+on
+wF
+wF
+wF
+wF
+wF
+WO
+kB
+WO
+wF
 aa
 aa
 aa
@@ -42166,31 +42843,31 @@ aa
 aa
 aa
 aa
+cI
+fy
+Sm
+jx
+Fu
+jx
+jx
+FC
+wF
+HN
+on
+bI
+bI
+bI
+on
+HN
+wF
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -42423,23 +43100,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+wF
+bI
+on
+on
+on
+on
+on
+bI
+wF
 aa
 aa
 aa
@@ -42680,23 +43357,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+Vo
+jx
+wF
+on
+bI
+HN
+on
+HN
+bI
+qc
+wF
 aa
 aa
 aa
@@ -42937,23 +43614,23 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Vo
+jx
+cI
+jx
+jx
+jx
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -43194,15 +43871,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Nf
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -43451,15 +44128,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -43708,15 +44385,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Yb
+Yb
+Yb
+cI
+jx
+Vo
+jx
+cI
 aa
 aa
 aa
@@ -43965,15 +44642,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+SH
+jx
+Fu
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -44222,15 +44899,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -44479,15 +45156,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -44736,15 +45413,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Vo
+jx
+cI
+jx
+Vo
+jx
+cI
 aa
 aa
 aa
@@ -44993,15 +45670,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+dX
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -45250,15 +45927,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -45507,15 +46184,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Yb
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -45764,15 +46441,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+Kg
+jx
+Fu
+jx
+Vo
+jx
+cI
 aa
 aa
 aa
@@ -46021,15 +46698,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -46278,15 +46955,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -46535,15 +47212,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+Vo
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -46792,15 +47469,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+UH
+jx
+cI
+jx
+Vo
+jx
+cI
 aa
 aa
 aa
@@ -47049,15 +47726,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+jx
+jx
+jx
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -47306,15 +47983,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Yb
+Yb
+Yb
+cI
+jx
+jx
+jx
+cI
 aa
 aa
 aa
@@ -47563,15 +48240,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+fy
+SK
+jx
+Fu
+jx
+Vo
+jx
+cI
 aa
 aa
 aa
@@ -47820,15 +48497,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
+cI
+RD
+cI
+cI
 aa
 aa
 aa
@@ -48081,11 +48758,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+kd
+Wg
+kd
+cI
 aa
 aa
 aa
@@ -48338,11 +49015,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Ys
+oo
+Ys
+cI
 aa
 aa
 aa
@@ -48595,11 +49272,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+zC
+sD
+Rk
+cI
 aa
 aa
 aa
@@ -48852,11 +49529,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+zR
+GN
+Pe
+cI
 aa
 aa
 aa
@@ -49109,11 +49786,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+rJ
+UB
+Ml
+cI
 aa
 aa
 aa
@@ -49366,11 +50043,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Ys
+Wg
+Ys
+cI
 aa
 aa
 aa
@@ -49623,11 +50300,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Wg
+Wg
+Wg
+cI
 aa
 aa
 aa
@@ -49878,15 +50555,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+GG
+cI
+cI
+cI
+cI
 aa
 aa
 aa
@@ -50135,15 +50812,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+KG
+lW
+Wg
+Wg
+Wg
+lW
+wG
+cI
 aa
 aa
 aa
@@ -50392,15 +51069,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Pu
+lW
+Wg
+aC
+Wg
+lW
+Wa
+cI
 aa
 aa
 aa
@@ -50649,15 +51326,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+Ws
+lW
+sv
+Wg
+sv
+lW
+fM
+cI
 aa
 aa
 aa
@@ -50906,15 +51583,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+GG
+cI
+cI
+cI
+cI
 aa
 aa
 aa
@@ -51165,11 +51842,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+pI
+Wg
+Wg
+cI
 aa
 aa
 aa
@@ -51422,11 +52099,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Wg
+Al
+Wg
+cI
 aa
 aa
 aa
@@ -51679,11 +52356,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Wg
+Wg
+Wg
+cI
 aa
 aa
 aa
@@ -51936,11 +52613,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+Pk
+Je
+Pk
+cI
 aa
 aa
 aa
@@ -52193,11 +52870,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+cI
+cI
+cI
+cI
+cI
 aa
 aa
 aa

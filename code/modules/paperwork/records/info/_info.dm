@@ -23,6 +23,8 @@ For Escape damage, I think I'll just honestly ball-park how fast it could reason
 	slot_flags = null	//No books on head, sorry
 	var/no_archive = FALSE //will not show up in Lobotomy Corp Archive Computer if true
 
+/obj/item/paper/fluff/info/AltClick(mob/living/user, obj/item/I)
+	return
 
 /obj/item/paper/fluff/info/attackby(obj/item/P, mob/living/user, params)
 	ui_interact(user)	// only reading, sorry
