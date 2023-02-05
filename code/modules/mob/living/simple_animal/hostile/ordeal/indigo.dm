@@ -380,7 +380,7 @@
 				continue
 			playsound(T,'sound/effects/bamf.ogg', 60, TRUE, 10)
 			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-			for(var/mob/living/L in T)
+			for(var/mob/living/carbon/human/L in T)
 				if(L == src || L.throwing)
 					continue
 				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
