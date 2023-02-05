@@ -12,7 +12,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
 	speed = 4
-	move_to_delay = 5
+	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
@@ -62,14 +62,13 @@
 			H.dust()
 
 			// it gets faster.
-			move_to_delay -= move_to_delay*0.2
-			speed += speed*0.2
+			if(move_to_delay>1)
+				move_to_delay -= move_to_delay*0.25
+				speed += speed*0.2
+				if(melee_damage_lower > 30)
+					melee_damage_lower -=5
 
-			if(melee_damage_lower>30)
-				melee_damage_lower -=5
-				melee_damage_upper -=5
-
-			adjustBruteLoss(-(maxHealth*0.1)) // Heals 10% HP, fuck you that's why. Still not as bad as judgement or big bird
+			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
 
 			finishing = FALSE
 			icon_state = "warden"
