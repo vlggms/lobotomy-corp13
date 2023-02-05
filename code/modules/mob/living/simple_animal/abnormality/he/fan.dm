@@ -2,7 +2,7 @@
 //The works are always max but you can only do it 3 times per person.	-Kirie
 /mob/living/simple_animal/hostile/abnormality/fan
 	name = "F.A.N."
-	desc = "It appears to be a super basic fan."
+	desc = "It appears to be an office fan."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fan"
 	maxHealth = 400
@@ -16,6 +16,7 @@
 	)
 	work_damage_amount = 5	//This literally does not matter
 	work_damage_type = RED_DAMAGE
+	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/metal,
@@ -24,6 +25,14 @@
 	var/list/safe = list()
 	var/list/warning = list()
 	var/list/danger = list()
+	var/successcount
+
+/mob/living/simple_animal/hostile/abnormality/fan/WorkChance(mob/living/carbon/human/user, chance)
+	return 100 - (successcount*2)
+
+/mob/living/simple_animal/hostile/abnormality/fan/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	..()
+	successcount+=1
 
 /mob/living/simple_animal/hostile/abnormality/fan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in danger)

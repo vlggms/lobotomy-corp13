@@ -503,11 +503,11 @@
 	info = {"<h1><center>T-05-133</center></h1>    <br>
 	Name : F.A.N    <br>
 	Risk Class : HE    <br>
-	Max PE Boxes : 18    <br>
+	Max PE Boxes : 12    <br>
 	Qliphoth Counter : X    <br>
 	Work Damage Type : Red	<br>
 	Work Damage : Low	<br>
-	- Working with F.A.N. is guaranteed to produce the maximum number of PE-boxes.    <br>
+	- The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.    <br>
 	- Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.    <br>
 	- After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds.    <br>
 	<br>
