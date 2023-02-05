@@ -11,7 +11,7 @@
 	maxHealth = 2200 //Tanky but hurts itself every now and then to make up for it
 	health = 2200
 	speed = 4
-	move_to_delay = 7
+	move_to_delay = 5
 	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1
 	del_on_death = FALSE
@@ -24,8 +24,8 @@
 						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
 						)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 50
-	melee_damage_upper = 60 //hits like a truck but is slow as shit
+	melee_damage_lower = 35
+	melee_damage_upper = 70 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
