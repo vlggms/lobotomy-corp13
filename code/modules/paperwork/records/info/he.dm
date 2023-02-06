@@ -535,3 +535,33 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//The Road Home
+/obj/item/paper/fluff/info/he/road_home
+	name = "F-02-136"
+	info = {"<h1><center>F-02-136</center></h1>    <br>
+	Name : The Road Home   <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 18    <br>
+	Qliphoth Counter : 2    <br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- When an employee with Justice Level 3 or higher completed their work, the Qliphoth Counter lowered.  <br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the Road Home breached containment, a house landed in a random department, dealing massive white damage around it. <br>
+	- The Road Home also teleported to another department, and tried to make a golden road to the house.    <br>
+	- The Road Home would periodically affect employees around her with a strong desire to join the Road Home on her journey. <br>
+	- Anyone with this desire would be incapable of leaving the golden road should they step on it, and would be instantly driven insane should The Road Home reach the house. <br>
+	- Damaging The Road Home will also hurt the attacker with black damage. The damage taken is halved if the attacker is standing on the golden road. <br>
+	- If The Road Home reaches the house, another house with another path will be made.    <br>
+	<br>
+	<h4>Instinct:</h4> Very Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> High<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> Medium	 <br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Fatal <br>
+	<h4>Black Resistance:</h4> Fatal	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
