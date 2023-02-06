@@ -212,7 +212,7 @@
 	armortype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80
 							)
 
 	var/combo = 1
@@ -315,7 +315,7 @@
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
+							JUSTICE_ATTRIBUTE = 80
 							)
 	var/combo = 0
 	var/combo_time
@@ -356,7 +356,7 @@
 	equip_sound = 'sound/creatures/venus_trap_hit.ogg'
 	pickup_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							TEMPERANCE_ATTRIBUTE = 80
 							)
 	var/vine_cooldown
 	var/vine_delay = 1 SECONDS

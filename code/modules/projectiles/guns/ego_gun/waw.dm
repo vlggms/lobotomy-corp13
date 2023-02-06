@@ -10,7 +10,7 @@
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
+							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
 
@@ -28,7 +28,7 @@
 	armortype = RED_DAMAGE
 
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80
 							)
 
 
@@ -69,7 +69,7 @@
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							TEMPERANCE_ATTRIBUTE = 80
 							)
 
 /obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
@@ -95,7 +95,7 @@
 	fire_delay = 0
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
-	attribute_requirements = list(JUSTICE_ATTRIBUTE = 60)
+	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
 
 /obj/item/gun/ego_gun/pistol/solemnlament/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnvow/Vow in user.held_items)
@@ -118,7 +118,7 @@
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
 
-	attribute_requirements = list(JUSTICE_ATTRIBUTE = 60)
+	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
 
 /obj/item/gun/ego_gun/pistol/solemnvov/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)
@@ -142,7 +142,7 @@
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80
 	)
 
 /obj/item/gun/ego_gun/loyalty/attack_self(mob/user)
@@ -165,7 +165,7 @@
 	special = "This gun scales with justice."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 60
+							JUSTICE_ATTRIBUTE = 80
 	)
 
 
@@ -178,7 +178,8 @@
 	fire_delay = 12
 	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 	)
 
 /obj/item/gun/ego_gun/ecstasy
@@ -193,7 +194,8 @@
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
 	)
 
 /obj/item/gun/ego_gun/pistol/praetorian
@@ -207,7 +209,8 @@
 	autofire = 0.12 SECONDS
 	fire_sound_volume = 30
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 	)
 
 /obj/item/gun/ego_gun/pistol/magic_pistol
@@ -221,7 +224,7 @@
 	fire_delay = 24
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60
+							TEMPERANCE_ATTRIBUTE = 80
 							)
 
 /obj/item/gun/ego_gun/pistol/laststop
@@ -235,7 +238,7 @@
 	fire_delay = 10 SECONDS 	// I mean it's
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 80
 							)
 
 /obj/item/gun/ego_gun/intentions
@@ -250,7 +253,7 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.07 SECONDS
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 	)
 
 /obj/item/gun/ego_gun/aroma
@@ -264,7 +267,7 @@
 	fire_delay = 25
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 	)
 
 /obj/item/gun/ego_gun/assonance
@@ -278,7 +281,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 	)
 
 //It's a magic sword. Cope Egor
@@ -293,9 +296,10 @@
 	force = 35
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	fire_delay = 24
+	fire_delay = 16
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
 	)
 
 /obj/item/gun/ego_gun/exuviae
@@ -312,6 +316,6 @@
 	fire_delay = 50
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
+							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 	)
