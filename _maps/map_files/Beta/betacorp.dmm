@@ -1635,11 +1635,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"iz" = (
-/obj/effect/turf_decal/box/white,
-/obj/structure/toolabnormality/theresia,
-/turf/open/floor/facility/dark,
-/area/department_main/records)
 "iA" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/wood,
@@ -5746,13 +5741,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"Dn" = (
-/obj/effect/turf_decal/box/white,
-/obj/structure/toolabnormality/skin{
-	pixel_y = 5
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/records)
 "Do" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -6344,7 +6332,7 @@
 /area/facility_hallway/training)
 "FU" = (
 /obj/effect/turf_decal/box/white,
-/obj/structure/toolabnormality/wishwell,
+/obj/effect/landmark/toolspawn,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "FW" = (
@@ -6411,9 +6399,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"Gk" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "Gm" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -6695,7 +6680,7 @@
 "HS" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
+/area/department_main/information)
 "HU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/highsecurity{
@@ -8063,7 +8048,7 @@
 "OM" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/space)
+/area/department_main/information)
 "ON" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -8196,11 +8181,6 @@
 /obj/item/instrument/harmonica,
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
-"PD" = (
-/obj/effect/turf_decal/box/white,
-/obj/structure/toolabnormality/behaviour,
-/turf/open/floor/facility/dark,
-/area/department_main/records)
 "PE" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -8437,11 +8417,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
-"QX" = (
-/obj/effect/turf_decal/box/white,
-/obj/structure/toolabnormality/mirror,
-/turf/open/floor/facility/dark,
-/area/department_main/records)
 "QZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light/small{
@@ -44171,8 +44146,8 @@ JB
 JB
 JB
 JB
-JB
-Gk
+Io
+Io
 Io
 qp
 dE
@@ -44428,7 +44403,7 @@ JB
 JB
 JB
 JB
-Gk
+Io
 OB
 Io
 Io
@@ -44684,8 +44659,8 @@ JB
 JB
 JB
 JB
-Gk
-Gk
+Io
+Io
 eP
 tR
 DK
@@ -44941,7 +44916,7 @@ JB
 JB
 JB
 JB
-Gk
+Io
 OM
 gR
 RI
@@ -45198,8 +45173,8 @@ JB
 JB
 JB
 JB
-Gk
-Gk
+Io
+Io
 DA
 PE
 Gt
@@ -45455,7 +45430,7 @@ JB
 JB
 JB
 JB
-Gk
+Io
 HS
 qB
 Kv
@@ -45712,8 +45687,8 @@ JB
 JB
 JB
 JB
-Gk
-Gk
+Io
+Io
 Ty
 aI
 Mk
@@ -45970,7 +45945,7 @@ JB
 JB
 JB
 JB
-Gk
+Io
 EO
 Io
 Io
@@ -46227,8 +46202,8 @@ JB
 JB
 JB
 JB
-Gk
-Gk
+Io
+Io
 Io
 mH
 BG
@@ -46243,7 +46218,7 @@ Fn
 LL
 KM
 fq
-QX
+FU
 Mt
 Mt
 Mt
@@ -46500,7 +46475,7 @@ QO
 ay
 Bh
 fq
-Dn
+FU
 Mt
 ZJ
 Mt
@@ -46757,11 +46732,11 @@ Io
 Io
 Zg
 fq
-iz
+FU
 Mt
 Mt
 Mt
-PD
+FU
 fq
 JB
 JB

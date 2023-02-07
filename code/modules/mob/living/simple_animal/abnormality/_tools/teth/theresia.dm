@@ -12,7 +12,7 @@
 	var/activated = FALSE
 	/// While cooldown is above world.time - cannot be toggled
 	var/activation_cooldown
-	var/activation_cooldown_time = 8 SECONDS
+	var/activation_cooldown_time = 45 SECONDS
 	var/max_winds = 6
 	var/current_winds = 1
 	var/pulse_heal = 10
