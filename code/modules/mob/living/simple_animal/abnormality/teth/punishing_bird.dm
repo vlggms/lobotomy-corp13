@@ -11,7 +11,6 @@
 	response_disarm_continuous = "flails at"
 	response_disarm_simple = "flail at"
 	density = FALSE
-	is_flying_animal = TRUE
 	maxHealth = 600
 	health = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
