@@ -20,6 +20,8 @@
 	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/possession/start()
+	if(!SSlobotomy_corp.enable_possession)
+		SSlobotomy_corp.enable_possession = TRUE
 	for(var/mob/dead/observer/G in GLOB.player_list)
 		add_verb(G, /mob/dead/observer/verb/boo)
 		add_verb(G, /mob/dead/observer/verb/possess)
