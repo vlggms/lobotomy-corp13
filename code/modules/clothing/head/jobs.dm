@@ -173,6 +173,11 @@
 	name = "syndicate beret"
 	desc = "A black beret with thick armor padding inside. Stylish and robust."
 
+/obj/item/clothing/head/hos/agent
+	name = "agent captain cap"
+	desc = "A rather expensive cap worn by agent captains. A show of who's the best"
+	armor = list()
+
 /obj/item/clothing/head/zwei
 	name = "zwei association hat"
 	desc = "It's a special armored hat issued to those who reach the rank of Zwei Association Captain. Clean and professional."

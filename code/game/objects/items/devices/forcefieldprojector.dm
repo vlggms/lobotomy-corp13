@@ -1,18 +1,18 @@
 /obj/item/forcefield_projector
-	name = "forcefield projector"
+	name = "protoype forcefield projector"
 	desc = "An experimental device that can create several forcefields at a distance."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "signmaker_forcefield"
 	slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_SMALL
+	w_class = WEIGHT_CLASS_BULKY
 	item_flags = NOBLUDGEON
 	inhand_icon_state = "electronic"
 	worn_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	custom_materials = list(/datum/material/iron=250, /datum/material/glass=500)
-	var/max_shield_integrity = 250
-	var/shield_integrity = 250
+	var/max_shield_integrity = 100
+	var/shield_integrity = 100
 	var/max_fields = 3
 	var/list/current_fields
 	var/field_distance_limit = 7
@@ -47,7 +47,7 @@
 	user.visible_message("<span class='warning'>[user] projects a forcefield!</span>","<span class='notice'>You project a forcefield.</span>")
 	var/obj/structure/projected_forcefield/F = new(T, src)
 	current_fields += F
-	user.changeNext_move(CLICK_CD_MELEE)
+	user.changeNext_move(CLICK_CD_MELEE*5)
 
 /obj/item/forcefield_projector/attack_self(mob/user)
 	if(LAZYLEN(current_fields))

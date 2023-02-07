@@ -1580,6 +1580,12 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"lZ" = (
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "mb" = (
 /obj/effect/turf_decal/box/white,
 /obj/structure/toolabnormality/mirror,
@@ -2059,35 +2065,8 @@
 /turf/open/floor/facility/dark,
 /area/department_main/training)
 "pX" = (
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/structure/rack,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qa" = (
@@ -3437,26 +3416,6 @@
 /turf/open/floor/facility,
 /area/facility_hallway/north)
 "zC" = (
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/structure/rack,
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -3464,6 +3423,7 @@
 /obj/machinery/newscaster{
 	pixel_y = -32
 	},
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "zI" = (
@@ -42041,8 +42001,8 @@ rg
 Wl
 SH
 Rj
+lZ
 SB
-ci
 rg
 Zj
 iA

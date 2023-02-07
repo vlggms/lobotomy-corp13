@@ -31,9 +31,9 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/stack/medical/gauze = 1,
-		/obj/item/stack/medical/suture = 2,
-		/obj/item/stack/medical/mesh = 2,
+		/obj/item/stack/medical/suture = 4,
+		/obj/item/reagent_containers/hypospray/medipen/salacid = 1,
+		/obj/item/reagent_containers/hypospray/medipen/mental = 1,
 		/obj/item/reagent_containers/hypospray/medipen = 1)
 	generate_items_inside(items_inside,src)
 
