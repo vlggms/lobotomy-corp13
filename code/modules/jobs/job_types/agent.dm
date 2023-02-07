@@ -16,6 +16,8 @@
 	access = list() // LC13:To-Do
 	minimal_access = list()
 
+	allow_bureaucratic_error = FALSE
+
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 20,
 								PRUDENCE_ATTRIBUTE = 20,
