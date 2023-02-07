@@ -315,6 +315,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"bw" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "by" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
@@ -1420,7 +1425,6 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
-/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "hJ" = (
@@ -1471,7 +1475,6 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
-/obj/item/storage/belt/ego,
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 8
@@ -1922,7 +1925,6 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
-/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "jU" = (
@@ -2724,14 +2726,7 @@
 /area/department_main/safety)
 "nl" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
 "nm" = (
@@ -3168,7 +3163,6 @@
 /obj/effect/turf_decal/bot,
 /obj/item/toy/plush/yesod,
 /obj/item/clothing/neck/scarf/purple,
-/obj/item/safety_kit,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
@@ -3328,22 +3322,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
 "qw" = (
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "qA" = (
@@ -3452,11 +3433,10 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/structure/closet/crate/freezer/blood,
-/obj/machinery/iv_drip,
 /obj/machinery/camera/autoname{
 	dir = 10
 	},
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "rc" = (
@@ -4085,6 +4065,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"tE" = (
+/obj/machinery/light/cold,
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/discipline)
 "tJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4232,7 +4218,6 @@
 /obj/effect/turf_decal/bot,
 /obj/item/toy/plush/yesod,
 /obj/item/clothing/neck/scarf/purple,
-/obj/item/safety_kit,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "uk" = (
@@ -4481,6 +4466,11 @@
 /obj/item/clothing/neck/scarf/yellow,
 /turf/open/floor/plasteel,
 /area/department_main/command)
+"vu" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "vA" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -4536,7 +4526,6 @@
 /obj/item/toy/plush/netzach,
 /obj/effect/turf_decal/bot,
 /obj/item/clothing/neck/stripedgreenscarf,
-/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "vY" = (
@@ -5569,14 +5558,7 @@
 /area/department_main/training)
 "Cb" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
 "Cc" = (
@@ -6128,7 +6110,6 @@
 /area/department_main/information)
 "EP" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/ego,
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 6
@@ -6578,10 +6559,6 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/training)
-"GY" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/facility/dark,
-/area/department_main/discipline)
 "Ha" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -8794,8 +8771,6 @@
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
 	},
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 8
@@ -9363,23 +9338,10 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Vi" = (
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/machinery/light,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Vj" = (
@@ -10169,12 +10131,11 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
-"YJ" = (
-/obj/structure/rack,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/turf/open/floor/carpet/red,
+"YH" = (
+/obj/machinery/computer/extraction_cargo{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "YN" = (
 /obj/effect/turf_decal/siding{
@@ -10335,6 +10296,11 @@
 	dir = 1
 	},
 /turf/open/floor/facility/dark,
+/area/department_main/discipline)
+"ZB" = (
+/obj/structure/rack,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/discipline)
 "ZD" = (
 /obj/effect/turf_decal/siding{
@@ -36239,10 +36205,10 @@ JB
 rS
 pG
 nX
-pQ
+YH
 oC
 WH
-GY
+pQ
 xB
 MJ
 bk
@@ -36755,7 +36721,7 @@ xH
 AW
 uk
 zl
-Nh
+tE
 rS
 rS
 Qw
@@ -37010,13 +36976,13 @@ rS
 Sg
 XB
 zl
-uk
+ZB
 zl
 uk
 NR
 aJ
 Ly
-YJ
+xl
 xl
 Px
 NA
@@ -38295,7 +38261,7 @@ rS
 rS
 if
 xo
-uk
+ZB
 zl
 Nh
 rS
@@ -41068,7 +41034,7 @@ ca
 an
 eY
 Pe
-dj
+bw
 Pe
 jy
 Pe
@@ -41582,7 +41548,7 @@ ca
 an
 fo
 Pe
-dj
+vu
 Pe
 cy
 Pe

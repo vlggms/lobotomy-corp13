@@ -54,8 +54,8 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 8
 
-	var/max_uses = 20
-	var/uses = 10
+	var/max_uses = 200
+	var/uses = 100
 	// How much to increase per each glass?
 	var/increment = 5
 	// How much to take from the glass?

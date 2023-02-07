@@ -61,3 +61,5 @@
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
+
+	backpack_contents = list(/obj/item/price_tagger = 1)

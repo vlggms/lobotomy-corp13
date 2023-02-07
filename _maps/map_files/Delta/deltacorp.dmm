@@ -741,8 +741,8 @@
 "bX" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC4";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC4"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -912,8 +912,8 @@
 /area/department_main/discipline)
 "cs" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC3";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC3"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -1816,7 +1816,7 @@
 /area/department_main/welfare)
 "fx" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/gold_rush{
+/obj/item/ego_weapon/goldrush{
 	force = 0;
 	goldrush_damage = 0
 	},
@@ -1901,8 +1901,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC23";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC23"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -1970,8 +1970,8 @@
 "fQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC31";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC31"
 	},
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
@@ -2278,8 +2278,8 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/sign/directions/evac{
-	pixel_x = 32;
-	dir = 8
+	dir = 8;
+	pixel_x = 32
 	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -2699,6 +2699,12 @@
 "ib" = (
 /turf/open/floor/facility/dark,
 /area/facility_hallway/discipline)
+"ie" = (
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "if" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -3049,8 +3055,8 @@
 "jf" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC26";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC26"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -4201,8 +4207,8 @@
 /area/facility_hallway/control)
 "lR" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC30";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC30"
 	},
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
@@ -4365,8 +4371,8 @@
 "mp" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC2";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC2"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -5453,8 +5459,8 @@
 "oL" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC6";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC6"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -5622,8 +5628,8 @@
 "pH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC27";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC27"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -5712,8 +5718,8 @@
 /area/department_main/discipline)
 "pW" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC5";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC5"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -5899,8 +5905,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC19";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC19"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -7153,8 +7159,8 @@
 "uF" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/drinkingglasses{
-	pixel_y = 5;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 5
 	},
 /obj/item/storage/box/cups{
 	pixel_x = 5;
@@ -7562,23 +7568,23 @@
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used to access the various cameras on the station.";
+	dir = 1;
 	layer = 3.1;
 	name = "Security Camera Monitor";
 	network = list("ss13");
-	pixel_y = 3;
-	dir = 1
+	pixel_y = 3
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
 "wh" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/storage/box/masks{
-	pixel_y = 8;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /obj/item/storage/box/masks{
-	pixel_y = 8;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /obj/item/storage/box/gloves{
 	pixel_x = 8;
@@ -9181,8 +9187,8 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC10";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC10"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9192,8 +9198,8 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC11";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC11"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9202,8 +9208,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC12";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC12"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9575,8 +9581,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC15";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC15"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9590,8 +9596,8 @@
 	},
 /obj/structure/fluff/arc/angela,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC16";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC16"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9603,8 +9609,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC17";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC17"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -9998,8 +10004,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC20";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC20"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -10019,8 +10025,8 @@
 	},
 /obj/effect/landmark/department_center,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC21";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC21"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -10032,8 +10038,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC22";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC22"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -10402,8 +10408,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC14";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC14"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -10758,8 +10764,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC33";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC33"
 	},
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
@@ -11043,8 +11049,8 @@
 	dir = 4
 	},
 /obj/structure/sign/directions/evac{
-	pixel_x = 32;
-	dir = 8
+	dir = 8;
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
@@ -11159,8 +11165,8 @@
 "GL" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC28";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC28"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -12034,8 +12040,8 @@
 /area/facility_hallway/safety)
 "Jr" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC13";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC13"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -12093,8 +12099,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC18";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC18"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -12410,8 +12416,8 @@
 "Kz" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC8";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC8"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -12969,8 +12975,8 @@
 /area/department_main/command)
 "Mj" = (
 /obj/structure/bodycontainer/crematorium{
-	id = "incinerator1";
-	dir = 4
+	dir = 4;
+	id = "incinerator1"
 	},
 /obj/machinery/button/crematorium/indestructible{
 	id = "incinerator1";
@@ -13574,8 +13580,8 @@
 /area/department_main/extraction)
 "Oh" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC7";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC7"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -15168,8 +15174,8 @@
 /area/department_main/welfare)
 "RZ" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC25";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC25"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -17187,8 +17193,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC29";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC29"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -17254,8 +17260,8 @@
 /area/department_main/information)
 "Xf" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC1";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC1"
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -17388,8 +17394,8 @@
 /area/department_main/safety)
 "Xv" = (
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC9";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC9"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -18222,8 +18228,8 @@
 "ZL" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/plaque{
-	icon_state = "LC24";
-	alpha = 230
+	alpha = 230;
+	icon_state = "LC24"
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
@@ -65965,7 +65971,7 @@ Cu
 Lz
 Mz
 MP
-Nl
+ie
 NN
 mw
 Cu

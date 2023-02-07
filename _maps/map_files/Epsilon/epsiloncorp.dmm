@@ -174,7 +174,6 @@
 	color = "#7D6521";
 	dir = 4
 	},
-/obj/item/storage/belt/ego,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -295,6 +294,12 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"fu" = (
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "fy" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_left,
@@ -328,15 +333,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/safety)
-"gk" = (
-/obj/structure/rack,
-/obj/item/storage/belt/ego,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/extraction)
 "gm" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
@@ -843,7 +839,6 @@
 	color = "#7D6521";
 	dir = 10
 	},
-/obj/item/storage/belt/ego,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "mO" = (
@@ -2254,6 +2249,10 @@
 "IE" = (
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"IR" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "IX" = (
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/armband/lobotomy/training,
@@ -2734,7 +2733,6 @@
 	color = "#7D6521";
 	dir = 8
 	},
-/obj/item/storage/belt/ego,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "OY" = (
@@ -3184,7 +3182,7 @@
 /area/department_main/safety)
 "Uj" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/gold_rush{
+/obj/item/ego_weapon/goldrush{
 	force = 0;
 	goldrush_damage = 0
 	},
@@ -52679,7 +52677,7 @@ We
 XJ
 pw
 pw
-Xx
+Bp
 ot
 pw
 pw
@@ -53441,7 +53439,7 @@ hK
 kU
 aA
 KP
-gk
+hd
 DU
 DU
 DU
@@ -53953,7 +53951,7 @@ QD
 KP
 VR
 kU
-aA
+IR
 KP
 gw
 DU
@@ -54466,7 +54464,7 @@ QD
 QD
 KP
 KP
-kU
+fu
 kU
 kU
 kU
