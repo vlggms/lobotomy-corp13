@@ -708,6 +708,14 @@
 	prudence_bonus = 5
 	slot = EYE
 
+/datum/ego_gifts/amogus //mountain smiling bodies weird gift.
+	name = "Imposter"
+	icon_state = "amogus"
+	fortitude_bonus = -5
+	prudence_bonus = -5
+	justice_bonus = 15
+	slot = EYE
+
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
