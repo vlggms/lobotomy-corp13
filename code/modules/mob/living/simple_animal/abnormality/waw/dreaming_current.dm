@@ -34,6 +34,7 @@
 		/datum/ego_datum/weapon/ecstasy,
 		/datum/ego_datum/armor/ecstasy
 		)
+	gift_type =  /datum/ego_gifts/ecstasy
 
 	var/list/movement_path = list()
 	var/list/been_hit = list()

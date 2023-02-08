@@ -19,7 +19,7 @@
 		/datum/ego_datum/weapon/thirteen,
 		/datum/ego_datum/armor/thirteen,
 		)
-//	gift_type = /datum/ego_gifts/thirteen
+	gift_type = /datum/ego_gifts/thirteen
 
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown

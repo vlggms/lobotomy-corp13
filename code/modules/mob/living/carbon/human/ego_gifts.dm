@@ -603,14 +603,14 @@
 	temperance_bonus = 3
 	slot = HELMET
 
-/datum/ego_gifts/crimson
+/datum/ego_gifts/crimson //abno missing please check, red
 	name = "Crimson Scar"
 	icon_state = "crimson"
 	fortitude_bonus = 3
 	justice_bonus = 3
 	slot = MOUTH_1
 
-/datum/ego_gifts/cobalt
+/datum/ego_gifts/cobalt //abno missing please check, wolf
 	name = "Cobalt Scar"
 	icon_state = "cobalt"
 	fortitude_bonus = 4
@@ -643,6 +643,42 @@
 	prudence_bonus = 2
 	fortitude_bonus = 5
 	slot = HAND_2
+
+/datum/ego_gifts/ecstasy //---sprite needed
+	name = "Ecstasy"
+	icon_state = null
+	prudence_bonus = 6
+	slot = MOUTH_2
+
+/datum/ego_gifts/loyalty //---sprite needed
+	name = "Loyalty"
+	icon_state = null
+	fortitude_bonus = 10
+	prudence_bonus = -4
+	slot = MOUTH_1
+
+/datum/ego_gifts/executive //---sprite needed
+	name = "Executive"
+	icon_state = null
+	prudence_bonus = 8
+	justice_bonus = -2
+	slot = HAND_2
+
+/datum/ego_gifts/thirteen //---sprite needed
+	name = "Thirteen"
+	icon_state = null
+	fortitude_bonus = 4
+	prudence_bonus = -2
+	justice_bonus = 4
+	slot = NECKWEAR
+
+/datum/ego_gifts/assonance //---sprite needed
+	name = "Assonance"
+	icon_state = null
+	prudence_bonus = 2
+	temperance_bonus = 2
+	justice_bonus = 2
+	slot = NECKWEAR
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
