@@ -12,8 +12,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
 			)
-	work_damage_amount = 5
-	work_damage_type = RED_DAMAGE
+	work_damage_amount = 4
+	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/daredevil,
