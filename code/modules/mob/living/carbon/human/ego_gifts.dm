@@ -493,7 +493,7 @@
 	icon_state = null
 	prudence_bonus = 2
 	temperance_bonus = 3
-	slot = NEKCWEAR
+	slot = NECKWEAR
 
 /datum/ego_gifts/gaze //---sprite needed
 	name = "Gaze"
