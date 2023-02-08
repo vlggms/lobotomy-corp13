@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/sorrow,
 		/datum/ego_datum/armor/sorrow
 	)
-
+	gift_type =  /datum/ego_gifts/sorrow
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/AttemptWork(mob/living/carbon/human/user, work_type)
 	//Temp too high, random damage type time.

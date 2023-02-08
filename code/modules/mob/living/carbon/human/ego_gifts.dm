@@ -171,6 +171,15 @@
 	desc = "An empty slot for gifts."
 	icon_state = null
 
+///datum/ego_gifts/--- //---sprite needed
+	//name = "---"
+	//icon_state = null
+	//fortitude_bonus = 1
+	//prudence_bonus = 1
+	//temperance_bonus = 1
+	//justice_bonus = 1
+	//slot = RIGHTBACK
+
 /// All Zayin EGO Gifts
 /datum/ego_gifts/soda
 	name = "Soda"
@@ -249,6 +258,12 @@
 	temperance_bonus = 2
 	slot = BROOCH
 
+/datum/ego_gifts/lutemis
+	name = "Dear Lutemis"
+	icon_state = "lutemis"
+	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
+	slot = NECKWEAR
+
 /datum/ego_gifts/horn
 	name = "Horn"
 	icon_state = "horn"
@@ -288,12 +303,6 @@
 	justice_bonus = 2
 	slot = BROOCH
 
-/datum/ego_gifts/lutemis
-	name = "Dear Lutemis"
-	icon_state = "lutemis"
-	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
-	slot = NECKWEAR
-
 /datum/ego_gifts/shy
 	name = "Today's Expression"
 	icon_state = "shy"
@@ -313,6 +322,46 @@
 	icon_state = "bean"
 	prudence_bonus = 2
 	temperance_bonus = 2
+	slot = HAT
+
+/datum/ego_gifts/dream //---sprite needed
+	name = "Dream"
+	icon_state = null
+	prudence_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/solitude //---sprite needed
+	name = "Solitude"
+	icon_state = null
+	temperance_bonus = 3
+	slot = EYE
+
+/datum/ego_gifts/trick //---sprite needed
+	name = "Trick"
+	icon_state = null
+	justice_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/sorrow //---sprite needed
+	name = "Sorrow"
+	icon_state = null
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	slot = BROOCH
+
+/datum/ego_gifts/Sorority //---sprite needed
+	name = "Sorority"
+	icon_state = null
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = BROOCH
+
+/datum/ego_gifts/noise //---sprite needed
+	name = "Noise"
+	icon_state = null
+	prudence_bonus = 2
+	justice_bonus = 1
 	slot = HAT
 
 /// All HE EGO Gifts
@@ -438,6 +487,78 @@
 	justice_bonus = -4 //people will hate that one for sure
 	insight_mod = 6
 	slot = EYE
+
+/datum/ego_gifts/galaxy //---sprite needed
+	name = "Galaxy"
+	icon_state = null
+	prudence_bonus = 2
+	temperance_bonus = 3
+	slot = NEKCWEAR
+
+/datum/ego_gifts/gaze //---sprite needed
+	name = "Gaze"
+	icon_state = null
+	fortitude_bonus = 4
+	slot = HAND_2
+
+/datum/ego_gifts/alleyway //---sprite needed
+	name = "Alleyway"
+	icon_state = null
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -2
+	justice_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/pleasure //---sprite needed
+	name = "Pleasure"
+	icon_state = null
+	prudence_bonus = 10
+	temperance_bonus = -6
+	slot = NECKWEAR
+
+/datum/ego_gifts/unrequited_love //---sprite needed
+	name = "Unrequited Love"
+	icon_state = null
+	fortitude_bonus = -2
+	prudence_bonus = 5
+	temperance_bonus = 5
+	justice_bonus = -2
+	slot = LEFTBACK
+
+/datum/ego_gifts/transmission //---sprite needed
+	name = "Transmission"
+	icon_state = null
+	fortitude_bonus = 4
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = HELMET
+
+/datum/ego_gifts/metal //---sprite needed
+	name = "Metal"
+	icon_state = null
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = HAND_1
+
+/datum/ego_gifts/harmony //---sprite needed
+	name = "Harmony"
+	icon_state = null
+	prudence_bonus = 5
+	temperance_bonus = -5
+	justice_bonus = 5
+	slot = MOUTH_2
+
+/datum/ego_gifts/homing_instinct //---sprite needed
+	name = "Homing Instinct"
+	icon_state = null
+	fortitude_bonus = -2
+	prudence_bonus = -1
+	temperance_bonus = 3
+	justice_bonus = 5
+	slot = HAND_2
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional

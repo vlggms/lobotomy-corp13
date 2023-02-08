@@ -35,7 +35,7 @@
 		/datum/ego_datum/weapon/alleyway,
 		/datum/ego_datum/armor/alleyway
 		)
-//	gift_type =  /datum/ego_gifts/alleyway
+	gift_type =  /datum/ego_gifts/alleyway
 	light_color = "FFFFFFF"
 	light_power = -10
 

@@ -38,7 +38,7 @@
 		/datum/ego_datum/weapon/pleasure,
 		/datum/ego_datum/armor/pleasure
 		)
-	//gift_type = /datum/ego_gifts/pleasure
+	gift_type = /datum/ego_gifts/pleasure
 
 	//the agent that started work on porccubus
 	var/agent_ckey

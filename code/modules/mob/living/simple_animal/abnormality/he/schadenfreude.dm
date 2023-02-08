@@ -36,7 +36,7 @@
 		/datum/ego_datum/weapon/gaze,
 		/datum/ego_datum/armor/gaze
 		)
-//	gift_type =  /datum/ego_gifts/gaze
+	gift_type =  /datum/ego_gifts/gaze
 
 	var/seen	//Are you being looked at right now?
 

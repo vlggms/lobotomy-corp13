@@ -41,7 +41,7 @@
 		/datum/ego_datum/weapon/unrequited,
 		/datum/ego_datum/armor/unrequited
 		)
-	//gift_type =  /datum/ego_gifts/unrequited_love
+	gift_type =  /datum/ego_gifts/unrequited_love
 
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"

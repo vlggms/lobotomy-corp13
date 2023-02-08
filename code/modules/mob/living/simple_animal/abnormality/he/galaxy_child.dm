@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/galaxy,
 		/datum/ego_datum/armor/galaxy
 		)
-//	gift_type = /datum/ego_gifts/galaxy
+	gift_type = /datum/ego_gifts/galaxy
 
 	var/heal_cooldown_time = 2 SECONDS
 	var/heal_cooldown

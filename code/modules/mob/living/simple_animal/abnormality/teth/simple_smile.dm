@@ -40,7 +40,7 @@
 		/datum/ego_datum/weapon/trick,
 		/datum/ego_datum/armor/trick
 		)
-//	gift_type =  /datum/ego_gifts/trick
+	gift_type =  /datum/ego_gifts/trick
 	var/list/stats = list(FORTITUDE_ATTRIBUTE,
 			PRUDENCE_ATTRIBUTE,
 			TEMPERANCE_ATTRIBUTE,

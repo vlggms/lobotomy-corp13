@@ -25,6 +25,7 @@
 		/datum/ego_datum/weapon/noise,
 		/datum/ego_datum/armor/noise
 		)
+	gift_type = /datum/ego_gifts/noise
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)

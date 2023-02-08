@@ -21,6 +21,8 @@
 		/datum/ego_datum/weapon/metal,
 		/datum/ego_datum/armor/metal
 	)
+	gift_type =  /datum/ego_gifts/metal
+
 	var/list/safe = list()
 	var/list/warning = list()
 	var/list/danger = list()
