@@ -33,7 +33,7 @@
 		/datum/ego_datum/weapon/soulmate,
 		/datum/ego_datum/armor/soulmate
 		)
-//	gift_type = /datum/ego_gifts/soulmate
+	gift_type = /datum/ego_gifts/soulmate
 
 	var/fairies_spawned = 0
 	var/fairy_spawn_number = 2

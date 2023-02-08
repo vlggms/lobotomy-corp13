@@ -25,7 +25,7 @@
 		/datum/ego_datum/weapon/space,
 		/datum/ego_datum/armor/space
 		)
-//	gift_type =  /datum/ego_gifts/space
+	gift_type =  /datum/ego_gifts/space
 
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3

@@ -708,14 +708,6 @@
 	prudence_bonus = 5
 	slot = EYE
 
-/datum/ego_gifts/amogus
-	name = "Imposter"
-	icon_state = "amogus"
-	fortitude_bonus = -5
-	prudence_bonus = -5
-	justice_bonus = 15
-	slot = EYE
-
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
@@ -751,6 +743,26 @@
 	user.physiology.pale_mod /= 0.9
 	.=..()
 
+/datum/ego_gifts/censored
+	name = "CENSORED"
+	icon_state = "censored"
+	prudence_bonus = 10
+	slot = EYE
+
+/datum/ego_gifts/space //---sprite needed
+	name = "Space"
+	icon_state = null
+	fortitude_bonus = -5
+	prudence_bonus = 15
+	slot = FACE
+
+/datum/ego_gifts/soulmate //---sprite needed
+	name = "Soulmate"
+	icon_state = null
+	fortitude_bonus = 15
+	justice_bonus = -5
+	slot = FACE
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
@@ -778,9 +790,3 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
-
-/datum/ego_gifts/censored
-	name = "CENSORED"
-	icon_state = "censored"
-	prudence_bonus = 10
-	slot = EYE
