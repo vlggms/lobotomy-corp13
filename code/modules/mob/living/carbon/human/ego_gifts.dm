@@ -349,7 +349,7 @@
 	prudence_bonus = 4
 	slot = BROOCH
 
-/datum/ego_gifts/Sorority //---sprite needed
+/datum/ego_gifts/sorority //---sprite needed
 	name = "Sorority"
 	icon_state = null
 	fortitude_bonus = 2
