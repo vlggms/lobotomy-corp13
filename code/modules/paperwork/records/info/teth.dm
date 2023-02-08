@@ -179,7 +179,7 @@
 	Risk Class : TETH	<br>
 	Max PE Boxes : 12	<br>
 	Qliphoth Counter : X	<br>
-	Work Damage Type : Red	<br>
+	Work Damage Type : PALE	<br>
 	Work Damage : Low	<br>
 	- When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off.	<br>
 	- Upon completing a Repression work with Crumbling Armor, the employee gained a glowing aura. This aura seemed to increase their stats regarding Justice.	<br>
