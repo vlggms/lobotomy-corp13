@@ -324,12 +324,6 @@
 	temperance_bonus = 2
 	slot = HAT
 
-/datum/ego_gifts/dream //---sprite needed
-	name = "Dream"
-	icon_state = null
-	prudence_bonus = 4
-	slot = HAT
-
 /datum/ego_gifts/solitude //---sprite needed
 	name = "Solitude"
 	icon_state = null
@@ -357,12 +351,6 @@
 	temperance_bonus = -1
 	slot = BROOCH
 
-/datum/ego_gifts/noise //---sprite needed
-	name = "Noise"
-	icon_state = null
-	prudence_bonus = 2
-	justice_bonus = 1
-	slot = HAT
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging

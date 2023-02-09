@@ -37,7 +37,7 @@
 		/datum/ego_datum/weapon/dream,
 		/datum/ego_datum/armor/dream
 		)
-	gift_type =  /datum/ego_gifts/dream
+	gift_type =  /datum/ego_gifts/engulfing
 	var/punched = FALSE
 	var/pulse_damage = 25
 
