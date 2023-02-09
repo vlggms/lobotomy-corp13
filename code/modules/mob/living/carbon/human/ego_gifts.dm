@@ -523,6 +523,13 @@
 	fortitude_bonus = 5
 	slot = HAND_2
 
+/datum/ego_gifts/regent
+	name = "Black Regent"
+	icon_state = "regent"
+	prudence_bonus = 4
+	justice_bonus = 2
+	slot = NECKWEAR
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"

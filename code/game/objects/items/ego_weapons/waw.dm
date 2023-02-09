@@ -383,3 +383,50 @@
 		L.adjust_nutrition(-10)
 		vine_cooldown = world.time + vine_delay
 
+/obj/item/ego_weapon/regent
+	name = "black regent"
+	desc = "\"An apple does not culminate when it ripens to bright red. \
+	Only when the apple shrivels up and attracts lowly creatures.\""
+	special = "This weapon has a ranged attack."
+	icon_state = "regent"
+	force = 35
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
+	attack_verb_simple = list("admonish", "rectify", "conquer")
+	hitsound = 'sound/weapons/ego/rapier2.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1.5 SECONDS
+	var/ranged_damage = 60
+
+/obj/effect/temp_visual/thornspike
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "thornspike"
+	duration = 10
+
+/obj/item/ego_weapon/regent/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if(get_dist(user, target_turf) < 2)
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	if(do_after(user, 6))
+		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
+		var/damage_dealt = 0
+		for(var/turf/open/T in range(target_turf, 1))
+			new /obj/effect/temp_visual/thornspike(T)
+			for(var/mob/living/L in T.contents)
+				L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+					damage_dealt += ranged_damage
