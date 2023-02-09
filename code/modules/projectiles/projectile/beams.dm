@@ -304,6 +304,8 @@
 	damage = 50
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
 

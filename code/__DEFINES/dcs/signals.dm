@@ -1056,3 +1056,4 @@
 #define COMSIG_GLOB_WORK_STARTED "!work_started" // Same, but global
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
 #define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto
+#define COMSIG_MELTDOWN_FINISHED "meltdown_finished"

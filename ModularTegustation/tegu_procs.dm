@@ -66,7 +66,7 @@ GLOBAL_VAR(roundend_music)
 			survivors++
 	var/survival_rate = survivors / players
 	if(GLOB.player_list.len >= 8) // Lowpop doesn't count for epic music
-		if(core_suppression_state == 3) // Claw killed during core suppression
+		if(core_suppression_state == 3) // Claw/Arbiter/Red Mist killed during core suppression
 			switch(survival_rate)
 				if(-INFINITY to 0.2) // Dead agents, you will be remembered...
 					return 'ModularTegustation/tegusounds/roundend/Intricate.ogg'
@@ -79,7 +79,7 @@ GLOBAL_VAR(roundend_music)
 				if(0.9 to INFINITY) // Something that will never happen
 					return 'ModularTegustation/tegusounds/roundend/SunAndMoon.ogg'
 
-		if(core_suppression_state == 2) // Core suppressed, Claw wasn't killed
+		if(core_suppression_state) // Core suppression initiated/finished and Claw wasn't killed
 			switch(survival_rate)
 				if(-INFINITY to 0.2)
 					return 'ModularTegustation/tegusounds/roundend/CityOfLight.ogg'

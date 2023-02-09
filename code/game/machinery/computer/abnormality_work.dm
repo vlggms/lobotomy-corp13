@@ -26,7 +26,7 @@
 /obj/machinery/computer/abnormality/update_overlays()
 	. = ..()
 	if(meltdown)
-		SSvis_overlays.add_vis_overlay(src, icon, "abnormality_meltdown", layer + 0.1, plane, dir)
+		SSvis_overlays.add_vis_overlay(src, icon, "abnormality_meltdown[meltdown]", layer + 0.1, plane, dir)
 
 /obj/machinery/computer/abnormality/examine(mob/user)
 	. = ..()
@@ -40,7 +40,17 @@
 	if(datum_reference.overload_chance != 0)
 		. += "<span class='warning'>Current success chance modifier: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
-		. += "<span class='warning'>The chamber is currently in the process of meltdown. Time left: [meltdown_time].</span>"
+		var/melt_text = ""
+		switch(meltdown)
+			if(MELTDOWN_GRAY)
+				melt_text = " of Dark Fog. Success rates reduced by 10%"
+			if(MELTDOWN_GOLD)
+				melt_text = " of Gold. Failing to clear it will heal the Arbiter"
+			if(MELTDOWN_PURPLE)
+				melt_text = " of Waves. Upon clearing the meltdown the dark waves will disappear"
+			if(MELTDOWN_CYAN)
+				melt_text = " of Pillars. Success rates reduced by 20%. Failing to clear it will cause Arbiter to perform their deadly attack"
+		. += "<span class='warning'>The chamber is currently in the process of meltdown[melt_text]. Time left: [meltdown_time].</span>"
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
@@ -136,9 +146,14 @@
 			to_chat(user, "<span class='userdanger'>I'm not ready for this!</span>")
 	var/was_melting = meltdown //to remember if it was melting down before the work started
 	meltdown = FALSE // Reset meltdown
+	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, TRUE)
 	update_icon()
 	datum_reference.working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
+	if(meltdown == MELTDOWN_GRAY)
+		work_chance -= 10
+	if(meltdown == MELTDOWN_CYAN)
+		work_chance -= 20
 	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	var/success_boxes = 0
 	var/total_boxes = 0
@@ -229,9 +244,9 @@
 			if(meltdown_time <= 0)
 				qliphoth_meltdown_effect()
 
-/obj/machinery/computer/abnormality/proc/start_meltdown()
-	meltdown_time = rand(60, 90)
-	meltdown = TRUE
+/obj/machinery/computer/abnormality/proc/start_meltdown(melt_type = MELTDOWN_NORMAL, min_time = 60, max_time = 90)
+	meltdown_time = rand(min_time, max_time)
+	meltdown = melt_type
 	datum_reference.current.MeltdownStart()
 	update_icon()
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 75, FALSE, 3)
@@ -241,6 +256,7 @@
 	meltdown = FALSE
 	update_icon()
 	datum_reference.qliphoth_change(-999)
+	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, FALSE)
 	return TRUE
 
 // Scrambles work types for this specific console

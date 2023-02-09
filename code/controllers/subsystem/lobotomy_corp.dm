@@ -1,3 +1,9 @@
+#define MELTDOWN_NORMAL 1
+#define MELTDOWN_GRAY 2
+#define MELTDOWN_GOLD 3
+#define MELTDOWN_PURPLE 4
+#define MELTDOWN_CYAN 5
+
 // TODO: Do something about it, idk
 SUBSYSTEM_DEF(lobotomy_corp)
 	name = "Lobotomy Corporation"
@@ -162,7 +168,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * 0.35))
 
-/datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE)
+/datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
@@ -182,7 +188,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			break
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
 		computer_list -= computer
-		computer.start_meltdown()
+		computer.start_meltdown(type, min_time, max_time)
 		meltdown_occured += computer
 	if(LAZYLEN(meltdown_occured))
 		var/text_info = ""
@@ -191,7 +197,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			text_info += computer.datum_reference.name
 			if(y != meltdown_occured.len)
 				text_info += ", "
-		priority_announce("Qliphoth meltdown occured in containment zones of the following abnormalities: [text_info].", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
+		priority_announce("[alert_text] [text_info].", "Qliphoth Meltdown", sound=alert_sound)
+		return meltdown_occured
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))

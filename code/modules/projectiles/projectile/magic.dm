@@ -679,23 +679,22 @@
 
 /obj/projectile/magic/aoe/pillar
 	name = "pillar"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "pillar"
 	alpha = 0
-	pixel_x = -16
-	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
 
 	damage = 350
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	armour_penetration = 0
-	speed = 1.3 // Slow
+	speed = 1.5 // Slow
+	damage_falloff_tile = -5 // Loses a bit of damage so you don't get jumpscared out of nowhere
+	white_healing = FALSE
 	nodamage = FALSE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB))
 	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
+	var/obj/effect/trail_type = /obj/effect/temp_visual/revenant
 	var/list/been_hit = list()
 
 /obj/projectile/magic/aoe/pillar/Initialize()
@@ -705,24 +704,33 @@
 /obj/projectile/magic/aoe/pillar/Moved(atom/OldLoc, Dir)
 	..()
 	for(var/turf/T in range(1, get_turf(src)))
-		new /obj/effect/temp_visual/revenant(T)
+		new trail_type(T)
 
 /obj/projectile/magic/aoe/pillar/Range()
 	if(proxdet)
 		for(var/obj/machinery/computer/abnormality/CA in range(1, get_turf(src)))
-			if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
+			if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter || CA.datum_reference.working)
 				continue
-			CA.start_meltdown()
-			CA.meltdown_time = rand(10,20)
+			CA.start_meltdown(MELTDOWN_NORMAL, 40, 60)
+			playsound(CA, hitsound, 50, TRUE, 4)
 	..()
 
-/obj/projectile/magic/aoe/pillar/on_hit(target)
-	. = ..()
-	if(isliving(target) && !(target in been_hit))
-		var/mob/living/L = target
-		var/throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
-		L.safe_throw_at(throwtarget, 7, force = MOVE_FORCE_EXTREMELY_STRONG)
-		been_hit += L
+/obj/projectile/magic/aoe/pillar/red
+	icon_state = "pillar_red"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	trail_type = /obj/effect/temp_visual/cult/sparks
+
+/obj/projectile/magic/aoe/pillar/white
+	icon_state = "pillar_white"
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+
+/obj/projectile/magic/aoe/pillar/pale
+	icon_state = "pillar_pale"
+	damage = 250
+	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
 
 //still magic related, but a different path
 
