@@ -38,10 +38,11 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
-/datum/job/command/after_spawn(mob/living/H, mob/M)
+/datum/job/command/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
+	H.set_attribute_limit(60)		//Level limit set to 60, they'll be able to get defend themselves but not use Aleph or a lot of WAW gear
 
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
