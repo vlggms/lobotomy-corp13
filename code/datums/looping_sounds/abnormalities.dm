@@ -75,3 +75,9 @@
 	mid_length = 5.5 SECONDS
 	volume = 50
 	extra_range = 7
+
+/datum/looping_sound/greenmidnight_laser
+	mid_sounds = 'sound/effects/ordeals/green/midnight_laser_loop.ogg'
+	mid_length = 0.4 SECONDS
+	volume = 35
+	extra_range = 128

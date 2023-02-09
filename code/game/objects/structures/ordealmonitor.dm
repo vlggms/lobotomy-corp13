@@ -23,13 +23,6 @@
 	. = ..()
 	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(SSlobotomy_corp.next_ordeal && (SSlobotomy_corp.qliphoth_state + 1 >= SSlobotomy_corp.next_ordeal_time))
-		var/level_text = "dawn"
-		switch(SSlobotomy_corp.next_ordeal.level)
-			if(2)
-				level_text = "noon"
-			if(3)
-				level_text = "dusk"
-			if(4 to INFINITY)
-				level_text = "midnight"
+		var/level_text = lowertext(SSlobotomy_corp.next_ordeal.ReturnSecretName())
 		var/obj/effect/overlay/vis/OV = SSvis_overlays.add_vis_overlay(src, icon, level_text, layer + 0.1, plane, dir)
 		OV.add_atom_colour(SSlobotomy_corp.next_ordeal.color, FIXED_COLOUR_PRIORITY)
