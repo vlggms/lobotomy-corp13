@@ -325,6 +325,8 @@
 			continue
 		if(!AC.datum_reference)
 			continue
+		if(!(AC.datum_reference.current)) // No longer includes targetting computers with no Abnormality alive to release
+			continue
 		if(!(AC.datum_reference.current.status_flags & GODMODE))
 			continue
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][AC] > world.time)
