@@ -436,3 +436,29 @@
 	<h4>White Resistance:</h4> Weak	<br>
 	<h4>Black Resistance:</h4> Immune	<br>
 	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+//Thunderbird
+/obj/item/paper/fluff/info/waw/thunder_bird
+	name = "T-02-137"
+	info = {"<h1><center>T-02-137</center></h1>	<br>
+	Name : Thunderbird	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Good and the employee's health was high, Qliphoth Counter was raised.	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with an average probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter was lowered.	<br>
+	- All organic debris must be cleared from the vicinity of the abnormality's containment cell. <br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Black	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Resistant	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}

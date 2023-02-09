@@ -248,3 +248,44 @@
 	if(M.damage_coeff[RED_DAMAGE] == original_armor + 0.2)
 		M.damage_coeff[RED_DAMAGE] = original_armor
 
+//feather of valor
+/obj/projectile/ego_bullet/ego_warring
+	name = "feather of valor"
+	icon_state = "arrow"
+	damage = 75
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+
+//feather of valor cont'd
+/obj/projectile/ego_bullet/ego_warring2
+	name = "feather of valor"
+	icon_state = "lava"
+	hitsound = null
+	damage = 125
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/stun
+	tracer_type = /obj/effect/projectile/tracer/stun
+	impact_type = /obj/effect/projectile/impact/laser/stun
+
+/obj/effect/projectile/muzzle/laser/stun
+	name = "lightning flash"
+	icon_state = "muzzle_stun"
+/obj/effect/projectile/tracer/laser/stun
+	name = "lightning beam"
+	icon_state = "stun"
+/obj/effect/projectile/impact/laser/stun
+	name = "lightning impact"
+	icon_state = "impact_stun"
+
+/obj/projectile/ego_bullet/ego_warring2/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/carbon/human/H = target
+	var/mob/living/user = firer
+	if(user.faction_check_mob(H))//player faction
+		H.adjustSanityLoss(damage*0.2)
+		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
+		H.Knockdown(50)
+		return BULLET_ACT_BLOCK
+	qdel(src)

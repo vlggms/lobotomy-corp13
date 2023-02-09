@@ -523,6 +523,13 @@
 	fortitude_bonus = 5
 	slot = HAND_2
 
+/datum/ego_gifts/warring
+	name = "Feather of Valor"
+	icon_state = "warring"
+	fortitude_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
 /datum/ego_gifts/regent
 	name = "Black Regent"
 	icon_state = "regent"
