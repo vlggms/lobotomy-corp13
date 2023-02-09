@@ -2638,6 +2638,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\silence.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\snow_whites_apple.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\thunder_bird.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\warden.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\yang.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\bald.dm"

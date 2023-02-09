@@ -191,3 +191,12 @@
 /datum/ego_datum/weapon/wings
 	item_path = /obj/item/ego_weapon/wings
 	cost = 50
+
+// Thunderbird - Feather of Valor, Warring
+/datum/ego_datum/armor/warring
+	item_path = /obj/item/clothing/suit/armor/ego_gear/warring
+	cost = 50
+
+/datum/ego_datum/weapon/warring
+	item_path = /obj/item/gun/ego_gun/warring
+	cost = 50
