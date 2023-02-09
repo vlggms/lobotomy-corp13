@@ -222,10 +222,9 @@ GLOBAL_LIST_EMPTY(zombies)
 		GLOB.zombies -= Z
 
 /*--Zombies!--*/
-var/can_act = TRUE
-
 //zombie mob
 /mob/living/simple_animal/hostile/thunder_zombie
+	var/can_act = TRUE
 	name = "???"
 	desc = "You shouldn't be able to read this."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -335,6 +334,7 @@ var/can_act = TRUE
 
 //Zombie conversion through lightning bombs
 /obj/effect/thunderbolt/proc/Convert(mob/living/carbon/human/H)
+	var/can_act = TRUE
 	if(!istype(H))
 		return
 	if(!can_act)
