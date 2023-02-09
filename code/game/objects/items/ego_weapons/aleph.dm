@@ -28,7 +28,7 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if(get_dist(user, target_turf) < 2)
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
 		return
 	..()
 	var/mob/living/carbon/human/H = user
