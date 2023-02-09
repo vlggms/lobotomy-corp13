@@ -35,10 +35,6 @@
 	cost = 35
 
 // White Lake - Torn Off Wings
-/datum/ego_datum/weapon/wings
-	item_path = /obj/item/ego_weapon/wings
-	cost = 35
-
 /datum/ego_datum/armor/wings
 	item_path = /obj/item/clothing/suit/armor/ego_gear/wings
 	cost = 35
@@ -174,7 +170,7 @@
 /datum/ego_datum/weapon/transmission
 	item_path = /obj/item/gun/ego_gun/transmission
 	cost = 35
-	
+
 //Beanstalk without Jack - Giant
 /datum/ego_datum/weapon/giant
 	item_path = /obj/item/ego_weapon/shield/giant
