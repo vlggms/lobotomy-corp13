@@ -143,13 +143,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/headset_training
 
 /obj/item/radio/headset/headset_command
-	name = "command radio headset"
+	name = "central radio headset"
 	desc = "This is used by the central command department."
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
-
-/obj/item/radio/headset/headset_command/agent
-	keyslot = null
 
 /obj/item/radio/headset/headset_welfare
 	name = "welfare radio headset"

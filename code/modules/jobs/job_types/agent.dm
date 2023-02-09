@@ -39,7 +39,7 @@
 			ears = /obj/item/radio/headset/headset_control
 			accessory = /obj/item/clothing/accessory/armband/lobotomy
 		if("Command")
-			ears = /obj/item/radio/headset/headset_command/agent
+			ears = /obj/item/radio/headset/headset_command
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
 		if("Training")
 			ears = /obj/item/radio/headset/headset_training

@@ -21,7 +21,7 @@
 #define RADIO_KEY_TRAINING "t"
 #define RADIO_TOKEN_TRAINING ":t"
 
-#define RADIO_CHANNEL_COMMAND "Command"
+#define RADIO_CHANNEL_COMMAND "Central"
 #define RADIO_KEY_COMMAND "c"
 #define RADIO_TOKEN_COMMAND ":c"
 
