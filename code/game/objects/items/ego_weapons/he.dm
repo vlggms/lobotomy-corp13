@@ -141,24 +141,6 @@
 	..()
 	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
 
-/obj/item/ego_weapon/wings
-	name = "torn off wings"
-	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
-		pressed it to his lips, put it on as a token, and, bravely brandishing his bare sword, \
-		jumped as nimbly as a bird over the ledge of the cabinet to the floor."
-	special = "This weapon has a very fast attack speed."
-	icon_state = "wings"
-	force = 12
-	attack_speed = 0.3
-	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
-	attack_verb_continuous = list("slashes", "claws")
-	attack_verb_simple = list("slashes", "claws")
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
-
 /obj/item/ego_weapon/shield/daredevil
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."

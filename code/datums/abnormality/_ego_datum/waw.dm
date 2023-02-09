@@ -185,4 +185,7 @@
 
 /datum/ego_datum/weapon/regent
 	item_path = /obj/item/ego_weapon/regent
+// White Lake - Torn Off Wings
+/datum/ego_datum/weapon/wings
+	item_path = /obj/item/ego_weapon/wings
 	cost = 50
