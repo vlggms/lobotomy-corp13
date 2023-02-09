@@ -1,0 +1,366 @@
+GLOBAL_LIST_EMPTY(zombies)
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird
+	name = "Thunderbird Altar"
+	desc = "An ominous totem built from the corpses of unusual creatures, crowned with the visage of its namesake in wood."
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "thunderbird"
+	icon_living = "thunderbird"
+	icon_dead = "thunderbird_dead"
+	speak_emote = list("intones")
+	var/list/thunder_bird_lines = list(
+				"Prostrate yourself! Harder!",
+				"Do you think I am happy, feather? Think again!",
+				"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
+				"Your kind can never be forgiven!",
+				"Look around, you monsters! You've destroyed my people and nature!"
+				)
+	//Ideally it should only glow in its breached state
+	light_color = LIGHT_COLOR_BLUE
+	light_range = 5
+	light_power = 7
+
+	pixel_x = -8
+	base_pixel_x = -8
+
+	//suppression info
+	maxHealth = 2000
+	health = 2000
+	speed = 2
+	move_to_delay = 4
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
+	//Attacks everything excepts its zombies
+	faction = list("tbird")
+
+	//work info
+	threat_level = WAW_LEVEL
+	can_breach = TRUE
+	start_qliphoth = 3
+	//Unlike firebird, you're aiming for good results. The success rates are lower overall and it hates attachment work.
+	work_chances = list(
+						ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
+						ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 35, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
+						ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 45)
+						)
+	work_damage_amount = 10
+	work_damage_type = WHITE_DAMAGE
+
+	//change the E.G.O to "warring"
+	ego_list = list(
+		/datum/ego_datum/weapon/warring,
+		/datum/ego_datum/armor/warring
+		)
+	gift_type =  /datum/ego_gifts/warring
+	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
+
+/*---Combat---*/
+	//range and attack speed for thunder bombs, taken from general bee
+	var/fire_cooldown_time = 3 SECONDS
+	var/fireball_range = 7
+	var/fire_cooldown
+
+	//Melee stats
+	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
+	stat_attack = HARD_CRIT
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+	rapid_melee = 2
+	attack_verb_continuous = "pecks"
+	attack_verb_simple = "peck"
+	vision_range = 15
+	aggro_vision_range = 30
+	ranged = TRUE//allows it to attempt charging without being in melee range
+
+	//Stolen charge code from helper
+	var/charging = FALSE
+	var/dash_num = 10//the length of the dash, in tiles
+	var/dash_cooldown = 0
+	var/dash_cooldown_time = 4 SECONDS
+	var/list/been_hit = list() // Don't get hit twice.
+
+//attempts to charge its target regardless of distance with a short cooldown. Can be spammed if distant enough.
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/AttackingTarget()
+	if(charging)
+		return
+	if(dash_cooldown <= world.time && prob(10) && !client)
+		thunder_bird_dash(target)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/Move()
+	if(charging)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/OpenFire()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				thunder_bird_dash(target)
+		return
+
+	if(dash_cooldown <= world.time)
+		var/chance_to_dash = 50
+		if(prob(chance_to_dash))
+			thunder_bird_dash(target)
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/update_icon_state()
+	if(charging)
+		icon_state = initial(icon)
+	else
+		icon_state = "thunderbird_charge"
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/thunder_bird_dash(target)
+	if(charging || dash_cooldown > world.time)
+		return
+	update_icon()
+	dash_cooldown = world.time + dash_cooldown_time
+	charging = TRUE
+	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	been_hit = list()
+	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1 SECONDS)//how long it takes for the dash to initiate
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/do_dash(move_dir, times_ran)
+	var/stop_charge = FALSE
+	if(times_ran >= dash_num)
+		stop_charge = TRUE
+	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		charging = FALSE
+		return
+	if(T.density)
+		stop_charge = TRUE
+	for(var/obj/structure/window/W in T.contents)
+		stop_charge = TRUE
+	for(var/obj/machinery/door/poddoor/P in T.contents)//FIXME: Still opens the "poddoor" secure shutters; lines 148-150 are still executed.
+		stop_charge = TRUE
+		continue
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			D.open(2)
+	if(stop_charge)
+		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
+		charging = FALSE
+		icon_state = "thunderbird_breach"
+		return
+	forceMove(T)
+	playsound(src,"sound/abnormalities/thunderbird/tbird_peck.ogg", rand(50, 70), 1)
+	for(var/turf/TF in range(1, T))//Smash AOE visual
+		new /obj/effect/temp_visual/smash_effect(TF)
+	for(var/mob/living/L in range(1, T))//damage and knockdown applied to targets in range
+		if(!faction_check_mob(L))
+			if(L in been_hit)
+				continue
+			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
+			to_chat(L, "<span class='userdanger'>[src] rushes past you, arcing electricity throughout the way!</span>")
+			playsound(L, attack_sound, 75, 1)
+			var/turf/LT = get_turf(L)
+			new /obj/effect/temp_visual/kinetic_blast(LT)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_damage(25,BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
+				H.Knockdown(30)
+			else
+				//simple mobs cannot be stunned; they take more damage
+				L.adjustBlackLoss(150)
+			if(!(L in been_hit))
+				been_hit += L
+	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
+
+
+
+/*---Qliphoth Counter---*/
+//counter goes up when you're above 80% hp on a good result, 50% down otherwise
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	if(user.health > (user.maxHealth*0.8))
+		datum_reference.qliphoth_change(1)
+		user.apply_damage(45, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+		say(pick(thunder_bird_lines))
+		user.electrocute_act(1, src, flags = SHOCK_NOSTUN)
+		user.Knockdown(20)
+	else
+		if(prob(50))
+			datum_reference.qliphoth_change(-1)
+			say("Begone, fool!")
+	return
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(50))
+		datum_reference.qliphoth_change(-1)
+	return
+
+/*---Breach effects---*/
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/BreachEffect(mob/living/carbon/human/user)
+	..()
+	name = "Thunderbird"
+	icon_living = "thunderbird_breach"
+	icon_state = icon_living
+	desc = "A hulking avian wreathed in electricity. It looks angry."
+	GiveTarget(user)
+
+//fires bombs that deal 45 black damage and knockdown towards anyone within 1 tile, they also turn the dead and dying into zombies.
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((fire_cooldown < world.time))
+		fireshell()
+
+//delete the zombies on death
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/Destroy()
+	..()
+	for(var/mob/living/simple_animal/hostile/thunder_zombie/Z in GLOB.zombies)
+		QDEL_IN(Z, rand(3) SECONDS)
+		GLOB.zombies -= Z
+
+/*--Zombies!--*/
+//zombie mob
+/mob/living/simple_animal/hostile/thunder_zombie
+	name = "???"
+	desc = "You shouldn't be able to read this."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "human_thunderbolt"
+	icon_living = "human_thunderbolt"
+	faction = list("tbird")
+	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attack"
+	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
+
+	/*Zombie Stats */
+	health = 500//subject to change; they all die when thunderbird is suppressed
+	maxHealth = 500
+	obj_damage = 300
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 15
+	melee_damage_upper = 30
+	speed = 5
+	move_to_delay = 3
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	density = TRUE
+	var/list/breach_affected = list()
+	var/can_act = TRUE
+
+//Zombie conversion from other zombies
+/mob/living/simple_animal/hostile/thunder_zombie/proc/Convert(mob/living/carbon/human/H)
+	if(!istype(H))
+		return
+	if(!can_act)
+		return
+	can_act = FALSE
+	forceMove(get_turf(H))
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
+	SLEEP_CHECK_DEATH(3)
+	for(var/i = 1 to 4)
+		new /obj/effect/temp_visual/sparks(get_turf(src))
+		SLEEP_CHECK_DEATH(5.5)
+	var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
+	if(!QDELETED(H))
+		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
+		C.icon_state = "human_thunderbolt"
+		C.icon_living = "human_thunderbolt"
+		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
+		H.gib()
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
+	adjustBruteLoss(-(maxHealth*0.1))
+	can_act = TRUE
+
+//Zombie conversion from zombie kills
+/mob/living/simple_animal/hostile/thunder_zombie/AttackingTarget()
+	. = ..()
+	if(!can_act)
+		return
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.stat >= SOFT_CRIT || H.health < 0)
+		Convert(H)
+
+/mob/living/simple_animal/hostile/thunder_zombie/Initialize()
+	..()
+	GLOB.zombies += src
+	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, 1, 4)
+	base_pixel_x = rand(-6,6)
+	pixel_x = base_pixel_x
+	base_pixel_y = rand(-6,6)
+	pixel_y = base_pixel_y
+
+/mob/living/simple_animal/hostile/thunder_zombie/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(status_flags & GODMODE)
+		return FALSE
+
+//thunderbolts
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
+	fire_cooldown = world.time + fire_cooldown_time
+	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+		if(faction_check_mob(L, FALSE))
+			continue
+		new /obj/effect/thunderbolt(get_turf(L))//do this for the # of targets
+
+//thunderbolt objects
+/obj/effect/thunderbolt
+	name = "thunder bolt"
+	desc = "LOOK OUT!"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tbird_bolt"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/boom_damage = 45
+	layer = POINT_LAYER	//Sprite should always be visible
+
+/obj/effect/thunderbolt/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/explode), 3 SECONDS)
+
+
+//Zombie conversion through lightning bombs
+/obj/effect/thunderbolt/proc/Convert(mob/living/carbon/human/H)
+	var/can_act = TRUE
+	if(!istype(H))
+		return
+	if(!can_act)
+		return
+	can_act = FALSE
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
+	for(var/i = 1 to 4)
+		new /obj/effect/temp_visual/sparks(get_turf(src))
+	var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
+	if(!QDELETED(H))
+		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
+		C.icon_state = "human_thunderbolt"
+		C.icon_living = "human_thunderbolt"
+		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
+		H.gib()
+	can_act = TRUE
+
+//Smaller Scorched Girl bomb
+/obj/effect/thunderbolt/proc/explode()
+	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
+	for(var/mob/living/carbon/human/H in view(1, src))
+		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
+		H.Knockdown(20)
+		if(H.health < 0)
+			Convert(H)
+	new /obj/effect/temp_visual/tbirdlightning(get_turf(src))
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(0, get_turf(src))	//Smoke shouldn't really obstruct your vision
+	S.start()
+	qdel(src)

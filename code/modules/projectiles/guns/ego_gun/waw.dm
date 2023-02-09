@@ -120,7 +120,7 @@
 
 	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
 
-/obj/item/gun/ego_gun/pistol/solemnvov/process_fire(atom/target, mob/living/user)
+/obj/item/gun/ego_gun/pistol/solemnvow/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)
 		projectile_damage_multiplier = 1.5
 		break
@@ -319,3 +319,64 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 	)
+
+//Full manual bow-type E.G.O, must be loaded before firing.
+/obj/item/gun/ego_gun/warring
+	name = "feather of valor"
+	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
+	icon_state = "warring"
+	inhand_icon_state = "warring"
+	special = "This weapon must be drawn before firing. \
+		It has perfect accuracy."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 9
+	spread = 0
+	//firing sound 1
+	fire_sound = 'sound/weapons/bowfire.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+	)
+	var/drawn = 0
+
+/obj/item/gun/ego_gun/warring/can_shoot()
+	if (drawn == 0)
+		icon_state = "[initial(icon_state)]"
+		ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+		return FALSE
+	return TRUE
+
+/obj/item/gun/ego_gun/warring/before_firing(atom/target, mob/user)
+	..()
+	if (drawn == 0)//gun should not fire here
+		can_shoot()
+		return
+
+/obj/item/gun/ego_gun/warring/afterattack(atom/target, mob/user)
+	..()
+	drawn = 0
+	icon_state = "[initial(icon_state)]"
+	can_shoot()
+
+/obj/item/gun/ego_gun/warring/attack_self(mob/user)
+	switch(drawn)
+		if (0)
+			if(do_after(user, 10))
+				drawn  = 1
+				to_chat(user,"<span class='warning'>You draw the [src] with all your might.</span>")
+				ammo_type = /obj/item/ammo_casing/caseless/ego_warring
+				fire_sound = 'sound/weapons/bowfire.ogg'
+				icon_state = "warring_drawn"
+		if (1)
+			if(do_after(user, 15))
+				if(drawn != 1)
+					return
+				drawn = 2
+				ammo_type = /obj/item/ammo_casing/caseless/ego_warring2//FIXME: the problem line, occasionally fails for no reason.
+				playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
+				to_chat(user,"<span class='warning'>An arrow of lightning appears.</span>")
+				fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
+				icon_state = "warring_firey"
+		if (2)
+			return

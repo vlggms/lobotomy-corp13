@@ -818,3 +818,12 @@
 
 /obj/effect/temp_visual/alriune_curtain/proc/FadeOut()
 	animate(src, alpha = 0, time = 15)
+
+/obj/effect/temp_visual/tbirdlightning
+	name = "emp pulse"
+	icon = 'ModularTegustation/Teguicons/64x96.dmi'
+	icon_state = "lightning"
+	duration = 8
+	randomdir = 0
+	pixel_y = 0
+	pixel_x = -16
