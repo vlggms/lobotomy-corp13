@@ -54,9 +54,9 @@
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
 
 		//Scorp - for the funny
-		new /datum/data/extraction_cargo("Wellcheers Code Red ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,	40, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("Wellcheers Baja Blast ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,40, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("Wellcheers Purple Thunder ",	/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,60, CAT_SCORP) = 1,
+		new /datum/data/extraction_cargo("Wellcheers Code Red ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,	150, CAT_SCORP) = 1,
+		new /datum/data/extraction_cargo("Wellcheers Baja Blast ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,150, CAT_SCORP) = 1,
+		new /datum/data/extraction_cargo("Wellcheers Purple Thunder ",	/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,200, CAT_SCORP) = 1,
 		new /datum/data/extraction_cargo("S-Corp Elite Assassin ",		/mob/living/simple_animal/hostile/shrimp,							200, CAT_SCORP) = 1,
 		new /datum/data/extraction_cargo("S-Corp Brand Soda Shotgun ",	/obj/item/gun/ego_gun/sodashotty,									400, CAT_SCORP) = 1,
 		new /datum/data/extraction_cargo("S-Corp Brand Soda Rifle ",	/obj/item/gun/ego_gun/sodarifle,									400, CAT_SCORP) = 1,
