@@ -29,26 +29,26 @@
 	qdel(src)
 
 	//Admin Quick Leveler
-/obj/item/lc13_attribute_tester
+/obj/item/attribute_tester
 	name = "attribute injector"
-	desc = "A fluid used to drastically change a employee for tests. Use in hand to activate."
+	desc = "A fluid used to drastically change an employee for tests. Use in hand to activate."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity7"
 
-/obj/item/lc13_attribute_tester/attack_self(mob/living/carbon/human/user)
+/obj/item/attribute_tester/attack_self(mob/living/carbon/human/user)
 	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
 	user.adjust_all_attribute_levels(100)
 	qdel(src)
 
-/obj/item/lc13_easygift_tester
+/obj/item/easygift_tester
 	name = "gift extractor"
-	desc = "Unpopular due to its excessive energy use, this device extracts gifts from a entity on demand."
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an entity on demand."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "hammeroff"
 
-/obj/item/lc13_easygift_tester/attack(mob/living/simple_animal/hostile/abnormality/M, mob/living/carbon/human/user)
+/obj/item/easygift_tester/attack(mob/living/simple_animal/hostile/abnormality/M, mob/living/carbon/human/user)
 	if(!isabnormalitymob(M))
-		to_chat(user, "<span class='warning'>Error: entity doesnt classify as an L Corp Abnormality.</span>")
+		to_chat(user, "<span class='warning'>Error: Entity doesnt classify as an L Corp Abnormality.</span>")
 		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 		return
 	if(!M.gift_type)
@@ -412,7 +412,7 @@
 		else
 			return "ERROR"
 
-//Gadgets require batteries or fuel to function!
+//Gadgets that require batteries or fuel to function!
 /obj/item/powered_gadget
 	name = "gadget template"
 	desc = "A template for a battery powered tool, the battery compartment is screwed shut in order to prevent people from eating the batteries."
@@ -796,3 +796,189 @@
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 	inuse = FALSE
+
+/obj/item/trait_injector
+	name = "Trait Injector"
+	desc = "A blank trait injector that imbues certain roles with a specific trait."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_firewater"
+	var/list/roles = list()
+	var/trait
+	var/error_message = ""
+	var/success_message = ""
+
+/obj/item/trait_injector/attack_self(mob/living/carbon/human/user)
+	if(!istype(user) || !(user.mind?.assigned_role in roles))
+		to_chat(user, "<span class='notice'>The injector light flashes red. [error_message] Check the label before use.</span>")
+		return
+	InjectTrait(user)
+
+/obj/item/trait_injector/proc/InjectTrait(mob/living/carbon/human/user)
+	to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. [success_message]</span>")
+	if(trait)
+		ADD_TRAIT(user, trait, JOB_TRAIT)
+	qdel(src)
+	return
+
+/obj/item/trait_injector/officer_upgrade_injector
+	name = "Officer Upgrade Injector"
+	desc = "A strange liquid used to improve an officer's skills. Use in hand to activate. A small note on the injector states that 'officer' means Extraction Officer and Records Officer."
+	icon_state = "oddity7_gween"
+	roles = list("Records Officer", "Extraction Officer")
+	error_message = "You aren't an officer."
+	success_message = "You feel vigourous and stronger."
+
+/obj/item/trait_injector/officer_upgrade_injector/InjectTrait(mob/living/carbon/human/user)
+	user.adjust_all_attribute_levels(20)
+	..()
+	return
+
+/obj/item/trait_injector/agent_workchance_trait_injector
+	name = "Agent Work Chance Injector"
+	desc = "An injector containing liquid that allows agents to view their chances before work. Use in hand to activate. A small note on the injector states that 'agent' means anyone under the security detail. Another note states that Officers aren't security detail."
+	icon_state = "oddity7_orange"
+	trait = TRAIT_WORK_KNOWLEDGE
+	error_message = "You aren't an agent."
+	success_message = "You feel enlightened and wiser."
+
+/obj/item/trait_injector/agent_workchance_trait_injector/Initialize()
+	. = ..()
+	roles = GLOB.security_positions
+
+/obj/item/trait_injector/clerk_fear_immunity_injector
+	name = "C-Fear Protection Injector"
+	desc = "Contains fire water that protects clerks from the downsides of witnessing dangerous abnormalities. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."
+	icon_state = "oddity7_firewater"
+	trait = TRAIT_COMBATFEAR_IMMUNE
+	error_message = "You aren't a clerk."
+	success_message = "You feel emboldened and braver."
+
+/obj/item/trait_injector/clerk_fear_immunity_injector/Initialize()
+	. = ..()
+	roles = GLOB.service_positions
+
+/obj/item/trait_injector/shrimp_injector
+	name = "Shrimp Injector"
+	desc = "The injector contains a pink substance, is this really worth it? Usable by only clerks. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."
+	icon_state = "oddity7_pink"
+	error_message = "You aren't a clerk."
+	success_message = "You feel pink? A catchy song about shrimp comes to mind."
+
+/obj/item/trait_injector/shrimp_injector/Initialize()
+	. = ..()
+	roles = GLOB.service_positions
+
+/obj/item/trait_injector/shrimp_injector/InjectTrait(mob/living/carbon/human/user)
+	if(!faction_check(user.faction, list("shrimp")))
+		user.faction |= "shrimp"
+		..()
+		return
+	to_chat(user,"<span class='userdanger'>The injector burns red before switching to green and dissapearing. You feel uneasy.</span>")
+	qdel(src)
+	sleep(rand(20, 50)) // 2 to 5 seconds
+	if(prob(70))
+		new /mob/living/simple_animal/hostile/shrimp(get_turf(user))
+	else
+		new /mob/living/simple_animal/hostile/shrimp_soldier(get_turf(user))
+	user.gib()
+
+/obj/item/powered_gadget/clerkbot_gadget
+	name = "Instant Clerkbot Constructor"
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2_deactivated"
+	default_icon = "clerkbot2_deactivated"
+	batterycost = 10000
+
+/obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
+	..()
+	if(cell && cell.charge >= batterycost)
+		cell.charge = cell.charge - batterycost
+		icon_state = default_icon
+		if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
+			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
+			return
+		new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
+		to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
+
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	if(prob(50))
+		icon_state = "clerkbot1"
+		icon_living = "clerkbot1"
+
+/mob/living/simple_animal/hostile/clerkbot
+	name = "A Well Rounded Clerkbot"
+	desc = "Trusted and loyal best friend."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	faction = list("neutral")
+	health = 150
+	maxHealth = 150
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 12
+	melee_damage_upper = 14
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "buzzes"
+	attack_verb_simple = "buzz"
+	attack_sound = 'sound/weapons/bite.ogg'
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	QDEL_IN(src, (120 SECONDS))
+
+/obj/item/powered_gadget/handheld_taser
+	name = "Handheld Taser"
+	desc = "A portable electricution device. Two settings, stun and slow. Automatically slows abnormalities instead of stunning them."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "gadget1"
+	default_icon = "gadget1"
+	batterycost = 1500
+	var/batterycost_stun = 3000
+	var/batterycost_slow = 1500
+	var/hit_message= null
+
+/obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
+	if(!cell || cell.charge < batterycost_slow)
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+		return
+	if(batterycost == batterycost_slow)
+		if(cell.charge < batterycost_stun)
+			to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+			return
+		batterycost = batterycost_stun
+		to_chat(user, "<span class='nicegreen'>The Gadget's light burns orange before clicking ready to Stun.</span>")
+		return
+	batterycost = batterycost_slow
+	to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
+
+/obj/item/powered_gadget/handheld_taser/attack(var/mob/living/T, mob/living/user)
+	if(user.a_intent != INTENT_HARM)
+		hit_message = "<span class='notice'>[user] lightly pokes [T] with the taser.</span>"
+		user.visible_message(hit_message)
+		return
+	hit_message = "<span class='userdanger'>[user] smashes the taser into [T].</span>"
+	if(isabnormalitymob(T) && cell.charge >= batterycost_slow)
+		cell.charge = cell.charge - batterycost_slow
+		user.visible_message(hit_message)
+		T.apply_status_effect(/datum/status_effect/qliphothoverload)
+		return
+	if (!cell || cell.charge < batterycost || isabnormalitymob(T))
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+		return
+	if (batterycost == batterycost_stun)
+		T.apply_status_effect(/datum/status_effect/qliphothoverload)
+		T.Knockdown(1)
+	else
+		T.Stun(10)
+	cell.charge = cell.charge - batterycost
+	user.visible_message(hit_message)
