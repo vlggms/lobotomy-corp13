@@ -25,7 +25,7 @@
 		new /datum/data/extraction_cargo("Drain Monitor ",				/obj/item/powered_gadget/detector_gadget/abnormality,				200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Keen-Sense Rangefinder ",		/obj/item/powered_gadget/detector_gadget/ordeal,					200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Capacity Upgrade ",		/obj/item/hypo_upgrade/cap_increase,								200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/powered_gadget/clerkbot-gadget,							250, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/powered_gadget/clerkbot_gadget,							250, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Autoinjector ",			/obj/item/reagent_containers/hypospray/emais,						300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("W-Corp Teleporter ",			/obj/item/powered_gadget/teleporter,								300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Meson Scanner Goggles ",		/obj/item/clothing/glasses/meson,									500, CAT_GADGET) = 1,

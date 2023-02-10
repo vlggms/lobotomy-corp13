@@ -850,37 +850,30 @@
 	else
 		to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")
 
-/obj/item/powered_gadget/clerkbot-gadget
+/obj/item/powered_gadget/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
-	desc = "A template for a battery powered tool, the battery compartment is screwed shut in order to prevent people from eating the batteries."
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
 	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 10000 //1 use before requires recharge
 
-/obj/item/powered_gadget/clerkbot-gadget/attack_self(mob/user)
+/obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
 	..()
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
 		icon_state = default_icon
 		if(istype(user) && (user?.mind?.assigned_role in GLOB.service_positions))
-			new /mob/living/simple_animal/bot/clerkbot(T)
-			to_chat(user, "<span class='notice'>The Gadget turns warm and sparks.</span>")
+			new /mob/living/simple_animal/clerkbot(get_turf(user))
+			to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
 		else
+			to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")
 
-	else if (cell && cell.charge < batterycost)
-		//icon_state = "[default_icon]-empty"
-		to_chat(user, "<span class='notice'>The batteries are dead.</span>")
-		return
-	else if (!cell)
-		//icon_state = "[default_icon]-nobat"
-		return
-
-/* Clerkbot Boio */
-/mob/living/simple_animal/bot/clerkbot
+// Clerkbot Boio
+/mob/living/simple_animal/clerkbot
 	name = "A well rounded Clerkbot"
-	desc = "Trusted and loyal Clerkbot."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	desc = "Trusted and loyal best friend."
+	icon = null
 	icon_state = null
 	icon_living = null
 	faction = list("neutral")
@@ -891,16 +884,14 @@
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 12
 	melee_damage_upper = 14
-	robust_searching = TRUE
-	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	attack_verb_continuous = "buzzes"
 	attack_verb_simple = "buzz"
 	attack_sound = 'sound/weapons/bite.ogg'
 
-/mob/living/simple_animal/bot/clerkbot/Initialize()
+/mob/living/simple_animal/clerkbot/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/die), 120 SECONDS)
 
-/mob/living/simple_animal/bot/clerkbot/proc/die()
+/mob/living/simple_animal/clerkbot/proc/die()
 	QDEL_NULL(src)
