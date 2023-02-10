@@ -864,18 +864,18 @@
 		cell.charge = cell.charge - batterycost
 		icon_state = default_icon
 		if(istype(user) && (user?.mind?.assigned_role in GLOB.service_positions))
-			new /mob/living/simple_animal/clerkbot(get_turf(user))
+			new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
 			to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
 		else
 			to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")
 
 // Clerkbot Boio
-/mob/living/simple_animal/clerkbot
+/mob/living/simple_animal/hostile/clerkbot
 	name = "A well rounded Clerkbot"
 	desc = "Trusted and loyal best friend."
-	icon = null
-	icon_state = null
-	icon_living = null
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "cube"
+	icon_living = "cube"
 	faction = list("neutral")
 	health = 150
 	maxHealth = 150
@@ -884,14 +884,16 @@
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 12
 	melee_damage_upper = 14
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	attack_verb_continuous = "buzzes"
 	attack_verb_simple = "buzz"
 	attack_sound = 'sound/weapons/bite.ogg'
 
-/mob/living/simple_animal/clerkbot/Initialize()
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/die), 120 SECONDS)
 
-/mob/living/simple_animal/clerkbot/proc/die()
+/mob/living/simple_animal/hostile/clerkbot/proc/die()
 	QDEL_NULL(src)
