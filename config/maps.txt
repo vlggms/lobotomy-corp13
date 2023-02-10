@@ -26,5 +26,9 @@ map epsiloncorp
 	votable
 endmap
 
+map gammacorp
+	votable
+endmap
+
 map runtimestation
 endmap

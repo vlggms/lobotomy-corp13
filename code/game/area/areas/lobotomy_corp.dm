@@ -76,6 +76,10 @@
 	name = "Human Resources Room"
 	icon_state = "mainroom_hr"
 
+/area/department_main/architecture
+	name = "Architecture Main Room"
+	icon_state = "mainroom_extraction"
+
 
 /area/facility_hallway
 	name = "Hallway"
@@ -143,6 +147,10 @@
 
 /area/facility_hallway/human
 	name = "Human Resources Hallway"
+	icon_state = "hall_hr"
+
+/area/facility_hallway/architecture
+	name = "Architecture Hallway"
 	icon_state = "hall_hr"
 
 /area/city
