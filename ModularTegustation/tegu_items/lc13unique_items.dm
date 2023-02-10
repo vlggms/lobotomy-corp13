@@ -792,7 +792,7 @@
 	icon_state = "oddity7_gween"
 
 /obj/item/lc13_officerupgradeinjector/attack_self(mob/living/carbon/human/user)
-	var/list/officer_roles = list(Records Officer, Extraction Officer) //ngl i still think this should be outside the item code and not inside
+	var/list/officer_roles = list("Records Officer", "Extraction Officer") //ngl i still think this should be outside the item code and not inside
 	if(istype(user) && (user?.mind?.assigned_role in officer_roles))
 		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel vigourous and stronger.</span>")
 		user.adjust_all_attribute_levels(20)
@@ -807,7 +807,7 @@
 	icon_state = "oddity7_orange"
 
 /obj/item/lc13_agent_workchance_trait_injector/attack_self(mob/living/carbon/human/user)
-	if(istype(user) && (user?.mind?.assigned_role in security_positions))
+	if(istype(user) && (user?.mind?.assigned_role in GLOB.security_positions))
 		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel enlightened and wiser.</span>")
 		ADD_TRAIT(user, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT) //stolen from command.dm
 		qdel(src)
@@ -821,7 +821,7 @@
 	icon_state = "oddity7_firewater"
 
 /obj/item/lc13_clerk_fear_immunity_injector/attack_self(mob/living/carbon/human/user)
-	if(istype(user) && (user?.mind?.assigned_role in service_positions))
+	if(istype(user) && (user?.mind?.assigned_role in GLOB.service_positions))
 		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel emboldened and braver.</span>")
 		ADD_TRAIT(user, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 		qdel(src)
@@ -835,14 +835,13 @@
 	icon_state = "oddity7_pink"
 
 /obj/item/lc13_shrimp_injector/attack_self(mob/living/carbon/human/user)
-	if(istype(user) && (user?.mind?.assigned_role in service_positions))
+	if(istype(user) && (user?.mind?.assigned_role in GLOB.service_positions))
 		if(user.faction == "shrimp")
 			to_chat(user,"<span class='warning'>The injector burns red before switching to green and dissapearing. You feel uneasy.</span>")
 			if(prob(70))
-				new /mob/living/simple_animal/hostile/shrimp(T)
+				new /mob/living/simple_animal/hostile/shrimp(get_turf(user))
 			else
-				new /mob/living/simple_animal/hostile/shrimp_soldier(T)
-			SLEEP_CHECK_DEATH(3)
+				new /mob/living/simple_animal/hostile/shrimp_soldier(get_turf(user))
 			user.gib()
 		else
 			to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel pink? A catchy song about shrimp comes to mind.</span>")
