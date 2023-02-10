@@ -20,9 +20,11 @@ Assistant
 	allow_bureaucratic_error = FALSE
 
 
-//they start at -50 all, you max out at level 4
+//Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	H.adjust_all_attribute_buffs(-50)
+	H.set_attribute_limit(0)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 
 /datum/outfit/job/assistant
 	name = "Clerk"
