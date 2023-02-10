@@ -28,7 +28,8 @@
 	var/successcount
 
 /mob/living/simple_animal/hostile/abnormality/fan/WorkChance(mob/living/carbon/human/user, chance)
-	return 100 - (successcount*2)
+	var/newchance = 100 - (successcount*3)
+	return newchance
 
 /mob/living/simple_animal/hostile/abnormality/fan/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	..()
