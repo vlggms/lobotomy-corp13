@@ -478,7 +478,7 @@
 
 /datum/ego_gifts/galaxy //---sprite needed
 	name = "Galaxy"
-	icon_state = null
+	icon_state = "galaxy"
 	prudence_bonus = 2
 	temperance_bonus = 3
 	slot = NECKWEAR
@@ -531,9 +531,9 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/harmony //---sprite needed
+/datum/ego_gifts/harmony
 	name = "Harmony"
-	icon_state = null
+	icon_state = "harmony"
 	prudence_bonus = 5
 	temperance_bonus = -5
 	justice_bonus = 5
