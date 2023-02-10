@@ -31,7 +31,7 @@
 	//Admin Quick Leveler
 /obj/item/lc13_attribute_tester
 	name = "attribute injector"
-	desc = "A fluid used to drastically change a employee for tests. Use in hand to activate."
+	desc = "A fluid used to drastically change an employee for tests. Use in hand to activate."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity7"
 
@@ -42,13 +42,13 @@
 
 /obj/item/lc13_easygift_tester
 	name = "gift extractor"
-	desc = "Unpopular due to its excessive energy use, this device extracts gifts from a entity on demand."
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an entity on demand."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "hammeroff"
 
 /obj/item/lc13_easygift_tester/attack(mob/living/simple_animal/hostile/abnormality/M, mob/living/carbon/human/user)
 	if(!isabnormalitymob(M))
-		to_chat(user, "<span class='warning'>Error: entity doesnt classify as an L Corp Abnormality.</span>")
+		to_chat(user, "<span class='warning'>Error: Entity doesnt classify as an L Corp Abnormality.</span>")
 		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 		return
 	if(!M.gift_type)
@@ -399,7 +399,7 @@
 		else
 			return "ERROR"
 
-//Gadgets require batteries or fuel to function!
+//Gadgets that require batteries or fuel to function!
 /obj/item/powered_gadget
 	name = "gadget template"
 	desc = "A template for a battery powered tool, the battery compartment is screwed shut in order to prevent people from eating the batteries."
@@ -783,3 +783,70 @@
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 	inuse = FALSE
+
+//Gadget Update gadgets below.
+/obj/item/lc13_officerupgradeinjector
+	name = "Officer Upgrade Injector"
+	desc = "A strange liquid used to improve an officer's skills. Use in hand to activate. A small note on the injector states that 'officer' means Extraction Officer and Records Officer."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_gween"
+
+/obj/item/lc13_officerupgradeinjector/attack_self(mob/living/carbon/human/user)
+	var/list/officer_roles = list(Records Officer, Extraction Officer) //ngl i still think this should be outside the item code and not inside
+	if(istype(user) && (user?.mind?.assigned_role in officer_roles))
+		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel vigourous and stronger.</span>")
+		user.adjust_all_attribute_levels(20)
+		qdel(src)
+	else
+		to_chat(user, "<span class='notice'>The injector light flashes red. You aren't an officer. Check the label before use.</span>")
+
+/obj/item/lc13_agent_workchance_trait_injector
+	name = "Agent Work Chance Injector"
+	desc = "An injector containing liquid that allows agents to view their chances before work. Use in hand to activate. A small note on the injector states that 'agent' means anyone under the security detail. Another note states that Officers aren't security detail."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_orange"
+
+/obj/item/lc13_agent_workchance_trait_injector/attack_self(mob/living/carbon/human/user)
+	if(istype(user) && (user?.mind?.assigned_role in security_positions))
+		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel enlightened and wiser.</span>")
+		ADD_TRAIT(user, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT) //stolen from command.dm
+		qdel(src)
+	else
+		to_chat(user, "<span class='notice'>The injector light flashes red. You aren't an agent. Check the label before use.</span>")
+
+/obj/item/lc13_clerk_fear_immunity_injector
+	name = "C-Fear Protection Injector"
+	desc = "Contains fire water that protects clerks from the downsides of witnessing dangerous abnormalities. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_firewater"
+
+/obj/item/lc13_clerk_fear_immunity_injector/attack_self(mob/living/carbon/human/user)
+	if(istype(user) && (user?.mind?.assigned_role in service_positions))
+		to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel emboldened and braver.</span>")
+		ADD_TRAIT(user, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+		qdel(src)
+	else
+		to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")
+
+/obj/item/lc13_shrimp_injector
+	name = "Shrimp Injector"
+	desc = "The injector contains a pink substance, is this really worth it? Usable by only clerks. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_pink"
+
+/obj/item/lc13_shrimp_injector/attack_self(mob/living/carbon/human/user)
+	if(istype(user) && (user?.mind?.assigned_role in service_positions))
+		if(user.faction == "shrimp")
+			to_chat(user,"<span class='warning'>The injector burns red before switching to green and dissapearing. You feel uneasy.</span>")
+			if(prob(70))
+				new /mob/living/simple_animal/hostile/shrimp(T)
+			else
+				new /mob/living/simple_animal/hostile/shrimp_soldier(T)
+			SLEEP_CHECK_DEATH(3)
+			user.gib()
+		else
+			to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. You feel pink? A catchy song about shrimp comes to mind.</span>")
+			user.faction |= "shrimp"
+			qdel(src)
+	else
+		to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")

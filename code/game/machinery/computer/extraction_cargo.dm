@@ -49,9 +49,13 @@
 		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("C-Fear Protection Injector ",	/obj/item/lc13_clerk_fear_immunity_injector,						300, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Shrimp Injector",				/obj/item/lc13_shrimp_injector,										300, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Officer Upgrade Injector",	/obj/item/lc13_officerupgradeinjector,								400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoision,											400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Agent Work Chance Injector ",	/obj/item/lc13_agent_workchance_trait_injector,						700, CAT_MEDICAL) = 1,
 
 		//Scorp - for the funny
 		new /datum/data/extraction_cargo("Wellcheers Code Red ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,	150, CAT_SCORP) = 1,
