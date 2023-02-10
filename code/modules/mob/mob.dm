@@ -700,9 +700,8 @@
 		return
 
 	if(mind)
-		var/timediff = world.time - mind.last_death
-		if(timediff < CONFIG_GET(number/respawn_delay))
-			to_chat(usr, "<span class='boldnotice'>You must wait for [round((CONFIG_GET(number/respawn_delay) - timediff)/10)] more seconds before respawning!</span>")
+		if(mind.respawn_cooldown > world.time)
+			to_chat(usr, "<span class='boldnotice'>You must wait for [round((mind.respawn_cooldown - world.time)/10)] more seconds before respawning!</span>")
 			return
 
 	log_game("[key_name(usr)] respawned.")

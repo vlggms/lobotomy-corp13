@@ -61,6 +61,8 @@
 
 	var/last_death = 0
 
+	var/respawn_cooldown = 0
+
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 
 	var/list/learned_recipes //List of learned recipe TYPES.
@@ -230,6 +232,7 @@
 	SIGNAL_HANDLER
 
 	last_death = world.time
+	respawn_cooldown = world.time + CONFIG_GET(number/respawn_delay)
 
 /datum/mind/proc/store_memory(new_text)
 	var/newlength = length_char(memory) + length_char(new_text)
