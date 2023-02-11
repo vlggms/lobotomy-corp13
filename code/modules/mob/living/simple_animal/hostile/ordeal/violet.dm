@@ -13,8 +13,8 @@
 	health = 250
 	speed = 4
 	move_to_delay = 5
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/fruit = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/fruit = 1)
+	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
