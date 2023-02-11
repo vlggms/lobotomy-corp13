@@ -24,7 +24,7 @@
 		playsound(loc, 'sound/effects/sanity_damage.ogg', min(amount, 50), TRUE, -1)
 	else if(amount < 0)
 		var/turf/T = get_turf(src)
-		new /obj/effect/temp_visual/sanity_heal(T)
+		new /obj/effect/temp_visual/sparkles/sanity_heal(T)
 	if(sanity_lost && sanityhealth >= maxSanity)
 		QDEL_NULL(ai_controller)
 		sanity_lost = FALSE

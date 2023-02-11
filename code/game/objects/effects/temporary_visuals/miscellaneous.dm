@@ -224,12 +224,15 @@
 	icon_state = "smoke"
 	duration = 50
 
-/obj/effect/temp_visual/small_smoke/Initialize(mapload, atom/mimiced_atom)
+/obj/effect/temp_visual/small_smoke/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/small_smoke/fixer_w
 	name = "mental smoke"
+
+/obj/effect/temp_visual/small_smoke/second
+	duration = 10
 
 /obj/effect/temp_visual/small_smoke/halfsecond
 	duration = 5
@@ -565,8 +568,19 @@
 /obj/effect/temp_visual/bee_gas/proc/fade_out()
 	animate(src, alpha = 0, time = duration-5)
 
-/obj/effect/temp_visual/sanity_heal
-	icon_state = "shieldsparkles"
+// White colored sparkles. Just modify color variable as needed
+/obj/effect/temp_visual/sparkles
+	icon_state = "sparkles"
+	duration = 10
+
+/obj/effect/temp_visual/sparkles/red
+	color = COLOR_RED
+
+/obj/effect/temp_visual/sparkles/purple
+	color = COLOR_PURPLE
+
+/obj/effect/temp_visual/sparkles/sanity_heal
+	color = "#42f2f5"
 	duration = 2
 
 /obj/effect/temp_visual/judgement
@@ -824,3 +838,12 @@
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
 	duration = 10
+
+/obj/effect/temp_visual/pale_eye_attack
+	name = "pale particles"
+	icon_state = "ion_fade_flight"
+	duration = 5
+
+/obj/effect/temp_visual/pale_eye_attack/Initialize()
+	..()
+	animate(src, alpha = 0, time = 5)
