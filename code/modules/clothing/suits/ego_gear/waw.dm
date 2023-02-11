@@ -217,3 +217,13 @@
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/feather
+	name = "Feather of Honor"
+	desc = "Bright as the abnormality it was extracted from, but somehow does not give off any heat. \
+			Maybe keep it away from the cold..."
+	icon_state = "featherofhonor"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) //140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							)

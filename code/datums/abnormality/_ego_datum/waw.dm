@@ -191,3 +191,8 @@
 /datum/ego_datum/weapon/wings
 	item_path = /obj/item/ego_weapon/wings
 	cost = 50
+
+// Fire Bird - Feather of Honor
+/datum/ego_datum/armor/feather
+	item_path = /obj/item/clothing/suit/armor/ego_gear/feather
+	cost = 50
