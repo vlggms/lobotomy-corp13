@@ -224,27 +224,6 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rendRedArmor))
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/sunder_red))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/rendRedArmor)
-
-/datum/status_effect/rendRedArmor
-	id = "rend red armor"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 30 //3 seconds
-	alert_type = null
-	var/original_armor
-
-/datum/status_effect/rendRedArmor/on_apply()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	original_armor = M.damage_coeff[RED_DAMAGE]
-	if(original_armor > 0)
-		M.damage_coeff[RED_DAMAGE] = original_armor + 0.2
-
-/datum/status_effect/rendRedArmor/on_remove()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] == original_armor + 0.2)
-		M.damage_coeff[RED_DAMAGE] = original_armor
-
+			M.apply_status_effect(/datum/status_effect/sunder_red)

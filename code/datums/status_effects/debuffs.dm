@@ -968,3 +968,26 @@
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()
 	QDEL_NULL(mob_overlay)
+
+
+//~~~LC13 General Debuffs~~~
+
+/datum/status_effect/sunder_red
+	id = "sunder red armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 //3 seconds
+	alert_type = null
+
+/datum/status_effect/sunder_red/on_apply()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		if(M.damage_coeff[RED_DAMAGE] >= 0)
+			M.damage_coeff[RED_DAMAGE] += 0.2 //20% damage increase
+
+/datum/status_effect/sunder_red/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		if(M.damage_coeff[RED_DAMAGE] >= 0)
+			M.damage_coeff[RED_DAMAGE] -= 0.2
