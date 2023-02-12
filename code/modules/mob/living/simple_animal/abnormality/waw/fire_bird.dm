@@ -23,7 +23,7 @@
 		)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
-	faction = list("hostile")
+	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
@@ -33,6 +33,8 @@
 	loot = list(/obj/item/gun/ego_gun/feather)
 	ego_list = list(/datum/ego_datum/armor/feather)
 	gift_type = /datum/ego_gifts/feather
+	friendly_verb_continuous = "grazes"
+	friendly_verb_simple = "grazes"
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
 	var/pulse_damage = 10
@@ -104,8 +106,6 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/crispynugget()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/L in livinginview(48, src))
-		if(faction_check_mob(L))
-			continue
 		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
@@ -151,19 +151,23 @@
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/fire/fast(TF)
-		for(var/mob/living/L in TF)
-			if(!faction_check_mob(L))
-				if(L in been_hit)
-					continue
-				visible_message("<span class='boldwarning'>[src] blazes through [L]!</span>")
-				L.apply_damage(dash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/cleave(get_turf(L))
-				if(!(L in been_hit))
-					been_hit += L
+		for(var/mob/living/carbon/human/L in TF)
+			if(L in been_hit)
+				continue
+			visible_message("<span class='boldwarning'>[src] blazes through [L]!</span>")
+			L.apply_damage(dash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/cleave(get_turf(L))
+			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
+				L.adjustFireLoss(999)
+			if(!(L in been_hit))
+				been_hit += L
+
+
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/attackby(obj/item/I, mob/living/user, params)
 	..()
+	GiveTarget(user)
 	if(ishuman(user) && !(status_flags & GODMODE))
 		user.apply_status_effect(STATUS_EFFECT_BLINDED)
 	retaliatedash()
@@ -172,6 +176,7 @@
 	..()
 	if(Proj.firer && ishuman(Proj.firer))
 		var/mob/living/carbon/carbon_firer = Proj.firer
+		GiveTarget(carbon_firer)
 		carbon_firer.apply_status_effect(STATUS_EFFECT_BLINDED)
 	retaliatedash()
 

@@ -436,3 +436,31 @@
 	<h4>White Resistance:</h4> Weak	<br>
 	<h4>Black Resistance:</h4> Immune	<br>
 	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+//The Firebird
+/obj/item/paper/fluff/info/waw/fire_bird
+	name = "O-02-101"
+	info = {"<h1><center>O-02-101</center></h1>	<br>
+	Name : The Firebird	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : Moderate	<br>
+	- When the work result was Good, the Qliphoth Counter lowered.	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a low probability. Furthermore, the lower the Qliphoth Counter, the more damage Agents take while working with The Firebird.	<br>
+	- When the work result was Bad, the Qliphoth Counter increased.	<br>
+	- The Firebird granted light to <name> who worked with it when the Qliphoth Counter was 1. The agent’s HP and SP were recovered, and healed over time for a while. When an Agent had less than 20% of their max HP remaining after completing the work process, The Firebird granted the same light.<br>
+	- After escaping, The Firebird eventually returned to its Containment Unit after a short while. The Firebird only displayed aggression after it was damaged, and the employee whose HP or SP reached 0 from its attacks died. When The Firebird was attacked, the eyes of those who injured it were scorched by the light emitted by the Abnormality. Blinded employees worked at half-speed. The Firebird cured the agent’s eye injury when they finished the work process. <br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red/White	<br>
+	<h4>Escape Damage:</h4> Low/Extreme	<br>
+	<h4>Red Resistance:</h4> Endured<br>
+	<h4>White Resistance:</h4> Resistant<br>
+	<h4>Black Resistance:</h4> Weak<br>
+	<h4>Pale Resistance:</h4> Vulnerable<br>"}
