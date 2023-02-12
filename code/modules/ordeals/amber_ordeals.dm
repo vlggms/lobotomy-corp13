@@ -56,10 +56,12 @@
 
 /datum/ordeal/amber_midnight/Run()
 	..()
+	var/list/potential_locs = GLOB.department_centers.Copy()
 	if(GLOB.clients.len >= 15)
 		spawn_amount += round(GLOB.clients.len / 15)
 	for(var/i = 1 to spawn_amount)
-		var/turf/T = pick(GLOB.department_centers)
+		var/turf/T = pick(potential_locs)
 		var/mob/living/simple_animal/hostile/ordeal/amber_midnight/M = new(T)
 		ordeal_mobs += M
 		M.ordeal_reference = src
+		potential_locs -= T
