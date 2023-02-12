@@ -10,6 +10,7 @@
 	maxHealth = 1200
 	health = 1200
 	pixel_x = -16
+	faction = list("hostile", "neutral")
 	base_pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
@@ -27,6 +28,8 @@
 						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	friendly_verb_continuous = "scorns"
+	friendly_verb_simple = "scorns"
 
 	ego_list = list(
 		/datum/ego_datum/weapon/christmas,
