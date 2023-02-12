@@ -530,6 +530,13 @@
 	justice_bonus = 2
 	slot = NECKWEAR
 
+/datum/ego_gifts/feather
+	name = "Feather of Honor"
+	icon_state = "feather"
+	prudence_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
