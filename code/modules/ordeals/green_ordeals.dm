@@ -41,8 +41,11 @@
 
 /datum/ordeal/green_dusk/Run()
 	..()
+	var/list/availablespawns = GLOB.xeno_spawn.Copy()
 	for(var/i = 1 to spawn_places)
-		var/X = pick(GLOB.xeno_spawn)
+		var/X = pick(availablespawns)
+		availablespawns -= X
+
 		var/turf/T = get_turf(X)
 		var/turf/NT = get_step(T, EAST) // It's a 2x1 object, after all
 		if(NT.density) // Retry
