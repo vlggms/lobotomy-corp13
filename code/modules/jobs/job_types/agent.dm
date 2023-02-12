@@ -41,9 +41,6 @@
 		if("Command")
 			ears = /obj/item/radio/headset/headset_command
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
-		if("Training")
-			ears = /obj/item/radio/headset/headset_training
-			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 		if("Information")
 			ears = /obj/item/radio/headset/headset_information
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/info
@@ -62,6 +59,10 @@
 		if("Record")
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
+
+		else	//Pick a department or get training.
+			ears = /obj/item/radio/headset/headset_training
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 
 	if(accessory)
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -115,7 +116,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
-	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
+	display_order = JOB_DISPLAY_ORDER_SCIENTIST
 	normal_attribute_level = 21 // :)
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
@@ -151,4 +152,3 @@
 		/obj/item/paper/fluff/tutorial/risk=1,
 		/obj/item/paper/fluff/tutorial/damage=1,
 		/obj/item/paper/fluff/tutorial/tips=1,)
-

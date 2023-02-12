@@ -188,6 +188,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	command = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_architecture
 
+/obj/item/radio/headset/agent_lieutenant
+	name = "\proper the lieutenant's headset"
+	desc = "A headset used by agents in Lobotomy Corporation who have earned the rank of captain."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/agent_lieutenant
+
 /obj/item/radio/headset/heads/agent_captain
 	name = "\proper the captain's headset"
 	desc = "A headset used by agents in Lobotomy Corporation who have earned the rank of captain."

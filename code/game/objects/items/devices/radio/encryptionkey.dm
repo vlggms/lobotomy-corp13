@@ -74,6 +74,13 @@
 	icon_state = "srvmed_cypherkey"
 	channels = list(RADIO_CHANNEL_ARCHITECTURE = 1)
 
+/obj/item/encryptionkey/agent_lieutenant
+	name = "\proper the agent captain's encryption key"
+	icon_state = "cap_cypherkey"
+	channels = list(
+	RADIO_CHANNEL_CONTROL = 1, RADIO_CHANNEL_INFORMATION = 1, RADIO_CHANNEL_SAFETY = 1, RADIO_CHANNEL_TRAINING = 1, \
+	RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_WELFARE = 1, RADIO_CHANNEL_DISCIPLINE = 1)
+
 
 /obj/item/encryptionkey/heads/manager
 	name = "\proper the manager's encryption key"

@@ -35,12 +35,15 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// 00: Manager
 		"Manager" = 00,
 		"Extraction Officer" = 01,
-		"Records Officer" = 01,
+		"Records Officer" = 02,
+		"Sephirah" = 03,
 		// 10-19: Security
 		"Agent Captain" = 10,
-		"Veteran Agent" = 11,
-		"Senior Agent" = 12,
-		"Agent" = 13,
+		"Agent Lieutenant" = 11,
+		"Veteran Agent" = 12,
+		"Senior Agent" = 13,
+		"Agent" = 14,
+		"Agent Intern" = 15,
 		// 20-29: Medbay
 		"Chief Medical Officer" = 20,
 		"Chemist" = 21,
