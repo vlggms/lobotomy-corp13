@@ -10,7 +10,6 @@
 	maxHealth = 1200
 	health = 1200
 	pixel_x = -16
-	faction = list("hostile", "neutral")
 	base_pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
@@ -48,6 +47,9 @@
 /mob/living/simple_animal/hostile/abnormality/rudolta/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/rudolta/PickTarget(list/Targets) // We attack corpses first if there are any
 	return
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/Life()
