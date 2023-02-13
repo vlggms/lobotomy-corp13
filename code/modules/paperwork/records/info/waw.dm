@@ -246,6 +246,34 @@
 	abno_breach_damage_type = "Red/White"
 	abno_breach_damage_count = "Very High"
 
+//Apex Predator
+/obj/item/paper/fluff/info/waw/predator
+	name = "D-01-138"
+	info = {"<h1><center>D-01-138</center></h1>	<br>
+	Name : Apex Predator	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Red	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered	<br>
+	- When the employee working with Apex predator started work with less than max health, the work damage was drastically increased.	<br>
+	- When the employee working with Apex predator died during work, the Qliphoth Counter lowered .	<br>
+	DANGER - When Apex Predator breached, it should be located immediately.	<br>
+	<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Very Low<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Extreme	<br>
+	<h4>Red Resistance:</h4> Resisant	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Normal	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
+
 //Thunderbird
 /obj/item/paper/fluff/info/waw/thunder_bird
 	abno_type = /mob/living/simple_animal/hostile/abnormality/thunder_bird
@@ -431,3 +459,16 @@
 		"When work result was bad F-02-70-4 lost their ears and cheeks.",
 		"When work result was normal F-02-70-5 lost the entire lower half of their face.",
 		"When the abnormality had its Qliphoth Counter decreased due to a meltdown or sabotage one of the brothers was wounded.")
+		
+//Apex Predator
+/obj/item/paper/fluff/info/waw/predator
+	abno_type = /mob/living/simple_animal/hostile/abnormality/apex_predator
+	name = "D-04-146"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the employee working with Apex predator started work with less than max health, the work damage was drastically increased.",
+		"When the employee working with Apex predator died during work, the Qliphoth Counter lowered.",
+		"DANGER - When Apex Predator breached, it should be located immediately.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Very High"

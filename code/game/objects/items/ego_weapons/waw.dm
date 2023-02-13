@@ -1449,3 +1449,29 @@
 		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#a2d2df"
+
+/obj/item/ego_weapon/animalism
+	name = "animalism"
+	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
+	special = "This weapon hits 4 times for every hit"
+	icon_state = "animalism"
+	force = 20
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "saws", "rips")
+	attack_verb_simple = list("slice", "saw", "rip")
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
+	..()
+	sleep(2)
+	for(var/i = 1 to 3)
+		sleep(2)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+
