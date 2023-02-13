@@ -102,3 +102,13 @@
 	name = "exuviae casing"
 	desc = "A casing from a exuviae cannon."
 	projectile_type = /obj/projectile/ego_bullet/ego_exuviae
+
+/obj/item/ammo_casing/caseless/ego_warring
+	name = "warring casing"
+	desc = "A warring casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_warring
+
+/obj/item/ammo_casing/caseless/ego_warring2
+	name = "warring casing"
+	desc = "A warring casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_warring2

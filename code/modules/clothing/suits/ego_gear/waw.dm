@@ -227,3 +227,14 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/warring
+	name = "feather of valor"
+	desc = "Wearing this undyed leather poncho fills you with contempt. \
+	Only war will stop their barbaric sacrilege."
+	icon_state = "warring"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
