@@ -48,6 +48,7 @@
 	name = "Extraction Officer"
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
+	backpack_contents = list(/obj/item/price_tagger = 1)
 
 //Records
 /datum/job/command/records
@@ -62,8 +63,11 @@
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
-
-	backpack_contents = list(/obj/item/price_tagger = 1)
+	
+	backpack_contents = list(/obj/item/records/timestop = 1,
+	/obj/item/records/information = 1,
+	/obj/item/records/abnodelay = 1,
+	)
 
 //Sephirah test
 /datum/job/command/sephirah
