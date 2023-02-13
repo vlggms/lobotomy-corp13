@@ -238,3 +238,31 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/darkcarnival
+	name = "Dark Carnival"
+	desc = "The only bad things are those we make in our minds."
+	icon_state = "dark_carnival"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 10, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/dipsia
+	name = "dipsia"
+	desc = "The blood, in its purest and clearest form! Bring me eternal happiness!"
+	icon_state = "dipsia"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 0, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/pharaoh
+	name = "pharaoh"
+	desc = "What creature walks on four legs in the morning, two legs at noon, and three in the evening?"
+	icon_state = "pharaoh"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)

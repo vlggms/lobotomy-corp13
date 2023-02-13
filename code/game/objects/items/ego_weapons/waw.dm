@@ -579,3 +579,223 @@
 
 /obj/item/ego_weapon/wings/proc/resetSpecial()
 	specialing = FALSE
+
+/obj/item/ego_weapon/mini/mirth
+	name = "mirth"
+	desc = "A round of applause, for the clowns who joined us for tonight’s show!"
+	special = "This weapon can be paired with its sister blade."
+	icon_state = "mirth"
+	force = 15
+	attack_speed = 0.5
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/ego/sword1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
+							)
+
+	var/combo_on = TRUE
+	var/sound = FALSE
+
+//Switch between weapons every hit, or don't
+/obj/item/ego_weapon/mini/mirth/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will no longer fight with two weapons.</span>")
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will now fight with two weapons.</span>")
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/mini/mirth/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	var/combo = FALSE
+	force = 15
+	hitsound = 'sound/weapons/ego/sword1.ogg'
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/ego_weapon/mini/malice/Y = myman.get_inactive_held_item()
+	if(istype(Y) && combo_on) //dual wielding? if so...
+		force = 12 //hits twice
+		combo = TRUE
+		if(sound)
+			hitsound = 'sound/weapons/ego/sword2.ogg'
+			sound = FALSE
+		else
+			sound = TRUE
+	..()
+	if(combo)
+		for(var/damage_type in list(RED_DAMAGE))
+			damtype = damage_type
+			armortype = damage_type
+			M.attacked_by(src, user)
+		damtype = initial(damtype)
+		armortype = initial(armortype)
+
+/obj/item/ego_weapon/mini/malice
+	name = "malice"
+	desc = "Seeing that I wasn't amused, it took out another tool. \
+	I thought it was a tool. Just that moment."
+	special = "This weapon can be paired with its sister blade."
+	icon_state = "malice"
+	force = 15
+	attack_speed = 0.5
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/ego/sword2.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
+							)
+
+	var/combo_on = TRUE
+	var/sound = FALSE
+
+/obj/item/ego_weapon/mini/malice/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will no longer fight with two weapons.</span>")
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will now fight with two weapons.</span>")
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/mini/malice/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	var/combo = FALSE
+	force = 15
+	hitsound = 'sound/weapons/ego/sword2.ogg'
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/ego_weapon/mini/mirth/Y = myman.get_inactive_held_item()
+	if(istype(Y) && combo_on)
+		force = 12 //hits twice
+		combo = TRUE
+		if(sound)
+			hitsound = 'sound/weapons/ego/sword1.ogg'
+			sound = FALSE
+		else
+			sound = TRUE
+	..()
+	if(combo)
+		for(var/damage_type in list(WHITE_DAMAGE))
+			damtype = damage_type
+			armortype = damage_type
+			M.attacked_by(src, user)
+		damtype = initial(damtype)
+		armortype = initial(armortype)
+
+/obj/item/ego_weapon/shield/swan
+	name = "swan"
+	desc = "Believing that it would turn white, the black swan wanted to lift the curse by weaving together nettles.\
+	All that was left is a worn parasol it once treasured."
+	special = "This weapon functions as a shield when opened."
+	icon_state = "swan_closed"
+	force = 17
+	attack_speed = 0.5
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/slashmiss.ogg'
+	reductions = list(70, 50, 70, 40, 1)
+	recovery_time = 1 SECONDS
+	block_time = 3 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block = "You swat the projectile out of the air!"
+	reposition_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+							)
+	var/close_cooldown
+	var/close_cooldown_time = 3 SECONDS
+
+/obj/item/ego_weapon/shield/swan/attack_self(mob/user)
+	if(close_cooldown > world.time) //prevents shield usage with no DPS loss
+		to_chat(user,"<span class='warning'>You cannot use this again so soon!</span>")
+		return
+	if(icon_state == "swan")
+		icon_state = "swan_closed"
+		to_chat(user,"<span class='nicegreen'>You close the umbrella.</span>")
+		return
+	if(icon_state == "swan_closed" && do_after(user, 4))
+		icon_state = "swan"
+		close_cooldown = world.time + close_cooldown_time
+		..()
+
+/obj/item/ego_weapon/shield/swan/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(icon_state == "swan")
+		attack_speed = 1.5
+	else
+		attack_speed = 0.5
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored && icon_state == "swan")
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/dipsia
+	name = "dipsia"
+	desc = "The thirst will never truly be quenched."
+	special = "This weapon heals you on hit."
+	icon_state = "dipsia"
+	force = 32
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/pierce_slow.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/dipsia/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.10
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] > 0)
+				heal_amt *= S.damage_coeff[damtype]
+			else
+				heal_amt = 0
+		user.adjustBruteLoss(-heal_amt)
+	..()
+
+/obj/item/ego_weapon/shield/pharaoh
+	name = "pharaoh"
+	desc = "Look on my Works, ye Mighty, and despair!"
+	icon_state = "pharaoh"
+	force = 20
+	attack_speed = 0.5
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("decimates", "bisects")
+	attack_verb_simple = list("decimate", "bisect")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	reductions = list(95, 95, 95, 40, 1)
+	recovery_time = 0.5 SECONDS
+	block_time = 0.5 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block ="A God does not fear death!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	reposition_message = "You rearm your blade."
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)

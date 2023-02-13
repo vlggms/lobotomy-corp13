@@ -238,3 +238,30 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/maneater
+	name = "mean eater"
+	desc = "Here comes our beloved mascot!"
+	icon_state = "maneater"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = -10) // 70
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/inheritance
+	name = "inheritance"
+	desc = "Have I told you the story of a humble farmer's son who I made a king?"
+	icon_state = "inheritance"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/song
+	name = "song of the past"
+	desc = "You feel a sense of déjà vu when looking at this suit jacket."
+	icon_state = "song"
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 70
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
