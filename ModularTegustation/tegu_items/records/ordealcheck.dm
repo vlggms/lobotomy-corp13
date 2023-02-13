@@ -10,13 +10,6 @@
 		to_chat(user, "<span class='warning'>You cannot use this!")
 		return
 
-	var/playercount
-	//Count the players
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		playercount+=1
-
 	//Convert to seconds
 	var/time_to_abno = (SSabnormality_queue.next_abno_spawn - world.time)/10
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
