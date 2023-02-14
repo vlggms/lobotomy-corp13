@@ -852,7 +852,7 @@
 
 /obj/item/powered_gadget/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
-	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures."
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
 	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
@@ -867,7 +867,7 @@
 			new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
 			to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
 		else
-			to_chat(user, "<span class='notice'>The injector light flashes red. You aren't a clerk. Check the label before use.</span>")
+			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 
 // Clerkbot Boio
 /mob/living/simple_animal/hostile/clerkbot
@@ -897,3 +897,40 @@
 
 /mob/living/simple_animal/hostile/clerkbot/proc/die()
 	QDEL_NULL(src)
+
+/obj/item/powered_gadget/handheld_taser
+	name = "Handheld Taser"
+	desc = "A portable electricution device. Two settings, stun and slow."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "gadget1"
+	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
+	batterycost = 2000 //5 use before requires recharge
+	var/batterycost_stun = 3000 //3 uses before recharge
+	var/current_state = FALSE //FALSE = Slow, TRUE = Stun
+
+/obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
+	..()
+	if((cell && cell.charge >= batterycost)&&(current_state=TRUE))
+		current_state=FALSE
+		to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
+	else if((cell && cell.charge >= batterycost_stun)&&(current_state=FALSE))
+		current_state=TRUE
+		to_chat(user, "<span class='nicegreen'>The Gadget's light burns orange before clicking ready to Stun.</span>")
+	else
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+
+/obj/item/powered_gadget/handheld_taser/attack(var/mob/living/target/T, mob/living/user)
+	if(user.a_intent == INTENT_HARM)
+		if ((cell && cell.charge >= batterycost)&&(current_state=FALSE))
+			cell.charge = cell.charge - batterycost
+			visible_message("<span class='notice'>[user] smashes [src] into [T].</span>")
+			T.apply_status_effect(/datum/status_effect/qliphothoverload)
+		else if((cell && cell.charge >= batterycost_stun)&&(current_state=TRUE))
+			cell.charge = cell.charge - batterycost_stun
+			visible_message("<span class='notice'>[user] smashes [src] into [T].</span>")
+			T.stun(10)
+		else
+			to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+	else
+		visible_message("<span class='notice'>[user] lightly pokes [T] with [src].</span>")
+
