@@ -85,6 +85,7 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user)
 	..()
 	//new /mob/living/simple_animal/hostile/firetree(get_turf(src))
+	loot = list(/obj/item/gun/ego_gun/feather)
 	icon_state = icon_living
 	light_range = 20
 	light_power = 20
