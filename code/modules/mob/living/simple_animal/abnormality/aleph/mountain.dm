@@ -313,7 +313,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/CanStartPatrol()
 	if(phase <= 1) // Still phase one, we need corpses and can't really fight
-		return TRUE
+		return !(status_flags & GODMODE)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/patrol_reset()
@@ -347,6 +347,8 @@
 	var/turf/target_turf
 	if(LAZYLEN(high_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
+		if(phase <= 1)
+			target = null
 	else if(LAZYLEN(medium_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
 	else if(LAZYLEN(low_priority_turfs))
