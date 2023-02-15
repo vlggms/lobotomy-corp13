@@ -423,13 +423,10 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	if(do_after(user, 6))
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
-		var/damage_dealt = 0
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/thornspike(T)
 			for(var/mob/living/L in T.contents)
 				L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-					damage_dealt += ranged_damage
 
 /obj/item/ego_weapon/wings // Is this overcomplicated? Yes. But I'm finally happy with what I want to make of this weapon.
 	name = "torn off wings"
