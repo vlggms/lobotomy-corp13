@@ -177,6 +177,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WORKFEAR_IMMUNE		"work_fear_immune"
 #define TRAIT_COMBATFEAR_IMMUNE		"combat_fear_immune"
 #define TRAIT_WORK_KNOWLEDGE		"work_knowledge"
+#define TRAIT_WORK_FORBIDDEN		"work_forbidden"
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
 #define TRAIT_FASTMED "fast_med_use"
 #define TRAIT_NOBREATH			"no_breath"

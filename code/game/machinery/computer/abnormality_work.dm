@@ -75,7 +75,7 @@
 			work_display += "?"
 		if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 			work_display = Gibberish(work_display, TRUE, 60)
-		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)) // Might be temporary until we add upgrades
+		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
@@ -91,6 +91,9 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN))
+				to_chat(usr, "<span class='warning'>Console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
+				return
 			if(datum_reference.working)
 				to_chat(usr, "<span class='warning'>Console is currently being operated!</span>")
 				return

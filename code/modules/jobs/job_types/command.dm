@@ -41,6 +41,7 @@
 /datum/job/command/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
 	H.set_attribute_limit(60)		//Level limit set to 60, they'll be able to get defend themselves but not use Aleph or a lot of WAW gear
 
@@ -63,7 +64,7 @@
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
-	
+
 	backpack_contents = list(/obj/item/records/timestop = 1,
 	/obj/item/records/information = 1,
 	/obj/item/records/abnodelay = 1,
