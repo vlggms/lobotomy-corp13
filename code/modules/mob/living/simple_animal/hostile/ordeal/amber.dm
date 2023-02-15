@@ -289,11 +289,15 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
 	icon_state = "ambermidnight_leave"
 	new /obj/effect/temp_visual/ambermidnight_hole(get_turf(src))
-	SLEEP_CHECK_DEATH(7)
-	var/turf/my_turf = get_turf(src)
 	var/list/centers = GLOB.department_centers.Copy()
-	if(my_turf in centers)
-		centers -= my_turf
+	centers -= get_turf(src)
+	for(var/turf/T in centers)
+		if(locate(type) in T) // Found another amber midnight there
+			centers -= T
+	SLEEP_CHECK_DEATH(7)
+	for(var/turf/T in centers) // We do it twice in case something changed in that time
+		if(locate(type) in T)
+			centers -= T
 	if(!LAZYLEN(centers))
 		return
 	var/turf/T = pick(centers)
@@ -303,11 +307,16 @@
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowOut()
 	alpha = 0
 	density = FALSE
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 50, TRUE, 4)
+	for(var/i = 1 to 2)
+		for(var/turf/open/T in view(3, get_turf(src)))
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		SLEEP_CHECK_DEATH(2)
 	animate(src, pixel_z = 0, alpha = 255, time = 6)
 	icon_state = "ambermidnight_bite"
 	SLEEP_CHECK_DEATH(4)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out.ogg', 75, FALSE, 7)
-	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 25, FALSE, 20)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 25, FALSE, 24, 2, falloff_distance = 9)
 	SLEEP_CHECK_DEATH(2)
 	density = TRUE
 	visible_message("<span class='danger'>[src] burrows out from the ground!</span>")
