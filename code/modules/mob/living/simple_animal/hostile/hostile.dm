@@ -703,13 +703,14 @@
 	patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
 
 /mob/living/simple_animal/hostile/proc/patrol_reset()
-	patrol_path = null
+	patrol_path = list()
 	patrol_tries = 0
 	stop_automated_movement = 0
 	patrol_cooldown = world.time + patrol_cooldown_time
 
 /mob/living/simple_animal/hostile/proc/patrol_move(dest)
 	if(client || target || status_flags & GODMODE)
+		patrol_reset()
 		return FALSE
 	if(!dest || !patrol_path || !patrol_path.len) //A-star failed or a path/destination was not set.
 		return FALSE
@@ -746,4 +747,3 @@
 		step_to(src, dest)
 		patrol_reset()
 	return TRUE
-
