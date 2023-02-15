@@ -25,6 +25,7 @@ Assistant
 	H.set_attribute_limit(0)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/assistant
 	name = "Clerk"
