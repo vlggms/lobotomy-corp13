@@ -909,7 +909,6 @@
 	var/current_state = FALSE //FALSE = Slow, TRUE = Stun
 
 /obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
-	..()
 	if((cell && cell.charge >= batterycost)&&(current_state=TRUE))
 		current_state=FALSE
 		to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
@@ -918,8 +917,9 @@
 		to_chat(user, "<span class='nicegreen'>The Gadget's light burns orange before clicking ready to Stun.</span>")
 	else
 		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+	..()
 
-/obj/item/powered_gadget/handheld_taser/attack(var/mob/living/target/T, mob/living/user)
+/obj/item/powered_gadget/handheld_taser/attack(var/mob/living/T, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
 		if ((cell && cell.charge >= batterycost)&&(current_state=FALSE))
 			cell.charge = cell.charge - batterycost
@@ -928,7 +928,7 @@
 		else if((cell && cell.charge >= batterycost_stun)&&(current_state=TRUE))
 			cell.charge = cell.charge - batterycost_stun
 			visible_message("<span class='notice'>[user] smashes [src] into [T].</span>")
-			T.stun(10)
+			T.Stun(10)
 		else
 			to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 	else
