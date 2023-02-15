@@ -6,7 +6,7 @@
 	special = "This weapon fires 6 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 7
+	fire_delay = 8
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
@@ -24,6 +24,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
+	fire_delay = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
@@ -77,7 +78,7 @@
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 16
+		fire_delay = 13
 	..()
 
 //Funeral guns have two different names;
@@ -91,8 +92,7 @@
 	inhand_icon_state = "solemnlament"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
-	burst_size = 1
-	fire_delay = 0
+	fire_delay = 3
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
@@ -113,8 +113,7 @@
 	inhand_icon_state = "solemnvow"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
-	burst_size = 1
-	fire_delay = 0
+	fire_delay = 3
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
 
@@ -163,6 +162,7 @@
 	icon_state = "executive"
 	inhand_icon_state = "executive"
 	special = "This gun scales with justice."
+	fire_delay = 3
 	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -221,7 +221,7 @@
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
-	fire_delay = 24
+	fire_delay = 9
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
@@ -264,7 +264,7 @@
 	inhand_icon_state = "aroma"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_aroma
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 25
+	fire_delay = 18
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -279,6 +279,7 @@
 	special = "This weapon fires a hitscan beam."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
 	weapon_weight = WEAPON_HEAVY
+	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -313,7 +314,7 @@
 				Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	fire_delay = 55 //5 less than the Rend Armor status effect
+	fire_delay = 23 //5 less than the Rend Armor status effect
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,

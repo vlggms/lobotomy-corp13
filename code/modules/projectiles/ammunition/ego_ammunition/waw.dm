@@ -2,7 +2,7 @@
 	name = "correctional casing"
 	desc = "A correctional casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_correctional
-	pellets = 6
+	pellets = 8
 	variance = 20
 
 /obj/item/ammo_casing/caseless/ego_hornet

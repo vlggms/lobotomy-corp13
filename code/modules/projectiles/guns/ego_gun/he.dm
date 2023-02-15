@@ -6,6 +6,7 @@
 	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
+	fire_delay = 3
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
@@ -20,7 +21,7 @@
 	inhand_icon_state = "executive"
 	special = "This weapon requires 2 hands."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
-	fire_delay = 15
+	fire_delay = 13
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -33,7 +34,7 @@
 	special = "Use in hand to turn on homing mode. This mode homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
-	fire_delay = 11
+	fire_delay = 8
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
@@ -137,7 +138,7 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
-	autofire = 0.4 SECONDS
+	autofire = 0.35 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -150,6 +151,7 @@
 	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
+	fire_delay = 3
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
