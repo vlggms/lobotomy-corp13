@@ -25,7 +25,8 @@
 	var/cloneloss = 0	///Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
 	var/staminaloss = 0		///Stamina damage, or exhaustion. You recover it slowly naturally, and are knocked down if it gets too high. Holodeck and hallucinations deal this.
 	var/crit_threshold = HEALTH_THRESHOLD_CRIT /// when the mob goes from "normal" to crit
-	var/sanityhealth = 220		// Sanity damage. Humans go insane when it reaches 0
+	var/sanityhealth = 100 // Sanity health. Humans go insane when it reaches 0
+	var/sanityloss = 0
 	var/maxSanity = 100
 	///When the mob enters hard critical state and is fully incapacitated.
 	var/hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT

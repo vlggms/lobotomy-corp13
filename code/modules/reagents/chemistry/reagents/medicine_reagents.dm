@@ -536,7 +536,7 @@
 	if(overdosed)
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(5*REM) // That's healing 5 units.
+	H.adjustSanityLoss(-5*REM) // That's healing 5 units.
 	..()
 	. = 1
 
@@ -1187,7 +1187,7 @@
 		C.disgust = max(0, C.disgust-6)
 	if(prob(10))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(1*REM) // That's healing
+		H.adjustSanityLoss(-1*REM) // That's healing
 	..()
 	. = 1
 

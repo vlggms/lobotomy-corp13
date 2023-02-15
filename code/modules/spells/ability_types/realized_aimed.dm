@@ -83,7 +83,7 @@
 		if(user.faction_check_mob(L))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				H.adjustSanityLoss(damage_amount)
+				H.adjustSanityLoss(-damage_amount)
 			continue
 		var/distance_decrease = get_dist(T, L) * 10
 		L.apply_damage((damage_amount - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))

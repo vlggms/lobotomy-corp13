@@ -51,7 +51,7 @@
 	//Heal everyone and reset the bit calculator
 	if(bitcalculator == input && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(10)
+			H.adjustSanityLoss(-10)
 			to_chat(H, "<span class='notice'>You feel a pleasant sound.</span>")
 
 	//If you fuck it up
@@ -59,7 +59,7 @@
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(z != H.z)
 				continue
-			H.adjustSanityLoss(-30)
+			H.adjustSanityLoss(30)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
 			to_chat(H, "<span class='notice'>You feel a crackling noise in your head.</span>")
 	bitcalculator = 0

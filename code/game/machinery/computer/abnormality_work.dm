@@ -115,13 +115,13 @@
 	var/sanity_damage = 0
 	switch(sanity_result)
 		if(1)
-			sanity_damage = -(user.maxSanity*0.1)
+			sanity_damage = user.maxSanity*0.1
 		if(2)
-			sanity_damage = -(user.maxSanity*0.3)
+			sanity_damage = user.maxSanity*0.3
 		if(3)
-			sanity_damage = -(user.maxSanity*0.6)
+			sanity_damage = user.maxSanity*0.6
 		if(4 to INFINITY)
-			sanity_damage = -(user.maxSanity)
+			sanity_damage = user.maxSanity
 	var/work_time = datum_reference.max_boxes
 	if(work_type in scramble_list)
 		work_type = scramble_list[work_type]

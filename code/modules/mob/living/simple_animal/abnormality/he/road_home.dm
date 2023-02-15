@@ -258,7 +258,7 @@
 //Bring everyone on the golden tiles back to road home. turn them insane if they aren't already. Also destroys all gold tiles if there are any.
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/BringInsane()
 	for(var/mob/living/carbon/human/H in agent_friends)
-		H.adjustSanityLoss(-1000)
+		H.adjustSanityLoss(1000)
 		if(H.sanity_lost)
 			QDEL_NULL(H.ai_controller)
 			H.forceMove(get_turf(src))

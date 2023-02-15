@@ -213,7 +213,7 @@
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue
 		breach_affected += H
-		H.adjustSanityLoss(-20)
+		H.adjustSanityLoss(20)
 		if(H.sanity_lost)
 			continue
 		to_chat(H, "<span class='warning'>Damn, it's scary.</span>")

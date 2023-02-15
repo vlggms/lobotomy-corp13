@@ -65,7 +65,7 @@
 		waltz(H)
 	//Replaces AI with murder one
 	if (!H.sanity_lost)
-		H.adjustSanityLoss(-500)
+		H.adjustSanityLoss(500)
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.InitializeAIController()

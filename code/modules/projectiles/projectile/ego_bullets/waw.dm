@@ -25,10 +25,10 @@
 		if(user.faction_check_mob(H)) // Our faction
 			switch(damage_type)
 				if(WHITE_DAMAGE)
-					H.adjustSanityLoss(damage*0.2)
+					H.adjustSanityLoss(-damage*0.2)
 				if(BLACK_DAMAGE)
 					H.adjustBruteLoss(-damage*0.1)
-					H.adjustSanityLoss(damage*0.1)
+					H.adjustSanityLoss(-damage*0.1)
 				else // Red or pale
 					H.adjustBruteLoss(-damage*0.2)
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
@@ -264,7 +264,7 @@
 	var/mob/living/carbon/human/H = target
 	var/mob/living/user = firer
 	if(user.faction_check_mob(H))//player faction
-		H.adjustSanityLoss(damage*0.2)
+		H.adjustSanityLoss(-damage*0.2)
 		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 		H.Knockdown(50)
 		return BULLET_ACT_BLOCK

@@ -55,7 +55,7 @@
 	for(var/mob/living/carbon/human/L in view(8, src))
 		if(L.stat == DEAD)
 			continue
-		L.adjustSanityLoss(pulse_damage)
+		L.adjustSanityLoss(-pulse_damage)
 		if(prob(10))
 			to_chat(L, "<span class='notice'>Despite the challenge, something reassures you that things will be okay.</span>")
 

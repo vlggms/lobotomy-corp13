@@ -36,7 +36,7 @@
 		if(heal_cooldown <= world.time)
 			P.adjustBruteLoss(-heal_amount*P.getMaxHealth())
 			P.adjustFireLoss(-heal_amount*P.getMaxHealth())
-			P.adjustSanityLoss(heal_amount*P.getMaxSanity())
+			P.adjustSanityLoss(-heal_amount*P.getMaxSanity())
 	heal_cooldown = (world.time + heal_cooldown_base)
 	return
 

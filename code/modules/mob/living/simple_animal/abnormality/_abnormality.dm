@@ -135,23 +135,23 @@
 				to_chat(H, "<span class='notice'>[result_text]</span>")
 				continue
 			if(1)
-				sanity_damage = -(H.maxSanity*0.1)
+				sanity_damage = H.maxSanity*0.1
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
 				to_chat(H, "<span class='warning'>[result_text]</span>")
 			if(2)
-				sanity_damage = -(H.maxSanity*0.3)
+				sanity_damage = H.maxSanity*0.3
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
 				to_chat(H, "<span class='danger'>[result_text]</span>")
 			if(3)
-				sanity_damage = -(H.maxSanity*0.6)
+				sanity_damage = H.maxSanity*0.6
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
 				to_chat(H, "<span class='userdanger'>[result_text]</span>")
 			if(4)
-				sanity_damage = -(H.maxSanity*0.95)
+				sanity_damage = H.maxSanity*0.95
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 				to_chat(H, "<span class='userdanger'><b>[result_text]</b></span>")
 			if(5)
-				sanity_damage = -(H.maxSanity)
+				sanity_damage = H.maxSanity
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 		H.adjustSanityLoss(sanity_damage)
 	return

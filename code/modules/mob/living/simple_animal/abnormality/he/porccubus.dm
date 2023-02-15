@@ -255,7 +255,7 @@
 //wow this sure feels great I sure do hope there are no negative consequences for my hubris
 /datum/status_effect/porccubus_addiction/tick()
 	if(withdrawal_cooldown < world.time)
-		addict.adjustSanityLoss(sanity_gain)
+		addict.adjustSanityLoss(-sanity_gain)
 		addict.adjust_all_attribute_buffs(-1)
 		sanity_gain--
 		withdrawal_cooldown = withdrawal_cooldown_time + world.time

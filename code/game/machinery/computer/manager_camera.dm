@@ -111,7 +111,7 @@
 			if(1)
 				H.adjustBruteLoss(-0.15*H.maxHealth)
 			if(2)
-				H.adjustSanityLoss(0.15*H.maxSanity)
+				H.adjustSanityLoss(-0.15*H.maxSanity)
 			if(3)
 				H.apply_status_effect(/datum/status_effect/interventionshield)
 			if(4)
@@ -331,7 +331,7 @@
 						if(1)
 							H.adjustBruteLoss(-0.15*H.maxHealth)
 						if(2)
-							H.adjustSanityLoss(0.15*H.maxSanity)
+							H.adjustSanityLoss(-0.15*H.maxSanity)
 						if(3)
 							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
 						if(4)

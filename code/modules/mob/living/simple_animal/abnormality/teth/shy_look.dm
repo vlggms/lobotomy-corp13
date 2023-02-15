@@ -91,9 +91,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(previous_mood == 1 && pe > 0) // heals 20% hp&sp
-		user.adjustSanityLoss(0.2*user.maxSanity)
+		user.adjustSanityLoss(-0.2*user.maxSanity)
 		user.adjustBruteLoss(-0.2*user.maxHealth)
 	if(previous_mood == 2 && pe > 0)
-		user.adjustSanityLoss(0.2*user.maxSanity)
+		user.adjustSanityLoss(-0.2*user.maxSanity)
 	ChangeMood() //Prevents spamming work on the same mood
 	return

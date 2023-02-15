@@ -379,7 +379,7 @@
 					L.adjustBruteLoss(-beam_damage_final * 0.5)
 					if(ishuman(L))
 						var/mob/living/carbon/human/H = L
-						H.adjustSanityLoss(beam_damage_final * 0.5)
+						H.adjustSanityLoss(-beam_damage_final * 0.5)
 					continue
 				var/damage_before = L.get_damage_amount(BRUTE)
 				L.apply_damage(beam_damage_final, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))

@@ -126,7 +126,7 @@
 					if(H in currently_scared)
 						continue
 					var/sanity_damage = (H.maxSanity * 0.15) * (get_user_level(living_pawn) - get_user_level(H))
-					H.adjustSanityLoss(min(0, -sanity_damage))
+					H.adjustSanityLoss(min(0, sanity_damage))
 					currently_scared += H
 			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_attack_mob)
 			return

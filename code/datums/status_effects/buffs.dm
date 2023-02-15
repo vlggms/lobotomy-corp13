@@ -191,7 +191,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	H.adjustSanityLoss(10)
+	H.adjustSanityLoss(-10)
 	QDEL_LIST(H.all_scars)
 
 /atom/movable/screen/alert/status_effect/fleshmend

@@ -38,7 +38,7 @@
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.adjustBruteLoss(1) // Your health slowly ticks down
-	H.adjustSanityLoss(-1) // Your health slowly ticks down
+	H.adjustSanityLoss(1) // Your health slowly ticks down
 
 /datum/status_effect/aspiration/on_remove()
 	. = ..()
