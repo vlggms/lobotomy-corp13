@@ -33,5 +33,5 @@
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 // okay so according to the lore you're not really supposed to remember the stories she says so we're going to make it so your sanity goes back up
 	if(!user.sanity_lost && pe != 0)
-		user.adjustSanityLoss(get_attribute_level(user, PRUDENCE_ATTRIBUTE))
+		user.adjustSanityLoss(-get_attribute_level(user, PRUDENCE_ATTRIBUTE))
 	..()

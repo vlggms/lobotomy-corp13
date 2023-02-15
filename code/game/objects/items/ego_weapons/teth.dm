@@ -248,7 +248,7 @@
 		playsound(src, 'sound/weapons/taser.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(2, get_turf(user)))
 			L.adjustBruteLoss(L.maxHealth*0.1)
-			L.adjustSanityLoss(10)
+			L.adjustSanityLoss(-10)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	inuse = FALSE
 

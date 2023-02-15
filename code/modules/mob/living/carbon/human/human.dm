@@ -1008,7 +1008,7 @@
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
-	adjustSanityLoss(maxSanity+1)
+	adjustSanityLoss(-maxSanity)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -1230,11 +1230,14 @@
 	return ..()
 
 /mob/living/carbon/human/updatehealth()
-	. = ..()
-	dna?.species.spec_updatehealth(src)
 	if(LAZYLEN(attributes))
 		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
 		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
+	. = ..()
+	dna?.species.spec_updatehealth(src)
+	sanityhealth = maxSanity - sanityloss
+	update_sanity_hud()
+	med_hud_set_sanity()
 	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
@@ -1297,25 +1300,25 @@
 			if(-INFINITY to 0)
 				continue
 			if(1)
-				sanity_damage = -(H.maxSanity*0.1)
+				sanity_damage = H.maxSanity*0.1
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='warning'>[result_text]</span>")
 			if(2)
-				sanity_damage = -(H.maxSanity*0.3)
+				sanity_damage = H.maxSanity*0.3
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='danger'>[result_text]</span>")
 			if(3)
-				sanity_damage = -(H.maxSanity*0.6)
+				sanity_damage = H.maxSanity*0.6
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='userdanger'>[result_text]</span>")
 			if(4 to INFINITY)
-				sanity_damage = -(H.maxSanity*0.95)
+				sanity_damage = H.maxSanity*0.95
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 				if(H.sanity_lost)
 					continue

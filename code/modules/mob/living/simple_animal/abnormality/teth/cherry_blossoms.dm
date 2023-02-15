@@ -100,7 +100,7 @@
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.stat != DEAD)
 				H.adjustBruteLoss(-500) // It heals everyone to full
-				H.adjustSanityLoss(500) // It heals everyone to full
+				H.adjustSanityLoss(-500) // It heals everyone to full
 				H.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
 
 /datum/status_effect/markedfordeath/on_remove()

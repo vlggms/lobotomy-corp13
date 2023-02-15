@@ -268,7 +268,7 @@
 	return
 
 /mob/living/proc/getSanityLoss()
-	return maxSanity - sanityhealth
+	return sanityloss
 
 /mob/living/proc/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	return adjustBruteLoss(amount, forced = forced)

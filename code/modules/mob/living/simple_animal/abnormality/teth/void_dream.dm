@@ -72,7 +72,7 @@
 	playsound(get_turf(src), 'sound/magic/staff_change.ogg', 100, 0, 12)
 	for(var/mob/living/carbon/human/L in range(10, src))
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))
-			L.adjustSanityLoss(-1000)	//Die.
+			L.adjustSanityLoss(1000)	//Die.
 			L.SetSleeping(0)
 		L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 

@@ -223,7 +223,7 @@
 		var/mob/living/carbon/human/L = owner
 		L.adjustBruteLoss(-b_tick)
 		L.adjustFireLoss(-b_tick)
-		L.adjustSanityLoss(b_tick)
+		L.adjustSanityLoss(-b_tick)
 
 #undef STATUS_EFFECT_BLAZING
 

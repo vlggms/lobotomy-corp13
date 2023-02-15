@@ -58,20 +58,20 @@
 	switch(datum_reference.qliphoth_meter)
 		if(0)
 			for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
-				H.adjustSanityLoss(50)
+				H.adjustSanityLoss(-50)
 				H.adjustBruteLoss(-50)
 			tickets |= user
 		if(1)
 			for(var/mob/living/carbon/human/H in livinginrange(30))
-				H.adjustSanityLoss(50)
+				H.adjustSanityLoss(-50)
 				H.adjustBruteLoss(-50)
 			tickets |= user
 		if(2)
-			user.adjustSanityLoss(80)
+			user.adjustSanityLoss(-80)
 			user.adjustBruteLoss(-80)
 			tickets |= user
 		if(3)
-			user.adjustSanityLoss(40)
+			user.adjustSanityLoss(-40)
 			user.adjustBruteLoss(-40)
 			tickets |= user
 		if(4)

@@ -34,7 +34,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bald/WorktickSuccess(mob/living/carbon/human/user)
 	if(HAS_TRAIT(user, TRAIT_BALD))
-		user.adjustSanityLoss(user.maxSanity * 0.05) // Half of sanity restored for bald people
+		user.adjustSanityLoss(-user.maxSanity * 0.05) // Half of sanity restored for bald people
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bald/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)

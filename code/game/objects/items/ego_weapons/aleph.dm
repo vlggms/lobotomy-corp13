@@ -45,7 +45,7 @@
 		H.adjustStaminaLoss(-damage_dealt*0.2)
 		H.adjustBruteLoss(-damage_dealt*0.1)
 		H.adjustFireLoss(-damage_dealt*0.1)
-		H.adjustSanityLoss(damage_dealt*0.1)
+		H.adjustSanityLoss(-damage_dealt*0.1)
 
 /obj/item/ego_weapon/justitia
 	name = "justitia"

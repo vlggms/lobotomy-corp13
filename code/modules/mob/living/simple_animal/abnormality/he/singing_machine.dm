@@ -83,9 +83,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 			for(var/mob/living/carbon/human/H in livinginrange(30, src))
 				if(faction_check_mob(H))
 					continue
-				H.adjustSanityLoss(rand(1,2))
+				H.adjustSanityLoss(rand(-1,-2))
 			for(var/mob/living/carbon/human/H in musicalAddicts)
-				H.adjustSanityLoss(rand(1,2))
+				H.adjustSanityLoss(rand(-1,-2))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -164,7 +164,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	if(LAZYLEN(addicts))
 		for(var/mob/living/carbon/human/target in addicts)
 			if (!target.sanity_lost)
-				target.adjustSanityLoss(-500)
+				target.adjustSanityLoss(500)
 			QDEL_NULL(target.ai_controller)
 			target.ai_controller = /datum/ai_controller/insane/murder/singing_machine
 			target.InitializeAIController()
@@ -189,8 +189,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	alert_type = /atom/movable/screen/alert/status_effect/singing_machine
 	var/addictionTick = 10 SECONDS
 	var/addictionTimer = 0
-	var/addictionSanityMin = -2
-	var/addictionSanityMax = -6
+	var/addictionSanityMin = 2
+	var/addictionSanityMax = 6
 
 /atom/movable/screen/alert/status_effect/singing_machine
 	name = "Musical Addiction"

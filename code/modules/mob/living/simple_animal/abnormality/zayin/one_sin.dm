@@ -69,7 +69,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	user.adjustSanityLoss(user.maxSanity * 0.5) // It's healing
+	user.adjustSanityLoss(-user.maxSanity * 0.5) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.z != z)
@@ -79,5 +79,5 @@
 			var/heal_factor = 0.5
 			if(H.sanity_lost)
 				heal_factor = 0.25
-			H.adjustSanityLoss(H.maxSanity * heal_factor)
+			H.adjustSanityLoss(-H.maxSanity * heal_factor)
 	return ..()

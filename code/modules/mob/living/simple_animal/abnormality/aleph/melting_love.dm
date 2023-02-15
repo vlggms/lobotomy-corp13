@@ -147,7 +147,7 @@
 		return
 	if(istype(user) && user == gifted_human)
 		to_chat(gifted_human, "<span class='nicegreen'>Melting Love was happy to see you!</span>")
-		gifted_human.adjustSanityLoss(rand(25,35))
+		gifted_human.adjustSanityLoss(rand(-25,-35))
 		return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedAnger(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
@@ -158,7 +158,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
 	if(sanityheal_cooldown <= world.time)
-		gifted_human.adjustSanityLoss(30)
+		gifted_human.adjustSanityLoss(-30)
 		sanityheal_cooldown = (world.time + sanityheal_cooldown_base)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/WorkChance(mob/living/carbon/human/user, chance)

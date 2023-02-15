@@ -65,7 +65,7 @@
 	M.AdjustImmobilized(-5)
 	if(prob(1))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(3*REM) // That's healing
+		H.adjustSanityLoss(-3*REM) // That's healing
 	..()
 	. = 1
 
@@ -74,7 +74,7 @@
 	M.adjustOxyLoss(1.1*REM, 0)
 	if(prob(10))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(-5*REM) // That's BAD
+		H.adjustSanityLoss(5*REM) // That's BAD
 	..()
 	. = 1
 

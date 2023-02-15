@@ -150,7 +150,7 @@
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
-					H.adjustSanityLoss(10) // Heal sanity
+					H.adjustSanityLoss(-10) // Heal sanity
 					return
 			if(prob(5) || L.health < L.maxHealth*0.5)
 				if(L in enemies)

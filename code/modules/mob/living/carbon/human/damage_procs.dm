@@ -3,23 +3,26 @@
 	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
-	var/damage_amt = -amount
+	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
 	adjustSanityLoss(damage_amt)
+	if(updating_health)
+		updatehealth()
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
 		return FALSE
+	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
-		amount = maxSanity+1
+		sanityloss = 0
 	if(sanityhealth > maxSanity)
 		sanityhealth = maxSanity
-	sanityhealth = clamp((sanityhealth + amount), 0, maxSanity)
-	if(amount < 0)
-		playsound(loc, 'sound/effects/sanity_damage.ogg', min(-amount, 50), TRUE, -1)
-	else if(amount > 1)
+	sanityhealth = clamp((maxSanity - sanityloss), 0, maxSanity)
+	if(amount > 0)
+		playsound(loc, 'sound/effects/sanity_damage.ogg', min(amount, 50), TRUE, -1)
+	else if(amount < 0)
 		var/turf/T = get_turf(src)
 		new /obj/effect/temp_visual/sanity_heal(T)
 	if(sanity_lost && sanityhealth >= maxSanity)
@@ -37,8 +40,8 @@
 			var/highest_level = -1
 			for(var/i in shuffle(attributes))
 				var/datum/attribute/atr = attributes[i]
-				if(atr.level > highest_level)
-					highest_level = atr.level
+				if(atr.get_level() > highest_level)
+					highest_level = atr.get_level()
 					highest_atr = atr.name
 		SanityLossEffect(highest_atr)
 	update_sanity_hud()

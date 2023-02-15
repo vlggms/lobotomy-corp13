@@ -336,7 +336,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjustSanityLoss(-0.1) //the serpents final destination is your frontal lobe
+		H.adjustSanityLoss(0.1) //the serpents final destination is your frontal lobe
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
 		if(H.bodytemperature <= INHOSPITABLE_FOR_NESTING) //cure conditions
 			serpentsPoision()

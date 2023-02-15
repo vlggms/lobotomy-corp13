@@ -196,7 +196,7 @@
 		H.apply_status_effect(STATUS_EFFECT_SG_GUILTY, datum_reference)
 		return
 	if((insanity_time < world.time) && !driven_insane)
-		H.adjustSanityLoss(-H.sanityhealth*2) // Do double their current sanity in damage, driving them insane instantly.
+		H.adjustSanityLoss(H.sanityhealth*2) // Do double their current sanity in damage, driving them insane instantly.
 		QDEL_NULL(H.ai_controller)
 		H.ai_controller = /datum/ai_controller/insane/release/silent_girl
 		H.InitializeAIController()

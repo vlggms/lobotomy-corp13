@@ -144,7 +144,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			L.adjustBruteLoss(-(holy_revival_damage * 0.75) * (L.maxHealth/100))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				H.adjustSanityLoss((holy_revival_damage * 0.75) * (H.maxSanity/100)) // It actually heals, don't worry
+				H.adjustSanityLoss(-(holy_revival_damage * 0.75) * (H.maxSanity/100))
 			L.regenerate_limbs()
 			L.regenerate_organs()
 			to_chat(L, "<span class='notice'>The holy light heals you!</span>")

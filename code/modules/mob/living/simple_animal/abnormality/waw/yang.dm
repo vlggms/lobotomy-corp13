@@ -56,7 +56,7 @@
 	//slowly heals sanity over time
 	var/heal_cooldown
 	var/heal_cooldown_time = 3 SECONDS
-	var/heal_amount =  5
+	var/heal_amount = 5
 
 
 /mob/living/simple_animal/hostile/abnormality/yang/Move()
@@ -110,7 +110,7 @@
 	for(var/mob/living/carbon/human/H in livinginview(15, src))
 		if(H.stat == DEAD)
 			continue
-		H.adjustSanityLoss(heal_amount) // It's healing
+		H.adjustSanityLoss(-heal_amount) // It's healing
 		new /obj/effect/temp_visual/emp/pulse(get_turf(H))
 
 
