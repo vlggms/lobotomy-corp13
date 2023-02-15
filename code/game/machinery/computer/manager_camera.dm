@@ -1,3 +1,11 @@
+#define HP_BULLET 1
+#define SP_BULLET 2
+#define RED_BULLET 3
+#define WHITE_BULLET 4
+#define BLACK_BULLET 5
+#define PALE_BULLET 6
+#define YELLOW_BULLET 7
+
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
 	desc = "A computer used for remotely handling a facility."
@@ -10,7 +18,7 @@
 	var/datum/action/innate/managercommand/command
 	var/ammo = 6
 	var/maxAmmo = 5
-	var/bullettype = 0
+	var/bullettype = 1
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
@@ -22,6 +30,16 @@
 		/obj/effect/temp_visual/commandFightA,
 		/obj/effect/temp_visual/commandFightB
 		))
+	/// Used for radial menu; Type = list(name, desc, icon_state)
+	var/list/bullet_types = list(
+		HP_BULLET = list("name" = "HP-N", "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
+		SP_BULLET = list("name" = "SP-E", "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
+		RED_BULLET = list("name" = "Physical Shield", "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
+		WHITE_BULLET = list("name" = "Trauma Shield", "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
+		BLACK_BULLET = list("name" = "Erosion Shield", "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
+		PALE_BULLET = list("name" = "Soul Shield", "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
+		YELLOW_BULLET = list("name" = "Qliphoth Intervention Field", "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
+		)
 
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
@@ -37,7 +55,7 @@
 /obj/machinery/computer/camera_advanced/manager/examine(mob/user)
 	. = ..()
 	if(ammo)
-		. += "<span class='notice'>It has [ammo] BULLETS loaded.</span>"
+		. += "<span class='notice'>It has [round(ammo)] bullets loaded.</span>"
 
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user)
 	..()
@@ -108,17 +126,17 @@
 	if(ammo >= 1)
 		var/mob/living/carbon/human/H = employee
 		switch(bullettype)
-			if(1)
+			if(HP_BULLET)
 				H.adjustBruteLoss(-0.15*H.maxHealth)
-			if(2)
+			if(SP_BULLET)
 				H.adjustSanityLoss(-0.15*H.maxSanity)
-			if(3)
+			if(RED_BULLET)
 				H.apply_status_effect(/datum/status_effect/interventionshield)
-			if(4)
+			if(WHITE_BULLET)
 				H.apply_status_effect(/datum/status_effect/interventionshield/white)
-			if(5)
+			if(BLACK_BULLET)
 				H.apply_status_effect(/datum/status_effect/interventionshield/black)
-			if(6)
+			if(PALE_BULLET)
 				H.apply_status_effect(/datum/status_effect/interventionshield/pale)
 			else
 				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
@@ -260,55 +278,31 @@
 			A.bolt()
 
 /datum/action/innate/cyclemanagerbullet
-	name = "Cycle Bullet Type"
-	desc = "Welfare apologizes for any complications with the technology."
-	icon_icon = 'icons/obj/ammo.dmi'
-	button_icon_state = "40mm"
+	name = "HP-N bullet"
+	desc = "These bullets speed up the recovery of an employee."
+	icon_icon = 'icons/obj/manager_bullets.dmi'
+	button_icon_state = "green"
 
 /datum/action/innate/cyclemanagerbullet/Activate()
-	var/obj/machinery/computer/camera_advanced/manager/X = target
-	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
-	switch(X.bullettype)
-		if(0) //if 0 change to 1
-			to_chat(owner, "<span class='notice'>HP-N BULLET INITIALIZED.</span>")
-			name = "HP-N Bullet"
-			desc = "These bullets speed up the recovery of an employee."
-			X.alterbullettype(1)
-		if(1)
-			to_chat(owner, "<span class='notice'>SP-E BULLET INITIALIZED.</span>")
-			name = "SP-E Bullet"
-			desc = "Bullets that inject an employee with diluted Enkephalin."
-			X.alterbullettype(1)
-		if(2)
-			to_chat(owner, "<span class='notice'>RED BULLET INITIALIZED.</span>")
-			name = "Physical Intervention Shield"
-			desc = "Attach a RED DAMAGE forcefield onto a employee."
-			X.alterbullettype(1)
-		if(3)
-			to_chat(owner, "<span class='notice'>WHITE BULLET INITIALIZED.</span>")
-			name = "Trauma Shield"
-			desc = "Temporarily slow down the perception of a employee, allowing them to resist WHITE DAMAGE."
-			X.alterbullettype(1)
-		if(4)
-			to_chat(owner, "<span class='notice'>BLACK BULLET INITIALIZED.</span>")
-			name = "Erosion Shield"
-			desc = "Attach a shield that protects an employees flesh from BLACK DAMAGE type attacks."
-			X.alterbullettype(1)
-		if(5)
-			to_chat(owner, "<span class='notice'>PALE BULLET INITIALIZED.</span>")
-			name = "Pale Shield"
-			desc = "Through poorly understood technology you attach a shield to a employees soul."
-			X.alterbullettype(1)
-		if(6)
-			to_chat(owner, "<span class='notice'>YELLOW BULLET INITIALIZED.</span>")
-			name = "Qliphoth Intervention Field"
-			desc = "Overload a abnormalities Qliphoth Control to reduce their movement."
-			X.alterbullettype(1)
-		else
-			X.alterbullettype(-6)
-			to_chat(owner, "<span class='notice'>HP-N BULLET INITIALIZED.</span>")
-			name = "HP-N Bullet"
-			desc = "These bullets speed up the recovery of an employee."
+	var/list/bullets = list()
+	var/list/display_bullets = list()
+	var/obj/machinery/computer/camera_advanced/manager/console = target
+	for(var/i = 1 to console.bullet_types.len)
+		bullets[console.bullet_types[i]["name"]] = i
+		var/image/bullet_image = image(icon = 'icons/obj/manager_bullets.dmi', icon_state = console.bullet_types[i]["icon_state"])
+		display_bullets += list(console.bullet_types[i]["name"] = bullet_image)
+	var/chosen_bullet = show_radial_menu(owner, owner.remote_control, display_bullets, radius = 38, require_near = FALSE)
+	chosen_bullet = bullets[chosen_bullet]
+	if(QDELETED(src) || QDELETED(target) || QDELETED(owner) || !chosen_bullet)
+		return FALSE
+
+	to_chat(owner, "<span class='notice'>[console.bullet_types[chosen_bullet]["name"]] bullet selected.</span>")
+	name = "[console.bullet_types[chosen_bullet]["name"]] bullet"
+	desc = console.bullet_types[chosen_bullet]["desc"]
+	button_icon_state = console.bullet_types[chosen_bullet]["icon_state"]
+	console.bullettype = chosen_bullet
+	UpdateButtonIcon()
+	playsound(get_turf(target), 'sound/weapons/kenetic_reload.ogg', 15, TRUE)
 
 /datum/action/innate/firemanagerbullet
 	name = "Fire Initialized Bullet"
@@ -325,20 +319,20 @@
 	var/obj/machinery/computer/camera_advanced/manager/X = target
 	if(X.ammo >= 1)
 		switch(X.bullettype)
-			if(1 to 6)
+			if(HP_BULLET to YELLOW_BULLET)
 				for(var/mob/living/carbon/human/H in range(0, T))
 					switch(X.bullettype)
-						if(1)
+						if(HP_BULLET)
 							H.adjustBruteLoss(-0.15*H.maxHealth)
-						if(2)
+						if(SP_BULLET)
 							H.adjustSanityLoss(-0.15*H.maxSanity)
-						if(3)
+						if(RED_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
-						if(4)
+						if(WHITE_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield/white)
-						if(5)
+						if(BLACK_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield/black)
-						if(6)
+						if(YELLOW_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield/pale)
 						else
 							to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
@@ -348,7 +342,7 @@
 					playsound(get_turf(T), 'ModularTegustation/Tegusounds/weapons/guns/manager_shock.ogg', 10, 0, 3)
 					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
 					return
-			if(7)
+			if(YELLOW_BULLET)
 				for(var/mob/living/simple_animal/hostile/abnormality/ABNO in T.contents)
 					ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
 					X.ammo--
@@ -479,3 +473,11 @@
 /turf/open/AltClick(mob/user)
 	SEND_SIGNAL(user, COMSIG_XENO_TURF_CLICK_ALT, src)
 	..()
+
+#undef HP_BULLET
+#undef SP_BULLET
+#undef RED_BULLET
+#undef WHITE_BULLET
+#undef BLACK_BULLET
+#undef PALE_BULLET
+#undef YELLOW_BULLET
