@@ -900,37 +900,53 @@
 
 /obj/item/powered_gadget/handheld_taser
 	name = "Handheld Taser"
-	desc = "A portable electricution device. Two settings, stun and slow."
+	desc = "A portable electricution device. Two settings, stun and slow. Automatically slows abnormalities instead of stunning them."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
 	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 2000 //5 use before requires recharge
 	var/batterycost_stun = 3000 //3 uses before recharge
-	var/current_state = FALSE //FALSE = Slow, TRUE = Stun
+	var/current_state = FALSE //FALSE = Stun, TRUE = Slow
+	var/hit_message= null
 
 /obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
-	if((cell && cell.charge >= batterycost)&&(current_state=TRUE))
+	if((cell && cell.charge >= batterycost)&&(current_state))
 		current_state=FALSE
-		to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
-	else if((cell && cell.charge >= batterycost_stun)&&(current_state=FALSE))
-		current_state=TRUE
 		to_chat(user, "<span class='nicegreen'>The Gadget's light burns orange before clicking ready to Stun.</span>")
+	else if((cell && cell.charge >= batterycost_stun)&&(!current_state))
+		current_state=TRUE
+		to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
 	else
 		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 	..()
 
 /obj/item/powered_gadget/handheld_taser/attack(var/mob/living/T, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
-		if ((cell && cell.charge >= batterycost)&&(current_state=FALSE))
-			cell.charge = cell.charge - batterycost
-			visible_message("<span class='notice'>[user] smashes [src] into [T].</span>")
-			T.apply_status_effect(/datum/status_effect/qliphothoverload)
-		else if((cell && cell.charge >= batterycost_stun)&&(current_state=TRUE))
-			cell.charge = cell.charge - batterycost_stun
-			visible_message("<span class='notice'>[user] smashes [src] into [T].</span>")
-			T.Stun(10)
+		if(!isabnormalitymob(T))
+			if (cell && cell.charge >= batterycost)
+				hit_message= "<span class='userdanger'>[user] smashes the taser into [T].</span>"
+				cell.charge = cell.charge - batterycost
+				for(var/mob/living/carbon/human/person in view(7, user))
+					to_chat(person, hit_message)
+				T.apply_status_effect(/datum/status_effect/qliphothoverload)
+			else
+				to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 		else
-			to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+			if ((cell && cell.charge >= batterycost_stun)&&(!current_state))
+				hit_message= "<span class='userdanger'>[user] smashes the taser into [T].</span>"
+				cell.charge = cell.charge - batterycost_stun
+				for(var/mob/living/carbon/human/person in view(7, user))
+					to_chat(person, hit_message)
+				T.apply_status_effect(/datum/status_effect/qliphothoverload)
+			else if((cell && cell.charge >= batterycost)&&(current_state))
+				hit_message= "<span class='userdanger'>[user] smashes the taser into [T].</span>"
+				cell.charge = cell.charge - batterycost
+				for(var/mob/living/carbon/human/person in view(7, user))
+					to_chat(person, hit_message)
+				T.Stun(10)
+			else
+				to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 	else
-		visible_message("<span class='notice'>[user] lightly pokes [T] with [src].</span>")
-
+		hit_message= "<span class='notice'>[user] lightly pokes [T] with the taser.</span>"
+		for(var/mob/living/carbon/human/person in view(7, user))
+			to_chat(person, hit_message)

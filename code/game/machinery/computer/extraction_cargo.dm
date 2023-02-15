@@ -26,10 +26,15 @@
 		new /datum/data/extraction_cargo("Keen-Sense Rangefinder ",		/obj/item/powered_gadget/detector_gadget/ordeal,					200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Capacity Upgrade ",		/obj/item/hypo_upgrade/cap_increase,								200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/powered_gadget/clerkbot_gadget,							250, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("C-Fear Protection Injector ",	/obj/item/lc13_clerk_fear_immunity_injector,						300, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Handheld Taser",				/obj/item/powered_gadget/handheld_taser,							300, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Shrimp Injector ",			/obj/item/lc13_shrimp_injector,										300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Autoinjector ",			/obj/item/reagent_containers/hypospray/emais,						300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("W-Corp Teleporter ",			/obj/item/powered_gadget/teleporter,								300, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Officer Upgrade Injector ",	/obj/item/lc13_officerupgradeinjector,								400, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Meson Scanner Goggles ",		/obj/item/clothing/glasses/meson,									500, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ",	/obj/item/clothing/glasses/meson/gar,								600, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Agent Work Chance Injector ",	/obj/item/lc13_agent_workchance_trait_injector,						700, CAT_GADGET) = 1,
 
 		//Equipment - Passive equipment, or less technical stuff.
 		new /datum/data/extraction_cargo("'Seclite' Flashlight ",		/obj/item/flashlight/seclite,										30, CAT_EQUIP) = 1,
@@ -50,13 +55,9 @@
 		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("C-Fear Protection Injector ",	/obj/item/lc13_clerk_fear_immunity_injector,						300, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Shrimp Injector ",			/obj/item/lc13_shrimp_injector,										300, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Officer Upgrade Injector ",	/obj/item/lc13_officerupgradeinjector,								400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoision,											400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Agent Work Chance Injector ",	/obj/item/lc13_agent_workchance_trait_injector,						700, CAT_MEDICAL) = 1,
 
 		//Scorp - for the funny
 		new /datum/data/extraction_cargo("Wellcheers Code Red ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,	150, CAT_SCORP) = 1,
