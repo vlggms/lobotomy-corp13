@@ -308,7 +308,7 @@
 	desc = "There is nothing else than now. There is neither yesterday, certainly, nor is there any tomorrow."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
-	force = 35
+	force = 30
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")

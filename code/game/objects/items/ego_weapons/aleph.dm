@@ -52,7 +52,7 @@
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	special = "This weapon has a combo system."
 	icon_state = "justitia"
-	force = 35
+	force = 25
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
