@@ -165,7 +165,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 80
+	force = 70
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
