@@ -58,8 +58,39 @@
 //Behavior Adjustment
 /obj/item/paper/fluff/info/tool/behavior
 	name = "O-09-96"
-	info = {"<h1><center>F-09-34</center></h1>	<br>
+	info = {"<h1><center>O-09-96</center></h1>	<br>
 	Name : Behavior Adjustment <br>
 	Risk Class: TETH <br>
 	- Stats regarding Justice will increase greatly when Behavior Adjustment is used. However, all stats regarding Prudence will drop at the same time. <br>
 	- If the employee’s SP hits 0 while Behavior Adjustment is used, they will instantly die."}
+
+//Tree Sap
+/obj/item/paper/fluff/info/tool/treesap
+	name = "T-09-80"
+	info = {"<h1><center>T-09-80</center></h1>	<br>
+	Name : Giant Tree Sap <br>
+	Risk Class: TETH <br>
+	- Subjects who consume Giant Tree Sap instantly recover physically. Furthermore, they will continue to heal over time. <br>
+	- Certain subjects who consumed Giant Tree Sap were found to suffer a side effect. Those who endured this side effect exploded and died within 20 to 30 seconds after consuming Giant Tree Sap; the entire section they were in suffered WHITE damage. <br>
+	- Experiments confirmed that there is a positive relationship between the frequency of the consumption of Giant Tree Sap and the probability of exploding."}
+
+//Heart of Aspiration
+/obj/item/paper/fluff/info/tool/heart
+	name = "T-09-77"
+	info = {"<h1><center>T-09-77</center></h1>	<br>
+	Name : Heart of Aspiration<br>
+	Risk Class: TETH <br>
+	- Those who equip The Heart of Aspiration will benefit from increased HP and Justice. <br>
+	- Heart of aspiration slowly drained the health and sanity of the person using it. "}
+
+//Bracelet
+/obj/item/paper/fluff/info/tool/bracelet
+	name = "O-09-95"
+	info = {"<h1><center>O-09-95</center></h1>	<br>
+	Name : Luminous Bracelet <br>
+	Risk Class: TETH <br>
+	- Stats regarding Fortitude will greatly increase while Luminous Bracelet is worn. <br>
+	- Luminous Bracelet continually recovers the wearer’s HP when it drops. <br>
+	- The wearer will die if any attempt to return Luminous Bracelet is made before they are fully healed. <br>
+	- If the wearer’s HP has not dropped after a certain period of time, then they will die from excessive regeneration. <br>
+	- If the wearer’s HP is too low, after a certain period of time, then they will die from tissue necrosis. "}

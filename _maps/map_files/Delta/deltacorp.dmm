@@ -2916,11 +2916,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "iM" = (
-/obj/structure/toolabnormality/touch,
-/obj/effect/spawner/structure/window,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
+/obj/effect/turf_decal/box/white,
+/obj/machinery/camera/autoname,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "iO" = (
@@ -4291,6 +4288,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"ma" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "mb" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/fluff/paper/stack,
@@ -5150,12 +5151,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
-"nR" = (
-/obj/effect/turf_decal/box/white,
-/obj/machinery/pdapainter,
-/obj/machinery/camera/autoname,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
 "nS" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -5278,11 +5273,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
-"ok" = (
-/obj/structure/toolabnormality/mirror,
-/obj/effect/turf_decal/box/white,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
 "om" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
@@ -5658,6 +5648,13 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/grass,
 /area/facility_hallway/command)
+"pN" = (
+/obj/structure/toolabnormality/touch,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "pO" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin/bundlenatural,
@@ -6788,11 +6785,6 @@
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/plasteel,
 /area/department_main/records)
-"tr" = (
-/obj/structure/toolabnormality/realization,
-/obj/effect/turf_decal/box/white,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
 "ts" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -7469,8 +7461,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "vN" = (
-/obj/structure/toolabnormality/skin,
 /obj/effect/turf_decal/box/white,
+/obj/effect/landmark/toolspawn,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "vO" = (
@@ -11328,6 +11320,11 @@
 	},
 /turf/open/floor/carpet,
 /area/facility_hallway/safety)
+"Hi" = (
+/obj/effect/turf_decal/box/white,
+/obj/structure/toolabnormality/realization,
+/turf/open/floor/carpet/black,
+/area/department_main/records)
 "Hk" = (
 /obj/structure/chair/stool,
 /turf/open/floor/carpet,
@@ -12845,14 +12842,6 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet,
 /area/department_main/control)
-"LV" = (
-/obj/structure/table,
-/obj/structure/toolabnormality/theresia{
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/box/white,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
 "LW" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -65172,8 +65161,8 @@ JB
 JB
 os
 os
-tr
-ok
+vN
+vN
 vN
 os
 oN
@@ -65425,10 +65414,10 @@ gF
 JB
 JB
 JB
-JB
-JB
 os
-LV
+os
+os
+vN
 AW
 Pa
 Pa
@@ -65682,9 +65671,9 @@ gF
 JB
 JB
 JB
-JB
-JB
 os
+pN
+ma
 iM
 lx
 oF
@@ -65939,13 +65928,13 @@ gF
 JB
 JB
 JB
-JB
-JB
 os
-nR
-bq
-rx
-rx
+os
+os
+vN
+lx
+oF
+oF
 vP
 oF
 oF
@@ -66199,10 +66188,10 @@ JB
 JB
 JB
 os
-os
-Oi
-al
-jC
+Hi
+bq
+rx
+rx
 os
 os
 pm
@@ -66455,11 +66444,11 @@ JB
 JB
 JB
 JB
-JB
 os
 os
-os
-os
+Oi
+al
+jC
 ou
 wz
 pq
@@ -66713,10 +66702,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+os
+os
+os
+os
 ou
 oZ
 pr
