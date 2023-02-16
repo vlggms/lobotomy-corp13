@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
-			revive_humans(48, "neutral") // Big heal
+			INVOKE_ASYNC(src, .proc/revive_humans, 48, "neutral") // Big heal
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
