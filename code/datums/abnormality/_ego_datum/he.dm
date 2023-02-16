@@ -184,3 +184,39 @@
 /datum/ego_datum/weapon/homing_instinct
 	item_path = /obj/item/ego_weapon/homing_instinct
 	cost = 35
+
+//Jangsan Tiger - Maneater
+/datum/ego_datum/armor/maneater
+	item_path = /obj/item/clothing/suit/armor/ego_gear/maneater
+	cost = 35
+
+/datum/ego_datum/weapon/maneater
+	item_path = /obj/item/ego_weapon/shield/maneater
+	cost = 35
+
+//Pale Horse - Revelation
+/datum/ego_datum/weapon/revelation
+	item_path = /obj/item/ego_weapon/revelation
+	cost = 35
+
+//Puss in Boots - Inheritance
+/datum/ego_datum/armor/inheritance
+	item_path = /obj/item/clothing/suit/armor/ego_gear/inheritance
+	cost = 35
+
+/datum/ego_datum/weapon/inheritance
+	item_path = /obj/item/ego_weapon/inheritance
+	cost = 35
+
+//Siren - Song of the Past
+/datum/ego_datum/armor/song
+	item_path = /obj/item/clothing/suit/armor/ego_gear/song
+	cost = 35
+
+/datum/ego_datum/weapon/song
+	item_path = /obj/item/gun/ego_gun/song
+	cost = 35
+
+/datum/ego_datum/weapon/songmini
+	item_path = /obj/item/gun/ego_gun/pistol/songmini
+	cost = 35

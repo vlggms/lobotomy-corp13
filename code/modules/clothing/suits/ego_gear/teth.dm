@@ -127,3 +127,9 @@
 	desc = "The handful of magic beans grew into a massive, towering beanstalk."
 	icon_state = "bean"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 30, PALE_DAMAGE = -10) //20
+
+/obj/item/clothing/suit/armor/ego_gear/revelation
+	name = "revelation"
+	desc = "I looked, and behold, a pale horse; and he who sat on it had the name Death."
+	icon_state = "revelation"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 30)

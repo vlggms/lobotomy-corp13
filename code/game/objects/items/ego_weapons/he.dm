@@ -590,3 +590,105 @@
 	SIGNAL_HANDLER
 	if(force < 100)
 		force += 0.25 //It charges pretty slowly, but people walk pretty fast thanks to justice.
+
+/obj/item/ego_weapon/shield/maneater
+	name = "man eater"
+	desc = "If friends were flowers, I'd pick you!"
+	icon_state = "maneater"
+	force = 30
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	hitsound = 'sound/weapons/ego/axe2.ogg'
+	reductions = list(10, 20, 30, 10, 1) //longer parry, lower values; not a proper
+	recovery_time = 1 SECONDS
+	block_time = 1 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block = "You swat the projectile out of the air!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	reposition_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/revelation
+	name = "revelation"
+	desc = "Death, where is thy sting?"
+	special = "This weapon has a slightly slower attack speed.\
+	This weapon attacks faster when hitting targets below 50% health"
+	icon_state = "revelation"
+	force = 25
+	attack_speed = 1.5
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/da_capo2.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/revelation/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(target.health <= (target.maxHealth * 0.5))
+		attack_speed = 1
+	else
+		attack_speed = 1.5
+	..()
+
+/obj/item/ego_weapon/inheritance
+	name = "inheritance"
+	desc = "You should consider it an honor. The humans who have joined me could attain greater wealth and glory."
+	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
+	This weapon has a fast attack speed"
+	icon_state = "inheritance"
+	force = 12
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+	var/combo_on = TRUE
+	var/finisher = FALSE
+
+/obj/item/ego_weapon/inheritance/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a finisher.</span>")
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,"<span class='warning'>You change your stance, and will now perform a finisher.</span>")
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/inheritance/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time || !combo_on)
+		combo = 0
+	combo_time = world.time + combo_wait
+	switch(combo)
+		if(0 to 3)
+			user.changeNext_move(CLICK_CD_MELEE * 0.3)
+		if(4)
+			user.changeNext_move(CLICK_CD_MELEE * 1.8)
+			force *= 6
+			combo = -4
+			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+			to_chat(user,"<span class='warning'>You take a moment to reset your stance.</span>")
+		else
+			user.changeNext_move(CLICK_CD_MELEE * 0.3)
+	..()
+	combo += 1
+	force = initial(force)

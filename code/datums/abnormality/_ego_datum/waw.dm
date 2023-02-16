@@ -196,6 +196,7 @@
 /datum/ego_datum/armor/feather
 	item_path = /obj/item/clothing/suit/armor/ego_gear/feather
 	cost = 50
+
 // Thunderbird - Feather of Valor, Warring
 /datum/ego_datum/armor/warring
 	item_path = /obj/item/clothing/suit/armor/ego_gear/warring
@@ -203,4 +204,40 @@
 
 /datum/ego_datum/weapon/warring
 	item_path = /obj/item/gun/ego_gun/warring
+	cost = 50
+
+// Clown Smiling at Me - Dark Carnival
+/datum/ego_datum/armor/darkcarnival
+	item_path = /obj/item/clothing/suit/armor/ego_gear/darkcarnival
+	cost = 50
+
+/datum/ego_datum/weapon/mini/mirth
+	item_path = /obj/item/ego_weapon/mini/mirth
+	cost = 50
+
+/datum/ego_datum/weapon/mini/malice
+	item_path = /obj/item/ego_weapon/mini/malice
+	cost = 50
+
+//Dream of a Black Swan - Black Swan
+/datum/ego_datum/weapon/swan
+	item_path = /obj/item/ego_weapon/shield/swan
+	cost = 50
+
+// Nosferatu - Dipsia
+/datum/ego_datum/armor/dipsia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/dipsia
+	cost = 50
+
+/datum/ego_datum/weapon/dipsia
+	item_path = /obj/item/ego_weapon/dipsia
+	cost = 50
+
+// Sphinx - Pharaoh
+/datum/ego_datum/armor/pharaoh
+	item_path = /obj/item/clothing/suit/armor/ego_gear/pharaoh
+	cost = 50
+
+/datum/ego_datum/weapon/pharaoh
+	item_path = /obj/item/ego_weapon/shield/pharaoh
 	cost = 50

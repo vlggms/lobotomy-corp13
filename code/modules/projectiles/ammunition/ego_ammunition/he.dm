@@ -32,3 +32,15 @@
 	name = "transmission casing"
 	desc = "A transmission casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_transmission
+
+/obj/item/ammo_casing/caseless/ego_song
+	name = "song casing"
+	desc = "A song casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_song
+
+/obj/item/ammo_casing/caseless/ego_songmini
+	name = "song pellet casing"
+	desc = "A song pellet casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_songmini
+	pellets = 4
+	variance = 20

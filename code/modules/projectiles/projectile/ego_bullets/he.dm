@@ -80,3 +80,15 @@
 
 /obj/projectile/ego_bullet/ego_harmony/check_ricochet(atom/A)
 	return TRUE
+
+/obj/projectile/ego_bullet/ego_song
+	name = "song"
+	damage = 6
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_songmini
+	name = "song"
+	damage = 2 //4 pellets
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

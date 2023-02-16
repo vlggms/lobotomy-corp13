@@ -156,3 +156,32 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/gun/ego_gun/song
+	name = "song of the past"
+	desc = "Nothing beats the classics."
+	icon_state = "song"
+	inhand_icon_state = "song"
+	special = "This weapon fires 400 rounds per minute."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_song
+	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	weapon_weight = WEAPON_HEAVY
+	spread = 8
+	autofire = 0.15 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/gun/ego_gun/pistol/songmini
+	name = "greatest oldies"
+	desc = "The past is far behind us."
+	icon_state = "songmini"
+	inhand_icon_state = "songmini"
+	special = "This weapon has autofire and fires 3 pellets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
+	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
+	spread = 8
+	autofire = 0.3 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
