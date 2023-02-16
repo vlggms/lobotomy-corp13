@@ -31,23 +31,12 @@ SUBSYSTEM_DEF(profiler)
 	return ..()
 
 /datum/controller/subsystem/profiler/proc/StartProfiling()
-#if DM_BUILD < 1506
-	stack_trace("Auto profiling unsupported on this byond version")
-	CONFIG_SET(flag/auto_profile, FALSE)
-#else
 	world.Profile(PROFILE_START)
-#endif
 
 /datum/controller/subsystem/profiler/proc/StopProfiling()
-#if DM_BUILD >= 1506
 	world.Profile(PROFILE_STOP)
-#endif
 
 /datum/controller/subsystem/profiler/proc/DumpFile()
-#if DM_BUILD < 1506
-	stack_trace("Auto profiling unsupported on this byond version")
-	CONFIG_SET(flag/auto_profile, FALSE)
-#else
 	var/timer = TICK_USAGE_REAL
 	var/current_profile_data = world.Profile(PROFILE_REFRESH,format="json")
 	fetch_cost = MC_AVERAGE(fetch_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -60,4 +49,3 @@ SUBSYSTEM_DEF(profiler)
 	timer = TICK_USAGE_REAL
 	WRITE_FILE(json_file, current_profile_data)
 	write_cost = MC_AVERAGE(write_cost, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
-#endif
