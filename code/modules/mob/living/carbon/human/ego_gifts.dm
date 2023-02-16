@@ -577,6 +577,13 @@
 	prudence_bonus = 4
 	justice_bonus = -2
 	slot = FACE
+	
+/datum/ego_gifts/spore
+	name = "Spore"
+	icon_state = "spore"
+	prudence_bonus = 5
+	temperance_bonus = 2
+	slot = HAND_2
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise

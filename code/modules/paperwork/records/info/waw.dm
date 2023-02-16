@@ -544,3 +544,26 @@
 	<h4>White Resistance:</h4> Immune	<br>
 	<h4>Black Resistance:</h4> Resistant	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Little Prince
+/obj/item/paper/fluff/info/waw/littlep
+	name = "O-04-66"
+	info = {"<h1><center>O-04-66</center></h1>	<br>
+	Name : The Little Prince	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : Moderate	<br>
+	- The Qliphoth Counter decreased after 3 non-Insight works were performed in a row.	<br>
+	- The Qliphoth Counter increased after 2 Insight works were performed in a row. <br>
+	- Employees who worked with The Little Prince 3 times in a row were completely infected by its spores. Send them to work with other Abnormalities regularly to counteract the infection.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- An employee who constantly worked with The Little Prince, showed signs of acute pain in the Containment Unit. After that, tissues similar to The Little Prince emerged in their body, and NAME began to transform into The Little Prince-1.	<br>
+	- The Little Prince attracted an employee to its containment unit when its Qliphoth Counter hit 0. When the lured employee entered the Containment Unit, the same phenomenon as described previously occurred.	<br>
+	- When suppressing The Little Prince-1, please pay attention to the spores that are released from its body upon death. Those spores will cause sustained mental damage, and employees who panic from the spores may attempt to enter The Little Prince’s Containment Unit, which should be immediately stopped.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
