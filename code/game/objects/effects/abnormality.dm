@@ -169,3 +169,35 @@
 /obj/effect/pale_case/proc/FadeOut()
 	animate(src, alpha = 0, time = 5)
 	QDEL_IN(src, 5)
+
+/obj/effect/greenmidnight_shell
+	name = "protective shell"
+	desc = "A protective shell of an enormous machine."
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	icon_state = "greenmidnight_casel"
+	density = FALSE
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = MOB_LAYER
+	pixel_x = -96
+	base_pixel_x = -96
+
+/obj/effect/greenmidnight_shell/right
+	icon_state = "greenmidnight_caser"
+
+/obj/effect/greenmidnight_laser
+	name = "laser"
+	desc = "A giant laser gun."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "greenmidnight_laser"
+	density = FALSE
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_MOB_LAYER
+	alpha = 0
+	pixel_x = -48
+	base_pixel_x = -48
+
+/obj/effect/greenmidnight_laser/Initialize()
+	..()
+	animate(src, alpha = 255, time = 5)

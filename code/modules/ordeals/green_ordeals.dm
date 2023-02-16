@@ -51,3 +51,22 @@
 		var/mob/living/simple_animal/hostile/ordeal/green_dusk/GD = new(T)
 		ordeal_mobs += GD
 		GD.ordeal_reference = src
+
+// Midnight
+/datum/ordeal/green_midnight
+	name = "Midnight of Green"
+	annonce_text = "The tower is touched by the sky, and it will leave nothing on the earth."
+	level = 4
+	reward_percent = 0.25
+	annonce_sound = 'sound/effects/ordeals/green_start.ogg'
+	end_sound = 'sound/effects/ordeals/green_end.ogg'
+	color = COLOR_DARK_LIME
+
+/datum/ordeal/green_midnight/Run()
+	..()
+	for(var/turf/T in GLOB.department_centers)
+		if(!istype(get_area(T), /area/department_main/command))
+			continue
+		var/mob/living/simple_animal/hostile/ordeal/green_midnight/GM = new(T)
+		ordeal_mobs += GM
+		GM.ordeal_reference = src
