@@ -123,6 +123,7 @@
 	exp_requirements = 240
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
+	mapexclude = list("wonderlabs")
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"

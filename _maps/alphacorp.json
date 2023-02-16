@@ -10,5 +10,6 @@
 	"shuttles": {
 		"emergency": "emergency_alpha"
 	},
-	"minetype": "none"
+	"minetype": "none",
+	"maptype": "standard"
 }

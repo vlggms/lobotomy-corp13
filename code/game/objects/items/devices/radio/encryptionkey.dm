@@ -113,3 +113,35 @@
 
 /obj/item/encryptionkey/secbot
 	channels = list(RADIO_CHANNEL_AI_PRIVATE = 1, RADIO_CHANNEL_SECURITY = 1)
+
+
+//Department heads
+/obj/item/encryptionkey/heads/headset_control
+	name = "control radio encryption key"
+	icon_state = "cargo_cypherkey"
+	channels = list(RADIO_CHANNEL_CONTROL = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_information
+	name = "information radio encryption key"
+	icon_state = "sci_cypherkey"
+	channels = list(RADIO_CHANNEL_INFORMATION = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_safety
+	name = "safety radio encryption key"
+	icon_state = "bin_cypherkey"
+	channels = list(RADIO_CHANNEL_SAFETY = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_training
+	name = "training radio encryption key"
+	icon_state = "rob_cypherkey"
+	channels = list(RADIO_CHANNEL_TRAINING = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_welfare
+	name = "welfare radio encryption key"
+	icon_state = "com_cypherkey"
+	channels = list(RADIO_CHANNEL_WELFARE = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_discipline
+	name = "discipline radio encryption key"
+	icon_state = "sec_cypherkey"
+	channels = list(RADIO_CHANNEL_DISCIPLINE = 1, RADIO_CHANNEL_ARCHITECTURE = 1)

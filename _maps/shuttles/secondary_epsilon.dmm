@@ -1,0 +1,74 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"n" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/mining)
+"t" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 3000000;
+	name = "backup elevator console";
+	possible_destinations = "backup_command;backup_control;backup_safety;backup_training;backup_info;backup_discipline;backup_welfare";
+	shuttleId = "secondary"
+	},
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"x" = (
+/obj/machinery/door/airlock/public/glass{
+	max_integrity = 30000;
+	normal_integrity = 30000;
+	normalspeed = 0
+	},
+/obj/structure/fans/tiny/invisible,
+/obj/docking_port/mobile{
+	dwidth = 2;
+	height = 3;
+	id = "secondary";
+	name = "facility elevator";
+	port_direction = 2;
+	width = 4
+	},
+/turf/open/floor/pod/light,
+/area/shuttle/mining)
+"D" = (
+/obj/structure/chair,
+/turf/open/floor/pod,
+/area/shuttle/mining)
+"W" = (
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+W
+n
+n
+W
+"}
+(2,1,1) = {"
+n
+D
+c
+n
+"}
+(3,1,1) = {"
+n
+D
+c
+x
+"}
+(4,1,1) = {"
+n
+t
+c
+W
+"}
+(5,1,1) = {"
+W
+n
+n
+W
+"}

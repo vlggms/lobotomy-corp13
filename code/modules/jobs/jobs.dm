@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Extraction Officer",
 	"Records Officer",
 	"Sephirah",
+	"Department Head",
 	"Agent Captain",
 	))
 
@@ -26,10 +27,14 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 GLOBAL_LIST_INIT(service_positions, list(
 	"Clerk",
+	"HHPP Chef",
 	))
 
 
 GLOBAL_LIST_INIT(security_positions, list(
+	"Department Head",
+	"Department Captain",
+
 	"Agent Captain",
 	"Agent Lieutenant",
 	"Senior Agent",

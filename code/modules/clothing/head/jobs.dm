@@ -279,7 +279,8 @@
 	icon_state = "wardenberetblack"
 
 /obj/item/clothing/head/beret/sec/navyofficer
-	desc = "A special beret with the security insignia emblazoned on it. For officers with class."
+	name = "department captain beret"
+	desc = "A beret worn by the top agents in their departments."
 	icon_state = "officerberet"
 
 /obj/item/clothing/head/beret/sec/navyofficer/black

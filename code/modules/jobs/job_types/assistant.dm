@@ -18,6 +18,7 @@ Assistant
 
 	display_order = JOB_DISPLAY_ORDER_PRISONER
 	allow_bureaucratic_error = FALSE
+	loadalways = TRUE
 
 
 //Cannot Gain stats.

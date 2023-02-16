@@ -20,5 +20,6 @@
 			"Linkage": "Cross"
 		}
 	],
-	"minetype": "none"
+	"minetype": "none",
+	"maptype": "wonderlabs"
 }

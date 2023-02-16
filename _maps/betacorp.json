@@ -7,5 +7,6 @@
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
-	"minetype": "none"
+	"minetype": "none",
+	"maptype": "standard"
 }
