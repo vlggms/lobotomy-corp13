@@ -1,7 +1,7 @@
 //Coded by Coxswain sprites by mel and Sky_
 /mob/living/simple_animal/hostile/abnormality/ebony_queen
 	name = "Ebony Queens Apple"
-	desc = "An abnormality taking form of a tall humanoid with an apple for a head."
+	desc = "An abnormality taking form of a tall humanoid in regal robe with a rotted apple for a head."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "ebonyqueen_inert"
 	icon_living = "ebonyqueen_inert"
@@ -23,7 +23,7 @@
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
-	faction = list("apple")
+	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
