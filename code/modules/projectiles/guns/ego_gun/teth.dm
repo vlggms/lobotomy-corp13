@@ -1,3 +1,7 @@
+//All teth Rifles should be around 22 DPS (31 per bullet
+//All Teth Pistols should hit about
+
+//Does slightly less damage due to AOE.
 /obj/item/gun/ego_gun/match
 	name = "fourth match flame"
 	desc = "The light of the match will not go out until it has burned away happiness, warmth, light, \
@@ -7,7 +11,7 @@
 	special = "This weapon does AOE damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_match
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 20
+	fire_delay = 23
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/gun/ego_gun/beak
@@ -19,9 +23,9 @@
 	special = "This weapon fires 400 rounds per minute."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
 	weapon_weight = WEAPON_HEAVY
-	spread = 8
+	spread = 10
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.15 SECONDS
+	autofire = 0.14 SECONDS
 
 /obj/item/gun/ego_gun/pistol/beakmagnum
 	name = "beak mk2"
@@ -30,7 +34,7 @@
 	inhand_icon_state = "beak"
 	special = "This weapon has pinpoint accuracy when duel wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
-	fire_delay = 10
+	fire_delay = 13
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -44,7 +48,7 @@
 	special = "This weapon fires 5 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_noise
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 13
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 /obj/item/gun/ego_gun/pistol/solitude
@@ -53,7 +57,7 @@
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
-	fire_delay = 15
+	fire_delay = 18
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -79,5 +83,5 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
-	autofire = 0.22 SECONDS
+	autofire = 0.2 SECONDS
 

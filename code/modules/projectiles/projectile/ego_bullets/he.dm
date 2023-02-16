@@ -12,7 +12,7 @@
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
-	damage = 52 //Slow as balls
+	damage = 70 //Slow as balls
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
@@ -20,7 +20,7 @@
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
-	damage = 40
+	damage = 45
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	speed = 1.5
@@ -53,7 +53,7 @@
 
 /obj/projectile/ego_bullet/ego_unrequited
 	name = "unrequited"
-	damage = 9
+	damage = 11
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 

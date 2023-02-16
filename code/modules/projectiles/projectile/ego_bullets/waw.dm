@@ -5,7 +5,7 @@
 
 /obj/projectile/ego_bullet/ego_hornet
 	name = "hornet"
-	damage = 40
+	damage = 58
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hatred
@@ -54,14 +54,14 @@
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"
-	damage = 15
+	damage = 20
 	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
-	damage = 15
+	damage = 20
 	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
@@ -69,14 +69,14 @@
 /obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 7
+	damage = 4
 	speed = 0.2
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_loyalty/iff
 	name = "loyalty IFF"
-	damage = 5
+	damage = 3
 	nodamage = TRUE	//Damage is calculated later
 	projectile_piercing = PASSMOB
 
@@ -97,7 +97,7 @@
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 9
+	damage = 18
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_ecstasy
@@ -105,7 +105,7 @@
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
-	damage = 10
+	damage = 7
 	speed = 1.3
 	range = 6
 
@@ -117,7 +117,7 @@
 /obj/projectile/ego_bullet/ego_praetorian
 	name = "praetorian"
 	icon_state = "loyalty"
-	damage = 5
+	damage = 3
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
@@ -165,7 +165,7 @@
 //tommygun
 /obj/projectile/ego_bullet/ego_intention
 	name = "good intentions"
-	damage = 8
+	damage = 5
 	speed = 0.2
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
@@ -189,7 +189,7 @@
 	name = "assonance"
 	icon_state = "omnilaser"
 	hitsound = null
-	damage = 35
+	damage = 50
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 	hitscan = TRUE

@@ -14,38 +14,38 @@
 
 /obj/projectile/ego_bullet/ego_beak
 	name = "beak"
-	damage = 6
+	damage = 4
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
-	damage = 4
+	damage = 10
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
-	damage = 24	//Slow as balls
+	damage = 40	//Slow as balls
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_beakmagnum
 	name = "beak"
-	damage = 17	//Slow as balls
+	damage = 30	//entirely accurate. should have 32 DPS, it suffers.
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
 	name = "today's expression"
-	damage = 3 //Can dual wield, full auto
+	damage = 4 //Can dual wield, full auto
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"
 	icon_state = "energy2"
-	damage = 9 //70% the speed of beak, converted damage is 8.5, but the bullets are slow.
+	damage = 6
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
