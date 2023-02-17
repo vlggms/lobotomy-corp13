@@ -162,7 +162,7 @@
 	desc = "Their weapons did not hurt me, but when I looked back and you were not there; It felt as if I was on the verge of death."
 	icon_state = "courage"
 	//because SC is essentially physically immortal but a coward, he has good physical resistances and god awful "sanity" resistances
-	armor = list (RED_DAMAGE = 40, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 50) //80
+	armor = list (RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = 0, PALE_DAMAGE = 50) //70
 	attribute_requirements = list(
 								FORTITUDE_ATTRIBUTE = 40
 								)
@@ -181,7 +181,7 @@
 	name = "pleasure"
 	desc = "Dying happy was my only wish, and you granted it. What more could I ask for?"
 	icon_state = "pleasure"
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) //80 because requiring a level 4 stat on a HE is pretty big
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) //70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40)
 
