@@ -159,12 +159,17 @@
 			finish_action(controller, FALSE)
 			return
 
+	// If we can't move towards the item
+	if(!get_path_to(living_pawn, get_turf(target), /turf/proc/Distance_cardinal, 0, 10))
+		finish_action(controller, FALSE)
+		return
+
 	// Strong weapon
 	if(target.force > best_force)
 		var/obj/item/left_item = living_pawn.get_item_for_held_index(LEFT_HANDS)
 		var/obj/item/right_item = living_pawn.get_item_for_held_index(RIGHT_HANDS)
 		if((left_item != null) && (right_item != null))
-			if(left_item.force <= right_item.force) // Drop the old one, man...
+			if(left_item.force < right_item.force) // Drop the old one, man...
 				living_pawn.dropItemToGround(left_item, force = TRUE)
 			else
 				living_pawn.dropItemToGround(right_item, force = TRUE)
@@ -174,6 +179,10 @@
 		return
 
 	finish_action(controller, FALSE)
+
+/datum/ai_behavior/insane_equip/inventory/perform(delta_time, datum/ai_controller/controller)
+	. = ..()
+	equip_item(controller)
 
 /datum/ai_behavior/insane_equip/inventory/equip_item(datum/ai_controller/controller)
 	var/mob/living/living_pawn = controller.pawn
