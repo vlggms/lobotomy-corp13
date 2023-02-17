@@ -59,6 +59,17 @@
 	mid_length = 2.5 SECONDS
 	volume = 35
 
+/datum/looping_sound/siren_musictime
+	start_sound = 'sound/abnormalities/siren/needle1.ogg'
+	start_volume = 25
+	start_length = 1 SECONDS
+	mid_sounds = 'sound/abnormalities/siren/driftingtimemisplaced.ogg'
+	mid_length = 38 SECONDS
+	volume = 25
+	extra_range = 40
+	falloff_distance = 35 //minimal falloff due to being a long sound
+	end_sound = 'sound/abnormalities/siren/needle2.ogg'
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'

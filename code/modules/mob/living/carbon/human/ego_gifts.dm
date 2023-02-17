@@ -439,6 +439,13 @@
 	insight_mod = 6
 	slot = EYE
 
+/datum/ego_gifts/song
+	name = "Song of the Past"
+	icon_state = "song"
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = CHEEK
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"

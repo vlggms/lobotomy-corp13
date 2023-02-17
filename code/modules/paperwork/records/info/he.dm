@@ -565,3 +565,27 @@
 	<h4>White Resistance:</h4> Fatal <br>
 	<h4>Black Resistance:</h4> Fatal	<br>
 	<h4>Pale Resistance:</h4> Fatal	<br>"}
+
+//Siren
+/obj/item/paper/fluff/info/he/siren
+	name = "O-05-22"
+	info = {"<h1><center>O-05-22</center></h1>    <br>
+	Name : Siren That Sings The Past    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 5    <br>
+	Work Damage Type : White	<br>
+	Work Damage : Moderate	<br>
+	- Over time, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth Counter reached 0, a strange sound came from the abnormality.	<br>
+	- Other abnormalities became agitated if the sound did not cease.	<br>
+	- When the abnormality was turned off manually, the Qliphoth counter raised.	<br>
+	- When work was performed on the abnormality, the Qliphoth counter raised higher.	<br>
+	- When insight work was performed on the abnormality, time seemed to distort.	<br>
+	- Performing insight work multiple times, the employee occasionally perished inexplicably.	<br>
+	- Some agents have reported relief from certain symptoms after performing insight work.	<br>
+	<br>
+	<h4>Instinct:</h4> Very Low<br>
+	<h4>Insight:</h4> Very High<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
