@@ -50,6 +50,8 @@
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
+	range = 18 // Don't want people shooting it through the entire facility
+	hit_nondense_targets = TRUE
 
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"

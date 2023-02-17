@@ -161,6 +161,9 @@
 	///If TRUE, hit mobs even if they're on the floor and not our target
 	var/hit_stunned_targets = FALSE
 
+	/// If TRUE, hits non dense mobs
+	var/hit_nondense_targets = FALSE
+
 	///How much damage is added/deducted per tile
 	var/damage_falloff_tile = 0
 
@@ -510,7 +513,7 @@
 		if(L.stat == DEAD)
 			return FALSE
 		if(!L.density)
-			return FALSE
+			return hit_nondense_targets
 		if(L.body_position != LYING_DOWN)
 			return TRUE
 		var/stunned = HAS_TRAIT(L, TRAIT_IMMOBILIZED) && HAS_TRAIT(L, TRAIT_FLOORED) && HAS_TRAIT(L, TRAIT_HANDS_BLOCKED)
