@@ -454,6 +454,10 @@
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/M)
 	if(overdosed)
 		return
+	var/mob/living/carbon/human/H = M
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/sal_acid, 1)
+		return
 	if(M.getBruteLoss() > (M.maxHealth*0.25))
 		M.adjustBruteLoss(-4*REM, 0)
 	else
@@ -536,6 +540,9 @@
 	if(overdosed)
 		return
 	var/mob/living/carbon/human/H = M
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/mental_stabilizator, 1)
+		return
 	H.adjustSanityLoss(-5*REM) // That's healing 5 units.
 	..()
 	. = 1
@@ -674,6 +681,10 @@
 
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/M)
 	. = TRUE
+	var/mob/living/carbon/human/H = M
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 1)
+		return
 	if(holder.has_reagent(/datum/reagent/toxin/lexorin))
 		holder.remove_reagent(/datum/reagent/toxin/lexorin, 2)
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 1)

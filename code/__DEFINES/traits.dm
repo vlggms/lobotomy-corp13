@@ -335,7 +335,30 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FISH_SAFE_STORAGE "fish_case" //Fish in this won't die
 #define TRAIT_FISH_CASE_COMPATIBILE "fish_case_compatibile" //Stuff that can go inside fish cases
 
-//quirk traits
+//lobotomy quirk traits
+//positive quirks
+#define TRAIT_RESISTANT      	"resistant"
+#define TRAIT_SKILLED    	    "skilled"
+#define TRAIT_FLUFFY_TONGUE    	    "fluffy_tongue" // technically not positive, but it costs points
+//neutral quirks
+#define TRAIT_NERD          	"nerd"
+#define TRAIT_BRAWLER    	    "brawler"
+//negative quirks
+#define TRAIT_MINOR_RED     	"minor_red"
+#define TRAIT_MAJOR_RED	        "major_red"
+#define TRAIT_FATAL_RED	        "fatal_red"
+#define TRAIT_MINOR_WHITE	    "minor_white"
+#define TRAIT_MAJOR_WHITE	    "major_white"
+#define TRAIT_FATAL_WHITE      	"fatal_white"
+#define TRAIT_MINOR_BLACK     	"minor_black"
+#define TRAIT_MAJOR_BLACK	    "major_black"
+#define TRAIT_FATAL_BLACK	    "fatal_black"
+#define TRAIT_MINOR_PALE	    "minor_pale"
+#define TRAIT_MAJOR_PALE	    "major_pale"
+#define TRAIT_FATAL_PALE      	"fatal_pale"
+#define TRAIT_GUNS          	"guns"       // used for the "no guns" challenge
+#define TRAIT_HEALING          	"healing"    // used for the "no medipens" challenge
+//special quirks end
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"

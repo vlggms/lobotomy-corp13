@@ -6,44 +6,213 @@
 #define LOCATION_BACKPACK "in your backpack"
 #define LOCATION_HANDS "in your hands"
 
-/datum/quirk/badback
-	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
-	value = -8
-	mood_quirk = TRUE
-	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
-	lose_text = "<span class='notice'>Your back feels better.</span>"
-	medical_record_text = "Patient scans indicate severe and chronic back pain."
+// we give 1 point to quirks that minorly affect gameplay negativelly, like heavy sleeper that only practical negative shows up with apocalypse birb.
+// we give 2 points to quirks that noticably affect gameplay negativelly, like being deaf since you might not hear some very important info on comms, but generally its fine-ish.
+// we give 4 points to quirks that completelly change gameplay by taking away important things, or to quirks that will kill you. Like parapalegic that permanently bounds you to speed of a wheelchair or blindness that makes you... well blind.
+
+// Red damage quirks start
+/datum/quirk/minor_red
+	name = "Minor red damage weakness"
+	desc = "You take 10% more RED damage"
+	value = -1
+	gain_text = "<span class='danger'>You feel a bit weaker to RED damage</span>"
+	medical_record_text = "This patient is observed to take 10% more physical damage"
+	hardcore_value = 2
+
+/datum/quirk/minor_red/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.red_mod += 0.10
+
+/datum/quirk/major_red
+	name = "Major red damage weakness"
+	desc = "You take 25% more RED damage"
+	value = -2
+	gain_text = "<span class='danger'>You feel weaker to RED damage</span>"
+	medical_record_text = "This patient is observed to take 25% more physical damage"
 	hardcore_value = 4
 
-/datum/quirk/badback/on_process()
+/datum/quirk/major_red/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(H.back && istype(H.back, /obj/item/storage/backpack))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "back_pain", /datum/mood_event/back_pain)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
+	H.physiology.red_mod += 0.25
 
-/datum/quirk/blooddeficiency
+/datum/quirk/fatal_red
+	name = "Fatal red damage weakness"
+	desc = "You take twice as much RED damage"
+	value = -4
+	gain_text = "<span class='danger'>You feel extremelly weak to RED damage</span>"
+	medical_record_text = "This patient is observed to take double the physical damage"
+	hardcore_value = 8
+
+/datum/quirk/fatal_red/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.red_mod += 1.00
+
+// White damage quirks start
+
+/datum/quirk/minor_white
+	name = "Minor white damage weakness"
+	desc = "You take 10% more WHITE damage"
+	value = -1
+	gain_text = "<span class='danger'>You feel a bit weaker to WHITE damage</span>"
+	medical_record_text = "This patient is observed to take 10% more mental damage"
+	hardcore_value = 2
+
+/datum/quirk/minor_white/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.white_mod += 0.10
+
+/datum/quirk/major_white
+	name = "Major white damage weakness"
+	desc = "You take 25% more WHITE damage"
+	value = -2
+	gain_text = "<span class='danger'>You feel weaker to WHITE damage</span>"
+	medical_record_text = "This patient is observed to take 25% more mental damage"
+	hardcore_value = 4
+
+/datum/quirk/major_white/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.white_mod += 0.25
+
+/datum/quirk/fatal_white
+	name = "Fatal white damage weakness"
+	desc = "You take twice as much WHITE damage"
+	value = -4
+	gain_text = "<span class='danger'>You feel extremelly weak to WHITE damage</span>"
+	medical_record_text = "This patient is observed to take double the mental damage"
+	hardcore_value = 8
+
+/datum/quirk/fatal_white/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.white_mod += 1.00
+
+	// Black damage quirks start
+
+/datum/quirk/minor_black
+	name = "Minor black damage weakness"
+	desc = "You take 10% more BLACK damage"
+	value = -1
+	gain_text = "<span class='danger'>You feel a bit weaker to BLACK damage</span>"
+	medical_record_text = "This patient is observed to take 10% more physical and mental damage when applied at once"
+	hardcore_value = 2
+
+/datum/quirk/minor_black/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.black_mod += 0.10
+
+/datum/quirk/major_black
+	name = "Major black damage weakness"
+	desc = "You take 25% more BLACK damage"
+	value = -2
+	gain_text = "<span class='danger'>You feel weaker to BLACK damage</span>"
+	medical_record_text = "This patient is observed to take 25% more physical and mental damage when applied at once"
+	hardcore_value = 4
+
+/datum/quirk/major_black/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.black_mod += 0.25
+
+/datum/quirk/fatal_black
+	name = "Fatal black damage weakness"
+	desc = "You take twice as much BLACK damage"
+	value = -4
+	gain_text = "<span class='danger'>You feel extremelly weak to BLACK damage</span>"
+	medical_record_text = "This patient is observed to take double the physical and mental damage when applied at once"
+	hardcore_value = 8
+
+/datum/quirk/fatal_black/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.black_mod += 1.00
+
+	// Pale damage quirks start
+
+/datum/quirk/minor_pale
+	name = "Minor pale damage weakness"
+	desc = "You take 10% more PALE damage"
+	value = -1
+	gain_text = "<span class='danger'>You feel a bit weaker to PALE damage</span>"
+	medical_record_text = "This patient is observed to take 10% more physical damage to certain weaponry"
+	hardcore_value = 2
+
+/datum/quirk/minor_pale/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.pale_mod += 0.10
+
+/datum/quirk/major_pale
+	name = "Major pale damage weakness"
+	desc = "You take 25% more PALE damage"
+	value = -2
+	gain_text = "<span class='danger'>You feel weaker to PALE damage</span>"
+	medical_record_text = "This patient is observed to take 25% more physical damage to certain weaponry"
+	hardcore_value = 4
+
+/datum/quirk/major_pale/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.pale_mod += 0.25
+
+/datum/quirk/fatal_pale
+	name = "Fatal pale damage weakness"
+	desc = "You take twice as much PALE damage"
+	value = -4
+	gain_text = "<span class='danger'>You feel extremelly weak to PALE damage</span>"
+	medical_record_text = "This patient is observed to take double the physical damage to certain weaponry"
+	hardcore_value = 8
+
+/datum/quirk/fatal_pale/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.physiology.pale_mod += 1.00
+
+// Challange quirks start (they cause players to restort to a unique playstyle.)
+/datum/quirk/guns
+	name = "Challenge: No guns"
+	desc = "You refuse to use guns, afterall the bullets cost more than your entire life AND some ego fire like 400 rounds per minute. Surelly all other agents are in debt but you know better."
+	value = -1
+	mob_trait = TRAIT_NOGUNS
+	gain_text = "<span class='danger'>You can't use ranged EGO nor basic guns.</span>"
+	medical_record_text = "This patient refuses to use guns, understandable considering taxes."
+	hardcore_value = 0
+
+/datum/quirk/healing
+	name = "Challenge: No medipens"
+	desc = "Healing chemicals dont heal you. better hope clerks know how to use those R.A.C.K's if you fall into crit."
+	value = -1
+	mob_trait = TRAIT_HEALING
+	gain_text = "<span class='danger'>You can't be healed by any common chemicals.</span>"
+	medical_record_text = "This patient metabolism has stagnated due to some medicine condition - professional doctor"
+	hardcore_value = 0
+
+/datum/quirk/nonviolent //Renamed pacifist trait
+	name = "Challenge: No attacking"
+	desc = "You can never attack any abnormalities or people, this is a horrible idea and will make everyone hate you in most probability."
+	value = -1
+	mob_trait = TRAIT_PACIFISM
+	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
+	lose_text = "<span class='notice'>You think you can defend yourself again, thank god.</span>"
+	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm, how did they survive."
+	hardcore_value = 0
+
+// Special quirks end
+
+/datum/quirk/blooddeficiency // mostly dosent affect gameplay, MOSB and mermaid are the only ones affected
 	name = "Blood Deficiency"
 	desc = "Your body can't produce enough blood to sustain itself."
-	value = -8
+	value = -1
 	gain_text = "<span class='danger'>You feel your vigor slowly fading away.</span>"
 	lose_text = "<span class='notice'>You feel vigorous again.</span>"
 	medical_record_text = "Patient requires regular treatment for blood loss due to low production of blood."
-	hardcore_value = 8
+	hardcore_value = 2
 
 /datum/quirk/blooddeficiency/on_process(delta_time)
 	var/mob/living/carbon/human/H = quirk_holder
 	if(NOBLOOD in H.dna.species.species_traits) //can't lose blood if your species doesn't have any
 		return
 	else
-		if (H.blood_volume > (BLOOD_VOLUME_SAFE - 25)) // just barely survivable without treatment
+		if (H.blood_volume > (BLOOD_VOLUME_SAFE - 25)) // survivable
 			H.blood_volume -= 0.275 * delta_time
 
 /datum/quirk/blindness
 	name = "Blind"
 	desc = "You are completely blind, nothing can counteract this."
-	value = -16
+	value = -4
 	gain_text = "<span class='danger'>You can't see anything.</span>"
 	lose_text = "<span class='notice'>You miraculously gain back your vision.</span>"
 	medical_record_text = "Patient has permanent blindness."
@@ -54,7 +223,7 @@
 
 /datum/quirk/blindness/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/clothing/glasses/blindfold/white/B = new(get_turf(H))
+	var/obj/item/clothing/glasses/meson/B = new(get_turf(H))
 	if(!H.equip_to_slot_if_possible(B, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
 		H.put_in_hands(B)
 
@@ -66,11 +235,11 @@
 /datum/quirk/brainproblems
 	name = "Brain Tumor"
 	desc = "You have a little friend in your brain that is slowly destroying it. Better bring some mannitol!"
-	value = -12
+	value = -4
 	gain_text = "<span class='danger'>You feel smooth.</span>"
 	lose_text = "<span class='notice'>You feel wrinkled again.</span>"
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
-	hardcore_value = 12
+	hardcore_value = 8
 	/// Location of the bottle of pills on spawn
 	var/where
 
@@ -100,230 +269,31 @@
 /datum/quirk/deafness
 	name = "Deaf"
 	desc = "You are incurably deaf."
-	value = -8
+	value = -2
 	mob_trait = TRAIT_DEAF
 	gain_text = "<span class='danger'>You can't hear anything.</span>"
 	lose_text = "<span class='notice'>You're able to hear again!</span>"
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
-	hardcore_value = 12
-
-/datum/quirk/depression
-	name = "Depression"
-	desc = "You sometimes just hate life."
-	mob_trait = TRAIT_DEPRESSION
-	value = -3
-	gain_text = "<span class='danger'>You start feeling depressed.</span>"
-	lose_text = "<span class='notice'>You no longer feel depressed.</span>" //if only it were that easy!
-	medical_record_text = "Patient has a mild mood disorder causing them to experience acute episodes of depression."
-	mood_quirk = TRUE
-	hardcore_value = 1
+	hardcore_value = 4
 
 /datum/quirk/depression/on_process(delta_time)
 	if(DT_PROB(0.05, delta_time))
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "depression_mild", /datum/mood_event/depression_mild)
 
-/datum/quirk/family_heirloom
-	name = "Family Heirloom"
-	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
-	value = -2
-	mood_quirk = TRUE
-	var/obj/item/heirloom
-	var/where
-	medical_record_text = "Patient demonstrates an unnatural attachment to a family heirloom."
-	hardcore_value = 1
-
-/datum/quirk/family_heirloom/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/heirloom_type
-
-	if(ismoth(H) && prob(50))
-		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
-	else
-		switch(quirk_holder.mind.assigned_role)
-			//Service jobs
-			if("Clown")
-				heirloom_type = /obj/item/bikehorn/golden
-			if("Mime")
-				heirloom_type = /obj/item/food/baguette
-			if("Janitor")
-				heirloom_type = pick(/obj/item/mop, /obj/item/clothing/suit/caution, /obj/item/reagent_containers/glass/bucket, /obj/item/paper/fluff/stations/soap)
-			if("Cook")
-				heirloom_type = pick(/obj/item/reagent_containers/food/condiment/saltshaker, /obj/item/kitchen/rollingpin, /obj/item/clothing/head/chefhat)
-			if("Botanist")
-				heirloom_type = pick(/obj/item/cultivator, /obj/item/reagent_containers/glass/bucket, /obj/item/toy/plush/beeplushie)
-			if("Bartender")
-				heirloom_type = pick(/obj/item/reagent_containers/glass/rag, /obj/item/clothing/head/that, /obj/item/reagent_containers/food/drinks/shaker)
-			if("Curator")
-				heirloom_type = pick(/obj/item/pen/fountain, /obj/item/storage/pill_bottle/dice)
-			if("Chaplain")
-				heirloom_type = pick(/obj/item/toy/windup_toolbox, /obj/item/reagent_containers/food/drinks/bottle/holywater)
-			if("Assistant")
-				heirloom_type = pick(/obj/item/storage/toolbox/mechanical/old/heirloom, /obj/item/clothing/gloves/cut/heirloom)
-			//Security/Command
-			if("Captain")
-				heirloom_type = /obj/item/reagent_containers/food/drinks/flask/gold
-			if("Head of Security")
-				heirloom_type = /obj/item/book/manual/wiki/security_space_law
-			if("Head of Personnel")
-				heirloom_type = /obj/item/reagent_containers/food/drinks/trophy/silver_cup
-			if("Warden")
-				heirloom_type = /obj/item/book/manual/wiki/security_space_law
-			if("Security Officer")
-				heirloom_type = pick(/obj/item/book/manual/wiki/security_space_law, /obj/item/clothing/head/beret/sec)
-			if("Detective")
-				heirloom_type = /obj/item/reagent_containers/food/drinks/bottle/whiskey
-			if("Lawyer")
-				heirloom_type = pick(/obj/item/gavelhammer, /obj/item/book/manual/wiki/security_space_law)
-			if("Prisoner")
-				heirloom_type = /obj/item/pen/blue
-			//RnD
-			if("Research Director")
-				heirloom_type = /obj/item/toy/plush/slimeplushie
-			if("Scientist")
-				heirloom_type = /obj/item/toy/plush/slimeplushie
-			if("Roboticist")
-				heirloom_type = pick(subtypesof(/obj/item/toy/prize) + /obj/item/toy/plush/pkplush) //look at this nerd
-			if("Geneticist")
-				heirloom_type = /obj/item/clothing/under/shorts/purple
-			//Medical
-			if("Chief Medical Officer")
-				heirloom_type = /obj/item/storage/firstaid/ancient/heirloom
-			if("Medical Doctor")
-				heirloom_type = /obj/item/storage/firstaid/ancient/heirloom
-			if("Paramedic")
-				heirloom_type = /obj/item/storage/firstaid/ancient/heirloom
-			if("Psychologist")
-				heirloom_type = /obj/item/storage/pill_bottle
-			if("Chemist")
-				heirloom_type = /obj/item/book/manual/wiki/chemistry
-			if("Virologist")
-				heirloom_type = /obj/item/reagent_containers/syringe
-			//Engineering
-			if("Chief Engineer")
-				heirloom_type = pick(/obj/item/clothing/head/hardhat/white, /obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/wirecutters)
-			if("Station Engineer")
-				heirloom_type = pick(/obj/item/clothing/head/hardhat, /obj/item/screwdriver, /obj/item/wrench, /obj/item/weldingtool, /obj/item/crowbar, /obj/item/wirecutters)
-			if("Atmospheric Technician")
-				heirloom_type = pick(/obj/item/lighter, /obj/item/lighter/greyscale, /obj/item/storage/box/matches)
-			//Supply
-			if("Quartermaster")
-				heirloom_type = pick(/obj/item/stamp, /obj/item/stamp/denied)
-			if("Cargo Technician")
-				heirloom_type = /obj/item/clipboard
-			if("Shaft Miner")
-				heirloom_type = pick(/obj/item/pickaxe/mini, /obj/item/shovel)
-
-	if(!heirloom_type)
-		heirloom_type = pick(
-		/obj/item/toy/cards/deck,
-		/obj/item/lighter,
-		/obj/item/dice/d20)
-	heirloom = new heirloom_type(get_turf(quirk_holder))
-	var/list/slots = list(
-		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-		LOCATION_BACKPACK = ITEM_SLOT_BACKPACK,
-		LOCATION_HANDS = ITEM_SLOT_HANDS
-	)
-	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
-
-/datum/quirk/family_heirloom/post_add()
-	if(where == LOCATION_BACKPACK)
-		var/mob/living/carbon/human/H = quirk_holder
-		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
-
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
-
-	var/list/names = splittext(quirk_holder.real_name, " ")
-	var/family_name = names[names.len]
-
-	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
-
-/datum/quirk/family_heirloom/on_process()
-	if(heirloom in quirk_holder.GetAllContents())
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "family_heirloom", /datum/mood_event/family_heirloom)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom")
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "family_heirloom_missing", /datum/mood_event/family_heirloom_missing)
-
-/datum/quirk/family_heirloom/remove()
-	if(quirk_holder) // if the holder is still exists lets remove moods
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom_missing")
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "family_heirloom")
-
-/datum/quirk/frail
-	name = "Frail"
-	desc = "You have skin of paper and bones of glass! You suffer wounds much more easily than most."
-	value = -6
-	mob_trait = TRAIT_EASILY_WOUNDED
-	gain_text = "<span class='danger'>You feel frail.</span>"
-	lose_text = "<span class='notice'>You feel sturdy again.</span>"
-	medical_record_text = "Patient is absurdly easy to injure. Please take all due dilligence to avoid possible malpractice suits."
-	hardcore_value = 4
-
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
 	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up."
-	value = -2
+	value = -1
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = "<span class='danger'>You feel sleepy.</span>"
 	lose_text = "<span class='notice'>You feel awake again.</span>"
 	medical_record_text = "Patient has abnormal sleep study results and is difficult to wake up."
 	hardcore_value = 2
 
-/datum/quirk/hypersensitive
-	name = "Hypersensitive"
-	desc = "For better or worse, everything seems to affect your mood more than it should."
-	value = -2
-	gain_text = "<span class='danger'>You seem to make a big deal out of everything.</span>"
-	lose_text = "<span class='notice'>You don't seem to make a big deal out of everything anymore.</span>"
-	medical_record_text = "Patient demonstrates a high level of emotional volatility."
-	hardcore_value = 3
-
-/datum/quirk/hypersensitive/add()
-	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
-	if(mood)
-		mood.mood_modifier += 0.5
-
-/datum/quirk/hypersensitive/remove()
-	if(quirk_holder)
-		var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
-		if(mood)
-			mood.mood_modifier -= 0.5
-
-/datum/quirk/light_drinker
-	name = "Light Drinker"
-	desc = "You just can't handle your drinks and get drunk very quickly."
-	value = -2
-	mob_trait = TRAIT_LIGHT_DRINKER
-	gain_text = "<span class='notice'>Just the thought of drinking alcohol makes your head spin.</span>"
-	lose_text = "<span class='danger'>You're no longer severely affected by alcohol.</span>"
-	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
-	hardcore_value = 3
-
-/datum/quirk/nearsighted //t. errorage
-	name = "Nearsighted"
-	desc = "You are nearsighted without prescription glasses, but spawn with a pair."
-	value = -1
-	gain_text = "<span class='danger'>Things far away from you start looking blurry.</span>"
-	lose_text = "<span class='notice'>You start seeing faraway things normally again.</span>"
-	medical_record_text = "Patient requires prescription glasses in order to counteract nearsightedness."
-	hardcore_value = 5
-
-/datum/quirk/nearsighted/add()
-	quirk_holder.become_nearsighted(ROUNDSTART_TRAIT)
-
-/datum/quirk/nearsighted/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/clothing/glasses/regular/glasses = new(get_turf(H))
-	if(!H.equip_to_slot_if_possible(glasses, ITEM_SLOT_EYES, bypass_equip_delay_self = TRUE))
-		H.put_in_hands(glasses)
-
 /datum/quirk/nyctophobia
 	name = "Nyctophobia"
 	desc = "As far as you can remember, you've always been afraid of the dark. While in the dark without a light source, you instinctually act careful, and constantly feel a sense of dread."
-	value = -3
+	value = -1
 	medical_record_text = "Patient demonstrates a fear of the dark. (Seriously?)"
 	hardcore_value = 5
 
@@ -341,20 +311,10 @@
 	else
 		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "nyctophobia")
 
-/datum/quirk/nonviolent
-	name = "Pacifist"
-	desc = "The thought of violence makes you sick. So much so, in fact, that you can't hurt anyone."
-	value = -8
-	mob_trait = TRAIT_PACIFISM
-	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
-	lose_text = "<span class='notice'>You think you can defend yourself again.</span>"
-	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm."
-	hardcore_value = 6
-
 /datum/quirk/paraplegic
 	name = "Paraplegic"
 	desc = "Your legs do not function. Nothing will ever fix this. But hey, free wheelchair!"
-	value = -12
+	value = -4
 	human_only = TRUE
 	gain_text = null // Handled by trauma.
 	lose_text = null
@@ -390,18 +350,10 @@
 		if(I.fingerprintslast == quirk_holder.ckey)
 			quirk_holder.put_in_hands(I)
 
-/datum/quirk/poor_aim
-	name = "Poor Aim"
-	desc = "You're terrible with guns and can't line up a straight shot to save your life. Dual-wielding is right out. You also close your eyes when you shoot."
-	value = -4
-	mob_trait = TRAIT_POOR_AIM
-	medical_record_text = "Patient possesses a strong tremor in both hands."
-	hardcore_value = 3
-
 /datum/quirk/prosopagnosia
 	name = "Prosopagnosia"
 	desc = "You have a mental disorder that prevents you from being able to recognize faces at all."
-	value = -4
+	value = -1
 	mob_trait = TRAIT_PROSOPAGNOSIA
 	medical_record_text = "Patient suffers from prosopagnosia and cannot recognize faces."
 	hardcore_value = 5
@@ -409,7 +361,7 @@
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
-	value = -4
+	value = -2
 	var/slot_string = "limb"
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
 	hardcore_value = 3
@@ -443,20 +395,10 @@
 	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
 	you need to use a welding tool and cables to repair it, instead of bruise packs and ointment.</span>")
 
-/datum/quirk/pushover
-	name = "Pushover"
-	desc = "Your first instinct is always to let people push you around. Resisting out of grabs will take conscious effort."
-	value = -8
-	mob_trait = TRAIT_GRABWEAKNESS
-	gain_text = "<span class='danger'>You feel like a pushover.</span>"
-	lose_text = "<span class='notice'>You feel like standing up for yourself.</span>"
-	medical_record_text = "Patient presents a notably unassertive personality and is easy to manipulate."
-	hardcore_value = 4
-
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"
 	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. <b>This is not a license to grief.</b>"
-	value = -8
+	value = -1
 	//no mob trait because it's handled uniquely
 	gain_text = "<span class='userdanger'>...</span>"
 	lose_text = "<span class='notice'>You feel in tune with the world again.</span>"
@@ -482,7 +424,7 @@
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"
 	desc = "Talking to people is very difficult for you, and you often stutter or even lock up."
-	value = -3
+	value = -1
 	gain_text = "<span class='danger'>You start worrying about what you're saying.</span>"
 	lose_text = "<span class='notice'>You feel easier about talking again.</span>" //if only it were that easy!
 	medical_record_text = "Patient is usually anxious in social encounters and prefers to avoid them."
@@ -559,7 +501,7 @@
 /datum/quirk/junkie
 	name = "Junkie"
 	desc = "You can't get enough of hard drugs."
-	value = -6
+	value = -1
 	gain_text = "<span class='danger'>You suddenly feel the craving for drugs.</span>"
 	medical_record_text = "Patient has a history of hard drugs."
 	hardcore_value = 4
@@ -638,7 +580,7 @@
 /datum/quirk/junkie/smoker
 	name = "Smoker"
 	desc = "Sometimes you just really want a smoke. Probably not great for your lungs."
-	value = -4
+	value = -1
 	gain_text = "<span class='danger'>You could really go for a smoke right about now.</span>"
 	medical_record_text = "Patient is a current smoker."
 	reagent_type = /datum/reagent/drug/nicotine
@@ -669,101 +611,6 @@
 			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
 			return
 		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
-
-/datum/quirk/unstable
-	name = "Unstable"
-	desc = "Due to past troubles, you are unable to recover your sanity if you lose it. Be very careful managing your mood!"
-	value = -10
-	mob_trait = TRAIT_UNSTABLE
-	gain_text = "<span class='danger'>There's a lot on your mind right now.</span>"
-	lose_text = "<span class='notice'>Your mind finally feels calm.</span>"
-	medical_record_text = "Patient's mind is in a vulnerable state, and cannot recover from traumatic events."
-	hardcore_value = 9
-
-/datum/quirk/allergic
-	name = "Extreme Medicine Allergy"
-	desc = "Ever since you were a kid, you've been allergic to certain chemicals..."
-	value = -6
-	gain_text = "<span class='danger'>You feel your immune system shift.</span>"
-	lose_text = "<span class='notice'>You feel your immune system phase back into perfect shape.</span>"
-	medical_record_text = "Patient's immune system responds violently to certain chemicals."
-	hardcore_value = 3
-	var/list/allergies = list()
-	var/list/blacklist = list(/datum/reagent/medicine/c2,/datum/reagent/medicine/epinephrine,/datum/reagent/medicine/adminordrazine,/datum/reagent/medicine/omnizine/godblood,/datum/reagent/medicine/cordiolis_hepatico,/datum/reagent/medicine/synaphydramine,/datum/reagent/medicine/diphenhydramine)
-
-/datum/quirk/allergic/on_spawn()
-	var/list/chem_list = subtypesof(/datum/reagent/medicine) - blacklist
-	for(var/i in 0 to 5)
-		var/chem = pick(chem_list)
-		chem_list -= chem
-		allergies += chem
-
-/datum/quirk/allergic/post_add()
-	var/display = ""
-	for(var/C in allergies)
-		var/datum/reagent/chemical = C
-		display += initial(chemical.name) + ", "
-	name = "Extreme " + display +"Allergies"
-	medical_record_text = "Patient's immune system responds violently to [display]"
-	quirk_holder?.mind.store_memory("You are allergic to [display]")
-	to_chat(quirk_holder, "<span class='boldnotice'>You are allergic to [display]make sure not to consume any of it!</span>")
-	if(!ishuman(quirk_holder))
-		return
-	var/mob/living/carbon/human/human_holder = quirk_holder
-	var/obj/item/clothing/accessory/allergy_dogtag/dogtag = new(get_turf(human_holder))
-	var/list/slots = list (
-		"backpack" = ITEM_SLOT_BACKPACK,
-		"hands" = ITEM_SLOT_HANDS
-	)
-	dogtag.display = display
-	human_holder.equip_in_one_of_slots(dogtag, slots , qdel_on_fail = TRUE)
-
-/datum/quirk/allergic/on_process(delta_time)
-	. = ..()
-	if(!iscarbon(quirk_holder))
-		return
-	var/mob/living/carbon/carbon_quirk_holder = quirk_holder
-	for(var/M in allergies)
-		var/datum/reagent/instantiated_med = carbon_quirk_holder.reagents.has_reagent(M)
-		if(!instantiated_med)
-			continue
-		//Just halts the progression, I'd suggest you run to medbay asap to get it fixed
-		if(carbon_quirk_holder.reagents.has_reagent(/datum/reagent/medicine/epinephrine))
-			instantiated_med.reagent_removal_skip_list |= ALLERGIC_REMOVAL_SKIP
-			return //intentionally stops the entire proc so we avoid the organ damage after the loop
-		instantiated_med.reagent_removal_skip_list -= ALLERGIC_REMOVAL_SKIP
-		carbon_quirk_holder.adjustToxLoss(3 * delta_time)
-		carbon_quirk_holder.reagents.add_reagent(/datum/reagent/toxin/histamine, 3 * delta_time)
-		if(DT_PROB(10, delta_time))
-			carbon_quirk_holder.vomit()
-			carbon_quirk_holder.adjustOrganLoss(pick(ORGAN_SLOT_BRAIN,ORGAN_SLOT_APPENDIX,ORGAN_SLOT_LUNGS,ORGAN_SLOT_HEART,ORGAN_SLOT_LIVER,ORGAN_SLOT_STOMACH),10)
-
-/datum/quirk/bad_touch
-	name = "Bad Touch"
-	desc = "You don't like hugs. You'd really prefer if people just left you alone."
-	mob_trait = TRAIT_BADTOUCH
-	value = -1
-	gain_text = "<span class='danger'>You just want people to leave you alone.</span>"
-	lose_text = "<span class='notice'>You could use a big hug.</span>"
-	medical_record_text = "Patient has disdain for being touched. Potentially has undiagnosed haphephobia."
-	mood_quirk = TRUE
-	hardcore_value = 1
-
-/datum/quirk/bad_touch/add()
-	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT), .proc/uncomfortable_touch)
-
-/datum/quirk/bad_touch/remove()
-	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT))
-
-/datum/quirk/bad_touch/proc/uncomfortable_touch()
-	SIGNAL_HANDLER
-
-	new /obj/effect/temp_visual/annoyed(quirk_holder.loc)
-	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
-	if(mood.sanity <= SANITY_NEUTRAL)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/very_bad_touch)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/bad_touch)
 
 #undef LOCATION_LPOCKET
 #undef LOCATION_RPOCKET

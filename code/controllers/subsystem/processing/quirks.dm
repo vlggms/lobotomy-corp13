@@ -33,7 +33,13 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							// Tegustation Prosthetic limbs edit ends
 							list("Clown Fan","Mime Fan"), \
 							list("Bad Touch", "Friendly"), \
-							list("Extrovert", "Introvert"))
+							list("Extrovert", "Introvert"), \
+							//special stuff starts here
+							list("Challenge: No guns", "Challenge: No attacking"), \
+							list("Minor red damage weakness", "Major red damage weakness", "Fatal red damage weakness"), \
+							list("Minor white damage weakness", "Major white damage weakness", "Fatal white damage weakness"), \
+							list("Minor black damage weakness", "Major black damage weakness", "Fatal black damage weakness"), \
+							list("Minor pale damage weakness", "Major pale damage weakness", "Fatal pale damage weakness"))
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
