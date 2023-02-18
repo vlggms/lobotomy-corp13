@@ -54,7 +54,6 @@ task-install() {
 task-webpack() {
   cd "${base_dir}"
   yarn run webpack-cli "${@}"
-  touch "../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm"
 }
 
 ## Runs a development server
@@ -90,14 +89,13 @@ task-clean() {
   rm -rf .yarn/cache
   rm -rf .yarn/unplugged
   rm -rf .yarn/webpack
-  rm -rf .yarn/build-state.yml
-  rm -rf .yarn/install-state.gz
+  rm -f .yarn/build-state.yml
+  rm -f .yarn/install-state.gz
+  rm -f .yarn/install-target
   rm -f .pnp.js
   ## NPM artifacts
   rm -rf **/node_modules
   rm -f **/package-lock.json
-  ## Dummy DM
-  rm -f ../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm
 }
 
 ## Installs merge drivers and git hooks

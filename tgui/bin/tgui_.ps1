@@ -43,7 +43,6 @@ function task-install {
 ## Runs webpack
 function task-webpack {
   yarn run webpack-cli @Args
-  New-Item -ItemType file "../code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm"
 }
 
 ## Runs a development server
@@ -73,8 +72,9 @@ function task-clean {
   Remove-Quiet -Recurse -Force ".yarn\cache"
   Remove-Quiet -Recurse -Force ".yarn\unplugged"
   Remove-Quiet -Recurse -Force ".yarn\webpack"
-  Remove-Quiet -Recurse -Force ".yarn\build-state.yml"
-  Remove-Quiet -Recurse -Force ".yarn\install-state.gz"
+  Remove-Quiet -Force ".yarn\build-state.yml"
+  Remove-Quiet -Force ".yarn\install-state.gz"
+  Remove-Quiet -Force ".yarn\install-target"
   Remove-Quiet -Force ".pnp.js"
   ## NPM artifacts
   Get-ChildItem -Path "." -Include "node_modules" -Recurse -File:$false | Remove-Item -Recurse -Force
