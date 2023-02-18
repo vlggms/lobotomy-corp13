@@ -7,7 +7,7 @@
 	maxHealth = 1000
 	health = 1000
 	move_resist = MOVE_FORCE_STRONG //So she can't be yeeted away and delayed indefinitely
-	move_to_delay = 10 //She needs to be slow so she doesn't reach home too fast
+	move_to_delay = 13 //She needs to be slow so she doesn't reach home too fast
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2) //Endure red because catt mentions physical attacks can't hurt her at all.
 	melee_damage_lower = 1
 	melee_damage_upper = 1 //Irrelevant, she does not attack of her own volition
@@ -140,7 +140,7 @@
 		return
 
 	playsound(src, 'sound/abnormalities/roadhome/House_NormalAtk.ogg', 100, FALSE, 8)
-	for(var/mob/living/L in livinginrange(15, src))
+	for(var/mob/living/L in view(15, src))
 		if(!ishuman(L) || L.stat == DEAD || L.has_status_effect(/datum/status_effect/stay_home))
 			continue
 		L.apply_status_effect(/datum/status_effect/stay_home)
@@ -350,7 +350,7 @@
 
 /datum/ai_controller/insane/road_home/PossessPawn(atom/new_pawn)
 	. = ..()
-	move_speed = rand(10, 15) //Everyone has a slightly different move speed so they don't trip over each other. They should also be slower than the road home.
+	move_speed = rand(14, 23) //Everyone has a slightly different move speed so they don't trip over each other. They should also be slower than the road home.
 	addtimer(CALLBACK(src, .proc/MoveToBrick), move_speed)
 
 /datum/ai_controller/insane/road_home/proc/MoveToBrick()
