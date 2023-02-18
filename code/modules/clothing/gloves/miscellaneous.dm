@@ -188,3 +188,22 @@
 	name = "K-Corporation assistant envirogloves"
 	icon_state = "internplasma"
 	inhand_icon_state = "internplasma"
+
+/obj/item/clothing/gloves/dimensional_storage
+	name = "black gloves"
+	desc = "A pair of extra black gloves infused with singularity which allows their user to store various items inside a dimensional pocket."
+	icon_state = "black"
+	inhand_icon_state = "blackgloves"
+	color = "#555555"
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
+	resistance_flags = NONE
+
+/obj/item/clothing/gloves/dimensional_storage/ComponentInitialize()
+	AddComponent(/datum/component/storage/concrete)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 35 // You can store up to 7 huge weapons
+	STR.max_w_class = WEIGHT_CLASS_HUGE
+	STR.max_items = 30

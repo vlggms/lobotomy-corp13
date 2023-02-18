@@ -27,6 +27,10 @@
 	damage = 20
 	stamina = 80
 
+/obj/projectile/bullet/a762_atelier
+	damage = 120
+	armour_penetration = 0
+
 // Harpoons (Harpoon Gun)
 
 /obj/projectile/bullet/harpoon

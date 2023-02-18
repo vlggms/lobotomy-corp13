@@ -25,6 +25,8 @@
 			return ("Unknown")
 		else
 			return real_name
+	if(istype(wear_mask, /obj/item/clothing/mask/silence))
+		return ("Unknown")
 	if(mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 		if(changeling?.mimicing )

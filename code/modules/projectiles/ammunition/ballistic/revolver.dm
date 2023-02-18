@@ -11,6 +11,13 @@
 	desc = "A .357 bullet casing, manufactured to exceedingly high standards."
 	projectile_type = /obj/projectile/bullet/a357/match
 
+/obj/item/ammo_casing/a357/atelier
+	projectile_type = /obj/projectile/bullet/a357/atelier
+
+/obj/item/ammo_casing/a357/atelier/examine_more(mob/user)
+	. = ..()
+	. += "<span class='notice'>You notice logotype of 'Atelier Logic' workshop on the casing.</span>"
+
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/item/ammo_casing/n762

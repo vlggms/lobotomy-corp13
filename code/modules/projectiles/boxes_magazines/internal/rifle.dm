@@ -29,3 +29,8 @@
 	max_ammo = 1
 	caliber = CALIBER_HARPOON
 	ammo_type = /obj/item/ammo_casing/caseless/harpoon
+
+// Stuff for semi-automatic rifles
+/obj/item/ammo_box/magazine/internal/boltaction/atelier
+	name = "atelier logic rifle internal magazine"
+	ammo_type = /obj/item/ammo_casing/a762/atelier

@@ -10,6 +10,13 @@
 /obj/item/ammo_casing/a762/enchanted
 	projectile_type = /obj/projectile/bullet/a762_enchanted
 
+/obj/item/ammo_casing/a762/atelier
+	projectile_type = /obj/projectile/bullet/a762_atelier
+
+/obj/item/ammo_casing/a762/atelier/examine_more(mob/user)
+	. = ..()
+	. += "<span class='notice'>You notice logotype of 'Atelier Logic' workshop on the casing.</span>"
+
 // 5.56mm (M-90gl Carbine)
 
 /obj/item/ammo_casing/a556
