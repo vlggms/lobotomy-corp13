@@ -853,9 +853,9 @@
 /obj/item/powered_gadget/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "gadget1"
-	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2_deactivated"
+	default_icon = "clerkbot2_deactivated" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 10000 //1 use before requires recharge
 
 /obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
@@ -870,12 +870,21 @@
 			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 
 // Clerkbot Boio
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	if(prob(50))
+		icon_state = "clerkbot1"
+		icon_living = "clerkbot1"
+
 /mob/living/simple_animal/hostile/clerkbot
-	name = "A well rounded Clerkbot"
+	name = "A Well Rounded Clerkbot"
 	desc = "Trusted and loyal best friend."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "cube"
-	icon_living = "cube"
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
 	faction = list("neutral")
 	health = 150
 	maxHealth = 150
@@ -904,7 +913,7 @@
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
 	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
-	batterycost = 2000 //5 use before requires recharge
+	batterycost = 1500 //6 use before requires recharge
 	var/batterycost_stun = 3000 //3 uses before recharge
 	var/current_state = FALSE //FALSE = Stun, TRUE = Slow
 	var/hit_message= null
@@ -922,7 +931,7 @@
 
 /obj/item/powered_gadget/handheld_taser/attack(var/mob/living/T, mob/living/user)
 	if(user.a_intent == INTENT_HARM)
-		if(!isabnormalitymob(T))
+		if(isabnormalitymob(T))
 			if (cell && cell.charge >= batterycost)
 				hit_message= "<span class='userdanger'>[user] smashes the taser into [T].</span>"
 				cell.charge = cell.charge - batterycost
@@ -938,6 +947,7 @@
 				for(var/mob/living/carbon/human/person in view(7, user))
 					to_chat(person, hit_message)
 				T.apply_status_effect(/datum/status_effect/qliphothoverload)
+				T.Knockdown(1)
 			else if((cell && cell.charge >= batterycost)&&(current_state))
 				hit_message= "<span class='userdanger'>[user] smashes the taser into [T].</span>"
 				cell.charge = cell.charge - batterycost
