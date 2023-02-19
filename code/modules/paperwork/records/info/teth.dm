@@ -427,3 +427,29 @@
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Low<br>"}
+
+//My Sweet Home
+/obj/item/paper/fluff/info/teth/my_sweet_home
+	name = "T-04-138"
+	info = {"<h1><center>T-04-138</center></h1>	<br>
+	Name : My Sweet Home				<br>
+	Risk Class : Teth					<br>
+	Max PE Boxes : 12					<br>
+	Qliphoth Counter : 1				<br>
+	Work Damage Type : Black			<br>
+	Work Damage : Moderate				<br>
+	- When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.	<br>
+	- Upon finising Attachment work thrice, the Agent was compelled to approach with the key.	<br>
+	- Upon failing work or getting to three Attachments, the abnormality breached after melding with the Agent.	<br>
+	<br>
+	<h4>Instinct:</h4> Low/Common		<br>
+	<h4>Insight:</h4> Low/Common		<br>
+	<h4>Attachment:</h4> Very High		<br>
+	<h4>Repression:</h4> High/Common	<br>
+	<h4><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Moderate	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Endured	<br>
+	<h4>Black Resistance:</h4> Weak		<br>
+	<h4>Pale Resistance:</h4> Fatal		<br>"}
