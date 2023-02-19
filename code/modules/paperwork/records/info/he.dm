@@ -589,3 +589,32 @@
 	<h4>Insight:</h4> Very High<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//Jangsan Tiger
+/obj/item/paper/fluff/info/he/jangsan
+	name = "F-02-10"
+	info = {"<h1><center>F-02-10</center></h1>    <br>
+	Name : Jangsan Tiger    <br>
+	Risk Class : HE    <br>
+	Max PE Boxes : 16    <br>
+	Qliphoth Counter : 3    <br>
+	Work Damage Type : Red	<br>
+	Work Damage : Moderate	<br>
+	- When an employee died within the facility, the Qliphoth Counter decreased.	<br>
+	- When powerful employees performed work, the Qliphoth Counter increased.<br>
+	- For every stat at or above level 3, the work chance was reduced.	<br>
+	- When all stats were at level 1, the Qliphoth counter decreased upon completion of work.	<br>
+	- Agents with all stats below level 2 perish with alarming frequency near this abnormality.	<br>
+
+	<br>
+	<h4>Instinct:</h4> High<br>
+	<h4>Insight:</h4> High<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> High<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> Very High	<br>
+	<h4>Red Resistance:</h4> Endured	<br>
+	<h4>White Resistance:</h4> Normal	<br>
+	<h4>Black Resistance:</h4> Weak	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}
