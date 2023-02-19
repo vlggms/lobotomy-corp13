@@ -70,6 +70,12 @@
 	falloff_distance = 35 //minimal falloff due to being a long sound
 	end_sound = 'sound/abnormalities/siren/needle2.ogg'
 
+/datum/looping_sound/clown_ambience
+	mid_sounds = 'sound/abnormalities/clownsmiling/clownloop.ogg'
+	mid_length = 30 SECONDS
+	volume = 25
+	extra_range = -4
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'

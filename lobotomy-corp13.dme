@@ -2630,6 +2630,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\void_dream.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\alriune.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\big_bird.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\clown_smiling.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\despair_knight.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\dreaming_current.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\ebony_queen.dm"
