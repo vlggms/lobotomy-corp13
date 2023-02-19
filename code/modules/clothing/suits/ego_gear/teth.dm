@@ -133,3 +133,9 @@
 	desc = "I looked, and behold, a pale horse; and he who sat on it had the name Death."
 	icon_state = "revelation"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 30)
+	
+/obj/item/clothing/suit/armor/ego_gear/hearth //my sweet home
+	name = "Hearth"
+	desc = "A Home contains everything you need."
+	icon_state = "hearth"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = -10) //20

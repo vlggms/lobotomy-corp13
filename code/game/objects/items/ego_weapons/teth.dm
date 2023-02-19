@@ -262,3 +262,63 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/hearth //From my sweet home.
+	name = "Hearth"
+	desc = "Home sweet home. Warmth and safety aplenty."
+	special = "This weapon has a ranged attack."
+	icon_state = "hearth"
+	var/icon_on = "hearth_glow"
+	var/icon_off = "hearth"
+	force = 18
+	attack_speed = 1.2
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("swipes", "slashes")
+	attack_verb_simple = list("swipe", "slash")
+	hitsound = null
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 20
+							)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1.3 SECONDS
+	var/ranged_damage = 20
+
+	//light_system = MOVABLE_LIGHT_DIRECTIONAL
+	//light_color = COLOR_ORANGE
+	//light_range = 4
+	//light_power = 5
+	//light_on = FALSE
+
+/obj/item/ego_weapon/hearth/proc/IconOff()
+	icon_state = icon_off
+	//light_on = FALSE
+
+/obj/item/ego_weapon/hearth/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 5))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	icon_state = icon_on
+	//light_on = TRUE
+	addtimer(CALLBACK(src, .proc/IconOff), 20)
+	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
+	var/damage_dealt = 0
+	for(var/turf/open/T in range(target_turf, 0))
+		new /obj/effect/temp_visual/smash1(T)
+		for(var/mob/living/L in T.contents)
+			L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+				damage_dealt += ranged_damage
+
+/obj/effect/temp_visual/smash1
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smash1"
+	duration = 3

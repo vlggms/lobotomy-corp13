@@ -184,3 +184,12 @@
 /datum/ego_datum/armor/revelation
 	item_path = /obj/item/clothing/suit/armor/ego_gear/revelation
 	cost = 20
+
+// My Sweet Home - Hearth
+/datum/ego_datum/armor/hearth
+	item_path = /obj/item/clothing/suit/armor/ego_gear/hearth
+	cost = 20
+
+/datum/ego_datum/weapon/hearth
+	item_path = /obj/item/ego_weapon/hearth
+	cost = 20

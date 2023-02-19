@@ -315,6 +315,13 @@
 	temperance_bonus = 2
 	slot = HAT
 
+/datum/ego_gifts/hearth
+	name = "Hearth"
+	icon_state = "hearth"
+	prudence_bonus = 2
+	temperance_bonus = 2
+	slot = NECKWEAR
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
