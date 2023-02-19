@@ -59,6 +59,8 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
+	/// Variable that stores any objects the abno may bring with it on spawn (Example: /obj/structure/pbird_perch). Reccomended to define what the object is in the same file as the abno.
+	var/abno_object = null
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
@@ -171,7 +173,9 @@
 
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
-	return
+	if((locate(abno_object) in get_turf(src))||(!abno_object))
+		return
+	new abno_object(get_turf(src))
 
 // transfers a var to the datum to be used later
 /mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
