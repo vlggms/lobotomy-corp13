@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird
 	name = "Punishing Bird"
 	desc = "A white bird with tiny beak. Looks harmless."
-	icon = 'icons/mob/punishing_bird.dmi'
-	icon_state = "pbird"
-	icon_living = "pbird"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "pbird_breach"
+	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
@@ -56,6 +56,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
+	if(locate(/obj/structure/pbird_perch) in get_turf(src))
+		icon_state = "pbird"
+		pixel_x = 15
+		pixel_y = 32
+		base_pixel_x = 15
+		base_pixel_y = 32
+		is_flying_animal = FALSE
+		update_icon()
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
 
@@ -83,6 +91,10 @@
 	visible_message("<span class='notice'>\The [src] turns back into a fuzzy looking bird!</span>")
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	base_pixel_x = initial(base_pixel_x)
+	base_pixel_y = initial(base_pixel_y)
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
 	rapid_melee = initial(rapid_melee)
@@ -186,6 +198,17 @@
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
 
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/PostSpawn()
+	..()
+	if(locate(/obj/structure/pbird_perch) in get_turf(src))
+		return
+	icon_state = "pbird"
+	pixel_x = 15
+	pixel_y = 32
+	base_pixel_x = 15
+	base_pixel_y = 32
+	new /obj/structure/pbird_perch(get_turf(src))
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
 		enemies = list() // This is done so it stops attacking random people that punched it before transformation
@@ -229,6 +252,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user)
 	..()
+	icon_state = initial(icon_state)
+	icon_living = initial(icon_living)
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	base_pixel_x = initial(base_pixel_x)
+	base_pixel_y = initial(base_pixel_y)
+	update_icon()
 	addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS)
 	return
 
@@ -277,3 +307,15 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
+//Punishing Bird Perch
+/obj/structure/pbird_perch
+	name = "dark tree perch"
+	desc = "A thin tree with wood dark as charcoal that only one bird makes a habit of perching on. Towards the base of the tree hangs a shark toothed necklace. Something prevents you from removing the necklace from the tree."
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "pbird_perch"
+	pixel_x = -16
+	base_pixel_x = -16
+	anchored = TRUE
+	density = FALSE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
