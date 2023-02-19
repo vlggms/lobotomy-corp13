@@ -103,3 +103,16 @@
 		if(L.stat != DEAD && L != firer && !L.faction_check_mob(firer, FALSE))
 			return Bump(L)
 	..()
+
+/obj/projectile/clown_throw
+	name = "blade"
+	desc = "A blade thrown maliciously"
+	icon_state = "clown"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	damage = 5
+	knockdown = 5
+
+/obj/projectile/clown_throw/Initialize()
+	. = ..()
+	SpinAnimation()

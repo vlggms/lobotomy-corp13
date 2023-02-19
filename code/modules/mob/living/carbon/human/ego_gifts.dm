@@ -558,6 +558,14 @@
 	justice_bonus = 4
 	slot = HAT
 
+/datum/ego_gifts/darkcarnival
+	name = "Dark Carnival"
+	icon_state = "dark_carnival"
+	temperance_bonus = 4
+	prudence_bonus = 4
+	justice_bonus = -2
+	slot = FACE
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"

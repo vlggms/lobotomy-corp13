@@ -490,3 +490,27 @@
 	<h4>White Resistance:</h4> Resistant	<br>
 	<h4>Black Resistance:</h4> Normal	<br>
 	<h4>Pale Resistance:</h4> Endured	<br>"}
+
+//Clown Smiling at Me
+/obj/item/paper/fluff/info/waw/clown
+	name = "O-01-17"
+	info = {"<h1><center>O-01-17</center></h1>	<br>
+	Name : Clown Smiling at Me	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Good, the Qliphoth Counter lowered with a high probability.	<br>
+	<br>
+	<h4>Instinct:</h4> Low<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> High<br>
+	<h4>Repression:</h4> Low<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Normal<br>
+	<h4>White Resistance:</h4> Normal<br>
+	<h4>Black Resistance:</h4> Weak<br>
+	<h4>Pale Resistance:</h4> Weak	<br>"}
