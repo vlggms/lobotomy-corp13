@@ -501,8 +501,9 @@
 	Qliphoth Counter : 1	<br>
 	Work Damage Type : White	<br>
 	Work Damage : High	<br>
-	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
-	- When the work result was Good, the Qliphoth Counter lowered with a high probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the work result was Good, the Qliphoth Counter lowered.	<br>
+	- O-01-17 explodes upon death, causing nearby empoloyees to take high RED damage if caught in the blast.	<br>
 	<br>
 	<h4>Instinct:</h4> Low<br>
 	<h4>Insight:</h4> Common<br>

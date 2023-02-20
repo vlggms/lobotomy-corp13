@@ -116,7 +116,7 @@
 
 // Prevents knife throwing in mele range
 /mob/living/simple_animal/hostile/abnormality/clown/OpenFire(atom/A)
-	if(A in livinginrange(1,src))
+	if(get_dist(src, A) <= 2) //no shooty in mele
 		return FALSE
 	return ..()
 
@@ -141,9 +141,8 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/clown/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(40))
-		datum_reference.qliphoth_change(-1)
+/mob/living/simple_animal/hostile/abnormality/clown/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
 	return
 
 //Death explosion

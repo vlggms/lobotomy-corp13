@@ -111,8 +111,19 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	damage = 5
-	knockdown = 5
 
 /obj/projectile/clown_throw/Initialize()
 	. = ..()
 	SpinAnimation()
+
+/obj/projectile/clown_throw/on_hit(target)
+	if(!ishuman(target))
+		return ..()
+	var/mob/living/carbon/human/H = target
+	H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+	addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	..()
+
+/datum/movespeed_modifier/clowned
+	variable = TRUE
+	multiplicative_slowdown = 1.5
