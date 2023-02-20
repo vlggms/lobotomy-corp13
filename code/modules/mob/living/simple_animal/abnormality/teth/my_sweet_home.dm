@@ -122,3 +122,9 @@
 		pixel_x = -16
 		base_pixel_x = -16
 		icon_state = "sweet_home_breach"
+
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
