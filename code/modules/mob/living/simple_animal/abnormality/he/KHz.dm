@@ -142,6 +142,6 @@
 	Hotel - Oscar - Charlie	> 01101	<br>
 	Whiskey - Echo- Whiskey	> 11010	<br>
 	Delta - Alpha - Xray	> 10000	<br>
-	Lima - Alpha - Delta	> 01101	<br>
+	Lima - Alpha - Delta	> 11100	<br>
 	"}
 
