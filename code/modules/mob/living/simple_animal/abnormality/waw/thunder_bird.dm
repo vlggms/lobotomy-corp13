@@ -39,9 +39,9 @@ GLOBAL_LIST_EMPTY(zombies)
 	//Unlike firebird, you're aiming for good results. The success rates are lower overall and it hates attachment work.
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 35, 40),
+						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
 						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
-						ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 45)
+						ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55)
 						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
@@ -59,6 +59,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	var/fire_cooldown_time = 3 SECONDS
 	var/fireball_range = 7
 	var/fire_cooldown
+	var/targetAmount = 0
 
 	//Melee stats
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
@@ -119,7 +120,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1 SECONDS)//how long it takes for the dash to initiate
+	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)//how long it takes for the dash to initiate. Set it back to 1 second when thunderbird gets directional sprites
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/do_dash(move_dir, times_ran)
@@ -149,7 +150,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	playsound(src,"sound/abnormalities/thunderbird/tbird_peck.ogg", rand(50, 70), 1)
 	for(var/turf/TF in range(1, T))//Smash AOE visual
 		new /obj/effect/temp_visual/smash_effect(TF)
-	for(var/mob/living/L in range(1, T))//damage and knockdown applied to targets in range
+	for(var/mob/living/L in range(1, T))//damage applied to targets in range
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
@@ -158,14 +159,10 @@ GLOBAL_LIST_EMPTY(zombies)
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
+			L.apply_damage(100,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				H.apply_damage(25,BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
-				H.Knockdown(30)
-			else
-				//simple mobs cannot be stunned; they take more damage
-				L.adjustBlackLoss(150)
 			if(!(L in been_hit))
 				been_hit += L
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
@@ -206,7 +203,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	desc = "A hulking avian wreathed in electricity. It looks angry."
 	GiveTarget(user)
 
-//fires bombs that deal 45 black damage and knockdown towards anyone within 1 tile, they also turn the dead and dying into zombies.
+//fires bombs that deal 45 black damage towards anyone within 1 tile, they also turn the dead and dying into zombies.
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/Life()
 	. = ..()
 	if(!.) // Dead
@@ -224,11 +221,12 @@ GLOBAL_LIST_EMPTY(zombies)
 /*--Zombies!--*/
 //zombie mob
 /mob/living/simple_animal/hostile/thunder_zombie
-	name = "???"
-	desc = "You shouldn't be able to read this."
+	name = "Human Thunderbolt"
+	desc = "What appears to be human, only charred and screaming incoherently..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "human_thunderbolt"
 	icon_living = "human_thunderbolt"
+	icon_dead = "human_thunderbolt_dead"
 	faction = list("tbird")
 	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
 	attack_verb_continuous = "attacks"
@@ -236,8 +234,8 @@ GLOBAL_LIST_EMPTY(zombies)
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
 
 	/*Zombie Stats */
-	health = 500//subject to change; they all die when thunderbird is suppressed
-	maxHealth = 500
+	health = 200//subject to change; they all die when thunderbird is suppressed
+	maxHealth = 200
 	obj_damage = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
@@ -247,7 +245,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
-	del_on_death = TRUE
+	del_on_death = FALSE
 	density = TRUE
 	var/list/breach_affected = list()
 	var/can_act = TRUE
@@ -304,13 +302,28 @@ GLOBAL_LIST_EMPTY(zombies)
 	if(status_flags & GODMODE)
 		return FALSE
 
+//reanimated if thunderbird isn't suppressed within 30 seconds
+/mob/living/simple_animal/hostile/thunder_zombie/death(gibbed)
+	addtimer(CALLBACK(src, .proc/resurrect), 30 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/thunder_zombie/proc/resurrect()
+	if(QDELETED(src))
+		return
+	revive(full_heal = TRUE, admin_revive = FALSE)
+	visible_message("<span class='boldwarning'>[src] staggers back on their feet!</span>")
+	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
+
 //thunderbolts
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
 		if(faction_check_mob(L, FALSE))
 			continue
-		new /obj/effect/thunderbolt(get_turf(L))//do this for the # of targets
+		if (targetAmount <= 2)
+			++targetAmount
+			new /obj/effect/thunderbolt(get_turf(L))//do this for the # of targets + 1
+	targetAmount = 0
 
 //thunderbolt objects
 /obj/effect/thunderbolt
@@ -322,7 +335,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 45
+	var/boom_damage = 50
 	layer = POINT_LAYER	//Sprite should always be visible
 
 /obj/effect/thunderbolt/Initialize()
@@ -356,7 +369,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	for(var/mob/living/carbon/human/H in view(1, src))
 		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
-		H.Knockdown(20)
 		if(H.health < 0)
 			Convert(H)
 	new /obj/effect/temp_visual/tbirdlightning(get_turf(src))
