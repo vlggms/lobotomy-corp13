@@ -45,3 +45,9 @@
 	desc = "Everything can be changed if you try hard enough!"
 	icon_state = "change"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/doze
+	name = "dozing"
+	desc = "While this looks like a set of pajamas, it protects the user from mental damage."
+	icon_state = "doze"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)

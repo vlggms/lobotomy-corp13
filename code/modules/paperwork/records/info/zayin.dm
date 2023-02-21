@@ -106,3 +106,21 @@
 	<h4>Insight:</h4> High<br>
 	<h4>Attachment:</h4> Low<br>
 	<h4>Repression:</h4> Common<br>"}
+
+//Sleeping Beauty
+/obj/item/paper/fluff/info/zayin/sleeping
+	name = "F-04-36"
+	info = {"<h1><center>F-04-36</center></h1>	<br>
+	Name : Sleeping Beauty	<br>
+	Risk Class : Zayin	<br>
+	Max PE Boxes : 10	<br>
+	Qliphoth Counter : X	<br>
+	Work Damage Type : White	<br>
+	Work Damage : Low	<br>
+	- The employee that worked on F-04-36 recovered small amounts of HP and SP over time.	<br>
+	- When the work result was bad, the employee working on F-04-36 decided to sit down for a break.	<br>
+	- Agent Bong bong had to be forcibly removed after being caught sitting on F-04-36 for an entire shift.<br><br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> High<br>"}

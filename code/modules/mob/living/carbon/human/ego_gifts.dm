@@ -209,6 +209,12 @@
 	fortitude_bonus = 2
 	slot = BROOCH
 
+/datum/ego_gifts/doze
+	name = "Dozing"
+	icon_state = "doze"
+	justice_bonus = 2
+	slot = EYE
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."

@@ -38,3 +38,13 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+
+/obj/item/ego_weapon/doze
+	name = "dozing"
+	desc = "Knock the daylights out of 'em!"
+	icon_state = "doze"
+	force = 14
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
