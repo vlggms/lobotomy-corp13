@@ -32,18 +32,22 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-	//Funny drags everything to it
+//Funny drags everything to it
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_All()
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
 		//These two abnormalities kill everything else no matter what faction we set them to
 		if(A.type in blacklist)
 			continue
 
 		if(A.can_breach && A.IsContained() && A.z == z)
-			A.datum_reference.qliphoth_change(-200)
-
-			var/turf/orgin = get_turf(src)
-			var/list/all_turfs = RANGE_TURFS(4, orgin)
-			var/turf/open/Y = pick(all_turfs - orgin)
-			A.forceMove(Y)
+			A.BreachEffect(null, BREACH_PINK)
 			A.faction += "pink_midnight"
+			/// This does a significant bit of trolling and fucks with the facility on a much wider range.
+			/// By making them walk there, certain ones like Blue Star are less centralized and can become a background threat,
+			/// While others like NT immediately are in the hallways being an active threat. Also solves the issue of wall-abnos.
+			var/turf/destination = pick(get_adjacent_open_turfs(src))
+			if(!destination)
+				destination = get_turf(src)
+			if(!A.patrol_to(destination))
+				A.forceMove(destination)
+

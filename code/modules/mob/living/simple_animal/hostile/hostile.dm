@@ -695,10 +695,13 @@
 
 /mob/living/simple_animal/hostile/proc/patrol_to(turf/target_location = null)
 	if(isnull(target_location)) // Sets a preset location for them to go to
-		return
+		return FALSE
 	patrol_reset() // Stop your current patrol for this one
 	patrol_path = get_path_to(src, target_location, /turf/proc/Distance_cardinal, 0, 200)
+	if(patrol_path.len <= 0)
+		return FALSE
 	patrol_move(patrol_path[patrol_path.len])
+	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
 	var/turf/target_center
