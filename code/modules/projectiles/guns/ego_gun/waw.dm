@@ -363,14 +363,14 @@
 /obj/item/gun/ego_gun/warring/attack_self(mob/user)
 	switch(drawn)
 		if (0)
-			if(do_after(user, 10))
+			if(do_after(user, 10, src))
 				drawn  = 1
 				to_chat(user,"<span class='warning'>You draw the [src] with all your might.</span>")
 				ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 				fire_sound = 'sound/weapons/bowfire.ogg'
 				icon_state = "warring_drawn"
 		if (1)
-			if(do_after(user, 15))
+			if(do_after(user, 15, src))
 				if(drawn != 1)
 					return
 				drawn = 2

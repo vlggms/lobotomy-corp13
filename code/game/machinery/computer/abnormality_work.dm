@@ -169,7 +169,7 @@
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
-		if(do_after(user, work_speed, src))
+		if(do_after(user, work_speed, src, IGNORE_HELD_ITEM))
 			if(!CheckStatus(user))
 				break
 			user.remove_status_effect(/datum/status_effect/interventionshield) //removing status effect doesnt seem to effect all of parent. -IP

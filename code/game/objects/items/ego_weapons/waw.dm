@@ -105,7 +105,7 @@
 	charged = FALSE
 
 /obj/item/ego_weapon/totalitarianism/attack_self(mob/user)
-	if(do_after(user, 12))
+	if(do_after(user, 12, src))
 		charged = TRUE
 		force = 120	//FULL POWER
 		to_chat(user,"<span class='warning'>You put your strength behind this attack.</span>")
@@ -726,7 +726,7 @@
 		icon_state = "swan_closed"
 		to_chat(user,"<span class='nicegreen'>You close the umbrella.</span>")
 		return
-	if(icon_state == "swan_closed" && do_after(user, 4))
+	if(icon_state == "swan_closed" && do_after(user, 4, src))
 		icon_state = "swan"
 		close_cooldown = world.time + close_cooldown_time
 		..()
