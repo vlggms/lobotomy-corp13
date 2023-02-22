@@ -270,6 +270,8 @@
 
 // When qliphoth meltdown begins
 /mob/living/simple_animal/hostile/abnormality/proc/MeltdownStart()
+	if(istype(datum_reference))
+		datum_reference.overload_chance = 0
 	return
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0)
