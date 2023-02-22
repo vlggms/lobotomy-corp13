@@ -73,8 +73,8 @@
 /datum/ai_controller/insane/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
 	SIGNAL_HANDLER
 	var/mob/living/living_pawn = pawn
-	if(!IS_DEAD_OR_INCAP(living_pawn))
-		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/resist)
+	if(!living_pawn.stat)
+		INVOKE_ASYNC(living_pawn, .mob/living/verb/resist)
 		return TRUE
 	return FALSE
 
@@ -93,7 +93,7 @@
 	if(!able_to_run() || !current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
 		timerid = null
 		return FALSE
-	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), living_pawn.cached_multiplicative_slowdown)
+	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), (living_pawn.cached_multiplicative_slowdown + 0.2))
 
 	var/turf/our_turf = get_turf(living_pawn)
 	var/turf/target_turf = get_step_towards(living_pawn, current_movement_target)
@@ -118,28 +118,31 @@
 		if(!(selected_enemy in livinginrange(10, living_pawn)))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
+		if(selected_enemy.status_flags & GODMODE)
+			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+			return
 		if(selected_enemy.stat != DEAD)
 			current_movement_target = selected_enemy
 			if(DT_PROB(50, delta_time))
 				current_behaviors += GET_AI_BEHAVIOR(lines_type)
-				for(var/mob/living/carbon/human/H in view(7, living_pawn))
-					if(H in currently_scared)
-						continue
-					var/sanity_damage = (H.maxSanity * 0.15) * (get_user_level(living_pawn) - get_user_level(H))
-					H.adjustSanityLoss(min(0, sanity_damage))
-					currently_scared += H
 			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_attack_mob)
 			return
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 		return
 
-	if(TryFindWeapon())
-		return
-
 	for(var/mob/living/L in view(9, living_pawn))
-		if(prob(33) && (L.stat != DEAD) && (L != living_pawn))
+		if(L == living_pawn)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(prob(33))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
 			return
+
+	if(TryFindWeapon())
+		return
 
 /datum/ai_controller/insane/murder/proc/TryFindWeapon()
 	var/mob/living/living_pawn = pawn
@@ -171,6 +174,12 @@
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
 		return TRUE
 	return FALSE
+
+// We stop trying to pick up a weapon if we're suddenly attacked
+/datum/ai_controller/insane/murder/retaliate(mob/living/L)
+	for(var/datum/ai_behavior/insane_equip/I in current_behaviors)
+		I.finish_action(src, TRUE)
+	return ..()
 
 /datum/ai_controller/insane/murder/on_attackby(datum/source, obj/item/I, mob/user)
 	..()
