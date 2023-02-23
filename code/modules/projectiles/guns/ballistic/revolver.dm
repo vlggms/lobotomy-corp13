@@ -87,7 +87,7 @@
 	can_modify_ammo = TRUE
 	alternative_ammo_misfires = TRUE
 	can_misfire = FALSE
-	misfire_probability = 0 
+	misfire_probability = 0
 	misfire_percentage_increment = 25 //about 1 in 4 rounds, which increases rapidly every shot
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = list("Default" = "detective",
@@ -225,3 +225,11 @@
 		user.emote("scream")
 		user.drop_all_held_items()
 		user.Paralyze(80)
+
+/obj/item/gun/ballistic/revolver/atelier
+	name = "\improper 'Atelier Logic' revolver"
+	desc = "A handheld firearm produced by Atelier Logic workshop. A rare sight in the City. Uses .357 ammo."
+	color = "#555555" // I am too lazy to make new sprites
+	fire_sound = 'sound/weapons/gun/revolver/shot_atelier.ogg'
+	fire_delay = 2
+	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/atelier357

@@ -185,3 +185,10 @@
 			message = replacetextEx(message,regex(capitalize(key),"g"), "[capitalize(value)]")
 			message = replacetextEx(message,regex(key,"g"), "[value]")
 	speech_args[SPEECH_MESSAGE] = trim(message)
+
+/obj/item/clothing/mask/silence
+	name = "face mask"
+	desc = "A singularity-infused face mask that thoroughly conceals its user identity."
+	icon_state = "silence"
+	color = "#222222"
+	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT

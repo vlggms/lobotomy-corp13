@@ -117,3 +117,8 @@
 	ricochet_auto_aim_range = 6
 	ricochet_incidence_leeway = 80
 	ricochet_decay_chance = 1
+
+// Atelier revolver
+
+/obj/projectile/bullet/a357/atelier
+	damage = 80
