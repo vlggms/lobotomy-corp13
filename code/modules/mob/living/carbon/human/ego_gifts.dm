@@ -453,6 +453,12 @@
 	justice_bonus = 2
 	slot = CHEEK
 
+/datum/ego_gifts/maneater
+	name = "Man Eater"
+	icon_state = "maneater"
+	temperance_bonus = 4
+	slot = HELMET
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
