@@ -94,7 +94,7 @@
 			to_chat(user, "<span class='notice'>The [src] is already modified.</span>")
 			return FALSE
 		to_chat(user, "<span class='notice'>You begin tinkering with the [src].</span>")
-		if(do_after(user, 5 SECONDS, src))
+		if(do_after(user, 2.5 SECONDS, src))
 			if (modified)
 				to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
 				return FALSE
