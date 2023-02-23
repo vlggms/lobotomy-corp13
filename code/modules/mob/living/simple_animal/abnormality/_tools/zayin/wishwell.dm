@@ -126,7 +126,7 @@
 //Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
 		var/datum/ego_datum/ego = path
-		switch(ego.cost)
+		switch(initial(ego.cost))
 			if(200 to INFINITY)
 				superEGO += initial(ego.item_path)
 			if(100 to 200)
