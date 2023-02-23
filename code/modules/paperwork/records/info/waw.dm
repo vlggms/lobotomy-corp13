@@ -313,7 +313,7 @@
 	- When the Qliphoth Counter reached 0, Yang assisted in Abnormality suppression and healed the SP of nearby employees.	<br>
 	- WARNING: Upon Yang’s death, immediately evacuate the area surrounding Yang's corpse.	<br>
 	<br>
-	<h4>Instinct:</h4> Very Lown<br>
+	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>
@@ -515,3 +515,32 @@
 	<h4>White Resistance:</h4> Normal<br>
 	<h4>Black Resistance:</h4> Weak<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
+	
+//La Luna
+/obj/item/paper/fluff/info/waw/luna
+	name = "D-01-105"
+	info = {"<h1><center>D-01-105</center></h1>	<br>
+	Name : Il Pianto Della Luna	<br>
+	Risk Class : WAW	<br>
+	Max PE Boxes : 20	<br>
+	Qliphoth Counter : 3	<br>
+	Work Damage Type : Black	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- The piano can be played by ordering an Agent to Perform. However, please note that the Qliphoth Counter will lower when the performance is finished.	<br>
+	- The music temporarily increased the Temperance and Justice of all employees by a small degree. However, the one who performed lost half their HP by the end of the performance.	<br>
+	- The Qliphoth Counter lowered to 0 when an employee entered the unit to play for the third time.	<br>
+	- When Il Pianto della Luna escaped, it voluntarily returned to its Containment Unit after the end of the third movement. The movement also prematurely ended when Il Pianto della Luna was suppressed.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Low<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red/Black	<br>
+	<h4>Escape Damage:</h4> Vulnerable	<br>
+	<h4>Red Resistance:</h4> Weak	<br>
+	<h4>White Resistance:</h4> Immune	<br>
+	<h4>Black Resistance:</h4> Resistant	<br>
+	<h4>Pale Resistance:</h4> Fatal	<br>"}

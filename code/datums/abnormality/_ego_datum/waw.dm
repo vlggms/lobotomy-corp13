@@ -241,3 +241,12 @@
 /datum/ego_datum/weapon/pharaoh
 	item_path = /obj/item/ego_weapon/shield/pharaoh
 	cost = 50
+	
+// Il Pianto Della Luna - Moonlight
+/datum/ego_datum/weapon/moonlight
+	item_path = /obj/item/ego_weapon/moonlight
+	cost = 50
+
+/datum/ego_datum/armor/moonlight
+	item_path = /obj/item/clothing/suit/armor/ego_gear/moonlight
+	cost = 50
