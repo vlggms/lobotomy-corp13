@@ -6,7 +6,7 @@
 	BB_INSANE_CURRENT_ATTACK_TARGET = null)
 	max_target_distance = 20
 	var/resist_chance = 90
-	var/datum/ai_behavior/say_line/lines_type = /datum/ai_behavior/say_line
+	var/datum/ai_behavior/say_line/insanity_lines/lines_type = /datum/ai_behavior/say_line/insanity_lines
 
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
 	if(!ishuman(new_pawn))
@@ -79,7 +79,7 @@
 	return FALSE
 
 /datum/ai_controller/insane/murder
-	lines_type = /datum/ai_behavior/say_line/insanity_murder
+	lines_type = /datum/ai_behavior/say_line/insanity_lines
 	var/list/currently_scared = list()
 	var/timerid = null
 
@@ -115,6 +115,8 @@
 	var/mob/living/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
 	if(selected_enemy)
+		if(selected_enemy.status_flags & GODMODE)
+			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 		if(!(selected_enemy in livinginrange(10, living_pawn)))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
@@ -235,7 +237,7 @@
 
 /datum/ai_controller/insane/suicide
 	resist_chance = 0 // We'll die anyway
-	lines_type = /datum/ai_behavior/say_line/insanity_suicide
+	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_suicide
 	var/suicide_timer = 0
 
 /datum/ai_controller/insane/suicide/PerformIdleBehavior(delta_time)
@@ -257,7 +259,7 @@
 			H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 
 /datum/ai_controller/insane/wander
-	lines_type = /datum/ai_behavior/say_line/insanity_wander
+	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_wander
 	var/last_message = 0
 	var/suicide_enter = 0
 	var/list/locations_visited = list()
@@ -312,7 +314,7 @@
 			suicide_enter = world.time + 30 SECONDS
 
 /datum/ai_controller/insane/release
-	lines_type = /datum/ai_behavior/say_line/insanity_release
+	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_release
 	var/next_smash = 0
 	var/list/current_path = list()
 
