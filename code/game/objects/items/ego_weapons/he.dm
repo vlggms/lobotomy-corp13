@@ -64,9 +64,8 @@
 	if(!can_spin)
 		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
 		return
-	can_spin = FALSE
 	spinning = TRUE
-	if(do_after(user, 12))
+	if(do_after(user, 12, src))
 		can_spin = TRUE
 		addtimer(CALLBACK(src, .proc/spin_reset), 12)
 		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)

@@ -389,7 +389,7 @@
 		new /obj/effect/temp_visual/cult/sparks(T)
 	playsound(user, 'sound/weapons/ego/censored2.ogg', 75)
 	special_cooldown = world.time + special_cooldown_time
-	if(!do_after(user, 7))
+	if(!do_after(user, 7, src))
 		return
 	playsound(user, 'sound/weapons/ego/censored3.ogg', 75)
 	var/turf/MT = get_turf(user)
@@ -536,8 +536,6 @@
 	if(!CanUseEgo(user))
 		return
 	var/dodgelanding
-	user.density = FALSE
-	icon_state = "space_aoe"
 	if(user.dir == 1)
 		dodgelanding = locate(user.x, user.y + 5, user.z)
 	if(user.dir == 2)
@@ -551,8 +549,10 @@
 	if(!dodgelanding)
 		return
 
+	icon_state = "space_aoe"
+	user.density = FALSE
 	user.adjustStaminaLoss(15, TRUE, TRUE)
-	user.throw_at(dodgelanding, 3, 2, spin = FALSE)
+	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
 	canaoe = TRUE
 	sleep(3)
 	user.density = TRUE
@@ -565,7 +565,7 @@
 
 	if(!canaoe)
 		return
-	if(do_after(user, 5))
+	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)
@@ -579,7 +579,6 @@
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-	user.density = TRUE
 	icon_state = "space"
 	canaoe = FALSE
 

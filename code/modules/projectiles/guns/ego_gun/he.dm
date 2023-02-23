@@ -115,7 +115,7 @@
 /obj/item/gun/ego_gun/unrequited/attack_self(mob/user)
 	to_chat(user,"<span class='notice'>You try to unjam [src].</span>")
 	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, 3 SECONDS)) //it's a massive annoyance to unjam in the middle of a fight but the extra damage should make it more than worth it.
+	if(do_after(user, 3 SECONDS, src)) //it's a massive annoyance to unjam in the middle of a fight but the extra damage should make it more than worth it.
 		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
 		if(!jammed)
 			to_chat(user,"<span class='notice'>Turns out the weapon is working just fine.</span>")

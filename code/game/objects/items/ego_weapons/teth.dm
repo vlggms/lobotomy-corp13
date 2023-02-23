@@ -211,13 +211,9 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
-	var/inuse
 
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
-	if(inuse)
-		return
-	inuse = TRUE
-	if(do_after(user, 50))	//Five seconds of not doing anything, then teleport.
+	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 		user.adjustBruteLoss(user.maxHealth*0.3)
 
@@ -226,7 +222,6 @@
 		user.forceMove(T)
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
-	inuse = FALSE
 
 /obj/item/ego_weapon/sorority
 	name = "sorority"
@@ -238,19 +233,14 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("zaps", "prods")
 	attack_verb_simple = list("zap", "prod")
-	var/inuse
 
 /obj/item/ego_weapon/sorority/attack_self(mob/user)
-	if(inuse)
-		return
-	inuse = TRUE
-	if(do_after(user, 10))	//Just a second to heal people around you, but it also harms them
+	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms them
 		playsound(src, 'sound/weapons/taser.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(2, get_turf(user)))
 			L.adjustBruteLoss(L.maxHealth*0.1)
 			L.adjustSanityLoss(-10)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
-	inuse = FALSE
 
 /obj/item/ego_weapon/mini/bean
 	name = "magic bean"
