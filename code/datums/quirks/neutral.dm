@@ -8,7 +8,7 @@
 	gain_text = "<span class='notice'>You feel nervous about leaving your anime books home.</span>"
 	medical_record_text = "This patient is a NEEEEEEEEEEEEEEEEERD, feel free to take a tooth or two outta their jaw if they annoy you. - Dr. Bright"
 
-/datum/quirk/resistant/on_spawn()
+/datum/quirk/nerd/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.physiology.red_mod += 0.1
 	H.physiology.white_mod -= 0.05
@@ -20,7 +20,7 @@
 	gain_text = "<span class='notice'>You feel ready to chew ass and kick bubblegum.</span>"
 	medical_record_text = "This patient is a little bit tougher physically than average people."
 
-/datum/quirk/resistant/on_spawn()
+/datum/quirk/brawler/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.physiology.red_mod -= 0.05
 	H.physiology.white_mod += 0.1
