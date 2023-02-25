@@ -39,6 +39,37 @@
 	light_color = "FFFFFFF"
 	light_power = -10
 
+	// Speech Lines
+	speak_chance = 4
+	var/speak_normal = list(
+		"#The night is upon us, find somewhere safe.",
+		"#Another night, another shift.",
+		"#Stay safe out here.",
+		"#It's not safe to roam the streets at night.",
+		"#Be careful of what may lie in the dark."
+	)
+	var/speak_alert = list(
+		"Creatures roam the night, you should find shelter.",
+		"The night has become home to many creatures of the dark, be careful.",
+		"It's not safe out, return home.",
+		"This darkness hides evil within it, stay safe.",
+		"I pray the beings of the night return to their dens soon..."
+	)
+	var/speak_attacked_human = list(
+		"#Nothing better to do than hit the Watchman..?",
+		"#Kids these days...",
+		"#The audacity of some people..!",
+		"#May your woes be many and your days few."
+	)
+	var/speak_attacked_monster = list(
+		"Begone, foul creature of the night!",
+		"Your kind are unwelcome here!",
+		"Never should have come here!",
+		"This darkness is not for you and you alone, monster!"
+	)
+	// Breached Abno tracker.
+	var/list/dangers = list()
+
 /mob/living/simple_animal/hostile/abnormality/watchman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
@@ -61,3 +92,65 @@
 /mob/living/simple_animal/hostile/abnormality/watchman/BreachEffect(mob/living/carbon/human/user)
 	..()
 	set_light(30)	//Makes everything around it really dark, That's all it does lol
+
+
+/// ======================SPEECH CODE======================
+/mob/living/simple_animal/hostile/abnormality/watchman/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if(speak_chance)
+		if(prob(speak_chance*2))
+			say(pick(speak_attacked_human))
+
+/mob/living/simple_animal/hostile/abnormality/watchman/attack_hand(mob/living/carbon/human/M)
+	. = ..()
+	if(speak_chance)
+		if(prob(speak_chance*2))
+			say(pick(speak_attacked_human))
+
+/mob/living/simple_animal/hostile/abnormality/watchman/attack_animal(mob/living/simple_animal/M)
+	. = ..()
+	if(speak_chance)
+		if(prob(speak_chance*2))
+			say(pick(speak_attacked_monster))
+
+/mob/living/simple_animal/hostile/abnormality/watchman/proc/HandleSpeech()
+	// Add new threats.
+	for(var/mob/living/simple_animal/hostile/H in view(7, src))
+		if(H == src)
+			continue
+		if(istype(H, /mob/living/simple_animal/hostile/abnormality))
+			var/mob/living/simple_animal/hostile/abnormality/A = H
+			if(A.IsContained())
+				continue
+		dangers |= H
+	// Begin cleaning the list up.
+	var/prune_list = dangers.Copy()
+	for(var/mob/living/simple_animal/hostile/H in dangers)
+		if(QDELETED(H) || H.stat == DEAD || !istype(H))
+			prune_list -= H
+	for(var/mob/living/simple_animal/hostile/abnormality/A in dangers)
+		if(!A.IsContained())
+			continue
+		prune_list -= A
+	dangers = prune_list
+	// End cleaning up the list.
+	if(speak_chance)
+		if(prob(speak_chance))
+			if(dangers.len)
+				say(pick(speak_alert))
+			else
+				say(pick(speak_normal))
+
+/mob/living/simple_animal/hostile/abnormality/watchman/handle_automated_action()
+	. = ..()
+	HandleSpeech()
+
+/mob/living/simple_animal/hostile/abnormality/watchman/handle_automated_movement()
+	. = ..()
+	HandleSpeech()
+
+/mob/living/simple_animal/hostile/abnormality/watchman/patrol_step(dest)
+	. = ..()
+	HandleSpeech()
+
+
