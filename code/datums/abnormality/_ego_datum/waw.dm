@@ -264,6 +264,22 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/spore
 	cost = 50
 
+// Servant of Wrath - Blind Rage
+
+/datum/ego_datum/weapon/blind_rage
+	item_path = /obj/item/ego_weapon/blind_rage
+	cost = 50
+
+/datum/ego_datum/armor/blind_rage
+	item_path = /obj/item/clothing/suit/armor/ego_gear/blind_rage
+	cost = 50
+
+/*
+/datum/ego_datum/weapon/blind_gun
+	item_path = /obj/item/gun/ego_gun/blind_rage
+	cost = 50 // Going unused. Repurpose at will.
+*/
+
 // Flesh Idol - Bleeding Heart
 /datum/ego_datum/armor/heart
 	item_path = /obj/item/clothing/suit/armor/ego_gear/heart

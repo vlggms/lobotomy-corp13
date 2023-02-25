@@ -397,3 +397,17 @@
 		H.adjustBruteLoss(15)
 	..()
 	return
+
+/obj/item/gun/ego_gun/blind_rage
+	name = "Blind Fire"
+	desc = "The pain inflicted by rash action and harsh words last longer than most think."
+	icon_state = "blind_gun"
+	special = "This weapon fires burning bullets. Watch out for friendly fire!"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_blind_rage
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 8
+	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)

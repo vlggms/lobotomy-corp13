@@ -117,3 +117,10 @@
 	name = "banquet casing"
 	desc = "A banquet casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_banquet
+
+/obj/item/ammo_casing/caseless/ego_blind_rage
+	name = "blind rage casing"
+	desc = "a pocket of anger"
+	projectile_type = /obj/projectile/ego_bullet/ego_blind_rage
+	pellets = 4
+	variance = 30

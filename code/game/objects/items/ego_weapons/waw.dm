@@ -18,7 +18,9 @@
 							)
 
 /obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
-	..()
+	if(!CanUseEgo(user))
+		return FALSE
+	. = ..()
 	for(var/mob/living/L in livinginrange(1, M))
 		var/aoe = 25
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
@@ -909,6 +911,73 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+
+/obj/item/ego_weapon/blind_rage
+	name = "Blind Rage"
+	desc = "Those who suffer injustice tend to lash out at all those around them."
+	icon_state = "blind_rage"
+	force = 40
+	attack_speed = 1.2
+	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful! \nUse in hand to hold back the AoE!"
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("smashes", "crushes", "flattens")
+	attack_verb_simple = list("smash", "crush", "flatten")
+	hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/aoe_damage = 15
+	var/aoe_damage_type = BLACK_DAMAGE
+	var/aoe_range = 2
+	var/attacks = 0
+	var/toggled = FALSE
+
+/obj/item/ego_weapon/blind_rage/attack_self(mob/user)
+	toggled = !toggled
+	if(toggled)
+		to_chat(user, "<span class='warning'>You release the full power of [src].</span>")
+	else
+		to_chat(user, "<span class='notice'>You begin to hold back [src].</span>")
+
+/obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	attacks++
+	attacks %= 3
+	switch(attacks)
+		if(0)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+		if(1)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+		if(2)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
+	if(!toggled)
+		if(prob(10))
+			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
+		return
+	for(var/turf/open/T in range(aoe_range, M))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+		smonk.color = COLOR_GREEN
+		for(var/mob/living/L in T)
+			if(L == user)
+				continue
+			if(L.stat == DEAD)
+				continue
+			var/damage = aoe_damage
+			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			damage *= justicemod
+			if(attacks == 0)
+				damage *= 3
+			L.apply_damage(damage, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			L.apply_damage(damage, aoe_damage_type, null, L.run_armor_check(null, aoe_damage_type), spread_damage = TRUE)
+		if(prob(5))
+			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
 
 /obj/item/ego_weapon/mini/heart
 	name = "bleeding heart"

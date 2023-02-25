@@ -323,3 +323,21 @@
 	abno_breach_damage_type = "Red/Black"
 	abno_breach_damage_count = "High"
 
+
+//Servant of Wrath
+/obj/item/paper/fluff/info/waw/wrath
+	abno_type = /mob/living/simple_animal/hostile/abnormality/servant_wrath
+	abno_code = "O-01-139"
+	abno_info = list(
+		"Whenever the work result was Good, the Servant of Wrath grew more unstable.",
+		"Whenever Attachment Work was performed, this instabiity increased.",
+		"Whenever the work result on Attachment Work was Good, the Servant of Wrath befriended the worker.",
+		"Whenever a friend of the Servant of Wrath finished a work, the Servant of Wrath grew more unstable.",
+		"Whenever Repression Work was performed, the instabiity decreased and did not increase regardless of result or friendship.",
+		"Those who befriended the Servant of Wrath could request they hunt down the strongest threat in the facility.",
+		"When this occurred, the Servant of Wrath's instability greatly increased and the Qliphoth Counter lowered by 2.",
+		"When the Servant of Wrath breached, all attempts to suppress it were futile.",
+		"Elsewhere in the facility, a being known as the Hermit of the Azure forest appeared.",
+		"The Hermit attacked the agents around them, dealing heavy White Damage.",
+		"In the end, the only way to suppress the Servant of Wrath was for them to kill the Hermit of the Azure forest.",
+		"NOTE: The Hermit of the Azure forest in almost every scenario has overpowered the Servant of Wrath.")
