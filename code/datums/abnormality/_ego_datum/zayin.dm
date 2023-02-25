@@ -51,3 +51,12 @@
 /datum/ego_datum/armor/change
 	item_path = /obj/item/clothing/suit/armor/ego_gear/change
 	cost = 12
+
+// Sleeping Beauty - Doze
+/datum/ego_datum/weapon/doze
+	item_path = /obj/item/ego_weapon/doze
+	cost = 12
+
+/datum/ego_datum/armor/doze
+	item_path = /obj/item/clothing/suit/armor/ego_gear/doze
+	cost = 12
