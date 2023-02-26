@@ -13,8 +13,8 @@
 	ranged = TRUE
 	minimum_distance = 6
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 2400
+	health = 2400
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
@@ -40,10 +40,11 @@
 		/datum/ego_datum/armor/justitia
 		)
 	gift_type =  /datum/ego_gifts/justitia
-	var/judgement_cooldown = 10 SECONDS
-	var/judgement_cooldown_base = 10 SECONDS
-	var/judgement_damage = 65
-	var/judgement_range = 10
+	var/judgement_cooldown = 7 SECONDS
+	var/judgement_cooldown_base = 7 SECONDS
+	var/judgement_damage = 70
+	var/judgement_range = 12
+	var/judgement_active = FALSE
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -54,6 +55,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
 	return OpenFire()
+
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
+	if(judgement_active == TRUE)
+		return FALSE
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/OpenFire()
 	if(client)
@@ -68,6 +74,7 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/proc/judgement()
 	if(judgement_cooldown > world.time)
 		return
+	judgement_active = TRUE
 	judgement_cooldown = world.time + judgement_cooldown_base
 	icon_state = "judgement_bird_attack"
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
@@ -81,6 +88,8 @@
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	icon_state = icon_living
+
+	judgement_active = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
