@@ -32,7 +32,7 @@
 	gift_type = /datum/ego_gifts/remorse
 
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/OnWorkComplete(datum/source, datum/abnormality/datum_reference, mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/OnWorkStart(datum/source, datum/abnormality/datum_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(user.stat == DEAD)
 		return FALSE
@@ -132,7 +132,7 @@
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 		H.add_overlay(guilt_icon)
 		H.physiology.work_success_mod *= 0.75
-		RegisterSignal(H, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+		RegisterSignal(H, COMSIG_WORK_STARTED, .proc/OnWorkStart)
 
 /datum/status_effect/sg_guilty/on_remove()
 	. = ..()
@@ -142,7 +142,7 @@
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
 		H.cut_overlay(guilt_icon)
 		H.physiology.work_success_mod /= 0.75
-		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
+		UnregisterSignal(H, COMSIG_WORK_STARTED)
 
 /datum/status_effect/sg_guilty/be_replaced()
 	. = ..()
@@ -150,9 +150,9 @@
 		var/mob/living/carbon/human/H = owner
 		H.cut_overlay(guilt_icon)
 		H.physiology.work_success_mod /= 0.75
-		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
+		UnregisterSignal(H, COMSIG_WORK_STARTED)
 
-/datum/status_effect/sg_guilty/proc/OnWorkComplete(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
+/datum/status_effect/sg_guilty/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type != ABNORMALITY_WORK_ATTACHMENT)
 		return FALSE
@@ -160,7 +160,7 @@
 		return FALSE
 	if(!isnull(datum_reference))
 		addtimer(CALLBACK(datum_reference, /datum/abnormality/proc/qliphoth_change, 1))
-	UnregisterSignal(user, COMSIG_WORK_COMPLETED)
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	user.remove_status_effect(src)
 
 // End GUILTY //
@@ -217,7 +217,7 @@
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 		to_chat(H, "<span class='userdanger'>You feel your head begin to split!</span>")
 		H.add_overlay(guilt_icon)
-		RegisterSignal(H, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+		RegisterSignal(H, COMSIG_WORK_STARTED, .proc/OnWorkStart)
 
 /datum/status_effect/sg_atonement/on_remove()
 	. = ..()
@@ -226,7 +226,7 @@
 		to_chat(H, "<span class='nicegreen'>You feel a weight lift from your shoulders.</span>")
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
 		H.cut_overlay(guilt_icon)
-		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
+		UnregisterSignal(H, COMSIG_WORK_STARTED)
 
 /datum/status_effect/sg_atonement/be_replaced()
 	. = ..()
@@ -235,7 +235,7 @@
 		H.cut_overlay(guilt_icon)
 		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
 
-/datum/status_effect/sg_atonement/proc/OnWorkComplete(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
+/datum/status_effect/sg_atonement/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type != ABNORMALITY_WORK_ATTACHMENT)
 		return FALSE
@@ -243,7 +243,7 @@
 		return FALSE
 	if(!isnull(datum_reference))
 		addtimer(CALLBACK(datum_reference, /datum/abnormality/proc/qliphoth_change, 1))
-	UnregisterSignal(user, COMSIG_WORK_COMPLETED)
+	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	user.remove_status_effect(src)
 
 #undef STATUS_EFFECT_SG_GUILTY
