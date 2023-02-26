@@ -107,7 +107,8 @@
 			suffering = 0
 		if(ABNORMALITY_WORK_REPRESSION)
 			AdjustSuffering(10) //my brother in christ you are literally beating the dog up
-	UpdateScars()
+	if(datum_reference?.qliphoth_meter > 0)
+		UpdateScars()
 	if(suffering >= 20)
 		datum_reference.qliphoth_change(-1)
 
@@ -129,7 +130,7 @@
 
 //makes buddy scarred if his suffering is high enough
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/UpdateScars()
-	if(!status_flags & GODMODE) //I don't know how you're working on the dog while he's breached but stop
+	if(!IsContained()) //I don't know how you're working on the dog while he's breached but stop
 		return
 	if(suffering >= 20)
 		icon_state = "redbuddy_scratched"
