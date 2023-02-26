@@ -11,7 +11,6 @@
 	desc = "A computer used for remotely handling a facility."
 	icon_screen = "mechpad"
 	icon_keyboard = "generic_key"
-	var/datum/action/innate/door_bolt/bolt_action
 	var/datum/action/innate/cyclemanagerbullet/cycle
 	var/datum/action/innate/firemanagerbullet/fire
 	var/datum/action/innate/cyclecommand/cyclecommand
@@ -43,7 +42,6 @@
 
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
-	bolt_action = new
 	cycle = new
 	fire = new
 	cyclecommand = new
@@ -59,10 +57,6 @@
 
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user)
 	..()
-
-	if(bolt_action)
-		bolt_action.Grant(user)
-		actions += bolt_action
 
 	if(cycle)
 		cycle.target = src
@@ -86,7 +80,6 @@
 
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
-	RegisterSignal(user, COMSIG_MOB_MIDDLECLICKON, .proc/managerbolt)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
@@ -101,7 +94,6 @@
 /obj/machinery/computer/camera_advanced/manager/remove_eye_control(mob/living/user)
 	UnregisterSignal(user, COMSIG_MOB_CTRL_CLICKED)
 	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT)
-	UnregisterSignal(user, COMSIG_MOB_MIDDLECLICKON)
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
 	..()
 
@@ -115,12 +107,6 @@
 	if(isabnormalitymob(clicked_atom))
 		clickedabno(source, clicked_atom)
 		return
-
-/obj/machinery/computer/camera_advanced/manager/proc/managerbolt(mob/living/user, obj/machinery/door/airlock/A)
-	if(A.locked)
-		A.unbolt()
-	else
-		A.bolt()
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
 	if(ammo >= 1)
@@ -257,25 +243,6 @@
 	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
 	maxAmmo += 0.25
 	ammo = maxAmmo
-
-/datum/action/innate/door_bolt
-	name = "Bolt Airlock"
-	desc = "Hotkey = Middle Mouse Button."
-	icon_icon = 'icons/mob/actions/actions_construction.dmi'
-	button_icon_state = "airlock_select"
-
-/datum/action/innate/door_bolt/Activate()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/C = owner
-	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
-
-	var/turf/T = get_turf(remote_eye)
-	for(var/obj/machinery/door/airlock/A in T.contents)
-		if(A.locked)
-			A.unbolt()
-		else
-			A.bolt()
 
 /datum/action/innate/cyclemanagerbullet
 	name = "HP-N bullet"
