@@ -23,8 +23,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
-		/datum/ego_datum/armor/harmony,
-		/datum/ego_datum/weapon/harmony
+		/datum/ego_datum/weapon/harmony,
+		/datum/ego_datum/armor/harmony
 		)
 	pixel_x = -8
 	base_pixel_x = -8
