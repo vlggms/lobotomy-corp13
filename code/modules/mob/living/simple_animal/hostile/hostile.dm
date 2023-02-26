@@ -686,8 +686,16 @@
 			charge_state = FALSE
 			update_icons()
 
+////// Patrol Code ///////
 /mob/living/simple_animal/hostile/proc/CanStartPatrol()
 	return AIStatus == AI_IDLE //if AI is idle, begin checking for patrol
+
+/mob/living/simple_animal/hostile/proc/patrol_to(turf/target_location = null)
+	if(isnull(target_location)) // Sets a preset location for them to go to
+		return
+	patrol_reset() // Stop your current patrol for this one
+	patrol_path = get_path_to(src, target_location, /turf/proc/Distance_cardinal, 0, 200)
+	patrol_move(patrol_path[patrol_path.len])
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
 	var/turf/target_center
@@ -714,6 +722,8 @@
 		return FALSE
 	if(!dest || !patrol_path || !patrol_path.len) //A-star failed or a path/destination was not set.
 		return FALSE
+	if(health <= 0) // No more moving corpses.
+		return FALSE
 	stop_automated_movement = 1
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
 	var/turf/last_node = get_turf(patrol_path[patrol_path.len]) //This is the turf at the end of the path, it should be equal to dest.
@@ -732,6 +742,8 @@
 
 /mob/living/simple_animal/hostile/proc/patrol_step(dest)
 	if(client || target  || status_flags & GODMODE || !patrol_path || !patrol_path.len)
+		return FALSE
+	if(health <= 0) // No more moving corpses.
 		return FALSE
 	if(patrol_path.len > 1)
 		step_towards(src, patrol_path[1])

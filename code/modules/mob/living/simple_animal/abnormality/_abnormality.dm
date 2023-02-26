@@ -93,6 +93,14 @@
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/add_to_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list |= src
+
+/mob/living/simple_animal/hostile/abnormality/remove_from_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list -= src
+
 /mob/living/simple_animal/hostile/abnormality/Move()
 	if(status_flags & GODMODE) // STOP STEALING MY FREAKING ABNORMALITIES
 		return FALSE
