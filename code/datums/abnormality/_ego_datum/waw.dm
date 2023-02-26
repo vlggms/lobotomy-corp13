@@ -250,3 +250,12 @@
 /datum/ego_datum/armor/moonlight
 	item_path = /obj/item/clothing/suit/armor/ego_gear/moonlight
 	cost = 50
+
+// Little Prince - Spore
+/datum/ego_datum/weapon/spore
+	item_path = /obj/item/ego_weapon/spore
+	cost = 50
+
+/datum/ego_datum/armor/spore
+	item_path = /obj/item/clothing/suit/armor/ego_gear/spore
+	cost = 50

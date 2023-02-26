@@ -796,6 +796,56 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+							
+
+/obj/item/ego_weapon/spore
+	name = "Spore"
+	desc = "A spear covered in spores and affection. \
+	It lights the employee's heart, shines like a star, and steadily tames them."
+	special = "This weapon has a longer reach. \
+			Upon hit the targets WHITE vulnerability is increased by 0.2."
+	icon_state = "spore"
+	force = 30		//Quite low as WAW coz the armor rend effect
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/spore/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(isliving(target))
+		var/mob/living/simple_animal/M = target
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rendWhiteArmor))
+			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+			M.apply_status_effect(/datum/status_effect/rendWhiteArmor)
+
+/datum/status_effect/rendWhiteArmor
+	id = "rend white armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+	var/original_armor
+
+/datum/status_effect/rendWhiteArmor/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	original_armor = M.damage_coeff[WHITE_DAMAGE]
+	if(original_armor > 0)
+		M.damage_coeff[WHITE_DAMAGE] = original_armor + 0.2
+
+/datum/status_effect/rendWhiteArmor/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[WHITE_DAMAGE] == original_armor + 0.2)
+		M.damage_coeff[WHITE_DAMAGE] = original_armor
 
 
 /obj/item/ego_weapon/dipsia
