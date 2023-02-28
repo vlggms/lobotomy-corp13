@@ -5971,7 +5971,9 @@
 "UV" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/melee/supermatter_sword,
+/obj/item/melee/supermatter_sword{
+	anchored = 1
+	},
 /obj/structure/table/abductor,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
