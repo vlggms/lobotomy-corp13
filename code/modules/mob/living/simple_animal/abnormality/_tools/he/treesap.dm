@@ -21,7 +21,7 @@
 
 /obj/structure/toolabnormality/treesap/attack_hand(mob/living/carbon/human/user)
 	. = ..()
-	if(!do_after(user, 6))
+	if(!do_after(user, 6, src))
 		return
 	to_chat(user, "<span class='danger'>You sip of the sap.</span>")
 
