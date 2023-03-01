@@ -26,8 +26,10 @@
 		/datum/ego_datum/armor/noise
 		)
 
+	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
+
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 40)
 		return chance * 0.75
 	return chance
 
@@ -57,7 +59,8 @@
 		rose_available = TRUE
 		break
 
-	datum_reference.qliphoth_change(4)
+	addtimer(CALLBACK (datum_reference, /datum/abnormality/proc/qliphoth_change, 4), reset_time)
+
 	if(!rose_available)
 		SSweather.run_weather(/datum/weather/mhz)
 		return
