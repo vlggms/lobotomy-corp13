@@ -515,7 +515,7 @@
 	<h4>White Resistance:</h4> Normal<br>
 	<h4>Black Resistance:</h4> Weak<br>
 	<h4>Pale Resistance:</h4> Weak	<br>"}
-	
+
 //La Luna
 /obj/item/paper/fluff/info/waw/luna
 	name = "D-01-105"
@@ -565,5 +565,69 @@
 	<br>
 	<h4>Instinct:</h4> Common<br>
 	<h4>Insight:</h4> Low<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Flesh Idol
+/obj/item/paper/fluff/info/waw/flesh_idol
+	name = "T-09-79"
+	info = {"<h1><center>T-09-79</center></h1>	<br>
+	Name : Flesh Idol	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 20	<br>
+	Qliphoth Counter : 1	<br>
+	Work Damage Type : Random	<br>
+	Work Damage : Moderate	<br>
+	- When work was complete, everyone in the facility was healed.	<br>
+	- During work, the employee took random damage continuously.	<br>
+	- When work was completed 4 times, The Qliphoth counter lowered.	<br>
+	- When the Qliphoth counter reached 0, two abnormalities breached containment.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>"}
+
+//Dimensional Refraction
+/obj/item/paper/fluff/info/waw/drv
+	name = "0-03-88"
+	info = {"<h1><center>0-03-88</center></h1>	<br>
+	Name : Dimensional Refraction Variant	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 22	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : White	<br>
+	Work Damage : High	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- The facility and its employees will find it difficult to detect the Abnormality in any fashion when it escapes. Manager or clerk assistance recommended.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
+	<h4>Attachment:</h4> Common<br>
+	<h4>Repression:</h4> Common<br>
+	<h3><center>Breach Information</center></h3>	<br>
+	<h4>Escape Damage Type:</h4> Red	<br>
+	<h4>Escape Damage:</h4> High	<br>
+	<h4>Red Resistance:</h4> Immune	<br>
+	<h4>White Resistance:</h4> Weak	<br>
+	<h4>Black Resistance:</h4> Endured	<br>
+	<h4>Pale Resistance:</h4> Normal	<br>"}
+
+//Contract, Signed
+/obj/item/paper/fluff/info/waw/contract
+	name = "C-03-140"
+	info = {"<h1><center>C-03-140</center></h1>	<br>
+	Name : A Contract, Signed	<br>
+	Risk Class : Waw	<br>
+	Max PE Boxes : 24	<br>
+	Qliphoth Counter : 2	<br>
+	Work Damage Type : Pale	<br>
+	Work Damage : High	<br>
+	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
+	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
+	- When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.	<br>
+	<br>
+	<h4>Instinct:</h4> Common<br>
+	<h4>Insight:</h4> Common<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}

@@ -207,7 +207,9 @@
 	desc = "It's more important to deliver a decisive strike in blind hatred without hesitation than to hold on to insecure courage."
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
-	force = 32
+	special = "This weapon hits faster than usual."
+	force = 18
+	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
@@ -336,7 +338,6 @@
 	..()
 	combo += 1
 	force = initial(force)
-
 
 
 /obj/item/ego_weapon/stem
@@ -853,7 +854,7 @@
 	desc = "The thirst will never truly be quenched."
 	special = "This weapon heals you on hit."
 	icon_state = "dipsia"
-	force = 32	
+	force = 32
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -900,3 +901,112 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+
+/obj/item/ego_weapon/mini/heart
+	name = "bleeding heart"
+	desc = "The supplicant will suffer various ordeals in a manner like being put through a trial."
+	icon_state = "heart"
+	special = "Hit yourself to heal others."
+	inhand_icon_state = "bloodbath"
+	force = 30
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
+
+/obj/item/ego_weapon/mini/heart/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(M==user)
+		for(var/mob/living/carbon/human/L in livinginrange(10, src))
+			if(L==user)
+				continue
+			L.adjustBruteLoss(-15)
+			new /obj/effect/temp_visual/healing(get_turf(L))
+
+
+/obj/item/ego_weapon/diffraction
+	name = "diffraction"
+	desc = "Many employees have sustained injuries from erroneous calculation."
+	special = "This weapon deals double damage to targets under 20% HP."
+	icon_state = "diffraction"
+	force = 40
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "cuts")
+	attack_verb_simple = list("slice", "cut")
+	hitsound = 'sound/weapons/blade1.ogg'
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 80)
+
+/obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
+	if((target.health<=target.maxHealth *0.2) && !(GODMODE in target.status_flags))
+		force*=2
+	..()
+	force = initial(force)
+
+
+/obj/item/ego_weapon/mini/infinity
+	name = "infinity"
+	desc = "A giant novelty pen."
+	special = "This weapon marks enemies with a damage type. They take random damage after 5 seconds."
+	icon_state = "infinity"
+	force = 45		//Does more damage for being harder to use.
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	var/mark_damage
+	var/mark_type = RED_DAMAGE
+
+//Replaces the normal attack with a mark
+/obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 4, src))
+
+		target.visible_message("<span class='danger'>[user] markes [target]!</span>", \
+						"<span class='userdanger'>[user] marks you!</span>", COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, "<span class='danger'>You enscribe a code on [target]!</span>")
+
+		mark_damage = force
+		//I gotta grab  justice here
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		mark_damage *= justicemod
+
+		var/obj/effect/infinity/P = new get_turf(target)
+		if(mark_type == RED_DAMAGE)
+			P.color = COLOR_RED
+
+		if(mark_type == BLACK_DAMAGE)
+			P.color = COLOR_PURPLE
+
+		addtimer(CALLBACK(src, .proc/cast, target, user, mark_type), 5 SECONDS)
+
+		//So you can see what the next mark is.
+		mark_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE)
+		damtype = mark_type
+
+	else
+		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
+		return
+
+/obj/effect/infinity
+	name = "mark"
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "rune3center"
+	layer = ABOVE_ALL_MOB_LAYER
+
+/obj/effect/infinity/Initialize()
+	..()
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
+
+/obj/item/ego_weapon/mini/infinity/proc/cast(mob/living/target, mob/living/user, damage_color)
+	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+	mark_damage = force
+
+
