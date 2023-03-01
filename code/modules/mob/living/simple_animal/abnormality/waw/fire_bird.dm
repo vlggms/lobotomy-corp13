@@ -196,6 +196,7 @@
 	//pixel_y = -16
 	//base_pixel_y = -16
 	//icon_state = "burnttree"
+	//resistance_flags = INDESTRUCTIBLE //should make this indestructible
 
 ///mob/living/simple_animal/hostile/firetree/Initialize(mapload)
 	//. = ..()

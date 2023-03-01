@@ -321,3 +321,4 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
