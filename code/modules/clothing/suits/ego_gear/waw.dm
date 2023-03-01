@@ -208,10 +208,10 @@
 							TEMPERANCE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/regent
-	name = "black regent"
+/obj/item/clothing/suit/armor/ego_gear/ebony_stem
+	name = "ebony stem"
 	desc = "Someone must endure the pain to spare the rest of suffering."
-	icon_state = "regent"
+	icon_state = "ebony_stem"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,

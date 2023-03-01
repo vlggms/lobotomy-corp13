@@ -556,9 +556,9 @@
 	justice_bonus = 4
 	slot = HAT
 
-/datum/ego_gifts/regent
-	name = "Black Regent"
-	icon_state = "regent"
+/datum/ego_gifts/ebony_stem
+	name = "Ebony Stem"
+	icon_state = "ebony_stem"
 	prudence_bonus = 4
 	justice_bonus = 2
 	slot = NECKWEAR
@@ -577,7 +577,7 @@
 	prudence_bonus = 4
 	justice_bonus = -2
 	slot = FACE
-	
+
 /datum/ego_gifts/spore
 	name = "Spore"
 	icon_state = "spore"
