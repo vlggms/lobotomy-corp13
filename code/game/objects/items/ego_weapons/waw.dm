@@ -383,12 +383,12 @@
 		L.adjust_nutrition(-10)
 		vine_cooldown = world.time + vine_delay
 
-/obj/item/ego_weapon/regent
-	name = "black regent"
-	desc = "\"An apple does not culminate when it ripens to bright red. \
-	Only when the apple shrivels up and attracts lowly creatures.\""
+/obj/item/ego_weapon/ebony_stem
+	name = "ebony stem"
+	desc = "An apple does not culminate when it ripens to bright red; \
+	only when the apple shrivels up and attracts lowly creatures."
 	special = "This weapon has a ranged attack."
-	icon_state = "regent"
+	icon_state = "ebony_stem"
 	force = 35
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
@@ -408,7 +408,7 @@
 	icon_state = "thornspike"
 	duration = 10
 
-/obj/item/ego_weapon/regent/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
 		return
@@ -796,7 +796,7 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
-							
+
 
 /obj/item/ego_weapon/spore
 	name = "Spore"

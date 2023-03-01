@@ -48,10 +48,10 @@
 	var/can_act = TRUE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/regent,
-	/datum/ego_datum/armor/regent
+	/datum/ego_datum/weapon/ebony_stem,
+	/datum/ego_datum/armor/ebony_stem
 	)
-	gift_type =  /datum/ego_gifts/regent
+	gift_type =  /datum/ego_gifts/ebony_stem
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
