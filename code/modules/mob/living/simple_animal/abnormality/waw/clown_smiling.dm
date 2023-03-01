@@ -178,6 +178,7 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
 	var/datum/looping_sound/clown_ambience/circustime
 
 /obj/structure/clown_picture/Initialize()
