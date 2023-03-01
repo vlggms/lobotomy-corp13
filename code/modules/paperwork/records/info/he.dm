@@ -301,3 +301,23 @@
 		"Employees with two restorative auras were absorbed by the abnormality after working on it again.",
 		"This abnormality must be cored with a knife or sharp object immediately after suppression work.",
 		"Following its metamorphosis, this abnormality will deal BLACK damage.")
+
+//You Must Become Strong
+/obj/item/paper/fluff/info/he/you_strong
+	abno_type = /mob/living/simple_animal/hostile/abnormality/you_strong
+	abno_code = "T-09-140"
+	abno_info = list(
+		"When Repression Work was performed, the Qliphoth Counter decreased.",
+		"After 3 works, the employee was prompted: 'Do you love your City?'",
+		"Answering 'Yes' heavily reduced the work success rate of the next work.",
+		"Answering 'No' reduced the Qliphoth Counter by one.",
+		"During an accident, it was discovered that employees can plunge their limbs into the machine to be granted a better performing limb but reducing the Qliphoth Counter by one.",
+		"This effect worked on this with prosthetics as well as their original limbs.",
+		"Should the Qliphoth level reach 0, instead of breaching, the machine will produce a loud whirling sound and produce 3 humanoid creatures dubbed T-09-140-1.",
+		"T-09-140-1 are, despite their poor resilience, very durable and must be handled multiple times.",
+		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
+		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
+	)
+	abno_breach_damage_type = "RED"
+	abno_breach_damage_count = "Moderate"
+	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")

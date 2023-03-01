@@ -2632,6 +2632,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\watchman.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\white_lake.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\woodsman.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\you_strong.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\beanstalk.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\beauty_beast.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\blood_bath.dm"

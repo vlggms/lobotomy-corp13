@@ -229,3 +229,12 @@
 /datum/ego_datum/weapon/legerdemain
 	item_path = /obj/item/ego_weapon/shield/legerdemain
 	cost = 35
+
+//You Must Become Strong - Get Strong
+/datum/ego_datum/weapon/get_strong
+	item_path = /obj/item/ego_weapon/get_strong
+	cost = 35
+
+/datum/ego_datum/armor/get_strong
+	item_path = /obj/item/clothing/suit/armor/ego_gear/get_strong
+	cost = 35
