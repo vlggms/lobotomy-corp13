@@ -306,7 +306,7 @@
 	desc = "A rose is a rose, by any other name."
 	special = "Use this weapon to change it's damage type between red, white and pale."	//like a different rabbit knife. No black though
 	icon_state = "rosered"
-	force = 80 //Less damage, can swap damage type
+	force = 100 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "slices")
@@ -323,15 +323,15 @@
 	switch(damtype)
 		if(RED_DAMAGE)
 			damtype = WHITE_DAMAGE
-			force = 70 //Prefers red, you can swap to white if needed
+			force = 90 //Prefers red, you can swap to white if needed
 			icon_state = "rosewhite"
 		if(WHITE_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 50	//I'm not making this more than 40.
+			force = 70	//I'm not making this more than 40.
 			icon_state = "rosepale"
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 80
+			force = 100
 			icon_state = "rosered"
 	armortype = damtype
 	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")

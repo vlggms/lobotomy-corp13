@@ -107,7 +107,7 @@
 	desc = "Just looking at this, you feel quite tacky."
 	icon_state = "blooming"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 0, PALE_DAMAGE = 80) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 20, PALE_DAMAGE = 80) // 230
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -120,7 +120,7 @@
 	desc = "Ah, magicians are actually in greater need of mercy."
 	icon_state = "air"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 20, PALE_DAMAGE = 90) // 270
+	armor = list(RED_DAMAGE = 85, WHITE_DAMAGE = 85, BLACK_DAMAGE = 40, PALE_DAMAGE = 95) // 270
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
