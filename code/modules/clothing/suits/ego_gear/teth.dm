@@ -48,7 +48,7 @@
 	name = "life for a daredevil"
 	desc = "The fear of death is natural, but in denying it you shall find untold strength."
 	icon_state = "daredevil"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = -50) // 20
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = -50) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/noise
 	name = "noise"
@@ -133,7 +133,7 @@
 	desc = "I looked, and behold, a pale horse; and he who sat on it had the name Death."
 	icon_state = "revelation"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 30)
-	
+
 /obj/item/clothing/suit/armor/ego_gear/hearth //my sweet home
 	name = "Hearth"
 	desc = "A Home contains everything you need."

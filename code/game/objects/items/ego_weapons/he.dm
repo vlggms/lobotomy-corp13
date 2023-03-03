@@ -145,7 +145,7 @@
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	special = "This weapon has a fast attack speed"
 	icon_state = "daredevil"
-	force = 12
+	force = 19
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")

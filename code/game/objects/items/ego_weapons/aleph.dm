@@ -4,7 +4,7 @@
 	I come from the end, and I am here to stay for but a moment.\""
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
-	force = 70
+	force = 120
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
@@ -18,7 +18,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 70
+	var/ranged_damage = 120
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -52,7 +52,7 @@
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	special = "This weapon has a combo system."
 	icon_state = "justitia"
-	force = 25
+	force = 40
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
