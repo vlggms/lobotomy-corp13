@@ -2970,6 +2970,7 @@
 #include "code\modules\paperwork\records\info\tools.dm"
 #include "code\modules\paperwork\records\info\waw.dm"
 #include "code\modules\paperwork\records\info\zayin.dm"
+#include "code\modules\paperwork\records\lore\shrimp.dm"
 #include "code\modules\paperwork\records\lore\zayin.dm"
 #include "code\modules\paperwork\records\tutorial\abnormalities.dm"
 #include "code\modules\paperwork\records\tutorial\levelling.dm"
