@@ -310,7 +310,7 @@
 	desc = "There is nothing else than now. There is neither yesterday, certainly, nor is there any tomorrow."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
-	force = 30
+	force = 45
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -332,7 +332,7 @@
 	combo_time = world.time + combo_wait
 	if(combo >= 13)
 		combo = 0
-		force = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+		force = get_attribute_level(user, JUSTICE_ATTRIBUTE) * 2
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
 		playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	..()
