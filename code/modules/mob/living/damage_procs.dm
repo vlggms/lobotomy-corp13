@@ -282,8 +282,9 @@
 	return amount
 
 /mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
-	var/damage_amt = maxHealth * (amount/100)
-	return adjustBruteLoss(damage_amt, forced = forced)
+	if(prob(amount))
+		return death()
+	return FALSE
 
 /**
  * heal ONE external organ, organ gets randomly selected from damaged ones.
