@@ -19,19 +19,29 @@
 	attack_verb_simple = "bashes"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
+	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
+				/mob/living/simple_animal/hostile/abnormality/white_night,
+				/mob/living/simple_animal/hostile/abnormality/hatred_queen)
+
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/Breach_All), 5 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/pink_midnight/death(gibbed)
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
 
 	//Funny drags everything to it
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/proc/Breach_All()
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
 		//These two abnormalities kill everything else no matter what faction we set them to
-		if(istype(A, /mob/living/simple_animal/hostile/abnormality/hatred_queen) || istype(A, /mob/living/simple_animal/hostile/abnormality/white_night))
-			return
+		if(A.type in blacklist)
+			continue
 
-		if(A.can_breach && (A.status_flags & GODMODE))
-			A.BreachEffect()
+		if(A.can_breach && A.IsContained() && A.z == z)
+			A.datum_reference.qliphoth_change(-200)
+
 			var/turf/orgin = get_turf(src)
 			var/list/all_turfs = RANGE_TURFS(4, orgin)
 			var/turf/open/Y = pick(all_turfs - orgin)

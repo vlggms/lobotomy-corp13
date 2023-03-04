@@ -30,6 +30,9 @@
 	var/damage_amount = 7
 	var/run_num = 2		//How many things you breach
 
+	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
+				/mob/living/simple_animal/hostile/abnormality/white_night)
+
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorkComplete(mob/living/carbon/human/user, work_type, pe)
 	..()
 	work_count += 1
@@ -62,7 +65,7 @@
 	var/list/total_abnormalities = list()
 
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		if(A.datum_reference.qliphoth_meter > 0 && A.IsContained())
+		if(A.datum_reference.qliphoth_meter > 0 && A.IsContained() && !(A.type in blacklist) && A.z == z)
 			total_abnormalities += A
 
 	if(!LAZYLEN(total_abnormalities))
