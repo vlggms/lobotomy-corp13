@@ -31,10 +31,10 @@
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
-	special = "Use in hand to turn on homing mode. This mode homes in on a random target within 15 metres.	\
+	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
-	fire_delay = 8
+	fire_delay = 6
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
@@ -48,10 +48,12 @@
 	if(homing)
 		to_chat(user,"<span class='warning'>You release your energy, and turn off homing.</span>")
 		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
+		fire_delay = 6
 		homing = FALSE
 		return
 	if(!homing)
 		to_chat(user,"<span class='warning'>You channel your energy, enabling homing.</span>")
+		fire_delay = 8
 		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy/homing
 		homing = TRUE
 		return
