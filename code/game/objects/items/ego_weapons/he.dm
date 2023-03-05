@@ -2,7 +2,7 @@
 	name = "grinder MK4"
 	desc = "The sharp sawtooth of the grinder makes a clean cut through its enemy. \
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
-	special = "This weapon pierces to hit everything on the target's tile."
+	special = "This weapon pierces to hit everything on the target's tile and destroys corpses."
 	icon_state = "grinder"
 	force = 30
 	damtype = RED_DAMAGE
@@ -28,6 +28,8 @@
 			continue
 		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	force = 30
+	if((target.stat == DEAD) && !(GODMODE in target.status_flags))	//gibs corpses
+		target.gib()
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
