@@ -637,6 +637,12 @@
 	temperance_bonus = 5
 	slot = RIGHTBACK
 
+/datum/ego_gifts/pharaoh
+	name = "Pharaoh"
+	icon_state = "pharaoh"
+	prudence_bonus = 6
+	slot = MOUTH_1
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
