@@ -28,7 +28,7 @@
 	attack_sound = 'sound/weapons/pbird_bite.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	is_flying_animal = TRUE
+	is_flying_animal = FALSE
 	speak_emote = list("chirps")
 	vision_range = 14
 	aggro_vision_range = 28
@@ -66,6 +66,8 @@
 		base_pixel_y = 32
 		is_flying_animal = FALSE
 		update_icon()
+	else
+		is_flying_animal = TRUE
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
 
@@ -260,6 +262,7 @@
 	pixel_y = initial(pixel_y)
 	base_pixel_x = initial(base_pixel_x)
 	base_pixel_y = initial(base_pixel_y)
+	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 	update_icon()
 	death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS, TIMER_STOPPABLE)
 	return
