@@ -32,6 +32,19 @@
 		/obj/item/clothing/suit/hawaiian
 		)
 	var/list/tethitem = list(
+		/obj/item/ego_weapon/mini/hayong,
+		/obj/item/ego_weapon/shield/walpurgisnacht,
+		/obj/item/ego_weapon/suenoimpossible,
+		/obj/item/ego_weapon/shield/sangria,
+		/obj/item/ego_weapon/mini/soleil,
+		/obj/item/ego_weapon/taixuhuanjing,
+		/obj/item/ego_weapon/revenge,
+		/obj/item/ego_weapon/shield/hearse,
+		/obj/item/ego_weapon/mini/hearse,
+		/obj/item/ego_weapon/raskolot,
+		/obj/item/ego_weapon/vogel,
+		/obj/item/ego_weapon/nobody,
+		/obj/item/ego_weapon/ungezifer,
 		/obj/item/clothing/suit/armor/ego_gear/training,
 		/obj/item/ego_weapon/training,
 		/obj/item/clothing/suit/armor/ego_gear/rookie,
