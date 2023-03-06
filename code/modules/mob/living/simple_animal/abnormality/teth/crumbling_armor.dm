@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
 			)
-	work_damage_amount = 4
+	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
@@ -28,6 +28,19 @@
 	// Megalovania?
 	if (prob(1))
 		icon_state = "megalovania"
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/WorkChance(mob/living/carbon/human/user, chance)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+		work_damage_amount = 5
+		work_damage_type = RED_DAMAGE
+	else
+		work_damage_amount = 8
+		work_damage_type = PALE_DAMAGE
+
+	return chance
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER

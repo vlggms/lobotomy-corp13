@@ -180,10 +180,11 @@
 	Max PE Boxes : 12	<br>
 	Qliphoth Counter : X	<br>
 	Work Damage Type : PALE	<br>
-	Work Damage : Low	<br>
+	Work Damage : Moderate	<br>
 	- When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off.	<br>
 	- Upon completing a Repression work with Crumbling Armor, the employee gained a glowing aura. This aura seemed to increase their stats regarding Justice.	<br>
 	- Each time the employee completed Repression work with any Abnormality, the aura intensified.	<br>
+	- When EGO Gear was not worn when working on Crumbling Armor, work dealt RED damage instead.	<br>
 	- WARNING: When an employee with the aura performed Attachment work, they were found with their head sliced clean off.	<br>
 	- WARNING: As the aura intensified, so too did its effect. However, an additional loss of Fortitude was noted.	<br>
 	<br>
