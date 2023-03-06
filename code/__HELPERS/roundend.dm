@@ -207,6 +207,7 @@
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	log_game("The round has ended.")
+	SSvote.initiate_vote("gamemode", "automatic gamemode selection vote")
 
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I

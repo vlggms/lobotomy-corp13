@@ -40,6 +40,7 @@
 		/datum/ego_datum/armor/justitia
 		)
 	gift_type =  /datum/ego_gifts/justitia
+	abnormality_origin = "Lobotomy Corporation"
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 65

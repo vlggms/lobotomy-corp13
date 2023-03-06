@@ -35,6 +35,7 @@
 		/datum/ego_datum/weapon/alleyway,
 		/datum/ego_datum/armor/alleyway
 		)
+	abnormality_origin = "Original"
 //	gift_type =  /datum/ego_gifts/alleyway
 	light_color = "FFFFFFF"
 	light_power = -10

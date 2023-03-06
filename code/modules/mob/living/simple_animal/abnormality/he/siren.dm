@@ -26,6 +26,7 @@
 		/datum/ego_datum/armor/song
 		)
 	gift_type = /datum/ego_gifts/song
+	abnormality_origin = "Original"
 
 //meltdown effects
 	var/meltdown_cooldown_time = 144 SECONDS

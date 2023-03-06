@@ -39,6 +39,7 @@
 		)
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
+	abnormality_origin = "Lobotomy Corporation"
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0

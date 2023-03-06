@@ -24,6 +24,7 @@
 		/datum/ego_datum/armor/infinity,
 		)
 //	gift_type = /datum/ego_gifts/eight
+	abnormality_origin = "Original"
 
 	var/list/spawnables = list()
 

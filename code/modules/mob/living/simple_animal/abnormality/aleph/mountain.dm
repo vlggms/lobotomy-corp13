@@ -41,6 +41,7 @@
 		/datum/ego_datum/armor/smile
 		)
 	gift_type =  /datum/ego_gifts/smile
+	abnormality_origin = "Lobotomy Corporation"
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0

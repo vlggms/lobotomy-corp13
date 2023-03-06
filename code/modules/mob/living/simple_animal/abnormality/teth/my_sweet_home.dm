@@ -52,6 +52,8 @@
 
 	gift_type =  /datum/ego_gifts/hearth
 
+	abnormality_origin = "Wonderlab"
+
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	to_chat(user, "<span class='danger'>It whispers in your mind...</span>")

@@ -10,6 +10,7 @@
 	var/icon_inverted
 	faction = list("neutral")
 	is_flying_animal = TRUE
+	abnormality_origin = "Lobotomy Corporation"
 
 	ranged = TRUE
 	retreat_distance = 1

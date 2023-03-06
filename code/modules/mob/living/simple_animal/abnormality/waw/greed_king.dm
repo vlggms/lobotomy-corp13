@@ -45,6 +45,7 @@
 		/datum/ego_datum/armor/goldrush
 		)
 	gift_type =  /datum/ego_gifts/goldrush
+	abnormality_origin = "Lobotomy Corporation"
 
 /datum/action/innate/abnormality_attack/kog_dash
 	name = "Ravenous Charge"

@@ -40,6 +40,7 @@
 		/datum/ego_datum/armor/correctional
 		)
 	gift_type =  /datum/ego_gifts/correctional
+	abnormality_origin = "Artbook"
 	var/finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()

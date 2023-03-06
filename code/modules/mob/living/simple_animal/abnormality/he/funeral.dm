@@ -45,6 +45,7 @@
 		)
 	gift_type =  /datum/ego_gifts/solemnlament
 	gift_message = "The butterflies are waiting for the end of the world."
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/gun_cooldown
 	var/gun_cooldown_time = 4 SECONDS

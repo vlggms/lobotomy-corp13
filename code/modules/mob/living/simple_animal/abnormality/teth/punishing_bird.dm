@@ -50,6 +50,7 @@
 		/datum/ego_datum/armor/beak
 		)
 	gift_type =  /datum/ego_gifts/beak
+	abnormality_origin = "Lobotomy Corporation"
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()

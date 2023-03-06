@@ -20,6 +20,7 @@
 		/datum/ego_datum/armor/magicbullet
 		)
 	gift_type =  /datum/ego_gifts/magicbullet
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)

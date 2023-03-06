@@ -42,6 +42,7 @@
 		/datum/ego_datum/armor/maneater
 		)
 	gift_type =  /datum/ego_gifts/maneater
+	abnormality_origin = "Artbook"
 
 //breach related
 	var/teleport_cooldown

@@ -34,6 +34,7 @@
 		/datum/ego_datum/weapon/ecstasy,
 		/datum/ego_datum/armor/ecstasy
 		)
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/list/movement_path = list()
 	var/list/been_hit = list()

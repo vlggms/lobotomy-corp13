@@ -53,6 +53,7 @@ GLOBAL_LIST_EMPTY(zombies)
 		)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
+	abnormality_origin = "Original"
 
 /*---Combat---*/
 	//range and attack speed for thunder bombs, taken from general bee

@@ -25,6 +25,7 @@
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
 	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))

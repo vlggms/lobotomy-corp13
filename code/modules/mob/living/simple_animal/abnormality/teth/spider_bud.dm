@@ -22,6 +22,7 @@
 		/datum/ego_datum/armor/eyes
 		)
 	gift_type =  /datum/ego_gifts/redeyes
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/spider/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider

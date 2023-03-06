@@ -31,6 +31,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/homing_instinct,
 		/datum/ego_datum/armor/homing_instinct)
+	abnormality_origin = "Wonderlab"
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path

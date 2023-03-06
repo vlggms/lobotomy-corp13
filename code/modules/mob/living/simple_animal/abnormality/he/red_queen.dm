@@ -22,6 +22,7 @@
 		/datum/ego_datum/armor/fury
 		)
 	gift_type = /datum/ego_gifts/fury
+	abnormality_origin = "Wonderlab"
 
 	var/liked
 

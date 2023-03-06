@@ -23,6 +23,7 @@
 		/datum/ego_datum/armor/galaxy
 		)
 //	gift_type = /datum/ego_gifts/galaxy
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/heal_cooldown_time = 2 SECONDS
 	var/heal_cooldown

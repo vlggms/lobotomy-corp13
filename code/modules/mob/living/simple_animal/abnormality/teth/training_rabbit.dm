@@ -24,6 +24,7 @@
 	//ego_list = list(datum/ego_datum/weapon/training, datum/ego_datum/armor/training)
 	gift_type =  /datum/ego_gifts/standard
 	can_patrol = FALSE
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/Initialize()	//1 in 100 chance for bunny girl waifu
 	. = ..()

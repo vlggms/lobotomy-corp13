@@ -23,6 +23,7 @@
 		)
 	gift_type = /datum/ego_gifts/prank
 	gift_message = "I hope you're pleased with this!"
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)

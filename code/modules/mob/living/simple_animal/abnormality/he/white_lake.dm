@@ -30,6 +30,7 @@
 		)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
+	abnormality_origin = "Wonderlab"
 
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)

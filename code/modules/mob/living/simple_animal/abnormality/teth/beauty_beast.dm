@@ -27,6 +27,7 @@
 		/datum/ego_datum/armor/horn
 		)
 	gift_type =  /datum/ego_gifts/horn
+	abnormality_origin = "Lobotomy Corporation"
 	var/injured = FALSE
 
 //it needs to use PostSpawn or we can't get the datum of beauty

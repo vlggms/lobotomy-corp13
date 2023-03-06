@@ -24,6 +24,7 @@
 		/datum/ego_datum/armor/heart
 		)
 //	gift_type = /datum/ego_gifts/heart
+	abnormality_origin = "Altered LC"
 
 	var/work_count = 0
 	var/reset_time = 1 MINUTES

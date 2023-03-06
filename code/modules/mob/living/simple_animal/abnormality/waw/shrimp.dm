@@ -23,6 +23,7 @@
 		/datum/ego_datum/armor/executive
 		)
 //	gift_type =  /datum/ego_gifts/executive
+	abnormality_origin = "Original"
 
 	var/liked
 	var/happy = TRUE

@@ -44,6 +44,7 @@
 		/datum/ego_datum/armor/totalitarianism
 		)
 	gift_type = /datum/ego_gifts/totalitarianism
+	abnormality_origin = "Wonderlab"
 
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master

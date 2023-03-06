@@ -34,6 +34,7 @@
 		/datum/ego_datum/armor/paw
 		)
 	gift_type =  /datum/ego_gifts/bearpaw
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
 	src.hugging = TRUE
