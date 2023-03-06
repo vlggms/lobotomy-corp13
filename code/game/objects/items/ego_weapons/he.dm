@@ -151,7 +151,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(90, 90, 90, 30, 1)
+	reductions = list(90, 90, 90, 30)
 	recovery_time = 0.5 SECONDS
 	block_time = 0.5 SECONDS
 	block_recovery = 3 SECONDS
@@ -182,9 +182,9 @@
 		var/mob/living/carbon/human/cooler_user = user
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		if(naked_parry)
-			reductions = list(95, 95, 95, 100, 1)
+			reductions = list(95, 95, 95, 100)
 		else
-			reductions = list(90, 90, 90, 30, 1)
+			reductions = list(90, 90, 90, 30)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
@@ -418,7 +418,7 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
-	reductions = list(60, 30, 30, 20, 1)
+	reductions = list(60, 30, 30, 20)
 	recovery_time = 3 SECONDS
 	block_time = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
 	block_recovery = 5 SECONDS //always 6 seconds total before blocking again
@@ -538,7 +538,7 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(40, 20, 40, 20, 1)
+	reductions = list(40, 20, 40, 20)
 	recovery_time = 3 SECONDS
 	block_time = 3 SECONDS
 	block_recovery = 3 SECONDS
@@ -600,7 +600,7 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
-	reductions = list(10, 20, 30, 10, 1) //longer parry, lower values; not a proper
+	reductions = list(10, 20, 30, 10) //longer parry, lower values; not a proper shield
 	recovery_time = 1 SECONDS
 	block_time = 1 SECONDS
 	block_recovery = 3 SECONDS

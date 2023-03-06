@@ -78,7 +78,7 @@
 	var/block_recovery = 3 SECONDS	//Recovery time, block recovery, time, and stance recovery are important shield stats; change them around when making new EGO
 	var/block_time = 1 SECONDS
 	var/stance_recovery = 3 SECONDS
-	var/list/reductions = list(50, 50, 50, 50, 1) //Red/White/Black/Pale/Bomb defense all shields must have 1 in bomb
+	var/list/reductions = list(50, 50, 50, 50) //Red/White/Black/Pale defense
 	var/block_message = "You attempt to block the attack!" //So you can change the text for parrying with swords
 	var/hit_message = "blocks the attack!"
 	var/reposition_message = "You reposition your shield"
@@ -115,7 +115,7 @@
 				return FALSE
 		block = 1
 		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = reductions[5])
+		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1) //bomb defense must be over 0
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
 		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_time)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
@@ -123,7 +123,7 @@
 
 //Ends the block, causes you to take more damage for as long as stance_recovery if you did not block any damage
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)
-	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -reductions[5])
+	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_recovery)
 	if (!block_success)
@@ -154,14 +154,10 @@
 	SIGNAL_HANDLER
 	block_success = TRUE
 	var/src_message = "<span class='userdanger'>[source.real_name] [hit_message]</span>"
-	var/other_message = src_message
 
 	playsound(get_turf(src), block_sound, 50, 0, 7)
 	for(var/mob/living/carbon/human/person in view(7, source))
-		if(person == source)
-			to_chat(person, src_message)
-		else
-			to_chat(person, other_message)
+		to_chat(person, src_message)
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
