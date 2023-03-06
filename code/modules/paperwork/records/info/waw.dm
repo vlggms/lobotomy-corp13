@@ -412,8 +412,8 @@
 
 //Ebony queen's apple
 /obj/item/paper/fluff/info/waw/ebony_queen
-	name = "F-04-42-SP"
-	info = {"<h1><center>F-04-42-SP</center></h1>	<br>
+	name = "F-04-141"
+	info = {"<h1><center>F-04-141</center></h1>	<br>
 	Name : Ebony Queens Apple	<br>
 	Risk Class : Waw	<br>
 	Max PE Boxes : 20	<br>
@@ -423,7 +423,7 @@
 	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
 	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
 	- When Ebony Queen's Apple escaped from its containment, it began attack with its roots with extremely violent intent.	<br>
-	- F-04-42-SP primarily attacks through her roots and branches. It is suggested agents avoid extentions of the entity when in combat.	<br>
+	- F-04-141 primarily attacks through her roots and branches. It is suggested agents avoid extentions of the entity when in combat.	<br>
 	<br>
 	<h4>Instinct:</h4> Very Low<br>
 	<h4>Insight:</h4> Low<br>
