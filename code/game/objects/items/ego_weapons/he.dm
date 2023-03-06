@@ -64,7 +64,6 @@
 	if(!can_spin)
 		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
 		return
-	spinning = TRUE
 	if(do_after(user, 12, src))
 		can_spin = TRUE
 		addtimer(CALLBACK(src, .proc/spin_reset), 12)
@@ -80,14 +79,12 @@
 			if(L == user || ishuman(L))
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	spinning = FALSE
 
 
 /obj/item/ego_weapon/fury
 	name = "blind fury"
 	desc = "A fancy black and white halberd with a sharp blade. Whose head will it cut off next?"
-	special = "This weapon has a slower attack speed.	\
-			On kill, deal massive damage on next attack."
+	special = "On kill, deal massive damage on next attack."
 	icon_state = "fury"
 	force = 41
 	attack_speed = 1.5
@@ -122,7 +119,6 @@
 /obj/item/ego_weapon/paw
 	name = "bear paw"
 	desc = "The paws made form, and given life."
-	special = "This weapon has a very fast attack speed."
 	icon_state = "bear_paw"
 	force = 12
 	attack_speed = 0.3
@@ -143,7 +139,6 @@
 /obj/item/ego_weapon/shield/daredevil
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
-	special = "This weapon has a fast attack speed"
 	icon_state = "daredevil"
 	force = 12
 	damtype = PALE_DAMAGE
@@ -216,8 +211,7 @@
 /obj/item/ego_weapon/christmas
 	name = "christmas"
 	desc = "With my infinite hatred, I give you this gift."
-	special = "This weapon has a slower attack speed. \
-	This weapon has knockback."
+	special = "This weapon has knockback."
 	icon_state = "christmas"
 	force = 54	//Still lower DPS
 	attack_speed = 2
@@ -497,7 +491,6 @@
 /obj/item/ego_weapon/mini/metal
 	name = "bare metal"
 	desc = "Looks to be a fan blade with a handle welded to it."
-	special = "This weapon attacks slower than usual."
 	icon_state = "metal"
 	force = 40
 	attack_speed = 1.5
@@ -513,7 +506,6 @@
 /obj/item/ego_weapon/mini/alleyway
 	name = "alleyway"
 	desc = "It's a small knife forged of black metal."
-	special = "This weapon attacks extremely fast."
 	icon_state = "alleyway"
 	force = 9
 	attack_speed = 0.3
@@ -529,7 +521,7 @@
 /obj/item/ego_weapon/shield/giant
 	name = "giant"
 	desc = "I'll grind your bones to make my bread!"
-	special = "This weapon has a slow attack speed and deals atrocious damage."
+	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
 	force = 20
 	attack_speed = 3
@@ -616,8 +608,7 @@
 /obj/item/ego_weapon/revelation
 	name = "revelation"
 	desc = "Death, where is thy sting?"
-	special = "This weapon has a slightly slower attack speed.\
-	This weapon attacks faster when hitting targets below 50% health"
+	special = "This weapon attacks faster when hitting targets below 50% health"
 	icon_state = "revelation"
 	force = 25
 	attack_speed = 1.5

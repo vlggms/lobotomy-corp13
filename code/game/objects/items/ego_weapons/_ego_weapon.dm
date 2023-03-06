@@ -28,6 +28,29 @@
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
+	if(reach>1)
+		. += "<span class='notice'>This weapon has a reach of [reach].</span>"
+
+	if(throwforce>force)
+		. += "<span class='notice'>This weapon deals [throwforce] [damtype] damage when thrown.</span>"
+
+	if(!attack_speed)
+		return
+	//Can't switch for less than for some reason
+	if(attack_speed<0.4)
+		. += "<span class='notice'>This weapon has a very fast attack speed.</span>"
+	else if(attack_speed<0.7)
+		. += "<span class='notice'>This weapon has a fast attack speed.</span>"
+	else if(attack_speed<1)
+		. += "<span class='notice'>This weapon attacks slightly faster than normal.</span>"
+	else if(attack_speed<1.5)
+		. += "<span class='notice'>This weapon attacks slightly slower than normal.</span>"
+	else if(attack_speed<2)
+		. += "<span class='notice'>This weapon has a slow attack speed.</span>"
+	else if(attack_speed>=2)
+		. += "<span class='notice'>This weapon attacks extremely slow.</span>"
+
+
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])

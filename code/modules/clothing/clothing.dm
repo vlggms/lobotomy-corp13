@@ -333,7 +333,7 @@
 		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and beside it is the same <a href='?src=[REF(src)];list_lobotomy=1'>tag</a> written out for foreign agents.</span>"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -352,6 +352,15 @@
 				readout += "\n[dam_type] [armor_to_protection_class(durability_amount)]" //e.g. FIRE II
 		readout += "</span>"
 
+		to_chat(usr, "[readout.Join()]")
+
+	if(href_list["list_lobotomy"])
+		var/list/readout = list("<span class='notice'><u><b>EGO DEFENSE VALUES</u></b>")
+		if(LAZYLEN(armor_list))
+			for(var/dam_type in armor_list)
+				var/armor_amount = armor_list[dam_type]
+				readout += "\n[dam_type] [armor_to_LC_protection(armor_amount)]" //e.g. BOMB IV
+		readout += "</span>"
 		to_chat(usr, "[readout.Join()]")
 
 /**
@@ -406,6 +415,12 @@
 		if (10 to INFINITY)
 			. = "X"
 	return .
+
+/obj/item/clothing/proc/armor_to_LC_protection(armor_value)
+	armor_value = round(armor_value,10) / 100
+	armor_value = 1 - armor_value
+
+	return armor_value
 
 /obj/item/clothing/obj_break(damage_flag)
 	update_clothes_damaged_state(CLOTHING_DAMAGED)

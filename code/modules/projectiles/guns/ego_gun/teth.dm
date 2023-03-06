@@ -20,7 +20,6 @@
 	the weapon has high firepower despite its small size."
 	icon_state = "beak"
 	inhand_icon_state = "beak"
-	special = "This weapon fires 400 rounds per minute."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
 	weapon_weight = WEAPON_HEAVY
 	spread = 10
@@ -32,7 +31,7 @@
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
 	inhand_icon_state = "beak"
-	special = "This weapon has pinpoint accuracy when duel wielded."
+	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
 	fire_delay = 13
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
@@ -68,7 +67,6 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
-	special = "This weapon has autofire"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
@@ -79,7 +77,6 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	special = "This weapon has autofire."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'

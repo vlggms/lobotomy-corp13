@@ -24,7 +24,6 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodasmg"
 	inhand_icon_state = "soda"
-	special = "This weapon fires at 400 rounds per minute."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	spread = 8

@@ -2,8 +2,7 @@
 	name = "lamp"
 	desc = "Big Bird's eyes gained another in number for every creature it saved. \
 	On this weapon, the radiant pride is apparent."
-	special = "This weapon has a slightly slower attack speed. \
-			This weapon attacks all non-humans in an AOE. \
+	special = "This weapon attacks all non-humans in an AOE. \
 			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
 	force = 25
@@ -85,7 +84,7 @@
 /obj/item/ego_weapon/totalitarianism
 	name = "totalitarianism"
 	desc = "When one is oppressed, sometimes they try to break free."
-	special = "This weapon attacks extremely slowly. Use in hand to unlock it's full power."
+	special = "Use in hand to unlock it's full power."
 	icon_state = "totalitarianism"
 	force = 80
 	attack_speed = 3
@@ -343,8 +342,7 @@
 /obj/item/ego_weapon/stem
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
-	special = "This weapon has a longer reach. \
-				Wielding this weapon grants an immunity to the slowing effects of the princesses vines. \
+	special = "Wielding this weapon grants an immunity to the slowing effects of the princess's vines. \
 				Place vines when used in hand."
 	icon_state = "green_stem"
 	force = 32 //original 8-16
@@ -779,9 +777,6 @@
 /obj/item/ego_weapon/heaven
 	name = "heaven"
 	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
-	special = "This weapon has a longer reach. \
-			This deals bonus throwing damage. \
-			This weapon attacks slower than usual."
 	icon_state = "heaven"
 	force = 40
 	reach = 2		//Has 2 Square Reach.
@@ -803,8 +798,7 @@
 	name = "Spore"
 	desc = "A spear covered in spores and affection. \
 	It lights the employee's heart, shines like a star, and steadily tames them."
-	special = "This weapon has a longer reach. \
-			Upon hit the targets WHITE vulnerability is increased by 0.2."
+	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
 	icon_state = "spore"
 	force = 30		//Quite low as WAW coz the armor rend effect
 	reach = 2		//Has 2 Square Reach.
@@ -949,7 +943,7 @@
 /obj/item/ego_weapon/mini/infinity
 	name = "infinity"
 	desc = "A giant novelty pen."
-	special = "This weapon marks enemies with a damage type. They take random damage after 5 seconds."
+	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
 	force = 45		//Does more damage for being harder to use.
 	attribute_requirements = list(
