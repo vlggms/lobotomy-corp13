@@ -21,10 +21,9 @@
 
 /obj/structure/toolabnormality/treesap/attack_hand(mob/living/carbon/human/user)
 	. = ..()
-	if(!do_after(user, 6))
+	if(!do_after(user, 6, src))
 		return
 	to_chat(user, "<span class='danger'>You sip of the sap.</span>")
-	used+=user
 
 	if(user in used)
 		if(prob(20))
@@ -32,6 +31,7 @@
 		else
 			user.apply_status_effect(STATUS_EFFECT_TREESAP)
 	else
+		used+=user
 		user.apply_status_effect(STATUS_EFFECT_TREESAP)
 
 

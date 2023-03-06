@@ -208,10 +208,10 @@
 							TEMPERANCE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/regent
-	name = "black regent"
+/obj/item/clothing/suit/armor/ego_gear/ebony_stem
+	name = "ebony stem"
 	desc = "Someone must endure the pain to spare the rest of suffering."
-	icon_state = "regent"
+	icon_state = "ebony_stem"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
@@ -266,7 +266,7 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
-							
+
 /obj/item/clothing/suit/armor/ego_gear/moonlight
 	name = "moonlight"
 	desc = "A classic, dark dress whose edge resembles an ink cap. \
@@ -276,4 +276,28 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/heart
+	name = "bleeding heart"
+	desc = "And the prayer shall inevitably end with the eternal despair of its worshiper."
+	icon_state = "heart"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 50) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80)
+
+/obj/item/clothing/suit/armor/ego_gear/diffraction
+	name = "diffraction"
+	desc = "You can ignore the ridiculous advice that you can see it with your mind."
+	icon_state = "diffraction"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80)
+
+/obj/item/clothing/suit/armor/ego_gear/infinity
+	name = "infinity"
+	desc = "You know it to be true."
+	icon_state = "infinity"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 50) // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80)
 

@@ -178,13 +178,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/exuviae
 	cost = 50
 
-// Ebony Queen's Apple - Regent
-/datum/ego_datum/armor/regent
-	item_path = /obj/item/clothing/suit/armor/ego_gear/regent
+// Ebony Queen's Apple - Ebony Stem
+/datum/ego_datum/armor/ebony_stem
+	item_path = /obj/item/clothing/suit/armor/ego_gear/ebony_stem
 	cost = 50
 
-/datum/ego_datum/weapon/regent
-	item_path = /obj/item/ego_weapon/regent
+/datum/ego_datum/weapon/ebony_stem
+	item_path = /obj/item/ego_weapon/ebony_stem
 	cost = 50
 
 // White Lake - Torn Off Wings
@@ -241,7 +241,7 @@
 /datum/ego_datum/weapon/pharaoh
 	item_path = /obj/item/ego_weapon/shield/pharaoh
 	cost = 50
-	
+
 // Il Pianto Della Luna - Moonlight
 /datum/ego_datum/weapon/moonlight
 	item_path = /obj/item/ego_weapon/moonlight
@@ -259,3 +259,31 @@
 /datum/ego_datum/armor/spore
 	item_path = /obj/item/clothing/suit/armor/ego_gear/spore
 	cost = 50
+
+// Flesh Idol - Bleeding Heart
+/datum/ego_datum/armor/heart
+	item_path = /obj/item/clothing/suit/armor/ego_gear/heart
+	cost = 50
+
+/datum/ego_datum/weapon/heart
+	item_path = /obj/item/ego_weapon/mini/heart
+	cost = 50
+
+// Dimensional Refraction - Diffraction
+/datum/ego_datum/armor/diffraction
+	item_path = /obj/item/clothing/suit/armor/ego_gear/diffraction
+	cost = 50
+
+/datum/ego_datum/weapon/diffraction
+	item_path = /obj/item/ego_weapon/diffraction
+	cost = 50
+
+// A Contract, Signed - Infinity
+/datum/ego_datum/armor/infinity
+	item_path = /obj/item/clothing/suit/armor/ego_gear/infinity
+	cost = 50
+
+/datum/ego_datum/weapon/infinity
+	item_path = /obj/item/ego_weapon/mini/infinity
+	cost = 50
+

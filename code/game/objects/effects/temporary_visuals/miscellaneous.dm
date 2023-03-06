@@ -820,3 +820,7 @@
 	randomdir = 0
 	pixel_y = 0
 	pixel_x = -16
+
+/obj/effect/temp_visual/healing
+	icon_state = "healing"
+	duration = 10

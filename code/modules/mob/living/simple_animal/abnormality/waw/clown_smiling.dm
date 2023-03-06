@@ -20,7 +20,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 	speed = 2
-	move_to_delay = 2
+	move_to_delay = 3
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "stabs"
@@ -99,7 +99,7 @@
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.apply_damage(10, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					H.apply_damage(5, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				finishing = FALSE
@@ -107,7 +107,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 			TH.gib()
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-				H.apply_damage(60, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				H.apply_damage(30, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/clown/MoveToTarget(list/possible_targets)
 	if(ranged_cooldown <= world.time)
@@ -178,6 +178,7 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
 	var/datum/looping_sound/clown_ambience/circustime
 
 /obj/structure/clown_picture/Initialize()
