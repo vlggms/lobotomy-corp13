@@ -401,7 +401,7 @@
 	else if(friend_count && icon_state == "courage_broken")
 		to_chat(user, "<span class='nicegreen'>Your weapon puffs back up to impress your allies!")
 		icon_state = "courage"
-	user.update_icon_state()
+	user.update_inv_hands()
 	..()
 	force = initial(force)
 
