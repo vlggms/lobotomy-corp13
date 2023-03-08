@@ -705,7 +705,7 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/slashmiss.ogg'
-	reductions = list(70, 50, 70, 40, 1)
+	reductions = list(70, 50, 70, 40)
 	recovery_time = 1 SECONDS
 	block_time = 3 SECONDS
 	block_recovery = 3 SECONDS
@@ -889,7 +889,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(95, 95, 95, 40, 1)
+	reductions = list(95, 95, 95, 40)
 	recovery_time = 0.5 SECONDS
 	block_time = 0.5 SECONDS
 	block_recovery = 3 SECONDS
