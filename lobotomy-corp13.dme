@@ -1202,6 +1202,7 @@
 #include "code\game\objects\items\ego_weapons\_ego_weapon.dm"
 #include "code\game\objects\items\ego_weapons\aleph.dm"
 #include "code\game\objects\items\ego_weapons\he.dm"
+#include "code\game\objects\items\ego_weapons\limbus.dm"
 #include "code\game\objects\items\ego_weapons\special.dm"
 #include "code\game\objects\items\ego_weapons\teth.dm"
 #include "code\game\objects\items\ego_weapons\waw.dm"
