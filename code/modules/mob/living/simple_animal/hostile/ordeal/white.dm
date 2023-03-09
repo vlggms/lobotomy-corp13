@@ -306,7 +306,7 @@
 	if(!damage_reflection)
 		return
 	for(var/turf/T in orange(1, src))
-		new /obj/effect/temp_visual/sanity_heal(T)
+		new /obj/effect/temp_visual/sparkles(T)
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
 	new /obj/effect/temp_visual/revenant(get_turf(attacker))
