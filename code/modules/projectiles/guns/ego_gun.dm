@@ -29,12 +29,14 @@
 		. += "<span class='notice'>This weapon can be fired with one hand.</span>"
 	if(!autofire)
 		switch(fire_delay)
-			if(0 to 3)
-				. += "<span class='notice'>This weapon fires very fast.</span>"
-			if(4 to 8)
+			if(0 to 5)
 				. += "<span class='notice'>This weapon fires fast.</span>"
-			if(9 to 13)
-				. += "<span class='notice'>This weapon fires slow.</span>"
+			if(6 to 10)
+				. += "<span class='notice'>This weapon fires at a normal speed.</span>"
+			if(11 to 15)
+				. += "<span class='notice'>This weapon fires slightly slower than usual.</span>"
+			if(16 to 20)
+				. += "<span class='notice'>This weapon fires slowly.</span>"
 			else
 				. += "<span class='notice'>This weapon fires extremely slowly.</span>"
 

@@ -17,6 +17,7 @@
 
 /obj/projectile/ego_bullet/melting_blob/dot
 	color = "#111111"
+	speed = 1.3
 
 /obj/projectile/ego_bullet/melting_blob/dot/on_hit(target)
 	. = ..()
@@ -24,7 +25,7 @@
 	if(!isbot(H) && isliving(H))
 		H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
 		for(var/i = 1 to 14)
-			addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(6,8), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
+			addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(4,8), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
 
 /obj/projectile/ego_bullet/melting_blob/aoe
 	color = "#6666BB"

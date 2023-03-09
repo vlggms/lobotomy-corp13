@@ -5,7 +5,7 @@
 	inhand_icon_state = "prank"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
+	fire_delay = 10
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
@@ -19,7 +19,7 @@
 	icon_state = "gaze"
 	inhand_icon_state = "executive"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
-	fire_delay = 13
+	fire_delay = 20
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -35,7 +35,7 @@
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
-	fire_delay = 6
+	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
@@ -49,12 +49,12 @@
 	if(homing)
 		to_chat(user,"<span class='warning'>You release your energy, and turn off homing.</span>")
 		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy
-		fire_delay = 6
+		fire_delay = 15
 		homing = FALSE
 		return
 	if(!homing)
 		to_chat(user,"<span class='warning'>You channel your energy, enabling homing.</span>")
-		fire_delay = 8
+		fire_delay = 20
 		ammo_type = /obj/item/ammo_casing/caseless/ego_galaxy/homing
 		homing = TRUE
 		return
@@ -154,7 +154,7 @@
 	inhand_icon_state = "transmission"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
