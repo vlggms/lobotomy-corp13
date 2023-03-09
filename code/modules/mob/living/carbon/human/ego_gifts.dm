@@ -330,6 +330,12 @@
 	temperance_bonus = 2
 	slot = NECKWEAR
 
+/datum/ego_gifts/lantern
+	name = "Lantern"
+	icon_state = "lantern"
+	fortitude_bonus = 5
+	slot = MOUTH_2
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"

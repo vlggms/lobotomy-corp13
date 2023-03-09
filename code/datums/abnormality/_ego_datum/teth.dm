@@ -193,3 +193,12 @@
 /datum/ego_datum/weapon/hearth
 	item_path = /obj/item/ego_weapon/hearth
 	cost = 20
+
+//Meat Lantern - Lantern
+/datum/ego_datum/armor/lantern
+	item_path = /obj/item/clothing/suit/armor/ego_gear/lantern
+	cost = 20
+
+/datum/ego_datum/weapon/lantern
+	item_path = /obj/item/ego_weapon/lantern
+	cost = 20

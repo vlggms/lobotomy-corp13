@@ -8,14 +8,14 @@
 
 /obj/item/clothing/suit/armor/ego_gear/beak
 	name = "beak"
-	desc = "It's sleek without a dent. The suit was originally very small, barely wearable by a child."
+	desc = "It’s sleek without a dent. The suit was originally very small, barely wearable by a child."
 	icon_state = "beak"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/match
 	name = "fourth match flame"
 	desc = "The archetype was already charred from the moment of extraction. \
-	Although the exterior is scorched, it has no adverse effects on the E.G.O's performance."
+	Although the exterior is scorched, it has no adverse effects on the E.G.O’s performance."
 	icon_state = "match"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
@@ -106,7 +106,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/trick
 	name = "hat trick"
-	desc = "Only a few find the way, some don’t recognize it when they do – some… don’t ever want to."
+	desc = "Only a few find the way. Some don’t recognize it when they do... some don’t ever want to."
 	icon_state = "trick"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
 
@@ -133,9 +133,15 @@
 	desc = "I looked, and behold, a pale horse; and he who sat on it had the name Death."
 	icon_state = "revelation"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = -20, PALE_DAMAGE = 30)
-	
+
 /obj/item/clothing/suit/armor/ego_gear/hearth //my sweet home
-	name = "Hearth"
-	desc = "A Home contains everything you need."
+	name = "hearth"
+	desc = "A home contains everything you need."
 	icon_state = "hearth"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = -10) //20
+
+/obj/item/clothing/suit/armor/ego_gear/lantern
+	name = "lantern"
+	desc = "The luminous organ shines brilliantly, making it useful for lighting up the dark. It’s also great as a lure."
+	icon_state = "lantern"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) //20
