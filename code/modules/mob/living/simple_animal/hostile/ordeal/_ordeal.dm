@@ -10,6 +10,7 @@
 	var/ordeal_remove_ondeath = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/death(gibbed)
+	mob_size = MOB_SIZE_HUMAN //let body bags carry dead ordeals
 	if(ordeal_reference && ordeal_remove_ondeath)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
