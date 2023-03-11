@@ -2,7 +2,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest
 	name = "Naked Nest"
-	desc = "A glistening sheet of scales cover some sort of large round object with multiple holes dripping with tan slime. Beneath the scales something is moving."
+	desc = "A pulsating round object covered with glistening scales. Tan sludge drips from numerous holes, and something appears to be moving beneath the surface."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "nakednest_inert"
 	icon_living = "nakednest_inert"
@@ -28,7 +28,7 @@
 		/datum/ego_datum/armor/exuviae
 		)
 	gift_type =  /datum/ego_gifts/exuviae
-	gift_message = "You manage to remove a patch of scales from the nest."
+	gift_message = "You manage to shave off a patch of scales."
 
 	can_patrol = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
@@ -151,7 +151,7 @@
 
 /mob/living/simple_animal/hostile/naked_nest_serpent
 	name = "naked serpent"
-	desc = "A sickly green colored worm."
+	desc = "A sickly looking green-colored worm."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	icon_living = "nakednest_serpent"
@@ -222,8 +222,8 @@
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/proc/enter_host(mob/living/carbon/host)
 	if(prob(50 * (host.health / host.maxHealth)))
-		to_chat(host, "<span class='notice'>You feel something cold touch the back of your leg.</span>")
-	to_chat(src, "<span class='nicegreen'>You've found a new nest!</span>")
+		to_chat(host, "<span class='warning'>You feel something cold touch the back of your leg!</span>")
+	to_chat(src, "<span class='nicegreen'>You’ve found a new nest!</span>")
 	host.apply_status_effect(/datum/status_effect/serpents_host)
 	QDEL_IN(src, 5)
 
@@ -238,7 +238,7 @@
 
 /mob/living/simple_animal/hostile/naked_nested
 	name = "naked nested"
-	desc = "A humanoid form covered in scales with numerous holes. It looks like it has reinforced itself with its hosts armor."
+	desc = "A humanoid form covered in slimy scales. It looks like it is protected by the host’s armor."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
@@ -344,11 +344,11 @@
 			duration = duration + extra_time
 			physical_symptoms = physical_symptoms + extra_time
 			if(prob(30))
-				to_chat(H, "<span class='warning'>You feel a gurgling inside of you...</span>")
+				to_chat(H, "<span class='warning'>You feel a gurgling noise inside of you...</span>")
 			else if(presented_symptoms == 1 && prob(20))
 				to_chat(H, "<span class='warning'>A sudden spasming headache overtakes you...</span>")
 		if(world.time >= physical_symptoms)
-			examine_text = "<span class='notice'>SUBJECTPRONOUN has a gross green hue to their skin. </span>"
+			examine_text = "<span class='boldwarning'>SUBJECTPRONOUN has a gross green hue to their skin! </span>"
 			if(presented_symptoms != 1)
 				presented_symptoms = 1
 				H.skin_tone = "serpentgreen" //resulted in alteration to helpers.dm
@@ -388,7 +388,7 @@
 
 //Offical Cure
 /obj/item/serpentspoision
-	name = "serpents cure"
+	name = "serpent infestation cure"
 	desc = "A formula that removes O-02-74-1 infestation."
 	icon = 'icons/obj/chromosomes.dmi'
 	icon_state = ""
