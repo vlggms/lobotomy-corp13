@@ -407,6 +407,109 @@
 	icon_state = "angela"
 	gender = FEMALE
 
+	//Limbus Sinners
+/obj/item/toy/plush/yisang
+	name = "yi sang plushie"
+	desc = "A plushie depicting a ruminating sinner."
+	icon_state = "yisang"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = MALE
+
+/obj/item/toy/plush/faust
+	name = "faust plushie"
+	desc = "A plushie depicting an insufferable sinner."
+	icon_state = "faust"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/don
+	name = "don quixote plushie"
+	desc = "A plushie depicting a heroic sinner."
+	icon_state = "don"
+	attack_verb_continuous = list("impales", "jousts")
+	attack_verb_simple = list("impale", "joust")
+	gender = FEMALE
+
+/obj/item/toy/plush/ryoshu
+	name = "ryoshu plushie"
+	desc = "A plushie depicting a artistic sinner."
+	icon_state = "ryoshu"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/meursault
+	name = "meursault plushie"
+	desc = "A plushie depicting a neutral sinner."
+	icon_state = "meursault"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = MALE
+
+/obj/item/toy/plush/honglu
+	name = "hong lu plushie"
+	desc = "A plushie depicting a sheltered sinner."
+	icon_state = "honglu"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = MALE
+
+/obj/item/toy/plush/heathcliff
+	name = "heathcliff plushie"
+	desc = "A plushie depicting a brash sinner."
+	icon_state = "heathcliff"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = MALE
+
+/obj/item/toy/plush/ishmael
+	name = "ishmael plushie"
+	desc = "A plushie depicting a reliable sinner."
+	icon_state = "ishmael"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = FEMALE
+
+/obj/item/toy/plush/rodion
+	name = "rodion plushie"
+	desc = "A plushie depicting a backstreets born sinner."
+	icon_state = "rodion"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/sinclair
+	name = "sinclair plushie"
+	desc = "A plushie depicting a insecure sinner."
+	icon_state = "sinclair"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = MALE
+
+/obj/item/toy/plush/dante
+	name = "dante plushie"
+	desc = "A plushie depicting a clock headed manager."
+	icon_state = "dante"
+	gender = MALE
+
+/obj/item/toy/plush/outis
+	name = "outis plushie"
+	desc = "A plushie depicting a strategic sinner."
+	icon_state = "outis"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = FEMALE
+
+/obj/item/toy/plush/gregor
+	name = "bug guy plushie"
+	desc = "A plushie depicting a genetically altered sinner."
+	icon_state = "gregor"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = MALE
+
 // Misc LC stuff
 /obj/item/toy/plush/pierre
 	name = "pierre plushie"
@@ -427,6 +530,27 @@
 	desc = "A plushie depicting a mercenary."
 	icon_state = "rabbit"
 	squeak_override = list('sound/effects/radio_clear.ogg'=1)
+
+/obj/item/toy/plush/yuri
+	name = "yuri plushie"
+	desc = "A plushie depicting an L corp employee who had the potential to walk alongside the sinners."
+	icon_state = "yuri"
+	gender = FEMALE
+
+/obj/item/toy/plush/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/food/grown/apple/gold))
+		if(do_after(user, 2 SECONDS, target = user))
+			user.visible_message("<span class='notice'>[src] is violently absorbed by the [I]!</span>")
+			qdel(src)
+			return
+		to_chat(user, "<span class='notice'>You feel as if you prevented something weird and terrible from happening again.</span>")
+
+/obj/item/toy/plush/blank
+	name = "plushie blank"
+	desc = "A humanoid plush that had been freshly made or stripped down to its cloth. Despite its lack of identity, the mere aknowelegement of this plushie makes it unique."
+	icon_state = "blank"
+
 
 // Abnormalities
 /obj/item/toy/plush/qoh

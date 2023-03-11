@@ -54,7 +54,8 @@
 		/obj/item/clothing/under/suit/lobotomy/extraction/arbiter,
 		/obj/item/clothing/under/suit/lobotomy/architecture,
 		/obj/item/clothing/under/suit/lobotomy/rabbit,
-		/obj/item/clothing/under/color/rainbow
+		/obj/item/clothing/under/color/rainbow,
+		/obj/item/toy/plush/yuri
 		)
 	var/list/zayinitem = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
@@ -80,6 +81,19 @@
 		/obj/item/clothing/under/suit/lobotomy/records
 		)
 	var/list/baditem = list(
+		/obj/item/toy/plush/yisang,
+		/obj/item/toy/plush/faust,
+		/obj/item/toy/plush/don,
+		/obj/item/toy/plush/ryoshu,
+		/obj/item/toy/plush/meursault,
+		/obj/item/toy/plush/honglu,
+		/obj/item/toy/plush/heathcliff,
+		/obj/item/toy/plush/ishmael,
+		/obj/item/toy/plush/rodion,
+		/obj/item/toy/plush/sinclair,
+		/obj/item/toy/plush/dante,
+		/obj/item/toy/plush/outis,
+		/obj/item/toy/plush/gregor,
 		/obj/item/poster/random_contraband,
 		/obj/item/poster/random_official,
 		/obj/item/camera,
@@ -92,6 +106,7 @@
 		)
 	var/list/trash = list(
 		/obj/item/toy/plush/fumo, //Needs no explanation
+		/obj/item/toy/plush/blank,
 		/obj/item/trash/raisins,
 		/obj/item/trash/candy,
 		/obj/item/trash/cheesie,

@@ -80,6 +80,7 @@
 		new /datum/data/extraction_cargo("Super Gar Glasses ",			/obj/item/clothing/glasses/sunglasses/gar/supergar,					500, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Agent Captain's Cloak ",		/obj/item/clothing/neck/cloak/hos/agent,							500, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Agent Captain's Cap ",		/obj/item/clothing/head/hos/agent,									500, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Plushie Lootbox",				/obj/item/plushgacha,												1000, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Binah Doll ",					/obj/item/toy/plush/binah,											1000, CAT_OTHER) = 1,
 
 
