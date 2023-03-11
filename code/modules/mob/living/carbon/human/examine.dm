@@ -31,26 +31,26 @@
 		. += "[t_He] [t_is] wearing [w_uniform.get_examine_string(user)][accessory_msg]."
 	//head
 	if(head && !(obscured & ITEM_SLOT_HEAD) && !(head.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
+		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head. <A href='byond://?src=[REF(head)];examine=[user.ckey]'>Examine</A>"
 	//suit/armor
 	if(wear_suit && !(wear_suit.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]. <A href='byond://?src=[REF(wear_suit)];examine=[user.ckey]'>Examine</A>"
 		//suit/armor storage
 		if(s_store && !(obscured & ITEM_SLOT_SUITSTORE) && !(s_store.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
+			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]. <A href='byond://?src=[REF(s_store)];examine=[user.ckey]'>Examine</A>"
 	//back
 	if(back && !(back.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."
+		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back. <A href='byond://?src=[REF(back)];examine=[user.ckey]'>Examine</A>"
 
 	//Hands
 	for(var/obj/item/I in held_items)
 		if(!(I.item_flags & ABSTRACT) && !(I.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
+			. += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))]. <A href='byond://?src=[REF(I)];examine=[user.ckey]'>Examine</A>"
 
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
 	if(gloves && !(obscured & ITEM_SLOT_GLOVES) && !(gloves.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
+		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands. <A href='byond://?src=[REF(gloves)];examine=[user.ckey]'>Examine</A>"
 	else if(FR && length(FR.blood_DNA))
 		if(num_hands)
 			. += "<span class='warning'>[t_He] [t_has] [num_hands > 1 ? "" : "a"] blood-stained hand[num_hands > 1 ? "s" : ""]!</span>"
@@ -66,33 +66,33 @@
 
 	//belt
 	if(belt && !(belt.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
+		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist. <A href='byond://?src=[REF(belt)];examine=[user.ckey]'>Examine</A>"
 
 	//shoes
 	if(shoes && !(obscured & ITEM_SLOT_FEET)  && !(shoes.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
+		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet. <A href='byond://?src=[REF(shoes)];examine=[user.ckey]'>Examine</A>"
 
 	//mask
 	if(wear_mask && !(obscured & ITEM_SLOT_MASK)  && !(wear_mask.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
+		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face. <A href='byond://?src=[REF(wear_mask)];examine=[user.ckey]'>Examine</A>"
 
 	if(wear_neck && !(obscured & ITEM_SLOT_NECK)  && !(wear_neck.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
+		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck. <A href='byond://?src=[REF(wear_neck)];examine=[user.ckey]'>Examine</A>"
 
 	//eyes
 	if(!(obscured & ITEM_SLOT_EYES) )
 		if(glasses  && !(glasses.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
+			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes. <A href='byond://?src=[REF(glasses)];examine=[user.ckey]'>Examine</A>"
 		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
 			. += "<span class='warning'><B>[t_His] eyes are glowing an unnatural red!</B></span>"
 
 	//ears
 	if(ears && !(obscured & ITEM_SLOT_EARS) && !(ears.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
+		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears. <A href='byond://?src=[REF(ears)];examine=[user.ckey]'>Examine</A>"
 
 	//ID
 	if(wear_id && !(wear_id.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]."
+		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]. <A href='byond://?src=[REF(wear_id)];examine=[user.ckey]'>Examine</A>"
 
 	//Status effects
 	var/list/status_examines = status_effect_examines()

@@ -1122,3 +1122,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+
+/obj/item/Topic(href, list/href_list)
+	if(href_list["examine"])
+		var/mob/user = get_mob_by_ckey(href_list["examine"])
+		user.examinate(src)
+		return
+	. = ..()
