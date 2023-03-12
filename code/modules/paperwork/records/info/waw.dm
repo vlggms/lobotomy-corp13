@@ -208,7 +208,7 @@
 //SnowWhitesApple
 /obj/item/paper/fluff/info/waw/snowwhitesapple
 	name = "F-04-42"
-	info = {"<h1><center>O-02-40</center></h1>	<br>
+	info = {"<h1><center>F-04-42</center></h1>	<br>
 	Name : Snow White’s Apple	<br>
 	Risk Class : WAW	<br>
 	Max PE Boxes : 20	<br>
@@ -539,7 +539,7 @@
 	<h4>Repression:</h4> Low<br>
 	<h3><center>Breach Information</center></h3>	<br>
 	<h4>Escape Damage Type:</h4> Red/Black	<br>
-	<h4>Escape Damage:</h4> Vulnerable	<br>
+	<h4>Escape Damage:</h4> High	<br>
 	<h4>Red Resistance:</h4> Weak	<br>
 	<h4>White Resistance:</h4> Immune	<br>
 	<h4>Black Resistance:</h4> Resistant	<br>
@@ -628,6 +628,6 @@
 	- When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.	<br>
 	<br>
 	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
+	<h4>Insight:</h4> Very Low<br>
 	<h4>Attachment:</h4> Common<br>
 	<h4>Repression:</h4> Common<br>"}
