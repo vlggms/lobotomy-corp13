@@ -17,8 +17,8 @@
 	title = "Extraction Officer"
 	department_head = list("Manager")
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "the manager"
 	selection_color = "#ccccff"
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_PERSONNEL
