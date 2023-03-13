@@ -94,3 +94,14 @@
 	- The wearer will die if any attempt to return Luminous Bracelet is made before they are fully healed. <br>
 	- If the wearer’s HP has not dropped after a certain period of time, then they will die from excessive regeneration. <br>
 	- If the wearer’s HP is too low, after a certain period of time, then they will die from tissue necrosis. "}
+
+//Loom
+/obj/item/paper/fluff/info/tool/fateloom
+	name = "T-09-142"
+	info = {"<h1><center>T-09-142</center></h1>	<br>
+	Name : Third Fate's Loom <br>
+	Risk Class: HE <br>
+	- Those who interact with T-09-142 are sewn together with red thread. <br>
+	- If the user’s HP drops below 50%, they will be healed. The user loses thread and experiences significant mental corrosion when this happens. <br>
+	- If the user’s HP drops below 50% when threads are too thin, they will collapse into pieces.
+	- The user can restore lost threads at the loom, sacrificing much of their own fortitude.<br> "}
