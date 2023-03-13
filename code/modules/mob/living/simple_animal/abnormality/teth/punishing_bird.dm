@@ -53,6 +53,7 @@
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
+	var/bird_angry
 
 	var/death_timer
 
@@ -83,12 +84,12 @@
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	rapid_melee = 1
-	melee_damage_lower = 400
-	melee_damage_upper = 500
+	//other damage done later
 	obj_damage = 2500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	bird_angry = TRUE
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
@@ -109,6 +110,7 @@
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	bird_angry = FALSE
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
@@ -153,6 +155,18 @@
 			pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
+	if(ishuman(target) && bird_angry)
+		melee_damage_lower = 400
+		melee_damage_upper = 500
+
+	else if(bird_angry)
+		melee_damage_lower = 50
+		melee_damage_upper = 60
+
+	else
+		melee_damage_lower = 1
+		melee_damage_upper = 2
+
 	if(isliving(target))
 		var/mob/living/L = target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
