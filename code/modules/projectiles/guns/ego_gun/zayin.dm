@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
-	fire_delay = 3
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -29,7 +29,7 @@
 	inhand_icon_state = "soda"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	burst_size = 1
-	fire_delay = 3
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70

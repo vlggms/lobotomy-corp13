@@ -6,7 +6,7 @@
 	special = "This weapon fires 6 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 8
+	fire_delay = 15
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
@@ -23,7 +23,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
-	fire_delay = 3
+	fire_delay = 5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
@@ -41,7 +41,7 @@
 	special = "This weapon heals humans that it hits."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hatred
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 8
+	fire_delay = 15
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
 	attribute_requirements = list(
@@ -65,7 +65,7 @@
 		This weapon fires significantly faster wearing the matching armor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 24	//Put on the armor, jackass.
+	fire_delay = 30	//Put on the armor, jackass.
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
 	attribute_requirements = list(
@@ -77,7 +77,7 @@
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 13
+		fire_delay = 15
 	..()
 
 //Funeral guns have two different names;
@@ -91,7 +91,7 @@
 	inhand_icon_state = "solemnlament"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
-	fire_delay = 3
+	fire_delay = 5
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
@@ -112,7 +112,7 @@
 	inhand_icon_state = "solemnvow"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
-	fire_delay = 3
+	fire_delay = 5
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
 
@@ -160,7 +160,7 @@
 	icon_state = "executive"
 	inhand_icon_state = "executive"
 	special = "This gun scales with justice."
-	fire_delay = 3
+	fire_delay = 10
 	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -174,7 +174,7 @@
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
 	special = "This weapon fires 3 pellets."
-	fire_delay = 12
+	fire_delay = 15
 	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -219,7 +219,7 @@
 	inhand_icon_state = "magic_pistol"
 	special = "This weapon pierces all targets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
-	fire_delay = 9
+	fire_delay = 12
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
@@ -260,7 +260,7 @@
 	inhand_icon_state = "aroma"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_aroma
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 18
+	fire_delay = 25
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -275,7 +275,7 @@
 	special = "This weapon fires a hitscan beam."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -293,7 +293,7 @@
 	force = 35
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	fire_delay = 16
+	fire_delay = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60
@@ -309,7 +309,7 @@
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	fire_delay = 23 //5 less than the Rend Armor status effect
+	fire_delay = 30 //5 less than the Rend Armor status effect
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -326,7 +326,7 @@
 		It has perfect accuracy."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 9
+	fire_delay = 15
 	spread = 0
 	//firing sound 1
 	fire_sound = 'sound/weapons/bowfire.ogg'

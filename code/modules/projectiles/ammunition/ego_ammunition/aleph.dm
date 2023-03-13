@@ -7,7 +7,7 @@
 	..()
 	if(isgun(fired_from) && ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/damage_mod = clamp((H.sanityhealth / 100), 1, 1.5) // Maximum SP will add 50% to the damage
+		var/damage_mod = 1 + (H.sanityhealth / H.maxSanity * 0.5) // Maximum SP will add 50% to the damage
 		BB.damage *= damage_mod
 
 /obj/item/ammo_casing/caseless/ego_adoration
