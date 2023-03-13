@@ -276,8 +276,7 @@
 /obj/item/ego_weapon/smile
 	name = "smile"
 	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
-	special = "This weapon has a slightly slower attack speed.\
-			This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
+	special = "This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
 	icon_state = "smile"
 	force = 110 //Slightly less damage, has an ability
 	attack_speed = 1.6

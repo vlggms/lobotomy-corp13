@@ -25,11 +25,28 @@
 	. += EgoAttackInfo(user)
 	if(special)
 		. += "<span class='notice'>[special]</span>"
-	if(weapon_weight == WEAPON_HEAVY)
-		. += "<span class='notice'>This weapon requires two hands.</span>"
+	if(weapon_weight != WEAPON_HEAVY)
+		. += "<span class='notice'>This weapon can be fired with one hand.</span>"
+	if(!autofire)
+		switch(fire_delay)
+			if(0 to 3)
+				. += "<span class='notice'>This weapon fires very fast.</span>"
+			if(4 to 8)
+				. += "<span class='notice'>This weapon fires fast.</span>"
+			if(9 to 13)
+				. += "<span class='notice'>This weapon fires slow.</span>"
+			else
+				. += "<span class='notice'>This weapon fires extremely slowly.</span>"
+
+	else
+		//Give it to 'em in true rounds per minute, accurate to the 5s
+		var/rpm = (1/autofire*10)*60
+		rpm = round(rpm,5)
+		. += "<span class='notice'>This weapon is automatic.</span>"
+		. += "<span class='notice'>This weapon fires at [rpm] rounds per minute.</span>"
+
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
-
 /obj/item/gun/ego_gun/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])

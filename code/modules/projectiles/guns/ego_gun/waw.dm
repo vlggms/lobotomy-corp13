@@ -20,7 +20,6 @@
 	The projectiles relive the legacy of the kingdom as they travel toward the target."
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
-	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
@@ -135,8 +134,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
 	spread = 20
-	special = "This weapon fires 750 rounds per minute. \
-		This weapon has IFF capabilities.\
+	special = "This weapon has IFF capabilities. \
 		Use in hand to turn off IFF."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
@@ -175,6 +173,7 @@
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
+	special = "This weapon fires 3 pellets."
 	fire_delay = 12
 	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
@@ -187,7 +186,7 @@
 	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
 	icon_state = "ecstasy"
 	inhand_icon_state = "ecstasy"
-	special = "This weapon fires 750 rounds per minute."
+	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
 	weapon_weight = WEAPON_HEAVY
 	spread = 40
@@ -218,8 +217,7 @@
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
-	special = "This weapon fires extremely slowly. \
-		This weapon pierces all targets."
+	special = "This weapon pierces all targets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
 	fire_delay = 9
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
@@ -232,10 +230,9 @@
 	desc = "There are no clocks to alert the arrival times."
 	icon_state = "laststop"
 	inhand_icon_state = "laststop"
-	special = "This weapon fires ungodly slow. You have been warned."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_laststop
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10 SECONDS 	// I mean it's
+	fire_delay = 10 SECONDS 	// I mean it's a derringer
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -246,7 +243,6 @@
 	desc = "Go ahead and rattle 'em boys."
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
-	special = "This weapon fires 850 rounds per minute."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_intentions
 	weapon_weight = WEAPON_HEAVY
 	spread = 40
@@ -310,8 +306,7 @@
 	inhand_icon_state = "exuviae"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_exuviae
 	weapon_weight = WEAPON_HEAVY
-	special = "This weapon takes a while to reload. \
-				Upon hit the targets RED vulnerability is increased by 0.2."
+	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	fire_delay = 23 //5 less than the Rend Armor status effect

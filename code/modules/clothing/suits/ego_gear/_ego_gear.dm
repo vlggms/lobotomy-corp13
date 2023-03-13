@@ -55,6 +55,8 @@
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
+
+
 /obj/item/clothing/suit/armor/ego_gear/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])
@@ -64,3 +66,4 @@
 				display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
 		display_text += SpecialGearRequirements()
 		to_chat(usr, display_text)
+

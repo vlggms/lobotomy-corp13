@@ -3,7 +3,6 @@
 	desc = "The small accessory remains like the wishes of a child who yearned for happiness."
 	icon_state = "prank"
 	inhand_icon_state = "prank"
-	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
@@ -19,13 +18,15 @@
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
 	inhand_icon_state = "executive"
-	special = "This weapon requires 2 hands."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
 	fire_delay = 13
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/gun/ego_gun/galaxy
 	name = "galaxy"
@@ -135,6 +136,7 @@
 	name = "harmony"
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
+	special = "This weapon fires bouncing, piercing shots."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
@@ -150,7 +152,6 @@
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
-	special = "This weapon fires as fast as you pull the trigger."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
@@ -164,7 +165,6 @@
 	desc = "Nothing beats the classics."
 	icon_state = "song"
 	inhand_icon_state = "song"
-	special = "This weapon fires 400 rounds per minute."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_HEAVY
@@ -179,7 +179,7 @@
 	desc = "The past is far behind us."
 	icon_state = "songmini"
 	inhand_icon_state = "songmini"
-	special = "This weapon has autofire and fires 3 pellets."
+	special = "This weapon fires 3 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	spread = 8

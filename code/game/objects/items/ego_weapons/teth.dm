@@ -12,8 +12,6 @@
 	name = "fragments from somewhere"
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
-	special = "This weapon has a longer reach. \
-			This weapon attacks slower than usual."
 	icon_state = "fragment"
 	force = 22
 	reach = 2		//Has 2 Square Reach.
@@ -28,7 +26,6 @@
 	name = "horn"
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
-	special = "This weapon deals more throwing damage."
 	force = 22
 	throwforce = 50		//You can only hold two so go nuts.
 	throw_speed = 5
@@ -64,8 +61,7 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
-	special = "Knocks certain enemies backwards. \
-			This weapon hits slower than usual. "
+	special = "Knocks certain enemies backwards."
 	icon_state = "eyes"
 	force = 35					//Still less DPS, replaces baseball bat
 	attack_speed = 1.6
@@ -117,7 +113,7 @@
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon attacks very fast. Use this weapon in hand to dodgeroll."
+	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
 	force = 7
 	attack_speed = 0.3
@@ -141,7 +137,6 @@
 /obj/item/ego_weapon/regret
 	name = "regret"
 	desc = "Before swinging this weapon, expressing one’s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
-	special = "This weapon attacks extremely slowly."
 	icon_state = "regret"
 	force = 38				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
@@ -153,8 +148,7 @@
 /obj/item/ego_weapon/mini/blossom
 	name = "Blossoms"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
-	special = "This weapon deals bonus throwing damage. \
-			Upon throwing, this weapon returns to the user."
+	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
 	force = 17
 	throwforce = 30
@@ -188,7 +182,6 @@
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	special = "This weapon deals more throwing damage."
 	force = 17
 	throwforce = 25		//You can only hold 4 so go nuts.
 	throw_speed = 5
@@ -202,8 +195,7 @@
 /obj/item/ego_weapon/sorrow
 	name = "sorrow"
 	desc = "It all returns to nothing."
-	special = "Use this weapon in hand to take damage and teleport to a random department. \
-			This weapon hits slower than usual. "
+	special = "Use this weapon in hand to take damage and teleport to a random department."
 	icon_state = "sorrow"
 	force = 32					//Bad DPS, can teleport
 	attack_speed = 1.5

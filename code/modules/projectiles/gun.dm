@@ -123,6 +123,9 @@
 
 /obj/item/gun/examine(mob/user)
 	. = ..()
+	if(istype(pin, /obj/item/firing_pin/magic))			//Junks up LC13 guns.
+		return
+
 	if(pin)
 		. += "It has \a [pin] installed."
 		. += "<span class='info'>[pin] looks like it could be removed with some <b>tools</b>.</span>"
