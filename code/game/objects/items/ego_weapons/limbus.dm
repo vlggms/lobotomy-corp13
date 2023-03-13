@@ -90,7 +90,7 @@
 	if(!user)
 		return
 	current_holder = user
-	RaiseLance()
+	RaiseLance(user)
 	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, .proc/UserBump)
 	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
 
@@ -146,19 +146,25 @@
 	user.update_inv_hands()
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/charge)
 
-/obj/item/ego_weapon/suenoimpossible/update_icon_state() //doesn't quite work yet.
+/obj/item/ego_weapon/suenoimpossible/update_icon_state()
 	icon_state = inhand_icon_state = "sueno_impossible[raised ? "" : "_lowered"]"
 
 /obj/item/ego_weapon/suenoimpossible/proc/UserBump(mob/living/carbon/human/user, atom/A)
 	SIGNAL_HANDLER
 	if(charge_speed > -0.5)
+		RaiseLance(user)
 		return
 	if (isliving(A))
 		A.attackby(src,user)
 		to_chat(user, "<span class='warning'>You successfully impale [A]!</span>")
+		if(charge_speed < -1) //you can keep going!
+			charge_speed += 0.8
+			force -= 12
+			return
 	else
 		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
 		user.Knockdown(4 SECONDS)
+		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 	RaiseLance(user)
 
 /datum/movespeed_modifier/charge
