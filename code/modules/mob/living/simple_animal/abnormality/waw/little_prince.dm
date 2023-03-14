@@ -4,6 +4,7 @@
 	Dark blue hands hangs by it's branches on a string"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "little_prince"
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	threat_level = WAW_LEVEL
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),

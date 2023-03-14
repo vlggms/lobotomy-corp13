@@ -7,6 +7,7 @@
 	icon_state = "dellaluna"
 	maxHealth = 400
 	health = 400
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	start_qliphoth = 3
 	threat_level = WAW_LEVEL
 	work_chances = list(
