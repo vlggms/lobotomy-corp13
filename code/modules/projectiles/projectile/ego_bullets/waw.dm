@@ -271,3 +271,10 @@
 		H.Knockdown(50)
 		return BULLET_ACT_BLOCK
 	qdel(src)
+
+/obj/projectile/ego_bullet/ego_banquet
+	name = "banquet"
+	icon_state = "pulse0"
+	damage = 120
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE

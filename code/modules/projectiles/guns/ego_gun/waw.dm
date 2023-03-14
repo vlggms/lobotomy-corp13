@@ -376,3 +376,24 @@
 				icon_state = "warring_firey"
 		if (2)
 			return
+
+/obj/item/gun/ego_gun/banquet
+	name = "banquet"
+	desc = "Time for a feast! Enjoy the blood-red night imbued with madness to your heart’s content!"
+	icon_state = "banquet"
+	inhand_icon_state = "banquet"
+	special = "This weapon uses HP to fire."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_banquet
+	fire_delay = 26
+	fire_sound = 'sound/weapons/ego/cannon.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
+	)
+
+/obj/item/gun/ego_gun/banquet/before_firing(atom/target,mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.adjustBruteLoss(15)
+	..()
+	return
