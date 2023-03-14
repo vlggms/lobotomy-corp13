@@ -64,7 +64,6 @@
 	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 	rarity = 20
-	graft_gene = /datum/plant_gene/trait/slip
 
 /obj/item/food/grown/tomato/blue
 	seed = /obj/item/seeds/tomato/blue

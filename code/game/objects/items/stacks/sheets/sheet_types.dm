@@ -263,10 +263,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
  * Bamboo
  */
 
-GLOBAL_LIST_INIT(bamboo_recipes, list ( \
-	new/datum/stack_recipe("punji sticks trap", /obj/structure/punji_sticks, 5, time = 30, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("blow gun", /obj/item/gun/syringe/blowgun, 10, time = 70), \
-	))
+GLOBAL_LIST_INIT(bamboo_recipes, list())
 
 /obj/item/stack/sheet/mineral/bamboo
 	name = "bamboo cuttings"
