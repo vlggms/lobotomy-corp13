@@ -248,6 +248,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	can_buckle_to = FALSE
 	mob_size = MOB_SIZE_HUGE
 	blood_volume = BLOOD_VOLUME_NORMAL
+	can_patrol = TRUE // You have legs, use them.
 	var/can_act = TRUE
 	var/death_counter = 0
 
@@ -335,6 +336,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	scythe_cooldown_time = 8 SECONDS // More often, since the damage increase was disliked.
 	scythe_damage_type = PALE_DAMAGE
 	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
+	can_patrol = FALSE // You stay where you are >:(
 
 /mob/living/simple_animal/hostile/apostle/spear
 	name = "spear apostle"
