@@ -47,8 +47,7 @@ For escape damage you will have to get creative and figure out how dangerous it 
 	var/mob/living/simple_animal/hostile/abnormality/abno
 	if(!(abno_type in GLOB.cached_abno_work_rates) || !(abno_type in GLOB.cached_abno_resistances))
 		abno = new abno_type(src)
-		abno.toggle_ai(AI_OFF)
-		abno.status_flags |= GODMODE
+		QDEL_NULL(abno)
 
 	if(isnull(abno_can_breach))
 		abno_can_breach = initial(abno_type.can_breach)
@@ -111,8 +110,6 @@ For escape damage you will have to get creative and figure out how dangerous it 
 		if(!resist)
 			resist = SimpleResistanceToText(GLOB.cached_abno_resistances[abno_type][line])
 		info += "<h4>[capitalize(line)] Resistance:</h4> [resist]<br>"
-
-	QDEL_NULL(abno)
 
 /obj/item/paper/fluff/info/AltClick(mob/living/user, obj/item/I)
 	return
