@@ -80,7 +80,7 @@
 "aO" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/reagent_containers/spray/cleaner,
-/turf/open/space/basic,
+/turf/open/floor/facility/white,
 /area/department_main/safety)
 "aT" = (
 /obj/structure/disposaloutlet{
