@@ -29,8 +29,12 @@
 		H.remove_hud_from(M)
 	if(HUD_trait)
 		REMOVE_TRAIT(M, HUD_trait, ORGAN_TRAIT)
+	addtimer(CALLBACK(src, .proc/rotMalfunction), 10)
 	..()
-	qdel(src)
+
+/obj/item/organ/cyberimp/eyes/hud/proc/rotMalfunction() //Cannot be removed and reused
+	if(!owner)
+		qdel(src)
 
 /obj/item/organ/cyberimp/eyes/hud/medical
 	name = "Medical HUD implant"
