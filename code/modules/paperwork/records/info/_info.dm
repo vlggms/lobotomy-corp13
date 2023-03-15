@@ -1,34 +1,124 @@
+GLOBAL_LIST_EMPTY(cached_abno_work_rates)
+GLOBAL_LIST_EMPTY(cached_abno_resistances)
+
 /*
-Work Damage Notation [Halve these numbers for pale, because seriously, 10 Pale kills real easily]
-Very Low: <3 Damage
-Low: 4-6
-Moderate: 7-9
-High: 10-12
-Extreme: 12+
+All descriptions of damage/resistances are in _HELPERS/abnormalities.dm
 
-Resistance Notation
-Absorbs: -X
-0 - Immune
->0 - 0.5 : Resistant
->0.5 - <1 : Endured
-1 : Normal
->1 - <1.5 : Weak
-1.5 - <2 - Vulnerable
-2 - Fatal
-
-For Escape damage, I think I'll just honestly ball-park how fast it could reasonably kill someone.
+For escape damage you will have to get creative and figure out how dangerous it is
 */
+
 /obj/item/paper/fluff/info
 	show_written_words = FALSE
-	slot_flags = null	//No books on head, sorry
-	var/no_archive = FALSE //will not show up in Lobotomy Corp Archive Computer if true
+	slot_flags = null // No books on head, sorry
+	/// Will not show up in Lobotomy Corp Archive Computer if true
+	var/no_archive = FALSE
+	var/mob/living/simple_animal/hostile/abnormality/abno_type = null
+	var/abno_code = null
+	/// List of random info about abnormality
+	var/list/abno_info = list()
+	// If null and has an abno_type, will append the end of the content with auto-generated info
+	var/abno_work_damage_type = null
+	var/abno_work_damage_count = null
+	/// Associative list; Work type = Rate(text). If text is null - will generate its own.
+	var/list/abno_work_rates = list(
+		ABNORMALITY_WORK_INSTINCT = null,
+		ABNORMALITY_WORK_INSIGHT = null,
+		ABNORMALITY_WORK_ATTACHMENT = null,
+		ABNORMALITY_WORK_REPRESSION = null)
+	/// If FALSE - will not add breach info part to the paper; When null, will set itself depending on abno's var
+	var/abno_can_breach = null
+	var/abno_breach_damage_type = null
+	var/abno_breach_damage_count = null
+	/// Associative list similar to the above: Type = text; If text is null - generate it.
+	var/list/abno_resistances = list(
+		RED_DAMAGE = null,
+		WHITE_DAMAGE = null,
+		BLACK_DAMAGE = null,
+		PALE_DAMAGE = null)
+
+/obj/item/paper/fluff/info/Initialize()
+	. = ..()
+	if(info) // Someone wanted to fill it in manually, let's not touch it
+		return
+	if(!ispath(abno_type))
+		return
+
+	// Yes, we have to create the mob, it is that sad
+	var/mob/living/simple_animal/hostile/abnormality/abno
+	if(!(abno_type in GLOB.cached_abno_work_rates) || !(abno_type in GLOB.cached_abno_resistances))
+		abno = new abno_type(src)
+		abno.toggle_ai(AI_OFF)
+		abno.status_flags |= GODMODE
+
+	if(isnull(abno_can_breach))
+		abno_can_breach = initial(abno_type.can_breach)
+
+	// Code/Name/Title
+	name = initial(abno_type.name)
+	if(isnull(abno_code))
+		abno_code = initial(abno_type.name)
+	else
+		name += " - [abno_code]" // For RO enthusiasts
+	info += "<h1><center>[abno_code]</center></h1><br>"
+
+	// Basic information
+	info += "Name: [initial(abno_type.name)]<br>\
+			Risk Class: [THREAT_TO_NAME[initial(abno_type.threat_level)]]<br>\
+			Max PE Boxes: [isnull(initial(abno_type.max_boxes)) ? initial(abno_type.threat_level) * 6 : initial(abno_type.max_boxes)]<br>\
+			Qliphoth Counter: [initial(abno_type.start_qliphoth)]<br>"
+
+	// Work damage
+	if(isnull(abno_work_damage_type))
+		abno_work_damage_type = capitalize(initial(abno_type.work_damage_type))
+	if(isnull(abno_work_damage_count))
+		abno_work_damage_count = SimpleWorkDamageToText(initial(abno_type.work_damage_amount))
+	info += "Work Damage Type: [abno_work_damage_type]<br>"
+	info += "Work Damage: [abno_work_damage_count]<br><br>"
+
+	// All minor info
+	for(var/line in abno_info)
+		info += "- [line]<br>"
+	if(LAZYLEN(abno_info))
+		info += "<br>"
+
+	// Work chances
+	info += "<h3><center>Work Success Rates</center></h3><br>"
+	for(var/line in abno_work_rates)
+		var/rate = abno_work_rates[line]
+		if(!rate)
+			var/num_rate = GLOB.cached_abno_work_rates[abno_type][line]
+			if(islist(num_rate))
+				num_rate = num_rate[initial(abno_type.threat_level)] // This is quite silly
+			rate = SimpleSuccessRateToText(num_rate)
+		info += "<h4>[line]:</h4> [rate]<br>"
+	info += "<br>"
+
+	// Breach info
+	if(!abno_can_breach)
+		return
+
+	info += "<h3><center>Breach Information</center></h3><br>"
+	if(isnull(abno_breach_damage_type))
+		abno_breach_damage_type = capitalize(initial(abno_type.melee_damage_type))
+	if(isnull(abno_breach_damage_count))
+		abno_breach_damage_count = SimpleDamageToText(initial(abno_type.melee_damage_upper) * initial(abno_type.rapid_melee))
+	info += "<h4>Escape Damage Type:</h4>[abno_breach_damage_type]<br>"
+	info += "<h4>Escape Damage:</h4>[abno_breach_damage_count]<br>"
+
+	// Resistances
+	for(var/line in abno_resistances)
+		var/resist = abno_resistances[line]
+		if(!resist)
+			resist = SimpleResistanceToText(GLOB.cached_abno_resistances[abno_type][line])
+		info += "<h4>[capitalize(line)] Resistance:</h4> [resist]<br>"
+
+	QDEL_NULL(abno)
 
 /obj/item/paper/fluff/info/AltClick(mob/living/user, obj/item/I)
 	return
 
 /obj/item/paper/fluff/info/attackby(obj/item/P, mob/living/user, params)
 	ui_interact(user)	// only reading, sorry
-
 
 /obj/item/paper/fluff/info/zayin
 	icon_state = "zayin"
