@@ -20,7 +20,6 @@
 	sexes = FALSE
 	punchdamagelow = 1
 	punchdamagehigh = 3
-	punchstunthreshold = 4 // no stun punches
 	species_language_holder = /datum/language_holder/monkey
 	bodypart_overides = list(
 	BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/monkey,\
