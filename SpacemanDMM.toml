@@ -1,3 +1,5 @@
+environment = "lobotomy-corp13.dme"
+
 [langserver]
 dreamchecker = true
 
