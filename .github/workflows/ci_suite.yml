@@ -60,7 +60,8 @@ jobs:
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
-          tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
+          tgui/bin/tgui --build
+          bash tools/ci/dm.sh -DCIBUILDING -DCITESTING -DALL_MAPS lobotomy-corp13.dme
 
   run_all_tests:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
@@ -100,7 +101,8 @@ jobs:
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
-          tools/build/build --ci dm -DCIBUILDING
+          tgui/bin/tgui --build
+          bash tools/ci/dm.sh -DCIBUILDING lobotomy-corp13.dme
           bash tools/ci/run_server.sh
 
   test_windows:
