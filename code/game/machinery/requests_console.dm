@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(req_console_ckey_departments)
 				radio_freq = FREQ_TRAINING
 			if("security")
 				radio_freq = FREQ_DISCIPLINE
-			if("cargobay" || "mining")
+			if("cargobay", "mining")
 				radio_freq = FREQ_CONTROL
 
 		var/datum/signal/subspace/messaging/rc/signal = new(src, list(

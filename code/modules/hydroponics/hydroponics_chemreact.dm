@@ -13,20 +13,20 @@
 
 /obj/machinery/hydroponics/proc/mutation_roll(mob/user)
 	switch(rand(100))
-		if(91 to 100)
+		if(90 to 100)
 			adjustHealth(-10)
 			visible_message("<span class='warning'>\The [myseed.plantname] starts to wilt and burn!</span>")
 			return
-		if(41 to 90)
+		if(40 to 89)
 			if(myseed && !self_sustaining) //Stability
 				myseed.adjust_instability(5)
 				return
-		if(21 to 40)
+		if(20 to 39)
 			visible_message("<span class='notice'>\The [myseed.plantname] appears unusually reactive...</span>")
 			return
-		if(11 to 20)
+		if(10 to 19)
 			mutateweed()
 			return
-		if(1 to 10)
+		if(0 to 9)
 			mutatepest(user)
 			return
