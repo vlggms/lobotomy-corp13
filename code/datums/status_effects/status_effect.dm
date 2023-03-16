@@ -102,15 +102,25 @@
 	. = FALSE
 	var/datum/status_effect/S1 = effect
 	LAZYINITLIST(status_effects)
+	var/our_id = initial(S1.id)
 	for(var/datum/status_effect/S in status_effects)
-		if(S.id == initial(S1.id) && S.status_type)
-			if(S.status_type == STATUS_EFFECT_REPLACE)
-				S.be_replaced()
-			else if(S.status_type == STATUS_EFFECT_REFRESH)
-				S.refresh()
-				return
-			else
-				return
+		if(S.id == our_id)
+			switch(S.status_type)
+				if(STATUS_EFFECT_MULTIPLE)
+					// check the rest of the matching effects in case they have a different status_type somehow
+					continue
+				if(STATUS_EFFECT_UNIQUE)
+					// leave the original untouched and don't add this one
+					return
+				if(STATUS_EFFECT_REPLACE)
+					// used for behavior where the newly-applied effect takes over
+					// and the old effect is deleted
+					S.be_replaced()
+				if(STATUS_EFFECT_REFRESH)
+					// used for behavior where the old effect is updated with stats from the new one
+					// and the new one is deleted
+					S.refresh()
+					return
 	var/list/arguments = args.Copy()
 	arguments[1] = src
 	S1 = new effect(arguments)
@@ -121,8 +131,9 @@
 	var/list/arguments = args.Copy(2)
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id && S.before_remove(arguments))
+			if(our_id == S.id && S.before_remove(arguments))
 				qdel(S)
 				. = TRUE
 
@@ -130,16 +141,18 @@
 	. = FALSE
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(our_id == S.id)
 				return S
 
 /mob/living/proc/has_status_effect_list(effect) //returns a list of effects with matching IDs that the mod owns; use for effects there can be multiple of
 	. = list()
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(our_id == S.id)
 				. += S
 
 //////////////////////
