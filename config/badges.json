@@ -3,9 +3,12 @@
     "Mentor": "mentor",
     "Trial Moderator": "trialmoderator",
     "Moderator": "moderator",
+    "Maintainer": "maintainer",
     "Trial Admin": "trialadmin",
     "Admin": "admin",
+	"Admin-Maintainer": "adminmaint",
     "Senior Admin": "senioradmin",
-    "Head Administrator": "headadmin",
+	"Head Coder": "headcoder",
+    "Head Admin": "headadmin",
     "Host": "host"
 }
