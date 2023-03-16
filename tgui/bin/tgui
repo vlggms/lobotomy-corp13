@@ -36,7 +36,7 @@ if ! hash yarn 2>/dev/null; then
   yarn_releases=("${base_dir}"/.yarn/releases/yarn-*.cjs)
   yarn_release="${yarn_releases[0]}"
   yarn() {
-    node "${yarn_release}" "${@}"
+    "${base_dir}/../tools/bootstrap/node" "${yarn_release}" "${@}"
   }
 fi
 
