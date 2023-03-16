@@ -1,4 +1,9 @@
-GLOBAL_LIST_INIT(attribute_types, subtypesof(/datum/attribute))
+GLOBAL_LIST_INIT(attribute_types, list(
+	/datum/attribute/fortitude,
+	/datum/attribute/prudence,
+	/datum/attribute/temperance,
+	/datum/attribute/justice,
+	))
 
 /datum/attribute
 	var/name = "Attribute"
