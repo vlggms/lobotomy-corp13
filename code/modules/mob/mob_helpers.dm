@@ -95,7 +95,7 @@
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
-		if(rand(1, 20) == 20)
+		if(prob(5))
 			if(newletter == " ")
 				newletter = "...huuuhhh..."
 			else if(newletter == ".")
@@ -107,6 +107,8 @@
 				newletter += "[newletter]"
 			if(20)
 				newletter += "[newletter][newletter]"
+			else
+				// nothing
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -150,6 +152,8 @@
 				newletter = "nglu"
 			if(5)
 				newletter = "glor"
+			else
+				// do nothing
 		. += newletter
 	return sanitize(.)
 
@@ -490,7 +494,7 @@
 			colored_message = "(ASAY) [colored_message]"
 		if(LOG_EMOTE)
 			colored_message = "(EMOTE) [colored_message]"
-	
+
 	var/list/timestamped_message = list("\[[time_stamp()]\] [key_name(src)] [loc_name(src)] (Event #[LAZYLEN(logging[smessage_type])])" = colored_message)
 
 	logging[smessage_type] += timestamped_message
