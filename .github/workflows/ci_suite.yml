@@ -131,6 +131,8 @@ jobs:
         with:
           path: tools/bootstrap/.cache
           key: ${{ runner.os }}-bootstrap
+      - name: Bootstrap node
+        run: pwsh tools/bootstrap/node_.ps1
       - name: Compile
         run: pwsh tools/ci/build.ps1
       - name: Create artifact
