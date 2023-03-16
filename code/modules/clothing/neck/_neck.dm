@@ -268,3 +268,9 @@
 /obj/item/clothing/neck/beads/Initialize()
 	. = ..()
 	color = color = pick("#ff0077","#d400ff","#2600ff","#00ccff","#00ff2a","#e5ff00","#ffae00","#ff0000", "#ffffff")
+
+//Limbus company
+/obj/item/clothing/neck/limbus_tie
+	name = "LCB tie"
+	desc = "It's just a tie."
+	icon_state = "lcb_tie"
