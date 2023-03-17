@@ -2567,6 +2567,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\!tutorial\fairies.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!tutorial\shadow.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\tool_abnormality.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\_tools\he\fateloom.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\he\treesap.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\teth\behavior.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\teth\bracelet.dm"

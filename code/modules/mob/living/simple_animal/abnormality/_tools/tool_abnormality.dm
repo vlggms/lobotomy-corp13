@@ -9,6 +9,7 @@
 
 GLOBAL_LIST_INIT(unspawned_tools, list(
 	/obj/structure/toolabnormality/treesap,
+	/obj/structure/toolabnormality/fateloom,
 	/obj/structure/toolabnormality/behaviour,
 	/obj/structure/toolabnormality/bracelet,
 	/obj/structure/toolabnormality/aspiration,
