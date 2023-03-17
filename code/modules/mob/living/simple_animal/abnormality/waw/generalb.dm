@@ -70,13 +70,15 @@
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+	for(var/mob/living/L in livinginrange(fireball_range, src))
+		if(L.status_flags & GODMODE)
+			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
 			continue
 		targets += L
-	new /obj/effect/beeshell(get_turf(pick(targets)))
+	new /obj/effect/beeshell(get_turf(pick(targets)), faction)
 	volley_count+=1
 	if(volley_count>=4)
 		volley_count=0
@@ -172,14 +174,16 @@
 /mob/living/simple_animal/hostile/artillery_bee/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+	for(var/mob/living/L in livinginrange(fireball_range, src))
+		if(L.status_flags & GODMODE)
+			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
 			continue
 		targets += L
 	if(targets.len > 0)
-		new /obj/effect/beeshell(get_turf(pick(targets)))
+		new /obj/effect/beeshell(get_turf(pick(targets)), faction)
 
 /obj/effect/beeshell
 	name = "bee shell"
@@ -191,20 +195,28 @@
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
 	var/boom_damage = 160 //Half Red, Half Black
+	var/list/faction = list("hostile")
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/beeshell/Initialize()
 	..()
 	addtimer(CALLBACK(src, .proc/explode), 3.5 SECONDS)
 
+/obj/effect/beeshell/New(loc, ...)
+	. = ..()
+	if(args[2])
+		faction = args[2]
+
 //Smaller Scorched Girl bomb
 /obj/effect/beeshell/proc/explode()
 	playsound(get_turf(src), 'sound/effects/explosion2.ogg', 50, 0, 8)
-	for(var/mob/living/carbon/human/H in view(2, src))
-		H.apply_damage(boom_damage*0.5, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		H.apply_damage(boom_damage*0.5, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		if(H.health < 0)
-			H.gib()
+	for(var/mob/living/L in view(2, src))
+		if(faction_check(faction, L.faction, FALSE))
+			continue
+		L.apply_damage(boom_damage*0.5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(boom_damage*0.5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		if(L.health < 0)
+			L.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(4, get_turf(src))	//Make the smoke bigger
