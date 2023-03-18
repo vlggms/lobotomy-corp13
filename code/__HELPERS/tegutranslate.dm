@@ -85,6 +85,9 @@ GLOBAL_LIST_INIT(tegu_translation_list, list(
 	"Join Game!" = list(
 		"Russian" = "Присоединиться к Игре!",
 		),
+	"Tutorial" = list(
+		"Russian" = "Обучение",
+		),
 	// To chat warnings in lobby
 	"The round is either not ready, or has already finished..." = list(
 		"Russian" = "Раунд либо ещё не готов, или уже закончился...",
@@ -98,6 +101,12 @@ GLOBAL_LIST_INIT(tegu_translation_list, list(
 	"Are you sure you wish to observe?" = list(
 		"Russian" = "Уверены что хотите наблюдать?",
 		),
+	"Are you sure you wish to play the tutorial?" = list(
+		"Russian" = "Вы уверены что хотите пройти обучение?",
+		),
+	"Sorry, the tutorial is not available at this time! Try again later." = list(
+		"Russian" = "Извините, в данный момент обучение недоступно. Попробуйте позже.",
+	),
 	"Now teleporting." = list(
 		"Russian" = "Телепортируемся.",
 		),
