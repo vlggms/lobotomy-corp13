@@ -66,7 +66,7 @@
 
 /obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
-	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
+	info = {"The Wèllcheers Ocean Soda brand is, to be blunt, nonexistent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
 	<br>
 	As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.<br>
 	<br>
@@ -90,7 +90,7 @@
 
 /obj/item/paper/guides/jobs/teth/guide
 	name = "TETH Safety Guide - Netzach"
-	info = {"Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
+	info = {"Read this carefully, alright, company boy? These things can actually <em>kill</em> you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
 	<br>
 	- Netzach"}
 
@@ -108,17 +108,17 @@
 
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
-	info = {"You may have been wondering, fortitude, prudence, temperance, justice, what are these and why are people yelling about them?<br>
+	info = {"You may have been wondering: Fortitude, prudence, temperance, justice; what are these and why are people yelling about them?<br>
 	<br>
-	These are ways the company has simplified measurements of the body, mind and soul to help you stay safe and efficient!<br>
+	These are ways the company has simplified measurements of the body, mind, and soul to help you stay safe and efficient!<br>
 	<br>
-	Fortitude is how strong and durable you are physically, your physique! You can train this by doing instinct work with abnormalities.<br>
+	Fortitude is how strong and durable you are physically: your physique! You can train this by doing instinct work with abnormalities.<br>
 	<br>
-	Prudence is mental durability and intelligence, its your physique of smarts! Make your brain strong by doing insightful work.<br>
+	Prudence is mental durability and intelligence: it's your physique of smarts! Make your brain strong by doing insightful work.<br>
 	<br>
-	Temperance is the strength of your heart, your empathy and kindness! It helps you to avoid bending to the will of abnormals, and general temptation. Attachment work is good training for temperance.<br>
+	Temperance is the strength of your heart: your empathy and kindness! It helps you avoid bending to the will of abnormalities, and general temptation. Attachment work is good training for temperance.<br>
 	<br>
-	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
+	Now if temperance is the strength of your soul, justice is the strength of your spirit. It's quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
 	<br>
 	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!<br>
 	<br>
@@ -141,9 +141,9 @@
 	info = {"These abnormalities can easily kill a number of employees, including veteran agents of the company. You have to pay twice as much attention as with ZAYIN or TETH subjects.<br>
 	As long as you pay close attention, you can avoid serious casualties.<br>
 	<br>
-	Ensure you are properly armed and armored if they do breach, these are serious threats, that require small teams to contain. And double check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
+	Ensure you are properly armed and armored if they do breach. These are serious threats that require coordinated teams to contain. Double-check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
 	<br>
-	Remember that not only is the company relying on you, but your fellow agents. Do not let them down.<br>
+	Remember that not only the company relies on you, but also your fellow agents. Do not let them down.<br>
 	<br>
 	-Malkuth"}
 

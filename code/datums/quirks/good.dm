@@ -2,7 +2,7 @@
 //this file is named weirdly so that positive traits are listed above negative ones
 
 /datum/quirk/resistant
-	name = "Damage resistant"
+	name = "Damage Resistant"
 	desc = "You take 5% less damage from all sources"
 	value = 4
 	gain_text = "<span class='notice'>You feel a bit more resistant to damage than others.</span>"
@@ -17,8 +17,8 @@
 	H.physiology.pale_mod -= 0.05
 
 /datum/quirk/skilled
-	name = "Prepared for anything"
-	desc = "You gain an extra 5 permanent attribute points to every aspect by training."
+	name = "Prepared for Anything"
+	desc = "You start with an extra 5 permanent attribute points in every aspect."
 	value = 8
 	gain_text = "<span class='notice'>You look around to see people less prepared than you.</span>"
 	medical_record_text = "This patient is observed to have unnatural abs."
@@ -33,10 +33,10 @@
 
 /datum/quirk/fluffy_tongue //not positive, but it costs points so we ball
 	name = "Fluffy Tongue"
-	desc = "You had wronged the head more than once in your lifetime, thus he has ordered you to go under the ''uwufication'' surgery. You regret everything that you did as now you cannot speak normally"
+	desc = "You had wronged the head more than once in your lifetime, thus he has ordered you to go under the ''uwufication'' surgery. You regret everything that you did as now you cannot speak normally."
 	value = 6
-	gain_text = "<span class='danger'>That damned head... how will i speak to my co-workers now?</span>"
-	medical_record_text = "This patient has gotten ''uwufication'' surgery, this has been ordered by the head himself and is not to be reverted"
+	gain_text = "<span class='danger'>That damned head... how will I speak to my co-workers now?</span>"
+	medical_record_text = "This patient has gotten ''uwufication'' surgery, this has been ordered by the head himself and is not to be reverted."
 //	hardcore_value = -2 // un-comment to let hardcore random cause chaos, unrecommended
 
 /datum/quirk/fluffy_tongue/on_spawn()

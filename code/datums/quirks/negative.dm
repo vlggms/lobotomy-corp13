@@ -12,11 +12,11 @@
 
 // Red damage quirks start
 /datum/quirk/minor_red
-	name = "Minor red damage weakness"
-	desc = "You take 10% more RED damage"
+	name = "Minor RED Damage Weakness"
+	desc = "You take 10% more RED damage."
 	value = -1
-	gain_text = "<span class='danger'>You feel a bit weaker to RED damage</span>"
-	medical_record_text = "This patient is observed to take 10% more physical damage"
+	gain_text = "<span class='danger'>You feel a bit weaker to RED damage.</span>"
+	medical_record_text = "This patient is observed to take 10% more RED damage."
 	hardcore_value = 2
 
 /datum/quirk/minor_red/on_spawn()
@@ -24,11 +24,11 @@
 	H.physiology.red_mod += 0.10
 
 /datum/quirk/major_red
-	name = "Major red damage weakness"
-	desc = "You take 25% more RED damage"
+	name = "Major RED Damage Weakness"
+	desc = "You take 25% more RED damage."
 	value = -2
-	gain_text = "<span class='danger'>You feel weaker to RED damage</span>"
-	medical_record_text = "This patient is observed to take 25% more physical damage"
+	gain_text = "<span class='danger'>You feel weaker to RED damage.</span>"
+	medical_record_text = "This patient is observed to take 25% more RED damage."
 	hardcore_value = 4
 
 /datum/quirk/major_red/on_spawn()
@@ -36,11 +36,11 @@
 	H.physiology.red_mod += 0.25
 
 /datum/quirk/fatal_red
-	name = "Fatal red damage weakness"
-	desc = "You take twice as much RED damage"
+	name = "Fatal RED Damage Weakness"
+	desc = "You take twice as much RED damage."
 	value = -4
-	gain_text = "<span class='danger'>You feel extremelly weak to RED damage</span>"
-	medical_record_text = "This patient is observed to take double the physical damage"
+	gain_text = "<span class='danger'>You feel extremely weak to RED damage.</span>"
+	medical_record_text = "This patient is observed to take twice as much RED damage."
 	hardcore_value = 8
 
 /datum/quirk/fatal_red/on_spawn()
@@ -50,11 +50,11 @@
 // White damage quirks start
 
 /datum/quirk/minor_white
-	name = "Minor white damage weakness"
-	desc = "You take 10% more WHITE damage"
+	name = "Minor WHITE Damage Weakness"
+	desc = "You take 10% more WHITE damage."
 	value = -1
-	gain_text = "<span class='danger'>You feel a bit weaker to WHITE damage</span>"
-	medical_record_text = "This patient is observed to take 10% more mental damage"
+	gain_text = "<span class='danger'>You feel a bit weaker to WHITE damage.</span>"
+	medical_record_text = "This patient is observed to take 10% more WHITE damage."
 	hardcore_value = 2
 
 /datum/quirk/minor_white/on_spawn()
@@ -62,11 +62,11 @@
 	H.physiology.white_mod += 0.10
 
 /datum/quirk/major_white
-	name = "Major white damage weakness"
-	desc = "You take 25% more WHITE damage"
+	name = "Major WHITE Damage Weakness"
+	desc = "You take 25% more WHITE damage."
 	value = -2
-	gain_text = "<span class='danger'>You feel weaker to WHITE damage</span>"
-	medical_record_text = "This patient is observed to take 25% more mental damage"
+	gain_text = "<span class='danger'>You feel weaker to WHITE damage.</span>"
+	medical_record_text = "This patient is observed to take 25% more WHITE damage."
 	hardcore_value = 4
 
 /datum/quirk/major_white/on_spawn()
@@ -74,11 +74,11 @@
 	H.physiology.white_mod += 0.25
 
 /datum/quirk/fatal_white
-	name = "Fatal white damage weakness"
-	desc = "You take twice as much WHITE damage"
+	name = "Fatal WHITE Damage Weakness"
+	desc = "You take twice as much WHITE damage."
 	value = -4
-	gain_text = "<span class='danger'>You feel extremelly weak to WHITE damage</span>"
-	medical_record_text = "This patient is observed to take double the mental damage"
+	gain_text = "<span class='danger'>You feel extremely weak to WHITE damage.</span>"
+	medical_record_text = "This patient is observed to take twice as much WHITE damage."
 	hardcore_value = 8
 
 /datum/quirk/fatal_white/on_spawn()
@@ -88,11 +88,11 @@
 	// Black damage quirks start
 
 /datum/quirk/minor_black
-	name = "Minor black damage weakness"
-	desc = "You take 10% more BLACK damage"
+	name = "Minor BLACK Damage Weakness"
+	desc = "You take 10% more BLACK damage."
 	value = -1
-	gain_text = "<span class='danger'>You feel a bit weaker to BLACK damage</span>"
-	medical_record_text = "This patient is observed to take 10% more physical and mental damage when applied at once"
+	gain_text = "<span class='danger'>You feel a bit weaker to BLACK damage.</span>"
+	medical_record_text = "This patient is observed to take 10% more BLACK damage."
 	hardcore_value = 2
 
 /datum/quirk/minor_black/on_spawn()
@@ -100,11 +100,11 @@
 	H.physiology.black_mod += 0.10
 
 /datum/quirk/major_black
-	name = "Major black damage weakness"
-	desc = "You take 25% more BLACK damage"
+	name = "Major BLACK Damage Weakness"
+	desc = "You take 25% more BLACK damage."
 	value = -2
-	gain_text = "<span class='danger'>You feel weaker to BLACK damage</span>"
-	medical_record_text = "This patient is observed to take 25% more physical and mental damage when applied at once"
+	gain_text = "<span class='danger'>You feel weaker to BLACK damage.</span>"
+	medical_record_text = "This patient is observed to take 25% more BLACK damage."
 	hardcore_value = 4
 
 /datum/quirk/major_black/on_spawn()
@@ -112,11 +112,11 @@
 	H.physiology.black_mod += 0.25
 
 /datum/quirk/fatal_black
-	name = "Fatal black damage weakness"
-	desc = "You take twice as much BLACK damage"
+	name = "Fatal BLACK Damage Weakness"
+	desc = "You take twice as much BLACK damage."
 	value = -4
-	gain_text = "<span class='danger'>You feel extremelly weak to BLACK damage</span>"
-	medical_record_text = "This patient is observed to take double the physical and mental damage when applied at once"
+	gain_text = "<span class='danger'>You feel extremely weak to BLACK damage.</span>"
+	medical_record_text = "This patient is observed to take twice as much BLACK damage."
 	hardcore_value = 8
 
 /datum/quirk/fatal_black/on_spawn()
@@ -126,11 +126,11 @@
 	// Pale damage quirks start
 
 /datum/quirk/minor_pale
-	name = "Minor pale damage weakness"
-	desc = "You take 10% more PALE damage"
+	name = "Minor PALE Damage Weakness"
+	desc = "You take 10% more PALE damage."
 	value = -1
-	gain_text = "<span class='danger'>You feel a bit weaker to PALE damage</span>"
-	medical_record_text = "This patient is observed to take 10% more physical damage to certain weaponry"
+	gain_text = "<span class='danger'>You feel a bit weaker to PALE damage.</span>"
+	medical_record_text = "This patient is observed to take 10% more PALE damage."
 	hardcore_value = 2
 
 /datum/quirk/minor_pale/on_spawn()
@@ -138,11 +138,11 @@
 	H.physiology.pale_mod += 0.10
 
 /datum/quirk/major_pale
-	name = "Major pale damage weakness"
-	desc = "You take 25% more PALE damage"
+	name = "Major PALE Damage Weakness"
+	desc = "You take 25% more PALE damage."
 	value = -2
-	gain_text = "<span class='danger'>You feel weaker to PALE damage</span>"
-	medical_record_text = "This patient is observed to take 25% more physical damage to certain weaponry"
+	gain_text = "<span class='danger'>You feel weaker to PALE damage.</span>"
+	medical_record_text = "This patient is observed to take 25% more PALE damage."
 	hardcore_value = 4
 
 /datum/quirk/major_pale/on_spawn()
@@ -150,21 +150,21 @@
 	H.physiology.pale_mod += 0.25
 
 /datum/quirk/fatal_pale
-	name = "Fatal pale damage weakness"
-	desc = "You take twice as much PALE damage"
+	name = "Fatal PALE Damage Weakness"
+	desc = "You take twice as much PALE damage."
 	value = -4
-	gain_text = "<span class='danger'>You feel extremelly weak to PALE damage</span>"
-	medical_record_text = "This patient is observed to take double the physical damage to certain weaponry"
+	gain_text = "<span class='danger'>You feel extremely weak to PALE damage.</span>"
+	medical_record_text = "This patient is observed to take twice as much PALE damage."
 	hardcore_value = 8
 
 /datum/quirk/fatal_pale/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.physiology.pale_mod += 1.00
 
-// Challange quirks start (they cause players to restort to a unique playstyle.)
+// Challange quirks start (they cause players to resort to a unique playstyle.)
 /datum/quirk/guns
-	name = "Challenge: No guns"
-	desc = "You refuse to use guns, afterall the bullets cost more than your entire life AND some ego fire like 400 rounds per minute. Surelly all other agents are in debt but you know better."
+	name = "Challenge: No Guns"
+	desc = "You refuse to use guns, after all the bullets cost more than your life, and some E.G.O. fire like 400 rounds per minute. Sure, all the other agents are in debt, but you know better."
 	value = -1
 	mob_trait = TRAIT_NOGUNS
 	gain_text = "<span class='danger'>You can't use ranged EGO nor basic guns.</span>"
@@ -172,22 +172,22 @@
 	hardcore_value = 0
 
 /datum/quirk/healing
-	name = "Challenge: No medipens"
-	desc = "Healing chemicals dont heal you. better hope clerks know how to use those R.A.C.K's if you fall into crit."
+	name = "Challenge: No Medipens"
+	desc = "You are unable to be healed by chemicals. If you fall into critical condition, you'd better hope the clerks know how to use RAKs."
 	value = -1
 	mob_trait = TRAIT_HEALING
 	gain_text = "<span class='danger'>You can't be healed by any common chemicals.</span>"
-	medical_record_text = "This patient metabolism has stagnated due to some medicine condition - professional doctor"
+	medical_record_text = "This patient is unable to metabolize healing chemicals."
 	hardcore_value = 0
 
 /datum/quirk/nonviolent //Renamed pacifist trait
-	name = "Challenge: No attacking"
-	desc = "You can never attack any abnormalities or people, this is a horrible idea and will make everyone hate you in most probability."
+	name = "Challenge: No Attacking"
+	desc = "You can never attack any abnormalities or people, this is a horrible idea and will most likely make everyone hate you."
 	value = -1
 	mob_trait = TRAIT_PACIFISM
 	gain_text = "<span class='danger'>You feel repulsed by the thought of violence!</span>"
 	lose_text = "<span class='notice'>You think you can defend yourself again, thank god.</span>"
-	medical_record_text = "Patient is unusually pacifistic and cannot bring themselves to cause physical harm, how did they survive."
+	medical_record_text = "Patient is incapable of violent acts, no matter the circumstances."
 	hardcore_value = 0
 
 // Special quirks end
