@@ -44,7 +44,7 @@
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
-	var/dash_nodes = 5
+	var/dash_nodes = 6
 	/// Maximum AStar pathfinding distances from one point to another
 	var/dash_max_distance = 40
 	var/datum/looping_sound/dreamingcurrent/soundloop
@@ -88,9 +88,18 @@
 	for(var/turf/open/T in initial_turfs)
 		if(get_dist(src, T) > 3)
 			potential_turfs += T
-	for(var/mob/living/L in livinginrange(24, src))
-		if(prob(35) && !(L.status_flags & GODMODE) && !faction_check_mob(L) && L != src)
-			potential_turfs += get_turf(L)
+	for(var/mob/living/L in livinginrange(32, src))
+		if(prob(50))
+			continue
+		if((L.status_flags & GODMODE) || faction_check_mob(L))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.is_working)
+				continue
+		potential_turfs += get_turf(L)
 	var/turf/picking_from = get_turf(src)
 	var/turf/path_start = get_turf(src)
 	if(target)
@@ -111,6 +120,9 @@
 			if(islist(our_path) && LAZYLEN(our_path))
 				break
 			potential_turfs -= T // Couldn't find path to it, don't try again
+			if(!LAZYLEN(potential_turfs))
+				break
+			T = get_closest_atom(/turf/open, potential_turfs, picking_from)
 		if(!islist(our_path) || !LAZYLEN(our_path))
 			continue
 		movement_path += our_path
