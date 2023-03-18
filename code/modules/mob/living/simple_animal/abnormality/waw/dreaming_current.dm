@@ -44,7 +44,9 @@
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
-	var/dash_nodes = 4
+	var/dash_nodes = 5
+	/// Maximum AStar pathfinding distances from one point to another
+	var/dash_max_distance = 40
 	var/datum/looping_sound/dreamingcurrent/soundloop
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Initialize()
@@ -103,10 +105,20 @@
 		var/turf/T = get_closest_atom(/turf/open, potential_turfs, picking_from)
 		if(!T)
 			break
-		movement_path += get_path_to(path_start, T, /turf/proc/Distance_cardinal)
+		var/list/our_path = list()
+		for(var/o = 1 to 3) // Grand total of 3 retries
+			our_path = get_path_to(path_start, T, /turf/proc/Distance_cardinal, dash_max_distance)
+			if(islist(our_path) && LAZYLEN(our_path))
+				break
+			potential_turfs -= T // Couldn't find path to it, don't try again
+		if(!islist(our_path) || !LAZYLEN(our_path))
+			continue
+		movement_path += our_path
 		picking_from = T
 		path_start = T
 		potential_turfs -= T
+	if(!LAZYLEN(movement_path))
+		return FALSE
 	icon_state = "current_prepare"
 	playsound(src, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 	for(var/turf/T in movement_path) // Warning before charging
