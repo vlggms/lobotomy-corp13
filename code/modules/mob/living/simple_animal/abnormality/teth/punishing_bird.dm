@@ -53,7 +53,11 @@
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
-	var/bird_angry
+	var/bird_angry = FALSE
+	/// Melee damage done to simple mobs when enraged
+	var/angry_damage = 100
+	/// Melee damage done to humans when enraged
+	var/angry_damage_human = 500
 
 	var/death_timer
 
@@ -156,12 +160,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
 	if(ishuman(target) && bird_angry)
-		melee_damage_lower = 400
-		melee_damage_upper = 500
+		melee_damage_lower = angry_damage_human
+		melee_damage_upper = angry_damage_human
 
 	else if(bird_angry)
-		melee_damage_lower = 50
-		melee_damage_upper = 60
+		melee_damage_lower = angry_damage
+		melee_damage_upper = angry_damage
 
 	else
 		melee_damage_lower = 1
