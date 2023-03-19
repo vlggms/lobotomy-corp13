@@ -3,7 +3,7 @@
 	desc = "An abnormality..? You should report this to the Head!"
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
-	stat_attack = DEAD
+	stat_attack = HARD_CRIT
 	layer = LARGE_MOB_LAYER
 	a_intent = INTENT_HARM
 	del_on_death = TRUE
