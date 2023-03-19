@@ -15,6 +15,7 @@
 		/obj/item/toy/plush/melt
 		)
 	var/list/wawitem = list(
+		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
 		/obj/item/toy/plush/qoh,
 		/obj/item/toy/plush/bigbird,
 		/obj/item/toy/plush/rabbit,
@@ -29,7 +30,10 @@
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,
 		/obj/item/clothing/glasses/sunglasses/reagent,
-		/obj/item/clothing/suit/hawaiian
+		/obj/item/clothing/suit/hawaiian,
+		/obj/item/clothing/neck/necklace/dope,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat_short
 		)
 	var/list/tethitem = list(
 		/obj/item/ego_weapon/mini/hayong,
@@ -61,6 +65,9 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
+		/obj/item/clothing/under/limbus/shirt,
+		/obj/item/clothing/accessory/limbusvest,
+		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/mask/cigarette/cigar/havana
 		)
 	var/list/normalitem = list(
@@ -70,7 +77,10 @@
 		/obj/item/ego_weapon/tutorial/white,
 		/obj/item/ego_weapon/tutorial/black,
 		/obj/item/ego_weapon/tutorial/pale,
-		/obj/item/clothing/under/suit/lobotomy/control,
+		/obj/item/clothing/neck/tie/black,
+		/obj/item/clothing/neck/tie/blue,
+		/obj/item/clothing/neck/tie/red,
+		/obj/item/clothing/under/suit/lobotomy/control, //remove these once enough items are here
 		/obj/item/clothing/under/suit/lobotomy/information,
 		/obj/item/clothing/under/suit/lobotomy/safety,
 		/obj/item/clothing/under/suit/lobotomy/training,
@@ -78,7 +88,9 @@
 		/obj/item/clothing/under/suit/lobotomy/discipline,
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
-		/obj/item/clothing/under/suit/lobotomy/records
+		/obj/item/clothing/under/suit/lobotomy/records,
+		/obj/item/clothing/under/limbus/prison,
+		/obj/item/clothing/neck/limbus_tie
 		)
 	var/list/baditem = list(
 		/obj/item/toy/plush/yisang,

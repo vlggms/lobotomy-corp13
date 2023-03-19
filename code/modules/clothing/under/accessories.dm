@@ -379,3 +379,11 @@
 ///What happens when we examine the uniform
 /obj/item/clothing/accessory/allergy_dogtag/proc/on_examine(datum/source, mob/user, list/examine_list)
 	examine_list += "The dogtag has a listing of allergies : [display]"
+
+//Limbus company
+/obj/item/clothing/accessory/limbusvest
+	name = "LCB vest"
+	desc = "An unarmored vest, slightly different than the usual L-corp standard."
+	icon_state = "lcb_vest"
+	minimize_when_attached = FALSE
+	attachment_slot = CHEST
