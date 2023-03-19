@@ -11,7 +11,7 @@
 	if(!do_after(user, 10))
 		return
 	if(usage_cooldown > world.time) //just to prevent sfx spam
-		to_chat(user, "<span class='warning'>The loom is alraedy spinning!</span>")
+		to_chat(user, "<span class='warning'>The loom is already spinning!</span>")
 		return
 	usage_cooldown = world.time + usage_cooldown_time
 
@@ -19,6 +19,9 @@
 	if(!S)
 		to_chat(user, "<span class='userdanger'>As you touch the loom, threads are sewn into your flesh.</span>")
 		user.apply_status_effect(STATUS_EFFECT_REDSTRING)
+	else if (S.stacks == 4)
+		to_chat(user, "<span class='warning'>You don't need to use this.</span>")
+		return
 	else
 		to_chat(user, "<span class='userdanger'>The threads which were once sparse are now reinforced.</span>")
 		to_chat(user, "<span class='userdanger'>You feel weaker.</span>")
