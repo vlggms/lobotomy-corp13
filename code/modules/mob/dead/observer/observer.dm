@@ -3,9 +3,8 @@ GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as t
 
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
-GLOBAL_LIST_INIT(unpossessable_mobs, typecacheof(list(
-	/mob/living/simple_animal/hostile/abnormality/woodsman,
-	/mob/living/simple_animal/hostile/abnormality/punishing_bird)))
+GLOBAL_LIST_INIT(unpossessable_mobs, list(
+	/mob/living/simple_animal/hostile/abnormality/woodsman))
 
 /mob/dead/observer
 	name = "ghost"
@@ -639,7 +638,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/possessible = list()
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L) || !SSlobotomy_corp.enable_possession || is_type_in_typecache(L, GLOB.unpossessable_mobs))
+		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L) || !SSlobotomy_corp.enable_possession || is_type_in_list(L, GLOB.unpossessable_mobs))
 			continue
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
