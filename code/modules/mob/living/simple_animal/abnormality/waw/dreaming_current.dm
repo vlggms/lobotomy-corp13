@@ -44,7 +44,9 @@
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
-	var/dash_nodes = 4
+	var/dash_nodes = 6
+	/// Maximum AStar pathfinding distances from one point to another
+	var/dash_max_distance = 40
 	var/datum/looping_sound/dreamingcurrent/soundloop
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Initialize()
@@ -86,9 +88,18 @@
 	for(var/turf/open/T in initial_turfs)
 		if(get_dist(src, T) > 3)
 			potential_turfs += T
-	for(var/mob/living/L in livinginrange(24, src))
-		if(prob(35) && !(L.status_flags & GODMODE) && !faction_check_mob(L) && L != src)
-			potential_turfs += get_turf(L)
+	for(var/mob/living/L in livinginrange(32, src))
+		if(prob(50))
+			continue
+		if((L.status_flags & GODMODE) || faction_check_mob(L))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.is_working)
+				continue
+		potential_turfs += get_turf(L)
 	var/turf/picking_from = get_turf(src)
 	var/turf/path_start = get_turf(src)
 	if(target)
@@ -103,10 +114,23 @@
 		var/turf/T = get_closest_atom(/turf/open, potential_turfs, picking_from)
 		if(!T)
 			break
-		movement_path += get_path_to(path_start, T, /turf/proc/Distance_cardinal)
+		var/list/our_path = list()
+		for(var/o = 1 to 3) // Grand total of 3 retries
+			our_path = get_path_to(path_start, T, /turf/proc/Distance_cardinal, dash_max_distance)
+			if(islist(our_path) && LAZYLEN(our_path))
+				break
+			potential_turfs -= T // Couldn't find path to it, don't try again
+			if(!LAZYLEN(potential_turfs))
+				break
+			T = get_closest_atom(/turf/open, potential_turfs, picking_from)
+		if(!islist(our_path) || !LAZYLEN(our_path))
+			continue
+		movement_path += our_path
 		picking_from = T
 		path_start = T
 		potential_turfs -= T
+	if(!LAZYLEN(movement_path))
+		return FALSE
 	icon_state = "current_prepare"
 	playsound(src, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 	for(var/turf/T in movement_path) // Warning before charging
