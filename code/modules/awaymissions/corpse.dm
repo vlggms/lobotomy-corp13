@@ -36,12 +36,8 @@
 	var/banType = ROLE_LAVALAND
 	var/ghost_usable = TRUE
 
-//ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/effect/mob_spawn/attack_ghost(mob/user)
-	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
-		return
-	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
-	if(ghost_role == "No" || !loc || QDELETED(user))
+/obj/effect/mob_spawn/proc/spawn_user_as_role(mob/user)
+	if(!SSticker.HasRoundStarted() || !loc)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
 		to_chat(user, "<span class='warning'>An admin has temporarily disabled non-admin ghost roles!</span>")
@@ -50,7 +46,7 @@
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
 	if(is_banned_from(user.key, banType))
-		to_chat(user, "<span class='warning'>You are jobanned!</span>")
+		to_chat(user, "<span class='warning'>You are job-banned from this role!</span>")
 		return
 	if(!allow_spawn(user))
 		return
@@ -58,6 +54,15 @@
 		return
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
+
+//ATTACK GHOST IGNORING PARENT RETURN VALUE
+/obj/effect/mob_spawn/attack_ghost(mob/user)
+	if(!ghost_usable)
+		return
+	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
+	if(ghost_role == "No" || !loc || QDELETED(user))
+		return
+	spawn_user_as_role(user)
 
 /obj/effect/mob_spawn/Initialize(mapload)
 	. = ..()

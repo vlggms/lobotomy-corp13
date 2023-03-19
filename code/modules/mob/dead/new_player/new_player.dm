@@ -63,6 +63,7 @@
 		output += "<p><a href='byond://?src=[REF(src)];manifest=1'>[TeguTranslate("View the Crew Manifest", src)]</a></p>"
 		output += "<p><a href='byond://?src=[REF(src)];late_join=1'>[TeguTranslate("Join Game!", src)]</a></p>"
 		output += "<p>[LINKIFY_READY(TeguTranslate("Observe", src), PLAYER_READY_TO_OBSERVE)]</p>"
+		output += "<p><a href='byond://?src=[REF(src)];tutorial=1'>[TeguTranslate("Tutorial", src)]</a></p>"
 
 	if(!IsGuestKey(src.key))
 		output += playerpolls()
@@ -73,6 +74,22 @@
 	popup.set_window_options("can_close=0")
 	popup.set_content(output.Join())
 	popup.open(FALSE)
+
+/mob/dead/new_player/proc/join_tutorial()
+	var/yes_text = TeguTranslate("Yes", src)
+	var/join_tutorial = alert(src, TeguTranslate("Are you sure you wish to play the tutorial?", src), "Player Setup", yes_text, TeguTranslate("No", src))
+	if(join_tutorial != yes_text)
+		return
+	var/obj/effect/mob_spawn/tutorial_spawner = /obj/effect/mob_spawn/human/tutorial
+	var/list/spawnerlist = GLOB.mob_spawners[initial(tutorial_spawner.name)]
+	if(!length(spawnerlist))
+		to_chat(src, TeguTranslate("Sorry, the tutorial is not available at this time! Try again later.", src))
+		return
+	var/obj/effect/mob_spawn/MS = pick(spawnerlist)
+	close_spawn_windows()
+	QDEL_NULL(mind)
+	MS.spawn_user_as_role(src)
+	qdel(src)
 
 /mob/dead/new_player/proc/playerpolls()
 	var/list/output = list()
@@ -143,6 +160,11 @@
 		if(!SSticker.current_state < GAME_STATE_PREGAME && tready == PLAYER_READY_TO_OBSERVE)
 			ready = tready
 			make_me_an_observer()
+			return
+
+	if(href_list["tutorial"])
+		if(SSticker.current_state > GAME_STATE_PREGAME)
+			join_tutorial()
 			return
 
 	if(href_list["refresh"])
