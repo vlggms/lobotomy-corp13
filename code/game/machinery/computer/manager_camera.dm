@@ -171,35 +171,18 @@
 		to_chat(user, "<span class='notice'>Justice level [get_attribute_level(H, JUSTICE_ATTRIBUTE)].</span>")
 		return
 
-	if(istype(clicked_atom, /mob/living/simple_animal/hostile))
-		var/mob/living/simple_animal/hostile/monster = clicked_atom
+	if(istype(clicked_atom, /mob/living/simple_animal))
+		var/mob/living/simple_animal/monster = clicked_atom
 		if(!LAZYLEN(monster.damage_coeff))
 			return
 
 		to_chat(user, "<span class='notice'>[clicked_atom]'s resistances are : </span>")
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
-			var/resistance = monster.damage_coeff[i]
+			var/resistance = SimpleResistanceToText(monster.damage_coeff[i])
 			if(isnull(resistance))
 				continue
-
-//I could use the standard roman numeral system, but I prefer making the resistances more like records.
-			switch(resistance)
-				if(-INFINITY to -0.1)
-					resistance = "Absorbed"
-				if(0)
-					resistance = "Immune"
-				if(0 to 0.5)
-					resistance = "Endured"
-				if(0.5 to 0.9)
-					resistance = "Resistant"
-				if(0.9 to 1)
-					resistance = "Normal"
-				if(1 to 1.5)
-					resistance = "Weak"
-				if(1.5 to INFINITY)
-					resistance = "Fatal"
-			to_chat(user, "<span class='notice'>[i] : [resistance].</span>")
+			to_chat(user, "<span class='notice'>[i]: [resistance].</span>")
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_alt_click(mob/living/user, turf/open/T)
 	var/mob/living/C = user
