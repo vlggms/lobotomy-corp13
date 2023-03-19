@@ -87,6 +87,7 @@
 		return
 	var/obj/effect/mob_spawn/MS = pick(spawnerlist)
 	close_spawn_windows()
+	stop_sound_channel(CHANNEL_LOBBYMUSIC)
 	QDEL_NULL(mind)
 	MS.spawn_user_as_role(src)
 	qdel(src)
