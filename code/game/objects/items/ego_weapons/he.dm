@@ -682,3 +682,65 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/shield/legerdemain
+	name = "legerdemain"
+	desc = "Together, we are in rot."
+	special = "This weapon restores health on a successful parry."
+	icon_state = "legerdemain"
+	force = 50
+	attack_speed = 1.8
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "hammers", "smacks")
+	attack_verb_simple = list("bash", "hammer", "smack")
+	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
+	reductions = list(10, 20, 20, 0)
+	recovery_time = 0.5 SECONDS
+	block_time = 1 SECONDS
+	block_recovery = 3 SECONDS
+	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
+	projectile_block ="Your E.G.O swats the projectile away!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	reposition_message = "You reposition your E.G.O."
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
+	if (!ishuman(user))
+		return FALSE
+	if (block == 0)
+		var/mob/living/carbon/human/shield_user = user
+		if(!CanUseEgo(shield_user))
+			return FALSE
+		if(shield_user.physiology.armor.bomb)
+			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
+			return FALSE
+		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
+			if(AC.datum_reference.working) // No blocking during work.
+				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
+				return FALSE
+		block = 1
+		block_success = FALSE
+		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1)
+		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
+		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
+		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_time)
+		to_chat(user,"<span class='userdanger'>[block_message]</span>")
+		return TRUE
+
+/obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
+	SIGNAL_HANDLER
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)//y'all can't behave
+
+/obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	if (damagetype == PALE_DAMAGE)
+		to_chat(source,"<span class='nicegreen'>Your [src] withers at the touch of death!</span>")
+		return ..()
+	to_chat(source,"<span class='nicegreen'>You are healed by [src].</span>")
+	source.adjustBruteLoss(-10)
+	source.adjustSanityLoss(-5)
+	..()

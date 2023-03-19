@@ -289,3 +289,15 @@
 		"For every stat at or above level 3, the work chance was reduced.",
 		"When all stats were at level 1, the Qliphoth counter decreased upon completion of work.",
 		"Agents with all stats below level 2 perish with alarming frequency near this abnormality.")
+
+//Golden False Apple
+/obj/item/paper/fluff/info/he/goldapple
+	abno_type = /mob/living/simple_animal/hostile/abnormality/golden_apple
+	abno_code = "O-02-143"//O-02-04-06 in LCB
+	abno_info = list(
+		"When the work result was Good, a restorative aura was applied to the employee.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work result was neutral, either of the above effects would occur at an equal chance.",
+		"Employees with two restorative auras were absorbed by the abnormality after working on it again.",
+		"This abnormality must be cored with a knife or sharp object immediately after suppression work.",
+		"Following its metamorphosis, this abnormality will deal BLACK damage.")

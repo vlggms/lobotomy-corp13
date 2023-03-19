@@ -220,3 +220,12 @@
 /datum/ego_datum/weapon/songmini
 	item_path = /obj/item/gun/ego_gun/pistol/songmini
 	cost = 35
+
+//Golden False Apple - Legerdemain
+/datum/ego_datum/armor/legerdemain
+	item_path = /obj/item/clothing/suit/armor/ego_gear/legerdemain
+	cost = 35
+
+/datum/ego_datum/weapon/legerdemain
+	item_path = /obj/item/ego_weapon/shield/legerdemain
+	cost = 35
