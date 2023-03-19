@@ -299,12 +299,15 @@
 	var/datum/looping_sound/greenmidnight_laser/laserloop
 	var/laser_spawn_delay = 1 SECONDS
 	var/laser_rotation_time = 2 SECONDS
+	/// Below that health the green midnight speeds up
+	var/next_health_mark = 0 // Initialize below
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
 	..()
 	left_shell = new(get_turf(src))
 	right_shell = new(get_turf(src))
 	laser_cooldown = world.time + 6 SECONDS
+	next_health_mark = maxHealth * 0.9
 	laserloop = new(list(src), FALSE)
 	addtimer(CALLBACK(src, .proc/OpenShell), 5 SECONDS)
 
@@ -330,27 +333,14 @@
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
-	switch(max_lasers)
-		if(8)
-			if(health <= maxHealth * 0.8)
-				max_lasers = 10
-		if(10)
-			if(health <= maxHealth * 0.6)
-				max_lasers = 12
-				laser_spawn_delay = 0.8 SECONDS
-				laser_rotation_time = 1.6 SECONDS
-		if(12)
-			if(health <= maxHealth * 0.4)
-				max_lasers = 14
-				laser_spawn_delay = 0.7 SECONDS
-				laser_rotation_time = 1.4 SECONDS
-				laser_cooldown_time = 15 SECONDS
-		if(14)
-			if(health <= maxHealth * 0.2)
-				max_lasers = 15
-				laser_spawn_delay = 0.5 SECONDS
-				laser_rotation_time = 1 SECONDS
-				laser_cooldown_time = 10 SECONDS
+	if(stat == DEAD)
+		return
+	if(health <= next_health_mark)
+		next_health_mark -= maxHealth * 0.1
+		max_lasers += 2
+		laser_spawn_delay = max(0.3 SECONDS, laser_spawn_delay - 0.1 SECONDS)
+		laser_rotation_time = max(0.5 SECONDS, laser_rotation_time - 0.2 SECONDS)
+		laser_cooldown_time = max(10 SECONDS, laser_cooldown_time - 1 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/CanAttack(atom/the_target)
 	return FALSE
