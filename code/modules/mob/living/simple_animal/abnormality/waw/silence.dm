@@ -42,6 +42,12 @@
 	to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
 	return
 
+/mob/living/simple_animal/hostile/abnormality/silence/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(50))
+		safe = TRUE
+		to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
+	return
+
 /mob/living/simple_animal/hostile/abnormality/silence/Life()
 	. = ..()
 	if(meltdown_cooldown < world.time)

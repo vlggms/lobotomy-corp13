@@ -200,7 +200,7 @@
 	if(!output)
 		return
 
-	if(!do_after(user, 15 SECONDS))
+	if(!do_after(user, 7 SECONDS))
 		to_chat(user, "<span class='userdanger'>The well goes silent as it detects your impatience.</span>")
 		return
 

@@ -131,7 +131,9 @@
 	abno_code = "O-04-120"
 	abno_info = list(
 		"Every 13 minutes, the bell tolled.",
-		"If The Price of Silence did not have a Good work result between the bells tolling, every employee took massive PALE damage.")
+		"When the work result was Good, the abnormality was satisfied with a high probability.",
+		"When the work result was Normal, the abnormality was satisfied with a medium probability.",
+		"If neither of the above conditions were fulfilled between the bells tolling, every employee took massive PALE damage.")
 
 //The Dreaming Current
 /obj/item/paper/fluff/info/waw/current
