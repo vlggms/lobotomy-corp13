@@ -1,455 +1,200 @@
 //Wabbit Twouble
 /obj/item/paper/fluff/info/teth/training
-	name = "0-00-00"
-	info = {"<h1><center>0-00-00</center></h1>	<br>
-	Name : Standard Training-Dummy Rabbit	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 1	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Very Low	<br>
-	- When Repression work was performed with Standard Training-Dummy Rabbit, the Qliphoth Counter lowered.	<br><br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> High<br>
-	<h4>Attachment:</h4> Very High<br>
-	<h4>Repression:</h4> Common<br><br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> X	<br>
-	<h4>Escape Damage:</h4> X	<br>
-	<h4>Red Resistance:</h4> Resistant	<br>
-	<h4>White Resistance:</h4> Vulnerable	<br>
-	<h4>Black Resistance:</h4> Normal	<br>
-	<h4>Pale Resistance:</h4> Normal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/training_rabbit
+	abno_code = "0-00-00"
+	abno_info = list(
+		"When Repression work was performed with Standard Training-Dummy Rabbit, the Qliphoth Counter lowered.")
+	abno_breach_damage_type = "None"
+	abno_breach_damage_count = "None"
 
 //Spider Bud
 /obj/item/paper/fluff/info/teth/spider
-	name = "T-02-43"
-	info = {"<h1><center>T-02-43</center></h1>	<br>
-	Name : Spider Bud	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Moderate	<br>
-	- Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.	<br>
-	- When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.	<br><br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Very Low<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/spider
+	abno_code = "T-02-43"
+	abno_info = list(
+		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
+		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.")
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
-	name = "F-01-02"
-	info = {"<h1><center>F-01-02</center></h1>	<br>
-	Name : Scorched Girl	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Low	<br>
-	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
-	- Scorched Girl, who had escaped, exploded after being near their target for 4.5 seconds. Many of the staff nearby sustained burns from the incident.	<br><br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> High<br>
-	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Common<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
-	<h4>Escape Damage:</h4> Extreme	<br>
-	<h4>Red Resistance:</h4> Resistant	<br>
-	<h4>White Resistance:</h4> Fatal	<br>
-	<h4>Black Resistance:</h4> Normal	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/scorched_girl
+	abno_code = "F-01-02"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"Scorched Girl, who had escaped, exploded after being near their target for 4.5 seconds. Many of the staff nearby sustained burns from the incident.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Extreme"
 
 //Punishing bird
 /obj/item/paper/fluff/info/teth/pbird
-	name = "O-02-56"
-	info = {"<h1><center>O-02-56</center></h1>	<br>
-	Name : Punishing Bird	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Low	<br>
-	- When the work result was Good, the Qliphoth Counter increased.	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
-	- An employee was ordered to suppress Punishing Bird. When they tried to attack it, the central portion of the Abnormality split and <strong>REDACTED</strong>. Afterward, the employee was confirmed to have died. The suppression ended in failure.	<br><br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> High<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Very Low<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
-	<h4>Escape Damage:</h4> Very Low	<br>
-	<h4>Red Resistance:</h4> Fatal	<br>
-	<h4>White Resistance:</h4> Fatal	<br>
-	<h4>Black Resistance:</h4> Fatal	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/punishing_bird
+	abno_code = "O-02-56"
+	abno_info = list(
+		"When the work result was Good, the Qliphoth Counter increased.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"An employee was ordered to suppress Punishing Bird. When they tried to attack it, the central portion of the Abnormality split and <strong>REDACTED</strong>. Afterward, the employee was confirmed to have died. The suppression ended in failure.")
 
 //Fragment of the universe
 /obj/item/paper/fluff/info/teth/frag
-	name = "O-03-60"
-	info = {"<h1><center>O-03-60</center></h1>	<br>
-	Name : Fragment of the Universe	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Black	<br>
-	Work Damage : Low	<br>
-	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
-	- When an employee panicked during work, the Qliphoth Counter lowered.	<br><br>
-	<h4>Instinct:</h4> Low<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Common<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Black	<br>
-	<h4>Escape Damage:</h4> Moderate	<br>
-	<h4>Red Resistance:</h4> Normal	<br>
-	<h4>White Resistance:</h4> Vulnerable	<br>
-	<h4>Black Resistance:</h4> Normal	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fragment
+	abno_code = "O-03-60"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"When an employee panicked during work, the Qliphoth Counter lowered.")
 
 //Dingle Dangle
 /obj/item/paper/fluff/info/teth/dingle
-	name = "T-04-111"
-	info = {"<h1><center>T-04-111</center></h1>	<br>
-	Name : Dingle-Dangle	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.	<br>
-	- When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.	<br><br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Low<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
+	abno_code = "T-04-111"
+	abno_info = list(
+		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.",
+		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
 
 //Beauty and the Beast
 /obj/item/paper/fluff/info/teth/beauty
-	name = "F-02-44"
-	info = {"<h1><center>F-02-44</center></h1>	<br>
-	Name : Beauty and the Beast	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Low	<br>
-	- Committing Repression work with Beauty and the Beast showed the best energy results. The work produced a good number of PE-Boxes, but negatively affected the health of Beauty and the Beast.	<br>
-	- Any work other than Repression was found to improve the health of Beauty and the Beast.	<br>
-	- After repeated Repression work, Beauty and the Beast collapsed with a weak moan onto the floor. Once it had passed, the employee, who had carried out the work process, began to suffer unidentifiable symptoms. Soon, Beauty and the Beast was born anew.	<br><br>
-	<h4>Instinct:</h4> Low<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Low<br>
-	<h4>Repression:</h4> High<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/beauty
+	abno_code = "F-02-44"
+	abno_info = list(
+		"Committing Repression work with Beauty and the Beast showed the best energy results. The work produced a good number of PE-Boxes, but negatively affected the health of Beauty and the Beast.",
+		"Any work other than Repression was found to improve the health of Beauty and the Beast.",
+		"After repeated Repression work, Beauty and the Beast collapsed with a weak moan onto the floor. Once it had passed, the employee, who had carried out the work process, began to suffer unidentifiable symptoms. Soon, Beauty and the Beast was born anew.")
 
 //1.76 MHz
 /obj/item/paper/fluff/info/teth/mhz
-	name = "T-06-27"
-	info = {"<h1><center>T-06-27</center></h1>	<br>
-	Name : 1.76 MHz	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 4	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- The higher the Agent’s Fortitude was, the lower their Success Rate when working with 1.76 MHz. It may be due to the fact that violent tendencies flare rapidly due to 1.76 MHz’s influence.	<br>
-	- When the work result was Normal, the Qliphoth Counter lowered with a normal probability.	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered with a high probability.	<br>
-	- When an employee panicked during work, the Qliphoth Counter lowered.	<br>
-	- When the work result was Good, the Qliphoth Counter increased. When all E-Boxes were produced as PE-Boxes, the Counter increased by 2.	<br>
-	- The surveillance camera detected various noises emitting around the facility. Based on the fact that this occurred after 1.76 MHz’s Qliphoth Counter reached 0, it can be assumed that the noise originated from 1.76 MHz’s Containment Unit.	<br>
-	- The broadcast lasted for a maximum of 3 minutes.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Low<br>
-	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Common<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/mhz
+	abno_code = "T-06-27"
+	abno_info = list(
+		"The higher the Agent’s Fortitude was, the lower their Success Rate when working with 1.76 MHz. It may be due to the fact that violent tendencies flare rapidly due to 1.76 MHz’s influence.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"When an employee panicked during work, the Qliphoth Counter lowered.",
+		"When the work result was Good, the Qliphoth Counter increased. When all E-Boxes were produced as PE-Boxes, the Counter increased by 2.",
+		"The surveillance camera detected various noises emitting around the facility. Based on the fact that this occurred after 1.76 MHz’s Qliphoth Counter reached 0, it can be assumed that the noise originated from 1.76 MHz’s Containment Unit.",
+		"The broadcast lasted for a maximum of 3 minutes.")
 
 //Crumbling Armor
 /obj/item/paper/fluff/info/teth/crumbling
-	name = "O-05-61"
-	info = {"<h1><center>O-05-61</center></h1>	<br>
-	Name : Crumbling Armor	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : PALE	<br>
-	Work Damage : Low	<br>
-	- When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off.	<br>
-	- Upon completing a Repression work with Crumbling Armor, the employee gained a glowing aura. This aura seemed to increase their stats regarding Justice.	<br>
-	- Each time the employee completed Repression work with any Abnormality, the aura intensified.	<br>
-	- WARNING: When an employee with the aura performed Attachment work, they were found with their head sliced clean off.	<br>
-	- WARNING: As the aura intensified, so too did its effect. However, an additional loss of Fortitude was noted.	<br>
-	<br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Very Low<br>
-	<h4>Repression:</h4> Very High<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/crumbling_armor
+	abno_code = "O-05-61"
+	abno_info = list(
+		"When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off.",
+		"Upon completing a Repression work with Crumbling Armor, the employee gained a glowing aura. This aura seemed to increase their stats regarding Justice.",
+		"Each time the employee completed Repression work with any Abnormality, the aura intensified.",
+		"WARNING: When an employee with the aura performed Attachment work, they were found with their head sliced clean off.",
+		"WARNING: As the aura intensified, so too did its effect. However, an additional loss of Fortitude was noted.")
 
 /obj/item/paper/fluff/info/teth/bloodbath
-	name = "T-05-51"
-	info = {"<h1><center>T-05-51</center></h1>	<br>
-	Name : Blood Bath	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 14	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Low	<br>
-	- When an employee, who had both Fortitude Level 1 and Temperance Level 1, completed the work process, a hand stretched out of Bloodbath and dragged them into its depths.	<br>
-	- A pale hand surfaced from Bloodbath after it had absorbed an employee. As the number of hands increased, the number of PE-Boxes produced with it also increased.	<br>
-	- WARNING: When Bloodbath has three hands, the safety of the next worker cannot be guaranteed. It seems Bloodbath will absorb employees regardless of their condition or the work result.	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Very Low<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/bloodbath
+	abno_code = "T-05-51"
+	abno_info = list(
+		"When an employee, who had both Fortitude Level 1 and Temperance Level 1, completed the work process, a hand stretched out of Bloodbath and dragged them into its depths.",
+		"A pale hand surfaced from Bloodbath after it had absorbed an employee. As the number of hands increased, the number of PE-Boxes produced with it also increased.",
+		"WARNING: When Bloodbath has three hands, the safety of the next worker cannot be guaranteed. It seems Bloodbath will absorb employees regardless of their condition or the work result.")
 
 //Old Lady
 /obj/item/paper/fluff/info/teth/oldlady
-	name = "O-01-12"
-	info = {"<h1><center>O-01-12</center></h1>	<br>
-	Name : Old Lady	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 4	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- Over time, the Qliphoth Counter lowered.	<br>
-	- When the Qliphoth Counter reached 0, black shapes formed inside the Containment Unit. We’ve decided to dub these shapes "solitude" based on the condition in which they form.	<br>
-	- When the solitude piled up, an employee had to clear it manually.	<br>
-	- The employee had to deal with continuous WHITE damage until the solitude eventually fell off. Until it was gone, they could not move or do any other work.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Low<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/old_lady
+	abno_code = "O-01-12"
+	abno_info = list(
+		"Over time, the Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached 0, black shapes formed inside the Containment Unit. We’ve decided to dub these shapes \"solitude\" based on the condition in which they form.",
+		"When the solitude piled up, an employee had to clear it manually.",
+		"The employee had to deal with continuous WHITE damage until the solitude eventually fell off. Until it was gone, they could not move or do any other work.")
 
 //Forsaken Murderer
 /obj/item/paper/fluff/info/teth/murderer
-	name = "T-01-54"
-	info = {"<h1><center>T-01-54</center></h1>	<br>
-	Name : Forsaken Murderer	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 14	<br>
-	Qliphoth Counter : 1	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Low	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered.	<br>
-	<br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
-	<h4>Escape Damage:</h4> Moderate	<br>
-	<h4>Red Resistance:</h4> Normal	<br>
-	<h4>White Resistance:</h4> Normal	<br>
-	<h4>Black Resistance:</h4> Vulnerable	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/forsaken_murderer
+	abno_code = "T-01-54"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.")
 
 //Ppodae
 /obj/item/paper/fluff/info/teth/ppodae
-	name = "D-02-107"
-	info = {"<h1><center>D-02-107</center></h1>	<br>
-	Name : Ppodae	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Red	<br>
-	Work Damage : Low	<br>
-	- Ppodae wuvs Instinct work the most. Please don’t do work other than Instinct with him, or else the Qliphoth Counter has a medium probability of lowering.	<br>
-	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
-	- When Ppodae escaped, it voluntarily returned to its unit after attacking an employee and taking █████ from their corpse.	<br><br>
-	<h4>Instinct:</h4> High<br>
-	<h4>Insight:</h4> Low<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
-	<h4>Escape Damage:</h4> Low	<br>
-	<h4>Red Resistance:</h4> Vulnerable	<br>
-	<h4>White Resistance:</h4> Endured	<br>
-	<h4>Black Resistance:</h4> Normal	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/ppodae
+	abno_code = "D-02-107"
+	abno_info = list(
+		"Ppodae wuvs Instinct work the most. Please don’t do work other than Instinct with him, or else the Qliphoth Counter has a medium probability of lowering.",
+		"When the work result was Bad, the Qliphoth Counter decreased.",
+		"When Ppodae escaped, it voluntarily returned to its unit after attacking an employee and taking █████ from their corpse.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Low"
 
 //Today's Shy Look
 /obj/item/paper/fluff/info/teth/shy
-	name = "O-01-92"
-	info = {"<h1><center>O-01-92</center></h1>	<br>
-	Name : Today’s Shy Look	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : Black	<br>
-	Work Damage : Moderate	<br>
-	- This Abnormality changes their facial expression at certain intervals. However, when faced with another person, their changes halt.	<br>
-	- From smiles to anger, they have 5 levels of facial expression dubbed Faces 1, 2, 3, 4, and 5.	<br>
-	- No special circumstances came from Face 3. Face 2 showed an increased success rate and the employee healed SP when work was successfully completed.	<br>
-	- Face 4 showed 150% damage dealt during work, and the success rate declined.	<br>
-	- Face 5 showed 200% damage dealt during work, and the success rate drastically declined.	<br>
-	- Face 1 showed 50% damage dealt during work, and the success rate increased. In addition, each time work was successful, the employee’s HP and SP recovered.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Common<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/shy_look
+	abno_code = "O-01-92"
+	abno_info = list(
+		"This Abnormality changes their facial expression at certain intervals. However, when faced with another person, their changes halt.",
+		"From smiles to anger, they have 5 levels of facial expression dubbed Faces 1, 2, 3, 4, and 5.",
+		"No special circumstances came from Face 3. Face 2 showed an increased success rate and the employee healed SP when work was successfully completed.",
+		"Face 4 showed 150% damage dealt during work, and the success rate declined.",
+		"Face 5 showed 200% damage dealt during work, and the success rate drastically declined.",
+		"Face 1 showed 50% damage dealt during work, and the success rate increased. In addition, each time work was successful, the employee’s HP and SP recovered.")
 
 //Cherry blossom
 /obj/item/paper/fluff/info/teth/cherryblossom
-	name = "O-04-100"
-	info = {"<h1><center>O-04-100</center></h1>	<br>
-	Name : Grave of Cherry Blossoms<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 3	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- When the work result was Good, the Qliphoth Counter lowered.	<br>
-	- When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.	<br>
-	- When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.	<br>
-	- Upon the death of one of these employees, the HP and SP of every employee in the facility was healed, and all marks were removed.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/cherry_blossoms
+	abno_code = "O-04-100"
+	abno_info = list(
+		"When the work result was Good, the Qliphoth Counter lowered.",
+		"When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.",
+		"Upon the death of one of these employees, the HP and SP of every employee in the facility was healed, and all marks were removed.")
 
 //Gone with a Simple Smile
 /obj/item/paper/fluff/info/teth/smile
-	name = "F-02-128"
-	info = {"<h1><center>F-02-128</center></h1>	<br>
-	Name : Gone with a Simple Smile	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Black	<br>
-	Work Damage : Low	<br>
-	- The work success rate was reduced for every stat of the employee at or above Level 2.	<br>
-	- When all stats of the employee were at or above Level 2, the Qliphoth Counter lowered.	<br>
-	- When the work result was Bad, the Qliphoth Counter lowered.	<br><br>
-	<h4>Instinct:</h4> Very High<br>
-	<h4>Insight:</h4> Very High<br>
-	<h4>Attachment:</h4> Very High<br>
-	<h4>Repression:</h4> Very High<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Black	<br>
-	<h4>Escape Damage:</h4> Low	<br>
-	<h4>Red Resistance:</h4> Normal	<br>
-	<h4>White Resistance:</h4> Weak	<br>
-	<h4>Black Resistance:</h4> Endured	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/smile
+	abno_code = "F-02-128"
+	abno_info = list(
+		"The work success rate was reduced for every stat of the employee at or above Level 2.",
+		"When all stats of the employee were at or above Level 2, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.")
 
 //Penitent Girl
 /obj/item/paper/fluff/info/teth/penitent
-	name = "F-01-132"
-	info = {"<h1><center>F-01-132</center></h1>	<br>
-	Name : Penitent Girl<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : White	<br>
-	Work Damage : Moderate	<br>
-	- When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.	<br>
-	- When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Common<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
+	abno_code = "F-01-132"
+	abno_info = list(
+		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
+		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
 
 //Drowned Sisters
 /obj/item/paper/fluff/info/teth/drowned
-	name = "T-01-133"
-	info = {"<h1><center>T-01-133</center></h1>	<br>
-	Name : The Drowned Sisters<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : White	<br>
-	Work Damage : High	<br>
-	- The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.	<br>
-	- After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> High<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Low<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
+	abno_code = "T-01-133"
+	abno_info = list(
+		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
+		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 
 //Void Dream
 /obj/item/paper/fluff/info/teth/void
-	name = "T-02-99"
-	info = {"<h1><center>T-02-99</center></h1>	<br>
-	Name : Void Dream	<br>
-	Risk Class : TETH	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : 2	<br>
-	Work Damage Type : Black	<br>
-	Work Damage : Low	<br>
-	- Any employee with Temperance under Level 2 will fall asleep after working on the Abnormality.	<br>
-	- When the work result was Bad, the Qliphoth Counter decreased.	<br>
-	- When Void Dream escaped, its light put every employee who came into contact with it asleep. They woke up when another employee shook them.	<br>
-	- WARNING: Attempts to suppress the Abnormality will provoke it, transforming into an extremely hostile entity. (This second form is designated as Void Dream-1).	<br>
-	- Void Dream-1 occasionally crowed, dealing WHITE damage to nearby employees. Employees who were asleep due to the Abnormality’s light awoke and panicked after hearing Void Dream-1’s sound.	<br>
-	<br>
-	<h4>Instinct:</h4> Common<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> High<br>
-	<h4>Repression:</h4> Low<br>
-	<h3><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> White	<br>
-	<h4>Escape Damage:</h4> Moderate	<br>
-	<h4>Red Resistance:</h4> Weak	<br>
-	<h4>White Resistance:</h4> Ineffective	<br>
-	<h4>Black Resistance:</h4> Endured	<br>
-	<h4>Pale Resistance:</h4> Fatal	<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/voiddream
+	abno_code = "T-02-99"
+	abno_info = list(
+		"Any employee with Temperance under Level 2 will fall asleep after working on the Abnormality.",
+		"When the work result was Bad, the Qliphoth Counter decreased.",
+		"When Void Dream escaped, its light put every employee who came into contact with it asleep. They woke up when another employee shook them.",
+		"WARNING: Attempts to suppress the Abnormality will provoke it, transforming into an extremely hostile entity. (This second form is designated as Void Dream-1).",
+		"Void Dream-1 occasionally crowed, dealing WHITE damage to nearby employees. Employees who were asleep due to the Abnormality’s light awoke and panicked after hearing Void Dream-1’s sound.")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Moderate"
 
 //Beanstalk without Jack
 /obj/item/paper/fluff/info/teth/beanstalk
-	name = "F-03-16"
-	info = {"<h1><center>F-03-16</center></h1>	<br>
-	Name : Beanstalk without Jack	<br>
-	Risk Class : Teth	<br>
-	Max PE Boxes : 12	<br>
-	Qliphoth Counter : X	<br>
-	Work Damage Type : Black	<br>
-	Work Damage : Moderate/Extreme	<br>
-	- When an Agent with Level 1 Temperance and Prudence completed the work, they climbed up the beanstalk and were never seen again.	<br>
-	- Upon attempting an Instinct work with level 4 Fortitude or above, the Agent climbed up the beanstalk willingly.	<br>
-	- No agent has ever returned from the top of the beanstalk, if it even has the concept of a top.	<br>
-	<br>
-	<h4>Instinct:</h4> Low/Very Low<br>
-	<h4>Insight:</h4> Common<br>
-	<h4>Attachment:</h4> Common<br>
-	<h4>Repression:</h4> Low<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/beanstalk
+	abno_code = "F-03-16"
+	abno_info = list(
+		"When an Agent with Level 1 Temperance and Prudence completed the work, they climbed up the beanstalk and were never seen again.",
+		" Upon attempting an Instinct work with level 4 Fortitude or above, the Agent climbed up the beanstalk willingly.",
+		"No agent has ever returned from the top of the beanstalk, if it even has the concept of a top.")
 
 //My Sweet Home
 /obj/item/paper/fluff/info/teth/my_sweet_home
-	name = "T-04-138"
-	info = {"<h1><center>T-04-138</center></h1>	<br>
-	Name : My Sweet Home				<br>
-	Risk Class : Teth					<br>
-	Max PE Boxes : 12					<br>
-	Qliphoth Counter : 1				<br>
-	Work Damage Type : Black			<br>
-	Work Damage : Moderate				<br>
-	- When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.	<br>
-	- Upon finising Attachment work thrice, the Agent was compelled to approach with the key.	<br>
-	- Upon failing work or getting to three Attachments, the abnormality breached after melding with the Agent.	<br>
-	<br>
-	<h4>Instinct:</h4> Low/Common		<br>
-	<h4>Insight:</h4> Low/Common		<br>
-	<h4>Attachment:</h4> Very High		<br>
-	<h4>Repression:</h4> High/Common	<br>
-	<h4><center>Breach Information</center></h3>	<br>
-	<h4>Escape Damage Type:</h4> Red	<br>
-	<h4>Escape Damage:</h4> Moderate	<br>
-	<h4>Red Resistance:</h4> Endured	<br>
-	<h4>White Resistance:</h4> Endured	<br>
-	<h4>Black Resistance:</h4> Weak		<br>
-	<h4>Pale Resistance:</h4> Fatal		<br>"}
+	abno_type = /mob/living/simple_animal/hostile/abnormality/my_sweet_home
+	abno_code = "T-04-138"
+	abno_info = list(
+		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
+		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
+		"Upon failing work or getting to three Attachments, the abnormality breached after melding with the Agent.")
