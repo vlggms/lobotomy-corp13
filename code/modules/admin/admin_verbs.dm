@@ -77,7 +77,8 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/resetasaycolor,
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
-	/datum/admins/proc/open_borgopanel
+	/datum/admins/proc/open_borgopanel,
+	/client/proc/SpawnAbno //LC13 Testing
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -780,6 +781,26 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has [AI_Interact ? "activated" : "deactivated"] Admin AI Interact")
 	message_admins("[key_name_admin(usr)] has [AI_Interact ? "activated" : "deactivated"] their AI interaction")
+
+// Selects and spawns a LC13 abnormality cell
+/client/proc/SpawnAbno()
+	set category = "Admin.Game"
+	set name = "Spawn Abnormality Cell"
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/confirm = alert(src, "Choose Abnormality?", "Choose abnormality type?", "No", "Yes")
+	if(confirm == "Yes")
+		var/datum/abno_type = pick_closest_path(FALSE, make_types_fancy(subtypesof(/mob/living/simple_animal/hostile/abnormality)))
+		if(ispath(abno_type))
+			SSabnormality_queue.queued_abnormality = abno_type
+	SSabnormality_queue.SpawnAbno()
+
+	log_admin("[key_name(usr)] has spawned [SSabnormality_queue.queued_abnormality].")
+	message_admins("[key_name(usr)] has spawned [SSabnormality_queue.queued_abnormality].")
+
+	SSblackbox.record_feedback("nested tally", "admin_spawn_abnormality", 1, list("Initiated Spawn Abnormality", "[SSabnormality_queue.queued_abnormality]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
