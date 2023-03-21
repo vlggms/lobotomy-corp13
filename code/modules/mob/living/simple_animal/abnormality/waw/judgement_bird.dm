@@ -43,7 +43,8 @@
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 65
-	var/judgement_range = 10
+	var/judgement_range = 12
+	var/judging = FALSE
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -51,6 +52,11 @@
 	button_icon_state = "magicm"
 	chosen_message = "<span class='colossus'>You will now damage all enemies around you.</span>"
 	chosen_attack_num = 1
+
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
+	if(judging)
+		return FALSE
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -69,6 +75,7 @@
 	if(judgement_cooldown > world.time)
 		return
 	judgement_cooldown = world.time + judgement_cooldown_base
+	judging = TRUE
 	icon_state = "judgement_bird_attack"
 	playsound(get_turf(src), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(2 SECONDS)
@@ -81,6 +88,7 @@
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	icon_state = icon_living
+	judging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
