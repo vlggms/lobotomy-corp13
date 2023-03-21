@@ -45,8 +45,8 @@
 	var/next_transform = null
 
 	var/hello_cooldown
-	var/hello_cooldown_time = 8 SECONDS
-	var/hello_damage = 80
+	var/hello_cooldown_time = 6 SECONDS
+	var/hello_damage = 120
 	var/goodbye_cooldown
 	var/goodbye_cooldown_time = 20 SECONDS
 	var/goodbye_damage = 500
@@ -178,7 +178,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
-	if(damagetype == RED_DAMAGE || damage < 5)
+	if(damagetype == RED_DAMAGE || damage < 10)
 		return
 	last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
 
@@ -234,7 +234,7 @@
 			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75
-			move_to_delay = 5
+			move_to_delay = 4.5
 			heartbeat.stop()
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
@@ -248,9 +248,11 @@
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	icon_state = "nothing_ranged"
 	var/turf/target_turf = get_turf(target)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to 3)
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
-	SLEEP_CHECK_DEATH(5)
+	// Close range gives you more time to dodge
+	var/hello_delay = (get_dist(src, target) <= 2) ? (1 SECONDS) : (0.5 SECONDS)
+	SLEEP_CHECK_DEATH(hello_delay)
 	var/list/been_hit = list()
 	var/broken = FALSE
 	for(var/turf/T in getline(get_turf(src), target_turf))
@@ -259,7 +261,7 @@
 				break
 			broken = TRUE
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
-			if (TF.density)
+			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
 			for(var/mob/living/L in TF)
@@ -290,7 +292,7 @@
 			L.apply_damage(goodbye_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(L.health < 0)
 				L.gib()
-	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5)
+	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(3)
 	icon_state = icon_living
 	can_act = TRUE
