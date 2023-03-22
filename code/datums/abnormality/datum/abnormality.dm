@@ -186,6 +186,8 @@
 		current?.ZeroQliphoth(user)
 		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
+		work_logs += "\[[worldtime2text()]\]: Qliphoth counter reduced to 0!"
+		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter reduced to 0!"
 		return
 	if(pre_qlip != qliphoth_meter)
 		if(pre_qlip < qliphoth_meter) // Alerts on change of counter. It's just nice to know instead of inspecting the console every time. Also helps for those nearby if something goes to shit.
@@ -195,6 +197,8 @@
 			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
 		current?.OnQliphothChange(user, amount)
+		work_logs += "\[[worldtime2text()]\]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
+		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	if(!istype(user))
