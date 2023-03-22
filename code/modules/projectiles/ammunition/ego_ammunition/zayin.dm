@@ -8,6 +8,11 @@
 	desc = "A 9mm tough soda casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_soda
 
+/obj/item/ammo_casing/caseless/ego_nostalgia
+	name = "nostalgia casing"
+	desc = "nostalgia casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_nostalgia
+
 /obj/item/ammo_casing/caseless/ego_clerk
 	name = "9mm clerk casing"
 	desc = "A 9mm clerk casing."
