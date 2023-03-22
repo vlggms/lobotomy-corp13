@@ -131,8 +131,7 @@
 		/obj/effect/decal/cleanable/ash,
 		/obj/item/cigbutt,
 		/obj/item/food/urinalcake,
-		/obj/item/shard,
-		/obj/item/reagent_containers/pill/maintenance
+		/obj/item/shard
 		)
 
 //Potential threats
