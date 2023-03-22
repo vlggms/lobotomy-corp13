@@ -120,6 +120,8 @@
 	tick_interval = 2 SECONDS
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
+	/// Whether we listen to apply damage signal or not
+	var/remove_on_damage = FALSE
 
 /datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner)
 	. = ..()
@@ -143,9 +145,10 @@
 		tick_interval = -1
 	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), .proc/on_owner_insomniac)
 	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE), .proc/on_owner_sleepy)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/on_owner_damage)
 
 /datum/status_effect/incapacitating/sleeping/on_remove()
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE)))
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE), COMSIG_MOB_APPLY_DAMGE))
 	if(!HAS_TRAIT(owner, TRAIT_SLEEPIMMUNE))
 		REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 		tick_interval = initial(tick_interval)
@@ -162,6 +165,13 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	tick_interval = initial(tick_interval)
+
+/datum/status_effect/incapacitating/sleeping/proc/on_owner_damage(datum/source, damage, damagetype, def_zone)
+	if(!remove_on_damage)
+		return
+	if(damage < 5)
+		return
+	QDEL_NULL(src)
 
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)

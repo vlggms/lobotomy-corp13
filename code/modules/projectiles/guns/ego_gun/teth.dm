@@ -79,6 +79,5 @@
 	inhand_icon_state = "dream"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
 	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	fire_sound = "dreamy_gun"
 	autofire = 0.2 SECONDS
-
