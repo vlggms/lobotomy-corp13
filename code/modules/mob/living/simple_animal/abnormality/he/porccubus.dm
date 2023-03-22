@@ -13,7 +13,8 @@
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 30
+		ABNORMALITY_WORK_REPRESSION = 30,
+		"Touch" = 100
 			) //for some reason all its work rates are uniform through attribute levels in LC
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
@@ -48,14 +49,13 @@
 	var/teleport_cooldown
 	var/damage_taken = FALSE
 
-
 /mob/living/simple_animal/hostile/abnormality/porccubus/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 	var/datum/status_effect/porccubus_addiction/PA = user.has_status_effect(STATUS_EFFECT_ADDICTION)
 
 	if(PA)
 		PA.IncreaseTolerance()
-	else if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
+	else if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60 || work_type == "Touch")
 		if(LAZYFIND(datum_reference.transferable_var, agent_ckey )) //if they were already drugged before we basically drug them to death for trying to pull that shit again
 			DrugOverdose(user, agent_ckey)
 			return ..()
@@ -172,7 +172,7 @@
 		if(!H.sanity_lost)
 			return
 		var/nirvana = FALSE
-		if(get_attribute_level(H, TEMPERANCE_ATTRIBUTE) < 80) //if they have under 80 temp they actually get all the stats from overdose, otherwise they just get fucked.
+		if(get_attribute_level(H, TEMPERANCE_ATTRIBUTE) < 60) //if they have under 60 temp they actually get all the stats from overdose, otherwise they just get fucked.
 			nirvana = TRUE
 		DrugOverdose(H, H.ckey, nirvana)
 		LoseTarget()
@@ -206,17 +206,16 @@
 //ideally, we want the drug to feel like an excellent short term decision and a terrible long term one.
 //random stats :
 //3 drug uses before max tolerance
-//22.5 minutes before the stats start going into the negative on first use
-//if you take a drug the moment your buffed stat reaches 0, you can technically keep your stats in the positive for up to 30 minutes before you're truly screwed
-//at max tolerance, your stats will go up to +60 but decrease every 5 seconds, which will take around 5 minutes to reach 0, and then another 5 minutes to become -60
-//at max tolerance it will also only take 25 seconds before your sanity starts decreasing exponentially
+//30 minutes before the stats start going into the negative on first use
+//if you take a drug the moment your buffed stat reaches 0, you can technically keep your stats in the positive for up to 40 minutes before you're truly screwed
+//at max tolerance, your stats will go up to +60 but decrease every 10 seconds, which will take around 10 minutes to reach 0, and then another 10 minutes to become -60
 //a lot of these numbers are bound to change as balancing this is really hard without it being not worth the risk or too broken because of the duration
 /datum/status_effect/porccubus_addiction
 	id = "porccubus_addiction"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/porccubus_addiction
 	var/withdrawal_cooldown
-	var/withdrawal_cooldown_time = 45 SECONDS
+	var/withdrawal_cooldown_time = 60 SECONDS
 	var/tolerance_sanity_gain = 60
 	var/sanity_gain = 60
 	var/attribute_gain = 30
@@ -267,8 +266,8 @@
 //every time you take another hit the effects decrease
 /datum/status_effect/porccubus_addiction/proc/IncreaseTolerance(extra_attribute = TRUE, tolerance_amount = 0)
 	for(var/i = 0 to tolerance_amount)
-		if(withdrawal_cooldown_time > 5 SECONDS)
-			withdrawal_cooldown_time -= 20 SECONDS //"I can stop whenever I want"
+		if(withdrawal_cooldown_time > 30 SECONDS)
+			withdrawal_cooldown_time -= 25 SECONDS //"I can stop whenever I want"
 
 		if(attribute_gain > 0)
 			attribute_gain -= 10

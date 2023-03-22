@@ -155,7 +155,6 @@
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Medium"
 
-
 //Porccubus
 /obj/item/paper/fluff/info/he/porccubus
 	abno_type = /mob/living/simple_animal/hostile/abnormality/porccubus
@@ -163,9 +162,10 @@
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth counter lowered.",
 		"When the work result was good, the Qliphoth counter increased.",
-		"When employees with Temperance Level 3 or lower had a Good work result, they were drugged by an unknown chemical with addictive properties.",
+		"When employees with Temperance Level 2 or lower had a Good work result, they were drugged by an unknown chemical with addictive properties.",
+		"Employees were also drugged if they touched the abnormality on purpose regardless of their Temperance.",
 		"Drugged employees could receive another dose of the chemical from Porccubus even if they had Temperance Level 4 or higher.",
-		"The chemical greatly improved all stats of the employee and healed their sanity periodically. However, withdrawal symptoms included lowered stats and eventual death.",
+		"The chemical greatly improved all attributes of the employee and healed their sanity periodically. However, withdrawal symptoms included lowered attributes and eventual death.",
 		"Porccubus was unaffected by any attack dealt to it from outside of its reach.",
 		"When an employee panicked during work or from Porccubus's attacks, they were drugged beyond saving.")
 
