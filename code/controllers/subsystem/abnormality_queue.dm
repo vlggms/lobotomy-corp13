@@ -46,28 +46,26 @@ SUBSYSTEM_DEF(abnormality_queue)
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 4) * 6) SECONDS
 	// HE enabled, ZAYIN disabled
-	if(spawned_abnos > rooms_start * 0.2)
+	if(spawned_abnos > rooms_start * 0.2 && spawned_abnos <= rooms_start * 0.6)
 		if(ZAYIN_LEVEL in available_levels)
 			available_levels -= ZAYIN_LEVEL
-		if(!(HE_LEVEL in available_levels) && spawned_abnos <= rooms_start * 0.75)
-			available_levels += HE_LEVEL
+		available_levels |= HE_LEVEL
 	// WAW enabled, TETH disabled
-	if(spawned_abnos > rooms_start * 0.4)
+	if(spawned_abnos > rooms_start * 0.4 && spawned_abnos <= rooms_start * 0.9)
 		if(TETH_LEVEL in available_levels)
 			available_levels -= TETH_LEVEL
-		if(!(WAW_LEVEL in available_levels))
-			available_levels += WAW_LEVEL
-	// ALEPH enabled
+		available_levels |= WAW_LEVEL
+	// ALEPH enabled, HE disabled
 	if(spawned_abnos > rooms_start * 0.6)
-		if(!(ALEPH_LEVEL in available_levels))
-			available_levels += ALEPH_LEVEL
-
-	// HE getting disabled conditionally
-	if(spawned_abnos > rooms_start * 0.75)
-		if(LAZYLEN(possible_abnormalities[WAW_LEVEL]) || LAZYLEN(possible_abnormalities[ALEPH_LEVEL])) // HE abnos are gone if there are WAW and ALEPHs
+		if(HE_LEVEL in available_levels)
 			available_levels -= HE_LEVEL
-		else // Otherwise, if we run out of ALEPHs and WAWs, HEs are back on the menu
-			available_levels |= HE_LEVEL
+		available_levels |= ALEPH_LEVEL
+	// WAW disabled; Pick an ALEPH, weakling
+	if(spawned_abnos > rooms_start * 0.9)
+		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]) && (WAW_LEVEL in available_levels))
+			available_levels -= WAW_LEVEL
+		else // If we ran out of ALEPHs, somehow
+			available_levels |= WAW_LEVEL
 
 	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
 		pick_abno()
