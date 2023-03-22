@@ -170,11 +170,14 @@
 	if(beam_cooldown <= world.time && can_act && (prob(40) || !friendly)) //hostile breach should always be beaming
 		BeamAttack(target)
 		return
+
 	if(!friendly)
 		return
+
 	if((beats_cooldown <= world.time) && prob(50))
 		ArcanaBeats(target)
 		return
+
 	if(prob(4))
 		addtimer(CALLBACK(src, .atom/movable/proc/say, "With love!"))
 	return ..()
@@ -301,80 +304,60 @@
 		return FALSE
 	if(!can_act)
 		return FALSE
-	if(target)
-		face_atom(target)
+	if(!target)
+		return FALSE
+	var/turf/target_turf = get_turf(target)
+	face_atom(target_turf)
 	var/my_dir = dir
 	var/turf/my_turf = get_turf(src)
 	can_act = FALSE
 	var/list/beamtalk = list("Heed me, thou that are more azure than justice and more crimson than love…","In the name of those buried in destiny…","I shall make this oath to the light.","Mark the hateful beings who stand before us…","Let your strength merge with mine…", "so that we may deliver the power of love to all…")
-	var/b = 1
 	for(var/i = 1 to 3)
 		var/obj/effect/qoh_sygil/S = new(my_turf)
 		spawned_effects += S
-		playsound(target, "sound/abnormalities/hatredqueen/beam[clamp(i, 1, 2)].ogg", 50, FALSE, 4*i)
+		playsound(src, "sound/abnormalities/hatredqueen/beam[clamp(i, 1, 2)].ogg", 50, FALSE, 4*i)
+		var/matrix/M = matrix(S.transform)
+		M.Translate(0, i*16)
+		var/rot_angle = Get_Angle(my_turf, target_turf)
+		M.Turn(rot_angle)
 		if(friendly) //friendly sigil spawning
 			S.icon_state = "qoh[i]"
 			switch(my_dir)
 				if(EAST)
-					S.pixel_x += i * 16
-					var/matrix/new_matrix = matrix()
-					new_matrix.Scale(0.5, 1)
-					S.transform = new_matrix
+					M.Scale(0.5, 1)
 					S.layer += i*0.1
 				if(WEST)
-					S.pixel_x += i * -16
-					var/matrix/new_matrix = matrix()
-					new_matrix.Scale(0.5, 1)
-					S.transform = new_matrix
+					M.Scale(0.5, 1)
 					S.layer += i*0.1
 				if(SOUTH)
-					S.pixel_y += i * -16
 					S.layer += i*0.1
 				if(NORTH)
-					S.pixel_y += i * 16
 					S.layer -= i*0.1 // So they appear below each other
-			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[b]))
-			b++
-			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[b]), beam_startup/2)
-			b++
+			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[i*2 - 1]))
+			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[i*2]), beam_startup/2)
 		else //hostile sigil spawning
 			switch(i)
 				if(1)
 					S.icon_state = "qoh[2]"
 				if(2)
-					S.icon_state = "qoh[4]"
-					S.pixel_y += 30
-					var/matrix/new_matrix = matrix()
-					new_matrix.Scale(0.75, 0.5)
-					S.transform = new_matrix
-					S.layer = (src.layer + 0.1)
+					S.icon_state = "qoh[1]"
+					// Normal rules don't apply for this one
+					var/obj/effect/qoh_sygil/SH = new(my_turf)
+					spawned_effects += SH
+					SH.icon_state = "qoh[4]"
+					SH.pixel_y += 30
+					var/matrix/MH = SH.transform
+					MH.Scale(0.75, 0.5)
+					SH.transform = MH
+					SH.layer = layer + 0.1
 				if(3)
 					S.icon_state = "qoh[1]"
-					switch(my_dir)
-						if(EAST)
-							S.pixel_x += 36
-							var/matrix/new_matrix = matrix()
-							new_matrix.Scale(0.5, 1)
-							S.transform = new_matrix
-							S.layer += 0.1
-						if(WEST)
-							S.pixel_x += -36
-							var/matrix/new_matrix = matrix()
-							new_matrix.Scale(0.5, 1)
-							S.transform = new_matrix
-							S.layer += 0.1
-						if(SOUTH)
-							S.pixel_y += -20
-							S.layer = (src.layer + 0.1)
-						if(NORTH)
-							S.pixel_y += 30
-							S.layer -= 0.1
+		S.transform = M
 		SLEEP_CHECK_DEATH(beam_startup) //time between beam startup stage
-	var/turf/MT = friendly ? get_step(my_turf, my_dir) : get_turf(my_turf) //beam starts on the tile of qoh when hostile breach, allows stage 2 to hit people behind her
-	var/turf/TT = get_edge_target_turf(my_turf, my_dir)
-	current_beam = MT.Beam(TT, "qoh")
+	var/turf/TT = get_ranged_target_turf_direct(my_turf, target_turf, 60)
+	current_beam = my_turf.Beam(TT, "qoh")
 	var/accumulated_beam_damage = 0
-	var/list/hit_line = getline(MT, TT)
+	var/list/hit_line = getline(my_turf, TT)
 	beamloop.start()
 	var/beam_stage = 1
 	var/beam_damage_final = beam_damage
@@ -386,34 +369,27 @@
 		var/list/already_hit = list()
 		if(!friendly)
 			h += 19
-		if((h >= 20))
-			if(accumulated_beam_damage >= 150)
-				if(beam_stage < 2)
-					beam_stage = 2
-					beam_damage_final *= 1.5
-					var/matrix/M = matrix()
-					M.Scale(3, 1)
-					current_beam.visuals.transform = M
-					current_beam.visuals.color = COLOR_YELLOW
 		if((h >= 40))
 			if(accumulated_beam_damage >= 300)
 				if(beam_stage < 3)
 					beam_stage = 3
 					beam_damage_final *= 1.5
 					var/matrix/M = matrix()
-					M.Scale(6, 1)
+					M.Scale(8, 1)
 					current_beam.visuals.transform = M
 					current_beam.visuals.color = COLOR_SOFT_RED
-		var/list/empty = list()
-		//don't place effects on the sigils or qoh
-		empty |= get_turf(src)
-		empty |= MT
-		empty |= get_step(MT, my_dir)
-		empty |= get_step(get_step(MT, my_dir), my_dir)
-		for(var/turf/TF in range((beam_stage-1), MT))
-			if(!(TF in empty))
-				var/obj/effect/temp_visual/L = new /obj/effect/temp_visual/revenant(TF)
-				L.color = current_beam.visuals.color
+		else if((h >= 20))
+			if(accumulated_beam_damage >= 150)
+				if(beam_stage < 2)
+					beam_stage = 2
+					beam_damage_final *= 1.5
+					var/matrix/M = matrix()
+					M.Scale(4, 1)
+					current_beam.visuals.transform = M
+					current_beam.visuals.color = COLOR_YELLOW
+		for(var/turf/TF in orange((beam_stage-1), my_turf))
+			var/obj/effect/temp_visual/L = new /obj/effect/temp_visual/revenant(TF)
+			L.color = current_beam.visuals.color
 		for(var/turf/TF in hit_line)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
