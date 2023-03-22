@@ -234,6 +234,9 @@
 /obj/effect/temp_visual/small_smoke/second
 	duration = 10
 
+/obj/effect/temp_visual/small_smoke/second/fruit
+	color = LIGHT_COLOR_PURPLE
+
 /obj/effect/temp_visual/small_smoke/halfsecond
 	duration = 5
 
