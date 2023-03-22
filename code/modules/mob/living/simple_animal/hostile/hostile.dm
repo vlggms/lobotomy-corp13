@@ -246,6 +246,9 @@
 	if(search_objects < 2)
 		if(isliving(the_target))
 			var/mob/living/L = the_target
+			if(!L.CanBeAttacked(src))
+				return FALSE
+
 			var/faction_check = faction_check_mob(L)
 			if(robust_searching)
 				if(faction_check && !attack_same)

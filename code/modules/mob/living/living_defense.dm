@@ -460,3 +460,7 @@
 	for(var/reagent in reagents)
 		var/datum/reagent/R = reagent
 		. |= R.expose_mob(src, methods, reagents[R], show_message, touch_protection)
+
+// A proc used in CanAttack of simple mobs
+/mob/living/proc/CanBeAttacked()
+	return TRUE

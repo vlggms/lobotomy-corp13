@@ -222,6 +222,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "apostle_scythe"
 	icon_living = "apostle_scythe"
+	icon_dead = "apostle_dead"
 	faction = list("apostle")
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
@@ -234,7 +235,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	speed = 4
-	move_to_delay = 6
+	move_to_delay = 5
 	pixel_x = -8
 	base_pixel_x = -8
 	see_in_dark = 7
@@ -258,18 +259,21 @@ GLOBAL_LIST_EMPTY(apostles)
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/death(gibbed)
-	invisibility = 30 // So that other mobs cannot attack them
 	death_counter = clamp(death_counter + 1, 0, 3)
 	return ..()
 
 /mob/living/simple_animal/hostile/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
-	invisibility = 0 // Visible again
+	.= ..()
 	can_act = TRUE // In case we died while performing special attack
-	adjustBruteLoss(maxHealth * (0.25 + (death_counter * 0.15)), TRUE)
-	return ..()
+	adjustBruteLoss(maxHealth * (death_counter * 0.15), TRUE)
 
 /mob/living/simple_animal/hostile/apostle/gib(no_brain, no_organs, no_bodyparts)
 	return FALSE // Cannot be gibbed
+
+/mob/living/simple_animal/hostile/apostle/CanBeAttacked()
+	if(stat == DEAD) // Simple mobs cannot attack them when they are "dead"
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/apostle/AttackingTarget()
 	if(!can_act)
@@ -309,17 +313,18 @@ GLOBAL_LIST_EMPTY(apostles)
 		return
 	scythe_cooldown = world.time + scythe_cooldown_time
 	can_act = FALSE
-	//playsound(get_turf(src), 'sound/abnormalities/whitenight/delay.ogg', 75, 0, 2)
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/cult/sparks(T)
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/L in T)
+			if(L.stat == DEAD)
+				continue
 			if(faction_check_mob(L))
 				continue
 			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
-	playsound(get_turf(src), 'sound/abnormalities/whitenight/scythe_spell.ogg', 75, 0, 5)
+	playsound(get_turf(src), 'sound/abnormalities/whitenight/scythe_spell.ogg', 75, FALSE, 5)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
 
@@ -332,11 +337,53 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	vision_range = 12
+	aggro_vision_range = 12
+	patrol_cooldown_time = 10 SECONDS
 	scythe_range = 3
 	scythe_cooldown_time = 8 SECONDS // More often, since the damage increase was disliked.
 	scythe_damage_type = PALE_DAMAGE
 	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
-	can_patrol = FALSE // You stay where you are >:(
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian/CanStartPatrol()
+	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in view(9, src))
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian/patrol_select()
+	var/mob/living/simple_animal/hostile/abnormality/white_night/WN = locate() in GLOB.abnormality_mob_list
+	if(!istype(WN))
+		return
+	var/turf/target_turf = pick(RANGE_TURFS(2, WN))
+	patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+	playsound(get_turf(src), 'sound/abnormalities/whitenight/apostle_growl.ogg', 75, FALSE)
+	TemporarySpeedChange(-4, 5 SECONDS) // OUT OF MY WAY
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian/ScytheAttack()
+	if(scythe_cooldown > world.time)
+		return
+	scythe_cooldown = world.time + scythe_cooldown_time
+	can_act = FALSE
+	for(var/turf/T in view(scythe_range, src))
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(10)
+	var/gibbed = FALSE
+	for(var/turf/T in view(scythe_range, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			if(L.stat == DEAD)
+				continue
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
+			if(L.stat == DEAD) // Total overkill
+				for(var/i = 1 to 5) // Alternative to gib()
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+				new /obj/effect/gibspawner/generic/silent(get_turf(L))
+				gibbed = TRUE
+	playsound(get_turf(src), (gibbed ? 'sound/abnormalities/whitenight/scythe_gib.ogg' : 'sound/abnormalities/whitenight/scythe_spell.ogg'), (gibbed ? 100 : 75), FALSE, (gibbed ? 12 : 5))
+	SLEEP_CHECK_DEATH(5)
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/apostle/spear
 	name = "spear apostle"
