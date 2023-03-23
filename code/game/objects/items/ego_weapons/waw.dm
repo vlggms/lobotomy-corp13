@@ -343,7 +343,7 @@
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
 	special = "Wielding this weapon grants an immunity to the slowing effects of the princess's vines. \
-				Place vines when used in hand."
+				Use in hand to channel a vine burst."
 	icon_state = "green_stem"
 	force = 32 //original 8-16
 	reach = 2		//Has 2 Square Reach.
@@ -359,28 +359,42 @@
 							TEMPERANCE_ATTRIBUTE = 80
 							)
 	var/vine_cooldown
-	var/vine_delay = 1 SECONDS
 
 /obj/item/ego_weapon/stem/Initialize(mob/user)
 	.=..()
 	vine_cooldown = world.time
 
-/obj/item/ego_weapon/stem/attack_self(mob/user) //spawn bitter flora
+/obj/item/ego_weapon/stem/attack_self(mob/living/user)
 	. = ..()
 	if(!CanUseEgo(user))
 		return
 	if(vine_cooldown <= world.time)
 		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
-		for(var/obj/structure/apple_vine/F in user.loc)
-			if(F)
-				playsound(src, 'sound/creatures/venus_trap_hurt.ogg', 10, FALSE, 5)
-				qdel(F)
-				return
 		var/mob/living/carbon/human/L = user
-		L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
-		new /obj/structure/apple_vine(get_turf(user))
-		L.adjust_nutrition(-10)
-		vine_cooldown = world.time + vine_delay
+		L.adjustSanityLoss(30)
+		if(!locate(/obj/structure/apple_vine) in get_turf(user))
+			L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
+			new /obj/structure/apple_vine(get_turf(user))
+			return
+
+		var/affected_mobs = 0
+		for(var/i = 1 to 6)
+			var/channel_level = (3 SECONDS) / i //Burst is 3 + 1.5 + 1 + 0.75 + 0.6 + 0.2 seconds for a total of 60-90 damage over a period of 7.05 seconds if you allow it to finish.
+			vine_cooldown = world.time + channel_level + (1 SECONDS)
+			if(!do_after(user, channel_level, target = user))
+				to_chat(user, "<span class='warning'>Your vineburst is interrupted.</span>")
+				break
+			for(var/mob/living/C in oview(3, get_turf(src)))
+				var/vine_damage = 10
+				if(user.sanityhealth <= (user.maxSanity * 0.3))
+					vine_damage *= 1.5
+				else if(user.faction_check_mob(C))
+					continue
+				new /obj/effect/temp_visual/vinespike(get_turf(C))
+				C.apply_damage(vine_damage, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+				affected_mobs += 1
+			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', min(75, affected_mobs * 15), TRUE, round( affected_mobs * 0.5))
+		vine_cooldown = world.time + (3 SECONDS)
 
 /obj/item/ego_weapon/ebony_stem
 	name = "ebony stem"
