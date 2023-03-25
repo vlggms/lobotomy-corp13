@@ -16,6 +16,7 @@
 		)
 	var/list/wawitem = list(
 		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
+		/obj/item/ego_weapon/lance/sangre,
 		/obj/item/toy/plush/qoh,
 		/obj/item/toy/plush/bigbird,
 		/obj/item/toy/plush/rabbit,
@@ -38,7 +39,7 @@
 	var/list/tethitem = list(
 		/obj/item/ego_weapon/mini/hayong,
 		/obj/item/ego_weapon/shield/walpurgisnacht,
-		/obj/item/ego_weapon/suenoimpossible,
+		/obj/item/ego_weapon/lance/suenoimpossible,
 		/obj/item/ego_weapon/shield/sangria,
 		/obj/item/ego_weapon/mini/soleil,
 		/obj/item/ego_weapon/taixuhuanjing,
