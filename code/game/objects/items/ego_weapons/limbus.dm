@@ -1,4 +1,4 @@
-//Sinner weapons
+//Sinner weapons - TETH
 /obj/item/ego_weapon/mini/hayong
 	name = "ha yong"
 	desc = "Have you heard of the taxidermied genius?"
@@ -50,7 +50,7 @@
 	hit_message = "parries the attack!"
 	reposition_message = "You rearm your E.G.O."
 
-/obj/item/ego_weapon/suenoimpossible
+/obj/item/ego_weapon/lance/suenoimpossible
 	name = "sueno impossible"
 	desc = "To reach the unreachable star!"
 	icon_state = "sueno_impossible"
@@ -67,109 +67,6 @@
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	var/list/default_attack_verbs = list("bludgeons", "whacks")
-	var/list/couch_attack_verbs = list("impales", "stabs")
-	var/couch_cooldown = 0
-	var/couch_cooldown_time = 5 SECONDS
-	var/raised = TRUE
-	var/mob/current_holder
-	var/initial_dir
-	var/charge_speed = 0
-
-/obj/item/ego_weapon/suenoimpossible/attack_self(mob/user)
-	if(!raised)
-		RaiseLance(user)
-	else
-		if(world.time > couch_cooldown + couch_cooldown_time)
-			LowerLance(user)
-		else
-			to_chat(user, "<span class='warning'>You are not ready to couch \the [src] yet!</span>")
-
-/obj/item/ego_weapon/suenoimpossible/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!user)
-		return
-	current_holder = user
-	RaiseLance(user)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, .proc/UserBump)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
-
-/obj/item/ego_weapon/suenoimpossible/Destroy(mob/user)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_BUMP)
-	RaiseLance(user)
-	current_holder = null
-	return ..()
-
-/obj/item/ego_weapon/suenoimpossible/dropped(mob/user)
-	. = ..()
-	RaiseLance(user)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_BUMP)
-	current_holder = null
-
-/obj/item/ego_weapon/suenoimpossible/attack(mob/living/M, mob/living/carbon/human/user)
-	..()
-	force = 22
-
-/obj/item/ego_weapon/suenoimpossible/proc/UserMoved(mob/user)
-	SIGNAL_HANDLER
-	if(raised)
-		return
-	if(user.dir != initial_dir)
-		RaiseLance(user)
-		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
-		return
-	if(force < 60)
-		force += 3
-	if(charge_speed < 4)
-		charge_speed -= 0.2
-		user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/charge, multiplicative_slowdown = charge_speed)
-
-/obj/item/ego_weapon/suenoimpossible/proc/LowerLance(mob/user)
-	initial_dir = user.dir
-	raised = FALSE
-	attack_verb_continuous = couch_attack_verbs
-	attack_verb_simple = couch_attack_verbs
-	update_icon_state()
-	user.update_inv_hands()
-	couch_cooldown = world.time + couch_cooldown_time
-	user.add_movespeed_modifier(/datum/movespeed_modifier/charge)
-
-/obj/item/ego_weapon/suenoimpossible/proc/RaiseLance(mob/user)
-	raised = TRUE
-	charge_speed = 0
-	force = 22
-	attack_verb_continuous = default_attack_verbs
-	attack_verb_simple = default_attack_verbs
-	update_icon_state()
-	user.update_inv_hands()
-	user.remove_movespeed_modifier(/datum/movespeed_modifier/charge)
-
-/obj/item/ego_weapon/suenoimpossible/update_icon_state()
-	icon_state = inhand_icon_state = "sueno_impossible[raised ? "" : "_lowered"]"
-
-/obj/item/ego_weapon/suenoimpossible/proc/UserBump(mob/living/carbon/human/user, atom/A)
-	SIGNAL_HANDLER
-	if(charge_speed > -0.5)
-		RaiseLance(user)
-		return
-	if (isliving(A))
-		A.attackby(src,user)
-		to_chat(user, "<span class='warning'>You successfully impale [A]!</span>")
-		if(charge_speed < -1) //you can keep going!
-			charge_speed += 0.8
-			force -= 12
-			return
-	else
-		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
-		user.Knockdown(4 SECONDS)
-		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
-	RaiseLance(user)
-
-/datum/movespeed_modifier/charge
-	multiplicative_slowdown = 0
-	variable = TRUE
 
 /obj/item/ego_weapon/shield/sangria
 	name = "S.A.N.G.R.I.A"
@@ -387,3 +284,47 @@
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 	hitsound = 'sound/weapons/ego/justitia2.ogg'
+
+//Sinner EGO - WAW
+/obj/item/ego_weapon/lance/sangre
+	name = "le sangre de sancho"
+	desc = "Ride on, Rocinante!"
+	icon_state = "sangre"
+	icon = 'icons/obj/limbus_weapons.dmi'
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 45
+	reach = 2 //Has 2 Square Reach.
+	attack_speed = 3 // really slow
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bludgeons", "whacks")
+	attack_verb_simple = list("bludgeon", "whack")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	couch_cooldown_time = 4 SECONDS
+	force_cap = 90
+	force_per_tile = 5
+	speed_per_tile = 0.3
+	pierce_threshold = 0.8
+	pierce_speed_cost = 1.0
+	pierce_force_cost = 15
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/ego_weapon/lance/sangre/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.10
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] > 0)
+				heal_amt *= S.damage_coeff[damtype]
+			else
+				heal_amt = 0
+		user.adjustBruteLoss(-heal_amt)
+		..()
