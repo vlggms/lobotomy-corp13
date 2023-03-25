@@ -43,6 +43,7 @@
 			console_attack_counter += 1
 			visible_message("<span class='warning'>[src] hits [CA]'s buttons at random!</span>")
 			playsound(get_turf(CA), "sound/machines/terminal_button0[rand(1,8)].ogg", 50, 1)
+			changeNext_move(CLICK_CD_MELEE * 2)
 		else
 			console_attack_counter = 0
 			visible_message("<span class='warning'>[CA]'s screen produces an error!</span>")
