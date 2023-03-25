@@ -847,3 +847,12 @@
 /obj/effect/temp_visual/pale_eye_attack/Initialize()
 	..()
 	animate(src, alpha = 0, time = 5)
+
+/obj/effect/temp_visual/screech
+	name = "sound waves"
+	icon_state = "screech"
+	duration = 5
+
+/obj/effect/temp_visual/screech/Initialize()
+	..()
+	animate(src, alpha = 0, transform = transform*4, time = 5)

@@ -49,7 +49,7 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/rudolta/PickTarget(list/Targets) // We attack corpses first if there are any
+/mob/living/simple_animal/hostile/abnormality/rudolta/PickTarget(list/Targets)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/Life()
