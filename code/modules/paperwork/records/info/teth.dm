@@ -198,3 +198,12 @@
 		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
 		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
 		"Upon failing work or getting to three Attachments, the abnormality breached after melding with the Agent.")
+
+//Meat Lantern
+/obj/item/paper/fluff/info/teth/meatlantern
+	abno_type = /mob/living/simple_animal/hostile/abnormality/meat_lantern
+	abno_code = "D-02-107"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
+		"The facility’s systems and the employees will be unable to detect the Abnormality when it escapes. Thus the manager will need to manually pinpoint it and order suppression directly.")

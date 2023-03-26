@@ -146,7 +146,7 @@
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 
 /obj/item/ego_weapon/mini/blossom
-	name = "Blossoms"
+	name = "cherry blossoms"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
@@ -236,7 +236,7 @@
 
 /obj/item/ego_weapon/mini/bean
 	name = "magic bean"
-	desc = "...We may never find out what lies at the top, but perhaps those who made it are doing well up there."
+	desc = "We may never find out what lies at the top, but perhaps those who made it are doing well up there."
 	icon_state = "bean"
 	force = 20
 	damtype = BLACK_DAMAGE
@@ -246,7 +246,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/hearth //From my sweet home.
-	name = "Hearth"
+	name = "hearth"
 	desc = "Home sweet home. Warmth and safety aplenty."
 	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
@@ -304,3 +304,99 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smash1"
 	duration = 3
+
+#define LANTERN_MODE_REMOTE 1
+#define LANTERN_MODE_AUTO 2
+
+/obj/item/ego_weapon/lantern //meat lantern
+	name = "lantern"
+	desc = "Teeth sticking out of some spots of the equipment is a rather frightening sight."
+	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
+	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
+	icon_state = "lantern"
+	force = 8 //less than the baton, don't hit things with it
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+
+	var/mode = LANTERN_MODE_REMOTE
+	var/traplimit = 6
+	var/list/traps = list()
+
+/obj/item/ego_weapon/lantern/attack_self(mob/user)
+	if(mode == LANTERN_MODE_REMOTE)
+		to_chat(user, "<span class='info'>You adjust any newly-placed traps to be set off by motion.</span>")
+		mode = LANTERN_MODE_AUTO
+	else
+		to_chat(user, "<span class='info'>You can now remotely trigger any placed traps.</span>")
+		mode = LANTERN_MODE_REMOTE
+
+/obj/item/ego_weapon/lantern/proc/CreateTrap(target, mob/user, proximity_flag)
+	var/turf/T = get_turf(target)
+	if((get_dist(user, T) > 20))
+		return
+	var/obj/effect/temp_visual/lanterntrap/R = locate(/obj/effect/temp_visual/lanterntrap) in T
+	if(R)
+		if(!proximity_flag && mode != LANTERN_MODE_REMOTE)
+			return
+		R.burst()
+		return
+	if(proximity_flag && (LAZYLEN(traps) < traplimit))
+		new /obj/effect/temp_visual/lanterntrap(T, user, src, mode)
+		user.changeNext_move(CLICK_CD_MELEE)
+
+/obj/item/ego_weapon/lantern/afterattack(atom/target, mob/living/user, proximity_flag, params)
+	if(check_allowed_items(target, 1))
+		CreateTrap(target, user, proximity_flag)
+	. = ..()
+
+/obj/effect/temp_visual/lanterntrap
+	name = "lantern trap"
+	icon_state = "shield1" //temp visual
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 30 SECONDS
+	var/resonance_damage = 35
+	var/damage_multiplier = 1
+	var/mob/creator
+	var/obj/item/ego_weapon/lantern/res
+	var/rupturing = FALSE //So it won't recurse
+
+/obj/effect/temp_visual/lanterntrap/Initialize(mapload, set_creator, set_resonator, mode)
+	if(mode == LANTERN_MODE_AUTO)
+		icon_state = "shield2" //temp visual
+		resonance_damage = 25
+		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst)
+	. = ..()
+	creator = set_creator
+	res = set_resonator
+	if(res)
+		res.traps += src
+	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
+	deltimer(timerid)
+	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
+
+/obj/effect/temp_visual/lanterntrap/Destroy()
+	if(res)
+		res.traps -= src
+		res = null
+	creator = null
+	. = ..()
+
+/obj/effect/temp_visual/lanterntrap/proc/burst()
+	rupturing = TRUE
+	var/turf/T = get_turf(src)
+	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
+	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
+	for(var/mob/living/L in T)
+		if(creator.faction_check_mob(L))
+			continue
+		if(creator)
+			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+		L.apply_damage(resonance_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
+		if(field != src && !field.rupturing)
+			field.burst()
+	qdel(src)
+
+#undef LANTERN_MODE_REMOTE
+#undef LANTERN_MODE_AUTO
