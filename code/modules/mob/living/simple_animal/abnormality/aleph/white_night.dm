@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon_state = "white_night"
 	icon_living = "white_night"
 	health_doll_icon = "white_night"
-	faction = list("apostle")
+	faction = list("hostile", "apostle")
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	speak_emote = list("proclaims")
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon_state = "apostle_scythe"
 	icon_living = "apostle_scythe"
 	icon_dead = "apostle_dead"
-	faction = list("apostle")
+	faction = list("hostile", "apostle")
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	speak_emote = list("says")

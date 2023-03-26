@@ -64,7 +64,8 @@
 /obj/projectile/melting_blob/on_hit(target)
 	if(ismob(target))
 		var/mob/living/H = target
-		if("slime" in H.faction)
+		var/mob/living/mob_firer = firer
+		if(istype(mob_firer) && mob_firer.faction_check_mob(H))
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK

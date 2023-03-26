@@ -10,7 +10,6 @@
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20

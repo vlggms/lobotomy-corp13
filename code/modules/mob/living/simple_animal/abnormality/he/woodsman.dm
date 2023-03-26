@@ -10,7 +10,6 @@
 	ranged = TRUE
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
-	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	stat_attack = DEAD
 	melee_damage_lower = 15

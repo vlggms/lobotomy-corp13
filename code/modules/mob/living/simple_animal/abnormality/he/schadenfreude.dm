@@ -19,7 +19,6 @@
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 4

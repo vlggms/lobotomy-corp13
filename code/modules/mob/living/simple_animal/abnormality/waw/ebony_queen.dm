@@ -23,7 +23,6 @@
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
-	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1

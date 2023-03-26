@@ -7,7 +7,6 @@
 	icon_living = "clown_smiling"
 	var/icon_aggro = "clown_breach"
 	icon_dead = "clown_breach"
-	faction = list("hostile")
 	speak_emote = list("honks")
 	maxHealth = 1800
 	health = 1800

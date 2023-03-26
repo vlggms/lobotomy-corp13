@@ -148,7 +148,6 @@
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	faction = list("hostile")
 	mob_size = MOB_SIZE_TINY
 	is_flying_animal = TRUE
 	del_on_death = 1

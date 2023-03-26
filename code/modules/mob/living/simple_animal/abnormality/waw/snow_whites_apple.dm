@@ -18,7 +18,6 @@ GLOBAL_LIST_EMPTY(vine_list)
 	stat_attack = HARD_CRIT
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
 	ranged_message = null
-	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	wander = 0
