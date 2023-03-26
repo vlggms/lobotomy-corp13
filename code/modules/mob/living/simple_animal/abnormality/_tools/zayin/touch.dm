@@ -23,8 +23,7 @@
 
 	cooldown = world.time + 45 SECONDS // Spam prevention
 	for(var/mob/M in GLOB.player_list)
-		if(M.client)
-			to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"].</span>")
+		to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"].</span>")
 
 	if(round_end)
 		RoundEndEffect(user)
@@ -39,22 +38,32 @@
 		var/ending = pick(1,2)
 		switch(ending)
 			if(1)
-				for(var/mob/living/carbon/human/M in GLOB.player_list)
+				for(var/mob/M in GLOB.player_list)
+					if(isnewplayer(M))
+						continue
 					flash_color(M, flash_color = COLOR_RED, flash_time = 150)
 					M.playsound_local(M, pick('sound/abnormalities/donttouch/kill.ogg', 'sound/abnormalities/donttouch/kill2.ogg'), 50, FALSE)
-					M.gib()
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.gib()
 			if(2)
-				for(var/mob/living/carbon/human/M in GLOB.player_list)
+				for(var/mob/M in GLOB.player_list)
+					if(isnewplayer(M))
+						continue
 					flash_color(M, flash_color = COLOR_RED, flash_time = 150)
 					M.playsound_local(M, 'sound/abnormalities/donttouch/panic.ogg', 50, FALSE)
-					M.apply_damage(5000, WHITE_DAMAGE, null, null, spread_damage = TRUE)//You cannot escape.
+					if(ishuman(M))
+						var/mob/living/carbon/human/H = M
+						H.apply_damage(5000, WHITE_DAMAGE, null, null, spread_damage = TRUE)//You cannot escape.
 	else
 		user.gib() //lol, idiot.
 
 /obj/structure/toolabnormality/touch/proc/BreachEffect(mob/living/carbon/human/user)
+	breaching_bastards += user.ckey
 	if(do_after(user, 45 SECONDS))
-		breaching_bastards += user.ckey
-		for(var/mob/living/carbon/human/M in GLOB.player_list)
+		for(var/mob/M in GLOB.player_list)
+			if(isnewplayer(M))
+				continue
 			flash_color(M, flash_color = COLOR_RED, flash_time = 30)
 			M.playsound_local(M, 'sound/abnormalities/donttouch/breach.ogg', 50, FALSE)
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
