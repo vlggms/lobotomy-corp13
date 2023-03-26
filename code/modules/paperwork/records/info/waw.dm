@@ -195,7 +195,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/greed_king
 	abno_code = "O-01-64"
 	abno_info = list(
-		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"The King of Greed's behavioral pattern is to engulf anything that lies in her path when escaping. When suppressing her, please pay attention to which direction the Abnormality is moving.")
 	abno_breach_damage_type = "Red"

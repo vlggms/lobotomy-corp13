@@ -30,25 +30,24 @@
 	var/cake = 5 //How many cake charges are there (4)
 
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(cake)
-		if(work_type == "Drink")
-			return FALSE
-	else
+	if(!cake)
 		if(work_type == "Dining")
 			return FALSE
-		if(work_type == "Drink")
-			//it's just work speed
-			var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
-			to_chat(user, "<span class='warning'>You begin to drink the water...</span>")
-			datum_reference.working = TRUE
-			if(!do_after(user, consume_speed * max_boxes, target = user))
-				to_chat(user, "<span class='warning'>You decide to not drink the water.</span>")
-				datum_reference.working = FALSE
-				return null
-			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
-			user.apply_status_effect(STATUS_EFFECT_TEARS)
+
+	if(work_type == "Drink")
+		//it's just work speed
+		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
+		to_chat(user, "<span class='warning'>You begin to drink the water...</span>")
+		datum_reference.working = TRUE
+		if(!do_after(user, consume_speed * max_boxes, target = user))
+			to_chat(user, "<span class='warning'>You decide to not drink the water.</span>")
 			datum_reference.working = FALSE
 			return null
+		playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
+		user.apply_status_effect(STATUS_EFFECT_TEARS)
+		datum_reference.working = FALSE
+		return null
+
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/bottle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
@@ -69,8 +68,10 @@
 			new /obj/item/ego_weapon/eyeball(get_turf(user))
 
 			user.AdjustSleeping(10 SECONDS)
-			animate(user, alpha = 0, time = 2 SECONDS)
-			QDEL_IN(user, 3.5 SECONDS)
+			user.adjustBruteLoss(-150)
+			if(user.stat == DEAD)
+				animate(user, alpha = 0, time = 2 SECONDS)
+				QDEL_IN(user, 3.5 SECONDS)
 	return
 
 /datum/status_effect/tears

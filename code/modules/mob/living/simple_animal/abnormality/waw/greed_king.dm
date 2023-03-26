@@ -197,7 +197,7 @@
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/greed_king/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(40))
+	if(prob(15))
 		datum_reference.qliphoth_change(-1)
 	return
 
