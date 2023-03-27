@@ -11,10 +11,10 @@
 	health = 600
 	threat_level = HE_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 10,
+		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = 60,
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 30
+		ABNORMALITY_WORK_ATTACHMENT = 50,
+		ABNORMALITY_WORK_REPRESSION = 40
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
@@ -34,7 +34,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
-		var/newchance = chance - 20 //You suck, die. I hate you
+		var/newchance = chance - 10 //You suck, die. I hate you
 		return newchance
 	return chance
 
@@ -148,7 +148,7 @@
 /datum/status_effect/champion
 	id = "champion"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 6000		//Lasts 10 minutes, guaranteed.
+	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/champion
 
 /atom/movable/screen/alert/status_effect/champion
@@ -163,10 +163,16 @@
 		var/mob/living/carbon/human/L = owner
 		ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
 		ADD_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod *= 0.3
-		L.physiology.white_mod *= 0.1
-		L.physiology.black_mod *= 0.1
-		L.physiology.pale_mod *= 0.2
+		L.physiology.red_mod *= 0.6
+		L.physiology.white_mod *= 0.4
+		L.physiology.black_mod *= 0.4
+		L.physiology.pale_mod *= 0.6
+
+/datum/status_effect/champion/tick()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		if(!L.sanity_lost)
+			L.remove_status_effect(STATUS_EFFECT_CHAMPION)
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
@@ -174,9 +180,9 @@
 		var/mob/living/carbon/human/L = owner
 		REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
 		REMOVE_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod /= 0.3
-		L.physiology.white_mod /= 0.1
-		L.physiology.black_mod /= 0.1
-		L.physiology.pale_mod /= 0.2
+		L.physiology.red_mod /= 0.6
+		L.physiology.white_mod /= 0.4
+		L.physiology.black_mod /= 0.4
+		L.physiology.pale_mod /= 0.6
 
 #undef STATUS_EFFECT_CHAMPION
