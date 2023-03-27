@@ -446,9 +446,10 @@
 	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
 		pressed it to his lips, put it on as a token, and, bravely brandishing his bare sword, \
 		jumped as nimbly as a bird over the ledge of the cabinet to the floor."
-	special = "This weapon has a unique combo system."
+	special = "This weapon has a unique combo system and attacks twice per click.\n \
+		Press Z to do a spinning attack, and click on a distant target to dash towards them in a cardinal direction."
 	icon_state = "wings"
-	force = 15
+	force = 10
 	attack_speed = 0.6
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
@@ -461,13 +462,13 @@
 	var/hit_count = 0
 	var/max_count = 16
 	var/special_cost = 4
-	var/special_force = 15
+	var/special_force = 20
 	var/special_combo = 0
-	var/special_combo_mult = 0.1
+	var/special_combo_mult = 0.2
 	var/decay_time = 3 SECONDS
 	var/combo_hold
 	var/special_combo_hold
-	var/special_cooldown = 10
+	var/special_cooldown = 3
 	var/specialing = FALSE
 	var/list/hit_turfs = list()
 
@@ -481,7 +482,9 @@
 	else if(prob(10))
 		to_chat(user, "<span class='notice'>[src]' feathers bristle!</span>") // "Hey dumbass, you can stop smacking them now"
 	combo_hold = world.time + decay_time
-	return ..()
+	..()
+	INVOKE_ASYNC(src, .proc/SecondSwing, M, user)
+	return
 
 /obj/item/ego_weapon/wings/attack_self(mob/user)
 	. = ..()
@@ -492,16 +495,12 @@
 		specialing = TRUE
 		combo_hold = world.time + decay_time
 		hit_count -= special_cost
-		if(special_combo_hold > world.time)
-			if(special_combo < 4) // Special combo goes up to 5.
-				special_combo++
-			else if(prob(20)) // If your special combo is at max, you get some glory.
-				user.visible_message("<span class='notice'>[user] is moving like the wind!</span>")
-		else
-			special_combo = 1
-		special_combo_hold = world.time + decay_time
-		addtimer(CALLBACK(src, .proc/resetSpecial), special_cooldown * 4)
-		pirouette(user)
+		if(special_combo < 4) // Special combo goes up to 5.
+			special_combo++
+		else if(prob(20)) // If your special combo is at max, you get some glory.
+			user.visible_message("<span class='notice'>[user] is moving like the wind!</span>")
+		Pirouette(user)
+		specialing = FALSE
 
 /obj/item/ego_weapon/wings/afterattack(atom/A, mob/living/user, params) // Time for the ANIME BLADE DASH ATTACK
 	if(world.time > combo_hold && hit_count > 0)
@@ -511,7 +510,7 @@
 	if(special_cost > hit_count || !CanUseEgo(user) || get_dist(get_turf(A), get_turf(user)) < 2 || specialing)
 		return
 	var/aim_dir = get_cardinal_dir(get_turf(user), get_turf(A)) // You can only anime dash in a cardinal direction.
-	if(checkPath(user, aim_dir))
+	if(CheckPath(user, aim_dir))
 		to_chat(user,"<span class='notice'>You need more room to do that!</span>")
 	else
 		user.visible_message("<span class='notice'>[user] lunges forward, [src] dancing in their grasp!</span>") // ANIME AS FUCK
@@ -528,11 +527,11 @@
 		special_combo_hold = world.time + decay_time
 		hit_turfs = list() // Clear the list of turfs we hit last time
 		specialing = TRUE
-		addtimer(CALLBACK(src, .proc/resetSpecial), special_cooldown)// Engage special cooldown
-		leap(user, aim_dir, 0)
+		addtimer(CALLBACK(src, .proc/ResetSpecial), special_cooldown)// Engage special cooldown
+		Leap(user, aim_dir, 0)
 	return
 
-/obj/item/ego_weapon/wings/proc/pirouette(mob/living/user)
+/obj/item/ego_weapon/wings/proc/Pirouette(mob/living/user)
 	user.visible_message("<span class='notice'>[user] whirls in place, [src] flicking out at enemies!</span>") // You cool looking bitch
 	playsound(src, hitsound, 75, FALSE, 4)
 	for(var/turf/T in orange(1, user)) // Most of this code was jacked from Harvest tbh
@@ -542,16 +541,21 @@
 	var/justicemod = 1 + userjust/100
 	aoe*=justicemod
 	for(var/mob/living/L in range(1, user))
-		if(L == user || ishuman(L)) // Might remove FF immunity sometime
+		if(L == user) // Might remove FF immunity sometime
 			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(!H.sanity_lost)
+				continue
 		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.visible_message("<span class='danger'>[user] slices [L]!</span>")
 
-/obj/item/ego_weapon/wings/proc/leap(mob/living/user, dir = SOUTH, times_ran = 3)
+/obj/item/ego_weapon/wings/proc/Leap(mob/living/user, dir = SOUTH, times_ran = 3)
 	user.forceMove(get_step(get_turf(user), dir))
 	var/end_leap = FALSE
 	if(times_ran > 2)
 		end_leap = TRUE
-	if(checkPath(user, dir)) // If we have something ahead of us, yes, but we're ALSO going to attack around us
+	if(CheckPath(user, dir)) // If we have something ahead of us, yes, but we're ALSO going to attack around us
 		to_chat(user,"<span class='notice'>You cut your leap short!</span>")
 		for(var/turf/T in orange(1, user)) // I hate having to use this code twice but it's TWO LINES and I don't need to use callbacks with it so it's not getting a proc
 			hit_turfs |= T
@@ -564,15 +568,20 @@
 				var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 				var/justicemod = 1 + userjust/100
 				aoe*=justicemod
-				if(L == user || ishuman(L))
+				if(L == user)
 					continue
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(!H.sanity_lost)
+						continue
 				L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.visible_message("<span class='danger'>[user] evicerates [L]!</span>")
 		return
 	for(var/turf/T in orange(1, user))
 		hit_turfs |= T
-	addtimer(CALLBACK(src, .proc/leap, user, dir, times_ran + 1), 0.1)
+	addtimer(CALLBACK(src, .proc/Leap, user, dir, times_ran + 1), 0.1)
 
-/obj/item/ego_weapon/wings/proc/checkPath(mob/living/user, dir = SOUTH)
+/obj/item/ego_weapon/wings/proc/CheckPath(mob/living/user, dir = SOUTH)
 	var/list/immediate_path = list() // Looks two tiles ahead for anything dense; the leap attack must move you at least one tile and will stop one tile short of a dense one
 	immediate_path |= get_step(get_turf(user), dir)
 	immediate_path |= get_step(immediate_path[1], dir)
@@ -587,7 +596,25 @@
 			fail_charge = TRUE
 	return fail_charge
 
-/obj/item/ego_weapon/wings/proc/resetSpecial()
+/obj/item/ego_weapon/wings/proc/SecondSwing(mob/living/M, mob/living/user)
+	sleep(CLICK_CD_MELEE*attack_speed*0.5+1)
+	if(get_dist(M, user) > 1)
+		return
+	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
+		return
+	if(max_count > hit_count)
+		hit_count++
+	else if(prob(10))
+		to_chat(user, "<span class='notice'>[src]' feathers bristle!</span>") // "Hey dumbass, you can stop smacking them now"
+	combo_hold = world.time + decay_time
+	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	user.do_attack_animation(M)
+	M.attacked_by(src, user)
+
+	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+/obj/item/ego_weapon/wings/proc/ResetSpecial()
 	specialing = FALSE
 
 /obj/item/ego_weapon/mini/mirth
