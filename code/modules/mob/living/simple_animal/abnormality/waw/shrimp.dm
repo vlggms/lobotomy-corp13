@@ -26,6 +26,13 @@
 
 	var/liked
 	var/happy = TRUE
+	pet_bonus = "blurbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
+	var/hint_cooldown
+	var/hint_cooldown_time = 30 SECONDS
+	var/list/cooldown = list(
+				"Stop meandering around and get to work!",
+				"I can be quite patient at times, but you are beginning to test me!",
+				"The service here can be dreadful at times. Why don't you just make yourself useful?")
 	var/list/instinct = list(
 				"I am getting quite old, and my back is hurting me. Could you send a chiropractor to my office immediately?",
 				"I am quite peckish, could you send me a charcuterie board?",
@@ -101,6 +108,23 @@
 			new /mob/living/simple_animal/hostile/shrimp(T)
 		else
 			new /mob/living/simple_animal/hostile/shrimp_soldier(T)
+
+//repeat lines
+/mob/living/simple_animal/hostile/abnormality/shrimp_exec/funpet()
+	if(!liked)
+		return
+	if(hint_cooldown > world.time)
+		say(pick(cooldown))
+		return
+	hint_cooldown = world.time + hint_cooldown_time
+	switch(liked)
+		if(ABNORMALITY_WORK_INSTINCT)
+			say(pick(instinct))
+		if(ABNORMALITY_WORK_INSIGHT)
+			say(pick(insight))
+		if(ABNORMALITY_WORK_ATTACHMENT)
+			say(pick(attachment))
+	return
 
 /* Shrimpo boys */
 /mob/living/simple_animal/hostile/shrimp

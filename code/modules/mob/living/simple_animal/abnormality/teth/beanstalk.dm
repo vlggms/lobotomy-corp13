@@ -29,7 +29,7 @@
 //Performing instinct work at >4 fortitude starts a special work
 /mob/living/simple_animal/hostile/abnormality/beanstalk/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) && (work_type == ABNORMALITY_WORK_INSTINCT))
-		work_damage_amount = 20
+		work_damage_amount = 25 //hope you put on some armor
 		climbing = TRUE
 	return TRUE
 
@@ -58,13 +58,15 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		to_chat(user, "<span class='userdanger'>You start to climb!</span>")
-		//animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 3 SECONDS) works but seemingly can't be undone
-		user.Stun(8 SECONDS)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
+		user.pixel_z = 16
+		user.Stun(10 SECONDS)
 		sleep(6 SECONDS)
 		var/datum/ego_gifts/giant/BWJEG = new
 		BWJEG.datum_reference = datum_reference
 		user.Apply_Gift(BWJEG)
-		//animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 3 SECONDS) doesn't work if the previous animate goes off
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 3 SECONDS)
+		user.pixel_z = 0
 		to_chat(user, "<span class='userdanger'>You return with the giant's treasure!</span>")
 
 	work_damage_amount = 7

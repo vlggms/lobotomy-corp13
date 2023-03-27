@@ -92,6 +92,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, a shrimp strike force arrived at the main room of a department.",
 		"After an employee completed their work, Shrimp Association Executive requested an idea or service.",
+		"The abnormality repeated its request when approached by an employee.",
 		"Observations have concluded that each request corresponded to a specific work type. Performing this work type will result in significantly increased work success rate.",
 		"When the work result was Good, Shrimp Association Executive ordered shrimp-themed merchandise for the employee. Possible items included:<br>\
 		<ol type=1>\

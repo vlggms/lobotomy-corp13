@@ -187,7 +187,8 @@
 	abno_code = "F-03-16"
 	abno_info = list(
 		"When an Agent with Level 1 Temperance and Prudence completed the work, they climbed up the beanstalk and were never seen again.",
-		" Upon attempting an Instinct work with level 4 Fortitude or above, the Agent climbed up the beanstalk willingly.",
+		"Upon attempting an Instinct work with level 4 Fortitude or above, the Agent climbed up the beanstalk willingly.",
+		"Agent Yum Yum perished and fell off the beanstalk after being forced to endure extreme BLACK damage when climbing.",
 		"No agent has ever returned from the top of the beanstalk, if it even has the concept of a top.")
 
 //My Sweet Home

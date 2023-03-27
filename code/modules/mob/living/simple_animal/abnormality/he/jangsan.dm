@@ -22,10 +22,10 @@
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 50,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 50,
-						ABNORMALITY_WORK_REPRESSION = 50
+						ABNORMALITY_WORK_INSTINCT = 60,
+						ABNORMALITY_WORK_INSIGHT = 60,
+						ABNORMALITY_WORK_ATTACHMENT = 60,
+						ABNORMALITY_WORK_REPRESSION = 60
 						)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
@@ -70,7 +70,6 @@
 //Init
 /mob/living/simple_animal/hostile/abnormality/jangsan/Initialize()
 	. = ..()
-	AbnoRadio()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/On_Mob_Death) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/Destroy()
@@ -93,7 +92,7 @@
 	var/chance_modifier = 1
 	StatCheck(user)
 	for(var/z in 0 to strong_counter)
-		chance_modifier *= 0.9
+		chance_modifier *= 0.85
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
@@ -139,6 +138,8 @@
 //Breach
 /mob/living/simple_animal/hostile/abnormality/jangsan/BreachEffect(mob/living/carbon/human/user)
 	..()
+	if(!datum_reference.abno_radio)
+		AbnoRadio()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryTeleport() //stolen from knight of despair
