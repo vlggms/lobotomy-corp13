@@ -35,8 +35,9 @@
 	. += "<span class='notice'>This console is connected to [datum_reference.name] containment zone.</span>"
 	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
 	. += "<span class='notice'>Threat level:</span> [threat_level]<span class='notice'>.</span>" // Professionals have standards
-	if(datum_reference.qliphoth_meter_max > 0)
-		. += "<span class='notice'>Current qliphoth level: [datum_reference.qliphoth_meter].</span>"
+	var/qlip_text = datum_reference.ReturnQliphothText()
+	if(qlip_text)
+		. += qlip_text
 	if(datum_reference.overload_chance != 0)
 		. += "<span class='warning'>Current success chance modifier: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)

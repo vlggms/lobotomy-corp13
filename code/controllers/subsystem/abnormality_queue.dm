@@ -25,6 +25,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/next_abno_spawn_time = 4 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
+	/// The type of abno datum used for new abnormalities
+	var/datum/abnormality/datum_type = /datum/abnormality
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)

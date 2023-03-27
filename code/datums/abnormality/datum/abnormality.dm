@@ -223,3 +223,8 @@
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	acquired_chance += overload_chance
 	return clamp(acquired_chance, 0, 100)
+
+/datum/abnormality/proc/ReturnQliphothText()
+	if(qliphoth_meter_max > 0)
+		return "<span class='notice'>Current qliphoth level: [qliphoth_meter].</span>"
+	return null

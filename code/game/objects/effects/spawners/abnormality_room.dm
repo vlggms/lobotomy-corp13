@@ -19,7 +19,7 @@
 		for(var/obj/O in TF.contents)
 			allObjects += O
 	for(var/obj/effect/landmark/abnormality_spawn/AS in allObjects)
-		abno_datum = new(AS, abno_path)
+		abno_datum = new SSabnormality_queue.datum_type(AS, abno_path)
 		AS.datum_reference = abno_datum
 		break // There can be only one
 	for(var/obj/machinery/computer/abnormality/AC in allObjects)
