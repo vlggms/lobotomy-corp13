@@ -784,7 +784,6 @@
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 	inuse = FALSE
 
-//Gadget Update gadgets below.
 /obj/item/lc13_officerupgradeinjector
 	name = "Officer Upgrade Injector"
 	desc = "A strange liquid used to improve an officer's skills. Use in hand to activate. A small note on the injector states that 'officer' means Extraction Officer and Records Officer."
@@ -855,8 +854,8 @@
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "clerkbot2_deactivated"
-	default_icon = "clerkbot2_deactivated" //roundabout way of making update item easily changed. Used in updateicon proc.
-	batterycost = 10000 //1 use before requires recharge
+	default_icon = "clerkbot2_deactivated"
+	batterycost = 10000
 
 /obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
 	..()
@@ -869,7 +868,6 @@
 		else
 			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 
-// Clerkbot Boio
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
 	..()
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -912,10 +910,10 @@
 	desc = "A portable electricution device. Two settings, stun and slow. Automatically slows abnormalities instead of stunning them."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget1"
-	default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
-	batterycost = 1500 //6 use before requires recharge
-	var/batterycost_stun = 3000 //3 uses before recharge
-	var/current_state = FALSE //FALSE = Stun, TRUE = Slow
+	default_icon = "gadget1"
+	batterycost = 1500
+	var/batterycost_stun = 3000
+	var/current_state = FALSE
 	var/hit_message= null
 
 /obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
