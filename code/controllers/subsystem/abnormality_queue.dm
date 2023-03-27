@@ -25,6 +25,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/next_abno_spawn_time = 4 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
+	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
+	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
