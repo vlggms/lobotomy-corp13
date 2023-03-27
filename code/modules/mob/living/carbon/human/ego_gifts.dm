@@ -473,6 +473,13 @@
 	temperance_bonus = 4
 	slot = HELMET
 
+/datum/ego_gifts/legerdemain
+	name = "Legerdemain"
+	icon_state = "legerdemain"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	slot = HAND_1
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
