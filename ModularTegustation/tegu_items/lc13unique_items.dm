@@ -1,3 +1,7 @@
+#define STATUS_EFFECT_BIG_BOOST /datum/status_effect/big_boost_injector
+#define STATUS_EFFECT_BIG_BOOST_WITHDRAWL /datum/status_effect/big_boost_withdrawl
+#define STATUS_EFFECT_SMALL_BOOST /datum/status_effect/small_boost_injector
+
 	//Plushie Gatcha
 /obj/item/plushgacha //would of made players also have to find keys to open these but im not that cruel... as of today. - IP
 	name = "extraction plush lootbox"
@@ -958,3 +962,96 @@
 		hit_message= "<span class='notice'>[user] lightly pokes [T] with the taser.</span>"
 		for(var/mob/living/carbon/human/person in view(7, user))
 			to_chat(person, hit_message)
+
+/obj/item/lc13_small_booster_injector
+	name = "Small Booster Injector"
+	desc = "The injector contains a grey substance. Use in hand to activate."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_grey"
+
+/obj/item/lc13_small_booster_injector/attack_self(mob/living/carbon/human/user)
+	user.apply_status_effect(STATUS_EFFECT_SMALL_BOOST)
+	to_chat(user, "<span class='nicegreen'>The injector blinks green before the injector disintegrates. You feel as if oxygen entered your system.</span>")
+	qdel(src)
+
+/datum/status_effect/small_boost_injector
+	id = "small_boost_injector"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 800
+
+/datum/status_effect/small_boost_injector/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
+
+/datum/status_effect/small_boost_injector/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -15)
+
+/obj/item/lc13_big_booster_injector
+	name = "Big Booster Injector"
+	desc = "The injector contains a dark grey substance. Use in hand to activate."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_darkgrey"
+
+/obj/item/lc13_big_booster_injector/attack_self(mob/living/carbon/human/user)
+	user.apply_status_effect(STATUS_EFFECT_BIG_BOOST)
+	to_chat(user, "<span class='nicegreen'>The injector blinks green before the injector disintegrates. You feel as if liquid nitrogen entered your system.</span>")
+	qdel(src)
+
+/datum/status_effect/big_boost_injector
+	id = "big_boost_injector"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 1200
+
+/datum/status_effect/big_boost_injector/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 40)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 40)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 40)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 40)
+
+/datum/status_effect/big_boost_injector/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -40)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -40)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -40)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -40)
+		owner.apply_status_effect(STATUS_EFFECT_BIG_BOOST_WITHDRAWL)
+
+/datum/status_effect/big_boost_withdrawl
+	id = "big_boost_withdrawl"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 600
+
+/datum/status_effect/big_boost_withdrawl/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		to_chat(owner, "<span class='notice'>You feel sluggish.</span>")
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -30)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -30)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+
+/datum/status_effect/big_boost_withdrawl/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 29)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 29)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 29)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 29)
