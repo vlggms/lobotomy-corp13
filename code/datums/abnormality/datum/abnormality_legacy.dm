@@ -17,15 +17,15 @@
 /datum/abnormality/legacy/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
 	. = ..()
 	if(pe >= success_boxes)
-		MoodChange(maximum_mood*0.6)
+		MoodChange(maximum_mood*0.6, user = user)
 	else if(pe >= neutral_boxes)
-		MoodChange(maximum_mood*0.3)
+		MoodChange(maximum_mood*0.3, user = user)
 	else
-		MoodChange(-maximum_mood*0.3)
+		MoodChange(-maximum_mood*0.3, user = user)
 
 /datum/abnormality/legacy/qliphoth_change(amount, user)
 	var/num = maximum_mood * (amount / qliphoth_meter_max) // Ultra lazy, but hey, less code to write
-	MoodChange(num, log = TRUE, user)
+	MoodChange(num, TRUE, user)
 
 /datum/abnormality/legacy/ReturnQliphothText()
 	if(current_mood >= maximum_mood)
