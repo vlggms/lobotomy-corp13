@@ -68,7 +68,7 @@
 			new /obj/item/ego_weapon/eyeball(get_turf(user))
 
 			user.AdjustSleeping(10 SECONDS)
-			user.adjustBruteLoss(-150)
+			user.adjustBruteLoss(200) //You have 100 health + 40 crit health, you need 60 fort to live at all.
 			if(user.stat == DEAD)
 				animate(user, alpha = 0, time = 2 SECONDS)
 				QDEL_IN(user, 3.5 SECONDS)
