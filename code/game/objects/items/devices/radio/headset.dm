@@ -278,6 +278,46 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/silicon/can_receive(freq, level)
 	return ..(freq, level, TRUE)
 
+//Department heads
+
+/obj/item/radio/headset/heads/headset_control
+	name = "control radio headset"
+	desc = "This is used by the control department."
+	icon_state = "cargo_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_control
+
+/obj/item/radio/headset/heads/headset_information
+	name = "information radio headset"
+	desc = "This is used by the information department."
+	icon_state = "sci_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_information
+
+/obj/item/radio/headset/heads/headset_safety
+	name = "safety radio headset"
+	desc = "This is used by the safety department."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_safety
+
+/obj/item/radio/headset/heads/headset_training
+	name = "training radio headset"
+	desc = "This is used by the training department."
+	icon_state = "rob_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_training
+
+/obj/item/radio/headset/heads/headset_welfare
+	name = "welfare radio headset"
+	desc = "This is used by the welfare department."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_welfare
+
+/obj/item/radio/headset/heads/headset_discipline
+	name = "disciplinary headset"
+	desc = "This is used by the disciplinary department."
+	icon_state = "sec_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_discipline
+
+
+
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)
 	user.set_machine(src)
 
@@ -344,3 +384,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if (command)
 		use_command = !use_command
 		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
+
+
+

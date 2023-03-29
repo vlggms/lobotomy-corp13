@@ -63,6 +63,19 @@
 	to_chat(user, "<span class='nicegreen'>You bonk the abnormality with the [src].</span>")
 	qdel(src)
 
+	//abnos spawn slower
+/obj/item/lc13_abnospawn
+	name = "Lobotomy Corporation Radio"
+	desc = "A device to call HQ and slow down abnormality arrival rate. Use in hand to activate."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-yellow"
+
+/obj/item/lc13_abnospawn/attack_self(mob/living/carbon/human/user)
+	to_chat(user, "<span class='nicegreen'>You feel that you now have more time.</span>")
+	SSabnormality_queue.next_abno_spawn_time *= 1.5
+	qdel(src)
+
+
 	//Defective Manager Bullet PLACEHOLDER OR PROTOTYPE SHIELDS
 /obj/item/managerbullet
 	name = "prototype manager bullet"
