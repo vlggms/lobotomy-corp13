@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_COWARDICE /datum/status_effect/cowardice
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor
 	name = "Crumbling Armor"
 	desc = "A thoroughly aged suit of samurai style armor with a V shaped crest on the helmet. It appears desuetude."
@@ -5,6 +6,7 @@
 	icon_state = "crumbling"
 	maxHealth = 600
 	health = 600
+	start_qliphoth = 3
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
@@ -12,8 +14,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
 			)
-	work_damage_amount = 4
-	work_damage_type = PALE_DAMAGE
+	work_damage_amount = 5
+	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/daredevil,
@@ -23,12 +25,19 @@
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	var/user_armored
+	var/numbermarked
+	var/meltdown_cooldown //no spamming the meltdown effect
+	var/meltdown_cooldown_time = 30 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
 	. = ..()
 	// Megalovania?
 	if (prob(1))
 		icon_state = "megalovania"
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
@@ -45,6 +54,7 @@
 			//user.ego_gift_list[HAT].Remove(user)
 		head.dismember()
 		user.adjustBruteLoss(500)
+		datum_reference.qliphoth_change(-1)
 		return TRUE
 	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	return FALSE
@@ -57,6 +67,7 @@
 			return
 		head.dismember()
 		user.adjustBruteLoss(500)
+		datum_reference.qliphoth_change(-1)
 		return
 	if(user.stat != DEAD && work_type == ABNORMALITY_WORK_REPRESSION)
 		if (src.icon_state == "megalovania")
@@ -121,6 +132,82 @@
 			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
 	return
 
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/ZeroQliphoth(mob/living/carbon/human/user)
+	datum_reference.qliphoth_change(3) //no need for qliphoth to be stuck at 0
+	if(meltdown_cooldown > world.time)
+		return
+	meltdown_cooldown = world.time + meltdown_cooldown_time
+	MeltdownEffect()
+	return
+
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/MeltdownEffect(mob/living/carbon/human/user)
+	var/list/potentialmarked = list()
+	var/list/marked = list()
+	var/mob/living/Y
+	sound_to_playing_players_on_level('sound/abnormalities/crumbling/globalwarning.ogg', 25, zlevel = z)
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		if(faction_check_mob(Y, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+			continue
+		potentialmarked += L
+		to_chat(L, "<span class='userdanger'>You feel an overwhelming sense of dread.</span>")
+
+	numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
+	SLEEP_CHECK_DEATH(10 SECONDS)
+	sound_to_playing_players_on_level('sound/abnormalities/crumbling/warning.ogg', 50, zlevel = z)
+	for(var/i = numbermarked, i>=1, i--)
+		if(potentialmarked.len <= 0)
+			break
+		Y = pick(potentialmarked)
+		potentialmarked -= Y
+		if(Y.stat == DEAD) //they chose to die instead of facing the fear
+			continue
+		marked+=Y
+		playsound(get_turf(Y), 'sound/abnormalities/crumbling/warning.ogg', 50, FALSE, -1)
+
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	for(Y in marked)
+		to_chat(Y, "<span class='userdanger'>Show me that you can stand your ground!</span>")
+		new /obj/effect/temp_visual/markedfordeath(get_turf(Y))
+		Y.apply_status_effect(STATUS_EFFECT_COWARDICE)
+
+//status
+/datum/status_effect/cowardice
+	id = "cowardice"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 10		//Lasts 1 second
+	alert_type = /atom/movable/screen/alert/status_effect/cowardice
+
+/atom/movable/screen/alert/status_effect/cowardice
+	name = "Cowardice"
+	desc = "Show me that you can stand your ground!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "crumbling"
+
+/datum/status_effect/cowardice/on_apply()
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/Punishment)
+	return..()
+
+/datum/status_effect/cowardice/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	return..()
+
+/datum/status_effect/cowardice/proc/Punishment()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/H = owner
+	if(!istype(H))
+		return
+	var/obj/item/bodypart/head/head = owner.get_bodypart("head")
+	if(!istype(head))
+		return FALSE
+	playsound(get_turf(H), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
+	H.apply_damage(25, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(H.health < 0)
+		head.dismember()
+	new /obj/effect/temp_visual/slice(get_turf(H))
+	qdel(src)
+
+
+//gifts
 /datum/ego_gifts/courage
 	name = "Inspired Courage"
 	icon_state = "courage"
@@ -167,3 +254,5 @@
 	fortitude_bonus = -20
 	justice_bonus = 20
 	slot = HAT
+
+#undef STATUS_EFFECT_COWARDICE
