@@ -39,7 +39,6 @@
 
 	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 

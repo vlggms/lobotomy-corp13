@@ -3,7 +3,6 @@
 	icon_state = "star"
 	damage = 28 // Multiplied by 1.5x when at high SP
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/melting_blob
 	name = "slime projectile"
@@ -12,7 +11,6 @@
 	damage = 40	//Fires 3
 	speed = 0.8
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
 /obj/projectile/ego_bullet/melting_blob/dot

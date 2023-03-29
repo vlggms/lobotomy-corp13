@@ -10,7 +10,6 @@
 	force = 7
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/dodgelanding
 

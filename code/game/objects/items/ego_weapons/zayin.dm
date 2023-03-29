@@ -55,7 +55,6 @@
 	icon_state = "penitence"
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 
@@ -80,7 +79,6 @@
 	icon_state = "little_alice"
 	force = 14
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -108,7 +106,6 @@
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 
@@ -133,7 +130,6 @@
 	icon_state = "change"
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
@@ -161,7 +157,6 @@
 	icon_state = "doze"
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'

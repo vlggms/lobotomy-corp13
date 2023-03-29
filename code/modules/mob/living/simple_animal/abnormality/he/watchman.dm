@@ -13,7 +13,6 @@
 	melee_damage_lower = 16
 	melee_damage_upper = 20			//He doesn't really attack but I guess if he does he would deal this kind of damage
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = "swing_hit"
 	attack_verb_continuous = "bashes"

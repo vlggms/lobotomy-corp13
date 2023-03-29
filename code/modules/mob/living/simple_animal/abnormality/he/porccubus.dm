@@ -28,7 +28,6 @@
 	stat_attack = HARD_CRIT
 	work_damage_type = BLACK_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
 	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'

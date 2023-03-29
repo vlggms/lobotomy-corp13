@@ -130,7 +130,7 @@
 					"<span class='danger'>You hit [src] with [I]!</span>", null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		log_combat(user, src, "attacked", I)
-	take_damage(I.force, I.damtype, I.armortype, 1)
+	take_damage(I.force, I.damtype, I.damtype, 1)
 
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)
@@ -147,7 +147,7 @@
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)
-	if(!attack_threshold_check(I.force, I.damtype, I.armortype, FALSE))
+	if(!attack_threshold_check(I.force, I.damtype, FALSE))
 		playsound(loc, 'sound/weapons/tap.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
 		return ..()

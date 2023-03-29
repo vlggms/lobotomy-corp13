@@ -11,7 +11,6 @@
 	maxHealth = 2000
 	health = 2000
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14

@@ -14,7 +14,6 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
 	attack_verb_continuous = "stabs"

@@ -8,7 +8,6 @@
 	force = 25
 	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
@@ -41,7 +40,6 @@
 	icon_state = "despair"
 	force = 20
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
@@ -101,7 +99,6 @@
 	force = 80
 	attack_speed = 3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
@@ -132,7 +129,6 @@
 	force = 13
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
@@ -174,7 +170,6 @@
 		The Hammer mode deals bonus damage to all marked."
 	force = 30	//Does more damage later.
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("Smashes", "Pierces", "Cracks")
 	attack_verb_simple = list("Smash", "Pierce", "Crack")
 	hitsound = 'sound/weapons/ego/remorse.ogg'
@@ -225,7 +220,6 @@
 	force = 18
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -329,7 +323,6 @@
 	icon_state = "thirteen"
 	force = 30
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
@@ -367,7 +360,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -422,7 +414,6 @@
 	icon_state = "ebony_stem"
 	force = 35
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
 	attack_verb_simple = list("admonish", "rectify", "conquer")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -469,7 +460,6 @@
 	force = 10
 	attack_speed = 0.6
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "claws")
 	attack_verb_simple = list("slashes", "claws")
 	hitsound = 'sound/weapons/fixer/generic/dodge3.ogg'
@@ -642,7 +632,6 @@
 	force = 15
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/ego/sword1.ogg'
@@ -688,10 +677,8 @@
 	if(combo)
 		for(var/damage_type in list(RED_DAMAGE))
 			damtype = damage_type
-			armortype = damage_type
 			M.attacked_by(src, user)
 		damtype = initial(damtype)
-		armortype = initial(armortype)
 
 /obj/item/ego_weapon/mini/mirth/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -721,7 +708,6 @@
 	force = 15
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -766,10 +752,8 @@
 	if(combo)
 		for(var/damage_type in list(WHITE_DAMAGE))
 			damtype = damage_type
-			armortype = damage_type
 			M.attacked_by(src, user)
 		damtype = initial(damtype)
-		armortype = initial(armortype)
 
 /obj/item/ego_weapon/mini/malice/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -799,7 +783,6 @@
 	force = 17
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashs", "whaps", "beats", "prods", "pokes")
 	attack_verb_simple = list("bash", "whap", "beat", "prod", "poke")
 	hitsound = 'sound/weapons/fixer/generic/spear1.ogg'
@@ -886,7 +869,6 @@
 	icon_state = "moonlight"
 	force = 32					//One of the best support weapons. Does HE damage in its stead.
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("beats", "jabs")
 	attack_verb_simple = list("beat", "jab")
 	var/inuse
@@ -923,7 +905,6 @@
 	throw_range = 7
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
@@ -944,7 +925,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -970,7 +950,6 @@
 	icon_state = "dipsia"
 	force = 32
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/pierce_slow.ogg'
@@ -1000,7 +979,6 @@
 	force = 20
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -1033,7 +1011,6 @@
 	attack_speed = 1.2
 	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful! \nUse in hand to hold back the AoE!"
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smashes", "crushes", "flattens")
 	attack_verb_simple = list("smash", "crush", "flatten")
 	hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
@@ -1105,7 +1082,6 @@
 	inhand_icon_state = "bloodbath"
 	force = 30
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
@@ -1127,7 +1103,6 @@
 	icon_state = "diffraction"
 	force = 40
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slice", "cut")
 	hitsound = 'sound/weapons/blade1.ogg'
@@ -1150,7 +1125,6 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
 
@@ -1216,7 +1190,6 @@
 	throw_range = 7
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/abnormalities/clouded_monk/monk_attack.ogg'
@@ -1282,7 +1255,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	var/wielded = FALSE
 
 /obj/item/ego_weapon/discord/Initialize()
@@ -1350,7 +1322,6 @@
 	icon_state = "innocence"
 	force = 72
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
@@ -1371,7 +1342,6 @@
 	force = 75
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/abnormalities/babayaga/attack.ogg'
@@ -1449,7 +1419,6 @@
 	force = 20
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
@@ -1476,7 +1445,6 @@
 	force = 13
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife4.ogg'
 	var/dodgelanding
 
@@ -1500,7 +1468,6 @@
 	force = 16
 	attack_speed = 0.5
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
@@ -1554,7 +1521,6 @@
 	force = 20
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
 	attack_verb_simple = list("claw")
 	hitsound = 'sound/abnormalities/big_wolf/Wolf_Hori.ogg'
@@ -1603,7 +1569,6 @@
 	icon_state = "scenario"
 	force = 38
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("disrespects", "sullies")
 	attack_verb_simple = list("disrespect", "sully")
 	hitsound = 'sound/effects/fish_splash.ogg'
@@ -1662,7 +1627,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2 //same speed as Spore
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pierces", "jabs")
 	default_attack_verbs = list("pierce", "jab")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'

@@ -5,7 +5,6 @@
 	damage_type = OXY
 	nodamage = TRUE
 	armour_penetration = 100
-	flag = MAGIC
 
 /obj/projectile/magic/death
 	name = "bolt of death"
@@ -354,7 +353,6 @@
 	icon_state = "lavastaff"
 	damage = 15
 	damage_type = BURN
-	flag = MAGIC
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -374,7 +372,6 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 0
-	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/projectile/magic/arcane_barrage/on_hit(target)
@@ -391,7 +388,6 @@
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
-	flag = MAGIC
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -619,7 +615,6 @@
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
-	flag = MAGIC
 
 	var/zap_power = 20000
 	var/zap_range = 15
@@ -684,7 +679,6 @@
 
 	damage = 350
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	armour_penetration = 0
 	speed = 1.5 // Slow
 	damage_falloff_tile = -5 // Loses a bit of damage so you don't get jumpscared out of nowhere
@@ -717,19 +711,16 @@
 /obj/projectile/magic/aoe/pillar/red
 	icon_state = "pillar_red"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	trail_type = /obj/effect/temp_visual/cult/sparks
 
 /obj/projectile/magic/aoe/pillar/white
 	icon_state = "pillar_white"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/magic/aoe/pillar/pale
 	icon_state = "pillar_pale"
 	damage = 250
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
 
 //still magic related, but a different path
 
@@ -741,7 +732,6 @@
 	nodamage = FALSE
 	armour_penetration = 100
 	temperature = -200 // Cools you down greatly per hit
-	flag = MAGIC
 
 /obj/projectile/magic/nothing
 	name = "bolt of nothing"

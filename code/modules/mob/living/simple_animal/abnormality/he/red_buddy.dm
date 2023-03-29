@@ -26,7 +26,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 70 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE

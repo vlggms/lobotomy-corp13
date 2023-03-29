@@ -14,7 +14,6 @@ GLOBAL_LIST_EMPTY(vine_list)
 	ranged = TRUE
 	ranged_cooldown_time = 4 SECONDS
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
 	ranged_message = null

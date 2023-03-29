@@ -3,7 +3,6 @@
 	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
 	icon_state = "despair"
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
 	damage = 40
 	alpha = 0
 	spread = 20
@@ -27,7 +26,6 @@
 	name = "light"
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 30
 	alpha = 0
 	spread = 45
@@ -41,7 +39,6 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 25
 	spread = 15
 
@@ -92,7 +89,6 @@
 	desc = "Gross, disgusting spit."
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
 	spread = 60
 	slur = 3
@@ -114,7 +110,6 @@
 	desc = "A blade thrown maliciously"
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	damage = 5
 
 /obj/projectile/clown_throw/Initialize()

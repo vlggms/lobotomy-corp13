@@ -6,7 +6,6 @@
 	icon_state = "grinder"
 	force = 30
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
@@ -35,7 +34,6 @@
 	icon_state = "harvest"
 	force = 30
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("attacks", "bashes", "tills")
 	attack_verb_simple = list("attack", "bash", "till")
 	hitsound = 'sound/weapons/ego/harvest.ogg'
@@ -86,7 +84,6 @@
 	force = 41
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
@@ -120,7 +117,6 @@
 	force = 12
 	attack_speed = 0.3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "jabs", "slaps")
 	attack_verb_simple = list("punches", "jabs", "slaps")
 	hitsound = 'sound/weapons/punch1.ogg'
@@ -140,7 +136,6 @@
 	force = 12
 	attack_speed = 0.5
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -231,7 +226,6 @@
 	force = 54	//Still lower DPS
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
@@ -255,7 +249,6 @@
 	icon_state = "logging"
 	force = 33
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
@@ -379,7 +372,6 @@
 	icon_state = "courage"
 	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = "slash"
 	attack_verb_simple = "slash"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -415,7 +407,6 @@
 	icon_state = "bravery"
 	force = 54
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
@@ -459,7 +450,6 @@
 	icon_state = "pleasure"
 	force = 30
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = "slash"
 	attack_verb_simple = "slash"
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -502,7 +492,6 @@
 	force = 40
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -517,7 +506,6 @@
 	force = 9
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -532,7 +520,6 @@
 	icon_state = "giant"
 	force = 54
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
@@ -552,8 +539,7 @@
 	special = "This weapon's damage scale with the number of steps you've taken before striking."
 	icon_state = "homing_instinct"
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	force = 22 //Damage is crushed down
+	force = 0 //Literally does no damage by default
 	attack_speed = 3
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
@@ -596,7 +582,6 @@
 	force = 30
 	attack_speed = 1
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
@@ -621,7 +606,6 @@
 	force = 25
 	attack_speed = 1.5
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/ego/da_capo2.ogg'
@@ -645,7 +629,6 @@
 	icon_state = "inheritance"
 	force = 12
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
@@ -698,7 +681,6 @@
 	force = 50
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'

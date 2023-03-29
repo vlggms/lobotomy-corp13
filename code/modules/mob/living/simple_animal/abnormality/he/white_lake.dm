@@ -111,7 +111,6 @@
 	icon_state = "flower_waltz"
 	force = 22
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'

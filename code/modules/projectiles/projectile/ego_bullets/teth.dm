@@ -3,7 +3,6 @@
 	icon_state = "pulse0"
 	damage = 35 // Direct hit
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -16,31 +15,26 @@
 	name = "beak"
 	damage = 4
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
 	damage = 10
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
 	damage = 40	//Slow as balls
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_beakmagnum
 	name = "beak"
 	damage = 30	//entirely accurate. should have 32 DPS, it suffers.
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
 	name = "today's expression"
 	damage = 4 //Can dual wield, full auto
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"

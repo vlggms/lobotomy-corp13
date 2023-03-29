@@ -8,7 +8,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
