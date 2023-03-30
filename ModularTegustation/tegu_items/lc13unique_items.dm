@@ -1,6 +1,7 @@
 #define STATUS_EFFECT_BIG_BOOST /datum/status_effect/big_boost_injector
 #define STATUS_EFFECT_BIG_BOOST_WITHDRAWL /datum/status_effect/big_boost_withdrawl
 #define STATUS_EFFECT_SMALL_BOOST /datum/status_effect/small_boost_injector
+#define STATUS_EFFECT_SMALL_REDUCTOR /datum/status_effect/small_reductor_injector
 
 	//Plushie Gatcha
 /obj/item/plushgacha //would of made players also have to find keys to open these but im not that cruel... as of today. - IP
@@ -965,7 +966,7 @@
 
 /obj/item/lc13_small_booster_injector
 	name = "Small Booster Injector"
-	desc = "The injector contains a grey substance. Use in hand to activate."
+	desc = "The injector contains a grey substance. Will increase abilities of the user. Lasts 80 seconds. Use in hand to activate."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity7_grey"
 
@@ -999,7 +1000,7 @@
 
 /obj/item/lc13_big_booster_injector
 	name = "Big Booster Injector"
-	desc = "The injector contains a dark grey substance. Use in hand to activate."
+	desc = "The injector contains a dark grey substance. Will increase abilities of the user, comes with a warning label too faded to read. Lasts 120 seconds. Use in hand to activate."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity7_darkgrey"
 
@@ -1055,3 +1056,37 @@
 		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 29)
 		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 29)
 		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 29)
+
+/obj/item/lc13_small_reductor_injector
+	name = "Small Reductor Injector"
+	desc = "The injector contains a sand like substance. Will decrease abilities of the user. Lasts 80 seconds. Use in hand to activate."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "oddity7_sand"
+
+/obj/item/lc13_small_reductor_injector/attack_self(mob/living/carbon/human/user)
+	user.apply_status_effect(STATUS_EFFECT_SMALL_REDUCTOR)
+	to_chat(user, "<span class='nicegreen'>The injector blinks green before the injector disintegrates. You feel bloated, like your body has too much of something.</span>")
+	qdel(src)
+
+/datum/status_effect/small_reductor_injector
+	id = "small_reductor_injector"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 800
+
+/datum/status_effect/small_reductor_injector/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -15)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -15)
+
+/datum/status_effect/small_reductor_injector/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 15)
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
