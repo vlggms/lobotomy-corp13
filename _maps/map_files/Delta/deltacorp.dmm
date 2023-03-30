@@ -7758,12 +7758,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
 "wP" = (
-/obj/structure/filingcabinet/employment{
-	pixel_x = -8
-	},
-/obj/structure/filingcabinet/chestdrawer/wheeled{
-	pixel_x = 8
-	},
+/obj/structure/closet/secure_closet/record,
 /turf/open/floor/plasteel,
 /area/department_main/records)
 "wR" = (

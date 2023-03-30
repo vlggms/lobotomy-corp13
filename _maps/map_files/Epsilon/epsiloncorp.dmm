@@ -1757,6 +1757,7 @@
 /area/department_main/control)
 "Bv" = (
 /obj/machinery/camera/autoname,
+/obj/structure/closet/secure_closet/record,
 /turf/open/floor/carpet/black,
 /area/department_main/information)
 "BC" = (
@@ -41817,8 +41818,8 @@ QD
 QD
 QD
 QD
-DM
-DM
+QD
+QD
 DM
 qw
 Nc
@@ -42074,10 +42075,10 @@ QD
 QD
 QD
 QD
+QD
+QD
 DM
 np
-EQ
-Nc
 Nc
 Cl
 Yb
@@ -42331,8 +42332,8 @@ QD
 QD
 QD
 QD
-DM
-DM
+QD
+QD
 DM
 ko
 Nc

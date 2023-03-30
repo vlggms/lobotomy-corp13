@@ -4276,10 +4276,7 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 4
 	},
-/obj/item/kirbyplants{
-	anchored = 1;
-	icon_state = "plant-22"
-	},
+/obj/structure/closet/secure_closet/record,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "HG" = (
