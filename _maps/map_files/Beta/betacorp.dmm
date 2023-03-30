@@ -2842,13 +2842,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/item/toy/plush/hokma,
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
-	},
-/obj/item/encryptionkey/headset_architecture,
-/obj/item/clothing/neck/scarf/zebra,
-/obj/item/clipboard,
+/obj/structure/closet/secure_closet/record,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "nV" = (
