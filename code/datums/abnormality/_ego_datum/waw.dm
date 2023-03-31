@@ -233,6 +233,10 @@
 	item_path = /obj/item/ego_weapon/dipsia
 	cost = 50
 
+/datum/ego_datum/weapon/banquet
+	item_path = /obj/item/gun/ego_gun/banquet
+	cost = 50
+
 // Sphinx - Pharaoh
 /datum/ego_datum/armor/pharaoh
 	item_path = /obj/item/clothing/suit/armor/ego_gear/pharaoh

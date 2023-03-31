@@ -112,3 +112,8 @@
 	name = "warring casing"
 	desc = "A warring casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_warring2
+
+/obj/item/ammo_casing/caseless/ego_banquet
+	name = "banquet casing"
+	desc = "A banquet casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_banquet

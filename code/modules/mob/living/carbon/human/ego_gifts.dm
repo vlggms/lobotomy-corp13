@@ -600,6 +600,13 @@
 	temperance_bonus = 2
 	slot = HAND_2
 
+/datum/ego_gifts/dipsia
+	name = "Dipsia"
+	icon_state = "dipsia"
+	fortitude_bonus = 4
+	temperance_bonus = 2
+	slot = FACE
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
