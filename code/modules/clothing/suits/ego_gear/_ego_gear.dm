@@ -8,7 +8,6 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD 	// We protect all because magic
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	w_class = WEIGHT_CLASS_BULKY								//No more stupid 10 egos in bag
 	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
 	drag_slowdown = 1
 	var/equip_slowdown = 3 SECONDS

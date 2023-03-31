@@ -119,9 +119,9 @@
 	jobtype = /datum/job/agent
 
 	head = /obj/item/clothing/head/beret/sec
-	belt = /obj/item/pda/security
+	belt = /obj/item/ego_weapon/justitia
 	ears = /obj/item/radio/headset/alt
-	glasses = /obj/item/clothing/glasses/sunglasses
+	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
@@ -161,7 +161,7 @@
 	spawn_positions = -1
 	outfit = /datum/outfit/job/agent/intern
 	display_order = JOB_DISPLAY_ORDER_INTERN
-	normal_attribute_level = 20
+	normal_attribute_level = 60
 	exp_requirements = 0
 	job_important = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
 	If there is a Records Officer, seek them for assistance."
