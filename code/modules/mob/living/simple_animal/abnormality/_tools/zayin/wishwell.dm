@@ -2,6 +2,9 @@
 	name = "wishing well"
 	desc = "A well constructed of stone and wood. From where does it draw water?"
 	icon_state = "wishwell"
+	can_buckle = TRUE
+	max_buckled_mobs = 1
+	var/list/bastards = list()
 
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
@@ -283,3 +286,54 @@
 		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
 		new gift(get_turf(src))
 		visible_message("<span class='notice'>Something comes out of the well!</span>")
+
+//Throw yourself into the well : The Code
+/obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
+	if(M != user)
+		return FALSE
+
+	if (!istype(M, /mob/living/carbon/human))
+		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
+		return FALSE // Can only extract from humans.
+
+	to_chat(user, "<span class='warning'>You start climbing into the well.</span>")
+	if(!do_after(user, 7 SECONDS))
+		to_chat(user, "<span class='notice'>You decide that might be a bad idea.</span>")
+		return FALSE
+
+	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
+	return ..(M, user, check_loc = FALSE) //it just works
+
+/obj/structure/toolabnormality/wishwell/post_buckle_mob(mob/living/carbon/human/M)
+	if(!ishuman(M))
+		return
+	var/deathgift
+	var/stat_total
+	for(var/attribute in M.attributes)
+		stat_total += round(get_raw_level(M, attribute))
+
+	switch(stat_total)
+		if(0 to 80)
+			deathgift = pick(normalitem)
+		if(81 to 159)
+			deathgift = pick(zayinitem)
+		if(160 to 239)
+			deathgift = pick(tethitem)
+		if(240 to 359)
+			deathgift = pick(heitem)
+		if(360 to 479)
+			deathgift = pick(wawitem) //best you can expect at max respawn stats
+		if(480 to INFINITY)
+			deathgift = pick(alephitem)
+
+	qdel(M)
+	playsound(src, 'sound/voice/human/wilhelm_scream.ogg', 50, TRUE, -3)
+	if((M.ckey in bastards)) //prevents respawn abuse
+		deathgift = pick(trash)
+
+	bastards += M.ckey
+	sleep(10)
+	new deathgift(get_turf(src))
+	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
+	visible_message("<span class='notice'>Something comes out of the well!</span>")
+	..()

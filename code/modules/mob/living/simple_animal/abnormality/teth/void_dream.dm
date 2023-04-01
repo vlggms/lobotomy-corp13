@@ -90,8 +90,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/SleepyDart()
 	var/list/possibletargets = list()
-	for(var/mob/living/carbon/human/L in view(10, src))
-		possibletargets += L
+	for(var/mob/living/carbon/human/H in view(10, src))
+		if(H.IsSleeping())
+			continue
+		if(H.stat >= SOFT_CRIT)
+			continue
+		possibletargets += H
 	if(!LAZYLEN(possibletargets))
 		return
 

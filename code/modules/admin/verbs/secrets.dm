@@ -445,6 +445,15 @@
 			message_admins("<span class='boldannounce'>[key_name_admin(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]</span>")
 			log_admin("[key_name(holder)] changed the bomb cap to [GLOB.MAX_EX_DEVESTATION_RANGE], [GLOB.MAX_EX_HEAVY_RANGE], [GLOB.MAX_EX_LIGHT_RANGE]")
 		//buttons that are fun for exactly you and nobody else.
+		if("enablehardcore")
+			if(!is_funmin)
+				return
+			SSabnormality_queue.hardcore_roll_enabled = !SSabnormality_queue.hardcore_roll_enabled
+			message_admins("<span class='adminnotice'>[key_name_admin(holder)] has toggled mortal souls' ability to Red Roll.</span>")
+			var/state = "Disabled" // too lazy to write a BOOLEAN_TO_TEXT function - wouldnt it be funny if someone found this line by trying to search for one in the future
+			if (SSabnormality_queue.hardcore_roll_enabled)
+				state = "Enabled"
+			log_admin("[key_name(holder)] toggled hardcore rolling the abnormality queue - new state: [state]")
 		if("monkey")
 			if(!is_funmin)
 				return

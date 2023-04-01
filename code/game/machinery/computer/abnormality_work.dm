@@ -13,6 +13,8 @@
 	var/can_meltdown = TRUE
 	/// Work types will instead redirect to those, if listed
 	var/list/scramble_list = list()
+	///Linked Panel
+	var/obj/machinery/containment_panel/linked_panel
 
 /obj/machinery/computer/abnormality/Initialize()
 	. = ..()
@@ -132,6 +134,8 @@
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_STARTED, datum_reference, user, work_type)
+		if(linked_panel)
+			linked_panel.console_working()
 	if(!HAS_TRAIT(user, TRAIT_WORKFEAR_IMMUNE))
 		user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
@@ -221,6 +225,8 @@
 	if(!training)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_COMPLETED, datum_reference, user, work_type)
+		if(linked_panel)
+			linked_panel.console_status(src)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(datum_reference.max_boxes != 0)
@@ -270,6 +276,10 @@
 	for(var/work in normal_works)
 		scramble_list[work] = pick(choose_from - work)
 		choose_from -= scramble_list[work]
+
+//Links to containment panel
+/obj/machinery/computer/abnormality/proc/LinkPanel(obj/machinery/panel)
+	linked_panel = panel
 
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit

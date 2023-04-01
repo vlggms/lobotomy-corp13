@@ -67,15 +67,6 @@
 	update_icon()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/update_icon_state()
-	if(status_flags & GODMODE) // Not breaching
-		icon_state = initial(icon)
-	else if(health < 1)
-		icon_state = icon_dead
-	else // Breaching
-		icon_state = icon_aggro
-	icon_living = icon_state
-
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()
 	if(!can_act)
 		return FALSE

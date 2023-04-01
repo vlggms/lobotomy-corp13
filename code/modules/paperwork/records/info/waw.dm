@@ -92,6 +92,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, a shrimp strike force arrived at the main room of a department.",
 		"After an employee completed their work, Shrimp Association Executive requested an idea or service.",
+		"The abnormality repeated its request when approached by an employee.",
 		"Observations have concluded that each request corresponded to a specific work type. Performing this work type will result in significantly increased work success rate.",
 		"When the work result was Good, Shrimp Association Executive ordered shrimp-themed merchandise for the employee. Possible items included:<br>\
 		<ol type=1>\
@@ -307,3 +308,18 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.")
+
+//Nosferatu
+/obj/item/paper/fluff/info/waw/nosferatu
+	abno_type = /mob/living/simple_animal/hostile/abnormality/nosferatu
+	abno_code = "O-01-65"
+	abno_info = list(
+		"When repression work was performed, the Qliphoth counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When instinct work was performed, the Qliphoth counter increased.",
+		"Agent Bong Bong took constant BLACK damage during instinct work.",
+		"When the Qliphoth counter increased while at max, Nosferatu immediately breached containment.",
+		"While Nosferatu is escaping, it will show sensitive reactions to blood. Suppression becomes difficult if blood is readily accessible to this abnormality.")
+	abno_breach_damage_type = "Red/Black"
+	abno_breach_damage_count = "High"
+

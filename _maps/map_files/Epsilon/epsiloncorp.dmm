@@ -5,6 +5,12 @@
 "aj" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/control)
+"ak" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "au" = (
 /obj/machinery/regenerator,
 /obj/effect/turf_decal/siding/purple{
@@ -36,6 +42,19 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"aY" = (
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_welfare";
+	shuttleId = "secondary"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
+"ba" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "bo" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "incinerator1"
@@ -46,20 +65,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"bq" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/machinery/chem_dispenser/drinks/beer,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "bA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -153,6 +158,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
+"cW" = (
+/obj/docking_port/stationary{
+	dir = 2;
+	dwidth = 3;
+	height = 4;
+	id = "backup_safety";
+	name = "3F - Safety";
+	roundstart_template = null;
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/safety)
 "cY" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 5
@@ -186,6 +203,12 @@
 /area/department_main/welfare)
 "dN" = (
 /obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "dO" = (
@@ -289,11 +312,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"fc" = (
+/obj/structure/closet/crate,
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "fp" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"ft" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "fu" = (
 /obj/machinery/computer/extraction_cargo{
 	dir = 8
@@ -476,7 +513,7 @@
 	dir = 4;
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_discipline";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -565,35 +602,25 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"jo" = (
+/obj/structure/sign/departments/welfare{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "jw" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Training Department"
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"jy" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "jA" = (
 /obj/effect/landmark/department_center,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"jD" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+"jC" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/information)
 "jE" = (
 /obj/machinery/vending/cola/shamblers,
 /obj/machinery/light,
@@ -603,37 +630,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"jH" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/freezer/meat/open{
-	anchored = 1
-	},
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "jK" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -641,33 +637,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
-"jL" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 2
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -8;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 10
-	},
-/obj/item/reagent_containers/food/condiment/soysauce{
-	pixel_x = 15;
-	pixel_y = 7
-	},
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "training"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "jZ" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
@@ -709,6 +678,18 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"kM" = (
+/obj/structure/sign/departments/control{
+	pixel_x = 32
+	},
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_control";
+	shuttleId = "backup_epsilon"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "kQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -779,6 +760,9 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"lL" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/welfare)
 "lN" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -799,6 +783,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"lX" = (
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/information)
 "mh" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
@@ -849,6 +836,23 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
+"mR" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
+"mV" = (
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_info";
+	shuttleId = "secondary"
+	},
+/obj/structure/sign/departments/info{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "ne" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
@@ -1085,6 +1089,15 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"qK" = (
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_training";
+	shuttleId = "secondary"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
 "qM" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -1193,6 +1206,13 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"tn" = (
+/obj/machinery/light,
+/obj/structure/sign/departments/discipline{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "to" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
@@ -1269,6 +1289,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"tV" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 4;
+	id = "backup_info";
+	name = "5F - Information";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/information)
 "uf" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
@@ -1329,13 +1359,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"vb" = (
-/obj/machinery/button/door/indestructible{
-	id = "training";
-	name = "Kitchen Access Shutters"
-	},
-/turf/closed/indestructible/reinforced,
-/area/department_main/training)
 "vg" = (
 /obj/structure/rack,
 /obj/machinery/light,
@@ -1354,38 +1377,6 @@
 /obj/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
 /area/department_main/control)
-"vs" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/structure/sign/poster/contraband/city_cola{
-	pixel_x = -32
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
-"vt" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "vE" = (
 /obj/structure/table/reinforced,
 /obj/item/encryptionkey/headset_discipline,
@@ -1456,7 +1447,7 @@
 	dir = 4;
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_info";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -1521,10 +1512,6 @@
 "xz" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
-"xA" = (
-/obj/structure/sign/poster/official/work_for_a_future,
-/turf/closed/indestructible/reinforced,
-/area/department_main/training)
 "xE" = (
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/carpet/royalblue,
@@ -1535,20 +1522,10 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"xW" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 9
-	},
-/obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
+"xH" = (
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/information)
 "ye" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1639,6 +1616,12 @@
 /obj/item/encryptionkey/headset_welfare,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"yM" = (
+/obj/structure/sign/departments/safety{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "zd" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -1660,6 +1643,10 @@
 /obj/item/encryptionkey/headset_welfare,
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"zw" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "zC" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet,
@@ -1669,7 +1656,7 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
 "zR" = (
-/obj/machinery/telecomms/server/presets/command,
+/obj/machinery/telecomms/server/presets/service,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "zV" = (
@@ -1711,22 +1698,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
-"AH" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "AN" = (
 /obj/effect/turf_decal/siding/green/corner,
 /turf/open/indestructible/white,
@@ -1758,20 +1729,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
-"Bb" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown/end,
-/obj/machinery/door/airlock/wood/glass,
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "training"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Bm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/departments/safety{
@@ -1780,7 +1737,7 @@
 /obj/machinery/computer/shuttle/mining{
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_safety";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -1800,6 +1757,7 @@
 /area/department_main/control)
 "Bv" = (
 /obj/machinery/camera/autoname,
+/obj/structure/closet/secure_closet/record,
 /turf/open/floor/carpet/black,
 /area/department_main/information)
 "BC" = (
@@ -1819,6 +1777,12 @@
 	},
 /turf/open/indestructible/white,
 /area/department_main/safety)
+"BS" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Welfare Department"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "BT" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Safety Department"
@@ -1881,7 +1845,7 @@
 	dir = 4;
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_training";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -1933,7 +1897,7 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
 "DC" = (
-/obj/machinery/telecomms/server/presets/common,
+/obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "DM" = (
@@ -1972,6 +1936,16 @@
 /obj/machinery/vending/cola/shamblers,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
+/area/department_main/training)
+"Ew" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 4;
+	id = "backup_training";
+	name = "4F - Training";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
 "Ey" = (
 /obj/effect/turf_decal/siding{
@@ -2081,7 +2055,7 @@
 /obj/machinery/computer/shuttle/mining{
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_welfare";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -2115,18 +2089,9 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
-"GM" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 5
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/showroomfloor,
+"GS" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "GU" = (
 /obj/effect/turf_decal/siding/purple{
@@ -2230,18 +2195,22 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"Io" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 4;
+	id = "backup_control";
+	name = "2F - Control";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/control)
 "Is" = (
 /obj/effect/turf_decal/siding/green/corner{
 	dir = 8
 	},
 /turf/open/indestructible/white,
 /area/department_main/safety)
-"IC" = (
-/obj/machinery/camera/autoname{
-	dir = 9
-	},
-/turf/closed/indestructible/reinforced,
-/area/department_main/discipline)
 "IE" = (
 /turf/open/floor/wood,
 /area/department_main/welfare)
@@ -2289,6 +2258,19 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"JF" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
+"JH" = (
+/obj/machinery/light,
+/obj/structure/sign/departments/training{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
 "JS" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -2315,12 +2297,25 @@
 /obj/effect/turf_decal/siding/green,
 /turf/open/indestructible/white,
 /area/department_main/safety)
+"Ko" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "Kr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"Ks" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 4;
+	name = "backup elevator console";
+	possible_destinations = "backup_safety";
+	shuttleId = "secondary"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "Ku" = (
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/plasteel/dark,
@@ -2389,8 +2384,12 @@
 "Ln" = (
 /obj/structure/closet/crate,
 /obj/machinery/camera/autoname,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"LJ" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/safety)
 "LR" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/siding/green,
@@ -2469,21 +2468,6 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/grass,
 /area/department_main/safety)
-"MH" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "MK" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
@@ -2587,20 +2571,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"NO" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/toy/plush/pierre,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "NU" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -2617,6 +2587,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"Oc" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Oh" = (
 /obj/structure/weightmachine/stacklifter,
 /obj/effect/turf_decal/siding/brown{
@@ -2628,24 +2605,6 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
-"On" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/sign/poster/contraband/starkist{
-	pixel_x = 32
-	},
-/obj/machinery/camera/autoname{
-	dir = 9
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Oq" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /obj/effect/turf_decal/bot,
@@ -2663,51 +2622,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
-"OD" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/milk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/soymilk,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/sugar,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/structure/closet/secure_closet/freezer,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "OJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor_switch/oneway{
@@ -2756,6 +2670,15 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/welfare)
+"Ph" = (
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_discipline";
+	shuttleId = "secondary"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Pi" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -2766,21 +2689,6 @@
 /obj/effect/landmark/department_center,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"Pr" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
-/obj/item/clothing/suit/apron/chef,
-/obj/item/clothing/head/chefhat,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "PB" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -2805,22 +2713,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
-"PJ" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/cups,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "PN" = (
 /mob/living/simple_animal/hostile/retaliate/goose,
 /turf/open/floor/plating/grass,
 /area/facility_hallway/information)
+"PZ" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 4;
+	id = "backup_welfare";
+	name = "7F - Welfare";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/welfare)
 "Qd" = (
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -2842,16 +2748,6 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"Qv" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/machinery/processor,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "QC" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2895,20 +2791,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"QX" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Rb" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -2934,19 +2816,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"Rs" = (
-/obj/structure/table/reinforced,
-/obj/machinery/microwave{
-	pixel_y = 7
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Rt" = (
 /obj/structure/bed,
 /obj/machinery/camera/autoname{
@@ -2964,15 +2833,16 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
-"RK" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
+"RD" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "RM" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/siding{
@@ -2999,16 +2869,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"Sn" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/machinery/gibber,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Su" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
@@ -3024,19 +2884,12 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
-"SG" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 10
+"SD" = (
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/chem_master/condimaster,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "SH" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/siding{
@@ -3068,16 +2921,6 @@
 "SW" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/information)
-"Tb" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Tc" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -3122,25 +2965,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"TR" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/turf/open/floor/carpet/orange,
-/area/department_main/training)
-"TT" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "TU" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Disciplinary Department"
@@ -3161,7 +2985,7 @@
 	dir = 4;
 	max_integrity = 350000;
 	name = "elevator console";
-	possible_destinations = "epsilon_command;epsilon_control;epsilon_safety;epsilon_training;epsilon_info;epsilon_discipline;epsilon_welfare";
+	possible_destinations = "epsilon_control";
 	shuttleId = "epsilon"
 	},
 /turf/open/floor/plasteel/dark,
@@ -3225,6 +3049,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"UP" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/control)
 "UR" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -3245,16 +3072,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
-"UZ" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown/corner,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Vi" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -3265,20 +3082,12 @@
 "Vj" = (
 /obj/structure/closet/crate,
 /obj/item/storage/belt/ego,
+/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Vk" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"Vr" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "VI" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -3358,19 +3167,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"WV" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/icecream_vat,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "WW" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -3398,16 +3194,6 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
-"Xa" = (
-/obj/effect/turf_decal/siding/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Xb" = (
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -3454,21 +3240,6 @@
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/chlown,
 /turf/open/floor/plating,
 /area/facility_hallway/information)
-"XI" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/sink/kitchen{
-	pixel_y = 14
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "XJ" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -3500,19 +3271,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
-"Yp" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown/corner,
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Yq" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -3523,10 +3281,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
-"YA" = (
-/obj/machinery/smartfridge/food,
-/turf/closed/indestructible/reinforced,
-/area/department_main/training)
 "YK" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -3547,6 +3301,16 @@
 	},
 /turf/open/indestructible/white,
 /area/department_main/safety)
+"YQ" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 4;
+	id = "backup_discipline";
+	name = "6F - Discipline";
+	width = 6
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/department_main/discipline)
 "YS" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/safety)
@@ -3588,27 +3352,6 @@
 /obj/item/toy/crayon/spraycan/infinite,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
-"Zp" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = 10
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "Zs" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
@@ -3616,22 +3359,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
-"ZB" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 6
-	},
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "training"
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/department_main/training)
 "ZI" = (
 /obj/structure/mirror{
 	pixel_y = 32
@@ -6808,15 +6535,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+az
+az
+az
+az
+az
+az
+az
+az
 QD
 QD
 QD
@@ -7065,15 +6792,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+UP
+UP
+UP
+UP
+af
+af
+zw
+az
 QD
 QD
 QD
@@ -7322,15 +7049,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+UP
+UP
+UP
+UP
+af
+af
+ak
+az
 QD
 QD
 QD
@@ -7579,15 +7306,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+UP
+UP
+UP
+Io
+af
+af
+af
+az
 QD
 QD
 QD
@@ -7836,15 +7563,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+UP
+UP
+UP
+UP
+af
+af
+af
+az
 QD
 QD
 QD
@@ -8093,15 +7820,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+az
+UP
+UP
+UP
+UP
+kM
+af
+zw
+az
 QD
 QD
 QD
@@ -8356,7 +8083,7 @@ az
 az
 qM
 az
-az
+Rg
 az
 az
 QD
@@ -9127,7 +8854,7 @@ wf
 wf
 az
 UY
-af
+Ah
 gu
 az
 QD
@@ -11440,7 +11167,7 @@ az
 az
 qM
 Ij
-Ah
+af
 gu
 aj
 ps
@@ -20481,9 +20208,9 @@ Zs
 Zs
 Zs
 Zs
-QD
-QD
-QD
+Zs
+Zs
+Zs
 QD
 QD
 QD
@@ -20734,13 +20461,13 @@ Zs
 qW
 ru
 BX
-Bo
-UK
+yM
+Ks
+LJ
+LJ
+LJ
+LJ
 Zs
-QD
-QD
-QD
-QD
 QD
 QD
 QD
@@ -20991,13 +20718,13 @@ mP
 qW
 ru
 BX
+ru
+ru
+LJ
+LJ
+LJ
+LJ
 Zs
-Zs
-Zs
-QD
-QD
-QD
-QD
 QD
 QD
 QD
@@ -21248,13 +20975,13 @@ Zs
 qW
 ru
 BX
-Bo
-UK
+ru
+ru
+cW
+LJ
+LJ
+LJ
 Zs
-QD
-QD
-QD
-QD
 QD
 QD
 QD
@@ -21505,13 +21232,13 @@ Zs
 qW
 ru
 BX
+ru
+ru
+LJ
+LJ
+LJ
+LJ
 Zs
-Zs
-Zs
-QD
-QD
-QD
-QD
 QD
 QD
 QD
@@ -21762,13 +21489,13 @@ Zs
 WY
 ru
 BX
-Bo
-UK
+ru
+ru
+LJ
+LJ
+LJ
+LJ
 Zs
-QD
-QD
-QD
-QD
 QD
 QD
 QD
@@ -22022,10 +21749,10 @@ BX
 Zs
 Zs
 Zs
-QD
-QD
-QD
-QD
+Zs
+Zs
+Zs
+Zs
 QD
 QD
 QD
@@ -27935,11 +27662,11 @@ QD
 QD
 QD
 QD
-ZL
-ZL
-ZL
-ZL
-ZL
+QD
+QD
+QD
+QD
+QD
 ZL
 ZL
 ZL
@@ -28191,13 +27918,13 @@ QD
 QD
 QD
 QD
-QD
 ZL
-xW
-NO
-AH
-vs
-SG
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 EB
 nz
@@ -28448,14 +28175,14 @@ QD
 QD
 QD
 QD
-QD
 ZL
-bq
-Vr
-Vr
-Vr
-Tb
-YA
+Mf
+Mf
+Mf
+Mf
+Xo
+GS
+ZL
 xG
 Xb
 Xb
@@ -28705,15 +28432,15 @@ QD
 QD
 QD
 QD
-QD
-xA
-Zp
-Vr
-Sn
-Qv
-TT
-jL
-TR
+ZL
+Mf
+Mf
+Mf
+Mf
+Xo
+Xo
+Xo
+xG
 Xb
 Xb
 Xb
@@ -28962,15 +28689,15 @@ QD
 QD
 QD
 QD
-QD
 ZL
-XI
-Vr
-Pr
-QX
-UZ
-ZB
-TR
+Mf
+Mf
+Mf
+Ew
+Xo
+Xo
+Xo
+xG
 Xb
 ih
 Xb
@@ -29219,15 +28946,15 @@ QD
 QD
 QD
 QD
-QD
 ZL
-OD
-Vr
-PJ
-Rs
-Xa
-vb
-WW
+Mf
+Mf
+Mf
+Mf
+Xo
+Xo
+Xo
+xG
 Xb
 Xb
 Xb
@@ -29476,15 +29203,15 @@ QD
 QD
 QD
 QD
-QD
 ZL
-jH
-Vr
-Vr
-RK
-Yp
-Bb
-xG
+Mf
+Mf
+Mf
+Mf
+qK
+JH
+ZL
+WW
 Xb
 Xb
 Xb
@@ -29733,13 +29460,13 @@ QD
 QD
 QD
 QD
-QD
 ZL
-MH
-Vr
-Vr
-Vr
-Xa
+ZL
+ZL
+ZL
+ZL
+ZL
+ZL
 ZL
 yn
 Xb
@@ -29991,12 +29718,12 @@ QD
 QD
 QD
 QD
-ZL
-GM
-On
-vt
-WV
-jy
+QD
+QD
+QD
+QD
+QD
+QD
 ZL
 Oh
 bQ
@@ -30248,11 +29975,11 @@ QD
 QD
 QD
 QD
-ZL
-ZL
-ZL
-ZL
-ZL
+QD
+QD
+QD
+QD
+QD
 ZL
 ZL
 ZL
@@ -41086,7 +40813,7 @@ Yb
 Yb
 Yb
 Yb
-QD
+Yb
 QD
 QD
 QD
@@ -41342,8 +41069,8 @@ Ky
 oN
 KU
 Rz
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -41599,8 +41326,8 @@ Ky
 Wf
 aN
 ur
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -41856,8 +41583,8 @@ Ky
 pd
 fy
 HP
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -42091,8 +41818,8 @@ QD
 QD
 QD
 QD
-DM
-DM
+QD
+QD
 DM
 qw
 Nc
@@ -42113,8 +41840,8 @@ Ky
 Cw
 eP
 Fy
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -42348,12 +42075,12 @@ QD
 QD
 QD
 QD
+QD
+QD
 DM
 np
-EQ
+Nc
 Cl
-Nc
-Nc
 Yb
 Bv
 wQ
@@ -42370,8 +42097,8 @@ Ky
 UR
 fp
 ql
+xH
 Yb
-QD
 QD
 QD
 QD
@@ -42605,8 +42332,8 @@ QD
 QD
 QD
 QD
-DM
-DM
+QD
+QD
 DM
 ko
 Nc
@@ -42623,12 +42350,12 @@ it
 nj
 Yq
 rc
-Yb
+Ky
 Oq
 Mr
 uJ
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -42880,12 +42607,12 @@ Yq
 Yq
 Yq
 tF
-Yb
+Ky
 DC
 zR
 OZ
+lX
 Yb
-QD
 QD
 QD
 QD
@@ -43142,7 +42869,7 @@ Yb
 Yb
 Yb
 Yb
-QD
+Yb
 QD
 QD
 QD
@@ -45442,7 +45169,7 @@ xz
 xz
 xz
 xz
-nP
+xz
 xz
 xz
 xz
@@ -46988,7 +46715,7 @@ Qe
 Qe
 rl
 GU
-xz
+nP
 cG
 TL
 Qe
@@ -47494,7 +47221,7 @@ rl
 rl
 rl
 rl
-rl
+lf
 rl
 rl
 rl
@@ -47745,15 +47472,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+jC
+jC
+jC
+jC
+xz
+xz
+ba
+rl
 QD
 QD
 QD
@@ -48002,15 +47729,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+jC
+jC
+jC
+jC
+xz
+xz
+xz
+rl
 QD
 QD
 QD
@@ -48259,15 +47986,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+jC
+jC
+jC
+tV
+xz
+xz
+SD
+rl
 QD
 QD
 QD
@@ -48516,15 +48243,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+jC
+jC
+jC
+jC
+xz
+xz
+xz
+rl
 QD
 QD
 QD
@@ -48773,15 +48500,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+jC
+jC
+jC
+jC
+mV
+xz
+ba
+rl
 QD
 QD
 QD
@@ -49030,15 +48757,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+rl
+rl
+rl
+rl
+rl
+rl
+rl
+rl
+rl
 QD
 QD
 QD
@@ -52146,7 +51873,7 @@ QD
 QD
 XE
 Ln
-jD
+My
 My
 My
 My
@@ -52394,16 +52121,16 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+XE
+XE
+XE
+XE
+XE
+XE
+XE
 XE
 Vj
-jD
+My
 My
 My
 My
@@ -52651,16 +52378,16 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-IC
+XE
+hk
+hk
+hk
+hk
+My
+ft
+XE
 dN
-jD
+My
 My
 My
 My
@@ -52908,22 +52635,22 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-IC
-KP
-KP
-Hz
-Hz
-KP
-TU
-KP
-KP
+XE
+hk
+hk
+hk
+hk
+My
+My
+My
+My
+My
+My
+My
+My
+My
+XE
+XE
 pw
 pw
 pw
@@ -53165,22 +52892,22 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-KP
-KP
-KP
-KP
-KP
-EX
-Sy
-fW
-OV
-CB
-mG
-KP
+XE
+hk
+hk
+hk
+YQ
+My
+My
+My
+My
+My
+My
+My
+My
+My
+Oc
+XE
 pw
 pw
 pw
@@ -53422,22 +53149,22 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-KP
-hK
-kU
-aA
-KP
-hd
-DU
-DU
-DU
-DU
-Yz
-KP
+XE
+hk
+hk
+hk
+hk
+My
+My
+My
+My
+My
+My
+My
+My
+My
+Oc
+XE
 GD
 pw
 pw
@@ -53679,22 +53406,22 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-KP
-hx
-kU
-vg
-KP
-hd
-DU
-DU
-DU
-DU
-Yz
-KP
+XE
+hk
+hk
+hk
+hk
+Ph
+tn
+XE
+RD
+My
+My
+My
+My
+My
+Oc
+XE
 XE
 XE
 XE
@@ -53936,21 +53663,21 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-KP
-VR
-kU
-IR
-KP
-gw
-DU
-DU
-DU
-DU
-SH
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+mR
+My
+My
+My
+My
+My
+Oc
 mh
 BY
 BY
@@ -54062,6 +53789,1548 @@ QD
 QD
 "}
 (197,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+XE
+mR
+My
+My
+My
+My
+My
+fc
+mh
+BY
+BY
+BY
+mh
+hI
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(198,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+XE
+KP
+KP
+Hz
+Hz
+KP
+TU
+KP
+mh
+BY
+BY
+BY
+mh
+QO
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(199,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+KP
+KP
+KP
+KP
+KP
+EX
+Sy
+fW
+OV
+CB
+mG
+mh
+BY
+BY
+BY
+mh
+hI
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(200,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+KP
+hK
+kU
+aA
+KP
+hd
+DU
+DU
+DU
+DU
+Yz
+mh
+BY
+BY
+BY
+mh
+hI
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(201,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+KP
+hx
+kU
+vg
+KP
+hd
+DU
+DU
+DU
+DU
+Yz
+mh
+mh
+mh
+mh
+Xd
+xj
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(202,1,1) = {"
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+KP
+VR
+kU
+IR
+KP
+gw
+DU
+DU
+DU
+DU
+SH
+mh
+BY
+BY
+BY
+mh
+hI
+KA
+dX
+mh
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+QD
+"}
+(203,1,1) = {"
 QD
 QD
 QD
@@ -54318,7 +55587,7 @@ QD
 QD
 QD
 "}
-(198,1,1) = {"
+(204,1,1) = {"
 QD
 QD
 QD
@@ -54575,1548 +55844,6 @@ QD
 QD
 QD
 "}
-(199,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-KP
-KP
-KP
-KP
-KP
-KP
-KP
-QD
-QD
-QD
-mh
-BY
-BY
-BY
-mh
-hI
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
-(200,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-mh
-BY
-BY
-BY
-mh
-hI
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
-(201,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-mh
-mh
-mh
-mh
-Xd
-xj
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
-(202,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-mh
-BY
-BY
-BY
-mh
-hI
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
-(203,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-mh
-BY
-BY
-BY
-mh
-hI
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
-(204,1,1) = {"
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-mh
-BY
-BY
-BY
-mh
-QO
-KA
-dX
-mh
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-"}
 (205,1,1) = {"
 QD
 QD
@@ -56254,13 +55981,13 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+KP
+KP
+KP
+KP
+KP
+KP
+KP
 QD
 QD
 QD
@@ -62988,7 +62715,7 @@ Hi
 Hi
 Hi
 Hi
-Hi
+BS
 Hi
 Hi
 QD
@@ -63239,15 +62966,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+lL
+lL
+lL
+lL
+jo
+WH
+Ko
+Hi
 QD
 QD
 QD
@@ -63496,15 +63223,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+lL
+lL
+lL
+lL
+WH
+WH
+JF
+Hi
 QD
 QD
 QD
@@ -63753,15 +63480,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+lL
+lL
+lL
+PZ
+WH
+WH
+WH
+Hi
 QD
 QD
 QD
@@ -64010,15 +63737,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+lL
+lL
+lL
+lL
+WH
+WH
+WH
+Hi
 QD
 QD
 QD
@@ -64267,15 +63994,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+lL
+lL
+lL
+lL
+aY
+WH
+Ko
+Hi
 QD
 QD
 QD
@@ -64524,15 +64251,15 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
-QD
+Hi
+Hi
+Hi
+Hi
+Hi
+Hi
+Hi
+Hi
+Hi
 QD
 QD
 QD

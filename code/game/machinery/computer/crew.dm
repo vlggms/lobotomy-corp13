@@ -38,8 +38,13 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Records Officer" = 02,
 		"Sephirah" = 03,
 		// 10-19: Security
+		//Either Captain or Department head depending on the map
 		"Agent Captain" = 10,
+		"Department Head" = 10,
+
+		"Department Captain" = 11,
 		"Agent Lieutenant" = 11,
+
 		"Veteran Agent" = 12,
 		"Senior Agent" = 13,
 		"Agent" = 14,

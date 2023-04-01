@@ -22,6 +22,7 @@
 /obj/machinery/computer/abnormality_queue/ui_data(mob/user)
 	var/list/data = list()
 	data["current"] = "ERROR - Please yell at coders"
+	data["enablehardcore"] = SSabnormality_queue.hardcore_roll_enabled
 
 	if(!LAZYLEN(SSabnormality_queue.picking_abnormalities) && !ispath(SSabnormality_queue.queued_abnormality))
 		data["current"] = "ERROR - No data. Please try again later."
@@ -79,8 +80,11 @@
 			var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
 			UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
 		if("hardcore_fuck_it_lets_roll")
-			var/mob/living/simple_animal/hostile/abnormality/target_type = pick(pick(SSabnormality_queue.possible_abnormalities))
-			UpdateAnomaly(target_type, "hardcore fucked it and rolled", TRUE)
+			if (SSabnormality_queue.hardcore_roll_enabled)
+				var/mob/living/simple_animal/hostile/abnormality/target_type = pick(pick(SSabnormality_queue.possible_abnormalities))
+				UpdateAnomaly(target_type, "hardcore fucked it and rolled", TRUE)
+			else
+				message_admins("[usr] has managed to send a TGUI signal to hardcore fuck it and roll despite the option being disabled. This is indicative of hacking.")
 
 	update_icon()
 
