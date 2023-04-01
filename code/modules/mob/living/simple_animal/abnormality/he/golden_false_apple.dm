@@ -28,7 +28,6 @@
 	move_to_delay = 4
 	attack_verb_continuous = "tackles"
 	attack_verb_simple = "tackle"
-	faction = list("hostile")
 	attack_sound = "sound/abnormalities/goldenapple/Gold_Attack.ogg"
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 10
@@ -59,7 +58,7 @@
 	gift_type = /datum/ego_gifts/legerdemain
 	gift_message = "You feel a sense of kinship with the apple. Because you're both pests."
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
-	var/is_maggot = 0
+	var/is_maggot = FALSE
 	var/smash_length = 2
 	var/smash_width = 2
 	var/can_act = TRUE
@@ -236,7 +235,7 @@
 	icon_state = "false_apple"
 	icon_living = "false_apple"
 	icon_dead = "false_egg"
-	deathmessage = "is reduced to a primoridal egg."
+	deathmessage = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
 	pixel_x = -48
