@@ -1,6 +1,6 @@
 //Limbus Company
 /obj/item/clothing/under/limbus
-	icon = 'icons/obj/clothing/under/suits.dmi'
+	icon = 'icons/obj/clothing/ego_gear/lcuniform.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/under.dmi'
 	can_adjust = FALSE //adjusting is mostly hardcoded. Im not messing with any of it.
 

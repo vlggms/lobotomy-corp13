@@ -268,13 +268,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
-"bk" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
+"bg" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 4
@@ -295,14 +292,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
-"bq" = (
-/obj/structure/table/glass,
-/obj/effect/turf_decal/siding/purple{
-	dir = 4
-	},
-/obj/structure/microscope,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "bt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1233,6 +1222,22 @@
 /obj/item/clothing/accessory/armband/lobotomy/safety,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"gz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "gA" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -1467,27 +1472,6 @@
 	},
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
-"hR" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/obj/structure/sign/ordealmonitor{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
-"hT" = (
-/obj/structure/table/glass,
-/obj/item/camera,
-/obj/item/camera_film,
-/obj/effect/turf_decal/siding/purple/corner,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "hU" = (
 /obj/machinery/computer/med_data{
 	dir = 1;
@@ -1625,6 +1609,30 @@
 	dir = 8
 	},
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/information)
+"it" = (
+/obj/structure/table/glass,
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/item/refiner_filter/blue{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/refiner_filter/green{
+	pixel_x = -1;
+	pixel_y = -1
+	},
+/obj/item/refiner_filter/red{
+	pixel_x = 10;
+	pixel_y = -7
+	},
+/obj/item/refiner_filter/yellow{
+	pixel_x = -4;
+	pixel_y = -8
+	},
+/obj/item/rawpe,
+/turf/open/floor/carpet/purple,
 /area/department_main/information)
 "iu" = (
 /obj/effect/turf_decal/siding/green{
@@ -2130,17 +2138,6 @@
 /obj/structure/railing,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
-"kQ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/newscaster{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "kR" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -2612,6 +2609,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"mP" = (
+/obj/effect/turf_decal/siding/purple/corner,
+/obj/structure/refinery,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "mS" = (
 /obj/machinery/button/door{
 	id = "cellthree";
@@ -4436,6 +4438,19 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"vs" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/accessory/armband/lobotomy/discipline,
+/obj/item/clothing/accessory/armband/lobotomy/discipline,
+/obj/item/clothing/accessory/armband/lobotomy/discipline,
+/obj/item/clothing/accessory/armband/lobotomy/discipline,
+/obj/item/clothing/accessory/armband/lobotomy/discipline,
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "vt" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/closet/secure_closet/personal{
@@ -4495,6 +4510,10 @@
 /obj/structure/sign/poster/lobotomycorp/bearbeer,
 /turf/closed/indestructible/reinforced,
 /area/department_main/safety)
+"vP" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/department_main/discipline)
 "vQ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -6090,14 +6109,6 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
-"EP" = (
-/obj/structure/table/reinforced,
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "ES" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -7237,25 +7248,6 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"KC" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "KD" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -7597,15 +7589,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/carpet,
 /area/department_main/control)
-"MJ" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/cups,
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "MM" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -8029,6 +8012,13 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"OC" = (
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "OI" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/stellar,
@@ -8735,17 +8725,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"Sk" = (
-/obj/structure/table/reinforced,
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "Sl" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -10227,6 +10206,15 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
+"Zr" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/cups,
+/obj/effect/turf_decal/siding{
+	color = "#440000";
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Zs" = (
 /obj/item/toy/plush/carpplushie{
 	pixel_y = 8
@@ -35922,10 +35910,10 @@ rS
 rS
 rS
 rS
-rS
-rS
-rS
-rS
+vP
+vP
+vP
+vP
 rS
 no
 rS
@@ -36179,10 +36167,10 @@ oC
 WH
 pQ
 xB
-MJ
-bk
-KC
-EP
+OC
+OC
+bg
+Qa
 XQ
 ZA
 Nc
@@ -38749,9 +38737,9 @@ jw
 Nj
 SE
 xB
-kQ
-Sk
-hR
+Zr
+vs
+gz
 Xi
 ch
 ZA
@@ -44659,9 +44647,9 @@ eP
 tR
 DK
 Zg
-hT
+mP
+it
 xO
-bq
 pI
 gN
 DD

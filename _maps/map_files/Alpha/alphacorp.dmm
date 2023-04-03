@@ -216,6 +216,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"bJ" = (
+/obj/structure/refinery,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "bO" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -345,6 +349,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
+"cP" = (
+/obj/structure/table/glass,
+/obj/item/refiner_filter/green,
+/obj/item/refiner_filter/red{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "cU" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -1057,10 +1070,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"iA" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "iB" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/siding/purple,
@@ -3635,6 +3644,10 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
+"BA" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/department_main/control)
 "BB" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -4819,6 +4832,18 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"Lz" = (
+/obj/structure/table/glass,
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/refiner_filter/yellow{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "LD" = (
 /obj/structure/railing{
 	dir = 1
@@ -5510,6 +5535,15 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/wood,
 /area/facility_hallway/east)
+"RA" = (
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "RE" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -37990,7 +38024,7 @@ cv
 Sg
 YM
 wf
-pf
+bJ
 qD
 LX
 LX
@@ -38246,7 +38280,7 @@ YM
 YM
 Sg
 YM
-pf
+cP
 Mg
 YM
 oM
@@ -38503,7 +38537,7 @@ pR
 YM
 Sg
 YM
-pf
+Lz
 YM
 YM
 fP
@@ -42032,8 +42066,8 @@ lZ
 SB
 rg
 Zj
-iA
-iA
+Iq
+Iq
 Rq
 rg
 ZL
@@ -42289,8 +42323,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+Iq
+Iq
 rg
 rg
 ZL
@@ -42545,10 +42579,10 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
+BA
+Iq
+Iq
+rg
 ZL
 ZL
 ZL
@@ -42802,10 +42836,10 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
+BA
+Iq
+Iq
+rg
 ZL
 ZL
 ZL
@@ -43059,10 +43093,10 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
+BA
+Iq
+Iq
+rg
 ZL
 ZL
 ZL
@@ -43316,10 +43350,10 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
+BA
+Iq
+RA
+rg
 ZL
 ZL
 ZL
@@ -43573,10 +43607,10 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
+rg
 ZL
 ZL
 ZL

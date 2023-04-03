@@ -36,23 +36,8 @@
 		/obj/item/clothing/glasses/sunglasses/reagent,
 		/obj/item/clothing/suit/hawaiian,
 		/obj/item/clothing/neck/necklace/dope,
-		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat,
-		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat_short
 		)
 	var/list/tethitem = list(
-		/obj/item/ego_weapon/mini/hayong,
-		/obj/item/ego_weapon/shield/walpurgisnacht,
-		/obj/item/ego_weapon/lance/suenoimpossible,
-		/obj/item/ego_weapon/shield/sangria,
-		/obj/item/ego_weapon/mini/soleil,
-		/obj/item/ego_weapon/taixuhuanjing,
-		/obj/item/ego_weapon/revenge,
-		/obj/item/ego_weapon/shield/hearse,
-		/obj/item/ego_weapon/mini/hearse,
-		/obj/item/ego_weapon/raskolot,
-		/obj/item/ego_weapon/vogel,
-		/obj/item/ego_weapon/nobody,
-		/obj/item/ego_weapon/ungezifer,
 		/obj/item/clothing/suit/armor/ego_gear/training,
 		/obj/item/ego_weapon/training,
 		/obj/item/clothing/suit/armor/ego_gear/rookie,
@@ -69,8 +54,6 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
-		/obj/item/clothing/under/limbus/shirt,
-		/obj/item/clothing/accessory/limbusvest,
 		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/mask/cigarette/cigar/havana
 		)
@@ -93,8 +76,6 @@
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
 		/obj/item/clothing/under/suit/lobotomy/records,
-		/obj/item/clothing/under/limbus/prison,
-		/obj/item/clothing/neck/limbus_tie
 		)
 	var/list/baditem = list(
 		/obj/item/toy/plush/yisang,

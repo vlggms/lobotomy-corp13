@@ -1,7 +1,7 @@
 /obj/item/clothing/under/suit/lobotomy
 	name = "agent uniform"
 	desc = "A tailored black suit, used by company security agents."
-	icon = 'icons/obj/clothing/under/suits.dmi'
+	icon = 'icons/obj/clothing/ego_gear/lcuniform.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/under.dmi'
 	icon_state = "agent"
 	can_adjust = FALSE
@@ -65,3 +65,8 @@
 	name = "\improper r-corp uniform"
 	desc = "A black uniform with a orange line worn by R-corps mercenaries."
 	icon_state = "rabbit"
+
+/obj/item/clothing/under/suit/lobotomy/wcorp
+	name = "\improper w-corp uniform"
+	desc = "A blue and black uniform worn by w-corp employees."
+	icon_state = "wuniform"
