@@ -38,19 +38,24 @@
 //	gift_type =  /datum/ego_gifts/gaze
 
 	var/seen	//Are you being looked at right now?
+	var/solo_punish	//Is an agent alone on the Z level, but not overall?
 
 //Sight Check
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Life()
 	. = ..()
 	//Make sure there actually are two players on the Z level
 	var/living_players
+	solo_punish = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.z == z && H.stat != DEAD)
 			living_players +=1
+		else if(H.stat != DEAD) //Someone else is alive, just not on the Z level. Probably a manager. Thus, someone else COULD see you...
+			solo_punish = TRUE
 	if(living_players == 1)
 		seen = TRUE
 		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
 		return
+	solo_punish = FALSE //Reset to normal if the amount of living players on your z-level is something other than 1, to allow normal behavior.
 
 	//Who is watching us
 	var/people_watching
@@ -85,15 +90,16 @@
 	..()
 
 //Work stuff
+//Too many people looking? Reduce final work success rate to 0.
+/mob/living/simple_animal/hostile/abnormality/schadenfreude/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
+	if(seen && !solo_punish) //If you're only considered "seen" because the other living player(s) are all on another Z level, disregard it during work specifically.
+		to_chat(user, "<span class='warning'>You are injured by [src]!</span>") // Keeping it clear that the bad work is from being seen and not just luck.
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+		return 0
+	return init_work_chance
+
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user)
 	..()
 	icon_living = "schadenfreude_breach"
 	icon_state = icon_living
 	GiveTarget(user)
-
-//I'm not writing more snowflake code for this lol. You just take more damage
-/mob/living/simple_animal/hostile/abnormality/schadenfreude/Worktick(mob/living/carbon/human/user)
-	if(seen)
-		to_chat(user, "<span class='warning'>You are injured by schadenfreude!</span>")
-		user.apply_damage(work_damage_amount, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))

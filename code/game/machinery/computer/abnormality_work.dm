@@ -170,16 +170,19 @@
 	user.density = FALSE // If they can be walked through they can't be switched! I didn't wanna add chairs because if there WAS it'd nullify the ability to DODGE issues that appear.
 	user.set_anchored(TRUE)
 	user.is_working = TRUE
+	// Initial chance and speed values before work started, in case they get overriden by abnormality
+	var/init_work_chance = work_chance
+	var/init_work_speed = work_speed
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
+		work_speed = datum_reference.current.SpeedWorktickOverride(user, work_speed, init_work_speed, work_type)
 		if(do_after(user, work_speed, src, IGNORE_HELD_ITEM))
 			if(!CheckStatus(user))
 				break
-			user.remove_status_effect(/datum/status_effect/interventionshield) //removing status effect doesnt seem to effect all of parent. -IP
-			user.remove_status_effect(/datum/status_effect/interventionshield/white)
-			user.remove_status_effect(/datum/status_effect/interventionshield/black)
-			user.remove_status_effect(/datum/status_effect/interventionshield/pale)
+			for(var/shield_type in typesof(/datum/status_effect/interventionshield))
+				user.remove_status_effect(shield_type)
+			work_chance = datum_reference.current.ChanceWorktickOverride(user, work_chance, init_work_chance, work_type)
 			if(do_work(work_chance))
 				success_boxes++
 				datum_reference.current.WorktickSuccess(user)
