@@ -718,12 +718,12 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/slashmiss.ogg'
 	reductions = list(70, 50, 70, 40)
-	recovery_time = 1 SECONDS
-	block_time = 3 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 1 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
-	projectile_block = "You swat the projectile out of the air!"
-	reposition_message = "You rearm your E.G.O."
+	projectile_block_message = "You swat the projectile out of the air!"
+	block_cooldown_message = "You rearm your E.G.O."
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -898,14 +898,14 @@
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	reductions = list(95, 95, 95, 40)
-	recovery_time = 0.5 SECONDS
-	block_time = 0.5 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 0.5 SECONDS
+	block_duration = 0.5 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
-	projectile_block ="A God does not fear death!"
+	projectile_block_message ="A God does not fear death!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your blade."
+	block_cooldown_message = "You rearm your blade."
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)

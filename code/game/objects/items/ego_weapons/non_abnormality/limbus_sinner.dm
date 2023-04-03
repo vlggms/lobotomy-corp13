@@ -41,14 +41,14 @@
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	reductions = list(20, 10, 10, 0) //longer parry, lower values; not a proper shield
-	recovery_time = 1 SECONDS
-	block_time = 1 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
-	projectile_block = "You swat the projectile out of the air!"
+	projectile_block_message = "You swat the projectile out of the air!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your E.G.O."
+	block_cooldown_message = "You rearm your E.G.O."
 
 /obj/item/ego_weapon/lance/suenoimpossible
 	name = "sueno impossible"
@@ -83,13 +83,13 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	reductions = list(20, 20, 20, 0)
-	recovery_time = 0 SECONDS //No ranged parry
-	block_time = 0.5 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 0 SECONDS //No ranged parry
+	block_duration = 0.5 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your blade."
+	block_cooldown_message = "You rearm your blade."
 
 /obj/item/ego_weapon/shield/sangria/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0 //Prevents ranged  parry
@@ -175,9 +175,9 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
 	reductions = list(20, 20, 20, 0)
-	recovery_time = 3 SECONDS
-	block_time = 3 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 3 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
 
 /obj/item/ego_weapon/raskolot //horn but a boomerang
 	name = "raskolot"

@@ -147,14 +147,14 @@
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	reductions = list(90, 90, 90, 30)
-	recovery_time = 0.5 SECONDS
-	block_time = 0.5 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 0.5 SECONDS
+	block_duration = 0.5 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/crumbling_parry.ogg'
-	projectile_block ="A God does not fear death!"
+	projectile_block_message ="A God does not fear death!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your blade."
+	block_cooldown_message = "You rearm your blade."
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
@@ -166,10 +166,10 @@
 	var/mob/living/carbon/human/myman = user
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		attack_speed = 0.33
-		recovery_time = 0.33 SECONDS
+		projectile_block_cooldown = 0.33 SECONDS
 	else
 		attack_speed = 0.5
-		recovery_time = 0.5 SECONDS
+		projectile_block_cooldown = 0.5 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
@@ -184,9 +184,9 @@
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
 	if (naked_parry)
-		block_recovery = 2 SECONDS
+		block_cooldown = 2 SECONDS
 	else
-		block_recovery = 3 SECONDS
+		block_cooldown = 3 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
@@ -195,9 +195,9 @@
 
 /obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
 	if (naked_parry)
-		stance_recovery = 2 SECONDS
+		debuff_duration = 2 SECONDS
 	else
-		stance_recovery = 3 SECONDS
+		debuff_duration = 3 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -413,9 +413,9 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
 	reductions = list(60, 30, 30, 20)
-	recovery_time = 3 SECONDS
-	block_time = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
-	block_recovery = 5 SECONDS //always 6 seconds total before blocking again
+	projectile_block_cooldown = 3 SECONDS
+	block_duration = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
+	block_cooldown = 5 SECONDS //always 6 seconds total before blocking again
 	block_sound = 'sound/abnormalities/scaredycat/cateleport.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -429,8 +429,8 @@
 		if(friend_count > 4)
 			break
 		if(friend.ckey && friend.stat != DEAD && friend != user)
-			block_time += 0.5 SECONDS
-			block_recovery -= 0.5 SECONDS
+			block_duration += 0.5 SECONDS
+			block_cooldown -= 0.5 SECONDS
 			friend_count++
 	if(!friend_count && icon_state == "bravery")
 		to_chat(user, "<span class='warning'>Your weapon cowers in your hand!")
@@ -442,8 +442,8 @@
 		playsound(src, 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, FALSE, 4)
 	user.update_icon_state()
 	..()
-	block_time = initial(block_time)
-	block_recovery = initial(block_recovery)
+	block_duration = initial(block_duration)
+	block_cooldown = initial(block_cooldown)
 
 /obj/item/ego_weapon/pleasure
 	name = "pleasure"
@@ -531,9 +531,9 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
 	reductions = list(40, 20, 40, 20)
-	recovery_time = 3 SECONDS
-	block_time = 3 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 3 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -593,14 +593,14 @@
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
 	reductions = list(10, 20, 30, 10) //longer parry, lower values; not a proper shield
-	recovery_time = 1 SECONDS
-	block_time = 1 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
-	projectile_block = "You swat the projectile out of the air!"
+	projectile_block_message = "You swat the projectile out of the air!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your E.G.O."
+	block_cooldown_message = "You rearm your E.G.O."
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -696,14 +696,14 @@
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
 	reductions = list(10, 20, 20, 0)
-	recovery_time = 0.5 SECONDS
-	block_time = 1 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 0.5 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
-	projectile_block ="Your E.G.O swats the projectile away!"
+	projectile_block_message ="Your E.G.O swats the projectile away!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You reposition your E.G.O."
+	block_cooldown_message = "You reposition your E.G.O."
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -722,13 +722,13 @@
 			if(AC.datum_reference.working) // No blocking during work.
 				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
 				return FALSE
-		block = 1
+		block = TRUE
 		block_success = FALSE
 		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1)
 		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
 		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_time)
+		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
 		return TRUE
 

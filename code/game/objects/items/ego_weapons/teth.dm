@@ -47,13 +47,13 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	reductions = list(20, 20, 20, 0)
-	recovery_time = 0 SECONDS //No ranged parry
-	block_time = 0.5 SECONDS
-	block_recovery = 3 SECONDS
+	projectile_block_cooldown = 0 SECONDS //No ranged parry
+	block_duration = 0.5 SECONDS
+	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	reposition_message = "You rearm your blade."
+	block_cooldown_message = "You rearm your blade."
 
 /obj/item/ego_weapon/shield/lutemia/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0 //Prevents ranged  parry
