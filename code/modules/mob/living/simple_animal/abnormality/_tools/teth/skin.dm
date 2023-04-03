@@ -7,7 +7,7 @@
 
 /obj/structure/toolabnormality/skin/attack_hand(mob/living/carbon/human/user)
 	..()
-	if(!do_after(user, 6))
+	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, PRUDENCE_ATTRIBUTE) >= 100)
 		to_chat(user, "<span class='notice'>You've learned all that you could.</span>")

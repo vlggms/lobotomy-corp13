@@ -105,3 +105,36 @@
 	- If the user’s HP drops below 50%, they will be healed. The user loses thread and experiences significant mental corrosion when this happens. <br>
 	- If the user’s HP drops below 50% when threads are too thin, they will collapse into pieces.
 	- The user can restore lost threads at the loom, sacrificing much of their own fortitude.<br> "}
+
+//Dr. Jekyll's Formula
+/obj/item/paper/fluff/info/tool/dr_jekyll
+	name = "F-09-148"
+	info = {"<h1><center>F-09-148</center></h1>	<br>
+	Name : Dr. Jekyll's Tincture<br>
+	Risk Class : TETH	<br>
+	- The employee who drinks this will experience an increase in Fortitude.	<br>
+	- The abnormality can be drank until ones Fortitude reaches its limit, at which point it will always seem empty.	<br>
+	- For every time past the first drink, the employee will become vulnerable to RED damage.	<br>
+	- If the user takes SP damage, they begin to take equal amounts of self-inflicted HP damage in addition. The user in question will claim "Mr. Hyde" to be responsible."}
+
+//Viva Voce
+/obj/item/paper/fluff/info/tool/vivavoce
+	name = "T-09-151" //Agoraphobia
+	info = {"<h1><center>T-09-151</center></h1>	<br>
+	Name : Viva Voce<br>
+	Risk Class : HE	<br>
+	- If the employee listens to the abnormality, they will experience an increase in Temperance.	<br>
+	- If the employee continues to listen, the employee's Temperance will increase until it reaches its limit.	<br>
+	- Unless exposure is minimal, the employee will become increasingly vulnerable to BLACK damage.	<br>
+	- Exposure to this abnormality causes employees to become highly paranoid and careless when working with abnormalities, taking double damage."}
+
+//Theonite Slab
+/obj/item/paper/fluff/info/tool/theonite_slab
+	name = "O-09-144"
+	info = {"<h1><center>O-09-144</center></h1>	<br>
+	Name : Theonite Slab<br>
+	Risk Class : HE	<br>
+	- Upon exposure to this abnormality, the employee will experience an increase in Justice.	<br>
+	- Repeated exposure will increase ones Justice until it reaches its limit.	<br>
+	- For every use beyond the first, the employee will become vulnerable to PALE damage.	<br>
+	- WARNING! Employees who use this abnormality have reported being attacked by an unknown entity in stressful situations."}

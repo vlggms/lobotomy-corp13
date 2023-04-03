@@ -8,15 +8,18 @@
 	resistance_flags = INDESTRUCTIBLE
 
 GLOBAL_LIST_INIT(unspawned_tools, list(
-	/obj/structure/toolabnormality/treesap,
 	/obj/structure/toolabnormality/fateloom,
+	/obj/structure/toolabnormality/theonite_slab,
+	/obj/structure/toolabnormality/treesap,
+	/obj/structure/toolabnormality/vivavoce,
 	/obj/structure/toolabnormality/behaviour,
 	/obj/structure/toolabnormality/bracelet,
+	/obj/structure/toolabnormality/dr_jekyll,
 	/obj/structure/toolabnormality/aspiration,
 	/obj/structure/toolabnormality/skin,
 	/obj/structure/toolabnormality/theresia,
 	/obj/structure/toolabnormality/mirror,
-	/obj/structure/toolabnormality/wishwell,
+	/obj/structure/toolabnormality/wishwell
 ))
 
 /obj/effect/landmark/toolspawn

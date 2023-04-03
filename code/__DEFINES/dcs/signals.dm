@@ -1057,3 +1057,8 @@
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
 #define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto
 #define COMSIG_MELTDOWN_FINISHED "meltdown_finished"
+
+// General Abnormality Signals
+
+///Whenever FearEffect() is called on a human
+#define COMSIG_FEAR_EFFECT "fear_effect"
