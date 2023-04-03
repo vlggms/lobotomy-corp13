@@ -43,6 +43,7 @@
 	var/damage_range = 9
 
 /obj/effect/proc_holder/ability/judgement/Perform(target, mob/user)
+	cooldown = world.time + (2 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0)
 	var/obj/effect/temp_visual/judgement/still/J = new (get_turf(user))
 	animate(J, pixel_y = 24, time = 1.5 SECONDS)
