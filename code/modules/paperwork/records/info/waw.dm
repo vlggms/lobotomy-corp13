@@ -129,7 +129,7 @@
 //Silence
 /obj/item/paper/fluff/info/waw/silence
 	abno_type = /mob/living/simple_animal/hostile/abnormality/silence
-	abno_code = "O-04-120"
+	abno_code = "O-04-65"
 	abno_info = list(
 		"Every 13 minutes, the bell tolled.",
 		"When the work result was Good, the abnormality was satisfied with a high probability.",
