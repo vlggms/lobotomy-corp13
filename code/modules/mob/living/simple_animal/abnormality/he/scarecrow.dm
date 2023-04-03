@@ -19,7 +19,6 @@
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 1

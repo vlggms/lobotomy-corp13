@@ -18,7 +18,6 @@
 	stat_attack = HARD_CRIT
 	attack_action_types = list(/datum/action/innate/abnormality_attack/SpiritGun, /datum/action/innate/abnormality_attack/ButterflySwarm)
 
-	faction = list("hostile")
 	can_breach = TRUE
 	can_buckle = FALSE
 	vision_range = 14

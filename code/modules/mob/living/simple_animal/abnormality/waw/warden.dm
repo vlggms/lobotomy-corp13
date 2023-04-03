@@ -21,7 +21,6 @@
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
-	faction = list("warden")	//It should attack everything else, fuck you.
 	del_on_death = FALSE
 	can_breach = TRUE
 	threat_level = WAW_LEVEL

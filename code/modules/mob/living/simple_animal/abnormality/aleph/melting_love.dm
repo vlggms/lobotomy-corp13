@@ -6,7 +6,6 @@
 	icon_living = "melting_love"
 	pixel_x = -16
 	base_pixel_x = -16
-	faction = list("slime")
 	speak_emote = list("gurgle")
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
@@ -194,7 +193,6 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "little_slime"
 	icon_living = "little_slime"
-	faction = list("slime")
 	speak_emote = list("gurgle")
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"

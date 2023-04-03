@@ -4,7 +4,6 @@
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	icon_state = "generalbee"
 	icon_living = "generalbee"
-	faction = list("hostile")
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8

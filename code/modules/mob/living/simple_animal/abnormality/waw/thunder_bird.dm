@@ -29,8 +29,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	speed = 2
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
-	//Attacks everything excepts its zombies
-	faction = list("tbird")
 
 	//work info
 	threat_level = WAW_LEVEL
@@ -227,7 +225,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	icon_state = "human_thunderbolt"
 	icon_living = "human_thunderbolt"
 	icon_dead = "human_thunderbolt_dead"
-	faction = list("tbird")
 	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"

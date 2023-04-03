@@ -256,7 +256,6 @@
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cut"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	faction = list("hostile")
 	mob_size = MOB_SIZE_TINY
 	del_on_death = TRUE
 

@@ -6,7 +6,6 @@
 	icon_living = "censored"
 	pixel_x = -16
 	base_pixel_x = -16
-	faction = list("censored")
 	speak_emote = list("screeches")
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
@@ -160,7 +159,6 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "censored_mini"
 	icon_living = "censored_mini"
-	faction = list("censored")
 	speak_emote = list("screeches")
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
