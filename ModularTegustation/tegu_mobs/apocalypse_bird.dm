@@ -78,6 +78,12 @@
 		eggs += EGG
 		potential_locs -= T
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
+	for(var/area/facility_hallway/F in GLOB.sortedAreas)
+		F.big_bird = TRUE
+		F.RefreshLights()
+	for(var/area/department_main/D in GLOB.sortedAreas)
+		D.big_bird = TRUE
+		D.RefreshLights()
 
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/death(gibbed)
 	for(var/mob/living/carbon/human/H in enchanted_list)
@@ -468,6 +474,12 @@
 /mob/living/simple_animal/apocalypse_egg/eyes/death(gibbed)
 	if(istype(bird))
 		bird.big_possible = FALSE
+	for(var/area/facility_hallway/F in GLOB.sortedAreas)
+		F.big_bird = FALSE
+		F.RefreshLights()
+	for(var/area/department_main/D in GLOB.sortedAreas)
+		D.big_bird = FALSE
+		D.RefreshLights()
 	..()
 
 // Portal

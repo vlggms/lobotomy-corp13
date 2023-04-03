@@ -99,6 +99,10 @@
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
 	..()
+	if(loc)
+		if(isarea(loc))
+			var/area/a = loc
+			a.RefreshLights()
 
 /mob/living/simple_animal/hostile/abnormality/add_to_mob_list()
 	. = ..()

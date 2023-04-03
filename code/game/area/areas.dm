@@ -85,6 +85,9 @@
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
+	/// Shows all adjacent areas. Pain on start.
+	var/list/adjacent_areas = list()
+
 /**
  * A list of teleport locations
  *
@@ -443,8 +446,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
-	for(var/obj/machinery/light/L in src)
-		L.update()
+	RefreshLights()
 
 /**
  * unset the fire alarm visual affects in an area
@@ -459,6 +461,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
 		F.triggered = FALSE
+	RefreshLights()
+
+/**
+ *  Updates all lights in the area.
+ */
+/area/proc/RefreshLights()
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
@@ -640,8 +648,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(outdoors)
 		return FALSE
 	areasize = 0
+	var/list/temp_areas = list()
 	for(var/turf/open/T in contents)
 		areasize++
+		for(var/area/A in get_adjacent_areas(T))
+			if(A == src)
+				continue
+			temp_areas |= A
+	adjacent_areas |= temp_areas
 
 /**
  * Causes a runtime error
