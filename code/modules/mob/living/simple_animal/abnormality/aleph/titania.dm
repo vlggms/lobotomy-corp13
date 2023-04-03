@@ -34,6 +34,7 @@
 		/datum/ego_datum/armor/soulmate
 		)
 //	gift_type = /datum/ego_gifts/soulmate
+	abnormality_origin = "Wonderlab"
 
 	var/fairy_spawn_number = 2
 	var/fairy_spawn_time = 5 SECONDS

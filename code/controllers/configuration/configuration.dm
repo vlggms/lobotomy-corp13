@@ -248,7 +248,6 @@
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
-	votable_modes += "secret"
 
 /datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")

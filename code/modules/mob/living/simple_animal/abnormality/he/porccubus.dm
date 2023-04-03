@@ -40,6 +40,7 @@
 		/datum/ego_datum/armor/pleasure
 		)
 	//gift_type = /datum/ego_gifts/pleasure
+	abnormality_origin = "Lobotomy Corporation"
 
 	//the agent that started work on porccubus
 	var/agent_ckey

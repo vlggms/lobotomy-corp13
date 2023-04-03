@@ -30,6 +30,7 @@
 		/datum/ego_datum/armor/flowering
 		)
 	gift_type = /datum/ego_gifts/blossoming
+	abnormality_origin = "Wonderlab"
 
 	var/chosen
 	var/list/sacrificed = list()

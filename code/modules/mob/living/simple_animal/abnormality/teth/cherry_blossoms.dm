@@ -26,6 +26,7 @@
 		/datum/ego_datum/armor/blossom
 		)
 //	gift_type = /datum/ego_gifts/blossom
+	abnormality_origin = "Altered LC"
 	var/numbermarked = 5
 
 

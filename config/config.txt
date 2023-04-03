@@ -188,7 +188,7 @@ ID_CONSOLE_JOBSLOT_DELAY 30
 VOTE_DELAY 6000
 
 ## time period (deciseconds) which voting session will last (default 1 minute)
-VOTE_PERIOD 900
+VOTE_PERIOD 800
 
 ## prevents dead players from voting or starting votes
 # NO_DEAD_VOTE

@@ -42,6 +42,7 @@
 		/datum/ego_datum/armor/unrequited
 		)
 	//gift_type =  /datum/ego_gifts/unrequited_love
+	abnormality_origin = "Wonderlab"
 
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"

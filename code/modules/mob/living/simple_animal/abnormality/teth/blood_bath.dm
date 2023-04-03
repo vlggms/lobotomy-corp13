@@ -23,6 +23,8 @@
 
 	//gift_type =  /datum/ego_gifts/bloodbath
 
+	abnormality_origin = "Lobotomy Corporation"
+
 	var/hands = 0
 
 /mob/living/simple_animal/hostile/abnormality/bloodbath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

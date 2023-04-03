@@ -39,6 +39,7 @@
 		/datum/ego_datum/armor/logging
 		)
 	gift_type =  /datum/ego_gifts/loggging
+	abnormality_origin = "Lobotomy Corporation"
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7

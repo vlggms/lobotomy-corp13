@@ -344,9 +344,6 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		if (!(map in global.config.maplist))
 			mapvotes.Remove(map)
 			continue
-		if(map in SSpersistence.blocked_maps)
-			mapvotes.Remove(map)
-			continue
 		var/datum/map_config/VM = global.config.maplist[map]
 		if (!VM)
 			mapvotes.Remove(map)

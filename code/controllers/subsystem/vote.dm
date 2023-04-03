@@ -128,9 +128,7 @@ SUBSYSTEM_DEF(vote)
 			if("gamemode")
 				if(GLOB.master_mode != .)
 					SSticker.save_mode(.)
-					if(SSticker.HasRoundStarted())
-						restart = TRUE
-					else
+					if(!SSticker.HasRoundStarted())
 						GLOB.master_mode = .
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
@@ -212,7 +210,7 @@ SUBSYSTEM_DEF(vote)
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
 					var/datum/map_config/VM = config.maplist[map]
-					if(!VM.votable || (VM.map_name in SSpersistence.blocked_maps))
+					if(!VM.votable)
 						continue
 					var/player_count = GLOB.clients.len
 					if(VM.config_max_users > 0 && player_count >= VM.config_max_users)

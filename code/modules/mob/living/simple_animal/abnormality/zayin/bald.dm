@@ -24,6 +24,7 @@
 	gift_type =  /datum/ego_gifts/tough
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/bald_users = list()
 

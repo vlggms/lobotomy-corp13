@@ -45,6 +45,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		/datum/ego_datum/armor/paradise
 		)
 	gift_type =  /datum/ego_gifts/paradise
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS

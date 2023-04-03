@@ -22,6 +22,7 @@
 		/datum/ego_datum/weapon/metal,
 		/datum/ego_datum/armor/metal
 	)
+	abnormality_origin = "Artbook"
 	var/list/safe = list()
 	var/list/warning = list()
 	var/list/danger = list()

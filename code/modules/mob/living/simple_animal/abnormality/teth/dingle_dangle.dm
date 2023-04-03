@@ -22,6 +22,7 @@
 		/datum/ego_datum/armor/lutemia
 		)
 	gift_type = /datum/ego_gifts/lutemis
+	abnormality_origin = "Wonderlab"
 
 	var/injured = FALSE
 	var/dead = FALSE

@@ -21,6 +21,7 @@
 		/datum/ego_datum/armor/spore
 		)
 	gift_type = /datum/ego_gifts/spore
+	abnormality_origin = "Lobotomy Corporation"
 
 	var/insight_count = 0
 	var/non_insight_count = 0

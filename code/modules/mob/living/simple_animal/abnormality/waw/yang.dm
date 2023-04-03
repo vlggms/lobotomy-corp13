@@ -33,6 +33,7 @@
 		/datum/ego_datum/armor/assonance
 		)
 //	gift_type = /datum/ego_gifts/assonance
+	abnormality_origin = "Altered LC"
 
 	//Melee
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)

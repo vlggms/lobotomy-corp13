@@ -36,6 +36,7 @@
 		/datum/ego_datum/armor/cute
 		)
 	gift_type =  /datum/ego_gifts/cute
+	abnormality_origin = "Lobotomy Corporation"
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
 	if(!can_act)

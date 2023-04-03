@@ -31,6 +31,7 @@
 		/datum/ego_datum/armor/match
 		)
 	gift_type =  /datum/ego_gifts/match
+	abnormality_origin = "Lobotomy Corporation"
 	/// Restrict movement when this is set to TRUE
 	var/exploding = FALSE
 	/// Current cooldown for the players

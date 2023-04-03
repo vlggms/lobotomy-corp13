@@ -38,6 +38,7 @@
 		/datum/ego_datum/armor/harvest
 		)
 	gift_type =  /datum/ego_gifts/harvest
+	abnormality_origin = "Lobotomy Corporation"
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 

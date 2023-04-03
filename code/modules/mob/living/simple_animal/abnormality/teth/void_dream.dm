@@ -33,6 +33,7 @@
 		/datum/ego_datum/armor/dream
 		)
 //	gift_type =  /datum/ego_gifts/dream
+	abnormality_origin = "Lobotomy Corporation"
 	var/punched = FALSE
 	var/pulse_damage = 50
 	var/ability_cooldown

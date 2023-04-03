@@ -37,6 +37,7 @@
 		/datum/ego_datum/armor/fragment
 		)
 	gift_type =  /datum/ego_gifts/fragments
+	abnormality_origin = "Lobotomy Corporation"
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 4 // Dealt 8 times

@@ -26,6 +26,7 @@
 		/datum/ego_datum/armor/hornet
 		)
 	gift_type =  /datum/ego_gifts/hornet
+	abnormality_origin = "Lobotomy Corporation"
 	var/datum/looping_sound/queenbee/soundloop
 	var/breached_others = FALSE
 

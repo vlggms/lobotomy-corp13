@@ -33,6 +33,7 @@
 	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	//She has a Quad Artillery Cannon
+	abnormality_origin = "Original"
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
 	var/fire_cooldown
 	var/fireball_range = 30

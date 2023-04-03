@@ -59,6 +59,7 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
+	var/abnormality_origin = "Original"
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
