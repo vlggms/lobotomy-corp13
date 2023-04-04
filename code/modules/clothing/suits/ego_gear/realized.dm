@@ -40,6 +40,12 @@
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
 
+/obj/item/clothing/suit/armor/ego_gear/realization/maiden
+	name = "blood maiden"
+	desc = "Soaked in blood, and yet pure in heart."
+	icon_state = "maiden"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
+
 /* TETH Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/mouth
@@ -94,6 +100,12 @@
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
 	icon_state = "eulogy"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/forever
+	name = "together forever"
+	desc = "I would move Heaven and Earth to be together forever with you."
+	icon_state = "forever"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 90, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 
 /* WAW Realizations */
 
