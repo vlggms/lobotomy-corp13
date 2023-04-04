@@ -165,3 +165,18 @@
 		WHITE_DAMAGE = "Resistant/Normal/Normal/Normal",
 		BLACK_DAMAGE = "Normal/Endured/Resistant/Endured",
 		PALE_DAMAGE = "Weak/Weak/Weak/Resistant")
+
+
+
+//Last Shot
+/obj/item/paper/fluff/info/aleph/last_shot
+	abno_type = /mob/living/simple_animal/hostile/abnormality/last_shot
+	abno_code = "C-06-152"
+	abno_info = list(
+		"Employees with low Temperance had their work chance increased dramatically.",
+		"Employees with Justice or Fortitude under level 5 recieved more work damage.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the Qliphtoh Counter reached 0, last shot bred flesh until it was destroyed in it's containment.")
+
+
+

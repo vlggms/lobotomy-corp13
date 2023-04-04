@@ -935,3 +935,36 @@
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "spicebush"
 	duration = 10
+
+
+//temporary
+/obj/item/ego_weapon/willing
+	name = "the flesh is willing"
+	desc = "And really nothing will stop it."
+	special = "This weapon has knockback."
+	icon_state = "willing"
+	force = 105	//Still lower DPS
+	attack_speed = 1.4
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+
+/obj/item/ego_weapon/willing/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+
