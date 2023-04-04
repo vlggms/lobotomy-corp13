@@ -420,6 +420,13 @@
 	prudence_bonus = -1
 	slot = NECKWEAR
 
+/datum/ego_gifts/revelation
+	name = "Revelation"
+	icon_state = "revelation"
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = EYE
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
