@@ -248,7 +248,7 @@
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(do_after(user, 6, target))
+	if(do_after(user, 5, target))
 
 		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
 						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, user)

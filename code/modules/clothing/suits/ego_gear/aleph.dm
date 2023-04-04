@@ -55,7 +55,7 @@
 	name = "mimicry"
 	desc = "It takes human hide to protect human flesh. To protect humans, you need something made out of humans."
 	icon_state = "mimicry"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 50) // 220
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -94,7 +94,7 @@
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 50) // 220
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,

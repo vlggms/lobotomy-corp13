@@ -43,7 +43,7 @@
 	attack_verb_simple = list("attack", "bash", "till")
 	hitsound = 'sound/weapons/ego/harvest.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							PRUDENCE_ATTRIBUTE = 40
 							)
 	var/can_spin = TRUE
 	var/spinning = FALSE
@@ -244,7 +244,7 @@
 	attack_verb_simple = "chop"
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							JUSTICE_ATTRIBUTE = 40
 							)
 	var/ramping = 1.5
 	var/smashing = FALSE
@@ -457,7 +457,7 @@
 	attack_verb_simple = "slash"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 	var/happy = FALSE
 
@@ -602,7 +602,7 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your E.G.O."
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							FORTITUDE_ATTRIBUTE = 40
 							)
 
 /obj/item/ego_weapon/revelation
