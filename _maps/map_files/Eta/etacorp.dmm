@@ -772,6 +772,11 @@
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
+"dH" = (
+/obj/structure/chair/stool/bar,
+/obj/structure/chair/stool/bar,
+/turf/open/floor/plasteel/dark,
+/area/department_main/welfare)
 "dI" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/tile/red{
@@ -1581,13 +1586,6 @@
 	},
 /turf/open/floor/fakepit,
 /area/department_main/records)
-"hp" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/obj/effect/landmark/department_center,
-/turf/open/floor/carpet/black,
-/area/department_main/records)
 "ht" = (
 /turf/open/floor/wood,
 /area/department_main/training)
@@ -2217,9 +2215,6 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 9
 	},
-/obj/structure/railing{
-	dir = 1
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
@@ -2699,7 +2694,6 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
 "mE" = (
-/obj/structure/chair/stool/bar,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -4033,6 +4027,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
+/obj/effect/landmark/department_center,
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
@@ -4574,6 +4569,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
+"vn" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/cas/black,
+/turf/open/floor/facility/dark,
+/area/department_main/welfare)
 "vp" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -5195,6 +5195,13 @@
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
+	},
+/obj/item/records,
+/obj/item/records/abnodelay,
+/obj/item/records/information,
+/obj/item/records/timestop,
+/obj/structure/closet/secure_closet/personal{
+	anchored = 1
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -6395,8 +6402,6 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/training)
 "Do" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck/cas/black,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -6858,7 +6863,6 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Fc" = (
-/obj/structure/railing,
 /obj/effect/turf_decal/siding/green{
 	dir = 10
 	},
@@ -7760,7 +7764,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/department_center,
-/obj/structure/chair/stool,
+/obj/structure/chair/stool/bar,
 /turf/open/floor/facility/dark,
 /area/department_main/welfare)
 "Jn" = (
@@ -9416,7 +9420,6 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 10
 	},
-/obj/structure/railing,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
@@ -27987,7 +27990,7 @@ zY
 as
 mn
 mn
-hp
+mn
 mn
 mn
 BX
@@ -40270,8 +40273,8 @@ AD
 xa
 bu
 zG
-rC
 EM
+dH
 EM
 uQ
 tQ
@@ -40497,7 +40500,7 @@ DR
 HM
 ZQ
 rC
-jK
+vh
 ld
 vh
 EM
@@ -40726,7 +40729,7 @@ ww
 Cm
 Jb
 Jm
-vh
+vn
 EM
 sM
 gk
@@ -41180,7 +41183,7 @@ xI
 ux
 rC
 mE
-EM
+rC
 uQ
 sM
 hL
