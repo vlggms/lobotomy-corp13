@@ -936,6 +936,18 @@
 	tastes = list("metal" = 1)
 	foodtypes = MEAT | RAW | GROSS
 
+/obj/item/food/meat/slab/crimson
+	name = "sweet meat"
+	desc = "Scraped together from what was left, the result smells sickly sweet. You should eat this as fast as possible, as it looks to be going bad very soon."
+	icon_state = "clownmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("sugar" = 1, "nearly rotten flesh" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+
+/obj/item/food/meat/slab/crimson/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/crimson, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak
@@ -1037,16 +1049,21 @@
 /obj/item/food/meat/steak/violet
 	name = "violet steak"
 	desc = "The most edible part of the violet ordeals, cooking it seems to have removed the glyphs."
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/lithium = 4)
 	icon_state = "violetsteak"
-	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1)
+	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1, "rocks" = 1)
 
 /obj/item/food/meat/steak/amber
 	name = "amber steak"
 	desc = "Preparing the amber meat expresses the sophistication and control that the amber worms lacked."
 	icon_state = "ambersteak"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/organ_tissue = 3, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("crab" = 1, "crunchy" = 1, "status quo" = 1)
+
+/obj/item/food/meat/steak/crimson
+	name = "crimson steak"
+	desc = "Scraping together most of what you could, this meat is very sweet, but won't last much longer.."
+	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1)
+	foodtypes = MEAT
+
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 

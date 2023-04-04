@@ -91,6 +91,7 @@
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	new /obj/item/food/meat/slab/crimson (get_turf(src))
 	gib()
 
 // Crimson noon
