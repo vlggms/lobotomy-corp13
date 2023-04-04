@@ -92,3 +92,14 @@
 		chambered.BB.damage /= (user_target ? 100 : 5)
 		chambered.BB.wound_bonus -= (user_target ? 200 : 10)
 		chambered.BB.dismemberment = 0
+
+/obj/item/gun/ego_gun/pistol/nostalgia
+	name = "nostalgia"
+	desc = "An old-looking pistol made of wood"
+	icon_state = "nostalgia"
+	inhand_icon_state = "nostalgia"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_nostalgia
+	fire_delay = 20
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70

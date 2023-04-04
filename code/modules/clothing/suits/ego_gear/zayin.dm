@@ -51,3 +51,9 @@
 	desc = "While this looks like a set of pajamas, it protects the user from mental damage."
 	icon_state = "doze"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/nostalgia
+	name = "nostalgia"
+	desc = "An old brown jacket. What seems to be an L corp logo is stitched into the side. This logo, strangely, is not one for the company you work at"
+	icon_state = "nostalgia"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)

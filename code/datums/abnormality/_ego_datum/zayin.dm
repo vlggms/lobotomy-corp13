@@ -60,3 +60,12 @@
 /datum/ego_datum/armor/doze
 	item_path = /obj/item/clothing/suit/armor/ego_gear/doze
 	cost = 12
+
+// A Quiet Day - Nostalgia
+/datum/ego_datum/weapon/nostalgia
+	item_path = /obj/item/gun/ego_gun/pistol/nostalgia
+	cost = 12
+
+/datum/ego_datum/armor/nostalgia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/nostalgia
+	cost = 12
