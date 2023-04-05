@@ -30,7 +30,7 @@ map gammacorp
 	votable
 endmap
 
-map hotelcorp
+map thetacorp
 	votable
 endmap
 
