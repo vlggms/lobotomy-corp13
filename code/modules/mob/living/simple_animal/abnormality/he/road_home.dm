@@ -84,7 +84,7 @@
 		retaliation = 3
 	attacker.apply_damage(retaliation, BLACK_DAMAGE, null, attacker.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	to_chat(attacker, "<span class='userdanger'>[src] counter attacks!</span>")
-	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || health <= 0)
+	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
 	attacker.apply_status_effect(/datum/status_effect/stay_home)
 	agent_friends += attacker
@@ -125,7 +125,7 @@
 		addtimer(CALLBACK(src, .proc/FlipAttack), 2 SECONDS)
 		return
 
-/mob/living/simple_animal/hostile/abnormality/road_home/death(gibbed)
+/mob/living/simple_animal/hostile/abnormality/road_home/Destroy(gibbed)
 	for(var/obj/effect/golden_road/GR in brick_list)
 		brick_list -= GR
 		qdel(GR)
