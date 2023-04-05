@@ -1,9 +1,9 @@
 {
 	"version": 1,
 	"map_name": "Facility H-155",
-	"map_path": "map_files/Hotel",
+	"map_path": "map_files/Theta",
 	"map_file": [
-		"hotelcorp.dmm"
+		"thetacorp.dmm"
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
