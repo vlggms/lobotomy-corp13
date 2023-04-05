@@ -30,5 +30,10 @@ map gammacorp
 	votable
 endmap
 
+map hotelcorp
+	votable
+endmap
+
+
 map runtimestation
 endmap
