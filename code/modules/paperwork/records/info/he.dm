@@ -35,7 +35,7 @@
 //White Lake
 /obj/item/paper/fluff/info/he/whitelake
 	abno_type = /mob/living/simple_animal/hostile/abnormality/whitelake
-	abno_code = "F-01-113"
+	abno_code = "F-01-120"
 	abno_info = list(
 		"When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.",
 		"When an employee with Fortitude Level 3 or higher worked on White Lake, the work success rate was lowered.",
@@ -45,7 +45,7 @@
 //Silent Girl
 /obj/item/paper/fluff/info/he/silent_girl
 	abno_type = /mob/living/simple_animal/hostile/abnormality/silent_girl
-	abno_code = "T-01-115"
+	abno_code = "T-01-01"
 	abno_info = list(
 		"When an employee with Prudence Level 2 or lower worked on Silent Girl, the Qliphoth Counter lowered regardless of the work result.",
 		"When the Work Result was Bad, the Qliphoth Counter lowered.",
