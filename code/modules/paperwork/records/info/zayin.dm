@@ -67,5 +67,5 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/quiet_day
 	abno_code = "T-01-145"
 	abno_info = list(
-		"When work with T-01-144 was completed, it started to speak.",
-		"If the agent working with T-01-144 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")
+		"When work with T-01-145 was completed, it started to speak.",
+		"If the agent working with T-01-145 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")

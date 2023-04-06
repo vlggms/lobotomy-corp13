@@ -238,3 +238,12 @@
 /datum/ego_datum/armor/get_strong
 	item_path = /obj/item/clothing/suit/armor/ego_gear/get_strong
 	cost = 35
+
+//Doomsday Calendar- Impending Day
+/datum/ego_datum/armor/impending_day
+	item_path = /obj/item/clothing/suit/armor/ego_gear/impending_day
+	cost = 35
+
+/datum/ego_datum/weapon/impending_day
+	item_path = /obj/item/ego_weapon/impending_day
+	cost = 35

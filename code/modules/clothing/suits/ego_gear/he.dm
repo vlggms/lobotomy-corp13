@@ -289,3 +289,13 @@
 /obj/item/clothing/suit/armor/ego_gear/get_strong/Initialize()
 	. = ..()
 	name = pick("BECOME STRONG", "GROWN POWERFUL", "YOU WANT TO GET BEAT")+pick("? GENUINELY?", "! FOR REALSIES?", "? HURTILY?")
+
+/obj/item/clothing/suit/armor/ego_gear/impending_day
+	name = "impending day"
+	desc = "Even still, I witnessed man and sky and earth tear into thousands of pieces."
+	icon_state = "impending_day"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 50, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
