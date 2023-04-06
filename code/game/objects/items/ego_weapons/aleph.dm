@@ -583,3 +583,22 @@
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
+
+/obj/item/ego_weapon/nihil
+	name = "nihil"
+	desc = "I don’t know what awaits me ahead. Could it be a cliff, or a ditch?"
+	special = "This weapon can absorb certain other weapons to gain new abilities. Or can it? Who knows, this is really just a placeholder."
+	icon_state = "nihil"
+	force = 90
+	attack_speed = 1
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/weapons/ego/twilight.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)

@@ -102,3 +102,7 @@
 	item_path = /obj/item/ego_weapon/space
 	cost = 100
 
+// Jester of Nihil - Nihil
+/datum/ego_datum/armor/nihil
+	item_path = /obj/item/clothing/suit/armor/ego_gear/nihil
+	cost = 200
