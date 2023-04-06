@@ -11,10 +11,9 @@
 	instability = 10
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_dead = "banana-dead"
-	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
+	genes = list(/datum/plant_gene/trait/repeated_harvest)
 	mutatelist = list(/obj/item/seeds/banana/mime)
 	reagents_add = list(/datum/reagent/consumable/banana = 0.1, /datum/reagent/potassium = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.02)
-	graft_gene = /datum/plant_gene/trait/slip
 
 /obj/item/food/grown/banana
 	seed = /obj/item/seeds/banana
