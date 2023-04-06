@@ -83,7 +83,7 @@
 /datum/ego_datum/weapon/goldrush
 	item_path = /obj/item/ego_weapon/goldrush
 	cost = 100
-	
+
 // Titania - Soulmate
 /datum/ego_datum/weapon/soulmate
 	item_path = /obj/item/ego_weapon/soulmate
@@ -102,3 +102,11 @@
 	item_path = /obj/item/ego_weapon/space
 	cost = 100
 
+// Jester of Nihil - Nihil
+/datum/ego_datum/armor/nihil
+	item_path = /obj/item/clothing/suit/armor/ego_gear/nihil
+	cost = 200
+
+/datum/ego_datum/weapon/nihil
+	item_path = /obj/item/ego_weapon/nihil
+	cost = 100
