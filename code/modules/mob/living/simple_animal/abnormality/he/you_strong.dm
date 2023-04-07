@@ -150,12 +150,13 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/attack_hand(mob/living/carbon/human/M)
-	if(!(M.zone_selected in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG)))
+	var/selected_part = M.zone_selected
+	if(!(selected_part in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG)))
 		return ..()
 	if(src.datum_reference.working || src.datum_reference.qliphoth_meter == 0 || operating)
 		to_chat(M, "<span class='notice'>Please wait for current operations to cease.</span>")
 		return
-	var/obj/item/bodypart/old_part = M.get_bodypart(M.zone_selected)
+	var/obj/item/bodypart/old_part = M.get_bodypart(selected_part)
 	if(old_part.type in list(/obj/item/bodypart/r_leg/grown_strong, /obj/item/bodypart/l_leg/grown_strong, /obj/item/bodypart/r_arm/grown_strong, /obj/item/bodypart/l_arm/grown_strong))
 		to_chat(M, "<span class='notice'>Only original parts are accepted.</span>")
 		return
@@ -174,7 +175,7 @@
 		icon_state = "you_strong_pause"
 		operating = FALSE
 		return
-	switch(M.zone_selected)
+	switch(selected_part)
 		if(BODY_ZONE_L_ARM)
 			prosthetic = new/obj/item/bodypart/l_arm/grown_strong(M)
 		if(BODY_ZONE_L_LEG)
@@ -183,6 +184,13 @@
 			prosthetic = new/obj/item/bodypart/r_arm/grown_strong(M)
 		if(BODY_ZONE_R_LEG)
 			prosthetic = new/obj/item/bodypart/r_leg/grown_strong(M)
+		else
+			soundloop.stop()
+			say("ERROR: FOREIGN OBJECT INSERTED. PLEASE CONTACT MAINTENCE STAFF.")
+			playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+			icon_state = "you_strong_pause"
+			operating = FALSE
+			return
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
