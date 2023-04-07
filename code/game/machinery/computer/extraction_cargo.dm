@@ -2,7 +2,8 @@
 #define CAT_EQUIP 2
 #define CAT_MEDICAL 3
 #define CAT_SCORP 4
-#define CAT_OTHER 5
+#define CAT_RESOURCE 5
+#define CAT_OTHER 6
 //CONSOLE CODE uses a altered form of mining_vendor
 
 /obj/machinery/computer/extraction_cargo
@@ -15,7 +16,6 @@
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		//Gadgets - More Technical Equipment, Usually active
 		new /datum/data/extraction_cargo("Barrier Grenade Kit ",		/obj/item/storage/box/barrier,										60, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Spare Manager Bullet ",		/obj/item/managerbullet,											80, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Forcefield Projector ",		/obj/item/forcefield_projector,										150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Tracking Implant Kit ", 		/obj/item/storage/box/minertracker,									150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Command Projector ",			/obj/item/commandprojector,											150, CAT_GADGET) = 1,
@@ -68,6 +68,13 @@
 		new /datum/data/extraction_cargo("S-Corp Brand Soda Rifle ",	/obj/item/gun/ego_gun/sodarifle,									400, CAT_SCORP) = 1,
 		new /datum/data/extraction_cargo("S-Corp Brand Soda SMG ",		/obj/item/gun/ego_gun/sodasmg,										400, CAT_SCORP) = 1,
 		new /datum/data/extraction_cargo("S-Corp Brand Shrimp Squad ",	/obj/item/grenade/spawnergrenade/shrimp,							800, CAT_SCORP) = 1,
+
+		//Resources - Raw PE, ETC. Abnochem stuff goes here too. This is one use items to further LC13 systems
+		new /datum/data/extraction_cargo("Blue Filter ",				/obj/item/refiner_filter/blue,										10, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Green Filter ",				/obj/item/refiner_filter/green,										10, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										10, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									10, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
 
 		//Random stuff
 		new /datum/data/extraction_cargo("Bubblegum Gum Packet ",		/obj/item/storage/box/gum/bubblegum,								15, CAT_OTHER) = 1,
@@ -164,6 +171,8 @@
 		if(4)
 			return "SCorp"
 		if(5)
+			return "Resources"
+		if(6)
 			return "Misc"
 
 
@@ -171,4 +180,5 @@
 #undef CAT_EQUIP
 #undef CAT_MEDICAL
 #undef CAT_SCORP
+#undef CAT_RESOURCE
 #undef CAT_OTHER

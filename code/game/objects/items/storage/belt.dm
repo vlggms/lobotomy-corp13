@@ -766,6 +766,8 @@
 	STR.max_combined_w_class = 100
 	STR.set_holdable(list(
 		/obj/item/gun/ego_gun/pistol,
-		/obj/item/ego_weapon/mini
+		/obj/item/ego_weapon/mini,
+		/obj/item/ego_weapon/city/ncorp_mark,
+		/obj/item/ego_weapon/city/ncorp_nail
 		))
 

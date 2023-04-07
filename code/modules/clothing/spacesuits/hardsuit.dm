@@ -1078,7 +1078,6 @@
 	desc = "An armored combat helmet worn by R-Corporation mercenaries in the field."
 	icon_state = "rabbit1"
 	inhand_icon_state = "deathsquad"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDESNOUT
 	heat_protection = HEAD
@@ -1086,11 +1085,11 @@
 	actions_types = list()
 
 /obj/item/clothing/suit/space/hardsuit/rabbit
-	name = "\improper rabbit team suit"
-	desc = "An armored combat suit worn by R-Corporation mercenaries in the field."
+	name = "\improper rabbit team suit mk1"
+	desc = "An armored combat suit worn by R-Corporation mercenaries in the field. This is an extremely old model; and is thus very heavy."
 	icon_state = "rabbit1"
 	inhand_icon_state = "swat_suit" // TODO
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 25, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 5, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
@@ -1103,11 +1102,9 @@
 /obj/item/clothing/head/helmet/space/hardsuit/rabbit/leader
 	name = "\improper rabbit team command helmet"
 	icon_state = "rabbit2"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 
 /obj/item/clothing/suit/space/hardsuit/rabbit/leader
-	name = "\improper rabbit team command suit"
+	name = "\improper rabbit team command suit MK1"
 	icon_state = "rabbit2"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 35, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100, WOUND = 30)
 
 #undef HARDSUIT_EMP_BURN

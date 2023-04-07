@@ -170,6 +170,12 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/safety)
+"cX" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/item/rawpe,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "cY" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 5
@@ -185,17 +191,6 @@
 /obj/machinery/sleeper/syndie,
 /turf/open/indestructible/white,
 /area/department_main/safety)
-"dC" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/extraction)
 "dM" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
@@ -290,6 +285,11 @@
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"eQ" = (
+/obj/structure/rack,
+/obj/item/rawpe,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "eU" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -385,15 +385,6 @@
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
-"gw" = (
-/obj/structure/rack,
-/obj/machinery/camera/autoname,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/extraction)
 "gA" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/carpet/royalblue,
@@ -1359,11 +1350,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
-"vg" = (
-/obj/structure/rack,
-/obj/machinery/light,
-/turf/open/floor/plasteel/dark,
-/area/department_main/extraction)
 "vm" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -1643,6 +1629,15 @@
 /obj/item/encryptionkey/headset_welfare,
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"zs" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/item/rawpe,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "zw" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -2214,10 +2209,6 @@
 "IE" = (
 /turf/open/floor/wood,
 /area/department_main/welfare)
-"IR" = (
-/obj/structure/rack,
-/turf/open/floor/plasteel/dark,
-/area/department_main/extraction)
 "IX" = (
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/armband/lobotomy/training,
@@ -2346,6 +2337,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/safety)
+"KI" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "KM" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -2571,6 +2566,16 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"NN" = (
+/obj/structure/rack,
+/obj/machinery/camera/autoname,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/item/rawpe,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "NU" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -2713,6 +2718,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
+"PG" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/rawpe,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "PN" = (
 /mob/living/simple_animal/hostile/retaliate/goose,
 /turf/open/floor/plating/grass,
@@ -54955,7 +54972,7 @@ QD
 KP
 hx
 kU
-vg
+cX
 KP
 hd
 DU
@@ -55212,9 +55229,9 @@ QD
 KP
 VR
 kU
-IR
+eQ
 KP
-gw
+NN
 DU
 DU
 DU
@@ -55474,8 +55491,8 @@ kU
 Xc
 qA
 uQ
-dC
-uQ
+PG
+zs
 RM
 mh
 BY
@@ -55983,10 +56000,10 @@ QD
 QD
 KP
 KP
-KP
-KP
-KP
-KP
+KI
+KI
+KI
+KI
 KP
 QD
 QD

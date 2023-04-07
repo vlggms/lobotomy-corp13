@@ -214,6 +214,10 @@
 /obj/item/kitchen/knife,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"aF" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/command)
 "aG" = (
 /obj/structure/table/reinforced,
 /obj/structure/disposalpipe/segment{
@@ -13025,13 +13029,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
-"MP" = (
-/obj/structure/closet/crate,
-/obj/machinery/newscaster/security_unit{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/extraction)
 "MQ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -13383,6 +13380,14 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/extraction)
+"NG" = (
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/structure/refinery,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "NH" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -16300,6 +16305,18 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"Vs" = (
+/obj/structure/closet/crate,
+/obj/machinery/newscaster/security_unit{
+	pixel_x = 32
+	},
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Vt" = (
 /obj/effect/turf_decal/siding/green,
 /obj/machinery/light/cold/no_nightlight,
@@ -44435,7 +44452,7 @@ bt
 PJ
 Vo
 TX
-aq
+NG
 GW
 VQ
 ZS
@@ -60855,7 +60872,7 @@ tY
 nW
 nW
 nW
-tY
+aF
 Gb
 dO
 HL
@@ -61112,7 +61129,7 @@ tY
 nW
 nW
 nW
-tY
+aF
 FZ
 gi
 HN
@@ -61369,7 +61386,7 @@ tY
 nW
 nW
 nW
-tY
+aF
 Gb
 dO
 HL
@@ -61626,7 +61643,7 @@ tY
 nW
 nW
 nW
-tY
+aF
 Gb
 dO
 HL
@@ -65746,7 +65763,7 @@ Cu
 Cu
 Lz
 Mz
-MP
+Vs
 ie
 NN
 mw
