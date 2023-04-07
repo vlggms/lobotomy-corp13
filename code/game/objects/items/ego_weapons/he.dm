@@ -744,3 +744,79 @@
 	source.adjustBruteLoss(-10)
 	source.adjustSanityLoss(-5)
 	..()
+
+/obj/item/ego_weapon/get_strong
+	name = "Get Strong"
+	desc = "It whirls and twirls and yet feels limp... Do you love the City you live in?"
+	special = "This weapon has multiple modes.\nA low power spear. A medium power sword, and a high-power gauntlet.\n\
+	Hitting with the spear and sword improve the damage of the next gauntlet."
+	icon_state = "become_strong_sp"
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "become_strong"
+	force = 15
+	attack_speed = 1
+	reach = 2
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs")
+	attack_verb_simple = list("poke", "jab")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	var/mode = "Spear"
+	var/list/mode_stats = list(
+		"Spear" = list("_sp", 15, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),
+		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
+		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/hammer.ogg')
+		)
+	var/windup = 0
+
+/obj/item/ego_weapon/get_strong/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	name = pick("BECOME STRONG", "GROWN POWERFUL", "YOU WANT TO GET BEAT")+pick("? GENUINELY?", "! FOR REALSIES?", "? HURTILY?")
+
+/obj/item/ego_weapon/get_strong/attack_self(mob/user)
+	switch(mode)
+		if("Spear")
+			mode = "Sword"
+		if("Sword")
+			mode = "Gauntlet"
+		if("Gauntlet")
+			mode = "Spear"
+	to_chat(user, "<span class='notice'>[src] makes a whirling sound as it changes shape!</span>")
+	if(prob(5))
+		to_chat(user, "<span class='notice'>Do you love your city?</span>")
+	icon_state = "become_strong"+mode_stats[mode][1]
+	update_icon_state()
+	force = mode_stats[mode][2]
+	attack_speed = mode_stats[mode][3]
+	reach = mode_stats[mode][4]
+	attack_verb_continuous = mode_stats[mode][5]
+	attack_verb_simple = mode_stats[mode][6]
+	hitsound = mode_stats[mode][7]
+
+/obj/item/ego_weapon/get_strong/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!isliving(target))
+		..()
+		return
+	switch(mode)
+		if("Spear")
+			windup = min(windup+3, 50)
+		if("Sword")
+			windup = min(windup+2, 50)
+		if("Gauntlet")
+			to_chat(user, "<span class='notice'>You start winding up your fist!</span>")
+			if(!do_after(user, 1 SECONDS, target))
+				to_chat(user, "<span class='warning'>You stop winding up your fist!</span>")
+				return
+			force += windup
+			windup = 0
+	..()
+	force = mode_stats[mode][2]
+	if(windup >= 50)
+		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+		to_chat(user, "<span class='nicegreen'>[src] hisses as it reaches full capacity!</span>")
+		return
+	if(windup >= 25)
+		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 50)
+		to_chat(user, "<span class='notice'>[src] hisses as it reaches half capacity.</span>")
+		return

@@ -276,3 +276,16 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/get_strong
+	name = "Get Strong"
+	desc = "It crunches your insides as you move... Do you love the City you live in?"
+	icon_state = "become_strong"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 10, PALE_DAMAGE = 30) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/get_strong/Initialize()
+	. = ..()
+	name = pick("BECOME STRONG", "GROWN POWERFUL", "YOU WANT TO GET BEAT")+pick("? GENUINELY?", "! FOR REALSIES?", "? HURTILY?")
