@@ -27,7 +27,7 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
 	reductions = list(60, 60, 60, 20)
-	recovery_time = 5 SECONDS
-	block_time = 2 SECONDS
-	block_recovery = 2 SECONDS
+	projectile_block_cooldown = 5 SECONDS
+	block_duration = 2 SECONDS
+	block_cooldown = 2 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
