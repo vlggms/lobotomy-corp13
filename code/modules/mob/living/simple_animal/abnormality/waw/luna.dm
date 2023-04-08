@@ -27,7 +27,7 @@
 		/datum/ego_datum/armor/moonlight
 		)
 //	gift_type =  /datum/ego_gifts/moonlight
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/performance = FALSE
 	var/performance_length = 60 SECONDS
 	var/breach_length = 404 SECONDS		//How long the song is (when I finally finish it)

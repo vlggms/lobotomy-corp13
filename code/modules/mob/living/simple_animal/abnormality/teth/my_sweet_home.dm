@@ -52,7 +52,7 @@
 
 	gift_type =  /datum/ego_gifts/hearth
 
-	abnormality_origin = "Wonderlab"
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)

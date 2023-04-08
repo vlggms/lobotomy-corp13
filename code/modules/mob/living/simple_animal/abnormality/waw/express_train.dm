@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/intentions,
 		/datum/ego_datum/weapon/laststop
 		)
-	abnormality_origin = "Altered LC"
+	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer

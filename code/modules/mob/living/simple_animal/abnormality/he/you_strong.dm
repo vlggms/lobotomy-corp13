@@ -22,6 +22,8 @@
 			/datum/ego_datum/weapon/get_strong,
 			/datum/ego_datum/armor/get_strong
 		)
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
 	max_boxes = 16
 	speak_emote = list("beeps", "crackles", "buzzes")
 

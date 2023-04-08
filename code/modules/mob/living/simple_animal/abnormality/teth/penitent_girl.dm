@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/sorrow,
 		/datum/ego_datum/armor/sorrow
 	)
-	abnormality_origin = "Wonderlab"
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/AttemptWork(mob/living/carbon/human/user, work_type)

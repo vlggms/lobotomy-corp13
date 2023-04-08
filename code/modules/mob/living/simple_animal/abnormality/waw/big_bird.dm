@@ -49,7 +49,7 @@
 		/datum/ego_datum/armor/lamp
 		)
 	gift_type =  /datum/ego_gifts/lamp
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS

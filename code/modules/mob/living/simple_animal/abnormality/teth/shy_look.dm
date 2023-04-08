@@ -26,7 +26,7 @@
 		/datum/ego_datum/armor/shy
 		)
 	gift_type =  /datum/ego_gifts/shy
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/chance_modifier = 1
 	var/previous_mood

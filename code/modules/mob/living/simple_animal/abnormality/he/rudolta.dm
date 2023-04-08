@@ -35,7 +35,7 @@
 		/datum/ego_datum/armor/christmas
 		)
 	gift_type =  /datum/ego_gifts/christmas
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = 20

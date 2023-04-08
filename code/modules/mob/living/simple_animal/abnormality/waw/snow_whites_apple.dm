@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	/datum/ego_datum/armor/stem
 	)
 	gift_type =  /datum/ego_gifts/stem
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))

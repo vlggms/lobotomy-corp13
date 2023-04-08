@@ -31,7 +31,7 @@
 		/datum/ego_datum/armor/da_capo
 		)
 	gift_type =  /datum/ego_gifts/dacapo
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick

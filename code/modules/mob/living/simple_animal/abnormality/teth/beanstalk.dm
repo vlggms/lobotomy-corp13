@@ -24,7 +24,7 @@
 		/datum/ego_datum/armor/bean
 	)
 	gift_type = /datum/ego_gifts/bean
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 	var/climbing = FALSE
 
 //Performing instinct work at >4 fortitude starts a special work

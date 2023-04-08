@@ -42,6 +42,7 @@
 		/datum/ego_datum/armor/dipsia
 		)
 	gift_type = /datum/ego_gifts/dipsia
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	//work stuff
 	var/feeding

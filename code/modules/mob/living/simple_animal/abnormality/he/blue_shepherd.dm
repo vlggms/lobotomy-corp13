@@ -46,7 +46,7 @@
 		/datum/ego_datum/armor/oppression
 		)
 	gift_type = /datum/ego_gifts/oppression
-	abnormality_origin = "Wonderlab"
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4

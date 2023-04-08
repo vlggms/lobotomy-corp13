@@ -24,7 +24,7 @@
 
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
-	abnormality_origin = "Altered LC"
+	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)

@@ -53,7 +53,7 @@
 		)
 	gift_type =  /datum/ego_gifts/darkcarnival
 	gift_message = "Life isn't scary when you don't fear death."
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE

@@ -33,7 +33,7 @@
 	loot = list(/obj/item/gun/ego_gun/feather)
 	ego_list = list(/datum/ego_datum/armor/feather)
 	gift_type = /datum/ego_gifts/feather
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	friendly_verb_continuous = "grazes"
 	friendly_verb_simple = "grazes"
 	var/pulse_cooldown

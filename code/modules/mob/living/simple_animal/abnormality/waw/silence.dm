@@ -20,7 +20,7 @@
 		/datum/ego_datum/armor/thirteen,
 		)
 //	gift_type = /datum/ego_gifts/thirteen
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown

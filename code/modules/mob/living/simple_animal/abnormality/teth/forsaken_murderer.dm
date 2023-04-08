@@ -51,7 +51,7 @@
 		/datum/ego_datum/armor/regret
 		) //ego_list is the things you can buy with its unique type of PE
 	gift_type =  /datum/ego_gifts/regret //special thing you get from interacting with the abnormality
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer/FailureEffect(mob/living/carbon/human/user, work_type, pe) //when work type is bad the qliphoth counter lowers with no chance.
 	datum_reference.qliphoth_change(-1)

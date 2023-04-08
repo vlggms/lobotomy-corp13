@@ -38,7 +38,7 @@
 		/datum/ego_datum/armor/mimicry
 		)
 	gift_type =  /datum/ego_gifts/mimicry
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE

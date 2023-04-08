@@ -29,7 +29,7 @@
 		)
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/doze
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS

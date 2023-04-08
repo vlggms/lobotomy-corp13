@@ -57,6 +57,7 @@
 		)
 	gift_type = /datum/ego_gifts/legerdemain
 	gift_message = "You feel a sense of kinship with the apple. Because you're both pests."
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
 	var/is_maggot = FALSE
 	var/smash_length = 2

@@ -36,7 +36,7 @@
 		/datum/ego_datum/armor/diffraction
 		)
 //	gift_type =  /datum/ego_gifts/diffraction
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/cooldown_time = 3
 	var/aoe_damage = 8
