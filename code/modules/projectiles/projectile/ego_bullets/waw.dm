@@ -278,3 +278,16 @@
 	damage = 120
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_blind_rage
+	name = "blind rage"
+	icon_state = "blind_rage"
+	damage = 15
+	damage_type = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_blind_rage/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/L = target
+	L.apply_status_effect(/datum/status_effect/wrath_burning)

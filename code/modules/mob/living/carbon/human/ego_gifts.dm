@@ -607,6 +607,13 @@
 	temperance_bonus = 2
 	slot = FACE
 
+/datum/ego_gifts/blind_rage
+	name = "Blind Rage"
+	icon_state = "blind_rage"
+	fortitude_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"

@@ -277,6 +277,17 @@
 							TEMPERANCE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/blind_rage
+	name = "Blind Rage"
+	desc = "There is no sorrow like the betrayal of a friend. \
+			Nor is there such rage."
+	icon_state = "blind_rage"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 140
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/heart
 	name = "bleeding heart"
 	desc = "And the prayer shall inevitably end with the eternal despair of its worshiper."

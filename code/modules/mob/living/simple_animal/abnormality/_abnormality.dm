@@ -109,7 +109,7 @@
 	GLOB.abnormality_mob_list -= src
 
 /mob/living/simple_animal/hostile/abnormality/Move()
-	if(status_flags & GODMODE) // STOP STEALING MY FREAKING ABNORMALITIES
+	if(IsContained()) // STOP STEALING MY FREAKING ABNORMALITIES
 		return FALSE
 	return ..()
 
