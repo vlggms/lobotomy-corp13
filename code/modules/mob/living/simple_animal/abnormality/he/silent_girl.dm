@@ -3,8 +3,9 @@
 
 // GUESS WHO, THAT'S RIGHT, IT'S ME! Lance/REDACTED! Back at it 3 months later! Refactor this bitch!
 
+// HEYYY IT'S MEEEEEE, REDACTEDDDD. Im back to rework this again. Less lethal, more pain.
+
 #define STATUS_EFFECT_SG_GUILTY /datum/status_effect/sg_guilty
-#define STATUS_EFFECT_SG_ATTONEMENT /datum/status_effect/sg_atonement
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl
 	name = "Silent Girl"
@@ -30,100 +31,79 @@
 		/datum/ego_datum/armor/remorse
 		)
 	gift_type = /datum/ego_gifts/remorse
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	abnormality_origin = "Artbook"
 
-
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/OnWorkStart(datum/source, datum/abnormality/datum_reference, mob/living/carbon/human/user, work_type)
-	SIGNAL_HANDLER
-	if(user.stat == DEAD)
-		return FALSE
-	if(work_type != ABNORMALITY_WORK_ATTACHMENT)
-		return FALSE
-	if(datum_reference == src.datum_reference)
-		return FALSE
-	if(user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
-		user.remove_status_effect(STATUS_EFFECT_SG_GUILTY)
-		datum_reference.qliphoth_change(1)
-	else if(user.has_status_effect(STATUS_EFFECT_SG_ATTONEMENT))
-		user.remove_status_effect(STATUS_EFFECT_SG_ATTONEMENT)
-
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user)
-	if ((user.stat == DEAD) || (user.has_status_effect(STATUS_EFFECT_SG_GUILTY)))
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user, enable_qliphoth = TRUE, stack_count = 1)
+	if (user.stat == DEAD)
 		return
-	datum_reference.qliphoth_change(-1)
-	user.apply_status_effect(STATUS_EFFECT_SG_GUILTY, datum_reference)
+	if(enable_qliphoth)
+		datum_reference.qliphoth_change(-1, user)
+		user.apply_status_effect(STATUS_EFFECT_SG_GUILTY, datum_reference, stack_count)
+	else
+		user.apply_status_effect(STATUS_EFFECT_SG_GUILTY, null, stack_count)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60 && !user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60)
 		GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/AttemptWork(mob/living/carbon/human/user, work_type)
-	if (user.has_status_effect(STATUS_EFFECT_SG_GUILTY) || user.has_status_effect(STATUS_EFFECT_SG_ATTONEMENT))
-		user.apply_status_effect(STATUS_EFFECT_SG_ATTONEMENT, datum_reference) //If a guilty person works on her, they panic.
+	if (user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
+		user.adjustSanityLoss(user.getMaxSanity()*2) // Suffer.
+		user.remove_status_effect(STATUS_EFFECT_SG_GUILTY) // but Cleanse!
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40) && work_type == ABNORMALITY_WORK_INSIGHT)
+		datum_reference.qliphoth_change(1, user)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/silent_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(40))
+		GuiltEffect(user)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/ZeroQliphoth(mob/living/carbon/human/user)
-	var/list/guilty_people = list()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.has_status_effect(STATUS_EFFECT_SG_GUILTY))
-			guilty_people += H
-	if(guilty_people.len == 0)
-		for(var/mob/living/carbon/human/PG in GLOB.player_list)
-			if(PG.z != src.z)
-				continue
-			if(PG.stat >= HARD_CRIT)
-				continue
-			if(PG.sanity_lost)
-				continue
-			guilty_people += PG
-			break
-		if(guilty_people.len == 0)
-			manual_emote("giggles.")
-			sound_to_playing_players_on_level('sound/voice/human/womanlaugh.ogg', 50, zlevel = z)
-	for(var/mob/living/carbon/human/GP in guilty_people) // Drive all Guilty people insane on Qliphoth 0
-		GP.apply_status_effect(STATUS_EFFECT_SG_ATTONEMENT, datum_reference)
-	datum_reference.qliphoth_change(3)
+		if(H.z != z)
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(!(H.mind?.assigned_role in GLOB.security_positions)) // CLERKS AND MANAGERS ARE FREE!
+			continue
+		GuiltEffect(H, FALSE, 2)
+	manual_emote("giggles.")
+	sound_to_playing_players_on_level('sound/voice/human/womanlaugh.ogg', 50, zlevel = z)
+	datum_reference.qliphoth_change(3, user)
 	return
-
-//Whitelake makes a good point with the different lines, so I thought it'd be cool
-/datum/ai_controller/insane/release/silent_girl
-	lines_type = /datum/ai_behavior/say_line/insanity_silent_girl
-
-/datum/ai_controller/insane/suicide/silent_girl
-	lines_type = /datum/ai_behavior/say_line/insanity_silent_girl
-
-/datum/ai_behavior/say_line/insanity_silent_girl
-	lines = list(
-				"It's all my fault...",
-				"Right... I caused this...",
-				"I can still hear their voices...",
-				"If I do this, will their voices finally end?",
-				"The only way to atone is this..."
-				)
 
 /datum/status_effect/sg_guilty
 	id = "sg_guilt"
-	status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_REFRESH
 	// Duration left at default -1
 	alert_type = /atom/movable/screen/alert/status_effect/sg_guilty
 	var/mutable_appearance/guilt_icon
 	var/datum/abnormality/datum_reference = null
+	var/works_required = 1
 
 /atom/movable/screen/alert/status_effect/sg_guilty
 	name = "Guilty"
-	desc = "A heavy weight lays upon you. What have you done?"
+	desc = "A heavy weight lays upon you. What have you done?\nYour work success rate is reduced drastically."
 
 /datum/status_effect/sg_guilty/on_creation(mob/living/new_owner, ...)
-	src.datum_reference = args[2]
+	datum_reference = args[2]
+	if(!isnull(args[3]))
+		works_required = args[3]
 	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
-	return ..()
+	. = ..()
+	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works attone."
+	return
 
 /datum/status_effect/sg_guilty/on_apply()
 	. = ..()
@@ -132,8 +112,8 @@
 		to_chat(H, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 		H.add_overlay(guilt_icon)
-		H.physiology.work_success_mod *= 0.75
-		RegisterSignal(H, COMSIG_WORK_STARTED, .proc/OnWorkStart)
+		H.physiology.work_success_mod *= 0.70
+		RegisterSignal(H, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
 
 /datum/status_effect/sg_guilty/on_remove()
 	. = ..()
@@ -142,110 +122,24 @@
 		to_chat(H, "<span class='nicegreen'>You feel a weight lift from your shoulders.</span>")
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
 		H.cut_overlay(guilt_icon)
-		H.physiology.work_success_mod /= 0.75
-		UnregisterSignal(H, COMSIG_WORK_STARTED)
-
-/datum/status_effect/sg_guilty/be_replaced()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.cut_overlay(guilt_icon)
-		H.physiology.work_success_mod /= 0.75
-		UnregisterSignal(H, COMSIG_WORK_STARTED)
-	return ..()
-
-/datum/status_effect/sg_guilty/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
-	SIGNAL_HANDLER
-	if(work_type != ABNORMALITY_WORK_ATTACHMENT)
-		return FALSE
-	if(abno_reference == datum_reference)
-		return FALSE
-	if(!isnull(datum_reference))
-		addtimer(CALLBACK(datum_reference, /datum/abnormality/proc/qliphoth_change, 1))
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
-	user.remove_status_effect(src)
-
-// End GUILTY //
-
-/datum/status_effect/sg_atonement
-	id = "sg_guilt"
-	status_type = STATUS_EFFECT_REPLACE
-	// Duration left at default -1
-	alert_type = /atom/movable/screen/alert/status_effect/sg_atonement
-	var/mutable_appearance/guilt_icon
-	var/datum/abnormality/datum_reference = null
-	var/insanity_time = 0
-	var/death_time = 0
-	var/driven_insane = FALSE
-
-/atom/movable/screen/alert/status_effect/sg_atonement
-	name = "Atonement"
-	desc = "I can't believe I've done all these horrible things... All those people..."
-
-/datum/status_effect/sg_atonement/on_creation(mob/living/new_owner, ...)
-	src.datum_reference = args[2]
-	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
-	insanity_time = (GLOB.player_list.len <= 5 ? 30 SECONDS : 10 SECONDS) + world.time
-	death_time = insanity_time + 45 SECONDS
-	return ..()
-
-/datum/status_effect/sg_atonement/tick()
-	. = ..()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/H = owner // Get human version of owner
-	if(driven_insane && !H.sanity_lost) // If we drove them insane and they're no longer insane, revert to normal debuff.
-		H.apply_status_effect(STATUS_EFFECT_SG_GUILTY, datum_reference)
-		return
-	if((insanity_time < world.time) && !driven_insane)
-		H.adjustSanityLoss(H.sanityhealth*2) // Do double their current sanity in damage, driving them insane instantly.
-		QDEL_NULL(H.ai_controller)
-		H.ai_controller = /datum/ai_controller/insane/release/silent_girl
-		H.InitializeAIController()
-		H.apply_status_effect(/datum/status_effect/panicked_type/release)
-		driven_insane = TRUE
-	if((death_time < world.time) && H.sanity_lost) // If they're past the time and still insane, they go into suicide panic
-		if(HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/release/silent_girl))
-			QDEL_NULL(H.ai_controller)
-			H.ai_controller = /datum/ai_controller/insane/suicide/silent_girl
-			H.InitializeAIController()
-			H.apply_status_effect(/datum/status_effect/panicked_type/suicide)
-
-
-/datum/status_effect/sg_atonement/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
-		to_chat(H, "<span class='userdanger'>You feel your head begin to split!</span>")
-		H.add_overlay(guilt_icon)
-		RegisterSignal(H, COMSIG_WORK_STARTED, .proc/OnWorkStart)
-
-/datum/status_effect/sg_atonement/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		to_chat(H, "<span class='nicegreen'>You feel a weight lift from your shoulders.</span>")
-		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
-		H.cut_overlay(guilt_icon)
-		UnregisterSignal(H, COMSIG_WORK_STARTED)
-
-/datum/status_effect/sg_atonement/be_replaced()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.cut_overlay(guilt_icon)
+		H.physiology.work_success_mod /= 0.70
 		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
-	return ..()
+		if(!isnull(datum_reference))
+			INVOKE_ASYNC(datum_reference, /datum/abnormality/proc/qliphoth_change, 1, owner)
 
-/datum/status_effect/sg_atonement/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
+/datum/status_effect/sg_guilty/refresh()
+	playsound(get_turf(owner), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
+	works_required++
+	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works attone."
+
+/datum/status_effect/sg_guilty/proc/OnWorkComplete(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type != ABNORMALITY_WORK_ATTACHMENT)
 		return FALSE
-	if(abno_reference == datum_reference)
-		return FALSE
-	if(!isnull(datum_reference))
-		addtimer(CALLBACK(datum_reference, /datum/abnormality/proc/qliphoth_change, 1))
-	UnregisterSignal(user, COMSIG_WORK_STARTED)
+	works_required--
+	if(works_required > 0)
+		linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works attone."
+		return
 	user.remove_status_effect(src)
 
 #undef STATUS_EFFECT_SG_GUILTY
-#undef STATUS_EFFECT_SG_ATTONEMENT
