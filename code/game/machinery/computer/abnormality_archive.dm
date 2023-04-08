@@ -13,6 +13,7 @@
 	var/paper = 1 //You get one paper
 	var/papermax = 10 //Recycle more paper
 	var/list/note_list
+	var/list/abno_data = list()
 
 /obj/machinery/computer/abnormality_archive/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -22,25 +23,29 @@
 
 /obj/machinery/computer/abnormality_archive/ui_static_data(mob/user) //list is created the moment a person boots up the UI and inherited by future iterations of this object
 	. = ..()
-	var/abnormality_info //if the abnormality info is already made do not make a new one.
-	if(!abnormality_info)
-		abnormality_info = list()
-		for(var/_record_detail in subtypesof(/obj/item/paper/fluff/info)) //consists of all threat levels and their branches
-			var/obj/item/paper/fluff/info/record_detail = _record_detail
-			var/list/record_data = list()
-			if(initial(record_detail.name) == "paper" || initial(record_detail.no_archive) == TRUE) //removes template papers and allows for secret files
+	//if the abnormality info is already made do not make a new one.
+	if(abno_data.len <= 0)
+		for(var/record in subtypesof(/obj/item/paper/fluff/info)) //consists of all threat levels and their branches
+			var/obj/item/paper/fluff/info/record_detail = new record(src)
+			if(record_detail.name == "paper" || record_detail.no_archive) //removes template papers and allows for secret files
 				continue
-			note_list = splittext(initial(record_detail.info), "<br>") //splits text into a list by making <br> into a break,
+			var/list/record_data = list()
+			note_list = splittext(record_detail.info, "<br>") //splits text into a list by making <br> into a break,
 			popleft(note_list) //Remove first line since it is the name
+			while(note_list.Remove("")) // Removes all empty strings, if there are any.
 			linecount = note_list.len //Doing it seperately results in only half of the lines being given a value. A single variable seems to keep it stable.
 			record_data["linecount"] = linecount //len is list length
-			record_data["type"] = record_detail //gives the typepath of the file we are reading
-			record_data["name"] = remove_paper_commands(initial(record_detail.name))
-			for(var/i=0,i <= linecount,i++) //loop until we reach the same length as the linecount
+			record_data["type"] = record_detail.type //gives the typepath of the file we are reading
+			if(record_detail.abno_code)
+				record_data["name"] = remove_paper_commands(record_detail.abno_code) // Abnos
+			else
+				record_data["name"] = remove_paper_commands(record_detail.name) // Non-Abnos
+			for(var/i=0 to (linecount-1)) //loop until we reach the same length as the linecount
 				record_data["line[i]"] += remove_paper_commands(popleft(note_list))
-			abnormality_info += list(record_data)
+			abno_data += list(record_data)
+			qdel(record_detail)
 
-	.["abnormality_info"] = abnormality_info
+	.["abnormality_info"] = abno_data
 
 /obj/machinery/computer/abnormality_archive/ui_act(action, params) //Basically catches signals caused by the Javascript act('print_file', { ref: currentAbnormality.type })
 	. = ..()
