@@ -21,7 +21,7 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	for(var/mob/living/L in livinginrange(1, M))
+	for(var/mob/living/L in view(1, M))
 		var/aoe = 25
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
