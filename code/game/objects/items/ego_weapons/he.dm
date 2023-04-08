@@ -765,9 +765,12 @@
 	var/list/mode_stats = list(
 		"Spear" = list("_sp", 15, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),
 		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
-		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/hammer.ogg')
+		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)
 	var/windup = 0
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/ego_weapon/get_strong/Initialize()
 	. = ..()
@@ -805,18 +808,19 @@
 			windup = min(windup+2, 50)
 		if("Gauntlet")
 			to_chat(user, "<span class='notice'>You start winding up your fist!</span>")
-			if(!do_after(user, 1 SECONDS, target))
+			if(!do_after(user, 0.75 SECONDS, target))
 				to_chat(user, "<span class='warning'>You stop winding up your fist!</span>")
 				return
 			force += windup
 			windup = 0
 	..()
 	force = mode_stats[mode][2]
-	if(windup >= 50)
-		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
-		to_chat(user, "<span class='nicegreen'>[src] hisses as it reaches full capacity!</span>")
-		return
-	if(windup >= 25)
-		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 50)
-		to_chat(user, "<span class='notice'>[src] hisses as it reaches half capacity.</span>")
-		return
+	switch(windup)
+		if(50 to INFINITY)
+			playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
+			to_chat(user, "<span class='nicegreen'>[src] beeps and whirls as it reaches full capacity!</span>")
+		if(25 to 49)
+			playsound(src, 'sound/weapons/ego/strong_charged1.ogg', 40)
+		else
+			playsound(src, 'sound/weapons/ego/strong_uncharged.ogg', 20)
+	return
