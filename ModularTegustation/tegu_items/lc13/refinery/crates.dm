@@ -75,7 +75,10 @@
 		/obj/item/clothing/neck/limbus_tie)
 
 	rareloot =	list(/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
-		/obj/item/ego_weapon/lance/sangre)
+		/obj/item/ego_weapon/lance/sangre,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/cast,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/branch)
 
 
 //K Corporation
@@ -90,9 +93,15 @@
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/kcorp,
-		/obj/item/ego_weapon/shield/kcorp)
+		/obj/item/ego_weapon/shield/kcorp,
+		/obj/item/gun/ego_gun/pistol/kcorp)
 
-	veryrareloot =	list(/obj/item/clothing/under/rank/k_corporation/intern)
+	veryrareloot =	list(/obj/item/clothing/under/rank/k_corporation/intern,
+		/obj/item/ego_weapon/city/kcorp/spear,
+		/obj/item/ego_weapon/city/kcorp/dspear,
+		/obj/item/gun/ego_gun/pistol/kcorp/smg,
+		/obj/item/gun/ego_gun/pistol/kcorp/nade,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp)
 
 
 //R Corporation
@@ -124,10 +133,12 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
 		/obj/item/gun/ego_gun/sodashotty,
 		/obj/item/gun/ego_gun/sodarifle,
-		/obj/item/gun/ego_gun/sodasmg
+		/obj/item/gun/ego_gun/sodasmg,
+		/obj/item/gun/ego_gun/shrimp/assault,
 		)
 
 	rareloot =	list(
+		/obj/item/gun/ego_gun/shrimp/minigun,
 		/mob/living/simple_animal/hostile/shrimp,
 		/obj/item/grenade/spawnergrenade/shrimp)
 
@@ -168,12 +179,77 @@
 	rareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_mark/pale,
 		/obj/item/ego_weapon/city/ncorp_nail/big,
-
 		/obj/item/ego_weapon/city/ncorp_hammer/big
 
 		)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_hammer/grippy,
-		/obj/item/ego_weapon/city/ncorp_nail/huge)
+		/obj/item/ego_weapon/city/ncorp_nail/huge,
+		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander)
 
+
+//First set of city stuff. Cane, Rats, Index and Iron Brotherhood.
+//Also include Yun office.
+/obj/structure/lootcrate/workshopleaf
+	name = "leaflet workshop crate"
+	desc = "A crate recieved from the city workshop. Open with a Crowbar."
+	icon_state = "crate_leaf"
+	rarechance = 20
+	veryrarechance = 2
+	lootlist =	list(
+		/obj/item/ego_weapon/city/rats,
+		/obj/item/ego_weapon/city/rats/knife,
+		/obj/item/ego_weapon/city/rats/scalpel)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/cane/cane,
+		/obj/item/ego_weapon/city/cane/claw,
+		/obj/item/ego_weapon/city/cane/briefcase,
+		/obj/item/ego_weapon/city/index,
+		)
+
+	veryrareloot =	list(
+		/obj/item/ego_weapon/city/index/proxy,)
+
+//Zwei - Zwei and it's associates
+/obj/structure/lootcrate/zwei
+	name = "Zwei Association Crate"
+	desc = "A crate recieved from the zwei association. Open with a Crowbar."
+	icon_state = "crate_zwei"
+	rarechance = 30
+	lootlist =	list(
+		/obj/item/ego_weapon/city/zweihander,
+		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
+		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
+		/obj/item/ego_weapon/city/streetlight_bat,
+		/obj/item/ego_weapon/city/streetlight_greatsword)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/zweihander/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
+
+//Seven - Seven and it's associates
+
+/obj/structure/lootcrate/seven
+	name = "Seven Association Crate"
+	desc = "A crate recieved from seven association. Open with a Crowbar."
+	icon_state = "crate_seven"
+	rarechance = 30
+	veryrarechance = 10
+	lootlist =	list(
+		/obj/item/ego_weapon/city/seven,
+		/obj/item/clothing/suit/armor/ego_gear/city/seven
+		)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/seven/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel
+		)
+
+	veryrareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector,
+		/obj/item/ego_weapon/city/seven/director,
+		/obj/item/ego_weapon/city/seven/cane)

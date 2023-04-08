@@ -23,12 +23,6 @@ Every folder here has a different theme, stay on theme, write new themes here.
 K Corp
 Weapons that can be used with a shield, the shield is easier to get specifically to help with this
 
-Limbus Sinner
-Grade 7 weapons that are based off the base ID weapons from Limbus Company
-
-Limbus EGO
-Grade 5 weapons all based off the starter EGO from Limbus Company
-
 N Corp
 Split into 3 parts that all work together. Nail, mark and hammer. Marks charge the hammer, Nail marks the target. Hit nail with hammer to clear and attack marks.
 
@@ -38,18 +32,33 @@ Multiple damage type weapons.
 W Corp
 Build charge for burst damage.
 
+Limbus Sinner
+Grade 7 weapons that are based off the base ID weapons from Limbus Company
 
+Limbus EGO
+Grade 5 weapons all based off the starter EGO from Limbus Company
 
-Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
+Rats
+Shitty fixer packfiller. All grade 8 garbo. Feel free to change this
 
 Cane Office
 Build charge for buffs and debuffs
 
 Index
-Pick a breached abno; If you kill that abno you get a temporary bonus and maybe a damage change.
+Pick a breached abno; If you kill that abno you get a temporary damage bonus.
 
-Rats
-Shitty fixer packfiller. All grade 8 garbo. Feel free to change this
+Zwei
+Zweihanders - Lock in place, giving yourself and everyone around you a temporary defense bonus. Has a cooldown.
+Baton - Stuns humans, deals okay damage.
+
+Seven Association
+Get full accurate readout on abnos if you hit them with the weapon 7 times, with the cane it's 3.
+
+
+Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
+
+Yun's Office
+Lock in place, giving yourself a big damage boost.
 
 Brotherhood Of Iron
 Grade 6 weapons with grade 5 damage. Each of them has a durability that decreases on each hit, and when it reaches 0, all damage done is halved.

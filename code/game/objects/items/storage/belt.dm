@@ -747,7 +747,7 @@
 		))
 
 /obj/item/storage/belt/ego
-	name = "ego small arms belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
+	name = "ego small arms belt"
 	desc = "Holds various small ego weapons, such as pistols and daggers."
 	icon_state = "security"
 	inhand_icon_state = "security"
@@ -768,6 +768,7 @@
 		/obj/item/gun/ego_gun/pistol,
 		/obj/item/ego_weapon/mini,
 		/obj/item/ego_weapon/city/ncorp_mark,
-		/obj/item/ego_weapon/city/ncorp_nail
+		/obj/item/ego_weapon/city/ncorp_nail,
+		/obj/item/ego_weapon/city/rats
 		))
 
