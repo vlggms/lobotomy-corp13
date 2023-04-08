@@ -120,7 +120,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/AdjustThirst(thirst)
 	blood = clamp(thirst + blood, 0, 400)
-	src.adjustBruteLoss(thirst)
+	src.adjustBruteLoss(-thirst)
 	if(blood > 300 && !berzerk)
 		Berzerk()
 
