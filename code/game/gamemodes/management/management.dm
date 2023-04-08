@@ -26,7 +26,7 @@
 /datum/game_mode/management/pure
 	name = "Pure"
 	config_tag = "pure"
-	votable = 1
+	votable = 0
 
 	announce_span = "notice"
 	announce_text = "Manage a selection of abnormalities strictly from Lobotomy Corporation HQ!"
@@ -35,7 +35,7 @@
 /datum/game_mode/management/classic
 	name = "classic"
 	config_tag = "classic"
-	votable = 1
+	votable = 0
 
 	announce_span = "notice"
 	announce_text = "Manage a wide cast of abnormalities from all normal sources!"
@@ -44,7 +44,7 @@
 /datum/game_mode/management/branch
 	name = "Lobotomy Corporation - Side Branch"
 	config_tag = "sidebranch"
-	votable = 0
+	votable = 1
 
 	announce_span = "notice"
 	announce_text = "Manage all abnormalities not originating from Lobotomy Corporation HQ!"
