@@ -230,6 +230,11 @@
 	item_path = /obj/item/ego_weapon/shield/legerdemain
 	cost = 35
 
+//Lady facing the Wall - Wedge
+/datum/ego_datum/weapon/wedge
+	item_path = /obj/item/gun/ego_gun/wedge
+	cost = 35
+
 //You Must Become Strong - Get Strong
 /datum/ego_datum/weapon/get_strong
 	item_path = /obj/item/ego_weapon/get_strong

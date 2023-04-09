@@ -208,3 +208,15 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
 		"The facility’s systems and the employees will be unable to detect the Abnormality when it escapes. Thus the manager will need to manually pinpoint it and order suppression directly.")
+
+//Lady facing the Wall
+/obj/item/paper/fluff/info/teth/wall_gazer
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wall_gazer
+	abno_code = "F-01-18"
+	abno_info = list(
+		"Employees with Temperance Level 1 may turn their head back after hearing The Lady Facing the Wall. If they do, they will be subject to a panic attack.",
+		"When Attachment Work was performed with The Lady Facing the Wall, the Qliphoth Counter lowered.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"When The Lady Facing the Wall’s Qliphoth Counter hit 0, Lady Facing the Wall will yell out a scream and every employee nearby that has heard has suffered heavy WHITE damage.")
+
