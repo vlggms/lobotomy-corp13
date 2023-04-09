@@ -31,6 +31,60 @@
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	var/big_bird = FALSE
+
+/area/department_main/Entered(atom/movable/M)
+	. = ..()
+	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+		return
+	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		big_bird = TRUE
+		for(var/area/facility_hallway/F in adjacent_areas)
+			F.big_bird = TRUE
+			F.RefreshLights()
+		for(var/area/department_main/D in adjacent_areas)
+			D.big_bird = TRUE
+			D.RefreshLights()
+	RefreshLights()
+
+/area/department_main/Exited(atom/movable/M)
+	. = ..()
+	if(!isabnormalitymob(M))
+		return
+	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		for(var/area/facility_hallway/F in adjacent_areas)
+			if(M in F.contents)
+				continue
+			F.big_bird = FALSE
+			F.RefreshLights()
+		for(var/area/department_main/D in adjacent_areas)
+			if(M in D.contents)
+				continue
+			D.big_bird = FALSE
+			D.RefreshLights()
+		if(isdead(M) || QDELETED(M))
+			big_bird = FALSE
+	RefreshLights()
+
+/area/department_main/RefreshLights()
+	lightswitch = !big_bird
+	if(!big_bird)
+		var/list/search_through = src.contents.Copy()
+		var/mob/living/simple_animal/hostile/abnormality/training_rabbit/TR = locate() in search_through
+		if(TR)
+			search_through -= TR
+		fire = FALSE
+		if((GLOB.security_level >= SEC_LEVEL_BLUE))
+			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+				if(QDELETED(A) || (A.stat == DEAD))
+					continue
+				if(A)
+					fire = TRUE
+					break
+	for(var/obj/machinery/light/L in src)
+		L.on = !big_bird
+		L.update()
+	return
 
 /area/department_main/manager
 	name = "Manager's Office"
@@ -88,6 +142,60 @@
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	var/big_bird = FALSE
+
+/area/facility_hallway/Entered(atom/movable/M)
+	. = ..()
+	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+		return
+	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		big_bird = TRUE
+		for(var/area/facility_hallway/F in adjacent_areas)
+			F.big_bird = TRUE
+			F.RefreshLights()
+		for(var/area/department_main/D in adjacent_areas)
+			D.big_bird = TRUE
+			D.RefreshLights()
+	RefreshLights()
+
+/area/facility_hallway/Exited(atom/movable/M)
+	. = ..()
+	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+		return
+	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		for(var/area/facility_hallway/F in adjacent_areas)
+			if(M in F.contents)
+				continue
+			F.big_bird = FALSE
+			F.RefreshLights()
+		for(var/area/department_main/D in adjacent_areas)
+			if(M in D.contents)
+				continue
+			D.big_bird = FALSE
+			D.RefreshLights()
+		if(isdead(M) || QDELETED(M))
+			big_bird = FALSE
+	RefreshLights()
+
+/area/facility_hallway/RefreshLights()
+	lightswitch = !big_bird
+	if(!big_bird)
+		var/list/search_through = src.contents.Copy()
+		var/mob/living/simple_animal/hostile/abnormality/training_rabbit/TR = locate() in search_through
+		if(TR)
+			search_through -= TR
+		fire = FALSE
+		if((GLOB.security_level >= SEC_LEVEL_BLUE))
+			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+				if(QDELETED(A) || (A.stat == DEAD))
+					continue
+				if(A)
+					fire = TRUE
+					break
+	for(var/obj/machinery/light/L in src)
+		L.on = !big_bird
+		L.update()
+	return
 
 /area/facility_hallway/central
 	name = "Central Hallway"
