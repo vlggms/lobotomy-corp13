@@ -1,6 +1,6 @@
 // One sin and thousands of good deeds - Penitence
 /datum/ego_datum/weapon/penitence
-	item_path = /obj/item/ego_weapon/penitence
+	item_path = /obj/item/ego_weapon/support/penitence
 	cost = 12
 
 /datum/ego_datum/armor/penitence
@@ -27,7 +27,7 @@
 
 // Fairy Festival - Wingbeat
 /datum/ego_datum/weapon/wingbeat
-	item_path = /obj/item/ego_weapon/wingbeat
+	item_path = /obj/item/ego_weapon/support/wingbeat
 	cost = 12
 
 /datum/ego_datum/armor/wingbeat
@@ -36,7 +36,7 @@
 
 // Bottle Of Tears - Little Alice
 /datum/ego_datum/weapon/little_alice
-	item_path = /obj/item/ego_weapon/little_alice
+	item_path = /obj/item/ego_weapon/support/little_alice
 	cost = 12
 
 /datum/ego_datum/armor/little_alice
@@ -54,7 +54,7 @@
 
 // Sleeping Beauty - Doze
 /datum/ego_datum/weapon/doze
-	item_path = /obj/item/ego_weapon/doze
+	item_path = /obj/item/ego_weapon/support/doze
 	cost = 12
 
 /datum/ego_datum/armor/doze
@@ -72,7 +72,7 @@
 
 // Hammer of Light - Evening Twilight
 /datum/ego_datum/weapon/evening
-	item_path = /obj/item/ego_weapon/evening
+	item_path = /obj/item/ego_weapon/support/evening
 	cost = 12
 
 /datum/ego_datum/armor/evening
@@ -98,9 +98,8 @@
 	cost = 12
 
 // Pile of mail - Letter Opener
-
 /datum/ego_datum/weapon/letter_opener
-	item_path = /obj/item/ego_weapon/letter_opener
+	item_path = /obj/item/ego_weapon/support/letter_opener
 	cost = 12
 
 /datum/ego_datum/armor/letter_opener
