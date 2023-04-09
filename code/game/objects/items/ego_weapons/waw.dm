@@ -979,6 +979,9 @@
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
 
+/obj/item/ego_weapon/blind_rage/get_clamped_volume()
+	return 50
+
 /obj/item/ego_weapon/mini/heart
 	name = "bleeding heart"
 	desc = "The supplicant will suffer various ordeals in a manner like being put through a trial."
