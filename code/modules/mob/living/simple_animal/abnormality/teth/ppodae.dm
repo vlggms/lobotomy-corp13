@@ -19,7 +19,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 40,
 						ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
 						)
-	work_damage_amount = 4
+	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	can_breach = TRUE
@@ -152,7 +152,7 @@
 		return
 	can_act = FALSE
 	dir = dir_to_target
-	var/smash_damage = rand(8, 14)
+	var/smash_damage = rand(16, 28)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/L in T)
