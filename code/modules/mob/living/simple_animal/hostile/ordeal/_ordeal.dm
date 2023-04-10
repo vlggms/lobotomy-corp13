@@ -9,6 +9,14 @@
 	var/datum/ordeal/ordeal_reference
 	var/ordeal_remove_ondeath = TRUE
 
+/mob/living/simple_animal/hostile/ordeal/add_to_mob_list()
+	. = ..()
+	GLOB.ordeal_list += src
+
+/mob/living/simple_animal/hostile/ordeal/remove_from_mob_list()
+	. = ..()
+	GLOB.ordeal_list -= src
+
 /mob/living/simple_animal/hostile/ordeal/death(gibbed)
 	mob_size = MOB_SIZE_HUMAN //let body bags carry dead ordeals
 	if(ordeal_reference && ordeal_remove_ondeath)

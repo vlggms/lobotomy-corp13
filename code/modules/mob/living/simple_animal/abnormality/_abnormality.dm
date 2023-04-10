@@ -288,7 +288,7 @@
 	return
 
 // Special breach effect for abnormalities with can_breach set to TRUE
-/mob/living/simple_animal/hostile/abnormality/proc/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)

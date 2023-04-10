@@ -11,6 +11,10 @@
 #define ABNORMALITY_WORK_ATTACHMENT "Attachment"
 #define ABNORMALITY_WORK_REPRESSION "Repression"
 
+// Breach types
+#define BREACH_NORMAL 0
+#define BREACH_PINK 1
+
 // List
 #define THREAT_TO_NAME list(\
 							ZAYIN_LEVEL = "ZAYIN",\
