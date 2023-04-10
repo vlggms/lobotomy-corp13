@@ -10,6 +10,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 7
+	var/preassembled = FALSE  //Don't want it calling unconditionally
 
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
@@ -22,6 +23,10 @@
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
 
+/obj/item/assembly_holder/Initialize(mapload)
+	if(mapload && preassembled)
+		addtimer(CALLBACK(src, .proc/assemble_contents), 0)
+	. = ..()
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)
@@ -142,4 +147,22 @@
 			a_left.pulsed(FALSE)
 	if(master)
 		master.receive_signal()
+	return TRUE
+
+/obj/item/assembly_holder/proc/assemble_contents()
+	var/atom/L = drop_location()
+	for(var/atom/movable/AM in L)
+		if(istype(AM, /obj/item/assembly/)) 
+			attach(AM, null)
+		if(a_right)
+			break
+	if (!a_right)
+		if(a_left)
+			a_left.on_detach()
+			a_left = null
+		qdel(src)
+		return FALSE
+	name = "[a_left.name]-[a_right.name] assembly"
+	a_left.holder_movement()
+	a_right.holder_movement()
 	return TRUE
