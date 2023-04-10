@@ -18,7 +18,7 @@
 	. = ..()
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
-	return
+	return TRUE // If we want to do "if(!.)" checks, this has to exist.
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
