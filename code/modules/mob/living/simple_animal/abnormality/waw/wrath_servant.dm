@@ -47,6 +47,7 @@
 		/datum/ego_datum/weapon/blind_rage,
 		/datum/ego_datum/armor/blind_rage
 	)
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/friendly = TRUE
 	var/list/friend_ship = list()

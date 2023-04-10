@@ -33,6 +33,9 @@
 
 	gift_type = /datum/ego_gifts/lantern
 	gift_message = "Not a single employee has seen Meat Lantern’s full form."
+
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
 	var/can_act = TRUE
 	var/detect_range = 1
 	var/chop_cooldown

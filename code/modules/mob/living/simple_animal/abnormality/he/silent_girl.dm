@@ -30,7 +30,7 @@
 		/datum/ego_datum/armor/remorse
 		)
 	gift_type = /datum/ego_gifts/remorse
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/OnWorkStart(datum/source, datum/abnormality/datum_reference, mob/living/carbon/human/user, work_type)

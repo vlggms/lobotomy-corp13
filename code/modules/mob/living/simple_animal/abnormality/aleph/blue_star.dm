@@ -39,7 +39,7 @@
 		/datum/ego_datum/armor/star_sound
 		)
 	gift_type =  /datum/ego_gifts/star
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 12 SECONDS

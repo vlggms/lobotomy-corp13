@@ -21,7 +21,7 @@
 		)
 	gift_type = null
 	gift_chance = 100
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)

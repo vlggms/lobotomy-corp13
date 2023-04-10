@@ -43,7 +43,7 @@
 
 	gift_type =  /datum/ego_gifts/censored
 	gift_message = "You feel disgusted just looking at it."
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/can_act = TRUE
 

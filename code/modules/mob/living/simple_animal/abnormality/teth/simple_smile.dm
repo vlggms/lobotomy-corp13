@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/trick
 		)
 //	gift_type =  /datum/ego_gifts/trick
-	abnormality_origin = "Wonderlab"
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 	var/list/stats = list(FORTITUDE_ATTRIBUTE,
 			PRUDENCE_ATTRIBUTE,
 			TEMPERANCE_ATTRIBUTE,

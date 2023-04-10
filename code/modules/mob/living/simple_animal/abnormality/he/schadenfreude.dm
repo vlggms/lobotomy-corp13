@@ -36,7 +36,7 @@
 		/datum/ego_datum/armor/gaze
 		)
 //	gift_type =  /datum/ego_gifts/gaze
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/seen	//Are you being looked at right now?
 	var/solo_punish	//Is an agent alone on the Z level, but not overall?

@@ -41,7 +41,7 @@
 		/datum/ego_datum/armor/despair
 		)
 	gift_type =  /datum/ego_gifts/tears
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS

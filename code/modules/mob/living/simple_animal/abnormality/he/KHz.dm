@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/transmission,
 		/datum/ego_datum/armor/transmission
 	)
-	abnormality_origin = "Original"
+
 
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work

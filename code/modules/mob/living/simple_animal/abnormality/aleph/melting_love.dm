@@ -47,7 +47,7 @@
 	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
 	gift_type =  /datum/ego_gifts/adoration
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
 	. = ..()

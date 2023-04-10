@@ -23,7 +23,7 @@
 
 	//gift_type =  /datum/ego_gifts/bloodbath
 
-	abnormality_origin = "Lobotomy Corporation"
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/hands = 0
 

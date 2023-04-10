@@ -25,7 +25,7 @@
 		)
 	gift_type = /datum/ego_gifts/alice
 	gift_message = "Welcome to your very own Wonderland~"
-	abnormality_origin = "Wonderlab"
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	max_boxes = 10
 	var/cake = 5 //How many cake charges are there (4)

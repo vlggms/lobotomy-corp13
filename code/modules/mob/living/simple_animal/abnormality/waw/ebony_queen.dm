@@ -51,7 +51,7 @@
 	/datum/ego_datum/armor/ebony_stem
 	)
 	gift_type =  /datum/ego_gifts/ebony_stem
-	abnormality_origin = "Limbus Company"
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
