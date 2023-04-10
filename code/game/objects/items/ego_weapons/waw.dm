@@ -638,6 +638,9 @@
 
 	var/combo_on = TRUE
 	var/sound = FALSE
+	var/dash_cooldown
+	var/dash_cooldown_time = 4 SECONDS
+	var/dash_range = 6
 
 //Switch between weapons every hit, or don't
 /obj/item/ego_weapon/mini/mirth/attack_self(mob/user)
@@ -660,8 +663,7 @@
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/ego_weapon/mini/malice/Y = myman.get_inactive_held_item()
 	if(istype(Y) && combo_on) //dual wielding? if so...
-		force = 12 //hits twice
-		combo = TRUE
+		combo = TRUE //hits twice, you're spending as much PE as you would getting an ALEPH anyways
 		if(sound)
 			hitsound = 'sound/weapons/ego/sword2.ogg'
 			sound = FALSE
@@ -675,6 +677,25 @@
 			M.attacked_by(src, user)
 		damtype = initial(damtype)
 		armortype = initial(armortype)
+
+/obj/item/ego_weapon/mini/mirth/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/mini/malice
 	name = "malice"
@@ -696,6 +717,9 @@
 
 	var/combo_on = TRUE
 	var/sound = FALSE
+	var/dash_cooldown
+	var/dash_cooldown_time = 4 SECONDS
+	var/dash_range = 6
 
 /obj/item/ego_weapon/mini/malice/attack_self(mob/user)
 	..()
@@ -717,8 +741,7 @@
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/ego_weapon/mini/mirth/Y = myman.get_inactive_held_item()
 	if(istype(Y) && combo_on)
-		force = 12 //hits twice
-		combo = TRUE
+		combo = TRUE //hits twice, you're spending as much PE as you would getting an ALEPH anyways
 		if(sound)
 			hitsound = 'sound/weapons/ego/sword1.ogg'
 			sound = FALSE
@@ -732,6 +755,25 @@
 			M.attacked_by(src, user)
 		damtype = initial(damtype)
 		armortype = initial(armortype)
+
+/obj/item/ego_weapon/mini/malice/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/shield/swan
 	name = "swan"

@@ -21,7 +21,6 @@
 		"The spores were cured if the infected had constant medical attention and reached a healthy state.",
 		"When the HP of an employee infested with spores had depleted, a giant drone burst out of their body. The drone indiscriminately attacked nearby employees. From the corpses of attacked employees, more drones emerged.")
 
-
 //Jbird
 /obj/item/paper/fluff/info/waw/jbird
 	abno_type = /mob/living/simple_animal/hostile/abnormality/judgement_bird
@@ -245,7 +244,7 @@
 	abno_code = "O-01-17"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When the work result was Good, the Qliphoth Counter lowered.",
+		"When the work result was Good, the Qliphoth Counter lowered with a high probability.",
 		"O-01-17 explodes upon death, causing nearby empoloyees to take high RED damage if caught in the blast.")
 
 //La Luna
@@ -322,7 +321,6 @@
 		"While Nosferatu is escaping, it will show sensitive reactions to blood. Suppression becomes difficult if blood is readily accessible to this abnormality.")
 	abno_breach_damage_type = "Red/Black"
 	abno_breach_damage_count = "High"
-
 
 //Servant of Wrath
 /obj/item/paper/fluff/info/waw/wrath

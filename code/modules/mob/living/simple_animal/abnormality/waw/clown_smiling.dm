@@ -28,7 +28,7 @@
 	friendly_verb_simple = "honk"
 	can_breach = TRUE
 	patrol_cooldown_time = 5 SECONDS
-	start_qliphoth = 1
+	start_qliphoth = 2
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 35,
 						ABNORMALITY_WORK_INSIGHT = 45,
@@ -68,13 +68,13 @@
 	GiveTarget(user)
 
 /mob/living/simple_animal/hostile/abnormality/clown/Moved()
+	. = ..()
 	if(step)
 		playsound(get_turf(src), 'sound/effects/clownstep2.ogg', 30, 0, 3)
 		step = FALSE
-		return ..()
+		return
 	playsound(get_turf(src), 'sound/effects/clownstep1.ogg', 30, 0, 3)
 	step = TRUE
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/clown/update_icon_state()
 	if(status_flags & GODMODE)	// Not breaching
@@ -138,7 +138,8 @@
 
 //When the work result was good...
 /mob/living/simple_animal/hostile/abnormality/clown/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
+	if(prob(50))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/clown/FailureEffect(mob/living/carbon/human/user, work_type, pe)
