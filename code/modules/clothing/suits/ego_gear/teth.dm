@@ -145,3 +145,9 @@
 	desc = "The luminous organ shines brilliantly, making it useful for lighting up the dark. It’s also great as a lure."
 	icon_state = "lantern"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) //20
+
+/obj/item/clothing/suit/armor/ego_gear/curfew
+	name = "Curfew"
+	desc = "Everything was rotting but the memory of that night wasn't."
+	icon_state = "curfew"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 20

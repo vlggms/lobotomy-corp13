@@ -202,3 +202,8 @@
 /datum/ego_datum/weapon/lantern
 	item_path = /obj/item/ego_weapon/lantern
 	cost = 20
+
+//Cinderella's pumpkin - carriage
+/datum/ego_datum/armor/curfew
+	item_path = /obj/item/clothing/suit/armor/ego_gear/curfew
+	cost = 20
