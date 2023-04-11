@@ -614,6 +614,14 @@
 	justice_bonus = 4
 	slot = HAT
 
+/datum/ego_gifts/blahaj
+	name = "Blahaj"
+	icon_state = "blahaj"
+	fortitude_bonus = -15
+	prudence_bonus = 15
+	temperance_bonus = 5
+	slot = RIGHTBACK
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
