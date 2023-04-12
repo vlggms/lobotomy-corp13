@@ -240,7 +240,7 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/maneater
-	name = "mean eater"
+	name = "man eater"
 	desc = "Here comes our beloved mascot!"
 	icon_state = "maneater"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = -10) // 70
