@@ -312,3 +312,11 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80)
 
+/obj/item/clothing/suit/armor/ego_gear/amrita
+	name = "amrita"
+	desc = "You can smell old dirt and fire if you put your nose close enough."
+	icon_state = "amrita"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)

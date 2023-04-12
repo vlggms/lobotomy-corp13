@@ -339,3 +339,13 @@
 		"The Hermit attacked the agents around them, dealing heavy White Damage.",
 		"In the end, the only way to suppress the Servant of Wrath was for them to kill the Hermit of the Azure forest.",
 		"NOTE: The Hermit of the Azure forest in almost every scenario has overpowered the Servant of Wrath.")
+
+//Clouded Monk
+/obj/item/paper/fluff/info/waw/clouded_monk
+	abno_type = /mob/living/simple_animal/hostile/abnormality/clouded_monk
+	abno_code = "D-01-110"
+	abno_info = list(
+		"An employee’s SP was healed when they performed Insight work.",
+		"The Qliphoth Counter lowered every time ten employees died.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
+		"When the work result was Bad, the Qliphoth Counter decreased.")

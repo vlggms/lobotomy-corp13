@@ -76,6 +76,12 @@
 	volume = 25
 	extra_range = -4
 
+/datum/looping_sound/cloudedmonk_ambience
+	mid_sounds = 'sound/abnormalities/clouded_monk/run.ogg'
+	mid_length = 6 SECONDS
+	volume = 25
+	extra_range = -4
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
