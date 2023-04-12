@@ -321,8 +321,7 @@
 		"Should the Qliphoth level reach 0, instead of breaching, the machine will produce a loud whirling sound and produce 3 humanoid creatures dubbed T-09-140-1.",
 		"T-09-140-1 are, despite their poor resilience, very durable and must be handled multiple times.",
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
-		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
-	)
+		"T-09-140-1's stats are listed in the 'Breach Information' section of this document.")
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -433,3 +432,15 @@
 		"When the employee initiated close physical interaction, such as petting, the Qliphoth counter was reduced by 1.",
 		"If the employee's Temperance Level was below 3, the employee was killed instead.",
 		"When the work result was Bad, the Qliphoth Counter lowered.")
+
+//Pink Shoes
+/obj/item/paper/fluff/info/he/pink_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
+	abno_code = "F-04-147"//F-04-10-13 in LCB
+	abno_info = list(
+		"Employees with temperance level 2 or lower immediately panicked after working on Pink Shoes.",
+		"Employees who panic while working on Pink Shoes will decide to wear them.",
+		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",
+		"Fallen employees can be manipulated by the ribbons, as well as other hostile threats.")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Moderate"
