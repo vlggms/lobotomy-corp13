@@ -64,7 +64,7 @@
 
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
 	name = "can of 'Wellcheers' soda"
-	desc = "A can of soda."
+	desc = "A can of regular soda."
 	icon_state = "wellcheers_white"
 	inhand_icon_state = "monkey_energy"
 	list_reagents = list(/datum/reagent/consumable/wellcheers_white = 10)
