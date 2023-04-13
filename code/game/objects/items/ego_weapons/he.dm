@@ -35,6 +35,7 @@
 /obj/item/ego_weapon/harvest
 	name = "harvest"
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
+	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "harvest"
 	force = 30
 	damtype = BLACK_DAMAGE
@@ -633,8 +634,7 @@
 /obj/item/ego_weapon/inheritance
 	name = "inheritance"
 	desc = "You should consider it an honor. The humans who have joined me could attain greater wealth and glory."
-	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
-	This weapon has a fast attack speed"
+	special = "This weapon has a combo system. To turn off this combo system, use in hand."
 	icon_state = "inheritance"
 	force = 12
 	damtype = RED_DAMAGE
