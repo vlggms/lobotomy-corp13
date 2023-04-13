@@ -480,6 +480,14 @@
 	prudence_bonus = 2
 	slot = HAND_1
 
+/datum/ego_gifts/impending_day
+	name = "Impending Day"
+	icon_state = "doomsday"
+	fortitude_bonus = 4
+	prudence_bonus = -2
+	justice_bonus = 2
+	slot = HELMET
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"

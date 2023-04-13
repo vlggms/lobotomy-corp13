@@ -824,3 +824,48 @@
 		else
 			playsound(src, 'sound/weapons/ego/strong_uncharged.ogg', 20)
 	return
+
+/obj/item/ego_weapon/impending_day
+	name = "impending day"
+	desc = "You, too, will be a live offering."
+	icon_state = "impending_day"
+	special = "This weapon will attack all non-humans in an AOE after killing a target."
+	force = 55
+	attack_speed = 2
+	hitsound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg'
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/sacrifice = FALSE
+
+/obj/item/ego_weapon/impending_day/attack(mob/living/target, mob/living/carbon/human/user)
+	var/living = FALSE
+	if(!CanUseEgo(user))
+		return
+	if(target.stat != DEAD)
+		living = TRUE
+	..()
+	if(icon_state != initial(icon_state))
+		icon_state = "impending_day"
+
+	if(target.stat == DEAD && living)
+		if(!sacrifice)
+			to_chat(user, "<span class='userdanger'>Impending Day extends outward!</span>")
+			playsound('sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg', 3, TRUE)
+			sacrifice = FALSE
+		for(var/mob/living/L in livinginrange(1, target))
+			var/aoe = 50
+			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+		icon_state = "impending_day_extended"
+		sacrifice = TRUE
+		living = FALSE
