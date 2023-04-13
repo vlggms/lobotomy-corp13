@@ -1,0 +1,14 @@
+{
+	"version": 1,
+	"map_name": "Facility J-777",
+	"map_path": "map_files/Kappa",
+	"map_file": [
+		"kappacorp.dmm",
+		"kappacommand.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}

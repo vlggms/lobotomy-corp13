@@ -1128,6 +1128,10 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/welfare)
+"mE" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating/asteroid,
+/area/facility_hallway/information)
 "mG" = (
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plating/asteroid,
@@ -1157,6 +1161,10 @@
 	},
 /turf/closed/mineral/ash_rock,
 /area/facility_hallway/information)
+"nc" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating/asteroid,
+/area/facility_hallway/welfare)
 "nk" = (
 /obj/structure/sign/ordealmonitor{
 	pixel_y = 32
@@ -1625,6 +1633,10 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
+"tc" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating/asteroid,
+/area/facility_hallway/training)
 "td" = (
 /obj/structure/rack,
 /obj/item/stack/tile/carpet/royalblue/fifty,
@@ -1925,6 +1937,10 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
+"wa" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating/asteroid,
+/area/facility_hallway/discipline)
 "wc" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -2537,6 +2553,10 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/department_main/command)
+"Ej" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating,
+/area/facility_hallway/information)
 "Ek" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plating/asteroid,
@@ -3871,6 +3891,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"Tt" = (
+/obj/effect/landmark/xeno_spawn,
+/turf/open/floor/plating,
+/area/facility_hallway/discipline)
 "Tu" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -4052,6 +4076,10 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/facility_hallway/welfare)
+"VB" = (
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
 /area/facility_hallway/welfare)
 "VJ" = (
@@ -27622,7 +27650,7 @@ yy
 yy
 gH
 wM
-yy
+Tt
 mG
 Tu
 UQ
@@ -27631,7 +27659,7 @@ hw
 hw
 UQ
 hw
-hb
+nc
 hb
 Tu
 UQ
@@ -27640,7 +27668,7 @@ hw
 hw
 UQ
 Wd
-GW
+nc
 gA
 Tu
 UQ
@@ -27649,7 +27677,7 @@ hw
 hw
 UQ
 Vv
-hw
+VB
 gA
 Tu
 Tu
@@ -27888,7 +27916,7 @@ hw
 hw
 UQ
 hw
-hb
+GW
 hb
 Tu
 UQ
@@ -28145,7 +28173,7 @@ hw
 hw
 UQ
 fh
-hb
+GW
 gA
 Tu
 UQ
@@ -30994,7 +31022,7 @@ cZ
 cZ
 LL
 TW
-rz
+tc
 jj
 Tu
 LL
@@ -31003,7 +31031,7 @@ cZ
 cZ
 LL
 rz
-rz
+tc
 dt
 Tu
 Tu
@@ -31486,7 +31514,7 @@ yy
 yy
 gH
 yy
-sv
+wa
 Jy
 Tu
 rO
@@ -33276,7 +33304,7 @@ gH
 gH
 Hi
 sv
-sv
+wa
 hH
 sv
 sv
@@ -33564,7 +33592,7 @@ cZ
 cZ
 LL
 IT
-rz
+tc
 jj
 Tu
 LL
@@ -33573,7 +33601,7 @@ cZ
 cZ
 LL
 yl
-rz
+tc
 rz
 sY
 Tu
@@ -40760,7 +40788,7 @@ cZ
 cZ
 LL
 TW
-rz
+tc
 jj
 Tu
 LL
@@ -40769,7 +40797,7 @@ cZ
 cZ
 LL
 rz
-rz
+tc
 rz
 sY
 Tu
@@ -40986,7 +41014,7 @@ gH
 gH
 gH
 sv
-sv
+wa
 hH
 sv
 sv
@@ -42794,7 +42822,7 @@ yy
 yy
 gH
 DW
-sv
+wa
 Jy
 Tu
 qw
@@ -43330,7 +43358,7 @@ cZ
 cZ
 LL
 IT
-rz
+tc
 jj
 Tu
 LL
@@ -43339,7 +43367,7 @@ cZ
 cZ
 LL
 yl
-rz
+tc
 dt
 Tu
 Tu
@@ -46640,7 +46668,7 @@ yy
 yy
 gH
 ZG
-yy
+Tt
 mG
 Tu
 jU
@@ -46649,7 +46677,7 @@ bw
 bw
 jU
 mb
-fp
+mE
 fp
 Tu
 sS
@@ -46658,7 +46686,7 @@ vf
 vf
 sS
 fo
-WG
+mE
 TA
 Tu
 sS
@@ -46667,7 +46695,7 @@ vf
 vf
 sS
 cI
-vf
+Ej
 TA
 Tu
 Tu

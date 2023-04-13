@@ -1309,20 +1309,6 @@
 	shuttleId = "secondary";
 	max_integrity = 10000000
 	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 1;
-	name = "backup elevator console";
-	possible_destinations = "backup_command";
-	shuttleId = "secondary";
-	max_integrity = 10000000
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 1;
-	name = "backup elevator console";
-	possible_destinations = "backup_command";
-	shuttleId = "secondary";
-	max_integrity = 10000000
-	},
 /turf/open/floor/carpet/black,
 /area/department_main/command)
 "LE" = (
