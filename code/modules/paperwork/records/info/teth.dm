@@ -1,7 +1,7 @@
 //Wabbit Twouble
 /obj/item/paper/fluff/info/teth/training
 	abno_type = /mob/living/simple_animal/hostile/abnormality/training_rabbit
-	abno_code = "0-00-00"
+	abno_code = "O-00-00"
 	abno_info = list(
 		"When Repression work was performed with Standard Training-Dummy Rabbit, the Qliphoth Counter lowered.")
 	abno_breach_damage_type = "None"

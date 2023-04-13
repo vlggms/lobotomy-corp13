@@ -293,7 +293,7 @@
 //Dimensional Refraction
 /obj/item/paper/fluff/info/waw/dimensional_refraction
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dimensional_refraction
-	abno_code = "0-03-88"
+	abno_code = "O-03-88"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"The facility and its employees will find it difficult to detect the Abnormality in any fashion when it escapes. Manager or clerk assistance recommended.")

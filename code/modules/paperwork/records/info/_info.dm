@@ -101,8 +101,8 @@ For escape damage you will have to get creative and figure out how dangerous it 
 		abno_breach_damage_type = capitalize(initial(abno_type.melee_damage_type))
 	if(isnull(abno_breach_damage_count))
 		abno_breach_damage_count = SimpleDamageToText(initial(abno_type.melee_damage_upper) * initial(abno_type.rapid_melee))
-	info += "<h4>Escape Damage Type:</h4>[abno_breach_damage_type]<br>"
-	info += "<h4>Escape Damage:</h4>[abno_breach_damage_count]<br>"
+	info += "<h4>Escape Damage Type:</h4> [abno_breach_damage_type]<br>"
+	info += "<h4>Escape Damage:</h4> [abno_breach_damage_count]<br>"
 
 	// Resistances
 	for(var/line in abno_resistances)
