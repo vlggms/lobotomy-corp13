@@ -540,6 +540,8 @@
 			continue
 		if(A in stored_birds["spoken"])
 			continue
+		if(!(A in SSlobotomy_events.AB_breached))
+			continue
 		if(A.type in bird_types)
 			if(!ConsumeBird(A))
 				continue
@@ -575,9 +577,9 @@
 
 /mob/living/simple_animal/forest_portal/death(gibbed)
 	SSlobotomy_events.AB_types |= bird_types // Restore so it may happen again
-	for(var/datum/abnormality/abno in SSlobotomy_corp.all_abnormality_datums)
-		if((abno.current.type in bird_types))
-			abno.current.death()
+	for(var/mob/living/simple_animal/hostile/abnormality/bird in SSlobotomy_events.AB_breached)
+		bird.death()
+	SSlobotomy_events.AB_breached = list()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "But that is a story for another time...", 25))
 	. = ..()
 	return
@@ -633,7 +635,7 @@
 	return TRUE
 
 /mob/living/simple_animal/forest_portal/proc/SummonBird()
-	var/birds = GLOB.abnormality_mob_list
+	var/birds = SSlobotomy_events.AB_breached
 	birds -= stored_birds["spoken"]
 	birds -= stored_birds["unspoken"]
 	for(var/mob/living/simple_animal/hostile/abnormality/bird in birds)
