@@ -207,3 +207,8 @@
 /datum/ego_datum/armor/curfew
 	item_path = /obj/item/clothing/suit/armor/ego_gear/curfew
 	cost = 20
+
+//Lady facing the Wall - Wedge
+/datum/ego_datum/armor/wedge
+	item_path = /obj/item/clothing/suit/armor/ego_gear/wedge
+	cost = 20

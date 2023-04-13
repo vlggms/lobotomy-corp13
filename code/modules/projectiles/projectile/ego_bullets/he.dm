@@ -92,3 +92,9 @@
 	damage = 2 //4 pellets
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_wedge
+	name = "screaming"
+	damage = 30
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

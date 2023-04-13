@@ -44,3 +44,8 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_songmini
 	pellets = 4
 	variance = 20
+
+/obj/item/ammo_casing/caseless/ego_wedge
+	name = "screaming casing"
+	desc = "A screaming casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_wedge
