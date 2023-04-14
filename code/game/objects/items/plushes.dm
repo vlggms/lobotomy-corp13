@@ -559,6 +559,29 @@
 	icon_state = "qoh"
 	gender = FEMALE
 
+/obj/item/toy/plush/kog
+	name = "king of greed plushie"
+	desc = "A plushie depicting a magical girl whose desires got the best of her."
+	icon_state = "kog"
+	gender = FEMALE
+
+/obj/item/toy/plush/kod
+	name = "knight of despair plushie"
+	desc = "A plushie depicting a magical girl who abandoned those who needed her most."
+	icon_state = "kod"
+	gender = FEMALE
+
+/obj/item/toy/plush/sow
+	name = "servant of wrath plushie"
+	desc = "A plushie depicting a magical girl who was betrayed by someone they trusted dearly."
+	icon_state = "sow"
+	gender = FEMALE
+
+/obj/item/toy/plush/nihil
+	name = "jester of nihil plushie"
+	desc = "A plushie depicting a black and white jester, usually found alongside the magical girls."
+	icon_state = "nihil"
+
 /obj/item/toy/plush/bigbird
 	name = "big bird plushie"
 	desc = "A plushie depicting a big bird with a lantern that burns forever. How does it even work..?"
@@ -573,6 +596,9 @@
 	name = "melting love plushie"
 	desc = "A plushie depicting a slime girl, you think."
 	icon_state = "melt"
+	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
+	attack_verb_simple = list("blorble", "slime", "absorb")
+	squeak_override = list('sound/effects/blobattack.ogg' = 1)
 
 /obj/item/toy/plush/scorched
 	name = "scorched girl plushie"
