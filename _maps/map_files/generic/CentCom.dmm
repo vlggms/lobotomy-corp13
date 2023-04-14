@@ -153,7 +153,7 @@
 /obj/machinery/door/airlock/public/glass{
 	name = "command canteen"
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "aL" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -682,17 +682,6 @@
 /area/centcom/hub)
 "eF" = (
 /obj/structure/table,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
@@ -2652,16 +2641,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
-"nm" = (
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "np" = (
 /obj/machinery/light{
 	dir = 8
@@ -3375,9 +3354,6 @@
 /area/tdome/arena)
 "rs" = (
 /obj/structure/table/reinforced,
-/obj/machinery/button{
-	id = "sephirah"
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "ru" = (
@@ -4867,17 +4843,6 @@
 /obj/machinery/computer/crew{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "yC" = (
@@ -6276,17 +6241,6 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Fk" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Fm" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -6318,17 +6272,6 @@
 "Fw" = (
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
@@ -6390,18 +6333,7 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/item/toy/plush/rabbit,
+/obj/item/paper_bin,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "FT" = (
@@ -6598,17 +6530,6 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Ht" = (
@@ -6733,17 +6654,6 @@
 /area/centcom/ferry)
 "Ia" = (
 /obj/machinery/photocopier,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Ib" = (
@@ -6833,17 +6743,6 @@
 /area/tdome/tdomeadmin)
 "Iw" = (
 /obj/item/kirbyplants/fullysynthetic,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Iz" = (
@@ -7320,12 +7219,7 @@
 /turf/open/floor/plating/abductor,
 /area/abductor_ship)
 "JP" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "sephirah";
-	name = "sephirah overwatch office"
-	},
-/turf/open/floor/facility/halls,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/manager)
 "JQ" = (
 /obj/structure/chair/office{
@@ -8402,14 +8296,12 @@
 /area/centcom/hub)
 "Of" = (
 /obj/machinery/door/airlock/public/glass{
+	max_integrity = 250000000;
 	name = "sephirah overwatch room";
-	req_access_txt = "19"
+	normal_integrity = 250000000;
+	req_access_txt = "67"
 	},
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "sephirah";
-	name = "sephirah overwatch office"
-	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "Ok" = (
 /obj/machinery/light,
@@ -8524,17 +8416,6 @@
 /obj/machinery/computer/security/hos{
 	dir = 1;
 	name = "\improper R-Corp Representative's camera console"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
@@ -9134,13 +9015,6 @@
 	payment_department = "SEC";
 	pixel_x = -32
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "RM" = (
@@ -9182,13 +9056,6 @@
 /turf/open/floor/plasteel,
 /area/centcom/hub)
 "Sa" = (
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -9202,8 +9069,13 @@
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
 "Sh" = (
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/facility/halls,
+/obj/machinery/door/airlock/public/glass{
+	max_integrity = 250000000;
+	name = "representative's room";
+	normal_integrity = 250000000;
+	req_access_txt = "69"
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "Si" = (
 /turf/open/floor/plasteel,
@@ -10265,14 +10137,6 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/obj/item/toy/plush/myo,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "Ym" = (
@@ -10514,13 +10378,6 @@
 /area/facility_hallway/human)
 "ZI" = (
 /obj/structure/chair/stool,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "ZN" = (
@@ -15492,7 +15349,7 @@ aa
 aa
 qp
 Fw
-nm
+sA
 Sa
 RK
 yA
@@ -15749,8 +15606,8 @@ aa
 aa
 qp
 FR
-nm
-Fk
+sA
+MQ
 Yi
 OL
 qp
@@ -16006,9 +15863,9 @@ VR
 aa
 qp
 Hr
-nm
-Fk
-Fk
+sA
+MQ
+MQ
 eF
 qp
 aa
@@ -16263,8 +16120,8 @@ VR
 aa
 qp
 Ia
-nm
-nm
+sA
+sA
 ZI
 Iw
 qp
@@ -16520,9 +16377,9 @@ VR
 qp
 qp
 qp
-qp
+JP
 Sh
-pr
+JP
 qp
 qp
 qp

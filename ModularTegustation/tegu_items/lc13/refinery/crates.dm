@@ -168,9 +168,7 @@
 	rareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_mark/pale,
 		/obj/item/ego_weapon/city/ncorp_nail/big,
-
 		/obj/item/ego_weapon/city/ncorp_hammer/big
-
 		)
 
 	veryrareloot =	list(

@@ -6,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the manager"
 	selection_color = "#bcbcef"
-	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	display_order = JOB_DISPLAY_ORDER_MANAGER
 
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW

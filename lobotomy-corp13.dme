@@ -2271,6 +2271,8 @@
 #include "code\modules\jobs\job_types\gimmick\departmentcaptain.dm"
 #include "code\modules\jobs\job_types\gimmick\departmenthead.dm"
 #include "code\modules\jobs\job_types\gimmick\HHPP.dm"
+#include "code\modules\jobs\job_types\trusted_players\representative.dm"
+#include "code\modules\jobs\job_types\trusted_players\sephirah.dm"
 #include "code\modules\keybindings\bindings_atom.dm"
 #include "code\modules\keybindings\bindings_client.dm"
 #include "code\modules\keybindings\focus.dm"
@@ -3646,6 +3648,7 @@
 #include "ModularTegustation\tegu_world.dm"
 #include "ModularTegustation\tegufood.dm"
 #include "ModularTegustation\tegushuttles.dm"
+#include "ModularTegustation\trusted.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
 #include "ModularTegustation\altjobtitles\LC13.dm"
 #include "ModularTegustation\altjobtitles\outfits.dm"
@@ -3745,6 +3748,5 @@
 #include "ModularTegustation\tegu_weaponry\melee\nano_blade.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\black_extracts.dm"
 #include "ModularTegustation\tegu_xenobio_blackcross\slime_code.dm"
-#include "ModularTegustation\trusted_players\trusted-players_procs.dm"
 #include "ModularTegustation\zTegu_overwrite\tegu_overwrite_vars.dm"
 // END_INCLUDE

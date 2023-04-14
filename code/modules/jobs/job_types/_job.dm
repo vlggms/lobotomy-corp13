@@ -87,6 +87,8 @@
 	//If this job is needed to load, then this the flag that keeps it to load.
 	var/loadalways = FALSE
 
+	///Is this job trusted only? If so, then this job requires the player to be in the trusted_players.txt
+	var/trusted_only = FALSE
 
 /datum/job/New()
 	. = ..()

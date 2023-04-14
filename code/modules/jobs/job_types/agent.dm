@@ -11,7 +11,7 @@
 	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/agent
-	display_order = JOB_DISPLAY_ORDER_WARDEN
+	display_order = JOB_DISPLAY_ORDER_AGENT
 
 	access = list() // LC13:To-Do
 	minimal_access = list()
@@ -116,7 +116,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
-	display_order = JOB_DISPLAY_ORDER_SCIENTIST
+	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	normal_attribute_level = 21 // :)
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
@@ -140,7 +140,7 @@
 	total_positions = -1
 	spawn_positions = -1
 	outfit = /datum/outfit/job/agent/intern
-	display_order = JOB_DISPLAY_ORDER_SECURITY_OFFICER
+	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
 	exp_requirements = 0
 

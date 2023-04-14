@@ -12,6 +12,7 @@ HHPP Employee
 	minimal_access = list(ACCESS_KITCHEN)
 	outfit = /datum/outfit/job/chef
 	antag_rep = 7
+	display_order = JOB_DISPLAY_ORDER_HHPP
 
 
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
