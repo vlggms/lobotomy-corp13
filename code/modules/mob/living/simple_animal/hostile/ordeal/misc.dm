@@ -50,4 +50,3 @@
 				destination = get_turf(src)
 			if(!A.patrol_to(destination))
 				A.forceMove(destination)
-
