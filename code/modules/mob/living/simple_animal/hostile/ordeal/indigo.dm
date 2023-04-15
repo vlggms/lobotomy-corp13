@@ -65,12 +65,22 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/Aggro()
+	. = ..()
+	a_intent_change(INTENT_HARM)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/LoseAggro()
+	. = ..()
+	if(leader)
+		a_intent_change(INTENT_HELP)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
 	. = ..()
@@ -134,6 +144,9 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	blood_volume = BLOOD_VOLUME_NORMAL
+	can_patrol = TRUE
+	var/order_cooldown = 0
+	var/list/troops = list()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white
 	name = "\proper Commander Adelheide"
@@ -180,6 +193,28 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Found(atom/A) //every time she finds a sweeper that sweeper is compelled to follow her as family
+	if(istype(A, /mob/living/simple_animal/hostile/ordeal/indigo_noon) && troops.len < 6)
+		var/mob/living/simple_animal/hostile/ordeal/indigo_noon/S = A
+		if(S.stat != DEAD && !S.leader && !S.target && !S.client) //are you dead? do you have a leader? are you currently fighting? Are you a player?
+			S.Goto(src,S.move_to_delay,1)
+			S.leader = src
+			troops += S
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Aggro()
+	a_intent_change(INTENT_HARM)
+	..()
+	if(order_cooldown < world.time && troops.len)
+		order_cooldown = world.time + (10 SECONDS)
+		var/mob/living/simple_animal/hostile/ordeal/overachiver = locate(/mob/living/simple_animal/hostile/ordeal/indigo_noon) in troops
+		if(overachiver)
+			overachiver.TemporarySpeedChange(amount = -2, time = 5 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/LoseAggro()
+	. = ..()
+	if(troops.len)
+		a_intent_change(INTENT_HELP) //so that they dont get body blocked by their kin outside of combat
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
@@ -189,6 +224,31 @@
 				devour(L)
 		else
 			devour(L)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/patrol_select()
+	if(troops.len)
+		headcount()
+		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/family in troops)
+			if(family.stat == DEAD || family.client) //if you are dead or are a player your no longer active in the family.
+				troops -= family
+			Goto(src , 2, 1) //had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/death()
+	for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/S in troops) //The leader can no longer lead their troops into battle.
+		if(S)
+			S.leader = null
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/proc/headcount()
+	var/list/whosehere = list()
+	for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/soldier in oview(src, 10))
+		whosehere += soldier
+	var/list/absent_troops = difflist(troops, whosehere ,1)
+	if(absent_troops.len)
+		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/s in absent_troops)
+			s.leader = null
+			troops -= s
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/proc/devour(mob/living/L)
 	if(!L)
