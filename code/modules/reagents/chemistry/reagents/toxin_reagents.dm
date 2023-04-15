@@ -403,7 +403,7 @@
 	..()
 
 /datum/reagent/toxin/fakebeer	//disguised as normal beer for use by emagged brobots
-	name = "Beer"
+	name = "Bear" //Netzach approved
 	description = "A specially-engineered sedative disguised as beer. It induces instant sleep in its target."
 	color = "#664300" // rgb: 102, 67, 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -675,11 +675,11 @@
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 	toxpwr = 0
 
-/datum/reagent/medicine/sodium_thiopental/on_mob_add(mob/living/L, amount)
+/datum/reagent/toxin/sodium_thiopental/on_mob_add(mob/living/L, amount)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_ANTICONVULSANT, name)
 
-/datum/reagent/medicine/sodium_thiopental/on_mob_delete(mob/living/L)
+/datum/reagent/toxin/sodium_thiopental/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_ANTICONVULSANT, name)
 

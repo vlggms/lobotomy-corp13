@@ -521,25 +521,26 @@
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	dispensable_reagents = list(
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/consumable/ethanol/kahlua,
-		/datum/reagent/consumable/ethanol/whiskey,
-		/datum/reagent/consumable/ethanol/wine,
-		/datum/reagent/consumable/ethanol/vodka,
-		/datum/reagent/consumable/ethanol/gin,
-		/datum/reagent/consumable/ethanol/rum,
-		/datum/reagent/consumable/ethanol/tequila,
-		/datum/reagent/consumable/ethanol/vermouth,
-		/datum/reagent/consumable/ethanol/cognac,
-		/datum/reagent/consumable/ethanol/ale,
 		/datum/reagent/consumable/ethanol/absinthe,
-		/datum/reagent/consumable/ethanol/hcider,
-		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/ale,
+		/datum/reagent/consumable/ethanol/applejack,
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/cognac,
 		/datum/reagent/consumable/ethanol/creme_de_cacao,
 		/datum/reagent/consumable/ethanol/creme_de_coconut,
-		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/hcider,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/beer/maltliquor,
+		/datum/reagent/consumable/ethanol/rum,
 		/datum/reagent/consumable/ethanol/sake,
-		/datum/reagent/consumable/ethanol/applejack
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/wine,
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(

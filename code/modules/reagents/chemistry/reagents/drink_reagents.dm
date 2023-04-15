@@ -961,7 +961,7 @@
 // Wellcheers
 /datum/reagent/consumable/wellcheers_red
 	name = "Cherry Soda"
-	description = "A can of cherry-flavored soda."
+	description = "It tastes like cherry-flavored soda."
 	color = "#FC2403"
 	taste_description = "cherry soda"
 	glass_icon_state = "dr_gibb_glass"
@@ -973,13 +973,13 @@
 	return ..()
 
 /datum/reagent/consumable/wellcheers_white
-	name = "Soda"
-	description = "A can of normal soda."
+	name = "Regular Soda"
+	description = "It tastes like regular soda."
 	color = "#03FCD3"
 	taste_description = "soda"
 	glass_icon_state = "glass_clear"
-	glass_name = "glass of soda"
-	glass_desc = "A glass of normal soda."
+	glass_name = "glass of regular soda"
+	glass_desc = "A glass of regular soda."
 
 /datum/reagent/consumable/wellcheers_white/on_mob_life(mob/living/M)
 	if(!ishuman(M))
@@ -989,8 +989,8 @@
 	return ..()
 
 /datum/reagent/consumable/wellcheers_purple
-	name = "Soda"
-	description = "A can of grape-flavored soda."
+	name = "Purple Soda"
+	description = "It tastes like grape-flavored soda."
 	color = "#DB03FC"
 	taste_description = "grape soda"
 	glass_icon_state = "lean"
