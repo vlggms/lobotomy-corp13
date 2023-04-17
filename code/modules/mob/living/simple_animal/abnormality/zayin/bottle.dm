@@ -62,18 +62,55 @@
 			//Drowns you like Wellcheers does, so I mean the code checks out
 			for(var/turf/open/T in view(7, src))
 				new /obj/effect/temp_visual/water_waves(T)
-			to_chat(user, "<span class='userdanger'>The room is filling with water! You're going to drown!</span>")
 			playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
 			icon_state = "bottle3" //cake all gone
 
+			/* "I get it now. There's no reason to have any emotions or a heart."
+			"Abandon reason and protect Catt! That's how you survive in this wonderland!"
+			Catt was a low level agent with temperance and fortitude. She sought to abandon that temperance in exchange for justice.
+			Thus, bottle will check for those. Overall low level, high temperance, high fortitude.
+			Keep in mind that this event can happen ONCE PER ROUND. The spoon is already jokingly called the protagonist weapon, so it can bend the rules a bit, right?*/
+
 			new /obj/item/ego_weapon/eyeball(get_turf(user))
 
+			var/fortitude = get_attribute_level(user, FORTITUDE_ATTRIBUTE)
+			var/prudence = get_attribute_level(user, PRUDENCE_ATTRIBUTE)
+			var/temperance = get_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+			var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+			var/goal_damage = 0
+			if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
+				to_chat(user, "<span class='userdanger'>The room is filling with water... but you feel oddly unconcerned.</span>")
+				user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - temperance)
+				// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
+				var/stat_change = 0
+				stat_change = temperance - 20
+				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
+				addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
+			else
+				to_chat(user, "<span class='userdanger'>The room is filling with water! Are you going to drown?!</span>")
+				goal_damage = 99999 // DIE.
+				if(fortitude >= (prudence + justice)) // Like the temperance calculation, but high temperance doesn't actively hurt your odds.
+					goal_damage = 120 + fortitude // Hurt bad, but never lethally.
+
 			user.AdjustSleeping(10 SECONDS)
-			user.adjustBruteLoss(200) //You have 100 health + 40 crit health, you need 60 fort to live at all.
+			user.adjustBruteLoss(goal_damage)
 			if(user.stat == DEAD)
 				animate(user, alpha = 0, time = 2 SECONDS)
 				QDEL_IN(user, 3.5 SECONDS)
+			else
+				user.adjustBruteLoss(-(goal_damage * 0.25)) // If you didn't die instantly, heal up some.
 	return
+
+/mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, justice = 0)
+	// Goes faster when the buff is higher, so you don't have an overwhelming buff for an overwhelming length of time.
+	if(justice == 0 || !buffed)
+		return FALSE
+	var/factor = justice / 10
+	var/timing = 10 + max(0, (100 - factor * factor))
+	buffed.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -1)
+	if(prob(10))
+		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
+	addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, buffed, justice - 1), timing)
 
 /datum/status_effect/tears
 	id = "tears"
