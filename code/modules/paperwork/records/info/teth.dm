@@ -220,3 +220,12 @@
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"When The Lady Facing the Wall’s Qliphoth Counter hit 0, Lady Facing the Wall will yell out a scream and every employee nearby that has heard has suffered heavy WHITE damage.")
 
+//Book Without Pictures or Dialogue
+/obj/item/paper/fluff/info/teth/book
+	abno_type = /mob/living/simple_animal/hostile/abnormality/book
+	abno_code = "T-04-11"
+	abno_info = list(
+		"When work was performed, the employee felt compelled to write in the book regardless of result.",
+		"Employees suffered from higher amounts of damage during work when the book was closer to completion.",
+		"Upon finishing repression work, employee Noah felt compelled to rip pages out of the abnormality.",
+		"Attempted repression work when the book was already empty nearly always ended in failure. In constrast, repression work performed when the book was full was usually successful.")

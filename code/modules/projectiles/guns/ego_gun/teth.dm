@@ -81,3 +81,15 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
 	autofire = 0.2 SECONDS
+
+/obj/item/gun/ego_gun/page
+	name = "page"
+	desc = "The pain of creation! The pain! The pain!"
+	icon_state = "page"
+	inhand_icon_state = "page"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_page
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'

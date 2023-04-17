@@ -336,6 +336,13 @@
 	fortitude_bonus = 5
 	slot = MOUTH_2
 
+/datum/ego_gifts/page
+	name = "Page"
+	icon_state = "page"
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = HAND_1
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
