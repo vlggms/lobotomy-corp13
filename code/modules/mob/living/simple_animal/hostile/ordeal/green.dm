@@ -92,18 +92,20 @@
 	base_pixel_x = -8
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 900
-	health = 900
+	maxHealth = 1100
+	health = 1100
 	speed = 3
 	move_to_delay = 6
-	melee_damage_lower = 22 // Full damage is done on the entire turf of target
-	melee_damage_upper = 26
+	rapid_melee = 4
+	melee_damage_lower = 5 // Full damage is done on the entire turf of target
+	melee_damage_upper = 6
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
 	ranged = 1
-	rapid = 8
+	rapid = 6
 	rapid_fire_delay = 3
+	check_friendly_fire = 1
 	projectiletype = /obj/projectile/bullet/c9x19mm
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
@@ -113,7 +115,7 @@
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
-	/// When at 10 - it will start "reloading"
+	/// When at 3 - it will start "reloading"
 	var/fire_count = 0
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/CanAttack(atom/the_target)
@@ -129,8 +131,11 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/OpenFire(atom/A)
 	if(reloading)
 		return FALSE
+	if(target in range(2, src))	//Doesn't shoot you if you're within range for too long
+		return FALSE
+
 	fire_count += 1
-	if(fire_count >= 6)
+	if(fire_count >= 3)
 		StartReloading()
 		return FALSE
 	return ..()
@@ -148,7 +153,7 @@
 			for(var/mob/living/L in T.contents)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(8, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(2, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()
@@ -172,6 +177,7 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+	can_patrol = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory/death(gibbed)
 		density = FALSE
@@ -229,7 +235,10 @@
 	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
-		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
+		var/picked_mob = /mob/living/simple_animal/hostile/ordeal/green_bot/factory
+		if(prob(30))
+			picked_mob = /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory
+
 		var/mob/living/simple_animal/hostile/ordeal/nb = new picked_mob(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
