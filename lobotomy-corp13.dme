@@ -2652,6 +2652,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\beanstalk.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\beauty_beast.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\blood_bath.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\book.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\cherry_blossoms.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\crumbling_armor.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\dingle_dangle.dm"

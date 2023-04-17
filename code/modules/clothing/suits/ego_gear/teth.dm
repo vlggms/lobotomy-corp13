@@ -147,7 +147,14 @@
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) //20
 
 /obj/item/clothing/suit/armor/ego_gear/curfew
-	name = "Curfew"
+	name = "curfew"
 	desc = "Everything was rotting but the memory of that night wasn't."
 	icon_state = "curfew"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/page
+	name = "page"
+	desc = "When one has filled book in whatever way, then the book may grant one wish. \
+	It may sound absurd but many take the rumor seriously."
+	icon_state = "page"
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 20

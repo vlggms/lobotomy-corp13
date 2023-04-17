@@ -49,3 +49,9 @@
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_page
+	name = "page"
+	damage = 20
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
