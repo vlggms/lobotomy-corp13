@@ -12,11 +12,11 @@ Assistant
 	minimal_access = list()	//See /datum/job/assistant/get_access()
 	outfit = /datum/outfit/job/assistant
 	antag_rep = 7 //persistant currency but currently unusable
+	display_order = JOB_DISPLAY_ORDER_CLERK
 
 
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
-	display_order = JOB_DISPLAY_ORDER_PRISONER
 	allow_bureaucratic_error = FALSE
 	loadalways = TRUE
 

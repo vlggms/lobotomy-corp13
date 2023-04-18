@@ -1,1 +1,1 @@
-## List of trusted players that have access to some additional species on round-start.
+## List of trusted players that have access to trusted player jobs

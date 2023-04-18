@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(head_departments, list(
 	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/departmenthead
-	display_order = JOB_DISPLAY_ORDER_RESEARCH_DIRECTOR
+	display_order = JOB_DISPLAY_ORDER_DEPARTMENTHEAD
 
 	access = list(ACCESS_COMMAND)
 	minimal_access = list(ACCESS_COMMAND)

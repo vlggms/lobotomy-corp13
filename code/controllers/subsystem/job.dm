@@ -112,6 +112,8 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
 			return FALSE
+		if(job.trusted_only && !is_trusted_player(player.client))
+			return FALSE
 		var/position_limit = job.total_positions
 		if(!latejoin)
 			position_limit = job.spawn_positions
@@ -151,6 +153,9 @@ SUBSYSTEM_DEF(job)
 		if(player.mind && (job.title in player.mind.restricted_roles))
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
+		if(job.trusted_only && !is_trusted_player(player.client))
+			JobDebug("FOC player is not trusted, Player: [player]")
+			continue
 		if(player.client.prefs.job_preferences[job.title] == level)
 			JobDebug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
@@ -186,6 +191,10 @@ SUBSYSTEM_DEF(job)
 
 		if(player.mind && (job.title in player.mind.restricted_roles))
 			JobDebug("GRJ incompatible with antagonist role, Player: [player], Job: [job.title]")
+			continue
+
+		if(job.trusted_only && !is_trusted_player(player.client))
+			JobDebug("GRJ player is not trusted, Player: [player]")
 			continue
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -356,6 +365,10 @@ SUBSYSTEM_DEF(job)
 
 				if(player.mind && (job.title in player.mind.restricted_roles))
 					JobDebug("DO incompatible with antagonist role, Player: [player], Job:[job.title]")
+					continue
+
+				if(job.trusted_only && !is_trusted_player(player.client))
+					JobDebug("DO player is not trusted, Player: [player], Job:[job.title]")
 					continue
 
 				// If the player wants that job on this level, then try give it to him.

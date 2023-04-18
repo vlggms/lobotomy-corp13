@@ -284,6 +284,8 @@
 			return "[TeguTranslate("Your account is not old enough for", src)] [jobtitle]."
 		if(JOB_UNAVAILABLE_SLOTFULL)
 			return "[jobtitle] [TeguTranslate("is already filled to capacity", src)]."
+		if(JOB_NOT_TRUSTED)
+			return "You need to be trusted to join as [jobtitle]."
 	return "Error: Unknown job availability."
 
 /mob/dead/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
@@ -309,6 +311,8 @@
 		return JOB_UNAVAILABLE_PLAYTIME
 	if(latejoin && !job.special_check_latejoin(client))
 		return JOB_UNAVAILABLE_GENERIC
+	if(job.trusted_only && !is_trusted_player(client))
+		return JOB_NOT_TRUSTED
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)

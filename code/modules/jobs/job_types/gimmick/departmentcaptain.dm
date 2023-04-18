@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(captain_departments, list(
 	exp_type_department = EXP_TYPE_SECURITY
 
 	outfit = /datum/outfit/job/departmentcaptain
-	display_order = JOB_DISPLAY_ORDER_SCIENTIST
+	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
 	access = list()
 	minimal_access = list()
