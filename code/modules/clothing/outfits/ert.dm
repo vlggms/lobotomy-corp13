@@ -521,11 +521,11 @@
 
 	id = /obj/item/card/id/ert/zwei_shield
 	uniform = /obj/item/clothing/under/rank/civilian/curator/zwei_shield
-	suit = /obj/item/clothing/suit/armor/vest/zwei_jacket
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zwei/noreq
 	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
-	l_hand = /obj/item/claymore
+	l_hand = /obj/item/ego_weapon/city/zweihander/noreq
 	r_hand = /obj/item/clothing/accessory/fixer_badge
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
@@ -534,13 +534,17 @@
 /datum/outfit/zwei_shield/veteran
 	name = "Zwei Veteran Shield"
 
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zweivet/noreq
 	id = /obj/item/card/id/ert/zwei_shield/veteran
 	head = /obj/item/clothing/head/beret/sec/zwei
 	glasses = /obj/item/clothing/glasses/sunglasses
+	l_hand = /obj/item/ego_weapon/city/zweihander/vet/noreq
+
 
 /datum/outfit/zwei_shield/captain
 	name = "Zwei Shield Captain"
-
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zweileader/noreq
 	id = /obj/item/card/id/ert/zwei_shield/captain
 	head = /obj/item/clothing/head/zwei
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	l_hand = /obj/item/ego_weapon/city/zweihander/vet/noreq

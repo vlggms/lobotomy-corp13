@@ -98,3 +98,23 @@
 	crate = /obj/structure/lootcrate/n_corp
 	crate_timer = 120
 
+/obj/structure/pe_sales/leaflet
+	name = "Leaflet Workshop Power Input"
+	desc = "A machine used to send PE to the leaflet workshop."
+	icon_state = "machineleaf"
+	crate = /obj/structure/lootcrate/workshopleaf
+
+/obj/structure/pe_sales/zwei
+	name = "Zwei Association Power Input"
+	desc = "A machine used to send PE to the zwei association."
+	icon_state = "machinezwei"
+	crate = /obj/structure/lootcrate/zwei
+	crate_timer = 240	//Two boxes per
+
+//Not available because Id on't have enough stuff for it
+/obj/structure/pe_sales/seven
+	name = "Seven Association Power Input"
+	desc = "A machine used to send PE to seven association."
+	icon_state = "machineseven"
+	crate = /obj/structure/lootcrate/seven
+	crate_timer = 360	//Two boxes per

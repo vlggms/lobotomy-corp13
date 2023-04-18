@@ -16,3 +16,14 @@
 	name = "sodassniper casing"
 	desc = "A casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle
+
+/obj/item/ammo_casing/caseless/ego_kcorp
+	name = "kcorp casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_kcorp
+
+
+/obj/item/ammo_casing/caseless/ego_knade
+	name = "kcorp casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_knade
