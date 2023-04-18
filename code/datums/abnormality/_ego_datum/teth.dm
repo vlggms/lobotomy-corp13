@@ -212,3 +212,12 @@
 /datum/ego_datum/armor/wedge
 	item_path = /obj/item/clothing/suit/armor/ego_gear/wedge
 	cost = 20
+
+//Book Without Pictures or Dialogue - Page
+/datum/ego_datum/armor/page
+	item_path = /obj/item/clothing/suit/armor/ego_gear/page
+	cost = 20
+
+/datum/ego_datum/weapon/page
+	item_path = /obj/item/gun/ego_gun/page
+	cost = 20
