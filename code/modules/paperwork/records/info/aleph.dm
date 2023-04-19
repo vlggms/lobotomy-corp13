@@ -129,3 +129,15 @@
 	abno_work_damage_count = "Extreme"
 	abno_breach_damage_type = "White & Black"
 	abno_breach_damage_count = "Extreme"
+
+// The Jester of Nihil
+/obj/item/paper/fluff/info/aleph/nihil
+	abno_type = /mob/living/simple_animal/hostile/abnormality/nihil
+	abno_code = "O-01-150"
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth Counter decreased at a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
+		"When work was performed, the employee took different types of damage depending on the type of work.",
+		"When the Qlipthoth counter reached 0, the faciltiy was cloaked in choking darkness.",
+		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.")
+	abno_work_damage_type = "All"
