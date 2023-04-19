@@ -329,3 +329,5 @@
 	damtype = initial(damtype)
 	if(prob(30))
 		new /obj/effect/temp_visual/maildecal(get_turf(A))
+
+
