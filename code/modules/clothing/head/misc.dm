@@ -489,3 +489,21 @@
 	flags_inv = 0
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 140
+
+/obj/item/clothing/head/ego_hat
+	name = "ego hat"
+	desc = "an ego hat that you shouldn't be seeing!"
+	icon = 'icons/obj/clothing/ego_gear/head.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
+	icon_state = ""
+	flags_inv = HIDEMASK
+
+/obj/item/clothing/head/ego_hat/Destroy()
+	dropped()
+	return ..()
+
+/obj/item/clothing/head/ego_hat/equipped(mob/user, slot)
+	if(slot != ITEM_SLOT_HEAD)
+		Destroy()
+		return
+	. = ..()
