@@ -252,3 +252,12 @@
 /datum/ego_datum/weapon/impending_day
 	item_path = /obj/item/ego_weapon/impending_day
 	cost = 35
+
+//Headless Icthys - Fluid Sac
+/datum/ego_datum/armor/fluid_sac
+	item_path = /obj/item/clothing/suit/armor/ego_gear/fluid_sac
+	cost = 35
+
+/datum/ego_datum/weapon/fluid_sac
+	item_path = /obj/item/ego_weapon/fluid_sac
+	cost = 35

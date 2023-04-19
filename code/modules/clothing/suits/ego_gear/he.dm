@@ -299,3 +299,12 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/fluid_sac
+	name = "fluid sac"
+	desc = "Its contents are an enigma; it bears resemblance to a flower, or the central nervous system of a human."
+	icon_state = "fluid_sac"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

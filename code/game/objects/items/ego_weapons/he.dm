@@ -869,3 +869,78 @@
 		icon_state = "impending_day_extended"
 		sacrifice = TRUE
 		living = FALSE
+
+/obj/item/ego_weapon/fluid_sac
+	name = "fluid sac"
+	desc = "Crush them, even if you must disgorge everything."
+	special = "This weapon can be used to perform a jump attack after a short wind-up."
+	icon_state = "fluid_sac"
+	force = 55
+	attack_speed = 2
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/abnormalities/icthys/hammer1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 8 SECONDS
+	var/dash_range = 8
+	var/can_attack = TRUE
+
+/obj/item/ego_weapon/fluid_sac/attack(mob/living/target, mob/living/user)
+	if(!can_attack)
+		return
+	..()
+	can_attack = FALSE
+	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+
+/obj/item/ego_weapon/fluid_sac/proc/JumpReset()
+	can_attack = TRUE
+
+/obj/item/ego_weapon/fluid_sac/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user) || !can_attack)
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!</span>")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	if(do_after(user, 5, src))
+		dash_cooldown = world.time + dash_cooldown_time
+		playsound(src, 'sound/abnormalities/icthys/jump.ogg', 50, FALSE, -1)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 16
+		sleep(0.5 SECONDS)
+		for(var/i in 2 to get_dist(user, A))
+			step_towards(user,A)
+		if((get_dist(user, A) < 2))
+			JumpAttack(A,user)
+		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = 0
+
+/obj/item/ego_weapon/fluid_sac/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+	force = 30
+	A.attackby(src,user)
+	force = initial(force)
+	can_attack = FALSE
+	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	for(var/mob/living/L in livinginrange(1, A))
+		if(L.z != user.z) // Not on our level
+			continue
+		var/aoe = 25
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
+		FX.color = "#b52e19"
