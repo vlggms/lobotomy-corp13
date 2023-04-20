@@ -27,6 +27,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	var/work_count = 0
+	var/breach_count = 4	//when do you breach?
 	var/reset_time = 1 MINUTES
 	var/damage_amount = 7
 	var/run_num = 2		//How many things you breach
@@ -38,12 +39,12 @@
 	..()
 	work_count += 1
 	//heal amount = the PE you made
-	var/heal_amount = pe
+	var/heal_amount = pe*2
 
-	if(work_count >= 4)
+	if(work_count >= breach_count)
 		work_count = 0
 		datum_reference.qliphoth_change(-1)
-		heal_amount = pe*2
+		heal_amount = pe*4
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat != DEAD)
@@ -72,6 +73,5 @@
 	if(!LAZYLEN(total_abnormalities))
 		return
 
-	for(var/i=run_num, i>=1, i--)
-		var/mob/living/simple_animal/hostile/abnormality/processing = pick(total_abnormalities)
-		processing.datum_reference.qliphoth_change(-200)
+	var/mob/living/simple_animal/hostile/abnormality/processing = pick(total_abnormalities)
+	processing.datum_reference.qliphoth_change(-200)
