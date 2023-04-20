@@ -309,6 +309,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"bf" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/human)
 "bg" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/energy/e_gun/rabbit,
@@ -2787,7 +2796,7 @@
 /area/space)
 "lP" = (
 /obj/structure/plaque/static_plaque{
-	desc = "Moises Lineman";
+	desc = "Moises Lineman. Karl Sustan.";
 	name = "Employee of the Month Award";
 	pixel_y = 32
 	},
@@ -2832,6 +2841,17 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
+"md" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -15
+	},
+/obj/structure/mirror{
+	pixel_x = -1;
+	pixel_y = -35
+	},
+/turf/open/floor/carpet/black,
+/area/department_main/human)
 "mf" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/champagne{
@@ -5603,6 +5623,13 @@
 "yv" = (
 /obj/machinery/disposal/bin,
 /turf/open/floor/wood,
+/area/department_main/human)
+"yx" = (
+/obj/machinery/shower{
+	pixel_y = 19
+	},
+/obj/structure/curtain,
+/turf/open/floor/carpet/black,
 /area/department_main/human)
 "yC" = (
 /obj/structure/chair/wood/wings,
@@ -9099,6 +9126,10 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
+"Nk" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/black,
+/area/department_main/human)
 "Nm" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/autodrobe,
@@ -10604,14 +10635,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
-"UA" = (
-/obj/structure/plaque/static_plaque{
-	desc = "Karl Sustan";
-	name = "Employee of the Month Award";
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/department_main/human)
 "UB" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/guides/jobs/zayin{
@@ -45233,10 +45256,10 @@ aT
 aT
 wF
 wF
-aa
-aa
-aa
-aa
+wF
+wF
+wF
+wF
 aa
 aa
 aa
@@ -45489,11 +45512,11 @@ bI
 bI
 Fl
 Fl
+aT
+Iy
+Iy
+Iy
 wF
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -45746,10 +45769,10 @@ on
 on
 sv
 sv
-wF
-wF
-wF
-wF
+aT
+dG
+dG
+dG
 wF
 aa
 aa
@@ -46004,9 +46027,9 @@ on
 sv
 sv
 aT
-Iy
-Iy
-Iy
+bI
+bI
+bI
 wF
 aa
 aa
@@ -46261,9 +46284,9 @@ on
 dG
 dG
 aT
-dG
-dG
-dG
+bI
+sE
+CY
 wF
 aa
 aa
@@ -46519,8 +46542,8 @@ bI
 bI
 tj
 bI
-bI
-bI
+sE
+CY
 wF
 aa
 aa
@@ -46768,7 +46791,7 @@ jx
 jx
 cI
 wF
-UA
+bI
 on
 on
 on
@@ -47032,9 +47055,9 @@ on
 sv
 sv
 aT
+ja
 bI
-sE
-CY
+Sv
 wF
 aa
 aa
@@ -47288,10 +47311,10 @@ on
 on
 sv
 sv
-aT
-bI
-sE
-CY
+wF
+wF
+wF
+wF
 wF
 aa
 aa
@@ -47545,11 +47568,11 @@ on
 on
 dG
 dG
-aT
-ja
-bI
-Sv
 wF
+bf
+wF
+aa
+aa
 aa
 aa
 aa
@@ -47802,11 +47825,11 @@ on
 on
 bI
 bI
+Nk
+md
 wF
-wF
-wF
-wF
-wF
+aa
+aa
 aa
 aa
 aa
@@ -48060,8 +48083,8 @@ on
 bI
 MW
 wF
-aa
-aa
+yx
+wF
 aa
 aa
 aa
@@ -48317,8 +48340,8 @@ on
 bI
 pm
 wF
-aa
-aa
+wF
+wF
 aa
 aa
 aa
