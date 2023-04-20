@@ -162,9 +162,6 @@
 	if(old_part.type in list(/obj/item/bodypart/r_leg/grown_strong, /obj/item/bodypart/l_leg/grown_strong, /obj/item/bodypart/r_arm/grown_strong, /obj/item/bodypart/l_arm/grown_strong))
 		to_chat(M, "<span class='notice'>Only original parts are accepted.</span>")
 		return
-	if(alert(M, "Would you like to put your [old_part.name] into [src]?", "You Must Become Stronger", "Yes", "No") != "Yes")
-		return
-	var/obj/item/bodypart/prosthetic
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	soundloop.start()
 	visible_message("<span class='notice'>[M.first_name()] plunges their [old_part.name] into [src]...</span>")
@@ -177,6 +174,7 @@
 		icon_state = "you_strong_pause"
 		operating = FALSE
 		return
+	var/obj/item/bodypart/prosthetic
 	switch(selected_part)
 		if(BODY_ZONE_L_ARM)
 			prosthetic = new/obj/item/bodypart/l_arm/grown_strong(M)
@@ -311,11 +309,11 @@
 	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/r_leg/grown_strong/drop_limb(special)
-	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(buff_type, -2)
+	..()
 
 /obj/item/bodypart/r_leg/grown_strong/attach_limb(mob/living/carbon/C, special)
 	. = ..()
@@ -355,11 +353,11 @@
 	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/l_leg/grown_strong/drop_limb(special)
-	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(buff_type, -2)
+	..()
 
 /obj/item/bodypart/l_leg/grown_strong/attach_limb(mob/living/carbon/C, special)
 	. = ..()
@@ -399,11 +397,11 @@
 	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/r_arm/grown_strong/drop_limb(special)
-	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(buff_type, -2)
+	..()
 
 /obj/item/bodypart/r_arm/grown_strong/attach_limb(mob/living/carbon/C, special)
 	. = ..()
@@ -448,11 +446,11 @@
 	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/l_arm/grown_strong/drop_limb(special)
-	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(buff_type, -2)
+	..()
 
 /obj/item/bodypart/l_arm/grown_strong/attach_limb(mob/living/carbon/C, special)
 	. = ..()
