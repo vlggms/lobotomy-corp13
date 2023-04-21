@@ -69,3 +69,30 @@
 /datum/ego_datum/armor/nostalgia
 	item_path = /obj/item/clothing/suit/armor/ego_gear/nostalgia
 	cost = 12
+
+// Hammer of Light - Evening Twilight
+/datum/ego_datum/weapon/evening
+	item_path = /obj/item/ego_weapon/evening
+	cost = 12
+
+/datum/ego_datum/armor/evening
+	item_path = /obj/item/clothing/suit/armor/ego_gear/evening
+	cost = 12
+
+// Blubbering Toad - Melty Eyeball
+/datum/ego_datum/weapon/melty_eyeball
+	item_path = /obj/item/ego_weapon/melty_eyeball
+	cost = 12
+
+/datum/ego_datum/armor/melty_eyeball
+	item_path = /obj/item/clothing/suit/armor/ego_gear/melty_eyeball
+	cost = 12
+
+// Fallen Amurdad - Nightshade
+/datum/ego_datum/weapon/nightshade
+	item_path = /obj/item/gun/ego_gun/pistol/nightshade
+	cost = 12
+
+/datum/ego_datum/armor/nightshade
+	item_path = /obj/item/clothing/suit/armor/ego_gear/nightshade
+	cost = 12

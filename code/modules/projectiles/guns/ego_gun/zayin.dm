@@ -103,3 +103,15 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
+
+/obj/item/gun/ego_gun/pistol/nightshade
+	name = "nightshade"
+	desc = "Strange that it was more than just a bleeding person in a vegetative state."
+	icon_state = "nightshade"
+	inhand_icon_state = "nightshade"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
+	burst_size = 1
+	fire_delay = 10
+	fire_sound = 'sound/weapons/bowfire.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 50

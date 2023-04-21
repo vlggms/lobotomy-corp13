@@ -57,3 +57,21 @@
 	desc = "An old brown jacket. What seems to be an L corp logo is stitched into the side. This logo, strangely, is not one for the company you work at"
 	icon_state = "nostalgia"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/evening
+	name = "evening twilight"
+	desc = "If you accept it, your whole world will change."
+	icon_state = "evening"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 10)
+
+/obj/item/clothing/suit/armor/ego_gear/melty_eyeball
+	name = "melty eyeball"
+	desc = "Doesn't it make you more gloomy than anything?"
+	icon_state = "melty_eyeball"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/nightshade
+	name = "nightshade"
+	desc = "It could hear all the meaningless words I have said and will say in the future and perfectly understand them."
+	icon_state = "nightshade"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
