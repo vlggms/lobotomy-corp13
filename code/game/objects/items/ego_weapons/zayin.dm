@@ -48,3 +48,23 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+
+/obj/item/ego_weapon/evening
+	name = "evening twilight"
+	desc = "I accepted the offer and paid the price."
+	icon_state = "evening"
+	force = 12
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
+
+/obj/item/ego_weapon/melty_eyeball
+	name = "melty eyeball"
+	desc = "I felt like I was being dragged deeper into the swamp of gloom as the fight went on."
+	icon_state = "melty_eyeball"
+	force = 14
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")

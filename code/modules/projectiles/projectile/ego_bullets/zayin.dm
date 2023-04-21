@@ -18,3 +18,8 @@
 	name = "nostalgia"
 	damage = 20
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_nightshade
+	name = "nightshade dart"
+	damage = 11
+	damage_type = BLACK_DAMAGE
