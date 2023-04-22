@@ -11,6 +11,7 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
 	spawn_player_multiplicator = 0.05
 	color = COLOR_DARK_LIME
+	reward_percent = 0.1
 
 // Noon
 /datum/ordeal/simplespawn/green_noon

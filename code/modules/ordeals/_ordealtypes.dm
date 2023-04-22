@@ -83,11 +83,11 @@
 	reward_percent = 0.20
 	color = "#4f4f4f"
 	//does ALL of these
-	var/list/bosstype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	var/list/bosstype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Guaranteed one of each on spawn.
 	//Randomly picked from these.
-	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
-	var/bossnumber = 4
-	var/gruntnumber = 4
+	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Random units spawned around the boss mobs.
+	var/bossnumber = 4 //Basically how many groups spawned.
+	var/gruntnumber = 4 //Amount of troops around a boss.
 
 /datum/ordeal/simplecommander/Run()
 	..()

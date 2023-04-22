@@ -4,6 +4,7 @@
 	annonce_text = "They come searching for what they so desperately need."
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
+	reward_percent = 0.1
 	level = 1
 	spawn_places = 5
 	spawn_amount = 2

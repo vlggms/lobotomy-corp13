@@ -10,6 +10,7 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/violet_fruit
 	place_player_multiplicator = 0.05
 	spawn_player_multiplicator = 0.025
+	reward_percent = 0.1
 	color = "#B642F5"
 
 // Noon
