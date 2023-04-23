@@ -108,7 +108,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/executive
-	item_path = /obj/item/gun/ego_gun/pistol/soda/executive
+	item_path = /obj/item/gun/ego_gun/pistol/executive
 	cost = 50
 
 // Price Of Silence - For Whom the Bell Tolls
