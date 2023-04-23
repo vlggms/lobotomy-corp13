@@ -147,7 +147,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(50, 50, 50, 30)
+	reductions = list(50, 50, 50, 30) // 180
 	projectile_block_cooldown = 0.5 SECONDS
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS
@@ -178,7 +178,7 @@
 		var/mob/living/carbon/human/cooler_user = user
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		if(naked_parry)
-			reductions = list(95, 95, 95, 100)
+			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
 			reductions = initial(reductions)
 	..()
@@ -414,7 +414,7 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
-	reductions = list(60, 30, 30, 20)
+	reductions = list(60, 30, 50, 20) // 160
 	projectile_block_cooldown = 3 SECONDS
 	block_duration = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
 	block_cooldown = 5 SECONDS //always 6 seconds total before blocking again
@@ -532,7 +532,7 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(40, 20, 40, 20)
+	reductions = list(40, 20, 40, 20) // 120
 	projectile_block_cooldown = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
@@ -594,7 +594,7 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
-	reductions = list(10, 20, 30, 10) //longer parry, lower values; not a proper shield
+	reductions = list(30, 40, 50, 20) // 140 - longer parry, lower values; not a proper shield
 	projectile_block_cooldown = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
@@ -696,7 +696,7 @@
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
-	reductions = list(10, 20, 20, 0)
+	reductions = list(30, 40, 50, 0) // 120 - Heals
 	projectile_block_cooldown = 0.5 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS

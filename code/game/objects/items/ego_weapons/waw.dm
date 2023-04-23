@@ -966,7 +966,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(60, 60, 60, 40)
+	reductions = list(60, 60, 60, 40) // 220
 	projectile_block_cooldown = 0.5 SECONDS
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS
