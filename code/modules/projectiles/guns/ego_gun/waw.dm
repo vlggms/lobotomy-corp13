@@ -154,13 +154,17 @@
 		return
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
-/obj/item/gun/ego_gun/pistol/soda/executive
+/obj/item/gun/ego_gun/pistol/executive
 	name = "executive"
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
 	inhand_icon_state = "executive"
 	special = "This gun scales with justice."
+	burst_size = 1
 	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
 	ammo_type = /obj/item/ammo_casing/caseless/ego_executive
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
