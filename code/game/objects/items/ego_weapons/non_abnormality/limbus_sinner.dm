@@ -40,7 +40,7 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(20, 10, 10, 0) //longer parry, lower values; not a proper shield
+	reductions = list(30, 20, 30, 0) //longer parry, lower values; not a proper shield
 	projectile_block_cooldown = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
@@ -82,7 +82,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	reductions = list(20, 20, 20, 0)
+	reductions = list(30, 30, 30, 10) // Diet Diet Daredevil
 	projectile_block_cooldown = 0 SECONDS //No ranged parry
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS

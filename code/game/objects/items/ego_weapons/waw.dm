@@ -804,9 +804,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/spear1.ogg'
-	reductions = list(70, 50, 70, 40)
+	reductions = list(50, 50, 60, 40) // 200
 	projectile_block_cooldown = 1 SECONDS
-	block_duration = 3 SECONDS
+	block_duration = 3 SECONDS // Exempt from normal reduction due to block restriction.
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
 	projectile_block_message = "You swat the projectile out of the air!"
@@ -966,7 +966,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(95, 95, 95, 40)
+	reductions = list(60, 60, 60, 40)
 	projectile_block_cooldown = 0.5 SECONDS
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS

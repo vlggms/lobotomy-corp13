@@ -147,7 +147,7 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(90, 90, 90, 30)
+	reductions = list(50, 50, 50, 30)
 	projectile_block_cooldown = 0.5 SECONDS
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS
@@ -180,7 +180,7 @@
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100)
 		else
-			reductions = list(90, 90, 90, 30)
+			reductions = initial(reductions)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)

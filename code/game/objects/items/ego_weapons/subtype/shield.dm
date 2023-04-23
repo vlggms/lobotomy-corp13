@@ -1,5 +1,21 @@
-
 //EGO shield subtype code
+
+/*
+	So, since this wasn't written, I'm gonna try and do a preliminary Block value thing.
+	RISK LEVEL	|  ARMOR TOTAL	|   ARMOR CAP	|	PALE ARMOR CAP	|
+	ZAYIN		|		80		|		30		|		 10			|
+	TETH		|		120		|		50		|		 20			|
+	HE			|	 	160		|		70		|		 30			|
+	WAW			|		200		|		80		|		 40			|
+	ALEPH		| 		300		|		90		|		 50			|
+
+	These can be adjusted based off time of the block. The longer the block, the worse the armor.
+	Shields should also be typically worse weapons. Typically.
+	Standard Block Time is 1 Second.
+	Going below this to 0.5 SECONDS grants you +20 Armor total.
+	Going above this reduces armor total by 10 per 0.5 SECONDS.
+
+*/
 /obj/item/ego_weapon/shield
 	var/attacking = FALSE
 	var/block = FALSE
@@ -10,7 +26,7 @@
 	var/block_cooldown = 3 SECONDS
 	var/block_duration = 1 SECONDS
 	var/debuff_duration = 3 SECONDS
-	var/list/reductions = list(50, 50, 50, 50) //Red/White/Black/Pale defense
+	var/list/reductions = list(20, 20, 20, 20) //Red/White/Black/Pale defense
 	var/block_message = "You attempt to block the attack!" //So you can change the text for parrying with swords
 	var/hit_message = "blocks the attack!"
 	var/block_cooldown_message = "You reposition your shield"
