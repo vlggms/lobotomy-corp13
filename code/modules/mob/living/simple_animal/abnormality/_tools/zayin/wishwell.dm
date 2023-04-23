@@ -183,7 +183,7 @@
 	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
 		playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
 		to_chat(user, "<span class='notice'>You hear the ego dissolve as it comes in contact with the water...</span>")
-		if(locate(I) in tethitem)
+		if(locate(I) in tethitem) //TODO: use a different proc? We want an exact match in item paths.
 			output = "TETH"
 		else if(locate(I) in heitem)
 			output = "HE"
