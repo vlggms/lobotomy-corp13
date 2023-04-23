@@ -23,6 +23,10 @@
 		if(firer==target)
 			return BULLET_ACT_BLOCK
 		if(user.faction_check_mob(H)) // Our faction
+			if(H.is_working)
+				H.visible_message("<span class='warning'>[src] vanishes on contact with [H]... but nothing happens!</span>")
+				qdel(src)
+				return BULLET_ACT_BLOCK
 			switch(damage_type)
 				if(WHITE_DAMAGE)
 					H.adjustSanityLoss(-damage*0.2)
