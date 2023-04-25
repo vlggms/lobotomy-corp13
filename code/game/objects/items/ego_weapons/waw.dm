@@ -959,6 +959,7 @@
 /obj/item/ego_weapon/shield/pharaoh
 	name = "pharaoh"
 	desc = "Look on my Works, ye Mighty, and despair!"
+	special = "This weapon can remove petrification."
 	icon_state = "pharaoh"
 	force = 20
 	attack_speed = 0.5
@@ -979,6 +980,14 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+
+/obj/item/ego_weapon/shield/pharaoh/pre_attack(atom/A, mob/living/user, params)
+	if(istype(A,/obj/structure/statue/petrified) && CanUseEgo(user))
+		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
+		A.visible_message("<span class='danger'>[A] returns to normal!</span>", "<span class='userdanger'>You break free of the stone!</span>")
+		A.Destroy()
+		return
+	..()
 
 /obj/item/ego_weapon/blind_rage
 	name = "Blind Rage"
@@ -1073,7 +1082,6 @@
 			L.adjustBruteLoss(-15)
 			new /obj/effect/temp_visual/healing(get_turf(L))
 
-
 /obj/item/ego_weapon/diffraction
 	name = "diffraction"
 	desc = "Many employees have sustained injuries from erroneous calculation."
@@ -1092,7 +1100,6 @@
 		force*=2
 	..()
 	force = initial(force)
-
 
 /obj/item/ego_weapon/mini/infinity
 	name = "infinity"
@@ -1156,5 +1163,3 @@
 	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 	mark_damage = force
-
-
