@@ -96,25 +96,21 @@
 		if(140)
 			newsize = 1.25*RESIZE_DEFAULT_SIZE
 			pixel_y = 10
-			butcher_results[/obj/item/food/meat/slab/worm] += 1
 			resize = newsize/current_size
 			current_size = newsize
 			update_transform()
 		if(160)
 			newsize = 1.5*RESIZE_DEFAULT_SIZE
-			butcher_results[/obj/item/food/meat/slab/worm] += 1
 			resize = newsize/current_size
 			current_size = newsize
 			update_transform()
 		if(180)
 			newsize = 1.75*RESIZE_DEFAULT_SIZE
-			butcher_results[/obj/item/food/meat/slab/worm] += 1
 			resize = newsize/current_size
 			current_size = newsize
 			update_transform()
 		if(200)
 			newsize = 2*RESIZE_DEFAULT_SIZE
-			butcher_results[/obj/item/food/meat/slab/worm] += 1
 			resize = newsize/current_size
 			current_size = newsize
 			update_transform()
@@ -122,13 +118,15 @@
 			response_help_continuous = "pets"
 			response_help_simple = "pet"
 			deathmessage = "collapses as their pustules lose their bright orange hue."
-			butcher_results[/obj/item/food/meat/slab/worm] += 1
 			guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 4)
 			can_buckle = TRUE
 			buckle_lying = 0
 			mob_size = MOB_SIZE_LARGE
 			visible_message("<span class='notice'>[src] looks big enough to use as a steed now.</span>")
 			AddElement(/datum/element/ridable, /datum/component/riding/creature/no_monsteroffset)
+	var/extra_meat = (maxHealth-120)/20
+	extra_meat = round(extra_meat)
+	butcher_results = list(/obj/item/food/meat/slab/worm = 1+extra_meat)
 	buffed = buffed * 0.2
 	return
 
