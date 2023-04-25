@@ -80,7 +80,7 @@
 				heirloom_type = pick(/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind)
 			//Common folk
 			if("Veteran Agent")
-				heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt, /obj/item/toy/plush/moth)
+				heirloom_type = pick(/obj/item/toy/plush/fighter/mosb, /obj/item/toy/plush/fighter/melt, /obj/item/toy/plush/moth)
 			if("Senior Agent")
 				heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
 			if("Agent")
