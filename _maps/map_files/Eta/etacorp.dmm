@@ -3224,12 +3224,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
-"oX" = (
-/obj/effect/turf_decal/siding/purple/corner{
-	dir = S
-	},
-/turf/open/floor/carpet/purple,
-/area/department_main/command)
 "oY" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -6742,9 +6736,7 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "Et" = (
-/obj/effect/turf_decal/siding/purple/corner{
-	dir = S
-	},
+/obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "Eu" = (
@@ -10324,9 +10316,6 @@
 "TT" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
-	},
-/obj/effect/turf_decal/siding/purple/corner{
-	dir = S
 	},
 /obj/effect/landmark/observer_start,
 /turf/open/floor/carpet/purple,
@@ -36848,7 +36837,7 @@ KQ
 KQ
 cd
 XJ
-oX
+SZ
 rG
 mI
 wb
