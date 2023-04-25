@@ -13498,7 +13498,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet{
-	dir = D;
 	resistance_flags = 64;
 	color = "#d80000"
 	},
