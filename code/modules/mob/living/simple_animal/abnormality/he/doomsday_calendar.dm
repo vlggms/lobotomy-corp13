@@ -17,6 +17,7 @@
 	threat_level = HE_LEVEL
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.3)//only when initialized
 	start_qliphoth = 5
+	max_boxes = 18//this is the normal amount
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 60,
 						ABNORMALITY_WORK_INSIGHT = 45,
@@ -121,6 +122,11 @@
 		other_works = 0
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/WorkChance(mob/living/carbon/human/user, chance)
+	if(bonusRed)
+		return chance + (bonusRed * 3)//extra work success on instinct work if it's hungry. Up to +12%, making it a 72% base success rate at counter 1.
+	return chance
+
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
@@ -129,16 +135,18 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
-		datum_reference.qliphoth_change(1)
-	bonusRed = 0 // Reset bonus red damage and the stat check.
+		datum_reference.qliphoth_change(4)//Work damage is multiplied by missing qliphoth counter, restore it fully.
 	return
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(work_type == ABNORMALITY_WORK_INSTINCT)
-		if(datum_reference.qliphoth_meter <= 4) // Sets bonus damage on instinct work.
-			bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below 2, less total damage than funpet
-			to_chat(user,"<span class='warning'>A clay doll arrives with a bowl, demanding blood.</span>")
-			playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
+	datum_reference.max_boxes = (max_boxes + (5 - datum_reference.qliphoth_meter))//18 at max qliphoth, up to 22.
+	if(work_type != ABNORMALITY_WORK_INSTINCT)// Sets bonus damage on instinct work only.
+		bonusRed = 0
+		return..()
+	bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
+	if(bonusRed)
+		to_chat(user,"<span class='warning'>A clay doll arrives with a bowl, demanding blood.</span>")
+		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Worktick(mob/living/carbon/human/user)
@@ -148,12 +156,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/OnQliphothChange(mob/living/carbon/human/user)//woodsman icon change
 	. = ..()
-	switch(datum_reference.qliphoth_meter)
-		if(1)
-			icon_state = "doomsday_active"
-			playsound(get_turf(src), 'sound/abnormalities/doomsdaycalendar/Impending_Charge.ogg', 75, 0, 5)
-		if(2)
-			icon_state = "doomsday_inert"
+	if(datum_reference.qliphoth_meter == 1)
+		icon_state = "doomsday_active"
+		playsound(get_turf(src), 'sound/abnormalities/doomsdaycalendar/Impending_Charge.ogg', 75, 0, 5)
+	else
+		icon_state = "doomsday_inert"
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/updateWorkMaximum()
 	player_count = 0
@@ -168,13 +175,25 @@
 	var/turf/T = pick(GLOB.department_centers)
 	icon_state = "doomsday_active"
 	forceMove(T)
+	AnnounceBreach()
 	SpawnAdds()
+
+/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AnnounceBreach()
+	for(var/mob/living/carbon/human/H in livinginrange(20, src))//same range as universe aflame when fully charged
+		if(H.z != z)
+			return
+		to_chat(H, "<span class='warning'>You hear rumbling...</span>")
+
 
 /obj/effect/temp_visual/doomsday
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "bhole3"//find a better icon for this
-	color = COLOR_BLUE
+	icon_state = "universe_aflame"
+	alpha = 170
 	duration = 50
+
+/obj/effect/temp_visual/doomsday/Initialize()
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "empdisable", -ABOVE_OBJ_LAYER))
+	return..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/CheckCountdown()//grabbed from TSO
 	if(world.time >= next_phase_time) // Next phase
@@ -217,7 +236,7 @@
 		if(current_phase_num >= 4)//UNIVERSE AFLAME!
 			for(var/turf/T in range(aflame_range, src))
 				for(var/mob/living/carbon/human/H in T)
-					to_chat(H, "<span class='boldannounce'>You see visions of an apocalypse.</span>")
+					to_chat(H, "<span class='userdanger'>The stars are twinkling. When they shine, they'll rob us all of our sight.</span>")
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Impending_Charge.ogg', 50, TRUE)
 			SLEEP_CHECK_DEATH(15 SECONDS)
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Universe.ogg', 50, TRUE)
@@ -227,6 +246,10 @@
 					if(faction_check_mob(H))
 						continue
 					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+					if(H.stat >= SOFT_CRIT || H.health < 0)
+						H.fire_stacks += 1
+						H.IgniteMob()//unforunately this fire isn' blue.
+						//H.add_overlay(mutable_appearance('icons/mob/onfire.dmi', "Standing", -ABOVE_OBJ_LAYER))
 			adjustBruteLoss(500)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AoeBurn()
