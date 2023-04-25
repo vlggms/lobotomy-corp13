@@ -76,7 +76,6 @@
 	// I kept it well-rounded, and lowered the requirements, It's now LIKE a waw with it's good, well-rounded defenses, but it was generally lowered.
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
 							JUSTICE_ATTRIBUTE = 40
 							)
 
@@ -106,7 +105,7 @@
 	flags_inv = HIDESHOES
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -20, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/harmony
@@ -125,7 +124,7 @@
 	flags_inv = HIDESHOES
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/frostsplinter
@@ -183,7 +182,7 @@
 	icon_state = "pleasure"
 	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) //70
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40)
+							PRUDENCE_ATTRIBUTE = 40)
 
 /obj/item/clothing/suit/armor/ego_gear/galaxy
 	name = "galaxy"
@@ -228,7 +227,7 @@
 	desc = "the coat itself is made from metal sheets"
 	icon_state = "metal"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
-	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 40)
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 40)
 
 /obj/item/clothing/suit/armor/ego_gear/homing_instinct
 	name = "homing instinct"
@@ -245,7 +244,7 @@
 	icon_state = "maneater"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = -10) // 70
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 40
+							FORTITUDE_ATTRIBUTE = 40
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/inheritance

@@ -21,7 +21,7 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	for(var/mob/living/L in livinginrange(1, M))
+	for(var/mob/living/L in view(1, M))
 		var/aoe = 25
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
@@ -124,7 +124,7 @@
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/slash.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 80
+							PRUDENCE_ATTRIBUTE = 80
 							)
 	var/charged = FALSE
 	var/meter = 0
@@ -415,7 +415,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 	var/ranged_cooldown
-	var/ranged_cooldown_time = 1.5 SECONDS
+	var/ranged_cooldown_time = 1.2 SECONDS
 	var/ranged_damage = 60
 
 /obj/effect/temp_visual/thornspike
@@ -436,7 +436,7 @@
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
-	if(do_after(user, 6))
+	if(do_after(user, 5))
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/thornspike(T)
@@ -796,8 +796,7 @@
 	projectile_block_message = "You swat the projectile out of the air!"
 	block_cooldown_message = "You rearm your E.G.O."
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60
+							PRUDENCE_ATTRIBUTE = 80
 							)
 	var/close_cooldown
 	var/close_cooldown_time = 3 SECONDS
@@ -880,7 +879,7 @@
 
 
 /obj/item/ego_weapon/spore
-	name = "Spore"
+	name = "spore"
 	desc = "A spear covered in spores and affection. \
 	It lights the employee's heart, shines like a star, and steadily tames them."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
@@ -894,7 +893,7 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 80
+							PRUDENCE_ATTRIBUTE = 80
 							)
 
 /obj/item/ego_weapon/spore/attack(mob/living/target, mob/living/user)
@@ -1086,7 +1085,7 @@
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slice", "cut")
 	hitsound = 'sound/weapons/blade1.ogg'
-	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 80)
+	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
 	if((target.health<=target.maxHealth *0.2) && !(GODMODE in target.status_flags))
