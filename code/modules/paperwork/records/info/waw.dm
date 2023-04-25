@@ -339,3 +339,15 @@
 		"The Hermit attacked the agents around them, dealing heavy White Damage.",
 		"In the end, the only way to suppress the Servant of Wrath was for them to kill the Hermit of the Azure forest.",
 		"NOTE: The Hermit of the Azure forest in almost every scenario has overpowered the Servant of Wrath.")
+
+//Sphinx
+/obj/item/paper/fluff/info/waw/sphinx
+	abno_type = /mob/living/simple_animal/hostile/abnormality/sphinx
+	abno_code = "T-03-33"
+	abno_info = list(
+		"When the work was complete, the Qliphoth Counter lowered depending on the abnormality's mood. The abnormality's mood improved after an offering was successfully made.",
+		"When an employee performed riddle work, the abnormality posed a question in a strange language. Agents are then provided with a cipher.",
+		"When the abnormality was disappointed with an offering, the offender had one of their senses taken away.",
+		"When the riddle was successfully solved with an offering, the Qliphoth counter raised to its maximum. In addition, the abnormality willingly parted with an anomalous object referred to henceforth as a gift.",
+		"When agent bong bong used the canopic jar gift, she was cured of permanent blindness. Effects may differ but are usually beneficial.",
+		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using gift of golden needles.")
