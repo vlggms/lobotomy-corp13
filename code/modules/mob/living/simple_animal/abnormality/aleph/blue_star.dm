@@ -80,6 +80,8 @@
 	var/matrix/init_transform = transform
 	animate(src, transform = transform*1.5, time = 3, easing = BACK_EASING|EASE_OUT)
 	for(var/mob/living/L in livinginrange(48, src))
+		if(L.z != z)
+			continue
 		if(faction_check_mob(L))
 			continue
 		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
