@@ -55,6 +55,11 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/Moved()
+	. = ..()
+	if(!(status_flags & GODMODE)) // This thing's big, it should make some noise.
+		playsound(get_turf(src), 'sound/abnormalities/sweethome/walk.ogg', 50, 1)
+
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	to_chat(user, "<span class='danger'>It whispers in your mind...</span>")
 	if(prob(50))
@@ -100,6 +105,7 @@
 		slam_cooldown_time = world.time + slam_cooldown
 		for(var/turf/T in hit_turfs)
 			new /obj/effect/temp_visual/smash_effect(T)
+		playsound(get_turf(src), 'sound/abnormalities/sweethome/smash.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/Move()
 	if(slam_cooldown_time < world.time)

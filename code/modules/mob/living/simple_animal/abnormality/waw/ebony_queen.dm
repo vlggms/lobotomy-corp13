@@ -19,7 +19,7 @@
 	ranged = TRUE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = 'sound/creatures/venus_trap_hit.ogg'
+	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
