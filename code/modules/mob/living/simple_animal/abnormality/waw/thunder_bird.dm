@@ -181,6 +181,8 @@ GLOBAL_LIST_EMPTY(zombies)
 	for(var/turf/TF in range(1, T))//Smash AOE visual
 		new /obj/effect/temp_visual/smash_effect(TF)
 	for(var/mob/living/L in range(1, T))//damage applied to targets in range
+		if(L.z != z)
+			continue
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
@@ -239,6 +241,8 @@ GLOBAL_LIST_EMPTY(zombies)
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
+		if(L.z != z)
+			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if (targetAmount <= 2)

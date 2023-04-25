@@ -71,6 +71,8 @@
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
 	for(var/mob/living/L in livinginrange(fireball_range, src))
+		if(L.z != z)
+			continue
 		if(L.status_flags & GODMODE)
 			continue
 		if(faction_check_mob(L, FALSE))
@@ -175,6 +177,8 @@
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
 	for(var/mob/living/L in livinginrange(fireball_range, src))
+		if(L.z != z)
+			continue
 		if(L.status_flags & GODMODE)
 			continue
 		if(faction_check_mob(L, FALSE))

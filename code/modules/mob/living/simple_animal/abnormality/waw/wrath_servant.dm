@@ -118,6 +118,8 @@
 		return
 	if(stunned && COOLDOWN_FINISHED(src, stun))
 		for(var/mob/living/L in range(10, src))
+			if(L.z != z)
+				continue
 			if(istype(L, /mob/living/simple_animal/hostile/azure_hermit) || istype(L, /mob/living/simple_animal/hostile/azure_stave))
 				continue
 			L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
