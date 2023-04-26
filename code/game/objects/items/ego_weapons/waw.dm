@@ -1224,3 +1224,78 @@
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
 				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
+				
+/obj/item/ego_weapon/discord
+	name = "discord"
+	desc = "The existance of evil proves the existance of good, just as light proves the existance of darkness."
+	special = "This weapon can be two-handed, and attacks thrice in rapid succession when doing so.\n Attacks with this weapon will heal a nearby ally using Assonance."
+	icon_state = "discord"
+	force = 28
+	attack_speed = 0.8
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	var/wielded = FALSE
+
+/obj/item/ego_weapon/discord/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/OnWield)
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+
+/obj/item/ego_weapon/discord/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/two_handed, force_unwielded=30, force_wielded=20)
+
+/obj/item/ego_weapon/discord/proc/OnWield(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	wielded = TRUE
+
+/obj/item/ego_weapon/discord/proc/on_unwield(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	wielded = FALSE
+
+/obj/item/ego_weapon/discord/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!..())
+		return FALSE
+	if(!ishostile(target))
+		return
+	if(target.stat == DEAD || target.status_flags & GODMODE)
+		return
+	Harmony(user)
+	if(!wielded)
+		return
+	user.changeNext_move(CLICK_CD_MELEE*attack_speed*2.5)
+	for(var/i = 1 to 2)
+		addtimer(CALLBACK(src, .proc/MultiSwing, target, user), CLICK_CD_MELEE * 0.6 * i)
+
+/obj/item/ego_weapon/discord/proc/MultiSwing(mob/living/target, mob/living/carbon/human/user)
+	if(get_dist(target, user) > 1)
+		return
+	if(src != user.get_active_held_item())
+		return
+	if(!wielded)
+		return
+	Harmony(user)
+	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	user.do_attack_animation(target)
+	target.attacked_by(src, user)
+
+	log_combat(user, target, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+/obj/item/ego_weapon/discord/proc/Harmony(mob/living/carbon/human/user)
+	var/heal_amount = 5
+	if(wielded)
+		heal_amount = 4
+	for(var/mob/living/carbon/human/Yang in view(7, user))
+		var/obj/item/gun/ego_gun/assonance/A = Yang.get_active_held_item()
+		if(istype(A, /obj/item/gun/ego_gun/assonance))
+			if(!A.CanUseEgo(Yang))
+				continue
+			Yang.adjustBruteLoss(-heal_amount)
+			Yang.adjustSanityLoss(-heal_amount)
+			new /obj/effect/temp_visual/healing(get_turf(Yang))
+			break
+
+

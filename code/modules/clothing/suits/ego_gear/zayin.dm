@@ -75,3 +75,9 @@
 	desc = "It could hear all the meaningless words I have said and will say in the future and perfectly understand them."
 	icon_state = "nightshade"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/hugs
+	name = "hugs"
+	desc = "Soft and squishy, you could hug it for days."
+	icon_state = "hugs"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
