@@ -35,7 +35,7 @@
 		/datum/ego_datum/weapon/diffraction,
 		/datum/ego_datum/armor/diffraction
 		)
-//	gift_type =  /datum/ego_gifts/diffraction
+	gift_type =  /datum/ego_gifts/diffraction
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/cooldown_time = 3

@@ -40,6 +40,7 @@
 		)
 	gift_type =  /datum/ego_gifts/impending_day
 	abnormality_origin = "Limbus Company"
+
 	var/player_count
 	var/other_works_maximum
 	var/other_works = 0

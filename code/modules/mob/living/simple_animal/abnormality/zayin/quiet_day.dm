@@ -26,7 +26,7 @@
 		/datum/ego_datum/armor/nostalgia
 	)
 
-	//gift_type =  /datum/ego_gifts/bloodbath
+	gift_type =  /datum/ego_gifts/nostalgia
 	var/buff_given
 
 	var/list/war_story = list("Ah, I see you're interested in hearing about my experiences in the Smoke Wars. I'm happy to oblige.",

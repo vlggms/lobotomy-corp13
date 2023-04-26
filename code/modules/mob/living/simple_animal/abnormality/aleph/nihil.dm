@@ -40,7 +40,7 @@
 	ego_list = list(
 		/datum/ego_datum/armor/nihil
 		)
-//	gift_type = /datum/ego_gifts/nihil
+	gift_type = /datum/ego_gifts/nihil
 
 	// Range ofthe debuff
 	var/debuff_range = 40

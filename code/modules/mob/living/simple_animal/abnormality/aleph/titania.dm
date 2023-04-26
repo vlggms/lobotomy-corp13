@@ -33,7 +33,7 @@
 		/datum/ego_datum/weapon/soulmate,
 		/datum/ego_datum/armor/soulmate
 		)
-//	gift_type = /datum/ego_gifts/soulmate
+	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/fairy_spawn_number = 2

@@ -32,7 +32,7 @@
 		/datum/ego_datum/weapon/assonance,
 		/datum/ego_datum/armor/assonance
 		)
-//	gift_type = /datum/ego_gifts/assonance
+	gift_type = /datum/ego_gifts/assonance
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	//Melee

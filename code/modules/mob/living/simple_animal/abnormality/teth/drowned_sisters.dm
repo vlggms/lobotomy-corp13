@@ -22,6 +22,7 @@
 		/datum/ego_datum/weapon/sorority,
 		/datum/ego_datum/armor/sorority
 	)
+	gift_type =  /datum/ego_gifts/sorority
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 

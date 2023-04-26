@@ -26,7 +26,7 @@
 		/datum/ego_datum/weapon/moonlight,
 		/datum/ego_datum/armor/moonlight
 		)
-//	gift_type =  /datum/ego_gifts/moonlight
+	gift_type =  /datum/ego_gifts/moonlight
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/performance = FALSE
 	var/performance_length = 60 SECONDS

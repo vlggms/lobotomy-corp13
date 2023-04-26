@@ -19,7 +19,7 @@
 		/datum/ego_datum/weapon/solitude,
 		/datum/ego_datum/armor/solitude
 		)
-//	gift_type =  /datum/ego_gifts/solitude
+	gift_type =  /datum/ego_gifts/solitude
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/meltdown_cooldown_time = 120 SECONDS
 	var/meltdown_cooldown

@@ -35,7 +35,7 @@
 		/datum/ego_datum/weapon/gaze,
 		/datum/ego_datum/armor/gaze
 		)
-//	gift_type =  /datum/ego_gifts/gaze
+	gift_type =  /datum/ego_gifts/gaze
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/seen	//Are you being looked at right now?
