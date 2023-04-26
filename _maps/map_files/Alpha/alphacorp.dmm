@@ -1669,19 +1669,6 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/floor/plating/grass,
 /area/department_main/safety)
-"mK" = (
-/obj/structure/chair/plastic{
-	dir = 4
-	},
-/obj/machinery/button/door{
-	id = "controlshutter";
-	name = "Announcment System Storage button";
-	pixel_x = -32;
-	pixel_y = 32;
-	req_one_access_txt = "19"
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
 "mM" = (
 /obj/effect/turf_decal/siding/red,
 /obj/machinery/door/airlock/wood{
@@ -2547,12 +2534,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "tG" = (
-/obj/machinery/door/poddoor/shutters/window{
-	id = "controlshutter";
-	name = "Announcment Systems Storage"
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/control)
+/turf/closed/indestructible/fakeglass,
+/area/department_main/safety)
 "tI" = (
 /obj/structure/toilet{
 	pixel_y = 15
@@ -3250,9 +3233,7 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "yt" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/department_main/records)
 "yy" = (
 /obj/machinery/conveyor{
@@ -3862,8 +3843,7 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Dt" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/power/supermatter_crystal/shard/hugbox/fakecrystal,
+/obj/structure/statue/bananium/clown,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "Dw" = (
@@ -4534,9 +4514,7 @@
 /turf/open/floor/wood,
 /area/facility_hallway/north)
 "Jp" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/obj/structure/grille,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/department_main/control)
 "Jr" = (
 /obj/machinery/light/cold{
@@ -5545,9 +5523,9 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "RE" = (
-/obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/statue/bananium/clown,
+/obj/structure/table/abductor,
+/obj/item/storage/fancy/heart_box,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "RF" = (
@@ -6002,10 +5980,8 @@
 "UV" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/melee/supermatter_sword{
-	anchored = 1
-	},
 /obj/structure/table/abductor,
+/obj/item/toy/plush/ayin,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "UX" = (
@@ -6496,10 +6472,10 @@
 /area/facility_hallway/north)
 "Yx" = (
 /obj/machinery/announcement_system,
-/obj/machinery/light{
+/obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/control)
 "YC" = (
 /obj/machinery/conveyor/inverted{
@@ -31798,7 +31774,7 @@ ZL
 ZL
 cu
 Vg
-FX
+tG
 AN
 OD
 Wd
@@ -32055,7 +32031,7 @@ ZL
 ZL
 cu
 NX
-FX
+tG
 AN
 OD
 PU
@@ -32312,7 +32288,7 @@ ZL
 ZL
 cu
 mJ
-FX
+tG
 gG
 OD
 PU
@@ -32569,7 +32545,7 @@ ZL
 ZL
 cu
 JT
-FX
+tG
 AN
 OD
 PU
@@ -32826,7 +32802,7 @@ ZL
 ZL
 cu
 gS
-FX
+tG
 AN
 OD
 qo
@@ -38970,7 +38946,7 @@ wD
 lB
 rg
 rg
-tG
+Jp
 rg
 rg
 rg
@@ -39227,7 +39203,7 @@ wD
 KK
 bH
 lh
-mK
+lh
 Gt
 rg
 FV
