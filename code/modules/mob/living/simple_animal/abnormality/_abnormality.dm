@@ -53,6 +53,10 @@
 	var/work_damage_type = RED_DAMAGE
 	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
 	var/max_boxes = null
+	/// How much PE you have to produce for good result, if not null or 0.
+	var/success_boxes = null
+	/// How much PE you have to produce for neutral result, if not null or 0.
+	var/neutral_boxes = null
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 	/// EGO Gifts

@@ -875,7 +875,15 @@
 	prudence_bonus = 2
 	temperance_bonus = 2
 	justice_bonus = 2
-	slot = NECKWEAR
+	slot = HAT
+
+/datum/ego_gifts/discord
+	name = "Discord"
+	icon_state = "discord"
+	fortitude_bonus = -10
+	prudence_bonus = -10
+	justice_bonus = 20
+	slot = HELMET
 
 /datum/ego_gifts/diffraction
 	name = "Diffraction"

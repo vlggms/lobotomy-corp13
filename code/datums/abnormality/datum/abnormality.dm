@@ -100,8 +100,14 @@
 		max_boxes = threat_level * 6
 	else
 		max_boxes = current.max_boxes
-	success_boxes = round(max_boxes * 0.7)
-	neutral_boxes = round(max_boxes * 0.4)
+	if(!current.success_boxes)
+		success_boxes = round(max_boxes * 0.7)
+	else
+		success_boxes = current.success_boxes
+	if(!current.neutral_boxes)
+		neutral_boxes = round(max_boxes * 0.4)
+	else
+		neutral_boxes = current.neutral_boxes
 	available_work = current.work_chances
 	switch(threat_level)
 		if(ZAYIN_LEVEL)
