@@ -217,6 +217,12 @@
 	justice_bonus = 2
 	slot = EYE
 
+/datum/ego_gifts/nostalgia //---sprite needed
+	name = "Nostalgia"
+	icon_state = "nostalgia"
+	temperance_bonus = 2
+	slot = MOUTH_2
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
@@ -270,14 +276,14 @@
 	temperance_bonus = 2
 	slot = HAND_2
 
-/datum/ego_gifts/cherry
+/datum/ego_gifts/blossom
 	name = "Cherry Blossom"
 	icon_state = "cherry"
 	fortitude_bonus = 2
 	justice_bonus = 2
 	slot = HAT
 
-/datum/ego_gifts/engulfing
+/datum/ego_gifts/dream
 	name = "Engulfing Dream"
 	icon_state = "engulfing"
 	prudence_bonus = 4
@@ -341,6 +347,40 @@
 	icon_state = "page"
 	prudence_bonus = 2
 	justice_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/solitude //---sprite needed
+	name = "Solitude"
+	icon_state = "solitude"
+	temperance_bonus = 3
+	slot = EYE
+
+/datum/ego_gifts/trick //---sprite needed
+	name = "Trick"
+	icon_state = "trick"
+	justice_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/sorrow //---sprite needed
+	name = "Sorrow"
+	icon_state = "sorrow"
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	slot = BROOCH
+
+/datum/ego_gifts/sorority //---sprite needed
+	name = "Sorority"
+	icon_state = "sorority"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = BROOCH
+
+/datum/ego_gifts/wedge //---sprite needed
+	name = "Screaming Wedge"
+	icon_state = "wedge"
+	temperance_bonus = -1
+	prudence_bonus = 4
 	slot = HAND_1
 
 /// All HE EGO Gifts
@@ -495,6 +535,87 @@
 	justice_bonus = 2
 	slot = HELMET
 
+/datum/ego_gifts/galaxy //---sprite needed
+	name = "Galaxy"
+	icon_state = "galaxy"
+	prudence_bonus = 2
+	temperance_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/gaze //---sprite needed
+	name = "Gaze"
+	icon_state = "gaze"
+	fortitude_bonus = 4
+	slot = HAND_2
+
+/datum/ego_gifts/alleyway //---sprite needed
+	name = "Alleyway"
+	icon_state = "alleyway"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -2
+	justice_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/pleasure //---sprite needed
+	name = "Pleasure"
+	icon_state = "pleasure"
+	prudence_bonus = 10
+	temperance_bonus = -6
+	slot = NECKWEAR
+
+/datum/ego_gifts/unrequited_love //---sprite needed
+	name = "Unrequited Love"
+	icon_state = "unrequited_love"
+	fortitude_bonus = -2
+	prudence_bonus = 5
+	temperance_bonus = 5
+	justice_bonus = -2
+	slot = LEFTBACK
+
+/datum/ego_gifts/transmission //---sprite needed
+	name = "Transmission"
+	icon_state = "transmission"
+	fortitude_bonus = 4
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = HELMET
+
+/datum/ego_gifts/metal //---sprite needed
+	name = "Metal"
+	icon_state = "metal"
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = HAND_1
+
+/datum/ego_gifts/harmony
+	name = "Harmony"
+	icon_state = "harmony"
+	prudence_bonus = 5
+	temperance_bonus = -5
+	justice_bonus = 5
+	slot = MOUTH_2
+
+/datum/ego_gifts/homing_instinct //---sprite needed
+	name = "Homing Instinct"
+	icon_state = "homing_instinct"
+	fortitude_bonus = -2
+	prudence_bonus = -1
+	temperance_bonus = 3
+	justice_bonus = 5
+	slot = HAND_2
+
+/datum/ego_gifts/get_strong //---sprite needed
+	name = "Screwloose"
+	icon_state = "get_strong"
+	fortitude_bonus = 4
+	prudence_bonus = -2
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = HELMET
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -643,6 +764,73 @@
 	prudence_bonus = 6
 	slot = MOUTH_1
 
+/datum/ego_gifts/ecstasy //---sprite needed
+	name = "Ecstasy"
+	icon_state = "ecstasy"
+	prudence_bonus = 6
+	slot = MOUTH_2
+
+/datum/ego_gifts/loyalty //---sprite needed
+	name = "Loyalty"
+	icon_state = "loyalty"
+	fortitude_bonus = 10
+	prudence_bonus = -4
+	slot = MOUTH_1
+
+/datum/ego_gifts/executive //---sprite needed
+	name = "Executive"
+	icon_state = "executive"
+	prudence_bonus = 8
+	justice_bonus = -2
+	slot = HAND_2
+
+/datum/ego_gifts/thirteen //---sprite needed
+	name = "Thirteen"
+	icon_state = "thirteen"
+	fortitude_bonus = 4
+	prudence_bonus = -2
+	justice_bonus = 4
+	slot = NECKWEAR
+
+/datum/ego_gifts/assonance //---sprite needed
+	name = "Assonance"
+	icon_state = "assonance"
+	prudence_bonus = 2
+	temperance_bonus = 2
+	justice_bonus = 2
+	slot = NECKWEAR
+
+/datum/ego_gifts/diffraction //---sprite needed
+	name = "Diffraction"
+	icon_state = "diffraction"
+	prudence_bonus = 6
+	slot = HELMET
+
+/datum/ego_gifts/moonlight //---sprite needed
+	name = "Moonlight"
+	icon_state = "moonlight"
+	fortitude_bonus = 1
+	instinct_mod = 1
+	prudence_bonus = 1
+	insight_mod = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = BROOCH
+
+/datum/ego_gifts/heart //---sprite needed
+	name = "Heart"
+	icon_state = "heart"
+	fortitude_bonus = 3
+	justice_bonus = 3
+	slot = HAND_1
+
+/datum/ego_gifts/infinity //---sprite needed
+	name = "Infinity"
+	icon_state = "infinity"
+	temperance_bonus = 2
+	justice_bonus = 4
+	slot = BROOCH
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
@@ -714,6 +902,33 @@
 	user.physiology.pale_mod /= 0.9
 	.=..()
 
+/datum/ego_gifts/censored
+	name = "CENSORED"
+	icon_state = "censored"
+	prudence_bonus = 10
+	slot = EYE
+
+/datum/ego_gifts/space //---sprite needed
+	name = "Space"
+	icon_state = "space"
+	fortitude_bonus = -5
+	prudence_bonus = 15
+	slot = FACE
+
+/datum/ego_gifts/soulmate //---sprite needed
+	name = "Soulmate"
+	icon_state = "soulmate"
+	fortitude_bonus = 15
+	justice_bonus = -5
+	slot = FACE
+
+/datum/ego_gifts/nihil //--definitely not final, sprites(?) needed
+	name = "Nihil"
+	icon_state = "nihil"
+	temperance_bonus = 10
+	justice_bonus = 10
+	slot = HAT
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
@@ -741,9 +956,3 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
-
-/datum/ego_gifts/censored
-	name = "CENSORED"
-	icon_state = "censored"
-	prudence_bonus = 10
-	slot = EYE

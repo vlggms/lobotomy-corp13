@@ -25,7 +25,7 @@
 		/datum/ego_datum/weapon/space,
 		/datum/ego_datum/armor/space
 		)
-//	gift_type =  /datum/ego_gifts/space
+	gift_type =  /datum/ego_gifts/space
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	var/explosion_timer = 2 SECONDS

@@ -22,6 +22,7 @@
 		/datum/ego_datum/weapon/metal,
 		/datum/ego_datum/armor/metal
 	)
+	gift_type = /datum/ego_gifts/metal
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 	var/list/safe = list()
 	var/list/warning = list()

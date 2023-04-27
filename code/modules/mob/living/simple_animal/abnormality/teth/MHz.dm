@@ -25,6 +25,7 @@
 		/datum/ego_datum/weapon/noise,
 		/datum/ego_datum/armor/noise
 		)
+	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs

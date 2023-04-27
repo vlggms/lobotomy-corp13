@@ -24,6 +24,7 @@
 		/datum/ego_datum/weapon/wedge,
 		/datum/ego_datum/armor/wedge
 		)
+	gift_type =  /datum/ego_gifts/wedge
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

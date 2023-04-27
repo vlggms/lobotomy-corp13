@@ -41,7 +41,7 @@
 		/datum/ego_datum/weapon/unrequited,
 		/datum/ego_datum/armor/unrequited
 		)
-	//gift_type =  /datum/ego_gifts/unrequited_love
+	gift_type =  /datum/ego_gifts/unrequited_love
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	response_help_continuous = "pets" //You sick fuck
