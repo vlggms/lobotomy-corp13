@@ -22,7 +22,7 @@
 		/datum/ego_datum/weapon/executive,
 		/datum/ego_datum/armor/executive
 		)
-//	gift_type =  /datum/ego_gifts/executive
+	gift_type =  /datum/ego_gifts/executive
 
 
 	var/liked

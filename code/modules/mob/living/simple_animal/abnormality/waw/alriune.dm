@@ -43,7 +43,7 @@
 		/datum/ego_datum/weapon/aroma,
 		/datum/ego_datum/armor/aroma
 		)
-	//gift_type =  /datum/ego_gifts/aroma
+	gift_type =  /datum/ego_gifts/aroma
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /* Combat */

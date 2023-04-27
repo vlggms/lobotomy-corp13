@@ -23,7 +23,7 @@
 		/datum/ego_datum/weapon/infinity,
 		/datum/ego_datum/armor/infinity,
 		)
-//	gift_type = /datum/ego_gifts/eight
+	gift_type = /datum/ego_gifts/infinity
 
 
 	var/list/spawnables = list()

@@ -39,7 +39,7 @@
 		/datum/ego_datum/weapon/pleasure,
 		/datum/ego_datum/armor/pleasure
 		)
-	//gift_type = /datum/ego_gifts/pleasure
+	gift_type = /datum/ego_gifts/pleasure
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	//the agent that started work on porccubus

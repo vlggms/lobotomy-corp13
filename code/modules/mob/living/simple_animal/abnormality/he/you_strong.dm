@@ -22,6 +22,7 @@
 			/datum/ego_datum/weapon/get_strong,
 			/datum/ego_datum/armor/get_strong
 		)
+	gift_type = /datum/ego_gifts/get_strong
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	max_boxes = 16

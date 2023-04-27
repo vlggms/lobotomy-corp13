@@ -21,7 +21,7 @@
 		/datum/ego_datum/armor/wrist
 	)
 
-	//gift_type =  /datum/ego_gifts/bloodbath
+	gift_type =  /datum/ego_gifts/wrist
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

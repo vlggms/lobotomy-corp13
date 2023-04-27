@@ -41,12 +41,11 @@
 
 	can_patrol = FALSE
 
-	gift_type = /datum/ego_gifts/blind_rage
-
 	ego_list = list(
 		/datum/ego_datum/weapon/blind_rage,
 		/datum/ego_datum/armor/blind_rage
 	)
+	gift_type = /datum/ego_gifts/blind_rage
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/friendly = TRUE

@@ -25,7 +25,7 @@
 		/datum/ego_datum/weapon/blossom,
 		/datum/ego_datum/armor/blossom
 		)
-//	gift_type = /datum/ego_gifts/blossom
+	gift_type = /datum/ego_gifts/blossom
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 	var/numbermarked = 5
 
