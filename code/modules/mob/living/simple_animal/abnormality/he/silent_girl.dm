@@ -47,7 +47,7 @@
 	else if(user.has_status_effect(STATUS_EFFECT_SG_ATTONEMENT))
 		user.remove_status_effect(STATUS_EFFECT_SG_ATTONEMENT)
 
-/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/Guilt_Effect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user)
 	if ((user.stat == DEAD) || (user.has_status_effect(STATUS_EFFECT_SG_GUILTY)))
 		return
 	datum_reference.qliphoth_change(-1)
@@ -56,7 +56,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60 && !user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
-		Guilt_Effect(user)
+		GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -66,7 +66,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	Guilt_Effect(user)
+	GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/ZeroQliphoth(mob/living/carbon/human/user)

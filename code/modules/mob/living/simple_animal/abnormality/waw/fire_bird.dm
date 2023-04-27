@@ -91,7 +91,7 @@
 	light_range = 20
 	light_power = 20
 	update_light()
-	addtimer(CALLBACK(src, .proc/kill_otherbird), 90 SECONDS)
+	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/Life()
 	. = ..()
@@ -100,7 +100,7 @@
 	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
 		crispynugget()
 
-/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/kill_otherbird()
+/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/KillOtherBird()
 	loot = null
 	light_range = 0
 	light_power = 0
@@ -130,9 +130,9 @@
 		SLEEP_CHECK_DEATH(11)
 		been_hit = list()
 		playsound(get_turf(src), 'sound/abnormalities/firebird/Firebird_Hit.ogg', 100, 0, 20) //TEMPORARY
-		do_dash(dir_to_target, 0)
+		DoDash(dir_to_target, 0)
 
-/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/do_dash(move_dir, times_ran)
+/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/DoDash(move_dir, times_ran)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_max)
 		stop_charge = TRUE
@@ -165,7 +165,7 @@
 				been_hit += L
 
 
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, .proc/DoDash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/attackby(obj/item/I, mob/living/user, params)
 	..()
