@@ -135,7 +135,6 @@
 			if(!L.anchored)
 				L.throw_at(throw_target, rand(1, 3), 7, L)
 			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//Usually a kill, you can block it if you're good
-	return ..()
 
 /datum/status_effect/pranked/proc/TriggerPrank()
 	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining
