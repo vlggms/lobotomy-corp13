@@ -856,3 +856,18 @@
 /obj/effect/temp_visual/screech/Initialize()
 	..()
 	animate(src, alpha = 0, transform = transform*4, time = 5)
+
+/obj/effect/temp_visual/human_fire
+	name = "fire"
+	icon = 'icons/mob/onfire.dmi'
+	icon_state = "Standing"
+	duration = 30
+
+/obj/effect/temp_visual/fire
+	name = "fire"
+	icon = 'icons/effects/fire.dmi'
+	icon_state = "1"
+
+/obj/effect/temp_visual/fire/Initialize()
+	. = ..()
+	icon_state = pick("1", "2", "3")
