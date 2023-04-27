@@ -397,3 +397,7 @@
 
 	if(!valid_tile)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/datum/status_effect/stay_home/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()

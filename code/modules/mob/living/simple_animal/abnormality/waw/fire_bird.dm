@@ -182,7 +182,7 @@
 		carbon_firer.apply_status_effect(STATUS_EFFECT_BLINDED)
 	retaliatedash()
 
-/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/Blinded_Work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	user.remove_status_effect(STATUS_EFFECT_BLINDED)
 
@@ -249,7 +249,7 @@
 		cantsee[L] = get_attribute_level(L, TEMPERANCE_ATTRIBUTE)/2
 		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -cantsee[L])
 		to_chat(L, "<span class='userdanger'>The light of the bird burns your eyes!")
-		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/Blinded_Work)
+		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
 /datum/status_effect/blinded/on_remove()
 	. = ..()
@@ -258,9 +258,10 @@
 		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, cantsee[L])
 		cantsee -= L
 		to_chat(L, "<span class='nicegreen'>The blinding light fades...")
-		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/Blinded_Work)
+		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
-/datum/status_effect/blinded/proc/Blinded_Work(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
+/datum/status_effect/blinded/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
 	SIGNAL_HANDLER
 	user.remove_status_effect(STATUS_EFFECT_BLINDED)
+
 #undef STATUS_EFFECT_BLINDED

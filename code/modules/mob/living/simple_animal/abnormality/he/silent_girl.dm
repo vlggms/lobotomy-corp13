@@ -146,12 +146,12 @@
 		UnregisterSignal(H, COMSIG_WORK_STARTED)
 
 /datum/status_effect/sg_guilty/be_replaced()
-	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.cut_overlay(guilt_icon)
 		H.physiology.work_success_mod /= 0.75
 		UnregisterSignal(H, COMSIG_WORK_STARTED)
+	return ..()
 
 /datum/status_effect/sg_guilty/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
@@ -230,11 +230,11 @@
 		UnregisterSignal(H, COMSIG_WORK_STARTED)
 
 /datum/status_effect/sg_atonement/be_replaced()
-	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.cut_overlay(guilt_icon)
 		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
+	return ..()
 
 /datum/status_effect/sg_atonement/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER

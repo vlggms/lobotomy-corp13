@@ -51,7 +51,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	to_chat(user, "<span class='notice'>The serpents seem to avoid areas of their nest covered in this solution.</span>")
-	new /obj/item/serpentspoision(get_turf(user))
+	new /obj/item/serpentspoison(get_turf(user))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -340,7 +340,7 @@
 		H.adjustSanityLoss(0.1) //the serpents final destination is your frontal lobe
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
 		if(H.bodytemperature <= INHOSPITABLE_FOR_NESTING) //cure conditions
-			serpentsPoision()
+			SerpentsPoison()
 		if(H.drunkenness >= 5 && H.stat != DEAD) //increases duration of infection.
 			duration = duration + extra_time
 			physical_symptoms = physical_symptoms + extra_time
@@ -355,7 +355,7 @@
 				H.skin_tone = "serpentgreen" //resulted in alteration to helpers.dm
 				H.regenerate_icons()
 
-/datum/status_effect/serpents_host/proc/serpentsPoision()
+/datum/status_effect/serpents_host/proc/SerpentsPoison()
 	cured = 1
 	qdel(src)
 
@@ -388,24 +388,24 @@
 #undef INHOSPITABLE_FOR_NESTING
 
 //Offical Cure
-/obj/item/serpentspoision
+/obj/item/serpentspoison
 	name = "serpent infestation cure"
 	desc = "A formula that removes O-02-74-1 infestation."
 	icon = 'icons/obj/chromosomes.dmi'
 	icon_state = ""
 	color = "gold"
 
-/obj/item/serpentspoision/attack(mob/living/M, mob/user)
+/obj/item/serpentspoison/attack(mob/living/M, mob/user)
 	user.visible_message("<span class='notice'>[user] injects [M] with [src].</span>")
 	cure(M)
 	qdel(src)
 
-/obj/item/serpentspoision/attack_self(mob/living/carbon/user)
+/obj/item/serpentspoison/attack_self(mob/living/carbon/user)
 	user.visible_message("<span class='notice'>[user] injects themselves with [src].</span>")
 	cure(user)
 	qdel(src)
 
-/obj/item/serpentspoision/proc/cure(mob/living/carbon/target)
+/obj/item/serpentspoison/proc/cure(mob/living/carbon/target)
 	if(target.has_status_effect(/datum/status_effect/serpents_host))
 		var/datum/status_effect/serpents_host/C = target.has_status_effect(/datum/status_effect/serpents_host)
-		C.serpentsPoision()
+		C.SerpentsPoison()
