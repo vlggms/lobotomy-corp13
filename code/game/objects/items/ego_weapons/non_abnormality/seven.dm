@@ -33,8 +33,7 @@
 	. += "<span class='notice'>Attack an enemy [hit_target] times to store it.</span>"
 
 /obj/item/ego_weapon/city/seven/attack_self(mob/living/carbon/human/user)
-	if(!..())
-		return FALSE
+	..()
 	if(!stored_target)
 		to_chat(user, "<span class='notice'>You have no information stored.</span>")
 		return
