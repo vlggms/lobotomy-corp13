@@ -337,6 +337,7 @@
 			is_flying_animal = FALSE
 			update_icon()
 			REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
+		adjustBruteLoss(-maxHealth, TRUE, TRUE)
 		setDir(EAST)
 		datum_reference.qliphoth_change(datum_reference.qliphoth_meter_max)
 		returning = FALSE

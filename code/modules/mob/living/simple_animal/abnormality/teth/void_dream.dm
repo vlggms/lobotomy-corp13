@@ -151,6 +151,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/patrol_finish()
 	if((src in home) && returning)
+		adjustBruteLoss(-maxHealth, TRUE, TRUE)
 		setDir(EAST)
 		density = TRUE
 		datum_reference.qliphoth_change(datum_reference.qliphoth_meter_max)
