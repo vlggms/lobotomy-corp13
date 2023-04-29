@@ -908,6 +908,7 @@
 
 //Tutorial spawn
 /obj/effect/mob_spawn/human/tutorial
+	uses = -1
 	death = FALSE
 	roundstart = FALSE
 	random = FALSE
@@ -924,11 +925,6 @@
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
 
-/obj/effect/mob_spawn/human/tutorial/Destroy()
-	var/obj/effect/mob_spawn/human/tutorial/thing = new/obj/effect/mob_spawn/human/tutorial(drop_location())
-	thing.dir = src.dir
-	return ..()
-
 //Tutorial agent
 /datum/outfit/tutorial
 	name = "Agent Intern"
@@ -944,3 +940,34 @@
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
 	back = /obj/item/storage/backpack
+
+
+
+//Library spawn
+/obj/effect/mob_spawn/human/library
+	uses = -1
+	death = FALSE
+	roundstart = FALSE
+	random = FALSE
+	name = "records librarian sleeper"
+	desc = "A humming sleeper with a silhouetted occupant inside. It's just a front, stored underground are many librarians."
+	mob_name = "Records Librarian"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	outfit = /datum/outfit/librarian
+	short_desc = "A place for players to read up on lore and information while not affecting the actual round \
+	When you are done, Cryo and respawn to join the game."
+	assignedrole = "Lobotomy Corporation Records Librarian"
+
+//Tutorial agent
+/datum/outfit/librarian
+	name = "records librarian"
+
+	head = null
+	belt = null
+	ears = null
+	glasses = null
+	uniform = /obj/item/clothing/under/suit/lobotomy/records
+	shoes = /obj/item/clothing/shoes/laceup
+
+	back = /obj/item/storage/backpack/satchel

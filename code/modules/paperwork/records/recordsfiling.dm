@@ -111,3 +111,44 @@
 		virgin = FALSE
 	return ..()
 
+
+/*
+ * Lore Cabinet
+ */
+
+//Zayin
+/obj/structure/filingcabinet/zayinlore
+	name = "zayin supplimentary information cabinet"
+	icon_state = "employmentcabinet"
+	var/virgin = TRUE
+
+/obj/structure/filingcabinet/zayinlore/interact(mob/user)
+	if(virgin)
+		fillCurrent()
+		virgin = FALSE
+	return ..()
+
+/obj/structure/filingcabinet/zayinlore/proc/fillCurrent()
+	var/list/queue = subtypesof(/obj/item/paper/fluff/lore/zayin)
+	for(var/sheet in queue)
+		new sheet(src)
+
+
+//Waw
+/obj/structure/filingcabinet/wawlore
+	name = "waw supplimentary information cabinet"
+	icon_state = "employmentcabinet"
+	var/virgin = TRUE
+
+/obj/structure/filingcabinet/wawlore/interact(mob/user)
+	if(virgin)
+		fillCurrent()
+		virgin = FALSE
+	return ..()
+
+/obj/structure/filingcabinet/wawlore/proc/fillCurrent()
+	var/list/queue = subtypesof(/obj/item/paper/fluff/lore/waw)
+	for(var/sheet in queue)
+		new sheet(src)
+
+//todo: fuckign clean this up when you add more lore
