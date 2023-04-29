@@ -5,9 +5,9 @@
 	icon_state = "space"
 	icon_living = "space"
 	del_on_death = TRUE
-	maxHealth = 2100		//She is really hard to hit
-	health = 2100
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	maxHealth = 3200
+	health = 3200
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
@@ -27,25 +27,43 @@
 		)
 	gift_type =  /datum/ego_gifts/space
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	ranged = TRUE
+	minimum_distance = 0
+	ranged_cooldown_time = 3 SECONDS
 
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 100
+	var/can_act = TRUE
 
 //She can't move or attack.
 /mob/living/simple_animal/hostile/abnormality/space_lady/Move()
-	return FALSE
+	if(!can_act)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget()
+	OpenFire()
 	return FALSE
 
-//Teleporting and exploding
-/mob/living/simple_animal/hostile/abnormality/space_lady/proc/Teleport()
-	icon_state = "space_teleport"
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
-	addtimer(CALLBACK(src, .proc/ExplodeTimer), explosion_timer*2)
 
+/mob/living/simple_animal/hostile/abnormality/space_lady/OpenFire()
+	if(!can_act)
+		return
+
+	if(prob(10))
+		addtimer(CALLBACK(src, .proc/ExplodeTimer), explosion_timer*2)
+		can_act = FALSE
+
+	else if(prob(50))
+		projectiletype = /obj/projectile/white_hole
+
+	else
+		projectiletype = /obj/projectile/black_hole
+
+	..()
+
+//Teleporting and exploding
 /mob/living/simple_animal/hostile/abnormality/space_lady/proc/ExplodeTimer()
 	say("[explosion_state]...")
 	explosion_state -=1
@@ -72,7 +90,16 @@
 	for(var/mob/living/carbon/human/L in view(14, src))
 		L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 	goonchem_vortex(get_turf(src), 1, 13)
+	can_act = TRUE
 	Teleport()
+
+/mob/living/simple_animal/hostile/abnormality/space_lady/proc/Teleport()
+	icon_state = "space_teleport"
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+
+
+
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/space_lady/WorktickFailure(mob/living/carbon/human/user)
@@ -104,4 +131,43 @@
 /mob/living/simple_animal/hostile/abnormality/space_lady/BreachEffect(mob/living/carbon/human/user)
 	..()
 	Teleport()
+
+
+//Bullets
+/obj/projectile/white_hole
+	name = "miniature white hole"
+	icon_state = "antimagic"
+	desc = "A mini white hole."
+	nodamage = TRUE
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	speed = 3
+
+/obj/projectile/white_hole/on_hit(target)
+	goonchem_vortex(get_turf(src), 1, 5)
+	for(var/turf/T in view(3, src))
+		if(T.density)
+			continue
+		new /obj/effect/temp_visual/revenant(T)
+		for(var/mob/living/carbon/human/L in T)
+			L.apply_damage(100, WHITE_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+
+/obj/projectile/black_hole
+	name = "miniature black hole"
+	icon_state = "antimagic"
+	desc = "A mini black hole."
+	nodamage = TRUE
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	color = COLOR_PURPLE
+	speed = 3
+
+/obj/projectile/black_hole/on_hit(target)
+	goonchem_vortex(get_turf(src), 0, 5)
+	for(var/turf/T in view(3, src))
+		if(T.density)
+			continue
+		new /obj/effect/temp_visual/revenant(T)
+		for(var/mob/living/carbon/human/L in T)
+			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
 
