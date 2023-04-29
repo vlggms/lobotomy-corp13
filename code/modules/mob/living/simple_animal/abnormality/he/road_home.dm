@@ -380,10 +380,10 @@
 
 /datum/status_effect/stay_home/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/Moved)
 
 ///If someone has this status effect, they will be incapable of leaving the gold road if they ever step on it.
-/datum/status_effect/stay_home/proc/moved(datum/source, atom/new_location)
+/datum/status_effect/stay_home/proc/Moved(datum/source, atom/new_location)
 	SIGNAL_HANDLER
 	var/turf/newloc_turf = get_turf(new_location)
 	var/valid_tile = FALSE
@@ -397,3 +397,7 @@
 
 	if(!valid_tile)
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/datum/status_effect/stay_home/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()

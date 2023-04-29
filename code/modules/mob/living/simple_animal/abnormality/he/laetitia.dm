@@ -31,7 +31,7 @@
 		if(prob(15)) //15% chance to remove prank
 			user.remove_status_effect(STATUS_EFFECT_PRANKED)
 		else if(prob(15)) //15% chance to trigger explosion
-			P.triggerprank()
+			P.TriggerPrank()
 	else
 		if(prob(70)) //not 100% of the time to be funny
 			var/datum/status_effect/pranked/SE = user.apply_status_effect(STATUS_EFFECT_PRANKED)
@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/abnormality/laetitia/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P && prob(70)) //70% to trigger explosion
-		P.triggerprank()
+		P.TriggerPrank()
 	return
 
 //Her friend
@@ -136,7 +136,7 @@
 				L.throw_at(throw_target, rand(1, 3), 7, L)
 			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//Usually a kill, you can block it if you're good
 
-/datum/status_effect/pranked/proc/triggerprank()
+/datum/status_effect/pranked/proc/TriggerPrank()
 	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining
 	var/newduration = duration - world.time
 	newduration = clamp(newduration, 0, 100)

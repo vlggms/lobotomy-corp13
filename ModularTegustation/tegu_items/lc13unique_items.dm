@@ -34,7 +34,7 @@
 	to_chat(user, "<span class='notice'>You got a prize!</span>")
 	new reward(get_turf(src))
 	qdel(src)
-	
+
 	//Pet Whistle
 /obj/item/pet_whistle
 	name = "Galtons whistle"
@@ -201,6 +201,8 @@
 
 /datum/status_effect/interventionshield/be_replaced()
 	var/mob/living/carbon/human/L = owner
+	if(!istype(L))
+		return ..()
 	switch(respectivedamage)
 		if(RED_DAMAGE)
 			L.physiology.red_mod /= 0.0001
@@ -211,7 +213,7 @@
 		if(PALE_DAMAGE)
 			L.physiology.pale_mod /= 0.0001
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
-	..()
+	return ..()
 
 /datum/status_effect/interventionshield/on_remove()
 	var/mob/living/carbon/human/L = owner
