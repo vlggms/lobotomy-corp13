@@ -51,7 +51,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	to_chat(user, "<span class='notice'>The serpents seem to avoid areas of their nest covered in this solution.</span>")
-	new /obj/item/serpentspoision(get_turf(user))
+	new /obj/item/serpentspoison(get_turf(user))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -69,7 +69,7 @@
 		if(origin_cooldown <= world.time) //To prevent serpent flood there is a delay on how many serpents are brave enough to leave the safety of their nest.
 			var/turf/T = pick(GLOB.department_centers)
 			var/mob/living/simple_animal/hostile/naked_nest_serpent/serpent = new(get_turf(T))
-			serpent.hide()
+			serpent.Hide()
 			datum_reference.qliphoth_change(1)
 			origin_cooldown = world.time + origin_cooldown_delay
 		return
@@ -82,7 +82,7 @@
 		AM.forceMove(get_turf(src))
 	if(serpentsnested > 0)
 		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
-		S.hide()
+		S.Hide()
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Move()
@@ -118,7 +118,7 @@
 	if(!target && istype(AM, /mob/living/simple_animal/hostile/naked_nest_serpent))
 		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = AM
 		if(!S.target && !client)
-			S.nest(src)
+			S.Nest(src)
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Life()
 	. = ..()
@@ -136,7 +136,7 @@
 	S.GiveTarget(target)
 	serpentsnested = serpentsnested - 1
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/recover_serpent(mob/living/simple_animal/hostile/naked_nest_serpent/S) //destination of serpents nest proc
+/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/RecoverSerpent(mob/living/simple_animal/hostile/naked_nest_serpent/S) //destination of serpents nest proc
 	if(serpentsnested <= 5)
 		if(S.client)
 			to_chat(src, "<span class='nicegreen'>You return to the safety of the nest.</span>")
@@ -146,9 +146,9 @@
 	else if(S.client)
 		to_chat(S, "<span class='notice'>This nest has no more room.</span>")
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/nest() //return to the nest
+/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/Nest() //return to the nest
 	for(var/mob/living/simple_animal/hostile/naked_nest_serpent/M in range(0, src))
-		M.nest(src)
+		M.Nest(src)
 
 /mob/living/simple_animal/hostile/naked_nest_serpent
 	name = "naked serpent"
@@ -189,11 +189,11 @@
 	if(iscarbon(target) && prob(80))
 		var/mob/living/carbon/human/C = target
 		if(C.stat != DEAD && !C.has_status_effect(/datum/status_effect/serpents_host) && a_intent == "harm")
-			enter_host(C)
+			EnterHost(C)
 			return
 	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
 		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = target
-		nest.recover_serpent(src)
+		nest.RecoverSerpent(src)
 	. = ..()
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/PickTarget(list/Targets)
@@ -221,19 +221,19 @@
 				Goto(N, 5, 0)
 				return
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/enter_host(mob/living/carbon/host)
+/mob/living/simple_animal/hostile/naked_nest_serpent/proc/EnterHost(mob/living/carbon/host)
 	if(prob(50 * (host.health / host.maxHealth)))
 		to_chat(host, "<span class='warning'>You feel something cold touch the back of your leg!</span>")
 	to_chat(src, "<span class='nicegreen'>You’ve found a new nest!</span>")
 	host.apply_status_effect(/datum/status_effect/serpents_host)
 	QDEL_IN(src, 5)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/nest(mob/living/simple_animal/hostile/abnormality/naked_nest/nest)
+/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Nest(mob/living/simple_animal/hostile/abnormality/naked_nest/nest)
 	for(var/mob/living/simple_animal/hostile/abnormality/naked_nest/N in range(1, src))
 		if(nest.serpentsnested <= 5 && origin_nest == N.tag || !origin_nest)
-			nest.recover_serpent(src)
+			nest.RecoverSerpent(src)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/hide()
+/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Hide()
 	Goto((locate(/obj/structure/table) in oview(get_turf(src), 9)), move_to_delay, 0)
 	wander = FALSE
 
@@ -266,7 +266,7 @@
 /mob/living/simple_animal/hostile/naked_nested/Initialize()
 	. = ..()
 	nestingtimer = world.time + (40 SECONDS)
-	updateArmor() //in order to fix damage coefficents
+	UpdateArmor() //in order to fix damage coefficents
 
 /mob/living/simple_animal/hostile/naked_nested/Life()
 	. = ..()
@@ -289,7 +289,7 @@
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 30, 1)
 	qdel(src)
 
-/mob/living/simple_animal/hostile/naked_nested/proc/updateArmor()
+/mob/living/simple_animal/hostile/naked_nested/proc/UpdateArmor()
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	var/obj/item/clothing/suit/armor/host_armor = locate(/obj/item/clothing/suit/armor) in contents
 	if(host_armor)
@@ -340,7 +340,7 @@
 		H.adjustSanityLoss(0.1) //the serpents final destination is your frontal lobe
 		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
 		if(H.bodytemperature <= INHOSPITABLE_FOR_NESTING) //cure conditions
-			serpentsPoision()
+			SerpentsPoison()
 		if(H.drunkenness >= 5 && H.stat != DEAD) //increases duration of infection.
 			duration = duration + extra_time
 			physical_symptoms = physical_symptoms + extra_time
@@ -355,7 +355,7 @@
 				H.skin_tone = "serpentgreen" //resulted in alteration to helpers.dm
 				H.regenerate_icons()
 
-/datum/status_effect/serpents_host/proc/serpentsPoision()
+/datum/status_effect/serpents_host/proc/SerpentsPoison()
 	cured = 1
 	qdel(src)
 
@@ -370,42 +370,42 @@
 			host.regenerate_icons()
 		if(B && cured != 1)
 			var/mob/living/simple_animal/hostile/naked_nested/N = new(owner.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
-			nested_items(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
-			nested_items(N, host.get_item_by_slot(ITEM_SLOT_BELT))
-			nested_items(N, host.get_item_by_slot(ITEM_SLOT_BACK))
+			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BELT))
+			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BACK))
 			if(host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-				nested_items(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-				N.updateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
+				NestedItems(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+				N.UpdateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
 			playsound(get_turf(owner), 'sound/misc/soggy.ogg', 20, 1)
 			qdel(owner)
 	owner.faction -= "Naked_Nest"
 	. = ..()
 
-/datum/status_effect/serpents_host/proc/nested_items(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
+/datum/status_effect/serpents_host/proc/NestedItems(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
 	if(nested_item)
 		nested_item.forceMove(nest)
 
 #undef INHOSPITABLE_FOR_NESTING
 
 //Offical Cure
-/obj/item/serpentspoision
+/obj/item/serpentspoison
 	name = "serpent infestation cure"
 	desc = "A formula that removes O-02-74-1 infestation."
 	icon = 'icons/obj/chromosomes.dmi'
 	icon_state = ""
 	color = "gold"
 
-/obj/item/serpentspoision/attack(mob/living/M, mob/user)
+/obj/item/serpentspoison/attack(mob/living/M, mob/user)
 	user.visible_message("<span class='notice'>[user] injects [M] with [src].</span>")
-	cure(M)
+	Cure(M)
 	qdel(src)
 
-/obj/item/serpentspoision/attack_self(mob/living/carbon/user)
+/obj/item/serpentspoison/attack_self(mob/living/carbon/user)
 	user.visible_message("<span class='notice'>[user] injects themselves with [src].</span>")
-	cure(user)
+	Cure(user)
 	qdel(src)
 
-/obj/item/serpentspoision/proc/cure(mob/living/carbon/target)
+/obj/item/serpentspoison/proc/Cure(mob/living/carbon/target)
 	if(target.has_status_effect(/datum/status_effect/serpents_host))
 		var/datum/status_effect/serpents_host/C = target.has_status_effect(/datum/status_effect/serpents_host)
-		C.serpentsPoision()
+		C.SerpentsPoison()

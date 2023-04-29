@@ -55,7 +55,7 @@
 		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoision,											400, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoison,											400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
 
