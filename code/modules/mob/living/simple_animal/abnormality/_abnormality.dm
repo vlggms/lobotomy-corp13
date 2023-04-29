@@ -59,6 +59,9 @@
 	var/datum/ego_gifts/gift_type = null
 	var/gift_chance = null
 	var/gift_message = null
+
+	/// Abno Landmark Location
+	var/turf/home = null
 	var/abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
@@ -317,6 +320,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
 //Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR It has qliphoth remaining
+	if(!(src in home) && !isnull(home))
+		return FALSE
 	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter))
 		return TRUE
 	return FALSE

@@ -38,6 +38,7 @@
 	var/pulse_damage = 50
 	var/ability_cooldown
 	var/ability_cooldown_time = 12 SECONDS
+	var/returning = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/Life()
 	. = ..()
@@ -46,6 +47,10 @@
 	PerformAbility()
 	if(punched && prob(33))
 		playsound(get_turf(src), "sound/abnormalities/voiddream/ambient_[pick(1,2)].ogg", 50, TRUE)
+	if(!returning)
+		return
+	if(!patrol_to(home))
+		QDEL_NULL(src)
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/PickTarget(list/Targets)
 	return
@@ -75,10 +80,16 @@
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/DelPassive()
-	if(punched)
+	if(punched || client)
 		return
-	animate(src, alpha = 0, time = 5)
-	QDEL_IN(src, 5)
+	if(patrol_to(home))
+		toggle_ai(AI_OFF)
+		status_flags |= GODMODE
+		density = FALSE
+		returning = TRUE
+	else
+		animate(src, alpha = 0, time = 5)
+		QDEL_IN(src, 5)
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/PerformAbility()
 	if(ability_cooldown > world.time)
@@ -137,6 +148,14 @@
 	..()
 	ability_cooldown = world.time + 4 SECONDS
 	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
+
+/mob/living/simple_animal/hostile/abnormality/voiddream/patrol_finish()
+	if((src in home) && returning)
+		setDir(EAST)
+		density = TRUE
+		datum_reference.qliphoth_change(datum_reference.qliphoth_meter_max)
+		returning = FALSE
+	return
 
 // Projectile code
 /obj/projectile/sleepdart

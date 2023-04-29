@@ -61,6 +61,7 @@
 	var/angry_damage_human = 500
 
 	var/death_timer
+	var/returning = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
@@ -139,25 +140,29 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
-	if(..())
-		if((obj_damage > 0) || client) // Already transformed or mob controlled
-			return
-		var/list/around = view(src, vision_range)
-		var/list/priority_mobs = list()
-		var/list/potential_mobs = list()
-		for(var/mob/living/carbon/human/H in around)
-			if(H.mind && !faction_check_mob(H))
-				if(H.sanity_lost)
-					priority_mobs += H
-				else if(!(H in already_punished) && prob(10))
-					potential_mobs += H
+	if(!..())
+		return
+	if((obj_damage > 0) || client) // Already transformed or mob controlled
+		return
+	if(returning)
+		if(!patrol_to(home))
+			QDEL_NULL(src)
+	var/list/around = view(src, vision_range)
+	var/list/priority_mobs = list()
+	var/list/potential_mobs = list()
+	for(var/mob/living/carbon/human/H in around)
+		if(H.mind && !faction_check_mob(H))
+			if(H.sanity_lost)
+				priority_mobs += H
+			else if(!(H in already_punished) && prob(10))
+				potential_mobs += H
 
-		if(LAZYLEN(priority_mobs))
-			var/mob/living/carbon/le_target = pick(priority_mobs)
-			pecking_targets |= le_target
-		else if(LAZYLEN(potential_mobs))
-			var/mob/living/carbon/le_target = pick(potential_mobs)
-			pecking_targets |= le_target
+	if(LAZYLEN(priority_mobs))
+		var/mob/living/carbon/le_target = pick(priority_mobs)
+		pecking_targets |= le_target
+	else if(LAZYLEN(potential_mobs))
+		var/mob/living/carbon/le_target = pick(potential_mobs)
+		pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
 	if(ishuman(target) && bird_angry)
@@ -288,7 +293,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !isliving(target) && icon_state != "pbird_red")
-		QDEL_NULL(src)
+		if(patrol_to(home))
+			status_flags |= GODMODE
+			toggle_ai(AI_OFF)
+			returning = TRUE
+		else
+			QDEL_NULL(src)
 	else
 		death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS, TIMER_STOPPABLE)
 
@@ -315,6 +325,22 @@
 		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/patrol_finish()
+	if((src in home) && returning)
+		if(locate(/obj/structure/pbird_perch) in get_turf(src))
+			icon_state = "pbird"
+			pixel_x = 15
+			pixel_y = 32
+			base_pixel_x = 15
+			base_pixel_y = 32
+			is_flying_animal = FALSE
+			update_icon()
+			REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
+		setDir(EAST)
+		datum_reference.qliphoth_change(datum_reference.qliphoth_meter_max)
+		returning = FALSE
+	return
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)

@@ -30,6 +30,7 @@
 	var/smash_length = 2
 	var/smash_width = 1
 	var/can_act = TRUE
+	var/returning = FALSE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
@@ -37,6 +38,13 @@
 		)
 	gift_type =  /datum/ego_gifts/cute
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/Life()
+	. = ..()
+	if(!returning)
+		return
+	if(!patrol_to(home))
+		QDEL_NULL(src)
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
 	if(!can_act)
@@ -60,7 +68,15 @@
 			var/obj/item/bodypart/bp = pick(parts)
 			bp.dismember()
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
-			QDEL_NULL(src)
+			if(!client)
+				LoseTarget()
+				if(patrol_to(datum_reference?.landmark))
+					density = FALSE
+					toggle_ai(AI_OFF)
+					status_flags |= GODMODE
+					returning = TRUE
+				else
+					QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
 	return Smash(target)
 
@@ -179,3 +195,11 @@
 	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)
+
+/mob/living/simple_animal/hostile/abnormality/ppodae/patrol_finish()
+	if((src in home) && returning)
+		setDir(EAST)
+		density = TRUE
+		datum_reference.qliphoth_change(datum_reference.qliphoth_meter_max)
+		returning = FALSE
+	return
