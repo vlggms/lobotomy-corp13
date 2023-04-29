@@ -145,6 +145,17 @@
 	desc = "The luminous organ shines brilliantly, making it useful for lighting up the dark. It’s also great as a lure."
 	icon_state = "lantern"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) //20
+	light_system = MOVABLE_LIGHT
+	light_color = COLOR_YELLOW
+	light_range = 1
+	light_on = FALSE
+	var/on = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/lantern/attack_self(mob/user)
+	on = !on
+	playsound(user, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 30, TRUE)
+	set_light_on(on)
+	return 1
 
 /obj/item/clothing/suit/armor/ego_gear/curfew
 	name = "curfew"
