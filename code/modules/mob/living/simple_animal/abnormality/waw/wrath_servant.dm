@@ -305,7 +305,7 @@
 		for(var/mob/living/simple_animal/hostile/H in possible_targets) // This SHOULD hunt the biggest dude around
 			if(H == src)
 				continue
-			if(faction_check(H.faction, list("neutral", FALSE)))
+			if(faction_check(H.faction, list("neutral"), FALSE))
 				continue
 			if(H.damage_coeff[RED_DAMAGE] <= 0) // Can't be hurt (Feasibly)
 				continue
