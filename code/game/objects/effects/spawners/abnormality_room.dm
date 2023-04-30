@@ -25,6 +25,7 @@
 		break // There can be only one
 	for(var/obj/machinery/computer/abnormality/AC in allObjects)
 		AC.datum_reference = abno_datum
+		AC.datum_reference.console = AC
 		room_console = AC
 		break
 	if(room_console)

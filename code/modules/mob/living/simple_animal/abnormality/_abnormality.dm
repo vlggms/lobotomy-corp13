@@ -61,8 +61,6 @@
 	var/gift_message = null
 	var/abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	/// Abnormality Chemistry System
-	// Points to the abnormality's work console.
-	var/obj/machinery/computer/abnormality/abnormality_console
 	// Typepath of the abnormality's chemical.
 	var/chem_type
 	// Amount of abnochem produced by one harvest. One harvest is prepared per work completed.
@@ -108,11 +106,6 @@
 		gift_message = "You are granted a gift by [src]!"
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
-	if(istype(get_area(src), /area/containment_zone))
-		var/turf/console_location = locate(src.x + 3, src.y + 1, src.z)
-		abnormality_console = locate() in console_location.contents
-		if(!abnormality_console)
-			CRASH("Abnormality cannot find its console. Was it spawned in an unusual location?")
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	if(istype(datum_reference)) // Respawn the mob on death
@@ -159,17 +152,17 @@
 	if(!(status_flags & GODMODE))
 		to_chat(user, "<span class='notice'>Now isn't the time!</span>")
 		return
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in abnormality_console.contents
+	var/obj/item/chemical_extraction_attachment/attachment = locate() in datum_reference.console.contents
 	if(!attachment)
 		to_chat(user, "<span class='notice'>This abnormality's cell is not properly equipped for substance extraction.</span>")
 		return
 	if(world.time < chem_cooldown_timer)
 		to_chat(user, "<span class='notice'>You may need to wait a bit longer.</span>")
 		return
-	if(abnormality_console.chem_charges < 1)
+	if(datum_reference.console.chem_charges < 1)
 		to_chat(user, "<span class='notice'>No chemicals are ready for harvest. More work must be completed.</span>")
 		return
-	abnormality_console.chem_charges -= 1
+	datum_reference.console.chem_charges -= 1
 	var/obj/item/reagent_containers/my_container = O
 	HarvestChem(my_container, user)
 	return
