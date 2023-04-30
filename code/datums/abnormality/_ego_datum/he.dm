@@ -261,3 +261,13 @@
 /datum/ego_datum/weapon/fluid_sac
 	item_path = /obj/item/ego_weapon/fluid_sac
 	cost = 35
+
+//Nameless Fetus - Syrinx
+/datum/ego_datum/armor/syrinx
+	item_path = /obj/item/clothing/suit/armor/ego_gear/syrinx
+	cost = 35
+
+/* Not done yet.
+/datum/ego_datum/weapon/syrinx
+	item_path = /obj/item/gun/ego_gun/syrinx
+	cost = 35*/
