@@ -223,6 +223,12 @@
 	temperance_bonus = 2
 	slot = MOUTH_2
 
+/datum/ego_gifts/nightshade
+	name = "Nightshade"
+	icon_state = "nightshade"
+	prudence_bonus = 2
+	slot = HAND_1
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
