@@ -50,7 +50,7 @@
 	if(!(user in total_havers))
 		return chance
 
-	var/enabled
+	var/enabled = FALSE
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(user in fort_havers)
