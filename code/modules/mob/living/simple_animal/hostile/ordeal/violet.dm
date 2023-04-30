@@ -17,40 +17,82 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	var/list/enemies = list() //copying retaliate code cause i dont know how else to inherit it
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 80 SECONDS))
+	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 65 SECONDS))
 
-/mob/living/simple_animal/hostile/ordeal/violet_fruit/CanAttack(atom/the_target)
-	return FALSE
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/Found(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(!L.stat)
+			return L
+		else
+			enemies -= L
+	else if(ismecha(A))
+		var/obj/vehicle/sealed/mecha/M = A
+		if(LAZYLEN(M.occupants))
+			return A
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/ListTargets()
+	if(!enemies.len)
+		return list()
+	var/list/see = ..()
+	see &= enemies // Remove all entries that aren't in enemies
+	return see
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. > 0 && stat == CONSCIOUS)
+		Retaliate()
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/Retaliate()
+	var/list/around = view(src, vision_range)
+
+	for(var/atom/movable/A in around)
+		if(A == src)
+			continue
+		if(isliving(A))
+			var/mob/living/M = A
+			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
+				enemies |= M
+		else if(ismecha(A))
+			var/obj/vehicle/sealed/mecha/M = A
+			if(LAZYLEN(M.occupants))
+				enemies |= M
+				enemies |= M.occupants
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/AttackingTarget()
+	return
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	new /obj/effect/temp_visual/revenant/cracks(get_turf(src))
-	for(var/mob/living/carbon/human/H in view(7, src))
-		new /obj/effect/temp_visual/revenant(get_turf(H))
-		H.apply_damage(6, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+	new /obj/effect/temp_visual/small_smoke/second/fruit(get_turf(src))
+	for(var/mob/living/L in view(2, src))
+		if(!faction_check_mob(L))
+			new /obj/effect/temp_visual/revenant(get_turf(L))
+			L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
 	if(stat == DEAD)
 		return
 	var/turf/target_c = get_turf(src)
-	var/list/turf_list = spiral_range_turfs(24, target_c)
-	visible_message("<span class='danger'>[src] releases a stream of nauseating gas!</span>")
+	var/list/turf_list = spiral_range_turfs(15, target_c)
+	visible_message("<span class='danger'>[src] releases a cloud of nauseating gas!</span>")
 	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 16)
 	adjustWhiteLoss(maxHealth) // Die
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in livinginrange(24, target_c))
+	for(var/mob/living/carbon/human/H in livinginrange(15, target_c))
 		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
-	for(var/obj/machinery/computer/abnormality/A in urange(24, target_c))
-		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
-			A.datum_reference.qliphoth_change(pick(-1, -2))
+	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
+		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
+			A.datum_reference.qliphoth_change(pick(-999))
 
 // Violet noon
 /mob/living/simple_animal/hostile/ordeal/violet_monolith
@@ -91,6 +133,7 @@
 		return
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
+			new /obj/effect/temp_visual/revenant(get_turf(L))
 			L.apply_damage(9, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
@@ -106,7 +149,7 @@
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
-	visible_message("<span class='danger'>[src] falls down on the ground!</span>")
+	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)
@@ -131,7 +174,7 @@
 	var/obj/machinery/computer/abnormality/CA
 	var/list/potential_computers = list()
 	for(var/obj/machinery/computer/abnormality/A in urange(24, src))
-		if(!A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
+		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			potential_computers += A
 	if(LAZYLEN(potential_computers))
 		CA = pick(potential_computers)
