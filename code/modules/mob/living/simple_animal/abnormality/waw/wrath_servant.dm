@@ -258,6 +258,9 @@
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Request")
 		return ..()
+	if(datum_reference.console.meltdown)
+		say("A-Aghh...")
+		return FALSE
 	if(!(user in friend_ship))
 		say("All are to be treated equally, even those you keep in cages. You are no exception, [user.first_name()].")
 		return FALSE
