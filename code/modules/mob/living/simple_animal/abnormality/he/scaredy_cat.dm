@@ -95,7 +95,7 @@
 	. = ..()
 	if(!friend || status_flags & GODMODE || stat == DEAD) //for some reason life() works on death ain't that something
 		return
-	if(QDELETED(friend)) //if the friend is deleted instead of dying first somehow (looking at you pbird)
+	if(QDELETED(friend) || friend.status_flags & GODMODE) //if the friend is deleted instead of dying first somehow (looking at you pbird)
 		Courage(FALSE)
 		return
 	if(protect_cooldown < world.time)
