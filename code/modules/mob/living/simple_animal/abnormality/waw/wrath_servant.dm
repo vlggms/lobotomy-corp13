@@ -38,6 +38,7 @@
 	rapid_melee = 2
 	attack_sound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	stat_attack = HARD_CRIT
+	deathmessage = "vanishes from existance."
 
 	can_patrol = FALSE
 
@@ -286,6 +287,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/BreachEffect(mob/living/carbon/human/user)
+	if(!datum_reference)
+		friendly = FALSE
 	if(friendly)
 		instability += 10
 		icon_state = icon_living
@@ -298,12 +301,11 @@
 			if(H.stat == DEAD)
 				continue
 			possible_targets += H
-			break
 		var/list/highest_params = list(0, 0)
 		for(var/mob/living/simple_animal/hostile/H in possible_targets) // This SHOULD hunt the biggest dude around
 			if(H == src)
 				continue
-			if(faction_check_mob(H))
+			if(faction_check(H.faction, list("neutral"), FALSE))
 				continue
 			if(H.damage_coeff[RED_DAMAGE] <= 0) // Can't be hurt (Feasibly)
 				continue
@@ -348,6 +350,10 @@
 	say("EMBODIMENTS OF EVIL!!!")
 	desc = "A large red monster with white bandages hanging from it. It's flesh oozes a bubble acid."
 	can_act = TRUE
+	GiveTarget(user)
+	if(!datum_reference)
+		can_patrol = TRUE
+		return
 	for(var/turf/dep in GLOB.department_centers)
 		if(get_dist(src, dep) < 30)
 			continue
@@ -504,12 +510,8 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/death(gibbed)
-	if(isnull(src.datum_reference))
-		var/mob/living/simple_animal/hostile/azure_hermit/AH = locate() in GLOB.mob_living_list
-		if(AH)
-			AH.gib(TRUE)
-		..()
-		return
+	if(!datum_reference)
+		return ..()
 	if(ending)
 		return FALSE
 	INVOKE_ASYNC(src, .proc/Downed)
