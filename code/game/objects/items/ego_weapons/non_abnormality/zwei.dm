@@ -32,8 +32,8 @@
 
 
 /obj/item/ego_weapon/city/zweihander/attack_self(mob/living/carbon/human/user)
-	if(!..())
-		return FALSE
+	..()
+
 	if(!ready)
 		return
 	ready = FALSE
