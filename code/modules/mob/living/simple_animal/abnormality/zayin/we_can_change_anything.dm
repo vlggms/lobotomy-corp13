@@ -26,6 +26,9 @@
 	gift_message = "Your heart beats with new vigor."
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
+	chem_type = /datum/reagent/abnormality/we_can_change_anything
+	harvest_phrase = "<span class='notice'>You scoop up some goo from the inner lip of %ABNO using %VESSEL.</span>"
+	harvest_phrase_third = "%PERSON scoops up some goo from the inner lip of %ABNO with %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)
 	user.apply_damage(5, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
@@ -59,3 +62,10 @@
 		L.physiology.red_mod /= 0.9
 
 #undef STATUS_EFFECT_CHANGE
+
+/datum/reagent/abnormality/we_can_change_anything
+	name = "Dubious Red Goo"
+	description = "You have a strong suspicion about where this came from, but..."
+	color = "#8f1108"
+	health_restore = -1
+	damage_mods = list(0.9, 1, 1, 1)

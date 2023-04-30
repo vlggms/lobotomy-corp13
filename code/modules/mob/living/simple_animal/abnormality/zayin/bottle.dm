@@ -29,6 +29,9 @@
 
 	max_boxes = 10
 	var/cake = 5 //How many cake charges are there (4)
+	chem_type = /datum/reagent/abnormality/bottle
+	harvest_phrase = "<span class='notice'>You sweep up some crumbs from around %ABNO into %VESSEL.</span>"
+	harvest_phrase_third = "%PERSON sweeps up crumbs from around %ABNO into %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(!cake)
@@ -145,3 +148,11 @@
 		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
 
 #undef STATUS_EFFECT_TEARS
+
+/datum/reagent/abnormality/bottle
+	name = "Crumbs"
+	description = "A small pile of slightly soggy crumbs."
+	reagent_state = SOLID
+	color = "#ad8978"
+	health_restore = 2
+	stat_changes = list(-4, -4, -4, -4)
