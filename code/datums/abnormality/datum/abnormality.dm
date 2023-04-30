@@ -13,6 +13,8 @@
 	var/mob/living/simple_animal/hostile/abnormality/current
 	/// Reference to respawn landmark
 	var/obj/effect/landmark/abnormality_spawn/landmark
+	///Abnormality's computer console
+	var/obj/machinery/computer/abnormality/console
 
 	/// Available work types with their success chances per level. Used in console
 	var/list/available_work = list(
