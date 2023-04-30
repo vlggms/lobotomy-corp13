@@ -26,6 +26,9 @@
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	chem_type = /datum/reagent/abnormality/onesin
+	harvest_phrase = "<span class='notice'>As you hold it up before %ABNO, holy light fills %VESSEL.</span>"
+	harvest_phrase_third = "%PERSON holds up %VESSEL, letting it be filled with holy light."
 
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
 	if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/penitence))
@@ -81,4 +84,15 @@
 			if(H.sanity_lost)
 				heal_factor = 0.25
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
+
+/datum/reagent/abnormality/onesin
+	name = "Holy Light"
+	description = "It\'s calming, even if you can\'t quite look at it straight."
+	color = "#eff16d"
+	sanity_restore = -2
+	special_properties = list("may alter sanity of those near the subject")
+
+/datum/reagent/abnormality/onesin/on_mob_life(mob/living/L)
+	for(var/mob/living/carbon/human/nearby in livinginview(9, get_turf(L)))
+		nearby.adjustSanityLoss(-1)
 	return ..()

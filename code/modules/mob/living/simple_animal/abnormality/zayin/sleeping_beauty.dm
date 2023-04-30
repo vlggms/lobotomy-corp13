@@ -33,6 +33,9 @@
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
+	chem_type = /datum/reagent/abnormality/sleeping
+	harvest_phrase = "<span class='notice'>You give %ABNO a small jostle, releasing some dreamy-looking clouds. You capture them in %VESSEL.</span>"
+	harvest_phrase_third = "%PERSON jostles %ABNO, then captures the resulting clouds with %VESSEL."
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/sleeping/WorkChance(mob/living/carbon/human/user, chance)
@@ -137,3 +140,26 @@
 	..()
 
 #undef STATUS_EFFECT_RESTED
+
+/datum/reagent/abnormality/sleeping
+	name = "Puffy clouds"
+	description = "Looks like condensed clouds."
+	color = "#759ad1"
+	special_properties = list("substance may cause drowsiness")
+	sanity_restore = 4 // Literally the only context in which this is safe to use is if you're perfectly safe or under attack from a solely white damage abnormality.
+
+/datum/reagent/abnormality/sleeping/on_mob_metabolize(mob/living/L)
+	if(!iscarbon(L))
+		return
+	var/mob/living/carbon/C = L
+	to_chat(C, "<span class='warning'>You feel tired...</span>")
+	C.blur_eyes(5)
+	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	return ..()
+
+/datum/reagent/abnormality/sleeping/on_mob_life(mob/living/L)
+	if(!iscarbon(L))
+		return
+	var/mob/living/carbon/C = L
+	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	return ..()

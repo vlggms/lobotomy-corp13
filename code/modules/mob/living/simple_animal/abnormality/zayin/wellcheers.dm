@@ -24,6 +24,9 @@
 	gift_type = /datum/ego_gifts/soda
 	gift_message = "You feel like you've been doing this your whole life."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	chem_type = /datum/reagent/abnormality/wellcheers_zero
+	harvest_phrase = "<span class='notice'>The machine dispenses some clear-ish soda into %VESSEL.</span>"
+	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
@@ -75,3 +78,17 @@
 	icon_state = "wellcheers_purple"
 	inhand_icon_state = "purple_can"
 	list_reagents = list(/datum/reagent/consumable/wellcheers_purple = 10)
+
+/datum/reagent/abnormality/wellcheers_zero
+	name = "Wellcheers Zero"
+	description = "Low-impact soda for the high-energy lifestyle."
+	special_properties = list("substance may have erratic effects on subject's physical and mental state")
+	color = "#b2e0c0"
+
+/datum/reagent/abnormality/wellcheers_zero/on_mob_life(mob/living/L)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	H.adjustBruteLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
+	H.adjustSanityLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
+	return ..()
