@@ -350,6 +350,7 @@
 	say("EMBODIMENTS OF EVIL!!!")
 	desc = "A large red monster with white bandages hanging from it. It's flesh oozes a bubble acid."
 	can_act = TRUE
+	GiveTarget(user)
 	if(!datum_reference)
 		can_patrol = TRUE
 		return
