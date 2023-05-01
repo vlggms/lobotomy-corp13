@@ -1163,3 +1163,64 @@
 	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 	mark_damage = force
+
+/obj/item/ego_weapon/amrita
+	name = "amrita"
+	desc = "The rings attached to the cane represent the middle way and the Six Paramitas."
+	special = "Use this weapon in your hand to damage every non-human within reach."
+	icon_state = "amrita"
+	force = 40
+	reach = 2		//Has 2 Square Reach.
+	throw_speed = 5
+	throw_range = 7
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/abnormalities/clouded_monk/monk_attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+	var/can_spin = TRUE
+	var/spinning = FALSE
+
+/obj/item/ego_weapon/amrita/attack(mob/living/target, mob/living/user) //knockback on hit
+	if(spinning)
+		return FALSE
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+	..()
+	can_spin = FALSE
+	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+
+/obj/item/ego_weapon/amrita/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/amrita/attack_self(mob/user) //spin attack with knockback
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		return
+	if(do_after(user, 13, src))
+		var/aoe = force
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		can_spin = TRUE
+		addtimer(CALLBACK(src, .proc/spin_reset), 13)
+		playsound(src, 'sound/abnormalities/clouded_monk/monk_bite.ogg', 75, FALSE, 4)
+		aoe*=justicemod
+
+		for(var/turf/T in orange(2, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in range(2, user)) //knocks enemies away from you
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, src)))
+			if(!L.anchored)
+				var/whack_speed = (prob(60) ? 1 : 4)
+				L.throw_at(throw_target, rand(1, 2), whack_speed, user)

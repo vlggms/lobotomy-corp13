@@ -351,3 +351,13 @@
 		"When the riddle was successfully solved with an offering, the Qliphoth counter raised to its maximum. In addition, the abnormality willingly parted with an anomalous object referred to henceforth as a gift.",
 		"When agent bong bong used the canopic jar gift, she was cured of permanent blindness. Effects may differ but are usually beneficial.",
 		"Agent Joshua, who was turned to stone by the abnormality was able to be saved using gift of golden needles.")
+
+//Clouded Monk
+/obj/item/paper/fluff/info/waw/clouded_monk
+	abno_type = /mob/living/simple_animal/hostile/abnormality/clouded_monk
+	abno_code = "D-01-110"
+	abno_info = list(
+		"An employee’s SP was healed when they performed Insight work.",
+		"The Qliphoth Counter lowered every time two employees died.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
+		"When the work result was Bad, the Qliphoth Counter decreased.")

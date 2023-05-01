@@ -831,6 +831,13 @@
 	justice_bonus = 4
 	slot = BROOCH
 
+/datum/ego_gifts/amrita
+	name = "Amrita"
+	icon_state = "amrita"
+	fortitude_bonus = 10
+	prudence_bonus = -4
+	slot = HAND_1
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
