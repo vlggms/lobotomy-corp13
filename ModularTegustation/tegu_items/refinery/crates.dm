@@ -130,7 +130,9 @@
 		/obj/item/ego_weapon/city/kcorp/dspear,
 		/obj/item/gun/ego_gun/pistol/kcorp/smg,
 		/obj/item/gun/ego_gun/pistol/kcorp/nade,
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp)
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp,
+		/obj/item/toy/plush/bongy
+		)
 
 
 //R Corporation
