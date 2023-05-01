@@ -3712,7 +3712,6 @@
 #include "ModularTegustation\tegu_drinks\drinks.dm"
 #include "ModularTegustation\tegu_drinks\twistedtea.dm"
 #include "ModularTegustation\tegu_items\lc13unique_items.dm"
-#include "ModularTegustation\tegu_items\lc13\association\association_choice.dm"
 #include "ModularTegustation\tegu_items\lc13\refinery\_spawners.dm"
 #include "ModularTegustation\tegu_items\lc13\refinery\crates.dm"
 #include "ModularTegustation\tegu_items\lc13\refinery\pebox.dm"
