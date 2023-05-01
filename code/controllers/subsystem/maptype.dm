@@ -11,10 +11,10 @@ SUBSYSTEM_DEF(maptype)
 	var/maptype = "lc13"//for the love of god, do not change the default we will all die -Bootlegbow
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus")
 
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp")
@@ -31,7 +31,6 @@ SUBSYSTEM_DEF(maptype)
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
 
-
 /datum/controller/subsystem/maptype/Initialize()
 	..()
 
@@ -39,7 +38,7 @@ SUBSYSTEM_DEF(maptype)
 	switch(SSmaptype.maptype)
 		if("wonderlabs", "city")
 			departments = list("Command", "Security", "Service", "Science")
-		if("rcorp", "wcorp")
+		if("rcorp", "wcorp", "limbus")
 			departments = list("Command", "Security")
 
 	var/list/all_jobs = subtypesof(/datum/job)

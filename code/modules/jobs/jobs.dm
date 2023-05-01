@@ -26,10 +26,13 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
 
-
 	//Wcorp stuff
 	"W-Corp Representative",
 	"W-Corp L3 Squad Captain",
+
+	//LIMBUS COMPANY!!!!!
+	"LCB Executive Manager",
+	"LCB Assistant Manager",
 	))
 
 
@@ -124,6 +127,9 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
+
+	//LCB13
+	"LCB Sinner",
 	))
 
 

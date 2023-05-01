@@ -2,6 +2,7 @@
 /obj/item/clothing/suit/armor/ego_gear/limbus
 	icon = 'icons/obj/clothing/ego_gear/limbus_suits.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/limbus_suit.dmi'
+	equip_slowdown = 0
 
 /obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat
 	name = "LCB armored coat"
@@ -28,3 +29,7 @@
 							JUSTICE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/limbus/durante/lcb
+	attribute_requirements = list()
+

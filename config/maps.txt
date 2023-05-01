@@ -93,5 +93,9 @@ endmap
 map facilitytest
 endmap
 
+map limbus
+	votable
+endmap
+
 map runtimestation
 endmap

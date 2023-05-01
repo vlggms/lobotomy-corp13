@@ -68,6 +68,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
+
 	var/list/byond_sound_formats = list(
 		"mid"  = TRUE,
 		"midi" = TRUE,
@@ -614,10 +615,12 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/load_mode()
 	var/mode = trim(file2text("data/mode.txt"))
+
 	if(mode)
 		GLOB.master_mode = mode
 	else
 		GLOB.master_mode = "extended"
+
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 /datum/controller/subsystem/ticker/proc/save_mode(the_mode)

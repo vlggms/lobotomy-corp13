@@ -554,10 +554,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
 	id = /obj/item/card/id/away
-	belt = /obj/item/gun/ballistic/automatic/pistol/deagle/ctf
-	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf
-	r_pocket = /obj/item/ammo_box/magazine/recharge/ctf
-	r_hand = /obj/item/gun/ballistic/automatic/laser/ctf
+	belt = /obj/item/gun/ego_gun/city/fullstop/assault
 
 /datum/outfit/ctf/post_equip(mob/living/carbon/human/H, visualsOnly=FALSE)
 	if(visualsOnly)
@@ -576,6 +573,7 @@
 	for(var/i in no_drops)
 		var/obj/item/I = i
 		ADD_TRAIT(I, TRAIT_NODROP, CAPTURE_THE_FLAG_TRAIT)
+	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 
 /datum/outfit/ctf/instagib
 	r_hand = /obj/item/gun/energy/laser/instakill
@@ -583,9 +581,6 @@
 
 /datum/outfit/ctf/red
 	suit = /obj/item/clothing/suit/space/hardsuit/shielded/ctf/red
-	r_hand = /obj/item/gun/ballistic/automatic/laser/ctf/red
-	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/red
-	r_pocket = /obj/item/ammo_box/magazine/recharge/ctf/red
 	id = /obj/item/card/id/syndicate_command //it's red
 
 /datum/outfit/ctf/red/instagib
@@ -594,9 +589,6 @@
 
 /datum/outfit/ctf/blue
 	suit = /obj/item/clothing/suit/space/hardsuit/shielded/ctf/blue
-	r_hand = /obj/item/gun/ballistic/automatic/laser/ctf/blue
-	l_pocket = /obj/item/ammo_box/magazine/recharge/ctf/blue
-	r_pocket = /obj/item/ammo_box/magazine/recharge/ctf/blue
 	id = /obj/item/card/id/centcom //it's blue
 
 /datum/outfit/ctf/blue/instagib

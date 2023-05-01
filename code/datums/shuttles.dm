@@ -178,6 +178,10 @@
 	port_id = "epsilon"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/limbus
+	port_id = "limbus"
+	can_be_bought = FALSE
+
 /datum/map_template/shuttle/secondary
 	port_id = "secondary"
 	can_be_bought = FALSE
@@ -195,6 +199,10 @@
 /datum/map_template/shuttle/secondary/epsilon
 	suffix = "epsilon"
 	name = "epsilon backup"
+
+/datum/map_template/shuttle/limbus/bus
+	suffix = "bus"
+	name = "LCB Bus"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
