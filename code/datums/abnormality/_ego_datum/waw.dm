@@ -307,3 +307,11 @@
 	item_path = /obj/item/ego_weapon/mini/infinity
 	cost = 50
 
+// Clouded Monk - Amrita
+/datum/ego_datum/armor/amrita
+	item_path = /obj/item/clothing/suit/armor/ego_gear/amrita
+	cost = 50
+
+/datum/ego_datum/weapon/amrita
+	item_path = /obj/item/ego_weapon/amrita
+	cost = 50
