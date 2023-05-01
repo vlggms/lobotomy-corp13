@@ -2337,10 +2337,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/safety)
-"KI" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/department_main/extraction)
 "KM" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -2944,6 +2940,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"Tg" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/structure/refinery,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Tl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -42876,7 +42879,7 @@ QD
 Yb
 SL
 uf
-lN
+Tg
 XX
 lN
 lN
@@ -56000,10 +56003,10 @@ QD
 QD
 KP
 KP
-KI
-KI
-KI
-KI
+KP
+KP
+KP
+KP
 KP
 QD
 QD

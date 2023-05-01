@@ -36,8 +36,8 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	H.set_attribute_limit(120)
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are not affiliated with L Corporation. \
-	Do not enter the lower levels of the facility without the manager's permission. Please use the beacon in your office to choose your association.\
-	Do not fight unless in self defense. You are not a combat role; you are a desk job for paperwork. \
+	Do not enter the lower levels of the facility without the manager's permission. Please use the beacon in your office to choose your association. \
+	Do not fight unless in self defense. You are not a combat role; you take an administrative role. \
 	Do not assist L Corporation without significant payment.</span>")
 
 	//Don't spawn these goobers without a director.
