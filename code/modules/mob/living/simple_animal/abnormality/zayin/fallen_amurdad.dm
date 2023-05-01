@@ -46,7 +46,7 @@
 		)
 
 //Start us off with some soil trays and grass
-/mob/living/simple_animal/hostile/abnormality/fallen_amurdad/Initialize()
+/mob/living/simple_animal/hostile/abnormality/fallen_amurdad/PostSpawn()
 	..()
 	var/list/soil_area = range(1, src)
 	if((locate(/obj/machinery/hydroponics/soil/amurdad) in soil_area))
