@@ -51,13 +51,14 @@
 	var/list/satisfied = list(
 				"Ipi etog sind lemanto.", "Lemantinco kom geng kaskihir etog!") //you mind big human || (Human-honor) show has (not-lazy) mind
 	var/list/angry = list(
-				"Mi cadu cef ipi sagmo!","Mi thran lemantolly quistramos!" )//I king threat you begone || I angry stupid man (body-coin)
+				"Mi cadu cef ipi por sagmo!","Mi thran lemantolly quistramos!" )//I king threat you beggar begone || I angry stupid man (body-coin)
 	var/list/translate = list(
 				"Ipi etog geng quir.", "Ipi inspuz geng quir.") //you mind paper translate || you quest paper translate
 	var/list/riddleloot = list(
 				/obj/item/golden_needle, /obj/item/canopic_jar)
 	var/list/demandlist = list(
 				/obj/item/clothing/suit/armor/ego_gear, /obj/item/ego_weapon, /obj/item/reagent_containers/food/drinks, /obj/item/food)
+
 	//breach
 	var/can_act = TRUE
 	var/curse_cooldown
@@ -130,7 +131,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/proc/QuestHandler(obj/item/I, mob/living/carbon/human/user)
 	if (!istype(I, demand))
-		QuestPenalty(user)
+		if(demand)
+			QuestPenalty(user)
+		else
+			to_chat(user, "<span class='warning'>[src] is not waiting for an offering at the moment.</span>")
 		return
 
 	if(demand == /obj/item/reagent_containers/food/drinks)
@@ -148,7 +152,7 @@
 /mob/living/simple_animal/hostile/abnormality/sphinx/proc/QuestReward()
 	say(pick(satisfied))
 	happy = TRUE
-	demand = 0
+	demand = null
 	datum_reference.qliphoth_change(3)
 	var/turf/dispense_turf = get_step(src, pick(GLOB.alldirs))
 	var/reward = pick(riddleloot)
@@ -372,7 +376,7 @@
 	naar: fire	<br>
 	neu: papyrus/textile	<br><br>
 	-P-	<br>
-	por: beggar	<br>
+	por: beggar/starving	<br>
 	prin: consume	<br>
 	puwun: to	<br><br>
 	-Q-	<br>
