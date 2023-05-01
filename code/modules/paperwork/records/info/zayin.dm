@@ -69,3 +69,11 @@
 	abno_info = list(
 		"When work with T-01-145 was completed, it started to speak.",
 		"If the agent working with T-01-145 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")
+
+//Fallen Amurdad
+/obj/item/paper/fluff/info/zayin/fallen_amurdad
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fallen_amurdad
+	abno_code = "F-01-26"
+	abno_info = list(
+		"When work with F-01-26 was completed, a seed was sewn in the nearby soil.",
+		"Plants grown by F-01-26 seem to have been purged of most toxic properties.")
