@@ -213,7 +213,8 @@
 /turf/open/floor/carpet/black,
 /area/department_main/command)
 "eL" = (
-/turf/open/space/basic,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/orange,
 /area/department_main/command)
 "eO" = (
 /obj/structure/table/wood/poker,
@@ -975,7 +976,12 @@
 	name = "invincible railing";
 	resistance_flags = 64
 	},
-/obj/machinery/computer/shuttle/mining,
+/obj/machinery/computer/shuttle/mining{
+	max_integrity = 350000;
+	name = "backup elevator console";
+	possible_destinations = "backup_discipline";
+	shuttleId = "secondary"
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/command)
 "qD" = (
@@ -31018,8 +31024,8 @@ No
 IM
 CZ
 lO
-cq
-cq
+eL
+eL
 IZ
 go
 IM
@@ -37437,7 +37443,7 @@ SC
 TP
 TP
 TP
-eL
+kO
 TP
 TP
 TP
@@ -40270,8 +40276,8 @@ No
 LT
 kx
 lO
-jn
-jn
+eL
+eL
 IZ
 fF
 nc
@@ -40293,8 +40299,8 @@ TP
 LT
 kx
 lO
-jn
-jn
+eL
+eL
 IZ
 fF
 LT
