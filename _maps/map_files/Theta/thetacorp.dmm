@@ -110,9 +110,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "aq" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -133,14 +131,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/command)
-"av" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "aw" = (
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/yellow{
@@ -210,11 +200,6 @@
 	},
 /turf/open/floor/fakepit,
 /area/facility_hallway/control)
-"aI" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "aL" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
@@ -239,9 +224,7 @@
 "aR" = (
 /obj/structure/chair/sofa/corp/right,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "aS" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -301,9 +284,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "bc" = (
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -397,9 +378,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "bx" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -458,20 +437,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"bD" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "bE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "bG" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -490,16 +459,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/extraction)
-"bI" = (
-/obj/structure/toilet,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "bJ" = (
 /obj/structure/sink{
 	dir = 8;
@@ -509,9 +468,7 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "bL" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -539,9 +496,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "bP" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -550,9 +505,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "bQ" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -601,15 +554,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"bW" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "bX" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -652,9 +596,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "ca" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
@@ -790,9 +732,7 @@
 /obj/item/wirecutters,
 /obj/item/wrench,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "cm" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -868,9 +808,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "cA" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9"
@@ -904,14 +842,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/extraction)
-"cH" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "cJ" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -1018,10 +948,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
-"cY" = (
-/obj/structure/reagent_dispensers/plumbed/fuel,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/south)
 "cZ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -1050,9 +976,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "dg" = (
 /obj/structure/chair/office,
 /turf/open/floor/carpet/purple,
@@ -1117,9 +1041,7 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "ds" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1247,9 +1169,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/halls,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "dN" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1281,9 +1201,7 @@
 	},
 /obj/machinery/vending/snack/orange,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "dU" = (
 /turf/open/floor/plating,
 /area/facility_hallway/welfare)
@@ -1293,9 +1211,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "dW" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -1310,14 +1226,6 @@
 	},
 /turf/open/floor/fakepit,
 /area/space)
-"ea" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "ef" = (
 /obj/structure/window/reinforced/spawner,
 /obj/machinery/icecream_vat,
@@ -1333,21 +1241,12 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
-"eh" = (
-/obj/structure/table/wood,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "el" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "eo" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -1355,17 +1254,6 @@
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/facility/white,
 /area/department_main/extraction)
-"eq" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "er" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -1413,15 +1301,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
-"ey" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/machinery/vending/coffee,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "ez" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -1477,17 +1356,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"eO" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "eP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -1607,19 +1475,6 @@
 "fi" = (
 /turf/open/floor/bronze,
 /area/space)
-"fl" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 12
-	},
-/obj/structure/mirror{
-	pixel_x = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "fm" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -1704,9 +1559,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "fw" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -1809,18 +1662,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"fK" = (
-/obj/machinery/telecomms/server/presets/engineering,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "fM" = (
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "fO" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -1961,9 +1808,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "gm" = (
 /obj/structure/sign/painting/library{
 	pixel_x = 32
@@ -2010,9 +1855,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "gu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -2064,12 +1907,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/central)
-"gx" = (
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "gz" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/storage/crayons,
@@ -2094,12 +1931,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/information)
-"gC" = (
-/obj/structure/sign/departments/restroom,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "gD" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -2148,18 +1979,14 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "gN" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "gR" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -2198,11 +2025,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
-"gZ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "ha" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -2292,9 +2114,7 @@
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "hk" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -2359,9 +2179,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "hw" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -2376,9 +2194,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "hy" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2408,9 +2224,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "hE" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -2528,9 +2342,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "id" = (
 /obj/structure/bed/roller,
 /obj/structure/bed/roller,
@@ -2925,17 +2737,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
-"jB" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "jC" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -2944,17 +2745,13 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "jD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "jE" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -3001,9 +2798,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "jK" = (
 /obj/effect/turf_decal/siding/white,
 /obj/machinery/camera/autoname{
@@ -3020,9 +2815,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "jN" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -3070,9 +2863,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "jR" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/effect/turf_decal/siding/white{
@@ -3098,17 +2889,10 @@
 /obj/effect/landmark/salesspawn,
 /turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
-"jY" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "ka" = (
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "kb" = (
 /obj/structure/window/reinforced/spawner,
 /obj/effect/turf_decal/siding/yellow,
@@ -3261,15 +3045,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
-"kv" = (
-/obj/structure/toilet,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "kw" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -3332,9 +3107,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "kG" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -3437,11 +3210,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
-"kW" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_left,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "kX" = (
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -3553,18 +3321,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/extraction)
-"ln" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
-"lo" = (
-/obj/machinery/telecomms/server/presets/security,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "lp" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/disposalpipe/segment{
@@ -3604,11 +3360,6 @@
 /obj/structure/fluff/big_chain,
 /turf/open/floor/plating/asteroid/basalt,
 /area/space)
-"ly" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_right,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "lA" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -3618,15 +3369,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"lB" = (
-/obj/machinery/cryopod{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "lD" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -3730,9 +3472,7 @@
 /area/facility_hallway/training)
 "lX" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "lY" = (
 /obj/structure/sign/painting/library{
 	pixel_y = -32
@@ -4011,9 +3751,7 @@
 "mC" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "mG" = (
 /obj/structure/table,
 /obj/machinery/light/cold/no_nightlight{
@@ -4024,18 +3762,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/training)
-"mH" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 12
-	},
-/obj/structure/mirror{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "mJ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -4056,9 +3782,7 @@
 	},
 /obj/machinery/vending/snack,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "mN" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -4164,15 +3888,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/command)
-"mZ" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "nb" = (
 /obj/structure/table,
 /obj/structure/disposalpipe/segment{
@@ -4222,12 +3937,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/safety)
-"nh" = (
-/obj/machinery/door/airlock/centcom,
-/turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "ni" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -4391,9 +4100,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "nF" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -4480,13 +4187,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"nR" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "nS" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -4520,9 +4220,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "nY" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -4706,15 +4404,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
-"oG" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "oI" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -4746,19 +4435,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"oM" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/fluff/hedge,
-/turf/open/floor/plating,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
-"oO" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_three,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "oP" = (
 /obj/structure/railing{
 	dir = 4
@@ -4789,9 +4465,7 @@
 	},
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "pe" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9"
@@ -4807,18 +4481,14 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "ph" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "pi" = (
 /obj/structure/rack,
 /obj/item/screwdriver,
@@ -4831,9 +4501,7 @@
 /obj/item/wirecutters,
 /obj/item/wrench,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "pj" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -4881,12 +4549,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"pp" = (
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "pq" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -4898,11 +4560,6 @@
 "pr" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
-"ps" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "pt" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -4964,9 +4621,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "pA" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -5084,14 +4739,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
-"pS" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "pT" = (
 /turf/open/floor/plating,
 /area/facility_hallway/control)
@@ -5112,9 +4759,7 @@
 /obj/item/flashlight/seclite,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "pX" = (
 /obj/machinery/shower{
 	pixel_y = 15
@@ -5124,15 +4769,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/noslip,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "pY" = (
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "pZ" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -5394,9 +5035,7 @@
 "qG" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "qH" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -5437,9 +5076,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "qN" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000"
@@ -5451,9 +5088,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "qP" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
@@ -5631,9 +5266,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "ru" = (
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000"
@@ -5647,9 +5280,7 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "rw" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -5754,12 +5385,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/fakepit,
 /area/facility_hallway/control)
-"rK" = (
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "rN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5790,9 +5415,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "rS" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -5888,16 +5511,6 @@
 /obj/item/storage/bag/trash/bluespace,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"sk" = (
-/obj/item/assembly_holder{
-	preassembled = 1
-	},
-/obj/item/assembly/signaler,
-/obj/item/assembly/control{
-	id = "centralY"
-	},
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "sm" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -5916,14 +5529,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"so" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "st" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -5936,9 +5541,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "sv" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -6007,9 +5610,7 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "sG" = (
 /obj/machinery/computer/security,
 /obj/effect/turf_decal/tile/red{
@@ -6166,9 +5767,7 @@
 	},
 /obj/machinery/vending/snack/orange,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "tf" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -6176,19 +5775,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
-"tg" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 12
-	},
-/obj/structure/mirror{
-	pixel_x = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "th" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -6227,9 +5813,7 @@
 "tk" = (
 /obj/structure/sign/departments/restroom,
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "tl" = (
 /obj/effect/landmark/latejoin,
 /obj/machinery/light/cold/no_nightlight{
@@ -6239,9 +5823,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "tm" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -6257,16 +5839,6 @@
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
-"tp" = (
-/obj/structure/table/wood,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "tr" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Safety Department"
@@ -6353,18 +5925,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
-"tK" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "tL" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 8
 	},
 /obj/structure/bed,
+/obj/item/bedsheet/k_corporation,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "tM" = (
@@ -6379,13 +5946,10 @@
 	dir = 4
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = 10
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "tO" = (
@@ -6459,9 +6023,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "tW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6501,9 +6063,7 @@
 /obj/item/wrench,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "ui" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -6587,9 +6147,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "uy" = (
 /obj/effect/landmark/start,
 /obj/structure/disposalpipe/segment{
@@ -6602,9 +6160,7 @@
 	pixel_y = 15
 	},
 /turf/open/floor/noslip,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "uA" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
@@ -6624,9 +6180,7 @@
 "uC" = (
 /obj/effect/spawner/randomarcade,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "uD" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/effect/turf_decal/siding/yellow{
@@ -6717,14 +6271,7 @@
 "uM" = (
 /obj/structure/sign/departments/restroom,
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
-"uN" = (
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/north)
 "uP" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -6772,32 +6319,12 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = 10
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"uV" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/turf/open/floor/noslip,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
-"uW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "uX" = (
 /obj/structure/table/wood,
 /obj/machinery/light/cold/no_nightlight{
@@ -6805,9 +6332,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "vb" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -6837,9 +6362,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/fluff/hedge,
 /turf/open/floor/plating,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "vi" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/facility/white,
@@ -6899,18 +6422,14 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "vp" = (
 /obj/effect/spawner/randomcolavend,
 /obj/structure/sign/ordealmonitor{
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "vr" = (
 /turf/open/floor/plating,
 /area/facility_hallway/command)
@@ -6969,11 +6488,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
-"vB" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "vC" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -6994,18 +6508,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/facility/white,
 /area/department_main/command)
-"vE" = (
-/obj/machinery/light/cold/no_nightlight,
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "vF" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -7065,9 +6567,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "vQ" = (
 /obj/machinery/computer/operating,
 /obj/effect/turf_decal/siding/green{
@@ -7102,13 +6602,6 @@
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"vW" = (
-/obj/machinery/telecomms/server/presets/science,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "vX" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -7388,12 +6881,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"wG" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "wI" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/glass/rag{
@@ -7418,9 +6905,7 @@
 "wM" = (
 /obj/structure/table/glass,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "wN" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -7446,14 +6931,7 @@
 /area/department_main/discipline)
 "wP" = (
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
-"wS" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
+/area/facility_hallway/north)
 "wT" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -7527,12 +7005,6 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
-"xe" = (
-/obj/machinery/telecomms/server/presets/service,
-/turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/south)
 "xf" = (
 /obj/machinery/gibber,
@@ -7619,9 +7091,7 @@
 "xt" = (
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "xv" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/siding/yellow{
@@ -7642,6 +7112,7 @@
 	dir = 4
 	},
 /obj/structure/bed,
+/obj/item/bedsheet/k_corporation,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "xA" = (
@@ -7711,9 +7182,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "xM" = (
 /obj/structure/fluff/big_chain,
 /obj/structure/disposalpipe/junction/yjunction,
@@ -7736,9 +7205,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "xQ" = (
 /obj/effect/turf_decal/stripes/full,
 /obj/machinery/door/poddoor{
@@ -7826,13 +7293,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/extraction)
-"ya" = (
-/obj/effect/landmark/latejoin,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "yb" = (
 /obj/structure/sign/painting/library{
 	pixel_y = -32
@@ -7852,9 +7312,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "yf" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 8
@@ -7978,9 +7436,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "yz" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -8065,9 +7521,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "yL" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -8097,9 +7551,7 @@
 "yP" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "yS" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -8478,15 +7930,7 @@
 /obj/machinery/door/airlock/centcom,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
-"zV" = (
-/obj/effect/spawner/randomarcade,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/south)
 "zW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -8516,9 +7960,7 @@
 "Ab" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Ac" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -8562,12 +8004,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
-"Aj" = (
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Ak" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -8585,16 +8021,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
-"Am" = (
-/obj/machinery/disposal/bin,
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "An" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/spawner/structure/window/reinforced,
@@ -8671,9 +8097,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "AA" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -8693,9 +8117,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "AF" = (
 /obj/machinery/modular_computer/console/preset/civilian{
 	dir = 4
@@ -8797,13 +8219,7 @@
 "AS" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
-"AT" = (
-/obj/machinery/telecomms/server/presets/supply,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
+/area/facility_hallway/north)
 "AU" = (
 /obj/machinery/computer/shuttle/mining{
 	dir = 8;
@@ -8833,9 +8249,7 @@
 "AV" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "AW" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8960,9 +8374,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Bj" = (
 /obj/machinery/light/floor,
 /obj/structure/railing{
@@ -8982,9 +8394,7 @@
 "Bl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Bn" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -9036,9 +8446,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Bx" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -9210,13 +8618,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"Cd" = (
-/obj/machinery/door/airlock/centcom,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "Cf" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -9259,9 +8660,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Cm" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -9305,12 +8704,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"Cq" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Cs" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -9360,23 +8753,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
-"CA" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
-"CB" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/noslip,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "CC" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/suit/apron/chef,
@@ -9423,18 +8799,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/west)
-"CK" = (
-/obj/structure/chair/stool,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
-"CL" = (
-/obj/machinery/telecomms/relay/preset/telecomms,
-/obj/structure/emergency_shield,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/south)
 "CM" = (
 /obj/structure/chair/sofa/corp{
 	dir = 8
@@ -9573,9 +8937,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Dd" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/plaque{
@@ -9624,23 +8986,6 @@
 "Dq" = (
 /turf/open/floor/fakepit,
 /area/facility_hallway/command)
-"Dr" = (
-/obj/machinery/light/cold/no_nightlight,
-/obj/machinery/camera/autoname{
-	dir = 10
-	},
-/obj/structure/sign/ordealmonitor{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
-"Dt" = (
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Dv" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -9670,9 +9015,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "Dz" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
@@ -9720,9 +9063,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "DI" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000"
@@ -9735,9 +9076,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "DM" = (
 /obj/structure/disposaloutlet{
 	dir = 8
@@ -9795,28 +9134,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/discipline)
-"DU" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = -12
-	},
-/obj/structure/mirror{
-	pixel_x = -32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
-"DV" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "DW" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -9915,9 +9232,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Em" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -9940,9 +9255,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Ep" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -9985,9 +9298,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Ex" = (
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -10041,15 +9352,6 @@
 "EK" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
-"EL" = (
-/obj/machinery/telecomms/server/presets/command{
-	name = "Command Server"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "EM" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -10117,9 +9419,7 @@
 "EV" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "EW" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/blue{
@@ -10154,27 +9454,14 @@
 /area/facility_hallway/welfare)
 "Fa" = (
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
-"Fb" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/south)
 "Fc" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = 10
-	},
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Fe" = (
@@ -10282,9 +9569,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Fv" = (
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/plasteel/white,
@@ -10357,9 +9642,7 @@
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/fluff/hedge,
 /turf/open/floor/plating,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "FK" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -10806,9 +10089,7 @@
 "Hf" = (
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Hg" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -10828,11 +10109,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"Hh" = (
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Hi" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -10881,15 +10157,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
-"Hs" = (
-/obj/machinery/door/airlock/centcom,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "Ht" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -11004,11 +10271,6 @@
 	},
 /turf/open/floor/fakepit,
 /area/facility_hallway/control)
-"HJ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_three,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "HK" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/drinkingglasses{
@@ -11065,14 +10327,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"HT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "HV" = (
 /obj/structure/chair/sofa/corp{
 	dir = 4
@@ -11095,9 +10349,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "HX" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -11204,12 +10456,6 @@
 	},
 /turf/closed/indestructible/rock,
 /area/space)
-"Is" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "Iu" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/effect/turf_decal/siding/green{
@@ -11276,9 +10522,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "IC" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -11304,12 +10548,6 @@
 "IG" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
-"II" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "IJ" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 4
@@ -11353,14 +10591,6 @@
 "IS" = (
 /turf/open/floor/fakepit,
 /area/department_main/welfare)
-"IT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "IU" = (
 /obj/structure/sink{
 	dir = 4;
@@ -11370,9 +10600,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "IV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -11560,15 +10788,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
-"Jy" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "Jz" = (
 /obj/structure/sign/departments/command,
 /turf/closed/indestructible/reinforced,
@@ -11612,9 +10831,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "JJ" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -11667,10 +10884,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
-"JR" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "JS" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -11735,9 +10948,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "JZ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -11791,9 +11002,7 @@
 	pixel_y = 15
 	},
 /turf/open/floor/noslip,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Kh" = (
 /obj/structure/filingcabinet/heinfo{
 	pixel_x = 10
@@ -11918,15 +11127,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
-"KA" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "KB" = (
 /obj/effect/turf_decal/siding/green,
 /obj/effect/turf_decal/tile/green{
@@ -12003,9 +11203,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "KO" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -12028,9 +11226,7 @@
 /obj/item/flashlight/seclite,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "KR" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 6
@@ -12247,9 +11443,7 @@
 /area/department_main/safety)
 "Lo" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Lp" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -12258,9 +11452,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Lq" = (
 /obj/structure/table,
 /obj/machinery/computer/security/telescreen{
@@ -12272,9 +11464,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Lr" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -12292,19 +11482,11 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
-"Lt" = (
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "Lu" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Lv" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/instrument/guitar,
@@ -12323,9 +11505,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Lx" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/control)
@@ -12370,9 +11550,7 @@
 "LD" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "LF" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
@@ -12427,19 +11605,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"LM" = (
-/obj/effect/landmark/latejoin,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "LO" = (
 /obj/structure/sign/departments/records,
 /turf/closed/indestructible/reinforced,
@@ -12518,13 +11683,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
-"Md" = (
-/obj/machinery/announcement_system,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/east)
 "Me" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -12534,9 +11692,7 @@
 "Mg" = (
 /obj/structure/chair/sofa/corp/right,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Mi" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -12670,9 +11826,7 @@
 /area/department_main/welfare)
 "ME" = (
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "MF" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -12999,9 +12153,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/noslip,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Nt" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -13013,14 +12165,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
-"Nv" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Ny" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -13053,14 +12197,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"NC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "ND" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -13155,19 +12291,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"NO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
-"NP" = (
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "NS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Welfare Department"
@@ -13197,18 +12320,14 @@
 	},
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Ob" = (
 /obj/machinery/cryopod{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Oc" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -13266,9 +12385,7 @@
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Oi" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -13325,9 +12442,7 @@
 /area/department_main/safety)
 "Ot" = (
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Ov" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -13395,9 +12510,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/noslip,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "OG" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -13436,9 +12549,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "OM" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/structure/disposalpipe/segment{
@@ -13465,12 +12576,6 @@
 /obj/machinery/computer/ego_purchase,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
-"OR" = (
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "OS" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -13529,9 +12634,7 @@
 /obj/item/wrench,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "Pc" = (
 /obj/machinery/hydroponics/soil,
 /obj/structure/sign/poster/lobotomycorp/random{
@@ -13551,16 +12654,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"Pe" = (
-/obj/item/assembly_holder{
-	preassembled = 1
-	},
-/obj/item/assembly/signaler,
-/obj/item/assembly/control{
-	id = "centralX"sss
-	},
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "Pf" = (
 /obj/structure/table/abductor,
 /obj/effect/turf_decal/siding/purple{
@@ -13627,9 +12720,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Pq" = (
 /obj/effect/spawner/randomcolavend,
 /obj/effect/decal/cleanable/dirt,
@@ -13637,9 +12728,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "Pr" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9"
@@ -13748,12 +12837,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
-"PE" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "PH" = (
 /obj/machinery/computer/security{
 	dir = 1
@@ -13777,9 +12860,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "PJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -13843,16 +12924,12 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/noslip,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "PR" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "PS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Department"
@@ -13955,15 +13032,7 @@
 "Qg" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/facility/halls,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
-"Qh" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/south)
 "Qi" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -13992,10 +13061,7 @@
 	dir = 4
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/flashlight/lamp/green{
-	pixel_x = -5;
-	pixel_y = 10
-	},
+/obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Ql" = (
@@ -14014,9 +13080,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Qo" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -14221,15 +13285,6 @@
 "QZ" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/department_main/manager)
-"Ra" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/noslip,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Rc" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -14244,19 +13299,6 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/information)
-"Re" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
-"Ri" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Rl" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -14279,13 +13321,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"Rq" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/fluff/hedge,
-/turf/open/floor/plating,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "Rr" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -14312,9 +13347,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Rv" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -14368,9 +13401,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "RH" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/effect/turf_decal/siding/brown{
@@ -14391,9 +13422,7 @@
 "RK" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "RL" = (
 /obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/tile/blue{
@@ -14517,9 +13546,7 @@
 /area/department_main/welfare)
 "RZ" = (
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "Sb" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/light/cold/no_nightlight{
@@ -14580,20 +13607,13 @@
 "Si" = (
 /turf/closed/indestructible/rock,
 /area/facility_hallway/extraction)
-"Sk" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "Sm" = (
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = 32
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "So" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/siding/blue/corner{
@@ -14686,9 +13706,7 @@
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "SD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
@@ -14751,9 +13769,7 @@
 "SH" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "SI" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -14799,17 +13815,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
-"SP" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/north)
 "SQ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -14869,9 +13875,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "SX" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -14902,14 +13906,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
-"Tc" = (
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "Td" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/green{
@@ -14928,9 +13924,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"Te" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/east)
 "Tf" = (
 /obj/structure/rack,
 /obj/item/melee/classic_baton,
@@ -14970,9 +13963,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Tk" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -15047,11 +14038,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"Tx" = (
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "Ty" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -15201,14 +14187,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
-"TT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "TV" = (
 /obj/structure/rack,
 /obj/item/pushbroom,
@@ -15378,14 +14356,6 @@
 /obj/machinery/regenerator,
 /turf/open/floor/plasteel,
 /area/department_main/control)
-"Ur" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "Ut" = (
 /obj/machinery/door/poddoor{
 	id = "facilitylockdown";
@@ -15405,17 +14375,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
-"Uw" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Uz" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -15505,9 +14465,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "UO" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -15538,9 +14496,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "UT" = (
 /obj/structure/rack,
 /obj/item/melee/classic_baton,
@@ -15613,20 +14569,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"Vc" = (
-/obj/machinery/light/cold/no_nightlight,
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Ve" = (
 /obj/machinery/door/airlock/centcom,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/halls,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "Vg" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -15639,18 +14586,6 @@
 "Vh" = (
 /turf/open/floor/fakepit,
 /area/facility_hallway/extraction)
-"Vi" = (
-/obj/structure/rack,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
 "Vj" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -15724,9 +14659,7 @@
 	name = "Information Server"
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Vt" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -15777,30 +14710,11 @@
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
-"Vx" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/hub/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
-"Vy" = (
-/obj/effect/landmark/latejoin,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "Vz" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "VA" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -16101,9 +15015,7 @@
 "WC" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/facility/halls,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "WE" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -16185,20 +15097,13 @@
 /obj/structure/sign/departments/welfare,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/central)
-"WT" = (
-/obj/machinery/telecomms/broadcaster/preset_left,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "WW" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "WX" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
@@ -16207,9 +15112,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Xa" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -16227,9 +15130,7 @@
 /obj/machinery/light/cold/no_nightlight,
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Xc" = (
 /obj/structure/rack,
 /turf/open/floor/carpet/cyan,
@@ -16254,9 +15155,7 @@
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Xi" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/light/cold/no_nightlight,
@@ -16285,17 +15184,13 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Xo" = (
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
+/area/facility_hallway/south)
 "Xq" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -16322,10 +15217,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"Xt" = (
-/obj/machinery/telecomms/server/presets/medical,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "Xu" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -16351,9 +15242,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Xy" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -16391,9 +15280,7 @@
 "XD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "XF" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -16416,12 +15303,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
-"XI" = (
-/obj/structure/sign/departments/restroom,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "XJ" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -16600,10 +15481,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/extraction)
-"Yi" = (
-/obj/machinery/telecomms/message_server/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/facility_hallway/south)
 "Yk" = (
 /obj/machinery/light/cold/no_nightlight,
 /obj/machinery/camera/autoname{
@@ -16613,9 +15490,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
+/area/facility_hallway/south)
 "Yl" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -16666,9 +15541,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/east{
-	name = "North East Hallway"
-	})
+/area/facility_hallway/north)
 "Yu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -16726,9 +15599,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
+/area/facility_hallway/north)
 "YG" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/siding/green/corner,
@@ -16779,16 +15650,6 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"YR" = (
-/obj/structure/toilet,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/west{
-	name = "South West Hallway"
-	})
 "YS" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
@@ -16852,14 +15713,6 @@
 /obj/structure/table/abductor,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"Zd" = (
-/obj/effect/spawner/randomarcade{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/west{
-	name = "North West Hallway"
-	})
 "Zf" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -16997,11 +15850,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
-"Zy" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "Zz" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -17092,14 +15940,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
-"ZO" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/east{
-	name = "South East Hallway"
-	})
 "ZP" = (
 /obj/structure/table/abductor,
 /obj/effect/turf_decal/siding/purple{
@@ -40888,7 +39728,7 @@ Af
 RZ
 dT
 el
-rK
+pY
 RZ
 Af
 Af
@@ -40969,11 +39809,11 @@ Af
 Af
 Af
 Af
-jY
+YS
 gN
 hx
 ka
-jY
+YS
 Af
 Af
 Af
@@ -41143,9 +39983,9 @@ RZ
 RZ
 Af
 RZ
-Tx
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -41220,17 +40060,17 @@ Af
 Af
 Af
 Af
-jY
-jY
-jY
-jY
-jY
+YS
+YS
+YS
+YS
+YS
 Af
-jY
+YS
 Fa
 hx
 Bu
-jY
+YS
 Af
 Af
 Af
@@ -41394,15 +40234,15 @@ Af
 Af
 Af
 RZ
-bI
+Da
 Ve
 yc
 RZ
 Af
 RZ
-Tx
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -41477,17 +40317,17 @@ Af
 Af
 Af
 Af
-jY
-YR
+YS
+Xx
 Qg
 WZ
-jY
+YS
 Af
-jY
+YS
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -41653,13 +40493,13 @@ Af
 RZ
 RZ
 RZ
-oG
+Rt
 RZ
 Af
 RZ
 Dy
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -41734,17 +40574,17 @@ Af
 Af
 Af
 Af
-jY
-jY
-jY
+YS
+YS
+YS
 Sm
-jY
+YS
 Af
-jY
-Tc
+YS
+DJ
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -41908,15 +40748,15 @@ Af
 Af
 Af
 RZ
-bI
+Da
 Ve
-Qh
+yP
 RZ
 RZ
 RZ
-eq
+jC
 el
-vE
+AB
 RZ
 RZ
 Af
@@ -41991,18 +40831,18 @@ Af
 Af
 Af
 Af
-jY
+YS
 Uv
 Qg
 bE
-jY
-jY
-jY
+YS
+YS
+YS
 Lp
 hx
-Dr
-jY
-jY
+Yk
+YS
+YS
 Af
 Af
 Af
@@ -42171,9 +41011,9 @@ Ve
 RZ
 RZ
 SH
-Tx
+Ot
 el
-Tx
+Ot
 SH
 RZ
 Af
@@ -42248,18 +41088,18 @@ Af
 Af
 Af
 Af
-jY
-jY
-jY
+YS
+YS
+YS
 Qg
-jY
-jY
+YS
+YS
 hi
 Fa
 hx
 Fa
 Lq
-jY
+YS
 Af
 Af
 Af
@@ -42424,14 +41264,14 @@ Af
 RZ
 OF
 ap
-Qh
+yP
 ap
 RZ
-Lt
-Tx
+Mg
+Ot
 el
-Tx
-ln
+Ot
+ux
 RZ
 Af
 Af
@@ -42505,18 +41345,18 @@ Af
 Af
 Af
 Af
-jY
+YS
 uz
 IU
 bE
 IU
-jY
+YS
 aR
 Fa
 hx
 Fa
-so
-jY
+py
+YS
 Af
 Af
 Af
@@ -42680,14 +41520,14 @@ Af
 Af
 RZ
 pX
-Qh
-Qh
+yP
+yP
 cz
 RZ
 AS
-Tx
+Ot
 el
-Tx
+Ot
 tV
 RZ
 Af
@@ -42762,18 +41602,18 @@ Af
 Af
 Af
 Af
-jY
+YS
 PQ
 lX
 lX
 xt
-jY
+YS
 LD
 Fa
 hx
 Fa
 xL
-jY
+YS
 Af
 Af
 Af
@@ -42938,14 +41778,14 @@ Af
 RZ
 OF
 jQ
-Qh
-Qh
+yP
+yP
 RZ
 SH
-Tx
+Ot
 SO
-TT
-Jy
+jD
+WW
 RZ
 Af
 Af
@@ -43019,18 +41859,18 @@ Af
 Af
 Af
 Af
-jY
+YS
 Nq
 rR
 lX
 bE
-jY
-nR
+YS
+sF
 UN
 hv
 Fa
 Lq
-jY
+YS
 Af
 Af
 Af
@@ -43196,12 +42036,12 @@ RZ
 RZ
 RZ
 Ve
-XI
+uM
 RZ
 RZ
 bP
 el
-rK
+pY
 RZ
 RZ
 Af
@@ -43276,18 +42116,18 @@ QX
 QX
 Af
 Af
-jY
-jY
-jY
+YS
+YS
+YS
 Qg
 tk
-jY
-jY
+YS
+YS
 bO
 hx
 ka
-jY
-jY
+YS
+YS
 Af
 Af
 Af
@@ -43450,15 +42290,15 @@ Af
 Af
 Af
 RZ
-mZ
-mZ
+Ob
+Ob
 XD
-eh
+Oh
 RD
-Rq
-Tx
+vh
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -43533,17 +42373,17 @@ KS
 QX
 Af
 Af
-jY
+YS
 vo
 vo
-uN
+ME
 Vz
 PI
 FJ
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -43708,14 +42548,14 @@ Af
 Af
 RZ
 rt
-ya
+Lu
 XD
 PR
-eh
-Rq
-Tx
+Oh
+vh
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -43790,8 +42630,8 @@ NM
 QX
 Af
 Af
-jY
-Vy
+YS
+jL
 EV
 mC
 Xh
@@ -43800,7 +42640,7 @@ FJ
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -43969,10 +42809,10 @@ XD
 XD
 XD
 Pb
-Rq
-Tx
+vh
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -44047,9 +42887,9 @@ NM
 QX
 Af
 Af
-jY
+YS
 El
-uN
+ME
 mC
 mC
 uc
@@ -44057,7 +42897,7 @@ FJ
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -44222,14 +43062,14 @@ Af
 Af
 RZ
 SW
-uW
-uW
-uW
-uW
+US
+US
+US
+US
 dM
-TT
+jD
 Az
-cH
+fM
 RZ
 Af
 Af
@@ -44304,17 +43144,17 @@ Xd
 QX
 Af
 Af
-jY
-Am
+YS
+dq
 df
 Eo
 Eo
 Eo
-Hs
+fv
 UN
 hv
 Xo
-jY
+YS
 Af
 Af
 Af
@@ -44483,10 +43323,10 @@ XD
 XD
 XD
 pW
-Rq
-Tx
+vh
+Ot
 el
-Fb
+vP
 RZ
 Af
 Af
@@ -44561,17 +43401,17 @@ NM
 QX
 Af
 Af
-jY
+YS
 kF
-uN
-uN
+ME
+ME
 mC
 KQ
 FJ
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -44736,14 +43576,14 @@ Af
 Af
 RZ
 rt
-ya
+Lu
 XD
 PR
-eh
-Rq
-Tx
+Oh
+vh
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -44818,8 +43658,8 @@ NM
 QX
 Af
 Af
-jY
-Vy
+YS
+jL
 EV
 mC
 Xh
@@ -44828,7 +43668,7 @@ FJ
 Fa
 hx
 Bu
-jY
+YS
 Af
 Af
 Af
@@ -44992,15 +43832,15 @@ Af
 Af
 Af
 RZ
-lB
-lB
+DF
+DF
 XD
-eh
-tp
-Rq
-Tx
+Oh
+Tj
+vh
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -45075,7 +43915,7 @@ di
 QX
 Af
 Af
-jY
+YS
 JI
 JI
 mC
@@ -45085,7 +43925,7 @@ FJ
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -45252,7 +44092,7 @@ RZ
 RZ
 RZ
 Ve
-XI
+uM
 RZ
 RZ
 hD
@@ -45332,18 +44172,18 @@ NM
 QX
 Af
 Af
-jY
-jY
-jY
+YS
+YS
+YS
 Qg
 tk
-jY
-jY
+YS
+YS
 bO
 hx
 ka
-jY
-jY
+YS
+YS
 Af
 Af
 Af
@@ -45508,14 +44348,14 @@ Af
 RZ
 OF
 yK
-Qh
-Qh
+yP
+yP
 RZ
-zV
-Tx
+uC
+Ot
 el
-Tx
-Zd
+Ot
+Bh
 RZ
 Af
 Af
@@ -45589,18 +44429,18 @@ Xd
 QX
 Af
 Af
-jY
+YS
 Nq
-SP
+Ew
 lX
 lX
-jY
-OR
+YS
+wM
 Fa
 hx
 Fa
-OR
-jY
+wM
+YS
 Af
 Af
 Af
@@ -45764,15 +44604,15 @@ Af
 Af
 RZ
 pX
-Qh
-Qh
+yP
+yP
 cz
 RZ
-Lt
-Tx
+Mg
+Ot
 el
-Tx
-ln
+Ot
+ux
 RZ
 Af
 se
@@ -45846,18 +44686,18 @@ NM
 QX
 Af
 Af
-jY
+YS
 uz
 lX
 lX
 yy
-jY
+YS
 aR
 Fa
 hx
 Fa
-so
-jY
+py
+YS
 Af
 Af
 Af
@@ -46021,14 +44861,14 @@ Af
 Af
 RZ
 OF
-fl
-Qh
-fl
+gr
+yP
+gr
 RZ
 AS
-Tx
+Ot
 el
-Tx
+Ot
 tV
 RZ
 Af
@@ -46103,18 +44943,18 @@ xC
 QX
 Af
 Af
-jY
+YS
 uz
 pf
 bE
 gM
-jY
+YS
 LD
 Fa
 hx
 Fa
 xL
-jY
+YS
 Af
 Af
 Af
@@ -46282,11 +45122,11 @@ RZ
 Ve
 RZ
 RZ
-zV
-Tx
+uC
+Ot
 el
-Tx
-Zd
+Ot
+Bh
 RZ
 Af
 se
@@ -46360,18 +45200,18 @@ bB
 QX
 QX
 QX
-jY
-jY
-jY
+YS
+YS
+YS
 Qg
-jY
-jY
-OR
+YS
+YS
+wM
 Fa
 hx
 Fa
-OR
-jY
+wM
+YS
 Af
 Af
 Af
@@ -46534,15 +45374,15 @@ Af
 Af
 Af
 RZ
-bI
+Da
 Ve
-Qh
+yP
 RZ
 RZ
 RZ
-eq
+jC
 el
-vE
+AB
 RZ
 RZ
 Af
@@ -46617,18 +45457,18 @@ Km
 Km
 gH
 QX
-jY
+YS
 Uv
 Qg
 bE
-jY
-jY
-jY
+YS
+YS
+YS
 Lp
 hx
-Dr
-jY
-jY
+Yk
+YS
+YS
 Af
 Af
 Af
@@ -46793,13 +45633,13 @@ Af
 RZ
 RZ
 RZ
-oG
+Rt
 RZ
 Af
 RZ
-Tx
+Ot
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -46874,17 +45714,17 @@ Bn
 MG
 Wu
 QX
-jY
-jY
-jY
+YS
+YS
+YS
 xd
-jY
+YS
 Af
-jY
+YS
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -47048,15 +45888,15 @@ Af
 Af
 Af
 RZ
-bI
+Da
 Ve
 OK
 RZ
 Af
 RZ
-Tx
+Ot
 el
-Fb
+vP
 RZ
 Af
 Af
@@ -47131,17 +45971,17 @@ QX
 ui
 Wu
 QX
-jY
-YR
+YS
+Xx
 Qg
 jJ
-jY
+YS
 Af
-jY
-Tc
+YS
+DJ
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -47313,7 +46153,7 @@ Af
 RZ
 Dy
 el
-Tx
+Ot
 RZ
 Af
 Af
@@ -47388,17 +46228,17 @@ SQ
 Aw
 Wu
 QX
-jY
-jY
-jY
-jY
-jY
+YS
+YS
+YS
+YS
+YS
 Af
-jY
+YS
 Fa
 hx
 Fa
-jY
+YS
 Af
 Af
 Af
@@ -47568,9 +46408,9 @@ Af
 Af
 Af
 RZ
-ey
+NZ
 el
-rK
+pY
 RZ
 Af
 Af
@@ -47651,11 +46491,11 @@ Af
 Af
 Af
 Af
-jY
+YS
 pd
 hx
 Xb
-jY
+YS
 Af
 Af
 Af
@@ -52193,11 +51033,11 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 NZ
-NC
+el
 pY
-Sk
+RZ
 Af
 Af
 Af
@@ -52277,11 +51117,11 @@ Af
 Af
 Af
 Af
-Zy
-KA
-IT
-Vc
-Zy
+YS
+pd
+hx
+Xb
+YS
 Af
 Af
 Af
@@ -52444,17 +51284,17 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
+RZ
+RZ
 Af
-Sk
-pS
-NC
+RZ
+Dy
+el
 Ot
-Sk
+RZ
 Af
 Af
 se
@@ -52528,17 +51368,17 @@ on
 MG
 Wu
 QX
-Zy
-Zy
-Zy
-Zy
-Zy
+YS
+YS
+YS
+YS
+YS
 Af
-Zy
-Dt
-IT
-Dt
-Zy
+YS
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -52701,17 +51541,17 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Da
 WC
 Yt
-Sk
+RZ
 Af
-Sk
+RZ
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 se
@@ -52785,17 +51625,17 @@ QX
 ui
 Wu
 QX
-Zy
-kv
-nh
-CA
-Zy
+YS
+Uv
+Qg
+WZ
+YS
 Af
-Zy
-Dt
-IT
-Dt
-Zy
+YS
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -52958,17 +51798,17 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 Rt
-Sk
+RZ
 Af
-Sk
+RZ
 Ot
-NC
+el
 vP
-Sk
+RZ
 Af
 Af
 se
@@ -53042,17 +51882,17 @@ aa
 Aw
 Wu
 QX
-Zy
-Zy
-Zy
-DV
-Zy
+YS
+YS
+YS
+Sm
+YS
 Af
-Zy
-Dt
-IT
-av
-Zy
+YS
+Fa
+hx
+Bu
+YS
 Af
 Af
 Af
@@ -53215,18 +52055,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 nE
 WC
 yP
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 jC
-NC
+el
 AB
-Sk
-Sk
+RZ
+RZ
 Af
 se
 dU
@@ -53299,18 +52139,18 @@ bg
 bg
 go
 QX
-Zy
+YS
 Xx
-nh
-Cq
-Zy
-Zy
-Zy
-eO
-IT
+Qg
+bE
+YS
+YS
+YS
+Lp
+hx
 Yk
-Zy
-Zy
+YS
+YS
 Af
 Af
 Af
@@ -53472,18 +52312,18 @@ Af
 Af
 Af
 Af
-Sk
-Sk
+RZ
+RZ
 Bl
 WC
-Sk
-Sk
+RZ
+RZ
 uC
 Ot
-NC
+el
 Ot
 Bh
-Sk
+RZ
 Af
 se
 dU
@@ -53556,18 +52396,18 @@ bB
 QX
 QX
 QX
-Zy
-Zy
-Zy
+YS
+YS
+YS
 zU
-Zy
-Zy
+YS
+YS
 wM
-Dt
-IT
-Dt
+Fa
+hx
+Fa
 wM
-Zy
+YS
 Af
 Af
 Af
@@ -53729,18 +52569,18 @@ Af
 Af
 Af
 Af
-Sk
-CB
-DU
+RZ
+OF
+ap
 Lo
 HW
-Sk
+RZ
 Mg
 Ot
-NC
+el
 Ot
 ux
-Sk
+RZ
 Af
 se
 dU
@@ -53813,18 +52653,18 @@ wU
 QX
 Af
 Af
-Zy
-Ra
+YS
+Nq
 xP
-Cq
+bE
 xP
-Zy
-gx
-Dt
-IT
-Dt
+YS
+aR
+Fa
+hx
+Fa
 py
-Zy
+YS
 Af
 Af
 Af
@@ -53986,18 +52826,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Ke
 yP
 yP
 qO
-Sk
-NP
+RZ
+AS
 Ot
-NC
+el
 Ot
-Ur
-Sk
+tV
+RZ
 Af
 se
 se
@@ -54070,18 +52910,18 @@ NM
 QX
 Af
 Af
-Zy
-Ra
-Cq
-Cq
+YS
+Nq
+bE
+bE
 nW
-Zy
-Aj
-Dt
-IT
-Dt
-bD
-Zy
+YS
+LD
+Fa
+hx
+Fa
+xL
+YS
 Af
 Af
 Af
@@ -54243,18 +53083,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Ke
 ic
 Lo
 yP
-Sk
+RZ
 uC
 Ot
-NC
+el
 Ot
 Bh
-Sk
+RZ
 Af
 Af
 Af
@@ -54327,18 +53167,18 @@ Xd
 QX
 Af
 Af
-Zy
-Ra
+YS
+Nq
 JY
-Cq
-Cq
-Zy
+bE
+bE
+YS
 wM
-Dt
-IT
-Dt
+Fa
+hx
+Fa
 wM
-Zy
+YS
 Af
 Af
 Af
@@ -54500,18 +53340,18 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 WC
 uM
-Sk
-Sk
-jB
-NC
+RZ
+RZ
+bP
+el
 pY
-Sk
-Sk
+RZ
+RZ
 Af
 se
 se
@@ -54584,18 +53424,18 @@ NM
 QX
 Af
 Af
-Zy
-Zy
-Zy
-nh
-gC
-Zy
-Zy
-Uw
-IT
-pp
-Zy
-Zy
+YS
+YS
+YS
+Qg
+tk
+YS
+YS
+bO
+hx
+ka
+YS
+YS
 Af
 Af
 Af
@@ -54757,17 +53597,17 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Lw
 Ob
-tK
+XD
 Oh
 bZ
 vh
 Ot
-NC
+el
 vP
-Sk
+RZ
 Af
 Af
 se
@@ -54841,17 +53681,17 @@ di
 QX
 Af
 Af
-Zy
+YS
 bw
 bw
 ME
 RK
 Xn
-oM
-Dt
-IT
-Dt
-Zy
+FJ
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -55014,17 +53854,17 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 tl
 Lu
-tK
+XD
 AV
 qG
 vh
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 se
@@ -55098,17 +53938,17 @@ NM
 QX
 Af
 Af
-Zy
+YS
 jL
-II
+EV
 ME
 Hf
 RK
-oM
-Dt
-IT
-Dt
-Zy
+FJ
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -55271,7 +54111,7 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 ph
 wP
 wP
@@ -55279,9 +54119,9 @@ wP
 cl
 vh
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 se
@@ -55355,17 +54195,17 @@ NM
 QX
 Af
 Af
-Zy
+YS
 bb
 ME
 ME
 ME
 pi
-oM
-Dt
-IT
-Dt
-Zy
+FJ
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -55528,7 +54368,7 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 rv
 Po
 Po
@@ -55538,7 +54378,7 @@ gl
 jD
 su
 fM
-Sk
+RZ
 Af
 Af
 se
@@ -55612,17 +54452,17 @@ Xd
 QX
 Af
 Af
-Zy
+YS
 dq
-HT
-HT
-HT
-HT
+df
+df
+df
+df
 fv
-Ri
+UN
 Cl
-ZO
-Zy
+Xo
+YS
 Af
 Af
 Af
@@ -55785,17 +54625,17 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Qn
-tK
+XD
 wP
-tK
-Vi
+XD
+pW
 vh
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 se
@@ -55869,17 +54709,17 @@ NM
 QX
 Af
 Af
-Zy
+YS
 vp
 ME
 ME
 ME
 SC
-oM
-Dt
-IT
-Dt
-Zy
+FJ
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -56042,17 +54882,17 @@ Af
 Af
 Af
 Af
-Sk
-LM
+RZ
+rt
 Lu
 wP
-CK
+PR
 Oh
 vh
 Ot
-NC
+el
 vP
-Sk
+RZ
 Af
 Af
 se
@@ -56126,17 +54966,17 @@ NM
 QX
 Af
 Af
-Zy
+YS
 jL
-II
+EV
 ME
 Hf
 RK
-oM
-Dt
-IT
-av
-Zy
+FJ
+Fa
+hx
+Bu
+YS
 Af
 Af
 Af
@@ -56299,7 +55139,7 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 DF
 DF
 wP
@@ -56307,9 +55147,9 @@ qG
 Tj
 vh
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 Af
@@ -56383,17 +55223,17 @@ dp
 QX
 Af
 Af
-Zy
+YS
 Fu
 Fu
 ME
 RK
 dV
-oM
-Dt
-IT
-Dt
-Zy
+FJ
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -56556,18 +55396,18 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 WC
 uM
-Sk
-Sk
-ea
-NC
+RZ
+RZ
+hD
+el
 pY
-Sk
-Sk
+RZ
+RZ
 Af
 Af
 Af
@@ -56640,18 +55480,18 @@ QX
 QX
 Af
 Af
-Zy
-Zy
-Zy
-nh
-gC
-Zy
-Zy
-Uw
-IT
-pp
-Zy
-Zy
+YS
+YS
+YS
+Qg
+tk
+YS
+YS
+bO
+hx
+ka
+YS
+YS
 Af
 Af
 Af
@@ -56813,18 +55653,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Ke
 qM
 yP
 yP
-Sk
+RZ
 Ab
 Ot
 KM
 jD
 WW
-Sk
+RZ
 Af
 Af
 Af
@@ -56897,18 +55737,18 @@ Af
 Af
 Af
 Af
-Zy
-uV
+YS
+uz
 Ew
-Cq
-Hh
-Zy
+bE
+lX
+YS
 sF
-Ri
+UN
 Cl
-Dt
+Fa
 Vs
-Zy
+YS
 Af
 Af
 Af
@@ -57070,18 +55910,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Ke
 yP
 yP
-NO
-Sk
+cz
+RZ
 Mg
 Ot
-NC
+el
 Ot
 ux
-Sk
+RZ
 Af
 Af
 Af
@@ -57154,18 +55994,18 @@ Af
 Af
 Af
 Af
-Zy
-Ra
-Hh
-Cq
+YS
+Nq
+lX
+bE
 nW
-Zy
-gx
-Dt
-IT
-Dt
+YS
+aR
+Fa
+hx
+Fa
 py
-Zy
+YS
 Af
 Af
 Af
@@ -57327,18 +56167,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Ke
 gr
 yP
 bJ
-Sk
-NP
+RZ
+AS
 Ot
-NC
+el
 Ot
-Ur
-Sk
+tV
+RZ
 Af
 Af
 Af
@@ -57411,18 +56251,18 @@ Af
 Af
 Af
 Af
-Zy
-Ra
-mH
-Hh
-tg
-Zy
-Aj
-Dt
-IT
-Dt
-bD
-Zy
+YS
+Nq
+pf
+lX
+gM
+YS
+LD
+Fa
+hx
+Fa
+xL
+YS
 Af
 Af
 Af
@@ -57584,18 +56424,18 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 WC
-Sk
-Sk
+RZ
+RZ
 Ab
 Ot
-NC
+el
 Ot
 Ab
-Sk
+RZ
 Af
 Af
 Af
@@ -57668,18 +56508,18 @@ Af
 Af
 Af
 Af
-Zy
-Zy
-Zy
-nh
-Zy
-Zy
+YS
+YS
+YS
+Qg
+YS
+YS
 Vs
-Dt
-IT
-Dt
+Fa
+hx
+Fa
 Vs
-Zy
+YS
 Af
 Af
 Af
@@ -57841,18 +56681,18 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 nE
 WC
 yP
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 jC
-NC
+el
 AB
-Sk
-Sk
+RZ
+RZ
 Af
 Af
 Af
@@ -57925,18 +56765,18 @@ Af
 Af
 Af
 Af
-Zy
+YS
 Xx
-nh
-Hh
-Zy
-Zy
-Zy
-eO
-IT
+Qg
+lX
+YS
+YS
+YS
+Lp
+hx
 Yk
-Zy
-Zy
+YS
+YS
 Af
 Af
 Af
@@ -58098,17 +56938,17 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
 Rt
-Sk
+RZ
 Af
-Sk
+RZ
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 Af
@@ -58182,17 +57022,17 @@ Af
 Af
 Af
 Af
-Zy
-Zy
-Zy
-DV
-Zy
+YS
+YS
+YS
+Sm
+YS
 Af
-Zy
+YS
 DJ
-IT
-Dt
-Zy
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -58355,17 +57195,17 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 Da
-Cd
-bW
-Sk
+Ve
+OK
+RZ
 Af
-Sk
+RZ
 Ot
-NC
+el
 Ot
-Sk
+RZ
 Af
 Af
 Af
@@ -58439,17 +57279,17 @@ Af
 Af
 Af
 Af
-Zy
+YS
 Xx
-nh
-Nv
-Zy
+Qg
+jJ
+YS
 Af
-Zy
-Dt
-IT
-Dt
-Zy
+YS
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -58612,17 +57452,17 @@ Af
 Af
 Af
 Af
-Sk
-Sk
-Sk
-Sk
-Sk
+RZ
+RZ
+RZ
+RZ
+RZ
 Af
-Sk
-pS
-NC
+RZ
+Dy
+el
 Ot
-Sk
+RZ
 Af
 Af
 Af
@@ -58696,17 +57536,17 @@ Af
 Af
 Af
 Af
-Zy
-Zy
-Zy
-Zy
-Zy
+YS
+YS
+YS
+YS
+YS
 Af
-Zy
-Dt
-IT
-Dt
-Zy
+YS
+Fa
+hx
+Fa
+YS
 Af
 Af
 Af
@@ -58875,11 +57715,11 @@ Af
 Af
 Af
 Af
-Sk
+RZ
 mK
-NC
+el
 pY
-Sk
+RZ
 Af
 Af
 Af
@@ -58959,11 +57799,11 @@ Af
 Af
 Af
 Af
-Zy
+YS
 te
-IT
-pp
-Zy
+hx
+ka
+YS
 Af
 Af
 Af
@@ -62557,15 +61397,15 @@ Af
 Af
 Af
 Af
-YS
-YS
-YS
-cY
-YS
-YS
-YS
-YS
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -62814,15 +61654,15 @@ Af
 Af
 Af
 Af
-YS
-Xt
-YS
-YS
-YS
-YS
-YS
-vW
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -63070,16 +61910,16 @@ Af
 Af
 Af
 Af
-YS
-YS
-aI
-Is
-gZ
-YS
-YS
-YS
-YS
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -63327,16 +62167,16 @@ Af
 Af
 Af
 Af
-YS
-Yi
-Vx
-kW
-wG
-Pe
-YS
-YS
-fK
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -63584,16 +62424,16 @@ Af
 Af
 Af
 Af
-YS
-YS
-wS
-oO
-HJ
-YS
-YS
-YS
-AT
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -63841,16 +62681,16 @@ Af
 Af
 Af
 Af
-YS
-lo
-ps
-ly
-PE
-sk
-YS
-YS
-xe
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -64062,9 +62902,9 @@ CG
 AF
 de
 sH
-Te
-Te
-Te
+Af
+Af
+Af
 Af
 Af
 Af
@@ -64098,16 +62938,16 @@ Af
 Af
 Af
 Af
-YS
-YS
-WT
-Re
-vB
-YS
-YS
-YS
-YS
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -64319,9 +63159,6 @@ vN
 Nm
 Ih
 sH
-Te
-Md
-Te
 Af
 Af
 Af
@@ -64356,15 +63193,18 @@ Af
 Af
 Af
 Af
-YS
-JR
-YS
-YS
-YS
-YS
-YS
-EL
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -64576,9 +63416,6 @@ sH
 sH
 sH
 sH
-Te
-Te
-Te
 Af
 Af
 Af
@@ -64613,15 +63450,18 @@ Af
 Af
 Af
 Af
-YS
-YS
-YS
-CL
-YS
-YS
-YS
-YS
-YS
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
+Af
 Af
 Af
 Af
@@ -64872,10 +63712,10 @@ Af
 Af
 Af
 Af
-YS
-YS
-YS
-YS
+Af
+Af
+Af
+Af
 Af
 Af
 Af
