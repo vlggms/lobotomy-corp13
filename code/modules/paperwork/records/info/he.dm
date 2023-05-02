@@ -415,7 +415,7 @@
 //Wayward Passenger
 /obj/item/paper/fluff/info/he/wayward
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
-	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_code = "T-02-170"//T-02-21-07 in LCB
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
@@ -433,3 +433,17 @@
 		"When the employee initiated close physical interaction, such as petting, the Qliphoth counter was reduced by 1.",
 		"If the employee's Temperance Level was below 3, the employee was killed instead.",
 		"When the work result was Bad, the Qliphoth Counter lowered.")
+
+//Red Shoes
+/obj/item/paper/fluff/info/he/red_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_shoes
+	abno_code = "O-04-08"
+	abno_info = list(
+		"Employees with Temperance level 2 or lower should not work with Red Shoes. The shoes remember their previous owner.",
+		"When the work result was normal, qliphoth counter reduced with a normal probability.",
+		"When the work result was bad, qliphoth counter reduced with a high probability.",
+		"When the qliphoth counter became zero, employees were allured by the abnormality and recieved WHITE damage.",
+		"Allured employees had their prudence attribute reduced by 50 for two minutes.",
+		"Allured employees recovered quickly after their mental corruption was resolved.",
+		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
+	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
