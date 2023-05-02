@@ -16,15 +16,9 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
 "ac" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/extraction)
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ad" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -481,6 +475,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
+"bM" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "bN" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -842,6 +840,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/extraction)
+"cH" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "cJ" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -1367,9 +1370,10 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
 "eQ" = (
-/obj/item/bodybag,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/safety)
+/obj/machinery/telecomms/server/presets/science,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "eR" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/plasteel/dark,
@@ -1779,7 +1783,8 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/door/poddoor/preopen{
 	id = "centralX";
-	name = "Central Blast Door"
+	name = "Central Blast Door";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -2115,6 +2120,16 @@
 /obj/machinery/computer/security/telescreen,
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
+"hj" = (
+/obj/item/assembly/control{
+	id = "centralX"
+	},
+/obj/item/assembly/signaler,
+/obj/item/assembly_holder{
+	preassembled = 1
+	},
+/turf/open/floor/circuit/telecomms,
+/area/facility_hallway/command)
 "hk" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -2243,6 +2258,12 @@
 "hF" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/facility_hallway/extraction)
+"hI" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "hK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -4057,6 +4078,12 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
+"ny" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "nA" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chem_dispenser/drinks{
@@ -4404,6 +4431,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
+"oE" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "oI" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -5317,6 +5349,12 @@
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
+"rz" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/emergency_shield,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "rA" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -5561,6 +5599,11 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
+"sx" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "sy" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -5596,6 +5639,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"sC" = (
+/obj/item/assembly/control{
+	id = "centralY"
+	},
+/obj/item/assembly/signaler,
+/obj/item/assembly_holder{
+	preassembled = 1
+	},
+/turf/open/floor/circuit/telecomms,
+/area/facility_hallway/extraction)
 "sD" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -5925,6 +5978,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
+"tK" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "tL" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -7790,7 +7848,8 @@
 /obj/structure/lattice/catwalk,
 /obj/machinery/door/poddoor{
 	name = "Central Blast Door";
-	id = "centralY"
+	id = "centralY";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -8590,6 +8649,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"BZ" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Ca" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -8704,6 +8768,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
+"Cr" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Cs" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -8898,7 +8967,8 @@
 	},
 /obj/machinery/door/poddoor{
 	name = "Central Blast Door";
-	id = "centralY"
+	id = "centralY";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -8937,6 +9007,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor,
+/area/facility_hallway/north)
+"Db" = (
+/obj/machinery/announcement_system,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
 "Dd" = (
 /obj/machinery/light/floor,
@@ -9134,6 +9209,11 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/discipline)
+"DS" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "DW" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -9302,6 +9382,11 @@
 "Ex" = (
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Ey" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "EC" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -9769,6 +9854,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
+"Ge" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Gf" = (
 /obj/structure/chair/office,
 /obj/effect/turf_decal/tile/red{
@@ -10060,6 +10149,11 @@
 "GW" = (
 /turf/open/floor/plating,
 /area/facility_hallway/information)
+"GX" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "GY" = (
 /obj/structure/fluff/hedge,
 /turf/open/floor/carpet/stellar,
@@ -10496,6 +10590,11 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/control)
+"Iy" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Iz" = (
 /obj/structure/table/optable,
 /obj/effect/turf_decal/siding/green{
@@ -11616,6 +11715,12 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"LS" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "LT" = (
 /obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/siding/yellow,
@@ -11911,6 +12016,11 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"MQ" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "MR" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -12530,7 +12640,8 @@
 /obj/machinery/light/cold/no_nightlight,
 /obj/machinery/door/poddoor/preopen{
 	id = "centralX";
-	name = "Central Blast Door"
+	name = "Central Blast Door";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -13278,7 +13389,8 @@
 	},
 /obj/machinery/door/poddoor{
 	name = "Central Blast Door";
-	id = "centralY"
+	id = "centralY";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -13299,6 +13411,10 @@
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/information)
+"Rg" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Rl" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -13554,7 +13670,8 @@
 	},
 /obj/machinery/door/poddoor/preopen{
 	id = "centralX";
-	name = "Central Blast Door"
+	name = "Central Blast Door";
+	resistance_flags = 64
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/central)
@@ -14376,6 +14493,11 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/south)
+"Uw" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Uz" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -14934,6 +15056,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
+"Wr" = (
+/obj/machinery/telecomms/server/presets/service,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "Ws" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -15256,6 +15383,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
+"Xz" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "XA" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -15619,6 +15752,11 @@
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/facility/dark,
 /area/department_main/information)
+"YJ" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "YK" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -15976,6 +16114,13 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/control)
+"ZU" = (
+/obj/machinery/telecomms/server/presets/command{
+	name = "Command Server"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
 "ZX" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/effect/turf_decal/siding/blue{
@@ -45703,7 +45848,7 @@ Af
 Af
 Af
 QX
-eQ
+QX
 sN
 sN
 sN
@@ -46715,8 +46860,8 @@ Xk
 Xk
 Dq
 FK
-Af
-Af
+FK
+FK
 Af
 Af
 FK
@@ -46972,8 +47117,8 @@ Xk
 Xk
 Dq
 FK
-Af
-Af
+hj
+FK
 Af
 Af
 FK
@@ -47682,12 +47827,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+RZ
+RZ
+RZ
+RZ
+RZ
 aL
 Sh
 zZ
@@ -47939,12 +48084,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+Rg
+ac
+RZ
+Db
+RZ
 aL
 zZ
 Ud
@@ -48196,12 +48341,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+MQ
+Xz
+Ey
+eQ
+RZ
 aL
 aw
 jE
@@ -48453,12 +48598,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+Cr
+YJ
+hI
+oE
+RZ
 aL
 DY
 zZ
@@ -48710,12 +48855,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+Iy
+ny
+sx
+BZ
+RZ
 aL
 Nk
 zZ
@@ -48967,12 +49112,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+tK
+GX
+LS
+Wr
+RZ
 aL
 AH
 zZ
@@ -49224,12 +49369,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+DS
+Uw
+cH
+ZU
+RZ
 aL
 NA
 OX
@@ -49481,12 +49626,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+bM
+Ge
+RZ
+rz
+RZ
 aL
 zZ
 cX
@@ -49738,12 +49883,12 @@ Af
 Af
 Af
 Af
-Af
-Af
-Af
-Af
-Af
-Af
+RZ
+RZ
+RZ
+RZ
+RZ
+RZ
 aL
 yH
 zZ
@@ -50570,8 +50715,8 @@ Xk
 Xk
 Vh
 yW
-Af
-Af
+sC
+yW
 Af
 Af
 yW
@@ -50827,8 +50972,8 @@ Xk
 Xk
 Vh
 yW
-Af
-Af
+yW
+yW
 Af
 Af
 yW
@@ -55181,7 +55326,7 @@ rQ
 yW
 Af
 Af
-qn
+jW
 za
 Ye
 Ye
@@ -55438,7 +55583,7 @@ NJ
 yW
 yW
 yW
-qn
+jW
 dH
 Wv
 Wv
@@ -55695,7 +55840,7 @@ qS
 qS
 Xj
 yW
-qn
+jW
 Xr
 Wv
 Wv
@@ -55952,8 +56097,8 @@ XP
 gp
 Rc
 yW
-qn
-ac
+jW
+Xr
 aE
 aE
 aE
@@ -57253,7 +57398,7 @@ si
 sa
 aE
 eK
-jW
+qn
 Af
 Af
 Af
@@ -57510,7 +57655,7 @@ OQ
 aE
 aE
 oI
-jW
+qn
 Af
 Af
 Af
@@ -57767,7 +57912,7 @@ aE
 aE
 aE
 eK
-jW
+qn
 Af
 Af
 Af
@@ -58024,7 +58169,7 @@ Vu
 aE
 aE
 ev
-jW
+qn
 Af
 Af
 Af
