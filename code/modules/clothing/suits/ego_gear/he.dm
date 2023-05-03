@@ -327,7 +327,7 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/replica
-	name = "pinpoint logic circuit"//temporary name
+	name = "replica"
 	desc = "This coat is covered in glowing sensors. It appears to be incomplete, with exposed sinews underneath the plating."
 	icon_state = "replica"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 70
