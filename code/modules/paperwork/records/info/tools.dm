@@ -111,11 +111,22 @@
 	name = "F-09-148"
 	info = {"<h1><center>F-09-148</center></h1>	<br>
 	Name : Dr. Jekyll's Tincture<br>
+	Risk Class : HE	<br>
+	- The employee who uses the abnormality will experience no effects when mental fortitude is at normal levels. <br>
+	- If the user’s SP drops below 50%, they will experience a personality shift and hereby referred to as F-09-148-1.<br>
+	- F-09-148-1 was identical to the employee but with different attributes. F-09-148-01 became violent during every panic scenario recorded.<br>
+	- F-09-148-1 returned to normal when SP was raised to over 50%, but would regress back into F-09-148-1 if SP dropped again."}
+
+//All-Natural Snake Oil
+/obj/item/paper/fluff/info/tool/snake_oil
+	name = "T-09-164"
+	info = {"<h1><center>T-09-164</center></h1>	<br>
+	Name : All-Natural Snake Oil<br>
 	Risk Class : TETH	<br>
-	- The employee who drinks this will experience an increase in Fortitude.	<br>
-	- The abnormality can be drank until ones Fortitude reaches its limit, at which point it will always seem empty.	<br>
+	- The employee who drinks the abnormality will experience an increase in Fortitude.	<br>
+	- The abnormality can be drank until ones Fortitude reaches its limit, at which point it will grant no effect.	<br>
 	- For every time past the first drink, the employee will become vulnerable to RED damage.	<br>
-	- If the user takes SP damage, they begin to take equal amounts of self-inflicted HP damage in addition. The user in question will claim "Mr. Hyde" to be responsible."}
+	- When the user's health nears a critical state, they immediately explode into giblets."}
 
 //Viva Voce
 /obj/item/paper/fluff/info/tool/vivavoce
