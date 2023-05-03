@@ -385,3 +385,18 @@
 		"The “Sculptor” will have their prudence reduced to level 3 while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
 
+//Little Red Riding Hooded Mercenary
+/obj/item/paper/fluff/info/waw/red_hood
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_hood
+	abno_code = "F-01-57"
+	abno_info = list(
+		"Requesting Little Red Riding Hooded Mercenary to suppress escaping Abnormalities or manifested Ordeals is a very useful resource. However, making such a request is not free.",
+		"When Little Red Riding Hooded Mercenary was denied the killing blow to a requested suppression, it did not show an extreme emotional response, but begin attacking indiscriminately.",
+		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
+		"The abnormality had particularly strong reactions when encountering F-01-117 (Blue-Smocked Shepherd) and F-02-127 (Reddened Buddy).",
+		"When encountering Blue Smocked Shepherd alone, F-01-57 chose to attack it exclusively, and could only be persuaded after another target if contracted and paid.",
+		"When encountering Reddened Buddy alone, F-01-57 chose to attack it exclusively, even to the point of ignoring offers of a contract and ignoring F-01-117.",
+		"When encountering both, F-01-57 prioritized Reddened Buddy, but turned on Blue Smocked Shepherd immediately afterward.",
+		"When the above occurred, Little Red Riding Hooded Mercenary entered a state of apparent heightened emotion, attacking more rapidly, doing more damage, and taking less damage.",
+		"This also occurred whenever Little Red Riding Hooded Mercenary dropped below 80% HP during the suppression of Reddened Buddy."
+	)

@@ -60,8 +60,9 @@
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
 	var/list/people_list = list() //list of people shepperd can mention
-	//lines said during combat
 	var/buddy_hit = FALSE
+	var/red_hit = FALSE // Controls Little Red Riding Hooded Mercenary's ability to be "hit" by slash attacks
+	//lines said during combat
 	var/list/combat_lines = list(
 				"Have at you!",
 				"Take this!",
@@ -259,6 +260,13 @@
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
+		if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
+			if(!red_hit)
+				red_hit = TRUE
+				var/mob/living/simple_animal/hostile/abnormality/red_hood/current_red = L
+				current_red.WatchIt()
+			all_turfs -= T
+			continue // Red doesn't get hit.
 		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		all_turfs -= T
 	if(slash_count >= range)
