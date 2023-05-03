@@ -40,7 +40,7 @@
 /obj/item/toy/crayon/spraycan/infinite,
 /obj/item/toy/crayon/spraycan/infinite,
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "ah" = (
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
@@ -189,7 +189,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "aT" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -1523,7 +1523,7 @@
 /obj/item/toy/crayon/spraycan/infinite,
 /obj/item/toy/crayon/spraycan/infinite,
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "fW" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
@@ -2748,7 +2748,7 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "kS" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -3960,7 +3960,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "py" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -4215,7 +4215,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "qs" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -7371,7 +7371,7 @@
 /obj/item/instrument/violin,
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "Cm" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -8756,7 +8756,7 @@
 	icon_state = "piano"
 	},
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "HQ" = (
 /obj/machinery/door/window/southleft{
 	max_integrity = 50
@@ -9209,7 +9209,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "JL" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -12115,7 +12115,7 @@
 	},
 /obj/machinery/regenerator,
 /turf/open/floor/facility/white,
-/area/facility_hallway/command)
+/area/department_main/command)
 "UN" = (
 /obj/machinery/griddle,
 /obj/effect/turf_decal/tile/brown{
