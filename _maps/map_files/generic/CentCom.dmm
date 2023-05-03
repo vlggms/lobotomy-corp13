@@ -4047,7 +4047,6 @@
 	},
 /obj/item/encryptionkey/heads/manager,
 /obj/item/radio/headset/heads/manager,
-/obj/item/card/id/ert,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "nG" = (
