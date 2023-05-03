@@ -106,7 +106,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bottle/proc/DecayProtagonistBuff(mob/living/carbon/human/buffed, justice = 0)
 	// Goes faster when the buff is higher, so you don't have an overwhelming buff for an overwhelming length of time.
-	if(justice == 0 || !buffed)
+	if(justice <= 0 || !buffed)
 		return FALSE
 	var/factor = justice / 10
 	var/timing = 10 + max(0, (100 - factor * factor))
