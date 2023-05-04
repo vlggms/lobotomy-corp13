@@ -334,15 +334,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/crimson
-	name = "crimson scar"
-	desc = "Sometimes, it’s good to let go of old hatred, just let that weight off your shoulders."
-	icon_state = "crimson_scar"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) // 140
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/faith //pure-hearted believer
 	name = "untainted faith"
 	desc = "To have absolute faith on something that gives you salvation."
