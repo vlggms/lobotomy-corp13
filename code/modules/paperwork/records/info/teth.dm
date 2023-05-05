@@ -79,12 +79,16 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/crumbling_armor
 	abno_code = "O-05-61"
 	abno_info = list(
-		"When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off.",
+		"When an employee with Fortitude Level 1 completed the work, they were found with their head cut clean off. When this happened, Crumbling Armor's Qliphoth Counter lowered by 1.",
+		"When the work result was Good, the Qliphoth Counter increased.",
 		"Upon completing a Repression work with Crumbling Armor, the employee gained a glowing aura. This aura seemed to increase their stats regarding Justice.",
 		"Each time the employee completed Repression work with any Abnormality, the aura intensified.",
-		"WARNING: When an employee with the aura performed Attachment work, they were found with their head sliced clean off.",
+		"When the Qliphoth Counter reached 0, several employees were marked for a short time. Upon moving, the marked employees were struck with PALE damage by an unseen assailant.",
+		"When the Qliphoth Counter reached 0 several times in a short span of time, the Qliphoth Counter increased.",
+		"WARNING: When an employee with the aura performed Attachment work, they were found with their head sliced clean off. In addition, Crumbling Armor's Qliphoth Counter lowered by 1.",
 		"WARNING: As the aura intensified, so too did its effect. However, an additional loss of Fortitude was noted.")
 
+//Bloodbath
 /obj/item/paper/fluff/info/teth/bloodbath
 	abno_type = /mob/living/simple_animal/hostile/abnormality/bloodbath
 	abno_code = "T-05-51"
