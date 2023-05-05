@@ -276,7 +276,7 @@
 				for so does light; life exists for so does death; hope exists for so does despair."
 	icon_state = "assonance"
 	inhand_icon_state = "assonance"
-	special = "This weapon fires a hitscan beam."
+	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -415,3 +415,21 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/gun/ego_gun/hookah
+	name = "lethargy"
+	desc = "Courtesy of the 16th Ego rifleman's brigade."
+	icon_state = "loyalty"
+	inhand_icon_state = "loyalty"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_hookah
+	weapon_weight = WEAPON_HEAVY
+	spread = 20
+	special = "This weapon fires 750 rounds per minute. \
+		This weapon has IFF capabilities.\
+		Use in hand to turn off IFF."
+	fire_sound = 'sound/effects/smoke.ogg'
+	autofire = 0.04 SECONDS
+	fire_sound_volume = 5
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+	)

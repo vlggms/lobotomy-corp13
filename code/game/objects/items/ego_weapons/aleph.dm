@@ -560,7 +560,7 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
 
 	if(!canaoe)
 		return

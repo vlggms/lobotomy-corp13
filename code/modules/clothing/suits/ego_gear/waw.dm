@@ -106,6 +106,15 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/crimson
+	name = "crimson scar"
+	desc = "It seems only darkness awaits those who find the value of their lives in nothing but destruction."
+	icon_state = "crimson_scar"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/spore
 	name = "spore"
 	desc = "When stars light the night sky, its true form will be revealed."
@@ -315,3 +324,21 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/discord
+	name = "discord"
+	desc = "What is evil if there is no good?"
+	icon_state = "discord"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 20) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/faith //pure-hearted believer
+	name = "untainted faith"
+	desc = "To have absolute faith on something that gives you salvation."
+	icon_state = "faith"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 30) //140
+	attribute_requirements = list(
+					PRUDENCE_ATTRIBUTE = 80
+					)

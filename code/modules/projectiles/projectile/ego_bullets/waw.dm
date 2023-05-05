@@ -205,6 +205,26 @@
 	wound_bonus = -100
 	bare_wound_bonus = -100
 
+/obj/projectile/beam/assonance/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(pierce_hit)
+		return
+	if(!ishostile(target))
+		return
+	var/mob/living/simple_animal/hostile/H = target
+	if(H.stat == DEAD || H.status_flags & GODMODE)
+		return
+	for(var/mob/living/carbon/human/Yin in view(7, H))
+		var/obj/item/ego_weapon/discord/D = Yin.get_active_held_item()
+		if(istype(D, /obj/item/ego_weapon/discord))
+			if(!D.CanUseEgo(Yin))
+				continue
+			Yin.adjustBruteLoss(-10)
+			Yin.adjustSanityLoss(-10)
+			new /obj/effect/temp_visual/healing(get_turf(Yin))
+			break
+	return
+
 //feather of honor
 /obj/projectile/ego_bullet/ego_feather
 	name = "feather"
@@ -295,3 +315,11 @@
 		return
 	var/mob/living/L = target
 	L.apply_status_effect(/datum/status_effect/wrath_burning)
+
+/obj/projectile/ego_bullet/ego_hookah
+	name = "lethargy"
+	icon_state = "smoke"
+	damage = 2
+	damage_type = PALE_DAMAGE
+	speed = 2
+	range = 6
