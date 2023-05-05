@@ -261,3 +261,39 @@
 /datum/ego_datum/weapon/fluid_sac
 	item_path = /obj/item/ego_weapon/fluid_sac
 	cost = 35
+
+//Red Shoes - Sanguine Desire
+/datum/ego_datum/armor/sanguine
+	item_path = /obj/item/clothing/suit/armor/ego_gear/sanguine
+	cost = 35
+
+/datum/ego_datum/weapon/sanguine
+	item_path = /obj/item/ego_weapon/sanguine
+	cost = 35
+
+//For Your Eyes Only - Window to the World
+/datum/ego_datum/armor/window
+	item_path = /obj/item/clothing/suit/armor/ego_gear/window
+	cost = 35
+
+/*/datum/ego_datum/weapon/window
+	item_path = /obj/item/ego_weapon/window
+	cost = 35*/
+
+//Jackalope - Jackrabbit
+/datum/ego_datum/armor/jackrabbit
+	item_path = /obj/item/clothing/suit/armor/ego_gear/jackrabbit
+	cost = 35
+
+/*/datum/ego_datum/weapon/jackrabbit
+	item_path = /obj/item/ego_weapon/jackrabbit
+	cost = 35*/
+
+//Til the Last Shot - Flesh Is Willing
+/*/datum/ego_datum/armor/flesh
+	item_path = /obj/item/clothing/suit/armor/ego_gear/flesh
+	cost = 35
+
+/datum/ego_datum/weapon/flesh
+	item_path = /obj/item/ego_weapon/flesh
+	cost = 35*/

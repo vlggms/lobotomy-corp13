@@ -315,3 +315,34 @@
 /datum/ego_datum/weapon/amrita
 	item_path = /obj/item/ego_weapon/amrita
 	cost = 50
+
+//Yin - Discord
+/datum/ego_datum/armor/discord
+	item_path = /obj/item/clothing/suit/armor/ego_gear/discord
+	cost = 50
+
+/datum/ego_datum/weapon/discord
+	item_path = /obj/item/ego_weapon/discord
+	cost = 50
+
+//Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
+/datum/ego_datum/armor/crimson
+	item_path = /obj/item/clothing/suit/armor/ego_gear/crimson
+	cost = 50
+
+/datum/ego_datum/weapon/crimson
+	item_path = /obj/item/ego_weapon/mini/crimson
+	cost = 50
+
+/datum/ego_datum/weapon/crimson/gun
+	item_path = /obj/item/gun/ego_gun/pistol/crimson
+	cost = 50
+
+//Pure Hearted Believer - Untainted Faith
+/datum/ego_datum/armor/faith
+	item_path = /obj/item/clothing/suit/armor/ego_gear/faith
+	cost = 50
+
+/*/datum/ego_datum/weapon/faith
+	item_path = /obj/item/ego_weapon/faith
+	cost = 50*/

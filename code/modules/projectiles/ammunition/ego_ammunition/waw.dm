@@ -124,3 +124,8 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_blind_rage
 	pellets = 4
 	variance = 30
+	
+/obj/item/ammo_casing/caseless/ego_hookah
+	name = "hookah casing"
+	desc = "A casing from hookah."
+	projectile_type = /obj/projectile/ego_bullet/ego_hookah
