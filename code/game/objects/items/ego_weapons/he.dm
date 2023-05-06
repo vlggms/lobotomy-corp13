@@ -944,3 +944,26 @@
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#b52e19"
+
+/obj/item/ego_weapon/sanguine
+	name = "sanguine desire"
+	desc = "The axe may seem light, but the wielder musn't forget that it has hurt countless people as a consequence of poor choices. \
+			\nThe weapon is stronger when used by an employee with strong conviction."
+	special = "This weapon deals increased damage at a cost of sanity loss for every hit."
+	icon_state = "sanguine"
+	force = 40//about 1.5x the average dps
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("hacks", "slashes", "attacks")
+	attack_verb_simple = list("hack", "slash", "attack")
+//	hitsound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/sanguine/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	user.adjustSanityLoss(5)
+	..()

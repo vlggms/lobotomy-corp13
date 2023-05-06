@@ -307,3 +307,21 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/window
+	name = "window to the world"
+	desc = "What you see is but a fragment of what there is."
+	icon_state = "window"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/jackrabbit
+	name = "jackrabbit"
+	desc = "A lone rabbit hops down a snowy path in a forest it's blakc antlers matching the dead tree's around it."
+	icon_state = "jackrabbit"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 50, PALE_DAMAGE = 0) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)

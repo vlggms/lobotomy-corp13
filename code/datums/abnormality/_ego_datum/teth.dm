@@ -221,3 +221,12 @@
 /datum/ego_datum/weapon/page
 	item_path = /obj/item/gun/ego_gun/page
 	cost = 20
+
+//Tangle - Rapunzel
+/* /datum/ego_datum/armor/rapunzel
+	item_path = /obj/item/clothing/suit/armor/ego_gear/rapunzel
+	cost = 20
+
+/datum/ego_datum/weapon/rapunzel
+	item_path = /obj/item/gun/ego_gun/rapunzel
+	cost = 20 */
