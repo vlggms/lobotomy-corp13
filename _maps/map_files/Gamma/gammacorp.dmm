@@ -1101,7 +1101,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/plasteel,
 /area/department_main/information)
 "iW" = (
 /obj/machinery/gibber,
@@ -2398,7 +2398,7 @@
 	name = "Information Department"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/halls,
+/turf/open/floor/plasteel,
 /area/department_main/information)
 "ro" = (
 /obj/machinery/door/airlock/hatch,
