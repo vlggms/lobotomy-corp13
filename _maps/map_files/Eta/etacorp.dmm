@@ -2878,6 +2878,9 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "lq" = (
@@ -7217,6 +7220,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"By" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "BA" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -7271,13 +7287,13 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "BP" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Control Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/space/basic,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control Department"
+	},
+/turf/open/floor/facility/halls,
 /area/department_main/control)
 "BS" = (
 /obj/effect/turf_decal/tile/brown,
@@ -9604,6 +9620,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
+"Lg" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "Lk" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
@@ -10166,9 +10193,11 @@
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
 "Nj" = (
-/obj/machinery/jukebox,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
+	},
+/obj/machinery/jukebox{
+	req_access = list()
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/welfare)
@@ -11980,13 +12009,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Uh" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Control Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/space/basic,
+/obj/machinery/door/airlock/highsecurity{
+	name = "Control Department"
+	},
+/turf/open/floor/facility/halls,
 /area/department_main/control)
 "Uk" = (
 /obj/structure/filingcabinet{
@@ -46566,7 +46595,7 @@ wd
 wd
 Gh
 Gh
-gs
+Lg
 hh
 gm
 ff
@@ -46574,7 +46603,7 @@ Aq
 ff
 uA
 hh
-yo
+By
 Gh
 Gh
 wd
