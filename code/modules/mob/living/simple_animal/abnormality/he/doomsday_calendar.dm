@@ -39,7 +39,7 @@
 		/datum/ego_datum/armor/impending_day
 		)
 	gift_type =  /datum/ego_gifts/impending_day
-	abnormality_origin = "Limbus Company"
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/player_count
 	var/other_works_maximum
