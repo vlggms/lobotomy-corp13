@@ -82,6 +82,13 @@
 	volume = 25
 	extra_range = -4
 
+/datum/looping_sound/orangetree_ambience
+	mid_sounds = list('sound/abnormalities/orangetree/light1.ogg' = 1, 'sound/abnormalities/orangetree/light2.ogg' = 1, 'sound/abnormalities/orangetree/light3.ogg' = 1,
+	'sound/abnormalities/orangetree/light4.ogg' = 1, 'sound/abnormalities/orangetree/light5.ogg' = 1, 'sound/abnormalities/orangetree/light6.ogg' = 1)
+	mid_length = 15 SECONDS
+	volume = 60
+	extra_range = -5
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
