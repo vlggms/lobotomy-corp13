@@ -80,8 +80,6 @@
 	//Babies crying hurts your head
 	SLEEP_CHECK_DEATH(3)
 	for(var/mob/living/L in range(10, src))
-		if(L.z != z)
-			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
