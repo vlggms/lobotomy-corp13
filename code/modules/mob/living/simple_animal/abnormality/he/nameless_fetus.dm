@@ -33,9 +33,9 @@
 
 	//Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
-	if(calling && (calling in range(1, src)))
-		var/mob/living/carbon/human/Y = calling
-		Y.gib()
+	if(calling && Adjacent(calling))
+		calling.gib()
+		calling = null
 
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, "<span class='userdanger'>The fetus is satisfied.</span>")
