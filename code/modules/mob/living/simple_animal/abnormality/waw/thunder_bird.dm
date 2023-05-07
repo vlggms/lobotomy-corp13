@@ -52,26 +52,27 @@ GLOBAL_LIST_EMPTY(zombies)
 		)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
-
+	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 /*---Combat---*/
-	//range and attack speed for thunder bombs, taken from general bee
-	var/fire_cooldown_time = 3 SECONDS
-	var/fireball_range = 7
-	var/fire_cooldown
-	var/targetAmount = 0
-
 	//Melee stats
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 10
 	melee_damage_upper = 15
+	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	attack_verb_continuous = "pecks"
 	attack_verb_simple = "peck"
 	vision_range = 15
 	aggro_vision_range = 30
 	ranged = TRUE//allows it to attempt charging without being in melee range
+
+	//range and attack speed for thunder bombs, taken from general bee
+	var/fire_cooldown_time = 3 SECONDS
+	var/fireball_range = 7
+	var/fire_cooldown
+	var/targetAmount = 0
 
 	//Stolen charge code from helper
 	var/charging = FALSE
