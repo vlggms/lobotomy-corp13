@@ -2128,6 +2128,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/camera/autoname,
+/obj/effect/landmark/toolspawn,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "pd" = (
