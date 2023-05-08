@@ -231,10 +231,10 @@
 		var/mob/living/simple_animal/M = owner
 		original_armor = M.damage_coeff[BLACK_DAMAGE]
 		if(original_armor > 0)
-		M.damage_coeff[BLACK_DAMAGE] = original_armor + 0.2
+			M.damage_coeff[BLACK_DAMAGE] = original_armor + 0.2
 
 	/datum/status_effect/rendBlackArmor/on_remove()
 		. = ..()
 		var/mob/living/simple_animal/M = owner
 		if(M.damage_coeff[BLACK_DAMAGE] == original_armor + 0.2)
-		M.damage_coeff[BLACK_DAMAGE] = original_armor
+			M.damage_coeff[BLACK_DAMAGE] = original_armor
