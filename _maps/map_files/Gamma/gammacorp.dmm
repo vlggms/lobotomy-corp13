@@ -1696,8 +1696,10 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "mz" = (
-/obj/machinery/regenerator,
 /obj/machinery/vending/lobotomyuniform,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "mB" = (
@@ -1755,11 +1757,14 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "nc" = (
-/obj/machinery/light{
+/obj/effect/turf_decal/siding/red{
+	color = "#440000"
+	},
+/obj/machinery/camera/autoname{
 	dir = 1
 	},
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
+/turf/open/floor/plasteel,
+/area/facility_hallway/south)
 "nd" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -2123,6 +2128,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/camera/autoname,
+/obj/effect/landmark/toolspawn,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "pd" = (
@@ -2951,6 +2958,16 @@
 	},
 /turf/open/floor/facility,
 /area/department_main/safety)
+"uK" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel,
+/area/facility_hallway/north)
 "uL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/red/end{
@@ -6836,13 +6853,13 @@
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
 "UM" = (
-/obj/machinery/computer/slot_machine,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9"
 	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/fat_sucker,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "UN" = (
@@ -32883,7 +32900,7 @@ uH
 jC
 lU
 Sm
-om
+uK
 oH
 Fu
 Fu
@@ -33397,7 +33414,7 @@ MR
 jH
 eV
 Sm
-OW
+og
 ey
 yC
 Sm
@@ -46026,7 +46043,7 @@ hn
 jq
 jo
 IW
-Ld
+nc
 jq
 PD
 PD
@@ -47309,7 +47326,7 @@ jq
 jq
 jq
 KW
-LK
+jo
 Sy
 Ld
 jq
@@ -48038,7 +48055,7 @@ PD
 PD
 Qn
 mz
-nc
+qm
 oP
 qm
 Cj
