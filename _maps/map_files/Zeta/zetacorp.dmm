@@ -401,7 +401,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "cv" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
@@ -460,19 +460,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"cR" = (
-/obj/structure/railing{
-	dir = 8;
-	name = "invincible railing";
-	max_integrity = 10000000
-	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#bbbbbb";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/plating,
-/area/space)
 "cS" = (
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 250
@@ -634,7 +621,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "ey" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -949,7 +936,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "gs" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Training Department"
@@ -1142,7 +1129,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "hB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -1265,7 +1252,7 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "ir" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -1640,6 +1627,16 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
+"lk" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "ll" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -1759,17 +1756,14 @@
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
 "lI" = (
-/obj/structure/railing{
-	dir = 8;
-	name = "invincible railing";
-	max_integrity = 10000000
-	},
 /obj/effect/mermaid_water{
 	name = "Coastal Waters";
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
-/turf/open/floor/plating,
-/area/space)
+/turf/closed/indestructible/wood{
+	opacity = 0
+	},
+/area/facility_hallway/south)
 "lJ" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/training)
@@ -1854,7 +1848,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "mg" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2611,7 +2605,7 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "rp" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
@@ -3139,7 +3133,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "uw" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -3186,7 +3180,7 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "uQ" = (
 /obj/structure/bed,
 /obj/item/bedsheet/wiz,
@@ -3389,7 +3383,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "vQ" = (
 /obj/machinery/door/airlock/centcom,
 /obj/structure/disposalpipe/segment,
@@ -3504,19 +3498,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/west)
-"wD" = (
-/obj/structure/railing{
-	dir = 4;
-	name = "invincible railing";
-	max_integrity = 10000000
-	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/plating,
-/area/space)
 "wE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -3790,7 +3771,7 @@
 "yp" = (
 /obj/structure/sign/departments/evac,
 /turf/closed/indestructible/reinforced,
-/area/department_main/information)
+/area/facility_hallway/south)
 "yr" = (
 /obj/effect/turf_decal/siding/green,
 /obj/structure/bed/roller,
@@ -4413,18 +4394,15 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "Bv" = (
-/obj/structure/railing{
-	dir = 8;
-	name = "invincible railing";
-	max_integrity = 10000000
-	},
 /obj/effect/mermaid_water{
 	name = "Coastal Waters";
 	color = "#dddddd";
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
-/turf/open/floor/plating,
-/area/space)
+/turf/closed/indestructible/wood{
+	opacity = 0
+	},
+/area/facility_hallway/south)
 "BL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -4519,6 +4497,12 @@
 	},
 /obj/machinery/camera/autoname{
 	dir = 4
+	},
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Extraction Access Shutters";
+	req_one_access_txt = "19";
+	pixel_x = -27
 	},
 /turf/open/floor/holofloor/dark,
 /area/department_main/command)
@@ -4924,16 +4908,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
-"Ff" = (
-/obj/machinery/door/poddoor{
-	id = "facilitylockdown";
-	name = "Facility Lockdown Blast Door"
-	},
-/obj/machinery/door/airlock/external/glass{
-	name = "WARP Station"
-	},
-/turf/open/floor/facility/halls,
-/area/department_main/information)
 "Fg" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -5286,18 +5260,15 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/south)
 "Hl" = (
-/obj/structure/railing{
-	dir = 4;
-	name = "invincible railing";
-	max_integrity = 10000000
-	},
 /obj/effect/mermaid_water{
 	name = "Coastal Waters";
 	color = "#bbbbbb";
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
-/turf/open/floor/plating,
-/area/space)
+/turf/closed/indestructible/wood{
+	opacity = 0
+	},
+/area/facility_hallway/south)
 "Hm" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -5540,6 +5511,9 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "extraction"
+	},
 /turf/open/floor/facility/halls,
 /area/department_main/command)
 "Jf" = (
@@ -5756,7 +5730,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/closed/indestructible/rock,
-/area/space)
+/area/facility_hallway/south)
 "Kw" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
@@ -6454,7 +6428,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "ON" = (
 /obj/structure/mirror{
 	pixel_y = 34
@@ -6602,7 +6576,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "Qd" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
@@ -6991,7 +6965,7 @@
 	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/facility_hallway/south)
 "Tj" = (
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 250
@@ -7199,16 +7173,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
-"Uu" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 4
-	},
-/obj/machinery/sleeper/syndie,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "UE" = (
 /obj/machinery/door/airlock/centcom,
 /turf/open/floor/facility/halls,
@@ -41303,7 +41267,7 @@ ys
 kP
 BW
 QI
-yL
+Hk
 Hk
 Hk
 Hk
@@ -41312,9 +41276,9 @@ er
 er
 er
 co
-wD
-wD
-wD
+Bv
+Bv
+Bv
 co
 Hl
 Hl
@@ -41817,7 +41781,7 @@ vw
 vw
 vw
 QC
-Ff
+bj
 ui
 vL
 bj
@@ -42331,7 +42295,7 @@ An
 An
 XR
 Kw
-yL
+Hk
 Hk
 Hk
 Hk
@@ -42344,10 +42308,10 @@ Bv
 Bv
 Bv
 co
-cR
-cR
-cR
-cR
+Hl
+Hl
+Hl
+Hl
 OL
 OL
 OL
@@ -45372,11 +45336,11 @@ QT
 Vt
 Sc
 oq
-Uu
-Uu
+lk
+lk
 Ks
-Uu
-Uu
+lk
+lk
 vg
 Rk
 Zt
