@@ -62,8 +62,6 @@ GLOBAL_LIST_EMPTY(vine_list)
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/BreachEffect(mob/living/carbon/human/user)
 	..()
 	update_icon()
-	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
@@ -86,7 +84,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Destroy()
-	for(var/obj/structure/apple_vine/vine in GLOB.vine_list)
+	for(var/obj/structure/spreading/apple_vine/vine in GLOB.vine_list)
 		vine.can_expand = FALSE
 		var/del_time = rand(4,10) //all the vines dissapear at different interval so it looks more organic.
 		animate(vine, alpha = 0, time = del_time SECONDS)
@@ -98,11 +96,12 @@ GLOBAL_LIST_EMPTY(vine_list)
 	. = ..()
 	if(!. || !client)
 		return FALSE
-	to_chat(src, "<b>Snow Whites Apple uses her vines to attack all tresspassers at once.</b>")
+	togglemovement = TRUE
+	to_chat(src, "<b>Snow Whites Apple uses her roots to attack all tresspassers at once. It is suggested you stay inside or around your roots.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Life()
 	. = ..()
-	if(status_flags & GODMODE)
+	if(status_flags & GODMODE || stat == DEAD)
 		return
 	if(togglemovement)
 		if(plant_cooldown <= world.time)
@@ -110,20 +109,17 @@ GLOBAL_LIST_EMPTY(vine_list)
 			if(!plants_off)
 				SpreadPlants()
 			oldGrowth()
-	for(var/obj/structure/apple_vine/W in range(15, get_turf(src)))
+	for(var/obj/structure/spreading/apple_vine/W in range(15, get_turf(src)))
 		if(W.last_expand <= world.time)
 			W.expand()
-			W.last_expand = world.time + W.expand_cooldown
 	if(teleport_cooldown <= world.time && !togglemovement && !client)
 		TryTeleport()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/AttackingTarget(atom/attacked_target)
-	target = attacked_target
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/OpenFire()
 	if(client)
-		togglemovement = TRUE
 		switch(chosen_attack)
 			if(1)
 				if(ranged_cooldown <= world.time)
@@ -156,52 +152,43 @@ GLOBAL_LIST_EMPTY(vine_list)
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))
 		return
-	if(locate(/obj/structure/apple_vine) in get_turf(src))
+	if(locate(/obj/structure/spreading/apple_vine) in get_turf(src))
 		return
-	new /obj/structure/apple_vine(loc)
+	new /obj/structure/spreading/apple_vine(loc)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/vinespike()
 	for(var/mob/living/L in livinginview(vision_range, src))
 		if(faction_check_mob(L))
 			continue
-		for(var/obj/structure/apple_vine/W in get_turf(L))
+		for(var/obj/structure/spreading/apple_vine/W in get_turf(L))
 			W.vinespike()
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/oldGrowth()
-	for(var/obj/structure/apple_vine/W in range(15, get_turf(src)))
+	for(var/obj/structure/spreading/apple_vine/W in range(15, get_turf(src)))
 		if(W.name != "bitter growth")
 			W.name = "bitter growth"
 			W.icon_state = "Hvy1"
 			W.max_integrity = 45
 			W.obj_integrity = 45
 			W.expand_cooldown = 8 SECONDS
-
-
+			W.conflict_damage = 30
 
 //stolen alien weed code
-/obj/structure/apple_vine
+/obj/structure/spreading/apple_vine
 	gender = PLURAL
 	name = "bitter flora"
 	desc = "Branches that grow from wilting stems."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Med1"
-	anchored = TRUE
-	density = FALSE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
 	resistance_flags = FLAMMABLE
 	base_icon_state = "Med1"
-	max_integrity = 15
 	color = "#808000"
-	var/last_expand = 0 //last world.time this weed expanded
-	var/expand_cooldown = 1.5 SECONDS
-	var/can_expand = TRUE
+	//strictly for crossed proc
 	var/list/static/ignore_typecache
 	var/list/static/atom_remove_condition
-	var/static/list/blacklisted_turfs
 
-/obj/structure/apple_vine/Initialize()
+/obj/structure/spreading/apple_vine/Initialize()
 	. = ..()
 
 	GLOB.vine_list += src
@@ -211,20 +198,13 @@ GLOBAL_LIST_EMPTY(vine_list)
 			/obj/projectile/ego_bullet/ego_match,
 			/mob/living/simple_animal/hostile/abnormality/helper,))
 
-	if(!blacklisted_turfs)
-		blacklisted_turfs = typecacheof(list(
-			/turf/open/space,
-			/turf/open/chasm,
-			/turf/open/lava,
-			/turf/open/openspace))
-
 	if(!ignore_typecache)
 		ignore_typecache = typecacheof(list(
 			/obj/effect,
 			/mob/dead,
 			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple))
 
-/obj/structure/apple_vine/Crossed(atom/movable/AM)
+/obj/structure/spreading/apple_vine/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, atom_remove_condition))
 		take_damage(15, BRUTE, "melee", 1)
@@ -233,29 +213,10 @@ GLOBAL_LIST_EMPTY(vine_list)
 	if(isliving(AM))
 		vine_effect(AM)
 
-/obj/structure/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
 
-/obj/structure/apple_vine/proc/expand() //called by snow white every life cycle
-	if(!can_expand)
-		return
-
-	var/turf/U = get_turf(src)
-	if(is_type_in_typecache(U, blacklisted_turfs))
-		qdel(src)
-		return FALSE
-
-	for(var/turf/T in U.GetAtmosAdjacentTurfs())
-		if(locate(/obj/structure/apple_vine) in T)
-			continue
-
-		if(is_type_in_typecache(T, blacklisted_turfs))
-			continue
-
-		new /obj/structure/apple_vine(T)
-	return TRUE
-
-/obj/structure/apple_vine/proc/vine_effect(mob/living/L)
+/obj/structure/spreading/apple_vine/proc/vine_effect(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/lonely = L
 		var/obj/item/trimming = lonely.get_active_held_item()
@@ -281,7 +242,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 		to_chat(L, "<span class='warning'>The [name] tighten around you.</span>")
 	L.adjustStaminaLoss(10, TRUE, TRUE)
 
-/obj/structure/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
+/obj/structure/spreading/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
 		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>") //it would be uncouth for the vines to hinder one gifted by the princess.
@@ -292,7 +253,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 				"Even after they left, my form would not decay.","She cast me aside and left with her prince. After many days i wondered why i continued to exist.",
 				"How long has it been since the witch died... Where am i?"))
 
-/obj/structure/apple_vine/proc/vinespike() //called by snow white when she attacks
+/obj/structure/spreading/apple_vine/proc/vinespike() //called by snow white when she attacks
 	for(var/mob/living/L in get_turf(src)) //previously used inrange(0)
 		var/mob/living/carbon/human/victim = L
 		if(victim.stat != DEAD)
