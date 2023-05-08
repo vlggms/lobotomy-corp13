@@ -80,6 +80,13 @@
 	icon_state = "exsanguination"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 90, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 
+/obj/item/clothing/suit/armor/ego_gear/realization/ember_matchlight
+	name = "ember matchlight"
+	desc = "If I must perish, then I'll make you meet the same fate."
+	icon_state = "ember_matchlight"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/fire_explosion
+
 /* HE Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/grinder

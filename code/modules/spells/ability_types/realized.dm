@@ -93,3 +93,43 @@
 	desc = "Your sinful actions have made your soul more vulnerable to PALE attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
 	icon_state = "judgement"
+
+/obj/effect/proc_holder/ability/fire_explosion
+	name = "Match flame"
+	desc = "An ability that deals high amount of RED damage to EVERYONE around the user after short delay."
+	action_icon_state = "fire0"
+	base_icon_state = "fire"
+	cooldown_time = 30 SECONDS
+	var/explosion_damage = 1000 // Humans receive half of it.
+	var/explosion_range = 6
+
+/obj/effect/proc_holder/ability/fire_explosion/Perform(target, mob/user)
+	cooldown = world.time + (5 SECONDS)
+	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
+	if(!do_after(user, 1.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to ignite the explosion!</span>")
+		return
+	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4)
+	var/obj/effect/temp_visual/human_fire/F = new(get_turf(user))
+	F.alpha = 0
+	F.dir = user.dir
+	animate(F, alpha = 255, time = (2 SECONDS))
+	if(!do_after(user, 2.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to finish the ability!</span>")
+		animate(F, alpha = 0, time = 5)
+		return
+	animate(F, alpha = 0, time = 5)
+	INVOKE_ASYNC(src, .proc/FireExplosion, get_turf(user))
+	return ..()
+
+/obj/effect/proc_holder/ability/fire_explosion/proc/FireExplosion(turf/T)
+	playsound(T, 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
+	for(var/i = 1 to explosion_range)
+		for(var/turf/open/TT in spiral_range_turfs(i, T) - spiral_range_turfs(i-1, T))
+			new /obj/effect/temp_visual/fire(TT)
+			for(var/mob/living/L in TT)
+				if(L.stat == DEAD)
+					continue
+				playsound(get_turf(L), 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
+				L.apply_damage(ishuman(L) ? explosion_damage*0.5 : explosion_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		sleep(1)
