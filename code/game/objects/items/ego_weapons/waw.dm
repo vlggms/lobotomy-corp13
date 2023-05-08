@@ -374,9 +374,9 @@
 		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
 		var/mob/living/carbon/human/L = user
 		L.adjustSanityLoss(30)
-		if(!locate(/obj/structure/apple_vine) in get_turf(user))
+		if(!locate(/obj/structure/spreading/apple_vine) in get_turf(user))
 			L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
-			new /obj/structure/apple_vine(get_turf(user))
+			new /obj/structure/spreading/apple_vine(get_turf(user))
 			return
 
 		var/affected_mobs = 0
