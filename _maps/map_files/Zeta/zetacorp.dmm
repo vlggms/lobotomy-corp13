@@ -527,12 +527,11 @@
 /turf/open/floor/wood,
 /area/facility_hallway/control)
 "dB" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
 	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#331800"
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -729,13 +728,11 @@
 /turf/open/floor/wood,
 /area/department_main/control)
 "fw" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/light/cold/no_nightlight,
-/obj/machinery/camera/autoname{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/safety)
+/area/department_main/safety)
 "fy" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -877,6 +874,15 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
+"gf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Safety Department"
+	},
+/turf/open/floor/facility/halls,
+/area/department_main/safety)
 "gg" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -1628,14 +1634,10 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "lk" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 8
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
 	},
-/obj/effect/turf_decal/siding/green{
-	dir = 4
-	},
-/obj/machinery/sleeper/syndie,
-/turf/open/floor/carpet/green,
+/turf/open/floor/wood,
 /area/department_main/safety)
 "ll" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -2953,6 +2955,12 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/command)
+"tz" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/safety)
 "tB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2999,6 +3007,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"tR" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/department_main/safety)
 "tS" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -3515,10 +3529,14 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "wH" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/machinery/camera/autoname{
-	dir = 1
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
 	},
+/obj/machinery/light/cold/no_nightlight,
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_y = -32
+	},
+/obj/effect/spawner/randomcolavend,
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
 "wK" = (
@@ -3550,6 +3568,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
+"wQ" = (
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_x = 32
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "wT" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/camera/autoname{
@@ -3991,9 +4015,10 @@
 /turf/open/floor/wood,
 /area/facility_hallway/information)
 "zp" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
+/obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
 "zt" = (
@@ -4404,15 +4429,11 @@
 	},
 /area/facility_hallway/south)
 "BL" = (
-/obj/effect/turf_decal/siding/wood{
+/obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	pixel_y = -5
-	},
 /turf/open/floor/wood,
-/area/facility_hallway/safety)
+/area/department_main/safety)
 "BT" = (
 /obj/structure/disposalpipe/junction/yjunction,
 /turf/open/floor/wood,
@@ -5002,6 +5023,21 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/wood,
 /area/facility_hallway/training)
+"FF" = (
+/obj/machinery/fat_sucker,
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/green{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	dir = 1;
+	pixel_x = 27;
+	pixel_y = -27
+	},
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "FG" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/safety)
@@ -5333,6 +5369,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
+"HL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/safety)
 "HT" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -5378,6 +5420,16 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/south)
+"If" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/facility_hallway/safety)
 "Ii" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -5444,9 +5496,20 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "IA" = (
-/obj/structure/disposalpipe/junction/yjunction,
-/turf/open/floor/wood,
-/area/facility_hallway/safety)
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/machinery/sleeper/syndie,
+/obj/effect/turf_decal/siding/green{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/green/corner{
+	dir = 8;
+	pixel_y = 27;
+	pixel_x = 27
+	},
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "IF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -5476,6 +5539,12 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"IS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/safety)
 "IT" = (
 /obj/machinery/cryopod{
 	dir = 8
@@ -5700,20 +5769,16 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/north)
 "Ks" = (
-/obj/machinery/fat_sucker,
-/obj/effect/turf_decal/siding/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/green{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light/cold/no_nightlight{
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/obj/structure/sign/ordealmonitor{
-	pixel_x = -32
-	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/wood,
 /area/department_main/safety)
 "Kt" = (
 /obj/effect/turf_decal/siding/wood,
@@ -6816,6 +6881,18 @@
 /obj/machinery/light/floor,
 /turf/open/floor/wood,
 /area/department_main/command)
+"RS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/safety)
 "Sc" = (
 /obj/machinery/regenerator/safety,
 /obj/structure/window/reinforced/spawner{
@@ -6859,9 +6936,7 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
+/obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/wood,
 /area/department_main/safety)
 "Sn" = (
@@ -7478,6 +7553,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/facility_hallway/training)
+"WM" = (
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
+/obj/structure/sign/ordealmonitor{
+	pixel_x = 32
+	},
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/safety)
 "WN" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
@@ -7668,6 +7752,7 @@
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
 	},
+/obj/effect/spawner/randomsnackvend,
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
 "XP" = (
@@ -7937,6 +8022,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/north)
+"ZU" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/department_main/safety)
 "ZY" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -44047,7 +44138,7 @@ Fi
 qT
 nV
 Rt
-fw
+QT
 EL
 EL
 EL
@@ -44305,17 +44396,17 @@ aQ
 oV
 Rt
 zp
-sr
+qT
+uw
+uw
+qT
+IS
 YY
-YY
-YY
-YY
-sr
-nE
+RS
 YY
 RG
-YY
 sr
+YY
 qY
 sr
 YY
@@ -44560,14 +44651,14 @@ Fi
 Fi
 qT
 hZ
-IA
-iN
-iN
-iN
-iN
-iN
-iN
-iN
+Rt
+eE
+qT
+uw
+uw
+qT
+dB
+HL
 iN
 iN
 iN
@@ -44818,18 +44909,18 @@ Fi
 qT
 hZ
 Rt
-cd
-Oi
-dB
+eE
+WM
+uw
+wQ
+qT
+kR
+If
+Il
 eJ
-Ro
 Ro
 Il
 Ro
-eJ
-Ro
-Ro
-Il
 Ro
 Il
 Ro
@@ -45075,14 +45166,14 @@ Fi
 qT
 hZ
 Rt
-wH
+eE
 Vt
 Vt
 Vt
 Vt
-Vt
-Vt
-Vt
+az
+gf
+az
 Vt
 Vt
 Vt
@@ -45336,11 +45427,11 @@ QT
 Vt
 Sc
 oq
-lk
+FF
 lk
 Ks
-lk
-lk
+VX
+IA
 vg
 Rk
 Zt
@@ -45594,9 +45685,9 @@ az
 OE
 wX
 wX
-wX
-wX
-wX
+BL
+fw
+tR
 wX
 VX
 CT
@@ -45849,10 +45940,10 @@ lH
 vN
 Qp
 Sm
-QY
-QY
-QY
-QY
+tz
+tz
+tz
+ZU
 QY
 QY
 Af
@@ -46643,7 +46734,7 @@ qT
 qT
 qT
 aQ
-BL
+nV
 Sy
 eE
 FG
@@ -47928,7 +48019,7 @@ Fi
 Fi
 Fi
 qT
-BL
+nV
 Sy
 eE
 FG
@@ -48436,7 +48527,7 @@ Th
 FG
 kR
 Ro
-XO
+wH
 qT
 Fi
 Fi
@@ -48693,7 +48784,7 @@ Th
 FG
 FG
 FG
-FG
+qT
 qT
 Fi
 Fi
@@ -49213,7 +49304,7 @@ Fi
 Fi
 Fi
 qT
-BL
+hZ
 yC
 eE
 FG
@@ -50243,7 +50334,7 @@ Th
 FG
 FG
 FG
-FG
+qT
 qT
 Th
 Th
