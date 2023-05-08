@@ -460,6 +460,7 @@
 	var/obj/item/stock_parts/cell/cell
 	var/batterycost = 2000 //5 uses before requires recharge
 	var/turned_on = 0
+	var/chosen_target_type = 1
 
 /obj/item/powered_gadget/Initialize()
 	. = ..()
@@ -562,6 +563,19 @@
 			. += "[default_icon]-nobat"
 		else
 			. += "[default_icon]"
+
+/obj/item/powered_gadget/proc/target_check(target)
+	switch(chosen_target_type)
+		if(1)
+			if(ishuman(target))
+				return TRUE
+		if(2)
+			if(istype(target, /mob/living/simple_animal/hostile/ordeal))
+				return TRUE
+		if(3)
+			if(isabnormalitymob(target))
+				return TRUE
+	return FALSE
 
 	//Trapspawner
 /obj/item/powered_gadget/slowingtrapmk1
@@ -1015,3 +1029,108 @@
 		T.Stun(10)
 	cell.charge = cell.charge - batterycost
 	user.visible_message(hit_message)
+
+	//Modular Gadget
+/obj/item/powered_gadget/vitals_projector
+	name = "vitals projector"
+	desc = "A device that can project the current vitals of its target. A wrench can change its target type."
+	icon_state = "gadgetmod_projector"
+	default_icon = "gadgetmod" //roundabout way of making update item easily changed. Used in updateicon proc.
+	var/current_target_overlay
+
+/obj/item/powered_gadget/vitals_projector/Initialize()
+	return ..()
+
+/obj/item/powered_gadget/vitals_projector/attackby(obj/item/W, mob/user)
+	if(W.tool_behaviour == TOOL_WRENCH)
+		var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
+		batterycost = initial(batterycost)
+		if(do_after(user, 5 SECONDS, target = user))
+			cut_overlay(current_target_overlay)
+			switch(mod1_ask)
+				if("cancel")
+					return
+				if("Human")
+					chosen_target_type = 1
+					current_target_overlay = mutable_appearance(icon, "gadgetmod_gadd")
+				if("Ordeal")
+					chosen_target_type = 2
+					batterycost += round(cell.maxcharge * 0.15)
+					current_target_overlay = mutable_appearance(icon, "gadgetmod_padd")
+				if("Abnormality")
+					chosen_target_type = 3
+					batterycost += round(cell.maxcharge * 0.25)
+					current_target_overlay = mutable_appearance(icon, "gadgetmod_radd")
+			add_overlay(current_target_overlay)
+			return
+	return ..()
+
+/obj/item/powered_gadget/vitals_projector/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(!chosen_target_type)
+		to_chat(user, "<span class='warning'>A wrench is needed to set the target type!</span>")
+	if(cell && cell.charge >= batterycost && target_check(target))
+		cell.charge -= batterycost
+		var/mob/living/L = target
+		L.apply_status_effect(/datum/status_effect/visualize_vitals)
+
+/obj/item/powered_gadget/vitals_projector/examine(mob/living/M)
+	. = ..()
+	switch(chosen_target_type)
+		if(1)
+			. += "<span class='notice'>Its currently set to Human.</span>"
+		if(2)
+			. += "<span class='notice'>Its currently set to Ordeal.</span>"
+		if(3)
+			. += "<span class='notice'>Its currently set to Abnormality.</span>"
+
+//status effects
+/datum/status_effect/visualize_vitals
+	id = "visualize vitals"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 400
+	tick_interval = 20 //2seconds
+	alert_type = null
+	var/current_vitals = 0
+	var/previous_overlay
+	var/vitals
+	var/vitals_icon
+	var/vitals_color
+
+/datum/status_effect/visualize_vitals/tick()
+	if(!isliving(owner))
+		qdel(src)
+	if(owner.health != current_vitals)
+		check_vitals(owner)
+		current_vitals = owner.health
+	. = ..()
+
+/datum/status_effect/visualize_vitals/on_remove()
+	owner.cut_overlay(previous_overlay)
+	. = ..()
+
+/datum/status_effect/visualize_vitals/proc/check_vitals(mob/living/L)
+	L.cut_overlay(previous_overlay)
+	vitals = round((owner.health / owner.maxHealth) * 100)
+	switch(vitals)
+		if(100 to INFINITY)
+			vitals_color = "#008000"
+			vitals_icon = "hp100"
+		if(50 to 99)
+			vitals_color = "#e6cc00"
+			vitals_icon = "hp75"
+		if(25 to 49)
+			vitals_color = "#ffa500"
+			vitals_icon = "hp50"
+		if(1 to 24)
+			vitals_color = "#FF0000"
+			vitals_icon = "hp25"
+		else
+			vitals_color = "#808080"
+			vitals_icon = "hp0"
+	var/mutable_appearance/colored_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', vitals_icon)
+	if(!ishuman(owner))
+		colored_overlay.pixel_x = -owner.pixel_x
+		colored_overlay.pixel_y = -owner.pixel_y
+	previous_overlay = colored_overlay
+	L.add_overlay(colored_overlay)
