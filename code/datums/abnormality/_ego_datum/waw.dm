@@ -346,3 +346,25 @@
 /*/datum/ego_datum/weapon/faith
 	item_path = /obj/item/ego_weapon/faith
 	cost = 50*/
+
+//My Sweet Orange Tree - Innocence
+/datum/ego_datum/armor/innocence
+	item_path = /obj/item/clothing/suit/armor/ego_gear/innocence
+	cost = 50
+
+/datum/ego_datum/weapon/innocence
+	item_path = /obj/item/ego_weapon/shield/innocence
+	cost = 50
+
+/datum/ego_datum/weapon/innocence/gun
+	item_path = /obj/item/gun/ego_gun/pistol/innocence
+	cost = 50
+
+//Baba Yaga - Rimeshank
+/datum/ego_datum/armor/rimeshank
+	item_path = /obj/item/clothing/suit/armor/ego_gear/rimeshank
+	cost = 50
+
+/datum/ego_datum/weapon/rimeshank
+	item_path = /obj/item/ego_weapon/rimeshank
+	cost = 50

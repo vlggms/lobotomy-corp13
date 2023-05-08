@@ -323,3 +323,10 @@
 	damage_type = PALE_DAMAGE
 	speed = 2
 	range = 6
+
+/obj/projectile/ego_bullet/ego_innocence
+	name = "innocence"
+	icon_state = "energy"
+	damage = 7 //Can dual wield, full auto
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

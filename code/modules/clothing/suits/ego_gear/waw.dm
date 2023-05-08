@@ -342,3 +342,21 @@
 	attribute_requirements = list(
 					PRUDENCE_ATTRIBUTE = 80
 					)
+
+/obj/item/clothing/suit/armor/ego_gear/innocence
+	name = "childhood memories"
+	desc = "In my dreams as child, Peter Pan would reach out a hand for me to hold and take me to Neverland. I had forgotten all of that, until I went into that room."
+	icon_state = "innocence"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) //140
+	attribute_requirements = list(
+					PRUDENCE_ATTRIBUTE = 80
+					)
+
+/obj/item/clothing/suit/armor/ego_gear/rimeshank
+	name = "rimeshank"
+	desc = "Well, I can't just shiver in the cold forever, can I?"
+	icon_state = "rimeshank"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 30) //140
+	attribute_requirements = list(
+					FORTITUDE_ATTRIBUTE = 80
+					)

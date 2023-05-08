@@ -55,3 +55,50 @@
 	damage = 20
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+//Snapshot, hitscan laser
+/obj/projectile/beam/snapshot
+	name = "snapshot"
+	icon_state = "snapshot"
+	hitsound = null
+	damage = 18
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
+	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
+	impact_type = /obj/effect/projectile/impact/laser/snapshot
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+/obj/effect/projectile/muzzle/laser/snapshot
+	name = "grey flash"
+	icon_state = "muzzle_grey"
+
+/obj/effect/projectile/tracer/laser/snapshot
+	name = "grey beam"
+	icon_state = "beam_grey"
+
+/obj/effect/projectile/impact/laser/snapshot
+	name = "grey impact"
+	icon_state = "impact_grey"
+
+/obj/projectile/ego_bullet/ego_wishing
+	name = "stone"
+	icon_state = "wishing_rock"
+	damage = 5
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_wishing/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/obj/item/gun/ego_gun/wishing_cairn/gun = fired_from
+	gun.Ammo_Change()
+	return
+
+/obj/projectile/ego_bullet/ego_wishing2
+	name = "kunai"
+	icon_state = "wishing_kunai"
+	damage = 10
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
