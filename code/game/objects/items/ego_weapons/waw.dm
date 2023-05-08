@@ -1185,16 +1185,12 @@
 	var/can_spin = TRUE
 	var/spinning = FALSE
 
-/obj/item/ego_weapon/amrita/attack(mob/living/target, mob/living/user) //knockback on hit
-	if(spinning)
+/obj/item/ego_weapon/amrita/attack(mob/living/target, mob/living/user)
+	if(!can_spin)
 		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 	..()
 	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+	addtimer(CALLBACK(src, .proc/spin_reset), 13)
 
 /obj/item/ego_weapon/amrita/proc/spin_reset()
 	can_spin = TRUE
@@ -1205,10 +1201,12 @@
 	if(!can_spin)
 		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
 		return
+	can_spin = FALSE
 	if(do_after(user, 13, src))
 		var/aoe = force
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
+		var/firsthit = TRUE //One target takes full damage
 		can_spin = TRUE
 		addtimer(CALLBACK(src, .proc/spin_reset), 13)
 		playsound(src, 'sound/abnormalities/clouded_monk/monk_bite.ogg', 75, FALSE, 4)
@@ -1220,11 +1218,15 @@
 			if(L == user || ishuman(L))
 				continue
 			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(firsthit)
+				aoe = (aoe / 2)
+				firsthit = FALSE
 			var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, src)))
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
 				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
-				
+	spin_reset()
+
 /obj/item/ego_weapon/discord
 	name = "discord"
 	desc = "The existance of evil proves the existance of good, just as light proves the existance of darkness."
