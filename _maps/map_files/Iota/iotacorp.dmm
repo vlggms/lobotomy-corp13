@@ -2564,7 +2564,17 @@
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/light/floor,
-/obj/item/kitchen/knife,
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 2;
+	pixel_x = 5
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "gw" = (
@@ -7102,6 +7112,7 @@
 	},
 /obj/structure/table/glass,
 /obj/item/safety_kit,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -13621,6 +13632,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
+/obj/item/toy/plush/hokma,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Hp" = (
@@ -17363,7 +17375,7 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
-/obj/item/toy/plush/hokma,
+/obj/item/toy/plush/malkuth,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "PE" = (
@@ -18476,6 +18488,7 @@
 /obj/machinery/light/floor,
 /obj/item/reagent_containers/glass/bowl,
 /obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Sl" = (
