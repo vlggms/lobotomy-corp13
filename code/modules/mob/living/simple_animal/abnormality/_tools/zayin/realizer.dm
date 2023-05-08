@@ -15,6 +15,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/eyes = /obj/item/clothing/suit/armor/ego_gear/realization/death,
 		/obj/item/clothing/suit/armor/ego_gear/daredevil = /obj/item/clothing/suit/armor/ego_gear/realization/fear,
 		/obj/item/clothing/suit/armor/ego_gear/wrist = /obj/item/clothing/suit/armor/ego_gear/realization/exsanguination,
+		/obj/item/clothing/suit/armor/ego_gear/match = /obj/item/clothing/suit/armor/ego_gear/realization/ember_matchlight,
 		// HE
 		/obj/item/clothing/suit/armor/ego_gear/grinder = /obj/item/clothing/suit/armor/ego_gear/realization/grinder,
 		/obj/item/clothing/suit/armor/ego_gear/magicbullet = /obj/item/clothing/suit/armor/ego_gear/realization/bigiron,
