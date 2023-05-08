@@ -51,8 +51,8 @@
 	icon_state = "wcorp_fist"
 	inhand_icon_state = "wcorp_fist"
 	force = 40
-	attack_verb_continuous = list("bashes", "crushes")
-	attack_verb_simple = list("bash", "crush")
+	attack_verb_continuous = list("bashes", "crushes", "decks", "pummels")
+	attack_verb_simple = list("bash", "crush", "deck", "pummel")
 	release_message = "You release your charge, slamming your whole weight into your opponent!"
 	charge_effect = "knock your opponent backwards."
 	charge_cost = 3
@@ -177,12 +177,12 @@
 	attack_verb_simple = list("cleave", "slash", "carve")
 	release_message = "You release your charge, attempting to cripple your enemy!"
 	charge_effect = "deliver a crippling blow, slowing your target."
-	attribute_requirements = list{
+	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
-							}
+	)
 	/obj/item/ego_weapon/city/wcorp/modifiedhatchet/release_charge(mob/living/target, mob/living/user)
 		to_chat(user, "<span class='notice'>[release_message].</span>")
 		sleep(2)
@@ -204,12 +204,12 @@
 	charge_cost = 8
 	release_message = "You release your charge, shattering the will of your foe!"
 	charge_effect = "increase the BLACK damage your target takes for a short time."
-	attribute_requirements = list{
+	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
-							}
+							)
 	/obj/item/ego_weapon/city/wcorp/modhammer/release_charge(mob/living/target, mob/living/user)
 		to_chat(user, "<span class='notice'>[release_message].</span>")
 		sleep(5)
