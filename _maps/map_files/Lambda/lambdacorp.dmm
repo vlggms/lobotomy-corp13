@@ -187,7 +187,9 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "aF" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/discipline)
 "aG" = (
 /obj/effect/turf_decal/tile/blue{
@@ -505,7 +507,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "bC" = (
 /obj/effect/turf_decal/tile/blue{
@@ -1886,7 +1890,9 @@
 /area/facility_hallway/welfare)
 "fW" = (
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/training)
 "fZ" = (
 /obj/structure/disposalpipe/segment{
@@ -1918,7 +1924,9 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "gi" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "gk" = (
 /obj/effect/turf_decal/tile/blue{
@@ -1970,7 +1978,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "gs" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/training)
 "gu" = (
 /obj/effect/turf_decal/tile/purple{
@@ -2277,7 +2287,9 @@
 /obj/structure/disposalpipe/junction{
 	dir = 2
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "hf" = (
 /obj/effect/turf_decal/tile/purple{
@@ -2443,7 +2455,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "hE" = (
 /obj/effect/turf_decal/tile/brown,
@@ -3253,7 +3267,9 @@
 /area/facility_hallway/manager)
 "jZ" = (
 /obj/structure/sign/departments/discipline,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "ka" = (
 /obj/effect/turf_decal/tile/blue{
@@ -3315,7 +3331,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "km" = (
 /obj/effect/turf_decal/siding/red{
@@ -3498,7 +3516,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "kM" = (
 /obj/structure/chair/comfy/brown{
@@ -3877,7 +3897,9 @@
 /area/department_main/training)
 "lU" = (
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/safety)
 "lX" = (
 /obj/machinery/vending/coffee,
@@ -3888,7 +3910,9 @@
 /area/facility_hallway/south)
 "lZ" = (
 /obj/structure/sign/departments/extraction,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "ma" = (
 /obj/effect/turf_decal/plaque{
@@ -4043,7 +4067,9 @@
 /area/department_main/welfare)
 "mL" = (
 /obj/structure/sign/departments/evac,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "mM" = (
 /obj/machinery/light/floor,
@@ -4144,7 +4170,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "nh" = (
 /obj/structure/window/reinforced/spawner/east{
@@ -4237,7 +4265,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "nA" = (
 /obj/effect/turf_decal/tile/brown{
@@ -4367,7 +4397,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "nV" = (
 /obj/effect/turf_decal/siding/brown{
@@ -4530,7 +4562,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "oB" = (
 /obj/effect/turf_decal/plaque{
@@ -4623,7 +4657,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/safety)
 "pg" = (
 /obj/structure/chair/stool/bar,
@@ -4761,7 +4797,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "pG" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/south)
 "pH" = (
 /obj/effect/turf_decal/plaque{
@@ -4982,7 +5020,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "qu" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/manager)
 "qv" = (
 /obj/structure/sink{
@@ -5162,7 +5202,9 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "qW" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/safety)
 "qX" = (
 /obj/structure/bodycontainer/crematorium/creamatorium,
@@ -5231,7 +5273,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "rl" = (
 /obj/effect/turf_decal/siding/blue{
@@ -5485,7 +5529,9 @@
 	color = "#00a86b"
 	},
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/safety)
 "se" = (
 /obj/machinery/computer/abnormality/training_rabbit{
@@ -5590,7 +5636,9 @@
 /area/facility_hallway/central)
 "sC" = (
 /obj/structure/sign/departments/custodian,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "sF" = (
 /obj/machinery/conveyor{
@@ -5603,7 +5651,9 @@
 /area/facility_hallway/central)
 "sG" = (
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "sH" = (
 /obj/effect/turf_decal/tile/green{
@@ -5683,7 +5733,9 @@
 	color = "#0000ff"
 	},
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "sT" = (
 /obj/structure/table/optable,
@@ -5691,7 +5743,9 @@
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "sV" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/training)
 "sW" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -6032,7 +6086,9 @@
 	dir = 4;
 	color = "#cd00cd"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "ul" = (
 /obj/machinery/announcement_system,
@@ -6079,7 +6135,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "ut" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "uu" = (
 /obj/effect/spawner/randomsnackvend,
@@ -6179,7 +6237,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "uK" = (
 /obj/effect/turf_decal/siding/purple{
@@ -6201,7 +6261,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "uP" = (
 /obj/effect/turf_decal/tile/purple{
@@ -6407,7 +6469,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "vv" = (
 /obj/effect/turf_decal/tile/green{
@@ -6985,7 +7049,9 @@
 /area/facility_hallway/welfare)
 "xw" = (
 /obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "xx" = (
 /obj/effect/turf_decal/siding/blue/corner{
@@ -6994,7 +7060,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
 "xy" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/safety)
 "xA" = (
 /obj/machinery/door/airlock/centcom,
@@ -7079,7 +7147,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "xZ" = (
 /obj/item/grown/sunflower,
@@ -7287,7 +7357,9 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "yE" = (
 /obj/effect/turf_decal/tile/purple{
@@ -7341,7 +7413,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/safety)
 "yK" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -7473,7 +7547,9 @@
 /area/department_main/command)
 "zb" = (
 /obj/structure/sign/departments/discipline,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/discipline)
 "zc" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -7816,7 +7892,9 @@
 /obj/structure/disposalpipe/junction{
 	dir = 2
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/training)
 "Az" = (
 /obj/effect/turf_decal/tile/purple{
@@ -7846,7 +7924,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/south)
 "AE" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/welfare)
 "AG" = (
 /obj/structure/table/wood,
@@ -7874,7 +7954,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "AM" = (
 /obj/effect/turf_decal/tile/purple{
@@ -7947,7 +8029,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/welfare)
 "AX" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -9712,7 +9796,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/training)
 "Gz" = (
 /obj/item/grown/sunflower,
@@ -9737,11 +9823,15 @@
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "GI" = (
 /obj/structure/sign/departments/info,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "GJ" = (
 /obj/machinery/disposal/bin,
@@ -9825,7 +9915,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "Hk" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/north)
 "Hn" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -10196,7 +10288,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "IJ" = (
 /obj/structure/window/reinforced/spawner/east,
@@ -10439,7 +10533,9 @@
 	color = "#0000ff"
 	},
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/welfare)
 "Jy" = (
 /obj/effect/turf_decal/tile/brown{
@@ -10619,7 +10715,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "JZ" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -10759,7 +10857,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "Kv" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -10904,7 +11004,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/discipline)
 "KT" = (
 /obj/machinery/computer/ego_purchase{
@@ -11023,7 +11125,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Lr" = (
 /obj/structure/table/wood/fancy/blue,
@@ -11074,7 +11178,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/training)
 "LA" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -11249,7 +11355,9 @@
 /turf/open/floor/grass,
 /area/department_main/command)
 "Mj" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/discipline)
 "Mm" = (
 /obj/effect/turf_decal/tile/blue{
@@ -11498,7 +11606,9 @@
 /area/facility_hallway/central)
 "Nk" = (
 /obj/structure/disposalpipe/junction/flip,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/space)
 "Nl" = (
 /obj/machinery/hydroponics/constructable,
@@ -11795,7 +11905,9 @@
 /area/facility_hallway/safety)
 "Og" = (
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "Oh" = (
 /obj/effect/turf_decal/siding/green{
@@ -11870,7 +11982,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "Oz" = (
 /obj/effect/turf_decal/siding/brown,
@@ -11908,7 +12022,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/welfare)
 "OH" = (
 /obj/effect/turf_decal/tile/blue{
@@ -12336,7 +12452,9 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "PU" = (
 /obj/item/grown/novaflower,
@@ -12368,7 +12486,9 @@
 /turf/open/floor/grass,
 /area/department_main/command)
 "Qc" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/welfare)
 "Qd" = (
 /obj/structure/disposalpipe/segment{
@@ -12413,7 +12533,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/discipline,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/discipline)
 "Qh" = (
 /obj/effect/turf_decal/tile/purple{
@@ -12493,7 +12615,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "QF" = (
 /obj/structure/disposaloutlet{
@@ -13137,7 +13261,9 @@
 	color = "#cd00cd"
 	},
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "SC" = (
 /obj/machinery/sleeper/syndie,
@@ -13302,7 +13428,9 @@
 /area/department_main/command)
 "Td" = (
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/welfare)
 "Tf" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -13372,7 +13500,9 @@
 /area/department_main/information)
 "Tq" = (
 /obj/structure/disposalpipe/junction,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Tt" = (
 /obj/machinery/modular_computer/console/preset/research{
@@ -13417,7 +13547,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "TA" = (
 /obj/structure/bed/pod,
@@ -13439,7 +13571,9 @@
 /area/facility_hallway/welfare)
 "TD" = (
 /obj/structure/sign/departments/records,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "TF" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -13586,7 +13720,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/space)
 "Uk" = (
 /obj/effect/turf_decal/siding/brown{
@@ -13686,7 +13822,9 @@
 	color = "#00a86b"
 	},
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "UM" = (
 /obj/effect/spawner/randomsnackvend,
@@ -14051,7 +14189,9 @@
 /area/department_main/training)
 "Wf" = (
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "Wh" = (
 /obj/effect/turf_decal/siding/red{
@@ -14344,7 +14484,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Xo" = (
 /obj/effect/turf_decal/tile/purple{
@@ -14404,7 +14546,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "Xu" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Xw" = (
 /obj/effect/turf_decal/tile/blue{
@@ -14424,7 +14568,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "XC" = (
 /obj/effect/turf_decal/siding/purple{
@@ -14844,7 +14990,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Zc" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -14896,7 +15044,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "Zi" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/records)
 "Zj" = (
 /obj/machinery/light/cold/no_nightlight,
@@ -14940,7 +15090,9 @@
 /area/facility_hallway/discipline)
 "Zs" = (
 /obj/structure/disposalpipe/junction/flip,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/facility_hallway/central)
 "Zu" = (
 /obj/effect/turf_decal/tile/purple{
@@ -15122,7 +15274,9 @@
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
 	},
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/command)
 "ZT" = (
 /obj/effect/turf_decal/siding/red{
