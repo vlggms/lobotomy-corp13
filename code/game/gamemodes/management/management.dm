@@ -32,7 +32,7 @@
 	return ..()
 
 /datum/game_mode/management/pure
-	name = "Pure"
+	name = "L Corp - Main Branch"
 	config_tag = "pure"
 	votable = 1
 
@@ -43,7 +43,7 @@
 		)
 
 /datum/game_mode/management/classic
-	name = "classic"
+	name = "L Corp - All Abnormalities"
 	config_tag = "classic"
 	votable = 1
 
@@ -60,7 +60,7 @@
 		)
 
 /datum/game_mode/management/branch
-	name = "Lobotomy Corporation - Side Branch"
+	name = "L Corp - Side Branch"
 	config_tag = "sidebranch"
 	votable = 0
 

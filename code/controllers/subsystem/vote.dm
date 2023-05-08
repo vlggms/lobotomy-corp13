@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(vote)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	var/list/choices = list()
+	var/list/choice_tags = list() // If you want your votes to be named something comprehensible while their actual values may not be so useful
 	var/list/choice_by_ckey = list()
 	var/list/generated_actions = list()
 	var/initiator
@@ -29,6 +30,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/reset()
 	choices.Cut()
+	choice_tags.Cut()
 	choice_by_ckey.Cut()
 	initiator = null
 	mode = null
@@ -62,10 +64,10 @@ SUBSYSTEM_DEF(vote)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
-				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += non_voters.len
-					if(choices[GLOB.master_mode] >= greatest_votes)
-						greatest_votes = choices[GLOB.master_mode]
+				var/random_gamemode = pick(choices)
+				choices[random_gamemode] += non_voters.len
+				if(choices[random_gamemode] >= greatest_votes)
+					greatest_votes = choices[random_gamemode]
 			else if(mode == "map")
 				for (var/non_voter_ckey in non_voters)
 					var/client/C = non_voters[non_voter_ckey]
@@ -126,10 +128,11 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
-				if(GLOB.master_mode != .)
-					SSticker.save_mode(.)
+				var/chosen_mode = choice_tags[choices[.]]
+				if(GLOB.master_mode != chosen_mode)
+					SSticker.save_mode(chosen_mode)
 					if(!SSticker.HasRoundStarted())
-						GLOB.master_mode = .
+						GLOB.master_mode = chosen_mode
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
@@ -201,7 +204,8 @@ SUBSYSTEM_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round","Continue Playing")
 			if("gamemode")
-				choices.Add(config.votable_modes)
+				choice_tags.Add(config.votable_modes)
+				choices.Add(config.votable_mode_names)
 			if("map")
 				if(!lower_admin && SSmapping.map_voted)
 					to_chat(usr, "<span class='warning'>The next map has already been selected.</span>")
