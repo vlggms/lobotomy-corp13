@@ -1563,6 +1563,13 @@
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/department_main/command)
+"nD" = (
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+/turf/closed/mineral/ash_rock,
+/area/facility_hallway/welfare)
 "nE" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -2231,6 +2238,11 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/holofloor/white,
 /area/department_main/command)
+"tE" = (
+/obj/machinery/light/cold/no_nightlight,
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+/turf/closed/mineral/ash_rock,
+/area/facility_hallway/welfare)
 "tS" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2245,10 +2257,10 @@
 /turf/open/floor/holofloor/white,
 /area/department_main/training)
 "uh" = (
-/obj/machinery/sleeper/syndie,
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
+/obj/machinery/sleeper/syndie,
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "uj" = (
@@ -2352,6 +2364,10 @@
 /obj/structure/musician/piano{
 	icon_state = "piano"
 	},
+/obj/machinery/camera/autoname{
+	dir = 4;
+	pixel_y = -23
+	},
 /turf/open/floor/holofloor/white,
 /area/department_main/training)
 "uT" = (
@@ -2411,6 +2427,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/facility_hallway/information)
+"vl" = (
+/obj/machinery/light/cold/no_nightlight,
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+/turf/closed/mineral/ash_rock,
+/area/facility_hallway/discipline)
 "vm" = (
 /obj/structure/railing,
 /obj/structure/table/reinforced,
@@ -2968,6 +2989,13 @@
 "Ap" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/training)
+"At" = (
+/obj/machinery/light/cold/no_nightlight{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+/turf/closed/mineral/ash_rock,
+/area/facility_hallway/information)
 "AA" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -4016,10 +4044,10 @@
 /turf/open/floor/plating,
 /area/facility_hallway/training)
 "IV" = (
-/obj/machinery/sleeper/syndie,
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
 	},
+/obj/machinery/sleeper/syndie,
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "Ja" = (
@@ -4252,6 +4280,9 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 9
 	},
 /turf/open/floor/holofloor/white,
 /area/department_main/training)
@@ -5864,6 +5895,11 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/discipline)
+"YL" = (
+/obj/machinery/light/cold/no_nightlight,
+/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+/turf/closed/mineral/ash_rock,
+/area/facility_hallway/information)
 "YM" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/masks{
@@ -28538,7 +28574,7 @@ Tu
 Tu
 Tu
 Tu
-hb
+qO
 Tu
 Tu
 Tu
@@ -28548,7 +28584,7 @@ Tu
 Tu
 Tu
 rP
-hb
+qO
 Tu
 Tu
 Tu
@@ -30356,7 +30392,7 @@ UQ
 UQ
 TH
 hb
-gA
+tE
 Tu
 Tu
 Tu
@@ -31357,7 +31393,7 @@ yy
 gH
 hH
 Jy
-Jy
+xq
 Jy
 Jy
 Jy
@@ -31640,14 +31676,14 @@ hb
 hb
 hb
 hb
-hb
+qO
 gA
 Tu
 Tu
 Tu
 WR
 sY
-sY
+Jt
 sY
 Tu
 Tu
@@ -32150,7 +32186,7 @@ hb
 hb
 Tu
 Tu
-hb
+Lr
 Tu
 LL
 LL
@@ -32654,7 +32690,7 @@ XJ
 bn
 Tu
 Tu
-vd
+nD
 hb
 hb
 GW
@@ -33457,7 +33493,7 @@ sY
 sY
 sY
 sY
-sY
+qm
 sY
 Tu
 Tu
@@ -34215,7 +34251,7 @@ LL
 nE
 nH
 JI
-sY
+qm
 Tu
 LL
 LL
@@ -34450,7 +34486,7 @@ Jy
 Jy
 id
 XJ
-Jy
+zZ
 Tu
 rO
 Sn
@@ -35476,7 +35512,7 @@ Jy
 Jy
 Jy
 Jy
-Jy
+zZ
 Jy
 bn
 Tu
@@ -41125,7 +41161,7 @@ hH
 hH
 hH
 Jy
-Jy
+xq
 Jy
 Jy
 Tu
@@ -41409,7 +41445,7 @@ Xk
 Jv
 GD
 gP
-sY
+Jt
 nH
 km
 Ue
@@ -41640,7 +41676,7 @@ XJ
 XJ
 Jy
 Jy
-Jy
+zZ
 Jy
 Tu
 gP
@@ -42416,7 +42452,7 @@ Jy
 Jy
 Jy
 Jy
-Jy
+zZ
 Jy
 Tu
 qw
@@ -42964,7 +43000,7 @@ yl
 km
 sY
 sY
-sY
+qm
 sY
 sY
 sY
@@ -43181,7 +43217,7 @@ hH
 XJ
 XJ
 Jy
-Jy
+xq
 sX
 Jy
 Jy
@@ -43445,7 +43481,7 @@ gH
 Hi
 wM
 XJ
-bn
+vl
 Tu
 qw
 vr
@@ -43737,7 +43773,7 @@ sY
 jj
 Tu
 Tu
-sY
+Jt
 jj
 Tu
 Tu
@@ -44508,7 +44544,7 @@ sY
 sY
 sY
 sY
-sY
+qm
 sY
 Tu
 Tu
@@ -45248,7 +45284,7 @@ Jy
 Tu
 Tu
 yn
-fp
+fb
 fp
 WG
 XR
@@ -45257,7 +45293,7 @@ XR
 fp
 Tu
 Tu
-fp
+fb
 Tu
 LL
 cZ
@@ -46273,7 +46309,7 @@ Tu
 kl
 uj
 fp
-wj
+At
 yn
 fp
 WG
@@ -46290,7 +46326,7 @@ fp
 fp
 fp
 fp
-fp
+Tb
 Tu
 Tu
 Tu
@@ -47309,7 +47345,7 @@ sS
 hI
 YD
 fp
-TA
+YL
 Tu
 sS
 sS
@@ -49108,7 +49144,7 @@ Tu
 Tu
 Tu
 yP
-fp
+fb
 Tu
 Tu
 Tu

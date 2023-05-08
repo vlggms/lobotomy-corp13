@@ -320,8 +320,13 @@
 /obj/structure/table/reinforced{
 	color = "#00a86b"
 	},
-/obj/structure/window/reinforced/spawner/north,
-/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25
+	},
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2
+	},
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "fY" = (
@@ -731,7 +736,9 @@
 /obj/structure/table/reinforced{
 	color = "#00a86b"
 	},
-/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner{
+	max_integrity = 25
+	},
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
@@ -876,6 +883,15 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/orange,
+/area/department_main/command)
+"oP" = (
+/obj/structure/table/reinforced{
+	color = "#00a86b"
+	},
+/obj/structure/window/reinforced/spawner/east{
+	max_integrity = 25
+	},
+/turf/open/floor/mineral/silver,
 /area/department_main/command)
 "oZ" = (
 /obj/machinery/light/floor,
@@ -1201,7 +1217,12 @@
 /area/department_main/command)
 "tN" = (
 /obj/structure/railing,
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "tO" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -1544,6 +1565,26 @@
 	},
 /turf/open/floor/mineral/diamond,
 /area/department_main/command)
+"BE" = (
+/obj/structure/table/reinforced{
+	color = "#00a86b"
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 2;
+	pixel_x = 5
+	},
+/obj/structure/window/reinforced/spawner{
+	max_integrity = 25
+	},
+/turf/open/floor/mineral/silver,
+/area/department_main/command)
 "BN" = (
 /obj/structure/table/reinforced{
 	color = "#00a86b"
@@ -1551,7 +1592,9 @@
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner{
+	max_integrity = 25
+	},
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "BT" = (
@@ -2040,7 +2083,12 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "Jh" = (
 /obj/machinery/roulette{
@@ -2091,7 +2139,12 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "Kj" = (
 /obj/machinery/door/airlock/gold/glass,
@@ -2320,7 +2373,12 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "OV" = (
 /obj/effect/turf_decal/siding{
@@ -2508,7 +2566,12 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "Sb" = (
 /obj/machinery/light/cold/no_nightlight{
@@ -2595,22 +2658,17 @@
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "Ts" = (
-/obj/structure/window/reinforced/spawner,
-/obj/structure/table/reinforced{
-	color = "#00a86b"
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
 	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
-	},
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "Ty" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -2703,7 +2761,12 @@
 /turf/open/floor/carpet/red,
 /area/department_main/command)
 "UY" = (
-/turf/open/water,
+/obj/effect/mermaid_water{
+	name = "Coastal Waters";
+	color = "#dddddd";
+	desc = "Not a drop of drinkable water, just a body of salty brine"
+	},
+/turf/open/floor/mineral/diamond,
 /area/department_main/command)
 "Vb" = (
 /obj/structure/table/wood/poker,
@@ -2721,6 +2784,15 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
+"VB" = (
+/obj/structure/table/reinforced{
+	color = "#00a86b"
+	},
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25
+	},
+/turf/open/floor/mineral/gold,
+/area/department_main/command)
 "VK" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/carpet/blue,
@@ -2737,7 +2809,9 @@
 /obj/structure/table/reinforced{
 	color = "#00a86b"
 	},
-/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner{
+	max_integrity = 25
+	},
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "Wh" = (
@@ -31034,10 +31108,10 @@ eE
 fY
 fY
 cq
-hl
-iX
+xB
+Ye
 jn
-OC
+Ye
 xB
 cq
 fY
@@ -31291,10 +31365,10 @@ eE
 oZ
 fY
 Lw
-xB
+hl
+iX
 Ye
-Ye
-Ye
+OC
 xB
 Lw
 fY
@@ -31549,9 +31623,9 @@ IK
 Gl
 fY
 Lw
+VB
 xB
-xB
-xB
+VB
 Lw
 fY
 Gl
@@ -35917,7 +35991,7 @@ QW
 Mo
 Rm
 RO
-UY
+Ts
 UY
 cq
 RO
@@ -36174,11 +36248,11 @@ QW
 QW
 Rm
 RO
+Ts
 UY
 UY
 UY
-UY
-UY
+Ts
 OU
 Ye
 tO
@@ -39773,9 +39847,9 @@ TU
 Vb
 QW
 rE
+oP
 sf
-sf
-sf
+oP
 rE
 QW
 VK
@@ -40029,10 +40103,10 @@ YE
 sg
 QW
 rE
-sf
+We
+fG
 kD
-kD
-kD
+BE
 sf
 rE
 QW
@@ -40286,10 +40360,10 @@ YE
 QW
 QW
 jn
-We
-fG
+sf
+kD
 cq
-Ts
+kD
 sf
 jn
 QW
