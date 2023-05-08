@@ -183,6 +183,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
 	var/turf/T = get_turf(gifted_human)
 	gifted_human.gib()
+	gifted_human = null
 	var /mob/living/simple_animal/hostile/slime/big/S = new(T)
 	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
 
