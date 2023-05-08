@@ -7,8 +7,8 @@
 	force = 70
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	attack_verb_continuous = list("purges", "purifies")
-	attack_verb_simple = list("purge", "purify")
+	attack_verb_continuous = list("purges", "purifies", "abjures")
+	attack_verb_simple = list("purge", "purify", "abjure")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -117,8 +117,8 @@
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	attack_verb_continuous = list("slashes", "slices", "cuts", "conducts")
+	attack_verb_simple = list("slash", "slice", "cut", "conduct")
 	hitsound = 'sound/weapons/ego/da_capo1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -230,7 +230,7 @@
 
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
-	desc = "The weapon of someone who can swing their weight around like a truck"
+	desc = "The weapon of the Magical Girl whose desire for happiness twisted into greed."
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gold_rush"
 	force = 140
@@ -345,8 +345,8 @@
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("attacks")
-	attack_verb_simple = list("attack")
+	attack_verb_continuous = list("CENSOREDs")
+	attack_verb_simple = list("CENSORED")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,

@@ -46,7 +46,7 @@
 
 //Non-baton Wcorp is Grade 5
 /obj/item/ego_weapon/city/wcorp/fist
-	name = "w-corp gauntlet"
+	name = "W-Corp gauntlet"
 	desc = "A glowing blue fist used by senior W corp staff."
 	icon_state = "wcorp_fist"
 	inhand_icon_state = "wcorp_fist"
@@ -72,7 +72,7 @@
 
 
 /obj/item/ego_weapon/city/wcorp/axe
-	name = "w-corp axe"
+	name = "W-Corp axe"
 	desc = "A glowing blue axe used by senior W corp staff."
 	icon_state = "wcorp_axe"
 	inhand_icon_state = "wcorp_fist"
@@ -100,7 +100,7 @@
 	user.changeNext_move(CLICK_CD_MELEE * 6)
 
 /obj/item/ego_weapon/city/wcorp/spear
-	name = "w-corp spear"
+	name = "W-Corp spear"
 	desc = "A glowing blue spear used by senior W corp staff."
 	icon_state = "wcorp_spear"
 	inhand_icon_state = "wcorp_spear"
@@ -137,8 +137,8 @@
 
 
 /obj/item/ego_weapon/city/wcorp/dagger
-	name = "w-corp dagger"
-	desc = "A glowing blue dagger used by senior W corp staff."
+	name = "W-Corp dagger"
+	desc = "A glowing blue dagger used by senior W-Corp staff."
 	icon_state = "wcorp_dagger"
 	inhand_icon_state = "wcorp_dagger"
 	force = 24
@@ -164,3 +164,77 @@
 		var/turf/T = get_turf(target)
 		new /obj/effect/temp_visual/justitia_effect(T)
 
+//Modified W-Corp weapons are above Grade 5, usually stopping at the higher end of Grade 3. Alongside the burst damage, they usually include a minor side-effect. Custom-made by ValerieSteel!
+/obj/item/ego_weapon/city/wcorp/modifiedhatchet
+	name = "modified W-Corp hatchet"
+	desc = "A glowing blue W-Corp handaxe once used by senior W-Corp staff. This one's seen some after-market modifications."
+	icon_state = "wcorp_axe"
+	inhand_icon_state = "wcorp_fist"
+	force = 65
+	attack_speed = 1
+	charge_cost = 5
+	attack_verb_continuous = list("cleaves", "slashes", "carves")
+	attack_verb_simple = list("cleave", "slash", "carve")
+	release_message = "You release your charge, attempting to cripple your enemy!"
+	charge_effect = "deliver a crippling blow, slowing your target."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100
+							PRUDENCE_ATTRIBUTE = 80
+							TEMPERANCE_ATTRIBUTE = 80
+							JUSTICE_ATTRIBUTE = 80
+							)
+	/obj/item/ego_weapon/city/wcorp/modifiedhatchet/release_charge(mob/living/target, mob/living/user)
+		to_chat(user, "<span class='notice'>[release_message].</span>")
+		sleep(2)
+		target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		target.apply_status_effect(/datum/status_effect/qliphothoverload/)
+		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+		var/turf/T = get_turf(target)
+		new /obj/effect/temp_visual/justitia_effect(T)
+
+/obj/item/ego_weapon/city/wcorp/modhammer
+	name = "modified W-Corp warhammer"
+	desc = "A glowing blue W-Corp warhammer once used by senior W-Corp staff. This one's seen some after-market modifications."
+	icon_state = "wcorp_spear"
+	inhand_icon_state = "wcorp_fist"
+	force = 140
+	attack_speed = 2
+	attack_verb_continuous = list("smashes", "crushes", "shatters")
+	attack_verb_simple = list("smash", "crush", "shatter")
+	charge_cost = 8
+	release_message = "You release your charge, shattering the will of your foe!"
+	charge_effect = "increase the BLACK damage your target takes for a short time."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							PRUDENCE_ATTRIBUTE = 80
+							TEMPERANCE_ATTRIBUTE = 80
+							JUSTICE_ATTRIBUTE = 100
+							)
+	/obj/item/ego_weapon/city/wcorp/modhammer/release_charge(mob/living/target, mob/living/user)
+		to_chat(user, "<span class='notice'>[release_message].</span>")
+		sleep(5)
+		target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		target.apply_status_effect(/datum/status_effect/rendBlackArmor)
+		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+		var/turf/T = get_turf(target)
+		new /obj/effect/temp_visual/justitia_effect(T)
+
+	/datum/status_effect/rendBlackArmor
+		id = "rend Black armor"
+		status_type = STATUS_EFFECT_UNIQUE
+		duration = 50 //5 seconds since it's melee-ish
+		alert_type = null
+		var/original_armor
+
+	/datum/status_effect/rendBlackArmor/on_apply()
+		. = ..()
+		var/mob/living/simple_animal/M = owner
+		original_armor = M.damage_coeff[BLACK_DAMAGE]
+		if(original_armor > 0)
+		M.damage_coeff[BLACK_DAMAGE] = original_armor + 0.2
+
+	/datum/status_effect/rendBlackArmor/on_remove()
+		. = ..()
+		var/mob/living/simple_animal/M = owner
+		if(M.damage_coeff[BLACK_DAMAGE] == original_armor + 0.2)
+		M.damage_coeff[BLACK_DAMAGE] = original_armor

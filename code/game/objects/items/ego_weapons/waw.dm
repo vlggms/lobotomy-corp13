@@ -113,7 +113,7 @@
 
 /obj/item/ego_weapon/oppression
 	name = "oppression"
-	desc = "Even light forms of contraint can be considered totalitarianism"
+	desc = "Even light forms of constraint can be considered totalitarianism"
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
 	force = 13
@@ -870,8 +870,8 @@
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
-	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores", "gazes upon")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore", "gaze upon")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
