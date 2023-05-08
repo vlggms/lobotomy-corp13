@@ -1640,16 +1640,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
-"lk" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 4
-	},
-/obj/structure/fluff/empty_sleeper/syndicate,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "ll" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -4723,10 +4713,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/information)
-"DW" = (
-/obj/machinery/door/airlock/centcom,
-/turf/open/space/basic,
-/area/facility_hallway/west)
 "DX" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -7214,13 +7200,13 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "Uu" = (
-/obj/structure/fluff/empty_sleeper/syndicate,
 /obj/effect/turf_decal/siding/green{
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green{
 	dir = 4
 	},
+/obj/machinery/sleeper/syndie,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "UE" = (
@@ -7528,9 +7514,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/facility_hallway/training)
-"WF" = (
-/turf/open/floor/plating,
-/area/facility_hallway/south)
 "WN" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
@@ -36420,7 +36403,7 @@ Tz
 TE
 bA
 pH
-DW
+KK
 Hh
 ts
 CY
@@ -42356,11 +42339,11 @@ co
 lI
 lI
 lI
-WF
+co
 Bv
 Bv
 Bv
-WF
+co
 cR
 cR
 cR
@@ -45393,7 +45376,7 @@ Uu
 Uu
 Ks
 Uu
-lk
+Uu
 vg
 Rk
 Zt
