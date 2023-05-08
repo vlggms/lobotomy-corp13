@@ -14,6 +14,7 @@
 	var/list/modes			// allowed modes
 	var/list/gamemode_cache
 	var/list/votable_modes		// votable modes
+	var/list/votable_mode_names // compound of mode_names and votable_modes
 	var/list/mode_names
 	var/list/mode_reports
 	var/list/mode_false_report_weight
@@ -228,6 +229,7 @@
 	mode_reports = list()
 	mode_false_report_weight = list()
 	votable_modes = list()
+	votable_mode_names = list()
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	for(var/T in gamemode_cache)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -247,6 +249,7 @@
 					mode_false_report_weight[M.report_type] = min(1, M.false_report_weight)
 				if(M.votable)
 					votable_modes += M.config_tag
+					votable_mode_names += M.name
 		qdel(M)
 
 /datum/controller/configuration/proc/LoadMOTD()
