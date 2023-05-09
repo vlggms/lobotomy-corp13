@@ -5,7 +5,9 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "ad" = (
 /obj/effect/turf_decal/siding/white{
@@ -14,7 +16,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
 /area/department_main/command)
 "ao" = (
 /obj/effect/turf_decal/siding/red{
@@ -22,11 +26,16 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/curtain/cloth/fancy,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "aq" = (
 /obj/structure/table/wood/poker,
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "at" = (
 /obj/item/toy/plush/honglu,
@@ -64,7 +73,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "bp" = (
 /obj/structure/table/wood/poker,
@@ -106,6 +117,11 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
+"cp" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "cq" = (
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/gold,
@@ -115,7 +131,16 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
+/area/department_main/command)
+"cO" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "cW" = (
 /obj/structure/railing{
@@ -133,12 +158,9 @@
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "dn" = (
-/obj/structure/railing{
-	dir = 1;
-	name = "invincible railing";
-	resistance_flags = 64
+/obj/effect/mermaid_water{
+	density = 1
 	},
-/obj/effect/mermaid_water,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "dy" = (
@@ -169,6 +191,11 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
+/area/department_main/command)
+"dV" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "ea" = (
 /obj/machinery/modular_computer/console/preset/civilian{
@@ -259,7 +286,7 @@
 /area/department_main/command)
 "fr" = (
 /obj/effect/landmark/latejoin,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "fu" = (
 /obj/structure/railing{
@@ -270,7 +297,7 @@
 /area/department_main/command)
 "fF" = (
 /obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "fG" = (
 /obj/structure/table/reinforced{
@@ -338,6 +365,11 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
+"ge" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "go" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/carpet/orange,
@@ -346,7 +378,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "gw" = (
 /obj/effect/turf_decal/siding/white{
@@ -357,6 +389,12 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
+/area/department_main/command)
+"gA" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "gD" = (
 /obj/effect/turf_decal/siding/red{
@@ -382,7 +420,9 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/curtain/cloth/fancy,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "gP" = (
 /turf/open/floor/plasteel/stairs{
@@ -423,13 +463,22 @@
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "hg" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
+/area/department_main/command)
+"hh" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "hl" = (
 /obj/structure/table/reinforced{
@@ -445,6 +494,12 @@
 	pixel_y = 16
 	},
 /turf/open/floor/mineral/silver,
+/area/department_main/command)
+"hx" = (
+/obj/effect/spawner/randomarcade{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "hN" = (
 /obj/effect/turf_decal/siding/white{
@@ -463,6 +518,9 @@
 /area/department_main/command)
 "ie" = (
 /turf/closed/indestructible/fakedoor{
+	name = "Locked Casino Door";
+	icon = 'icons/obj/doors/airlocks/station/gold.dmi';
+	icon_state = "closed";
 	opacity = 0
 	},
 /area/department_main/command)
@@ -496,6 +554,15 @@
 	opacity = 0
 	},
 /area/department_main/command)
+"iP" = (
+/obj/machinery/light/floor,
+/obj/structure/railing{
+	dir = 9;
+	name = "invincible railing";
+	max_integrity = 10000000
+	},
+/turf/open/floor/mineral/silver,
+/area/department_main/command)
 "iS" = (
 /obj/structure/railing{
 	dir = 6;
@@ -503,6 +570,13 @@
 	max_integrity = 10000000
 	},
 /turf/open/floor/facility/dark,
+/area/department_main/command)
+"iV" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 10
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "iX" = (
 /obj/structure/table/reinforced{
@@ -561,6 +635,13 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
+"kb" = (
+/obj/machinery/light/floor,
+/obj/effect/spawner/randomarcade{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/command)
 "ke" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/blue/corner{
@@ -583,7 +664,9 @@
 	},
 /obj/structure/curtain/cloth/fancy,
 /obj/machinery/light/floor,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "kk" = (
 /obj/structure/railing{
@@ -594,17 +677,23 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/red,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "kq" = (
 /obj/structure/chair/comfy/black,
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "kx" = (
-/obj/effect/turf_decal/siding/white{
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "kA" = (
 /obj/effect/turf_decal/siding/blue{
@@ -618,8 +707,28 @@
 "kD" = (
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
+"kG" = (
+/obj/structure/railing{
+	dir = 8;
+	name = "invincible railing";
+	max_integrity = 10000000
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
+/area/department_main/command)
 "kO" = (
-/turf/closed/indestructible/fakedoor,
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Casino Door";
+	icon = 'icons/obj/doors/airlocks/station/silver.dmi';
+	icon_state = "closed"
+	},
 /area/department_main/command)
 "kP" = (
 /obj/effect/turf_decal/siding/white/corner{
@@ -635,7 +744,9 @@
 	},
 /obj/structure/curtain/cloth/fancy,
 /obj/machinery/light/floor,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "ll" = (
 /turf/closed/indestructible/reinforced{
@@ -659,7 +770,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "lz" = (
 /obj/effect/turf_decal/siding{
@@ -730,7 +841,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "mh" = (
 /obj/structure/table/reinforced{
@@ -742,6 +853,11 @@
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
+"mi" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "mk" = (
 /obj/structure/railing{
 	dir = 8;
@@ -752,7 +868,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "mG" = (
 /obj/effect/turf_decal/siding/blue{
@@ -800,7 +916,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "nf" = (
 /obj/machinery/light/cold/no_nightlight{
@@ -810,6 +928,15 @@
 	color = "#a50000";
 	opacity = 0
 	},
+/area/department_main/command)
+"ni" = (
+/obj/machinery/light/floor,
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/mineral/silver,
 /area/department_main/command)
 "ny" = (
 /obj/machinery/door/airlock/silver/glass,
@@ -827,7 +954,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "nI" = (
 /obj/structure/railing{
@@ -835,7 +962,9 @@
 	max_integrity = 10000000
 	},
 /obj/effect/turf_decal/siding/red,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "nV" = (
 /obj/item/toy/plush/yuri,
@@ -850,13 +979,19 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/command)
 "ol" = (
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "oy" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	name = "Dark";
+	density = 1
+	},
 /area/department_main/command)
 "oG" = (
 /obj/effect/turf_decal/siding/white{
@@ -874,7 +1009,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "oK" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -984,7 +1119,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "qw" = (
 /obj/structure/railing{
@@ -999,6 +1134,11 @@
 	shuttleId = "secondary"
 	},
 /turf/open/floor/carpet/black,
+/area/department_main/command)
+"qy" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "qD" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -1023,6 +1163,12 @@
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
+"qT" = (
+/obj/effect/spawner/randomarcade{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/command)
 "qW" = (
 /obj/structure/railing{
 	dir = 8;
@@ -1031,7 +1177,9 @@
 	},
 /obj/structure/curtain/cloth/fancy,
 /obj/machinery/light/floor,
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/silver{
+	density = 1
+	},
 /area/department_main/command)
 "ra" = (
 /obj/effect/turf_decal/siding/red{
@@ -1042,7 +1190,9 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "ro" = (
 /obj/item/toy/plush/hod,
@@ -1053,11 +1203,15 @@
 "rt" = (
 /obj/machinery/light/cold/no_nightlight,
 /obj/effect/landmark/latejoin,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "rE" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/carpet/blue,
+/area/department_main/command)
+"rH" = (
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "rM" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1088,7 +1242,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "rZ" = (
 /obj/structure/railing{
@@ -1133,6 +1287,15 @@
 	},
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade,
 /turf/open/floor/mineral/gold,
+/area/department_main/command)
+"sJ" = (
+/obj/machinery/light/floor,
+/obj/structure/railing{
+	dir = 5;
+	name = "invincible railing";
+	max_integrity = 10000000
+	},
+/turf/open/floor/mineral/silver,
 /area/department_main/command)
 "sL" = (
 /obj/structure/table/wood/poker,
@@ -1182,7 +1345,9 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "to" = (
 /obj/machinery/computer/shuttle/mining{
@@ -1216,19 +1381,20 @@
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "tN" = (
-/obj/structure/railing,
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
+/obj/effect/turf_decal/siding/white{
+	dir = 1
 	},
-/turf/open/floor/mineral/diamond,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "tO" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
 /turf/open/floor/carpet/blue,
+/area/department_main/command)
+"tP" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "tV" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1276,6 +1442,13 @@
 	color = "#b3b3b3"
 	},
 /area/department_main/command)
+"va" = (
+/obj/machinery/telecomms/server/presets/command{
+	name = "Command Server"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "vg" = (
 /obj/structure/railing{
 	dir = 4;
@@ -1285,10 +1458,13 @@
 /turf/open/floor/plasteel/stairs,
 /area/department_main/command)
 "vh" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 1
-	},
-/turf/open/floor/carpet/red,
+/obj/effect/spawner/randomarcade,
+/turf/open/floor/carpet/purple,
+/area/department_main/command)
+"vm" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "vC" = (
 /obj/structure/table/reinforced{
@@ -1327,6 +1503,15 @@
 /obj/item/toy/cards/deck/cas,
 /turf/open/floor/carpet/blue,
 /area/department_main/command)
+"wh" = (
+/obj/machinery/telecomms/server/presets/service,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
+"wi" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "wk" = (
 /obj/structure/table/wood/poker,
 /obj/machinery/light/floor,
@@ -1345,6 +1530,13 @@
 /turf/open/floor/facility/dark{
 	color = "#a6a6a6"
 	},
+/area/department_main/command)
+"wy" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "wB" = (
 /obj/effect/turf_decal/siding{
@@ -1421,7 +1613,9 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "zc" = (
 /obj/structure/railing{
@@ -1479,7 +1673,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Am" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1521,7 +1715,9 @@
 	},
 /obj/structure/curtain/cloth/fancy,
 /obj/machinery/light/floor,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "AV" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -1539,7 +1735,14 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/red,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
+/area/department_main/command)
+"Bi" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "Bj" = (
 /obj/structure/table/wood/poker,
@@ -1564,6 +1767,10 @@
 	max_integrity = 10000000
 	},
 /turf/open/floor/mineral/diamond,
+/area/department_main/command)
+"BB" = (
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "BE" = (
 /obj/structure/table/reinforced{
@@ -1620,12 +1827,11 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
 "Ce" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	max_integrity = 10000000
+/obj/structure/curtain/cloth/fancy,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/gold{
+	density = 1
 	},
-/obj/effect/mermaid_water,
-/turf/open/floor/carpet/royalblack,
 /area/department_main/command)
 "Cn" = (
 /obj/effect/turf_decal/siding/white{
@@ -1647,7 +1853,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "Cz" = (
 /obj/effect/turf_decal/siding/red{
@@ -1697,13 +1903,20 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "Di" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4;
 	pixel_y = -27;
 	pixel_x = -27
+	},
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
 	},
 /turf/open/floor/mineral/gold,
 /area/department_main/command)
@@ -1729,7 +1942,10 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	name = "Dark";
+	density = 1
+	},
 /area/department_main/command)
 "DA" = (
 /obj/machinery/door/airlock/gold/glass,
@@ -1738,7 +1954,10 @@
 "DL" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/cas,
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "DM" = (
 /obj/effect/turf_decal/siding{
@@ -1751,7 +1970,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "DS" = (
 /obj/structure/railing{
@@ -1759,13 +1978,20 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "DZ" = (
 /obj/item/toy/plush/qoh,
 /obj/structure/table/bronze,
 /obj/machinery/light/floor,
 /turf/open/floor/mineral/gold,
+/area/department_main/command)
+"Ef" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "Em" = (
 /obj/structure/railing{
@@ -1781,13 +2007,18 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/command)
+"En" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "Es" = (
 /obj/structure/railing{
 	dir = 4;
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "EC" = (
 /obj/machinery/light/cold/no_nightlight{
@@ -1809,6 +2040,17 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
+"EK" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
+"EL" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "Fd" = (
 /turf/closed/indestructible/rock,
 /area/space)
@@ -1819,7 +2061,9 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/curtain/cloth/fancy,
-/turf/open/floor/mineral/gold,
+/turf/open/floor/mineral/gold{
+	density = 1
+	},
 /area/department_main/command)
 "Fn" = (
 /obj/machinery/door/airlock/diamond/glass,
@@ -1848,7 +2092,10 @@
 "Gc" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck/kotahi,
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "Ge" = (
 /obj/structure/railing{
@@ -1879,6 +2126,19 @@
 	opacity = 0
 	},
 /area/department_main/command)
+"GD" = (
+/obj/structure/railing{
+	dir = 8;
+	name = "invincible railing";
+	max_integrity = 10000000
+	},
+/obj/effect/turf_decal/siding/red{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
+/area/department_main/command)
 "GI" = (
 /obj/effect/turf_decal/siding{
 	color = "#00a86b";
@@ -1887,6 +2147,13 @@
 /turf/open/floor/plasteel/stairs{
 	color = "#b3b3b3"
 	},
+/area/department_main/command)
+"GP" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	max_integrity = 10000000
+	},
+/turf/open/floor/carpet/blue,
 /area/department_main/command)
 "GX" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1908,6 +2175,13 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
+"Hi" = (
+/obj/structure/curtain/cloth/fancy,
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/silver{
+	density = 1
+	},
+/area/department_main/command)
 "Hk" = (
 /obj/structure/curtain/cloth/fancy,
 /turf/open/floor/plasteel/stairs{
@@ -1921,6 +2195,12 @@
 	pixel_y = 16
 	},
 /turf/open/floor/mineral/diamond,
+/area/department_main/command)
+"Hp" = (
+/obj/effect/spawner/randomarcade{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "Hs" = (
 /obj/effect/turf_decal/siding{
@@ -1949,7 +2229,9 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "Hv" = (
 /obj/effect/turf_decal/siding/white{
@@ -1959,6 +2241,14 @@
 	color = "#3234B9"
 	},
 /turf/open/floor/carpet/purple,
+/area/department_main/command)
+"Hz" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
 /area/department_main/command)
 "HA" = (
 /obj/structure/table/wood/poker,
@@ -1987,16 +2277,16 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "HQ" = (
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Ic" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Im" = (
 /obj/structure/railing{
@@ -2008,7 +2298,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "Io" = (
 /obj/effect/turf_decal/siding{
@@ -2026,6 +2316,18 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
+/area/department_main/command)
+"Iw" = (
+/obj/machinery/light/floor,
+/obj/structure/curtain/cloth/fancy,
+/turf/open/floor/mineral/silver{
+	density = 1
+	},
+/area/department_main/command)
+"IA" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "IG" = (
 /obj/effect/turf_decal/siding/blue{
@@ -2059,11 +2361,16 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "IP" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/carpet/orange,
+/area/department_main/command)
+"IR" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "IZ" = (
 /obj/effect/spawner/randomarcade,
@@ -2075,20 +2382,16 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
-"Je" = (
-/obj/structure/railing,
+"Jc" = (
 /obj/structure/railing{
-	dir = 8
+	name = "invincible railing";
+	max_integrity = 10000000
 	},
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/mineral/diamond,
+/obj/effect/turf_decal/siding/red,
+/turf/open/floor/carpet/purple,
+/area/department_main/command)
+"Je" = (
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "Jh" = (
 /obj/machinery/roulette{
@@ -2115,7 +2418,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "JH" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -2136,15 +2439,8 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/command)
 "JY" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/mineral/diamond,
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/carpet/blue,
 /area/department_main/command)
 "Kj" = (
 /obj/machinery/door/airlock/gold/glass,
@@ -2188,7 +2484,10 @@
 "KH" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "KQ" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -2202,6 +2501,11 @@
 "KS" = (
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/mineral/diamond,
+/area/department_main/command)
+"KU" = (
+/obj/machinery/announcement_system,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "Lc" = (
 /obj/effect/turf_decal/siding/blue{
@@ -2232,7 +2536,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
 /area/department_main/command)
 "LE" = (
 /obj/structure/railing{
@@ -2248,7 +2554,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/purple,
+/turf/open/floor/carpet/green,
 /area/department_main/command)
 "LP" = (
 /obj/structure/railing{
@@ -2266,7 +2572,7 @@
 /area/department_main/command)
 "Mo" = (
 /obj/effect/landmark/start,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "MP" = (
 /obj/effect/turf_decal/siding/red{
@@ -2295,7 +2601,9 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/curtain/cloth/fancy,
-/turf/open/floor/mineral/silver,
+/turf/open/floor/mineral/silver{
+	density = 1
+	},
 /area/department_main/command)
 "Nn" = (
 /obj/item/food/grown/apple/gold,
@@ -2306,10 +2614,21 @@
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "NB" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	name = "Dark";
+	density = 1
+	},
+/area/department_main/command)
+"NC" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "NQ" = (
 /obj/structure/railing{
@@ -2320,7 +2639,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/red,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "NV" = (
 /obj/machinery/light/floor,
@@ -2358,25 +2677,20 @@
 /turf/open/floor/mineral/gold,
 /area/department_main/command)
 "OE" = (
-/obj/machinery/light/cold/no_nightlight,
 /obj/effect/turf_decal/siding{
 	color = "#00a86b";
 	dir = 6
 	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "OU" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
 /obj/effect/mermaid_water{
-	name = "Coastal Waters";
+	name = "Fountain Water";
 	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
+	desc = "Sparkly, like freshly opened champagne"
 	},
 /turf/open/floor/mineral/diamond,
 /area/department_main/command)
@@ -2390,8 +2704,11 @@
 	},
 /area/department_main/command)
 "OY" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/mineral/gold,
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Casino Door";
+	icon = 'icons/obj/doors/airlocks/station/gold.dmi';
+	icon_state = "closed"
+	},
 /area/department_main/command)
 "Pa" = (
 /obj/machinery/light/cold/no_nightlight,
@@ -2423,7 +2740,9 @@
 	max_integrity = 10000000
 	},
 /obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple{
+	density = 1
+	},
 /area/department_main/command)
 "Px" = (
 /obj/effect/turf_decal/siding{
@@ -2446,7 +2765,10 @@
 /obj/structure/chair/comfy/black{
 	dir = 8
 	},
-/turf/open/floor/mineral/uranium,
+/turf/open/floor/mineral/silver{
+	name = "jade floor";
+	icon_state = "uranium"
+	},
 /area/department_main/command)
 "PW" = (
 /obj/effect/turf_decal/siding/red{
@@ -2458,6 +2780,12 @@
 	},
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/orange,
+/area/department_main/command)
+"PY" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/emergency_shield,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "Qm" = (
 /obj/effect/turf_decal/siding/blue{
@@ -2473,6 +2801,12 @@
 	},
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/carpet/orange,
+/area/department_main/command)
+"QH" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "QJ" = (
 /obj/item/toy/plush/meursault,
@@ -2509,7 +2843,9 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "Rl" = (
 /turf/open/floor/carpet/black,
@@ -2540,13 +2876,12 @@
 /turf/open/floor/carpet/black,
 /area/department_main/command)
 "Ry" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	max_integrity = 10000000
+/obj/effect/turf_decal/siding/red{
+	dir = 1
 	},
-/obj/effect/mermaid_water,
-/obj/machinery/light/floor,
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "Rz" = (
 /turf/closed/indestructible/fakeglass{
@@ -2563,15 +2898,8 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/command)
 "RO" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
-	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/mineral/diamond,
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "Sb" = (
 /obj/machinery/light/cold/no_nightlight{
@@ -2644,10 +2972,12 @@
 /turf/open/floor/mineral/gold,
 /area/department_main/command)
 "Th" = (
-/obj/machinery/light/cold/no_nightlight,
 /obj/effect/turf_decal/siding{
 	color = "#00a86b";
 	dir = 10
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
@@ -2658,17 +2988,18 @@
 /turf/open/floor/mineral/silver,
 /area/department_main/command)
 "Ts" = (
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Casino Door";
+	icon = 'icons/obj/doors/airlocks/station/silver.dmi';
+	icon_state = "closed";
+	opacity = 0
 	},
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
-	},
-/turf/open/floor/mineral/diamond,
+/area/department_main/command)
+"Tx" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "Ty" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -2679,6 +3010,17 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/orange,
+/area/department_main/command)
+"TC" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "TJ" = (
 /obj/machinery/light/cold/no_nightlight{
@@ -2703,12 +3045,23 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	name = "Dark";
+	density = 1
+	},
 /area/department_main/command)
 "TP" = (
 /turf/closed/indestructible/reinforced{
 	color = "#d80000"
 	},
+/area/department_main/command)
+"TR" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/mineral/gold,
 /area/department_main/command)
 "TS" = (
 /obj/effect/turf_decal/siding/white{
@@ -2743,7 +3096,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "UE" = (
 /obj/structure/railing{
@@ -2761,12 +3114,11 @@
 /turf/open/floor/carpet/red,
 /area/department_main/command)
 "UY" = (
-/obj/effect/mermaid_water{
-	name = "Coastal Waters";
-	color = "#dddddd";
-	desc = "Not a drop of drinkable water, just a body of salty brine"
+/obj/machinery/light/floor,
+/obj/effect/spawner/randomarcade{
+	dir = 4
 	},
-/turf/open/floor/mineral/diamond,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "Vb" = (
 /obj/structure/table/wood/poker,
@@ -2782,7 +3134,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/purple,
 /area/department_main/command)
 "VB" = (
 /obj/structure/table/reinforced{
@@ -2793,6 +3145,11 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/department_main/command)
+"VD" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "VK" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/carpet/blue,
@@ -2800,6 +3157,17 @@
 "VO" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 1
+	},
+/area/department_main/command)
+"VQ" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange{
+	density = 1
 	},
 /area/department_main/command)
 "Wb" = (
@@ -2827,7 +3195,7 @@
 	name = "invincible railing";
 	max_integrity = 10000000
 	},
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Ws" = (
 /obj/effect/turf_decal/siding/white,
@@ -2843,7 +3211,13 @@
 	dir = 1
 	},
 /obj/effect/landmark/start,
-/turf/open/floor/carpet/blue,
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
+"WJ" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/command)
 "WO" = (
 /obj/structure/railing{
@@ -2854,13 +3228,18 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/red,
-/turf/open/floor/carpet/orange,
+/turf/open/floor/carpet/orange{
+	density = 1
+	},
 /area/department_main/command)
 "WZ" = (
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/dirt/jungle/dark{
+	name = "Dark";
+	density = 1
+	},
 /area/department_main/command)
 "Xc" = (
 /obj/effect/turf_decal/siding{
@@ -2902,6 +3281,11 @@
 "Ye" = (
 /turf/open/floor/mineral/gold,
 /area/department_main/command)
+"Yg" = (
+/obj/machinery/telecomms/server/presets/science,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/department_main/command)
 "Yh" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -2913,7 +3297,9 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
 "Yv" = (
-/turf/open/floor/fakespace,
+/turf/open/floor/fakespace{
+	density = 1
+	},
 /area/department_main/command)
 "YE" = (
 /obj/effect/turf_decal/siding/blue{
@@ -30846,7 +31232,7 @@ Cb
 Hb
 go
 vI
-kO
+OY
 eE
 oZ
 fY
@@ -30860,7 +31246,7 @@ Lw
 fY
 oZ
 Ut
-kO
+OY
 vI
 CZ
 Hb
@@ -31360,7 +31746,7 @@ pW
 ce
 go
 vI
-kO
+OY
 eE
 oZ
 fY
@@ -31374,7 +31760,7 @@ Lw
 fY
 oZ
 Ut
-kO
+OY
 vI
 CZ
 ce
@@ -31868,7 +32254,7 @@ vI
 kh
 ll
 yh
-vh
+fY
 oZ
 fY
 fY
@@ -31890,14 +32276,14 @@ rO
 bZ
 TP
 EC
-vh
+fY
 fY
 oZ
 fY
 fY
 oZ
 eW
-IM
+Ce
 vI
 vI
 IM
@@ -32125,7 +32511,7 @@ xf
 WO
 ll
 EC
-vh
+fY
 fY
 aB
 aB
@@ -32146,15 +32532,15 @@ fP
 tc
 HC
 TP
-kO
-vh
+ie
+fY
 fY
 fY
 aB
 aB
 fY
 eW
-ED
+VQ
 xf
 xf
 Qo
@@ -32382,7 +32768,7 @@ IZ
 nI
 ll
 yh
-vh
+fY
 fY
 aB
 aB
@@ -32404,14 +32790,14 @@ Ye
 mH
 TP
 EC
-vh
+fY
 fY
 fY
 aB
 aB
 fY
 eW
-zg
+Ry
 lO
 IZ
 IP
@@ -32639,7 +33025,7 @@ IZ
 nI
 ll
 EC
-vh
+fY
 fY
 aB
 aB
@@ -32660,15 +33046,15 @@ SZ
 Ye
 Ye
 TP
-kO
-vh
+ie
+fY
 fY
 fY
 aB
 aB
 fY
 eW
-zg
+Ry
 lO
 IZ
 IP
@@ -32896,7 +33282,7 @@ IZ
 nI
 ll
 yh
-vh
+fY
 fY
 aB
 aB
@@ -32918,14 +33304,14 @@ TP
 TP
 TP
 EC
-vh
+fY
 fY
 fY
 aB
 aB
 fY
 eW
-zg
+Ry
 lO
 IZ
 IP
@@ -33153,27 +33539,27 @@ Zk
 kk
 ll
 EC
-vh
+fY
 oZ
 fY
 fY
 oZ
 Ye
 hv
-hg
+tN
 nA
-zf
+fT
 LI
 gP
 gP
 gP
 gP
 LE
-zf
-zf
+fT
+fT
 nA
-zf
-zf
+fT
+fT
 kD
 mH
 OB
@@ -33182,7 +33568,7 @@ fY
 fY
 oZ
 eW
-lV
+TC
 Zk
 Zk
 jp
@@ -33410,7 +33796,7 @@ vI
 Ff
 ll
 yh
-vh
+fY
 fY
 fY
 fY
@@ -33419,18 +33805,18 @@ kD
 Ye
 HO
 YG
-hg
-zf
-QW
-QW
-QW
-QW
-QW
-zf
-zf
+tN
+fT
+HQ
+HQ
+HQ
+HQ
+HQ
+fT
+fT
 Jh
 HO
-zf
+fT
 Ye
 kD
 Ye
@@ -33662,8 +34048,8 @@ SC
 TP
 TP
 TP
-kO
-kO
+TP
+TP
 TP
 TP
 TP
@@ -33674,21 +34060,21 @@ Ye
 hv
 Ye
 HO
-zf
-zf
-zf
+fT
+fT
+fT
 kD
 Ic
-QW
+HQ
 ik
-tO
-QW
+QH
+HQ
 kD
-hg
-zf
-zf
-zf
-zf
+tN
+fT
+fT
+fT
+fT
 Ye
 kD
 mH
@@ -33697,8 +34083,8 @@ TP
 TP
 TP
 TP
-kO
-kO
+TP
+TP
 TP
 TP
 TP
@@ -33919,7 +34305,7 @@ SC
 TP
 TP
 TP
-kO
+TP
 TP
 TP
 TP
@@ -33930,23 +34316,23 @@ yh
 kD
 Ye
 HO
-zf
-zf
-zf
+fT
+fT
+fT
 kD
 cq
-tO
-QW
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
+HQ
 cq
 kD
-hg
-zf
-zf
-zf
-zf
+tN
+fT
+fT
+fT
+fT
 Ye
 kD
 TP
@@ -34174,36 +34560,36 @@ eO
 Po
 By
 dn
-Ce
+dn
 lz
 Yc
 dn
-Ce
+dn
 lz
 Hn
 TP
 EC
 yh
-zf
-zf
-zf
-zf
+fT
+fT
+fT
+fT
 Ye
 hv
 kD
 Ic
-QW
-QW
-QW
-QW
-QW
-QW
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
 kD
 kD
 mH
 HO
-zf
-zf
+fT
+fT
 Es
 Es
 TP
@@ -34431,31 +34817,31 @@ SO
 Da
 By
 dn
-Ry
+dn
 lz
 mO
 dn
-Ce
+dn
 lz
 SC
 TP
 yh
 ie
-zf
-zf
+fT
+fT
 Ye
 hv
 kD
 Ye
-tO
-QW
-QW
+QH
+HQ
+HQ
 Mo
-QW
+HQ
 Mo
-QW
-QW
-QW
+HQ
+HQ
+HQ
 Ye
 kD
 kD
@@ -34464,12 +34850,12 @@ HO
 VO
 VO
 Kj
-QW
-QW
-QW
-QW
-QW
-QW
+fT
+fT
+fT
+fT
+fT
+fT
 Ye
 sc
 fV
@@ -34688,46 +35074,46 @@ SC
 SC
 FX
 dn
-Ce
+dn
 lz
 Yc
 dn
-Ce
+dn
 lz
 Hn
 TP
 EC
 yh
-zf
-zf
+fT
+fT
 kD
 Ye
-tO
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
 zz
 zz
 QV
 zz
 zz
-tO
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
 Ye
 kD
-hg
+tN
 VO
 VO
 Kj
-QW
-QW
-QW
-QW
-QW
-QW
-OY
+fT
+fT
+fT
+fT
+fT
+fT
+Ye
 sc
 wt
 fV
@@ -34945,11 +35331,11 @@ jz
 JA
 Hs
 dn
-Ce
+dn
 lz
 mO
 dn
-Ce
+dn
 lz
 SC
 nz
@@ -34957,23 +35343,23 @@ nz
 nz
 nz
 lv
-zf
+fT
 kD
 Ic
-QW
-QW
+HQ
+HQ
 em
-JY
-UY
-UY
-UY
-tN
-jn
+OU
+OU
+OU
+OU
+OU
+sJ
 Ic
-QW
-QW
+HQ
+HQ
 kD
-hg
+tN
 Im
 qv
 qv
@@ -34982,10 +35368,10 @@ cq
 kD
 kD
 cq
-tO
-QW
+HO
+fT
 JE
-kO
+ie
 fV
 fV
 jH
@@ -35203,34 +35589,34 @@ Rl
 Po
 nz
 nz
-jz
-Io
+Bi
+iV
 nz
 nz
-jz
-Io
+Bi
+iV
 jN
 jN
 jN
 jN
 jN
-QW
-QW
-QW
-QW
+HQ
+HQ
+HQ
+HQ
 Rm
-RO
-UY
-UY
-UY
-UY
-UY
-Je
-Ye
-tO
-QW
-QW
-QW
+OU
+OU
+OU
+OU
+OU
+OU
+OU
+TR
+QH
+HQ
+HQ
+HQ
 VO
 HQ
 cq
@@ -35240,9 +35626,9 @@ hU
 hU
 vC
 cq
-tO
+HO
 fr
-kO
+ie
 fV
 fV
 jH
@@ -35460,44 +35846,44 @@ Rl
 Po
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
 jN
 jN
 jN
-QW
-QW
-QW
+HQ
+HQ
+HQ
 Mo
 Rm
-RO
-UY
-UY
+OU
+OU
+OU
 cq
-RO
-UY
-tN
+OU
+OU
+OU
 Di
 WH
-QW
-QW
-QW
+HQ
+HQ
+HQ
 VO
 HQ
 Wj
 TP
-fT
-fT
-fT
+HQ
+HQ
+HQ
 hU
 kD
-Ic
+tN
 fr
 sc
 wt
@@ -35717,44 +36103,44 @@ Rl
 Po
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
 jN
 jN
 jN
-QW
+HQ
 ik
-tO
-QW
+QH
+HQ
 pI
-JY
-UY
+OU
+OU
 cq
 qm
 cq
-RO
-tN
-jn
+OU
+OU
+ni
 Ic
-QW
+HQ
 ik
-tO
+QH
 VO
 HQ
 VO
 Kj
-fT
+HQ
 ik
 Ag
 ea
 cq
-tO
+HO
 rt
 sc
 fV
@@ -35974,44 +36360,44 @@ Rl
 Po
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
-Ht
-Po
+kx
+hh
 jN
 jN
 jN
 jN
 jN
-QW
-QW
-QW
+HQ
+HQ
+HQ
 Mo
 Rm
-RO
-Ts
-UY
+OU
+OU
+OU
 cq
-RO
-UY
-tN
-Ye
+OU
+OU
+OU
+TR
 WH
-QW
-QW
-QW
+HQ
+HQ
+HQ
 VO
 HQ
 qv
 TP
-fT
-fT
-fT
+HQ
+HQ
+HQ
 hU
 kD
-Ic
+tN
 fr
 sc
 wt
@@ -36231,34 +36617,34 @@ Rl
 Po
 vg
 vg
-yf
-Da
+wy
+cO
 vg
 vg
-yf
-Da
+wy
+cO
 jN
 jN
 jN
 jN
 jN
-QW
-QW
-QW
-QW
+HQ
+HQ
+HQ
+HQ
 Rm
-RO
-Ts
-UY
-UY
-UY
-Ts
 OU
-Ye
-tO
-QW
-QW
-QW
+OU
+OU
+OU
+OU
+OU
+OU
+TR
+QH
+HQ
+HQ
+HQ
 VO
 HQ
 cq
@@ -36268,9 +36654,9 @@ hU
 hU
 vC
 cq
-tO
+HO
 fr
-kO
+ie
 fV
 fV
 jH
@@ -36487,11 +36873,11 @@ yf
 SO
 Em
 dn
-Ce
+dn
 lz
 Yc
 dn
-Ce
+dn
 lz
 Hn
 vg
@@ -36499,23 +36885,23 @@ vg
 vg
 vg
 oI
-zf
+fT
 kD
 Ic
-QW
-QW
+HQ
+HQ
 fu
-JY
-UY
-UY
-UY
-tN
-jn
+OU
+OU
+OU
+OU
+OU
+iP
 Ic
-QW
-QW
+HQ
+HQ
 kD
-hg
+tN
 md
 Wj
 Wj
@@ -36524,10 +36910,10 @@ cq
 kD
 kD
 cq
-tO
-QW
+HO
+fT
 IN
-kO
+ie
 fV
 fV
 jH
@@ -36744,46 +37130,46 @@ tH
 SC
 pv
 dn
-Ce
+dn
 lz
 mO
 dn
-Ce
+dn
 lz
 SC
 TP
 EC
 yh
-zf
-zf
+fT
+fT
 kD
 mH
-tO
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
 aL
 aL
 Gu
 aL
 aL
-tO
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
 Ye
 hv
-hg
+tN
 VO
 VO
 Kj
-QW
-QW
-QW
-QW
-QW
-QW
-OY
+fT
+fT
+fT
+fT
+fT
+fT
+Ye
 sc
 wt
 fV
@@ -37001,31 +37387,31 @@ Wb
 Rx
 UE
 dn
-Ry
+dn
 lz
 Yc
 dn
-Ce
+dn
 lz
 Hn
 TP
 yh
-ie
-zf
-zf
+Ts
+fT
+fT
 Ye
 kD
 kD
 mH
-tO
-QW
-QW
+QH
+HQ
+HQ
 Mo
-QW
+HQ
 Mo
-QW
-QW
-QW
+HQ
+HQ
+HQ
 Ye
 hv
 kD
@@ -37034,12 +37420,12 @@ HO
 VO
 VO
 Kj
-QW
-QW
-QW
-QW
-QW
-QW
+fT
+fT
+fT
+fT
+fT
+fT
 Ye
 sc
 fV
@@ -37249,7 +37635,7 @@ Wb
 Wb
 Wb
 wB
-TP
+Fn
 zc
 Wb
 Wb
@@ -37258,36 +37644,36 @@ Wb
 Rx
 UE
 dn
-Ce
+dn
 lz
 mO
 dn
-Ce
+dn
 lz
 SC
 TP
 EC
 yh
-zf
-zf
-zf
-zf
+fT
+fT
+fT
+fT
 Ye
 kD
 kD
 Ic
-QW
-QW
-QW
-QW
-QW
-QW
+HQ
+HQ
+HQ
+HQ
+HQ
+HQ
 kD
 kD
 Ye
 HO
-zf
-zf
+fT
+fT
 Cs
 Cs
 TP
@@ -37517,7 +37903,7 @@ SC
 TP
 TP
 TP
-kO
+TP
 TP
 TP
 TP
@@ -37528,23 +37914,23 @@ yh
 kD
 mH
 HO
-zf
-zf
-zf
+fT
+fT
+fT
 kD
 cq
-tO
-QW
-QW
-QW
-QW
+QH
+HQ
+HQ
+HQ
+HQ
 cq
 kD
-hg
-zf
-zf
-zf
-zf
+tN
+fT
+fT
+fT
+fT
 Ye
 hv
 TP
@@ -37763,7 +38149,7 @@ cG
 Wb
 Wb
 wB
-TP
+Fn
 zc
 Wb
 Wb
@@ -37774,8 +38160,8 @@ KS
 TP
 TP
 TP
-kO
-kO
+TP
+TP
 TP
 TP
 TP
@@ -37786,21 +38172,21 @@ Ye
 kD
 Ye
 HO
-zf
-zf
-zf
+fT
+fT
+fT
 kD
 Ic
-QW
+HQ
 ik
-tO
-QW
+QH
+HQ
 kD
-hg
-zf
-zf
-zf
-zf
+tN
+fT
+fT
+fT
+fT
 Ye
 kD
 Ye
@@ -37809,8 +38195,8 @@ TP
 TP
 TP
 TP
-kO
-kO
+TP
+TP
 TP
 TP
 TP
@@ -38036,36 +38422,36 @@ nc
 QX
 ll
 yh
-vh
-fY
-fY
-fY
+QW
+QW
+QW
+QW
 Ye
 kD
 mH
 HO
 YG
-hg
-zf
-QW
-QW
-QW
-QW
-QW
-zf
-zf
+tN
+fT
+HQ
+HQ
+HQ
+HQ
+HQ
+fT
+fT
 Jh
 HO
-zf
+fT
 Ye
 hv
 Ye
-OB
-fY
-fY
-fY
-eW
-Zu
+tO
+QW
+QW
+QW
+GP
+Iw
 nc
 nc
 Zu
@@ -38293,35 +38679,35 @@ Uz
 NQ
 ll
 EC
-vh
-oZ
-fY
-fY
-oZ
+QW
+sg
+QW
+QW
+sg
 Ye
 kD
-hg
+tN
 DO
-zf
+fT
 LI
 iZ
 iZ
 iZ
 iZ
 LP
-zf
-zf
+fT
+fT
 DO
-zf
-zf
+fT
+fT
 kD
 Ye
-OB
-oZ
-fY
-fY
-oZ
-eW
+tO
+sg
+QW
+QW
+sg
+GP
 ad
 Uz
 Uz
@@ -38533,7 +38919,7 @@ Yv
 cG
 Wb
 Wb
-Pa
+wB
 TP
 TP
 TP
@@ -38544,18 +38930,18 @@ TP
 TP
 TP
 yh
-HQ
-lO
-IZ
-nI
+zf
+hx
+vh
+Jc
 ll
 yh
-vh
-fY
-aB
-aB
-fY
-fY
+QW
+QW
+JY
+JY
+QW
+QW
 TP
 TP
 TP
@@ -38572,17 +38958,17 @@ TP
 TP
 TP
 EC
+QW
+QW
+QW
+JY
+JY
+QW
+GP
+Hz
+hx
 vh
-fY
-fY
-aB
-aB
-fY
-eW
-zg
-lO
-IZ
-HQ
+zf
 TP
 TP
 TP
@@ -38801,18 +39187,18 @@ kf
 Oz
 TP
 EC
-HQ
-lO
-IZ
-nI
+zf
+hx
+vh
+Jc
 ll
 EC
-vh
-fY
-aB
-aB
-fY
-fY
+QW
+QW
+JY
+JY
+QW
+QW
 TP
 kD
 hv
@@ -38828,18 +39214,18 @@ Ui
 kD
 hv
 TP
-kO
+Ts
+QW
+QW
+QW
+JY
+JY
+QW
+GP
+Hz
+hx
 vh
-fY
-fY
-aB
-aB
-fY
-eW
-zg
-lO
-IZ
-HQ
+zf
 TP
 BX
 kf
@@ -39058,18 +39444,18 @@ ep
 ta
 sc
 yh
-HQ
-lO
-IZ
-nI
+zf
+hx
+vh
+Jc
 ll
 yh
-vh
-fY
-aB
-aB
-fY
-fY
+QW
+QW
+JY
+JY
+QW
+QW
 TP
 kD
 kD
@@ -39086,17 +39472,17 @@ kD
 kD
 TP
 EC
+QW
+QW
+QW
+JY
+JY
+QW
+GP
+Hz
+hx
 vh
-fY
-fY
-aB
-aB
-fY
-eW
-zg
-lO
-IZ
-HQ
+zf
 sc
 Px
 ep
@@ -39321,12 +39707,12 @@ gu
 AW
 ll
 EC
-vh
-fY
-aB
-aB
-fY
-fY
+QW
+QW
+JY
+JY
+QW
+QW
 TP
 lt
 hN
@@ -39342,14 +39728,14 @@ mG
 oG
 tM
 TP
-kO
-vh
-fY
-fY
-aB
-aB
-fY
-eW
+Ts
+QW
+QW
+QW
+JY
+JY
+QW
+GP
 Ly
 gu
 gu
@@ -39578,12 +39964,12 @@ nc
 cW
 ll
 yh
-vh
-oZ
-fY
-fY
-oZ
-fY
+QW
+sg
+QW
+QW
+sg
+QW
 TP
 qO
 Rs
@@ -39600,14 +39986,14 @@ Ws
 pr
 TP
 EC
-vh
-fY
-oZ
-fY
-fY
-oZ
-eW
-LT
+QW
+QW
+sg
+QW
+QW
+sg
+GP
+Hi
 nc
 nc
 LT
@@ -39857,11 +40243,11 @@ Ao
 XC
 TP
 Nl
-rQ
-Vk
-Vk
-Vk
-Vk
+kG
+GD
+GD
+GD
+GD
 Pt
 qW
 ol
@@ -40091,11 +40477,11 @@ aq
 DL
 No
 nc
-kx
-Cb
-Hb
-Cb
-Hb
+hg
+Hp
+kb
+Hp
+kb
 fF
 nc
 kO
@@ -40114,11 +40500,11 @@ sg
 GX
 kO
 nc
-kx
-Hb
-Cb
-Hb
-Cb
+hg
+kb
+Hp
+kb
+Hp
 fF
 nc
 kq
@@ -40348,11 +40734,11 @@ aq
 aq
 No
 LT
-kx
-lO
-eL
-eL
-IZ
+hg
+hx
+rH
+rH
+vh
 fF
 nc
 TP
@@ -40371,11 +40757,11 @@ QW
 GX
 TP
 LT
-kx
-lO
-eL
-eL
-IZ
+hg
+hx
+rH
+rH
+vh
 fF
 LT
 kq
@@ -40605,11 +40991,11 @@ Gc
 aq
 No
 nc
-kx
-pW
-ce
-pW
-ce
+hg
+qT
+UY
+qT
+UY
 fF
 nc
 kO
@@ -40628,11 +41014,11 @@ sg
 GX
 kO
 nc
-kx
-ce
-pW
-ce
-pW
+hg
+UY
+qT
+UY
+qT
 fF
 nc
 kq
@@ -40862,11 +41248,11 @@ PR
 PR
 ol
 LT
-kx
-HQ
-HQ
-HQ
-HQ
+hg
+zf
+zf
+zf
+zf
 fF
 Zu
 TP
@@ -40885,11 +41271,11 @@ Am
 xb
 TP
 Zu
-kx
-HQ
-HQ
-HQ
-HQ
+hg
+zf
+zf
+zf
+zf
 fF
 LT
 ol
@@ -46046,12 +46432,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+Je
+Je
+Je
+Je
+Je
 Fd
 Fd
 Fd
@@ -46303,12 +46689,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+tP
+BB
+Je
+KU
+Je
 Fd
 Fd
 Fd
@@ -46560,12 +46946,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+En
+Tx
+IR
+Yg
+Je
 Fd
 Fd
 Fd
@@ -46817,12 +47203,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+mi
+qy
+WJ
+vm
+Je
 Fd
 Fd
 Fd
@@ -47074,12 +47460,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+dV
+EL
+VD
+IA
+Je
 Fd
 Fd
 Fd
@@ -47331,12 +47717,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+ge
+NC
+gA
+wh
+Je
 Fd
 Fd
 Fd
@@ -47588,12 +47974,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+cp
+Ef
+EK
+va
+Je
 Fd
 Fd
 Fd
@@ -47845,12 +48231,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+RO
+wi
+Je
+PY
+Je
 Fd
 Fd
 Fd
@@ -48102,12 +48488,12 @@ Fd
 Fd
 Fd
 Fd
-Fd
-Fd
-Fd
-Fd
-Fd
-Fd
+Je
+Je
+Je
+Je
+Je
+Je
 Fd
 Fd
 Fd
