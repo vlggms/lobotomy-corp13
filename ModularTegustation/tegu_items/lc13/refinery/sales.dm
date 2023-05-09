@@ -16,7 +16,7 @@
 	var/icon_full = "machinelcb_full"
 
 /obj/structure/pe_sales/Initialize()
-	..()
+	. = ..()
 	crates_per_box = crate_timer/power_timer
 
 /obj/structure/pe_sales/examine(mob/user)

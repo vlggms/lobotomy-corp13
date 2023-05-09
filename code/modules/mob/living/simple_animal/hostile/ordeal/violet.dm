@@ -20,7 +20,7 @@
 	var/list/enemies = list() //copying retaliate code cause i dont know how else to inherit it
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 65 SECONDS))
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Found(atom/A)
@@ -112,7 +112,7 @@
 	var/next_pulse = INFINITY
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
-	..()
+	. = ..()
 	next_pulse = world.time + 30 SECONDS
 	addtimer(CALLBACK(src, .proc/FallDown))
 

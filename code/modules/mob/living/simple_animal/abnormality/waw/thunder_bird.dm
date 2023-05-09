@@ -265,7 +265,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	layer = POINT_LAYER	//Sprite should always be visible
 
 /obj/effect/thunderbolt/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/explode), 3 SECONDS)
 
 //Zombie conversion through lightning bombs
@@ -370,7 +370,7 @@ GLOBAL_LIST_EMPTY(zombies)
 		Convert(H)
 
 /mob/living/simple_animal/hostile/thunder_zombie/Initialize()
-	..()
+	. = ..()
 	GLOB.zombies += src
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, 1, 4)
 	base_pixel_x = rand(-6,6)

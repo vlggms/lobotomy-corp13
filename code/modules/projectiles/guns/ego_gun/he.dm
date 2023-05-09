@@ -83,7 +83,7 @@
 	var/jam_noticed = FALSE
 
 /obj/item/gun/ego_gun/unrequited/Initialize()
-	..()
+	. = ..()
 	jam_cooldown_time = rand(1, 5) MINUTES
 	jam_cooldown = jam_cooldown_time + world.time
 	START_PROCESSING(SSobj, src)

@@ -68,7 +68,7 @@
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
-	..()
+	. = ..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
@@ -464,7 +464,7 @@
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/sweeperspawn/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/spawnscout), 6)
 
 /obj/effect/sweeperspawn/proc/spawnscout()

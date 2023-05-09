@@ -11,7 +11,7 @@
 	var/relative_location
 
 /obj/machinery/containment_panel/Initialize()
-	..()
+	. = ..()
 	var/turf/closest_department
 	for(var/turf/T in GLOB.department_centers)
 		if(T.z != z)

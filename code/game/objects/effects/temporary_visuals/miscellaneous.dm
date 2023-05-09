@@ -564,7 +564,7 @@
 	duration = 50
 
 /obj/effect/temp_visual/bee_gas/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = rand(125,200), time = 5)
 	addtimer(CALLBACK(src, .proc/fade_out), 5)
 
@@ -591,7 +591,7 @@
 	duration = 20
 
 /obj/effect/temp_visual/judgement/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/fade_out), 10)
 
 /obj/effect/temp_visual/judgement/proc/fade_out()
@@ -614,7 +614,7 @@
 	duration = 10
 
 /obj/effect/temp_visual/paradise_attack/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/water_waves
@@ -627,7 +627,7 @@
 	alpha = 0
 
 /obj/effect/temp_visual/water_waves/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 10)
 	addtimer(CALLBACK(src, .proc/fade_out), 10 SECONDS)
 
@@ -640,7 +640,7 @@
 	duration = 5
 
 /obj/effect/temp_visual/justitia_effect/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, transform = transform*2, time = 5)
 
 /obj/effect/temp_visual/fragment_song
@@ -651,7 +651,7 @@
 	base_pixel_y = 16
 
 /obj/effect/temp_visual/fragment_song/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, transform = transform*3, time = 5)
 
 /obj/effect/temp_visual/saw_effect
@@ -674,7 +674,7 @@
 	duration = 8
 
 /obj/effect/temp_visual/green_noon_reload/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, transform = transform*1.5, time = duration)
 
 /obj/effect/temp_visual/slice
@@ -694,7 +694,7 @@
 	duration = 3 SECONDS
 
 /obj/effect/temp_visual/hatred/Initialize()
-	..()
+	. = ..()
 	pixel_x = rand(-16, 16)
 	animate(src, alpha = 0, pixel_z = rand(16, 48), time = duration)
 
@@ -708,7 +708,7 @@
 	alpha = 0
 
 /obj/effect/temp_visual/flesh/Initialize()
-	..()
+	. = ..()
 	icon_state = "flesh[rand(0,3)]"
 	animate(src, alpha = 255, time = 5)
 	addtimer(CALLBACK(src, .proc/fade_out), 4 SECONDS)
@@ -726,7 +726,7 @@
 	alpha = 175
 
 /obj/effect/temp_visual/black_fixer_ability/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, transform = transform*4, time = 4)
 
 /obj/effect/temp_visual/censored
@@ -741,7 +741,7 @@
 	base_pixel_y = -48
 
 /obj/effect/temp_visual/censored/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 2)
 	addtimer(CALLBACK(src, .proc/fade_out), 17)
 	for(var/i = 1 to 9)
@@ -775,7 +775,7 @@
 	base_pixel_y = -16
 
 /obj/effect/temp_visual/ambermidnight_hole/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/cross
@@ -789,7 +789,7 @@
 	duration = 8 SECONDS
 
 /obj/effect/temp_visual/cross/fall/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/FadeOut), 6 SECONDS)
 
 /obj/effect/temp_visual/cross/fall/proc/FadeOut()
@@ -807,7 +807,7 @@
 	duration = 0.5 SECONDS
 
 /obj/effect/temp_visual/mermaid_drowning/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, pixel_y = pixel_y + 5 , time = duration)
 
 /obj/effect/temp_visual/alriune_attack
@@ -822,7 +822,7 @@
 	duration = 2 SECONDS
 
 /obj/effect/temp_visual/alriune_curtain/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 5)
 	addtimer(CALLBACK(src, .proc/FadeOut), 5)
 
@@ -848,7 +848,7 @@
 	duration = 5
 
 /obj/effect/temp_visual/pale_eye_attack/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = 5)
 
 /obj/effect/temp_visual/screech
@@ -857,7 +857,7 @@
 	duration = 5
 
 /obj/effect/temp_visual/screech/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, transform = transform*4, time = 5)
 
 /obj/effect/temp_visual/human_fire

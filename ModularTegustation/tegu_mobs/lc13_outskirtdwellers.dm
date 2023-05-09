@@ -32,7 +32,7 @@
 	var/current_size = RESIZE_DEFAULT_SIZE
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/morsel/Initialize()
-	..()
+	. = ..()
 	base_pixel_x = 0
 	pixel_x = base_pixel_x
 	base_pixel_y = 0

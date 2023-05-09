@@ -450,7 +450,7 @@
 	duration = 2 SECONDS
 
 /obj/effect/temp_visual/stone_gaze/Initialize()
-	..()
+	. = ..()
 	alpha = rand(75,255)
 	animate(src, alpha = 0, time = 20)
 

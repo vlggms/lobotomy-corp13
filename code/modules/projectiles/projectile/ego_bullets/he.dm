@@ -32,7 +32,7 @@
 	var/homing_range = 9
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/fireback), 3)
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
