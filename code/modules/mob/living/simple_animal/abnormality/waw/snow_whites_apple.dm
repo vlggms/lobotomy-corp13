@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 		var/del_time = rand(4,10) //all the vines dissapear at different interval so it looks more organic.
 		animate(vine, alpha = 0, time = del_time SECONDS)
 		QDEL_IN(vine, del_time SECONDS)
-		GLOB.vine_list -= vine
+	GLOB.vine_list.Cut()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Login()
@@ -203,6 +203,10 @@ GLOBAL_LIST_EMPTY(vine_list)
 			/obj/effect,
 			/mob/dead,
 			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple))
+
+/obj/structure/spreading/apple_vine/Destroy()
+	GLOB.vine_list -= src
+	return ..()
 
 /obj/structure/spreading/apple_vine/Crossed(atom/movable/AM)
 	. = ..()

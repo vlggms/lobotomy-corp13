@@ -133,6 +133,7 @@
 	addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 5 SECONDS)
 	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
 		QS.fade_out()
+	spawned_effects.Cut()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	QDEL_NULL(beamloop)
 	QDEL_NULL(current_beam)
@@ -280,6 +281,7 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(var/obj/effect/qoh_sygil/SE in spawned_effects)
 		SE.fade_out()
+	spawned_effects.Cut()
 	icon_state = icon_living
 	can_act = TRUE
 	beats_cooldown = world.time + beats_cooldown_time
@@ -420,6 +422,7 @@
 	QDEL_NULL(current_beam)
 	for(var/obj/effect/qoh_sygil/S in spawned_effects)
 		S.fade_out()
+	spawned_effects.Cut()
 	beamloop.stop()
 	SLEEP_CHECK_DEATH(4 SECONDS) //Rest after laser beam
 	can_act = TRUE
