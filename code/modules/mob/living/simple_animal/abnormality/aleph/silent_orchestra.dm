@@ -56,6 +56,7 @@
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/Destroy()
 	for(var/obj/effect/silent_orchestra_singer/O in performers)
 		O.fade_out()
+	performers.Cut()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/CanAttack(atom/the_target)
