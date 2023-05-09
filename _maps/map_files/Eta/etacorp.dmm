@@ -122,11 +122,11 @@
 /turf/open/floor/wood,
 /area/facility_hallway/training)
 "ay" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Welfare Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Safety Department"
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
@@ -764,11 +764,11 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "cT" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Safety Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Welfare Department"
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/welfare)
@@ -4429,11 +4429,11 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/south)
 "qp" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Welfare Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Safety Department"
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
@@ -7436,11 +7436,11 @@
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/east)
 "Bg" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Safety Department"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Welfare Department"
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/welfare)
