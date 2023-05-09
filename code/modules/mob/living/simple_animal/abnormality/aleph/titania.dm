@@ -96,7 +96,8 @@
 	listclearnulls(spawned_mobs)
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
-			QDEL_NULL(L)
+			qdel(L)
+			spawned_mobs -= L
 	if(length(spawned_mobs) >= fairy_spawn_limit)
 		return
 
