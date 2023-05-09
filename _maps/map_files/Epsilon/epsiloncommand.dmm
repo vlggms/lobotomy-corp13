@@ -459,7 +459,9 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
-/obj/item/documents/ncorporation,
+/obj/item/documents/ncorporation{
+	name = "association confidential documents"
+	},
 /turf/open/floor/carpet/black,
 /area/city/fixers)
 "cf" = (
@@ -579,6 +581,11 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
+"cE" = (
+/obj/structure/table/wood,
+/obj/item/choice_beacon/association,
+/turf/open/floor/carpet/black,
+/area/city/fixers)
 "cG" = (
 /turf/open/indestructible/hoteltile,
 /area/city/backstreets_room)
@@ -1582,9 +1589,9 @@
 /area/city)
 "hy" = (
 /obj/structure/rack,
-/obj/item/soapstone,
-/obj/item/soapstone,
-/obj/item/soapstone,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
 /turf/open/floor/wood,
 /area/city/fixers)
 "hB" = (
@@ -3225,11 +3232,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
-"ph" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/closed/indestructible/fakeglass,
-/area/space)
 "pi" = (
 /obj/structure/table/glass,
 /obj/item/dnainjector/m2h,
@@ -3878,13 +3880,6 @@
 "rZ" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/sepia,
-/area/city/backstreets_room)
-"sa" = (
-/obj/machinery/door/airlock/hatch{
-	desc = "Looks like it didn't work as intended. It opens and closes.";
-	name = "Midnight Saferoom"
-	},
-/turf/open/space/basic,
 /area/city/backstreets_room)
 "sd" = (
 /obj/machinery/vending/cola,
@@ -4924,11 +4919,6 @@
 /obj/item/ego_weapon/city/streetlight_greatsword,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"wt" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Malfunctioning Door"
-	},
-/area/space)
 "wu" = (
 /obj/effect/spawner/randomcolavend,
 /obj/machinery/light{
@@ -7096,6 +7086,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"Fz" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/city)
 "FA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname,
@@ -7430,10 +7424,6 @@
 "GV" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
-"GW" = (
-/obj/machinery/regenerator,
-/turf/open/floor/plasteel/showroomfloor,
-/area/city/backstreets_room)
 "GX" = (
 /obj/effect/turf_decal/trimline/yellow/line,
 /turf/open/floor/plasteel,
@@ -9151,10 +9141,6 @@
 "Ov" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
-"Ox" = (
-/obj/machinery/regenerator,
-/turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "Oy" = (
 /obj/structure/lootcrate/workshopleaf,
@@ -32336,7 +32322,7 @@ XQ
 nU
 te
 qp
-sa
+qp
 Ah
 pO
 OV
@@ -38777,7 +38763,7 @@ tP
 Xx
 Lv
 iM
-Ox
+IY
 XQ
 Oq
 Oq
@@ -39786,7 +39772,7 @@ Oq
 Oq
 Oq
 XQ
-GW
+Co
 IU
 lB
 XQ
@@ -39876,7 +39862,7 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 zr
 zr
 zr
@@ -40133,11 +40119,11 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
-BN
+Fz
 zr
 Qy
 Qy
@@ -40390,7 +40376,7 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
@@ -40647,7 +40633,7 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
@@ -40904,7 +40890,7 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
@@ -41161,7 +41147,7 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
@@ -41418,11 +41404,11 @@ Oq
 Oq
 Oq
 Oq
-zr
+Oq
 gB
 BN
 BN
-BN
+Fz
 zr
 Qy
 Qy
@@ -42424,7 +42410,7 @@ Oq
 HA
 JO
 RE
-fp
+cE
 MY
 HA
 qu
@@ -47246,7 +47232,7 @@ Oq
 Oq
 Oq
 Oq
-Yj
+kk
 Ah
 pO
 OV
@@ -47503,7 +47489,7 @@ Oq
 Oq
 Oq
 Oq
-Yj
+kk
 Ah
 pO
 OV
@@ -47760,7 +47746,7 @@ Oq
 Oq
 Oq
 Oq
-Yj
+kk
 Ah
 pO
 OV
@@ -48017,7 +48003,7 @@ Oq
 Oq
 Oq
 Oq
-ph
+uy
 Ah
 pO
 OV
@@ -48274,7 +48260,7 @@ Oq
 Oq
 Oq
 Oq
-ph
+uy
 Ah
 pO
 OV
@@ -48531,7 +48517,7 @@ Oq
 Oq
 Oq
 Oq
-wt
+tV
 Ah
 pO
 OV
@@ -48788,7 +48774,7 @@ Oq
 Oq
 Oq
 Oq
-ph
+uy
 Ah
 pO
 OV
@@ -49045,7 +49031,7 @@ Oq
 Oq
 Oq
 Oq
-ph
+uy
 Ah
 pO
 OV
@@ -49302,7 +49288,7 @@ Oq
 Oq
 Oq
 Oq
-Yj
+kk
 Ah
 pO
 OV
@@ -49559,7 +49545,7 @@ Oq
 Oq
 Oq
 Oq
-Yj
+kk
 Ah
 pO
 OV
@@ -58772,7 +58758,7 @@ Oq
 Oq
 Oq
 XQ
-GW
+Co
 IU
 lB
 XQ
@@ -60886,7 +60872,7 @@ Oq
 Oq
 Oq
 XQ
-GW
+Co
 QG
 ZT
 py
@@ -74733,11 +74719,11 @@ kk
 hC
 hC
 kk
-Yj
-Yj
-Yj
-Yj
-Yj
+kk
+kk
+kk
+kk
+kk
 XQ
 XQ
 GY
