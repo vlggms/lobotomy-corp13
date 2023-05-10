@@ -1160,6 +1160,13 @@
 	},
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
+"fe" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
 "fj" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood,
@@ -1594,6 +1601,13 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/wood,
 /area/city/fixers)
+"hz" = (
+/obj/machinery/door/airlock/grunge{
+	name = "association backstreets office";
+	req_access_txt = "67"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_checkpoint)
 "hB" = (
 /obj/effect/turf_decal/trimline/neutral/line{
 	pixel_y = -6
@@ -2433,10 +2447,6 @@
 /obj/machinery/computer/abnormality/training_rabbit,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
-"lz" = (
-/obj/machinery/door/poddoor/shutters,
-/turf/open/floor/wood,
-/area/city/fixers)
 "lB" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/showroomfloor,
@@ -11113,6 +11123,13 @@
 	dir = 1
 	},
 /turf/open/indestructible/hoteltile,
+/area/city/fixers)
+"Xu" = (
+/obj/machinery/door/airlock/grunge{
+	name = "office storage";
+	req_access_txt = "69"
+	},
+/turf/open/floor/wood,
 /area/city/fixers)
 "Xw" = (
 /obj/structure/flora/rock/jungle,
@@ -42917,10 +42934,10 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
+HA
+HA
+HA
+HA
 HA
 HA
 Pf
@@ -43174,10 +43191,10 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
+HA
+RM
+xW
+fl
 HA
 RM
 xW
@@ -43431,10 +43448,10 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
+HA
+uZ
+xW
+fl
 HA
 uZ
 xW
@@ -43688,10 +43705,10 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
+HA
+RM
+xW
+fl
 HA
 RM
 xW
@@ -43945,14 +43962,14 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
 HA
-Rp
+fe
 xW
-lz
+xW
+Xu
+xW
+xW
+fr
 xW
 TV
 HA
@@ -44202,10 +44219,10 @@ Oq
 Oq
 Oq
 Oq
-Oq
-Oq
-Oq
-Oq
+HA
+RM
+xW
+Rp
 HA
 HA
 HA
@@ -44459,7 +44476,7 @@ Oq
 Oq
 Oq
 Oq
-Oq
+HA
 HA
 HA
 HA
@@ -46778,7 +46795,7 @@ vA
 Dt
 eL
 eL
-Ot
+hz
 us
 us
 us
