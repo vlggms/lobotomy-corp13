@@ -377,3 +377,12 @@
 /datum/ego_datum/weapon/hypocrisy
 	item_path = /obj/item/gun/ego_gun/hypocrisy
 	cost = 50
+
+// Pygmalion - Bride
+/datum/ego_datum/weapon/bride
+	item_path = /obj/item/gun/ego_gun/bride
+	cost = 50
+
+/datum/ego_datum/armor/bride
+	item_path = /obj/item/clothing/suit/armor/ego_gear/bride
+	cost = 50
