@@ -128,7 +128,7 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
-				var/chosen_mode = choice_tags[choices[.]]
+				var/chosen_mode = choice_tags[choices.Find(.)]
 				if(GLOB.master_mode != chosen_mode)
 					SSticker.save_mode(chosen_mode)
 					if(!SSticker.HasRoundStarted())
