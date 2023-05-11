@@ -99,3 +99,44 @@
 
 /obj/structure/railing/proc/after_rotation(mob/user,rotation_type)
 	add_fingerprint(user)
+
+// Variant of railing that takes the form of a floor riser. Functionally identical in many respects, except that they only face one way.
+// Sucks that so much had to be duplicated, but these shouldn't be possible to construct, deconstruct, or rotate, so I had to go one layer up.
+/obj/structure/riser
+	name = "floor riser"
+	icon = 'icons/obj/fluff.dmi'
+	icon_state = "riser_standard"
+	desc = "The edge of a risen portion of floor."
+	density = TRUE
+	anchored = TRUE
+
+	var/climbable = TRUE
+	dir = NORTH
+
+/obj/structure/riser/Initialize()
+	. = ..()
+	if(climbable)
+		AddElement(/datum/element/climbable)
+
+/obj/structure/riser/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	if(get_dir(loc, target) & dir)
+		var/checking = FLYING | FLOATING
+		return . || mover.throwing || mover.movement_type & checking
+	return TRUE
+
+/obj/structure/riser/CheckExit(atom/movable/mover, turf/target)
+	..()
+	if(get_dir(loc, target) & dir)
+		var/checking = PHASING | FLYING | FLOATING
+		return !density || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
+	return TRUE
+
+/obj/structure/riser/white
+	icon_state = "riser_white"
+
+/obj/structure/riser/dark
+	icon_state = "riser_dark"
+
+/obj/structure/riser/wood
+	icon_state = "riser_wood"
