@@ -1890,6 +1890,7 @@
 /obj/item/clothing/head/chefhat,
 /obj/item/kitchen/rollingpin,
 /obj/item/kitchen/knife,
+/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "gO" = (
@@ -2160,6 +2161,10 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
+"hK" = (
+/obj/machinery/icecream_vat,
+/turf/open/floor/wood,
+/area/department_main/training)
 "hL" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -4572,8 +4577,6 @@
 "qu" = (
 /obj/structure/table/wood,
 /obj/item/safety_kit,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 5
@@ -4581,6 +4584,15 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 8
+	},
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/mental{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/hypospray/medipen/mental{
+	pixel_y = 5
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -7281,9 +7293,6 @@
 /area/department_main/welfare)
 "zX" = (
 /obj/structure/table/wood,
-/obj/item/reagent_containers/hypospray/emais,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 4
@@ -7291,6 +7300,17 @@
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 8
+	},
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 2;
+	pixel_x = 5
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -9260,6 +9280,20 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"Hu" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/machinery/grill,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/training)
 "Hw" = (
 /obj/structure/table/glass,
 /obj/structure/window/reinforced/spawner/north{
@@ -10197,11 +10231,22 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
-"KY" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks{
+"KX" = (
+/obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/structure/kitchenspike,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/training)
+"KY" = (
+/obj/structure/table/wood,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 1
@@ -10214,6 +10259,9 @@
 	},
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
+	},
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	dir = 1
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -10492,22 +10540,32 @@
 /obj/structure/table/reinforced{
 	max_integrity = 25
 	},
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/glass/beaker/large{
+/obj/item/reagent_containers/glass/beaker/bluespace{
 	pixel_y = 12
 	},
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = 4;
-	pixel_y = 1
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 7;
+	pixel_x = -6
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/glass/bowl,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "LS" = (
@@ -10696,17 +10754,6 @@
 /area/facility_hallway/command)
 "My" = (
 /obj/structure/table/wood,
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
-	},
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 5
@@ -10714,6 +10761,9 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	dir = 1
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -11497,8 +11547,11 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/obj/machinery/icecream_vat,
 /obj/machinery/light/floor,
+/obj/machinery/dish_drive,
+/obj/structure/table/reinforced{
+	max_integrity = 25
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Pk" = (
@@ -11758,6 +11811,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"Qh" = (
+/obj/structure/table/reinforced{
+	max_integrity = 25
+	},
+/obj/structure/railing,
+/obj/structure/displaycase/forsale/kitchen{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/sepia,
+/area/department_main/training)
 "Qi" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -13273,6 +13336,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
+"Vt" = (
+/obj/structure/displaycase/forsale/kitchen{
+	pixel_y = 10
+	},
+/obj/structure/table/reinforced{
+	max_integrity = 25
+	},
+/obj/structure/railing,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/training)
 "Vv" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -38272,7 +38345,7 @@ Ka
 Ux
 ht
 ht
-ht
+hK
 RK
 TB
 TB
@@ -38940,12 +39013,12 @@ Eu
 Eu
 Eu
 gq
-AL
+KX
 uZ
 RN
 mY
 uZ
-Um
+Vt
 ht
 Gi
 Gi
@@ -39848,12 +39921,12 @@ XA
 Eu
 Eu
 gq
-AL
+KX
 uZ
 GT
 Dl
 uZ
-Um
+Qh
 ht
 nJ
 nJ
@@ -40075,7 +40148,7 @@ Eu
 Eu
 Eu
 gq
-AL
+Hu
 uZ
 uZ
 uZ
@@ -40542,7 +40615,7 @@ iE
 Ev
 ht
 ht
-ht
+hK
 RK
 TB
 TB
