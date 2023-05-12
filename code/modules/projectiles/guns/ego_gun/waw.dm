@@ -326,11 +326,10 @@
 	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
 	icon_state = "warring"
 	inhand_icon_state = "warring"
-	special = "This weapon must be drawn before firing. \
-		It has perfect accuracy."
+	special = "This weapon can unleash a special attack by loading a second arrow."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
+	fire_delay = 0//it caused some jank, like failing to charge after the do-after
 	spread = 0
 	//firing sound 1
 	fire_sound = 'sound/weapons/bowfire.ogg'
@@ -339,47 +338,62 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 	var/drawn = 0
+	var/charge_effect = "fire a beam of electricity."
+	var/charge_cost = 3
+	var/charge = 0
+	var/ammo_2= /obj/item/ammo_casing/caseless/ego_warring2
+
+/obj/item/gun/ego_gun/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
+	. = ..()
+	. -= "<span class='notice'>This weapon fires fast.</span>"//it doesn't
+	. += "<span class='notice'>This weapon must be loaded manually by activating it in your hand.</span>"
+	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+
+/obj/item/gun/ego_gun/warring/proc/Build_Charge()
+	if(charge<=20)
+		charge+=1
 
 /obj/item/gun/ego_gun/warring/can_shoot()
-	if (drawn == 0)
+	if(drawn == 0)
 		icon_state = "[initial(icon_state)]"
-		ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 		return FALSE
 	return TRUE
-
-/obj/item/gun/ego_gun/warring/before_firing(atom/target, mob/user)
-	..()
-	if (drawn == 0)//gun should not fire here
-		can_shoot()
-		return
 
 /obj/item/gun/ego_gun/warring/afterattack(atom/target, mob/user)
 	..()
 	drawn = 0
 	icon_state = "[initial(icon_state)]"
-	can_shoot()
 
 /obj/item/gun/ego_gun/warring/attack_self(mob/user)
 	switch(drawn)
 		if (0)
-			if(do_after(user, 10, src))
+			if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
 				drawn  = 1
 				to_chat(user,"<span class='warning'>You draw the [src] with all your might.</span>")
 				ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 				fire_sound = 'sound/weapons/bowfire.ogg'
 				icon_state = "warring_drawn"
 		if (1)
-			if(do_after(user, 15, src))
-				if(drawn != 1)
+			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				if(drawn != 1 || charge < charge_cost)
 					return
 				drawn = 2
-				ammo_type = /obj/item/ammo_casing/caseless/ego_warring2//FIXME: the problem line, occasionally fails for no reason.
+				charge -= charge_cost
+				QDEL_NULL(chambered)
+				chambered = new ammo_2
 				playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 				to_chat(user,"<span class='warning'>An arrow of lightning appears.</span>")
 				fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
 				icon_state = "warring_firey"
 		if (2)
-			return
+			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				drawn = 1
+				charge += charge_cost
+				QDEL_NULL(chambered)
+				chambered = new ammo_type
+				fire_sound = 'sound/weapons/bowfire.ogg'
+				icon_state = "warring_drawn"
+				to_chat(user,"<span class='warning'>The lightning fades.</span>")
 
 /obj/item/gun/ego_gun/banquet
 	name = "banquet"
