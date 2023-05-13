@@ -1,0 +1,25 @@
+{
+	"version": 1,
+	"map_name": "Facility j-777",
+	"map_path": "map_files/Kappa",
+	"map_file": [
+		"kappacommand.dmm",
+		"kappacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"traits": [
+		{
+			"Up": 1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		},
+		{
+			"Down": -1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		}
+	],
+	"minetype": "none",
+	"maptype": "standard"
+}
