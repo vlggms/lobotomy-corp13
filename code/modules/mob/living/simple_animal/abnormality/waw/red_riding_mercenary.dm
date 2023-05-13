@@ -13,8 +13,8 @@ The fucker has arrived.
 	del_on_death = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 2400 // More health than standard
+	health = 2400 // Since she was apparently too easy to suppress
 	rapid_melee = 2
 	speed = 0.5
 	threat_level = WAW_LEVEL
@@ -35,6 +35,7 @@ The fucker has arrived.
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	patrol_cooldown_time = 10 SECONDS // She's restless
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"
 	faction = list("redhood") // I'LL FUCKIN FIGHT YOU TOO, MATE
@@ -95,6 +96,7 @@ The fucker has arrived.
 	var/hunt_track_cooldown = 10 SECONDS
 
 	var/special_attacking = FALSE // Are you currently performing a special attack
+	var/special_windup = 8 // How many deciseconds between showing a tell for a special attack and using it
 
 	var/evade_timer = 0
 	var/evade_cooldown = 5 SECONDS // Doubled on failed evade
@@ -273,7 +275,7 @@ The fucker has arrived.
 	icon_living = "redhood_shoot"
 	pixel_x = -32
 	base_pixel_x = -32
-	addtimer(CALLBACK(src, .proc/HunterBullet, target, bullet_additional), 8)
+	addtimer(CALLBACK(src, .proc/HunterBullet, target, bullet_additional), special_windup * 0.75)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterBullet(atom/target, shots_remaining = 0)
@@ -309,7 +311,7 @@ The fucker has arrived.
 	addtimer(CALLBACK(src, .proc/SpecialReset), 15)
 	throw_timer = world.time + throw_cooldown
 	say(pick(weapon_throw_lines))
-	addtimer(CALLBACK(src, .proc/GetThrown, target), 10)
+	addtimer(CALLBACK(src, .proc/GetThrown, target), special_windup)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/GetThrown(atom/target)
