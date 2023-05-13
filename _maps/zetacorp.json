@@ -1,0 +1,15 @@
+{
+	"version": 1,
+	"map_name": "Facility F-321",
+	"map_path": "map_files/Zeta",
+	"map_file": [
+		"zetacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}
