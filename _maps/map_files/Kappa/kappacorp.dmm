@@ -76,11 +76,10 @@
 /turf/open/floor/facility/halls,
 /area/department_main/training)
 "ay" = (
-/obj/structure/table/reinforced,
-/obj/machinery/griddle,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
 	},
+/obj/machinery/grill,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "aA" = (
@@ -829,6 +828,7 @@
 /area/facility_hallway/north)
 "gU" = (
 /obj/structure/table/reinforced,
+/obj/item/folder/blue,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/command)
 "ha" = (
@@ -1283,7 +1283,6 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "lb" = (
-/obj/structure/table,
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -3;
 	pixel_y = 2
@@ -1292,6 +1291,7 @@
 	pixel_x = 3;
 	pixel_y = 2
 	},
+/obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "lc" = (
@@ -1468,6 +1468,14 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/mineral/plastitanium,
 /area/facility_hallway/north)
+"mv" = (
+/obj/structure/table/reinforced,
+/obj/machinery/dish_drive{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/turf/open/floor/facility/white,
+/area/department_main/training)
 "my" = (
 /obj/structure/table,
 /turf/open/floor/mineral/plastitanium,
@@ -1761,25 +1769,10 @@
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/department_main/command)
 "pH" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -5;
-	pixel_y = 5
-	},
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
+/obj/structure/kitchenspike,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "pK" = (
@@ -2454,6 +2447,9 @@
 /obj/item/clothing/suit/apron/chef,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/head/chefhat,
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/kitchen/rollingpin,
+/obj/item/kitchen/knife,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "vr" = (
@@ -2658,7 +2654,6 @@
 /turf/open/floor/plating,
 /area/facility_hallway/discipline)
 "wT" = (
-/obj/item/clothing/accessory/armband/lobotomy/records,
 /obj/structure/table/reinforced,
 /obj/structure/railing{
 	dir = 1
@@ -4068,13 +4063,36 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/welfare)
 "Jj" = (
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/bowl,
-/obj/item/kitchen/knife,
-/obj/item/kitchen/rollingpin,
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 7;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/glass/beaker/bluespace{
+	pixel_y = 1;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/condiment/enzyme{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "Jt" = (
@@ -4171,6 +4189,7 @@
 /obj/structure/chair/office/light{
 	dir = 8
 	},
+/obj/item/toy/plush/hokma,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/command)
 "Kn" = (
@@ -4314,6 +4333,13 @@
 /obj/item/storage/box/lights/tubes,
 /obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/bot,
+/obj/item/storage/box/lights/bulbs,
+/obj/item/storage/box/lights/bulbs,
+/obj/item/storage/box/lights/bulbs,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/information)
 "LL" = (
@@ -4389,7 +4415,9 @@
 /obj/item/records/timestop,
 /obj/item/records/abnodelay,
 /obj/item/records/information,
-/obj/item/toy/plush/hokma,
+/obj/item/folder/blue,
+/obj/item/folder/blue,
+/obj/item/clothing/accessory/armband/lobotomy/records,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/command)
 "Mo" = (
@@ -4439,13 +4467,9 @@
 /area/department_main/information)
 "MG" = (
 /obj/structure/window/reinforced/spawner/west,
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = 6
-	},
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25
+/obj/structure/displaycase/forsale/kitchen{
+	pixel_y = 10
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
@@ -4880,13 +4904,9 @@
 /area/department_main/command)
 "Qo" = (
 /obj/structure/window/reinforced/spawner/east,
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = -7
-	},
 /obj/structure/table/reinforced,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25
+/obj/structure/displaycase/forsale/kitchen{
+	pixel_y = 10
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
@@ -38882,8 +38902,8 @@ Sa
 Sa
 Sa
 jx
-Dx
-lb
+Ks
+mv
 Gx
 vL
 vo
