@@ -558,3 +558,6 @@ VOTE_AUTOTRANSFER_ENABLED
 VOTE_AUTOTRANSFER_INITIAL 72000
 ## Time (in deciseconds) between subsequent transfer votes. Default: 30 minutes
 VOTE_AUTOTRANSFER_INTERVAL 18000
+
+## Percent of abnormalities to melt down per qliphoth meltdown event.
+QLIPHOTH_MELTDOWN_PERCENT 0.35
