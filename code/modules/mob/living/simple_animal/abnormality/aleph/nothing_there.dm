@@ -195,6 +195,9 @@
 	new /obj/effect/gibspawner/generic(get_turf(M))
 	to_chat(M, "<span class='userdanger'>Oh no...</span>")
 	disguise = M
+	// The following code makes it so that even if a disguised mob is resting, Nothing There's shell will still be standing up.
+	M.set_lying_angle(0)
+	M.set_body_position(STANDING_UP)
 	appearance = M.appearance
 	M.death()
 	M.forceMove(src) // Hide them for examine message to work
