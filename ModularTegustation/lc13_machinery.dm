@@ -168,7 +168,9 @@
 		qdel(src)
 		return FALSE
 
-	for(var/turf/T in U.GetAtmosAdjacentTurfs())
+	var/list/spread_turfs = U.GetAtmosAdjacentTurfs()
+	shuffle_inplace(spread_turfs)
+	for(var/turf/T in spread_turfs)
 		if(locate(/obj/structure/spreading) in T)
 			var/obj/structure/spreading/S = locate(/obj/structure/spreading) in T
 			if(S.type != type) //if it is not another of the same spreading structure.
