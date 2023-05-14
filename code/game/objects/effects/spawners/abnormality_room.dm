@@ -63,6 +63,7 @@ GLOBAL_LIST_EMPTY(abnormality_room_spawners)
 
 /obj/effect/spawner/abnormality_room/LateInitialize()
 	if(!template)
+		template = TRUE // to avoid generating it multiple times, since new() isn't instant
 		template = new(cache = TRUE)
 	GLOB.abnormality_room_spawners += src
 
