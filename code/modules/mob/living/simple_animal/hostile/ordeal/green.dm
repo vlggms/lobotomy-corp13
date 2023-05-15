@@ -104,8 +104,8 @@
 	health = 900
 	speed = 3
 	move_to_delay = 6
-	melee_damage_lower = 26 // Full damage is done on the entire turf of target
-	melee_damage_upper = 30
+	melee_damage_lower = 22 // Full damage is done on the entire turf of target
+	melee_damage_upper = 26
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
@@ -163,13 +163,13 @@
 		var/turf/T = get_turf(target)
 		if(!T)
 			return
-		for(var/i = 1 to 8) //28 damage over 0.4 seconds
+		for(var/i = 1 to 4)
 			new /obj/effect/temp_visual/saw_effect(T)
 			for(var/mob/living/L in T.contents)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(3.5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			SLEEP_CHECK_DEATH(0.5)
+				L.apply_damage(8, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
@@ -181,7 +181,7 @@
 	reloading = TRUE
 	icon_state = "green_bot_reload"
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
-	for(var/i = 1 to 6)
+	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
 		SLEEP_CHECK_DEATH(8)
 	fire_count = 0
@@ -212,8 +212,8 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 2500
+	health = 2500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
