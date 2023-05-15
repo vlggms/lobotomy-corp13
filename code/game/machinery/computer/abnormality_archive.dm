@@ -6,8 +6,6 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "forensic"
 	var/printfile
-	var/printing_status
-	var/notehtml
 	var/note
 	var/linecount
 	var/paper = 1 //You get one paper

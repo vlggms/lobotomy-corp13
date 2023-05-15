@@ -24,8 +24,6 @@
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	var/user_armored
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS

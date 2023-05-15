@@ -104,7 +104,6 @@
 	stacks = 1
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/golden_sheen
-	var/glow
 	consumed_on_threshold = FALSE
 
 /atom/movable/screen/alert/status_effect/golden_sheen

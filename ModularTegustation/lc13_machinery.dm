@@ -7,7 +7,6 @@
 	density = FALSE
 	use_power = 0
 	var/obj/machinery/computer/abnormality/linked_console
-	var/work
 	var/relative_location
 
 /obj/machinery/containment_panel/Initialize()

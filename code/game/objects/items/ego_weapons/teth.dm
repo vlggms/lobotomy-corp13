@@ -373,7 +373,6 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 30 SECONDS
 	var/resonance_damage = 35
-	var/damage_multiplier = 1
 	var/mob/creator
 	var/obj/item/ego_weapon/lantern/res
 	var/rupturing = FALSE //So it won't recurse

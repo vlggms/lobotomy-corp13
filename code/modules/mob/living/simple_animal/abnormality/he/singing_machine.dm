@@ -39,7 +39,6 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	var/bonusRed = 0
 	var/grindRed = 4
 	var/minceRed = 8
-	var/playTiming = 5 SECONDS
 	var/playLength = 60 SECONDS
 	var/playStatus = 0
 	var/playRange = 20
@@ -191,7 +190,6 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	duration = 5 MINUTES // Just like WCCA
 	alert_type = /atom/movable/screen/alert/status_effect/singing_machine
 	var/addictionTick = 10 SECONDS
-	var/addictionTimer = 0
 	var/addictionSanityMin = 2
 	var/addictionSanityMax = 6
 

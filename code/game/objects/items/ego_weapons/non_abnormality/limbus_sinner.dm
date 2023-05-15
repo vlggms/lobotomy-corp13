@@ -236,8 +236,6 @@
 	hitsound = 'sound/weapons/ego/sword2.ogg'
 
 	var/gun_cooldown
-	var/blademark_cooldown
-	var/gunmark_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/nobody/Initialize()

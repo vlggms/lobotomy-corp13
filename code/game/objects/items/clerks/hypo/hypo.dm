@@ -10,8 +10,6 @@
 	var/list/modes = list()
 	var/mode = 1
 	var/bypass_protection = FALSE
-	var/recharge_time = 10
-	var/charge_timer = 0
 	var/locked = TRUE //clerks only
 
 /obj/item/reagent_containers/hypospray/emais/Initialize()
@@ -67,7 +65,7 @@
 			RG.add_reagent(reagent_ids[i], 5)		//And fill hypo with reagent.
 
 /obj/item/reagent_containers/hypospray/emais/attack(mob/living/carbon/M, mob/user)
-	if(!clerk_check(user))
+	if(locked && !clerk_check(user))
 		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
 	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/safety))

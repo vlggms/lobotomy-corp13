@@ -649,18 +649,12 @@
 	var/combo_time
 	var/combo_wait = 10
 	var/combo_on = TRUE
-	var/finisher = FALSE
 
 /obj/item/ego_weapon/inheritance/attack_self(mob/user)
-	..()
-	if(combo_on)
-		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a finisher.</span>")
-		combo_on = FALSE
+	if((. = ..()))
 		return
-	if(!combo_on)
-		to_chat(user,"<span class='warning'>You change your stance, and will now perform a finisher.</span>")
-		combo_on =TRUE
-		return
+	combo_on = !combo_on
+	to_chat(user,"<span class='warning'>You change your stance, and will [combo_on ? "now" : "no longer"] perform a finisher.</span>")
 
 /obj/item/ego_weapon/inheritance/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))

@@ -1183,7 +1183,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	var/can_spin = TRUE
-	var/spinning = FALSE
 
 /obj/item/ego_weapon/amrita/attack(mob/living/target, mob/living/user)
 	if(!can_spin)

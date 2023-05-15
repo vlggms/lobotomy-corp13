@@ -15,7 +15,7 @@
 	var/activation_cooldown_time = 45 SECONDS
 	var/max_winds = 6
 	var/current_winds = 1
-	var/pulse_heal = 10
+	var/pulse_heal = 20
 	var/pulse_damage = 20
 
 /obj/structure/toolabnormality/theresia/attack_hand(mob/user) //defines activator as user.
@@ -55,7 +55,7 @@
 	for(var/mob/living/carbon/human/L in view(8, src))
 		if(L.stat == DEAD)
 			continue
-		L.adjustSanityLoss(-pulse_damage)
+		L.adjustSanityLoss(-pulse_heal)
 		if(prob(10))
 			to_chat(L, "<span class='notice'>Despite the challenge, something reassures you that things will be okay.</span>")
 

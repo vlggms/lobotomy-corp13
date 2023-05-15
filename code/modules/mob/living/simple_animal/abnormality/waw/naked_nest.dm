@@ -146,10 +146,6 @@
 	else if(S.client)
 		to_chat(S, "<span class='notice'>This nest has no more room.</span>")
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/Nest() //return to the nest
-	for(var/mob/living/simple_animal/hostile/naked_nest_serpent/M in range(0, src))
-		M.Nest(src)
-
 /mob/living/simple_animal/hostile/naked_nest_serpent
 	name = "naked serpent"
 	desc = "A sickly looking green-colored worm."

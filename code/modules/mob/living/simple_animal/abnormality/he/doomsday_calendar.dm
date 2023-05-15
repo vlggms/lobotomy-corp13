@@ -147,7 +147,7 @@
 	bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
 	if(bonusRed)
 		to_chat(user,"<span class='warning'>A clay doll arrives with a bowl, demanding blood.</span>")
-		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
+		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', flavor_dist, 0, 1)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Worktick(mob/living/carbon/human/user)
@@ -333,8 +333,6 @@
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
 	density = TRUE
-	var/list/breach_affected = list()
-	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/doomsday_doll/Initialize()
 	. = ..()

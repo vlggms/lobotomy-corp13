@@ -33,7 +33,7 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	//Some Variables cannibalized from helper
-	var/charge_check_time = 1 SECONDS
+	var/charge_check_time = 2 SECONDS
 	var/teleport_cooldown
 	var/dash_num = 50	//Mostly a safeguard
 	var/list/been_hit = list()
@@ -122,7 +122,7 @@
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)
 			busy = TRUE
-			addtimer(CALLBACK(src, .proc/charge, dir_to_target, 0, target), 2 SECONDS)
+			addtimer(CALLBACK(src, .proc/charge, dir_to_target, 0, target), charge_check_time)
 			return
 	return
 

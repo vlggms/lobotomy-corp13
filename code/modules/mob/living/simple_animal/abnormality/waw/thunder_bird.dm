@@ -330,7 +330,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
 	density = TRUE
-	var/list/breach_affected = list()
 	var/can_act = TRUE
 
 //Zombie conversion from other zombies

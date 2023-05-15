@@ -35,7 +35,6 @@
 	var/song_cooldown
 	var/meltdown_imminent = FALSE
 	pet_bonus = "beeps" //saves a few lines of code by allowing funpet() to be called by attack_hand()
-	var/meltdown = FALSE
 //Post-work effect
 	var/list/unsafe = list()
 //SFX

@@ -113,7 +113,6 @@
 	desc = "Welfare put out a notice that they lost a bunch of manager bullets. This must be one of them."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "sleeper-live"
-	var/bullettype = 1
 
 /obj/item/managerbullet/attack(mob/living/M, mob/user)
 	M.visible_message("<span class='notice'>[user] smashes [src] against [M].</span>")
@@ -479,6 +478,7 @@
 
 	return ..()
 
+// Currently unused, TODO: Remove or use
 /obj/item/powered_gadget/proc/toggle_on(mob/user)
 	if(cell && cell.charge >= batterycost)
 		turned_on = !turned_on
@@ -679,7 +679,6 @@
 	default_icon = "gadget2" //roundabout way of making update item easily changed. Used in updateicon proc.
 	batterycost = 40 // 1 minute
 	var/on = 0
-	var/entitydistance
 	var/nearestentity
 	var/their_loc
 	var/distance
@@ -716,22 +715,19 @@
 /obj/item/powered_gadget/detector_gadget/process(delta_time)
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
-		var/turf/my_loc = get_turf(src)
 		detectthing()
-		var/target_loc = get_turf(nearestentity)
-		var/entitydistance = get_dist_euclidian(my_loc, target_loc)
-		calcdistance(entitydistance)
+		calcdistance(get_dist_euclidian(get_turf(src), get_turf(nearestentity)))
 		return
 	on = 0
 	icon_state = "[default_icon]-nobat"
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/powered_gadget/detector_gadget/proc/detectthing(mob/user)
-	src.visible_message("<span class='notice'>The [src] falls apart.</span>", "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
+	src.visible_message("<span class='notice'>The [src] falls apart.</span>", null, "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
 	qdel(src)
 	return
 
-	//Abnormality Detector
+//Abnormality Detector
 /obj/item/powered_gadget/detector_gadget/abnormality
 	name = "Enkaphlin Drain Monitor"
 	desc = "This device detects abnormalities by taking advantage of their siphon of Enkaphlin. Use in hand to activate."

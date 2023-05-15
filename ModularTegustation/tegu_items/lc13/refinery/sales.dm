@@ -13,7 +13,6 @@
 	var/crates_per_box		//Just used to calculate examine text
 
 	var/generating
-	var/icon_full = "machinelcb_full"
 
 /obj/structure/pe_sales/Initialize()
 	. = ..()

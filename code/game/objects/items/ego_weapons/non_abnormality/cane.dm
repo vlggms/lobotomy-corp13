@@ -12,7 +12,6 @@
 	var/charge_effect = "deal an extra attack in damage."
 	var/charge_cost = 2
 	var/charge
-	var/activated
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,

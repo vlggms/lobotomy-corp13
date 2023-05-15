@@ -139,9 +139,7 @@
 	movement_type = PHASING | FLYING
 	pixel_y = -32
 	pixel_x = -32
-	var/list/damaged = list()
 	animate_movement = SLIDE_STEPS
-	var/datum/looping_sound/expresstrain/soundloop
 	var/clickety = 0
 	var/noise = 0
 

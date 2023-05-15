@@ -162,7 +162,6 @@
 	melee_damage_upper = 4
 	mob_size = MOB_SIZE_LARGE
 	vision_range = 4
-	var/weapon
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/price/Login()
 	. = ..()

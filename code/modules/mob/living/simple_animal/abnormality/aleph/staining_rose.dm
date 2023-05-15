@@ -38,7 +38,6 @@
 	var/meltdown_cooldown_time = 15 MINUTES
 	var/meltdown_cooldown
 	var/safe = FALSE //work on it and you're safe for 15 minutes
-	var/reset_time = 3 MINUTES //Qliphoth resets after this time
 
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Initialize()

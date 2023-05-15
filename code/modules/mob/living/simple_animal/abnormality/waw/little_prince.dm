@@ -51,7 +51,8 @@
 		to_chat(user, "<span class='userdanger'>You see mushrooms growing all over your body!</span>")
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
 		user.adjustSanityLoss(-500)
-	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
+	spore_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER)
+	user.add_overlay(spore_icon)
 	QDEL_NULL(user.ai_controller)
 	user.ai_controller = /datum/ai_controller/insane/hypno
 	user.InitializeAIController()
@@ -81,7 +82,7 @@
 	once -= user
 	twice -= user
 	hypnotized -= user
-	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
+	user.cut_overlay(spore_icon)
 	var/turf/T = get_turf(user)
 	user.visible_message("<span class='danger'>Mushrooms rapidly grow all over [user]'s body, forming a giant mass!</span>")
 	user.emote("scream")
