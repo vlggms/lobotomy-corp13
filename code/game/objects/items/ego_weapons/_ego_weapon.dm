@@ -16,8 +16,14 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(attack_speed)
+	if(!attack_speed)
+		user.changeNext_move(CLICK_CD_MELEE)
+		return
+	if(attack_speed >= 0.8)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed * 2)
+		INVOKE_ASYNC(src, .proc/MultiSwing, target, user)
 	return TRUE // If we want to do "if(!.)" checks, this has to exist.
 
 /obj/item/ego_weapon/examine(mob/user)
@@ -49,6 +55,8 @@
 		. += "<span class='notice'>This weapon has a slow attack speed.</span>"
 	else if(attack_speed>=2)
 		. += "<span class='notice'>This weapon attacks extremely slow.</span>"
+	if(attack_speed < 0.8)
+		. += "<span class='notice'>This weapon attacks twice per click.</span>"
 
 
 /obj/item/ego_weapon/Topic(href, href_list)
@@ -86,6 +94,18 @@
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
+
+/obj/item/ego_weapon/proc/MultiSwing(mob/living/target, mob/living/carbon/human/user)
+	sleep(CLICK_CD_MELEE*attack_speed+1)
+	if(get_dist(target, user) > 1)
+		return
+	if(src != user.get_active_held_item())
+		return
+	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	user.do_attack_animation(target)
+	target.attacked_by(src, user)
+
+	log_combat(user, target, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 //Examine text for mini weapons.
 /obj/item/ego_weapon/mini/examine(mob/user)
