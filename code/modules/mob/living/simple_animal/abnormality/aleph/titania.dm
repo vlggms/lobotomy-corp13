@@ -50,7 +50,7 @@
 	var/currentlaw
 	var/nextlaw
 	var/law_damage = 30		//Take damage, idiot
-	var/law_timer = 30 SECONDS
+	var/law_timer = 60 SECONDS
 	var/law_startup = 3 SECONDS
 
 //Attacking code
@@ -151,7 +151,7 @@
 		if("ranged fairy")
 			lawmessage = "Mine fairies will come to my aid if you strike me with ranged attacks."
 
-	for(var/mob/living/carbon/human/H in GLOB.player_details)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		to_chat(H,"<span class='colossus'>[lawmessage]</span>")
 	addtimer(CALLBACK(src, .proc/ActivateLaw), law_startup)	//Start Law 3 Seconds
 
@@ -159,8 +159,7 @@
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ActivateLaw()
 	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
 	currentlaw = nextlaw
-	for(var/mob/living/carbon/human/H in GLOB.player_details)
-		to_chat(H,"<span class='userdanger'>The new law is now in effect.</span>")
+	to_chat(GLOB.clients,"<span class='danger'>The new law is now in effect.</span>")
 
 	if(currentlaw == "fairies")
 		for(var/mob/living/simple_animal/L in spawned_mobs)
