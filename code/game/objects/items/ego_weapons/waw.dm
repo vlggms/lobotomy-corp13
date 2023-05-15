@@ -1300,4 +1300,97 @@
 			new /obj/effect/temp_visual/healing(get_turf(Yang))
 			break
 
+/obj/item/ego_weapon/shield/innocence
+	name = "innocence"
+	desc = "But why is it about ‘innocence’? After countless assumptions and careful research, we learned that it could be defined as \[REDACTED\]."
+	icon_state = "innocence"
+	force = 40
+	attack_speed = 3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("shoves", "bashes")
+	attack_verb_simple = list("shove", "bash")
+	hitsound = 'sound/weapons/genhit2.ogg'
+	reductions = list(20, 70, 50, 20) //160
+	projectile_block_cooldown = 3 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/abnormalities/orangetree/ding.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)
 
+/obj/item/ego_weapon/rimeshank
+	name = "rimeshank"
+	desc = "Stay frozen... And there will be no pain."
+	special = "This weapon can be used to perform a jump attack after a short wind-up."
+	icon_state = "rimeshank"
+	force = 75
+	attack_speed = 2
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slams", "attacks")
+	attack_verb_simple = list("slam", "attack")
+	hitsound = 'sound/abnormalities/babayaga/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 6 SECONDS
+	var/dash_range = 10
+	var/can_attack = TRUE
+
+/obj/item/ego_weapon/rimeshank/attack(mob/living/target, mob/living/user)
+	if(!can_attack)
+		return
+	..()
+	can_attack = FALSE
+	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+
+/obj/item/ego_weapon/rimeshank/proc/JumpReset()
+	can_attack = TRUE
+
+/obj/item/ego_weapon/rimeshank/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user) || !can_attack)
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!</span>")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	if(do_after(user, 5, src))
+		dash_cooldown = world.time + dash_cooldown_time
+		playsound(src, 'sound/abnormalities/babayaga/charge.ogg', 50, FALSE, -1)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 16
+		sleep(0.5 SECONDS)
+		for(var/i in 2 to get_dist(user, A))
+			step_towards(user,A)
+		if((get_dist(user, A) < 2))
+			JumpAttack(A,user)
+		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = 0
+
+/obj/item/ego_weapon/rimeshank/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+	force = 25
+	A.attackby(src,user)
+	force = initial(force)
+	can_attack = FALSE
+	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	for(var/mob/living/L in livinginrange(2, A))
+		if(L.z != user.z) // Not on our level
+			continue
+		var/aoe = 25
+		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
+		FX.color = "#a2d2df"

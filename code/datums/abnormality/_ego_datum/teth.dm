@@ -230,3 +230,21 @@
 /datum/ego_datum/weapon/rapunzel
 	item_path = /obj/item/gun/ego_gun/rapunzel
 	cost = 20 */
+
+//Someone's Portrait - Snapshot
+/datum/ego_datum/armor/snapshot
+	item_path = /obj/item/clothing/suit/armor/ego_gear/snapshot
+	cost = 20
+
+/datum/ego_datum/weapon/snapshot
+	item_path = /obj/item/gun/ego_gun/snapshot
+	cost = 20
+
+//Pagoda Veneration - Wishing Cairn
+/datum/ego_datum/armor/wishing_cairn
+	item_path = /obj/item/clothing/suit/armor/ego_gear/wishing_cairn
+	cost = 20
+
+/datum/ego_datum/weapon/wishing_cairn
+	item_path = /obj/item/gun/ego_gun/wishing_cairn
+	cost = 20

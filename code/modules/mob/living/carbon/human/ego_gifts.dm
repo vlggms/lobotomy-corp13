@@ -229,6 +229,12 @@
 	prudence_bonus = 2
 	slot = HAND_1
 
+/datum/ego_gifts/melty_eyeball
+	name = "Melty Eyeball"
+	icon_state = "melty_eyeball"
+	prudence_bonus = 2
+	slot = EYE
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
@@ -388,6 +394,20 @@
 	temperance_bonus = -1
 	prudence_bonus = 4
 	slot = HAND_1
+
+/datum/ego_gifts/revelation
+	name = "Revelation"
+	icon_state = "revelation"
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = EYE
+
+/datum/ego_gifts/snapshot
+	name = "Snapshot"
+	icon_state = "snapshot"
+	temperance_bonus = 3
+	prudence_bonus = -1
+	slot = NECKWEAR
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
@@ -622,6 +642,15 @@
 	justice_bonus = 4
 	slot = HELMET
 
+/datum/ego_gifts/inheritance
+	name = "Inheritance"
+	icon_state = "inheritance"
+	fortitude_bonus = 3
+	prudence_bonus = -1
+	temperance_bonus = -1
+	justice_bonus = 3
+	slot = RIGHTBACK
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -843,6 +872,20 @@
 	fortitude_bonus = 10
 	prudence_bonus = -4
 	slot = HAND_1
+
+/datum/ego_gifts/innocence
+	name = "Innocence"
+	icon_state = "innocence"
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = MOUTH_2
+
+/datum/ego_gifts/rimeshank
+	name = "Rimeshank"
+	icon_state = "rimeshank"
+	fortitude_bonus = 4
+	temperance_bonus = 2
+	slot = NECKWEAR
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise

@@ -433,3 +433,17 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 	)
+
+/obj/item/gun/ego_gun/pistol/innocence
+	name = "childhood memories"
+	desc = "If no one had come in to get me, I would have stayed in that room, not even realizing the passing time."
+	icon_state = "innocence_gun"
+	inhand_icon_state = "innocence_gun"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_innocence
+	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
+	vary_fire_sound = TRUE
+	autofire = 0.2 SECONDS
+	fire_sound_volume = 20
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+	)

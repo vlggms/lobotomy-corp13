@@ -39,3 +39,18 @@
 	name = "page casing"
 	desc = "A page casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_page
+
+/obj/item/ammo_casing/caseless/ego_snapshot
+	name = "snapshot casing"
+	desc = "snapshot casing."
+	projectile_type = /obj/projectile/beam/snapshot
+
+/obj/item/ammo_casing/caseless/ego_wishing
+	name = "wishing casing"
+	desc = "A wishing casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_wishing
+
+/obj/item/ammo_casing/caseless/ego_wishing2
+	name = "wishing casing"
+	desc = "A wishing casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_wishing2
