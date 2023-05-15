@@ -592,6 +592,11 @@
 	desc = "A plushie depicting a mountain of corpses merged into one. Yuck!"
 	icon_state = "mosb"
 
+/obj/item/toy/plush/big_bad_wolf
+	name = "big and will be bad wolf plushie"
+	desc = "A plushie depicting quite a not so bad and very much so marketable wolf plush."
+	icon_state = "big_bad_wolf"
+
 /obj/item/toy/plush/melt
 	name = "melting love plushie"
 	desc = "A plushie depicting a slime girl, you think."
