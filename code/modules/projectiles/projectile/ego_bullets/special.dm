@@ -11,7 +11,7 @@
 	icon_state = "kcorp_nade"
 
 /obj/projectile/ego_bullet/ego_knade/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/fireback), 5)
 
 /obj/projectile/ego_bullet/ego_knade/proc/fireback()

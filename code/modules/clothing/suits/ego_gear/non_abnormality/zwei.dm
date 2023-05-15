@@ -23,7 +23,7 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/city/zweivet/Initialize()
-	..()
+	. = ..()
 	if(prob(50))
 		icon_state = "zweishort"
 		worn_icon_state = icon_state

@@ -204,7 +204,7 @@
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/beeshell/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/explode), 3.5 SECONDS)
 
 /obj/effect/beeshell/New(loc, ...)

@@ -42,7 +42,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Initialize()
-	..()
+	. = ..()
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)

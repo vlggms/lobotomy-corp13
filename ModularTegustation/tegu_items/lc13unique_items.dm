@@ -601,7 +601,7 @@
 	charges = 1
 
 /obj/structure/trap/slowingmk1/Initialize()
-	..()
+	. = ..()
 	playsound(src, 'sound/machines/terminal_processing.ogg', 20, TRUE)
 
 /obj/structure/trap/slowingmk1/Crossed(atom/movable/AM)
@@ -775,7 +775,7 @@
 	default_icon = "gadget2r" //roundabout way of making update item easily changed. Used in updateicon proc.
 
 /obj/item/powered_gadget/detector_gadget/ordeal/Initialize()
-	..()
+	. = ..()
 	if(prob(2))
 		name = "R-corp Peen Sense Rangefinder"
 
@@ -950,7 +950,7 @@
 
 
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
+	. = ..()
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "clerkbot2"
 	icon_living = "clerkbot2"
@@ -980,7 +980,7 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
+	. = ..()
 	QDEL_IN(src, (120 SECONDS))
 
 /obj/item/powered_gadget/handheld_taser

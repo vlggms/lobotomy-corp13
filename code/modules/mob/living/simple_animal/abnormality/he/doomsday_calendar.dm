@@ -337,7 +337,7 @@
 	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/doomsday_doll/Initialize()
-	..()
+	. = ..()
 	base_pixel_x = rand(-6,6)
 	pixel_x = base_pixel_x
 	base_pixel_y = rand(-6,6)

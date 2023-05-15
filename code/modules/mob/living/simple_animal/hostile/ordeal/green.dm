@@ -201,7 +201,7 @@
 	var/list/spawned_mobs = list()
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/CanAttack(atom/the_target)
@@ -303,7 +303,7 @@
 	var/next_health_mark = 0 // Initialize below
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Initialize()
-	..()
+	. = ..()
 	left_shell = new(get_turf(src))
 	right_shell = new(get_turf(src))
 	laser_cooldown = world.time + 6 SECONDS

@@ -336,7 +336,7 @@
 	var/brick_number //The index of this brick in the brick list
 
 /obj/effect/golden_road/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 0.5 SECONDS)
 
 //This will make those people try to reach the house, they will be slowed to be easier to intercept, and are generally rather harmless.
