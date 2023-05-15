@@ -1261,14 +1261,14 @@
 /obj/item/ego_weapon/discord/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
 	if(!.)
-		return .
+		return
 	if(!ishostile(target))
-		return .
+		return
 	if(target.stat == DEAD || target.status_flags & GODMODE)
-		return .
+		return
 	Harmony(user)
 	if(!wielded)
-		return .
+		return
 	for(var/i = 0 to 1)
 		addtimer(CALLBACK(src, .proc/MultiSwing, target, user), (CLICK_CD_MELEE * i) + 1)
 	user.changeNext_move(CLICK_CD_MELEE*attack_speed*2.5)
