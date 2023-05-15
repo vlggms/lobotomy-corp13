@@ -24,7 +24,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
-	..()
+	. = ..()
 	base_pixel_x = rand(-6,6)
 	pixel_x = base_pixel_x
 	base_pixel_y = rand(-6,6)
@@ -115,7 +115,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/BurrowOut, get_turf(src)))
 	soundloop = new(list(src), TRUE)
 
@@ -230,7 +230,7 @@
 	var/datum/looping_sound/ambermidnight/soundloop
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/Initialize()
-	..()
+	. = ..()
 	burrow_cooldown = world.time + 20 SECONDS
 	soundloop = new(list(src), TRUE)
 	addtimer(CALLBACK(src, .proc/BurrowOut))

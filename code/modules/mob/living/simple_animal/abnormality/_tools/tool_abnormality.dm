@@ -31,10 +31,8 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 /obj/effect/landmark/toolspawn/Initialize()
 	..()
 	if(!LAZYLEN(GLOB.unspawned_tools)) // You shouldn't ever need this but I mean go on I guess
-		return
-	var/spawning
-	spawning = pick(GLOB.unspawned_tools)
-	GLOB.unspawned_tools -= spawning
+		return INITIALIZE_HINT_QDEL
+	var/spawning = pick_n_take(GLOB.unspawned_tools)
 	new spawning(get_turf(src))
-
+	return INITIALIZE_HINT_QDEL
 

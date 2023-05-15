@@ -7,7 +7,7 @@
 	var/list/used = list()
 
 /obj/structure/toolabnormality/treesap/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/reset), 20 MINUTES)
 
 /obj/structure/toolabnormality/treesap/proc/reset()

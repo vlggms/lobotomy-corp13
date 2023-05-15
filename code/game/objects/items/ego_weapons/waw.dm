@@ -1155,7 +1155,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/infinity/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = 1 SECONDS)
 	QDEL_IN(src, 1 SECONDS)
 

@@ -181,7 +181,7 @@
 	var/list/breach_affected = list()
 
 /mob/living/simple_animal/hostile/mini_censored/Initialize()
-	..()
+	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/censored/mini_born.ogg', 50, 1, 4)
 	base_pixel_x = rand(-6,6)
 	pixel_x = base_pixel_x

@@ -286,6 +286,6 @@
 	layer = POINT_LAYER	//High enough that you can see it if you look up.
 
 /obj/effect/halo/Initialize()
-	..()
+	. = ..()
 	animate(src, pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 	QDEL_IN(src, 30 SECONDS)

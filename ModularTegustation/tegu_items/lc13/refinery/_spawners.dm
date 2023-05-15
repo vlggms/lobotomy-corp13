@@ -20,9 +20,8 @@ GLOBAL_LIST_INIT(unspawned_sales, list(
 /obj/effect/landmark/salesspawn/Initialize()
 	..()
 	if(!LAZYLEN(GLOB.unspawned_sales)) // You shouldn't ever need this but I mean go on I guess
-		return
-	var/obj/structure/pe_sales/spawning = pick(GLOB.unspawned_sales)
-	GLOB.unspawned_sales -= spawning
+		return INITIALIZE_HINT_QDEL
+	var/obj/structure/pe_sales/spawning = pick_n_take(GLOB.unspawned_sales)
 	new spawning(get_turf(src))
-
+	return INITIALIZE_HINT_QDEL
 
