@@ -33,7 +33,7 @@
 		check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
 	if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
 		check += "**[SSlobotomy_corp.core_suppression.name]** is currently in the process.\n"
-	check += "Join the round: <byond://[server ? server : "[world.internet_address]:[world.port]"]>"
+	check += "Join the round: `byond://[server ? server : "[world.internet_address ? world.internet_address : world.address]:[world.port]"]`"
 	return check
 
 /datum/tgs_chat_command/ahelp

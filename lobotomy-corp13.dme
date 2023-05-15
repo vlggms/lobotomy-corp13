@@ -3665,7 +3665,6 @@
 #include "ModularTegustation\tegu_starfury_event.dm"
 #include "ModularTegustation\tegu_vendor_overwrites.dm"
 #include "ModularTegustation\tegu_virology.dm"
-#include "ModularTegustation\tegu_world.dm"
 #include "ModularTegustation\tegufood.dm"
 #include "ModularTegustation\tegushuttles.dm"
 #include "ModularTegustation\trusted.dm"
