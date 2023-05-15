@@ -20,8 +20,8 @@
 
 /datum/ordeal/amber_dawn/Run()
 	..()
-	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
-	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	var/place_player_mod = round(GLOB.player_list.len * place_player_multiplicator) // Ten players add a new spot
+	var/spawn_player_mod = round(GLOB.player_list.len * spawn_player_multiplicator)
 	for(var/i = 1 to (spawn_places + place_player_mod))
 		var/X = pick(GLOB.xeno_spawn)
 		var/turf/T = get_turf(X)
@@ -57,8 +57,8 @@
 /datum/ordeal/amber_midnight/Run()
 	..()
 	var/list/potential_locs = GLOB.department_centers.Copy()
-	if(GLOB.clients.len >= 15)
-		spawn_amount += round(GLOB.clients.len / 15)
+	if(GLOB.player_list.len >= 15)
+		spawn_amount += round(GLOB.player_list.len / 15)
 	for(var/i = 1 to spawn_amount)
 		var/turf/T = pick(potential_locs)
 		var/mob/living/simple_animal/hostile/ordeal/amber_midnight/M = new(T)
