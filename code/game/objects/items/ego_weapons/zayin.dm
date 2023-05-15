@@ -68,3 +68,4 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'

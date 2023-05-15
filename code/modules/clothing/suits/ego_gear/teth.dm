@@ -169,3 +169,15 @@
 	It may sound absurd but many take the rumor seriously."
 	icon_state = "page"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/snapshot
+	name = "snapshot"
+	desc = "Why else would it show absolutely no movement during all the observations and work we've done?"
+	icon_state = "snapshot"
+	armor = list(RED_DAMAGE = -40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/wishing_cairn
+	name = "wishing cairn"
+	desc = "If it is fortune you seek, pray with all sincerity."
+	icon_state = "wishing_cairn"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -10, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 20
