@@ -24,9 +24,6 @@
 	gift_type = /datum/ego_gifts/lutemis
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
-	var/injured = FALSE
-	var/dead = FALSE
-
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
