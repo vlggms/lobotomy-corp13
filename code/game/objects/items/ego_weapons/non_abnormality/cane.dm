@@ -12,6 +12,8 @@
 	var/charge_effect = "deal an extra attack in damage."
 	var/charge_cost = 2
 	var/charge
+	// TODO: Implement this for activatable buffs
+	var/activated
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,

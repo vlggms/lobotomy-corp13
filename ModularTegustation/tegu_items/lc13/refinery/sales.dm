@@ -13,6 +13,7 @@
 	var/crates_per_box		//Just used to calculate examine text
 
 	var/generating
+	var/icon_full = "full"
 
 /obj/structure/pe_sales/Initialize()
 	. = ..()
@@ -31,9 +32,13 @@
 		to_chat(user, "<span class='notice'>You load PE into the machine.</span>")
 		qdel(I)
 		counter()
-		add_overlay("full")
 	else if(generating)
 		to_chat(user, "<span class='notice'>This is already sending power!</span>")
+
+/obj/structure/pe_sales/update_overlays()
+	. = ..()
+	if(generating)
+		LAZYADD(., icon_full)
 
 /obj/structure/pe_sales/proc/counter()
 	power_timer--
@@ -44,10 +49,8 @@
 		power_timer = initial(power_timer)
 		generating = FALSE
 		visible_message("<span class='notice'>Payment has arrived from [src]</span>")
-		cut_overlays()
-		var/obj/item/holochip/C = new (get_turf(src))
-		C.credits = rand(ahn_amount/4,ahn_amount)
-
+		new /obj/item/holochip (get_turf(src), rand(ahn_amount/4,ahn_amount))
+	update_icon()
 	//gacha time
 	if(crate_timer  <= 0)
 		crate_timer = initial(crate_timer)

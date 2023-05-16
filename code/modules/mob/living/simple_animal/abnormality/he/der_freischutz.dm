@@ -71,7 +71,7 @@
 	datum_reference.qliphoth_change(3)
 	return ..()
 
-// currently unused, TODO: use or remove
+// currently admin-only
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/Machine_Gun(mob/living/target = null, shots = 7)
 	for(var/i = 0 to shots)
 		if(!isnull(target))
