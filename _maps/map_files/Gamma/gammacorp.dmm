@@ -1481,7 +1481,6 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/machinery/regenerator,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "lB" = (
