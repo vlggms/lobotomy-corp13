@@ -4,25 +4,37 @@
 	desc = "A common dog whistle. When used in hand, any nearby creature that is tamed will follow you."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "dogwhistle"
+	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	var/mode = 1
 
-/obj/item/pet_whistle/attack_self(mob/living/carbon/human/user) //i would make it work on actual /pets but those seem to lack the code for movement commands
+/obj/item/pet_whistle/attack_self(mob/living/carbon/human/user)
 	to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
 	playsound(get_turf(user), 'sound/effects/whistlereset.ogg', 10, 3, 3)
-	for(var/mob/living/simple_animal/hostile/bud in oview(get_turf(user), 7))
-		if(!bud.client && bud.tame) //isnt based on faction since this would result in the abnormality Yang and large shrimp gangs following the user.
-			switch(mode)
-				if(1)
-					bud.Goto(user, bud.move_to_delay, 2)
-				else
-					bud.LoseTarget()
+	for(var/mob/living/simple_animal/SA in oview(get_turf(user), 7))
+		if(!SA.client && SA.stat != DEAD && !anchored)
+			BlowWhistle(user, SA)
+
 	if(mode != 1)
 		mode = 1
 	else if(mode == 1)
 		mode = 0
 
-
+/obj/item/pet_whistle/proc/BlowWhistle(mob/living/carbon/human/user, mob/living/simple_animal/SA)
+	if(ishostile(SA))
+		var/mob/living/simple_animal/hostile/bud = SA
+		if(bud.tame) //isnt based on faction since this would result in the abnormality Yang and large shrimp gangs following the user.
+			switch(mode)
+				if(1)
+					bud.Goto(user, bud.move_to_delay, 2)
+				else
+					bud.LoseTarget()
+	else if(istype(SA, /mob/living/simple_animal/pet) && !SA.resting)
+		switch(mode)
+			if(1)
+				walk_to(SA, user, 2, SA.turns_per_move)
+			else
+				walk_to(SA, 0)
 
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
