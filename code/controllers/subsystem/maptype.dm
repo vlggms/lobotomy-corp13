@@ -12,3 +12,15 @@ SUBSYSTEM_DEF(maptype)
 
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list()
+
+	//What departments are we looking at
+	var/list/departments = list("Command","Security","Service")
+
+/datum/controller/subsystem/maptype/Initialize()
+	..()
+
+	//Badda Bing Badda Da. This makes the latejoin menu cleaner
+	switch(SSmaptype.maptype)
+		if("wonderlabs")
+			departments = list("Command", "Security", "Service", "Science")
+
