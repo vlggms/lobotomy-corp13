@@ -18,6 +18,9 @@ GLOBAL_LIST_INIT(medical_positions, list(
 
 GLOBAL_LIST_INIT(science_positions, list(
 //	"Fixer",
+	"Association Section Director",
+	"Association Veteran",
+	"Association Fixer",
 	))
 
 
