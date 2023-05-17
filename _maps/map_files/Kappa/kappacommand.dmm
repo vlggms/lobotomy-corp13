@@ -330,7 +330,8 @@
 	color = "#00a86b"
 	},
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
-	dir = 1
+	dir = 1;
+	emagged_reagents = null
 	},
 /obj/structure/window/reinforced/spawner,
 /turf/open/floor/mineral/gold,
@@ -1796,7 +1797,8 @@
 	color = "#00a86b"
 	},
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
-	dir = 1
+	dir = 1;
+	emagged_reagents = null
 	},
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25

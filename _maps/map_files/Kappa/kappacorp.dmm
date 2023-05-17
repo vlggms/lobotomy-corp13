@@ -79,7 +79,10 @@
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
 	},
-/obj/machinery/grill,
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = 11
+	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "aA" = (
@@ -1307,16 +1310,13 @@
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "lk" = (
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
+/obj/machinery/smartfridge/drying_rack,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "lp" = (
@@ -1359,8 +1359,12 @@
 /turf/open/floor/holofloor/white,
 /area/department_main/training)
 "lA" = (
-/obj/machinery/smartfridge,
-/turf/closed/indestructible/reinforced,
+/obj/machinery/grill,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25
+	},
+/turf/open/floor/facility/white,
 /area/department_main/training)
 "lB" = (
 /obj/machinery/computer/abnormality_logs{
@@ -1993,10 +1997,6 @@
 /turf/open/floor/holofloor/white,
 /area/department_main/command)
 "rr" = (
-/obj/structure/sink/kitchen{
-	dir = 4;
-	pixel_x = -10
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
@@ -2004,6 +2004,7 @@
 	dir = 4;
 	pixel_y = -23
 	},
+/obj/machinery/chem_dispenser/fullupgrade,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "rv" = (
@@ -3953,10 +3954,12 @@
 /turf/closed/mineral/ash_rock,
 /area/facility_hallway/discipline)
 "Iw" = (
-/obj/structure/table/reinforced,
-/obj/machinery/griddle,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = -32
+	},
+/obj/structure/sink/kitchen{
+	dir = 4;
+	pixel_x = -10
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
@@ -4066,6 +4069,10 @@
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
+/obj/structure/table/reinforced,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
+/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /obj/item/reagent_containers/glass/beaker/bluespace{
 	pixel_y = 12
 	},
@@ -4092,7 +4099,6 @@
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "Jt" = (
@@ -4129,6 +4135,13 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/command)
+"JE" = (
+/obj/machinery/griddle,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25
+	},
+/turf/open/floor/facility/white,
+/area/department_main/training)
 "JI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/mineral/ash_rock,
@@ -5564,7 +5577,9 @@
 /area/department_main/information)
 "Vp" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1
+	anchored = 1;
+	storage_capacity = 1000;
+	name = "Meat Storage Refrigerator"
 	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -5584,6 +5599,135 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
@@ -37361,7 +37505,7 @@ cl
 gw
 Ks
 gw
-lA
+JE
 Iw
 rr
 aA
