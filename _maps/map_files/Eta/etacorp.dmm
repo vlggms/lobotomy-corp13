@@ -2576,16 +2576,7 @@
 	dir = 4
 	},
 /obj/machinery/grill,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
+/obj/item/stack/sheet/mineral/wood/fifty,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "jb" = (
@@ -10431,7 +10422,8 @@
 	pixel_y = -32
 	},
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
-	dir = 1
+	dir = 1;
+	emagged_reagents = null
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -12527,7 +12519,7 @@
 	},
 /obj/machinery/chem_dispenser/drinks{
 	dir = 8;
-	emagged_reagents = Null
+	emagged_reagents = null
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
