@@ -457,52 +457,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
-"bP" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	storage_capacity = 1000
-	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "bS" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -2565,27 +2519,40 @@
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/east)
 "ja" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/brown{
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/item/food/meat/slab,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown{
-	dir = 4
+	dir = 1
 	},
-/obj/machinery/grill,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
-/obj/item/grown/log,
+/obj/effect/turf_decal/tile/brown,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "jb" = (
@@ -8530,168 +8497,17 @@
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "Eu" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	storage_capacity = 1000;
-	name = "Meat Storage Refrigerator"
-	},
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
 /obj/effect/turf_decal/tile/yellow{
-	dir = 4
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/yellow{
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown{
-	dir = 1
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/brown,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
+/obj/machinery/grill,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Ev" = (
@@ -8772,21 +8588,50 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "EG" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
+/obj/structure/closet/secure_closet/freezer/fridge/open{
+	anchored = 1
 	},
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/brown{
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown{
-	dir = 4
+	dir = 1
 	},
-/obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
-	name = "Industrial Foodstuff Dispenser";
-	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	emagged_reagents = null
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -11359,20 +11204,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"Oc" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/machinery/smartfridge/drying_rack,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Oe" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -11723,9 +11554,12 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/obj/machinery/dish_drive,
 /obj/structure/table/reinforced{
 	max_integrity = 25
+	},
+/obj/machinery/dish_drive{
+	pixel_x = -2;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -12189,20 +12023,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
-"QX" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/machinery/smartfridge/drying_rack,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Rb" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
@@ -12235,9 +12055,6 @@
 /obj/structure/table/reinforced{
 	max_integrity = 25
 	},
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
 /obj/item/storage/box/papersack,
 /obj/item/storage/box/papersack,
 /obj/item/storage/box/papersack,
@@ -12526,8 +12343,7 @@
 	max_integrity = 25
 	},
 /obj/machinery/chem_dispenser/drinks{
-	dir = 8;
-	emagged_reagents = Null
+	dir = 8
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -38068,7 +37884,7 @@ wd
 wd
 wd
 RK
-Oc
+VW
 VW
 VW
 VW
@@ -38976,7 +38792,7 @@ wd
 wd
 wd
 RK
-EG
+AL
 uZ
 uZ
 uZ
@@ -39203,7 +39019,7 @@ wd
 wd
 wd
 RK
-ja
+WP
 uZ
 RN
 mY
@@ -39430,7 +39246,7 @@ wd
 wd
 wd
 RK
-AL
+EG
 uZ
 LR
 ua
@@ -39884,7 +39700,7 @@ wd
 wd
 wd
 RK
-WP
+ja
 uZ
 gN
 Rc
@@ -40111,7 +39927,7 @@ wd
 wd
 wd
 RK
-bP
+WP
 uZ
 GT
 Dl
@@ -41246,7 +41062,7 @@ wd
 wd
 wd
 RK
-QX
+zJ
 zJ
 zJ
 zJ
