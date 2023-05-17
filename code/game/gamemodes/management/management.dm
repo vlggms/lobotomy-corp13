@@ -34,7 +34,7 @@
 /datum/game_mode/management/pure
 	name = "L Corp - Main Branch"
 	config_tag = "pure"
-	votable = 1
+	votable = 0
 
 	announce_span = "notice"
 	announce_text = "Manage a selection of abnormalities strictly from Lobotomy Corporation HQ!"
