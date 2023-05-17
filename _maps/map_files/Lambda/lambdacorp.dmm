@@ -156,10 +156,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
 /obj/machinery/grill,
+/obj/item/stack/sheet/mineral/wood/fifty,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "aF" = (
@@ -407,22 +405,6 @@
 	},
 /turf/open/floor/grass,
 /area/facility_hallway/training)
-"bs" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/department_main/training)
 "bv" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
@@ -1102,12 +1084,12 @@
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
 	},
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 13
-	},
-/obj/structure/table/reinforced{
-	max_integrity = 1
+/obj/machinery/chem_dispenser/fullupgrade{
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
+	name = "Industrial Foodstuff Dispenser";
+	desc = "Creates and dispenses a variety of kitchen ingredients.";
+	emagged_reagents = null;
+	upgrade_reagents = list(/datum/reagent/ash)
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
@@ -2285,9 +2267,6 @@
 /area/facility_hallway/central)
 "hN" = (
 /obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 10
@@ -2295,6 +2274,10 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 4
+	},
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	dir = 1;
+	emagged_reagents = null
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -2620,16 +2603,8 @@
 	dir = 1
 	},
 /obj/structure/table/wood,
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
-	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	dir = 1
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -5676,12 +5651,11 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "uM" = (
-/obj/effect/turf_decal/siding/brown,
-/obj/structure/disposalpipe/segment{
-	dir = 1
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
 	},
-/obj/structure/chair/wood/wings{
-	dir = 1
+/obj/structure/disposalpipe/junction/flip{
+	dir = 4
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -7240,6 +7214,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "AM" = (
@@ -7970,22 +7945,13 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "CX" = (
-/obj/structure/window/reinforced/spawner{
-	max_integrity = 25
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown{
+/obj/effect/turf_decal/siding/brown{
 	dir = 4
-	},
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/plasteel/sepia,
+/turf/open/floor/carpet/orange,
 /area/department_main/training)
 "CY" = (
 /obj/machinery/door/airlock/centcom,
@@ -8828,7 +8794,17 @@
 	pixel_y = 27
 	},
 /obj/structure/table/wood,
-/obj/item/toy/plush/chesed,
+/obj/item/storage/box/drinkingglasses{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/glass/rag{
+	pixel_y = 2;
+	pixel_x = 5
+	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
 "FW" = (
@@ -12947,7 +12923,9 @@
 /area/department_main/training)
 "VJ" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1
+	anchored = 1;
+	storage_capacity = 1000;
+	name = "Meat Storage Refrigerator"
 	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -12967,35 +12945,6 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
 	},
@@ -13006,7 +12955,161 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/brown,
-/obj/structure/disposalpipe/junction/flip{
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/slab/chicken,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/rawcrab,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/meat/slab/spider,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/carpmeat,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spiderleg,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/spidereggs,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/food/meat/slab/xeno,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/rice,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/item/reagent_containers/food/condiment/flour,
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -13684,6 +13787,10 @@
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
 /obj/item/choice_beacon/ingredient,
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
+	pixel_y = 13
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "Yt" = (
@@ -14114,7 +14221,6 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
 /obj/structure/sign/ordealmonitor{
 	pixel_y = 32
 	},
@@ -41283,10 +41389,10 @@ hn
 ry
 zb
 ZL
-uM
-CX
+ER
+RW
 aE
-bs
+ym
 VJ
 Ce
 Kk
@@ -42057,8 +42163,8 @@ ky
 Pb
 jX
 AJ
-mO
-da
+CX
+uM
 mO
 hd
 Bn
