@@ -447,3 +447,66 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
+
+/obj/item/gun/ego_gun/hypocrisy
+	name = "hypocrisy"
+	desc = "The tree turned out to be riddled with hypocrisy and deception; those who wear its blessing act in the name of bravery and faith."
+	icon_state = "hypocrisy"
+	inhand_icon_state = "hypocrisy"
+	worn_icon_state = "hypocrisy"
+	special = "Use this weapon in hand to place a trap."
+	worn_icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	ammo_type = /obj/item/ammo_casing/caseless/ego_hypocrisy
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 25
+	fire_sound = 'sound/weapons/ego/crossbow.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+	)
+	var/trap_cooldown = 0
+
+/obj/item/gun/ego_gun/hypocrisy/attack_self(mob/living/carbon/user)
+	if(locate(/obj/structure/liars_trap) in range(1, get_turf(src)))
+		to_chat(user,"<span class='notice'>Your too close to another trap.</span>")
+		return
+	to_chat(user,"<span class='notice'>You pull out an arrow and attempt to stab it into the ground.</span>")
+	playsound(src, 'sound/items/crowbar.ogg', 50, TRUE)
+	if(do_after(user, 3 SECONDS, src))
+		if(trap_cooldown >= world.time)
+			to_chat(user,"<span class='notice'>You cant place a sapling trap yet.</span>")
+			return
+		playsound(get_turf(user), 'sound/creatures/venus_trap_hurt.ogg', 50, TRUE)
+		var/obj/structure/liars_trap/c = new(get_turf(user))
+		c.creator = user
+		c.faction = user.faction.Copy()
+		trap_cooldown = world.time + (10 SECONDS)
+
+//Parasite Tree Ego Weapon Trap
+/obj/structure/liars_trap
+	gender = PLURAL
+	name = "sapling trap"
+	desc = "A small harmless looking sapling. Its leaves never seem to wilt."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "liars_trap"
+	anchored = TRUE
+	density = FALSE
+	resistance_flags = FLAMMABLE
+	max_integrity = 15
+	var/mob/living/carbon/human/creator
+	var/list/faction = list()
+
+/obj/structure/liars_trap/Initialize()
+	. = ..()
+	if(creator)
+		faction = creator.faction.Copy()
+
+/obj/structure/liars_trap/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!faction_check(faction, L.faction))
+			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
+			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
+			to_chat(creator, "<span class='warning'>You feel a itch towards [get_area(L)].</span>")
+			qdel(src)

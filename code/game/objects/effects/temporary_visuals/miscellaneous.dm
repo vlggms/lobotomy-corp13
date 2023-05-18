@@ -874,3 +874,9 @@
 /obj/effect/temp_visual/fire/Initialize()
 	. = ..()
 	icon_state = pick("1", "2", "3")
+
+/obj/effect/temp_visual/cloud_swirl
+	name = "cloud_swirl"
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "cloud_swirl"
+	duration = 10
