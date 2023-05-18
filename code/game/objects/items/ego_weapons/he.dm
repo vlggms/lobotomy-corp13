@@ -547,7 +547,7 @@
 	icon_state = "homing_instinct"
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	force = 0 //Literally does no damage by default
+	force = 22 //Damage is crushed down
 	attack_speed = 3
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
