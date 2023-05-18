@@ -361,3 +361,15 @@
 		"The Qliphoth Counter lowered every time two employees died.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter decreased.")
+
+//My Sweet Orange Tree
+/obj/item/paper/fluff/info/waw/orange_tree
+	abno_type = /mob/living/simple_animal/hostile/abnormality/orange_tree
+	abno_code = "O-02-23"
+	abno_info = list(
+		"When the work result was Normal, the employee was infected by 0-02-23 with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability and the employee was infected by 0-02-23.",
+		"When the Qliphoth Counter reached 0, O-02-23 dispersed throughout a large area.",
+		"Upon observing the Abnormality, it has been confirmed that the abnormality attached to employees for a certain amount of time, and inflicted WHITE damage over that period. The abnormality is highly contagious and difficult to recontain.",
+		"The infection was potentially cured if the infected received RED damage at a very small chance, with the provided flamethrowers being a far more effective deterrent.",
+		"When the SP of an infested employee had depleted, the employee in question would panic, spreading the infection rapidly.")
