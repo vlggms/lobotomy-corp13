@@ -144,6 +144,10 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 5
 	},
+/obj/item/folder/yellow{
+	name = "Corporate Folder";
+	desc = "A yellow folder, for putting corporate stuff in specifically."
+	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "aA" = (
@@ -174,6 +178,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
 "aF" = (
@@ -245,6 +250,32 @@
 	name = "Spinward Hub Armory"
 	},
 /area/centcom/hub)
+"aS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = -37;
+	pixel_y = 45
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = -37;
+	pixel_y = 33
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 39;
+	pixel_x = -17
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 27;
+	pixel_x = -17
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "aT" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/human)
@@ -653,6 +684,16 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 45;
+	pixel_x = -10
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 33;
+	pixel_x = -10
+	},
 /turf/open/floor/wood,
 /area/department_main/manager)
 "cM" = (
@@ -1059,6 +1100,13 @@
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/wood,
 /area/department_main/human)
+"eQ" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/item/kirbyplants/fullysynthetic,
+/turf/open/floor/carpet/black,
+/area/facility_hallway/manager)
 "eR" = (
 /obj/structure/rack,
 /obj/item/flashlight/seclite,
@@ -2331,6 +2379,9 @@
 	dir = 8;
 	color = "#3234B9"
 	},
+/obj/item/paper_bin/bundlenatural{
+	pixel_y = 5
+	},
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
 "iX" = (
@@ -2369,6 +2420,19 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
+"jd" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 7
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/manager)
 "je" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2699,8 +2763,13 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "kC" = (
-/obj/item/storage/lockbox/medal,
-/obj/structure/table/wood,
+/obj/structure/filingcabinet/zayininfo{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/tethinfo,
+/obj/structure/filingcabinet/heinfo{
+	pixel_x = 10
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "kF" = (
@@ -4098,16 +4167,13 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "qX" = (
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_y = 17
+/obj/structure/filingcabinet/wawinfo{
+	pixel_x = -10
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -7
+/obj/structure/filingcabinet/alephinfo,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7
-	},
-/obj/structure/table/wood,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "qZ" = (
@@ -4551,12 +4617,8 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
+/obj/structure/displaycase/trophy{
+	alert = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
@@ -4614,6 +4676,7 @@
 /area/department_main/human)
 "sV" = (
 /obj/structure/table/wood,
+/obj/item/storage/lockbox/medal,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "sW" = (
@@ -4829,6 +4892,32 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"tJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = 3;
+	pixel_y = 45
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_x = 3;
+	pixel_y = 33
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 39;
+	pixel_x = -17
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 27;
+	pixel_x = -17
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "tK" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Administrative Storage";
@@ -5095,6 +5184,22 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/tdome/arena)
+"uN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 45;
+	pixel_x = -24
+	},
+/obj/machinery/computer/security/telescreen{
+	network = list("ss13");
+	pixel_y = 33;
+	pixel_x = -24
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "uP" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6363,6 +6468,9 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+/obj/structure/displaycase/trophy{
+	alert = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "zh" = (
@@ -7411,6 +7519,9 @@
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
+/obj/structure/displaycase/trophy{
+	alert = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "DI" = (
@@ -8277,6 +8388,8 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 9
 	},
+/obj/item/cane,
+/obj/item/clothing/glasses/monocle,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "HS" = (
@@ -8284,7 +8397,7 @@
 /area/centcom/supply)
 "HT" = (
 /obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/facility/dark,
+/turf/open/floor/plating,
 /area/facility_hallway/manager)
 "HW" = (
 /obj/effect/turf_decal/tile{
@@ -9856,6 +9969,7 @@
 /area/tdome/tdomeadmin)
 "MQ" = (
 /obj/structure/table,
+/obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "MR" = (
@@ -11574,12 +11688,8 @@
 	pixel_y = 21;
 	pixel_x = 3
 	},
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
+/obj/structure/displaycase/trophy{
+	alert = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
@@ -12152,6 +12262,8 @@
 	dir = 4;
 	color = "#3234B9"
 	},
+/obj/item/clipboard,
+/obj/item/pen/fourcolor,
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
 "WQ" = (
@@ -12698,13 +12810,9 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "YP" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-10"
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/turf/open/floor/carpet/black,
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "YQ" = (
 /obj/structure/table,
@@ -12895,6 +13003,10 @@
 /area/facility_hallway/human)
 "ZI" = (
 /obj/structure/chair/stool,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
+"ZM" = (
+/obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "ZN" = (
@@ -15827,7 +15939,7 @@ qp
 qp
 qp
 qp
-aa
+qp
 aa
 aa
 aa
@@ -16082,9 +16194,9 @@ Sa
 sA
 zh
 sA
+sA
 xR
 qp
-aa
 aa
 aa
 aa
@@ -16338,10 +16450,10 @@ ZI
 sA
 MQ
 qp
+ZM
 sA
 RX
 qp
-aa
 aa
 aa
 aa
@@ -16595,10 +16707,10 @@ sA
 sA
 Dc
 qp
+ZM
 sA
 vp
 qp
-aa
 aa
 aa
 aa
@@ -16850,12 +16962,12 @@ sA
 ZI
 ZI
 sA
-MQ
+YP
 qp
+ZM
 sA
 Ao
 qp
-aa
 aa
 aa
 aa
@@ -17109,10 +17221,10 @@ VY
 jw
 Ia
 qp
+ZM
 sA
 pN
 qp
-aa
 aa
 aa
 aa
@@ -17369,7 +17481,7 @@ qp
 qp
 qp
 qp
-aa
+qp
 aa
 aa
 aa
@@ -17624,9 +17736,9 @@ Xa
 Ir
 qp
 HR
-YP
+rx
+eQ
 qp
-aa
 aa
 aa
 aa
@@ -17881,9 +17993,9 @@ iw
 le
 qp
 nV
+OX
 ew
 qp
-aa
 aa
 aa
 aa
@@ -18138,9 +18250,9 @@ sP
 RE
 Sp
 OX
+OX
 GC
 qp
-aa
 aa
 aa
 aa
@@ -18395,9 +18507,9 @@ Ez
 rp
 qp
 bn
+OX
 ew
 qp
-aa
 aa
 aa
 aa
@@ -18652,9 +18764,9 @@ tL
 aE
 qp
 ay
+cO
 nH
 qp
-aa
 aa
 aa
 aa
@@ -18883,7 +18995,7 @@ aa
 aa
 aa
 VR
-sV
+jd
 Uf
 bR
 dy
@@ -18911,7 +19023,7 @@ qp
 qp
 qp
 qp
-aa
+qp
 aa
 aa
 aa
@@ -19659,7 +19771,7 @@ NR
 cm
 uv
 VR
-mf
+tJ
 sd
 Zd
 FD
@@ -20173,7 +20285,7 @@ cs
 cK
 VT
 VR
-mf
+uN
 wa
 Wb
 Je
@@ -20430,7 +20542,7 @@ WE
 bc
 qX
 VR
-mf
+aS
 Kz
 qB
 PB
@@ -24028,7 +24140,7 @@ aa
 aa
 aa
 aa
-aa
+qp
 qp
 qp
 qp
