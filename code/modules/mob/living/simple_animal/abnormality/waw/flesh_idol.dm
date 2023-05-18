@@ -23,7 +23,7 @@
 		/datum/ego_datum/weapon/heart,
 		/datum/ego_datum/armor/heart
 		)
-//	gift_type = /datum/ego_gifts/heart
+	gift_type = /datum/ego_gifts/heart
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	var/work_count = 0
