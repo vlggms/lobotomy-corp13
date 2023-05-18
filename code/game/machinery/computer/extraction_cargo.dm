@@ -170,6 +170,5 @@
 #undef CAT_GADGET
 #undef CAT_EQUIP
 #undef CAT_MEDICAL
-#undef CAT_SCORP
 #undef CAT_RESOURCE
 #undef CAT_OTHER
