@@ -330,3 +330,10 @@
 	damage = 7 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_hypocrisy
+	name = "hypocrisy"
+	icon_state = "arrow_hypocrisy"
+	damage = 90 //50 damage is transfered to the spawnable trap
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

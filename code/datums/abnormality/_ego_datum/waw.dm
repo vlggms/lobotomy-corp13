@@ -368,3 +368,12 @@
 /datum/ego_datum/weapon/rimeshank
 	item_path = /obj/item/ego_weapon/rimeshank
 	cost = 50
+
+// Parasite Tree - Hypocrisy
+/datum/ego_datum/armor/hypocrisy
+	item_path = /obj/item/clothing/suit/armor/ego_gear/hypocrisy
+	cost = 50
+
+/datum/ego_datum/weapon/hypocrisy
+	item_path = /obj/item/gun/ego_gun/hypocrisy
+	cost = 50

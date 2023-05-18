@@ -134,3 +134,8 @@
 	name = "innocence casing"
 	desc = "A innocence casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_innocence
+
+/obj/item/ammo_casing/caseless/ego_hypocrisy
+	name = "hypocrisy casing"
+	desc = "A hypocrisy casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_hypocrisy
