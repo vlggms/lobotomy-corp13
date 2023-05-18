@@ -3,6 +3,8 @@ As the Manager, your responsibility isn't just picking the next abnormality! The
 As the Extraction Officer, keep note of the EGO available, and assist the manager in filling in the holes in your damage types.
 As the Extraction Officer, be sure to dish out gadgets as well as PE boxes and EGO. They increase Clerk efficiency greatly.
 As the Extraction Officer, give clerks abnormality chemistry equipment. They increase efficiency greatly.
+As the Extraction Officer, sort your workspace. Use racks, vendors, and more.
+As the Extraction Officer, your job is to keep track of everyone working and give ego to those who either earned it first, before general distribution
 As the Records Officer, you can use a spraycan on a door with harm intent to color it. Remember, ZAYIN is green, TETH is blue, HE is yellow, WAW is purple, ALEPH is red.
 As the Records Officer, you can delay an abnomalities arrival by 5 minutes with your Bronze Watch, it may be useful to delay a dangerous abnormality if the facility is struggling during a supression.
 As the Records Officer, your silver watch can give information not even the manager has access to. Be sure to inform them periodically.
