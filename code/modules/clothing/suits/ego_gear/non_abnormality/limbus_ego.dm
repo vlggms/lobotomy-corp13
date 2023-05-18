@@ -11,9 +11,9 @@
 
 //So we have 12 armor sets, we can make them all 120, 50 in one, 30 in another. Exactly enough :)
 /obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos
-	name = "To Pathos Minos"
+	name = "To Pathos Mathos"
 	desc = "The odyssey had a purpose..."
-	icon_state = "minos"
+	icon_state = "minos"	//To Do: Change this some fucking day
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus/ego/cast
