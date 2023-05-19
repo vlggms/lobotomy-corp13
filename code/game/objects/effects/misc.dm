@@ -107,3 +107,10 @@
 	duration = 2 SECONDS
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what hit you
 
+/obj/effect/temp_visual/maildecal
+	name = "A letter"
+	desc = "You have a bad feeling about this."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "mail"
+	layer = BELOW_MOB_LAYER
+	duration = 10 SECONDS
