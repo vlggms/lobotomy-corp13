@@ -370,11 +370,11 @@
 							PRUDENCE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/bride
-	name = "my own bride"
+/obj/item/clothing/suit/armor/ego_gear/my_own_bride
+	name = "My own Bride"
 	desc = "May your life work, Come back for you."
 	icon_state = "wife"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 140
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60)

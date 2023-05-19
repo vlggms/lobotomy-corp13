@@ -415,18 +415,18 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
-/obj/item/gun/ego_gun/bride
+/obj/item/gun/ego_gun/my_own_bride
 	name = "My own Bride"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
-	icon_state = "bride"
-	inhand_icon_state = "bride"
+	icon_state = "wife"
+	inhand_icon_state = "wife"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_bride
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	attribute_requirements = list(
-							INSTINCT_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 80
 	)
 
 /obj/item/gun/ego_gun/hookah

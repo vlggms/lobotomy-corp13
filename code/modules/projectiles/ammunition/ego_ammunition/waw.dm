@@ -144,4 +144,3 @@
 	name = "bride casing"
 	desc = "A bride casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_bride
-

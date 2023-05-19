@@ -37,13 +37,13 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/bride,
-		/datum/ego_datum/armor/bride
+		/datum/ego_datum/weapon/my_own_bride,
+		/datum/ego_datum/armor/my_own_bride
 		)
 	gift_type =  /datum/ego_gifts/bride
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
-	var/old_prudence
+	var/missing_prudence
 	var/mob/living/carbon/human/sculptor = null
 	var/protect_cooldown_time = 30 SECONDS
 	var/protect_cooldown
@@ -137,7 +137,7 @@
 		var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
 		var/user_attribute_level = max(1, user_attribute.level)
 		if (user_attribute_level > 40)
-			old_prudence = user_attribute_level
+			missing_prudence = user_attribute_level - 40
 			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level-40)*-1)
 			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
 
@@ -149,21 +149,23 @@
 	if (IsContained() && threat_level == TETH_LEVEL)
 		threat_level = WAW_LEVEL
 
-	if (IsContained() && old_prudence && sculptor)
+	if (IsContained() && missing_prudence && sculptor)
 		restorePrudence()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/restorePrudence()
-	var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
-	var/user_attribute_level = max(1, user_attribute.level)
-	sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (old_prudence - (user_attribute_level-40)))
-	old_prudence = null
-	to_chat(sculptor, "<span class='nicegreen'> As soon as it has fallen, You feel like your mind is back on track. </span>")
+	sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence)
+	missing_prudence = null
+	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/death(gibbed)
 	if (sculptor)
 		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
-		if (old_prudence)
+		if (missing_prudence)
 			restorePrudence()
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
 
 /datum/status_effect/sculptor
 	id = "Sculptor"

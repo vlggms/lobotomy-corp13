@@ -373,10 +373,10 @@
 		"Upon observing the Abnormality, it has been confirmed that the abnormality attached to employees for a certain amount of time, and inflicted WHITE damage over that period. The abnormality is highly contagious and difficult to recontain.",
 		"The infection was potentially cured if the infected received RED damage at a very small chance, with the provided flamethrowers being a far more effective deterrent.",
 		"When the SP of an infested employee had depleted, the employee in question would panic, spreading the infection rapidly.")
-		
+
 /obj/item/paper/fluff/info/waw/pygmalion
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pygmalion
-	abno_code = "T-03-23"
+	abno_code = "T-03-157"
 	abno_info = list(
 		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
 		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
