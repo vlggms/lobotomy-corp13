@@ -7,16 +7,16 @@
 			return "Normal"
 		if(-INFINITY to 0)
 			return "Absorbed"
-		if(0 to 0.5)
-			return "Resistant"
 		if(0.5 to 1)
 			return "Endured"
+		if(0 to 0.5)
+			return "Resistant"
 		if(1 to 1.5)
 			return "Weak"
-		if(2 to INFINITY)
-			return "Fatal"
 		if(1.5 to 2)
 			return "Vulnerable"
+		if(2 to INFINITY)
+			return "Fatal"
 	return "Unknown ([resist])"
 
 /// Returns text description for combat damage
