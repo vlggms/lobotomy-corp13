@@ -297,3 +297,12 @@
 /datum/ego_datum/weapon/flesh
 	item_path = /obj/item/ego_weapon/flesh
 	cost = 35*/
+
+//KQE-1J-23 - Replica
+/datum/ego_datum/armor/replica
+	item_path = /obj/item/clothing/suit/armor/ego_gear/replica
+	cost = 35
+
+/datum/ego_datum/weapon/replica
+	item_path = /obj/item/ego_weapon/replica
+	cost = 35

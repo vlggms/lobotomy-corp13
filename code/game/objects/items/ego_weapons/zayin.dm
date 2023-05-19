@@ -69,3 +69,37 @@
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
+
+/obj/item/ego_weapon/letter_opener
+	name = "letter opener"
+	desc = "Trusty aid of a mailman."
+	icon_state = "letteropener"
+	force = 14
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slices", "slashes", "stabs")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+
+//special ego for pile of mail from parcels
+/obj/item/ego_weapon/mail_satchel
+	name = "envelope"
+	desc = "Heavy satchel filled to the brim with letters."
+	icon_state = "mailsatchel"
+	force = 12
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slams", "bashes", "strikes")
+	attack_verb_simple = list("slams", "bashes", "strikes")
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
+
+/obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
+	force = 12 + temperance_mod
+	..()
+	force = initial(force)
+	damtype = initial(damtype)
+	if(prob(30))
+		new /obj/effect/temp_visual/maildecal(get_turf(A))

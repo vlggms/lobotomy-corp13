@@ -81,3 +81,9 @@
 	desc = "Soft and squishy, you could hug it for days."
 	icon_state = "hugs"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/letter_opener
+	name = "letter opener"
+	desc = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL!"
+	icon_state = "letter_opener"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)

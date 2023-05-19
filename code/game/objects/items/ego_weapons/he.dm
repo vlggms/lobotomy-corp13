@@ -967,3 +967,77 @@
 		return
 	user.adjustSanityLoss(5)
 	..()
+
+/obj/item/ego_weapon/replica
+	name = "pinpoint logic circuit"//temporary name
+	desc = "A mechanical yet sinewy claw ribbed with circuitry. It reminds you of toy claw machines."
+	special = "The charge effect of this weapon trips humans instead of injuring them."
+	icon_state = "replica"
+	force = 25
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("grabs", "pinches", "snips", "attacks")
+	attack_verb_simple = list("grab", "pinch", "snip", "attack")
+	hitsound = 'sound/abnormalities/kqe/hitsound2.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+	var/charge_effect = "pull a target from a distance."
+	var/charge_cost = 2
+	var/charge
+	var/activated
+	var/gun_cooldown
+	var/gun_cooldown_time = 1.2 SECONDS
+
+/obj/item/ego_weapon/replica/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	..()
+
+/obj/item/ego_weapon/replica/examine(mob/user)
+	. = ..()
+	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+
+/obj/item/ego_weapon/replica/attack_self(mob/user)
+	..()
+	if(charge>=charge_cost)
+		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		activated = TRUE
+	else
+		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+
+/obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
+	..()
+	if(charge<=20)
+		charge+=1
+
+/obj/item/ego_weapon/replica/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!activated)
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		charge -= charge_cost
+		activated = FALSE
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/replica/G = new /obj/projectile/ego_bullet/replica(proj_turf)
+		G.fired_from = src //for signal check
+		playsound(user, 'sound/abnormalities/kqe/load3.ogg', 100, TRUE)
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+
+/obj/item/ego_weapon/replica/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	var/mob/living/T = target
+	var/range = (get_dist(firer, T) - 1)//it should never pull things into your tile.
+	var/throw_target = get_edge_target_turf(T, get_dir(T, get_step_towards(T, src)))
+	if(range > 3)
+		range = 3//arbitrary hardcoded maximum range. Pretty wonky with diagonals so keep it small
+	if(!T.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		T.throw_at(throw_target, range, whack_speed, firer, spin = FALSE)
+	return TRUE
