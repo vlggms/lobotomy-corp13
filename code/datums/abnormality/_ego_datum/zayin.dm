@@ -96,3 +96,13 @@
 /datum/ego_datum/armor/nightshade
 	item_path = /obj/item/clothing/suit/armor/ego_gear/nightshade
 	cost = 12
+
+// Pile of mail - Letter Opener
+
+/datum/ego_datum/weapon/letter_opener
+	item_path = /obj/item/ego_weapon/letter_opener
+	cost = 12
+
+/datum/ego_datum/armor/letter_opener
+	item_path = /obj/item/clothing/suit/armor/ego_gear/letter_opener
+	cost = 12

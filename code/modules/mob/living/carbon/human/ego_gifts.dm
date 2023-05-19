@@ -235,6 +235,12 @@
 	prudence_bonus = 2
 	slot = EYE
 
+/datum/ego_gifts/mail //needs a sprite
+	name = "Empty Envelope"
+	prudence_bonus = 1
+	temperance_bonus = 1
+	slot = HAND_1
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
@@ -650,6 +656,15 @@
 	temperance_bonus = -1
 	justice_bonus = 3
 	slot = RIGHTBACK
+
+/datum/ego_gifts/replica
+	name = "Pinpoint Logic Circuit"
+	icon_state = "replica"
+	fortitude_bonus = -3
+	prudence_bonus = 1
+	temperance_bonus = 2
+	justice_bonus = 4
+	slot = BROOCH
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
