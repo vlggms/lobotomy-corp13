@@ -3,6 +3,8 @@
 	switch(resist)
 		if(0 to 0) //Just putting 0 doesn't work.
 			return "Immune"
+		if(1 to 1) 
+			return "Normal"
 		if(-INFINITY to 0)
 			return "Absorbed"
 		if(0 to 0.5)
