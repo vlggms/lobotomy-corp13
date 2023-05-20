@@ -331,6 +331,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/item/refiner_filter/red{
+	pixel_x = 3;
+	pixel_y = -7
+	},
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "aX" = (
@@ -7189,14 +7197,11 @@
 /area/facility_hallway/welfare)
 "AG" = (
 /obj/structure/table/wood,
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/refiner_filter/red{
-	pixel_x = 3;
-	pixel_y = -7
-	},
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "AH" = (
