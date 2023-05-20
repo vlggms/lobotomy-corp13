@@ -502,10 +502,18 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
-/obj/item/refiner_filter/red,
 /obj/item/refiner_filter/yellow{
 	pixel_x = 6;
 	pixel_y = -6
+	},
+/obj/item/refiner_filter/red{
+	pixel_x = 10;
+	pixel_y = -7
+	},
+/obj/item/refiner_filter/green,
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
@@ -4471,11 +4479,11 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/refiner_filter/green,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "MG" = (
