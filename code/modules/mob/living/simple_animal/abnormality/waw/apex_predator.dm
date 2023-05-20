@@ -157,7 +157,6 @@
 	addtimer(CALLBACK(src, .proc/Leap), 5)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Leap()
-//	busy = FALSE
 	density = FALSE
 	var/target_turf = get_turf(target)
 	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
