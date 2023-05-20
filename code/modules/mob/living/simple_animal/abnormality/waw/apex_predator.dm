@@ -107,11 +107,7 @@
 		if(target in range(1,src))
 			visible_message("<span class='danger'>\The [src] rips out [target]'s guts!</span>")
 			new /obj/effect/gibspawner/generic(get_turf(target))
-			if(ishuman(target))
-				var/mob/living/H = target
-				H.apply_damage(backstab_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			else
-				FindTarget()
+			target.apply_damage(backstab_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 			SLEEP_CHECK_DEATH(20)
 			Cloak()
