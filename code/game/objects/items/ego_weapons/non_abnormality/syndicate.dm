@@ -106,8 +106,7 @@
 	to_chat(user, "<span class='userdanger'>Breathe in.</span>")
 	force*=5
 
-	playsound(src, 'sound/misc/whistle.ogg', 50, TRUE)
-	addtimer(CALLBACK(src, .proc/Return, user), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/bladelineage/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
