@@ -7514,10 +7514,14 @@
 /area/department_main/safety)
 "Mc" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Md" = (
@@ -9552,6 +9556,7 @@
 /area/department_main/command)
 "WE" = (
 /obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "WF" = (
