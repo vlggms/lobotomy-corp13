@@ -3649,11 +3649,11 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/yellow{
-	pixel_x = 6;
-	pixel_y = -6
-	},
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "iz" = (
@@ -18208,11 +18208,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/item/refiner_filter/blue,
 /obj/item/refiner_filter/red{
 	pixel_x = 3;
 	pixel_y = -7
 	},
+/obj/item/refiner_filter/yellow{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/refiner_filter/blue{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/refiner_filter/green,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "Nx" = (
