@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(unspawned_sales, list(
+	/obj/structure/pe_sales/l_corp,
 	/obj/structure/pe_sales/w_corp,
 	/obj/structure/pe_sales/r_corp,
 	/obj/structure/pe_sales/k_corp,
@@ -8,6 +9,8 @@ GLOBAL_LIST_INIT(unspawned_sales, list(
 	/obj/structure/pe_sales/zwei,
 	/obj/structure/pe_sales/seven,
 	/obj/structure/pe_sales/leaflet,
+	/obj/structure/pe_sales/allas,
+	/obj/structure/pe_sales/syndicate,
 
 ))
 

@@ -17,6 +17,7 @@
 	attack_speed = 0.5
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/city/rats/scalpel
 	name = "rat scalpel"
@@ -26,3 +27,4 @@
 	attack_speed = 1.2
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'

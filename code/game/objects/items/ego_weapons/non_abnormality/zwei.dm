@@ -33,6 +33,8 @@
 
 /obj/item/ego_weapon/city/zweihander/attack_self(mob/living/carbon/human/user)
 	..()
+	if(!CanUseEgo(user))
+		return
 
 	if(!ready)
 		return
