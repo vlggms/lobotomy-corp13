@@ -10071,6 +10071,11 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/indestructible/white,
 /area/department_main/information)
 "xX" = (
