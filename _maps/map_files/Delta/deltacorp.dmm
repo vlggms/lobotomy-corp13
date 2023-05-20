@@ -7958,6 +7958,11 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "xw" = (

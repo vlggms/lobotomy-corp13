@@ -14558,7 +14558,11 @@
 	pixel_y = 2
 	},
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp/green,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ZI" = (

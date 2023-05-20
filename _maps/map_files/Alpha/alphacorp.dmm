@@ -5202,6 +5202,15 @@
 /obj/effect/landmark/start,
 /turf/open/floor/wood,
 /area/department_main/command)
+"OX" = (
+/obj/structure/table/glass,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Pd" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -40821,7 +40830,7 @@ TM
 LX
 gp
 zl
-pf
+OX
 YM
 YM
 Sg

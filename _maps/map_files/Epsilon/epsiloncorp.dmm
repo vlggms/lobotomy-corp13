@@ -1295,14 +1295,11 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ug" = (
@@ -2929,6 +2926,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "SW" = (

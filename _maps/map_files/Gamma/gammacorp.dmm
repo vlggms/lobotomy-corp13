@@ -858,6 +858,11 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "gX" = (
