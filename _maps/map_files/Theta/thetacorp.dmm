@@ -3877,7 +3877,11 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "jg" = (
-/obj/machinery/computer/shuttle/mining,
+/obj/machinery/computer/shuttle/mining{
+	name = "elevator console";
+	possible_destinations = "elevator_home;elevator_away";
+	shuttleId = "manager"
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "jh" = (
