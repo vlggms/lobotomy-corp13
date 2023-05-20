@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage
 	name = "blade lineage cutthroat robe"
 	desc = "A light robe worn by blade lineage cutthroats. Increases your running speed by 20%, allowing for quick strikes."
-	icon_state = "bladelineagecutthroat"
+	icon_state = "bladelineage_cuttthroat"
 	slowdown = -0.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 55,
@@ -26,7 +26,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin
 	name = "blade lineage admin robe"
 	desc = "A light robe worn by blade lineage admins. Increases your running speed by 60%, allowing for quick strikes."
-	icon_state = "bladelineagesalsu"
+	icon_state = "bladelineageadmin"
 	slowdown = -0.6
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
