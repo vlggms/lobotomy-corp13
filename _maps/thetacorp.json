@@ -1,0 +1,15 @@
+{
+	"version": 1,
+	"map_name": "Facility H-843",
+	"map_path": "map_files/Theta",
+	"map_file": [
+		"thetacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}
