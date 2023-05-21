@@ -96,8 +96,7 @@
 	. = ..()
 	reagents.add_reagent(/datum/reagent/liquidgibs, 5)
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, .proc/on_pipe_eject)
-	if(mapload) //Don't rot at roundstart for the love of god
-		return
+	RegisterSignal(src, COMSIG_GIBS_TRY_STREAK, .proc/try_streak)
 
 /obj/effect/decal/cleanable/blood/gibs/dry()
 	. = ..()
@@ -121,6 +120,10 @@
 		dirs = GLOB.alldirs.Copy()
 
 	streak(dirs)
+
+/obj/effect/decal/cleanable/blood/gibs/proc/try_streak(datum/source, list/directions, mapload = FALSE)
+	SIGNAL_HANDLER
+	streak(directions, mapload)
 
 /obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload=FALSE)
 	set waitfor = FALSE

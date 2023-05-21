@@ -20,7 +20,8 @@
 		stack_trace("Gib list dir length mismatch!")
 		return
 
-	var/obj/effect/decal/cleanable/blood/gibs/gib = null
+	var/obj/gib = null // this is the bare minimum typecast needed for this
+	// note it will still pass diseases to Initialize
 
 	if(sound_to_play && isnum(sound_vol))
 		playsound(src, sound_to_play, sound_vol, TRUE)
@@ -51,9 +52,8 @@
 				gib.add_blood_DNA(dna_to_add)
 
 				var/list/directions = gibdirections[i]
-				if(isturf(loc))
-					if(directions.len)
-						gib.streak(directions, mapload)
+				if(isturf(loc) && length(directions))
+					SEND_SIGNAL(gib, COMSIG_GIBS_TRY_STREAK, directions, mapload)
 
 	return INITIALIZE_HINT_QDEL
 

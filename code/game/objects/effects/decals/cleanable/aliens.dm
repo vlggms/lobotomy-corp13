@@ -30,6 +30,11 @@
 /obj/effect/decal/cleanable/xenoblood/xgibs/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_PIPE_EJECTING, .proc/on_pipe_eject)
+	RegisterSignal(src, COMSIG_GIBS_TRY_STREAK, .proc/try_streak)
+
+/obj/effect/decal/cleanable/xenoblood/xgibs/proc/try_streak(datum/source, list/directions, mapload = FALSE)
+	SIGNAL_HANDLER
+	streak(directions, mapload)
 
 /obj/effect/decal/cleanable/xenoblood/xgibs/proc/streak(list/directions, mapload=FALSE)
 	set waitfor = FALSE

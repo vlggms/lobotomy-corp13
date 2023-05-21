@@ -748,12 +748,13 @@
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "wrath_acid"
 	random_icon_states = list("wrath_acid")
-	mergeable_decal = TRUE
+	mergeable_decal = FALSE
 	var/duration = 2 MINUTES
 
 /obj/effect/decal/cleanable/wrath_acid/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	START_PROCESSING(SSobj, src)
+	RegisterSignal(src, COMSIG_GIBS_TRY_STREAK, .proc/try_streak)
 	duration += world.time
 
 /obj/effect/decal/cleanable/wrath_acid/process(delta_time)
@@ -764,6 +765,25 @@
 	STOP_PROCESSING(SSobj, src)
 	animate(src, time = (5 SECONDS), alpha = 0)
 	QDEL_IN(src, 5 SECONDS)
+
+/obj/effect/decal/cleanable/wrath_acid/proc/try_streak(datum/source, list/directions, mapload = FALSE)
+	SIGNAL_HANDLER
+	streak(directions, mapload)
+
+/obj/effect/decal/cleanable/wrath_acid/proc/streak(list/directions, mapload=FALSE)
+	set waitfor = FALSE
+	var/direction = pick(directions)
+	for(var/i in 0 to pick(0, 200; 1, 150; 2, 50; 3, 17; 50)) //the 3% chance of 50 steps is intentional and played for laughs.
+		if (!mapload)
+			sleep(2)
+		if(!step_to(src, get_step(src, direction), 0))
+			break
+	mergeable_decal = TRUE
+	if(loc && isturf(loc))
+		for(var/obj/effect/decal/cleanable/C in loc)
+			if(C != src && C.type == type && !QDELETED(C))
+				if (replace_decal(C))
+					qdel(src) // don't stack!
 
 /obj/effect/decal/cleanable/wrath_acid/Crossed(atom/movable/AM)
 	. = ..()
@@ -776,7 +796,7 @@
 	var/mob/living/L = AM
 	L.apply_status_effect(STATUS_EFFECT_ACIDIC_GOO)
 
-/obj/effect/decal/cleanable/wrath_acid/bad/
+/obj/effect/decal/cleanable/wrath_acid/bad
 	name = "Acidic Goo"
 	desc = "It seems to burn whatever it touches, best to stay away!"
 
