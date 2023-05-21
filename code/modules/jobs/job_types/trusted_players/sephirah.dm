@@ -18,7 +18,6 @@
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
 	H.real_name += " - [M.client.prefs.prefered_sephirah_department]"
-
 	for(var/obj/item/card/id/Y in H.contents)
 		Y.registered_name = H.name
 		Y.update_label()
@@ -27,9 +26,9 @@
 	if(M.client.prefs.prefered_sephirah_bodytype == "Box")
 		H.set_species(/datum/species/sephirah)
 		H.dna.features["mcolor"] = sanitize_hexcolor(M.client.prefs.prefered_sephirah_boxcolor)
-//		H.update_body()
-//		H.update_body_parts()
-//		H.update_mutations_overlay() // no hulk lizard
+		H.update_body()
+		H.update_body_parts()
+		H.update_mutations_overlay() // no hulk lizard
 
 	else
 		H.set_species(/datum/species/synth)
