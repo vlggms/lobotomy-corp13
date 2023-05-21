@@ -77,3 +77,11 @@
 	abno_info = list(
 		"When work with F-01-26 was completed, a seed was sewn in the nearby soil.",
 		"Plants grown by F-01-26 seem to have been purged of most toxic properties.")
+
+//Blubbering Toad
+/obj/item/paper/fluff/info/zayin/blubbering_toad
+	abno_type = /mob/living/simple_animal/hostile/abnormality/blubbering_toad
+	abno_code = "T-02-158"
+	abno_info = list(
+		"When the abnormality was approached outside of work, it suddenly became extremely hostile to that specific employee.",
+		"Employees report the toad's cries having a soothing effect while in containment, recovering SP.")
