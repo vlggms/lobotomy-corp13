@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<a href='?_src_=prefs;preference=agent_dept;task=input'><b>Preferred Agent Department:</b> [prefered_agent_department]</a><BR>"
 			dat += "<a href='?_src_=prefs;preference=seph_dept;task=input'><b>Preferred Sephirah Department:</b> [prefered_sephirah_department]</a><BR>"
 			dat += "<a href='?_src_=prefs;preference=seph_body;task=input'><b>Preferred Sephirah Body:</b> [prefered_sephirah_bodytype]</a><BR>"
-			dat += "<a href='?_src_=prefs;preference=seph_boxcolor;task=input'><b>Preferred Sephirah Box Color:</b> [prefered_sephirah_boxcolor]</a><BR>"
+			dat += "<b>Preferred Sephirah Box Color:</b> <span style='border: 1px solid #161616; background-color: #[prefered_sephirah_boxcolor];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=seph_boxcolor;task=input'>Change</a><BR>"
 			dat += "<br>"
 
 			dat += "<h2>Background Information:</h2>"
