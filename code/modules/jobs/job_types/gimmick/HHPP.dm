@@ -14,10 +14,6 @@ HHPP Employee
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_HHPP
 
-
-	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
-
-	display_order = 36
 	allow_bureaucratic_error = FALSE
 	maptype = "wonderlabs"
 
@@ -26,6 +22,10 @@ HHPP Employee
 /datum/job/chef/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	H.set_attribute_limit(0)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	to_chat(M, "<span class='userdanger'>HamHamPangPang requires that you take payment in exchange for food. </span>")
+	to_chat(M, "<span class='userdanger'>HamHamPangPang does not approve the use of human meat in their food, it \
+		may cause the regional director to launch an investigation. </span>")
+
 
 /datum/outfit/job/chef
 	name = "HHPP Chef"
