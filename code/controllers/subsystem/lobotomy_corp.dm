@@ -64,6 +64,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	//possession conditions
 	var/enable_possession = FALSE
 
+	var/understood_abnos = 0
+
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)

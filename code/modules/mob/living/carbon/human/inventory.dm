@@ -194,7 +194,7 @@
 				update_inv_w_uniform()
 			update_inv_wear_suit()
 	else if(I == w_uniform)
-		if(invdrop)
+		if(invdrop && !dna?.species.nojumpsuit)
 			if(r_store)
 				dropItemToGround(r_store, TRUE) //Again, makes sense for pockets to drop.
 			if(l_store)

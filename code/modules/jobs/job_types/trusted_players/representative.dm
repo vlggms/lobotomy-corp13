@@ -12,7 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_PHARMACY, ACCESS_COMMAND) // I want to use the number 69.
 	minimal_access = list(ACCESS_PHARMACY, ACCESS_COMMAND)
-	mapexclude = list("wonderlabs")
+	mapexclude = list("wonderlabs", "mini")
 
 
 	roundstart_attributes = list(

@@ -96,6 +96,9 @@
 	if(lock_after)
 		message_admins("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
 		locked = TRUE
+		// PE awarded for yellow roll - just as kirie had wanted.
+		SSlobotomy_corp.current_box += 250
+		to_chat(usr, "<span class='notice'>The headquarters reimbursed you the costs of extracting a specific abnormality. You will receive a random one.</span>")
 		SSabnormality_queue.AnnounceLock()
 		SSabnormality_queue.ClearChoices()
 		SStgui.close_uis(src) // Hacky solution but I don't care

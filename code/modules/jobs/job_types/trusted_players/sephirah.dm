@@ -8,7 +8,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
-	mapexclude = list("wonderlabs")
+	mapexclude = list("wonderlabs", "mini")
 
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
