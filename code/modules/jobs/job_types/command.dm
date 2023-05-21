@@ -30,6 +30,7 @@
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	minimal_access = list(ACCESS_COMMAND)
+	mapexclude = list("mini")
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 20,

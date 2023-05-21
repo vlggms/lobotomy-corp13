@@ -2713,6 +2713,7 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
 	},
+/obj/machinery/computer/abnormality_queue,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/manager)
 "pg" = (
@@ -4877,7 +4878,6 @@
 	pixel_x = -10;
 	pixel_y = 33
 	},
-/obj/machinery/computer/camera_advanced,
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -4897,6 +4897,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
+/obj/machinery/computer/camera_advanced/manager,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/manager)
 "AL" = (
@@ -7983,6 +7984,7 @@
 	color = "#3234B9";
 	dir = 8
 	},
+/obj/machinery/computer/abnormality_auxiliary,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/manager)
 "RR" = (
