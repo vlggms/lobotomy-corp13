@@ -149,6 +149,7 @@
 				understanding = clamp((understanding + (max_understanding/20)), 0, max_understanding)
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
+			SSlobotomy_corp.understood_abnos++
 	stored_boxes += pe
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
