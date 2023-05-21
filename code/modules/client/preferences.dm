@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/prefered_agent_department = "None"
 	var/prefered_sephirah_department = "Control"
 	var/prefered_sephirah_bodytype = "Humanoid"
-	var/prefered_sephirah_boxcolor = "000"
+	var/prefered_sephirah_boxcolor = "555"
 
 	//Quirk list
 	var/list/all_quirks = list()
