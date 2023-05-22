@@ -72,11 +72,7 @@
 			locked = locked ? FALSE : TRUE
 			owner.ShowGifts()
 		if("hide")
-			if(visible)
-				owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-			else
-				owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-			visible = !visible
+			Refresh_Gift_Sprite(visible) //for uniquely colored gifts
 		if("dissolve")
 			var/datum/ego_gifts/empty/E = new
 			E.slot = src.slot
@@ -166,6 +162,14 @@
 			src.cut_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
 			right_wing.icon_state = "twilight"
 			src.add_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
+
+/datum/ego_gifts/proc/Refresh_Gift_Sprite(option)
+	switch(option)
+		if(FALSE)
+			owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+		if(TRUE)
+			owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+	visible = !visible
 
 /// Empty EGO GIFT Slot
 /datum/ego_gifts/empty
@@ -880,6 +884,47 @@
 	temperance_bonus = 2
 	justice_bonus = 4
 	slot = EYE
+
+/datum/ego_gifts/hypocrisy
+	name = "Hypocrisy"
+	icon_state = "hypocrisy"
+	layer = BODY_BEHIND_LAYER
+	prudence_bonus = 3
+	fortitude_bonus = 3
+	slot = HELMET
+	var/ear_overlay
+
+/datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
+	user.ego_gift_list[src.slot] = src
+	var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
+	if(user.skin_tone)
+		var/user_skin_color = skintone2hex(user.skin_tone)
+		colored_overlay.color = "#[user_skin_color]"
+	ear_overlay = colored_overlay
+	user.add_overlay(ear_overlay)
+	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
+	return
+
+/datum/ego_gifts/hypocrisy/Remove(mob/living/carbon/human/user)
+	user.cut_overlay(ear_overlay)
+	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (src.fortitude_bonus * -1))
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (src.prudence_bonus * -1))
+	QDEL_NULL(src)
+	return
+
+/datum/ego_gifts/hypocrisy/Refresh_Gift_Sprite(option) //hide and unhide to update skin color.
+	switch(option)
+		if(FALSE)
+			var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
+			if(owner.skin_tone)
+				var/user_skin_color = skintone2hex(owner.skin_tone)
+				colored_overlay.color = "#[user_skin_color]"
+			ear_overlay = colored_overlay
+			owner.add_overlay(ear_overlay)
+		if(TRUE)
+			owner.cut_overlay(ear_overlay)
+	visible = !visible
 
 /datum/ego_gifts/amrita
 	name = "Amrita"
