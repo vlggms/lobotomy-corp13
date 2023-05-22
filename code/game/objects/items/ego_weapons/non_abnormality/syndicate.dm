@@ -31,7 +31,7 @@
 //Kurokumo - Grade 4 with poise crits.
 /obj/item/ego_weapon/city/kurokumo
 	name = "kurokumo blade"
-	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
+	desc = "A very sharp blade used by the Kurokumo clan. Get it bloody."
 	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
 	icon_state = "kurokumo_sheathed"
 	force = 52
@@ -103,7 +103,7 @@
 		return
 	ready = FALSE
 	user.Immobilize(3 SECONDS)
-	to_chat(user, "<span class='userdanger'>Breathe in.</span>")
+	to_chat(user, "<span class='userdanger'>Yield my flesh.</span>")
 	force*=5
 
 	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
