@@ -7,6 +7,7 @@
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodalong"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
+	weapon_weight = WEAPON_HEAVY
 	drag_slowdown = 3
 	slowdown = 2
 	spread = 40

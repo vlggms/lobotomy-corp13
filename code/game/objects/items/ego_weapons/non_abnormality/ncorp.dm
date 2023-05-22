@@ -88,6 +88,20 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/ego_weapon/city/ncorp_nail/grip
+	name = "Nagel der Gerechten"
+	desc = "A huge nail used by The One Who Grips."
+	icon_state = "gripnagel"
+	force = 50
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
 
 //Hammers - This is your bread and butter attacking weapon.
 /obj/item/ego_weapon/city/ncorp_hammer

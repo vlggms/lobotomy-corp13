@@ -111,10 +111,30 @@
 	crate = /obj/structure/lootcrate/zwei
 	crate_timer = 240	//Two boxes per
 
-//Not available because Id on't have enough stuff for it
 /obj/structure/pe_sales/seven
 	name = "Seven Association Power Input"
 	desc = "A machine used to send PE to seven association."
 	icon_state = "machineseven"
 	crate = /obj/structure/lootcrate/seven
-	crate_timer = 360	//Two boxes per
+	crate_timer = 360
+
+/obj/structure/pe_sales/allas
+	name = "Allas Workshop Power Input"
+	desc = "A machine used to send PE to the allas workshop"
+	icon_state = "machineallas"
+	crate = /obj/structure/lootcrate/workshopallas
+
+/obj/structure/pe_sales/syndicate
+	name = "Syndicate Workshop Power Input"
+	desc = "A machine used to send PE to the syndicate workshop"
+	icon_state = "machinesyndicate"
+	crate = /obj/structure/lootcrate/syndicate
+	crate_timer = 420	//The most expensive sales, takes about 3.5 boxes. The worst you'll get is still extremely good
+
+/obj/structure/pe_sales/l_corp
+	name = "Headquarters Power Input"
+	desc = "A machine used to send PE to L-Corp headquarters."
+	icon_state = "machinelc"
+	crate = /obj/structure/lootcrate/l_corp
+	power_timer = 60 	//L Corp is where you drain your power
+	crate_timer = 120	//And it's super cheap

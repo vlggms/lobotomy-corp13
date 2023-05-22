@@ -46,6 +46,35 @@
 	new loot(get_turf(src))
 	qdel(src)
 
+//Lobotomy Corporation
+/obj/structure/lootcrate/l_corp
+	name = "Lobotomy Corporation Gear Crate"
+	desc = "A crate recieved from headquarters. Contains standard gear for lobotomy corporation employees. Open with a Crowbar."
+	icon_state = "crate_lc"
+	rarechance = 10
+	lootlist =	list(
+		/obj/item/powered_gadget/detector_gadget/abnormality,
+		/obj/item/powered_gadget/slowingtrapmk1,
+		/obj/item/powered_gadget/clerkbot_gadget,
+		/obj/item/powered_gadget/handheld_taser,
+		/obj/item/storage/box/minertracker,
+		/obj/item/forcefield_projector,
+		/obj/item/flashlight/seclite,
+		/obj/item/storage/belt/ego,
+		/obj/item/safety_kit,
+		/obj/item/reagent_containers/hypospray/emais,
+		/obj/item/clothing/glasses/meson,
+		/datum/status_effect/visualize_vitals,
+		)
+
+	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele. Also includes things like the
+	//Lore reasons tm
+	rareloot =	list(
+		/obj/item/powered_gadget/detector_gadget/ordeal,
+		/obj/item/managerbullet,
+		/obj/item/powered_gadget/teleporter)
+
+
 
 //Limbus Company
 /obj/structure/lootcrate/limbus
@@ -184,18 +213,17 @@
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_hammer/grippy,
+		/obj/item/ego_weapon/city/ncorp_nail/grip,
 		/obj/item/ego_weapon/city/ncorp_nail/huge,
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander)
 
 
-//First set of city stuff. Cane, Rats, Index and Iron Brotherhood.
-//Also include Yun office.
+//First set of city stuff. Cane, Wedge, Rats, Leaflet and Mirae Life Insurance
 /obj/structure/lootcrate/workshopleaf
 	name = "leaflet workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_leaf"
 	rarechance = 20
-	veryrarechance = 2
 	lootlist =	list(
 		/obj/item/ego_weapon/city/rats,
 		/obj/item/ego_weapon/city/rats/knife,
@@ -205,11 +233,29 @@
 		/obj/item/ego_weapon/city/cane/cane,
 		/obj/item/ego_weapon/city/cane/claw,
 		/obj/item/ego_weapon/city/cane/briefcase,
-		/obj/item/ego_weapon/city/index,
+		/obj/item/ego_weapon/city/cane/fist,
+		/obj/item/ego_weapon/city/wedge,
 		)
 
-	veryrareloot =	list(
-		/obj/item/ego_weapon/city/index/proxy,)
+//Includes Yun office, Molar, Hook Office, Full Stop and The Udjat, as well as color fixers
+/obj/structure/lootcrate/workshopallas
+	name = "allas workshop crate"
+	desc = "A crate recieved from the city workshop. Open with a Crowbar."
+	icon_state = "crate_allas"
+	rarechance = 20
+	lootlist =	list(
+		/obj/item/ego_weapon/city/yun,
+		/obj/item/ego_weapon/city/yun/shortsword,
+		/obj/item/ego_weapon/city/yun/chainsaw
+		)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/molar,
+		/obj/item/ego_weapon/city/molar/olga,
+
+		)
+
+//Zelkova Workshop is the last one, Includes Dawn office, Misc fixers, Gaze Office and Jeong's Office.
 
 //Zwei - Zwei and it's associates
 /obj/structure/lootcrate/zwei
@@ -230,7 +276,6 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
 
 //Seven - Seven and it's associates
-
 /obj/structure/lootcrate/seven
 	name = "Seven Association Crate"
 	desc = "A crate recieved from seven association. Open with a Crowbar."
@@ -252,3 +297,28 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector,
 		/obj/item/ego_weapon/city/seven/director,
 		/obj/item/ego_weapon/city/seven/cane)
+
+//Syndicate Stuff, Very expensive, but all round pretty good
+/obj/structure/lootcrate/syndicate
+	name = "syndicate workshop crate"
+	desc = "A crate recieved from the syndicate. Open with a Crowbar."
+	icon_state = "crate_syndicate"
+	rarechance = 30
+	veryrarechance = 5
+	lootlist =	list(
+		/obj/item/ego_weapon/city/district23,
+		/obj/item/ego_weapon/city/district23/pierre,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage
+	)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/index,
+		/obj/item/ego_weapon/city/awl,
+		/obj/item/ego_weapon/city/kurokumo,
+		/obj/item/ego_weapon/city/bladelineage,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
+		)
+
+	veryrareloot =	list(
+		/obj/item/ego_weapon/city/index/proxy,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin)
