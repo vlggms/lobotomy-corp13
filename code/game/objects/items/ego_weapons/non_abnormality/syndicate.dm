@@ -76,7 +76,7 @@
 /obj/item/ego_weapon/city/bladelineage
 	name = "blade lineage katana"
 	desc = "A blade that is standard among blade lineage."
-	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage for one attack."
+	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds."
 	icon_state = "blade_lineage"
 	force = 46
 	attack_speed = 1.2
