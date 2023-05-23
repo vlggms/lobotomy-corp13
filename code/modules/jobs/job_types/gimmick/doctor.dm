@@ -18,6 +18,12 @@
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
 	maptype = "wonderlabs"
 
+/datum/job/doctor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	H.set_attribute_limit(0)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	to_chat(M, "<span class='userdanger'>You are forbidden from reviving lobotomy corp employees. </span>")
+	to_chat(M, "<span class='userdanger'>You must charge money for your services. </span>")
+
 /datum/outfit/job/doctor
 	name = "Doctor"
 	jobtype = /datum/job/doctor
