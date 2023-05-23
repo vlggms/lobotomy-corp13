@@ -41,7 +41,7 @@
 /obj/item/food/cake/bbird
 	name = "Big Bird cake"
 	desc = "A cake that seems like it's watching you."
-	icon_state = "plaincake" //PLACEHOLDER
+	icon_state = "bbcake" //PLACEHOLDER
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 1, "vigilance" = 1)
 	foodtypes = GRAIN | DAIRY
