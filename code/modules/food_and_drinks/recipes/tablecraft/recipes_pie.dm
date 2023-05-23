@@ -206,3 +206,15 @@
 	)
 	result = /obj/item/food/pie/baklava
 	subcategory = CAT_PIE
+
+/datum/crafting_recipe/food/Pierre
+	name = "Pierre's hand pie"
+	reqs = list(
+		/datum/reagent/consumable/blackpepper = 1,
+		/datum/reagent/consumable/salt = 1,
+		/obj/item/food/pie/plain = 1,
+		/obj/item/food/meat/slab/human = 1
+	)
+	result = /obj/item/food/pie/Pierre
+	subcategory = CAT_PIE
+

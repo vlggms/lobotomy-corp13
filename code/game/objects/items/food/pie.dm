@@ -263,3 +263,12 @@
 	icon_state = "baklavaslice"
 	tastes = list("nuts" = 1, "pie" = 1)
 	foodtypes = GRAIN
+
+/obj/item/food/pie/Pierre
+	name = "Pierre's hand pie"
+	desc = "A famous pie from the streets of flavour."
+	icon_state = "meatpie"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment/protein = 2)
+	tastes = list("meat...?" = 1, "pie" = 1, "meat" = 1)
+	foodtypes = GRAIN | MEAT
+
