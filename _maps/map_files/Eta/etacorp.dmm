@@ -8885,12 +8885,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/facility_hallway/welfare)
-"EY" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 8
-	},
-/turf/closed/indestructible/rock,
-/area/space)
 "Fa" = (
 /obj/machinery/light/floor{
 	name = "floor light 2";
@@ -13780,9 +13774,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
-"WF" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "WI" = (
 /obj/machinery/cryopod{
 	dir = 1
@@ -32914,7 +32905,7 @@ eI
 sr
 jZ
 wd
-EY
+wd
 vh
 vh
 vh
@@ -33141,8 +33132,8 @@ eI
 QR
 jZ
 wd
-EY
-EY
+wd
+wd
 wd
 wd
 wd
@@ -33370,7 +33361,7 @@ jZ
 wd
 wd
 wd
-EY
+wd
 wd
 wd
 vh
@@ -34470,7 +34461,7 @@ XC
 ku
 XC
 jb
-wd
+Nk
 wd
 wd
 wd
@@ -34697,7 +34688,7 @@ PG
 PG
 ab
 lL
-wd
+Nk
 wd
 wd
 wd
@@ -34924,7 +34915,7 @@ jH
 Ii
 AO
 vu
-wd
+Nk
 wd
 wd
 wd
@@ -35151,7 +35142,7 @@ Pz
 KN
 AO
 zn
-wd
+Nk
 wd
 wd
 wd
@@ -35378,7 +35369,7 @@ UF
 ww
 AO
 lq
-wd
+Nk
 wd
 wd
 wd
@@ -44004,7 +43995,7 @@ jH
 Ii
 AO
 vu
-WF
+Nk
 wd
 wd
 wd
@@ -44231,7 +44222,7 @@ Pz
 KN
 AO
 zn
-WF
+Nk
 wd
 wd
 wd
@@ -44458,7 +44449,7 @@ UF
 ww
 AO
 lq
-WF
+Nk
 wd
 wd
 wd
@@ -44685,7 +44676,7 @@ Ta
 Ta
 SQ
 st
-WF
+Nk
 wd
 wd
 wd
@@ -44912,7 +44903,7 @@ XC
 ku
 XC
 jb
-WF
+Nk
 wd
 wd
 wd
@@ -45171,7 +45162,7 @@ gg
 gg
 CB
 jZ
-WF
+Nk
 Nk
 bv
 bv
