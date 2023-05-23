@@ -271,3 +271,4 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nutriment/protein = 2)
 	tastes = list("meat...?" = 1, "pie" = 1, "meat" = 1)
 	foodtypes = GRAIN | MEAT
+

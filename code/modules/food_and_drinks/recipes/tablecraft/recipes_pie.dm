@@ -217,3 +217,4 @@
 	)
 	result = /obj/item/food/pie/Pierre
 	subcategory = CAT_PIE
+
