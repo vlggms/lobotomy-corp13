@@ -13,6 +13,7 @@ Scavenger
 	outfit = /datum/outfit/job/scavenger
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_ANTAG
+	exp_requirements = 300
 
 	allow_bureaucratic_error = FALSE
 	maptype = "wonderlabs"

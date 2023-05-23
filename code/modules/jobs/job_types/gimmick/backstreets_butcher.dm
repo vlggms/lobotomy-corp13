@@ -12,6 +12,7 @@ Backstreets Butcher
 	minimal_access = list(ACCESS_GENETICS)
 	outfit = /datum/outfit/job/butcher
 	display_order = JOB_DISPLAY_ORDER_ANTAG
+	exp_requirements = 300
 
 	allow_bureaucratic_error = FALSE
 	maptype = "wonderlabs"

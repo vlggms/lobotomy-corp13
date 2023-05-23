@@ -13,6 +13,7 @@ HHPP Employee
 	outfit = /datum/outfit/job/chef
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_HHPP
+	exp_requirements = 60
 
 	allow_bureaucratic_error = FALSE
 	maptype = "wonderlabs"

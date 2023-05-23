@@ -13,9 +13,9 @@
 	paycheck_department = ACCOUNT_MED
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
+	exp_requirements = 300
 
-	display_order = JOB_DISPLAY_ORDER_MEDICAL_DOCTOR
-	bounty_types = CIV_JOB_MED
+	display_order = JOB_DISPLAY_ORDER_CIVILIAN
 	maptype = "wonderlabs"
 
 /datum/outfit/job/doctor
