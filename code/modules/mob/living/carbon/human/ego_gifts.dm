@@ -948,6 +948,13 @@
 	fortitude_bonus = 4
 	temperance_bonus = 2
 	slot = NECKWEAR
+	
+/datum/ego_gifts/bride
+	name = "Bride"
+	icon_state = "bride"
+	prudence_bonus = 2
+	temperance_bonus = 5
+	slot = HAT
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
