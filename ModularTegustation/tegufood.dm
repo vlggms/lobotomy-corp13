@@ -218,8 +218,17 @@
 	desc = "placeholder"//placeholder
 	icon_state = "meatballsoup"//placeholder
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/water = 2)
-	tastes = list("basil" = 1)//add more
+	tastes = list("basil" = 2, "meat" = 2, "potato" = 2, "vegetables" = 2, "burning" = 1)
 	foodtypes = VEGETABLES | MEAT
 
 /datum/crafting_recipe/food/soup/basilisoup
-	//put code here
+	name = "Basilisoup"
+	reqs = list(
+		/datum/reagent/water = 10,
+		/obj/item/food/grown/carrot = 1,
+		/obj/item/food/grown/onion = 1,
+		/obj/item/food/grown/potato = 2,
+		/obj/item/food/meat/cutlet = 2
+	)
+	result = /obj/item/food/soup/basilisoup
+	subcategory = CAT_SOUP
