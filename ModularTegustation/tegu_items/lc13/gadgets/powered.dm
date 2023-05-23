@@ -131,98 +131,42 @@
 				return TRUE
 	return FALSE
 
+
 	//Trapspawner
 /obj/item/powered_gadget/slowingtrapmk1
 	name = "Qliphoth Field Projector"
-	desc = "This device places traps that reduces the mobility of Abnormalities for a limited time. The Movement Speed of an Abnormality will be reduced via overloading the Qliphoth control"
-	var/placed_structure = /obj/structure/trap/slowingmk1
+	desc = "This device places traps that reduces the mobility of Abnormalities for a limited time when used in hand. The Movement Speed of an Abnormality will be reduced via overloading the Qliphoth control"
+	var/placed_structure = /obj/structure/slowingmk1
 
 /obj/item/powered_gadget/slowingtrapmk1/attack_self(mob/user)
 	..()
 	if(cell && cell.charge >= batterycost)
-		for(var/obj/structure/trap/slowingmk1/T in range(0, get_turf(user)))
+		for(var/obj/structure/slowingmk1/T in range(0, get_turf(user)))
 			if(T)
 				return
 		cell.charge = cell.charge - batterycost
 		return new placed_structure(get_turf(src))
 
-/obj/structure/trap/slowingmk1
+/obj/structure/slowingmk1
 	name = "qliphoth overloader mk1"//very placeholder name
 	desc = "A device that delivers a burst of energy designed to overload the Qliphoth Control of abnormalities."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity2"
-	time_between_triggers = 100
-	charges = 1
 
-/obj/structure/trap/slowingmk1/Initialize()
-	..()
+/obj/structure/slowingmk1/Initialize()
+	. = ..()
 	playsound(src, 'sound/machines/terminal_processing.ogg', 20, TRUE)
+	for(var/obj/structure/slowingmk1/trap in view(1, get_turf(src)))
+		if(trap != src)
+			qdel(src)
 
-/obj/structure/trap/slowingmk1/Crossed(atom/movable/AM)
-	if(last_trigger + time_between_triggers > world.time)
-		return
-	// Don't want the traps triggered by sparks, ghosts or projectiles.
-	if(is_type_in_typecache(AM, ignore_typecache))
-		return
-	if(charges <= 0)
-		return
-	if(isliving(AM))
-		if(!istype(AM, /mob/living/simple_animal/hostile/abnormality))
-			return
-		if(istype(AM, /mob/living/simple_animal/hostile/abnormality))
-			trap_effect(AM)
-			return
+/obj/structure/slowingmk1/Crossed(atom/movable/AM)
 	. = ..()
-
-
-/obj/structure/trap/slowingmk1/trap_effect(mob/living/L)
-	L.apply_status_effect(/datum/status_effect/qliphothoverload)
-	flare()
-
-/obj/structure/trap/slowingmk1/flare()
-	// Makes the trap visible, and starts the cooldown until it's
-	// able to be triggered again.
-	alpha = 200
-	last_trigger = world.time
-	charges--
-	if(charges <= 0)
-		animate(src, alpha = 0, time = 10)
-		QDEL_IN(src, 10)
-	else
-		animate(src, alpha = initial(alpha), time = time_between_triggers)
-
-/mob/living/simple_animal/proc/adjustStaminaRecovery(amount, updating_health = TRUE, forced = FALSE) //abnormalities automatically restore their stamina by 10 due to the variable in simple_animal
-	stamina_recovery = (initial(stamina_recovery) + (amount))
-	return
-
-/datum/status_effect/qliphothoverload
-	id = "qliphoth intervention field"
-	duration = 10 SECONDS
-	alert_type = null
-	status_type = STATUS_EFFECT_REFRESH
-	var/statuseffectvisual
-
-/datum/status_effect/qliphothoverload/on_apply()
-	. = ..()
-	var/mob/living/simple_animal/hostile/L = owner
-//	L.add_movespeed_modifier(QLIPHOTH_SLOWDOWN)
-	L.adjustStaminaLoss(167, TRUE, TRUE)
-	L.adjustStaminaRecovery(-10) //anything with below 10 stamina recovery will continue to lose stamina
-	L.update_stamina()
-	statuseffectvisual = icon('icons/obj/clockwork_objects.dmi', "vanguard")
-	owner.add_overlay(statuseffectvisual)
-
-/datum/status_effect/qliphothoverload/on_remove()
-	var/mob/living/simple_animal/hostile/L = owner
-//	L.remove_movespeed_modifier(QLIPHOTH_SLOWDOWN)
-	L.adjustStaminaLoss(-167, TRUE, TRUE)
-	L.adjustStaminaRecovery(0)
-	L.update_stamina()
-	owner.cut_overlay(statuseffectvisual)
-	return ..()
-
-//update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
-// 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
+	if(isabnormalitymob(AM))
+		var/mob/living/simple_animal/hostile/L = AM
+		L.apply_status_effect(/datum/status_effect/qliphothoverload)
+		QDEL_IN(src, 2)
+		return
 
 /obj/item/powered_gadget/teleporter
 	name = "W-Corp instant transmission device"
@@ -263,7 +207,6 @@
 /obj/item/powered_gadget/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "clerkbot2_deactivated"
 	default_icon = "clerkbot2_deactivated"
 	batterycost = 10000
@@ -278,7 +221,6 @@
 			return
 		new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
 		to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
-
 
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
 	..()
@@ -314,14 +256,12 @@
 	..()
 	QDEL_IN(src, (120 SECONDS))
 
-
 //The taser
 /obj/item/powered_gadget/handheld_taser
 	name = "Handheld Taser"
 	desc = "A portable electricution device. Two settings, stun and slow. Automatically slows abnormalities instead of stunning them."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "gadget1"
-	default_icon = "gadget1"
+	icon_state = "taser"
+	default_icon = "taser"
 	batterycost = 1500
 	var/batterycost_stun = 3000
 	var/batterycost_slow = 1500
@@ -367,13 +307,10 @@
 	//Vitals Projector
 /obj/item/powered_gadget/vitals_projector
 	name = "vitals projector"
-	desc = "A device that can project the current vitals of its target. A wrench can change its target type."
+	desc = "Point this device at a enemy and use it to project the current vitals of its target. A wrench can change its target type."
 	icon_state = "gadgetmod_projector"
 	default_icon = "gadgetmod" //roundabout way of making update item easily changed. Used in updateicon proc.
 	var/current_target_overlay
-
-/obj/item/powered_gadget/vitals_projector/Initialize()
-	return ..()
 
 /obj/item/powered_gadget/vitals_projector/attackby(obj/item/W, mob/user)
 	if(W.tool_behaviour == TOOL_WRENCH)
