@@ -961,6 +961,7 @@
 #include "code\game\machinery\computer\security.dm"
 #include "code\game\machinery\computer\station_alert.dm"
 #include "code\game\machinery\computer\teleporter.dm"
+#include "code\game\machinery\computer\vendingabno.dm"
 #include "code\game\machinery\computer\warrant.dm"
 #include "code\game\machinery\computer\prisoner\_prisoner.dm"
 #include "code\game\machinery\computer\prisoner\gulag_teleporter.dm"
