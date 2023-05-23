@@ -499,6 +499,14 @@
 	tastes = list("meat" = 2, "egg yolk" = 3)
 	foodtypes = MEAT
 
+/obj/item/food/meatjam
+	name = "meat jam"
+	desc = "A jar of delicious meat jam."
+	icon_state = "meatproduct" //this is a placeholder
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein =  5, /datum/reagent/abnormality/we_can_change_anything = 3)
+	tastes = list("strange meat" = 3, "suffering" = 1)
+	foodtypes = MEAT
+
 
 //////////////////////////////////////////// KEBABS AND OTHER SKEWERS ////////////////////////////////////////////
 
