@@ -270,3 +270,12 @@
 	)
 	result = /obj/item/food/fried_chicken
 	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/yukhoe
+	name = "Yukhoe"
+	reqs = list(
+		/obj/item/food/meat/rawcutlet = 2
+		/obj/item/food/egg = 1,
+	)
+	result = /obj/item/food/yukhoe
+	subcategory = CAT_MEAT

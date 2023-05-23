@@ -491,6 +491,15 @@
 	tastes = list("meat" = 3, "pasta" = 3, "tomato" = 2, "cheese" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
 
+/obj/item/food/yukhoe
+	name = "Yukhoe"
+	desc = "Korean tartare, basically."
+	icon_state = "yukhoe"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/eggyolk = 4)
+	tastes = list("meat" = 2, "egg yolk" = 3)
+	foodtypes = MEAT
+
+
 //////////////////////////////////////////// KEBABS AND OTHER SKEWERS ////////////////////////////////////////////
 
 /obj/item/food/kebab
