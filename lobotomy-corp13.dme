@@ -2291,6 +2291,7 @@
 #include "code\modules\jobs\job_types\gimmick\backstreets_butcher.dm"
 #include "code\modules\jobs\job_types\gimmick\departmentcaptain.dm"
 #include "code\modules\jobs\job_types\gimmick\departmenthead.dm"
+#include "code\modules\jobs\job_types\gimmick\doctor.dm"
 #include "code\modules\jobs\job_types\gimmick\HHPP.dm"
 #include "code\modules\jobs\job_types\gimmick\scavenger.dm"
 #include "code\modules\jobs\job_types\trusted_players\representative.dm"

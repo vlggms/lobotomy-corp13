@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"HHPP Chef",
 	"Scavenger",
 	"Backstreets Butcher",
+	"Doctor",
 	"Main Office Representative",
 	))
 
