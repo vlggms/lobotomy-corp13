@@ -360,7 +360,7 @@
 	attribute_requirements = list(
 					FORTITUDE_ATTRIBUTE = 80
 					)
-							
+
 /obj/item/clothing/suit/armor/ego_gear/hypocrisy
 	name = "hypocrisy armor"
 	desc = "All things natural are bound to turn to dust someday. Thus, this evergreen robe must be kept far apart from mother nature."
@@ -369,3 +369,12 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/my_own_bride
+	name = "My own Bride"
+	desc = "May your life work, Come back for you."
+	icon_state = "wife"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60)

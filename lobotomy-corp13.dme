@@ -2706,6 +2706,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\naked_nest.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\nosferatu.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\orange_tree.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\pygmalion.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\queen_bee.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\silence.dm"

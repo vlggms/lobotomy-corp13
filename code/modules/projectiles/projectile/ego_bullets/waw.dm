@@ -337,3 +337,10 @@
 	damage = 90 //50 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_bride
+	name = "bride"
+	icon_state = "bride"
+	damage = 25
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
