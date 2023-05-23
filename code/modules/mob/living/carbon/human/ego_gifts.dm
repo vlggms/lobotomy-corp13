@@ -167,9 +167,10 @@
 	switch(option)
 		if(FALSE)
 			owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			visible = TRUE
 		if(TRUE)
 			owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-	visible = !visible
+			visible = FALSE
 
 /// Empty EGO GIFT Slot
 /datum/ego_gifts/empty
@@ -922,9 +923,10 @@
 				colored_overlay.color = "#[user_skin_color]"
 			ear_overlay = colored_overlay
 			owner.add_overlay(ear_overlay)
+			visible = TRUE
 		if(TRUE)
 			owner.cut_overlay(ear_overlay)
-	visible = !visible
+			visible = FALSE
 
 /datum/ego_gifts/amrita
 	name = "Amrita"
