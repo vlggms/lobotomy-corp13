@@ -367,3 +367,15 @@
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
+
+//Puss in Boots
+/obj/item/paper/fluff/info/he/puss_in_boots
+	abno_type = /mob/living/simple_animal/hostile/abnormality/puss_in_boots
+	abno_code = "F-02-24"
+	abno_info = list(
+		"When a level one employee comes in close contact with this abnormality, they may recieve a blessing. (From then on, the employee will be referred to as F-02-24-1).",
+		"Thanks to the blessing, F-02-24-1 experienced an increase in attributes as well as a small increase in resistance to all damage types.",
+		"F-02-24-1 found themselves incapable of using certain items that provide an unfair advantage in battle.",
+		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
+		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
+		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
