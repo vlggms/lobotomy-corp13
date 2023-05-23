@@ -72,13 +72,13 @@
 		/obj/item/food/icecream = 1
 	)
 	result = /obj/item/food/sundae/jbird
-	subcategory = CAT_FROZEN
+	subcategory = CAT_ICE
 
 /obj/item/food/apoctrifle
 	name = "Apocalypse trifle"
 	desc = "A huge serving of monstrously good cake, custard, and forest fruit."
 	icon_state = "royalcheese"//placeholder
-	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/sugar = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cake" = 3, "custard" = 3, "fresh fruit" = 3, "fear" = 1)
 	foodtypes = DAIRY | SUGAR | FRUIT
 
