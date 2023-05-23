@@ -32,3 +32,8 @@
 	name = "flammenwerfer casing"
 	desc = "A flamethrower casing."
 	projectile_type = /obj/projectile/ego_bullet/flammenwerfer
+
+/obj/item/ammo_casing/caseless/fullstop
+	name = "fullstop casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/fullstop

@@ -17,3 +17,14 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 100
 							)
+
+/obj/item/ego_weapon/city/fixerblade
+	name = "fixer blade"
+	desc = "A basic fixer blade found in the hands of many fixers."
+	icon_state = "fixer_blade"
+	force = 22
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
+	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")

@@ -10,6 +10,19 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/city/sevenrecon
+	name = "Seven Association recon armor"
+	desc = "Armor worn by seven association fixers. Speeds up it's user, for a faster gathering of intelligence, but has lower defenses"
+	icon_state = "seven"
+	slowdown = -0.5
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/city/sevenvet
 	name = "Seven Association veteran armor"
 	desc = "Armor worn by seven association veteran fixers."
