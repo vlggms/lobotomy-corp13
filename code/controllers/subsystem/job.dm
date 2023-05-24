@@ -686,9 +686,12 @@ SUBSYSTEM_DEF(job)
 		message_admins(msg)
 		CRASH(msg)
 
+GLOBAL_LIST_EMPTY(allowed_random_drop_areas)
 ///Lands specified mob at a random spot in the hallways or departments
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
-	var/turf/spawn_turf = get_safe_random_station_turf(subtypesof(/area/facility_hallway) + subtypesof(/area/department_main))
+	if(!length(GLOB.allowed_random_drop_areas))
+		GLOB.allowed_random_drop_areas = subtypesof(/area/facility_hallway) + subtypesof(/area/department_main) - list(/area/facility_hallway/human, /area/department_main/human)
+	var/turf/spawn_turf = get_safe_random_station_turf(GLOB.allowed_random_drop_areas)
 
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)
