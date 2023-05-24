@@ -161,6 +161,13 @@
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
 
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
+	if(ishuman(the_target))
+		var/mob/living/carbon/human/L = the_target
+		if(L.sanity_lost && L.stat != DEAD)
+			return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/black
 	name = "\proper Commander Maria"
 	desc = "A tall humanoid with a large black hammer."
