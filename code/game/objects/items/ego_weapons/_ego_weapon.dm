@@ -275,11 +275,14 @@
 
 //EGO Lance Subtype Code
 /obj/item/ego_weapon/lance
-	var/initial_dir // Immutable vars - You will never need to modify these.
+// Immutable vars - You will never need to modify these.
+	var/initial_dir
 	var/mob/current_holder
 	var/couch_cooldown = 0
 	var/charge_speed = 0
 	var/raised = TRUE
+	var/required_movement_time = 2 SECONDS
+// Mutable vars - Play around with these for funky weapons
 	var/list/default_attack_verbs = list("bludgeons", "whacks")
 	var/list/couch_attack_verbs = list("impales", "stabs")
 	var/couch_cooldown_time = 5 SECONDS //Cooldown between charges
@@ -339,7 +342,7 @@
 	SIGNAL_HANDLER
 	if(raised)
 		return
-	if(user.dir != initial_dir)
+	if(user.dir != initial_dir || src != user.get_active_held_item())
 		RaiseLance(user)
 		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
 		return
@@ -348,6 +351,10 @@
 	if(charge_speed > -(charge_speed_cap))
 		charge_speed -= speed_per_tile
 		user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/charge, multiplicative_slowdown = charge_speed)
+	if(user.pulling)
+		RaiseLance(user) //no stupid super speed dragging
+		to_chat(user, "<span class='warning'>You can't maintain your momentum while pulling something!</span>")
+	addtimer(CALLBACK(src, .proc/MoveCheck, user, user.loc), required_movement_time)
 
 /obj/item/ego_weapon/lance/proc/LowerLance(mob/user) //CHARGE!
 	initial_dir = user.dir
@@ -378,6 +385,9 @@
 		RaiseLance(user)
 		return
 	if (isliving(A))
+		if(ishuman(A))
+			var/mob/living/carbon/human/H = A
+			H.Knockdown(4 SECONDS) //we dont want humans getting skewerd for a million damage
 		A.attackby(src,user)
 		to_chat(user, "<span class='warning'>You successfully impale [A]!</span>")
 		if(charge_speed < -(pierce_threshold)) //you can keep going!
@@ -389,6 +399,14 @@
 		user.Knockdown(4 SECONDS) //crash if you bump into a wall too fast
 		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 	RaiseLance(user)
+
+/obj/item/ego_weapon/lance/proc/MoveCheck(mob/user, location)
+	if(raised)
+		return
+	if(!user.loc.AllowClick() || user.loc == location)
+		to_chat(user, "<span class='warning'>Your momentum runs out.</span>")
+		RaiseLance(user)
+		return
 
 /datum/movespeed_modifier/charge
 	multiplicative_slowdown = 0
