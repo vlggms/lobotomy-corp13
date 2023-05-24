@@ -382,6 +382,6 @@
 		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
 		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health." ,
 		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
-		"The “Sculptor” will have their prudence reduced to level 2 while Pygmalion is breaching." ,
+		"The “Sculptor” will have their prudence reduced to level 3 while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
 

@@ -47,6 +47,8 @@
 	var/mob/living/carbon/human/sculptor = null
 	var/protect_cooldown_time = 30 SECONDS
 	var/protect_cooldown
+	var/retaliation = 10
+	var/PRUDENCE_CAP = 60
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -136,9 +138,9 @@
 		threat_level = TETH_LEVEL
 		var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
 		var/user_attribute_level = max(1, user_attribute.level)
-		if (user_attribute_level > 40)
-			missing_prudence = user_attribute_level - 40
-			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level-40)*-1)
+		if (user_attribute_level > PRUDENCE_CAP)
+			missing_prudence = user_attribute_level - PRUDENCE_CAP
+			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
 			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
 
 	if (!IsContained() && protect_cooldown < world.time)
@@ -166,6 +168,19 @@
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	CounterAttack(user)
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/bullet_act(obj/projectile/P)
+	. = ..()
+	CounterAttack(P.firer)
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/proc/CounterAttack(mob/living/attacker)
+	if (attacker == sculptor)
+		attacker.apply_damage(retaliation, PALE_DAMAGE, null, attacker.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		to_chat(attacker, "<span class='userdanger'>You feel your heart break!</span>")
 
 /datum/status_effect/sculptor
 	id = "Sculptor"
