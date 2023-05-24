@@ -322,6 +322,16 @@
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
 
+//Nameless Fetus
+/obj/item/paper/fluff/info/he/fetus
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fetus
+	abno_code = "O-01-15"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"When the Qliphoth Counter reached 0, Nameless Fetus began crying. Employees who heard its wails complained of a headache. Furthermore, the Qliphoth Counters of all nearby Abnormalities gradually decreased over time.",
+		"While Nameless Fetus was in a crying state, the designated agent must approach it. After a moment of turmoil, the crying stopped.")
+
 //Doomsday Calendar
 /obj/item/paper/fluff/info/he/doomsday_calendar
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar

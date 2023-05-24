@@ -2644,6 +2644,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\jangsan.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\KHz.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\laetitia.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\nameless_fetus.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\pisc_mermaid.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\porccubus.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\red_buddy.dm"
