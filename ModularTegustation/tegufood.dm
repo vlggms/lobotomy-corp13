@@ -36,12 +36,13 @@
 	subcategory = CAT_PASTRY
 
 /obj/item/food/cookie/sugar/pbird
+	desc = "A sweet cookie shaped like a cute little bird."
 	icon_state = "sugarcookie_pbird"
 
 /obj/item/food/cake/bbird
 	name = "Big Bird cake"
 	desc = "A cake that seems like it's watching you."
-	icon_state = "bbcake" //PLACEHOLDER
+	icon_state = "bbcake"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 1, "vigilance" = 1)
 	foodtypes = GRAIN | DAIRY
@@ -57,7 +58,7 @@
 
 /obj/item/food/sundae/jbird
 	name = "Judgement sundae"
-	desc = "A sweet, sweet serving of justice. Cold, of course. Or was that revenge..."
+	desc = "A sweet, sweet serving of justice."
 	icon_state = "sundae" //PLACEHOLDER
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("judgement" = 1, "paranoia" = 1)
@@ -77,7 +78,7 @@
 /obj/item/food/apoctrifle
 	name = "Apocalypse trifle"
 	desc = "A huge serving of monstrously good cake, custard, and forest fruit."
-	icon_state = "royalcheese"//placeholder
+	icon_state = "apoctrifle"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cake" = 3, "custard" = 3, "fresh fruit" = 3, "fear" = 1)
 	foodtypes = DAIRY | SUGAR | FRUIT
