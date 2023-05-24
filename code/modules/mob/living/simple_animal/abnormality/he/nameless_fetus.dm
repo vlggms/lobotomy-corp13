@@ -42,6 +42,7 @@
 
 		notify_ghosts("The fetus is satisfied.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 		datum_reference.qliphoth_change(1)
+		return
 
 	addtimer(CALLBACK(src, .proc/check_range), 2 SECONDS)
 
