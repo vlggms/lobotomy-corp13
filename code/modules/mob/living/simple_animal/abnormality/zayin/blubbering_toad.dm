@@ -61,8 +61,8 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 //Work/Misc
-/mob/living/simple_animal/hostile/abnormality/blubbering_toad/Initialize()
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/blubbering_toad/PostSpawn()
+	..()
 	BlubberLoop() //crying sfx
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/BlubberLoop()

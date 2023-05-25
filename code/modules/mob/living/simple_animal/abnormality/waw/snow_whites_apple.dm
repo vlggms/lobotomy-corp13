@@ -196,13 +196,18 @@ GLOBAL_LIST_EMPTY(vine_list)
 	if(!atom_remove_condition)
 		atom_remove_condition = typecacheof(list(
 			/obj/projectile/ego_bullet/ego_match,
-			/mob/living/simple_animal/hostile/abnormality/helper,))
+			/mob/living/simple_animal/hostile/abnormality/helper,
+			/mob/living/simple_animal/hostile/abnormality/greed_king,
+			/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
+			/obj/vehicle/sealed/mecha))
 
 	if(!ignore_typecache)
 		ignore_typecache = typecacheof(list(
 			/obj/effect,
 			/mob/dead,
-			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple))
+			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple,
+			/mob/living/simple_animal/hostile/abnormality/golden_apple,
+			/mob/living/simple_animal/hostile/abnormality/ebony_queen))
 
 /obj/structure/spreading/apple_vine/Destroy()
 	GLOB.vine_list -= src
