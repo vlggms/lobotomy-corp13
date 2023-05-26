@@ -86,7 +86,7 @@
 /obj/item/ego_weapon/totalitarianism
 	name = "totalitarianism"
 	desc = "When one is oppressed, sometimes they try to break free."
-	special = "Use in hand to unlock it's full power."
+	special = "Use in hand to unlock its full power."
 	icon_state = "totalitarianism"
 	force = 80
 	attack_speed = 3
@@ -156,7 +156,7 @@
 	Any crack, no matter how small, will be pried open by this E.G.O."
 	special = "This weapon hits slower than usual."
 	icon_state = "remorse"
-	special = "Use this weapon in hand to change it's mode. \
+	special = "Use this weapon in hand to change its mode. \
 		The Nail mode marks targets for death. \
 		The Hammer mode deals bonus damage to all marked."
 	force = 30	//Does more damage later.
@@ -833,7 +833,7 @@
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
 	special = "Use this weapon in hand to heal the sanity of those around you."
 	icon_state = "moonlight"
-	force = 32					//One of the best support weapons. Does HE damage in it's stead.
+	force = 32					//One of the best support weapons. Does HE damage in its stead.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("beats", "jabs")
