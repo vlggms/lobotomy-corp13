@@ -1,0 +1,25 @@
+{
+	"version": 1,
+	"map_name": "Facility N-523",
+	"map_path": "map_files/Xi",
+	"map_file": [
+		"xicommand.dmm",
+		"xicorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"traits": [
+		{
+			"Up": 1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		},
+		{
+			"Down": -1,
+			"Baseturf": "/turf/open/indestructible",
+			"Linkage": "Cross"
+		}
+	],
+	"minetype": "none",
+	"maptype": "wonderlabs"
+}
