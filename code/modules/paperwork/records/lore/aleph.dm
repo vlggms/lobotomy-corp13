@@ -1,0 +1,17 @@
+
+//MOSB
+/obj/item/paper/fluff/lore/aleph/mountain
+	name = "T-01-75"
+	info = {"<h2><center>T-01-75</center></h2>	<br>
+	"It's not like these kinds of happenings are uncommon here, but one day, dozens of employees were killed in an incident. The reason is the same as always. Something breaches, they attempt to stop it, then it leads to another breach... The one fortunate thing was that the department was sealed off before things could get any worse, so they all died in the same place. Literally, a mountain of bodies was formed. Obviously, no one wanted to clean up that mess.	<br>
+	Normally, it should have been taken care of within the day, but because the accident was just so horrific and everyone was so exhausted, the clean up was delayed with authorization from the department’s Sephirah. Don't ask me which department it was in, I don't remember all the details."	<br>
+	<br>
+	"When left out in the open, a corpse will begin to rot within a few hours. Most of the bodies that die here are damaged in one way or another, so they decay even faster. You probably don’t know it yet, but most of the employees here are rather skilled at cleaning up dead bodies. Tidying up over and over will make anyone an expert at it, whether you want to or not. Let’s say someone you were just talking to about dinner plans died horrifically. With your repeated experience to help you, you won’t be vomiting or running away at least."	<br>
+	<br>
+	"Whoops, I sidetracked a little there. Anyway, in normal circumstances, the mountain would have been removed quickly, but it remained in the department for quite a long time. So it decayed, melted, corroded, and broke down following the laws of nature."	<br>
+	<br>
+	"That's how its creation began, from the mountains of bodies. The dead gave life to something. Amazed yet? I've still got more to tell you. The dead fused with one another, all smiling. Sharing body parts, at least those that were still intact, they became each other's legs and mouths. That doesn't mean their consciousness has also been restored though. It only wants one thing: our flesh drenched in blood. When there’s an announcement of someone’s death, the first thing you should do is check if this thing’s quarantined. Once it gets a whiff of the scent, it will pursue us in an instant. The smiling faces are unfamiliar yet sorrowful. The more bodies it comes across, the more defined its shape becomes. And it is never satisfied.	<br>
+	I'm telling you all this because it's almost here. Accidents always happen in this place. Some may spare a bit of their time for a moment of silence, but most will turn away thinking, "Again?". At the very least, one thing that was done right is that the department’s been sealed off. I'm the only one left anyways. Did you learn anything from my story? What kind of lesson can be learned from a story as horrible as this, you ask? It's similar to most fairy tales. "Don't be lazy" is the lesson. When my voice ceases, come here and clean up your colleagues in exactly 3 minutes"	<br>
+	<br>
+	"Pretty soon I won't be able to keep talking. I'm about to swallow a large bomb. Time's running out. Blood is flowing all around here. I'm starting to see the smiling faces now... Something you don't see much of around here. Don't be surprised when you hear a loud explosion. Like I said, it's precisely 3 minutes. I'm sure a bomb this size will be able to suppress it. The last body it finds will be mine." 	<br>
+	"}
