@@ -97,7 +97,7 @@
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
 	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
-	var/list/search_area = user.contents
+	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents
 	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
