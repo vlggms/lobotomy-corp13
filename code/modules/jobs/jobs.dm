@@ -31,6 +31,9 @@ GLOBAL_LIST_INIT(supply_positions, list(
 GLOBAL_LIST_INIT(service_positions, list(
 	"Clerk",
 	"HHPP Chef",
+	"Scavenger",
+	"Backstreets Butcher",
+	"Doctor",
 	"Main Office Representative",
 	))
 
