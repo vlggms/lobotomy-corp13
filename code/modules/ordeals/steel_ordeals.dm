@@ -1,6 +1,6 @@
 /datum/ordeal/simplespawn/steel_dawn
 	name = "Dawn of Steel"
-	annonce_text = "Was there any meaning to that war? "
+	annonce_text = "Was there any meaning to that war?"
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 1
@@ -14,7 +14,7 @@
 
 /datum/ordeal/simplecommander/steel_noon
 	name = "Noon of Steel"
-	annonce_text = "It certainly would be nice if they were."
+	annonce_text = "The augmentation... I don’t regret it. One downside, though, is that I won’t ever be able to return to civilian life."
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 2
@@ -27,13 +27,13 @@
 
 /datum/ordeal/simplecommander/steel_dusk
 	name = "Dusk of Steel"
-	annonce_text = "Only the dead have seen the end of war."
+	annonce_text = "If we lose this war we would would be cast to the streets, seen as less than human by even the rats."
 	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 3
 	reward_percent = 0.2
 	color = "#444444"
-	bosstype = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon)
+	bosstype = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon, /mob/living/simple_animal/hostile/ordeal/steel_noon/flying)
 	grunttype = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/noon)
 	bossnumber = 2
 	gruntnumber = 5
@@ -46,7 +46,7 @@
 	level = 4
 	reward_percent = 0.25
 	color = "#444444"
-	bosstype = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon)
+	bosstype = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon, /mob/living/simple_animal/hostile/ordeal/steel_noon/flying)
 	grunttype = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/strong)
 	bossnumber = 4
 	gruntnumber = 5

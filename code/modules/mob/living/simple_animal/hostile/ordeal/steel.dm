@@ -34,7 +34,7 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Life()
 	. = ..()
 	if(stat != DEAD)
-		if(health <= maxHealth*0.3)
+		if(health <= maxHealth*0.2)
 			if(fallback_cooldown >= world.time)
 				fallback_cooldown = world.time + (4 SECONDS)
 				retreat_distance = 5
@@ -114,7 +114,6 @@
 	a_intent_change(INTENT_HELP)
 
 /mob/living/simple_animal/hostile/ordeal/steel_noon/MeleeAction()
-	dodge()
 	health+=10
 	if(health <= maxHealth*0.2 && stat != DEAD)
 		say("FOR G CORP!!!")
@@ -131,6 +130,94 @@
 	for(var/mob/living/L in view(2, src))
 		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying //flying varient trades movement and attack speed for a sweeping attack.
+	name = "gene corp arial scout"
+	desc = "A heavily mutated employee with wings and long insectoid arms. During the smoke war, rabbit teams would get ambushed by swarms that hid in the smoke choked sky."
+	icon_state = "gcorp6"
+	icon_living = "gcorp6"
+	environment_smash = FALSE
+	is_flying_animal = TRUE
+	footstep_type = null
+	rapid_melee = 1
+	ranged = TRUE
+	ranged_cooldown_time = 15 SECONDS
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
+	buffed = FALSE
+	move_to_delay = 3
+	var/charging = 0
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/Move()
+	if(buffed && !charging)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/CanAllowThrough(atom/movable/mover, turf/target)
+	if(charging && isliving(mover))
+		return TRUE
+	. = ..()
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/Shoot(atom/A)
+	if(buffed || !isliving(A))
+		return FALSE
+	animate(src, alpha = alpha - 50, pixel_y = base_pixel_y + 25, layer = 6, time = 10)
+	buffed = TRUE
+	density = FALSE
+	if(do_after(src, 2 SECONDS, target = src))
+		ArialSupport()
+	else
+		visible_message("<span class='notice'>[src] crashes to the ground.</span>")
+		apply_damage(100, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
+	//return to the ground
+	density = TRUE
+	layer = initial(layer)
+	buffed = FALSE
+	alpha = initial(alpha)
+	pixel_y = initial(pixel_y)
+	base_pixel_y = initial(base_pixel_y)
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/proc/ArialSupport() //from current location fly to the enemy and hit them. Utilizes some little helper abnormality code.
+	charging = TRUE
+	var/turf/target_turf = get_turf(target)
+	for(var/i=0 to 7)
+		var/turf/wallcheck = get_step(src, get_dir(src, target_turf))
+		if(!ClearSky(wallcheck))
+			break
+		var/mob/living/sweeptarget = locate(target) in wallcheck
+		if(sweeptarget)
+			SweepAttack(sweeptarget)
+			break
+		forceMove(wallcheck)
+		SLEEP_CHECK_DEATH(0.5)
+	charging = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/proc/ClearSky(turf/T)
+	if(!T || isclosedturf(T) || T == loc)
+		return FALSE
+	if(locate(/obj/structure/window) in T.contents)
+		return FALSE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			return FALSE
+	return TRUE
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/proc/SweepAttack(mob/living/sweeptarget)
+	sweeptarget.visible_message("<span class='danger'>[src] slams into [sweeptarget]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
+	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
+	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
+	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
+		do_knockback(sweeptarget, src, get_dir(src, sweeptarget))
+		shake_camera(sweeptarget, 4, 3)
+		shake_camera(src, 2, 3)
+
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying/proc/do_knockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
+	if(!ismovable(target) || throw_dir == null)
+		return
+	var/atom/movable/throwee = target
+	if(throwee.anchored)
+		return
+	var/atom/throw_target = get_edge_target_turf(throwee, throw_dir)
+	throwee.safe_throw_at(throw_target, 1, 1, thrower, gentle = TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk //Has a very complex AI that generally functions as the brain of a army.
 	name = "gene corp manager"
@@ -171,7 +258,7 @@
 			adjustBruteLoss(-2)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Found(atom/A) //recruitment code
-	if((istype(A, /mob/living/simple_animal/hostile/ordeal/steel_dawn) || istype(A, /mob/living/simple_animal/hostile/ordeal/steel_noon)) && troops.len < 6)
+	if((istype(A, /mob/living/simple_animal/hostile/ordeal/steel_dawn) || istype(A, /mob/living/simple_animal/hostile/ordeal/steel_noon)) && troops.len < 8)
 		var/mob/living/simple_animal/hostile/ordeal/steel_dawn/S = A
 		if(S.stat != DEAD && !S.leader && !S.target && !S.client && faction_check_mob(S)) //are you dead? do you have a leader? are you currently fighting? Are you a player? Different faction?
 			S.Goto(src,S.move_to_delay,1)
