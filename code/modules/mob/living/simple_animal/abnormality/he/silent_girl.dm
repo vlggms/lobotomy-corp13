@@ -102,7 +102,7 @@
 		works_required = args[3]
 	guilt_icon = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "guilt", -MUTATIONS_LAYER)
 	. = ..()
-	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works attone."
+	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works to attone."
 	return
 
 /datum/status_effect/sg_guilty/on_apply()
@@ -130,7 +130,7 @@
 /datum/status_effect/sg_guilty/refresh()
 	playsound(get_turf(owner), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 	works_required++
-	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works attone."
+	linked_alert.desc = initial(linked_alert.desc)+" Complete [works_required] more Attachment works to attone."
 
 /datum/status_effect/sg_guilty/proc/OnWorkComplete(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
