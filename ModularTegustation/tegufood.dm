@@ -93,36 +93,6 @@
 	result = /obj/item/food/apoctrifle
 	subcategory = CAT_MISC
 
-//obj/item/food/popsicle/ntpop
-//	name =
-//	desc =
-//	icon_state =
-//	food_reagents =
-//	tastes =
-//	foodtypes =
-
-//ntpop recipe
-
-//obj/item/food/popsicle/meltypop
-//	name =
-//	desc =
-//	icon_state =
-//	food_reagents =
-//	tastes =
-//	foodtypes =
-
-//meltypop recipe
-
-//obj/item/food/bread/ntbread
-//	name =
-//	desc =
-//	icon_state =
-//	food_reagents =
-//	tastes =
-//	foodtypes =
-
-//ntbread recipe
-
 ////////////////////////////////////////////////////////////////ordeal food/////////////////////////////////////////////////////////////////////////////
 /datum/crafting_recipe/food/wormfood
 	name = "Wormfood"
@@ -172,10 +142,6 @@
 	result = /obj/item/food/soup/sweepersoup
 	subcategory = CAT_SOUP
 
-//violet ordeal food
-
-//crimson ordeal food
-
 		////////////////////////////////////////////////////////////////abnochem food/////////////////////////////////////////////////////////////////////////////
 
 /obj/item/food/teaparty
@@ -203,21 +169,10 @@
 	result = /obj/item/food/meatjam
 	subcategory = CAT_MEAT
 
-/obj/item/food/gluffin
-	name = "gloomy muffin"
-	desc = "Somehow, it makes you want to cry."
-	icon_state = "gluffin"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 3) //add the abnochem once it's in the code
-	tastes = list("muffin" = 3, "sadness" = 2, "catharsis" = 1)
-	foodtypes = GRAIN | SUGAR
-
-/datum/crafting_recipe/food/gluffin
-	//put code here
-
 /obj/item/food/soup/basilisoup
 	name = "basilisoup"
-	desc = "placeholder"//placeholder
-	icon_state = "meatballsoup"//placeholder
+	desc = "A boiling hot stew. It tastes like home."
+	icon_state = "meatballsoup"//replace with actual sprite when done
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/water = 2)
 	tastes = list("basil" = 2, "meat" = 2, "potato" = 2, "vegetables" = 2, "burning" = 1)
 	foodtypes = VEGETABLES | MEAT
