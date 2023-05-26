@@ -31,7 +31,7 @@
 		/datum/ego_datum/armor/remorse
 		)
 	gift_type = /datum/ego_gifts/remorse
-	abnormality_origin = "Artbook"
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user, enable_qliphoth = TRUE, stack_count = 1)
 	if (user.stat == DEAD)
@@ -50,7 +50,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/AttemptWork(mob/living/carbon/human/user, work_type)
 	if (user.has_status_effect(STATUS_EFFECT_SG_GUILTY))
-		user.adjustSanityLoss(user.getMaxSanity()*2) // Suffer.
+		user.adjustSanityLoss(user.getMaxSanity()) // Suffer.
 		user.remove_status_effect(STATUS_EFFECT_SG_GUILTY) // but Cleanse!
 		return FALSE
 	return ..()
