@@ -2,7 +2,7 @@
 /obj/item/ego_weapon/city/ncorp_mark
 	name = "n-corp red seal"
 	desc = "A red seal used by Ncorp."
-	special = "Use on an N corp hammer to change it's damage. \
+	special = "Use on an N corp hammer to change its damage. \
 		This weapon is single use."
 	icon_state = "mark"
 	force = 40
@@ -107,7 +107,7 @@
 /obj/item/ego_weapon/city/ncorp_hammer
 	name = "KleinHammer"
 	desc = "A small hammer used by junior Ncorp inquisitors."
-	special = "Use a mark on this weapon to change it's damage type. \
+	special = "Use a mark on this weapon to change its damage type. \
 		This weapon doubles as an N-Corp hammer"
 	icon_state = "kleinhammer"
 	force = 30
@@ -133,7 +133,7 @@
 	..()
 	if(!istype(I, /obj/item/ego_weapon/city/ncorp_mark))
 		return
-	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing it's damage type.</span>")
+	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing its damage type.</span>")
 	damtype = I.damtype
 	armortype = I.damtype
 	charges = 5

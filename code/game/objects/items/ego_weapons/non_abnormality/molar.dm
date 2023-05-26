@@ -30,7 +30,7 @@
 
 /obj/item/ego_weapon/city/molar/olga
 	name = "molar chainknife"
-	desc = "A short chainsword used by the Molar Office's leader. It's chain sings with the speed it moves at."
+	desc = "A short chainsword used by the Molar Office's leader. Its chain sings with the speed it moves at."
 	icon_state = "olga"
 	force = 38
 	attack_speed = 0.7

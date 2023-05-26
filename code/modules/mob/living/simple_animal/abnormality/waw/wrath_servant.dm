@@ -130,7 +130,7 @@
 		return
 	var/mob/living/simple_animal/hostile/azure_hermit/AH = locate() in view(5, src)
 	if(AH?.status_flags & GODMODE)
-		manual_emote("smashes the Azure Hermit with it's hammer.")
+		manual_emote("smashes the Azure Hermit with its hammer.")
 		PerformEnding(AH)
 		return
 	if(isnull(hunted_target) || !hunted_target)
@@ -182,7 +182,7 @@
 	adjustBruteLoss(-maxHealth)
 	stunned = FALSE
 	icon_state = icon_living
-	desc = "A large red monster with white bandages hanging from it. It's flesh oozes a bubble acid."
+	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	manual_emote("begins to move once more!")
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/Move()
@@ -348,7 +348,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
 	say("EMBODIMENTS OF EVIL!!!")
-	desc = "A large red monster with white bandages hanging from it. It's flesh oozes a bubble acid."
+	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	can_act = TRUE
 	GiveTarget(user)
 	if(!datum_reference)
@@ -374,7 +374,7 @@
 	if(!friendly)
 		icon_state = "wrath_charge"
 		playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 75, FALSE, 20, falloff_distance = 10)
-	manual_emote("raises [friendly ? "their" : "it's"] hammers!")
+	manual_emote("raises [friendly ? "their" : "its"] hammers!")
 	var/list/show_area = list()
 	show_area |= range(3, src)
 	show_area |= view(5, src)
@@ -624,7 +624,7 @@
 			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Unstun), 3 MINUTES)
 			SW.status_flags |= GODMODE
 			SW.icon_state = "wrath_staff_stun"
-			SW.desc = "A large red monster with white bandages hanging from it. It's flesh oozes a bubble acid. A wooden staff is impaled in it's chest, it can't seem to move!"
+			SW.desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid. A wooden staff is impaled in its chest, it can't seem to move!"
 		return
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target

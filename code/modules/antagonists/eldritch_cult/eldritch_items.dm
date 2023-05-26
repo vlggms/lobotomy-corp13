@@ -432,6 +432,6 @@
 
 /obj/item/eldritch_potion/wounded
 	name = "Brew of Wounded Soldier"
-	desc = "For the next 60 seconds each wound will heal you, minor wounds heal 1 of it's damage type per second, moderate heal 3 and critical heal 6. You also become immune to damage slowdon."
+	desc = "For the next 60 seconds each wound will heal you, minor wounds heal 1 of its damage type per second, moderate heal 3 and critical heal 6. You also become immune to damage slowdon."
 	icon_state = "marshal"
 	status_effect = /datum/status_effect/marshal

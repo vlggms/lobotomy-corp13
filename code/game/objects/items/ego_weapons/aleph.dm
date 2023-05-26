@@ -231,7 +231,7 @@
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
-	special = "This weapon deals it's damage after a short windup."
+	special = "This weapon deals its damage after a short windup."
 	icon_state = "gold_rush"
 	force = 140
 	attribute_requirements = list(
@@ -303,7 +303,7 @@
 /obj/item/ego_weapon/blooming
 	name = "blooming"
 	desc = "A rose is a rose, by any other name."
-	special = "Use this weapon to change it's damage type between red, white and pale."	//like a different rabbit knife. No black though
+	special = "Use this weapon to change its damage type between red, white and pale."	//like a different rabbit knife. No black though
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE

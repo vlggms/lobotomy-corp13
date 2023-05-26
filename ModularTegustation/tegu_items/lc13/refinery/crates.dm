@@ -257,7 +257,7 @@
 
 //Zelkova Workshop is the last one, Includes Dawn office, Misc fixers, Gaze Office and Jeong's Office.
 
-//Zwei - Zwei and it's associates
+//Zwei - Zwei and its associates
 /obj/structure/lootcrate/zwei
 	name = "Zwei Association Crate"
 	desc = "A crate recieved from the zwei association. Open with a Crowbar."
@@ -275,7 +275,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
 
-//Seven - Seven and it's associates
+//Seven - Seven and its associates
 /obj/structure/lootcrate/seven
 	name = "Seven Association Crate"
 	desc = "A crate recieved from seven association. Open with a Crowbar."
