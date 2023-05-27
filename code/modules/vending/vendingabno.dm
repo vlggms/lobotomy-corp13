@@ -123,7 +123,7 @@
 			updateUsrDialog()
 			return TRUE
 
-obj/machinery/computer/vending_abno/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/vending_abno/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/H = I
