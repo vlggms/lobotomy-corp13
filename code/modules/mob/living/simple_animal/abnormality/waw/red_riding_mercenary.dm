@@ -77,7 +77,7 @@ The fucker has arrived.
 
 	var/red_rage = 0 // Goes up to 3; 1 for "weak rage" (against buddy and blue), 2 for "strong rage" (against wolf), 3 for "aimless rage" (denied wolf kill)
 	var/target_priority = 0 // Goes up to 4; 1 for Blue Smocked Shepherd, 2 for the requested target, 3 for Buddy, 4 for Wolf.
-	var/mob/living/simple_animal/hostile/priority_target // Stores current request target.
+	var/mob/living/priority_target // Stores current request target.
 	var/fuzzy_tracking_cooldown = 10 SECONDS // How often red re-checks the closest landmark to the target.
 	var/list/tiered_request_costs = list(
 		ZAYIN_LEVEL = 100,
@@ -464,8 +464,8 @@ Finds the nearest point of interest (xeno spawn or department center) and sets i
 Also a toned down version
 */
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterTracking(mob/living/simple_animal/hostile/hunted_target, turf/last_closest, attempts = 3)
-	if(!hunted_target || hunted_target.health <= 0)
+/mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterTracking(mob/living/hunted_target, turf/last_closest, attempts = 3)
+	if(!hunted_target || !hunted_target.stat)
 		if(client)
 			to_chat(src, "<span class='notice'>You don't have a target...</span>")
 		target_priority = 0
@@ -509,41 +509,98 @@ Also a toned down version
 	addtimer(CALLBACK(src, .proc/HunterTracking, hunted_target, closest, attempts), fuzzy_tracking_cooldown)
 	return TRUE
 
-// Only watch out for things at or above your current priority level
-// No, this shouldn't be a case switch. They all need to run potentially sequentially in this order. It also can't be handled by Found().
 /mob/living/simple_animal/hostile/abnormality/red_hood/FindTarget(list/possible_targets, HasTargetsList = 0)
+	. = list()
 	if(!HasTargetsList)
 		possible_targets = ListTargets()
-	// First, look for wolf. This is unconditional. If wolf is in sight, set priority to 4, GiveTarget him, and return him.
-	// Wolf isn't in the game right now, so this comment serves as a note for later.
-	if(retarget_lockout > world.time) // stop whining about buddy three times before he can fade out, please.
-		return ..()
-	if(target_priority <= 3)
-		var/mob/living/simple_animal/hostile/abnormality/red_buddy/hunted_buddy = locate() in possible_targets
-		if(hunted_buddy)
-			target_priority = 3
-			priority_target = hunted_buddy
-			GiveTarget(priority_target)
-			return priority_target
-	if(target_priority <= 2 && priority_target)
-		if(locate(priority_target) in possible_targets)
-			target_priority = 2
-			GiveTarget(priority_target)
-			return priority_target
-	if(target_priority <= 1)
-		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/hunted_blue = locate() in possible_targets
-		if(hunted_blue)
-			target_priority = 3
-			priority_target = hunted_blue
-			GiveTarget(priority_target)
-			return priority_target
-	if(target_priority < 1) // No specific target to hunt
-		return ..()
-	return FALSE
+	// These are our priority targets. If any are within our actual targets list, we pick the highest priority one, update our priority level if necessary, and attack it.
+	var/mob/living/simple_animal/hostile/abnormality/red_buddy/found_buddy = locate() in possible_targets
+	var/mob/living/found_priority
+	if(priority_target in possible_targets)
+		found_priority = priority_target
+	var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/found_blue = locate() in possible_targets
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/GiveTarget(new_target)
-	found_target = TRUE
+	if(found_buddy && target_priority < 4)
+		GiveTarget(found_buddy)
+		UpdatePriority(3, found_buddy)
+		return(found_buddy)
+	if(found_priority && target_priority < 3)
+		GiveTarget(found_priority)
+		return(found_priority)
+	if(found_blue && target_priority < 2)
+		GiveTarget(found_blue)
+		UpdatePriority(1, found_blue)
+		return(found_blue)
+
+	if(target_priority) // If we have a priority target already, regular targeting shouldn't happen.
+		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_hood/LoseTarget()
+	..()
+	if(target_priority) // We were hunting them and we lost them!
+		if(priority_target.stat == DEAD || !priority_target) // They DIED!!
+			switch(target_priority)
+				if(1) // Blue
+					if(out_on_request)
+						if(client)
+							to_chat(src, "<span class='notice'>Your job here is done! Returning to cell in 10 seconds.</span>")
+							addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+						else
+							QDEL_IN(src, 3 SECONDS)
+					else
+						ResetPriority()
+				if(2) // Requested target
+					if(kill_confirmed)
+						if(client)
+							to_chat(src, "<span class='notice'>You killed the requested target! Returning to cell in 10 seconds.</span>")
+							addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+						else
+							QDEL_IN(src, 3 SECONDS)
+					else
+						ResetPriority()
+				if(3) // Buddy
+					if(client)
+						to_chat(src, "<span class='notice'>That wasn't a wolf...</span>")
+					var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/found_blue = locate() in GLOB.mob_living_list
+					if(found_blue)
+						if(found_blue.IsContained())
+							found_blue.datum_reference.qliphoth_change(4)
+							if(found_blue.client)
+								to_chat(found_blue,"<span class='notice'>You feel like someone just walked over your grave.</span>")
+							if(out_on_request)
+								if(client)
+									to_chat(src, "<span class='notice'>That's all you can do... Returning to cell in 10 seconds.</span>")
+									addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+								else
+									QDEL_IN(src, 3 SECONDS)
+							else
+								if(client)
+									to_chat(src, "<span class='notice'>Suddenly, you're not in the best mood.</span>")
+								ResetPriority()
+						else
+							if(client)
+								to_chat(src, "<span class='notice'>You're going to kill the bastard.</span>")
+							ResetPriority()
+							UpdatePriority(1, found_blue)
+							if(CanAttack(found_blue))
+								GiveTarget(found_blue)
+							else
+								HunterTracking(found_blue)
+					else
+						if(out_on_request)
+							if(client)
+								to_chat(src, "<span class='notice'>That's all you can do... Returning to cell in 10 seconds.</span>")
+								addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+							else
+								QDEL_IN(src, 3 SECONDS)
+						else
+							if(client)
+								to_chat(src, "<span class='notice'>Suddenly, you're not in the best mood.</span>")
+							ResetPriority()
+		else // They didn't die, we just lost sight of them!
+			HunterTracking(priority_target)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/AttackingTarget(atom/attacked_target)
 	if(special_attacking)
@@ -560,59 +617,18 @@ Also a toned down version
 		living = FALSE
 		kill_confirmed = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/LoseTarget()
-	..()
-	found_target = FALSE
-	if(!target_priority)
-		return
-	if((priority_target.stat == DEAD || !priority_target)) // Logic for when you lose an enemy due to their death
-		if(target_priority == 3) // Killed buddy...
-			target_priority = 0
-			retarget_lockout = world.time + 10 SECONDS
-			if(client)
-				to_chat(src, "<span class='notice'>That... wasn't a wolf...</span>")
-			else
-				say("What... the hell...?")
-			for(var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/fuck_you_blue in GLOB.mob_living_list)
-				if(fuck_you_blue.client)
-					to_chat(fuck_you_blue, "<span class='warning'>You feel like someone just walked over your grave.</span>")
-				else
-					fuck_you_blue.manual_emote("shudders and straightens up, suddenly seeming nervous.")
-				if(fuck_you_blue.IsContained())
-					fuck_you_blue.datum_reference.qliphoth_change(4) // Yeah, that's right, you'd BETTER stay locked up. Fucker.
-				else
-					target_priority = 1
-					priority_target = fuck_you_blue
-					RageUpdate(1)
-			if(istype(priority_target, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
-				if(client)
-					to_chat(src, "<span class='notice'>You're going to KILL him. That blue bastard...</span>")
-				else
-					say("That fucker!")
-			else
-				RageUpdate(0)
-				priority_target = null
-				if(out_on_request)
-					addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
-			return
-		if(!out_on_request)
-			return
-		if(kill_confirmed) // If you were within visible range of your target when they died, we have to actually check whether you killed them
-			if(client)
-				to_chat(src, "<span class='notice'>You successfully killed your target! Returning to cell in 10 seconds.</span>")
-				addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
-			else
-				say("The hunt is over...")
-				special_attacking = TRUE
-				QDEL_IN(src, 30) // Being lazy with a player-uncontrolled Red Riding Hood
-			return
-		out_on_request = FALSE
+/mob/living/simple_animal/hostile/abnormality/red_hood/proc/UpdatePriority(target_id = 0, mob/living/new_priority)
+	if(target_id > target_priority)
 		if(client)
-			to_chat(src, "<span class='notice'>You were denied your kill! They should suffer for their idiocy...</span>")
-		else
-			say("You idiots...")
-	else
-		HunterTracking(priority_target) // We lost them, time to find them again
+			to_chat(src, "<span class='notice'>You've found a higher priority target! Go after [new_priority]!</span>")
+		priority_target = new_priority
+		target_priority = target_id
+	return
+
+/mob/living/simple_animal/hostile/abnormality/red_hood/proc/ResetPriority()
+	priority_target = null
+	target_priority = 0
+	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Move()
 	if(special_attacking)
@@ -657,6 +673,7 @@ Also a toned down version
 	if(!return_point)
 		return_point = get_turf(datum_reference.landmark)
 	out_on_request = FALSE
+	ResetPriority()
 	animate(src, alpha = 0, time = 10)
 	addtimer(CALLBACK(src, .proc/FinishReturn, return_point), 10)
 
