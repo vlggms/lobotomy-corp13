@@ -67,6 +67,9 @@
 	QDEL_NULL(H.ai_controller)
 	if(cured)
 		H.ai_controller = /datum/ai_controller/insane/suicide
+		H.InitializeAIController()
+		H.apply_status_effect(/datum/status_effect/panicked_type/suicide)
 	else
 		H.ai_controller = /datum/ai_controller/insane/murder/orangetree
-	H.InitializeAIController()
+		H.InitializeAIController()
+		H.apply_status_effect(/datum/status_effect/panicked_type/orangetree)

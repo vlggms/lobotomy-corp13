@@ -94,6 +94,9 @@
 /datum/ai_controller/insane/murder/orangetree
 	lines_type = /datum/ai_behavior/say_line/insanity_wander/orangetree //We use the wander subtype so that it drains sanity
 
+/datum/status_effect/panicked_type/orangetree
+	icon = "orangetree"
+
 /datum/ai_controller/insane/murder/orangetree/TryFindWeapon()
 	return FALSE
 
