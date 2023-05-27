@@ -57,6 +57,8 @@
 
 	var/datum/looping_sound/nothingthere_ambience/soundloop
 	var/datum/looping_sound/nothingthere_heartbeat/heartbeat
+	var/datum/looping_sound/nothingthere_disguise/disguiseloop
+	var/datum/looping_sound/nothingthere_breach/breachloop
 
 	//Speaking Variables, not sure if I want to use the automated speach at the moment.
 	var/heard_words = list()
@@ -69,11 +71,15 @@
 	saved_appearance = appearance
 	soundloop = new(list(src), FALSE)
 	heartbeat = new(list(src), FALSE)
+	disguiseloop = new(list(src), FALSE)
+	breachloop = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Destroy()
 	TransferVar(1, heard_words)
 	QDEL_NULL(soundloop)
 	QDEL_NULL(heartbeat)
+	QDEL_NULL(disguiseloop)
+	QDEL_NULL(breachloop)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
@@ -201,6 +207,7 @@
 	appearance = M.appearance
 	M.death()
 	M.forceMove(src) // Hide them for examine message to work
+	disguiseloop.start()
 	addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
@@ -214,6 +221,7 @@
 	disguise = null
 	fear_level = ALEPH_LEVEL
 	FearEffect()
+	disguiseloop.stop()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/next_stage()
 	next_transform = null
@@ -240,6 +248,7 @@
 			melee_damage_upper = 75
 			move_to_delay = 4.5
 			heartbeat.stop()
+			breachloop.start()
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
