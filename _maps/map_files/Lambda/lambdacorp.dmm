@@ -323,21 +323,9 @@
 /area/facility_hallway/welfare)
 "aW" = (
 /obj/structure/table/wood,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/yellow{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/item/refiner_filter/red{
-	pixel_x = 3;
-	pixel_y = -7
-	},
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
+/obj/machinery/light/floor,
+/obj/machinery/photocopier{
+	pixel_y = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -414,7 +402,14 @@
 /turf/open/floor/grass,
 /area/facility_hallway/training)
 "bv" = (
-/obj/machinery/bookbinder,
+/obj/structure/table/wood,
+/obj/machinery/light/floor,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "bw" = (
@@ -1171,12 +1166,6 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "dV" = (
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/structure/table{
-	max_integrity = 10
-	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 4
 	},
@@ -1187,8 +1176,10 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "dY" = (
@@ -1471,8 +1462,13 @@
 /area/department_main/discipline)
 "eT" = (
 /obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
 /obj/machinery/light/floor,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "eU" = (
@@ -2892,12 +2888,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "jS" = (
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/item/clothing/accessory/armband/lobotomy/discipline,
-/obj/structure/table{
-	max_integrity = 10
-	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 4
 	},
@@ -2905,8 +2895,10 @@
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "jT" = (
@@ -4073,9 +4065,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "ok" = (
-/obj/structure/window/reinforced/spawner{
-	max_integrity = 25
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
@@ -4882,7 +4871,8 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "rC" = (
-/obj/structure/refinery,
+/obj/machinery/light/floor,
+/obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "rG" = (
@@ -7196,12 +7186,15 @@
 	},
 /area/facility_hallway/welfare)
 "AG" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
 /obj/structure/table/wood,
-/obj/item/deepscanner,
-/obj/item/deepscanner,
-/obj/item/deepscanner,
-/obj/item/deepscanner,
-/obj/item/deepscanner,
+/obj/item/refiner_filter/green,
+/obj/item/refiner_filter/red{
+	pixel_x = 3;
+	pixel_y = -7
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "AH" = (
@@ -7869,13 +7862,14 @@
 "CI" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/table/wood,
-/obj/item/paper/crumpled/muddy/fluff/elephant_graveyard/rnd_notes,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
 	},
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "CJ" = (
@@ -11050,9 +11044,16 @@
 "OO" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/table/wood,
-/obj/item/paper/crumpled/muddy/fluff/elephant_graveyard/rnd_notes,
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
+	},
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/refiner_filter/yellow{
+	pixel_x = 6;
+	pixel_y = -6
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -11410,8 +11411,12 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp/green,
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "PQ" = (
@@ -12487,7 +12492,10 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "TP" = (
-/obj/machinery/photocopier,
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/structure/refinery,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "TR" = (
@@ -45766,7 +45774,7 @@ sI
 nT
 xN
 gF
-PP
+AG
 QN
 nt
 qB
@@ -46280,7 +46288,7 @@ sI
 nT
 Ep
 vq
-XC
+TP
 rf
 Gi
 SL
@@ -46545,11 +46553,11 @@ tb
 fQ
 zk
 pk
-eT
+bv
 Tt
 fD
 Tt
-eT
+aW
 OM
 Mw
 nT
@@ -46802,11 +46810,11 @@ Po
 fQ
 zk
 pk
-AG
+fD
 kM
 fD
 kM
-TP
+fD
 OM
 AM
 GI
@@ -47059,7 +47067,7 @@ EA
 Hw
 eF
 ok
-aW
+YK
 YK
 vr
 YK
@@ -47316,11 +47324,11 @@ uc
 fQ
 zk
 pk
-rC
+fD
 Lf
 fD
 Du
-bv
+fD
 OM
 Yt
 GI
@@ -47577,7 +47585,7 @@ eT
 Ob
 fD
 Ob
-eT
+rC
 OM
 Mw
 nT
