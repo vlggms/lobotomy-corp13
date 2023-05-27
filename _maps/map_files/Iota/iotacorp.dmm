@@ -15684,7 +15684,7 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/north)
 "KX" = (
-/obj/structure/sign/departments/command,
+/obj/structure/sign/departments/control,
 /turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "KY" = (
