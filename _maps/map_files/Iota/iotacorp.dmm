@@ -7039,7 +7039,7 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office Secure Area"
 	},
-/turf/open/space/basic,
+/turf/open/floor/facility/halls,
 /area/facility_hallway/records)
 "qV" = (
 /obj/docking_port/stationary{
@@ -7252,8 +7252,8 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
-/obj/machinery/photocopier,
 /obj/structure/table/abductor,
+/obj/machinery/recharger,
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "rA" = (
@@ -9860,7 +9860,7 @@
 "xx" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp/green,
+/obj/machinery/recharger,
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "xE" = (
@@ -10026,7 +10026,7 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp/green,
+/obj/machinery/recharger,
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "xU" = (
@@ -14447,9 +14447,6 @@
 	},
 /obj/structure/rack{
 	pixel_x = -1
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 500
 	},
 /obj/item/toy/crayon/spraycan/infinite{
 	pixel_x = -8
@@ -22055,9 +22052,6 @@
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	pixel_y = 2
-	},
-/obj/structure/window/reinforced/spawner{
-	max_integrity = 25
 	},
 /obj/item/price_tagger,
 /turf/open/floor/plasteel/sepia,
