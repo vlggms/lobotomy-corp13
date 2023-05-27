@@ -501,20 +501,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/obj/structure/table/abductor,
-/obj/item/refiner_filter/yellow{
-	pixel_x = 6;
-	pixel_y = -6
-	},
-/obj/item/refiner_filter/red{
-	pixel_x = 10;
-	pixel_y = -7
-	},
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
+/obj/structure/refinery,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "er" = (
@@ -732,22 +719,6 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/department_main/training)
-"ge" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/turf/open/space/basic,
-/area/space)
 "gf" = (
 /obj/effect/decal/cleanable/blood/old,
 /obj/structure/sign/poster/lobotomycorp/random{
@@ -816,7 +787,20 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/obj/structure/refinery,
+/obj/structure/table/abductor,
+/obj/item/refiner_filter/yellow{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/refiner_filter/red{
+	pixel_x = 10;
+	pixel_y = -7
+	},
+/obj/item/refiner_filter/green,
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "gH" = (
@@ -924,6 +908,12 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
 "hL" = (
@@ -1282,11 +1272,10 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/structure/table/abductor,
-/obj/machinery/computer/libraryconsole,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = 32
 	},
+/obj/structure/bookcase/random,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "kY" = (
@@ -1655,25 +1644,6 @@
 "oD" = (
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/department_main/information)
-"oL" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/pushbroom,
-/obj/item/storage/box/lights/tubes,
-/obj/item/storage/box/lights/tubes,
-/obj/item/storage/box/lights/tubes,
-/turf/open/space/basic,
-/area/space)
 "oM" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -1834,11 +1804,13 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
-/obj/structure/showcase/machinery{
-	desc = "A server for the information department. Stores information.";
-	icon_state = "blackbox";
-	name = "Information Server"
+/obj/machinery/recharger{
+	pixel_x = -6
 	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/structure/table/bronze,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "pY" = (
@@ -2208,10 +2180,9 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/item/melee/classic_baton,
-/obj/item/melee/classic_baton,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/discipline)
 "tx" = (
@@ -2939,7 +2910,8 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
-/obj/structure/bookcase/random,
+/obj/structure/table/bronze,
+/obj/machinery/computer/libraryconsole,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
 "zH" = (
@@ -3136,32 +3108,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
-"BX" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/clothing/shoes/galoshes/dry,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/obj/item/storage/belt/janitor/full,
-/turf/open/space/basic,
-/area/space)
 "Ch" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -5354,10 +5300,12 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/obj/structure/showcase/machinery{
-	desc = "A server for the information department. Stores information.";
-	icon_state = "blackbox";
-	name = "Information Server"
+/obj/structure/table/abductor,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/department_main/information)
@@ -5784,13 +5732,17 @@
 /turf/open/floor/mineral/titanium/tiled/purple,
 /area/department_main/command)
 "VY" = (
-/obj/structure/filingcabinet{
-	pixel_x = -10
+/obj/structure/rack{
+	pixel_x = -1
 	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
 /turf/open/floor/mineral/plastitanium,
 /area/department_main/discipline)
 "VZ" = (
@@ -42372,7 +42324,7 @@ bn
 Tu
 qw
 kQ
-Fw
+Sr
 Sr
 Nu
 oD
@@ -42629,7 +42581,7 @@ Jy
 Tu
 qw
 zv
-Sr
+Fw
 Sr
 Nu
 oD
@@ -43925,9 +43877,9 @@ wu
 oM
 Eu
 qw
-oL
-ge
-BX
+Tu
+Tu
+Tu
 Tu
 Tu
 MZ
