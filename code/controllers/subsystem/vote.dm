@@ -64,10 +64,14 @@ SUBSYSTEM_DEF(vote)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
+				/*
 				var/random_gamemode = pick(choices)
 				choices[random_gamemode] += non_voters.len
 				if(choices[random_gamemode] >= greatest_votes)
 					greatest_votes = choices[random_gamemode]
+				*/
+				// Nothing happens! Absolutely nothing.
+				non_voters = list() // Clear out that list.
 			else if(mode == "map")
 				for (var/non_voter_ckey in non_voters)
 					var/client/C = non_voters[non_voter_ckey]
