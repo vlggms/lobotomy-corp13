@@ -5613,16 +5613,6 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/manager)
 "nK" = (
-/obj/effect/turf_decal/tile/purple{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
@@ -5633,7 +5623,18 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
+/obj/item/toy/plush/bigbird,
 /obj/item/toy/plush/binah,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "nM" = (
@@ -10732,6 +10733,7 @@
 	max_integrity = 25;
 	pixel_y = 2
 	},
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet/black,
 /area/department_main/control)
 "zw" = (
@@ -12054,6 +12056,7 @@
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
 	},
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet/black,
 /area/department_main/control)
 "CE" = (
@@ -12894,21 +12897,6 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
 "Et" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#000000"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
-	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
@@ -12922,7 +12910,26 @@
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = -32
 	},
-/obj/item/toy/plush/bigbird,
+/obj/structure/rack{
+	pixel_x = -1
+	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = -8
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Eu" = (
@@ -14429,32 +14436,28 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Il" = (
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/obj/structure/rack{
-	pixel_x = -1
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = -8
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = 8
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
 	},
-/obj/item/toy/crayon/spraycan/infinite,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Im" = (
@@ -14534,6 +14537,8 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet/black,
 /area/department_main/control)
 "Iw" = (
@@ -19577,7 +19582,7 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp/green,
+/obj/machinery/recharger,
 /turf/open/indestructible/white,
 /area/department_main/information)
 "Te" = (
@@ -20249,6 +20254,7 @@
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 500
 	},
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet/black,
 /area/department_main/control)
 "UD" = (
@@ -22019,16 +22025,6 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "YD" = (
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
@@ -22053,7 +22049,21 @@
 	max_integrity = 25;
 	pixel_y = 2
 	},
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
 /obj/item/price_tagger,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "YF" = (
