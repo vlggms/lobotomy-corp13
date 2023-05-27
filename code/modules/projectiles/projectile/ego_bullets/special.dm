@@ -44,3 +44,6 @@
 	H.adjust_fire_stacks(0.1)
 	H.IgniteMob()
 	return BULLET_ACT_HIT
+
+/obj/projectile/ego_bullet/fullstop
+	damage = 10

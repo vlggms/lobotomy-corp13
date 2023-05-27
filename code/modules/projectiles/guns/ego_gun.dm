@@ -49,6 +49,7 @@
 
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
+
 /obj/item/gun/ego_gun/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])

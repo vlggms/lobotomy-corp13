@@ -87,3 +87,18 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
+
+//Fockin massive sword
+/obj/item/ego_weapon/city/index/yan
+	name = "index greatsword"
+	desc = "A greatsword sword used by a specific index messenger."
+	icon_state = "indexgreatsword"
+	inhand_icon_state = "indexgreatsword"
+	force = 130
+	attack_speed = 2
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 120
+							)
