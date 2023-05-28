@@ -43,7 +43,7 @@
 //The actual weapons
 /obj/item/gun/ego_gun/city/fullstop/assault
 	name = "fullstop assault gun"
-	desc = "A rifle used by full stop."
+	desc = "A heavy rifle. Guns like these are expensive in the City. You could buy a whole other weapon of good quality with the money for this one's bullets."
 	icon_state = "fullstop"
 	inhand_icon_state = "fullstop"
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
@@ -59,7 +59,7 @@
 
 /obj/item/gun/ego_gun/city/fullstop/sniper
 	name = "fullstop sniper"
-	desc = "A rifle used by full stop."
+	desc = "A sniper rifle. Despite the cost and heavy regulations, you could still kill someone stealthily from a good distance with this."
 	icon_state = "fullstopsniper"
 	inhand_icon_state = "fullstopsniper"
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
@@ -78,7 +78,7 @@
 
 /obj/item/gun/ego_gun/city/fullstop/deagle
 	name = "fullstop pistol"
-	desc = "A pistol used by full stop."
+	desc = "An expensive pistol. Keep your hands steady. It's not over yet."
 	icon_state = "fullstopdeagle"
 	inhand_icon_state = "fullstopdeagle"
 	weapon_weight = WEAPON_LIGHT

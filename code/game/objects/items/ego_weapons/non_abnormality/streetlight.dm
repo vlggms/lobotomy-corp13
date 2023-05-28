@@ -2,7 +2,7 @@
 //They're generic weapons for the refinery, which is fine
 /obj/item/ego_weapon/city/streetlight_greatsword
 	name = "streetlight greatsword"
-	desc = "A greatsword used by the streelight office."
+	desc = "A greatsword used by a fixer with big shoes to fill.'Maybe... I should have told her how I feel.'"
 	icon_state = "streetlight_greatsword"
 	force = 38
 	attack_speed = 2
@@ -17,7 +17,7 @@
 
 /obj/item/ego_weapon/city/streetlight_bat
 	name = "streetlight office bat"
-	desc = "A yellow and black bat used by the streetlight office."
+	desc = "A yellow and black bat, its metal is warm to the touch. Is it with the warmth of friends, or the hatred of those who've had something taken from them?"
 	icon_state = "streetlight_bat"
 	force = 30
 	attack_speed = 1.5
@@ -37,7 +37,7 @@
 //He has zwei moves in his 2nd iteration, give it to him here.
 /obj/item/ego_weapon/city/zweihander/streetlight_baton
 	name = "streetlight office baton"
-	desc = "A  baton used by the founder of the streetlight office."
+	desc = "A  baton compatible with Zwei techniques. It carries a sense of regret..."
 	icon_state = "streetlight_founder"
 	force = 32
 	damtype = BLACK_DAMAGE
