@@ -29,7 +29,7 @@
 
 /obj/item/ego_weapon/city/wcorp/attack(mob/living/target, mob/living/user)
 	..()
-	if(charge<=20)
+	if(charge<20)
 		charge+=1
 	if(activated)
 		charge -= charge_cost
