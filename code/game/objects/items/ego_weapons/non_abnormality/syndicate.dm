@@ -117,3 +117,4 @@
 /obj/item/ego_weapon/city/bladelineage/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
+	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
