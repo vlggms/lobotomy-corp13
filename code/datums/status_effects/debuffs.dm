@@ -1023,12 +1023,30 @@
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		if(M.damage_coeff[RED_DAMAGE] >= 0)
-			M.damage_coeff[RED_DAMAGE] += 0.2 //20% damage increase
+		M.damage_coeff[RED_DAMAGE] *= 1.2
+//20% damage increase. Hitting any abnormality that has a negative value will cause this
+//to be a buff to their healing.
 
 /datum/status_effect/sunder_red/on_remove()
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		if(M.damage_coeff[RED_DAMAGE] >= 0)
-			M.damage_coeff[RED_DAMAGE] -= 0.2
+		M.damage_coeff[RED_DAMAGE] /= 1.2
+
+	//White Damage Debuff
+
+/datum/status_effect/rend_white
+	id = "rend white armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rend_white/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[WHITE_DAMAGE] *= 1.2
+
+/datum/status_effect/rend_white/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[WHITE_DAMAGE] /= 1.2
