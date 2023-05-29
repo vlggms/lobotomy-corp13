@@ -89,6 +89,12 @@
 	volume = 60
 	extra_range = -5
 
+/datum/looping_sound/quietday_ambience
+	mid_sounds = 'sound/abnormalities/quietday/quietloop.ogg'
+	mid_length = 15 SECONDS
+	volume = 60
+	extra_range = -4
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
