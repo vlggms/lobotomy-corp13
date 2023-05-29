@@ -42,6 +42,7 @@
 
 /obj/item/ego_weapon/city/jeong/proc/Return(mob/living/carbon/human/user)
 	ready = TRUE
+	force = initial(force)
 	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
 
 //Grade 4
