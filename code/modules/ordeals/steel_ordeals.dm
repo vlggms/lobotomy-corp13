@@ -36,7 +36,7 @@
 	bosstype = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon, /mob/living/simple_animal/hostile/ordeal/steel_noon/flying)
 	grunttype = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/noon)
 	bossnumber = 2
-	gruntnumber = 5
+	gruntnumber = 4
 
 /datum/ordeal/simplecommander/steel_midnight
 	name = "Midnight of Steel"
