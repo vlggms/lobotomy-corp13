@@ -89,7 +89,7 @@
 		walk(src, 0) //stops walking
 	if(!can_patrol || client)
 		return
-	if(target && patrol_path) //if AI has acquired a target while on patrol, stop patrol
+	if(target && length(patrol_path)) //if AI has acquired a target while on patrol, stop patrol
 		patrol_reset()
 		return
 	if(CanStartPatrol())
