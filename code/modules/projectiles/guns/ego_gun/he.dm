@@ -202,3 +202,57 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+
+/obj/item/gun/ego_gun/pistol/swindle
+	name = "swindle"
+	desc = "Good for man and beast, it gives immediate relief. Snake oil is good for everything a liniment ought to be for!"
+	icon = 'icons/obj/guns/projectile.dmi'//put some non-E.G.O sprites to use
+	icon_state = "goldrevolver"
+	inhand_icon_state = "deagleg"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	special = "This weapon fires tiny dice that deal varying amounts of damage."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/gun/ego_gun/ringing
+	name = "ringing"
+	desc = "Voices from your past emanate from this gun. Now they can be put into use."
+	icon_state = "ringing"
+	inhand_icon_state = "ringing"
+	special = "This weapon can be used as a megaphone."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ringing
+	weapon_weight = WEAPON_HEAVY
+	autofire = 0.15 SECONDS
+	spread = 25
+	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/spamcheck = 0
+	var/list/voicespan = list(SPAN_COMMAND)
+
+/obj/item/gun/ego_gun/ringing/equipped(mob/M, slot)//megaphone code
+	. = ..()
+	if (slot == ITEM_SLOT_HANDS && !HAS_TRAIT(M, TRAIT_SIGN_LANG))
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/gun/ego_gun/ringing/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/gun/ego_gun/ringing/proc/handle_speech(mob/living/carbon/user, list/speech_args)
+	if (user.get_active_held_item() == src)
+		if(spamcheck > world.time)
+			to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
+		else
+			playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
+			spamcheck = world.time + 50
+			speech_args[SPEECH_SPANS] |= voicespan
