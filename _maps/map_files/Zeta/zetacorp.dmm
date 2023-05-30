@@ -940,6 +940,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/loading_area,
 /turf/open/floor/holofloor/dark,
 /area/department_main/command)
 "gn" = (
@@ -985,7 +986,12 @@
 /area/department_main/training)
 "gu" = (
 /obj/structure/table/wood,
-/obj/item/toy/cards/deck,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "gH" = (
@@ -1309,13 +1315,12 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "is" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/flashlight/lamp,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
 /turf/open/floor/facility/dark,
 /area/department_main/control)
 "ix" = (
@@ -2954,14 +2959,16 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "sX" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/price_tagger,
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 1
 	},
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "tb" = (
@@ -4116,6 +4123,7 @@
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
+/obj/item/price_tagger,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "zD" = (
@@ -5880,14 +5888,10 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Ky" = (
-/obj/structure/filingcabinet{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
 /obj/machinery/light/floor,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
 /turf/open/floor/facility/dark,
 /area/department_main/control)
 "Kz" = (
@@ -6771,10 +6775,22 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Pj" = (
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck/kotahi,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/loading_area,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/holofloor/dark,
+/area/department_main/command)
 "Ps" = (
 /obj/structure/mirror{
 	pixel_y = 34
@@ -7165,8 +7181,12 @@
 /area/department_main/safety)
 "SE" = (
 /obj/structure/table/wood,
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "SO" = (
@@ -8086,13 +8106,12 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "YU" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/flashlight/lamp,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
 /turf/open/floor/facility/dark,
 /area/department_main/control)
 "YY" = (
@@ -38947,7 +38966,7 @@ lm
 NL
 NL
 iW
-gm
+Pj
 vC
 Em
 xN
@@ -42833,8 +42852,8 @@ yL
 Bp
 MH
 MH
-Nz
 gu
+Nz
 lL
 MH
 MH
@@ -43090,7 +43109,7 @@ yL
 Pv
 MH
 Ph
-Pj
+Nz
 SE
 MH
 MH

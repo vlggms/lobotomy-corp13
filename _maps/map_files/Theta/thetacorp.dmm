@@ -6682,7 +6682,12 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "pd" = (
@@ -11764,8 +11769,11 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/light/floor,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/rack,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "AF" = (
@@ -11817,6 +11825,12 @@
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
 	},
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "AJ" = (
@@ -12134,6 +12148,9 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Bo" = (
+/obj/machinery/door/airlock/wood/glass{
+	name = "Manager's Office"
+	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/manager)
 "Bq" = (
@@ -14060,6 +14077,9 @@
 "Fl" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/door/airlock/highsecurity{
+	name = "Training Department"
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/training)
@@ -17340,9 +17360,14 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/table/abductor,
-/obj/item/flashlight/lamp,
 /obj/machinery/camera/autoname{
 	dir = 10
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
