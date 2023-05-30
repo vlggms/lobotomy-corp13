@@ -316,3 +316,16 @@
 /datum/ego_datum/weapon/replica
 	item_path = /obj/item/ego_weapon/replica
 	cost = 35
+
+//Wayward Passenger - Dimension Shredder
+/datum/ego_datum/armor/warp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/warp
+	cost = 35
+
+/datum/ego_datum/weapon/warp
+	item_path = /obj/item/ego_weapon/warp
+	cost = 35
+
+/datum/ego_datum/weapon/warp/spear
+	item_path = /obj/item/ego_weapon/warp/spear
+	cost = 35
