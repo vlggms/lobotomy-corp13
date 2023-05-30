@@ -220,6 +220,9 @@
 	dir = 10
 	},
 /obj/structure/rack,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "dX" = (
@@ -2055,6 +2058,9 @@
 "Gd" = (
 /obj/structure/rack,
 /obj/machinery/light,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Gn" = (
@@ -2752,10 +2758,12 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/cell_charger{
-	pixel_y = 13
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
-/obj/machinery/cell_charger,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "QC" = (
@@ -3037,10 +3045,12 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/cell_charger{
-	pixel_y = 13
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
-/obj/machinery/cell_charger,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Uo" = (
