@@ -33,9 +33,11 @@
 	new /obj/item/ego_weapon/city/seven/cane(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
+	new /obj/item/binoculars(src)
+	new /obj/item/binoculars(src)
 
 
 
@@ -47,12 +49,12 @@
 /obj/item/storage/box/association/zwei/PopulateContents()
 	new /obj/item/ego_weapon/city/zweihander(src)
 	new /obj/item/ego_weapon/city/zweihander(src)
-	new /obj/item/ego_weapon/city/zweihander(src)
+	new /obj/item/ego_weapon/city/zweibaton(src)
 	new /obj/item/ego_weapon/city/zweihander/vet(src)
 	new /obj/item/ego_weapon/city/zweihander/vet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zwei(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zwei(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/zwei(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/zweiriot(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweivet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweileader(src)
 

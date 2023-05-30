@@ -205,7 +205,7 @@
 	/*
 	* Unique data can NOT be stored here.
 	* These behaviors are non-individual and are shared between all people with this behavior.
-	* Meaning if two people have "insanity_wander_center" and it stores it's path in it, then they will both attempt to walk that same path.
+	* Meaning if two people have "insanity_wander_center" and it stores its path in it, then they will both attempt to walk that same path.
 	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
 	*/
 

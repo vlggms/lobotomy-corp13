@@ -6,6 +6,11 @@ Kirie*/
 /obj/item/ego_weapon/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 
+/obj/item/gun/ego_gun/city
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
+
 /*This place has different balance, from grade 1 to 8
 Grade 8 - 18 DPS 			No requirements; all garbage
 Grade 7 - 22 DPS (Teth)		No requirements
@@ -69,6 +74,9 @@ Gain Sanity on kill.
 Blade Lineage
 Lock in place, giving yourself a big damage boost.
 
+Jeong's Office
+Cut HP by 10%, next attack deals 7x damage
+
 ********************************************************************
 Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
 
@@ -80,6 +88,9 @@ Grade 6 weapons with grade 5 damage. Each of them has a durability that decrease
 
 Thumb
 Rifles that have a bayonet. Holds 8 shots, melee an enemy to load 4 rounds.
+
+Dawn Office
+AOE with DOT Burn effects.
 
 Full-Stop
 Guns, use in hand to reload.

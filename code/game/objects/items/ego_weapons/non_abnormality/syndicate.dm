@@ -40,7 +40,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -84,7 +84,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -117,3 +117,4 @@
 /obj/item/ego_weapon/city/bladelineage/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
+	to_chat(user, "<span class='notice'>Your blade is ready.</span>")

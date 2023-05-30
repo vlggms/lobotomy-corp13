@@ -31,6 +31,7 @@
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. You are the second in command of the local association, \
 	and can offer frontline command.</span>")
+	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
 
 
 /datum/outfit/job/veteran

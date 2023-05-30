@@ -420,7 +420,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list (														\
 	new/datum/stack_recipe("box", /obj/item/storage/box),										\
 	new/datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/cardborg, 3),				\
 	new/datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/cardborg),				\
-	new/datum/stack_recipe("large box", /obj/structure/closet/cardboard, 4, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("cardboard cutout", /obj/item/cardboard_cutout, 5),					\
 	null,																						\
 

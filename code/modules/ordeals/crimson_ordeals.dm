@@ -22,7 +22,7 @@
 		M.TeleportAway()
 		sleep(7) // That's so the clowns don't instantly teleport to the same console
 
-/datum/ordeal/amber_dawn/crimson_noon
+/datum/ordeal/simplespawn/crimson_noon
 	name = "Noon of Crimson"
 	annonce_text = "We marched from time to time, and we would share our pleasure."
 	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
@@ -36,7 +36,7 @@
 	spawn_player_multiplicator = 0.02
 	color = "#DC143C"
 
-/datum/ordeal/amber_dawn/crimson_dusk
+/datum/ordeal/simplespawn/crimson_dusk
 	name = "Dusk of Crimson"
 	annonce_text = "Throwing away our old bodies, we all become one, infinitely continuing the red march."
 	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'

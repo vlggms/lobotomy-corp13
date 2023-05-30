@@ -511,3 +511,58 @@
 	to_chat(owner, "<span class='notice'>Your bloodlust seeps back into the bog of your subconscious and you regain self control.</span>")
 	owner.log_message("exited a blood frenzy", LOG_ATTACK)
 	QDEL_NULL(chainsaw)
+
+//LC13 AI entity Buffs
+	//Buff Maroon Ordeal Soldiers, Feel free to cannibalize and rework to work for other creatures.
+/datum/status_effect/all_armor_buff //due to multiplication the effect works more on entities that are weak to the damage value.
+	id = "all armor armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 120 //6 seconds
+	alert_type = null
+	var/visual
+
+/datum/status_effect/all_armor_buff/on_apply()
+	. = ..()
+	visual = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.add_overlay(visual)
+		M.damage_coeff[RED_DAMAGE] *= 0.8 //20% damage decrease
+		M.damage_coeff[WHITE_DAMAGE] *= 0.8
+		M.damage_coeff[BLACK_DAMAGE] *= 0.8
+		M.damage_coeff[PALE_DAMAGE] *= 0.8
+
+/datum/status_effect/all_armor_buff/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.damage_coeff[RED_DAMAGE] /= 0.8
+		M.damage_coeff[WHITE_DAMAGE] /= 0.8
+		M.damage_coeff[BLACK_DAMAGE] /= 0.8
+		M.damage_coeff[PALE_DAMAGE] /= 0.8
+	owner.cut_overlay(visual)
+
+
+/datum/status_effect/minor_damage_buff
+	id = "minor damage buff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 120 //6 seconds
+	alert_type = null
+	var/visual
+
+/datum/status_effect/minor_damage_buff/on_apply()
+	. = ..()
+	visual = mutable_appearance('icons/effects/effects.dmi', "electricity")
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.add_overlay(visual)
+		M.melee_damage_lower += 5
+		M.melee_damage_upper += 10
+
+/datum/status_effect/minor_damage_buff/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.cut_overlay(visual)
+		M.melee_damage_lower -= 5
+		M.melee_damage_upper -= 10

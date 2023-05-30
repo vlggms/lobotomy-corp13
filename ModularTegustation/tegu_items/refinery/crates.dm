@@ -218,26 +218,38 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander)
 
 
-//First set of city stuff. Cane, Wedge, Rats, Leaflet and Mirae Life Insurance
+//First set of city stuff. Cane, Streetlight, Wedge, Rats, Leaflet, The Udjat and Mirae Life Insurance
 /obj/structure/lootcrate/workshopleaf
 	name = "leaflet workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_leaf"
-	rarechance = 20
+	rarechance = 30
+	veryrarechance = 5
 	lootlist =	list(
 		/obj/item/ego_weapon/city/rats,
 		/obj/item/ego_weapon/city/rats/knife,
-		/obj/item/ego_weapon/city/rats/scalpel)
+		/obj/item/ego_weapon/city/rats/scalpel,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedge,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedge/female,
+		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
+		/obj/item/ego_weapon/city/streetlight_bat,
+		/obj/item/ego_weapon/city/streetlight_greatsword
+		)
 
 	rareloot =	list(
+		/obj/item/ego_weapon/city/wedge,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
 		/obj/item/ego_weapon/city/cane/cane,
 		/obj/item/ego_weapon/city/cane/claw,
 		/obj/item/ego_weapon/city/cane/briefcase,
 		/obj/item/ego_weapon/city/cane/fist,
-		/obj/item/ego_weapon/city/wedge,
 		)
 
-//Includes Yun office, Molar, Hook Office, Full Stop and The Udjat, as well as color fixers
+	veryrareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/mirae,
+		/obj/item/clothing/suit/armor/ego_gear/city/udjat)
+
+//Includes Yun office, Molar, Hook Office, Full Stop, as well as color fixers
 /obj/structure/lootcrate/workshopallas
 	name = "allas workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
@@ -246,36 +258,62 @@
 	lootlist =	list(
 		/obj/item/ego_weapon/city/yun,
 		/obj/item/ego_weapon/city/yun/shortsword,
-		/obj/item/ego_weapon/city/yun/chainsaw
+		/obj/item/ego_weapon/city/yun/chainsaw,
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstop,
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper,
+		/obj/item/gun/ego_gun/city/fullstop/assault,
+		/obj/item/gun/ego_gun/city/fullstop/sniper
 		)
 
 	rareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,
+		/obj/item/gun/ego_gun/city/fullstop/deagle,
 		/obj/item/ego_weapon/city/molar,
 		/obj/item/ego_weapon/city/molar/olga,
-
 		)
 
-//Zelkova Workshop is the last one, Includes Dawn office, Misc fixers, Gaze Office and Jeong's Office.
 
-//Zwei - Zwei and it's associates
+//Zelkova Workshop is the last one, Includes Dawn office, Misc fixers, Gaze Office and Jeong's Office.
+/obj/structure/lootcrate/workshopzelkova
+	name = "zelkova workshop crate"
+	desc = "A crate recieved from the city workshop. Open with a Crowbar."
+	icon_state = "crate_zelkova"
+	rarechance = 20
+	lootlist =	list(
+		/obj/item/ego_weapon/city/fixerblade,
+		/obj/item/ego_weapon/city/jeong,
+		/obj/item/ego_weapon/city/dawn/sword,
+		/obj/item/ego_weapon/city/dawn/cello,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn/female
+		)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/jeong/large,
+		/obj/item/ego_weapon/city/dawn/zwei,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawnleader,
+		)
+
+//Zwei - Zwei Association
 /obj/structure/lootcrate/zwei
 	name = "Zwei Association Crate"
 	desc = "A crate recieved from the zwei association. Open with a Crowbar."
 	icon_state = "crate_zwei"
 	rarechance = 30
 	lootlist =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
 		/obj/item/ego_weapon/city/zweihander,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
-		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
-		/obj/item/ego_weapon/city/streetlight_bat,
-		/obj/item/ego_weapon/city/streetlight_greatsword)
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
+		/obj/item/ego_weapon/city/zweibaton,)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
 
-//Seven - Seven and it's associates
+//Seven - Seven and its associates
 /obj/structure/lootcrate/seven
 	name = "Seven Association Crate"
 	desc = "A crate recieved from seven association. Open with a Crowbar."
@@ -284,7 +322,9 @@
 	veryrarechance = 10
 	lootlist =	list(
 		/obj/item/ego_weapon/city/seven,
-		/obj/item/clothing/suit/armor/ego_gear/city/seven
+		/obj/item/clothing/suit/armor/ego_gear/city/seven,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenrecon,
+		/obj/item/binoculars,
 		)
 
 	rareloot =	list(
@@ -321,4 +361,5 @@
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/index/proxy,
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin)
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
+		/obj/item/ego_weapon/city/index/yan)

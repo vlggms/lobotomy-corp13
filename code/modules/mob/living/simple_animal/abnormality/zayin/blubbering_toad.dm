@@ -23,7 +23,7 @@
 	move_to_delay = 3
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-
+	max_boxes = 10
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 	attack_verb_continuous = "mauls"

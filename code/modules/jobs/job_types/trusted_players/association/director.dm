@@ -39,6 +39,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	Do not enter the lower levels of the facility without the manager's permission. Please use the beacon in your office to choose your association. \
 	Do not fight unless in self defense. You are not a combat role; you take an administrative role. \
 	Do not assist L Corporation without significant payment.</span>")
+	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
 
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
@@ -47,6 +48,9 @@ GLOBAL_LIST_INIT(association_jobs, list(
 
 		if(istype(processing, /datum/job/veteran))
 			processing.total_positions = 1
+
+//		if(istype(processing, /datum/job/butcher))
+//			processing.total_positions = 3
 
 /datum/outfit/job/director
 	name = "Associate Director"

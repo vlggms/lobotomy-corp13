@@ -171,7 +171,7 @@
 
 /atom/movable/screen/alert/status_effect/schismatic
 	name = "Schismatic"
-	desc = "You have ruined the sanctity between the rose and it's chosen and have been punished."
+	desc = "You have ruined the sanctity between the rose and its chosen and have been punished."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "schismatic"
 

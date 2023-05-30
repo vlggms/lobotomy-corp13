@@ -175,6 +175,7 @@
 	abno_info = list(
 		"Observations have concluded that The Naked Nest and its variants harbor serpents capable of infesting humans. These creatures have been given the designation O-02-74-1.",
 		"Employees with low HP are more susceptible to infestation by O-02-74-1. In particular, taking higher damage during work raises the probability of infestation.",
+		"Surgical removal of an incomplete O-02-74 resulted in the O-02-74-1 ejecting itself from the host.",
 		"Getting a Good work result prevented infestation from occurring, and a single-use cure was extracted.",
 		"Some employees suffering from infestation showed the following symptoms over time:<br>\
 		<ol type=1>\

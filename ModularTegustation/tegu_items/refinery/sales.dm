@@ -104,6 +104,18 @@
 	icon_state = "machineleaf"
 	crate = /obj/structure/lootcrate/workshopleaf
 
+/obj/structure/pe_sales/allas
+	name = "Allas Workshop Power Input"
+	desc = "A machine used to send PE to the allas workshop"
+	icon_state = "machineallas"
+	crate = /obj/structure/lootcrate/workshopallas
+
+/obj/structure/pe_sales/zelkova
+	name = "Zelkova Workshop Power Input"
+	desc = "A machine used to send PE to the zelkova workshop"
+	icon_state = "machinezelkova"
+	crate = /obj/structure/lootcrate/workshopzelkova
+
 /obj/structure/pe_sales/zwei
 	name = "Zwei Association Power Input"
 	desc = "A machine used to send PE to the zwei association."
@@ -118,12 +130,6 @@
 	crate = /obj/structure/lootcrate/seven
 	crate_timer = 360
 
-/obj/structure/pe_sales/allas
-	name = "Allas Workshop Power Input"
-	desc = "A machine used to send PE to the allas workshop"
-	icon_state = "machineallas"
-	crate = /obj/structure/lootcrate/workshopallas
-
 /obj/structure/pe_sales/syndicate
 	name = "Syndicate Workshop Power Input"
 	desc = "A machine used to send PE to the syndicate workshop"
@@ -136,5 +142,5 @@
 	desc = "A machine used to send PE to L-Corp headquarters."
 	icon_state = "machinelc"
 	crate = /obj/structure/lootcrate/l_corp
-	power_timer = 60 	//L Corp is where you drain your power
+	power_timer = 120 	//L Corp is where you drain your power
 	crate_timer = 120	//And it's super cheap

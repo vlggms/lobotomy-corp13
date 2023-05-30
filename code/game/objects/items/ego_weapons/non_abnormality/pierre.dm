@@ -12,12 +12,6 @@
 	attack_verb_continuous = list("cleavess", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/guillotine.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
 
 /obj/item/ego_weapon/city/district23/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))

@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/little_prince
 	name = "\proper The Little Prince"
 	desc = "An abnormality taking the form of a tall mushroom-like entity of dark blue and purple colors. \
-	Dark blue hands hangs by it's branches on a string"
+	Dark blue hands hangs by its branches on a string"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "little_prince"
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)

@@ -4,7 +4,7 @@
 #define STATUS_EFFECT_DEMENTIA_RAMBLINGS /datum/status_effect/quiet/dementia
 /mob/living/simple_animal/hostile/abnormality/quiet_day
 	name = "A Quiet Day"
-	desc = "An old man on a bench, eagerly awaiting you"
+	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
 	maxHealth = 400
@@ -31,6 +31,7 @@
 
 	gift_type =  /datum/ego_gifts/nostalgia
 	var/buff_given
+	var/datum/looping_sound/quietday_ambience/soundloop
 
 	var/list/war_story = list("Ah, I see you're interested in hearing about my experiences in the Smoke Wars. I'm happy to oblige.",
 	"During my time in the war, I served as a medic for L Corp, It was a grueling and heartbreaking experience, seeing so many young men and women injured or killed in the line of duty.",
@@ -78,12 +79,14 @@
 	TalkStart(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
+	icon_state = "quiet_ghost"
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
 				if(PlayerCheck(user))
+					ResetIcon()
 					return
 
 		if(ABNORMALITY_WORK_INSIGHT)
@@ -91,6 +94,7 @@
 				say(line)
 				SLEEP_CHECK_DEATH(50)
 				if(PlayerCheck(user))
+					ResetIcon()
 					return
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
@@ -98,6 +102,7 @@
 				say(line)
 				SLEEP_CHECK_DEATH(50)
 				if(PlayerCheck(user))
+					ResetIcon()
 					return
 
 		if(ABNORMALITY_WORK_REPRESSION)
@@ -108,12 +113,14 @@
 				SLEEP_CHECK_DEATH(50)
 				if(PlayerCheck(user))
 					dementia = initial(dementia)
+					ResetIcon()
 					return
 			dementia = initial(dementia)
 
 	TalkEnd(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkEnd(mob/living/carbon/human/user)
+	ResetIcon()
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
 			user.apply_status_effect(STATUS_EFFECT_WAR_STORY)
@@ -126,6 +133,9 @@
 
 		else
 			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
+	icon_state = "quiet_day"
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
 	if(!(user in view(5, src)))
@@ -189,3 +199,12 @@
 	color = "#110320"
 	sanity_restore = -2
 	stat_changes = list(2, 2, 2, 2) // Sort of reverse bottle. Stat gain for ongoing sanity loss. Not a huge stat gain since it's split into four, but something.
+
+//Audiovisual stuff
+/mob/living/simple_animal/hostile/abnormality/quiet_day/Initialize()
+	. = ..()
+	soundloop = new(list(src), TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/Destroy()
+	QDEL_NULL(soundloop)
+	..()
