@@ -2,9 +2,9 @@
 	name = "Today's Shy Look"
 	desc = "A humanoid abnormality that's hiding behind what appears to be human skin that's ecthed with 5 different expressions.  \
 	You have a strange urge to look behind the net of skin. But getting a bad feeling, you decide to stop."
-	icon = 'icons/mob/shy_look.dmi'
-	icon_state = "neutral"
-	icon_living = "neutral"
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "todayshylook_neutral"
+	icon_living = "todayshylook_neutral"
 
 	pixel_x = -16
 	base_pixel_x = -16
@@ -67,25 +67,25 @@
 	var/n = next_mood
 	if(p < n)
 		for(p, p<n, p++)
-			icon_state = num2text(p, 1)
+			icon_state = "todayshylook_[p]"
 			sleep(2)
 	if(p > n)
 		n = (n-1)
 		p = (p-1)
 		for(p, n<p, p--)
-			icon_state = num2text(p, 1)
+			icon_state = "todayshylook_[p]"
 			sleep(2)
 	switch(next_mood)
 		if(1)
-			icon_state = "smiling"
+			icon_state = "todayshylook_cheerful"
 		if(2)
-			icon_state = "happy"
+			icon_state = "todayshylook_happy"
 		if(3)
-			icon_state = "neutral"
+			icon_state = "todayshylook_neutral"
 		if(4)
-			icon_state = "sad"
+			icon_state = "todayshylook_sad"
 		if(5)
-			icon_state = "angry"
+			icon_state = "todayshylook_angry"
 	previous_mood = next_mood
 	var/mood_cooldown_time = rand(2, 5) SECONDS
 	mood_cooldown = world.time + mood_cooldown_time
