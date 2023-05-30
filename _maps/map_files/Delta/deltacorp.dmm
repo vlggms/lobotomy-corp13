@@ -115,6 +115,12 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ar" = (
@@ -15599,6 +15605,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/control)
+"Tu" = (
+/obj/structure/table,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/turf/open/floor/carpet,
+/area/department_main/control)
 "Tx" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -18087,6 +18100,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "ZX" = (
@@ -36461,7 +36477,7 @@ Go
 OE
 VI
 ZV
-vO
+Tu
 Ao
 ER
 yi

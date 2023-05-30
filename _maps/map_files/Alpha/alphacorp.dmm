@@ -1848,6 +1848,9 @@
 /area/department_main/safety)
 "oF" = (
 /obj/structure/table/glass,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "oG" = (
@@ -3043,7 +3046,6 @@
 	pixel_x = -32
 	},
 /obj/structure/table/glass,
-/obj/machinery/cell_charger,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "wZ" = (
@@ -6303,6 +6305,16 @@
 "WW" = (
 /turf/open/floor/wood,
 /area/department_main/command)
+"Xe" = (
+/obj/structure/table/glass,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Xg" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
@@ -38517,7 +38529,7 @@ TM
 LX
 rS
 Se
-pf
+Xe
 pR
 YM
 Sg
@@ -38774,7 +38786,7 @@ TM
 LX
 MJ
 YM
-pf
+Xe
 YM
 YM
 Sg

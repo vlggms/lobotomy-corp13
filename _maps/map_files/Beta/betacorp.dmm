@@ -4837,12 +4837,12 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/clothing/accessory/armband/lobotomy/info,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "xQ" = (
@@ -6502,6 +6502,16 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"GG" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/turf/open/floor/carpet,
+/area/department_main/control)
 "GK" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblue,
@@ -7728,6 +7738,9 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 5
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "Nx" = (
@@ -10063,18 +10076,14 @@
 /area/department_main/command)
 "YE" = (
 /obj/structure/table/glass,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
-/obj/item/assembly/prox_sensor,
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -35097,7 +35106,7 @@ jF
 jF
 jF
 Dh
-RZ
+GG
 mg
 Td
 Vj
