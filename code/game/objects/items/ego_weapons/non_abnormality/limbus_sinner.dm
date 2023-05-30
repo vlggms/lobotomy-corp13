@@ -66,7 +66,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
 
 /obj/item/ego_weapon/shield/sangria
 	name = "S.A.N.G.R.I.A"

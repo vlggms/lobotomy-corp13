@@ -15,7 +15,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/spear3.ogg'
 	couch_cooldown_time = 4 SECONDS
 	force_cap = 90
 	force_per_tile = 5

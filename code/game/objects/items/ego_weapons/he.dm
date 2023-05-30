@@ -220,6 +220,7 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -551,7 +552,7 @@
 	attack_speed = 3
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
@@ -944,6 +945,9 @@
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#b52e19"
+
+/obj/item/ego_weapon/fluid_sac/get_clamped_volume()
+	return 40
 
 /obj/item/ego_weapon/sanguine
 	name = "sanguine desire"

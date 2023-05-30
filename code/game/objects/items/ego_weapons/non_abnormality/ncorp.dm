@@ -45,7 +45,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	var/list/marked = list()
 
 /obj/item/ego_weapon/city/ncorp_nail/attack(mob/living/target, mob/living/user)
@@ -59,7 +59,7 @@
 		return
 
 	for(var/mob/living/M in marked)
-		playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
+		playsound(M, 'sound/weapons/fixer/generic/nail2.ogg', 100, FALSE, 4)
 		M.apply_damage(I.force, I.damtype, null, M.run_armor_check(null, I.damtype), spread_damage = TRUE, white_healable = TRUE)
 		new /obj/effect/temp_visual/remorse(get_turf(M))
 		marked -= M
@@ -116,6 +116,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("marks")
 	attack_verb_simple = list("mark")
+	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	var/charges
 	var/charged		//so you don't get the message every time
 
@@ -146,6 +147,7 @@
 	desc = "A large hammer used by senior Ncorp inquisitors."
 	icon_state = "mittlehammer"
 	force = 60
+	hitsound = 'sound/weapons/ego/shield1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -162,6 +164,7 @@
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,

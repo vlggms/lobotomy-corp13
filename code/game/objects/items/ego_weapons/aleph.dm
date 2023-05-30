@@ -47,6 +47,9 @@
 		H.adjustFireLoss(-damage_dealt*0.1)
 		H.adjustSanityLoss(-damage_dealt*0.1)
 
+/obj/item/ego_weapon/paradise/get_clamped_volume()
+	return 40
+
 /obj/item/ego_weapon/justitia
 	name = "justitia"
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
@@ -154,6 +157,9 @@
 	..()
 	combo += 1
 	force = initial(force)
+
+/obj/item/ego_weapon/da_capo/get_clamped_volume()
+	return 40
 
 /obj/item/ego_weapon/mimicry
 	name = "mimicry"
@@ -299,6 +305,9 @@
 	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth*0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
+
+/obj/item/ego_weapon/smile/get_clamped_volume()
+	return 50
 
 /obj/item/ego_weapon/blooming
 	name = "blooming"
