@@ -4,7 +4,7 @@
 	"map_path": "map_files/Xi",
 	"map_file": [
 		"xicommand.dmm",
-		"xi.dmm"
+		"xicorp.dmm"
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
