@@ -1,10 +1,10 @@
 {
 	"version": 1,
-	"map_name": "Facility j-777",
-	"map_path": "map_files/Kappa",
+	"map_name": "Facility N-523",
+	"map_path": "map_files/Xi",
 	"map_file": [
-		"kappacommand.dmm",
-		"kappacorp.dmm"
+		"xicommand.dmm",
+		"xi.dmm"
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
@@ -21,5 +21,5 @@
 		}
 	],
 	"minetype": "none",
-	"maptype": "standard"
+	"maptype": "Wonderlabs"
 }
