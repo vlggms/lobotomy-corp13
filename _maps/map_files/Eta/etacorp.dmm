@@ -1009,6 +1009,8 @@
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "dH" = (
@@ -2789,8 +2791,8 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/welfare)
 "jR" = (
-/obj/item/flashlight/lamp/green,
-/obj/structure/table/wood,
+/obj/machinery/recharger,
+/obj/structure/table/bronze,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "jW" = (
@@ -3220,16 +3222,6 @@
 	},
 /area/facility_hallway/south)
 "lp" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = -8
-	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = 8
-	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	pixel_y = 2
@@ -3240,6 +3232,13 @@
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
+/obj/structure/closet/crate,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "lq" = (
@@ -3704,9 +3703,10 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "mR" = (
@@ -6830,9 +6830,10 @@
 /area/department_main/control)
 "yn" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "yo" = (
@@ -6863,9 +6864,10 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "ys" = (
@@ -7030,7 +7032,13 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/item/toy/plush/binah,
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = -8
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = 8
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "za" = (
@@ -7325,9 +7333,10 @@
 /area/department_main/command)
 "zV" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "zW" = (
@@ -9214,9 +9223,10 @@
 /area/facility_hallway/safety)
 "Gq" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "Gv" = (
@@ -9998,9 +10008,10 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Jy" = (
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "JB" = (
@@ -10066,9 +10077,10 @@
 "JL" = (
 /obj/structure/flora/rock/pile/largejungle,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "JN" = (
@@ -10115,11 +10127,11 @@
 /turf/open/floor/carpet/black,
 /area/facility_hallway/records)
 "JW" = (
-/obj/item/flashlight/lamp/green,
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
-/obj/structure/table/wood,
+/obj/machinery/recharger,
+/obj/structure/table/bronze,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "JX" = (
@@ -10516,6 +10528,7 @@
 	pixel_y = 2
 	},
 /obj/item/toy/plush/bigbird,
+/obj/item/toy/plush/binah,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Lq" = (
@@ -10883,23 +10896,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"Mt" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/structure/window/reinforced/spawner{
-	max_integrity = 25
-	},
-/obj/item/melee/classic_baton,
-/obj/item/clothing/accessory/armband/lobotomy,
-/turf/open/floor/carpet,
-/area/department_main/control)
 "Mv" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -11122,9 +11118,10 @@
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
 "Nt" = (
-/obj/item/flashlight/lamp/green,
 /obj/effect/turf_decal/siding/purple,
 /obj/structure/table/wood,
+/obj/machinery/recharger,
+/obj/structure/table/bronze,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Nu" = (
@@ -11595,9 +11592,10 @@
 "OU" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "OV" = (
@@ -13545,11 +13543,11 @@
 /turf/open/floor/carpet/purple,
 /area/facility_hallway/information)
 "VF" = (
-/obj/item/flashlight/lamp/green,
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
-/obj/structure/table/wood,
+/obj/machinery/recharger,
+/obj/structure/table/bronze,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "VI" = (
@@ -43073,7 +43071,7 @@ ih
 ih
 Xi
 dF
-Mt
+dF
 dF
 Bn
 ih
