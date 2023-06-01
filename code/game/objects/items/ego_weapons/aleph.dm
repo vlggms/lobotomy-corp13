@@ -4,6 +4,7 @@
 	I come from the end, and I am here to stay for but a moment.\""
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
+	worn_icon_state = "paradise"
 	force = 70
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
@@ -207,6 +208,7 @@
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
 	icon_state = "twilight"
+	worn_icon_state = "twilight"
 	force = 35
 	damtype = RED_DAMAGE // It's all damage types, actually
 	armortype = RED_DAMAGE
@@ -351,6 +353,7 @@
 			Looking at the E.G.O for more than 3 seconds will make you sick."
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
+	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
