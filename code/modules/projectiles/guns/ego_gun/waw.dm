@@ -54,6 +54,16 @@
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
 	return
 
+/obj/item/gun/ego_gun/hatred/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/heart))
+		return
+	new /obj/item/gun/ego_gun/hatred_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
+
 /obj/item/gun/ego_gun/magicbullet
 	name = "magic bullet"
 	desc = "Though the original's power couldn't be fully extracted, the magic this holds is still potent. \
@@ -430,6 +440,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
 /obj/item/gun/ego_gun/my_own_bride
 	name = "My own Bride"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \

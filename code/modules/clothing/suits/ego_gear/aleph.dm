@@ -191,12 +191,145 @@
 
 /obj/item/clothing/suit/armor/ego_gear/nihil
 	name = "nihil"
-	desc = "Did you make me, or did I make you?"
+	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
+	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
 	icon_state = "nihil"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 40) // 280
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 360, 30 per upgrade
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 100,
+							FORTITUDE_ATTRIBUTE = 80, //+10 per upgrade to all, only 5 to temperance
+							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
+							JUSTICE_ATTRIBUTE = 80
 							)
+	var/equipped
+	var/list/powers = list("hatred", "despair", "greed", "wrath")
+
+/obj/item/clothing/suit/armor/ego_gear/nihil/equipped(mob/user, slot, initial = FALSE)
+	..()
+	equipped = TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/nihil/dropped(mob/user)
+	..()
+	equipped = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/nihil/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil))
+		return
+
+	if(equipped)
+		to_chat(user,"<span class='warning'>You need to put down [src] before attempting this!</span>")
+		return
+
+	if(powers[1] == "hatred" && istype(I, /obj/item/nihil/heart))
+		powers[1] = "hearts"
+		IncreaseAttributes(user, powers[1])
+		qdel(I)
+	else if(powers[2] == "despair" && istype(I, /obj/item/nihil/spade))
+		powers[2] = "spades"
+		IncreaseAttributes(user, powers[2])
+		qdel(I)
+	else if(powers[3] == "greed" && istype(I, /obj/item/nihil/diamond))
+		powers[3] = "diamonds"
+		IncreaseAttributes(user, powers[3])
+		qdel(I)
+	else if(powers[4] == "wrath" && istype(I, /obj/item/nihil/club))
+		powers[4]= "clubs"
+		IncreaseAttributes(user, powers[4])
+		qdel(I)
+	else
+		to_chat(user,"<span class='warning'>You have already used this upgrade!</span>")
+
+/obj/item/clothing/suit/armor/ego_gear/nihil/proc/IncreaseAttributes(user, current_suit)
+	for(var/atr in attribute_requirements)
+		if(atr == TEMPERANCE_ATTRIBUTE)
+			attribute_requirements[atr] += 5
+		else
+			attribute_requirements[atr] += 10
+	to_chat(user,"<span class='warning'>The requirements to equip [src] have increased!</span>")
+
+	switch(current_suit)
+		if("hearts")
+			armor = armor.modifyRating(white = 20, pale = 10)
+			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to WHITE and PALE damage!</span>")
+
+		if("spades")
+			armor = armor.modifyRating(pale = 30)
+			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to PALE damage!</span>")
+
+		if("diamonds")
+			armor = armor.modifyRating(red = 30)
+			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to RED damage!</span>")
+
+		if("clubs")
+			armor = armor.modifyRating(black = 20, pale = 10)
+			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to BLACK and PALE damage!</span>")
+
+/obj/item/clothing/suit/armor/ego_gear/seasons
+	name = "season's greetings"
+	desc = "This is a placeholder."
+	icon_state = "spring"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/current_season = "winter"
+	var/mob/current_holder
+	var/list/season_list = list(
+		"spring" = list("vernal equinox", "Some heavy armor, completely overtaken by foilage."),
+		"summer" = list("summer solstice","It looks painful to wear!"),
+		"fall" = list("autumnal equinox","Even though it glows faintly, it is cold to the touch."),
+		"winter" = list("winter solstice","In the past, folk believed that the dead would visit as winter came.")
+		)
+
+/obj/item/clothing/suit/armor/ego_gear/seasons/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	ChangeSeasons()
+
+/obj/item/clothing/suit/armor/ego_gear/seasons/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/clothing/suit/armor/ego_gear/seasons/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/clothing/suit/armor/ego_gear/seasons/proc/ChangeSeasons()
+	switch(current_season)
+		if("spring")
+			current_season = "summer"
+		if("summer")
+			current_season = "fall"
+		if("fall")
+			current_season = "winter"
+		if("winter")
+			current_season = "spring"
+	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
+	Transform()
+
+/obj/item/clothing/suit/armor/ego_gear/seasons/proc/Transform()
+	icon_state = "[current_season]"
+	update_icon_state()
+	if(current_holder)
+		current_holder.update_inv_wear_suit()
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
+	name = season_list[current_season][1]
+	desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
+	switch(current_season) //you are probably wondering why didn't I use setRating()... well, it did not work as intended. this is bad, really bad, but it works for now
+		if("spring")
+			armor = armor.modifyRating(white = 20, black = -20)
+			if(armor.pale > 60)
+				armor = armor.modifyRating(black = 20, pale = -20)
+		if("summer")
+			armor = armor.modifyRating(red = 20, white = -40, black = 20)
+		if("fall")
+			armor = armor.modifyRating(red = -40, white = 20, black = 20)
+		if("winter")
+			armor = armor.modifyRating(red = 20, black = -40, pale = 20)

@@ -185,6 +185,10 @@
 	item_path = /obj/item/ego_weapon/homing_instinct
 	cost = 35
 
+/datum/ego_datum/armor/homing_instinct_old
+	item_path = /obj/item/clothing/suit/armor/ego_gear/brick
+	cost = 35  // Unused, available from the well.
+
 //Jangsan Tiger - Maneater
 /datum/ego_datum/armor/maneater
 	item_path = /obj/item/clothing/suit/armor/ego_gear/maneater
@@ -328,4 +332,22 @@
 
 /datum/ego_datum/weapon/warp/spear
 	item_path = /obj/item/ego_weapon/warp/spear
+	cost = 35
+
+//Missed Reaper - Grasp
+/datum/ego_datum/armor/grasp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/grasp
+	cost = 35
+
+/datum/ego_datum/weapon/grasp
+	item_path = /obj/item/ego_weapon/grasp
+	cost = 35
+
+//Pinnochio - Marionette
+/datum/ego_datum/armor/marionette
+	item_path = /obj/item/clothing/suit/armor/ego_gear/marionette
+	cost = 35
+
+/datum/ego_datum/weapon/marionette
+	item_path = /obj/item/ego_weapon/marionette
 	cost = 35
