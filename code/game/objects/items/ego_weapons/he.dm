@@ -973,7 +973,7 @@
 	..()
 
 /obj/item/ego_weapon/replica
-	name = "pinpoint logic circuit"//temporary name
+	name = "replica"
 	desc = "A mechanical yet sinewy claw ribbed with circuitry. It reminds you of toy claw machines."
 	special = "The charge effect of this weapon trips humans instead of injuring them."
 	icon_state = "replica"
@@ -1011,6 +1011,8 @@
 
 /obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
 	..()
+	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))//if the target is dead, don't generate charge
+		return
 	if(charge<=20)
 		charge+=1
 

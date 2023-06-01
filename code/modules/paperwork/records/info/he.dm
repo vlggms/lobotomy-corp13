@@ -349,3 +349,18 @@
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
+
+//KQE-1J-23
+/obj/item/paper/fluff/info/he/kqe
+	abno_type = /mob/living/simple_animal/hostile/abnormality/kqe
+	abno_code = "O-06-154"//O-06-20-02 in LCB
+	abno_info = list(
+		"After 3 works, KQE-1J-23 solicited a response on its chest terminal.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Answering 'HELLO' lowered the Qliphoth Counter by one and awarded the employee with a gift.",
+		"Qliphoth counter immediately lowered to 0 if a 'HELLO' response was given again.",
+		"Answering 'GOODBYE' slightly lowered success rate of the next work.",
+		"Answering 'GOODBYE' with justice 3 or lower immediately lowered the Qliphoth Counter to 0.",
+		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
+		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
+	abno_breach_damage_count = "High"
