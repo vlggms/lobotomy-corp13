@@ -3703,9 +3703,10 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "mR" = (
@@ -6829,9 +6830,10 @@
 /area/department_main/control)
 "yn" = (
 /obj/structure/flora/ausbushes/genericbush,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "yo" = (
@@ -6862,9 +6864,10 @@
 	set_cap = 3;
 	set_luminosity = 50
 	},
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "ys" = (
@@ -7330,9 +7333,10 @@
 /area/department_main/command)
 "zV" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "zW" = (
@@ -9219,9 +9223,10 @@
 /area/facility_hallway/safety)
 "Gq" = (
 /obj/structure/flora/tree/jungle,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "Gv" = (
@@ -10003,9 +10008,10 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Jy" = (
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "JB" = (
@@ -10071,9 +10077,10 @@
 "JL" = (
 /obj/structure/flora/rock/pile/largejungle,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "JN" = (
@@ -11585,9 +11592,10 @@
 "OU" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle{
-	name = "Dense Forest Undergrowth";
-	density = 1
+/turf/open/floor/plating/grass{
+	color = "#00A36C";
+	opacity = 1;
+	name = "Dense Forest Undergrowth"
 	},
 /area/facility_hallway/south)
 "OV" = (
