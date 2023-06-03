@@ -148,7 +148,7 @@
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/rabbit_blade)
+		/obj/item/ego_weapon/city/rabbit_blade)
 
 
 //S Corporation

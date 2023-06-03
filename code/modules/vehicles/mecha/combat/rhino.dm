@@ -7,7 +7,7 @@
 	internals_req_access = list(ACCESS_CENT_GENERAL)
 	movedelay = 3
 	dir_in = 1 //Facing North.
-	max_integrity = 600		//1000 Effective HP.
+	max_integrity = 1200		//2000 Effective HP.
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40

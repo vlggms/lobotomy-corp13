@@ -11,7 +11,13 @@ SUBSYSTEM_DEF(maptype)
 	var/maptype = "lc13"//for the love of god, do not change the default we will all die -Bootlegbow
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list()
+	var/list/clearmaps = list("rcorp")
+
+	//All the map tags that are combat maps and need abnos to breach immediately
+	var/list/combatmaps = list("rcorp")
+
+	//Ghosts should be possessbale at all times
+	var/list/autopossess = list("rcorp")
 
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
@@ -24,3 +30,11 @@ SUBSYSTEM_DEF(maptype)
 		if("wonderlabs")
 			departments = list("Command", "Security", "Service", "Science")
 
+	var/list/all_jobs = subtypesof(/datum/job)
+	if(!all_jobs.len)
+		to_chat(world, "<span class='boldannounce'>Error setting up jobs, no job datums found</span>")
+		return FALSE
+
+	//Make ghosts able to possess things
+	if(maptype in autopossess)
+		SSlobotomy_corp.enable_possession = TRUE
