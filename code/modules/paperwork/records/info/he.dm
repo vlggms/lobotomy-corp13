@@ -48,12 +48,15 @@
 	abno_code = "T-01-01"
 	abno_info = list(
 		"When an employee with Prudence Level 2 or lower worked on Silent Girl, the Qliphoth Counter lowered regardless of the work result.",
+		"When the Work Result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the Work Result was Bad, the Qliphoth Counter lowered.",
-		" the Qliphoth Counter lowered, the employee was found to have significant psychological instability. We have designated this state as \"Guilt\".",
+		"When the Qliphoth Counter lowered, the employee was found to have possess significant psychological instability. We have designated this state as \"Guilt\".",
 		"Employees under the effects of Guilt have significantly decreased work success rate with any Abnormality.",
-		"When an employee with Guilt performed work with Silent Girl, they reported feeling a splitting headache before contact was lost. The employee was later found dead from self-inflicted injuries. This state has been termed \"Atonement\".",
-		"When an employee with Guilt or Atonement completed Attachment Work, the affliction seemed to be removed from the employee. Then, the Qliphoth Counter increased.",
-		"When Silent Girl’s Qliphoth Counter reached 0, all employees with Guilt immediately transitioned into Atonement. If no employees in the facility had Guilt, a random employee was afflicted with Atonement.")
+		"After an employee with Guilt attempted to work on Silent Girl, connection with them was lost and they were later found insane.",
+		"After an afflicted employee completed Attachment Work several times, they were cleansed of Guilt. Then, the Qliphoth Counter raised.",
+		"When the Insight Work Result was Good, the Qliphoth Counter raised with a normal probability.",
+		"When Silent Girl’s Qliphoth Counter reached 0, all agents are afflicted with Guilt. An Agent with Guilt had their affliction prolonged."
+		)
 
 //Blue Shep
 /obj/item/paper/fluff/info/he/blue_shep
