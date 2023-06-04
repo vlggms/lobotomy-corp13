@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Agent"
+	var/overflow_role = "Clerk"
 
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
@@ -82,6 +82,9 @@ SUBSYSTEM_DEF(job)
 			if(job.maptype != SSmaptype.maptype)		//This clears all the job from the map. Runs after the top one to fully remove a job.
 				if(!job.loadalways)				//THIS one we need. If a job can't be removed without breaking the game then
 					continue
+				else
+					job.total_positions = 0
+					job.spawn_positions = 0
 
 		occupations += job
 		name_occupations[job.title] = job

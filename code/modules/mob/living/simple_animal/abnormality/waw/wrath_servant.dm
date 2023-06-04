@@ -542,6 +542,7 @@
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG
 	move_to_delay = 5
+	mob_size = MOB_SIZE_HUGE
 
 	ranged = TRUE
 	ranged_cooldown = 15 SECONDS

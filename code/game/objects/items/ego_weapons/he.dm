@@ -220,6 +220,7 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -551,7 +552,7 @@
 	attack_speed = 3
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
@@ -945,6 +946,9 @@
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#b52e19"
 
+/obj/item/ego_weapon/fluid_sac/get_clamped_volume()
+	return 40
+
 /obj/item/ego_weapon/sanguine
 	name = "sanguine desire"
 	desc = "The axe may seem light, but the wielder musn't forget that it has hurt countless people as a consequence of poor choices. \
@@ -969,7 +973,7 @@
 	..()
 
 /obj/item/ego_weapon/replica
-	name = "pinpoint logic circuit"//temporary name
+	name = "replica"
 	desc = "A mechanical yet sinewy claw ribbed with circuitry. It reminds you of toy claw machines."
 	special = "The charge effect of this weapon trips humans instead of injuring them."
 	icon_state = "replica"
@@ -1007,6 +1011,8 @@
 
 /obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
 	..()
+	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))//if the target is dead, don't generate charge
+		return
 	if(charge<=20)
 		charge+=1
 
@@ -1041,3 +1047,98 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		T.throw_at(throw_target, range, whack_speed, firer, spin = FALSE)
 	return TRUE
+
+/obj/item/ego_weapon/warp
+	name = "dimension shredder"
+	desc = "The path is intent on thwarting all attempts to memorize it."
+	special = "This weapon builds charge every 10 steps you've taken."
+	icon_state = "warp"
+	force = 24
+	attack_speed = 0.8
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("stabs", "slashes", "attacks")
+	attack_verb_simple = list("stab", "slash", "attack")
+	hitsound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/release_message = "You release your charge, opening a rift!"
+	var/charge_effect = "create a temporary two-way portal."
+	var/current_holder
+	var/charge_cost = 10
+	var/charge
+	var/activated
+
+/obj/item/ego_weapon/warp/examine(mob/user)
+	. = ..()
+	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+
+/obj/item/ego_weapon/warp/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	current_holder = user
+
+/obj/item/ego_weapon/warp/Destroy(mob/user)
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+	return ..()
+
+/obj/item/ego_weapon/warp/attack_self(mob/user)
+	..()
+	if(charge>=charge_cost)
+		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		activated = TRUE
+	else
+		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+
+/obj/item/ego_weapon/warp/proc/UserMoved()
+	SIGNAL_HANDLER
+	if(charge<20)
+		charge+=0.1
+
+/obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!activated)
+		return
+	if(!isliving(target))
+		return
+	if(!proximity_flag)
+		charge -= charge_cost
+		activated = FALSE
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/effect/portal/warp/P1 = new(proj_turf)
+		var/obj/effect/portal/warp/P2 = new(get_turf(target))
+		playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 50, TRUE)
+		P1.link_portal(P2)
+		P2.link_portal(P1)
+		P1.teleport(user)
+		return
+
+/obj/effect/portal/warp
+	name = "dimensional rift"
+	desc = "A glowing, pulsating rift through space and time."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "rift"
+	teleport_channel = TELEPORT_CHANNEL_FREE
+
+/obj/effect/portal/warp/Crossed(atom/movable/AM, oldloc, force_stop = 0)
+	playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 50, TRUE)//doesn't work
+	..()
+
+/obj/effect/portal/warp/Initialize()
+	QDEL_IN(src, 3 SECONDS)
+	..()
+
+/obj/item/ego_weapon/warp/spear//spear subtype of the above
+	name = "dimensional ripple"
+	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
+	icon_state = "warp2"
+	attack_speed = 1
+	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
+	reach = 2

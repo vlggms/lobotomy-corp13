@@ -290,6 +290,7 @@
 	name = "feather of honor"
 	desc = "A flaming, but very sharp, feather."
 	icon_state = "featherofhonor"
+	worn_icon_state = "featherofhonor"
 	inhand_icon_state = "featherofhonor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_feather
 	weapon_weight = WEAPON_HEAVY
@@ -482,7 +483,6 @@
 	inhand_icon_state = "hypocrisy"
 	worn_icon_state = "hypocrisy"
 	special = "Use this weapon in hand to place a trap."
-	worn_icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hypocrisy
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 25

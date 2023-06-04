@@ -48,12 +48,15 @@
 	abno_code = "T-01-01"
 	abno_info = list(
 		"When an employee with Prudence Level 2 or lower worked on Silent Girl, the Qliphoth Counter lowered regardless of the work result.",
+		"When the Work Result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the Work Result was Bad, the Qliphoth Counter lowered.",
-		" the Qliphoth Counter lowered, the employee was found to have significant psychological instability. We have designated this state as \"Guilt\".",
+		"When the Qliphoth Counter lowered, the employee was found to have possess significant psychological instability. We have designated this state as \"Guilt\".",
 		"Employees under the effects of Guilt have significantly decreased work success rate with any Abnormality.",
-		"When an employee with Guilt performed work with Silent Girl, they reported feeling a splitting headache before contact was lost. The employee was later found dead from self-inflicted injuries. This state has been termed \"Atonement\".",
-		"When an employee with Guilt or Atonement completed Attachment Work, the affliction seemed to be removed from the employee. Then, the Qliphoth Counter increased.",
-		"When Silent Girl’s Qliphoth Counter reached 0, all employees with Guilt immediately transitioned into Atonement. If no employees in the facility had Guilt, a random employee was afflicted with Atonement.")
+		"After an employee with Guilt attempted to work on Silent Girl, connection with them was lost and they were later found insane.",
+		"After an afflicted employee completed Attachment Work several times, they were cleansed of Guilt. Then, the Qliphoth Counter raised.",
+		"When the Insight Work Result was Good, the Qliphoth Counter raised with a normal probability.",
+		"When Silent Girl’s Qliphoth Counter reached 0, all agents are afflicted with Guilt. An Agent with Guilt had their affliction prolonged."
+		)
 
 //Blue Shep
 /obj/item/paper/fluff/info/he/blue_shep
@@ -349,3 +352,18 @@
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
+
+//KQE-1J-23
+/obj/item/paper/fluff/info/he/kqe
+	abno_type = /mob/living/simple_animal/hostile/abnormality/kqe
+	abno_code = "O-06-154"//O-06-20-02 in LCB
+	abno_info = list(
+		"After 3 works, KQE-1J-23 solicited a response on its chest terminal.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Answering 'HELLO' lowered the Qliphoth Counter by one and awarded the employee with a gift.",
+		"Qliphoth counter immediately lowered to 0 if a 'HELLO' response was given again.",
+		"Answering 'GOODBYE' slightly lowered success rate of the next work.",
+		"Answering 'GOODBYE' with justice 3 or lower immediately lowered the Qliphoth Counter to 0.",
+		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
+		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
+	abno_breach_damage_count = "High"

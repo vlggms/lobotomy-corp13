@@ -47,6 +47,9 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/space_level/empty_space
 	var/num_of_res_levels = 1
 
+	//faction stuff
+	var/faction = "Lcorp"
+
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!config)

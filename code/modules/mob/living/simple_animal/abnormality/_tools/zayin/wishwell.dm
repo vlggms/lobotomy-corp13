@@ -252,7 +252,7 @@
 				if(6 to 15)
 					gift = pick(heitem)
 				if(16 to 20)//5% odds to get a rarer item at WAW/ALEPH
-					gift = pick(/obj/item/ego_weapon/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
+					gift = pick(/obj/item/ego_weapon/city/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
 				if(21 to 50)
 					gift = pick(wawitem)
 		if("ALEPH")
