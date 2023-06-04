@@ -815,11 +815,11 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
 	},
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
-	},
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 8
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -3739,14 +3739,13 @@
 	},
 /area/facility_hallway/information)
 "Cf" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/flashlight/lamp/green,
 /obj/effect/turf_decal/siding/green{
 	color = "#006400"
 	},
 /obj/machinery/light/cold/no_nightlight{
 	brightness = 16
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Ch" = (

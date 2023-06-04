@@ -944,7 +944,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
@@ -1095,7 +1095,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
@@ -3384,7 +3384,7 @@
 /area/department_main/command)
 "sE" = (
 /obj/effect/turf_decal/siding/purple,
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -4453,7 +4453,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
-/obj/machinery/medical_kiosk,
+/obj/machinery/chem_master,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "yF" = (

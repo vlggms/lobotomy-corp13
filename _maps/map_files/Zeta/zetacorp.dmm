@@ -2230,7 +2230,7 @@
 	pixel_y = 27;
 	pixel_x = 27
 	},
-/obj/machinery/vending/cigarette,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "oI" = (
@@ -6034,11 +6034,11 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 8
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)

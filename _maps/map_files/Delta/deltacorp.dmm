@@ -7233,7 +7233,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/modular_computer/console/preset/research,
+/obj/machinery/computer/abnormality_archive,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "vn" = (
@@ -10090,9 +10090,6 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "Eh" = (
-/obj/machinery/vending/medical{
-	req_access = list()
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -10103,6 +10100,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/machinery/chem_master,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "El" = (
