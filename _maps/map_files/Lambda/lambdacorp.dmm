@@ -10843,7 +10843,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/information)
 "Ob" = (
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
@@ -12172,10 +12172,10 @@
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "SC" = (
-/obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/green{
 	dir = 1
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "SD" = (
@@ -12392,7 +12392,7 @@
 	},
 /area/facility_hallway/central)
 "Tt" = (
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
@@ -13848,8 +13848,8 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "YC" = (
-/obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/green,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "YD" = (
