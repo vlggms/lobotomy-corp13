@@ -64,7 +64,7 @@
 		/obj/item/safety_kit,
 		/obj/item/reagent_containers/hypospray/emais,
 		/obj/item/clothing/glasses/meson,
-		/datum/status_effect/visualize_vitals,
+		/obj/item/powered_gadget/vitals_projector,
 		)
 
 	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele. Also includes things like the
