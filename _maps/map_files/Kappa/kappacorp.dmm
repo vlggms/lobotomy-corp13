@@ -163,7 +163,7 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -1300,10 +1300,10 @@
 /turf/closed/mineral/ash_rock,
 /area/facility_hallway/information)
 "lj" = (
-/obj/machinery/fat_sucker,
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "lk" = (
@@ -2233,7 +2233,7 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/obj/machinery/sleeper/syndie,
+/obj/machinery/fat_sucker,
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "uj" = (
@@ -3745,10 +3745,10 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "Hk" = (
-/obj/machinery/fat_sucker,
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/welfare)
 "Ho" = (
@@ -4593,7 +4593,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
