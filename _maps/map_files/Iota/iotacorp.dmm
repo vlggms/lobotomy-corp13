@@ -3956,9 +3956,7 @@
 	color = "#006400"
 	},
 /obj/structure/table/glass,
-/obj/item/storage/box/masks{
-	pixel_y = 5
-	},
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "jS" = (
@@ -5884,6 +5882,9 @@
 	color = "#006400"
 	},
 /obj/structure/table/glass,
+/obj/item/storage/box/bodybags{
+	pixel_y = 10
+	},
 /obj/item/storage/box/gloves{
 	pixel_y = 5
 	},
@@ -7019,8 +7020,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
 	},
-/obj/structure/table/abductor,
-/obj/machinery/computer/bookmanagement,
+/obj/machinery/computer/abnormality_archive,
 /turf/open/indestructible/white,
 /area/department_main/information)
 "qS" = (
@@ -8680,7 +8680,7 @@
 	color = "#006400"
 	},
 /obj/structure/table/glass,
-/obj/item/storage/box/bodybags{
+/obj/item/safety_kit{
 	pixel_y = 5
 	},
 /turf/open/floor/plasteel/sepia,
@@ -9015,8 +9015,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
-/obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/emais,
+/obj/machinery/medical_kiosk,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "vO" = (
@@ -9687,7 +9686,7 @@
 	dir = 9;
 	color = "#006400"
 	},
-/obj/machinery/medical_kiosk,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "xh" = (
@@ -13815,7 +13814,7 @@
 	dir = 10;
 	color = "#006400"
 	},
-/obj/machinery/medical_kiosk,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "GO" = (
@@ -16437,6 +16436,10 @@
 	color = "#006400"
 	},
 /obj/structure/table/glass,
+/obj/item/storage/box/masks{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /obj/item/storage/box/bodybags{
 	pixel_y = 5
 	},
@@ -19185,10 +19188,7 @@
 	dir = 10
 	},
 /obj/machinery/light/cold/no_nightlight,
-/obj/structure/table/glass,
-/obj/item/safety_kit{
-	pixel_y = 5
-	},
+/obj/machinery/medical_kiosk,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "Sh" = (
@@ -88854,7 +88854,7 @@ XM
 Iq
 Iq
 Ek
-qR
+xW
 OC
 QN
 it
@@ -89111,7 +89111,7 @@ eF
 IU
 Iq
 Ek
-xW
+qR
 Ce
 QN
 it
