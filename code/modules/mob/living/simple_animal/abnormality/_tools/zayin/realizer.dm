@@ -23,6 +23,9 @@
 		/obj/item/clothing/suit/armor/ego_gear/unrequited = /obj/item/clothing/suit/armor/ego_gear/realization/maiden,
 		// WAW
 		/obj/item/clothing/suit/armor/ego_gear/goldrush = /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience,
+		/obj/item/clothing/suit/armor/ego_gear/despair = /obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood,
+		/obj/item/clothing/suit/armor/ego_gear/hatred = /obj/item/clothing/suit/armor/ego_gear/realization/lovejustice,
+		/obj/item/clothing/suit/armor/ego_gear/blind_rage = /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage,
 		/obj/item/clothing/suit/armor/ego_gear/lamp = /obj/item/clothing/suit/armor/ego_gear/realization/eyes,
 		/obj/item/clothing/suit/armor/ego_gear/oppression = /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
 		/obj/item/clothing/suit/armor/ego_gear/executive = /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,

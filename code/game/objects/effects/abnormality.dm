@@ -38,6 +38,9 @@
 	animate(src, alpha = 0, time = 1 SECONDS)
 	QDEL_IN(src, 1 SECONDS)
 
+/obj/effect/qoh_sygil/kog
+	icon_state = "kog"
+
 /obj/effect/magic_bullet
 	name = "magic bullet"
 	desc = "A black bullet wreathed in blue-white energy, screaming forth at an unfathomable speed."

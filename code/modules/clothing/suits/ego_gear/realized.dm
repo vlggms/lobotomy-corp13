@@ -20,10 +20,6 @@
 	var/datum/action/spell_action/ability/item/A = AS.action
 	A.SetItem(src)
 
-/obj/item/clothing/suit/armor/ego_gear/realization/item_action_slot_check(slot)
-	if(slot == ITEM_SLOT_OCLOTHING) // Abilities are only granted when worn properly
-		return TRUE
-
 /* ZAYIN Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/confessional
@@ -39,6 +35,12 @@
 	icon_state = "prophet"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
+	hat = /obj/item/clothing/head/ego_hat/prophet_hat
+
+/obj/item/clothing/head/ego_hat/prophet_hat
+	name = "prophet"
+	desc = "For this reason, rejoice, you heavens and you who dwell in them. Woe to the earth and the sea, because the devil has come down to you with great wrath, knowing that he has only a short time."
+	icon_state = "prophet"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/maiden
 	name = "blood maiden"
@@ -60,6 +62,13 @@
 	icon_state = "universe"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
 	realized_ability = /obj/effect/proc_holder/ability/universe_song
+	hat = /obj/item/clothing/head/ego_hat/universe_hat
+
+/obj/item/clothing/head/ego_hat/universe_hat
+	name = "one with the universe"
+	desc = "See. All. Together. Know. Us."
+	icon_state = "universe"
+	flags_inv = HIDEMASK | HIDEHAIR
 
 /obj/item/clothing/suit/armor/ego_gear/realization/death
 	name = "death stare"
@@ -121,6 +130,38 @@
 	desc = "A jacket made of gold is hardly light. But it shines like the sun."
 	icon_state = "gold_experience"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 70)
+	realized_ability = /obj/effect/proc_holder/ability/road_of_gold
+
+/obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood
+	name = "quenched with blood"
+	desc = "A suit of armor, forged with tears and quenched in blood. Justice will prevail."
+	icon_state = "quenchedblood"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 80, BLACK_DAMAGE = 50, PALE_DAMAGE = 80)
+	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES
+	realized_ability = /obj/effect/proc_holder/ability/aimed/despair_swords
+
+/obj/item/clothing/suit/armor/ego_gear/realization/lovejustice
+	name = "love and justice"
+	desc = "If my duty is to defeat and reform evil, can I reform my evil self as well?"
+	icon_state = "lovejustice"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
+	flags_inv = HIDEGLOVES
+	realized_ability = /obj/effect/proc_holder/ability/aimed/arcana_slave
+
+/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
+	name = "wounded courage"
+	desc = "'Tis better to have loved and lost than never to have loved at all."
+	icon_state = "woundedcourage"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
+	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
+	realized_ability = /obj/effect/proc_holder/ability/justice_and_balance
+	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat
+
+/obj/item/clothing/head/ego_hat/woundedcourage_hat
+	name = "wounded courage"
+	desc = "An excuse to overlook your own misdeeds."
+	icon_state = "woundedcourage"
+	flags_inv = HIDEMASK | HIDEEYES
 
 /obj/item/clothing/suit/armor/ego_gear/realization/crimson
 	name = "crimson lust"

@@ -240,6 +240,9 @@
 /obj/effect/temp_visual/small_smoke/halfsecond
 	duration = 5
 
+/obj/effect/temp_visual/small_smoke/halfsecond/green
+	color = COLOR_GREEN
+
 /obj/effect/temp_visual/fire
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "3"

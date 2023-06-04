@@ -133,3 +133,224 @@
 				playsound(get_turf(L), 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 				L.apply_damage(ishuman(L) ? explosion_damage*0.5 : explosion_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		sleep(1)
+
+/* King of Greed - Gold Experience */
+/obj/effect/proc_holder/ability/road_of_gold
+	name = "The Road of Gold"
+	desc = "An ability that teleports you to the nearest non-visible threat."
+	action_icon_state = "gold0"
+	base_icon_state = "gold"
+	cooldown_time = 30 SECONDS
+
+	var/list/spawned_effects = list()
+
+/obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
+	if(!istype(user))
+		return ..()
+	cooldown = world.time + (2 SECONDS)
+	target = null
+	var/dist = 100
+	for(var/mob/living/simple_animal/hostile/H in GLOB.alive_mob_list)
+		if(H.z != user.z)
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H, FALSE))
+			continue
+		if(H in view(7, user))
+			continue
+		var/t_dist = get_dist(user, H)
+		if(t_dist >= dist)
+			continue
+		dist = t_dist
+		target = H
+	if(!target)
+		to_chat(user, "<span class='notice'>You can't find anything else nearby!</span>")
+		return ..()
+	Circle(null, null, user)
+	var/pre_circle_dir = user.dir
+	to_chat(user, "<span class='warning'>You begin along the Road of Gold to your target!</span>")
+	if(!do_after(user, 15, src))
+		to_chat(user, "<span class='warning'>You abandon your path!</span>")
+		CleanUp()
+		return ..()
+	animate(user, alpha = 0, time = 5)
+	step_towards(user, get_step(user, pre_circle_dir))
+	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
+	var/turf/open/target_turf = get_step_towards(target, user)
+	if(!istype(target_turf))
+		target_turf = pick(get_adjacent_open_turfs(target))
+	if(!target_turf)
+		to_chat(user, "<span class='warning'>No road leads to that target!?</span>")
+		CleanUp()
+		return ..()
+	var/obj/effect/qoh_sygil/kog/KS = Circle(target_turf, get_step(target_turf, pick(GLOB.cardinals)), null)
+	sleep(5)
+	user.dir = get_dir(user, target)
+	animate(user, alpha = 255, time = 5)
+	new /obj/effect/temp_visual/guardian/phase/out(get_turf(KS))
+	user.forceMove(get_turf(KS))
+	CleanUp()
+	sleep(2.5)
+	step_towards(user, get_step_towards(KS, target))
+	if(get_dist(user, target) <= 1)
+		var/obj/item/held = user.get_active_held_item()
+		if(held)
+			held.attack(target, user)
+	return ..()
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
+	for(var/obj/effect/FX in spawned_effects)
+		if(istype(FX, /obj/effect/qoh_sygil/kog))
+			var/obj/effect/qoh_sygil/kog/KS = FX
+			KS.fade_out()
+			continue
+		FX.Destroy()
+	listclearnulls(spawned_effects)
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/Circle(turf/first_target, turf/second_target, mob/user = null)
+	var/obj/effect/qoh_sygil/kog/KS
+	if(user)
+		KS = new(get_turf(user))
+	else
+		KS = new(first_target)
+	spawned_effects += KS
+	var/matrix/M = matrix(KS.transform)
+	M.Translate(0, 32)
+	var/rot_angle
+	var/my_dir
+	if(user)
+		my_dir = user.dir
+		rot_angle = Get_Angle(user, get_step(user, my_dir))
+	else
+		my_dir = get_dir(first_target, second_target)
+		rot_angle = Get_Angle(first_target, get_step_towards(first_target, second_target))
+	M.Turn(rot_angle)
+	switch(my_dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+			KS.layer += 0.1
+		if(WEST)
+			M.Scale(0.5, 1)
+			KS.layer += 0.1
+		if(NORTH)
+			M.Scale(1, 0.5)
+			KS.layer += 0.1
+		if(SOUTH)
+			M.Scale(1, 0.5)
+			KS.layer -= 0.1
+	KS.transform = M
+	return KS
+
+/* Servant of Wrath - Wounded Courage */
+/obj/effect/proc_holder/ability/justice_and_balance
+	name = "For the Justice and Balance of this Land"
+	desc = "An ability with 3 charges. Each use smashes all enemies in the area around you and buffs you, the third charge is amplified. \
+		Each hit grants you a temporary bonus to justice, hitting the same target increases this bonus."
+	action_icon_state = "justicebalance0"
+	base_icon_state = "justicebalance"
+	cooldown_time = 1 MINUTES
+
+	var/max_charges = 3
+	var/charges = 3
+	var/list/spawned_effects = list()
+	var/list/SFX = list(
+		'sound/abnormalities/wrath_servant/big_smash3.ogg',
+		'sound/abnormalities/wrath_servant/big_smash2.ogg',
+		'sound/abnormalities/wrath_servant/big_smash1.ogg'
+		)
+	var/damage = 30
+	var/list/targets_hit = list()
+
+/obj/effect/proc_holder/ability/justice_and_balance/Perform(target, user)
+	INVOKE_ASYNC(src, .proc/Smash, user, charges)
+	charges--
+	if(charges < 1)
+		charges = max_charges
+		targets_hit = list()
+		return ..()
+
+/obj/effect/proc_holder/ability/justice_and_balance/proc/Smash(mob/user, on_use_charges)
+	playsound(user, SFX[on_use_charges], 25*(4-on_use_charges))
+	var/temp_dam = damage
+	temp_dam *= 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+	if(on_use_charges <= 1)
+		temp_dam *= 1.5
+	for(var/turf/open/T in range(3, user))
+		if(T.z != user.z)
+			continue
+		new /obj/effect/temp_visual/small_smoke/halfsecond/green(T)
+		for(var/mob/living/L in T)
+			if(L.status_flags & GODMODE)
+				continue
+			if(L == user)
+				continue
+			if(L.stat == DEAD)
+				continue
+			if(user.faction_check_mob(L))
+				continue
+			if(L in targets_hit)
+				targets_hit[L] += 1
+			else
+				targets_hit[L] = 1
+			L.apply_damage(temp_dam, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/datum/status_effect/stacking/justice_and_balance/JAB = H.has_status_effect(/datum/status_effect/stacking/justice_and_balance)
+	if(!JAB)
+		JAB = H.apply_status_effect(/datum/status_effect/stacking/justice_and_balance)
+		if(!JAB)
+			return
+	for(var/hit in targets_hit)
+		JAB.add_stacks(targets_hit[hit])
+
+/datum/status_effect/stacking/justice_and_balance
+	id = "EGO_JAB"
+	status_type = STATUS_EFFECT_UNIQUE
+	stacks = 0
+	tick_interval = 10
+	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	var/next_tick = 0
+
+/atom/movable/screen/alert/status_effect/justice_and_balance
+	name = "Justice and Balance"
+	desc = "The power to preserve balance is in your hands. \
+		Your Justice is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "JAB"
+
+/datum/status_effect/stacking/justice_and_balance/process()
+	if(!owner)
+		qdel(src)
+		return
+	if(next_tick < world.time)
+		tick()
+		next_tick = world.time + tick_interval
+	if(duration != -1 && duration < world.time)
+		qdel(src)
+
+/datum/status_effect/stacking/justice_and_balance/add_stacks(stacks_added)
+	if(!ishuman(owner))
+		return
+	if(stacks <= 0 && stacks_added < 0)
+		qdel(src)
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
+	stacks += stacks_added
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
+	tick_interval = max(10 - (stacks/10), 0.1)
+
+/datum/status_effect/stacking/justice_and_balance/can_have_status()
+	if(!ishuman(owner))
+		return FALSE
+	var/mob/living/carbon/human/H = owner
+	if(H.stat == DEAD)
+		return FALSE
+	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/WC = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(WC))
+		return FALSE
+	return TRUE
+
