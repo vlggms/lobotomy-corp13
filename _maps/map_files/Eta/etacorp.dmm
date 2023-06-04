@@ -372,8 +372,12 @@
 /area/department_main/safety)
 "bw" = (
 /obj/structure/table/glass,
+/obj/item/safety_kit,
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25
+	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "bx" = (
@@ -4641,11 +4645,11 @@
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
 "qw" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 4
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -4672,14 +4676,14 @@
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "qG" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 8
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -6689,11 +6693,15 @@
 /area/department_main/safety)
 "xJ" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/structure/window/reinforced/spawner/east{
+	max_integrity = 25
+	},
+/obj/item/reagent_containers/hypospray/emais,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "xM" = (
@@ -9490,11 +9498,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Hw" = (
-/obj/structure/table/glass,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25
-	},
-/obj/item/safety_kit,
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Hy" = (
@@ -14215,14 +14219,10 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "Ym" = (
-/obj/structure/table/glass,
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25
-	},
-/obj/item/reagent_containers/hypospray/emais,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
 	},
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Yn" = (

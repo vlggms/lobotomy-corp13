@@ -115,9 +115,6 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "ay" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 8
-	},
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1;
 	pixel_x = -5
@@ -125,6 +122,7 @@
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
+/obj/structure/table/glass,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "az" = (
@@ -1066,7 +1064,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "fo" = (
-/obj/machinery/vending/cola/space_up,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "fq" = (
@@ -7291,7 +7289,7 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
 "KM" = (
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
@@ -8337,13 +8335,11 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "QC" = (
-/obj/machinery/modular_computer/console/preset/research{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/structure/table/glass,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "QF" = (

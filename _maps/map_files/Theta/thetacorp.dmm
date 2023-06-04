@@ -4373,16 +4373,7 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/obj/structure/table/glass,
-/obj/item/storage/box/bodybags{
-	pixel_y = 10
-	},
-/obj/item/storage/box/gloves{
-	pixel_y = 5
-	},
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
+/obj/machinery/chem_master,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "kb" = (
@@ -6518,35 +6509,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
-"oQ" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
-	},
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25
-	},
-/obj/structure/table/glass,
-/obj/item/storage/box/bodybags{
-	pixel_y = 10
-	},
-/obj/item/storage/box/masks{
-	pixel_y = 5
-	},
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/turf/open/floor/plasteel/white,
-/area/department_main/safety)
 "oR" = (
 /obj/structure/table,
 /turf/open/floor/facility/dark,
@@ -9486,24 +9448,34 @@
 /area/department_main/welfare)
 "vz" = (
 /obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1
+	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4;
 	color = "#006400"
 	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
+/obj/structure/window/reinforced/spawner/east{
+	max_integrity = 25
 	},
+/obj/structure/table/glass,
+/obj/item/storage/box/bodybags{
+	pixel_y = 10
+	},
+/obj/item/storage/box/gloves{
+	pixel_y = 5
+	},
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	pixel_y = 2
-	},
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -11470,10 +11442,20 @@
 	dir = 4;
 	color = "#006400"
 	},
-/obj/structure/window/reinforced/spawner{
+/obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/obj/structure/window/reinforced/spawner/east{
+/obj/structure/table/glass,
+/obj/item/storage/box/bodybags{
+	pixel_y = 10
+	},
+/obj/item/storage/box/gloves{
+	pixel_y = 5
+	},
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
 /turf/open/floor/plasteel/white,
@@ -13505,7 +13487,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
-/obj/machinery/modular_computer/console/preset/research{
+/obj/machinery/computer/abnormality_archive{
 	dir = 1
 	},
 /turf/open/floor/plasteel/sepia,
@@ -62214,7 +62196,7 @@ hY
 ic
 vz
 os
-oQ
+ka
 XY
 XY
 XY

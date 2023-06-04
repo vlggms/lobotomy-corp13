@@ -1433,7 +1433,7 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "lr" = (
-/obj/machinery/modular_computer/console/preset/command{
+/obj/machinery/computer/med_data{
 	dir = 1
 	},
 /turf/open/floor/carpet/green,
@@ -2616,15 +2616,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
-"uh" = (
-/obj/structure/chair/office{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 4
-	},
-/turf/open/floor/facility/white,
-/area/department_main/safety)
 "uj" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
@@ -3145,8 +3136,9 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/north)
 "xH" = (
-/obj/item/modular_computer/laptop/preset,
-/obj/structure/table/glass,
+/obj/machinery/computer/abnormality_archive{
+	dir = 1
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "xI" = (
@@ -5166,7 +5158,7 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "ON" = (
-/obj/machinery/modular_computer/console/preset/command,
+/obj/machinery/computer/crew,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "OP" = (
@@ -5188,9 +5180,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/machinery/computer/crew{
-	dir = 8
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "OS" = (
@@ -33086,7 +33076,7 @@ Jc
 NN
 NN
 NN
-uh
+NN
 NN
 NN
 NN

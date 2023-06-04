@@ -87,8 +87,7 @@
 /turf/open/floor/facility/white,
 /area/department_main/architecture)
 "aO" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "aT" = (
@@ -7457,6 +7456,11 @@
 /obj/structure/fluff/hedge,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"YU" = (
+/obj/structure/table,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/facility,
+/area/department_main/safety)
 "YY" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -7465,10 +7469,11 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "YZ" = (
-/obj/structure/table/abductor,
-/obj/item/camera,
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 4
 	},
 /turf/open/floor/facility,
 /area/department_main/information)
@@ -27293,7 +27298,7 @@ uI
 VM
 Df
 uJ
-Ug
+YU
 Oq
 PD
 PD
