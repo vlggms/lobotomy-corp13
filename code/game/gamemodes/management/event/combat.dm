@@ -15,5 +15,4 @@
 		INVOKE_ASYNC(A, /mob/living/simple_animal/hostile/abnormality.proc/BreachEffect)
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
-	qdel(src)
-
+		A.faction += "hostile"

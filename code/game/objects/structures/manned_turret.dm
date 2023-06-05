@@ -39,7 +39,7 @@
 		buckled_mob.pixel_y = buckled_mob.base_pixel_y
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.resetToDefault()
-	anchored = FALSE
+	anchored = initial(anchored)
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
 

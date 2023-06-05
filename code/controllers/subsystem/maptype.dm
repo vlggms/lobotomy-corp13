@@ -29,6 +29,8 @@ SUBSYSTEM_DEF(maptype)
 	switch(SSmaptype.maptype)
 		if("wonderlabs")
 			departments = list("Command", "Security", "Service", "Science")
+		if("rcorp")
+			departments = list("Command", "Security")
 
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)

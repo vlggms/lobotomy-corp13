@@ -3,11 +3,11 @@
 /obj/structure/fluff/hedge,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "am" = (
 /obj/structure/grille,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ap" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -19,11 +19,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "av" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aB" = (
 /obj/structure/table/wood,
 /obj/item/food/fries,
@@ -42,7 +42,7 @@
 /obj/item/food/fries,
 /obj/item/food/fries,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aC" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -52,11 +52,11 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aI" = (
 /obj/structure/fireplace,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aJ" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -66,7 +66,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aM" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -77,13 +77,13 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "aR" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "aX" = (
 /obj/structure/bed,
 /obj/machinery/camera/autoname{
@@ -91,47 +91,43 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "be" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bh" = (
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bn" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 4
 	},
 /turf/open/water/jungle,
-/area/ruin/has_grav)
-"bs" = (
-/mob/living/simple_animal/hostile/abnormality/clouded_monk,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bt" = (
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bx" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "by" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bC" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "reindeer captain bunk";
 	req_access_txt = "5"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bI" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin/carbon,
@@ -141,7 +137,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/elevatorshaft,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "bT" = (
 /obj/structure/table/glass,
 /obj/item/paper_bin,
@@ -150,27 +146,31 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ce" = (
 /obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
-"cf" = (
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "cg" = (
 /obj/structure/table/abductor,
 /obj/item/storage/firstaid/revival,
 /obj/item/gun/medbeam,
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"ch" = (
+/obj/structure/table/abductor,
+/obj/item/powered_gadget/detector_gadget/abnormality,
+/obj/item/powered_gadget/vitals_projector,
+/obj/item/powered_gadget/slowingtrapmk1,
+/obj/item/wrench,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "ci" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "cm" = (
 /obj/machinery/computer/operating{
 	dir = 8
@@ -182,38 +182,44 @@
 	dir = 6
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"cq" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"cw" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/landmark/abnospawn/hardsupport,
+/turf/open/floor/plasteel/dark,
+/area/city/outskirts)
 "cA" = (
 /obj/machinery/light/cold{
 	dir = 4
 	},
 /obj/structure/chair/comfy/teal,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
-"cC" = (
-/mob/living/simple_animal/hostile/abnormality/funeral,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "cD" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"cL" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "cP" = (
 /obj/structure/frame/computer,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"cT" = (
-/mob/living/simple_animal/hostile/abnormality/scarecrow,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "cV" = (
 /turf/closed/indestructible/fakedoor{
 	desc = "These things are thick. Doesn't look like they stopped anything important...";
 	name = "broken cell door"
 	},
-/area/ruin/has_grav)
+/area/city/outskirts)
 "cW" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -223,29 +229,35 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"dg" = (
+/obj/structure/closet/crate,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "dj" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "dn" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/table/wood/fancy/blue,
 /obj/structure/railing,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "du" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/black,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "dA" = (
 /obj/effect/turf_decal/siding/red,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "dC" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -254,20 +266,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
-"dL" = (
-/obj/machinery/mech_bay_recharge_port,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "dP" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/structure/table/wood/fancy/blue,
@@ -280,39 +279,40 @@
 /obj/structure/railing/corner,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "dX" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ea" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "officer's bunks"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ec" = (
 /obj/structure/cable,
 /obj/machinery/power/floodlight,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "et" = (
 /obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/service,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "ev" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "eK" = (
 /obj/structure/window/shuttle/survival_pod,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "eN" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -328,118 +328,118 @@
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "eP" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "raven captain bunk";
 	req_access_txt = "7"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "eS" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "eV" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "fi" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fn" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fo" = (
 /obj/machinery/stasis,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fs" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fx" = (
 /obj/structure/toolabnormality/touch,
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fy" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "Officer's meet";
 	req_access_txt = "19"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fz" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fA" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fI" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fU" = (
 /turf/closed/wall/mineral/titanium/survival/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fW" = (
 /obj/machinery/smartfridge/organ,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "fZ" = (
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gh" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gt" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gu" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gw" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gG" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gP" = (
 /turf/open/water/jungle,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gT" = (
 /turf/closed/indestructible/syndicate,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gV" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -452,7 +452,7 @@
 	},
 /obj/machinery/icecream_vat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -462,16 +462,34 @@
 	},
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "gX" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "gY" = (
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"hj" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500"
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "hk" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
@@ -484,10 +502,14 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"hr" = (
+/obj/effect/landmark/abnospawn/easytank,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "hu" = (
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "hy" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -502,26 +524,30 @@
 	pixel_y = 14
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "hB" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "hG" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "hH" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"hL" = (
+/obj/effect/landmark/abnospawn/easysupport,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "hZ" = (
 /obj/structure/fluff/hedge,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "if" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -530,19 +556,19 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ih" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ij" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "im" = (
 /obj/structure/closet/crate,
 /obj/item/bodypart/r_arm/robot,
@@ -562,33 +588,33 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ir" = (
 /obj/structure/table/abductor,
 /obj/effect/spawner/lootdrop/three_course_meal,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "iv" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "iD" = (
 /obj/structure/sign/poster/official/work_for_a_future,
 /turf/closed/indestructible/syndicate,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "iE" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "iO" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "iP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -598,17 +624,18 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"iT" = (
-/mob/living/simple_animal/hostile/abnormality/judgement_bird,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"iV" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "iZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jg" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -618,26 +645,26 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jl" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jr" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "jt" = (
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ju" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -645,13 +672,13 @@
 /obj/machinery/camera/autoname,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jG" = (
 /obj/structure/table/abductor,
 /obj/item/gun/energy/e_gun/rabbit/captain,
 /obj/item/clothing/head/rabbit_helmet,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jM" = (
 /obj/structure/table,
 /obj/item/ego_weapon/city/rabbit_blade{
@@ -659,20 +686,20 @@
 	},
 /obj/item/ego_weapon/city/reindeer,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "jZ" = (
 /obj/machinery/light/cold,
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ka" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "kQ" = (
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "kV" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/brown{
@@ -688,70 +715,66 @@
 	id = "training"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "kZ" = (
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lb" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lc" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ld" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lh" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lj" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ll" = (
 /obj/machinery/stasis,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lm" = (
 /obj/effect/mermaid_water,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lu" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lz" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "lA" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
-"lF" = (
-/mob/living/simple_animal/hostile/abnormality/nosferatu,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lG" = (
 /obj/structure/table/wood,
 /obj/item/food/cake/carrot,
@@ -771,7 +794,7 @@
 /obj/item/food/cake/carrot,
 /obj/item/kitchen/knife,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -780,27 +803,31 @@
 	pixel_x = 32
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lK" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "lL" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen/fourcolor,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "mc" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"md" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "mf" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -845,7 +872,7 @@
 /obj/item/storage/fancy/egg_box,
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "mk" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -855,35 +882,48 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"mn" = (
+/obj/structure/table/abductor,
+/obj/item/gun/ballistic/automatic/pistol/terragov/beretta,
+/obj/item/ammo_box/magazine/m9mm,
+/obj/item/ammo_box/magazine/m9mm,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "mp" = (
 /obj/machinery/computer/crew,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "mr" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/item/shard,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"mt" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "mE" = (
 /obj/item/shard,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "mJ" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "mM" = (
 /obj/machinery/light/broken{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "nq" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
@@ -891,12 +931,12 @@
 /obj/structure/rack,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "nA" = (
 /obj/machinery/vending/cola/shamblers,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "nD" = (
 /obj/structure/table/glass,
 /obj/machinery/newscaster{
@@ -906,11 +946,16 @@
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "nG" = (
 /obj/machinery/computer/security,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"nO" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "nT" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -920,14 +965,14 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ob" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oe" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -940,15 +985,25 @@
 	},
 /obj/vehicle/sealed/mecha/combat/rhino,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oi" = (
 /turf/closed/indestructible/rock,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"on" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/obj/item/clothing/mask/whistle,
+/obj/item/storage/firstaid/revival,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "oq" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "os" = (
 /obj/structure/displaycase/trophy{
 	alert = 0
@@ -964,17 +1019,17 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oA" = (
 /obj/item/bedsheet/black,
 /obj/structure/bed/pod,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oB" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oE" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/accessory/armband/lobotomy,
@@ -989,7 +1044,7 @@
 /obj/item/clothing/accessory/armband/lobotomy,
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oJ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -998,7 +1053,7 @@
 	dir = 5
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oQ" = (
 /obj/structure/table/optable,
 /obj/structure/railing{
@@ -1008,13 +1063,13 @@
 	dir = 4
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oT" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "oV" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/light/broken{
@@ -1022,12 +1077,12 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pa" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "pd" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -1038,72 +1093,67 @@
 /obj/item/camera,
 /obj/item/camera_film,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pe" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ph" = (
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "py" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"pB" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"pA" = (
+/obj/effect/landmark/abnospawn/easycombat,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "pE" = (
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pF" = (
 /obj/machinery/medical_kiosk,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pK" = (
 /obj/structure/chair/comfy{
 	dir = 1
 	},
 /obj/item/toy/plush/hokma,
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pP" = (
 /obj/effect/turf_decal/sand,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pX" = (
 /obj/effect/turf_decal/siding/red/corner,
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "pZ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qg" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qm" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1117,29 +1167,33 @@
 	pixel_y = 10
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qs" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"qt" = (
+/obj/structure/table/abductor,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "qA" = (
 /obj/structure/grille/broken,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qF" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/machinery/rnd/bepis,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qK" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "qL" = (
 /obj/structure/table/reinforced,
 /obj/item/encryptionkey/headset_control,
@@ -1157,51 +1211,52 @@
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"qQ" = (
-/turf/closed/indestructible/syndicate,
-/area/department_main/information)
+/area/city/outskirts)
+"qO" = (
+/obj/effect/landmark/abnospawn/hardtank,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "qU" = (
 /obj/structure/grille/broken,
 /obj/item/shard,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rc" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rd" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ri" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "rhino captain bunk";
 	req_access_txt = "3"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rn" = (
 /obj/structure/pbird_perch,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rp" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rs" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
 /turf/open/floor/plasteel/stairs/medium,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ru" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1211,7 +1266,7 @@
 	},
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ry" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/turf_decal/bot,
@@ -1227,18 +1282,11 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rD" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"rG" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/mob/living/simple_animal/bot/cleanbot/medbay,
-/turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rM" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -1248,25 +1296,25 @@
 	},
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rS" = (
 /obj/structure/sign/poster/ripped{
 	pixel_x = -8;
 	pixel_y = -30
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "rX" = (
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sa" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "cellone"
@@ -1285,27 +1333,27 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sg" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sA" = (
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sL" = (
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sO" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sP" = (
 /obj/structure/table/wood,
 /obj/item/food/bbqribs,
@@ -1323,7 +1371,7 @@
 /obj/item/food/bbqribs,
 /obj/item/food/bbqribs,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sR" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1336,13 +1384,13 @@
 	},
 /obj/machinery/griddle,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "sZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ta" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1373,18 +1421,18 @@
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tb" = (
 /obj/structure/chair/office/light{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "to" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tt" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1398,25 +1446,25 @@
 	id = "training"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tu" = (
 /obj/structure/table/abductor,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tv" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tw" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tB" = (
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tH" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1431,7 +1479,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tN" = (
 /obj/structure/weightmachine/weightlifter,
 /obj/effect/turf_decal/siding/brown{
@@ -1441,7 +1489,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tW" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/champagne,
@@ -1452,28 +1500,24 @@
 	pixel_x = -5
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "tZ" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ub" = (
-/obj/machinery/button/door{
+/obj/machinery/button/door/indestructible{
 	id = "inside";
-	pixel_x = 26
+	pixel_x = 28
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uh" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "inside"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
-"uk" = (
-/mob/living/simple_animal/hostile/abnormality/ebony_queen,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "un" = (
 /obj/structure/table/reinforced,
 /obj/item/melee/classic_baton,
@@ -1483,60 +1527,65 @@
 /obj/item/melee/classic_baton,
 /obj/item/melee/classic_baton,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uu" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uw" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
 /obj/machinery/pdapainter,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uz" = (
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uC" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uJ" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/cryopod,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "uX" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "vd" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"vh" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbit/minigun,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "vj" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "vo" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "vr" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -1548,78 +1597,78 @@
 	pixel_y = 32
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "vz" = (
 /obj/effect/turf_decal/box/white,
 /obj/structure/toolabnormality/realization,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "vF" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wf" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wh" = (
 /obj/structure/frame/computer,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wi" = (
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wj" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wl" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/revival,
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wq" = (
 /obj/structure/chair/comfy{
 	dir = 1
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wA" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/bronze,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wG" = (
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "wS" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "xi" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "outside"
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xm" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 6
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xq" = (
 /obj/structure/table/wood/bar,
 /obj/item/food/salad/herbsalad{
@@ -1632,14 +1681,14 @@
 	},
 /obj/item/food/meat/steak/plain/synth,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xs" = (
 /obj/structure/sign/departments/records{
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xu" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -1647,27 +1696,41 @@
 	armor = list()
 	},
 /obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xB" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "xC" = (
 /obj/effect/turf_decal/siding/green,
 /obj/item/kirbyplants/random{
 	anchored = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xD" = (
 /turf/closed/indestructible/reinforced,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"xR" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"xS" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "junior officer quarters"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "xT" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "xX" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -1680,20 +1743,20 @@
 	},
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ya" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yf" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yh" = (
 /obj/item/folder/yellow,
 /obj/item/folder/yellow,
@@ -1714,11 +1777,11 @@
 /obj/item/pen/charcoal,
 /obj/item/wirecutters,
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yn" = (
 /obj/item/shard,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yy" = (
 /obj/structure/table/glass,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -1726,7 +1789,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yF" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Safety Department"
@@ -1735,12 +1798,12 @@
 	dir = 4
 	},
 /turf/open/floor/facility/halls,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yI" = (
 /obj/item/shard,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yM" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -1757,7 +1820,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yO" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -1766,7 +1829,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yS" = (
 /obj/machinery/light{
 	dir = 4
@@ -1776,12 +1839,12 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "yU" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "yW" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1793,17 +1856,17 @@
 /obj/item/storage/box/drinkingglasses,
 /obj/item/storage/box/cups,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zc" = (
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zd" = (
 /obj/machinery/light/cold{
 	dir = 8
 	},
 /obj/structure/chair/comfy/teal,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zk" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -1812,22 +1875,32 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/elevatorshaft,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zp" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"zv" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/ego_weapon/city/rabbit_blade,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/obj/item/clothing/mask/whistle,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "zz" = (
 /obj/machinery/light/broken,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zG" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/stairs/medium,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zJ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1848,12 +1921,12 @@
 	pixel_x = 10
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zL" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zO" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave{
@@ -1866,7 +1939,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "zX" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1879,7 +1952,7 @@
 	},
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ac" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -1888,13 +1961,13 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Af" = (
 /obj/structure/chair/office{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Al" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -1908,85 +1981,66 @@
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/pierre,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
-"Aq" = (
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "As" = (
 /obj/item/shard,
 /turf/closed/indestructible/rock,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "AF" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "AG" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "ground commander bunk";
 	req_access_txt = "20"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "AI" = (
 /obj/structure/weightmachine/stacklifter,
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "AO" = (
 /obj/machinery/camera/autoname{
 	dir = 5
 	},
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
-"AV" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cap";
-	name = "Ground Commander's Dress Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/captunic{
-	name = "commander's parade tunic"
-	},
-/obj/item/clothing/head/beret/tegu/ce{
-	name = "commander's dress beret"
-	},
-/obj/item/clothing/under/suit/lobotomy/rcorp_command,
-/turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bg" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bh" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bk" = (
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bm" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bp" = (
 /obj/structure/chair/comfy,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Br" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Bu" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -1995,7 +2049,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "BA" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -2017,14 +2071,14 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"BW" = (
+/area/city/outskirts)
+"BS" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "rhino team prep";
 	req_access_txt = "3"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "BZ" = (
 /obj/structure/sign/departments/command{
 	pixel_x = 32
@@ -2036,35 +2090,35 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ce" = (
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Cm" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Cq" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
 	},
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Cr" = (
 /obj/item/kirbyplants{
 	icon_state = "plant-18"
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "CC" = (
 /obj/machinery/vending/lobotomyuniform,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "CE" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -2073,18 +2127,30 @@
 	},
 /obj/item/ego_weapon/city/reindeer/captain,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "CF" = (
 /obj/machinery/telecomms/server/presets/science,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "CI" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
 /obj/machinery/aug_manipulator,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"CR" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Lieutenant Commander's Wardrobe";
+	req_access_txt = "19"
+	},
+/obj/item/clothing/suit/jacket,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/rcorp,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "CX" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
@@ -2092,39 +2158,71 @@
 /obj/structure/rack,
 /obj/item/gun/ego_gun/clerk,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Dk" = (
 /obj/structure/table/abductor,
 /obj/machinery/button/door{
 	id = "outside";
 	name = "operation start button";
-	req_access_txt = "20"
+	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Dm" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/chair/comfy/teal,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Dq" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Dress Wardrobe";
+	req_access_txt = "20"
+	},
+/obj/item/clothing/suit/captunic{
+	name = "commander's parade tunic"
+	},
+/obj/item/clothing/head/beret/tegu/ce{
+	name = "commander's dress beret"
+	},
+/obj/item/clothing/under/suit/lobotomy/rcorp_command,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"DD" = (
+/obj/effect/landmark/abnospawn/hardsupport,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "DE" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "DF" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "DJ" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"DK" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Operations Wardrobe";
+	req_access_txt = "20"
+	},
+/obj/item/clothing/suit/armor/hos{
+	armor = list()
+	},
+/obj/item/clothing/head/beret/tegu/rcorp,
+/obj/item/clothing/neck/cloak/rcorp,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "DM" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -2133,7 +2231,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "DT" = (
 /obj/structure/railing{
 	dir = 4
@@ -2145,11 +2243,11 @@
 	dir = 4
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "DV" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "DX" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -2160,13 +2258,13 @@
 	pixel_y = 10
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "DZ" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ef" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -2175,76 +2273,78 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Eo" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ey" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ez" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "EB" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "EK" = (
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "EP" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ET" = (
 /obj/effect/turf_decal/siding/red,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "EU" = (
 /obj/machinery/photocopier,
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"EX" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "lieutenant commander's bunk";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "Fc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
-"Fm" = (
-/obj/effect/turf_decal/sand/plating,
-/mob/living/simple_animal/hostile/abnormality/nothing_there,
-/turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Fs" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Fv" = (
 /obj/structure/table,
 /obj/item/gun/medbeam,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Fy" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Fz" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -2252,29 +2352,33 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "FN" = (
 /obj/structure/railing,
 /obj/structure/closet/crate/freezer/blood,
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"FR" = (
+/obj/machinery/manned_turret/rcorp/stationary,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "FT" = (
 /obj/structure/lattice/catwalk,
 /turf/open/water/jungle,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "FU" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Gd" = (
 /obj/effect/turf_decal/sand,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ge" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -2284,21 +2388,21 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Gi" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 5
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Gq" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GB" = (
 /obj/structure/bookcase/random,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GG" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -2308,27 +2412,28 @@
 	},
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GI" = (
 /obj/structure/chair/office/light{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GJ" = (
 /obj/machinery/door/airlock/survival_pod{
-	name = "rabbit captain bunk"
+	name = "rabbit captain bunk";
+	req_access = "19"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GQ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 5
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "GW" = (
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -2350,7 +2455,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Hl" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 8
@@ -2363,14 +2468,27 @@
 	pixel_x = 32
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ht" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"HG" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/vehicle/sealed/mecha/combat/rhinomelee,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "HI" = (
 /obj/structure/closet/secure_closet/personal{
 	anchored = 1
@@ -2389,7 +2507,7 @@
 /obj/item/toy/plush/yesod,
 /obj/item/clothing/neck/scarf/purple,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "HN" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -2404,7 +2522,7 @@
 	anchored = 1
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ia" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/brown{
@@ -2431,34 +2549,34 @@
 	id = "training"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ib" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ij" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ik" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Il" = (
 /obj/machinery/vending/lobotomyarmband,
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ip" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/chair/comfy/teal,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Is" = (
 /obj/structure/rack,
 /obj/item/kitchen/knife/butcher,
@@ -2466,7 +2584,13 @@
 /obj/item/kitchen/knife/butcher,
 /obj/item/kitchen/knife/butcher,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Ix" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "IA" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
@@ -2484,18 +2608,18 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IB" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/malkuth,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IC" = (
 /obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IG" = (
 /obj/structure/displaycase/trophy{
 	alert = 0
@@ -2511,21 +2635,21 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IK" = (
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IO" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IP" = (
 /obj/structure/grille/broken,
 /obj/effect/turf_decal/sand/plating,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IU" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
@@ -2533,20 +2657,22 @@
 /obj/item/clothing/head/beret/tegu/captain{
 	armor = list()
 	},
+/obj/item/weldingtool/experimental,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IX" = (
 /obj/structure/chair/comfy/teal,
 /obj/item/toy/plush/enoch,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "IZ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Jf" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -2554,12 +2680,12 @@
 /obj/structure/chair/office,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Jn" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Jt" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -2569,7 +2695,7 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/stairs/medium,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Jz" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/machinery/light{
@@ -2577,7 +2703,7 @@
 	},
 /obj/machinery/libraryscanner,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "JD" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -2585,26 +2711,26 @@
 /obj/effect/turf_decal/sand,
 /obj/item/shard,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "JJ" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "JK" = (
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "JL" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Kb" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ki" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -2622,24 +2748,33 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Kj" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "Kn" = (
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "KA" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Training Department"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "KF" = (
 /turf/closed/indestructible/fakeglass,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "KS" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "KX" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -2656,7 +2791,7 @@
 /obj/item/clothing/neck/scarf/zebra,
 /obj/item/clipboard,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "KZ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -2666,7 +2801,7 @@
 	},
 /obj/machinery/processor,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ln" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -2674,11 +2809,11 @@
 /obj/item/toy/plush/yesod,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Lo" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Lw" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -2693,7 +2828,15 @@
 /obj/item/clothing/suit/apron/chef,
 /obj/item/clothing/head/chefhat,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"LB" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"LF" = (
+/obj/effect/landmark/abnospawn/hardcombat,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "LI" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -2703,27 +2846,46 @@
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "LU" = (
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "LV" = (
 /obj/item/toy/plush/hod,
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Mf" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "Mm" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Mn" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/commandprojector,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "Mo" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "reindeer team prep";
 	req_access_txt = "5"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Mp" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -2735,7 +2897,7 @@
 	color = "#CC5500"
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Mz" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -2744,7 +2906,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "MC" = (
 /obj/structure/table/wood,
 /obj/item/food/burger/cheese,
@@ -2759,13 +2921,13 @@
 /obj/item/food/burger/cheese,
 /obj/item/food/burger/cheese,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "MG" = (
 /obj/machinery/computer/operating{
 	dir = 4
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ML" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -2782,10 +2944,10 @@
 	name = "\improper Captain's Rhinoceros Unit"
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "MN" = (
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "MU" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
@@ -2794,21 +2956,27 @@
 /obj/structure/microscope,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "MV" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Nc" = (
 /obj/structure/grille/broken,
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Nf" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Ng" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "Ni" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -2817,45 +2985,45 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Nj" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Central Command Department"
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "No" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Nu" = (
+/obj/machinery/manned_turret/rcorp,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "Nw" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ny" = (
 /obj/effect/turf_decal/sand/plating,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Nz" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
-"NM" = (
-/mob/living/simple_animal/hostile/abnormality/jangsan,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "NV" = (
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Oc" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
@@ -2868,25 +3036,25 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Oo" = (
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Oq" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Oz" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "OE" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -2899,18 +3067,18 @@
 	},
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "OK" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "OP" = (
 /turf/open/floor/carpet/green,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "OW" = (
 /obj/item/light/tube/broken,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "OY" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/siding/purple/corner{
@@ -2918,7 +3086,7 @@
 	},
 /obj/machinery/vending/cola/shamblers,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "OZ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -2926,30 +3094,42 @@
 /obj/structure/rack,
 /obj/item/gun/ego_gun/clerk,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Pd" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 9
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Pf" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Weaponry";
+	req_access_txt = "20"
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ego_weapon/city/rabbit_blade/command,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "Pg" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ph" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Po" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/toy/plush/lisa,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ps" = (
 /obj/effect/turf_decal/delivery,
 /obj/effect/turf_decal/tile/purple,
@@ -2969,10 +3149,10 @@
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "PG" = (
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "PP" = (
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/armband/lobotomy/training,
@@ -2986,13 +3166,13 @@
 /obj/item/clothing/accessory/armband/lobotomy/training,
 /obj/item/clothing/accessory/armband/lobotomy/training,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "PX" = (
 /obj/structure/chair/plastic{
 	dir = 4
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Qa" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 4
@@ -3001,27 +3181,27 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Qd" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Qs" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Qx" = (
 /obj/structure/rack,
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Qz" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "QG" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 1
@@ -3030,7 +3210,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"QM" = (
+/obj/structure/rack,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "QN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -3038,37 +3222,26 @@
 	},
 /obj/structure/cable,
 /turf/open/water/jungle,
-/area/ruin/has_grav)
-"QO" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cap";
-	name = "Ground Commander's Combat Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/jacket,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/clothing/head/beret/tegu/rcorp,
-/turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Rg" = (
 /obj/structure/chair/bronze{
 	dir = 8
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ri" = (
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Rk" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Rn" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ro" = (
 /obj/structure/rack,
 /obj/item/toner/extreme,
@@ -3082,45 +3255,37 @@
 	pixel_x = -8
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Rr" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Rt" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ru" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"RC" = (
-/mob/living/simple_animal/hostile/abnormality/big_bird,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
-"RD" = (
-/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "RJ" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "RO" = (
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Sf" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -3128,13 +3293,13 @@
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "So" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Sr" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -3143,7 +3308,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "St" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -3152,45 +3317,45 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "SD" = (
 /obj/machinery/smartfridge/food,
 /turf/closed/indestructible/syndicate,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "SP" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "SQ" = (
 /obj/machinery/button/door/indestructible{
 	id = "training";
 	name = "Kitchen Access Shutters"
 	},
 /turf/closed/indestructible/syndicate,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ST" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "SV" = (
 /obj/structure/chair/comfy/teal{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Te" = (
 /obj/structure/alien/weeds/node,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Tr" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Tt" = (
 /obj/machinery/light/cold,
 /obj/structure/table/wood/fancy/blue,
@@ -3198,7 +3363,13 @@
 	pixel_y = -32
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Tu" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "Tx" = (
 /obj/structure/table/wood/bar,
 /obj/item/ego_weapon/city/rabbit_blade/raven{
@@ -3208,43 +3379,50 @@
 	pixel_x = -7
 	},
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ty" = (
 /obj/machinery/cryopod,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Tz" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "TC" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "TJ" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "TS" = (
 /obj/effect/turf_decal/siding/green,
 /obj/machinery/vending/snack/green,
 /turf/open/floor/plasteel/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Uj" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Um" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/ego,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Un" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "requisitions";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
 "Uv" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/siding/purple{
@@ -3253,26 +3431,30 @@
 /obj/item/safety_kit,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "UB" = (
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "UD" = (
 /obj/structure/rack,
 /obj/item/clothing/under/suit/lobotomy/control,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"UH" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "UR" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "UV" = (
 /obj/structure/sign/poster/ripped{
 	pixel_y = -33
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "UX" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/brown{
@@ -3286,51 +3468,53 @@
 	},
 /obj/machinery/chem_dispenser/drinks,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
-"Vg" = (
-/mob/living/simple_animal/hostile/abnormality/blubbering_toad,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Vh" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Vm" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/megaphone,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "Vo" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Vs" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Vv" = (
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VO" = (
 /obj/effect/turf_decal/sand,
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VQ" = (
 /obj/effect/turf_decal/sand,
 /obj/item/shard,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VR" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /obj/structure/rack,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VT" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -3339,7 +3523,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/pod/light,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VU" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -3348,36 +3532,32 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "VW" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "VY" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Wb" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"Wf" = (
-/mob/living/simple_animal/hostile/abnormality/clown,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Wi" = (
 /obj/machinery/light,
 /turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Wo" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
 	},
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Wr" = (
 /obj/item/stack/sticky_tape/surgical,
 /obj/item/stack/medical/bone_gel,
@@ -3386,63 +3566,51 @@
 	dir = 1
 	},
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Ww" = (
 /turf/open/floor/carpet/orange,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Wx" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "WE" = (
 /obj/item/shard,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "WF" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "WK" = (
 /obj/machinery/computer/abnormality_logs{
 	dir = 8
 	},
 /turf/open/floor/carpet/black,
-/area/ruin/has_grav)
-"WP" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cap";
-	name = "Ground Commander's Weaponry";
-	req_access_txt = "20"
-	},
-/obj/item/gun/ballistic/automatic/pistol/deagle,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ego_weapon/city/rabbit_blade/command,
-/turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "WT" = (
 /obj/machinery/vending/lobotomyheadset,
 /turf/open/floor/facility/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "WY" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "raven team prep";
 	req_access_txt = "7"
 	},
 /turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Xv" = (
 /obj/item/shard,
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Xz" = (
 /obj/structure/table/wood/bar,
 /obj/item/ego_weapon/city/rabbit_blade/raven,
 /turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "XF" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 1
@@ -3452,7 +3620,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "XG" = (
 /obj/structure/sign/warning/bodysposal{
 	pixel_x = -32
@@ -3474,7 +3642,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "XI" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -3484,12 +3652,12 @@
 	dir = 6
 	},
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "XN" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/information)
+/area/city/outskirts)
 "Yn" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/brown{
@@ -3503,7 +3671,7 @@
 	},
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/plasteel/showroomfloor,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Yq" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -3520,24 +3688,24 @@
 /obj/item/encryptionkey/headset_architecture,
 /obj/item/clothing/neck/scarf/zebra,
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Yr" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/facility/white,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "YI" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/railing,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "YK" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "YR" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -3546,40 +3714,34 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/stairs/medium,
-/area/ruin/has_grav)
-"YY" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/weldingtool/experimental,
-/turf/open/floor/pod/dark,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "YZ" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Zk" = (
 /obj/structure/frame/computer,
 /turf/open/floor/plating,
-/area/ruin/has_grav)
-"Zm" = (
-/obj/rcorp_dummy,
-/turf/open/floor/plating/asteroid,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Zo" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "Zr" = (
 /obj/structure/table/glass,
 /obj/item/camera,
 /obj/item/camera_film,
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
+"Zx" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
 "ZD" = (
 /obj/structure/table/glass,
 /obj/item/assembly/prox_sensor,
@@ -3597,31 +3759,18 @@
 	},
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ZL" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/structure/railing/corner,
 /turf/open/floor/carpet/royalblue,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ZO" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Department"
 	},
 /turf/open/floor/plasteel/dark,
-/area/ruin/has_grav)
-"ZS" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cap";
-	name = "Ground Commander's Operations Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/armor/hos{
-	armor = list()
-	},
-/obj/item/clothing/head/beret/tegu/rcorp,
-/obj/item/clothing/neck/cloak/rcorp,
-/turf/open/floor/pod,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ZV" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -3629,13 +3778,13 @@
 /obj/effect/turf_decal/siding/purple/corner,
 /obj/effect/turf_decal/sand,
 /turf/open/floor/carpet/purple,
-/area/ruin/has_grav)
+/area/city/outskirts)
 "ZY" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 6
 	},
 /turf/open/floor/carpet,
-/area/ruin/has_grav)
+/area/city/outskirts)
 
 (1,1,1) = {"
 oi
@@ -4614,13 +4763,13 @@ gP
 gP
 gP
 PG
-fU
-fU
-fU
-fU
-fU
 PG
-PG
+fU
+fU
+fU
+fU
+fU
+fU
 ec
 PG
 PG
@@ -4816,13 +4965,13 @@ gP
 gP
 PG
 PG
+PG
 fU
-YY
+xR
 MN
 MN
+MN
 fU
-PG
-PG
 lj
 PG
 PG
@@ -5018,13 +5167,13 @@ gP
 gP
 PG
 PG
+PG
 fU
-dL
+Mf
+wG
 wG
 MN
-BW
-PG
-PG
+BS
 lj
 PG
 PG
@@ -5218,15 +5367,15 @@ gP
 gP
 gP
 gP
+FR
 PG
 PG
 fU
 oe
 wG
+wG
 MN
 fU
-PG
-PG
 lj
 PG
 PG
@@ -5422,13 +5571,13 @@ gP
 gP
 PG
 PG
+PG
 fU
 ry
 wG
-MN
+wG
+Kj
 eK
-PG
-PG
 lj
 PG
 PG
@@ -5624,13 +5773,13 @@ gP
 gP
 PG
 PG
+PG
 fU
-dL
+Mf
 wG
-pB
+wG
+Mf
 eK
-PG
-PG
 lj
 PG
 PG
@@ -5826,13 +5975,13 @@ gP
 gP
 PG
 PG
+PG
 fU
 oe
 wG
-MN
+wG
+HG
 eK
-PG
-PG
 lj
 PG
 PG
@@ -6028,13 +6177,13 @@ gP
 gP
 PG
 PG
+PG
 fU
 ry
 MN
 MN
+hj
 eK
-PG
-PG
 lj
 PG
 PG
@@ -6047,7 +6196,7 @@ wl
 jM
 MN
 eK
-PG
+nO
 PG
 PG
 PG
@@ -6230,13 +6379,13 @@ gP
 gP
 PG
 PG
+PG
 fU
-YY
+xR
 MN
 MN
+xR
 eK
-PG
-PG
 lj
 PG
 PG
@@ -6249,7 +6398,7 @@ Fv
 wG
 MN
 eK
-PG
+nO
 PG
 PG
 PG
@@ -6432,13 +6581,13 @@ gP
 gP
 PG
 PG
+PG
 fU
 eK
 eK
 eK
+eK
 fU
-PG
-PG
 lj
 PG
 PG
@@ -6451,7 +6600,7 @@ MN
 MN
 MN
 eK
-PG
+nO
 PG
 PG
 PG
@@ -6632,7 +6781,7 @@ gP
 gP
 gP
 gP
-PG
+FR
 PG
 ec
 PG
@@ -6834,7 +6983,7 @@ gP
 gP
 gP
 gP
-Zm
+PG
 PG
 lj
 lj
@@ -8147,7 +8296,7 @@ PG
 PG
 PG
 PG
-cC
+PG
 PG
 PG
 PG
@@ -8161,17 +8310,6 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-PG
-PG
-PG
-PG
-PG
-PG
-PG
 oi
 oi
 oi
@@ -8187,16 +8325,27 @@ oi
 oi
 oi
 oi
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 oi
 oi
 oi
+oi
+oi
+oi
+oi
 PG
 PG
 PG
 PG
+hL
 PG
-PG
-PG
+hr
 PG
 PG
 PG
@@ -8597,11 +8746,11 @@ PG
 PG
 PG
 PG
+pA
 PG
 PG
 PG
-PG
-PG
+hr
 PG
 PG
 PG
@@ -8801,7 +8950,7 @@ PG
 PG
 PG
 PG
-PG
+hL
 PG
 PG
 PG
@@ -8855,7 +9004,7 @@ gP
 gP
 gP
 gP
-PG
+FR
 PG
 PG
 PG
@@ -9204,9 +9353,9 @@ PG
 PG
 PG
 PG
+pA
 PG
-PG
-PG
+hL
 PG
 PG
 PG
@@ -9258,7 +9407,7 @@ gP
 gP
 gP
 gP
-gP
+fU
 fU
 fU
 eK
@@ -9460,15 +9609,15 @@ gP
 gP
 gP
 gP
-gP
 fU
+md
+Ix
 MN
 MN
 MN
 MN
 MN
-MN
-MN
+Dk
 fU
 lj
 PG
@@ -9609,26 +9758,11 @@ PG
 PG
 PG
 PG
+pA
 PG
 PG
-PG
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-PG
 oi
 oi
 oi
@@ -9644,6 +9778,20 @@ oi
 oi
 oi
 PG
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
 PG
 PG
 PG
@@ -9658,19 +9806,20 @@ PG
 PG
 PG
 PG
-gP
+PG
 gP
 gP
 gP
 gP
 fU
+qt
 MN
 dC
+Tu
+Tu
+Tu
 NV
-NV
-NV
-NV
-MN
+tu
 fU
 lj
 PG
@@ -9864,12 +10013,12 @@ gP
 gP
 gP
 gP
-gP
 fU
-MN
+md
+Ix
 NV
 tu
-Dk
+tu
 tu
 NV
 MN
@@ -10066,8 +10215,8 @@ gP
 gP
 gP
 gP
-gP
 fU
+qt
 MN
 Bp
 ir
@@ -10268,9 +10417,9 @@ gP
 gP
 gP
 gP
-gP
 fU
-MN
+LB
+Ix
 NV
 tu
 tu
@@ -10470,8 +10619,8 @@ gP
 gP
 gP
 gP
-gP
 fU
+MN
 MN
 Bp
 ir
@@ -10672,8 +10821,8 @@ gP
 gP
 gP
 gP
-gP
 fU
+MN
 MN
 NV
 tu
@@ -10682,11 +10831,11 @@ tu
 NV
 MN
 fU
-PG
-PG
-PG
-PG
-PG
+UH
+UH
+UH
+UH
+fU
 fU
 fU
 fU
@@ -10874,22 +11023,22 @@ gP
 gP
 gP
 gP
-gP
 fU
 MN
+MN
 NV
-NV
+mt
 Rg
 NV
 NV
 MN
 fU
-PG
-PG
-PG
-PG
-oi
-oi
+MN
+MN
+MN
+MN
+QM
+fU
 oi
 oi
 oi
@@ -10986,31 +11135,6 @@ PG
 PG
 PG
 PG
-cf
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
-PG
-PG
-PG
-PG
-PG
-PG
 PG
 PG
 PG
@@ -11030,13 +11154,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 PG
 PG
 PG
@@ -11062,6 +11186,31 @@ oi
 oi
 oi
 oi
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 PG
 PG
@@ -11072,7 +11221,6 @@ PG
 PG
 PG
 PG
-gP
 gP
 gP
 gP
@@ -11085,13 +11233,14 @@ MN
 MN
 MN
 MN
+MN
+Un
+MN
+wG
+wG
+wG
+iV
 fU
-oi
-oi
-oi
-oi
-oi
-oi
 oi
 oi
 oi
@@ -11288,12 +11437,12 @@ fU
 fU
 fU
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+Nu
+wG
+wG
+wG
+Zx
+fU
 oi
 oi
 oi
@@ -11480,7 +11629,7 @@ gP
 gP
 gP
 fU
-IU
+zv
 jG
 NV
 fU
@@ -11490,12 +11639,12 @@ IU
 NV
 Mp
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+Nu
+MN
+MN
+MN
+vh
+fU
 oi
 oi
 oi
@@ -11692,12 +11841,12 @@ NV
 dC
 ML
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+Un
+fU
+fU
+fU
 oi
 oi
 oi
@@ -11894,12 +12043,12 @@ du
 NV
 IA
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+Vm
+MN
+MN
+MN
+cL
+fU
 oi
 oi
 oi
@@ -12096,12 +12245,12 @@ fU
 fU
 fU
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+cL
+wG
+dC
+wG
+Vm
+fU
 oi
 oi
 oi
@@ -12295,15 +12444,15 @@ fU
 NV
 fU
 NV
-tu
+ch
 xu
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+Mn
+wG
+wG
+wG
+Mn
+fU
 oi
 oi
 oi
@@ -12420,7 +12569,7 @@ oi
 PG
 PG
 PG
-NM
+PG
 PG
 PG
 PG
@@ -12500,12 +12649,12 @@ dC
 NV
 NV
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+cL
+cL
+cL
+cL
+cL
+fU
 oi
 oi
 oi
@@ -12636,7 +12785,7 @@ PG
 PG
 PG
 PG
-cT
+PG
 PG
 PG
 PG
@@ -12702,12 +12851,12 @@ NV
 NV
 du
 fU
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -12898,7 +13047,7 @@ fU
 fU
 fU
 fU
-AG
+NV
 fU
 fU
 fU
@@ -13095,17 +13244,17 @@ oi
 oi
 oi
 oi
-oi
 fU
-Nz
-NV
-NV
-NV
-NV
-WP
+dg
+dg
+dg
 fU
-oi
-oi
+NV
+fU
+CR
+mn
+on
+fU
 oi
 oi
 oi
@@ -13297,17 +13446,17 @@ oi
 oi
 oi
 oi
-oi
 fU
-tW
-gh
+NV
 NV
 dC
+xS
 NV
-QO
+EX
+dC
+NV
+NV
 fU
-oi
-oi
 oi
 oi
 oi
@@ -13499,17 +13648,17 @@ oi
 oi
 oi
 oi
-oi
 fU
-aI
-NV
-NV
-NV
-NV
-ZS
+du
+du
+du
 fU
-oi
-oi
+NV
+fU
+cq
+Ng
+du
+fU
 oi
 oi
 oi
@@ -13701,17 +13850,17 @@ oi
 oi
 oi
 oi
-oi
 fU
 fU
-du
-NV
-NV
-NV
-AV
 fU
-oi
-oi
+fU
+fU
+AG
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -13904,14 +14053,14 @@ oi
 oi
 oi
 oi
+fU
+Nz
+NV
+NV
+NV
+NV
+fU
 oi
-fU
-fU
-fU
-fU
-fU
-fU
-fU
 oi
 oi
 oi
@@ -14106,13 +14255,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+tW
+gh
+NV
+dC
+NV
+fU
 oi
 oi
 oi
@@ -14308,13 +14457,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+aI
+NV
+NV
+NV
+NV
+fU
 oi
 oi
 oi
@@ -14510,13 +14659,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+du
+Pf
+Dq
+DK
+fU
 oi
 oi
 oi
@@ -14713,12 +14862,12 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -16058,7 +16207,7 @@ xC
 OP
 iZ
 Oo
-rG
+vF
 gT
 gT
 gT
@@ -17006,7 +17155,7 @@ gT
 gT
 gT
 Ph
-Aq
+hu
 ET
 KF
 hH
@@ -17834,7 +17983,7 @@ PG
 PG
 PG
 PG
-uk
+PG
 PG
 PG
 PG
@@ -18884,7 +19033,7 @@ RO
 oi
 oi
 PG
-lF
+PG
 PG
 gT
 gT
@@ -20549,7 +20698,7 @@ hH
 PG
 Te
 rD
-RC
+PG
 PG
 PG
 PG
@@ -23139,7 +23288,7 @@ gT
 rD
 PG
 PG
-Vg
+PG
 PG
 PG
 PG
@@ -25505,11 +25654,11 @@ oi
 oi
 oi
 oi
-qQ
-qQ
-qQ
-qQ
-qQ
+gT
+gT
+gT
+gT
+gT
 sA
 sA
 Bk
@@ -25707,13 +25856,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 CF
 VW
 wS
-qQ
-qQ
-qQ
+gT
+gT
+gT
 yy
 Af
 Bk
@@ -25909,13 +26058,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 DE
 Tr
 eV
-qQ
-qQ
-qQ
+gT
+gT
+gT
 Zr
 wf
 MU
@@ -26111,13 +26260,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 aR
 ST
 XN
 jr
-qQ
-qQ
+gT
+gT
 im
 hu
 hu
@@ -26313,13 +26462,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 DF
 lz
 pa
 Oz
-qQ
-qQ
+gT
+gT
 qF
 hu
 by
@@ -26515,13 +26664,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 VY
 lA
 Jn
 et
-qQ
-qQ
+gT
+gT
 Br
 hu
 hu
@@ -26717,13 +26866,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 WF
 gX
 yU
-qQ
-qQ
-qQ
+gT
+gT
+gT
 bT
 ZD
 hk
@@ -26741,7 +26890,7 @@ PG
 PG
 PG
 PG
-RD
+PG
 PG
 PG
 PG
@@ -26919,13 +27068,13 @@ oi
 oi
 oi
 oi
-qQ
+gT
 Qd
 xB
 MV
-qQ
-qQ
-qQ
+gT
+gT
+gT
 pd
 Ln
 KS
@@ -26947,7 +27096,7 @@ PG
 PG
 PG
 PG
-bs
+PG
 PG
 PG
 PG
@@ -27121,13 +27270,13 @@ oi
 oi
 oi
 oi
-qQ
-qQ
-qQ
-qQ
-qQ
-qQ
-qQ
+gT
+gT
+gT
+gT
+gT
+gT
+gT
 Bk
 Bk
 Bk
@@ -27747,7 +27896,7 @@ PG
 PG
 PG
 PG
-PG
+LF
 PG
 PG
 PG
@@ -28141,7 +28290,7 @@ PG
 iv
 PG
 PG
-Fm
+rD
 PG
 PG
 PG
@@ -28150,7 +28299,7 @@ PG
 PG
 PG
 PG
-PG
+LF
 PG
 PG
 PG
@@ -28350,12 +28499,12 @@ PG
 UR
 PG
 PG
-PG
+LF
 PG
 PG
 iv
 PG
-PG
+DD
 hH
 PG
 PG
@@ -28555,7 +28704,7 @@ PG
 PG
 PG
 PG
-PG
+qO
 PG
 PG
 PG
@@ -28566,7 +28715,7 @@ hH
 PG
 PG
 PG
-Wf
+PG
 PG
 PG
 PG
@@ -29161,7 +29310,7 @@ vz
 gT
 PG
 PG
-iv
+cw
 PG
 PG
 PG
@@ -30368,7 +30517,7 @@ PG
 PG
 PG
 PG
-iT
+PG
 PG
 PG
 PG

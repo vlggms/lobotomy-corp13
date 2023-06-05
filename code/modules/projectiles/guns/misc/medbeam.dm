@@ -1,8 +1,8 @@
 /obj/item/gun/medbeam
-	name = "Medical Beamgun"
-	desc = "Don't cross the streams!"
+	name = "k-corp experimental healing device"
+	desc = "Warning: Crossing the streams will result in detonation and death."
 	icon = 'icons/obj/chronos.dmi'
-	icon_state = "chronogun"
+	icon_state = "healgun"
 	inhand_icon_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
 

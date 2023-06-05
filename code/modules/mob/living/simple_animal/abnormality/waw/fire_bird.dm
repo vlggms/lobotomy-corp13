@@ -91,6 +91,8 @@
 	light_range = 20
 	light_power = 20
 	update_light()
+	if(CheckCombat())
+		return
 	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/Life()

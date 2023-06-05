@@ -9,6 +9,8 @@ GLOBAL_LIST_INIT(command_positions, list(
 
 	//Rcorp stuff
 	"Ground Commander",
+	"Lieutenant Commander",
+	"Operations Officer",
 	"Rabbit Squad Captain",
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
@@ -59,8 +61,10 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
 	"R-Corp Reindeer",
-	"R-Corp Rhino",
-	"R-Corp Raven",
+	"R-Corp Gunner Rhino",
+	"R-Corp Hammer Rhino",
+	"R-Corp Scout Raven",
+	"R-Corp Support Raven",
 
 	))
 

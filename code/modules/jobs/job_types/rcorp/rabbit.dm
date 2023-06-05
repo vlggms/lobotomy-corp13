@@ -4,6 +4,7 @@
 	department_head = list("Rabbit Team Captain", "Commander")
 	total_positions = 4
 	spawn_positions = 3
+	exp_requirements = 120
 	supervisors = "the rabbit team captain and the commander"
 	selection_color = "#d9b555"
 
@@ -21,6 +22,9 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 								)
+	rank_title = "SGT"
+	job_important = "You take the role of mobile ranged infantry."
+	job_notice = "You are a Senior rabbit armed with a fully automatic rifle and multiphase blade. You are highly mobile and pack a punch."
 
 /datum/job/rabbit/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -31,6 +35,9 @@
 	total_positions = 10
 	spawn_positions = 8
 	outfit = /datum/outfit/job/rabbit/assault
+	rank_title = "RAF"
+	job_important = "You take the role of mobile ranged infantry."
+	job_notice = "You are a rabbit armed with a semi automatic, single phase rifle and blade with rush capabilities. You form the meat of the 4th pack."
 
 /datum/job/rcorp_captain/rabbit
 	title = "Rabbit Squad Captain"
@@ -40,7 +47,7 @@
 	spawn_positions = 1
 	supervisors = "the commander"
 	selection_color = "#d1a83b"
-	exp_requirements = 120
+	exp_requirements = 360
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp"
@@ -57,6 +64,10 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
+	rank_title = "CPT"
+	job_important = "You are the captain of the mobile ranged infantry division."
+	job_notice = "Visit your bunks in the command tent to gather your one-handed rabbit gun and multiphase blade."
+
 
 
 /datum/outfit/job/rabbit

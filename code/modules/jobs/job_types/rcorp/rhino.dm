@@ -1,5 +1,5 @@
 /datum/job/rhino
-	title = "R-Corp Rhino"
+	title = "R-Corp Gunner Rhino"
 	faction = "Station"
 	department_head = list("Rhino Team Captain", "Commander")
 	total_positions = 2
@@ -22,10 +22,26 @@
 								TEMPERANCE_ATTRIBUTE = 40,
 								JUSTICE_ATTRIBUTE = 40
 								)
+	rank_title = "SGT"
+	job_important = "You take the role of ranged armored unit."
+	job_notice = "Equip your mecha in the supply tent to the northwest. Take point, and cover for the rabbits. \
+		You can heal your mech with the welder. Keep in mind that certain attacks can pierce your mecha"
 
 /datum/job/rhino/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+
+/datum/job/rhino/hammer
+	title = "R-Corp Hammer Rhino"
+	total_positions = 1
+	spawn_positions = 1
+	display_order = 6.1
+	outfit = /datum/outfit/job/rhino/melee
+
+	access = list(ACCESS_ARMORY, ACCESS_CENT_THUNDER)
+	minimal_access = list(ACCESS_ARMORY, ACCESS_CENT_THUNDER)
+
+	job_important = "You take the role of melee armored unit."
 
 /datum/job/rcorp_captain/rhino
 	title = "Rhino Squad Captain"
@@ -35,7 +51,7 @@
 	spawn_positions = 1
 	supervisors = "the commander"
 	selection_color = "#d1a83b"
-	exp_requirements = 240
+	exp_requirements = 600
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp"
@@ -52,10 +68,14 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
+	rank_title = "CPT"
+	job_important = "You are the captain of the armored division."
+	job_notice = "Visit your bunks in the command tent to gather your mecha, and lead the Rhinos at the point."
+
 
 
 /datum/outfit/job/rhino
-	name = "R-Corp Rhino"
+	name = "R-Corp Gunner Rhino"
 	jobtype = /datum/job/rhino
 
 	ears = /obj/item/radio/headset/headset_discipline
@@ -65,6 +85,10 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	belt = null
+
+/datum/outfit/job/rhino/melee
+	name = "R-Corp Hammer Rhino"
+	jobtype = /datum/job/rhino/hammer
 
 
 
