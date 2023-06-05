@@ -16,10 +16,10 @@ $include interviews.txt
 # There are various options which are hard-locked for security reasons.
 
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
-SERVERNAME TeguStation
+SERVERNAME Lobotomy Corporation 13 (Unofficial)
 
 ## Server Caption: Shows next to the server name in the BYOND hub.
-SERVERCAPTION All the Good Players Are Taken
+SERVERCAPTION It's management time!
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation
@@ -31,7 +31,7 @@ SERVERCAPTION All the Good Players Are Taken
 HUB
 
 ## Lobby time: This is the amount of time between rounds that players have to setup their characters and be ready.
-LOBBY_COUNTDOWN 120
+LOBBY_COUNTDOWN 240
 
 ## Round End Time: This is the amount of time after the round ends that players have to murder death kill each other.
 ROUND_END_COUNTDOWN 90
@@ -42,7 +42,7 @@ ROUND_END_COUNTDOWN 90
 ADMIN_LEGACY_SYSTEM
 
 ##Uncomment this to stop any admins loaded by the legacy system from having their rank edited by the permissions panel
-#PROTECT_LEGACY_ADMINS
+PROTECT_LEGACY_ADMINS
 
 ##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
 #PROTECT_LEGACY_RANKS
@@ -62,21 +62,21 @@ ENABLE_LOCALHOST_RANK
 #USE_AGE_RESTRICTION_FOR_JOBS
 
 ## Uncomment this to have the job system use the player's account creation date, rather than the when they first joined the server for job timers.
-USE_ACCOUNT_AGE_FOR_JOBS
+#USE_ACCOUNT_AGE_FOR_JOBS
 
 ## Unhash this to track player playtime in the database. Requires database to be enabled.
-#USE_EXP_TRACKING
+USE_EXP_TRACKING
 ## Unhash this to enable playtime requirements for head jobs.
-#USE_EXP_RESTRICTIONS_HEADS
+USE_EXP_RESTRICTIONS_HEADS
 ## Unhash this to override head jobs' playtime requirements with this number of hours.
 ## Leave this commented out to use the values defined in the job datums. Values in the datums are stored as minutes.
 #USE_EXP_RESTRICTIONS_HEADS_HOURS 3
 ## Unhash this to change head jobs' playtime requirements so that they're based on department playtime, rather than crew playtime.
 #USE_EXP_RESTRICTIONS_HEADS_DEPARTMENT
 ## Unhash this to enable playtime requirements for certain non-head jobs, like Engineer and Scientist.
-#USE_EXP_RESTRICTIONS_OTHER
+USE_EXP_RESTRICTIONS_OTHER
 ## Allows admins to bypass job playtime requirements.
-#USE_EXP_RESTRICTIONS_ADMIN_BYPASS
+USE_EXP_RESTRICTIONS_ADMIN_BYPASS
 
 ## log OOC channel
 LOG_OOC
@@ -164,7 +164,7 @@ INACTIVITY_PERIOD 300
 AFK_PERIOD 600
 
 ## disconnect players who are considered afk
-KICK_INACTIVE
+#KICK_INACTIVE
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
 ALLOW_ADMIN_OOCCOLOR
@@ -176,19 +176,22 @@ ALLOW_ADMIN_ASAYCOLOR
 ID_CONSOLE_JOBSLOT_DELAY 30
 
 ## allow players to initiate a restart vote
-#ALLOW_VOTE_RESTART
+ALLOW_VOTE_RESTART
+
+## allow players to initiate a transfer vote
+ALLOW_VOTE_TRANSFER
 
 ## allow players to initiate a mode-change vote
 #ALLOW_VOTE_MODE
 
 ## allow players to initiate a map-change vote
-#ALLOW_VOTE_MAP
+ALLOW_VOTE_MAP
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
 VOTE_DELAY 6000
 
 ## time period (deciseconds) which voting session will last (default 1 minute)
-VOTE_PERIOD 800
+VOTE_PERIOD 900
 
 ## prevents dead players from voting or starting votes
 # NO_DEAD_VOTE
@@ -197,10 +200,10 @@ VOTE_PERIOD 800
 # DEFAULT_NO_VOTE
 
 ## disable abandon mob
-NORESPAWN
+#NORESPAWN
 
 ## Respawn delay in deciseconds (Default is 3000 = 5 minutes)
-RESPAWN_DELAY 3000
+RESPAWN_DELAY 1200
 
 ## set a hosted by name for unix platforms
 HOSTEDBY EgorDinamit
@@ -240,25 +243,22 @@ CHECK_RANDOMIZER
 # SERVER ss13.example.com:2506
 
 ## forum address
-# FORUMURL http://tgstation13.org/phpBB/index.php
+FORUMURL https://discord.gg/hKm3caurDY
 
 ## Wiki address
-# WIKIURL http://www.tgstation13.org/wiki
+# WIKIURL https://discord.gg/hKm3caurDY
 
 ## Rules address
-# RULESURL http://www.tgstation13.org/wiki/Rules
+RULESURL https://docs.google.com/document/d/1pEHjCknwIrNQzqTzrbxvRNE2a8UVSUe__6JTWtr0HSw
 
 ## Github address
-GITHUBURL https://www.github.com/vlggms/tegustation
+GITHUBURL https://www.github.com/vlggms/lobotomy-corp13
 
 ##Discord address
-DISCORDURL https://discord.gg/SVu782A
+DISCORDURL https://discord.gg/hKm3caurDY
 
 ## Discord bot command prefix, if the discord bot is used
-# DISCORDBOTCOMMANDPREFIX ?
-
-## Discord bot command prefix, if the discord bot is used
-# DISCORDBOTCOMMANDPREFIX ?
+DISCORDBOTCOMMANDPREFIX !
 
 ## Round specific stats address
 ## Link to round specific parsed logs; IE statbus. It is appended with the RoundID automatically by ticker/Reboot()
@@ -280,7 +280,7 @@ DISCORDURL https://discord.gg/SVu782A
 ## from https://github.com/rg3/youtube-dl/releases
 ## or your package manager
 ## The default value assumes youtube-dl is in your system PATH
-# INVOKE_YOUTUBEDL youtube-dl
+INVOKE_YOUTUBEDL youtube-dl
 
 ## In-game features
 ##Toggle for having jobs load up from the .txt
@@ -301,7 +301,7 @@ ALLOW_HOLIDAYS
 
 ## Defines the ticklimit for subsystem initialization (In percents of a byond tick). Lower makes world start smoother. Higher makes it faster.
 ##This is currently a testing optimized setting. A good value for production would be 98.
-TICK_LIMIT_MC_INIT 500
+TICK_LIMIT_MC_INIT 200
 
 ##Defines the ticklag for the world. Ticklag is the amount of time between game ticks (aka byond ticks) (in 1/10ths of a second).
 ##	This also controls the client network update rate, as well as the default client fps
@@ -325,19 +325,19 @@ NOTE_STALE_DAYS 365.2422
 ##Note: all population caps can be used with each other if desired.
 
 ## Uncomment for 'soft' population caps, players will be warned while joining if the living crew exceeds the listed number.
-SOFT_POPCAP 60
+SOFT_POPCAP 35
 
 ## Message for soft cap
 SOFT_POPCAP_MESSAGE Be warned that the server is currently serving a high number of users, consider using alternative game servers.
 
 ## Uncomment for 'hard' population caps, players will not be allowed to spawn if the living crew exceeds the listed number, though they may still observe or wait for the living crew to decrease in size.
-#HARD_POPCAP 80
+HARD_POPCAP 45
 
 ## Message for hard cap
 HARD_POPCAP_MESSAGE The server is currently serving a high number of users, You cannot currently join. You may wait for the number of living crew to decline, observe, or find alternative servers.
 
 ## Uncomment for 'extreme' population caps, players will not be allowed to join the server if living crew exceeds the listed number.
-#EXTREME_POPCAP 100
+EXTREME_POPCAP 50
 
 ## Message for extreme cap
 EXTREME_POPCAP_MESSAGE The server is currently serving a high number of users, find alternative servers.
@@ -347,11 +347,11 @@ BYOND_MEMBER_BYPASS_POPCAP
 
 ## Notify admins when a new player connects for the first x days a player's been around. (0 for first connection only, -1 for never)
 ##	Requres database
-NOTIFY_NEW_PLAYER_AGE 0
+NOTIFY_NEW_PLAYER_AGE 1
 
 ## Notify admins when a player connects if their byond account was created in the last X days
 ## Requires database
-NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
+NOTIFY_NEW_PLAYER_ACCOUNT_AGE 14
 
 ## Notify the irc channel when a new player makes their first connection
 ##	Requres database
@@ -380,7 +380,7 @@ NOTIFY_NEW_PLAYER_ACCOUNT_AGE 1
 #PANIC_SERVER_NAME [Put the name here]
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
-AGGRESSIVE_CHANGELOG
+#AGGRESSIVE_CHANGELOG
 
 ## Comment this out if you've used the mass conversion sql proc for notes or want to stop converting notes
 AUTOCONVERT_NOTES
@@ -393,7 +393,7 @@ ANNOUNCE_ADMIN_LOGIN
 
 ## Map rotation
 ## You should edit maps.txt to match your configuration when you enable this.
-MAPROTATION
+#MAPROTATION
 
 ## Map voting
 ## Allows players to vote with their preffered map setting
@@ -402,7 +402,7 @@ PREFERENCE_MAP_VOTING 1
 
 ## AUTOADMIN
 ## The default admin rank
-AUTOADMIN_RANK Game Master
+AUTOADMIN_RANK Admin
 
 ## Uncomment to automatically give that admin rank to all players
 #AUTOADMIN
@@ -471,10 +471,10 @@ MINUTE_CLICK_LIMIT 600
 ## i.e. CHAT_ANNOUNCE_NEW_GAME chat_channel_tag
 
 ## Send a message with the station name starting a new game.
-#CHAT_ANNOUNCE_NEW_GAME
+CHAT_ANNOUNCE_NEW_GAME bot-spam
 
 ## Ping users who use the `notify` command when a new game starts.
-#CHAT_NEW_GAME_NOTIFICATIONS
+CHAT_NEW_GAME_NOTIFICATIONS
 
 ## Allow admin hrefs that don't use the new token system, will eventually be removed
 #DEBUG_ADMIN_HREFS
@@ -494,10 +494,10 @@ BASE_MC_TICK_RATE 1
 HIGH_POP_MC_TICK_RATE 1.1
 
 ##Engage high pop mode if player count raises above this (Player in this context means any connected user. Lobby, ghost or in-game all count)
-HIGH_POP_MC_MODE_AMOUNT 65
+HIGH_POP_MC_MODE_AMOUNT 30
 
 ##Disengage high pop mode if player count drops below this
-DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
+DISABLE_HIGH_POP_MC_MODE_AMOUNT 25
 
 ## Uncomment to prevent the world from sleeping while no players are connected after initializations
 #RESUME_AFTER_INITIALIZATIONS
@@ -511,7 +511,7 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 ##  15x15 would be the standard square view. 21x15 is what goonstation uses for widescreen.
 ##  Setting this to something different from DEFAULT_VIEW_SQUARE will enable widescreen toggles
 ##	Do note that changing this value will affect the title screen. The title screen will have to be updated manually if this is changed.
-DEFAULT_VIEW 19x15
+DEFAULT_VIEW 17x15
 
 ##Default view size, in tiles. Should *always* be square.
 ## The alternative square viewport size if you're using a widescreen view size
@@ -549,15 +549,12 @@ DEFAULT_VIEW_SQUARE 15x15
 SENIOR_TIMELOCK 600
 
 ##Amount of time required for ULTRA senior job titles in minutes
-ULTRA_SENIOR_TIMELOCK 6000
+ULTRA_SENIOR_TIMELOCK 4800
 
 ### Autotransfer Settings
 ## Uncomment to enable shuttle autotransfer
 VOTE_AUTOTRANSFER_ENABLED
 ## Time (in deciseconds) before the first transfer vote. Default: 2 hours
-VOTE_AUTOTRANSFER_INITIAL 72000
+VOTE_AUTOTRANSFER_INITIAL 45000
 ## Time (in deciseconds) between subsequent transfer votes. Default: 30 minutes
-VOTE_AUTOTRANSFER_INTERVAL 18000
-
-## Percent of abnormalities to melt down per qliphoth meltdown event.
-QLIPHOTH_MELTDOWN_PERCENT 0.35
+VOTE_AUTOTRANSFER_INTERVAL 12000

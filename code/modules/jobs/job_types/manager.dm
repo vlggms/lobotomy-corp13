@@ -22,6 +22,7 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 0
 								)
+	spawnmessage = "You are the Manager. Your goal is to provide overwatch to all agents and clerks and direct works. You can also choose abnormalities and apply buffs to agents."
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()
@@ -34,11 +35,16 @@
 	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
 	H.set_attribute_limit(60)
 
+	//Adding huds, blame some guy from at least 3 years ago.
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+	secsensor.add_hud_to(H)
+	medsensor.add_hud_to(H)
+
 /datum/outfit/job/manager
 	name = "Manager"
 	jobtype = /datum/job/manager
 
-	glasses = /obj/item/clothing/glasses/debug
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
