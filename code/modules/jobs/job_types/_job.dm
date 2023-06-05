@@ -91,8 +91,8 @@
 	var/trusted_only = FALSE
 
 	//Does this job need any extra instructions?
-	var/spawnmessage
-	var/spawnmessage2
+	var/job_important
+	var/job_notice
 
 /datum/job/New()
 	. = ..()
@@ -150,10 +150,10 @@
 				atr.on_update(HA)
 
 
-	if(spawnmessage)
-		to_chat(M, "<span class='userdanger'>[spawnmessage]</span>")
-	if(spawnmessage2)
-		to_chat(M, "<span class='notice'>[spawnmessage2] </span>")
+	if(job_important)
+		to_chat(M, "<span class='userdanger'>[job_important]</span>")
+	if(job_notice)
+		to_chat(M, "<span class='notice'>[job_notice] </span>")
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

@@ -25,7 +25,7 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
-	spawnmessage = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
+	job_important = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
 
 	var/normal_attribute_level = 20 // Scales with round time
 
@@ -143,7 +143,7 @@
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	mapexclude = list("wonderlabs", "mini")
-	spawnmessage = "You are an Agent Captain. You're an experienced agent, that is expected to disseminate your information and experience as well as help lead the agents."
+	job_important = "You are an Agent Captain. You're an experienced agent, that is expected to disseminate your information and experience as well as help lead the agents."
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
@@ -163,7 +163,7 @@
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
 	exp_requirements = 0
-	spawnmessage = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
+	job_important = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
 	If there is a Records Officer, seek them for assistance."
 
 /datum/outfit/job/agent/intern

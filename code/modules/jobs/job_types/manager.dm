@@ -22,7 +22,7 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 0
 								)
-	spawnmessage = "You are the Manager. Your goal is to provide overwatch to all agents and clerks and direct works. You can also choose abnormalities and apply buffs to agents."
+	job_important = "You are the Manager. Your goal is to provide overwatch to all agents and clerks and direct works. You can also choose abnormalities and apply buffs to agents."
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()
