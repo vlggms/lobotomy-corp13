@@ -142,7 +142,7 @@
 		qdel(src)
 
 /obj/projectile/ego_bullet/ego_praetorian/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/fireback), 3)
 
 /obj/projectile/ego_bullet/ego_praetorian/proc/fireback()
@@ -262,6 +262,18 @@
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 
+/obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/obj/item/gun/ego_gun/warring/bow = fired_from
+	var/mob/living/user = firer
+	var/mob/living/carbon/human/H = target
+	if(!isliving(target))
+		return
+	if(user.faction_check_mob(H))//player faction
+		return
+	bow.Build_Charge()
+	return
+
 //feather of valor cont'd
 /obj/projectile/ego_bullet/ego_warring2
 	name = "feather of valor"
@@ -271,19 +283,19 @@
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
 	hitscan = TRUE
-	muzzle_type = /obj/effect/projectile/muzzle/laser/stun
-	tracer_type = /obj/effect/projectile/tracer/stun
-	impact_type = /obj/effect/projectile/impact/laser/stun
+	muzzle_type = /obj/effect/projectile/muzzle/laser/warring
+	tracer_type = /obj/effect/projectile/tracer/warring
+	impact_type = /obj/effect/projectile/impact/laser/warring
 
-/obj/effect/projectile/muzzle/laser/stun
+/obj/effect/projectile/muzzle/laser/warring
 	name = "lightning flash"
-	icon_state = "muzzle_stun"
-/obj/effect/projectile/tracer/laser/stun
+	icon_state = "muzzle_warring"
+/obj/effect/projectile/tracer/warring
 	name = "lightning beam"
-	icon_state = "stun"
-/obj/effect/projectile/impact/laser/stun
+	icon_state = "warring"
+/obj/effect/projectile/impact/laser/warring
 	name = "lightning impact"
-	icon_state = "impact_stun"
+	icon_state = "impact_warring"
 
 /obj/projectile/ego_bullet/ego_warring2/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -323,3 +335,24 @@
 	damage_type = PALE_DAMAGE
 	speed = 2
 	range = 6
+
+/obj/projectile/ego_bullet/ego_innocence
+	name = "innocence"
+	icon_state = "energy"
+	damage = 7 //Can dual wield, full auto
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_hypocrisy
+	name = "hypocrisy"
+	icon_state = "arrow_hypocrisy"
+	damage = 90 //50 damage is transfered to the spawnable trap
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_bride
+	name = "bride"
+	icon_state = "bride"
+	damage = 25
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

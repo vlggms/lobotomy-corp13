@@ -8,15 +8,16 @@
 	resistance_flags = INDESTRUCTIBLE
 
 GLOBAL_LIST_INIT(unspawned_tools, list(
+	/obj/structure/toolabnormality/dr_jekyll,
 	/obj/structure/toolabnormality/fateloom,
 	/obj/structure/toolabnormality/theonite_slab,
 	/obj/structure/toolabnormality/treesap,
 	/obj/structure/toolabnormality/vivavoce,
 	/obj/structure/toolabnormality/behaviour,
 	/obj/structure/toolabnormality/bracelet,
-	/obj/structure/toolabnormality/dr_jekyll,
 	/obj/structure/toolabnormality/aspiration,
 	/obj/structure/toolabnormality/skin,
+	/obj/structure/toolabnormality/snake_oil,
 	/obj/structure/toolabnormality/theresia,
 	/obj/structure/toolabnormality/mirror,
 	/obj/structure/toolabnormality/wishwell
@@ -31,10 +32,8 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 /obj/effect/landmark/toolspawn/Initialize()
 	..()
 	if(!LAZYLEN(GLOB.unspawned_tools)) // You shouldn't ever need this but I mean go on I guess
-		return
-	var/spawning
-	spawning = pick(GLOB.unspawned_tools)
-	GLOB.unspawned_tools -= spawning
+		return INITIALIZE_HINT_QDEL
+	var/spawning = pick_n_take(GLOB.unspawned_tools)
 	new spawning(get_turf(src))
-
+	return INITIALIZE_HINT_QDEL
 

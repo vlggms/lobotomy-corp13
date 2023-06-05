@@ -4,6 +4,7 @@
 	I come from the end, and I am here to stay for but a moment.\""
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
+	worn_icon_state = "paradise"
 	force = 70
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
@@ -46,6 +47,9 @@
 		H.adjustBruteLoss(-damage_dealt*0.1)
 		H.adjustFireLoss(-damage_dealt*0.1)
 		H.adjustSanityLoss(-damage_dealt*0.1)
+
+/obj/item/ego_weapon/paradise/get_clamped_volume()
+	return 40
 
 /obj/item/ego_weapon/justitia
 	name = "justitia"
@@ -155,6 +159,9 @@
 	combo += 1
 	force = initial(force)
 
+/obj/item/ego_weapon/da_capo/get_clamped_volume()
+	return 40
+
 /obj/item/ego_weapon/mimicry
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
@@ -201,6 +208,7 @@
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
 	icon_state = "twilight"
+	worn_icon_state = "twilight"
 	force = 35
 	damtype = RED_DAMAGE // It's all damage types, actually
 	armortype = RED_DAMAGE
@@ -231,7 +239,7 @@
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
-	special = "This weapon deals it's damage after a short windup."
+	special = "This weapon deals its damage after a short windup."
 	icon_state = "gold_rush"
 	force = 140
 	attribute_requirements = list(
@@ -300,10 +308,13 @@
 		target.gib()
 		user.adjustBruteLoss(-user.maxHealth*0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
 
+/obj/item/ego_weapon/smile/get_clamped_volume()
+	return 50
+
 /obj/item/ego_weapon/blooming
 	name = "blooming"
 	desc = "A rose is a rose, by any other name."
-	special = "Use this weapon to change it's damage type between red, white and pale."	//like a different rabbit knife. No black though
+	special = "Use this weapon to change its damage type between red, white and pale."	//like a different rabbit knife. No black though
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
@@ -342,6 +353,7 @@
 			Looking at the E.G.O for more than 3 seconds will make you sick."
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
+	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE

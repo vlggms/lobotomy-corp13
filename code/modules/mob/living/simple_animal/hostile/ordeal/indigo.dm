@@ -68,7 +68,7 @@
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
-	..()
+	. = ..()
 	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
 	icon_living = "sweeper_[pick(1,2)]"
 	icon_state = icon_living
@@ -160,6 +160,13 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
+	if(ishuman(the_target))
+		var/mob/living/carbon/human/L = the_target
+		if(L.sanity_lost && L.stat != DEAD)
+			return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/black
 	name = "\proper Commander Maria"
@@ -464,7 +471,7 @@
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/sweeperspawn/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/spawnscout), 6)
 
 /obj/effect/sweeperspawn/proc/spawnscout()

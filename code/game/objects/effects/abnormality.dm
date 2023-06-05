@@ -8,7 +8,7 @@
 	alpha = 0
 
 /obj/effect/silent_orchestra_singer/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 225, time = 10)
 
 /obj/effect/silent_orchestra_singer/proc/fade_out()
@@ -31,12 +31,15 @@
 	alpha = 0
 
 /obj/effect/qoh_sygil/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 15)
 
 /obj/effect/qoh_sygil/proc/fade_out()
 	animate(src, alpha = 0, time = 1 SECONDS)
 	QDEL_IN(src, 1 SECONDS)
+
+/obj/effect/qoh_sygil/kog
+	icon_state = "kog"
 
 /obj/effect/magic_bullet
 	name = "magic bullet"
@@ -49,7 +52,7 @@
 	movement_type = PHASING | FLYING
 
 /obj/effect/magic_bullet/Initialize()
-	..()
+	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 1)
 
 /obj/effect/magic_bullet/proc/moveBullet() // Shamelessly stolen code from immovable rod and paradise lost, GO!
@@ -94,7 +97,7 @@
 	alpha = 0
 
 /obj/effect/frei_magic/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 6)
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/portal.ogg', 100, 0, 10)
 
@@ -109,7 +112,7 @@
 	alpha = 0
 
 /obj/effect/frei_trail/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 1, easing = JUMP_EASING)
 	QDEL_IN(src, 33)
 
@@ -124,7 +127,7 @@
 	base_pixel_y = 25
 
 /obj/effect/scaredy_stun/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = 20 SECONDS)
 	QDEL_IN(src, 20 SECONDS)
 
@@ -199,5 +202,5 @@
 	base_pixel_x = -48
 
 /obj/effect/greenmidnight_laser/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 5)

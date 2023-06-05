@@ -55,7 +55,7 @@
 	if(ammo)
 		. += "<span class='notice'>It has [round(ammo)] bullets loaded.</span>"
 
-/obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user)
+/obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user) //sephirah console breaks off from this branch so any edits you want on both must be done manually.
 	..()
 
 	if(cycle)
@@ -431,3 +431,49 @@
 #undef BLACK_BULLET
 #undef PALE_BULLET
 #undef YELLOW_BULLET
+
+//TODO:
+// Due to the sephirah console being a weaker form of manager console
+// it would of been smarter to make manager a subtype of manager that had only the command
+// feature. But due to that requiring mappers to replace the manager console with a new manager console
+// it was safer to make this downgraded form.
+
+/obj/machinery/computer/camera_advanced/manager/sephirah //crude and lazy but i think it may work.
+	name = "sephirah camera console"
+	ammo = 0
+	maxAmmo = 0
+
+/obj/machinery/computer/camera_advanced/manager/sephirah/Initialize(mapload)
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START) //unsure if this is the most effective way of doing it.
+
+/obj/machinery/computer/camera_advanced/manager/sephirah/GrantActions(mob/living/carbon/user)
+	if(off_action)
+		off_action.target = user
+		off_action.Grant(user)
+		actions += off_action
+
+	if(jump_action)
+		jump_action.target = user
+		jump_action.Grant(user)
+		actions += jump_action
+	//replaces proc from camera_advance origin.
+
+	if(cyclecommand)
+		cyclecommand.target = src
+		cyclecommand.Grant(user)
+		actions += cyclecommand
+
+	if(command)
+		command.target = src
+		command.Grant(user)
+		actions += command
+
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
+
+/obj/machinery/computer/camera_advanced/manager/sephirah/clickedemployee()
+	return
+
+/obj/machinery/computer/camera_advanced/manager/sephirah/recharge_meltdown()
+	return

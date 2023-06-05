@@ -207,7 +207,20 @@
 
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	log_game("The round has ended.")
-	SSvote.initiate_vote("gamemode", "automatic gamemode selection vote")
+
+	var/rounds_since_vote = trim(file2text("data/rounds_since_vote.txt"))
+	rounds_since_vote = text2num(rounds_since_vote)
+	rounds_since_vote += 1
+	if(rounds_since_vote < 3)
+		if(GLOB.master_mode != "classic")
+			SSticker.save_mode("classic")
+	else
+		SSvote.initiate_vote("gamemode", "automatic gamemode selection vote")
+		rounds_since_vote = 0
+	var/F = file("data/rounds_since_vote.txt")
+	var/file_contents = num2text(rounds_since_vote)
+	fdel(F)
+	WRITE_FILE(F, file_contents)
 
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I

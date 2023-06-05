@@ -1,9 +1,8 @@
 #define CAT_GADGET 1
 #define CAT_EQUIP 2
 #define CAT_MEDICAL 3
-#define CAT_SCORP 4
-#define CAT_RESOURCE 5
-#define CAT_OTHER 6
+#define CAT_RESOURCE 4
+#define CAT_OTHER 5
 //CONSOLE CODE uses a altered form of mining_vendor
 
 /obj/machinery/computer/extraction_cargo
@@ -57,18 +56,9 @@
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoison,											400, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Orange Tree Flamer",			/obj/item/gun/ego_gun/flammenwerfer,								500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
-
-		//Scorp - for the funny
-		new /datum/data/extraction_cargo("Wellcheers Code Red ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,	150, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("Wellcheers Baja Blast ",		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,150, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("Wellcheers Purple Thunder ",	/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,200, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("S-Corp Elite Assassin ",		/mob/living/simple_animal/hostile/shrimp,							200, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("S-Corp Brand Soda Shotgun ",	/obj/item/gun/ego_gun/sodashotty,									400, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("S-Corp Brand Soda Rifle ",	/obj/item/gun/ego_gun/sodarifle,									400, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("S-Corp Brand Soda SMG ",		/obj/item/gun/ego_gun/sodasmg,										400, CAT_SCORP) = 1,
-		new /datum/data/extraction_cargo("S-Corp Brand Shrimp Squad ",	/obj/item/grenade/spawnergrenade/shrimp,							800, CAT_SCORP) = 1,
 
 		//Resources - Raw PE, ETC. Abnochem stuff goes here too. This is one use items to further LC13 systems
 		new /datum/data/extraction_cargo("Blue Filter ",				/obj/item/refiner_filter/blue,										10, CAT_RESOURCE) = 1,
@@ -76,6 +66,8 @@
 		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										10, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									10, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_RESOURCE) = 1,
 
 		//Random stuff
 		new /datum/data/extraction_cargo("Bubblegum Gum Packet ",		/obj/item/storage/box/gum/bubblegum,								15, CAT_OTHER) = 1,
@@ -88,8 +80,6 @@
 		new /datum/data/extraction_cargo("Absinthe ",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skateboard ",					/obj/item/melee/skateboard,											100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Gar Glasses ",				/obj/item/clothing/glasses/sunglasses/gar,							100, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skub ",						/obj/item/skub,														200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("1000 Ahn ",					/obj/item/stack/spacecash/c10000,									200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Margherita Pizza ",			/obj/item/food/pizza/margherita,									300, CAT_OTHER) = 1,
@@ -172,16 +162,13 @@
 		if(3)
 			return "Medical"
 		if(4)
-			return "SCorp"
-		if(5)
 			return "Resources"
-		if(6)
+		if(5)
 			return "Misc"
 
 
 #undef CAT_GADGET
 #undef CAT_EQUIP
 #undef CAT_MEDICAL
-#undef CAT_SCORP
 #undef CAT_RESOURCE
 #undef CAT_OTHER

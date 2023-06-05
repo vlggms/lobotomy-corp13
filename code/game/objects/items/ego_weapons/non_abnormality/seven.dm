@@ -1,6 +1,6 @@
 //Seven Association; the information gathering fixer office.
 //They deal 25% less damage, on average.
-//Hit something 7 times (3 with the cane) to store a target, and get it's information stored
+//Hit something 7 times (3 with the cane) to store a target, and get its information stored
 //You can examine the weapon to see the HP of the stored abno on last hit
 //If a target is stored, deal 50% more damage to it
 
@@ -10,7 +10,7 @@
 	name = "Seven Association blade"
 	desc = "A sheathed blade used by seven association ."
 	special = "Deal 50% more damage to the stored target. \
-				Use weapon in hand to see stored target, and it's current health."
+				Use weapon in hand to see stored target, and its current health."
 	icon_state = "sevenassociation"
 	inhand_icon_state = "sevenassociation"
 	force = 38
@@ -113,7 +113,7 @@
 	desc = "A cane used by seven association branch directors, gathers information significantly faster."
 	special = "Attack an enemy 3 times to store it. \
 				Deal 50% more damage to the stored target. \
-				Use weapon in hand to see stored target, and it's current health."
+				Use weapon in hand to see stored target, and its current health."
 	icon_state = "sevenassociation_cane"
 	inhand_icon_state = "sevenassociation_cane"
 	force = 56	//Faster info gain,

@@ -90,6 +90,10 @@
 	///Is this job trusted only? If so, then this job requires the player to be in the trusted_players.txt
 	var/trusted_only = FALSE
 
+	//Does this job need any extra instructions?
+	var/job_important
+	var/job_notice
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -144,6 +148,12 @@
 			if(istype(atr))
 				atr.level = roundstart_attributes[atrib]
 				atr.on_update(HA)
+
+
+	if(job_important)
+		to_chat(M, "<span class='userdanger'>[job_important]</span>")
+	if(job_notice)
+		to_chat(M, "<span class='notice'>[job_notice] </span>")
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

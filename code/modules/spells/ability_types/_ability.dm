@@ -103,3 +103,34 @@
 		return FALSE
 	Perform(target, user = ranged_ability_user)
 	return TRUE
+
+/obj/effect/proc_holder/ability/hat_ability
+	name = "Manifest Hat"
+	desc = "Manifest or De-Manifest your EGO's hat."
+	action_icon_state = "hat0"
+	base_icon_state = "hat"
+	var/obj/item/clothing/head/ego_hat/hat = null
+
+/obj/effect/proc_holder/ability/hat_ability/New(loc, obj/item/clothing/head/ego_hat/ego_hat, ...)
+	. = ..()
+	hat = ego_hat
+
+/obj/effect/proc_holder/ability/hat_ability/Perform(target, user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(isnull(hat))
+		Destroy()
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/head/headgear = H.get_item_by_slot(ITEM_SLOT_HEAD)
+	if(!istype(headgear, hat)) // We don't have the hat on?
+		if(!isnull(headgear))
+			if(HAS_TRAIT(headgear, TRAIT_NODROP))
+				to_chat(H, "<span class='warning'>[headgear] cannot be dropped!</span>")
+				return
+			H.dropItemToGround(headgear) // Drop the other hat, if it exists.
+		H.equip_to_slot(new hat, ITEM_SLOT_HEAD) // Equip the hat!
+		return
+	headgear.Destroy()
+	return

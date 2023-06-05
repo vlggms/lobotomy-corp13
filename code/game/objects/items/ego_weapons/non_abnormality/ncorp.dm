@@ -2,7 +2,7 @@
 /obj/item/ego_weapon/city/ncorp_mark
 	name = "n-corp red seal"
 	desc = "A red seal used by Ncorp."
-	special = "Use on an N corp hammer to change it's damage. \
+	special = "Use on an N corp hammer to change its damage. \
 		This weapon is single use."
 	icon_state = "mark"
 	force = 40
@@ -45,7 +45,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	var/list/marked = list()
 
 /obj/item/ego_weapon/city/ncorp_nail/attack(mob/living/target, mob/living/user)
@@ -59,7 +59,7 @@
 		return
 
 	for(var/mob/living/M in marked)
-		playsound(M, 'sound/weapons/slice.ogg', 100, FALSE, 4)
+		playsound(M, 'sound/weapons/fixer/generic/nail2.ogg', 100, FALSE, 4)
 		M.apply_damage(I.force, I.damtype, null, M.run_armor_check(null, I.damtype), spread_damage = TRUE, white_healable = TRUE)
 		new /obj/effect/temp_visual/remorse(get_turf(M))
 		marked -= M
@@ -88,12 +88,26 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/ego_weapon/city/ncorp_nail/grip
+	name = "Nagel der Gerechten"
+	desc = "A huge nail used by The One Who Grips."
+	icon_state = "gripnagel"
+	force = 50
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
 
 //Hammers - This is your bread and butter attacking weapon.
 /obj/item/ego_weapon/city/ncorp_hammer
 	name = "KleinHammer"
 	desc = "A small hammer used by junior Ncorp inquisitors."
-	special = "Use a mark on this weapon to change it's damage type. \
+	special = "Use a mark on this weapon to change its damage type. \
 		This weapon doubles as an N-Corp hammer"
 	icon_state = "kleinhammer"
 	force = 30
@@ -102,6 +116,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("marks")
 	attack_verb_simple = list("mark")
+	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	var/charges
 	var/charged		//so you don't get the message every time
 
@@ -119,7 +134,7 @@
 	..()
 	if(!istype(I, /obj/item/ego_weapon/city/ncorp_mark))
 		return
-	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing it's damage type.</span>")
+	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing its damage type.</span>")
 	damtype = I.damtype
 	armortype = I.damtype
 	charges = 5
@@ -132,6 +147,7 @@
 	desc = "A large hammer used by senior Ncorp inquisitors."
 	icon_state = "mittlehammer"
 	force = 60
+	hitsound = 'sound/weapons/ego/shield1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -148,6 +164,7 @@
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,

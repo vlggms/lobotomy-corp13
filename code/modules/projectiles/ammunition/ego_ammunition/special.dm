@@ -27,3 +27,13 @@
 	name = "kcorp casing"
 	desc = "A casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_knade
+
+/obj/item/ammo_casing/caseless/flammenwerfer
+	name = "flammenwerfer casing"
+	desc = "A flamethrower casing."
+	projectile_type = /obj/projectile/ego_bullet/flammenwerfer
+
+/obj/item/ammo_casing/caseless/fullstop
+	name = "fullstop casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/fullstop

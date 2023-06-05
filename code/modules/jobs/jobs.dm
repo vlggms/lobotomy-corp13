@@ -5,6 +5,14 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Sephirah",
 	"Department Head",
 	"Agent Captain",
+
+
+	//Rcorp stuff
+	"Ground Commander",
+	"Rabbit Squad Captain",
+	"Reindeer Squad Captain",
+	"Rhino Squad Captain",
+	"Raven Squad Captain",
 	))
 
 
@@ -18,6 +26,9 @@ GLOBAL_LIST_INIT(medical_positions, list(
 
 GLOBAL_LIST_INIT(science_positions, list(
 //	"Fixer",
+	"Association Section Director",
+	"Association Veteran",
+	"Association Fixer",
 	))
 
 
@@ -28,6 +39,9 @@ GLOBAL_LIST_INIT(supply_positions, list(
 GLOBAL_LIST_INIT(service_positions, list(
 	"Clerk",
 	"HHPP Chef",
+	"Scavenger",
+	"Backstreets Butcher",
+	"Doctor",
 	"Main Office Representative",
 	))
 
@@ -41,6 +55,13 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Senior Agent",
 	"Agent",
 	"Agent Intern",
+
+	"R-Corp Suppressive Rabbit",
+	"R-Corp Assault Rabbit",
+	"R-Corp Reindeer",
+	"R-Corp Rhino",
+	"R-Corp Raven",
+
 	))
 
 

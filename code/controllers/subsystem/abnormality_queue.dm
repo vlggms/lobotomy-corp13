@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// The abnormality that will spawn on the next fire.
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	/// The subsystem will pick abnormalities of these threat levels.
-	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
+	var/list/available_levels = list(ZAYIN_LEVEL)
 	/// An associative list of potential abnormalities.
 	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 	/// Amount of abnormality room spawners at the round-start.
@@ -93,6 +93,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 			Q.updateUsrDialog()
 		queued_abnormality = null
+		if(spawned_abnos == 0)
+			available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
 		spawned_abnos++
 		pick_abno()
 

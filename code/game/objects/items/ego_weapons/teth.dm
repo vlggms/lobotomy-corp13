@@ -69,6 +69,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
+	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
 /obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -97,7 +98,7 @@
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
 	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
-	var/list/search_area = user.contents
+	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents
 	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
@@ -137,7 +138,7 @@
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
 
 /obj/item/ego_weapon/mini/wrist/attack_self(mob/living/carbon/user)
@@ -162,6 +163,7 @@
 	attack_speed = 2 // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
+	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
 
 /obj/item/ego_weapon/mini/blossom
 	name = "cherry blossoms"
@@ -221,6 +223,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
+	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
 
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
@@ -243,6 +246,7 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("zaps", "prods")
 	attack_verb_simple = list("zap", "prod")
+	hitsound = 'sound/weapons/fixer/generic/baton4.ogg'
 
 /obj/item/ego_weapon/sorority/attack_self(mob/user)
 	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms them
@@ -261,7 +265,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 
 /obj/item/ego_weapon/hearth //From my sweet home.
 	name = "hearth"
@@ -276,7 +280,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("swipes", "slashes")
 	attack_verb_simple = list("swipe", "slash")
-	hitsound = null
+	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 20
 							)
@@ -335,6 +339,7 @@
 	force = 8 //less than the baton, don't hit things with it
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
 	var/mode = LANTERN_MODE_REMOTE
 	var/traplimit = 6

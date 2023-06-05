@@ -220,6 +220,9 @@
 	dir = 10
 	},
 /obj/structure/rack,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "dX" = (
@@ -1295,14 +1298,11 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
-/obj/item/encryptionkey/headset_information,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ug" = (
@@ -1414,7 +1414,7 @@
 /area/department_main/training)
 "wL" = (
 /obj/effect/turf_decal/siding/purple,
-/obj/machinery/modular_computer/console/preset{
+/obj/machinery/computer/abnormality_archive{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
@@ -2058,6 +2058,9 @@
 "Gd" = (
 /obj/structure/rack,
 /obj/machinery/light,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Gn" = (
@@ -2337,10 +2340,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/safety)
-"KI" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/department_main/extraction)
 "KM" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -2706,10 +2705,10 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 5
 	},
-/obj/structure/rack,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/chem_master,
 /turf/open/indestructible/white,
 /area/department_main/safety)
 "PF" = (
@@ -2759,10 +2758,12 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/cell_charger{
-	pixel_y = 13
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
-/obj/machinery/cell_charger,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "QC" = (
@@ -2933,6 +2934,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
+/obj/item/encryptionkey/headset_information,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "SW" = (
@@ -2944,6 +2953,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"Tg" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/structure/refinery,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Tl" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -3029,10 +3045,12 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/machinery/cell_charger{
-	pixel_y = 13
+/obj/machinery/recharger{
+	pixel_x = 6
 	},
-/obj/machinery/cell_charger,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Uo" = (
@@ -42876,7 +42894,7 @@ QD
 Yb
 SL
 uf
-lN
+Tg
 XX
 lN
 lN
@@ -56000,10 +56018,10 @@ QD
 QD
 KP
 KP
-KI
-KI
-KI
-KI
+KP
+KP
+KP
+KP
 KP
 QD
 QD

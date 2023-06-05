@@ -90,6 +90,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_ai_core_display = "Blue"
 	var/prefered_security_department = SEC_DEPT_NONE
 	var/prefered_agent_department = "None"
+	var/prefered_sephirah_department = "Control"
+	var/prefered_sephirah_bodytype = "Humanoid"
+	var/prefered_sephirah_boxcolor = "555"
 
 	//Quirk list
 	var/list/all_quirks = list()
@@ -275,8 +278,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br><br>"
 
 			dat += "<b>Custom Job Preferences:</b><BR>"
-			dat += "<a href='?_src_=prefs;preference=ai_core_icon;task=input'><b>Preferred AI Core Display:</b> [preferred_ai_core_display]</a><br>"
 			dat += "<a href='?_src_=prefs;preference=agent_dept;task=input'><b>Preferred Agent Department:</b> [prefered_agent_department]</a><BR>"
+			dat += "<a href='?_src_=prefs;preference=seph_dept;task=input'><b>Preferred Sephirah Department:</b> [prefered_sephirah_department]</a><BR>"
+			dat += "<a href='?_src_=prefs;preference=seph_body;task=input'><b>Preferred Sephirah Body:</b> [prefered_sephirah_bodytype]</a><BR>"
+			dat += "<b>Preferred Sephirah Box Color:</b> <span style='border: 1px solid #161616; background-color: #[prefered_sephirah_boxcolor];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=seph_boxcolor;task=input'>Change</a><BR>"
 			dat += "<br>"
 
 			dat += "<h2>Background Information:</h2>"
@@ -1596,10 +1601,28 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if (user.client.get_exp_living(TRUE) >= PLAYTIME_VETERAN)
 						playtime_reward_cloak = !playtime_reward_cloak
 
-				if("ai_core_icon")
-					var/ai_core_icon = input(user, "Choose your preferred AI core display screen:", "AI Core Display Screen Selection") as null|anything in GLOB.ai_core_display_screens - "Portrait"
-					if(ai_core_icon)
-						preferred_ai_core_display = ai_core_icon
+				if("seph_dept")
+					var/department = input(user, "Choose your preferred sephirah department:", "Sephirah Departments") as null|anything in GLOB.agent_depts_prefs
+					if(department)
+						prefered_sephirah_department = department
+
+				if("seph_body")
+					var/seph_body = input(user, "Choose your preferred sephirah body type:", "Sephirah Bodytype") as null|anything in list("Humanoid", "Box")
+					if(seph_body)
+						prefered_sephirah_bodytype = seph_body
+
+				if("seph_boxcolor")
+					var/new_mutantcolor = input(user, "Choose your sephirah box color:", "Sephirah Box Color") as color|null
+					if(new_mutantcolor)
+						var/temp_hsv = RGBtoHSV(new_mutantcolor)
+
+						if(ReadHSV(temp_hsv)[3] >= ReadHSV("#555555")[3]) // mutantcolors must be bright
+
+							prefered_sephirah_boxcolor = sanitize_hexcolor(new_mutantcolor)
+
+						else
+							to_chat(user, "<span class='userdanger'>Invalid color. Your color is not bright enough.</span>")
+
 
 				if("agent_dept")
 					var/department = input(user, "Choose your preferred agent department:", "Agent Departments") as null|anything in GLOB.agent_depts_prefs

@@ -32,7 +32,7 @@
 	var/homing_range = 9
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/fireback), 3)
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
@@ -98,3 +98,29 @@
 	damage = 30
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/replica
+	name = "sinewy claw"
+	damage = 30
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/tracer/laser/replica
+	tracer_type = /obj/effect/projectile/tracer/laser/replica
+	impact_type = /obj/effect/projectile/impact/laser/replica
+
+/obj/effect/projectile/tracer/laser/replica
+	name = "replica claw"
+	icon_state = "replica"
+/obj/effect/projectile/impact/laser/replica
+	name = "replica impact"
+	icon_state = "replica"
+
+/obj/projectile/ego_bullet/replica/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/carbon/human/H = target
+	var/mob/living/user = firer
+	if(user.faction_check_mob(H))//player faction
+		H.Knockdown(50)//trip the target
+		return BULLET_ACT_BLOCK
+	qdel(src)

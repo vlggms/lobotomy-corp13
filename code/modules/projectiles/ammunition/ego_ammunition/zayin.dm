@@ -18,6 +18,11 @@
 	desc = "nightshade casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_nightshade
 
+/obj/item/ammo_casing/caseless/ego_nightshade/healing
+	name = "nightshade casing"
+	desc = "nightshade casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_nightshade/healing
+
 /obj/item/ammo_casing/caseless/ego_clerk
 	name = "9mm clerk casing"
 	desc = "A 9mm clerk casing."

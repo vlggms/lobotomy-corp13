@@ -2,6 +2,7 @@
 	name = "funny prank"
 	desc = "The small accessory remains like the wishes of a child who yearned for happiness."
 	icon_state = "prank"
+	worn_icon_state = "prank"
 	inhand_icon_state = "prank"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
@@ -83,7 +84,7 @@
 	var/jam_noticed = FALSE
 
 /obj/item/gun/ego_gun/unrequited/Initialize()
-	..()
+	. = ..()
 	jam_cooldown_time = rand(1, 5) MINUTES
 	jam_cooldown = jam_cooldown_time + world.time
 	START_PROCESSING(SSobj, src)

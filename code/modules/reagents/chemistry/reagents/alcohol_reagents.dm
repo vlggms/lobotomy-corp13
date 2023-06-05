@@ -2311,3 +2311,24 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_name = "Godmother"
 	glass_desc = "A lovely fresh smelling cocktail, a true Sicilian delight."
 
+/datum/reagent/consumable/ethanol/telepole
+	name = "Telepole"
+	description = "A grounding rod in the form of a drink."
+	boozepwr = 50
+	color = "#b300ff"
+	quality = DRINK_NICE
+	taste_description = "the howling storm"
+	glass_icon_state = "telepole"
+	glass_name = "Telepole"
+	glass_desc = "A grounding rod in the form of a drink."
+
+/datum/reagent/consumable/ethanol/telepole/on_mob_metabolize(mob/living/affected_mob)
+	. = ..()
+	ADD_TRAIT(affected_mob, TRAIT_SHOCKIMMUNE, type)
+	if(prob(35) && affected_mob.maxSanity > affected_mob.sanityhealth)
+		var/mob/living/carbon/human/H = affected_mob
+		H.adjustSanityLoss(-0.01*H.maxSanity*REM) // That's healing 1% of max sanity.
+
+/datum/reagent/consumable/ethanol/telepole/on_mob_end_metabolize(mob/living/affected_mob)
+	REMOVE_TRAIT(affected_mob, TRAIT_SHOCKIMMUNE, type)
+	return ..()

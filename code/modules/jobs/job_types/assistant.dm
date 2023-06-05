@@ -19,6 +19,7 @@ Assistant
 
 	allow_bureaucratic_error = FALSE
 	loadalways = TRUE
+	job_important = "You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."
 
 
 //Cannot Gain stats.

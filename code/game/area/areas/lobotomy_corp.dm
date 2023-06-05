@@ -282,3 +282,15 @@
 	name = "Fixer Office"
 
 
+//Areas for backstreets
+
+/area/city/backstreets_checkpoint
+	name = "Backstreets Checkpoint"
+
+/area/city/backstreets_alley
+	name = "Backstreets Alley"
+	icon_state = "hallA"
+
+/area/city/backstreets_room
+	name = "Backstreets Room"
+	icon_state = "hallA"

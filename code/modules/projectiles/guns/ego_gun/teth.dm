@@ -93,3 +93,39 @@
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
+
+/obj/item/gun/ego_gun/snapshot
+	name = "snapshot"
+	desc = "I swear, that obscene portrait was just trying to make us lower our guard."
+	icon_state = "snapshot"
+	inhand_icon_state = "snapshot"
+	special = "This weapon fires a hitscan beam."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_snapshot
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
+
+/obj/item/gun/ego_gun/wishing_cairn
+	name = "wishing cairn"
+	desc = "Speak unto me your wish, vocalize your eagerness..."
+	icon_state = "wishing_cairn"
+	inhand_icon_state = "wishing_cairn"
+	special = "This weapon has a combo system with a short range."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_wishing
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 3
+	burst_size = 2
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
+	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
+
+/obj/item/gun/ego_gun/wishing_cairn/proc/Ammo_Change()
+	chambered = new ammo2
+	fire_sound = 'sound/abnormalities/pagoda/throw2.ogg'
+	return
+
+/obj/item/gun/ego_gun/wishing_cairn/afterattack(atom/target, mob/user)
+	..()
+	chambered = new ammo_type
+	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'

@@ -59,6 +59,23 @@
 	mid_length = 2.5 SECONDS
 	volume = 35
 
+/datum/looping_sound/nothingthere_disguise
+	mid_sounds = 'sound/abnormalities/nothingthere/disguise_loop.ogg'
+	mid_length = 5 SECONDS
+	volume = 15
+	extra_range = -4
+
+/datum/looping_sound/nothingthere_breach
+	start_sound = 'sound/abnormalities/nothingthere/ntloop_start.ogg'
+	start_length = 7.2 SECONDS
+	start_volume = 35
+	mid_sounds = list('sound/abnormalities/nothingthere/ntloop_1.ogg' = 1, 'sound/abnormalities/nothingthere/ntloop_2.ogg' = 1, 'sound/abnormalities/nothingthere/ntloop_3.ogg' = 1,)
+	mid_length = 12 SECONDS
+	end_sound = 'sound/abnormalities/nothingthere/ntloop_end.ogg'
+	end_volume = 40
+	volume = 25
+	extra_range = -4
+
 /datum/looping_sound/siren_musictime
 	start_sound = 'sound/abnormalities/siren/needle1.ogg'
 	start_volume = 25
@@ -80,6 +97,19 @@
 	mid_sounds = 'sound/abnormalities/clouded_monk/run.ogg'
 	mid_length = 6 SECONDS
 	volume = 25
+	extra_range = -4
+
+/datum/looping_sound/orangetree_ambience
+	mid_sounds = list('sound/abnormalities/orangetree/light1.ogg' = 1, 'sound/abnormalities/orangetree/light2.ogg' = 1, 'sound/abnormalities/orangetree/light3.ogg' = 1,
+	'sound/abnormalities/orangetree/light4.ogg' = 1, 'sound/abnormalities/orangetree/light5.ogg' = 1, 'sound/abnormalities/orangetree/light6.ogg' = 1)
+	mid_length = 15 SECONDS
+	volume = 60
+	extra_range = -5
+
+/datum/looping_sound/quietday_ambience
+	mid_sounds = 'sound/abnormalities/quietday/quietloop.ogg'
+	mid_length = 15 SECONDS
+	volume = 60
 	extra_range = -4
 
 // Ordeals

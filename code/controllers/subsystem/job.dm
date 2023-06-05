@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Agent"
+	var/overflow_role = "Clerk"
 
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
@@ -82,6 +82,9 @@ SUBSYSTEM_DEF(job)
 			if(job.maptype != SSmaptype.maptype)		//This clears all the job from the map. Runs after the top one to fully remove a job.
 				if(!job.loadalways)				//THIS one we need. If a job can't be removed without breaking the game then
 					continue
+				else
+					job.total_positions = 0
+					job.spawn_positions = 0
 
 		occupations += job
 		name_occupations[job.title] = job
@@ -686,9 +689,12 @@ SUBSYSTEM_DEF(job)
 		message_admins(msg)
 		CRASH(msg)
 
+GLOBAL_LIST_EMPTY(allowed_random_drop_areas)
 ///Lands specified mob at a random spot in the hallways or departments
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
-	var/turf/spawn_turf = get_safe_random_station_turf(subtypesof(/area/facility_hallway) + subtypesof(/area/department_main))
+	if(!length(GLOB.allowed_random_drop_areas))
+		GLOB.allowed_random_drop_areas = subtypesof(/area/facility_hallway) + subtypesof(/area/department_main) - list(/area/facility_hallway/human, /area/department_main/human)
+	var/turf/spawn_turf = get_safe_random_station_turf(GLOB.allowed_random_drop_areas)
 
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)

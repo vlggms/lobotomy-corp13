@@ -72,11 +72,7 @@
 			locked = locked ? FALSE : TRUE
 			owner.ShowGifts()
 		if("hide")
-			if(visible)
-				owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-			else
-				owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
-			visible = !visible
+			Refresh_Gift_Sprite(visible) //for uniquely colored gifts
 		if("dissolve")
 			var/datum/ego_gifts/empty/E = new
 			E.slot = src.slot
@@ -167,6 +163,15 @@
 			right_wing.icon_state = "twilight"
 			src.add_overlay(mutable_appearance(right_wing.icon, right_wing.icon_state, right_wing.layer))
 
+/datum/ego_gifts/proc/Refresh_Gift_Sprite(option)
+	switch(option)
+		if(FALSE)
+			owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			visible = TRUE
+		if(TRUE)
+			owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			visible = FALSE
+
 /// Empty EGO GIFT Slot
 /datum/ego_gifts/empty
 	name = "Empty"
@@ -217,7 +222,7 @@
 	justice_bonus = 2
 	slot = EYE
 
-/datum/ego_gifts/nostalgia //---sprite needed
+/datum/ego_gifts/nostalgia
 	name = "Nostalgia"
 	icon_state = "nostalgia"
 	temperance_bonus = 2
@@ -227,6 +232,18 @@
 	name = "Nightshade"
 	icon_state = "nightshade"
 	prudence_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/melty_eyeball
+	name = "Melty Eyeball"
+	icon_state = "melty_eyeball"
+	prudence_bonus = 2
+	slot = EYE
+
+/datum/ego_gifts/mail //needs a sprite
+	name = "Empty Envelope"
+	prudence_bonus = 1
+	temperance_bonus = 1
 	slot = HAND_1
 
 /// All TETH EGO Gifts
@@ -355,39 +372,53 @@
 	justice_bonus = 2
 	slot = HAND_1
 
-/datum/ego_gifts/solitude //---sprite needed
+/datum/ego_gifts/solitude
 	name = "Solitude"
 	icon_state = "solitude"
 	temperance_bonus = 3
 	slot = EYE
 
-/datum/ego_gifts/trick //---sprite needed
-	name = "Trick"
+/datum/ego_gifts/trick
+	name = "Hat Trick"
 	icon_state = "trick"
 	justice_bonus = 3
-	slot = NECKWEAR
+	slot = MOUTH_1
 
-/datum/ego_gifts/sorrow //---sprite needed
+/datum/ego_gifts/sorrow
 	name = "Sorrow"
 	icon_state = "sorrow"
-	fortitude_bonus = -1
-	prudence_bonus = 4
-	slot = BROOCH
+	fortitude_bonus = 1
+	prudence_bonus = 3
+	slot = HAT
 
-/datum/ego_gifts/sorority //---sprite needed
+/datum/ego_gifts/sorority
 	name = "Sorority"
 	icon_state = "sorority"
 	fortitude_bonus = 2
 	prudence_bonus = 2
 	temperance_bonus = -1
-	slot = BROOCH
+	slot = CHEEK
 
-/datum/ego_gifts/wedge //---sprite needed
+/datum/ego_gifts/wedge
 	name = "Screaming Wedge"
 	icon_state = "wedge"
 	temperance_bonus = -1
 	prudence_bonus = 4
-	slot = HAND_1
+	slot = BROOCH
+
+/datum/ego_gifts/revelation
+	name = "Revelation"
+	icon_state = "revelation"
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = EYE
+
+/datum/ego_gifts/snapshot
+	name = "Snapshot"
+	icon_state = "snapshot"
+	temperance_bonus = 3
+	prudence_bonus = -1
+	slot = NECKWEAR
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
@@ -541,54 +572,54 @@
 	justice_bonus = 2
 	slot = HELMET
 
-/datum/ego_gifts/galaxy //---sprite needed
+/datum/ego_gifts/galaxy
 	name = "Galaxy"
 	icon_state = "galaxy"
 	prudence_bonus = 2
 	temperance_bonus = 3
 	slot = NECKWEAR
 
-/datum/ego_gifts/gaze //---sprite needed
+/datum/ego_gifts/gaze
 	name = "Gaze"
 	icon_state = "gaze"
 	fortitude_bonus = 4
 	slot = HAND_2
 
-/datum/ego_gifts/alleyway //---sprite needed
+/datum/ego_gifts/alleyway
 	name = "Alleyway"
 	icon_state = "alleyway"
 	fortitude_bonus = 2
 	prudence_bonus = 2
 	temperance_bonus = -2
 	justice_bonus = 2
-	slot = HAND_1
+	slot = HAND_2
 
-/datum/ego_gifts/pleasure //---sprite needed
+/datum/ego_gifts/pleasure
 	name = "Pleasure"
 	icon_state = "pleasure"
 	prudence_bonus = 10
 	temperance_bonus = -6
 	slot = NECKWEAR
 
-/datum/ego_gifts/unrequited_love //---sprite needed
+/datum/ego_gifts/unrequited_love
 	name = "Unrequited Love"
 	icon_state = "unrequited_love"
 	fortitude_bonus = -2
 	prudence_bonus = 5
 	temperance_bonus = 5
 	justice_bonus = -2
-	slot = LEFTBACK
+	slot = CHEEK
 
-/datum/ego_gifts/transmission //---sprite needed
+/datum/ego_gifts/transmission
 	name = "Transmission"
 	icon_state = "transmission"
 	fortitude_bonus = 4
 	prudence_bonus = 2
 	temperance_bonus = -1
-	slot = HELMET
+	slot = HAT
 
-/datum/ego_gifts/metal //---sprite needed
-	name = "Metal"
+/datum/ego_gifts/metal
+	name = "Bare Metal"
 	icon_state = "metal"
 	fortitude_bonus = 1
 	prudence_bonus = 1
@@ -604,7 +635,7 @@
 	justice_bonus = 5
 	slot = MOUTH_2
 
-/datum/ego_gifts/homing_instinct //---sprite needed
+/datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
 	icon_state = "homing_instinct"
 	fortitude_bonus = -2
@@ -613,7 +644,7 @@
 	justice_bonus = 5
 	slot = HAND_2
 
-/datum/ego_gifts/get_strong //---sprite needed
+/datum/ego_gifts/get_strong
 	name = "Screwloose"
 	icon_state = "get_strong"
 	fortitude_bonus = 4
@@ -621,6 +652,24 @@
 	temperance_bonus = -2
 	justice_bonus = 4
 	slot = HELMET
+
+/datum/ego_gifts/inheritance
+	name = "Inheritance"
+	icon_state = "inheritance"
+	fortitude_bonus = 3
+	prudence_bonus = -1
+	temperance_bonus = -1
+	justice_bonus = 3
+	slot = RIGHTBACK
+
+/datum/ego_gifts/replica
+	name = "Pinpoint Logic Circuit"
+	icon_state = "replica"
+	fortitude_bonus = -3
+	prudence_bonus = 1
+	temperance_bonus = 2
+	justice_bonus = 4
+	slot = BROOCH
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -770,35 +819,35 @@
 	prudence_bonus = 6
 	slot = MOUTH_1
 
-/datum/ego_gifts/ecstasy //---sprite needed
+/datum/ego_gifts/ecstasy
 	name = "Ecstasy"
 	icon_state = "ecstasy"
 	prudence_bonus = 6
 	slot = MOUTH_2
 
-/datum/ego_gifts/loyalty //---sprite needed
+/datum/ego_gifts/loyalty
 	name = "Loyalty"
 	icon_state = "loyalty"
 	fortitude_bonus = 10
 	prudence_bonus = -4
-	slot = MOUTH_1
+	slot = BROOCH
 
-/datum/ego_gifts/executive //---sprite needed
+/datum/ego_gifts/executive
 	name = "Executive"
 	icon_state = "executive"
 	prudence_bonus = 8
 	justice_bonus = -2
 	slot = HAND_2
 
-/datum/ego_gifts/thirteen //---sprite needed
+/datum/ego_gifts/thirteen
 	name = "Thirteen"
 	icon_state = "thirteen"
 	fortitude_bonus = 4
 	prudence_bonus = -2
 	justice_bonus = 4
-	slot = NECKWEAR
+	slot = HELMET
 
-/datum/ego_gifts/assonance //---sprite needed
+/datum/ego_gifts/assonance
 	name = "Assonance"
 	icon_state = "assonance"
 	prudence_bonus = 2
@@ -806,13 +855,13 @@
 	justice_bonus = 2
 	slot = NECKWEAR
 
-/datum/ego_gifts/diffraction //---sprite needed
+/datum/ego_gifts/diffraction
 	name = "Diffraction"
 	icon_state = "diffraction"
 	prudence_bonus = 6
 	slot = HELMET
 
-/datum/ego_gifts/moonlight //---sprite needed
+/datum/ego_gifts/moonlight
 	name = "Moonlight"
 	icon_state = "moonlight"
 	fortitude_bonus = 1
@@ -823,19 +872,61 @@
 	justice_bonus = 1
 	slot = BROOCH
 
-/datum/ego_gifts/heart //---sprite needed
+/datum/ego_gifts/heart
 	name = "Heart"
 	icon_state = "heart"
 	fortitude_bonus = 3
 	justice_bonus = 3
 	slot = HAND_1
 
-/datum/ego_gifts/infinity //---sprite needed
+/datum/ego_gifts/infinity
 	name = "Infinity"
 	icon_state = "infinity"
 	temperance_bonus = 2
 	justice_bonus = 4
-	slot = BROOCH
+	slot = EYE
+
+/datum/ego_gifts/hypocrisy
+	name = "Hypocrisy"
+	icon_state = "hypocrisy"
+	layer = BODY_BEHIND_LAYER
+	prudence_bonus = 3
+	fortitude_bonus = 3
+	slot = HELMET
+	var/ear_overlay
+
+/datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
+	user.ego_gift_list[src.slot] = src
+	var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
+	if(user.skin_tone)
+		var/user_skin_color = skintone2hex(user.skin_tone)
+		colored_overlay.color = "#[user_skin_color]"
+	ear_overlay = colored_overlay
+	user.add_overlay(ear_overlay)
+	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
+	return
+
+/datum/ego_gifts/hypocrisy/Remove(mob/living/carbon/human/user)
+	user.cut_overlay(ear_overlay)
+	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (src.fortitude_bonus * -1))
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (src.prudence_bonus * -1))
+	QDEL_NULL(src)
+	return
+
+/datum/ego_gifts/hypocrisy/Refresh_Gift_Sprite(option) //hide and unhide to update skin color.
+	switch(option)
+		if(FALSE)
+			var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
+			if(owner.skin_tone)
+				var/user_skin_color = skintone2hex(owner.skin_tone)
+				colored_overlay.color = "#[user_skin_color]"
+			ear_overlay = colored_overlay
+			owner.add_overlay(ear_overlay)
+			visible = TRUE
+		if(TRUE)
+			owner.cut_overlay(ear_overlay)
+			visible = FALSE
 
 /datum/ego_gifts/amrita
 	name = "Amrita"
@@ -843,6 +934,27 @@
 	fortitude_bonus = 10
 	prudence_bonus = -4
 	slot = HAND_1
+
+/datum/ego_gifts/innocence
+	name = "Innocence"
+	icon_state = "innocence"
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = MOUTH_2
+
+/datum/ego_gifts/rimeshank
+	name = "Rimeshank"
+	icon_state = "rimeshank"
+	fortitude_bonus = 4
+	temperance_bonus = 2
+	slot = NECKWEAR
+	
+/datum/ego_gifts/bride
+	name = "Bride"
+	icon_state = "bride"
+	prudence_bonus = 2
+	temperance_bonus = 5
+	slot = HAT
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
@@ -921,23 +1033,24 @@
 	prudence_bonus = 10
 	slot = EYE
 
-/datum/ego_gifts/space //---sprite needed
+/datum/ego_gifts/space
 	name = "Space"
 	icon_state = "space"
 	fortitude_bonus = -5
 	prudence_bonus = 15
 	slot = FACE
 
-/datum/ego_gifts/soulmate //---sprite needed
+/datum/ego_gifts/soulmate
 	name = "Soulmate"
 	icon_state = "soulmate"
 	fortitude_bonus = 15
 	justice_bonus = -5
-	slot = FACE
+	slot = HELMET
 
-/datum/ego_gifts/nihil //--definitely not final, sprites(?) needed
+/datum/ego_gifts/nihil //May be subject to change when the event is added proper
 	name = "Nihil"
 	icon_state = "nihil"
+	fortitude_bonus = 10
 	temperance_bonus = 10
 	justice_bonus = 10
 	slot = HAT

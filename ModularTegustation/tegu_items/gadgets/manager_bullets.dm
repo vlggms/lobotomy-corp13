@@ -1,0 +1,199 @@
+
+	//Defective Manager Bullet PLACEHOLDER OR PROTOTYPE SHIELDS
+/obj/item/managerbullet
+	name = "prototype manager bullet"
+	desc = "Welfare put out a notice that they lost a bunch of manager bullets. This must be one of them."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	var/bullettype = 1
+
+/obj/item/managerbullet/attack(mob/living/M, mob/user)
+	M.visible_message("<span class='notice'>[user] smashes [src] against [M].</span>")
+	playsound(get_turf(M), 'sound/effects/pop_expl.ogg', 5, 0, 3)
+	bulletshatter(M)
+	qdel(src)
+
+/obj/item/managerbullet/attack_self(mob/living/carbon/user) //shields from basegame are Physical Intervention Shield, Trauma Shield, Erosion Shield, Pale Shield
+	user.visible_message("<span class='notice'>[user] smashes [src] against their chest.</span>")
+	playsound(get_turf(user), 'sound/effects/pop_expl.ogg', 5, 0, 3)
+	bulletshatter(user)
+	qdel(src)
+
+/obj/item/managerbullet/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(isliving(hit_atom))
+		var/mob/living/M = hit_atom
+		playsound(get_turf(M), 'sound/effects/pop_expl.ogg', 5, 0, 3)
+		bulletshatter(M)
+		qdel(src)
+	..()
+
+/obj/item/managerbullet/proc/bulletshatter(mob/living/L) //apply effect slot
+	return
+
+
+/datum/status_effect/interventionshield
+	id = "physical intervention shield"
+	duration = 15 SECONDS
+	status_type = STATUS_EFFECT_REPLACE
+	alert_type = null
+	var/inherentarmorcheck
+	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
+	var/shieldhealth = 100
+	var/damagetaken = 0
+	var/respectivedamage = RED_DAMAGE
+	var/faltering = 0
+
+/datum/status_effect/interventionshield/on_apply()
+	. = ..()
+	owner.add_overlay(statuseffectvisual)
+	var/mob/living/carbon/human/L = owner
+	switch(respectivedamage)
+		if(RED_DAMAGE)
+			inherentarmorcheck = L.physiology.red_mod
+			L.physiology.red_mod *= 0.0001
+		if(WHITE_DAMAGE)
+			inherentarmorcheck = L.physiology.white_mod
+			L.physiology.white_mod *= 0.0001
+		if(BLACK_DAMAGE)
+			inherentarmorcheck = L.physiology.black_mod
+			L.physiology.black_mod *= 0.0001
+		if(PALE_DAMAGE)
+			inherentarmorcheck = L.physiology.pale_mod
+			L.physiology.pale_mod *= 0.0001
+	owner.visible_message("<span class='notice'>[owner]s shield activates!</span>")
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnApplyDamage) //stolen from caluan
+	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/Destroy)
+
+/datum/status_effect/interventionshield/proc/OnApplyDamage(datum_source, amount, damagetype, def_zone)
+	SIGNAL_HANDLER
+	if(damagetype != respectivedamage)
+		return
+	var/mob/living/carbon/human/H = owner
+	var/suitarmor = H.getarmor(null, respectivedamage) / 100
+	var/suit = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	damagetaken = amount * (1 - suitarmor)
+	if(damagetaken <= 0)
+		return
+	if(!suit)
+		damagetaken = amount
+	if(damagetaken <= shieldhealth)
+		shieldhealth = shieldhealth - damagetaken
+		amount = 0
+		var/shielddiagnostics = shieldhealth / 100
+		if(shielddiagnostics < 0.95 && faltering != 1)
+			faltering = 1
+		return
+	if(damagetaken >= shieldhealth && faltering != 1) //When you prep a shield before a big attack.
+		amount = 0
+		owner.visible_message("<span class='warning'>The shield around [owner] focuses all its energy on absorbing the damage.</span>")
+		duration = 1 SECONDS
+	else
+		qdel(src)
+	return
+
+/datum/status_effect/interventionshield/be_replaced()
+	var/mob/living/carbon/human/L = owner
+	if(!istype(L))
+		return ..()
+	switch(respectivedamage)
+		if(RED_DAMAGE)
+			L.physiology.red_mod /= 0.0001
+		if(WHITE_DAMAGE)
+			L.physiology.white_mod /= 0.0001
+		if(BLACK_DAMAGE)
+			L.physiology.black_mod /= 0.0001
+		if(PALE_DAMAGE)
+			L.physiology.pale_mod /= 0.0001
+	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
+	return ..()
+
+/datum/status_effect/interventionshield/on_remove()
+	var/mob/living/carbon/human/L = owner
+	switch(respectivedamage)
+		if(RED_DAMAGE)
+			L.physiology.red_mod /= 0.0001
+		if(WHITE_DAMAGE)
+			L.physiology.white_mod /= 0.0001
+		if(BLACK_DAMAGE)
+			L.physiology.black_mod /= 0.0001
+		if(PALE_DAMAGE)
+			L.physiology.pale_mod /= 0.0001
+	owner.cut_overlay(statuseffectvisual)
+	owner.visible_message("<span class='warning'>The shield around [owner] shatters!</span>")
+	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
+	return ..()
+
+/datum/status_effect/interventionshield/white
+	id = "trauma shield"
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
+	respectivedamage = WHITE_DAMAGE
+
+/datum/status_effect/interventionshield/black
+	id = "erosion shield"
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
+	respectivedamage = BLACK_DAMAGE
+
+/datum/status_effect/interventionshield/pale
+	id = "pale shield"
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	respectivedamage = PALE_DAMAGE
+
+	//other bullets
+/obj/item/managerbullet/red
+	name = "red manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "red"
+
+/obj/item/managerbullet/red/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield)
+
+/obj/item/managerbullet/white
+	name = "white manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "grey"
+
+/obj/item/managerbullet/white/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield/white)
+
+/obj/item/managerbullet/black
+	name = "black manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "black"
+
+/obj/item/managerbullet/black/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield/black)
+
+/obj/item/managerbullet/pale
+	name = "pale manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "blue"
+
+/obj/item/managerbullet/pale/bulletshatter(mob/living/L)
+	if(!ishuman(L))
+		return
+	L.apply_status_effect(/datum/status_effect/interventionshield/pale)
+
+/obj/item/managerbullet/slowdown
+	name = "yellow manager bullet"
+	desc = "A bullet used in a manager console."
+	icon = 'icons/obj/ammo.dmi'
+	icon_state = "sleeper-live"
+	color = "yellow"
+
+/obj/item/managerbullet/slowdown/bulletshatter(mob/living/L)
+	L.apply_status_effect(/datum/status_effect/qliphothoverload)

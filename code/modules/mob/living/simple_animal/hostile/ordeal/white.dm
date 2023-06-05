@@ -33,7 +33,7 @@
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
-	..()
+	. = ..()
 	pulse_cooldown = world.time + (pulse_cooldown_time * 1.5)
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Life()
@@ -170,7 +170,7 @@
 	var/circle_overtime_damage = 70
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/Initialize()
-	..()
+	. = ..()
 	circle_cooldown = world.time + 10 SECONDS
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/Life()

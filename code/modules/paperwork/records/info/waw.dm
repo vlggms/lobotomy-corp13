@@ -175,6 +175,7 @@
 	abno_info = list(
 		"Observations have concluded that The Naked Nest and its variants harbor serpents capable of infesting humans. These creatures have been given the designation O-02-74-1.",
 		"Employees with low HP are more susceptible to infestation by O-02-74-1. In particular, taking higher damage during work raises the probability of infestation.",
+		"Surgical removal of an incomplete O-02-74 resulted in the O-02-74-1 ejecting itself from the host.",
 		"Getting a Good work result prevented infestation from occurring, and a single-use cure was extracted.",
 		"Some employees suffering from infestation showed the following symptoms over time:<br>\
 		<ol type=1>\
@@ -361,3 +362,27 @@
 		"The Qliphoth Counter lowered every time two employees died.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter decreased.")
+
+//My Sweet Orange Tree
+/obj/item/paper/fluff/info/waw/orange_tree
+	abno_type = /mob/living/simple_animal/hostile/abnormality/orange_tree
+	abno_code = "O-02-23"
+	abno_info = list(
+		"When the work result was Normal, the employee was infected by 0-02-23 with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability and the employee was infected by 0-02-23.",
+		"When the Qliphoth Counter reached 0, O-02-23 dispersed throughout a large area.",
+		"Upon observing the Abnormality, it has been confirmed that the abnormality attached to employees for a certain amount of time, and inflicted WHITE damage over that period. The abnormality is highly contagious and difficult to recontain.",
+		"The infection was potentially cured if the infected received RED damage at a very small chance, with the provided flamethrowers being a far more effective deterrent.",
+		"When the SP of an infested employee had depleted, the employee in question would panic, spreading the infection rapidly.")
+
+/obj/item/paper/fluff/info/waw/pygmalion
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pygmalion
+	abno_code = "T-03-157"
+	abno_info = list(
+		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
+		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
+		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health." ,
+		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
+		"The “Sculptor” will have their prudence reduced to level 3 while Pygmalion is breaching." ,
+		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
+

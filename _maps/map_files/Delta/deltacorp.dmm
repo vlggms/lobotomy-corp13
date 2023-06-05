@@ -115,6 +115,12 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ar" = (
@@ -7227,7 +7233,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/modular_computer/console/preset/research,
+/obj/machinery/computer/abnormality_archive,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "vn" = (
@@ -7958,6 +7964,11 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "xw" = (
@@ -10079,9 +10090,6 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "Eh" = (
-/obj/machinery/vending/medical{
-	req_access = list()
-	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
@@ -10092,6 +10100,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green,
+/obj/machinery/chem_master,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "El" = (
@@ -15594,6 +15603,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/control)
+"Tu" = (
+/obj/structure/table,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/turf/open/floor/carpet,
+/area/department_main/control)
 "Tx" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -18082,6 +18098,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
 "ZX" = (
@@ -36456,7 +36475,7 @@ Go
 OE
 VI
 ZV
-vO
+Tu
 Ao
 ER
 yi

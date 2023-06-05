@@ -233,3 +233,13 @@
 		"Employees suffered from higher amounts of damage during work when the book was closer to completion.",
 		"Upon finishing repression work, employee Noah felt compelled to rip pages out of the abnormality.",
 		"Attempted repression work when the book was already empty nearly always ended in failure. In constrast, repression work performed when the book was full was usually successful.")
+
+//Someone's Portrait
+/obj/item/paper/fluff/info/teth/someones_portrait
+	abno_type = /mob/living/simple_animal/hostile/abnormality/someones_portrait
+	abno_code = "O-01-19"
+	abno_info = list(
+		"When an employee, who had both Fortitude Level 1 and Prudence Level 1, completed the work process, they suddenly ran out in a panic, fearing for their life.",
+		"Employees working on O-01-19 may experience vivid hallucinations and percieved attempts at one's life during work. Employees are encouraged to ignore them and focus on work.",
+		"When the work result was bad, the employee suddenly fell into a panic.",
+		"Any time work was completed, O-01-19 destroyed all nearby light sources.")

@@ -1,4 +1,5 @@
 #define INHOSPITABLE_FOR_NESTING 280
+#define NAKED_NESTED getorgan(/obj/item/organ/naked_nest)
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest
 	name = "Naked Nest"
@@ -35,19 +36,13 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
 	stat_attack = HARD_CRIT
 	ranged = TRUE
-	ranged_cooldown_time = 1 SECONDS
+	ranged_cooldown_time = 1
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	faction = list("hostile", "Naked_Nest")
 	deathmessage = "collapses as its residents flee."
 	deathsound = 'sound/effects/dismember.ogg'
 	var/serpentsnested = 4
-	var/origin_cooldown
-	var/origin_cooldown_delay = 20 SECONDS //to prevent serpent floods
-
-/mob/living/simple_animal/hostile/abnormality/naked_nest/Initialize()
-	. = ..()
-	origin_cooldown = world.time + origin_cooldown_delay
+	var/origin_cooldown = 0
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	to_chat(user, "<span class='notice'>The serpents seem to avoid areas of their nest covered in this solution.</span>")
@@ -55,13 +50,13 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(30 + ((user.health / user.maxHealth)*100)))
-		user.apply_status_effect(/datum/status_effect/serpents_host)
+	if(prob(30 + ((user.health / user.maxHealth)*100)) && !NAKED_NESTED)
+		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(60 + ((user.health / user.maxHealth)*100)))
-		user.apply_status_effect(/datum/status_effect/serpents_host)
+	if(prob(60 + ((user.health / user.maxHealth)*100)) && !NAKED_NESTED)
+		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/ZeroQliphoth(mob/living/carbon/human/user)
@@ -71,7 +66,7 @@
 			var/mob/living/simple_animal/hostile/naked_nest_serpent/serpent = new(get_turf(T))
 			serpent.Hide()
 			datum_reference.qliphoth_change(1)
-			origin_cooldown = world.time + origin_cooldown_delay
+			origin_cooldown = world.time + (5 SECONDS)
 		return
 	if(serpentsnested <= 2)
 		serpentsnested = serpentsnested + 1
@@ -91,27 +86,24 @@
 /mob/living/simple_animal/hostile/abnormality/naked_nest/AttackingTarget(atom/attacked_target)
 	return OpenFire()
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/Found(mob/living/H)
-	if(!H.has_status_effect(/datum/status_effect/serpents_host))
-		return TRUE
-	return FALSE
+/mob/living/simple_animal/hostile/abnormality/naked_nest/CanAttack(atom/the_target)
+	if(isturf(the_target) || !the_target || the_target.type == /atom/movable/lighting_object) // bail out on invalids
+		return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/PickTarget(list/Targets)
-	var/list/highest_priority = list()
-	var/list/lower_priority = list()
-	for(var/mob/living/L in Targets)
-		if(!CanAttack(L))
-			continue
-		if(ishuman(L))
-			if(!L.has_status_effect(/datum/status_effect/serpents_host))
-				highest_priority += L
-		else
-			lower_priority += L
-	if(LAZYLEN(highest_priority))
-		return pick(highest_priority)
-	if(LAZYLEN(lower_priority))
-		return pick(lower_priority)
-	return ..()
+	if(ismob(the_target)) //Target is in godmode, ignore it.
+		var/mob/M = the_target
+		if(M.status_flags & GODMODE)
+			return FALSE
+
+	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
+		return FALSE
+
+	if(ishuman(the_target))
+		var/mob/living/carbon/host = the_target
+		if(!host.NAKED_NESTED && host.stat != DEAD) //ONLY EVER TARGET VIABLE HOSTS.
+			return TRUE
+
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Crossed(atom/movable/AM)
 	. = ..()
@@ -125,7 +117,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(serpentsnested <= 0) //A empty nest falls to ruin
-		adjustHealth(10)
+		adjustHealth(5)
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/OpenFire()
 	if(bodytemperature <= INHOSPITABLE_FOR_NESTING || ranged_cooldown > world.time || serpentsnested <= 0 || status_flags & GODMODE) //Do we have serpents? Is it too cold to leave?
@@ -134,6 +126,7 @@
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 10, 1)
 	var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
 	S.GiveTarget(target)
+	S.Goto(target, S.move_to_delay, 0) //slightly worried how hefty it is calling 2 procs one after another.
 	serpentsnested = serpentsnested - 1
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/proc/RecoverSerpent(mob/living/simple_animal/hostile/naked_nest_serpent/S) //destination of serpents nest proc
@@ -156,7 +149,6 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	icon_living = "nakednest_serpent"
-	faction = list("hostile", "Naked_Nest")
 	a_intent = "harm"
 	melee_damage_lower = 1
 	melee_damage_upper = 1
@@ -177,18 +169,20 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	minbodytemp = INHOSPITABLE_FOR_NESTING
-	var/origin_nest
+	var/panic_timer = 0
+	var/mob/living/simple_animal/hostile/abnormality/naked_nest/origin_nest
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/Initialize()
 	. = ..()
-	for(var/mob/living/simple_animal/hostile/abnormality/naked_nest/N in loc)
-		origin_nest = N.tag
+	var/home_naked_nest = locate(/mob/living/simple_animal/hostile/abnormality/naked_nest) in loc
+	if(home_naked_nest)
+		origin_nest = home_naked_nest
 	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget()
-	if(iscarbon(target) && prob(80))
+	if(iscarbon(target))
 		var/mob/living/carbon/human/C = target
-		if(C.stat != DEAD && !C.has_status_effect(/datum/status_effect/serpents_host) && a_intent == "harm")
+		if(C.stat != DEAD && !C.NAKED_NESTED && a_intent == "harm")
 			EnterHost(C)
 			return
 	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
@@ -196,22 +190,27 @@
 		nest.RecoverSerpent(src)
 	. = ..()
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/PickTarget(list/Targets)
-	var/list/highest_priority = list()
-	var/list/lower_priority = list()
-	for(var/mob/living/L in Targets)
-		if(!CanAttack(L))
-			continue
-		if(ishuman(L))
-			if(!L.has_status_effect(/datum/status_effect/serpents_host))
-				highest_priority += L
-		else
-			lower_priority += L
-	if(LAZYLEN(highest_priority))
-		return pick(highest_priority)
-	if(LAZYLEN(lower_priority))
-		return pick(lower_priority)
-	return ..()
+/mob/living/simple_animal/hostile/naked_nest_serpent/CanAttack(atom/the_target)
+	if(panic_timer > world.time)
+		return FALSE
+
+	if(isturf(the_target) || !the_target || the_target.type == /atom/movable/lighting_object) // bail out on invalids
+		return FALSE
+
+	if(ismob(the_target)) //Target is in godmode, ignore it.
+		var/mob/M = the_target
+		if(M.status_flags & GODMODE)
+			return FALSE
+
+	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
+		return FALSE
+
+	if(ishuman(the_target))
+		var/mob/living/carbon/host = the_target
+		if(!host.NAKED_NESTED && host.stat != DEAD)
+			return TRUE
+
+	return FALSE
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/LoseAggro() //its best to return home
 	..()
@@ -225,7 +224,7 @@
 	if(prob(50 * (host.health / host.maxHealth)))
 		to_chat(host, "<span class='warning'>You feel something cold touch the back of your leg!</span>")
 	to_chat(src, "<span class='nicegreen'>You’ve found a new nest!</span>")
-	host.apply_status_effect(/datum/status_effect/serpents_host)
+	new /obj/item/organ/naked_nest(host)
 	QDEL_IN(src, 5)
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/proc/Nest(mob/living/simple_animal/hostile/abnormality/naked_nest/nest)
@@ -233,9 +232,22 @@
 		if(nest.serpentsnested <= 5 && origin_nest == N.tag || !origin_nest)
 			nest.RecoverSerpent(src)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Hide()
-	Goto((locate(/obj/structure/table) in oview(get_turf(src), 9)), move_to_delay, 0)
+/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Hide(panic) //procs only on abno breach and organ escape.
 	wander = FALSE
+	var/list/possiblehidingspots = list()
+	for(var/obj/structure/table/t in oview(get_turf(src), 9))
+		possiblehidingspots += t
+
+	if(panic)
+		panic_timer = world.time + (5 SECONDS)
+		vision_range = 4
+		for(var/obj/structure/table/t in oview(get_turf(src), 2))
+			possiblehidingspots -= t
+	var/hidingspot = locate(/obj/structure/table) in possiblehidingspots
+	if(hidingspot)
+		throw_at(hidingspot, 5, 2, src, FALSE, force = 5, gentle = TRUE) //leap
+		Goto((hidingspot), move_to_delay, 0)
+
 
 /mob/living/simple_animal/hostile/naked_nested
 	name = "naked nested"
@@ -244,7 +256,6 @@
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
-	faction = list("Naked_Nest")
 	deathmessage = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
 	melee_damage_lower = 10
 	melee_damage_upper = 30
@@ -257,6 +268,7 @@
 	mob_size = MOB_SIZE_HUMAN
 	minbodytemp = INHOSPITABLE_FOR_NESTING
 	guaranteed_butcher_results = list(/obj/item/food/meatball/human = 1) //considered having it spawn a single worm on butcher but that seemed cruel.
+	var/nesting_time = 40 SECONDS
 	var/nestingtimer
 	var/fortitude
 	var/prudence
@@ -265,14 +277,14 @@
 
 /mob/living/simple_animal/hostile/naked_nested/Initialize()
 	. = ..()
-	nestingtimer = world.time + (40 SECONDS)
+	nestingtimer = world.time + (nesting_time)
 	UpdateArmor() //in order to fix damage coefficents
 
 /mob/living/simple_animal/hostile/naked_nested/Life()
 	. = ..()
 	if(stat == DEAD && buffed == 0)
 		buffed = 1
-		nestingtimer = nestingtimer + (120 SECONDS)
+		nestingtimer = world.time + (120 SECONDS)
 	if(nestingtimer <= world.time && !target)
 		Nest()
 
@@ -311,79 +323,106 @@
 				damage_coeff[PALE_DAMAGE] = justice
 		return TRUE
 
-	//Status Effect
-/datum/status_effect/serpents_host // its final destination is your frontal lobe
-	id = "serpents_host"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 2400 //4 minutes
-	alert_type = null
-	var/cured = 0
-	var/physical_symptoms
-	var/presented_symptoms = 0
+/mob/living/simple_animal/hostile/naked_nested/hour_nesting //for dungeon gamemodes
+	name = "festering naked nested"
+	maxHealth = 500
+	health = 500
+	wander = FALSE
+	nesting_time = 1 HOURS
+
+	//ORGAN
+/obj/item/organ/naked_nest
+	name = "writhing mass"
+	zone = BODY_ZONE_HEAD
+	slot = ORGAN_SLOT_PARASITE_EGG
+	icon_state = "tonguetied"
+	color = "gold"
 	var/originalskintone
-	var/extra_time = 0.8 SECONDS //doubles remaining time
+	var/physical_symptoms = FALSE
+	var/grow_process = 0
 
-/datum/status_effect/serpents_host/on_apply()
+/obj/item/organ/naked_nest/Initialize()
 	. = ..()
-	if(ishuman(owner))
-		owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
-		owner.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/justice_attribute) //will test to see if can be cured.
-		var/mob/living/carbon/human/H = owner
-		originalskintone = H.skin_tone
-	physical_symptoms = world.time + (180 SECONDS)
-	owner.faction += "Naked_Nest"
+	if(iscarbon(loc))
+		grow_process = world.time + (4 MINUTES)
+		Insert(loc)
 
-/datum/status_effect/serpents_host/tick()
+/obj/item/organ/naked_nest/Insert(mob/living/carbon/M, special = FALSE)
+	..()
+	var/mob/living/carbon/human/H = M
+	H.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
+	H.add_movespeed_mod_immunities(type, /datum/movespeed_modifier/justice_attribute)
+	originalskintone = H.skin_tone
+
+/obj/item/organ/naked_nest/on_find(mob/living/finder)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjustSanityLoss(0.1) //the serpents final destination is your frontal lobe
-		H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
-		if(H.bodytemperature <= INHOSPITABLE_FOR_NESTING) //cure conditions
-			SerpentsPoison()
-		if(H.drunkenness >= 5 && H.stat != DEAD) //increases duration of infection.
-			duration = duration + extra_time
-			physical_symptoms = physical_symptoms + extra_time
-			if(prob(30))
-				to_chat(H, "<span class='warning'>You feel a gurgling noise inside of you...</span>")
-			else if(presented_symptoms == 1 && prob(20))
-				to_chat(H, "<span class='warning'>A sudden spasming headache overtakes you...</span>")
-		if(world.time >= physical_symptoms)
-			examine_text = "<span class='boldwarning'>SUBJECTPRONOUN has a gross green hue to their skin! </span>"
-			if(presented_symptoms != 1)
-				presented_symptoms = 1
-				H.skin_tone = "serpentgreen" //resulted in alteration to helpers.dm
-				H.regenerate_icons()
+	to_chat(finder, "<span class='warning'>A portion of [owner]'s brain has been converted into a scaly green tumor.")
 
-/datum/status_effect/serpents_host/proc/SerpentsPoison()
-	cured = 1
-	qdel(src)
+/obj/item/organ/naked_nest/on_death()
+	. = ..()
+	if(!owner)
+		if(useable)
+			var/mob/living/simple_animal/hostile/naked_nest_serpent/escapee = new(get_turf(src))
+			escapee.Hide(TRUE)
+		qdel(src)
+		return
+	growProcess()
 
-/datum/status_effect/serpents_host/on_remove()
-	if(ishuman(owner))
-		owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
-		owner.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/justice_attribute)
-		var/mob/living/carbon/human/host = owner
-		var/obj/item/organ/brain/B = host.getorganslot(ORGAN_SLOT_BRAIN)
-		if(ishuman(host) && presented_symptoms == 1)
-			host.skin_tone = originalskintone
-			host.regenerate_icons()
-		if(B && cured != 1)
-			var/mob/living/simple_animal/hostile/naked_nested/N = new(owner.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
-			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
-			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BELT))
-			NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BACK))
-			if(host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-				NestedItems(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-				N.UpdateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
-			playsound(get_turf(owner), 'sound/misc/soggy.ogg', 20, 1)
-			qdel(owner)
-	owner.faction -= "Naked_Nest"
+/obj/item/organ/naked_nest/Remove(mob/living/carbon/human/M, special = 0)
+	if(M && M.stat != DEAD)
+		SerpentsPoison(M, FALSE)
+		visible_message("<span class='warning'>A green worm leaps out of [M]'s [zone]!</span>")
 	. = ..()
 
-/datum/status_effect/serpents_host/proc/NestedItems(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
+/obj/item/organ/naked_nest/on_life()
+	. = ..()
+	growProcess()
+
+/obj/item/organ/naked_nest/proc/growProcess()
+	var/green_skin_time = grow_process - (1 MINUTES)
+	var/mob/living/carbon/human/H = owner
+	H.adjustSanityLoss(0.1) //the serpents final destination is your frontal lobe
+	H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.1)
+	if((H.drunkenness >= 5 || H.bodytemperature <= INHOSPITABLE_FOR_NESTING) && H.stat != DEAD) //increases duration of infection.
+		grow_process += (0.8 SECONDS)
+		if(prob(30))
+			to_chat(H, "<span class='warning'>You feel a gurgling noise inside of you...</span>")
+		else if(physical_symptoms && prob(20))
+			to_chat(H, "<span class='warning'>A sudden spasming headache overtakes you...</span>")
+	if(world.time >= (green_skin_time))
+		if(!physical_symptoms)
+			physical_symptoms = TRUE
+			H.skin_tone = "serpentgreen" //resulted in alteration to helpers.dm
+			H.regenerate_icons()
+		if(world.time >= grow_process)
+			HatchNest(owner)
+	return
+
+/obj/item/organ/naked_nest/proc/HatchNest(mob/living/carbon/human/host)
+	var/mob/living/simple_animal/hostile/naked_nested/N = new(host.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
+	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BELT))
+	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BACK))
+	if(host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		NestedItems(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		N.UpdateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
+	playsound(get_turf(host), 'sound/misc/soggy.ogg', 20, 1)
+	QDEL_IN(host, 2)
+
+/obj/item/organ/naked_nest/proc/NestedItems(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
 	if(nested_item)
 		nested_item.forceMove(nest)
+
+/obj/item/organ/naked_nest/proc/SerpentsPoison(mob/living/carbon/human/H, perfect_cure)
+	if(!H)
+		return
+	H.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/damage_slowdown)
+	H.remove_movespeed_mod_immunities(type, /datum/movespeed_modifier/justice_attribute)
+	if(ishuman(H) && physical_symptoms == 1)
+		H.skin_tone = originalskintone
+		H.regenerate_icons()
+	if(perfect_cure)
+		useable = FALSE
 
 #undef INHOSPITABLE_FOR_NESTING
 
@@ -406,6 +445,9 @@
 	qdel(src)
 
 /obj/item/serpentspoison/proc/Cure(mob/living/carbon/target)
-	if(target.has_status_effect(/datum/status_effect/serpents_host))
-		var/datum/status_effect/serpents_host/C = target.has_status_effect(/datum/status_effect/serpents_host)
-		C.SerpentsPoison()
+	if(target.NAKED_NESTED)
+		var/obj/item/organ/naked_nest/C = target.NAKED_NESTED
+		C.SerpentsPoison(target, TRUE)
+		C.Remove(target)
+
+#undef NAKED_NESTED

@@ -1,8 +1,28 @@
+/obj/item/clothing/suit/armor/ego_gear/city/zweijunior
+	name = "Zwei Association casual jacket"
+	desc = "Armor worn by initiate zwei association fixers when not on duty."
+	icon_state = "zweicasual"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+
 /obj/item/clothing/suit/armor/ego_gear/city/zwei
 	name = "Zwei Association armor"
 	desc = "Armor worn by zwei association fixers."
 	icon_state = "zwei"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/zweiriot
+	name = "Zwei Association riot armor"
+	desc = "Armor worn by zwei association fixers when they are suppressing riots or unrest. It slows you down slightly, but offers excellent defenses"
+	icon_state = "zweiriot"
+	slowdown = 0.7
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -23,7 +43,7 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/city/zweivet/Initialize()
-	..()
+	. = ..()
 	if(prob(50))
 		icon_state = "zweishort"
 		worn_icon_state = icon_state

@@ -982,6 +982,37 @@
 
 //~~~LC13 General Debuffs~~~
 
+/datum/status_effect/qliphothoverload
+	id = "qliphoth intervention field"
+	duration = 10 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+	var/originalstamina = 0
+
+/datum/status_effect/qliphothoverload/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/hostile/L = owner
+	L.adjustStaminaLoss(160, TRUE, TRUE)
+	L.stamina_recovery *= 0.01 //anything with below 10 stamina recovery will continue to lose stamina
+	L.update_stamina()
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "vanguard")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/qliphothoverload/on_remove()
+	var/mob/living/simple_animal/hostile/L = owner
+	L.adjustStaminaLoss(-160, TRUE, TRUE)
+	L.stamina_recovery /= 0.01
+	L.update_stamina()
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
+//update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
+// 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
+
 /datum/status_effect/sunder_red
 	id = "sunder red armor"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -992,12 +1023,30 @@
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		if(M.damage_coeff[RED_DAMAGE] >= 0)
-			M.damage_coeff[RED_DAMAGE] += 0.2 //20% damage increase
+		M.damage_coeff[RED_DAMAGE] *= 1.2
+//20% damage increase. Hitting any abnormality that has a negative value will cause this
+//to be a buff to their healing.
 
 /datum/status_effect/sunder_red/on_remove()
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		if(M.damage_coeff[RED_DAMAGE] >= 0)
-			M.damage_coeff[RED_DAMAGE] -= 0.2
+		M.damage_coeff[RED_DAMAGE] /= 1.2
+
+	//White Damage Debuff
+
+/datum/status_effect/rend_white
+	id = "rend white armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rend_white/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[WHITE_DAMAGE] *= 1.2
+
+/datum/status_effect/rend_white/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[WHITE_DAMAGE] /= 1.2

@@ -168,12 +168,12 @@
 	var/chosenorgan = pick(eyes,ears,tongue)
 	while(!chosenorgan)
 		if(!eyes && !ears && !tongue)
-			to_chat(H, "<span class='warning'>With nothing left to lose, you lose your life. </span>")
+			to_chat(H, "<span class='warning'>With nothing left to lose, you lose your life.</span>")
 			H.dust()
 			return
 		chosenorgan = pick(eyes,ears,tongue)
 	if(chosenorgan == eyes)
-		to_chat(user, "<span class='warning'>A brillaint flash of light is the last thing you see...</span>")
+		to_chat(user, "<span class='warning'>A brilliant flash of light is the last thing you see...</span>")
 	if(chosenorgan == ears)
 		to_chat(user, "<span class='warning'>Suddenly, everything goes quiet...</span>")
 	if(chosenorgan == tongue)
@@ -450,7 +450,7 @@
 	duration = 2 SECONDS
 
 /obj/effect/temp_visual/stone_gaze/Initialize()
-	..()
+	. = ..()
 	alpha = rand(75,255)
 	animate(src, alpha = 0, time = 20)
 

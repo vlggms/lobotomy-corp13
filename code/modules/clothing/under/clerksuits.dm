@@ -70,3 +70,15 @@
 	name = "\improper w-corp uniform"
 	desc = "A blue and black uniform worn by w-corp employees."
 	icon_state = "wuniform"
+
+/obj/item/clothing/under/suit/lobotomy/kcorp
+	name = "k-corp officer uniform"
+	desc = "A plain black suit with green tie. Used by K-corp non-combat staff."
+	icon_state = "kcorp"
+
+/obj/item/clothing/under/suit/lobotomy/plain
+	name = "plain suit"
+	desc = "A plain white button down with black pants."
+	icon_state = "shirt"
+
+

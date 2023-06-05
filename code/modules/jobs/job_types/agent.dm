@@ -25,6 +25,8 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
+	job_important = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
+
 	var/normal_attribute_level = 20 // Scales with round time
 
 /datum/job/agent/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -78,6 +80,7 @@
 		to_chat(M, "<b>You have not been assigned to any department.</b>")
 
 	var/set_attribute = normal_attribute_level
+
 	if(world.time >= 75 MINUTES) // Full facility expected
 		set_attribute *= 4
 	else if(world.time >= 60 MINUTES) // More than one ALEPH
@@ -88,6 +91,22 @@
 		set_attribute *= 2
 	else if(world.time >= 15 MINUTES) // Usual time for HEs
 		set_attribute *= 1.5
+
+	//if(SSlobotomy_corp.understood_abnos.len && SSlobotomy_corp.understood_abnos.len > 0)
+	//	var/numberlol = SSlobotomy_corp.understood_abnos.len
+	//	var/totalcells = SSabnormality_queue.rooms_start
+	//	var/percentageofunderstanding = numberlol / totalcells
+	//	if(percentageofunderstanding == 0.5)
+	//		set_attribute *= 5
+	//	else if (percentageofunderstanding >= 0.4)
+	//		set_attribute *= 4
+	//	else if (percentageofunderstanding >= 0.3)
+	//		set_attribute *= 3
+	//	else if (percentageofunderstanding >= 0.2)
+	//		set_attribute *= 2
+	//	else if (percentageofunderstanding >= 0.1)
+	//		set_attribute *= 1.5
+
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
@@ -123,7 +142,8 @@
 	exp_requirements = 240
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
-	mapexclude = list("wonderlabs")
+	mapexclude = list("wonderlabs", "mini")
+	job_important = "You are an Agent Captain. You're an experienced agent, that is expected to disseminate your information and experience as well as help lead the agents."
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
@@ -143,6 +163,8 @@
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
 	exp_requirements = 0
+	job_important = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
+	If there is a Records Officer, seek them for assistance."
 
 /datum/outfit/job/agent/intern
 	name = "Agent Intern"

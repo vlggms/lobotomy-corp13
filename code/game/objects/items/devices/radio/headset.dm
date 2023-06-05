@@ -316,6 +316,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "sec_headset"
 	keyslot = new /obj/item/encryptionkey/heads/headset_discipline
 
+//Assciation stuff
+/obj/item/radio/headset/heads/headset_association
+	name = "association director headset"
+	desc = "This is used by the local association director."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/headset_cent
+
+/obj/item/radio/headset/headset_cent
+	name = "association headset"
+	desc = "This is used by the local association."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/headset_cent
+
 
 
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)

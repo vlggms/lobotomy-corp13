@@ -87,8 +87,7 @@
 /turf/open/floor/facility/white,
 /area/department_main/architecture)
 "aO" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/chem_master,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "aT" = (
@@ -405,6 +404,17 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
+"de" = (
+/obj/structure/table/abductor,
+/obj/effect/turf_decal/siding/purple,
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/turf/open/floor/facility,
+/area/department_main/information)
 "di" = (
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment,
@@ -858,6 +868,11 @@
 	dir = 8
 	},
 /obj/structure/table/abductor,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "gX" = (
@@ -1481,7 +1496,6 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/machinery/regenerator,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "lB" = (
@@ -3717,6 +3731,12 @@
 "zx" = (
 /obj/structure/table/abductor,
 /obj/effect/turf_decal/siding/purple,
+/obj/machinery/recharger{
+	pixel_x = 6
+	},
+/obj/machinery/recharger{
+	pixel_x = -6
+	},
 /turf/open/floor/facility,
 /area/department_main/information)
 "zz" = (
@@ -5285,6 +5305,9 @@
 /area/department_main/discipline)
 "KL" = (
 /obj/structure/table/reinforced,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/facility,
 /area/department_main/control)
 "KM" = (
@@ -7433,6 +7456,11 @@
 /obj/structure/fluff/hedge,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"YU" = (
+/obj/structure/table,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/facility,
+/area/department_main/safety)
 "YY" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -7441,10 +7469,11 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "YZ" = (
-/obj/structure/table/abductor,
-/obj/item/camera,
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
+	},
+/obj/machinery/computer/abnormality_archive{
+	dir = 4
 	},
 /turf/open/floor/facility,
 /area/department_main/information)
@@ -27269,7 +27298,7 @@ uI
 VM
 Df
 uJ
-Ug
+YU
 Oq
 PD
 PD
@@ -47034,7 +47063,7 @@ HQ
 zI
 HQ
 HQ
-zx
+de
 Dp
 Sc
 Pw

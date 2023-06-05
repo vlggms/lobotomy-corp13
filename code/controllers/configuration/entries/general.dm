@@ -522,3 +522,9 @@
 	config_entry_value = 18000
 	integer = FALSE
 	min_val = 0
+
+/datum/config_entry/number/qliphoth_meltdown_percent // percentage of abnormalities to melt down per meltdown
+	config_entry_value = 0.35
+	integer = FALSE
+	min_val = 0.0
+	max_val = 1.0

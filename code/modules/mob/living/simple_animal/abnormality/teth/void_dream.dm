@@ -150,7 +150,7 @@
 	var/homing_range = 9
 
 /obj/projectile/sleepdart/Initialize()
-	..()
+	. = ..()
 	var/list/targetslist = list()
 	for(var/mob/living/carbon/human/H in view(homing_range, src))
 		if(H.IsSleeping())

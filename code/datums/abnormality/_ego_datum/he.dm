@@ -262,6 +262,16 @@
 	item_path = /obj/item/ego_weapon/fluid_sac
 	cost = 35
 
+//Nameless Fetus - Syrinx
+/datum/ego_datum/armor/syrinx
+	item_path = /obj/item/clothing/suit/armor/ego_gear/syrinx
+	cost = 35
+
+/* Not done yet.
+/datum/ego_datum/weapon/syrinx
+	item_path = /obj/item/gun/ego_gun/syrinx
+	cost = 35*/
+
 //Red Shoes - Sanguine Desire
 /datum/ego_datum/armor/sanguine
 	item_path = /obj/item/clothing/suit/armor/ego_gear/sanguine
@@ -297,3 +307,25 @@
 /datum/ego_datum/weapon/flesh
 	item_path = /obj/item/ego_weapon/flesh
 	cost = 35*/
+
+//KQE-1J-23 - Replica
+/datum/ego_datum/armor/replica
+	item_path = /obj/item/clothing/suit/armor/ego_gear/replica
+	cost = 35
+
+/datum/ego_datum/weapon/replica
+	item_path = /obj/item/ego_weapon/replica
+	cost = 35
+
+//Wayward Passenger - Dimension Shredder
+/datum/ego_datum/armor/warp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/warp
+	cost = 35
+
+/datum/ego_datum/weapon/warp
+	item_path = /obj/item/ego_weapon/warp
+	cost = 35
+
+/datum/ego_datum/weapon/warp/spear
+	item_path = /obj/item/ego_weapon/warp/spear
+	cost = 35

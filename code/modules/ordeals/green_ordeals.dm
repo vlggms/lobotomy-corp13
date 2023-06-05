@@ -1,6 +1,6 @@
 // Dawn
 // Once again, amber dawn works for everything
-/datum/ordeal/amber_dawn/green_dawn
+/datum/ordeal/simplespawn/green_dawn
 	name = "Dawn of Green"
 	annonce_text = "One day, a question crossed through my mind. Where do we come from? \
 	We were given life and left in this world against our own volition."
@@ -11,9 +11,10 @@
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
 	spawn_player_multiplicator = 0.05
 	color = COLOR_DARK_LIME
+	reward_percent = 0.1
 
 // Noon
-/datum/ordeal/amber_dawn/green_noon
+/datum/ordeal/simplespawn/green_noon
 	name = "Noon of Green"
 	annonce_text = "In the end, they were bound to life. We existed only to express despair and ire."
 	annonce_sound = 'sound/effects/ordeals/green_start.ogg'

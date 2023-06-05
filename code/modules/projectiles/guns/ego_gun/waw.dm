@@ -290,6 +290,7 @@
 	name = "feather of honor"
 	desc = "A flaming, but very sharp, feather."
 	icon_state = "featherofhonor"
+	worn_icon_state = "featherofhonor"
 	inhand_icon_state = "featherofhonor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_feather
 	weapon_weight = WEAPON_HEAVY
@@ -326,11 +327,10 @@
 	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
 	icon_state = "warring"
 	inhand_icon_state = "warring"
-	special = "This weapon must be drawn before firing. \
-		It has perfect accuracy."
+	special = "This weapon can unleash a special attack by loading a second arrow."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
+	fire_delay = 0//it caused some jank, like failing to charge after the do-after
 	spread = 0
 	//firing sound 1
 	fire_sound = 'sound/weapons/bowfire.ogg'
@@ -339,47 +339,62 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 	var/drawn = 0
+	var/charge_effect = "fire a beam of electricity."
+	var/charge_cost = 3
+	var/charge = 0
+	var/ammo_2= /obj/item/ammo_casing/caseless/ego_warring2
+
+/obj/item/gun/ego_gun/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
+	. = ..()
+	. -= "<span class='notice'>This weapon fires fast.</span>"//it doesn't
+	. += "<span class='notice'>This weapon must be loaded manually by activating it in your hand.</span>"
+	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+
+/obj/item/gun/ego_gun/warring/proc/Build_Charge()
+	if(charge<=20)
+		charge+=1
 
 /obj/item/gun/ego_gun/warring/can_shoot()
-	if (drawn == 0)
+	if(drawn == 0)
 		icon_state = "[initial(icon_state)]"
-		ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 		return FALSE
 	return TRUE
-
-/obj/item/gun/ego_gun/warring/before_firing(atom/target, mob/user)
-	..()
-	if (drawn == 0)//gun should not fire here
-		can_shoot()
-		return
 
 /obj/item/gun/ego_gun/warring/afterattack(atom/target, mob/user)
 	..()
 	drawn = 0
 	icon_state = "[initial(icon_state)]"
-	can_shoot()
 
 /obj/item/gun/ego_gun/warring/attack_self(mob/user)
 	switch(drawn)
 		if (0)
-			if(do_after(user, 10, src))
+			if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
 				drawn  = 1
 				to_chat(user,"<span class='warning'>You draw the [src] with all your might.</span>")
 				ammo_type = /obj/item/ammo_casing/caseless/ego_warring
 				fire_sound = 'sound/weapons/bowfire.ogg'
 				icon_state = "warring_drawn"
 		if (1)
-			if(do_after(user, 15, src))
-				if(drawn != 1)
+			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				if(drawn != 1 || charge < charge_cost)
 					return
 				drawn = 2
-				ammo_type = /obj/item/ammo_casing/caseless/ego_warring2//FIXME: the problem line, occasionally fails for no reason.
+				charge -= charge_cost
+				QDEL_NULL(chambered)
+				chambered = new ammo_2
 				playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 				to_chat(user,"<span class='warning'>An arrow of lightning appears.</span>")
 				fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
 				icon_state = "warring_firey"
 		if (2)
-			return
+			if(do_after(user, 1, src, IGNORE_USER_LOC_CHANGE))
+				drawn = 1
+				charge += charge_cost
+				QDEL_NULL(chambered)
+				chambered = new ammo_type
+				fire_sound = 'sound/weapons/bowfire.ogg'
+				icon_state = "warring_drawn"
+				to_chat(user,"<span class='warning'>The lightning fades.</span>")
 
 /obj/item/gun/ego_gun/banquet
 	name = "banquet"
@@ -415,6 +430,19 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+/obj/item/gun/ego_gun/my_own_bride
+	name = "My own Bride"
+	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
+			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
+	icon_state = "wife"
+	inhand_icon_state = "wife"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_bride
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 5
+	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+	)
 
 /obj/item/gun/ego_gun/hookah
 	name = "lethargy"
@@ -433,3 +461,79 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 	)
+
+/obj/item/gun/ego_gun/pistol/innocence
+	name = "childhood memories"
+	desc = "If no one had come in to get me, I would have stayed in that room, not even realizing the passing time."
+	icon_state = "innocence_gun"
+	inhand_icon_state = "innocence_gun"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_innocence
+	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
+	vary_fire_sound = TRUE
+	autofire = 0.2 SECONDS
+	fire_sound_volume = 20
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+	)
+
+/obj/item/gun/ego_gun/hypocrisy
+	name = "hypocrisy"
+	desc = "The tree turned out to be riddled with hypocrisy and deception; those who wear its blessing act in the name of bravery and faith."
+	icon_state = "hypocrisy"
+	inhand_icon_state = "hypocrisy"
+	worn_icon_state = "hypocrisy"
+	special = "Use this weapon in hand to place a trap."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_hypocrisy
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 25
+	fire_sound = 'sound/weapons/ego/crossbow.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+	)
+	var/trap_cooldown = 0
+
+/obj/item/gun/ego_gun/hypocrisy/attack_self(mob/living/carbon/user)
+	if(locate(/obj/structure/liars_trap) in range(1, get_turf(src)))
+		to_chat(user,"<span class='notice'>Your too close to another trap.</span>")
+		return
+	to_chat(user,"<span class='notice'>You pull out an arrow and attempt to stab it into the ground.</span>")
+	playsound(src, 'sound/items/crowbar.ogg', 50, TRUE)
+	if(do_after(user, 3 SECONDS, src))
+		if(trap_cooldown >= world.time)
+			to_chat(user,"<span class='notice'>You cant place a sapling trap yet.</span>")
+			return
+		playsound(get_turf(user), 'sound/creatures/venus_trap_hurt.ogg', 50, TRUE)
+		var/obj/structure/liars_trap/c = new(get_turf(user))
+		c.creator = user
+		c.faction = user.faction.Copy()
+		trap_cooldown = world.time + (10 SECONDS)
+
+//Parasite Tree Ego Weapon Trap
+/obj/structure/liars_trap
+	gender = PLURAL
+	name = "sapling trap"
+	desc = "A small harmless looking sapling. Its leaves never seem to wilt."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "liars_trap"
+	anchored = TRUE
+	density = FALSE
+	resistance_flags = FLAMMABLE
+	max_integrity = 15
+	var/mob/living/carbon/human/creator
+	var/list/faction = list()
+
+/obj/structure/liars_trap/Initialize()
+	. = ..()
+	if(creator)
+		faction = creator.faction.Copy()
+
+/obj/structure/liars_trap/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(!faction_check(faction, L.faction))
+			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
+			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
+			to_chat(creator, "<span class='warning'>You feel a itch towards [get_area(L)].</span>")
+			qdel(src)

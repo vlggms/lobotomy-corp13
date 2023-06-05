@@ -30,6 +30,8 @@
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	minimal_access = list(ACCESS_COMMAND)
+	mapexclude = list("mini")
+	job_important = "You are the Extraction Officer. Your job is to manage the EGO console, Extraction purchase console, and power generation system. Your main goal is to make sure the agents are well-equipped."
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 20,
@@ -55,6 +57,9 @@
 /datum/job/command/records
 	title = "Records Officer"
 	outfit = /datum/outfit/job/command/records
+	job_important = "You are the Records Officer. Your job is to manage Records. You have filing cabinets in the back of your office filled with all sorts of information; make sure the agents know this information. \
+	Make sure that you assist Interns and new clerks in learning how to work at Lcorp. Help agents use tool abnormalities with proper warnings. \
+	As well as this, you have access to powerful handheld watches with various effects."
 
 /datum/job/command/records/after_spawn(mob/living/H, mob/M)
 	. = ..()

@@ -5,5 +5,4 @@
 #If SQL-based admin loading is enabled, admins listed here will always be loaded first and will override any duplicate entries in the database.
 
 EgorDinamit = Host
-Samuuu3 = Game Master
-John Willard = Game Master
+Kitsunemitsu = Lazy Master

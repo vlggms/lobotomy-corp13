@@ -124,8 +124,23 @@
 	projectile_type = /obj/projectile/ego_bullet/ego_blind_rage
 	pellets = 4
 	variance = 30
-	
+
 /obj/item/ammo_casing/caseless/ego_hookah
 	name = "hookah casing"
 	desc = "A casing from hookah."
 	projectile_type = /obj/projectile/ego_bullet/ego_hookah
+
+/obj/item/ammo_casing/caseless/ego_innocence
+	name = "innocence casing"
+	desc = "A innocence casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_innocence
+
+/obj/item/ammo_casing/caseless/ego_hypocrisy
+	name = "hypocrisy casing"
+	desc = "A hypocrisy casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_hypocrisy
+
+/obj/item/ammo_casing/caseless/ego_bride
+	name = "bride casing"
+	desc = "A bride casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_bride
