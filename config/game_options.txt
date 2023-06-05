@@ -37,7 +37,7 @@ BADGES
 ## To speed things up make the number negative, to slow things down, make the number positive.
 
 ## These modify the run/walk speed of all mobs before the mob-specific modifiers are applied.
-RUN_DELAY 1.5
+RUN_DELAY 2
 WALK_DELAY 4
 
 ## The variables below affect the movement of specific mob types. THIS AFFECTS ALL SUBTYPES OF THE TYPE YOU CHOOSE!
@@ -92,7 +92,7 @@ INFILTRATOR_LUFR_MESSAGE You are here to get rid of filthy humans and sabotage t
 ## GAME MODES ###
 
 ## Uncomment to not send a roundstart intercept report. Gamemodes may override this.
-#NO_INTERCEPT_REPORT
+NO_INTERCEPT_REPORT
 
 ## Probablities for game modes chosen in 'secret' and 'random' modes.
 ## Default probablity is 1, increase to make that mode more likely to be picked.
@@ -454,37 +454,9 @@ SILICON_MAX_LAW_AMOUNT 20
 ##-------------------------------------------------------------------------------------------
 ## Uncommenting races will allow them to be choosen at roundstart while join_with_muntant_race is on. You'll need at least one.
 
-## You probably want humans on your space station, but technically speaking you can turn them off without any ill effect
+## We're a Lobotomy Corp server. There's only humans, and healing other forms of damage is extremely difficult; I don't want to encourage anyone.
+## This is here in case you want to add other races for your local host.
 ROUNDSTART_RACES human
-
-## Races that are strictly worse than humans that could probably be turned on without balance concerns
-ROUNDSTART_RACES lizard
-ROUNDSTART_RACES fly
-ROUNDSTART_RACES moth
-ROUNDSTART_RACES plasmaman
-ROUNDSTART_RACES beefman
-#ROUNDSTART_RACES shadow
-
-## Races that are better than humans in some ways, but worse in others
-ROUNDSTART_RACES ethereal
-#ROUNDSTART_RACES jelly
-#ROUNDSTART_RACES golem
-#ROUNDSTART_RACES adamantine
-#ROUNDSTART_RACES plasma
-#ROUNDSTART_RACES diamond
-#ROUNDSTART_RACES gold
-#ROUNDSTART_RACES silver
-#ROUNDSTART_RACES uranium
-#ROUNDSTART_RACES abductor
-#ROUNDSTART_RACES synth
-
-## Races that are straight upgrades. If these are on expect powergamers to always pick them
-#ROUNDSTART_RACES skeleton
-#ROUNDSTART_RACES zombie
-#ROUNDSTART_RACES slime
-#ROUNDSTART_RACES pod
-#ROUNDSTART_RACES military_synth
-#ROUNDSTART_RACES agent
 
 ##-------------------------------------------------------------------------------------------
 
@@ -582,7 +554,7 @@ ROUNDSTART_TRAITS
 #DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
-ENABLE_NIGHT_SHIFTS
+#ENABLE_NIGHT_SHIFTS
 
 ## Enable randomized shift start times##
 RANDOMIZE_SHIFT_TIME
