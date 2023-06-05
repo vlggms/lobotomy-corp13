@@ -5,6 +5,8 @@ Kirie*/
 
 /obj/item/ego_weapon/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 
 /obj/item/gun/ego_gun/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
@@ -74,8 +76,19 @@ Gain Sanity on kill.
 Blade Lineage
 Lock in place, giving yourself a big damage boost.
 
+Dawn Office
+AOE on hitting multiple targets
+
+Full-Stop
+Guns, use in hand to reload.
+Leader gear is a deagle and a glove that can immobilize all others with a full stop gun to increase fire rate and damage by 50% both
+
 Jeong's Office
 Cut HP by 10%, next attack deals 7x damage
+
+Rosespanner
+Gears - Apply damagetypes to weapons
+
 
 ********************************************************************
 Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
@@ -88,13 +101,6 @@ Grade 6 weapons with grade 5 damage. Each of them has a durability that decrease
 
 Thumb
 Rifles that have a bayonet. Holds 8 shots, melee an enemy to load 4 rounds.
-
-Dawn Office
-AOE with DOT Burn effects.
-
-Full-Stop
-Guns, use in hand to reload.
-Leader gear is a deagle and a glove that can immobilize all others with a full stop gun to increase fire rate and damage by 50% both
 
 Hana Association
 Pale equivalent to Seven and Zwei

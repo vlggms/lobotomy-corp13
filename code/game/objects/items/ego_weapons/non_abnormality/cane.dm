@@ -34,7 +34,7 @@
 
 /obj/item/ego_weapon/city/cane/attack(mob/living/target, mob/living/user)
 	..()
-	if(charge<=20)
+	if(charge<20)
 		charge+=1
 
 /obj/item/ego_weapon/city/cane/proc/release_charge(mob/living/user)
