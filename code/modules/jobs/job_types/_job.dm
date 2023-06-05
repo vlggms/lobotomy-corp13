@@ -91,8 +91,8 @@
 	var/trusted_only = FALSE
 
 	//Does this job need any extra instructions?
-	var/spawnmessage
-	var/spawnmessage2
+	var/job_important
+	var/job_notice
 
 /datum/job/New()
 	. = ..()
