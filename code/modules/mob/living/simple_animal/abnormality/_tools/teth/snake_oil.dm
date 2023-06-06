@@ -44,7 +44,7 @@
 
 /datum/status_effect/snake_oil/proc/HealthCheck()
 	var/mob/living/carbon/human/H = owner
-	if(H.stat >= SOFT_CRIT || H.health < 0) //crit check
+	if(H.stat >= HARD_CRIT || H.health < 0) //crit check
 		to_chat(H, "<span class='userdanger'>You feel like your body can't hold itself together!</span>")
 		H.gib()
 
