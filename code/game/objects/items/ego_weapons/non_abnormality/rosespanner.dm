@@ -41,7 +41,7 @@
 
 /obj/item/ego_weapon/city/rosespanner/attack(mob/living/target, mob/living/user)
 	..()
-	if(charge<20)
+	if(charge<20 && target.stat != DEAD)
 		charge+=1
 	else
 		overcharged = TRUE
@@ -75,6 +75,22 @@
 	charged = FALSE
 	damtype = initial(damtype)
 	armortype = initial(damtype)
+
+//Grade 5
+/obj/item/ego_weapon/city/rosespanner/minihammer
+	name = "rosespanner mini hammer"
+	desc = "A hammer from the rosespanner workshop. Fits in your EGO belt."
+	icon_state = "rosespanner_minihammer"
+	inhand_icon_state = "rosespanner_hammer"
+	force = 44
+	attack_speed = 1
+	charge_cost = 7	//Takes fucking forever, you can charge it a little faster
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
 
 //Grade 5
 /obj/item/ego_weapon/city/rosespanner/hammer

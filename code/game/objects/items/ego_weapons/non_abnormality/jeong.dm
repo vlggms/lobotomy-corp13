@@ -3,7 +3,7 @@
 /obj/item/ego_weapon/city/jeong
 	name = "jeong's office wakizashi"
 	desc = "A small blade used by Jeong's fixers"
-	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 5x damage."
+	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 5x damage. This weapon fits in an EGO belt."
 	icon_state = "jeong_fixer"
 	force = 30
 	attack_speed = 0.7

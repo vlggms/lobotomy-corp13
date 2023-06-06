@@ -116,11 +116,24 @@
 	icon_state = "machinezelkova"
 	crate = /obj/structure/lootcrate/workshopzelkova
 
+/obj/structure/pe_sales/rosespanner
+	name = "Rosespanner Workshop Power Input"
+	desc = "A machine used to send PE to the rosespanner workshop"
+	icon_state = "machinerosespanner"
+	crate = /obj/structure/lootcrate/workshoprosespanner
+
 /obj/structure/pe_sales/zwei
 	name = "Zwei Association Power Input"
 	desc = "A machine used to send PE to the zwei association."
 	icon_state = "machinezwei"
 	crate = /obj/structure/lootcrate/zwei
+	crate_timer = 240	//Two boxes per
+
+/obj/structure/pe_sales/shi
+	name = "Shi Association Power Input"
+	desc = "A machine used to send PE to the shi association."
+	icon_state = "machinezwei"
+	crate = /obj/structure/lootcrate/shi
 	crate_timer = 240	//Two boxes per
 
 /obj/structure/pe_sales/seven

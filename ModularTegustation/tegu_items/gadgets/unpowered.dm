@@ -165,3 +165,19 @@
 		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+
+
+//Kcorp Syringe
+/obj/item/ksyringe
+	name = "k-corp nanomachine ampule"
+	desc = "A syringe of kcorp healing nanobots."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ksyringe/attack_self(mob/living/user)
+	..()
+	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
+	user.adjustBruteLoss(-40)
+	qdel(src)

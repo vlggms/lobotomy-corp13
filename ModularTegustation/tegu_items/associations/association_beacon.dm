@@ -27,7 +27,7 @@
 /obj/item/storage/box/association/seven/PopulateContents()
 	new /obj/item/ego_weapon/city/seven(src)
 	new /obj/item/ego_weapon/city/seven(src)
-	new /obj/item/ego_weapon/city/seven(src)
+	new /obj/item/ego_weapon/city/seven_fencing(src)
 	new /obj/item/ego_weapon/city/seven/vet(src)
 	new /obj/item/ego_weapon/city/seven/director(src)
 	new /obj/item/ego_weapon/city/seven/cane(src)

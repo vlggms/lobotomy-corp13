@@ -125,3 +125,59 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+//Seven Fencing - Lack the Health gaining ability, and gain an ability similar to Capo, where they do bonus damage when attacking the same person.
+/obj/item/ego_weapon/city/seven_fencing
+	name = "seven association fencing foil"
+	desc = "A fencing foil used by seven association to destroy singular targets."
+	special = "This weapon does 35% more damage when attacking the same target more than once."
+	icon_state = "sevenfencing"
+	hitsound = 'sound/weapons/rapierhit.ogg'
+	force = 38
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	var/fencing_target
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+
+/obj/item/ego_weapon/city/seven_fencing/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(!fencing_target || fencing_target != M)
+		fencing_target = M
+		to_chat(user, "<span class='notice'>Target acquired.</span>")
+	else
+		force *= 1.35
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/city/seven_fencing/vet
+	name = "seven association veteran fencing foil"
+	desc = "A fencing foil used by seven association veterans to destroy singular targets."
+	icon_state = "sevenfencing_vet"
+	force = 45
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/city/seven_fencing/dagger
+	name = "seven association fencing dagger"
+	desc = "A small, mailbreaking dagger used as a sidearm by specific seven association veterans."
+	special = "This weapon does 35% more damage when attacking the same target more than once. This weapon fits in an EGO belt."
+	icon_state = "sevenfencing_dagger"
+	force = 32
+	attack_speed = 0.5
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 100
+							)
+

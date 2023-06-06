@@ -155,6 +155,20 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/ego_weapon/city/ncorp_hammer/hand
+	name = "GrossHand"
+	desc = "A metal fist used by Ncorp captains."
+	icon_state = "grosshand"
+	force = 60
+	attack_speed = 1
+	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
 //SHE WHO GRIPS
 /obj/item/ego_weapon/city/ncorp_hammer/grippy
 	name = "Hand der Gerechten"

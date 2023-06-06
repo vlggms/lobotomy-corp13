@@ -769,6 +769,12 @@
 		/obj/item/ego_weapon/mini,
 		/obj/item/ego_weapon/city/ncorp_mark,
 		/obj/item/ego_weapon/city/ncorp_nail,
-		/obj/item/ego_weapon/city/rats
+		/obj/item/ego_weapon/city/rats,
+		/obj/item/ego_weapon/city/rosespanner/minihammer,
+		/obj/item/gun/ego_gun/city/fullstop/deagle,
+		/obj/item/ego_weapon/city/seven_fencing/dagger,
+		/obj/item/ego_weapon/city/jeong,
+		/obj/item/ego_weapon/city/awl,
+		/obj/item/ego_weapon/city/wcorp/hatchet
 		))
 
