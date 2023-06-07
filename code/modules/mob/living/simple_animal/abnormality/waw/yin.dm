@@ -35,8 +35,8 @@
 	neutral_boxes = 9
 
 	ego_list = list(
-		// /datum/ego_datum/weapon/discord,
-		// /datum/ego_datum/armor/discord
+		/datum/ego_datum/weapon/discord,
+		/datum/ego_datum/armor/discord
 		)
 	gift_type = /datum/ego_gifts/discord
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
