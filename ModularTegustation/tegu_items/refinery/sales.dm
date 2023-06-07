@@ -132,7 +132,7 @@
 /obj/structure/pe_sales/shi
 	name = "Shi Association Power Input"
 	desc = "A machine used to send PE to the shi association."
-	icon_state = "machinezwei"
+	icon_state = "machineshi"
 	crate = /obj/structure/lootcrate/shi
 	crate_timer = 240	//Two boxes per
 
