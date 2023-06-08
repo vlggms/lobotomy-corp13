@@ -9,7 +9,7 @@
 	desc = "A blade that is standard among blade lineage."
 	special = "Use this weapon in hand to immobilize yourself for 1 second, cut your HP by 10%, and deal 2x damage in pale."
 	icon_state = "shi_association"
-	force = 46
+	force = 44
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
