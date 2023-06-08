@@ -29,6 +29,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/lamp = /obj/item/clothing/suit/armor/ego_gear/realization/eyes,
 		/obj/item/clothing/suit/armor/ego_gear/oppression = /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
 		/obj/item/clothing/suit/armor/ego_gear/executive = /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,
+		/obj/item/clothing/suit/armor/ego_gear/thirteen = /obj/item/clothing/suit/armor/ego_gear/realization/silence,
 		// ALEPH
 		/obj/item/clothing/suit/armor/ego_gear/da_capo = /obj/item/clothing/suit/armor/ego_gear/realization/alcoda,
 		/obj/item/clothing/suit/armor/ego_gear/justitia = /obj/item/clothing/suit/armor/ego_gear/realization/head,
