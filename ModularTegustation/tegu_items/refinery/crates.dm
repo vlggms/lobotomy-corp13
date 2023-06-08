@@ -67,7 +67,7 @@
 		/obj/item/powered_gadget/vitals_projector,
 		)
 
-	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele. Also includes things like the
+	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele.
 	//Lore reasons tm
 	rareloot =	list(
 		/obj/item/powered_gadget/detector_gadget/ordeal,
@@ -118,7 +118,8 @@
 	rarechance = 30
 	veryrarechance = 5
 	lootlist =	list(
-		/obj/item/managerbullet)
+		/obj/item/managerbullet,
+		/obj/item/ksyringe)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/kcorp,
@@ -138,18 +139,28 @@
 	name = "R Corp Crate"
 	desc = "A crate recieved from R-Corp. Open with a Crowbar."
 	icon_state = "crate_rcorp"
+	veryrarechance = 5
 	lootlist =	list(
 		/obj/item/clothing/under/suit/lobotomy/rabbit,
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/toy/plush/myo,
 		/obj/item/toy/plush/rabbit,
 		/obj/item/clothing/suit/space/hardsuit/rabbit,
-		/obj/item/clothing/suit/space/hardsuit/rabbit/leader
+		/obj/item/clothing/suit/space/hardsuit/rabbit/leader,
+		/obj/item/gun/energy/e_gun/rabbitdash,
+		/obj/item/ego_weapon/city/rabbit_rush,
+		/obj/item/clothing/under/suit/lobotomy/rcorp_command
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/rabbit_blade)
+		/obj/item/ego_weapon/city/rabbit_blade,
+		/obj/item/ego_weapon/city/reindeer,
+		/obj/item/clothing/head/beret/tegu/rcorp,
+		/obj/item/clothing/neck/cloak/rcorp)
 
+	veryrareloot =	list(/obj/item/ego_weapon/city/rabbit_blade/command,
+		/obj/item/ego_weapon/city/reindeer/captain,
+	)
 
 //S Corporation
 /obj/structure/lootcrate/s_corp
@@ -188,6 +199,8 @@
 		/obj/item/ego_weapon/city/wcorp/axe,
 		/obj/item/ego_weapon/city/wcorp/spear,
 		/obj/item/ego_weapon/city/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/hammer,
+		/obj/item/ego_weapon/city/wcorp/hatchet,
 		)
 
 
@@ -218,7 +231,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander)
 
 
-//First set of city stuff. Cane, Streetlight, Wedge, Rats, Leaflet, The Udjat and Mirae Life Insurance
+//First set of city stuff. Cane, Streetlight, Rats, Leaflet, The Udjat and Mirae Life Insurance
 /obj/structure/lootcrate/workshopleaf
 	name = "leaflet workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
@@ -229,16 +242,12 @@
 		/obj/item/ego_weapon/city/rats,
 		/obj/item/ego_weapon/city/rats/knife,
 		/obj/item/ego_weapon/city/rats/scalpel,
-		/obj/item/clothing/suit/armor/ego_gear/city/wedge,
-		/obj/item/clothing/suit/armor/ego_gear/city/wedge/female,
 		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
 		/obj/item/ego_weapon/city/streetlight_bat,
 		/obj/item/ego_weapon/city/streetlight_greatsword
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/wedge,
-		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
 		/obj/item/ego_weapon/city/cane/cane,
 		/obj/item/ego_weapon/city/cane/claw,
 		/obj/item/ego_weapon/city/cane/briefcase,
@@ -247,52 +256,82 @@
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/mirae,
-		/obj/item/clothing/suit/armor/ego_gear/city/udjat)
+		/obj/item/ego_weapon/city/mirae,
+		/obj/item/ego_weapon/city/mirae/page,
+		/obj/item/clothing/suit/armor/ego_gear/city/udjat,)
 
-//Includes Yun office, Molar, Hook Office, Full Stop, as well as color fixers
+//Includes Yun office, Molar, Hook Office, Misc fixers, Gaze Office and Jeong's Office, as well as color fixers
 /obj/structure/lootcrate/workshopallas
 	name = "allas workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_allas"
 	rarechance = 20
 	lootlist =	list(
+		/obj/item/ego_weapon/city/fixerblade,
 		/obj/item/ego_weapon/city/yun,
 		/obj/item/ego_weapon/city/yun/shortsword,
 		/obj/item/ego_weapon/city/yun/chainsaw,
-		/obj/item/clothing/suit/armor/ego_gear/city/fullstop,
-		/obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper,
-		/obj/item/gun/ego_gun/city/fullstop/assault,
-		/obj/item/gun/ego_gun/city/fullstop/sniper
+		/obj/item/ego_weapon/city/jeong,
 		)
 
 	rareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,
-		/obj/item/gun/ego_gun/city/fullstop/deagle,
+		/obj/item/ego_weapon/city/jeong/large,
 		/obj/item/ego_weapon/city/molar,
 		/obj/item/ego_weapon/city/molar/olga,
 		)
 
 
-//Zelkova Workshop is the last one, Includes Dawn office, Misc fixers, Gaze Office and Jeong's Office.
+//Zelkova Workshop is the last one, Includes Dawn office, Wedge Office and Fullstop.
+//Basically this is the low-level Fixers on Ecorp
 /obj/structure/lootcrate/workshopzelkova
 	name = "zelkova workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_zelkova"
-	rarechance = 20
+	veryrarechance = 20	//20% chance for rare stuff
+	rarechance = 50	//40% chance for weapons, rest is on armor.
 	lootlist =	list(
-		/obj/item/ego_weapon/city/fixerblade,
-		/obj/item/ego_weapon/city/jeong,
 		/obj/item/ego_weapon/city/dawn/sword,
 		/obj/item/ego_weapon/city/dawn/cello,
-		/obj/item/clothing/suit/armor/ego_gear/city/dawn,
-		/obj/item/clothing/suit/armor/ego_gear/city/dawn/vet,
-		/obj/item/clothing/suit/armor/ego_gear/city/dawn/female
+		/obj/item/ego_weapon/city/wedge,
+		/obj/item/gun/ego_gun/city/fullstop/assault,
+		/obj/item/gun/ego_gun/city/fullstop/sniper,
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/jeong/large,
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstop,
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedge,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedge/female,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/dawn/female,
+		)
+
+	veryrareloot =	list(
 		/obj/item/ego_weapon/city/dawn/zwei,
+		/obj/item/gun/ego_gun/city/fullstop/deagle,
 		/obj/item/clothing/suit/armor/ego_gear/city/dawnleader,
+		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,)
+
+//Rosespanner Workshop. Mostly cheap to actually take advantage of the Gearsystem
+/obj/structure/lootcrate/workshoprosespanner
+	name = "rosespanner workshop crate"
+	desc = "A crate recieved from the rosespanner workshop. Open with a Crowbar."
+	icon_state = "crate_rosespanner"
+	lootlist =	list(
+		/obj/item/rosespanner_gear,
+		/obj/item/rosespanner_gear/white,
+		/obj/item/rosespanner_gear/black,
+	)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/rosespanner/hammer,
+		/obj/item/ego_weapon/city/rosespanner/spear,
+		/obj/item/ego_weapon/city/rosespanner/minihammer,
+		/obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep,
+		/obj/item/clothing/suit/armor/ego_gear/city/rosespanner,
+		/obj/item/rosespanner_gear/pale
 		)
 
 //Zwei - Zwei Association
@@ -313,6 +352,25 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
 
+//Shi - Shi Association
+/obj/structure/lootcrate/shi
+	name = "Shi Association Crate"
+	desc = "A crate recieved from the shi association. Open with a Crowbar."
+	icon_state = "crate_shi"
+	lootlist =	list(
+		/obj/item/ego_weapon/city/shi_association,
+		/obj/item/clothing/suit/armor/ego_gear/city/shi,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus
+		)
+
+	rareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/shi/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director,
+		/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
+		)
+
+
 //Seven - Seven and its associates
 /obj/structure/lootcrate/seven
 	name = "Seven Association Crate"
@@ -322,6 +380,7 @@
 	veryrarechance = 10
 	lootlist =	list(
 		/obj/item/ego_weapon/city/seven,
+		/obj/item/ego_weapon/city/seven_fencing,
 		/obj/item/clothing/suit/armor/ego_gear/city/seven,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenrecon,
 		/obj/item/binoculars,
@@ -329,14 +388,16 @@
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/seven/vet,
+		/obj/item/ego_weapon/city/seven_fencing/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet,
-		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel,
 		)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector,
 		/obj/item/ego_weapon/city/seven/director,
-		/obj/item/ego_weapon/city/seven/cane)
+		/obj/item/ego_weapon/city/seven/cane,
+		/obj/item/ego_weapon/city/seven_fencing/dagger)
 
 //Syndicate Stuff, Very expensive, but all round pretty good
 /obj/structure/lootcrate/syndicate
@@ -363,3 +424,4 @@
 		/obj/item/ego_weapon/city/index/proxy,
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
 		/obj/item/ego_weapon/city/index/yan)
+

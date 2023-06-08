@@ -2,9 +2,9 @@
 /obj/item/ego_weapon/city/awl
 	name = "night awl stilleto"
 	desc = "A thin stabbing knife, used by the Night Awls syndicate group."
-	special = "This weapon has a 10% chance to deal double damage."
+	special = "This weapon has a 10% chance to deal double damage. This weapon fits in an EGO belt."
 	icon_state = "nightawl"
-	force = 52
+	force = 40
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE

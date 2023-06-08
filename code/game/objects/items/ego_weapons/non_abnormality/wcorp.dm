@@ -29,7 +29,7 @@
 
 /obj/item/ego_weapon/city/wcorp/attack(mob/living/target, mob/living/user)
 	..()
-	if(charge<20)
+	if(charge<20 && target.stat != DEAD)
 		charge+=1
 	if(activated)
 		charge -= charge_cost
@@ -163,4 +163,86 @@
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 		var/turf/T = get_turf(target)
 		new /obj/effect/temp_visual/justitia_effect(T)
+
+
+
+//Modified W-Corp weapons are above Grade 5, usually stopping at the higher end of Grade 3.
+//Alongside the burst damage, they usually include a minor side-effect. Custom-made by ValerieSteel!
+
+//Kirie Note: don't really want to you know, add a very rare part to the Wcorp banner, so I'm gonna keep these at Grade 5.
+/obj/item/ego_weapon/city/wcorp/hatchet
+	name = "w-corp hatchet"
+	desc = "A glowing blue W-Corp handaxe once used by senior W-Corp staff. This one's seen some after-market modifications."
+	special = "This weapon fits in an EGO belt."
+	icon_state = "wcorp_hatchet"
+	inhand_icon_state = "wcorp_hatchet"
+	force = 34	//Slowing is massive.
+	attack_speed = 1
+	charge_cost = 5
+	attack_verb_continuous = list("cleaves", "slashes", "carves")
+	attack_verb_simple = list("cleave", "slash", "carve")
+	release_message = "You release your charge, attempting to cripple your enemy!"
+	charge_effect = "deliver a crippling blow, slowing your target."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+	)
+
+/obj/item/ego_weapon/city/wcorp/hatchet/release_charge(mob/living/target, mob/living/user)
+	to_chat(user, "<span class='notice'>[release_message].</span>")
+	sleep(2)
+	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.apply_status_effect(/datum/status_effect/qliphothoverload)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+	var/turf/T = get_turf(target)
+	new /obj/effect/temp_visual/justitia_effect(T)
+
+
+/obj/item/ego_weapon/city/wcorp/hammer
+	name = "w-corp warhammer"
+	desc = "A glowing blue W-Corp warhammer once used by senior W-Corp staff. This one's seen some after-market modifications."
+	icon_state = "wcorp_spear"
+	inhand_icon_state = "wcorp_fist"
+	force = 80
+	attack_speed = 2
+	attack_verb_continuous = list("smashes", "crushes", "shatters")
+	attack_verb_simple = list("smash", "crush", "shatter")
+	charge_cost = 8
+	release_message = "You release your charge, shattering the will of your foe!"
+	charge_effect = "increase the BLACK damage your target takes for a short time."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/ego_weapon/city/wcorp/hammer/release_charge(mob/living/target, mob/living/user)
+	to_chat(user, "<span class='notice'>[release_message].</span>")
+	sleep(5)
+	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.apply_status_effect(/datum/status_effect/rendBlackArmor)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+	var/turf/T = get_turf(target)
+	new /obj/effect/temp_visual/justitia_effect(T)
+
+/datum/status_effect/rendBlackArmor
+	id = "rend Black armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rendBlackArmor/on_apply()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.damage_coeff[BLACK_DAMAGE] *= 1.2
+
+/datum/status_effect/rendBlackArmor/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
