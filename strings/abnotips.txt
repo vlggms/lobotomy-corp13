@@ -1,0 +1,97 @@
+Blue Star deals more damage the closer you are to it. If you don't have enough white armor, run away.
+Blue Star deletes EGO, avoid dying to it if you value yours.
+CENSORED's Sacrifice work does not stop meltdowns.
+Melting Love's disease does not spread.
+Melting Love is immune to most forms of forced breaching, such as Flesh Idol and Nameless Fetus.
+Mountain Of Smiling Bodies grows with every human body it eats. It also heals 10% for every body it eats, human or not.
+Nothing There heals after not taking damage for a period of time.
+The Silent Orchestra's resistances change every time a new performer shows up.
+Lady Out of Space is immune to both white and black, and deals both white and black damage.
+Any debuffs gained from Staining Rose are cleared after it breaches.
+Breaking Titania's laws will deal massive pale damage to you.
+White Night is not on a timer, nor does it evolve from Plague Doctor.
+Blue Shepherd will mostly tell you truths when it speaks.
+Do not let Blue Shepherd and Reddened Buddy meet, they get significantly stronger.
+Der Freischutz can only fire in cardinal directions.
+Piscine Mermaid will suffocate you and deal oxygen damage once she breaches.
+If you run out of clay dolls for Doomsday Calendar, use a human body.
+F.A.N.'s success % lowers upon every good work.
+The healing from Child of the Galaxy scales with the amount of people with the buff. So does the damage upon meltdown.
+Don't forget to core Golden Apple with a knife.
+You only can work on Happy Teddy Bear once before someone else has to work on it.
+All-Around Helper will melt your Health in melee. Bait out the charge, then strike.
+Don't be fooled by the Pizza Party; Jangsen tiger will instantly kill all clerks and low level agents.
+Listen to 680 KHz, and enter in the code for a work boost. WHISKEY. ECHO. WHISKEY.
+Laetitia's gift just deals a lot of damage, it's not an instant kill.
+Porccubus only requires 60 Temperance, and it will drug you. The drug kills you eventually, but does boost your stats temporarily.
+Red Queen does a shitload of damage. Call out your work when you start so they can piece together what happened if you die.
+Road Home's golden road will get you stuck on it until her death.
+Rudolta will ignore you, and deal white damage regularly if you are within range.
+Scaredy Cat will attach itself to any abnormality, and will take it's faction. If it attaches to a friendly abnormality; it will remain friendly.
+Schadenfreude will remain active all the time if you are alone in the facility.
+Close the door when working on Schadenfreude; if two people are looking at it, you will take regular red damage.
+Scarecrow Searching for Wisdom will restore 30% of its health when killing someone. You can interrupt the process by dragging their victim away.
+Silent Girl's ability can be cleared with attachment work on any abnormality.
+Singing Machine does not have a reverse statcheck. Instead it will open and deal very minor white damage until closed.
+Click on Siren with an empty hand to stop it's music.
+The Watchman is not to be underestimated. He does not do any damage, but takes away your sight. This can even hide glowing abnormalities like Big Bird.
+If White Lake does not have a champion, it will deal white damage to everyone.
+Woodsman can take any body, not just a live one.
+Put a body part into You Must Become Strong to replace it with a robot one; and gain a random stat bonus.
+With enough fortitude, you can get a powerful gift from Beanstalk Without Jack.
+If you die to Beauty and the Beast; you will become the beast.
+Bloodbath's max PE boxes increases after 4 deaths. It also requires EITHER 40 fortitude or temperance, not both.
+Balance your works on Book Without Pictures or Dialogue. Keep the page count low.
+If one person dies to Grave of Cherry Blossoms, everyone else will have their debuffs cleared.
+When exploding, Scorched Girl will deal 250 Red damage to anyone in its sight. It's usually the best idea to run when you hear the burning fuse.
+Punishing Bird is mostly harmless for as long as nobody attacks it. It heals insane people as well.
+When Crumbling Armor's Qliphoth Counter reaches zero, stand still, lest you be struck down.
+Working Dingle-Dangle with 60 or more prudence, you will die, but will leave a gift.
+Drowned Sister's work damage amount is decreased the more prudence you have.
+Forsaken Murderer can knock you around.
+Don't run from Fragment of the Universe.
+Lady Facing the Wall will make you insane if you have less than 40 prudence.
+Take out Meat Lantern from a distance to avoid being chomped.
+While 1.76 MHz is breached, avoid hallways. Run through them as fast as possible if you must.
+My Sweet Home has a massive AOE range, but low damage. Avoid dragging out the fight.
+Don't forget to clear solitude on Old Lady.
+If you lose your legs to Penitent Girl, ask a clerk to stitch them back on in safety.
+Ppodae is very fast and has an AOE. Don't run, stand and fight.
+It's best to wait for Today's Shy Look to smile before starting work. It even heals you.
+Watch out for Simple Smile, it will steal your EGO. Fire from a distance.
+Someone's Portrait will destroy the lights in the room. Don't be intimidated.
+Every cocoon in Spider Bud's containment is someone that had less than 40 prudence or performed insight work. Destroy the cocoon to recover any items on the corpses.
+If you don't attack Void Dream, it will go back to it's containment eventually.
+Alriune glows slightly. Use this to find it, or avoid it.
+Big Bird's Qliphoth Counter will reduce every time a person dies in the facility.
+Big Bird's melee attack instantly kills any and all agents, regardless of stats.
+Clouded Monk heals upon kill. Remove bodies from the area!
+A Contract, Signed, will spawn shadow versions of abnormalities. Aside from that, he's harmless.
+Locate Dimensional Refraction Variant immediately, and point it out to teammates. If you start taking damage and don't know why, leave the area immediately.
+Clown Smiling at Me will seek out all humans, regardless of sightlines.
+Dreaming Current will mark it's path before charging. Use this time to prepare a parry, or get out of the way.
+The King of Greed is very dangerous! If you hear someone say she is breached, treat all hallways like your potential grave.
+Servant of Wrath can be requested to help with any breached threats, at the cost of her stability. 
+Whether The Knight of Despair is a boon or a curse depends entirely on the competence of the agent blessed by her.
+The Price of Silence makes a short, but extra loud ticking sound about six minutes since it last got a good work. Your timer is halfway done, get it reset!
+Ebony Queen's Apple has a plethora of attacks, be sure to dodge any markers that arise.
+Express Train to Hell's work rate increases with the number of lights, so does the healing.
+Don't attack The Firebird and it won't attack you.
+Every work on Flesh Idol will heal all agents in the facility proporational to the PE generated. On the 4th work with Flesh Idol, it breached a random abnormality, but healed double.
+Flesh Idol has a small selection of abnormalities it cannot breach, including Melting Love, White Night, and any abnormality that doesn't breach upon Qliphoth reaching 0.
+General Bee will spawn groups of Bees that are lead by an artillery sergeant. This bee cannot attack directly, but will shell any agent nearby.
+The Queen Of Hatred will get sad if people don't die for a while. Work on her to increase her mood.
+Judgement Bird can kill anyone in pale II or less armor in two shots from full health. Pale III gives you another hit.
+The Little Prince will hypnotize you to it's containment, and is the only abnormality to do so.
+Il Pianto della Luna can be stopped by performing on the piano while breached.
+Naked Nest drops cures for it's disease on every Good work result. You can tell when you're sick when your skin goes green.
+Nosferatu heals from the blood on the ground. Make sure to clean it up!
+My Sweet Orange Tree's disease can be stopped rarely by taking red damage, and a guarantee by lighting yourself on fire.
+Queen Bee's spores can be removed if you stay at a high health value for long enough.
+Shrimp Association Executive's preferred work is matched up with the flavor of each work type. Learn your lore!
+Shrimp Association Executive will give you special wellcheers brand soda as well as advanced Soda weapons for clerks.
+Killing Snow White's Apple will remove the vines she spawns.
+Familiarize yourself with the lexicon before working on Sphinx for smoother work.
+Thunderbird has a wide variety of skills including a dash attack, a lightning strike, and conversion. Be wary of this, and prepare yourself.
+Warden gets faster for every person it drags under it's skirt, but it deals less damage.
+Yang is friendly, and will help and heal you if it is alone. Don't let it die or it will cause a massive explosion that deals a lot of sanity damage.
