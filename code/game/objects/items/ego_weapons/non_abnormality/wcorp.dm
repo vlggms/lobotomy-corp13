@@ -236,11 +236,13 @@
 
 /datum/status_effect/rendBlackArmor/on_apply()
 	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] *= 1.2
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.damage_coeff[BLACK_DAMAGE] *= 1.2
 
 /datum/status_effect/rendBlackArmor/on_remove()
 	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.2
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
