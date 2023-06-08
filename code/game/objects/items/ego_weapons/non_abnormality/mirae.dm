@@ -40,7 +40,7 @@
 //Grade 3, but does less damage with a way better payout
 /obj/item/ego_weapon/city/mirae/page
 	name = "mirae life insurance package"
-	desc = "Life insurance papers that are extremely hefty Shoudl get you a good payout."
+	desc = "Life insurance papers that are extremely hefty, should get you a good payout."
 	icon_state = "insurance"
 	force = 45
 	damtype = WHITE_DAMAGE	//Also does a small bit of pale, because lawyers eat your soul.
