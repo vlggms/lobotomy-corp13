@@ -1,8 +1,6 @@
 /* To Finish:
 
-Club - Knockback
 Chargeblade - Weapon with Charge
-Claw - Very fast attack speed
 Katana - Use in hand to dash
 */
 
@@ -133,3 +131,42 @@ Katana - Use in hand to dash
 	finishedicon = list("finishedgreatsword", "finishedbuster", "finishedzwei", "finishedgreatcleaver")
 	finishedname = list("greatsword", "buster")
 	finisheddesc = "A finished greatsword, ready for use."
+
+/obj/item/ego_weapon/template/claw
+	name = "claw template"
+	desc = "A blank claw workshop template."
+	icon_state = "clawtemplate"
+	force = 12
+	attack_speed = 0.4
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("rends", "tears", "lacerates", "rips", "cuts")
+	attack_verb_simple = list("rend", "tear", "lacerate", "rip", "cut")
+
+	finishedicon = list("finishedclaw")
+	finishedname = list("claw")
+	finisheddesc = "A finished claw, ready for use."
+
+/obj/item/ego_weapon/template/club
+	name = "club template"
+	desc = "A blank club workshop template."
+	icon_state = "clubtemplate"
+	force = 20
+	attack_speed =  1.6
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pounds", "crushes", "smashes", "whacks", "smacks")
+	attack_verb_simple = list("pound", "crush", "smash", "whack", "smack")
+
+	finishedicon = list("finishedclub")
+	finishedname = list("club")
+	finisheddesc = "A finished club, ready for use."
+
+/obj/item/ego_weapon/template/club/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
