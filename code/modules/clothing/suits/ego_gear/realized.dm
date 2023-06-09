@@ -221,8 +221,8 @@
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/silence
-	name = "silence"
-	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river times, for his gift was cold."
+	name = "dead silence"
+	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river of times, for his gift has gone cold."
 	icon_state = "thirteen"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
 	realized_ability = /obj/effect/proc_holder/ability/remnant

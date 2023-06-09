@@ -360,25 +360,26 @@
 	desc = "An ability that summons 2 remnants of time to help you for 13 seconds before returning to their own time."
 	action_icon_state = "justicebalance0" // placeholder "remnant0"
 	base_icon_state = "justicebalance" // placeholder "remnant"
-	cooldown_time = 13 SECONDS
+	cooldown_time = 13 SECONDS // the cooldown isn't balanced at all, but it makes it fun with the time... once the timer reset and combo addition is added, make it 30s or 60s.
 
 /obj/effect/proc_holder/ability/remnant/Perform(target, mob/user)
 	new /mob/living/simple_animal/hostile/remnant(get_turf(user))
-	new /mob/living/simple_animal/hostile/remnant(get_turf(user)) // someone change this please...
+	new /mob/living/simple_animal/hostile/remnant(get_turf(user)) // there has to be a less cursed way to do this
 	new /obj/effect/temp_visual/thirteen(get_turf(user))
 	playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	to_chat(user, "<span class='nicegreen'>You call upon the remnants of time.</span>")
+	return ..()
 
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
-	icon = 'ModularTegustation/Teguicons/32x32.dmi' // placeholder for icon
+	icon = 'ModularTegustation/Teguicons/32x32.dmi' // do I need this?
 	icon_state = "clerkbot1" // placeholder "remnant"
 	icon_living = "clerkbot1" // placeholder "remnant"
 
 /mob/living/simple_animal/hostile/remnant
 	name = "Remnant of Time"
 	desc = "Ghost of time which was, is and will be."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi' // placeholder for icon
+	icon = 'ModularTegustation/Teguicons/32x32.dmi' // do I need this?
 	icon_state = "clerkbot1" // placeholder "remnant"
 	icon_living = "clerkbot1" // placeholder "remnant"
 	faction = list("neutral")
@@ -386,7 +387,7 @@
 	maxHealth = 75
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5) // I dunno how damage_coeff works {high pale res, medium-high black and low red, white}
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.2) // Shares defense with egosuit silence
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	robust_searching = TRUE
@@ -397,7 +398,10 @@
 	attack_sound = 'sound/weapons/rapierhit.ogg'
 
 	// could possibly add 13th hit support for the PoS weapon to synergise and make it endgame with the armour
-
+	// I have no clue how I do this still... someone help me.
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
 	QDEL_IN(src, (13 SECONDS)) // TODO: reset death timer if hit target
+/*
+	if remnant hit something, reset timer, now how the fuck am I gonna do this? I don't know how to program.
+*/
