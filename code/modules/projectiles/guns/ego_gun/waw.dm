@@ -54,6 +54,8 @@
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
 	return
 
+// Magic Bullet armour increases attack speed from 30 to 15
+// Big Iron armour on the other hand increases damage by a factor of 2.5x80, which will give it 40 more damage than the magic bullet armour
 /obj/item/gun/ego_gun/magicbullet
 	name = "magic bullet"
 	desc = "Though the original's power couldn't be fully extracted, the magic this holds is still potent. \
@@ -62,7 +64,7 @@
 	inhand_icon_state = "magic_bullet"
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets. \
-		This weapon fires significantly faster wearing the matching armor"
+		This weapon becomes stronger when wearing the matching armor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
@@ -76,9 +78,16 @@
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
 		fire_delay = 15
+	if(istype(Z))
+		projectile_damage_multiplier = 2.5
+	else
+		projectile_damage_multiplier = 1
+	return
 	..()
+
 
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
