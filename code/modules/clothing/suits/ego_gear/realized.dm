@@ -220,7 +220,7 @@
 	icon_state = "capitalism"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
 
-obj/item/clothing/suit/armor/ego_gear/realization/silence
+/obj/item/clothing/suit/armor/ego_gear/realization/silence
 	name = "silence"
 	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river times, for his gift was cold."
 	icon_state = "thirteen"
