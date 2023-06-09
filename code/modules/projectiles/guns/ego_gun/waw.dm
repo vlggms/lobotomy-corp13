@@ -85,7 +85,6 @@
 		projectile_damage_multiplier = 2.5
 	else
 		projectile_damage_multiplier = 1
-	return
 	..()
 
 
