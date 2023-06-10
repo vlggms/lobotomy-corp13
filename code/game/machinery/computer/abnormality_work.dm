@@ -164,6 +164,7 @@
 	if(meltdown == MELTDOWN_CYAN)
 		work_chance -= 20
 	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
+	work_speed /= user.physiology.work_speed_mod
 	var/success_boxes = 0
 	var/total_boxes = 0
 	var/canceled = FALSE

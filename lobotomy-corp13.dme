@@ -2750,6 +2750,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\fairy_festival.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\fallen_amurdad.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\one_sin.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\zayin\pile_of_mail.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\quiet_day.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\sleeping_beauty.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\we_can_change_anything.dm"
