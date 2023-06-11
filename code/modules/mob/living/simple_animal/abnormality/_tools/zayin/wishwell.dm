@@ -127,6 +127,7 @@
 	var/list/dawn = list(
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+		/obj/item/clothing/mask/facehugger/bongy,
 		/mob/living/simple_animal/hostile/ordeal/violet_fruit
 		)
 	var/list/noon = list(

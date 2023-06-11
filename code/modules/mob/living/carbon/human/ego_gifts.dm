@@ -1082,3 +1082,9 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
+
+/datum/ego_gifts/mail
+	name = "Empty Envelope"
+	prudence_bonus = 1
+	temperance_bonus = 1
+	slot = HAND_1

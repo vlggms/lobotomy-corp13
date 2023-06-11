@@ -622,3 +622,11 @@
 	name = "cirno fumo"
 	desc = "A plushie depicting an adorable ice fairy. It's cold to the touch."
 	icon_state = "fumo_cirno"
+
+// Special
+/obj/item/toy/plush/bongy
+	name = "bongy plushie"
+	desc = "It looks like a raw chicken. A cute raw chicken!"
+	icon = 'icons/obj/plushes.dmi'
+	icon_state = "bongy"
+	squeak_override = list('sound/creatures/lc13/bongy/kweh.ogg'=1)

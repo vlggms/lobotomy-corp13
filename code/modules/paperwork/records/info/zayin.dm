@@ -70,6 +70,15 @@
 		"When work with T-01-145 was completed, it started to speak.",
 		"If the agent working with T-01-145 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")
 
+//Letters on Standby
+/obj/item/paper/fluff/info/zayin/mail
+	abno_type = /mob/living/simple_animal/hostile/abnormality/mailpile
+	abno_code = "C-04-147"
+	abno_info = list("When an agent completed work with the abnormality with a neutral or good result, they were delivered a piece of mail.",
+	"Reading the mail produced differing effects depending on the type of mail received.",
+	"Upon successful repression work, the employee received a parcel.",
+	"Multiple repression works within short succession resulted in the death of the working agent.")
+
 //Fallen Amurdad
 /obj/item/paper/fluff/info/zayin/fallen_amurdad
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fallen_amurdad
