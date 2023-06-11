@@ -227,6 +227,14 @@
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
 
+/datum/sprite_accessory/hair/choppy
+	name = "Choppy"
+	icon_state = "hair_choppy"
+
+/datum/sprite_accessory/hair/choppy_long
+	name = "Choppy Long"
+	icon_state = "hair_choppy_long"
+
 /datum/sprite_accessory/hair/comet
 	name = "Comet"
 	icon_state = "hair_comet"
@@ -350,10 +358,6 @@
 /datum/sprite_accessory/hair/flow_hair
 	name = "Flow Hair"
 	icon_state = "hair_f"
-
-/datum/sprite_accessory/hair/front_long
-	name = "Front Long"
-	icon_state = "hair_front_long"
 
 /datum/sprite_accessory/hair/gelled
 	name = "Gelled Back"
@@ -682,6 +686,10 @@
 /datum/sprite_accessory/hair/skinhead
 	name = "Skinhead"
 	icon_state = "hair_skinhead"
+
+/datum/sprite_accessory/hair/silky
+	name = "Silky"
+	icon_state = "hair_silky"
 
 /datum/sprite_accessory/hair/protagonist
 	name = "Slightly Long Hair"
