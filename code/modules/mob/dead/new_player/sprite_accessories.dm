@@ -351,6 +351,10 @@
 	name = "Flow Hair"
 	icon_state = "hair_f"
 
+/datum/sprite_accessory/hair/front_long
+	name = "Front Long"
+	icon_state = "hair_front_long"
+
 /datum/sprite_accessory/hair/gelled
 	name = "Gelled Back"
 	icon_state = "hair_gelled"
@@ -522,6 +526,10 @@
 /datum/sprite_accessory/hair/pigtail2
 	name = "Pigtails 3"
 	icon_state = "hair_pigtails2"
+
+/datum/sprite_accessory/hair/pigtailbows
+	name = "Pigtails with Bows"
+	icon_state = "hair_twin_bows"
 
 /datum/sprite_accessory/hair/pixie
 	name = "Pixie Cut"
