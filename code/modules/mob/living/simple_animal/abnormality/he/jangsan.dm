@@ -96,10 +96,10 @@
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
-	strong_counter = 0 //Counts how many stats are above 40
-	weak_counter = 0
+	strong_counter = 0 //Counts how many stats are at or above 60 AKA level 3 or higher
+	weak_counter = 0 //Counts how many stats are below 40 AKA level 1
 	for(var/attribute in stats)
-		if(get_attribute_level(user, attribute)<= 40)
+		if(get_attribute_level(user, attribute)< 40)
 			weak_counter += 1
 		if(get_attribute_level(user, attribute)>= 60)
 			strong_counter += 1
