@@ -274,11 +274,9 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/blind_rage
 	cost = 50
 
-/*
 /datum/ego_datum/weapon/blind_gun
 	item_path = /obj/item/gun/ego_gun/blind_rage
-	cost = 50 // Going unused. Repurpose at will.
-*/
+	cost = 50 // Unused, available from the well.
 
 // Flesh Idol - Bleeding Heart
 /datum/ego_datum/armor/heart

@@ -343,3 +343,22 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/grasp
+	name = "grasp"
+	desc = "I'm sorry to ask this but... Can you take me to that room again, please?"
+	icon_state = "grasp"
+	flags_inv = NONE
+	armor = list (RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50) //70
+	attribute_requirements = list(
+								JUSTICE_ATTRIBUTE = 40
+								)
+
+/obj/item/clothing/suit/armor/ego_gear/marionette
+	name = "marionette"
+	desc = "There was no choice, I had to lie to become a human..."
+	icon_state = "marionette"
+	armor = list (RED_DAMAGE = -20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) //70
+	attribute_requirements = list(
+								PRUDENCE_ATTRIBUTE = 40
+								)

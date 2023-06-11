@@ -671,6 +671,21 @@
 	justice_bonus = 4
 	slot = BROOCH
 
+/datum/ego_gifts/grasp
+	name = "Grasp"
+	icon_state = "grasp"
+	temperance_bonus = 3
+	justice_bonus = 1
+	slot = NECKWEAR
+
+/datum/ego_gifts/marionette
+	name = "Marionette"
+	icon_state = "marionette"
+	fortitude_bonus = 3
+	prudence_bonus = 3
+	justice_bonus = -2
+	slot = FACE
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -948,7 +963,7 @@
 	fortitude_bonus = 4
 	temperance_bonus = 2
 	slot = NECKWEAR
-	
+
 /datum/ego_gifts/bride
 	name = "Bride"
 	icon_state = "bride"
@@ -1054,6 +1069,12 @@
 	temperance_bonus = 10
 	justice_bonus = 10
 	slot = HAT
+
+/datum/ego_gifts/seasons
+	name = "season's greetings"
+	icon_state = "seasons"
+	prudence_bonus = 10
+	slot = HAND_2
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight

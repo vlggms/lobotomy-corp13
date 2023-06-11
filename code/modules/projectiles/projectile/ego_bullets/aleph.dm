@@ -37,3 +37,67 @@
 		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
+/obj/projectile/ego_bullet/nihil
+	name = "dark energy"
+	icon_state = "nihil"
+	desc = "Just looking at it seems to suck the life out of you..."
+	damage = 40	//Fires 3 +10 damage per upgrade, up to 80
+	speed = 0.8
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	hitsound = 'sound/abnormalities/nihil/filter.ogg'
+	var/damage_list = list(WHITE_DAMAGE)
+	var/icon_list = list()
+	var/list/powers = list("hatred", "despair", "greed", "wrath")
+
+/obj/projectile/ego_bullet/nihil/on_hit(atom/target, blocked = FALSE)
+	if(powers[1] != "hearts")
+		return ..()
+	if(ishuman(target) && isliving(firer)) //this only happens with the queen of hatred upgrade
+		var/mob/living/carbon/human/H = target
+		var/mob/living/user = firer
+		if(firer==target)
+			return BULLET_ACT_BLOCK
+		if(user.faction_check_mob(H)) // Our faction
+			if(H.is_working)
+				H.visible_message("<span class='warning'>[src] vanishes on contact with [H]... but nothing happens!</span>")
+				qdel(src)
+				return BULLET_ACT_BLOCK
+			switch(damage_type)
+				if(WHITE_DAMAGE)
+					H.adjustSanityLoss(-damage*0.2)
+				if(BLACK_DAMAGE)
+					H.adjustBruteLoss(-damage*0.1)
+					H.adjustSanityLoss(-damage*0.1)
+				else // Red or pale
+					H.adjustBruteLoss(-damage*0.2)
+			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
+			qdel(src)
+			return BULLET_ACT_BLOCK
+	..()
+
+/obj/projectile/ego_bullet/nihil/fire(angle, atom/direct_target)
+	..()
+	if(powers[1] == "hearts")
+		icon_list += "heart"
+		damage += 10
+	if(powers[2] == "spades")
+		icon_list += "spade"
+		damage_list += PALE_DAMAGE
+		damage += 10
+	if(powers[3] == "diamonds")
+		icon_list += "diamond"
+		damage_list += RED_DAMAGE
+		damage += 10
+	if(powers[4] == "clubs")
+		icon_list += "club"
+		damage_list += BLACK_DAMAGE
+		damage += 10
+
+	if(length(icon_list) > 0)
+		icon_state = "nihil_[pick(icon_list)]"
+		color = pick("#818589", "#C0C0C0")
+	else
+		color = pick("#36454F", "#818589")
+	damage_type = pick(damage_list)
+	flag = damage_type

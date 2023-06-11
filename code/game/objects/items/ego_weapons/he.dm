@@ -1142,3 +1142,57 @@
 	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
+
+/obj/item/ego_weapon/grasp
+	name = "grasp"
+	desc = "I should’ve said that I'm sorry that I let go of your hand and apologized, even if it didn't mean anything."
+	special = "This weapon can be used to dash to a target."
+	icon_state = "grasp"
+	force = 10
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 SECONDS
+	var/dash_range = 4
+
+/obj/item/ego_weapon/grasp/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/marionette
+	name = "marionette"
+	desc = "People lie all the time. Why is that a bad thing?"
+	icon_state = "marionette"
+	force = 40
+	attack_speed = 1.5
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/abnormalities/pinocchio/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

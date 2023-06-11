@@ -249,12 +249,16 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/goldrush_damage = 140
+	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
+		return
+	if(!finisher_on)
+		..()
 		return
 	if(do_after(user, 5, target))
 
@@ -272,7 +276,7 @@
 
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
-		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
+		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
@@ -280,6 +284,16 @@
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
+
+/obj/item/ego_weapon/goldrush/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/diamond))
+		return
+	new /obj/item/ego_weapon/goldrush/nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
 
 /obj/item/ego_weapon/smile
 	name = "smile"
@@ -596,21 +610,243 @@
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
-/obj/item/ego_weapon/nihil
-	name = "nihil"
-	desc = "I don’t know what awaits me ahead. Could it be a cliff, or a ditch?"
-	special = "This weapon can absorb certain other weapons to gain new abilities. Or can it? Who knows, this is really just a placeholder."
-	icon_state = "nihil"
-	force = 80
-	attack_speed = 1
-	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("slams", "attacks")
-	attack_verb_simple = list("slam", "attack")
-	hitsound = 'sound/weapons/ego/twilight.ogg'
+/obj/item/ego_weapon/goldrush/nihil
+	name = "worthless greed"
+	desc = "The magical girl, who was no longer a magical girl, ate many things. \
+	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
+	special = "This weapon deals its damage after a short windup, unless combo is enabled."
+	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
+	icon_state = "greed"
+	force = 40
+	finisher_on = FALSE
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 SECONDS
+	var/dash_range = 7
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+
+/obj/item/ego_weapon/goldrush/nihil/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/nihil))
+		return
+	..()
+
+/obj/item/ego_weapon/goldrush/nihil/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(finisher_on)
+		..()
+		return
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo==4)
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force *= 5	// Should actually keep up with normal damage.
+		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
+		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	..()
+	combo += 1
+	force = initial(force)
+
+/obj/item/ego_weapon/goldrush/nihil/attack_self(mob/user)
+	..()
+	if(finisher_on)
+		to_chat(user,"<span class='warning'>You will now perform a combo attack instead of a heavy attack.</span>")
+		finisher_on = FALSE
+		force = 40
+		return
+
+	to_chat(user,"<span class='warning'>You will now perform a heavy attack instead of a combo attack.</span>")
+	finisher_on =TRUE
+	force = 140
+
+/obj/item/ego_weapon/goldrush/nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 4) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+		A.attackby(src,user)
+	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/shield/despair_nihil
+	name = "meaningless despair"
+	desc = "When Justice turns its back once more, several dozen blades will rove without a purpose. \
+	The swords will eventually point at those she could not protect."
+	special = "This weapon has a combo system."
+	icon_state = "despair_nihil"
+	force = 40
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	reductions = list(90, 90, 90, 50)
+	projectile_block_cooldown = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your blade."
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 							)
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+
+//This is like an anime character attacking like 4 times with the 4th one as a finisher attack.
+/obj/item/ego_weapon/shield/despair_nihil/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo==4)
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force *= 5	// Should actually keep up with normal damage.
+		playsound(src, 'sound/weapons/fixer/generic/sword5.ogg', 50, FALSE, 9)
+		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	..()
+	combo += 1
+	force = initial(force)
+
+/obj/item/ego_weapon/blind_rage/nihil
+	name = "senseless wrath"
+	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
+	Hermit - an enemy of her realm, becoming friends with her in secret."
+	icon_state = "wrath"
+	force = 80
+	attack_speed = 1.2
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	aoe_damage = 30
+	aoe_range = 3
+
+/obj/item/ego_weapon/blind_rage/nihil/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/nihil))
+		return
+	..()
+
+/obj/item/ego_weapon/seasons
+	name = "Season's Greetings"
+	desc = "If you are reading this let a developer know."
+	special = "This E.G.O. will transform to match the seasons."
+	icon_state = "spring"
+	force = 80
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs")
+	attack_verb_simple = list("poke", "jab")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	var/current_season = "winter"
+	var/mob/current_holder
+	var/list/season_list = list(
+		"spring" = list(80, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
+		"A gigantic, thorny bouquet of roses."),
+		"summer" = list(120, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
+		"Looks some sort of axe or bladed mace. An unbearable amount of head comes off of it."),
+		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
+		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
+		"winter" = list(60, 1.2, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
+		"This odd weapon is akin to the biting cold of the north.")
+		)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/seasons/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	ChangeSeasons()
+
+/obj/item/ego_weapon/seasons/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/seasons/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/seasons/proc/ChangeSeasons()
+	switch(current_season)
+		if("spring")
+			current_season = "summer"
+		if("summer")
+			current_season = "fall"
+		if("fall")
+			current_season = "winter"
+		if("winter")
+			current_season = "spring"
+	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
+	Transform()
+
+/obj/item/ego_weapon/seasons/proc/Transform()
+	icon_state = current_season
+	if(current_season == "summer")
+		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+		inhand_x_dimension = 64
+		inhand_y_dimension = 64
+	else
+		lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+		inhand_x_dimension = 32
+		inhand_y_dimension = 32
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		current_holder.update_inv_hands()
+		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
+	force = season_list[current_season][1]
+	attack_speed = season_list[current_season][2]
+	reach = season_list[current_season][3]
+	attack_verb_continuous = season_list[current_season][4]
+	attack_verb_simple = season_list[current_season][5]
+	hitsound = season_list[current_season][6]
+	name = season_list[current_season][7]
+	damtype = season_list[current_season][8]
+	armortype = season_list[current_season][9]
+	desc = season_list[current_season][10]
+
+/obj/item/ego_weapon/seasons/attack(mob/living/target, mob/living/user) //other forms could probably use something. Probably.
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(current_season == "summer")
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		if(!target.anchored)
+			var/whack_speed = (prob(60) ? 1 : 4)
+			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/seasons/get_clamped_volume()
+	return 40
