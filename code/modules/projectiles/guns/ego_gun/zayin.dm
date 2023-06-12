@@ -243,3 +243,66 @@
 		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade)
 			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade/healing
 	return ..()
+
+/obj/item/gun/ego_gun/bucket
+	name = "bucket"
+	desc = "A slingshot made from wooden staves that fires skipping stones. What will you wish for?"
+	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
+	icon_state = "bucket"
+	inhand_icon_state = "bucket"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_bucket
+	fire_delay = 10
+	fire_sound = 'sound/weapons/bowfire.ogg'
+	vary_fire_sound = TRUE
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 50
+	var/ability_cooldown_time = 60 SECONDS
+	var/ability_cooldown
+
+/obj/item/gun/ego_gun/bucket/attack_self(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(ability_cooldown > world.time)
+		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(T))
+		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
+		return
+	to_chat(H, "<span class='warning'>You use the [src] to draw something from wishing well!</span>")
+	H.playsound_local(get_turf(H), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 25, 0)
+	SpawnItem(user)
+	ability_cooldown = world.time + ability_cooldown_time
+
+/obj/item/gun/ego_gun/bucket/proc/SpawnItem(mob/user)
+	var/list/lootoptions = list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+		/obj/item/clothing/mask/facehugger/bongy,
+		/obj/item/clothing/neck/tie/black,
+		/obj/item/clothing/neck/tie/blue,
+		/obj/item/clothing/neck/tie/red,
+		/obj/item/clothing/neck/tie/horrible,
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/obj/item/poster/random_contraband,
+		/obj/item/poster/random_official,
+		/obj/item/toy/plush/rabbit,
+		/obj/item/toy/plush/blank,
+		/obj/item/toy/plush/bongy,
+		/obj/item/trash/raisins,
+		/obj/item/trash/candy,
+		/obj/item/trash/cheesie,
+		/obj/item/trash/chips,
+		/obj/item/trash/popcorn,
+		/obj/item/trash/sosjerky,
+		/obj/item/trash/plate,
+		/obj/item/trash/pistachios)
+	for(var/mob/living/carbon/human/L in livinginview(5, user))
+		if((!ishuman(L)) || L.stat == DEAD || L == user)
+			continue
+		to_chat(L, "<span class='warning'>[user] gives you an item!</span>")
+		var/gift = pick(lootoptions)
+		new gift(get_turf(L))
+	var/gift = pick(lootoptions)//you get one too!
+	new gift(get_turf(user))

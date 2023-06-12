@@ -248,3 +248,12 @@
 /datum/ego_datum/weapon/wishing_cairn
 	item_path = /obj/item/gun/ego_gun/wishing_cairn
 	cost = 20
+
+//Heart of Aspiration - Aspiration
+/datum/ego_datum/armor/aspiration
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aspiration
+	cost = 20
+
+/datum/ego_datum/weapon/aspiration
+	item_path = /obj/item/gun/ego_gun/aspiration
+	cost = 20
