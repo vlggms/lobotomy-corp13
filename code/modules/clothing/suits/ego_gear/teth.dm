@@ -181,3 +181,9 @@
 	desc = "If it is fortune you seek, pray with all sincerity."
 	icon_state = "wishing_cairn"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -10, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/aspiration
+	name = "aspiration"
+	desc = "Excessive aspiration would bring about unwarranted frenzy."
+	icon_state = "aspiration"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20

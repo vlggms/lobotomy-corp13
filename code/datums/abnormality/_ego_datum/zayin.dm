@@ -105,3 +105,12 @@
 /datum/ego_datum/armor/letter_opener
 	item_path = /obj/item/clothing/suit/armor/ego_gear/letter_opener
 	cost = 12
+
+// Wishing Well - Bucket
+/datum/ego_datum/weapon/bucket
+	item_path = /obj/item/gun/ego_gun/bucket
+	cost = 12
+
+/datum/ego_datum/armor/bucket
+	item_path = /obj/item/clothing/suit/armor/ego_gear/bucket
+	cost = 12

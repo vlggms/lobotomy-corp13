@@ -105,8 +105,17 @@
 // Jester of Nihil - Nihil
 /datum/ego_datum/armor/nihil
 	item_path = /obj/item/clothing/suit/armor/ego_gear/nihil
-	cost = 200
+	cost = 100
 
 /datum/ego_datum/weapon/nihil
-	item_path = /obj/item/ego_weapon/nihil
+	item_path = /obj/item/gun/ego_gun/nihil
+	cost = 100
+
+// God of the Seasons - Season's Greetings
+/datum/ego_datum/armor/seasons
+	item_path = /obj/item/clothing/suit/armor/ego_gear/seasons
+	cost = 100
+
+/datum/ego_datum/weapon/seasons
+	item_path = /obj/item/ego_weapon/seasons
 	cost = 100

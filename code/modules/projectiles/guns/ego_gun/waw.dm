@@ -54,6 +54,16 @@
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
 	return
 
+/obj/item/gun/ego_gun/hatred/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/heart))
+		return
+	new /obj/item/gun/ego_gun/hatred_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
+
 // Magic Bullet armour increases attack speed from 30 to 15
 // Big Iron armour on the other hand increases damage by a factor of 2.5x80, which will give it 40 more damage than the magic bullet armour
 /obj/item/gun/ego_gun/magicbullet
@@ -64,7 +74,7 @@
 	inhand_icon_state = "magic_bullet"
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets. \
-		This weapon becomes stronger when wearing the matching armor"
+		This weapon gets a firespeed bonus when wearing the matching armor."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
@@ -438,6 +448,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
 /obj/item/gun/ego_gun/my_own_bride
 	name = "My own Bride"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \

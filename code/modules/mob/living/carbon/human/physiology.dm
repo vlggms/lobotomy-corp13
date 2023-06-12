@@ -34,5 +34,7 @@
 	var/attachment_success_mod = 0 // Additive Modifier to the success rate of Attachment works
 	var/repression_success_mod = 0 // Additive Modifier to the success rate of Repression works
 
+	var/work_speed_mod = 1 // this is the number that workspeed is divided by.
+
 /datum/physiology/New()
 	armor = new

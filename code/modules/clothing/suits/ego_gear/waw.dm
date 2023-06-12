@@ -37,6 +37,16 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/despair/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/spade))
+		return
+	new /obj/item/clothing/suit/armor/ego_gear/despair_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
+
 /obj/item/clothing/suit/armor/ego_gear/hatred
 	name = "in the name of love and hate"
 	desc = "A magical one-piece dress imbued with the love and justice of a magical girl. \
@@ -48,6 +58,16 @@
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/hatred/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/heart))
+		return
+	new /obj/item/clothing/suit/armor/ego_gear/hatred_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
 
 /obj/item/clothing/suit/armor/ego_gear/oppression
 	name = "oppression"
@@ -77,6 +97,16 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/goldrush/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/diamond))
+		return
+	new /obj/item/clothing/suit/armor/ego_gear/goldrush_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
 
 /obj/item/clothing/suit/armor/ego_gear/tiara
 	name = "tiara"
@@ -291,6 +321,16 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/blind_rage/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/club))
+		return
+	new /obj/item/clothing/suit/armor/ego_gear/blind_rage_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
 
 /obj/item/clothing/suit/armor/ego_gear/heart
 	name = "bleeding heart"

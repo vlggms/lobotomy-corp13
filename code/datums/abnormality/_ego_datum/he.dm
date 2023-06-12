@@ -185,6 +185,10 @@
 	item_path = /obj/item/ego_weapon/homing_instinct
 	cost = 35
 
+/datum/ego_datum/armor/homing_instinct_old
+	item_path = /obj/item/clothing/suit/armor/ego_gear/brick
+	cost = 35  // Unused, available from the well.
+
 //Jangsan Tiger - Maneater
 /datum/ego_datum/armor/maneater
 	item_path = /obj/item/clothing/suit/armor/ego_gear/maneater
@@ -328,4 +332,67 @@
 
 /datum/ego_datum/weapon/warp/spear
 	item_path = /obj/item/ego_weapon/warp/spear
+	cost = 35
+
+//Missed Reaper - Grasp
+/datum/ego_datum/armor/grasp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/grasp
+	cost = 35
+
+/datum/ego_datum/weapon/grasp
+	item_path = /obj/item/ego_weapon/grasp
+	cost = 35
+
+//Pinnochio - Marionette
+/datum/ego_datum/armor/marionette
+	item_path = /obj/item/clothing/suit/armor/ego_gear/marionette
+	cost = 35
+
+/datum/ego_datum/weapon/marionette
+	item_path = /obj/item/ego_weapon/marionette
+	cost = 35
+
+//All-Natural Snake Oil - Swindle
+/datum/ego_datum/armor/swindle
+	item_path = /obj/item/clothing/suit/armor/ego_gear/swindle
+	cost = 35
+
+/datum/ego_datum/weapon/swindle
+	item_path = /obj/item/gun/ego_gun/pistol/swindle
+	cost = 35
+
+//Viva Voce - Ringing
+/datum/ego_datum/armor/ringing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/ringing
+	cost = 35
+
+/datum/ego_datum/weapon/ringing
+	item_path = /obj/item/gun/ego_gun/ringing
+	cost = 35
+
+//Theonite Slab - Divinity
+/datum/ego_datum/armor/divinity
+	item_path = /obj/item/clothing/suit/armor/ego_gear/divinity
+	cost = 35
+
+/datum/ego_datum/weapon/divinity
+	item_path = /obj/item/ego_weapon/divinity
+	cost = 35
+
+//Dr.Jekyll's Formula - Hyde
+/datum/ego_datum/armor/hyde
+	item_path = /obj/item/clothing/suit/armor/ego_gear/hyde
+	cost = 35
+
+/datum/ego_datum/weapon/hyde
+	item_path = /obj/item/ego_weapon/hyde
+	cost = 35
+
+//Third Fate's Loom - Destiny
+/datum/ego_datum/armor/destiny
+	item_path = /obj/item/clothing/suit/armor/ego_gear/destiny
+	cost = 35
+
+/datum/ego_datum/weapon/destiny
+	item_path = /obj/item/ego_weapon/destiny
 	cost = 35

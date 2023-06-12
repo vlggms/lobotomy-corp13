@@ -49,3 +49,13 @@
 	name = "screaming casing"
 	desc = "A screaming casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_wedge
+
+/obj/item/ammo_casing/caseless/ego_swindle
+	name = "swindle casing"
+	desc = "A swindle casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_swindle
+
+/obj/item/ammo_casing/caseless/ego_ringing
+	name = "ringing casing"
+	desc = "A ringing casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_ringing
