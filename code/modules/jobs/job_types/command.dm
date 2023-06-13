@@ -57,6 +57,7 @@
 /datum/job/command/records
 	title = "Records Officer"
 	outfit = /datum/outfit/job/command/records
+	exp_requirements = 600
 	job_important = "You are the Records Officer. Your job is to manage Records. You have filing cabinets in the back of your office filled with all sorts of information; make sure the agents know this information. \
 	Make sure that you assist Interns and new clerks in learning how to work at Lcorp. Help agents use tool abnormalities with proper warnings. \
 	As well as this, you have access to powerful handheld watches with various effects."
