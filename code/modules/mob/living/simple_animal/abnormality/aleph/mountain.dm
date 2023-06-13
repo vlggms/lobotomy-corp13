@@ -222,6 +222,10 @@
 			pixel_x = -32
 			base_pixel_x = -32
 			if(phase == 3)
+				if(CheckCombat())
+					phase = 2
+					return
+
 				icon_living = "mosb_breach2"
 				speed = 4
 				move_to_delay = 5

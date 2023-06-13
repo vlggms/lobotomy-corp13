@@ -166,10 +166,12 @@ GLOBAL_LIST_EMPTY(zombies)
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)//FIXME: Still opens the "poddoor" secure shutters; lines 148-150 are still executed.
+	for(var/obj/machinery/door/poddoor/P in T.contents)
 		stop_charge = TRUE
 		continue
 	for(var/obj/machinery/door/D in T.contents)
+		if(istype(D, /obj/machinery/door/poddoor))	//Should fix.
+			continue
 		if(D.density)
 			D.open(2)
 	if(stop_charge)

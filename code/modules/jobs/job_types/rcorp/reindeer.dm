@@ -6,7 +6,7 @@
 	spawn_positions = 4
 	supervisors = "the reindeer team captain and the commander"
 	selection_color = "#d9b555"
-	exp_requirements = 120
+	exp_requirements = 240
 	exp_type = EXP_TYPE_CREW
 	maptype = "rcorp"
 
@@ -22,6 +22,9 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 								)
+	rank_title = "SPC"
+	job_important = "You take the role of medical support. DO NOT CROSS THE BEAMS."
+	job_notice = "You are a mostly support role. Gather your supplies in the medical tent to the SW of the base. Split up for maximum effectiveness."
 
 /datum/job/reindeer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -35,7 +38,7 @@
 	spawn_positions = 1
 	supervisors = "the commander"
 	selection_color = "#d1a83b"
-	exp_requirements = 240
+	exp_requirements = 600
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp"
@@ -52,6 +55,10 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
+	rank_title = "CPT"
+	job_important = "You are the captain of the welfare division."
+	job_notice = "Visit your bunks in the command tent to gather your medical supplies, and split your units into small groups."
+
 
 /datum/outfit/job/reindeer
 	name = "R-Corp Reindeer"

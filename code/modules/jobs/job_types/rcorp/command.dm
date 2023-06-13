@@ -1,3 +1,4 @@
+
 /datum/job/rcorp_captain/commander
 	title = "Ground Commander"
 	faction = "Station"
@@ -24,10 +25,17 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 100
 								)
+	rank_title = "CDR"
+	var/commander = TRUE //Just used for an announce
+	job_important = "Lead the Rcorp 4th Pack to victory using your command and organizational skills."
+	job_notice = " Give a briefing and then open the doors to the outside via a button in the officer's room."
 
 /datum/job/rcorp_captain/commander/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "All rise for commander [H.real_name]."))
+	if(commander)
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "All rise for commander [H.real_name]."))
+	else
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Lieutenant commander [H.real_name] has arrived."))
 
 /datum/outfit/job/commander
 	name = "Ground Commander"
@@ -41,6 +49,36 @@
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	ears = /obj/item/radio/headset/heads/manager/alt
 	head = /obj/item/clothing/head/beret/tegu/rcorp
+	l_pocket = /obj/item/commandprojector
+
+
+
+/datum/job/rcorp_captain/commander/lieutenant
+	title = "Lieutenant Commander"
+	trusted_only = FALSE
+	outfit = /datum/outfit/job/commander/lieutenant
+	display_order = 1.1
+	exp_requirements = 1200
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 80,
+								PRUDENCE_ATTRIBUTE = 80,
+								TEMPERANCE_ATTRIBUTE = 80,
+								JUSTICE_ATTRIBUTE = 80
+								)
+	commander = FALSE
+	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
+	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
+	rank_title = "LCDR"
+	job_important = "You are the right hand man to the Commander. Assist them in any way you can. If there is no commander, you are next in line for Acting Commander."
+	job_notice = "Manage the Junior Officers at your disposal"
+
+
+/datum/outfit/job/commander/lieutenant
+	name = "Lieutenant Commander"
+	jobtype = /datum/job/rcorp_captain/commander/lieutenant
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	belt = /obj/item/ego_weapon/city/rabbit_blade
+
 
 /obj/item/clothing/head/beret/tegu/rcorp
 	name = "commander beret"
@@ -57,10 +95,18 @@
 	desc = "Worn by the rcorp commander of the 4th pack."
 	icon_state = "rcorp_command"
 
-/datum/job/rhino/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-
 /datum/job/rcorp_captain/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+
+/*
+Rcorp Ranks in order:
+
+CDR - Commander
+LCDR - Lt Commander
+CPT - Captain
+LT - Lieutenant
+SGT - Sergeant
+SPC - Specialist
+RAF - RCorp Assault Force
+*/

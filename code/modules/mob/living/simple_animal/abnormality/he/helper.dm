@@ -125,6 +125,8 @@
 	for(var/obj/structure/window/W in T.contents)
 		W.obj_destruction("spinning blades")
 	for(var/obj/machinery/door/D in T.contents)
+		if(istype(D, /obj/machinery/door/poddoor))
+			continue
 		if(D.density)
 			D.open(2)
 	if(stop_charge)

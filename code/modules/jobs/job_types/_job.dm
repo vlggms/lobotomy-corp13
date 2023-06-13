@@ -94,6 +94,9 @@
 	var/job_important
 	var/job_notice
 
+	//Mostly used for military stuff.
+	var/rank_title
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -154,6 +157,15 @@
 		to_chat(M, "<span class='userdanger'>[job_important]</span>")
 	if(job_notice)
 		to_chat(M, "<span class='notice'>[job_notice] </span>")
+
+	//Sets your rank title
+	if(rank_title)
+		H.real_name = "[rank_title] [H.real_name]"
+		H.name = H.real_name
+		for(var/obj/item/card/id/Y in H.contents)
+			Y.registered_name = H.name
+			Y.update_label()
+
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

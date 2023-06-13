@@ -5,6 +5,11 @@
 	"map_file": [
 		"rcorp.dmm"
 	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"minetype": "none",

@@ -42,13 +42,28 @@
 	inhand_icon_state = "multiverse"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 70
+	force = 50
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 0,
 							JUSTICE_ATTRIBUTE = 100
 							)
+
+/obj/item/ego_weapon/city/rabbit_blade/command/attack_self(mob/living/user)
+	switch(damtype)
+		if(RED_DAMAGE)
+			damtype = WHITE_DAMAGE
+		if(WHITE_DAMAGE)
+			damtype = BLACK_DAMAGE
+		if(BLACK_DAMAGE)
+			damtype = PALE_DAMAGE
+		if(PALE_DAMAGE)
+			damtype = RED_DAMAGE
+	armortype = damtype // TODO: In future, armortype should be gone entirely
+	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
+	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
+
 
 //Reindeer staves
 /obj/item/ego_weapon/city/reindeer
@@ -62,10 +77,10 @@
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 40,
-							JUSTICE_ATTRIBUTE = 40
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.3 SECONDS
@@ -153,6 +168,23 @@
 		)
 	pin = /obj/item/firing_pin
 
+/obj/item/gun/energy/e_gun/rabbit/minigun
+	name = "R-Corporation Minigun X-15"
+	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
+	icon_state = "rabbitmachinegun"
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/red,
+		)
+	pin = /obj/item/firing_pin
+	projectile_damage_multiplier = 0.4
+	item_flags = SLOWS_WHILE_IN_HAND
+	fire_delay = 0
+	drag_slowdown = 3
+	slowdown = 2
+
+/obj/item/gun/energy/e_gun/rabbit/minigun/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.05 SECONDS)
 
 /obj/item/gun/energy/e_gun/rabbitdash
 	name = "R-Corporation Lawnmower 2000"
@@ -167,6 +199,33 @@
 	can_charge = FALSE
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin
+
+/obj/item/gun/energy/e_gun/rabbitdash/white
+	name = "R-Corporation Lawnmower 2100"
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire only white bullets."
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	icon_state = "rabbitk"
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/white,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/small
+	name = "R-Corporation Lawnmower 2200"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage"
+	icon_state = "rabbitsmall"
+	fire_delay = 7
+	projectile_damage_multiplier = 0.9
+	weapon_weight = WEAPON_LIGHT // No dual wielding
+
+/obj/item/gun/energy/e_gun/rabbitdash/sniper
+	name = "R-Corporation Marksman X-12"
+	desc = "An energy rifle sometimes used by Rcorp. Fires slower, and deals slightly more damage. Has a scope."
+	icon_state = "rabbitsniper"
+	fire_delay = 8
+	projectile_damage_multiplier = 1.2
+	zoom_amt = 5 //Long range, Slightly better range
+	zoomable = TRUE
+	zoom_out_amt = 0
 
 /obj/item/ego_weapon/city/rabbit_rush
 	name = "rush dagger"
