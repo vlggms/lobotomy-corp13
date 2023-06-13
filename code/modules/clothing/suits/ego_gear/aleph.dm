@@ -274,7 +274,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to BLACK and PALE damage!</span>")
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
-	name = "season's greetings"
+	name = "Seasons Greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
@@ -284,19 +284,24 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/current_season = "winter"
 	var/mob/current_holder
+	var/current_season = "winter"
 	var/list/season_list = list(
 		"spring" = list("vernal equinox", "Some heavy armor, completely overtaken by foilage."),
 		"summer" = list("summer solstice","It looks painful to wear!"),
 		"fall" = list("autumnal equinox","Even though it glows faintly, it is cold to the touch."),
 		"winter" = list("winter solstice","In the past, folk believed that the dead would visit as winter came.")
 		)
+	var/transforming = TRUE
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	ChangeSeasons()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	Transform()
+	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/seasons_toggle
+	var/datum/action/spell_action/ability/item/A = AS.action
+	A.SetItem(src)
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -308,20 +313,11 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	. = ..()
 	current_holder = null
 
-/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/ChangeSeasons()
-	switch(current_season)
-		if("spring")
-			current_season = "summer"
-		if("summer")
-			current_season = "fall"
-		if("fall")
-			current_season = "winter"
-		if("winter")
-			current_season = "spring"
-	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
-	Transform()
-
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/Transform()
+	if(!transforming)
+		desc = season_list[current_season][2]  + " \n This E.G.O. will not transform to match the seasons."
+		return
+	current_season = SSlobotomy_events.current_season
 	icon_state = "[current_season]"
 	update_icon_state()
 	if(current_holder)
@@ -330,17 +326,39 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
 	name = season_list[current_season][1]
 	desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
-	switch(current_season) //you are probably wondering why didn't I use setRating()... well, it did not work as intended. this is bad, really bad, but it works for now
+	switch(current_season) //you are probably wondering why didn't I use setRating()... well, it does not seem to work here.
 		if("spring")
-			armor = armor.modifyRating(white = 20, black = -20)
-			if(armor.pale > 60)
-				armor = armor.modifyRating(black = 20, pale = -20)
+			src.armor = new(red = 60, white = 80, black = 40, pale = 40)
 		if("summer")
-			armor = armor.modifyRating(red = 20, white = -40, black = 20)
+			src.armor = new(red = 80, white = 40, black = 60, pale = 60)
 		if("fall")
-			armor = armor.modifyRating(red = -40, white = 20, black = 20)
+			src.armor = new(red = 40, white = 60, black = 80, pale = 60)
 		if("winter")
-			armor = armor.modifyRating(red = 20, black = -40, pale = 20)
+			src.armor = new(red = 40, white = 60, black = 60, pale = 80)
+
+/obj/effect/proc_holder/ability/seasons_toggle
+	name = "Transformation"
+	desc = "Toggle whether or not Season's Greetings will transform."
+	action_icon_state = null
+	base_icon_state = null
+	cooldown_time = 0 SECONDS
+
+/obj/effect/proc_holder/ability/seasons_toggle/Perform(target, mob/user)
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(T))
+		to_chat(user, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
+		return
+	if(T.transforming)
+		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		T.transforming = FALSE
+		T.Transform()
+		return ..()
+	if(!T.transforming)
+		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		T.transforming = TRUE
+		T.desc = T.season_list[T.current_season][2]  + " \n This E.G.O. will transform to match the seasons."
+		return ..()
+	return ..()
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/distortion
 	name = "distortion"

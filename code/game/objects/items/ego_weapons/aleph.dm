@@ -613,7 +613,7 @@
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
 /obj/item/ego_weapon/seasons
-	name = "Season's Greetings"
+	name = "Seasons Greetings"
 	desc = "If you are reading this let a developer know."
 	special = "This E.G.O. will transform to match the seasons."
 	icon_state = "spring"
@@ -629,12 +629,13 @@
 		"spring" = list(80, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
 		"A gigantic, thorny bouquet of roses."),
 		"summer" = list(120, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
-		"Looks some sort of axe or bladed mace. An unbearable amount of head comes off of it."),
+		"Looks some sort of axe or bladed mace. An unbearable amount of heat comes off of it."),
 		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
 		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
 		"winter" = list(60, 1.2, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
 		"This odd weapon is akin to the biting cold of the north.")
 		)
+	var/transforming = TRUE
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -645,7 +646,8 @@
 /obj/item/ego_weapon/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	ChangeSeasons()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	Transform()
 
 /obj/item/ego_weapon/seasons/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -657,20 +659,23 @@
 	. = ..()
 	current_holder = null
 
-/obj/item/ego_weapon/seasons/proc/ChangeSeasons()
-	switch(current_season)
-		if("spring")
-			current_season = "summer"
-		if("summer")
-			current_season = "fall"
-		if("fall")
-			current_season = "winter"
-		if("winter")
-			current_season = "spring"
-	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
-	Transform()
+/obj/item/ego_weapon/seasons/attack_self(mob/user)
+	..()
+	if(transforming)
+		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		transforming = FALSE
+		special = "This E.G.O. will not transform to match the seasons."
+		return
+	if(!transforming)
+		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		transforming = TRUE
+		special = "This E.G.O. will transform to match the seasons."
+		return
 
 /obj/item/ego_weapon/seasons/proc/Transform()
+	if(!transforming)
+		return
+	current_season = SSlobotomy_events.current_season
 	icon_state = current_season
 	if(current_season == "summer")
 		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'

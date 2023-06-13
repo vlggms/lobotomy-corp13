@@ -1050,3 +1050,5 @@
 
 ///Whenever FearEffect() is called on a human
 #define COMSIG_FEAR_EFFECT "fear_effect"
+///Whenever the season is changed through god of the seasons or its E.G.O.
+#define COMSIG_GLOB_SEASON_CHANGE "!change_season"
