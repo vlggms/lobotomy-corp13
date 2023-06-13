@@ -1,4 +1,4 @@
-//Split into 3 groups, Combat for damaging abnos, Support for ranged, AOE and otherwise support abnos, and tank for abnos that can take a beating reliably
+//Split into weapons and not weapons.
 /obj/effect/landmark/rcorpitemspawn
 	name = "spawner for rcrop"
 	desc = "It spawns an item. Notify a coder. Thanks!"
@@ -6,7 +6,6 @@
 	icon_state = "x4"
 	var/list/possible_items = list(
 	/obj/item/storage/firstaid/revival,
-	/obj/item/sensor_device,
 	/obj/item/powered_gadget/handheld_taser,
 	/obj/item/reagent_containers/hypospray/medipen/salacid,
 	/obj/item/reagent_containers/hypospray/medipen/mental,
