@@ -12282,9 +12282,8 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
 "WE" = (
-/obj/machinery/computer/abnormality_auxiliary{
-	dir = 8
-	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "WF" = (
