@@ -8,6 +8,5 @@
 
 /obj/machinery/manned_turret/rcorp/stationary
 	name = "rcorp manned turret"
-	desc = "While the trigger is held down, this gun will redistribute recoil to allow its user to easily shift targets."
 	icon_state = "protoemitter_+a"
 	anchored = TRUE
