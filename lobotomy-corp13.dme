@@ -2631,6 +2631,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\!tutorial\cube.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\!tutorial\fairies.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\!tutorial\shadow.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\joke\killsyou.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\scp\tickle_monster.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\scp\ego\!datum.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\!nonstandard\scp\ego\suits.dm"
