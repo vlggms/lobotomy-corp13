@@ -441,7 +441,7 @@
 	desc = "The course of true love never did run smooth."
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
-	force = 50
+	force = 40
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_speed = 0.8
@@ -469,27 +469,9 @@
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	..()
 
-/obj/item/ego_weapon/soulmate/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
-	if(!CanUseEgo(user))
-		return
-	if(!proximity_flag && gun_cooldown <= world.time)
-		var/turf/proj_turf = user.loc
-		if(!isturf(proj_turf))
-			return
-		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
-		if(gunbuff)
-			G.damage = 80
-			G.icon_state = "red_laser"
-			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
-		else
-			G.fired_from = src //for signal check
-			playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
-		G.firer = user
-		G.preparePixelProjectile(target, user, clickparams)
-		G.fire()
-		gun_cooldown = world.time + gun_cooldown_time
-		return
-	if(proximity_flag && isliving(target) && !(gunbuff))
+/obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
+	..()
+	if(isliving(target) && !(gunbuff))
 		if(target in gunmark_targets)
 			gunmark_targets = list()
 			bladebuff = TRUE
@@ -500,7 +482,28 @@
 			addtimer(CALLBACK(src, .proc/BladeRevert), 50)
 			return
 		if(!(bladebuff) && blademark_cooldown <= world.time)
-			blademark_targets |= target
+			blademark_targets += target
+
+/obj/item/ego_weapon/soulmate/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
+		if(gunbuff)
+			G.damage = 90
+			G.icon_state = "red_laser"
+			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
+		else
+			G.fired_from = src //for signal check
+			playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
 
 /obj/item/ego_weapon/soulmate/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -514,7 +517,7 @@
 			addtimer(CALLBACK(src, .proc/GunRevert), 80)
 			return TRUE
 		if(!(gunbuff) && gunmark_cooldown <= world.time)
-			gunmark_targets |= target
+			gunmark_targets += target
 	return TRUE
 
 /obj/item/ego_weapon/soulmate/proc/BladeRevert()
@@ -536,7 +539,6 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	icon_state = "ice_1"
-
 
 /obj/item/ego_weapon/space
 	name = "out of space"
