@@ -30,5 +30,7 @@
 	priority_announce(end_text, name, sound=end_sound)
 	SSlobotomy_corp.core_suppression = null
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 2) // Finished core suppression
+	if(GLOB.master_mode == "suppression")
+		SSticker.force_ending = 1 // Congratulations! You beat the core suppression!
 	qdel(src)
 	return

@@ -81,16 +81,46 @@
 
 	var/set_attribute = normal_attribute_level
 
-	if(world.time >= 75 MINUTES) // Full facility expected
-		set_attribute *= 4
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
-		set_attribute *= 3
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
-		set_attribute *= 2.5
-	else if(world.time >= 30 MINUTES) // Expecting WAW
-		set_attribute *= 2
-	else if(world.time >= 15 MINUTES) // Usual time for HEs
-		set_attribute *= 1.5
+	if(GLOB.master_mode == "suppression")
+		set_attribute = 80 // Core suppressions have no natural time-based stat scaling.
+		var/obj/item/clothing/suit/armor/ego_gear/chosen_suit = null
+		// Pick a damage type (red, white, black) and then pick a random suit out of the given options for the player to spawn with.
+		var/list/red_armor_options = list(
+			/obj/item/clothing/suit/armor/ego_gear/goldrush,
+			/obj/item/clothing/suit/armor/ego_gear/loyalty,
+			/obj/item/clothing/suit/armor/ego_gear/exuviae
+		)
+		var/list/white_armor_options = list(
+			/obj/item/clothing/suit/armor/ego_gear/moonlight,
+			/obj/item/clothing/suit/armor/ego_gear/pharaoh,
+			/obj/item/clothing/suit/armor/ego_gear/assonance
+		)
+		var/list/black_armor_options = list(
+			/obj/item/clothing/suit/armor/ego_gear/lamp,
+			/obj/item/clothing/suit/armor/ego_gear/totalitarianism,
+			/obj/item/clothing/suit/armor/ego_gear/intentions
+		)
+		switch(rand(1,3))
+			if(1)
+				chosen_suit = pick(red_armor_options)
+			if(2)
+				chosen_suit = pick(white_armor_options)
+			if(3)
+				chosen_suit = pick(black_armor_options)
+		if(!chosen_suit) // ?????? how did you get here
+			chosen_suit = pick(red_armor_options) // Just take a red armor
+		H.equip_to_slot_or_del(new chosen_suit(H), ITEM_SLOT_HANDS)
+	else
+		if(world.time >= 75 MINUTES) // Full facility expected
+			set_attribute *= 4
+		else if(world.time >= 60 MINUTES) // More than one ALEPH
+			set_attribute *= 3
+		else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
+			set_attribute *= 2.5
+		else if(world.time >= 30 MINUTES) // Expecting WAW
+			set_attribute *= 2
+		else if(world.time >= 15 MINUTES) // Usual time for HEs
+			set_attribute *= 1.5
 
 	//if(SSlobotomy_corp.understood_abnos.len && SSlobotomy_corp.understood_abnos.len > 0)
 	//	var/numberlol = SSlobotomy_corp.understood_abnos.len

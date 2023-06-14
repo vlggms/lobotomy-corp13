@@ -175,12 +175,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(istype(A.current))
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
-	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
-		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > world.time) // And it's on timelock
-			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
-	if(qliphoth_state >= next_ordeal_time)
-		if(OrdealEvent())
-			ran_ordeal = TRUE
+	if(SSticker.mode != "suppression") // Ordeals come based on time during suppression mode.
+		ran_ordeal = MeltdownOrdealCheck()
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
 		O.update_icon()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_START, ran_ordeal)
@@ -188,6 +184,16 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent)))
+
+/datum/controller/subsystem/lobotomy_corp/proc/MeltdownOrdealCheck()
+	var/ran_ordeal = FALSE
+	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
+		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > world.time) // And it's on timelock
+			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
+	if(qliphoth_state >= next_ordeal_time)
+		if(OrdealEvent())
+			ran_ordeal = TRUE
+	return ran_ordeal
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	var/list/computer_list = list()
@@ -222,6 +228,25 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return meltdown_occured
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
+	if(GLOB.master_mode == "suppression")
+		if(world.time >= 40 MINUTES)
+			next_ordeal = /datum/ordeal/white_midnight
+			next_ordeal_time = qliphoth_state // Qliphoth state doesn't matter during core suppression gamemode, but this may as well change.
+			next_ordeal_level += 1
+		else if(world.time >= 25 MINUTES)
+			next_ordeal = /datum/ordeal/fixers/white_dusk
+			next_ordeal_time = qliphoth_state
+			next_ordeal_level += 1
+		else if(world.time >= 10 MINUTES)
+			next_ordeal = /datum/ordeal/fixers/white_noon
+			next_ordeal_time = qliphoth_state
+			next_ordeal_level += 1
+		else
+			next_ordeal = /datum/ordeal/fixers/white_dawn
+			next_ordeal_time = qliphoth_state
+			next_ordeal_level += 1
+		message_admins("Next ordeal to occur will be [next_ordeal.name].")
+		return TRUE
 	if(!islist(all_ordeals[next_ordeal_level]) || !LAZYLEN(all_ordeals[next_ordeal_level]))
 		return FALSE
 	var/list/available_ordeals = list()
@@ -248,3 +273,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
+
+/datum/controller/subsystem/lobotomy_corp/proc/FailSuppression()
+	SSticker.force_ending = 1
