@@ -77,6 +77,7 @@
 		/obj/item/clothing/under/suit/lobotomy/training,
 		/obj/item/clothing/under/suit/lobotomy/command,
 		/obj/item/clothing/under/suit/lobotomy/discipline,
+		/obj/item/clothing/under/suit/lobotomy/discipline/alternative,
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
 		/obj/item/clothing/under/suit/lobotomy/records,
