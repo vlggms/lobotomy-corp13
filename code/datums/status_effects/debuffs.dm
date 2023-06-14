@@ -1050,3 +1050,21 @@
 	. = ..()
 	var/mob/living/simple_animal/M = owner
 	M.damage_coeff[WHITE_DAMAGE] /= 1.2
+
+//Black Damage Debuff
+
+/datum/status_effect/rend_black
+	id = "rend black armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rend_black/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[BLACK_DAMAGE] *= 1.2
+
+/datum/status_effect/rend_black/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[BLACK_DAMAGE] /= 1.2
