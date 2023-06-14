@@ -100,6 +100,9 @@
 
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BOT_HUD, DIAG_HUD, DIAG_PATH_HUD = HUD_LIST_LIST) //Diagnostic HUD views
 
+	var/list/previous_locations = list()
+	var/list/LC_destinations = list()
+
 /mob/living/simple_animal/bot/proc/get_mode()
 	if(client) //Player bots do not have modes, thus the override. Also an easy way for PDA users/AI to know when a bot is a player.
 		if(paicard)
@@ -153,7 +156,7 @@
 	. = ..()
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
-//This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
+	//This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
 	access_card.access += ACCESS_ROBOTICS
 	set_custom_texts()
 	Radio = new/obj/item/radio(src)
@@ -660,6 +663,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return
 
 	if(loc == patrol_target)		// reached target
+		previous_locations |= patrol_target
+		if(previous_locations.len >= 8)
+			previous_locations.Cut(1,2)
 		//Find the next beacon matching the target.
 		if(!get_next_patrol_target())
 			find_patrol_target() //If it fails, look for the nearest one instead.
@@ -705,6 +711,30 @@ Pass a positive integer as an argument to override a bot's default speed.
 			patrol_target = NB.loc //Get its location and set it as the target.
 			next_destination = NB.codes["next_patrol"] //Also get the name of the next beacon in line.
 			return TRUE
+	if(isnull(next_destination))
+		return FALSE
+	patrol_target = next_destination
+	next_destination = null
+	var/list/potential_destinations = list()
+	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums) // Clean newly added Abno rooms
+		LC_destinations |= get_turf(AD.landmark)
+	if(LC_destinations.len == 0)
+		return FALSE
+	for(var/turf/open/OT in LC_destinations)
+		if(OT.density)
+			continue
+		if(get_dist(src, OT) < 5)
+			continue
+		if(OT in previous_locations)
+			continue
+		potential_destinations |= OT
+	if(potential_destinations.len == 0)
+		if(previous_locations.len > 1)
+			previous_locations.Cut(1,2)
+		return FALSE
+	next_destination = pick(potential_destinations)
+	return TRUE
+
 
 /mob/living/simple_animal/bot/proc/find_nearest_beacon()
 	for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[z]"])
@@ -720,6 +750,30 @@ Pass a positive integer as an argument to override a bot's default speed.
 		else if(dist > 1) //Begin the search, save this one for comparison on the next loop.
 			nearest_beacon = NB.location
 			nearest_beacon_loc = NB.loc
+	if(!isnull(nearest_beacon))
+		return
+	LC_destinations |= GLOB.xeno_spawn // Clean hallways
+	LC_destinations |= GLOB.department_centers // Clean main rooms
+	if(LC_destinations.len != 0)
+		var/list/potential_destinations = list()
+		for(var/turf/open/OT in LC_destinations)
+			if(OT.density)
+				continue
+			if(get_dist(src, OT) < 5)
+				continue
+			if(OT in previous_locations)
+				continue
+			potential_destinations |= OT
+		if(potential_destinations.len == 0)
+			if(previous_locations.len > 1)
+				previous_locations.Cut(1,2)
+			nearest_beacon = get_closest_atom(/turf/open, LC_destinations, src)
+			next_destination = pick(LC_destinations)
+		else
+			nearest_beacon = pick(potential_destinations)
+			potential_destinations -= nearest_beacon
+			next_destination = pick(potential_destinations)
+		nearest_beacon_loc = get_turf(nearest_beacon)
 	patrol_target = nearest_beacon_loc
 	destination = nearest_beacon
 

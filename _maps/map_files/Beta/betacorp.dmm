@@ -821,6 +821,25 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"dX" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plasteel/dark,
+/area/department_main/welfare)
 "ed" = (
 /obj/machinery/camera/autoname{
 	dir = 5
@@ -1754,10 +1773,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
-"ji" = (
-/turf/open/space/basic,
-/turf/open/floor/plasteel,
-/area/facility_hallway/information)
 "jj" = (
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/purple,
@@ -4354,6 +4369,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"uT" = (
+/obj/effect/turf_decal/siding/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plasteel,
+/area/department_main/welfare)
 "uV" = (
 /obj/machinery/button/door{
 	id = "cellfour";
@@ -5320,10 +5343,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"AE" = (
-/turf/open/space/basic,
-/turf/open/floor/plasteel,
-/area/facility_hallway/discipline)
 "AF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8931,9 +8950,9 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "Tz" = (
-/mob/living/simple_animal/bot/cleanbot,
 /obj/effect/landmark/department_center,
 /obj/machinery/navbeacon/wayfinding/safetydepartment,
+/mob/living/simple_animal/bot/cleanbot/medbay,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "TE" = (
@@ -9023,10 +9042,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
-"TV" = (
-/turf/open/space/basic,
-/turf/open/floor/facility,
-/area/facility_hallway/information)
 "Ub" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -30785,7 +30800,7 @@ SR
 SR
 cQ
 So
-AE
+ot
 ph
 cQ
 JB
@@ -40318,7 +40333,7 @@ Xh
 Qv
 GV
 xc
-fw
+dX
 mU
 vN
 JB
@@ -40575,7 +40590,7 @@ TI
 bM
 GV
 RR
-fw
+dX
 tB
 vN
 JB
@@ -40832,7 +40847,7 @@ Xh
 Xr
 vN
 dr
-fw
+dX
 cP
 vN
 JB
@@ -41089,7 +41104,7 @@ Jp
 Xh
 YW
 eD
-eD
+uT
 Ch
 vN
 JB
@@ -50317,7 +50332,7 @@ Yr
 Yr
 ZQ
 Jo
-TV
+FK
 En
 ZQ
 Yr
@@ -51859,7 +51874,7 @@ Yr
 Yr
 ZQ
 Jo
-ji
+vK
 BE
 ZQ
 JB

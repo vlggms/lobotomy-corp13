@@ -656,6 +656,7 @@
 /obj/structure/mirror{
 	pixel_x = 27
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/white,
 /area/facility_hallway/west)
 "ej" = (
@@ -3418,6 +3419,7 @@
 /obj/structure/mirror{
 	pixel_x = -27
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/white,
 /area/facility_hallway/east)
 "sQ" = (
@@ -7727,6 +7729,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
 "QA" = (
@@ -9003,6 +9006,7 @@
 	color = "#440000";
 	dir = 5
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/red,
 /area/department_main/command)
 "Wk" = (

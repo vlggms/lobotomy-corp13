@@ -4432,7 +4432,7 @@
 /obj/structure/railing{
 	dir = 8;
 	name = "invincible railing";
-	max_integrity = 10000000
+	max_integrity = 1e+007
 	},
 /turf/open/floor/plasteel/stairs,
 /area/department_main/command)
@@ -4874,6 +4874,7 @@
 	},
 /area/facility_hallway/information)
 "KB" = (
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/command)
 "KG" = (
@@ -6648,7 +6649,7 @@
 /obj/structure/railing{
 	dir = 4;
 	name = "invincible railing";
-	max_integrity = 10000000
+	max_integrity = 1e+007
 	},
 /turf/open/floor/plasteel/stairs,
 /area/department_main/command)

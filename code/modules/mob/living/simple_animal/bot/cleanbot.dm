@@ -17,6 +17,8 @@
 	window_name = "Automatic Station Cleaner v1.4"
 	pass_flags = PASSMOB | PASSFLAPS
 	path_image_color = "#993299"
+	auto_patrol = TRUE // Let's get going, naturally!
+	path_hud = null // No patrol visual. Literally all that was required.
 
 	var/blood = 1
 	var/trash = 0
@@ -39,18 +41,22 @@
 
 	var/list/stolen_valor
 
-	var/static/list/officers = list("Captain", "Head of Personnel", "Head of Security")
+	var/static/list/officers = list("Captain", "Head of Personnel", "Head of Security","Manager","Extraction Officer","Records Officer", "Agent Captain")
 	var/static/list/command = list("Captain" = "Cpt.","Head of Personnel" = "Lt.")
 	var/static/list/security = list("Head of Security" = "Maj.", "Warden" = "Sgt.", "Detective" =  "Det.", "Security Officer" = "Officer")
 	var/static/list/engineering = list("Chief Engineer" = "Chief Engineer", "Station Engineer" = "Engineer", "Atmospherics Technician" = "Technician")
 	var/static/list/medical = list("Chief Medical Officer" = "C.M.O.", "Medical Doctor" = "M.D.", "Chemist" = "Pharm.D.")
 	var/static/list/research = list("Research Director" = "Ph.D.", "Roboticist" = "M.S.", "Scientist" = "B.S.")
 	var/static/list/legal = list("Lawyer" = "Esq.")
+	var/static/list/LC_highStaff = list("Arbiter"="Arbiter","Manager"="Manager","Sephirah"="Sephirah","Extraction Officer" = "EO.","Records Officer" = "RO.", "Agent Captain"="Agent Cpt.", "Department Head"="Dep. Head")
+	var/static/list/LC_lowStaff = list("Department Captain"="Dep. Cpt.","Veteran Agent"="Veteran","Senior Agent"="Sr. Agent","Agent"="Agent","Agent Intern"="Intern")
+	var/static/list/LC_clerks = list("Clerk"="Clerk")
 
 	var/list/prefixes
 	var/list/suffixes
 
 	var/ascended = FALSE // if we have all the top titles, grant achievements to living mobs that gaze upon our cleanbot god
+	COOLDOWN_DECLARE(strike)
 
 
 /mob/living/simple_animal/bot/cleanbot/proc/deputize(obj/item/W, mob/user)
@@ -61,7 +67,20 @@
 		weapon_orig_force = weapon.force
 		if(!emagged)
 			weapon.force = weapon.force / 2
-		add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.inhand_icon_state))
+		if(istype(W, /obj/item/ego_weapon))
+			var/x = 0
+			var/y = 0
+			if(W.inhand_x_dimension > 32)
+				x = -(16*((W.inhand_x_dimension/32)-1))
+			if(W.inhand_y_dimension > 32)
+				y = -(16*((W.inhand_y_dimension/32)-1))
+			add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.icon_state,pixel_x=x,pixel_y=y,layer=HANDS_LAYER))
+		else
+			add_overlay(image(icon=weapon.lefthand_file,icon_state=weapon.inhand_icon_state))
+		get_targets()
+		maxHealth = 200
+		adjustHealth(maxHealth)
+		status_flags &= ~GODMODE // Blood for blood!
 
 /mob/living/simple_animal/bot/cleanbot/proc/update_titles()
 	var/working_title = ""
@@ -110,8 +129,10 @@
 	prev_access = access_card.access
 	stolen_valor = list()
 
-	prefixes = list(command, security, engineering)
+	prefixes = list(command, security, engineering, LC_highStaff, LC_lowStaff, LC_clerks)
 	suffixes = list(research, medical, legal)
+
+	status_flags |= GODMODE // There's no real reason for them to be targetted normally, so they're ignored!
 
 /mob/living/simple_animal/bot/cleanbot/Destroy()
 	if(weapon)
@@ -156,8 +177,10 @@
 			stolen_valor += C.job
 		update_titles()
 
-		weapon.attack(C, src)
-		C.Knockdown(20)
+		playsound(loc, weapon.hitsound, weapon.get_clamped_volume(), TRUE, extrarange = weapon.stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		do_attack_animation(C)
+		C.apply_damage(1, weapon.damtype, pick(list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)), C.run_armor_check(null, weapon.damtype), FALSE, TRUE)
+		visible_message("<span class='warning'>[src] nicks [C]!</span>", "<span class='nicegreen'>You steal [C]'s job!</span>")
 
 /mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)
 	if(W.GetID())
@@ -171,7 +194,14 @@
 				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 			else
 				to_chat(user, "<span class='notice'>\The [src] doesn't seem to respect your authority.</span>")
-	else if(istype(W, /obj/item/kitchen/knife) && user.a_intent != INTENT_HARM)
+	else if((istype(W, /obj/item/kitchen/knife) || istype(W, /obj/item/ego_weapon)) && user.a_intent != INTENT_HARM)
+		if(istype(W, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/EW = W
+			if(!EW.CanUseEgo(src))
+				to_chat(user, "<span class='notice'>You try attaching \the [W] to \the [src]... but it falls off!</span>")
+				user.dropItemToGround(EW)
+				EW.forceMove(get_turf(src))
+				return FALSE
 		to_chat(user, "<span class='notice'>You start attaching \the [W] to \the [src]...</span>")
 		if(do_after(user, 25, target = src))
 			deputize(W, user)
@@ -193,6 +223,18 @@
 		if(C.stat != DEAD && C.body_position == LYING_DOWN)
 			return C
 	else if(is_type_in_typecache(A, target_types))
+		if(isliving(A))
+			var/mob/living/L = A
+			if(L.status_flags & GODMODE) // Ignore GODMODE-d targets
+				return FALSE
+			if(L.stat == DEAD)
+				return FALSE
+		if(isturf(A))
+			for(var/mob/living/simple_animal/bot/cleanbot/CBT in view(2, src))
+				if(CBT == src)
+					continue
+				if(CBT.target == A)
+					return FALSE
 		return A
 
 /mob/living/simple_animal/bot/cleanbot/handle_automated_action()
@@ -224,7 +266,10 @@
 	if(!target && emagged == 2) // When emagged, target humans who slipped on the water and melt their faces off
 		target = scan(/mob/living/carbon)
 
-	if(!target && pests) //Search for pests to exterminate first.
+	if(!target && weapon) // Search for actual threats first.
+		target = scan(/mob/living/simple_animal/hostile)
+
+	if(!target && pests) //Then search for pests to exterminate.
 		target = scan(/mob/living/simple_animal)
 
 	if(!target) //Search for decals then.
@@ -253,6 +298,23 @@
 			return
 
 		if(loc == get_turf(target))
+			if(ishostile(target))
+				var/mob/living/simple_animal/hostile/H = target
+				if(H.stat < DEAD)
+					if(COOLDOWN_FINISHED(src, strike))
+						UnarmedAttack(target)
+						if(!istype(weapon, /obj/item/ego_weapon))
+							COOLDOWN_START(src, strike, CLICK_CD_MELEE)
+							return
+						var/obj/item/ego_weapon/EW = weapon
+						if(!EW.attack_speed)
+							COOLDOWN_START(src, strike, CLICK_CD_MELEE)
+						else
+							COOLDOWN_START(src, strike, CLICK_CD_MELEE*EW.attack_speed)
+					return
+				target = null
+				mode = BOT_IDLE
+				return
 			if(!(check_bot(target) && prob(50)))	//Target is not defined at the parent. 50% chance to still try and clean so we dont get stuck on the last blood drop.
 				UnarmedAttack(target)	//Rather than check at every step of the way, let's check before we do an action, so we can rescan before the other bot.
 				if(QDELETED(target)) //We done here.
@@ -309,6 +371,9 @@
 		target_types += /obj/item/trash
 		target_types += /obj/item/food/deadmouse
 
+	if(weapon)
+		target_types += /mob/living/simple_animal/hostile // TO WAR!
+
 	target_types = typecacheof(target_types)
 
 /mob/living/simple_animal/bot/cleanbot/UnarmedAttack(atom/A)
@@ -337,6 +402,10 @@
 			visible_message("<span class='danger'>[src] smashes [target] with its mop!</span>")
 			M.death()
 		target = null
+	else if (weapon && istype(A, /mob/living/simple_animal/hostile)) // Must be armed to even consider doing such a deed.
+		var/mob/living/simple_animal/hostile/H = target
+		if(!H.stat)
+			weapon.attack(H, src) // WACK
 
 	else if(emagged == 2) //Emag functions
 		if(istype(A, /mob/living/carbon))

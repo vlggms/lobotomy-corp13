@@ -1616,19 +1616,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"eI" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/siding/red{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/space/basic,
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "eJ" = (
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/rack,
@@ -6262,7 +6249,9 @@
 "sj" = (
 /obj/structure/window/reinforced/spawner/west,
 /obj/effect/turf_decal/delivery/red,
-/mob/living/simple_animal/bot/cleanbot,
+/mob/living/simple_animal/bot/cleanbot/medbay{
+	auto_patrol = 0
+	},
 /turf/open/floor/noslip,
 /area/department_main/safety)
 "sl" = (
@@ -7720,13 +7709,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"wH" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/space/basic,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east)
 "wI" = (
 /obj/structure/sign/painting/library{
 	pixel_x = 32
@@ -8035,6 +8017,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "xF" = (
@@ -8056,6 +8039,7 @@
 	dir = 10
 	},
 /obj/structure/railing,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "xJ" = (
@@ -8115,11 +8099,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/west)
-"xS" = (
-/obj/effect/turf_decal/siding/white,
-/turf/open/space/basic,
-/turf/open/floor/plasteel,
-/area/facility_hallway/east)
 "xV" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -13726,6 +13705,7 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "OD" = (
@@ -17540,6 +17520,7 @@
 	dir = 6
 	},
 /obj/structure/railing,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "Yr" = (
@@ -54940,7 +54921,7 @@ gt
 sQ
 sQ
 sQ
-eI
+mV
 sQ
 sQ
 sQ
@@ -67309,8 +67290,8 @@ rR
 qH
 uj
 ou
-wH
-xS
+wG
+xH
 ou
 Al
 Al
@@ -67318,8 +67299,8 @@ Al
 Al
 Al
 ou
-wH
-xS
+wG
+xH
 ou
 Ky
 LB

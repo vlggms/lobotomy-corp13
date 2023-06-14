@@ -30,11 +30,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/south)
-"al" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "am" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/railing,
@@ -552,11 +547,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"ek" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/facility,
-/area/facility_hallway/central)
 "ep" = (
 /obj/effect/turf_decal/siding/green,
 /obj/structure/sign/poster/official/work_for_a_future{
@@ -3241,11 +3231,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/department_main/training)
-"yz" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/effect/turf_decal/siding/green,
-/turf/open/floor/plasteel,
-/area/facility_hallway/north)
 "yG" = (
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
@@ -4016,13 +4001,6 @@
 	},
 /turf/open/floor/plating,
 /area/department_main/training)
-"Fd" = (
-/mob/living/simple_animal/bot/cleanbot,
-/obj/effect/turf_decal/siding/purple{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/south)
 "Ff" = (
 /obj/structure/chair,
 /turf/open/floor/plasteel/dark,
@@ -5041,9 +5019,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "Nu" = (
-/mob/living/simple_animal/bot/cleanbot,
 /obj/effect/landmark/department_center,
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/wood,
 /area/department_main/command)
 "ND" = (
@@ -5588,10 +5566,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /obj/structure/sign/ordealmonitor{
 	pixel_x = -32
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Ss" = (
@@ -35951,7 +35929,7 @@ vg
 vg
 vg
 Kn
-Fd
+Nn
 Kw
 DQ
 zm
@@ -37964,7 +37942,7 @@ Ir
 jD
 CL
 oA
-yz
+PR
 vs
 RF
 Ov
@@ -39533,7 +39511,7 @@ Jy
 Jy
 Jy
 Jy
-ek
+LZ
 LZ
 LZ
 Jy
@@ -41048,7 +41026,7 @@ Ir
 Wp
 Yu
 oA
-al
+Fy
 vs
 Ry
 vS
@@ -43147,7 +43125,7 @@ vg
 vg
 vg
 Kn
-Fd
+Nn
 Kw
 DQ
 zm
