@@ -245,6 +245,7 @@
 		/obj/item/ego_weapon/city/rats/knife,
 		/obj/item/ego_weapon/city/rats/scalpel,
 		/obj/item/ego_weapon/city/rats/brick,
+		/obj/item/ego_weapon/city/rats/pipe,
 		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
 		/obj/item/ego_weapon/city/streetlight_bat,
 		/obj/item/ego_weapon/city/streetlight_greatsword
