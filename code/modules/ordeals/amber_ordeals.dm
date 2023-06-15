@@ -17,6 +17,9 @@
 	annonce_text = "To accustom oneself to the taste was an inevitable process."
 	level = 3
 	reward_percent = 0.2
+	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
+	end_sound = 'sound/effects/ordeals/amber_end.ogg'
+	color = "#FFBF00"
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_dusk

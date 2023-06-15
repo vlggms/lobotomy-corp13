@@ -1,3 +1,26 @@
+//Shared Ordeal Procs
+/datum/ordeal/proc/spawngrunts(turf/T, list/grunttype, spawn_amount = 4)
+	var/list/deployment_area = DeploymentZone(T) //deployable areas.
+	var/turf/deploy_spot = T //spot grunt will be deployed
+	var/spawntype = pick(grunttype) //default to grunttype if there is no list.
+	for(var/i = 1 to spawn_amount) //spawn boys on one of each turf.
+		if(deployment_area.len) //if list is empty just deploy them ontop of boss. Sorry boss.
+			deploy_spot = pick_n_take(deployment_area)
+		else //bit crowded in here boss.
+			deploy_spot = T
+		if(grunttype.len > 1) //if list is more than 1 pick a type of grunt. Dont know if this helps with processing power to bypass picking every time.
+			spawntype = pick(grunttype)
+		var/mob/living/simple_animal/hostile/ordeal/M = new spawntype (deploy_spot)
+		ordeal_mobs += M
+		M.ordeal_reference = src
+
+/datum/ordeal/proc/DeploymentZone(turf/T)
+	var/list/deploymentzone = list()
+	for(var/turf/freearea in oview(1, T)) //get area around boss.
+		if(!freearea.density && isfloorturf(freearea)) //if not dense and is a floor. We will always have issues with windows and doors but at least they wont spawn on adjacent chasms.
+			deploymentzone += freearea
+	return deploymentzone
+
 // Simple Spawn
 /datum/ordeal/simplespawn
 	name = "Basic Ordeal"
@@ -22,20 +45,26 @@
 	for(var/i = 1 to (spawn_places + place_player_mod))
 		var/X = pick(GLOB.xeno_spawn)
 		var/turf/T = get_turf(X)
+		var/list/deployment_area = list()
+		if((spawn_amount + spawn_player_mod) > 1)
+			deployment_area = DeploymentZone(T) //deployable areas.
+		var/turf/deploy_spot = T //spot you are being deployed
 		for(var/y = 1 to (spawn_amount + spawn_player_mod))
-			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(T)
+			if(deployment_area.len) //if list is empty just deploy them,
+				deploy_spot = pick_n_take(deployment_area)
+			else //bit crowded in here.
+				deploy_spot = T
+			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(deploy_spot)
 			ordeal_mobs += M
 			M.ordeal_reference = src
 
-
-
 //Specific Commanders
-/datum/ordeal/specificcommanders
+/datum/ordeal/specificcommanders //Functions similarly to simplecommanders but deploys one of each potential_types as unique bosses.
 	name = "Commander Ordeal"
 	level = 0
 	reward_percent = 0
 	var/list/potential_types = list()
-	var/grunttype = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
 
 /datum/ordeal/specificcommanders/Run()
 	..()
@@ -51,14 +80,7 @@
 		var/mob/living/simple_animal/hostile/ordeal/C = new chosen_type(T)
 		ordeal_mobs += C
 		C.ordeal_reference = src
-		spawngrunts(T)
-
-/datum/ordeal/specificcommanders/proc/spawngrunts(T)
-	for(var/i = 1 to 4)
-		var/mob/living/simple_animal/hostile/ordeal/M = new grunttype (T)
-		ordeal_mobs += M
-		M.ordeal_reference = src
-
+		spawngrunts(T, grunttype)
 
 // One Boss
 /datum/ordeal/boss
@@ -66,11 +88,23 @@
 	level = 0
 	reward_percent = 0
 	var/bosstype = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+	var/bossspawnloc = null
 
 /datum/ordeal/boss/Run()
 	..()
-	var/X = pick(GLOB.department_centers)
-	var/turf/T = get_turf(X)
+	var/turf/T
+	if(bossspawnloc)
+		for(var/turf/D in GLOB.department_centers)
+			if(istype(get_area(D), bossspawnloc))
+				T = D
+				break
+		if(!T)
+			var/X = pick(GLOB.department_centers)
+			T = get_turf(X)
+			log_game("Failed to spawn [src] in [bossspawnloc]")
+	else
+		var/X = pick(GLOB.department_centers)
+		T = get_turf(X)
 	var/mob/living/simple_animal/hostile/ordeal/C = new bosstype(T)
 	ordeal_mobs += C
 	C.ordeal_reference = src
@@ -100,11 +134,4 @@
 			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
 			ordeal_mobs += C
 			C.ordeal_reference = src
-		spawngrunts(T)
-
-/datum/ordeal/simplecommander/proc/spawngrunts(T)
-	for(var/i = 1 to gruntnumber)
-		var/spawntype = pick(grunttype)
-		var/mob/living/simple_animal/hostile/ordeal/M = new spawntype(T)
-		ordeal_mobs += M
-		M.ordeal_reference = src
+		spawngrunts(T, grunttype, gruntnumber)
