@@ -28,3 +28,19 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
+/obj/item/ego_weapon/city/rats/brick
+	name = "brick"
+	desc = "It's a brick."
+	icon_state = "ratbrick"
+	force = 5
+	throwforce = 50
+	attack_speed = 0.8
+	attack_verb_continuous = list("bricks", "smashes", "shatters")
+	attack_verb_simple = list("brick", "smash", "shatter")
+	hitsound = 'sound/weapons/ego/bricksmash.ogg'
+
+/obj/item/ego_weapon/city/rats/brick/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!..())
+		playsound(src, 'sound/weapons/ego/bricksmash.ogg', 50, TRUE)
+		qdel(src)
