@@ -386,3 +386,14 @@
 		"The “Sculptor” will have their prudence reduced to level 3 while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
 
+//Parasite Tree
+/obj/item/paper/fluff/info/waw/parasite_tree
+	abno_type = /mob/living/simple_animal/hostile/abnormality/parasite_tree
+	abno_code = "D-04-108"
+	abno_info = list(
+		"When an employee finished work with D-04-10 the employee was blessed with increased temperance and prudence.",
+		"Every time an employee was blessed by D-04-108 it sprouted a glowing flower bud.",
+		"When another abnormality escaped, a healing leaf from D-04-108 flew out of containment and seeked out the employee with the least sanity and health.",
+		"When D-04-108's flowers bloomed, blessed employees suffered heavy mental corruption until the flowers were destroyed with repression work.",
+		"D-04-108-1 secretes a contagious and highly fatal toxin, the area was easily decontaminated on removal of D-04-108-1.",
+		"NOTICE: Employees preforming repression work to destroy D-04-108's flowers prevented the transformation of employees who were transforming into D-04-108-1.") //yes i did put this hint in twice.
