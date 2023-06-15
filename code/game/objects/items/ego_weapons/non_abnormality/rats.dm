@@ -44,3 +44,15 @@
 	if(!..())
 		playsound(src, 'sound/weapons/ego/bricksmash.ogg', 50, TRUE)
 		qdel(src)
+
+/obj/item/ego_weapon/city/rats/pipe
+	name = "pipe"
+	desc = "It's a pipe. It would hurt if you hit someone over the head with it."
+	icon_state = "ratpipe"
+	force = 60
+	attack_speed = 3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("pipes", "smashes", "shatters", "nails over the head")
+	attack_verb_simple = list("pipe", "smash", "shatter", "nail in the head")
+	hitsound = 'sound/weapons/ego/pipesuffering.ogg'
