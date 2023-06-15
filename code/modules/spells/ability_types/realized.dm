@@ -360,13 +360,13 @@
 	desc = "An ability that summons 2 remnants of time to help you for 13 seconds before returning to their own time."
 	action_icon_state = "justicebalance0" // placeholder "remnant0"
 	base_icon_state = "justicebalance" // placeholder "remnant"
-	cooldown_time = 13 SECONDS // the cooldown isn't balanced at all, but it makes it fun with the time... once the timer reset and combo addition is added, make it 30s or 60s.
+	cooldown_time = 60 SECONDS // the cooldown isn't balanced at all, but it makes it fun with the time... once the timer reset and combo addition is added, make it 30s or 60s.
 
 /obj/effect/proc_holder/ability/remnant/Perform(target, mob/user)
 	new /mob/living/simple_animal/hostile/remnant(get_turf(user))
 	new /mob/living/simple_animal/hostile/remnant(get_turf(user)) // there has to be a less cursed way to do this
 	new /obj/effect/temp_visual/thirteen(get_turf(user))
-	playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
+	playsound(get_turf(user), 'sound/weapons/ego/dice_roll.ogg', 50, 0, 8)
 	to_chat(user, "<span class='nicegreen'>You call upon the remnants of time.</span>")
 	return ..()
 
@@ -383,25 +383,25 @@
 	icon_state = "clerkbot1" // placeholder "remnant"
 	icon_living = "clerkbot1" // placeholder "remnant"
 	faction = list("neutral")
-	health = 75
-	maxHealth = 75
+	health = 150
+	maxHealth = 150
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.2) // Shares defense with egosuit silence
 	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_upper = 50
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
-	attack_sound = 'sound/weapons/rapierhit.ogg'
+	attack_sound = 'sound/weapons/ego/sword_stab.ogg'
 
 	// could possibly add 13th hit support for the PoS weapon to synergise and make it endgame with the armour
 	// I have no clue how I do this still... someone help me.
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
-	QDEL_IN(src, (13 SECONDS)) // TODO: reset death timer if hit target
+	QDEL_IN(src, (30 SECONDS)) // TODO: reset death timer if hit target with 13s inbetween
 /*
 	if remnant hit something, reset timer, now how the fuck am I gonna do this? I don't know how to program.
 */

@@ -224,7 +224,7 @@
 	name = "dead silence"
 	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river of times, for his gift has gone cold."
 	icon_state = "thirteen"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 90)
 	realized_ability = /obj/effect/proc_holder/ability/remnant
 
 /* ALEPH Realizations */
