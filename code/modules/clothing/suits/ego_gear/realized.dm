@@ -225,7 +225,13 @@
 	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river of times, for his gift has gone cold."
 	icon_state = "thirteen"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 90)
+	hat = /obj/item/clothing/head/ego_hat/silence
 	realized_ability = /obj/effect/proc_holder/ability/remnant
+
+/obj/item/clothing/head/ego_hat/silence
+	name = "silence"
+	desc = "The thirteenth minute rang the bell of tolls, he laid cold and amused in the river of times, for his gift has gone cold."
+	icon_state = "silence"
 
 /* ALEPH Realizations */
 
