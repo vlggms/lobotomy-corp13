@@ -408,3 +408,12 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/sunshower
+	name = "sunshower"
+	desc = "Only for those who are truly kind."
+	icon_state = "sunshower"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = -20) // 70
+	attribute_requirements = list(
+							ATTACHMENT_ATTRIBUTE = 40
+							)

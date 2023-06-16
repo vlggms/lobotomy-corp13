@@ -367,3 +367,14 @@
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
+
+// Drifting Fox
+/obj/item/paper/fluff/info/he/drifting_fox
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
+	abno_code = "" // idfk
+	abno_info = list(
+		"When employees of Attachment Level 2 or lower finished working with Drifting Fox, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"Any employee who got hit by an umbrella from Drifting Fox reported feeling more pain.")
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "High"
