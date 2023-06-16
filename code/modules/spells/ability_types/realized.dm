@@ -354,13 +354,12 @@
 		return FALSE
 	return TRUE
 
-// missing sprites
 /obj/effect/proc_holder/ability/remnant
 	name = "Remnants of Time"
 	desc = "An ability that summons 2 remnants of time to help you for 13 seconds before returning to their own time."
-	action_icon_state = "justicebalance0" // placeholder "remnant0"
-	base_icon_state = "justicebalance" // placeholder "remnant"
-	cooldown_time = 60 SECONDS // the cooldown isn't balanced at all, but it makes it fun with the time... once the timer reset and combo addition is added, make it 30s or 60s.
+	action_icon_state = "thirteen0"
+	base_icon_state = "thirteen1"
+	cooldown_time = 60 SECONDS
 
 /obj/effect/proc_holder/ability/remnant/Perform(target, mob/user)
 	new /mob/living/simple_animal/hostile/remnant(get_turf(user))
@@ -372,16 +371,16 @@
 
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
-	icon = 'ModularTegustation/Teguicons/48x32.dmi' // do I need this?
-	icon_state = "remnant" // placeholder "remnant"
-	icon_living = "remnant" // placeholder "remnant"
+	icon = 'ModularTegustation/Teguicons/48x32.dmi'
+	icon_state = "remnant"
+	icon_living = "remnant"
 
 /mob/living/simple_animal/hostile/remnant
 	name = "Remnant of Time"
 	desc = "Ghost of time which was, is and will be."
-	icon = 'ModularTegustation/Teguicons/48x32.dmi' // do I need this?
-	icon_state = "remnant" // placeholder "remnant"
-	icon_living = "remnant" // placeholder "remnant"
+	icon = 'ModularTegustation/Teguicons/48x32.dmi'
+	icon_state = "remnant"
+	icon_living = "remnant"
 	faction = list("neutral")
 	health = 150
 	maxHealth = 150
@@ -398,11 +397,7 @@
 	attack_sound = 'sound/weapons/ego/sword_stab.ogg'
 
 	// could possibly add 13th hit support for the PoS weapon to synergise and make it endgame with the armour
-	// I have no clue how I do this still... someone help me.
+
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
 	QDEL_IN(src, (30 SECONDS))
-	 // TODO: reset death timer if hit target with 13s inbetween
-/*
-	if remnant hit something, reset timer, now how the fuck am I gonna do this? I don't know how to program.
-*/
