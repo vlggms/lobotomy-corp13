@@ -1297,3 +1297,18 @@
 	if(target != stored_target)
 		stored_target = target
 		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
+
+/obj/item/ego_weapon/mini/sunshower //TD
+	name = "sunshower"
+	desc = "It's an old and torn umbrella."
+	icon_state = "sunshower"
+	force = 30
+	attack_speed = 0.3
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)

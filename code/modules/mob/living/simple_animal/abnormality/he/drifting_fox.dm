@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A light brown, shaggy fox. It has glowing yellow eyes and in it's mouth is an closed umbrella. Stabbed on the fox's back are multiple open umbrellas."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "fox"
 	icon_living = "fox"
 	icon_dead = "fox_dead"
@@ -22,7 +22,7 @@
 
 		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
-	melee_damage_upper = 35 //has a wide range, he can critically hit you
+	melee_damage_upper = 35 // stabby stabby into insanity
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
@@ -37,10 +37,10 @@
 
 	faction = list("hostile")
 	ego_list = list(
-		/datum/ego_datum/weapon/sunshower,
-		/datum/ego_datum/armor/sunshower
+		/datum/ego_datum/weapon/sunshower, // TD
+		/datum/ego_datum/armor/sunshower // TD
 		)
-	gift_type =  /datum/ego_gifts/sunshower
+	gift_type =  /datum/ego_gifts/pleasure // TD
 	gift_message = "Luck follows only to those truly kind."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -67,6 +67,16 @@ SpinAttack
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-(prob(75)))
 	return ..()
+//breach
+/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
+	..()
+	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
+	icon_living = "fox"
+	icon_state = icon_living
+	var/turf/T = pick(GLOB.xeno_spawn)
+	forceMove(T)
+	umbrella_cooldown = world.time + umbrella_cooldown_time
+	spinattack_cooldown = world.time + spinattack_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/OpenFire()
 	if(!target)
@@ -77,16 +87,40 @@ SpinAttack
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	manual_emote("whines in pain.")
 	SLEEP_CHECK_DEATH(2)
-		new /mob/living/simple_animal/hostile/umbrella(get_step(src, EAST))
-		new /mob/living/simple_animal/hostile/umbrella(get_step(src, WEST))
-	SLEEP_CHECK_DEATH(2)
+	new /mob/living/simple_animal/hostile/umbrella(get_step(src, EAST))
+	new /mob/living/simple_animal/hostile/umbrella(get_step(src, WEST))
+	umbrella_cooldown = world.time + umbrella_cooldown_time
 
 /mob/living/simple_animal/hostile/umbrella
 	name = "Umbrella"
 	desc = "An old and worn out umbrella."
 	icon_state = "umbrella"
 	icon_living = "umbrella"
+	faction = list("hostile")
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	maxHealth = 125
 	health = 125
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+
+	move_to_delay = 5
+	melee_damage_lower = 5
+	melee_damage_upper = 20
+	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+
+	attack_sound = 'sound/weapons/ego/sword_stab.ogg'
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	a_intent = "hostile"
+	move_resist = 1500
+
+	can_patrol = TRUE
+
+	del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/umbrella/death(gibbed)
+	visible_message("<span class='notice'>[src] falls to the ground, closing in process!</span>")
+	. = ..()
+	gib(TRUE, TRUE, TRUE)
+	return
+

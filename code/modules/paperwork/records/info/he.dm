@@ -369,12 +369,13 @@
 	abno_breach_damage_count = "High"
 
 // Drifting Fox
-/obj/item/paper/fluff/info/he/drifting_fox
+/obj/item/paper/fluff/info/he/driftingfox
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
-	abno_code = "" // idfk
+	abno_code = "T-02-103" // T-02-11-03 in LCB
 	abno_info = list(
 		"When employees of Attachment Level 2 or lower finished working with Drifting Fox, the Qliphoth Counter lowered.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"Any employee who got hit by an umbrella from Drifting Fox reported feeling more pain.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "High"
+	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Endured", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")
