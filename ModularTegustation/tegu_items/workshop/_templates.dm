@@ -41,7 +41,8 @@
 	damtype = mod.damagetype
 	armortype = mod.damagetype
 	aoe_range += mod.aoemod
-	color = mod.weaponcolor
+	if(!color) // Material color overwrites
+		color = mod.weaponcolor
 	specialmod = mod.specialmod
 	//throwforce is special
 	if(throwforce>force)
