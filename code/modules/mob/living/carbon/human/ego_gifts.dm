@@ -304,7 +304,7 @@
 	icon_state = "cherry"
 	fortitude_bonus = 2
 	justice_bonus = 2
-	slot = BROOCH
+	slot = HAT
 
 /datum/ego_gifts/dream
 	name = "Engulfing Dream"
