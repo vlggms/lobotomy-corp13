@@ -44,6 +44,15 @@
 	gift_message = "Luck follows only to those truly kind."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+/*
+Umbrella
+	- Spawned simplemob which attacks nearby targets and applies black armor debuff (0.2 should suffice)
+*/
+/*
+SpinAttack
+	- Static AOE spinattack in which the fox either Fox.SpinAnimation() or does big AOE effect.. both with medium-big black damage attached
+*/
+
 	// both not finished
 	var/umbrella_cooldown_time = 30 SECONDS
 	var/umbrella_cooldown
