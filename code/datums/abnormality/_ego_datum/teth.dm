@@ -257,3 +257,30 @@
 /datum/ego_datum/weapon/aspiration
 	item_path = /obj/item/gun/ego_gun/aspiration
 	cost = 20
+
+//Fairy Gentleman - Sloshing
+/datum/ego_datum/armor/sloshing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/sloshing
+	cost = 20
+
+/datum/ego_datum/weapon/sloshing
+	item_path = /obj/item/ego_weapon/sloshing
+	cost = 20
+
+//So That No One Will Cry - Red Sheet
+/datum/ego_datum/armor/red_sheet
+	item_path = /obj/item/clothing/suit/armor/ego_gear/red_sheet
+	cost = 20
+
+/datum/ego_datum/weapon/red_sheet
+	item_path = /obj/item/ego_weapon/red_sheet
+	cost = 20
+
+//Brazen Bull - Capote
+/datum/ego_datum/armor/capote
+	item_path = /obj/item/clothing/suit/armor/ego_gear/capote
+	cost = 20
+
+/datum/ego_datum/weapon/capote
+	item_path = /obj/item/ego_weapon/shield/capote
+	cost = 20

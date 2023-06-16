@@ -773,3 +773,160 @@
 
 /obj/item/ego_weapon/shield/distortion/DropStance() //ALWAYS blocking ranged attacks, NEVER drop your stance!
 	return
+
+/obj/item/ego_weapon/farmwatch
+	name = "farmwatch"
+	desc = "What use is technology that cannot change the world?"
+	special = "Activate this weapon in your hand to plant 4 trees of desire. Killing them with this weapon restores HP and sanity."
+	icon_state = "farmwatch"
+	force = 84
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts", "reaps")
+	attack_verb_simple = list("slash", "slice", "rip", "cut", "reap")
+	hitsound = 'sound/weapons/ego/farmwatch.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ability_cooldown
+	var/ability_cooldown_time = 20 SECONDS
+
+/obj/item/ego_weapon/farmwatch/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(istype(target, /mob/living/simple_animal/hostile/farmwatch_plant))
+		if (force <= (initial(force) * 2))
+			force += 22//this is a bit over one fourth of 84. Keeps nice whole numbers on examine text
+		playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 200, 1)
+		user.adjustBruteLoss(-10)
+		user.adjustSanityLoss(-15)
+		to_chat(user, "<span class='notice'>You reap the fruits of your labor!</span>")
+		..()
+		return
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/farmwatch/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(ability_cooldown > world.time)
+		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		return FALSE
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE)
+	to_chat(user, "You cultivate seeds of desires.")
+	ability_cooldown = world.time + ability_cooldown_time
+	spawn_plant(user, EAST, NORTH)
+	spawn_plant(user, WEST, NORTH)
+	spawn_plant(user, EAST, SOUTH)
+	spawn_plant(user, WEST, SOUTH)
+	..()
+
+/obj/item/ego_weapon/farmwatch/proc/spawn_plant(mob/user, dir1, dir2)
+	var/turf/T = get_turf(user)
+	T = get_ranged_target_turf(T, dir1, 2)//spawns one spicebush plant 2 tiles away in each corner
+	T = get_ranged_target_turf(T, dir2, 2)
+	new /mob/living/simple_animal/hostile/farmwatch_plant(get_turf(T))//mob located at ability_types/realized.dm
+
+/obj/item/ego_weapon/spicebush//TODO: actually code this
+	name = "spicebush"
+	desc = "and the scent of the grave was in full bloom."
+	special = "Activate this weapon in your hand to plant 4 soon-to-bloom flowers. While fragile, they will restore the HP and sanity of nearby humans."
+	icon_state = "spicebush"
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "spicebush"
+	force = 70
+	reach = 2
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "pokes", "cuts", "stabs")
+	attack_verb_simple = list("slash", "slice", "poke", "cut", "stab")
+	hitsound = 'sound/weapons/ego/spicebush.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ability_cooldown
+	var/ability_cooldown_time = 30 SECONDS
+
+/obj/item/ego_weapon/spicebush/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(ability_cooldown > world.time)
+		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		return FALSE
+	if(do_after(user, 20))
+		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
+		to_chat(user, "You plant some flower buds.")
+		spawn_plant(user, EAST, NORTH)//spawns one spicebush plant 2 tiles away in each corner
+		spawn_plant(user, WEST, NORTH)
+		spawn_plant(user, EAST, SOUTH)
+		spawn_plant(user, WEST, SOUTH)
+	ability_cooldown = world.time + ability_cooldown_time
+	..()
+
+/obj/item/ego_weapon/spicebush/proc/spawn_plant(mob/user, dir1, dir2)
+	var/turf/T = get_turf(user)
+	T = get_ranged_target_turf(T, dir1, 2)
+	T = get_ranged_target_turf(T, dir2, 2)
+	new /mob/living/simple_animal/hostile/spicebush_plant(get_turf(T))//mob located at ability_types/realized.dm
+
+/obj/item/ego_weapon/spicebush/get_clamped_volume()
+	return 30
+
+/obj/item/ego_weapon/spicebush/fan
+	desc = "I will leave behind a morrow, strong and fertile like fallen petals."
+	icon_state = "spicebush_2"
+	reach = 1
+	attack_speed = 1
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "spicebush_2"
+	hitsound = 'sound/weapons/slap.ogg'
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1 SECONDS
+	var/ranged_damage = 70
+
+/obj/item/ego_weapon/spicebush/fan/proc/ResetIcons()
+	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
+	icon_state = "spicebush_2"
+
+/obj/item/ego_weapon/spicebush/fan/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
+	icon_state = "spicebush_2a"
+	addtimer(CALLBACK(src, .proc/ResetIcons), 30 SECONDS)
+	..()
+
+/obj/item/ego_weapon/spicebush/fan/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/weapons/ego/spicebush_fan.ogg', 50, TRUE)
+	var/damage_dealt = 0
+	if(do_after(user, 5))
+		for(var/turf/open/T in range(target_turf, 1))
+			new /obj/effect/temp_visual/spicebloom(T)
+			for(var/mob/living/L in T.contents)
+				L.apply_damage(ranged_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+					damage_dealt += ranged_damage
+
+/obj/effect/temp_visual/spicebloom
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "spicebush"
+	duration = 10

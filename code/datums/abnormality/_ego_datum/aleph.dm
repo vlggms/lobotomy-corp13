@@ -128,3 +128,17 @@
 /datum/ego_datum/weapon/distortion
 	item_path = /obj/item/ego_weapon/shield/distortion
 	cost = 100
+
+// Dongrang Personal E.G.O - Farmwatch
+/datum/ego_datum/weapon/farmwatch
+	item_path = /obj/item/ego_weapon/farmwatch
+	cost = 100//appears in wishing well
+
+// Dongbaek Personal E.G.O - Spicebush
+/datum/ego_datum/weapon/spicebush
+	item_path = /obj/item/ego_weapon/spicebush
+	cost = 100//appears in wishing well
+
+/datum/ego_datum/weapon/spicebush/fan
+	item_path = /obj/item/ego_weapon/spicebush
+	cost = 100//appears in wishing well
