@@ -94,7 +94,18 @@
 	desc = "If I must perish, then I'll make you meet the same fate."
 	icon_state = "ember_matchlight"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
-	realized_ability = /obj/effect/proc_holder/ability/fire_explosion
+/obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom
+	name = "sakura bloom"
+	desc = "Spring is coming and the petals shall fall."
+	icon_state = "sakura_bloom"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/petal_blizzard
+	hat = /obj/item/clothing/head/ego_hat/sakura_hat
+/obj/item/clothing/head/ego_hat/sakura_hat
+	name = "sakura bloom"
+	desc = "HOLY SHIT TOUHOU REFERANCE!?!?!?!?!?"
+	icon_state = "sakura"
+	flags_inv = HIDEMASK	realized_ability = /obj/effect/proc_holder/ability/fire_explosion
 
 /* HE Realizations */
 
@@ -242,3 +253,4 @@
 	icon_state = "laughter"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 90, PALE_DAMAGE = 20)
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+
