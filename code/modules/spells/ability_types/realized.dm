@@ -372,16 +372,16 @@
 
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
-	icon = 'ModularTegustation/Teguicons/32x32.dmi' // do I need this?
-	icon_state = "clerkbot1" // placeholder "remnant"
-	icon_living = "clerkbot1" // placeholder "remnant"
+	icon = 'ModularTegustation/Teguicons/48x32.dmi' // do I need this?
+	icon_state = "remnant" // placeholder "remnant"
+	icon_living = "remnant" // placeholder "remnant"
 
 /mob/living/simple_animal/hostile/remnant
 	name = "Remnant of Time"
 	desc = "Ghost of time which was, is and will be."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi' // do I need this?
-	icon_state = "clerkbot1" // placeholder "remnant"
-	icon_living = "clerkbot1" // placeholder "remnant"
+	icon = 'ModularTegustation/Teguicons/48x32.dmi' // do I need this?
+	icon_state = "remnant" // placeholder "remnant"
+	icon_living = "remnant" // placeholder "remnant"
 	faction = list("neutral")
 	health = 150
 	maxHealth = 150
@@ -401,7 +401,8 @@
 	// I have no clue how I do this still... someone help me.
 /mob/living/simple_animal/hostile/remnant/Initialize()
 	..()
-	QDEL_IN(src, (30 SECONDS)) // TODO: reset death timer if hit target with 13s inbetween
+	QDEL_IN(src, (30 SECONDS))
+	 // TODO: reset death timer if hit target with 13s inbetween
 /*
 	if remnant hit something, reset timer, now how the fuck am I gonna do this? I don't know how to program.
 */
