@@ -1298,7 +1298,7 @@
 		stored_target = target
 		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
 
-/obj/item/ego_weapon/mini/sunshower //TD
+/obj/item/ego_weapon/sunshower //TD
 	name = "sunshower"
 	desc = "It's an old and torn umbrella."
 	icon_state = "sunshower"
