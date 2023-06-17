@@ -73,25 +73,3 @@
 		ABNORMALITY_ORIGIN_LIMBUS,
 		ABNORMALITY_ORIGIN_ORIGINAL
 		)
-
-
-/datum/game_mode/management/joke
-	name = "L Corp - Freaky Friday"
-	config_tag = "jokemode"
-	votable = 0
-
-	announce_span = "notice"
-	announce_text = "Manage all abnormalities not originating from Lobotomy Corporation HQ, as well as a selection of joke and reference abnormalities."
-	abno_types = list(
-		ABNORMALITY_ORIGIN_LOBOTOMY,
-		ABNORMALITY_ORIGIN_ALTERED,
-		ABNORMALITY_ORIGIN_ARTBOOK,
-		ABNORMALITY_ORIGIN_WONDERLAB,
-		ABNORMALITY_ORIGIN_RUINA,
-		ABNORMALITY_ORIGIN_LIMBUS,
-		ABNORMALITY_ORIGIN_ORIGINAL,
-		ABNORMALITY_ORIGIN_SCP,
-		ABNORMALITY_ORIGIN_MEME,
-
-		)
-

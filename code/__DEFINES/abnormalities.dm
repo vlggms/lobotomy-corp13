@@ -47,8 +47,3 @@
 #define ABNORMALITY_ORIGIN_WONDERLAB "Wonderlab"
 #define ABNORMALITY_ORIGIN_RUINA "Library of Ruina"
 #define ABNORMALITY_ORIGIN_LIMBUS "Limbus Company"
-
-//Less Serious Origins
-#define ABNORMALITY_ORIGIN_SCP "SCP Foundation"
-#define ABNORMALITY_ORIGIN_MEME "Joke Abnormality"
-#define ABNORMALITY_ORIGIN_AI "AI Generated"
