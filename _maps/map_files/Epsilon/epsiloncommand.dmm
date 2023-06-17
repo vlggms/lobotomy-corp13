@@ -6154,7 +6154,9 @@
 /area/city/backstreets_room)
 "zC" = (
 /obj/structure/railing,
-/obj/structure/table/wood,
+/obj/machinery/computer/abnormality_auxiliary{
+	dir = 1
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "zE" = (
