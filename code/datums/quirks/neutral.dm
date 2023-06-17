@@ -147,22 +147,6 @@
 	lose_text = "<span class='notice'>You could use a big hug.</span>"
 	medical_record_text = "Patient has disdain for being touched. Potentially has undiagnosed haphephobia."
 
-/datum/quirk/bad_touch/add()
-	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT), .proc/uncomfortable_touch)
-
-/datum/quirk/bad_touch/remove()
-	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT))
-
-/datum/quirk/bad_touch/proc/uncomfortable_touch()
-	SIGNAL_HANDLER
-
-	new /obj/effect/temp_visual/annoyed(quirk_holder.loc)
-	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
-	if(mood.sanity <= SANITY_NEUTRAL)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/very_bad_touch)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/bad_touch)
-
 /datum/quirk/friendly
 	name = "Friendly"
 	desc = "You give the best hugs, even if they dont matter in this bloodshed enviroment."
@@ -172,20 +156,6 @@
 	lose_text = "<span class='danger'>You no longer feel compelled to hug others.</span>"
 	medical_record_text = "Patient demonstrates low-inhibitions for physical contact and well-developed arms. Requesting another doctor take over this case."
 
-/datum/quirk/badback
-	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
-	value = 0
-	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
-	lose_text = "<span class='notice'>Your back feels better.</span>"
-	medical_record_text = "Patient scans indicate severe and chronic back pain."
-
-/datum/quirk/badback/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H.back && istype(H.back, /obj/item/storage/backpack))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "back_pain", /datum/mood_event/back_pain)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
 
 /datum/quirk/extrovert
 	name = "Extrovert"
@@ -409,15 +379,11 @@
 	old_hair = H.hairstyle
 	H.hairstyle = "Bald"
 	H.update_hair()
-	RegisterSignal(H, COMSIG_CARBON_EQUIP_HAT, .proc/equip_hat)
-	RegisterSignal(H, COMSIG_CARBON_UNEQUIP_HAT, .proc/unequip_hat)
 
 /datum/quirk/bald/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.hairstyle = old_hair
 	H.update_hair()
-	UnregisterSignal(H, list(COMSIG_CARBON_EQUIP_HAT, COMSIG_CARBON_UNEQUIP_HAT))
-	SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day")
 
 /datum/quirk/bald/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -433,21 +399,6 @@
 		"hands" = ITEM_SLOT_HANDS,
 	)
 	H.equip_in_one_of_slots(W, slots , qdel_on_fail = TRUE)
-
-///Checks if the headgear equipped is a wig and sets the mood event accordingly
-/datum/quirk/bald/proc/equip_hat(mob/user, obj/item/hat)
-	SIGNAL_HANDLER
-
-	if(istype(hat, /obj/item/clothing/head/wig))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/confident_mane) //Our head is covered, but also by a wig so we're happy.
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day") //Our head is covered
-
-///Applies a bad moodlet for having an uncovered head
-/datum/quirk/bald/proc/unequip_hat(mob/user, obj/item/clothing, force, newloc, no_move, invdrop, silent)
-	SIGNAL_HANDLER
-
-	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/bald)
 
 
 /datum/quirk/tongue_tied

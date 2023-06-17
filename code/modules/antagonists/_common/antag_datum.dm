@@ -13,7 +13,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	var/replace_banned = TRUE //Should replace jobbanned player with ghosts if granted.
 	var/list/objectives = list()
 	var/antag_memory = ""//These will be removed with antag datum
-	var/antag_moodlet //typepath of moodlet that the mob will gain with their status
 	var/can_elimination_hijack = ELIMINATION_NEUTRAL //If these antags are alone when a shuttle elimination happens.
 	/// If above 0, this is the multiplier for the speed at which we hijack the shuttle. Do not directly read, use hijack_speed().
 	var/hijack_speed = 0
@@ -113,7 +112,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 	if(!silent)
 		greet()
 	apply_innate_effects()
-	give_antag_moodies()
 	if(is_banned(owner.current) && replace_banned)
 		replace_banned_player()
 	else if(owner.current.client?.holder && (CONFIG_GET(flag/auto_deadmin_antagonists) || owner.current.client.prefs?.toggles & DEADMIN_ANTAGONIST))
@@ -153,7 +151,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 		CRASH("Antag datum with no owner.")
 
 	remove_innate_effects()
-	clear_antag_moodies()
 	LAZYREMOVE(owner.antag_datums, src)
 	if(!LAZYLEN(owner.antag_datums))
 		owner.current.remove_from_current_living_antags()
@@ -169,16 +166,6 @@ GLOBAL_LIST_EMPTY(antagonists)
 
 /datum/antagonist/proc/farewell()
 	return
-
-/datum/antagonist/proc/give_antag_moodies()
-	if(!antag_moodlet)
-		return
-	SEND_SIGNAL(owner.current, COMSIG_ADD_MOOD_EVENT, "antag_moodlet", antag_moodlet)
-
-/datum/antagonist/proc/clear_antag_moodies()
-	if(!antag_moodlet)
-		return
-	SEND_SIGNAL(owner.current, COMSIG_CLEAR_MOOD_EVENT, "antag_moodlet")
 
 //Returns the team antagonist belongs to if any.
 /datum/antagonist/proc/get_team()
