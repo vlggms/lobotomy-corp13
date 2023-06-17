@@ -7219,6 +7219,15 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
+"zs" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "zx" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -39458,7 +39467,7 @@ XV
 iS
 rf
 Vp
-RX
+zs
 ob
 wN
 Xw
