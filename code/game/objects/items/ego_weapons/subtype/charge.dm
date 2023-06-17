@@ -1,5 +1,6 @@
 //Overarching charge stuff
 /obj/item/ego_weapon/charge
+	var/release_message = "You release your charge!"
 	var/charge_effect = "cause a debug error."
 	var/charge_cost = 1
 	var/charge
@@ -26,7 +27,6 @@
 
 //On attack subtype
 /obj/item/ego_weapon/charge/onattack
-	var/release_message = "You release your charge!"
 	var/activated
 
 /obj/item/ego_weapon/charge/onattack/attack_self(mob/user)
