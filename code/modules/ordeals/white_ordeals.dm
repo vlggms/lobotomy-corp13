@@ -3,6 +3,7 @@
 	annonce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
 	can_run = FALSE
 	delay = 2 // It will always give exactly 1 normal meltdown in-between ordeals
+	random_delay = FALSE
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
