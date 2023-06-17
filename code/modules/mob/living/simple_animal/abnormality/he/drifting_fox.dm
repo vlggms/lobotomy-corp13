@@ -33,7 +33,7 @@
 	work_damage_type = BLACK_DAMAGE
 	attack_verb_continuous = "slices" //TD
 	attack_verb_simple = "stabs" // TD
-	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // TD
+	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // has placeholder
 	can_breach = TRUE
 	can_patrol = FALSE // AE
 	start_qliphoth = 3
@@ -58,8 +58,8 @@ SpinAttack
 	var/umbrella_cooldown
 	var/spinattack_cooldown_time = 15 SECONDS
 	var/spinattack_cooldown
-	var/range = 3
-	var/id
+	var/spinRange = 3 // tf am I gonna do with this
+	var/spinDamage = 40
 	var/mob/living/carbon/human/NoFriend = null
 
 // *sad_music
@@ -82,7 +82,7 @@ SpinAttack
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/LostFriend)
 	return
 
-// Work stuff
+// Did you work correctly?
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 40)
 		datum_reference.qliphoth_change(-1)
@@ -92,7 +92,7 @@ SpinAttack
 	return
 
 
-
+// lol, you suck
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-(prob(75)))
 	return ..()
@@ -100,7 +100,7 @@ SpinAttack
 //breach
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
-	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
+	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4) // has placeholder
 	icon_living = "fox"
 	icon_state = icon_living
 	var/turf/T = pick(GLOB.xeno_spawn)
@@ -108,18 +108,23 @@ SpinAttack
 	umbrella_cooldown = world.time + umbrella_cooldown_time
 	spinattack_cooldown = world.time + spinattack_cooldown_time
 
-// Now there's 2, I need 3 and all work together... shit
-/mob/living/simple_animal/hostile/abnormality/despair_knight/AttackingTarget(atom/attacked_target)
-	return OpenFire()
+// I can use this for the aoe attack right?
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/AttackingTarget(atom/attacked_target)
+	if(spinattack_cooldown <= world.time)
+		spinAttack()
+	..()
 
-// Umbrella handlers
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/OpenFire()
-	if(!target)
+// This should work right?
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
+	. = ..()
+	if(status_flags & GODMODE)
 		return
-	FoxUmbrella(target)
+	if(umbrella_cooldown <= world.time)
+		FoxUmbrella()
+
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/FoxUmbrella(mob/living/carbon/human/user)
-	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100) // has placeholder
 	manual_emote("whines in pain.")
 	SLEEP_CHECK_DEATH(2)
 	new /mob/living/simple_animal/hostile/umbrella(get_step(src, EAST))
@@ -129,32 +134,23 @@ SpinAttack
 /mob/living/simple_animal/hostile/umbrella
 	name = "Umbrella"
 	desc = "An old and worn out umbrella."
-	icon_state = "umbrella1" // has placeholder
-	icon_living = "umbrella1" // has placeholder
-	/*if(prob(50))
-		icon_state = "umbrella2"
-		icon_living = "umbrella2"*/
-	faction = list("hostile")
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "umbrella" // has placeholder
+	icon_living = "umbrella" // has placeholder
+	faction = list("hostile")
 	maxHealth = 125
 	health = 125
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
-
 	move_to_delay = 5
 	melee_damage_lower = 5
-	melee_damage_upper = 20
+	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	H.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
-
+	H.apply_status_effect(/datum/status_effect/umbrella_black_debuff) // how do I apply it to the guy they hit
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // placeholder
-	attack_verb_continuous = list("cuts", "attacks", "slashes")
-	attack_verb_simple = list("cut", "attack", "slash")
-	a_intent = "hostile"
-	move_resist = 1500
-
-	can_patrol = TRUE
-
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "cut"
+	robust_searching = TRUE
 	del_on_death = FALSE
 
 //umbrella debuff stuff
@@ -192,8 +188,21 @@ SpinAttack
 	icon_state = "falsekindness"
 
 
-//How do I make him speen?
+// Will this make him spin?
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttack()
+	spinattack_cooldown = world.time + spinattack_cooldown_time
+	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
+	for(var/i = 1 to 4)
+		addtimer(CALLBACK(src, .proc/spinAttackDamage), 1 SECONDS * (i))
 
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttackDamage()
+	for(var/mob/living/L in view(spinRange, src))
+		new /obj/effect/temp_visual/smash_effect(L)
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(spinDamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
 // umbrella death
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
