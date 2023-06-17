@@ -56,11 +56,11 @@
 				death = TRUE
 
 		if(6)
-			if(world.time >= 60 MINUTES)
+			if(world.time >= 20 MINUTES)
 				death = TRUE
 
 		if(7)
-			if(world.time <= 60 MINUTES)
+			if(world.time <= 20 MINUTES)
 				death = TRUE
 
 		if(8)
@@ -77,4 +77,3 @@
 
 	if(death == TRUE)
 		user.gib()
-
