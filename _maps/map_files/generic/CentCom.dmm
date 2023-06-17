@@ -677,10 +677,6 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
-"dh" = (
-/turf/open/floor/wood,
-/turf/open/floor/wood,
-/area/department_main/human)
 "di" = (
 /obj/machinery/light/floor,
 /turf/open/floor/carpet/black,
@@ -2277,7 +2273,7 @@
 "iJ" = (
 /obj/structure/rack,
 /obj/item/toy/plush/melt,
-/obj/item/toy/plush/kod{
+/obj/item/toy/plush/fighter/magical_girl/kod{
 	pixel_x = 15
 	},
 /turf/open/floor/plasteel/dark,
@@ -3763,11 +3759,11 @@
 /area/facility_hallway/manager)
 "pt" = (
 /obj/structure/rack,
-/obj/item/toy/plush/scorched,
-/obj/item/toy/plush/qoh{
+/obj/item/toy/plush/fighter/scorched,
+/obj/item/toy/plush/fighter/magical_girl/qoh{
 	pixel_x = 15
 	},
-/obj/item/toy/plush/sow{
+/obj/item/toy/plush/fighter/magical_girl/sow{
 	pixel_x = -10
 	},
 /turf/open/floor/plasteel/dark,
@@ -7307,7 +7303,7 @@
 /area/facility_hallway/manager)
 "CG" = (
 /obj/structure/rack,
-/obj/item/toy/plush/big_bad_wolf,
+/obj/item/toy/plush/fighter/big_bad_wolf,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "CK" = (
@@ -7792,14 +7788,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"EO" = (
-/obj/effect/light_emitter{
-	set_cap = 1;
-	set_luminosity = 4
-	},
-/turf/open/floor/wood,
-/turf/open/floor/wood,
-/area/department_main/human)
 "EW" = (
 /obj/structure/table/wood,
 /turf/open/floor/engine/cult,
@@ -10539,8 +10527,8 @@
 /area/centcom/holding)
 "OV" = (
 /obj/structure/rack,
-/obj/item/toy/plush/mosb,
-/obj/item/toy/plush/kog{
+/obj/item/toy/plush/fighter/mosb,
+/obj/item/toy/plush/fighter/magical_girl/kog{
 	pixel_x = 15
 	},
 /turf/open/floor/plasteel/dark,
@@ -12495,7 +12483,6 @@
 	set_luminosity = 4
 	},
 /turf/open/floor/wood,
-/turf/open/floor/wood,
 /area/department_main/human)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
@@ -13085,8 +13072,8 @@
 /area/facility_hallway/human)
 "ZH" = (
 /obj/structure/rack,
-/obj/item/toy/plush/bigbird,
-/obj/item/toy/plush/nihil{
+/obj/item/toy/plush/fighter/bigbird,
+/obj/item/toy/plush/fighter/nihil{
 	pixel_x = 15
 	},
 /turf/open/floor/plasteel/dark,
@@ -43033,7 +43020,7 @@ wF
 UY
 bI
 bI
-dh
+bI
 bI
 bb
 dv
@@ -43289,8 +43276,8 @@ GL
 wF
 Jf
 Xn
-dh
-EO
+bI
+Mt
 bI
 Mt
 BD
@@ -43804,7 +43791,7 @@ mN
 bI
 Mt
 bI
-EO
+Mt
 bI
 Mt
 wF
@@ -44061,7 +44048,7 @@ tt
 bI
 bI
 bI
-dh
+bI
 AU
 bI
 wF

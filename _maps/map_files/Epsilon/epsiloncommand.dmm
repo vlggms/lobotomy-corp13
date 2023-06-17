@@ -10239,7 +10239,7 @@
 /area/city/backstreets_room)
 "Pw" = (
 /obj/structure/table/wood/fancy/cyan,
-/obj/item/toy/plush/bigbird,
+/obj/item/toy/plush/fighter/bigbird,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "PC" = (

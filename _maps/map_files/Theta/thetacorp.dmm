@@ -22189,7 +22189,7 @@
 	pixel_x = 3;
 	max_integrity = 25
 	},
-/obj/item/toy/plush/dante,
+/obj/item/toy/plush/fighter/dante,
 /obj/item/records/timestop,
 /obj/item/records/abnodelay,
 /obj/item/records/information,
