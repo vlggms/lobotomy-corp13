@@ -428,17 +428,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
-"bB" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/fighter/mosb,
-/obj/item/toy/plush/fighter/magical_girl/kog{
-	pixel_x = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "bE" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
@@ -538,9 +527,9 @@
 /area/department_main/human)
 "ci" = (
 /obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
+	max_integrity = 2.5e+008;
 	name = "Restroom";
-	normal_integrity = 250000000
+	normal_integrity = 2.5e+008
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
@@ -3156,9 +3145,9 @@
 /area/facility_hallway/manager)
 "mH" = (
 /obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
+	max_integrity = 2.5e+008;
 	name = "Restroom";
-	normal_integrity = 250000000
+	normal_integrity = 2.5e+008
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
@@ -5718,9 +5707,9 @@
 /area/wizard_station)
 "wR" = (
 /obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
+	max_integrity = 2.5e+008;
 	name = "Officer Cryosleep";
-	normal_integrity = 250000000
+	normal_integrity = 2.5e+008
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
@@ -8368,17 +8357,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"HP" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/fighter/bigbird,
-/obj/item/toy/plush/fighter/nihil{
-	pixel_x = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "HQ" = (
 /obj/structure/sink/kitchen{
 	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
@@ -10261,9 +10239,9 @@
 /area/facility_hallway/manager)
 "NP" = (
 /obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
+	max_integrity = 2.5e+008;
 	name = "Sefirot Offices";
-	normal_integrity = 250000000;
+	normal_integrity = 2.5e+008;
 	req_access_txt = "67"
 	},
 /turf/open/floor/facility/dark,
@@ -10459,20 +10437,6 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/hub)
-"OI" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/fighter/scorched,
-/obj/item/toy/plush/fighter/magical_girl/qoh{
-	pixel_x = 15
-	},
-/obj/item/toy/plush/fighter/magical_girl/sow{
-	pixel_x = -10
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "OK" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -11574,9 +11538,9 @@
 /area/centcom/holding)
 "To" = (
 /obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
+	max_integrity = 2.5e+008;
 	name = "Representative's Office";
-	normal_integrity = 250000000;
+	normal_integrity = 2.5e+008;
 	req_access_txt = "69"
 	},
 /turf/open/floor/facility/dark,
@@ -13074,17 +13038,6 @@
 /obj/structure/rack,
 /obj/item/toy/plush/fighter/bigbird,
 /obj/item/toy/plush/fighter/nihil{
-	pixel_x = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"ZK" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/rack,
-/obj/item/toy/plush/fighter/melt,
-/obj/item/toy/plush/fighter/magical_girl/kod{
 	pixel_x = 15
 	},
 /turf/open/floor/plasteel/dark,
@@ -16276,7 +16229,7 @@ ip
 sA
 mj
 sA
-OI
+sA
 pt
 qp
 aa
@@ -16533,7 +16486,7 @@ sA
 ZL
 qp
 uN
-ZK
+sA
 iJ
 qp
 aa
@@ -16790,7 +16743,7 @@ sA
 RO
 qp
 uN
-bB
+sA
 OV
 qp
 aa
@@ -17047,7 +17000,7 @@ sA
 nw
 qp
 uN
-HP
+sA
 ZH
 qp
 aa

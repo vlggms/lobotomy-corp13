@@ -8549,14 +8549,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/command)
-"aHV" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/table/reinforced,
-/obj/item/toy/plush/fighter/dante,
-/turf/open/floor/plasteel/dark,
-/area/department_main/records)
 "aHW" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 1
@@ -12917,17 +12909,6 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
-"aYe" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/table/reinforced,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/item/toy/plush/fighter/bigbird,
-/turf/open/floor/plasteel/dark,
-/area/department_main/extraction)
 "aYf" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -31050,7 +31031,7 @@ aod
 aod
 aJX
 aod
-aHV
+aod
 aod
 azn
 aPn
@@ -48753,7 +48734,7 @@ ahv
 aBl
 auv
 aOS
-aYe
+auO
 aZM
 auO
 aFz

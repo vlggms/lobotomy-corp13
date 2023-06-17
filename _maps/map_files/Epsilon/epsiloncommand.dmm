@@ -586,11 +586,11 @@
 	dir = 8;
 	pixel_x = -9
 	},
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
-	name = "sweeper scout"
-	},
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 3
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -1072,9 +1072,9 @@
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
 	integrity_failure = 0.1;
-	max_integrity = 999999999;
+	max_integrity = 1e+009;
 	name = "Secure medical room";
-	normal_integrity = 999999999;
+	normal_integrity = 1e+009;
 	req_access_txt = "5"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -1094,11 +1094,11 @@
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
 "ex" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "spear bot"
-	},
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "spear bot"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -1233,11 +1233,11 @@
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
 "eV" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
-	name = "sweeper scout"
-	},
 /obj/structure/chair/pew{
 	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
 	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
@@ -1675,16 +1675,6 @@
 "gT" = (
 /turf/open/floor/oldshuttle,
 /area/city/house)
-"gU" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/indestructible/necropolis,
-/area/city/backstreets_room)
 "gV" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/item/storage/box/cups,
@@ -1831,11 +1821,11 @@
 /turf/open/floor/plasteel/dark,
 /area/city)
 "hx" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
-	},
 /obj/effect/turf_decal{
 	dir = 3
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
 	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
@@ -2801,12 +2791,12 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
 "ls" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon{
-	dir = 4
-	},
 /obj/effect/decal/cleanable/blood/drip{
 	pixel_x = 18;
 	pixel_y = -6
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	dir = 4
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -2936,11 +2926,11 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "lW" = (
-/mob/living/simple_animal/pet/cat/breadcat,
 /obj/structure/bed/dogbed{
 	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off.";
 	name = "cat bed"
 	},
+/mob/living/simple_animal/pet/cat/breadcat,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "lY" = (
@@ -4445,8 +4435,8 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "sb" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
 /obj/effect/decal/cleanable/blood/footprints,
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "sc" = (
@@ -4467,11 +4457,11 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
-/mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "spear bot"
-	},
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "spear bot"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -5088,10 +5078,10 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
 "uW" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 3
 	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "uY" = (
@@ -5325,10 +5315,10 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "vR" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /obj/structure/chair/pew{
 	dir = 1
 	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "vT" = (
@@ -5338,15 +5328,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/shop)
-"vU" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot"
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "vV" = (
 /turf/closed/indestructible/rock,
 /area/city/backstreets_room)
@@ -5564,10 +5545,10 @@
 	},
 /area/city/backstreets_room)
 "wK" = (
+/obj/structure/chair/comfy/black,
 /mob/living/simple_animal/hostile/ordeal/amber_bug{
 	name = "carnivorous worm"
 	},
-/obj/structure/chair/comfy/black,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "wL" = (
@@ -6181,10 +6162,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/manager)
 "zt" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/ordeal/amber_bug{
 	name = "carnivorous worm"
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "zv" = (
@@ -6242,10 +6223,10 @@
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
 "zK" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 7
 	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "zL" = (
@@ -6729,11 +6710,11 @@
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Bw" = (
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
-	name = "sweeper scout"
-	},
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 3
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -6744,10 +6725,10 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 10
 	},
+/obj/item/food/meat/slab/human/mutant/skeleton,
 /mob/living/simple_animal/hostile/ordeal/amber_bug{
 	name = "carnivorous worm"
 	},
-/obj/item/food/meat/slab/human/mutant/skeleton,
 /turf/open/floor/fakepit,
 /area/city/backstreets_room)
 "By" = (
@@ -8165,10 +8146,10 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/shrimp,
 /obj/structure/chair/comfy/lime{
 	dir = 8
 	},
+/mob/living/simple_animal/hostile/shrimp,
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "GM" = (
@@ -8923,10 +8904,10 @@
 	},
 /area/city/backstreets_room)
 "JZ" = (
+/obj/item/food/meat/slab/human/mutant/skeleton,
 /mob/living/simple_animal/hostile/ordeal/amber_bug{
 	name = "carnivorous worm"
 	},
-/obj/item/food/meat/slab/human/mutant/skeleton,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Ka" = (
@@ -9647,10 +9628,10 @@
 /turf/open/floor/eighties,
 /area/city/shop)
 "MM" = (
+/obj/item/stack/sheet/mineral/wood,
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
 	},
-/obj/item/stack/sheet/mineral/wood,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
 "MN" = (
@@ -10109,11 +10090,11 @@
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "OL" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot"
-	},
 /obj/effect/turf_decal/trimline/white/filled/line{
 	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -10215,14 +10196,6 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/mineral/titanium,
 /area/city/house)
-"Pm" = (
-/obj{
-	name = "---Merge conflict marker---"
-	},
-/obj/structure/table/wood/fancy/cyan,
-/obj/item/toy/plush/fighter/bigbird,
-/turf/closed/indestructible/reinforced,
-/area/city)
 "Pt" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -10295,13 +10268,6 @@
 "PP" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
-"PQ" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot{
-	name = "clerk bot"
-	},
-/obj/item/chair/plastic,
-/turf/open/floor/engine,
 /area/city/backstreets_room)
 "PR" = (
 /obj/structure/chair/pew/right{
@@ -10396,15 +10362,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
-"Qi" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot_big{
-	name = "gun bot"
-	},
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_alley)
 "Qk" = (
 /obj/structure/closet/crate,
 /obj/item/storage/firstaid/revival,
@@ -11236,10 +11193,10 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
+/obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/ordeal/amber_bug{
 	name = "carnivorous worm"
 	},
-/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "To" = (
@@ -11636,9 +11593,6 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
-	name = "sweeper scout"
-	},
 /obj/item/paper/crumpled{
 	pixel_x = 5;
 	pixel_y = -5
@@ -11648,6 +11602,9 @@
 	},
 /obj/item/paper/crumpled{
 	pixel_x = -10
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -23189,7 +23146,7 @@ PH
 OW
 KB
 Qv
-gU
+xa
 GE
 YZ
 tg
@@ -38485,7 +38442,7 @@ zr
 zr
 zr
 zr
-Pm
+zr
 zr
 zr
 zr
@@ -64091,7 +64048,7 @@ dR
 dR
 dr
 dr
-Qi
+Ed
 dr
 dr
 dr
@@ -64601,7 +64558,7 @@ Oq
 Oq
 rM
 cP
-vU
+vi
 Iu
 Iu
 Iu
@@ -64613,7 +64570,7 @@ Iu
 Iu
 Iu
 Iu
-vU
+vi
 Iu
 Iu
 dR
@@ -70040,7 +69997,7 @@ Wy
 Wy
 fk
 wQ
-PQ
+jr
 wQ
 Ne
 pi
