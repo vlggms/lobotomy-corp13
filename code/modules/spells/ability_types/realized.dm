@@ -359,7 +359,7 @@
 	desc = "Increases damage taken but you make a healing aura."
 	action_icon_state = "petalblizzard0"
 	base_icon_state = "petalblizzard"
-	cooldown_time = 300 SECONDS
+	cooldown_time = 30 SECONDS
 	var/damage_amount = 5 // Amount of healing to plater per "pulse".
 	var/damage_count = 15 // How many times the healing is applied
 	var/damage_range = 10
@@ -398,7 +398,7 @@
 /datum/status_effect/bloomdebuff
 	id = "bloomdebuff"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 150		//Lasts 30 seconds
+	duration = 15 SECONDS		//Lasts 30 seconds
 	alert_type = /atom/movable/screen/alert/status_effect/bloomdebuff
 
 /atom/movable/screen/alert/status_effect/bloomdebuff
