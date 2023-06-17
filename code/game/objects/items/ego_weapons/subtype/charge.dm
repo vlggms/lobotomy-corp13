@@ -17,7 +17,7 @@
 		charge+=1
 
 //Default is to just play a sound effect and such
-/obj/item/ego_weapon/charge/release_charge(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/charge/proc/release_charge(mob/living/target, mob/living/user)
 	sleep(2)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
