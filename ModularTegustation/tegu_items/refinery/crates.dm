@@ -8,21 +8,21 @@
 	resistance_flags = INDESTRUCTIBLE
 	var/lootlist =	list(
 		/obj/item/toy/plush/blank,
-		/obj/item/toy/plush/yisang,
-		/obj/item/toy/plush/faust,
-		/obj/item/toy/plush/don,
-		/obj/item/toy/plush/ryoshu,
-		/obj/item/toy/plush/meursault,
-		/obj/item/toy/plush/honglu,
-		/obj/item/toy/plush/heathcliff,
-		/obj/item/toy/plush/ishmael,
-		/obj/item/toy/plush/rodion,
-		/obj/item/toy/plush/sinclair,
-		/obj/item/toy/plush/outis,
-		/obj/item/toy/plush/gregor,
+		/obj/item/toy/plush/fighter/yisang,
+		/obj/item/toy/plush/fighter/faust,
+		/obj/item/toy/plush/fighter/don,
+		/obj/item/toy/plush/fighter/ryoshu,
+		/obj/item/toy/plush/fighter/meursault,
+		/obj/item/toy/plush/fighter/honglu,
+		/obj/item/toy/plush/fighter/heathcliff,
+		/obj/item/toy/plush/fighter/ishmael,
+		/obj/item/toy/plush/fighter/rodion,
+		/obj/item/toy/plush/fighter/sinclair,
+		/obj/item/toy/plush/fighter/outis,
+		/obj/item/toy/plush/fighter/gregor,
 		/obj/item/toy/plush/yuri)
 
-	var/rareloot =	list(/obj/item/toy/plush/dante,)
+	var/rareloot =	list(/obj/item/toy/plush/fighter/dante,)
 	var/veryrareloot =	list()	//Only Kcorp uses these atm, because It's important that they have 3 tiers of weapons
 	var/rarechance = 20
 	var/veryrarechance

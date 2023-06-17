@@ -5606,7 +5606,7 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/toy/plush/bigbird,
+/obj/item/toy/plush/fighter/bigbird,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 10
@@ -7990,7 +7990,7 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/royalblack,
-/obj/item/toy/plush/mosb,
+/obj/item/toy/plush/fighter/mosb,
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
 	dir = 1

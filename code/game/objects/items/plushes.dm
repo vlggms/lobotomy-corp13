@@ -1,3 +1,7 @@
+#define PLUSH_ABNORMALITY "abno"
+#define PLUSH_MAGICAL_GIRL "magical girl"
+#define PLUSH_SINNER "sinner"
+#define PLUSH_OTHER "other"
 /obj/item/toy/plush
 	name = "plush"
 	desc = "This is the special coder plush, do not steal."
@@ -407,108 +411,321 @@
 	icon_state = "angela"
 	gender = FEMALE
 
-	//Limbus Sinners
-/obj/item/toy/plush/yisang
+//Limbus Sinners
+/obj/item/toy/plush/fighter
+	name = "fighting plushie"
+	desc = "A plushie that will battle with other certain plushies."
+	/// The plushie's type.
+	var/plush_type = PLUSH_OTHER
+	/// Whether or not the Plushie is currently in a fight.
+	var/fighting = FALSE
+	/// List of lines that can be said at fight start.
+	var/list/fight_start_lines = list(
+		"It's time to duel!",
+		"LEEEEEEEROOOOYYYYY",
+		"I'm here to kill chaos.",
+		"OH YEAH!",
+		"In the name of charge and draw, I'm the Magical Girl of Face Lasers~!",
+		"Kill.",
+		"Never should have come here!",
+		"Skyrim belongs to the nords!",
+		"=)",
+		"They sent you against me? What a suicide mission.",
+		"Yes!"
+	)
+	/// Sounds played when this plushie is in a fight
+	var/list/fight_sfx = list()
+	/// % chance to win the fight, if the src is battle target.
+	var/fighting_force = 100
+	/// Fight participants, used if src is battle target.
+	var/list/threats = list()
+	/// Sfx played when a fighter lacks SFX.
+	var/list/generic_sfx = list(
+		'sound/weapons/genhit1.ogg',
+		'sound/weapons/genhit2.ogg',
+		'sound/weapons/genhit3.ogg',
+		'sound/weapons/parry.ogg',
+		'sound/weapons/punch1.ogg',
+		'sound/weapons/punch2.ogg',
+		'sound/weapons/slash.ogg'
+	)
+	/// Lines that are said in combat.
+	var/list/in_combat_lines = list(
+		"Hya!"
+	)
+	/// Say all lines in "win_lines" on win, or just one randomly.
+	var/say_all_win = TRUE
+	/// Line(s) to say on win.
+	var/list/win_lines = list(
+		"HYA! I think he got. THE POINT."
+	)
+	/// Say all lines in "lose_lines" on loss, or just one randomly.
+	var/say_all_lose = TRUE
+	/// Line(s) to say on loss.
+	var/list/lose_lines = list(
+		":("
+	)
+
+/obj/item/toy/plush/fighter/attack_hand(mob/user)
+	if(fighting)
+		to_chat(user, "<span class='warning'>[src] is busy fighting!</span>")
+		return FALSE
+	return ..()
+
+/obj/item/toy/plush/fighter/Moved(atom/OldLoc, Dir)
+	set waitfor = FALSE
+	. = ..()
+	if(fighting)
+		return
+	for(var/obj/item/toy/plush/fighter/Fighter in view(1, src))
+		if(Fighter.plush_type == plush_type)
+			continue
+		if(plush_type != PLUSH_ABNORMALITY)
+			Fighter.Fight()
+		else
+			Fight()
+		break
+	return
+
+/// The target acquisition that starts a fight.
+/obj/item/toy/plush/fighter/proc/Fight()
+	fighting = TRUE
+	say(pick(fight_start_lines))
+	sleep(1 SECONDS)
+	threats = list()
+	for(var/obj/item/toy/plush/fighter/F in view(7, src))
+		if(F.plush_type == plush_type) // Abnos don't fight abnos, Sinners don't fight Sinners, Magical Girls don't fight Magical Girls.
+			continue
+		threats |= F
+		F.fighting = TRUE
+		F.say(pick(F.fight_start_lines))
+	if(threats.len < 1)
+		fighting = FALSE
+		return
+	Conflict()
+
+/// The fight loop and decision.
+/obj/item/toy/plush/fighter/proc/Conflict()
+	var/atom/throw_target
+	var/loop_count = 0
+	do
+		for(var/obj/item/toy/plush/fighter/dante/D in threats)
+			for(var/obj/item/toy/plush/fighter/Sinner in view(7, D))
+				if(!Sinner.fighting && Sinner.plush_type == PLUSH_SINNER)
+					Sinner.fighting = TRUE
+					threats |= Sinner
+			break
+		var/obj/item/toy/plush/fighter/F = pick(threats)
+		if(!istype(F))
+			threats -= F
+			continue
+		if(istype(F, /obj/item/toy/plush/fighter/dante))
+			continue
+		if(!(F in view(9, src)))
+			F.say("No!")
+			F.visible_message("<span class='warning'>[F] yells as it falls out of the fight!</span>")
+			threats -= F
+			continue
+		if(threats.len <= 0)
+			say("I don’t know what awaits me ahead. Could it be a cliff, or a ditch?")
+			fighting = FALSE
+			return
+		if(F.plush_type == PLUSH_SINNER && prob(20))
+			F.visible_message("[F] is killed by [src]!")
+			threats -= F
+			F.FightLose()
+		else
+			if(prob(80))
+				throw_target = pick(get_adjacent_open_turfs(src))
+				F.throw_at(throw_target, 4, 2, null, TRUE)
+			if(prob(10))
+				F.say(pick(F.in_combat_lines))
+			sleep(25/(threats.len+loop_count))
+			if(F.fight_sfx.len <= 0)
+				playsound(F, pick(generic_sfx), rand(40, 60))
+			else
+				playsound(F, pick(F.fight_sfx), rand(40, 60))
+		var/list/targets = threats.Copy()
+		targets -= F
+		if(targets.len <= 0)
+			targets += F
+		throw_target = pick(get_adjacent_open_turfs(pick(targets)))
+		throw_at(throw_target, 5, 3, null, TRUE)
+		if(prob(5))
+			say(pick(in_combat_lines))
+		if(fight_sfx.len <= 0)
+			playsound(src, pick(generic_sfx), rand(40,60))
+		else
+			playsound(src, pick(fight_sfx), rand(40, 60))
+		loop_count++
+		sleep(30/(threats.len+loop_count))
+	while(prob(100 + threats.len - loop_count))
+	if(prob(CalculateWin()))
+		return FightWin()
+	return FightLose()
+
+/// Does the math for if you win or not, returns a % win chance.
+/obj/item/toy/plush/fighter/proc/CalculateWin()
+	var/effective_force = fighting_force
+	for(var/obj/item/toy/plush/fighter/F in threats)
+		effective_force -= 10
+	return effective_force
+
+/obj/item/toy/plush/fighter/proc/FightWin()
+	set waitfor = FALSE
+	fighting = FALSE
+	if(plush_type == PLUSH_ABNORMALITY)
+		for(var/obj/item/toy/plush/fighter/F in threats)
+			F.FightLose()
+	if(say_all_win)
+		for(var/line in win_lines)
+			say(line)
+			sleep(1 SECONDS)
+	else
+		say(pick(win_lines))
+	return
+
+/obj/item/toy/plush/fighter/proc/FightLose()
+	set waitfor = FALSE
+	fighting = FALSE
+	if(say_all_lose)
+		for(var/line in lose_lines)
+			say(line)
+			sleep(1 SECONDS)
+	else
+		say(pick(lose_lines))
+	return
+
+/obj/item/toy/plush/fighter/yisang
 	name = "yi sang plushie"
 	desc = "A plushie depicting a ruminating sinner."
 	icon_state = "yisang"
 	attack_verb_continuous = list("shanks", "stabs")
 	attack_verb_simple = list("shank", "stab")
 	gender = MALE
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/faust
+/obj/item/toy/plush/fighter/faust
 	name = "faust plushie"
 	desc = "A plushie depicting an insufferable sinner."
 	icon_state = "faust"
 	attack_verb_continuous = list("slices", "cleaves")
 	attack_verb_simple = list("slice", "cleaves")
 	gender = FEMALE
+	squeak_override = list('sound/effects/plushies/faust.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/don
+/obj/item/toy/plush/fighter/don
 	name = "don quixote plushie"
 	desc = "A plushie depicting a heroic sinner."
 	icon_state = "don"
 	attack_verb_continuous = list("impales", "jousts")
 	attack_verb_simple = list("impale", "joust")
 	gender = FEMALE
+	squeak_override = list('sound/effects/plushies/donscream.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/ryoshu
+/obj/item/toy/plush/fighter/ryoshu
 	name = "ryoshu plushie"
 	desc = "A plushie depicting a artistic sinner."
 	icon_state = "ryoshu"
 	attack_verb_continuous = list("slices", "cleaves")
 	attack_verb_simple = list("slice", "cleaves")
 	gender = FEMALE
+	squeak_override = list('sound/effects/plushies/ryoshu.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/meursault
+/obj/item/toy/plush/fighter/meursault
 	name = "meursault plushie"
 	desc = "A plushie depicting a neutral sinner."
 	icon_state = "meursault"
 	attack_verb_continuous = list("bashes", "slams", "bludgeons")
 	attack_verb_simple = list("bash", "slam", "bludgeon")
 	gender = MALE
+	squeak_override = list(
+		'sound/effects/plushies/moresalt.ogg'=90,
+		'sound/effects/plushies/moresalt_long.ogg'=10
+		)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/honglu
+/obj/item/toy/plush/fighter/honglu
 	name = "hong lu plushie"
 	desc = "A plushie depicting a sheltered sinner."
 	icon_state = "honglu"
 	attack_verb_continuous = list("slices", "cleaves")
 	attack_verb_simple = list("slice", "cleaves")
 	gender = MALE
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/heathcliff
+/obj/item/toy/plush/fighter/heathcliff
 	name = "heathcliff plushie"
 	desc = "A plushie depicting a brash sinner."
 	icon_state = "heathcliff"
 	attack_verb_continuous = list("bashes", "slams", "bludgeons")
 	attack_verb_simple = list("bash", "slam", "bludgeon")
 	gender = MALE
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/ishmael
+/obj/item/toy/plush/fighter/ishmael
 	name = "ishmael plushie"
 	desc = "A plushie depicting a reliable sinner."
 	icon_state = "ishmael"
 	attack_verb_continuous = list("bashes", "slams", "bludgeons")
 	attack_verb_simple = list("bash", "slam", "bludgeon")
 	gender = FEMALE
+	squeak_override = list('sound/effects/plushies/ishmael.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/rodion
+/obj/item/toy/plush/fighter/rodion
 	name = "rodion plushie"
 	desc = "A plushie depicting a backstreets born sinner."
 	icon_state = "rodion"
 	attack_verb_continuous = list("slices", "cleaves")
 	attack_verb_simple = list("slice", "cleaves")
 	gender = FEMALE
+	squeak_override = list('sound/effects/plushies/rodiyon.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/sinclair
+/obj/item/toy/plush/fighter/sinclair
 	name = "sinclair plushie"
 	desc = "A plushie depicting a insecure sinner."
 	icon_state = "sinclair"
 	attack_verb_continuous = list("slices", "cleaves")
 	attack_verb_simple = list("slice", "cleaves")
 	gender = MALE
+	squeak_override = list('sound/effects/plushies/sinclair.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/dante
+/obj/item/toy/plush/fighter/dante
 	name = "dante plushie"
 	desc = "A plushie depicting a clock headed manager."
 	icon_state = "dante"
 	gender = MALE
+	squeak_override = list('sound/effects/clock_tick.ogg'=1)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/outis
+/obj/item/toy/plush/fighter/outis
 	name = "outis plushie"
 	desc = "A plushie depicting a strategic sinner."
 	icon_state = "outis"
 	attack_verb_continuous = list("shanks", "stabs")
 	attack_verb_simple = list("shank", "stab")
 	gender = FEMALE
+	squeak_override = list(
+		'sound/effects/plushies/outism.ogg'=90,
+		'sound/effects/plushies/oddysey.ogg'=10
+		)
+	plush_type = PLUSH_SINNER
 
-/obj/item/toy/plush/gregor
+/obj/item/toy/plush/fighter/gregor
 	name = "bug guy plushie"
 	desc = "A plushie depicting a genetically altered sinner."
 	icon_state = "gregor"
 	attack_verb_continuous = list("shanks", "stabs")
 	attack_verb_simple = list("shank", "stab")
 	gender = MALE
+	squeak_override = list('sound/effects/plushies/gregor.ogg'=1)
+	plush_type = PLUSH_SINNER
 
 // Misc LC stuff
 /obj/item/toy/plush/pierre
@@ -523,7 +740,7 @@
 	desc = "A plushie depicting a mercenary captain."
 	icon_state = "myo"
 	gender = FEMALE
-	squeak_override = list('sound/effects/yem.ogg'=1)
+	squeak_override = list('sound/effects/plushies/yem.ogg'=1)
 
 /obj/item/toy/plush/rabbit
 	name = "rabbit plushie"
@@ -553,64 +770,230 @@
 
 
 // Abnormalities
-/obj/item/toy/plush/qoh
+/obj/item/toy/plush/fighter/magical_girl
+	name = "A magical girl plushie"
+	desc = "You shouldn't be seeing this one!"
+	gender = FEMALE
+	fight_start_lines = list("In the name of Love and Justice~ Here comes Magical Girl!")
+	plush_type = PLUSH_MAGICAL_GIRL
+	in_combat_lines = list("Hya!")
+	say_all_win = FALSE
+	say_all_lose = FALSE
+	var/summoned = FALSE
+	var/list/adjacent_girls = list()
+
+/obj/item/toy/plush/fighter/magical_girl/Moved(atom/OldLoc, Dir)
+	var/obj/item/toy/plush/fighter/nihil/N = locate() in view(1, src)
+	if(N)
+		return ..()
+	if(!summoned)
+		SummonNihil()
+		return
+	return ..()
+
+/obj/item/toy/plush/fighter/magical_girl/proc/SummonNihil()
+	adjacent_girls = list()
+	for(var/direction in list(NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST))
+		for(var/obj/item/toy/plush/fighter/magical_girl/MG1 in get_step(src, direction))
+			if(MG1.type == src.type)
+				continue
+			var/skip = FALSE
+			for(var/obj/item/toy/plush/fighter/magical_girl/MG2 in adjacent_girls)
+				if(MG1.type != MG2.type)
+					continue
+				skip = TRUE
+				break
+			if(skip)
+				continue
+			adjacent_girls |= MG1
+			break
+	if(adjacent_girls.len != 2)
+		return
+	var/dir1 = get_dir(src, adjacent_girls[1]) // Compare directions
+	var/dir2 = get_dir(src, adjacent_girls[2])
+	var/dir3
+	for(var/cardinal in GLOB.cardinals)
+		if((dir1 & cardinal) && (dir2 & cardinal))
+			dir3 = cardinal
+			break
+	for(var/obj/item/toy/plush/fighter/magical_girl/MG1 in get_ranged_target_turf(src, dir3, 2))
+		var/skip = FALSE
+		for(var/obj/item/toy/plush/fighter/magical_girl/MG2 in adjacent_girls)
+			if(MG1.type != MG2.type)
+				continue
+			skip = TRUE
+			break
+		if(skip)
+			continue
+		adjacent_girls |= MG1
+		break
+	if(adjacent_girls.len != 3)
+		return
+	var/turf/open/target_turf = get_step(src, dir3)
+	if(!istype(target_turf))
+		return
+	adjacent_girls += src
+	var/list/dep_cent = list()
+	for(var/obj/item/toy/plush/fighter/magical_girl/magical_girl in adjacent_girls)
+		if(dep_cent.len <= 0)
+			dep_cent = GLOB.department_centers.Copy()
+		magical_girl.summoned = TRUE
+		var/turf/open/move_to = pick(dep_cent)
+		dep_cent -= move_to
+		magical_girl.forceMove(move_to)
+		playsound(magical_girl, 'sound/abnormalities/hatredqueen/beam_end.ogg', 50)
+	var/obj/item/toy/plush/fighter/nihil/N = new(target_turf)
+	playsound(target_turf, 'sound/abnormalities/nihil/filter.ogg', 60)
+	playsound(target_turf, 'sound/abnormalities/hatredqueen/beam_end.ogg', 40)
+	N.visible_message("<span class='userdanger'>[N] banishes the magical girl plushies to other departments around the facility!</span>")
+	return
+
+/obj/item/toy/plush/fighter/magical_girl/qoh
 	name = "queen of hatred plushie"
 	desc = "A plushie depicting a magical girl whose goal is fighting all evil in the universe!"
 	icon_state = "qoh"
-	gender = FEMALE
+	fight_sfx = list(
+		'sound/abnormalities/hatredqueen/gun.ogg',
+		'sound/abnormalities/hatredqueen/attack.ogg'
+	)
+	fight_start_lines = list(
+		"Don’t worry. You guys will be safe as long as I’m here!",
+		"You can count on me any time! I’ll keep you safe.",
+		"A true magical girl never runs away in the face of any hardships!",
+		"Tell me if anything bad happens, okay? I know I can help you!",
+		"Please feel free to call me whenever there’s danger~!"
+		)
+	win_lines = list("ARCANA SLAVE!!!")
+	lose_lines = list("I swore I would protect everyone to the end…")
 
-/obj/item/toy/plush/kog
+/obj/item/toy/plush/fighter/magical_girl/kog
 	name = "king of greed plushie"
 	desc = "A plushie depicting a magical girl whose desires got the best of her."
 	icon_state = "kog"
-	gender = FEMALE
+	fight_sfx = list(
+		'sound/abnormalities/greedking/greed_human_punch.ogg',
+		'sound/abnormalities/greedking/greed_human_gold.ogg'
+	)
+	fight_start_lines = list(
+		"Wishing for everyone’s happiness must include my own, too...",
+		"Is it so bad to lust for honey when there are flowers?",
+		"Alright, I’m about to get serious, so try and stop me.",
+		"It’s been a long while… since I fought in this form.",
+		"Are you ready? Let’s get started."
+		)
+	win_lines = list("I’m still going so easy... Isn’t this a pushover?")
+	lose_lines = list("I’ll become happy if my stomach is full… I want to be happy…")
 
-/obj/item/toy/plush/kod
+/obj/item/toy/plush/fighter/magical_girl/kod
 	name = "knight of despair plushie"
 	desc = "A plushie depicting a magical girl who abandoned those who needed her most."
 	icon_state = "kod"
-	gender = FEMALE
+	fight_sfx = list(
+		'sound/abnormalities/despairknight/attack.ogg',
+		'sound/abnormalities/despairknight/gift.ogg'
+	)
+	fight_start_lines = list(
+		"Worry not. I’ll keep you safe this time.",
+		"I vowed to this sharp sword, whetted with tears on an anvil of despair.",
+		"As with sorrow, perhaps sharing the burden will blunt the edge.",
+		"The edge of this sword sharpened with tears and despair... is keen and precise..."
+		)
+	win_lines = list("To protect the innocent!")
+	lose_lines = list("Just end me, please… So I can’t hold my blade ever again…")
 
-/obj/item/toy/plush/sow
+/obj/item/toy/plush/fighter/magical_girl/sow
 	name = "servant of wrath plushie"
 	desc = "A plushie depicting a magical girl who was betrayed by someone they trusted dearly."
 	icon_state = "sow"
-	gender = FEMALE
+	fight_sfx = list(
+		'sound/abnormalities/wrath_servant/small_smash1.ogg',
+		'sound/abnormalities/wrath_servant/small_smash2.ogg'
+	)
+	fight_start_lines = list(
+		"That’s why I lost; I fell to my beloved companion.",
+		"We were true friends.",
+		"For the Justice and Balance of this land...",
+		"We're friends, those who help each other."
+		)
+	win_lines = list("For the Justice and balance of this land!")
+	lose_lines = list("Justice and balance… needed to… be upheld!!!")
 
-/obj/item/toy/plush/nihil
+/obj/item/toy/plush/fighter/nihil
 	name = "jester of nihil plushie"
 	desc = "A plushie depicting a black and white jester, usually found alongside the magical girls."
 	icon_state = "nihil"
+	fight_start_lines = list("...Did you make me, or did I make you?")
+	plush_type = PLUSH_ABNORMALITY
+	fight_sfx = list(
+		'sound/abnormalities/nihil/filter.ogg',
+		'sound/abnormalities/nihil/attack.ogg'
+	)
+	say_all_win = FALSE
+	win_lines = list("My mind is a void, my thoughts empty. I become more fearless as they become more vacant.")
+	lose_lines = list(
+		"I slowly traced the road back. It’s the road you would’ve taken.",
+		"Blinded by carnal desires and jealousy, willingly walking to the edge of the cliff.",
+		"Everybody’s agony becomes one."
+	)
+	in_combat_lines = list("...")
 
-/obj/item/toy/plush/bigbird
+/obj/item/toy/plush/fighter/nihil/Fight()
+	. = ..()
+	for(var/obj/item/toy/plush/fighter/F in threats)
+		in_combat_lines |= F.in_combat_lines
+	return
+
+/obj/item/toy/plush/fighter/nihil/FightWin()
+	var/turf/throw_target
+	for(var/obj/item/toy/plush/P in threats)
+		throw_target = get_edge_target_turf(P, get_dir(src, P))
+		P.throw_at(throw_target, 2, 4, null, TRUE)
+	playsound(src, 'sound/abnormalities/nihil/attack.ogg', 80)
+	sleep(5)
+	for(var/obj/item/toy/plush/fighter/magical_girl/MG in threats)
+		MG.visible_message("<span class='warning'>[src] drags [MG] into nothingness!</span>")
+		MG.Destroy()
+	return ..()
+
+/obj/item/toy/plush/fighter/nihil/FightLose()
+	. = ..()
+	visible_message("<span class='nicegreen'>[src] fades away into nothing.</span>")
+	return Destroy()
+
+/obj/item/toy/plush/fighter/bigbird
 	name = "big bird plushie"
 	desc = "A plushie depicting a big bird with a lantern that burns forever. How does it even work..?"
 	icon_state = "bigbird"
+	plush_type = PLUSH_ABNORMALITY
 
-/obj/item/toy/plush/mosb
+/obj/item/toy/plush/fighter/mosb
 	name = "mountain of smiling bodies plushie"
 	desc = "A plushie depicting a mountain of corpses merged into one. Yuck!"
 	icon_state = "mosb"
+	plush_type = PLUSH_ABNORMALITY
 
-/obj/item/toy/plush/big_bad_wolf
+/obj/item/toy/plush/fighter/big_bad_wolf
 	name = "big and will be bad wolf plushie"
 	desc = "A plushie depicting quite a not so bad and very much so marketable wolf plush."
 	icon_state = "big_bad_wolf"
+	plush_type = PLUSH_ABNORMALITY
 
-/obj/item/toy/plush/melt
+/obj/item/toy/plush/fighter/melt
 	name = "melting love plushie"
 	desc = "A plushie depicting a slime girl, you think."
 	icon_state = "melt"
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	plush_type = PLUSH_ABNORMALITY
 
-/obj/item/toy/plush/scorched
+/obj/item/toy/plush/fighter/scorched
 	name = "scorched girl plushie"
 	desc = "A plushie depicting scorched girl."
 	icon_state = "scorched"
 	gender = FEMALE
 	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
+	plush_type = PLUSH_ABNORMALITY
 
 // Others
 /obj/item/toy/plush/bongbong
