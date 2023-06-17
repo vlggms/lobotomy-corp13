@@ -155,7 +155,10 @@
 		restorePrudence()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/restorePrudence()
-	sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence)
+	var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
+	var/user_attribute_level = max(1, user_attribute.level)
+	if (user_attribute_level < missing_prudence + PRUDENCE_CAP)
+		sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence + PRUDENCE_CAP - user_attribute_level)
 	missing_prudence = null
 	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
 
