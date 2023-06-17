@@ -105,7 +105,7 @@
 	hat = /obj/item/clothing/head/ego_hat/sakura_hat
 /obj/item/clothing/head/ego_hat/sakura_hat
 	name = "sakura bloom"
-	desc = "HOLY SHIT TOUHOU REFERANCE!?!?!?!?!?"
+	desc = "The forest will never return to its original state once it dies. Cherish the rain."
 	icon_state = "sakura"
 	flags_inv = HIDEMASK
 /* HE Realizations */
