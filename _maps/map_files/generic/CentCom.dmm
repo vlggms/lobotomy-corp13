@@ -2272,7 +2272,7 @@
 /area/centcom/prison)
 "iJ" = (
 /obj/structure/rack,
-/obj/item/toy/plush/melt,
+/obj/item/toy/plush/fighter/melt,
 /obj/item/toy/plush/fighter/magical_girl/kod{
 	pixel_x = 15
 	},
