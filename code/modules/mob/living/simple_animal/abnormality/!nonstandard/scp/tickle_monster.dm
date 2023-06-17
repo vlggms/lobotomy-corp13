@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "999"
 	icon_living = "999"
+	is_flying_animal = TRUE
 	maxHealth = 600	//It is helpful and therefore weak.
 	health = 600
 	//work stuff
