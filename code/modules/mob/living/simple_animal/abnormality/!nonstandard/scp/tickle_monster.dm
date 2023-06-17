@@ -30,7 +30,7 @@
 //		/datum/ego_datum/weapon/hugs,
 		/datum/ego_datum/armor/hugs
 		)
-//	gift_type = /datum/ego_gifts/hugs
+//	gift_type = /datum/ego_gifts/assonance
 	abnormality_origin = ABNORMALITY_ORIGIN_SCP
 
 	//slowly heals sanity over time
