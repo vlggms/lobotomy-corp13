@@ -32,6 +32,7 @@
 	attack_verb_simple = "stabs" // TD
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // TD
 	can_breach = TRUE
+	can_patrol = TRUE
 	start_qliphoth = 3
 	threat_level = HE_LEVEL
 
@@ -107,6 +108,7 @@ SpinAttack
 	melee_damage_upper = 20
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
+	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
 
 	attack_sound = 'sound/weapons/ego/sword_stab.ogg'
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -117,6 +119,39 @@ SpinAttack
 	can_patrol = TRUE
 
 	del_on_death = FALSE
+
+	/datum/status_effect/umbrella_black_debuff
+	id = "umbrella_black_debuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/umbrella_black_debuff
+
+/datum/status_effect/umbrella_black_debuff/on_apply() // how do I transform this to properly work on humans?
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod /= 1.5
+		return
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[BLACK_DAMAGE] += 0.5
+
+/datum/status_effect/umbrella_black_debuff/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod *= 1.5
+		return
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[BLACK_DAMAGE] -= 0.5
+
+/atom/movable/screen/alert/status_effect/umbrella_black_debuff
+	name = "False Kindness"
+	desc = "Your half hearted actions have made you more vulnerable to BLACK attacks."
+	icon = 'icons/mob/actions/actions_ability.dmi'
+	icon_state = "falsekindness"
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
 	visible_message("<span class='notice'>[src] falls to the ground, closing in process!</span>")
