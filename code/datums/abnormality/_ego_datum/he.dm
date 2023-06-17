@@ -402,6 +402,6 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/sunshower
 	cost = 35
 
-/datum/ego_datum/armor/sunshower
+/datum/ego_datum/weapon/sunshower
 	item_path = /obj/item/ego_weapon/sunshower
 	cost = 35

@@ -1310,5 +1310,5 @@
 	attack_verb_simple = list("slice", "cleave", "chop")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
+							TEMPERANCE_ATTRIBUTE = 40
 							)

@@ -20,7 +20,7 @@
 		ABNORMALITY_WORK_REPRESSION = 0
 						)
 
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 35 // stabby stabby into insanity
 	melee_damage_type = BLACK_DAMAGE
@@ -61,7 +61,7 @@ SpinAttack
 	var/spinattack_cooldown
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, ATTACHMENT_ATTRIBUTE) < 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		datum_reference.qliphoth_change(-1)
 	return
 
@@ -78,7 +78,7 @@ SpinAttack
 	forceMove(T)
 	umbrella_cooldown = world.time + umbrella_cooldown_time
 	spinattack_cooldown = world.time + spinattack_cooldown_time
-
+/*
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/OpenFire()
 	if(!target)
 		return
@@ -158,4 +158,4 @@ SpinAttack
 	. = ..()
 	gib(TRUE, TRUE, TRUE)
 	return
-
+*/
