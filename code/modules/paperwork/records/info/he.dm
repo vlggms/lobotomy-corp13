@@ -371,9 +371,10 @@
 // Drifting Fox
 /obj/item/paper/fluff/info/he/driftingfox
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
-	abno_code = "T-02-155" // T-02-11-03 in LCB
+	abno_code = "T-02-173" // T-02-11-03 in LCB
 	abno_info = list(
 		"When employees of Attachment Level 2 or lower finished working with Drifting Fox, the Qliphoth Counter lowered.",
+		"When employees of Justice level 3 or higher finished working with Drifting Fox, the Qlipoth Counter also lowered",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
 		"Any employee who got hit by an umbrella from Drifting Fox reported feeling more pain.")
 	abno_breach_damage_type = "Black"

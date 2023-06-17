@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_UMBRELLADEBUFF /datum/status_effect/umbrella_black_debuff
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A light brown, shaggy fox. It has glowing yellow eyes and in it's mouth is an closed umbrella. Stabbed on the fox's back are multiple open umbrellas."
@@ -19,6 +20,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 0,
 						)
+	response_help_continuous = "pet"
+	response_help_simple = "pet"
 
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
@@ -32,7 +35,7 @@
 	attack_verb_simple = "stabs" // TD
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // TD
 	can_breach = TRUE
-	can_patrol = TRUE
+	can_patrol = FALSE // AE
 	start_qliphoth = 3
 	threat_level = HE_LEVEL
 
@@ -41,33 +44,59 @@
 		/datum/ego_datum/weapon/sunshower, // TD
 		/datum/ego_datum/armor/sunshower // TD
 		)
-	gift_type =  /datum/ego_gifts/sunshower // Give to the firt person who pet the abno with 40+ TEMPERANCE
+	gift_type =  /datum/ego_gifts/sunshower
 	gift_message = "Luck follows only to those truly kind."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-/*
-Umbrella
-	- Spawned simplemob which attacks nearby targets and applies black armor debuff (0.2 should suffice)
-*/
 /*
 SpinAttack
 	- Static AOE spinattack in which the fox either Fox.SpinAnimation() or does big AOE effect.. both with medium-big black damage attached
 */
 
-	// both not finished
+	// var defines spinattack unfinished
 	var/umbrella_cooldown_time = 30 SECONDS
 	var/umbrella_cooldown
 	var/spinattack_cooldown_time = 15 SECONDS
 	var/spinattack_cooldown
+	var/range = 3
+	var/id
+	var/mob/living/carbon/human/NoFriend = null
 
+// *sad_music
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/LostFriend(mob/living/carbon/human/user)
+	SIGNAL_HANDLER
+	UnregisterSignal(NoFriend, COMSIG_LIVING_DEATH)
+	datum_reference.qliphoth_change(-1)
+	manual_emote("Mourns the death of a friend.")
+	NoFriend = null
+
+// You're my friend now DUDUDUUDUUUDUUUUUUUUUU
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(!IsContained())
+		return
+	if(user.stat != DEAD && !NoFriend && istype(user) && get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 40)
+		NoFriend = user
+		to_chat(user, "<span class='nicegreen'>Drifting Fox appreciates your kindness.</span>")
+		user.Apply_Gift(new gift_type)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/LostFriend)
+	return
+
+// Work stuff
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 40)
 		datum_reference.qliphoth_change(-1)
 	return
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 60)
+		datum_reference.qliphoth_change(-1)
+	return
+
+
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-(prob(75)))
 	return ..()
+
 //breach
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
@@ -79,6 +108,11 @@ SpinAttack
 	umbrella_cooldown = world.time + umbrella_cooldown_time
 	spinattack_cooldown = world.time + spinattack_cooldown_time
 
+// Now there's 2, I need 3 and all work together... shit
+/mob/living/simple_animal/hostile/abnormality/despair_knight/AttackingTarget(atom/attacked_target)
+	return OpenFire()
+
+// Umbrella handlers
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/OpenFire()
 	if(!target)
 		return
@@ -95,8 +129,11 @@ SpinAttack
 /mob/living/simple_animal/hostile/umbrella
 	name = "Umbrella"
 	desc = "An old and worn out umbrella."
-	icon_state = "umbrella"
-	icon_living = "umbrella"
+	icon_state = "umbrella1" // has placeholder
+	icon_living = "umbrella1" // has placeholder
+	/*if(prob(50))
+		icon_state = "umbrella2"
+		icon_living = "umbrella2"*/
 	faction = list("hostile")
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	maxHealth = 125
@@ -108,7 +145,7 @@ SpinAttack
 	melee_damage_upper = 20
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
+	H.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
 
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // placeholder
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -120,32 +157,33 @@ SpinAttack
 
 	del_on_death = FALSE
 
-	/datum/status_effect/umbrella_black_debuff
+//umbrella debuff stuff
+/datum/status_effect/umbrella_black_debuff
 	id = "umbrella_black_debuff"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 15 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/umbrella_black_debuff
 
-/datum/status_effect/umbrella_black_debuff/on_apply() // how do I transform this to properly work on humans?
+/datum/status_effect/umbrella_black_debuff/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod /= 1.5
+		H.physiology.black_mod /= 1.3
 		return
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[BLACK_DAMAGE] += 0.5
+	M.damage_coeff[BLACK_DAMAGE] += 0.3
 
 /datum/status_effect/umbrella_black_debuff/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod *= 1.5
+		H.physiology.black_mod *= 1.3
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] -= 0.5
+	M.damage_coeff[BLACK_DAMAGE] -= 0.3
 
 /atom/movable/screen/alert/status_effect/umbrella_black_debuff
 	name = "False Kindness"
@@ -153,8 +191,24 @@ SpinAttack
 	icon = 'icons/mob/actions/actions_ability.dmi'
 	icon_state = "falsekindness"
 
+
+//How do I make him speen?
+
+
+// umbrella death
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
-	visible_message("<span class='notice'>[src] falls to the ground, closing in process!</span>")
+	visible_message("<span class='notice'>[src] falls to the ground with the umbrella closing on itself!</span>")
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 	. = ..()
-	gib(TRUE, TRUE, TRUE)
-	return
+
+// you killed him, how could you?
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
+	visible_message("<span class='notice'>[src] falls to the ground, umbrellas closing as he whines in his last breath!</span>")
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
+#undef STATUS_EFFECT_UMBRELLADEBUFF
