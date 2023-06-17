@@ -377,22 +377,23 @@
 /obj/effect/proc_holder/ability/petal_blizzard/proc/Pulse(mob/user)
 	new /obj/effect/temp_visual/cherry_aura(get_turf(user))
 	var/mob/living/carbon/human/H = user
-	H.adjustBruteLoss(-damage_amount)
-	H.adjustBruteLoss(-damage_amount)
-	for(var/mob/living/L in view(damage_range, user))
+	if(!H.is_working) //time to suffer
+		H.adjustBruteLoss(-damage_amount)
+		H.adjustSanityLoss(-damage_amount)
+	for(var/mob/living/carbon/human/L in view(damage_range, user))
 		if(user.faction_check_mob(L, FALSE))
 			if(L.status_flags & GODMODE)
 				continue
 			if(L == src) //stop hitting yourself
+				continue
+			if(L.is_working) //no work heal :(
 				continue
 			if(L.stat == DEAD)
 				continue
 			if(H.faction_check_mob(L))
 				if(L.stat < DEAD && L.stat > CONSCIOUS) // unhealthy but not dead
 					L.adjustBruteLoss(-damage_amount)
-					var/mob/living/carbon/human/LH = L
-					if(LH.sanity_lost)
-						LH.adjustSanityLoss(-damage_amount)
+					L.adjustSanityLoss(-damage_amount)
 
 
 /datum/status_effect/bloomdebuff
