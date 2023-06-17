@@ -686,6 +686,12 @@
 	justice_bonus = -2
 	slot = FACE
 
+/datum/ego_gifts/sunshower
+	name = "Sunshower"
+	icon_state = "sunshower"
+	temperance_bonus = 6
+	justice_bonus = -2
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"

@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_INSTINCT = list(20, 25, 30, 35, 40),
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 60,
-		ABNORMALITY_WORK_REPRESSION = 0
+		ABNORMALITY_WORK_REPRESSION = 0,
 						)
 
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
@@ -41,7 +41,7 @@
 		/datum/ego_datum/weapon/sunshower, // TD
 		/datum/ego_datum/armor/sunshower // TD
 		)
-	gift_type =  /datum/ego_gifts/pleasure // TD
+	gift_type =  /datum/ego_gifts/sunshower // Give to the firt person who pet the abno with 40+ TEMPERANCE
 	gift_message = "Luck follows only to those truly kind."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -69,7 +69,7 @@ SpinAttack
 	datum_reference.qliphoth_change(-(prob(75)))
 	return ..()
 //breach
-/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "fox"
@@ -78,7 +78,7 @@ SpinAttack
 	forceMove(T)
 	umbrella_cooldown = world.time + umbrella_cooldown_time
 	spinattack_cooldown = world.time + spinattack_cooldown_time
-/*
+
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/OpenFire()
 	if(!target)
 		return
@@ -110,7 +110,7 @@ SpinAttack
 	armortype = BLACK_DAMAGE
 	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
 
-	attack_sound = 'sound/weapons/ego/sword_stab.ogg'
+	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // placeholder
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	a_intent = "hostile"
@@ -158,4 +158,3 @@ SpinAttack
 	. = ..()
 	gib(TRUE, TRUE, TRUE)
 	return
-*/
