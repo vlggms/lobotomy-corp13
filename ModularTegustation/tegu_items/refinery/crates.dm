@@ -65,6 +65,7 @@
 		/obj/item/reagent_containers/hypospray/emais,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/powered_gadget/vitals_projector,
+		/obj/item/powered_gadget/enkephalin_injector,
 		)
 
 	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele.
