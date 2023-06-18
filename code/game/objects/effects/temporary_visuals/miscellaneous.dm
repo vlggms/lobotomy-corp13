@@ -657,6 +657,25 @@
 	. = ..()
 	animate(src, alpha = 0, transform = transform*3, time = 5)
 
+
+/obj/effect/temp_visual/cherry_aura
+	name = "petal blizzard"
+	icon_state = "cherry_aura"
+	duration = 5
+	pixel_y = 16
+	base_pixel_y = 16
+
+/obj/effect/temp_visual/cherry_aura/Initialize()
+	. = ..()
+	animate(src, alpha = 0, transform = transform*3, time = 5)
+	for(var/i = 1 to 9)
+		addtimer(CALLBACK(src, .proc/rotate), 2*i)
+
+/obj/effect/temp_visual/cherry_aura/proc/rotate()
+		//HOW DO I SPIN?
+		var/matrix/skew = transform
+		skew = skew.Turn(180)
+
 /obj/effect/temp_visual/saw_effect
 	name = "saw"
 	icon_state = "claw"

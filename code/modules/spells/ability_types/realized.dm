@@ -354,3 +354,85 @@
 		return FALSE
 	return TRUE
 
+/obj/effect/proc_holder/ability/petal_blizzard
+	name = "Petal Blizzard"
+	desc = "Increases damage taken but you make a healing aura."
+	action_icon_state = "petalblizzard0"
+	base_icon_state = "petalblizzard"
+	cooldown_time = 30 SECONDS
+	var/damage_amount = 5 // Amount of healing to plater per "pulse".
+	var/damage_count = 15 // How many times the healing is applied
+	var/damage_range = 10
+
+/obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
+
+	Pulse(user)
+	var/mob/living/carbon/human/H = user
+	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
+	H.apply_status_effect(/datum/status_effect/bloomdebuff)
+	for(var/i = 1 to damage_count - 1)
+		addtimer(CALLBACK(src, .proc/Pulse, user), i* 3)
+	return ..()
+
+/obj/effect/proc_holder/ability/petal_blizzard/proc/Pulse(mob/user)
+	new /obj/effect/temp_visual/cherry_aura(get_turf(user))
+	var/mob/living/carbon/human/H = user
+	if(!H.is_working) //time to suffer
+		H.adjustBruteLoss(-damage_amount)
+		H.adjustSanityLoss(-damage_amount)
+	for(var/mob/living/carbon/human/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			if(L.status_flags & GODMODE)
+				continue
+			if(L == src) //stop hitting yourself
+				continue
+			if(L.is_working) //no work heal :(
+				continue
+			if(L.stat == DEAD)
+				continue
+			if(H.faction_check_mob(L))
+				if(L.stat < DEAD && L.stat > CONSCIOUS) // unhealthy but not dead
+					L.adjustBruteLoss(-damage_amount)
+					L.adjustSanityLoss(-damage_amount)
+
+
+/datum/status_effect/bloomdebuff
+	id = "bloomdebuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS		//Lasts 30 seconds
+	alert_type = /atom/movable/screen/alert/status_effect/bloomdebuff
+
+/atom/movable/screen/alert/status_effect/bloomdebuff
+	name = "Blooming Sakura"
+	desc = "You Take Double Damage."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "marked_for_death"
+
+/datum/status_effect/bloomdebuff/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.red_mod *= 2
+		L.physiology.white_mod *= 2
+		L.physiology.black_mod *= 2
+		L.physiology.pale_mod *= 2
+
+/datum/status_effect/bloomdebuff/tick()
+	var/mob/living/carbon/human/Y = owner
+	if(Y.sanity_lost)
+		Y.death()
+	if(owner.stat == DEAD)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(H.stat != DEAD)
+				H.adjustBruteLoss(-100) // It heals everyone to full
+				H.adjustSanityLoss(-100) // It heals everyone to full
+
+/datum/status_effect/bloomdebuff/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(L, "<span class='userdanger'>You feel normal!</span>")
+		L.physiology.red_mod /= 2
+		L.physiology.white_mod /= 2
+		L.physiology.black_mod /= 2
+		L.physiology.pale_mod /= 2
