@@ -65,3 +65,17 @@
 	If you ever spot a XXX mocking their coworker with alopecia areata, they will be labeled as a hirsute, and will be banned from using the lounge for an indefinite period.<br>
 	They will also be forbidden from joining the company’s debate club Questioners of the absence of bald Barbies, the gourmet meetup Octopi over Squid, and the environmental protection group Save the Bald Eagles. (These regulations will be lifted as soon as the rulebreaker’s hair strand count goes below 1.)<br>
 	Lastly, I dedicate this article to employee T.H. who is quietly taking balding medicine next to me right now.""}
+	"The Abnormality is similar to a fairy, having two pairs of wings and a small body. They act as a cluster."<br>
+	<br>
+	"They use a language we cannot understand to communicate with each other. They follow a few employees around when they enter the Containment Unit, using their special abilities to help heal injuries. Employees call this act "The Fairies' Care"."<br>
+	<br>
+	"The fairies protect our employees. If you often act out of the goodness of your heart, and are a lover of nature, then the fairies will gladly take care of you. Everything will be peaceful while you are under the fairies' care (you can also enjoy the envious glances you'll get from other employees. Not that it's important, but...).<br>
+	What if the fairies don't approach you? Then you should reflect on your life. When Emil and I took shifts entering the fairies' Containment Unit, the fairies did not hesitate to approach me. Only me, never towards Emil. (You all know Emil and how he is. Why, just yesterday he refused to share his snacks with me, and he was acting all high and mighty.)<br>
+	It is a sacred act to be protected by fairies in any world. However, do not enter their Containment Unit just to have a bit of fun; if you’ve read a few books on them, you’ll know that fairies dislike those who take advantage of their kindness.."<br>
+	<br>
+	<h3><The corresponding document is only accessible by Employees Level 4 and higher></h3><br>
+	"When Walter, who was under the care of the fairies, died in the room of another Abnormality, we noticed some anomalies. His stomach and face were ripped off, and his eyeballs and organs were damaged as if they were eaten by something. Moreover, the Containment Unit Walter was found in was for an Abnormality that uses psychological attacks. Meanwhile, the fairies had someone's blood and flesh smeared all over their mouths. We did not bother to examine them to find out whose flesh and blood it was.<br>
+	In our world, there are few outcomes that result from perfect kindness. Having fairies that live in a forest visit you just because they like you or that you've done many good deeds is only something that happens in fairy tales. Even though we know this truth, we still sometimes become deluded. Thinking that "The Fairies' Care" is happening because of all the good deeds we've done, or that the fairies are "favoring" us because there is something that makes us more special than the other employees."<br>
+	<br>
+	"The fairies are no more than carnivorous monsters, and their "protection" is their method to keep the meat fresh. When an employee enters another Containment Unit, they gobble them up in fear that they would lose their food to something else.<br>
+	However, the employees were greatly satisfied by the fairies' care, and we saw a drastic decrease in the accident rate, so we deemed it unnecessary to tell the truth to the employees."<br>
