@@ -141,11 +141,8 @@
 	var/turf/T = get_turf(affected_human)
 	var/lums = T.get_lumcount()
 	if(lums > 0.5)
-		SEND_SIGNAL(affected_human, COMSIG_ADD_MOOD_EVENT, "too_bright", /datum/mood_event/bright_light)
 		affected_human.dizziness = min(40, affected_human.dizziness + 3)
 		affected_human.set_confusion(min(affected_human.get_confusion() + (0.5 * delta_time), 20))
-	else
-		SEND_SIGNAL(affected_carbon, COMSIG_CLEAR_MOOD_EVENT, "too_bright")
 
 /datum/addiction/maintenance_drugs/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
@@ -165,8 +162,6 @@
 	name = "Nicotine"
 	addiction_relief_treshold = MIN_NICOTINE_ADDICTION_REAGENT_AMOUNT //much less because your intake is probably from ciggies
 	withdrawal_stage_messages = list("Feel like having a smoke...", "Getting antsy. Really need a smoke now.", "I can't take it! Need a smoke NOW!")
-	medium_withdrawal_moodlet = /datum/mood_event/nicotine_withdrawal_moderate
-	severe_withdrawal_moodlet = /datum/mood_event/nicotine_withdrawal_severe
 
 /datum/addiction/nicotine/withdrawal_enters_stage_1(mob/living/carbon/affected_carbon, delta_time)
 	. = ..()

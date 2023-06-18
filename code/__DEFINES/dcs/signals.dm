@@ -854,15 +854,6 @@
 /// Called on mobs when they step in blood. (blood_amount, blood_state, list/blood_DNA)
 #define COMSIG_STEP_ON_BLOOD "step_on_blood"
 
-//Mood
-
-///called when you send a mood event from anywhere in the code.
-#define COMSIG_ADD_MOOD_EVENT "add_mood"
-///Mood event that only RnD members listen for
-#define COMSIG_ADD_MOOD_EVENT_RND "RND_add_mood"
-///called when you clear a mood event from anywhere in the code.
-#define COMSIG_CLEAR_MOOD_EVENT "clear_mood"
-
 ///sent to everyone in range of being affected by mask of madness
 #define COMSIG_VOID_MASK_ACT "void_mask_act"
 

@@ -209,7 +209,6 @@
 		R.cell?.charge += charge_amt
 		R.visible_message("<span class='notice'>[user] charges [R] with the power of Omnissiah!</span>")
 		to_chat(R, "<span class='boldnotice'>You are charged by the power of Omnissiah!</span>")
-		SEND_SIGNAL(R, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(user, 'sound/effects/bang.ogg', 25, TRUE, -1)
 		return TRUE
 	if(!ishuman(L))
@@ -229,7 +228,6 @@
 		else
 			H.visible_message("<span class='notice'>[user] charges [H] with the power of Omnissiah!</span>")
 			to_chat(H, "<span class='boldnotice'>You feel charged by the power of Omnissiah!</span>")
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 			playsound(user, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 		return TRUE
 
@@ -239,7 +237,6 @@
 	H.visible_message("<span class='notice'>[user] [did_we_charge ? "repairs" : "repairs and charges"] [H] with the power of Omnissiah!</span>")
 	to_chat(H, "<span class='boldnotice'>The inner machinations of Omnissiah [did_we_charge ? "repairs" : "repairs and charges"] you!</span>")
 	playsound(user, 'sound/effects/bang.ogg', 25, TRUE, -1)
-	SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 /***************** Spell *****************/
@@ -293,9 +290,6 @@
 /area/ruin/powered/mechanicus
 	name = "Mechanicum Chapel"
 	icon_state = "chapel"
-	mood_bonus = 5
-	mood_message = "<span class='nicegreen'>Being in the chapel brings me peace.</span>\n"
-	mood_trait = TRAIT_SPIRITUAL
 	ambience_index = AMBIENCE_HOLY
 
 /area/ruin/powered/mechanicus/robotics

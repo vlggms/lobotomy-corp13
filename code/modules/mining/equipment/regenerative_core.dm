@@ -69,7 +69,7 @@
 	if(owner.health <= owner.crit_threshold)
 		ui_action_click()
 
-///Handles applying the core, logging and status/mood events.
+///Handles applying the core, logging and status events.
 /obj/item/organ/regenerative_core/proc/applyto(atom/target, mob/user)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -87,7 +87,6 @@
 				to_chat(user, "<span class='notice'>You start to smear [src] on yourself. Disgusting tendrils hold you together and allow you to keep moving, but for how long?</span>")
 				SSblackbox.record_feedback("nested tally", "hivelord_core", 1, list("[type]", "used", "self"))
 			H.apply_status_effect(STATUS_EFFECT_REGENERATIVE_CORE)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "core", /datum/mood_event/healsbadman) //Now THIS is a miner buff (fixed - nerf)
 			qdel(src)
 
 /obj/item/organ/regenerative_core/afterattack(atom/target, mob/user, proximity_flag)

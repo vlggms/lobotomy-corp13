@@ -7,8 +7,6 @@
 /area/ruin/powered/bathhouse
 	name = "Bath House"
 	icon_state = "dk_yellow"
-	mood_bonus = 10
-	mood_message = "<span class='nicegreen'>I wish I could stay here forever.</span>\n"
 
 /turf/closed/wall/bathhouse
 	desc = "It's cool to the touch, pleasantly so."

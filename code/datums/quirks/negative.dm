@@ -276,9 +276,6 @@
 	medical_record_text = "Patient's cochlear nerve is incurably damaged."
 	hardcore_value = 4
 
-/datum/quirk/depression/on_process(delta_time)
-	if(DT_PROB(0.05, delta_time))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "depression_mild", /datum/mood_event/depression_mild)
 
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
@@ -307,9 +304,6 @@
 		if(quirk_holder.m_intent == MOVE_INTENT_RUN)
 			to_chat(quirk_holder, "<span class='warning'>Easy, easy, take it slow... you're in the dark...</span>")
 			quirk_holder.toggle_move_intent()
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "nyctophobia", /datum/mood_event/nyctophobia)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "nyctophobia")
 
 /datum/quirk/paraplegic
 	name = "Paraplegic"
@@ -489,14 +483,9 @@
 			quirk_holder.Stun(2 SECONDS)
 			msg += "causing you to freeze up!"
 
-	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "anxiety_eyecontact", /datum/mood_event/anxiety_eyecontact)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, quirk_holder, "<span class='userdanger'>[msg]</span>"), 3) // so the examine signal has time to fire and this will print after
 	return COMSIG_BLOCK_EYECONTACT
 
-/datum/mood_event/anxiety_eyecontact
-	description = "<span class='warning'>Sometimes eye contact makes me so nervous...</span>\n"
-	mood_change = -5
-	timeout = 3 MINUTES
 
 /datum/quirk/junkie
 	name = "Junkie"
@@ -598,19 +587,8 @@
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] [where_drug], and a lighter [where_accessory]. Make sure you get your favorite brand when you run out.</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a [initial(drug_container_type.name)] [where_drug], and a lighter [where_accessory].</span>")
 
-
-/datum/quirk/junkie/smoker/on_process()
-	. = ..()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/I = H.get_item_by_slot(ITEM_SLOT_MASK)
-	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/fancy/cigarettes/C = drug_container_type
-		if(istype(I, initial(C.spawn_type)))
-			SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "wrong_cigs")
-			return
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "wrong_cigs", /datum/mood_event/wrong_brand)
 
 #undef LOCATION_LPOCKET
 #undef LOCATION_RPOCKET
