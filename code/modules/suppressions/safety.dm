@@ -1,10 +1,10 @@
 /datum/suppression/safety
 	name = "Safety Core Suppression"
-	desc = "Regenerators will stop operating normally, only reactivating for short time after each meltdown.\n\
-			Sleepers will be non-functional.\n\
+	desc = "Regenerators will stop operating normally, all personnel will be healed after each meltdown instead.\n\
+			Sleepers and EMAIS will be non-functional.\n\
 			Medi-pens will have a chance to malfunction and require a delay on each activation."
 	reward_text = "All regenerators will receive a permanent +3 boost to healing power."
-	run_text = "The core suppression of Safety department has begun. The regenerators and sleepers will stop operating normally. Regenerators will resume their work for a short while on each meltdown instead."
+	run_text = "The core suppression of Safety department has begun. The regenerators and sleepers will stop operating normally. All personnel will be automatically healed after each meltdown instead."
 
 /datum/suppression/safety/Run(run_white = TRUE)
 	. = ..()
