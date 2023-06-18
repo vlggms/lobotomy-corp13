@@ -65,6 +65,12 @@
 	If you ever spot a XXX mocking their coworker with alopecia areata, they will be labeled as a hirsute, and will be banned from using the lounge for an indefinite period.<br>
 	They will also be forbidden from joining the company’s debate club Questioners of the absence of bald Barbies, the gourmet meetup Octopi over Squid, and the environmental protection group Save the Bald Eagles. (These regulations will be lifted as soon as the rulebreaker’s hair strand count goes below 1.)<br>
 	Lastly, I dedicate this article to employee T.H. who is quietly taking balding medicine next to me right now.""}
+
+//Fairy Festival
+/obj/item/paper/fluff/lore/zayin/fairy
+	name = "F-04-83"
+	info = {"<h2><center>F-04-83</center></h2>	<br>
+	Fairy Festival	<br>
 	"The Abnormality is similar to a fairy, having two pairs of wings and a small body. They act as a cluster."<br>
 	<br>
 	"They use a language we cannot understand to communicate with each other. They follow a few employees around when they enter the Containment Unit, using their special abilities to help heal injuries. Employees call this act "The Fairies' Care"."<br>
