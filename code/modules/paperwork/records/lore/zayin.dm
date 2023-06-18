@@ -85,3 +85,4 @@
 	<br>
 	"The fairies are no more than carnivorous monsters, and their "protection" is their method to keep the meat fresh. When an employee enters another Containment Unit, they gobble them up in fear that they would lose their food to something else.<br>
 	However, the employees were greatly satisfied by the fairies' care, and we saw a drastic decrease in the accident rate, so we deemed it unnecessary to tell the truth to the employees."<br>
+
