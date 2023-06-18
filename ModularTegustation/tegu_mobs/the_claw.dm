@@ -145,7 +145,7 @@
 			return
 		switch(chosen_attack)
 			if(1)
-				INVOKE_ASYNC(src, .proc/SerumW)
+				INVOKE_ASYNC(src, .proc/SerumW, target)
 			if(2)
 				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
 			if(3)
@@ -427,7 +427,7 @@
 	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
 		INVOKE_ASYNC(src, .proc/blink, LT)
-		SLEEP_CHECK_DEATH(pick(0.5, 1, 1.5, 2))
+		SLEEP_CHECK_DEATH(2)
 	icon_state = icon_living
 	charging = FALSE
 
@@ -452,7 +452,7 @@
 	for(var/turf/T in getline(start_turf, target_turf))
 		new /obj/effect/temp_visual/cult/sparks(T) // Telegraph the attack
 	face_atom(target_turf)
-	SLEEP_CHECK_DEATH(pick(0, 0.5, 1))
+	SLEEP_CHECK_DEATH(1)
 	forceMove(target_turf)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	for(var/turf/B in getline(start_turf, target_turf))
@@ -480,9 +480,9 @@
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	icon_state = "claw_prepare"
-	var/turf/T = get_turf(target)
+	var/turf/T = get_turf(src)
 	var/rotate_dir = pick(1, -1)
-	var/angle_to_target = Get_Angle(get_turf(src), T)
+	var/angle_to_target = Get_Angle(T, get_turf(target))
 	var/angle = angle_to_target + (rotate_dir ? 120 : -120)
 	if(angle > 360)
 		angle -= 360
@@ -491,15 +491,15 @@
 	var/turf/T2 = get_turf_in_angle(angle, T, wide_slash_range)
 	var/list/line = getline(T, T2)
 	INVOKE_ASYNC(src, .proc/DoLineAttack, line)
-	for(var/i = 1 to 12)
-		angle += (10 * rotate_dir)
+	for(var/i = 1 to 20)
+		angle += (6 * rotate_dir)
 		if(angle > 360)
 			angle -= 360
 		else if(angle < 0)
 			angle += 360
 		T2 = get_turf_in_angle(angle, T, wide_slash_range)
 		line = getline(T, T2)
-		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i * 0.3)
+		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i * 0.04)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = icon_living
 	charging = FALSE
