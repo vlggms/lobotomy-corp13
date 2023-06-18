@@ -146,12 +146,19 @@ SpinAttack
 	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	H.apply_status_effect(/datum/status_effect/umbrella_black_debuff) // how do I apply it to the guy they hit
+	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff) // how do I apply it to the guy they hit
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // placeholder
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "cut"
 	robust_searching = TRUE
 	del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/umbrella/AfterAttack(atom/the_target)
+	if(isliving(target) && !ishuman(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
 
 //umbrella debuff stuff
 /datum/status_effect/umbrella_black_debuff
@@ -190,6 +197,8 @@ SpinAttack
 
 // Will this make him spin?
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttack()
+	if (get_dist(src, target) > 3)
+		return
 	spinattack_cooldown = world.time + spinattack_cooldown_time
 	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
 	for(var/i = 1 to 4)
