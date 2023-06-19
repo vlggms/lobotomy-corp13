@@ -249,7 +249,7 @@
 	turns_per_move = 2
 	butcher_difficulty = 2
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
-	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/human, obj/item/food/meat/slab/crimson) // scower area for food and eat it
+	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/human, obj/item/food/meat/slab/crimson,) // scower area for food and eat it
 	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
 	density = TRUE
 	search_objects = 1
@@ -305,6 +305,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/L = target
 		L.Knockdown(20)
+		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held)
 
 /mob/living/simple_animal/hostile/kcorp/drone/Initialize()
