@@ -32,6 +32,7 @@
 /obj/item/ego_weapon/city/rats/brick
 	name = "brick"
 	desc = "It's a brick."
+	special = "Fits into an EGO belt."
 	icon_state = "ratbrick"
 	force = 5
 	throwforce = 50

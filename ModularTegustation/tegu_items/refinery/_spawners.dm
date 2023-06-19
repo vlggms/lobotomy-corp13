@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(unspawned_sales, list(
 	/obj/structure/pe_sales/limbus,
 	/obj/structure/pe_sales/zwei,
 	/obj/structure/pe_sales/shi,
+	/obj/structure/pe_sales/liu,
 	/obj/structure/pe_sales/seven,
 	/obj/structure/pe_sales/leaflet,
 	/obj/structure/pe_sales/allas,

@@ -226,6 +226,12 @@
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
 
+/obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls
+	name = "for whom the bell tolls"
+	desc = "I suppose if a man has something once, always something of it remains."
+	icon_state = "thirteen"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 90)
+
 /obj/item/clothing/suit/armor/ego_gear/realization/capitalism
 	name = "capitalism"
 	desc = "While the miser is merely a capitalist gone mad, the capitalist is a rational miser."

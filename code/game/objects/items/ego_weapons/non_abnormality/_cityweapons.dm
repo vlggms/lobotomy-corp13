@@ -72,14 +72,21 @@ Leader gear is a deagle and a glove that can immobilize all others with a full s
 
 Rosespanner
 Gears - Apply damagetypes to weapons
+Burst - Use charge for AOE attack
 
 Jeong's Office
-Cut HP by 10%, next attack deals 7x damage
-
-			Everything else.
+Cut HP, next attack deals massive damage
 
 Yun Office
 Generic Grade 7 Garbage
+
+Molar Office
+Gain Sanity on kill.
+
+			Everything else.
+
+Mirae Life Insurance
+On kill, heal yourself and get a small payday. 20% of the force is done as pale
 
 Pierre
 All heal on hit. Cheap stuff for syndicate
@@ -93,11 +100,11 @@ Pick a breached abno; If you kill that abno you get a temporary damage bonus.
 Kurokumo Clan
 Every Consecutive attack adds one stack of poise (max 20). Gain crit chance equal to poise. Dealing a critical hit clears all poise
 
-Molar Office
-Gain Sanity on kill.
-
 Blade Lineage
 Lock in place, giving yourself a big damage boost.
+
+Leaflet Workshop
+Weapons that have a durability bar with good damage. When they break you need to spend about 30 Seconds fixing it, or you deal half damage.
 
 ********************************************************************
 Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
@@ -111,4 +118,8 @@ Rifles that have a bayonet. Holds 8 shots, melee an enemy to load 4 rounds.
 Hana Association
 Pale equivalent to Seven and Zwei
 
+Liu Association
+Section 1/2 - Courage - More people around you the stronger it is. Use in hand for an AOE DOT that scales with number of people that are around you, and does not hurt them
+Section 5/6 - Combo string system, I > II > III. At each part of the string you can choose between one of two attacks
+All these weapons kill at 0 sanity.
 */

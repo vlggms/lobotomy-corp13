@@ -217,14 +217,16 @@
 		/obj/item/ego_weapon/city/ncorp_mark,
 		/obj/item/ego_weapon/city/ncorp_mark/white,
 		/obj/item/ego_weapon/city/ncorp_mark/black,
-		/obj/item/ego_weapon/city/ncorp_nail,
-		/obj/item/ego_weapon/city/ncorp_hammer
 		)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_mark/pale,
+		/obj/item/ego_weapon/city/ncorp_nail,
+		/obj/item/ego_weapon/city/ncorp_hammer,
 		/obj/item/ego_weapon/city/ncorp_nail/big,
-		/obj/item/ego_weapon/city/ncorp_hammer/big
+		/obj/item/ego_weapon/city/ncorp_hammer/big,
+		/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet
 		)
 
 	veryrareloot =	list(
@@ -234,7 +236,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander)
 
 
-//First set of city stuff. Cane, Streetlight, Rats, Leaflet, The Udjat and Mirae Life Insurance
+//First set of city stuff. Cane, Streetlight, Rats, Leaflet, The Udjat and Mirae Life Insurance, as well as generic Grade 1 fixers.
 /obj/structure/lootcrate/workshopleaf
 	name = "leaflet workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
@@ -249,7 +251,9 @@
 		/obj/item/ego_weapon/city/rats/pipe,
 		/obj/item/ego_weapon/city/zweihander/streetlight_baton,
 		/obj/item/ego_weapon/city/streetlight_bat,
-		/obj/item/ego_weapon/city/streetlight_greatsword
+		/obj/item/ego_weapon/city/streetlight_greatsword,
+		/obj/item/ego_weapon/city/leaflet/round,
+		/obj/item/ego_weapon/city/leaflet/wide
 		)
 
 	rareloot =	list(
@@ -257,10 +261,12 @@
 		/obj/item/ego_weapon/city/cane/claw,
 		/obj/item/ego_weapon/city/cane/briefcase,
 		/obj/item/ego_weapon/city/cane/fist,
+		/obj/item/ego_weapon/city/leaflet/square,
 		)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/mirae,
+		/obj/item/ego_weapon/city/donghwan,
 		/obj/item/ego_weapon/city/mirae,
 		/obj/item/ego_weapon/city/mirae/page,
 		/obj/item/clothing/suit/armor/ego_gear/city/udjat,)
@@ -271,11 +277,14 @@
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_allas"
 	rarechance = 20
+	veryrarechance = 1
 	lootlist =	list(
 		/obj/item/ego_weapon/city/fixerblade,
+		/obj/item/ego_weapon/city/fixergreatsword,
 		/obj/item/ego_weapon/city/yun,
 		/obj/item/ego_weapon/city/yun/shortsword,
 		/obj/item/ego_weapon/city/yun/chainsaw,
+		/obj/item/ego_weapon/city/yun/fist,
 		/obj/item/ego_weapon/city/jeong,
 		)
 
@@ -284,6 +293,12 @@
 		/obj/item/ego_weapon/city/molar,
 		/obj/item/ego_weapon/city/molar/olga,
 		)
+
+	veryrareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/blue_reverb,
+		/obj/item/ego_weapon/black_silence_gloves,
+		/obj/item/ego_weapon/city/vermillion,
+		/obj/item/ego_weapon/mimicry/kali)
 
 
 //Zelkova Workshop is the last one, Includes Dawn office, Wedge Office and Fullstop.
@@ -300,6 +315,7 @@
 		/obj/item/ego_weapon/city/wedge,
 		/obj/item/gun/ego_gun/city/fullstop/assault,
 		/obj/item/gun/ego_gun/city/fullstop/sniper,
+		/obj/item/gun/ego_gun/city/fullstop/pistol,
 		)
 
 	rareloot =	list(
@@ -348,6 +364,7 @@
 	lootlist =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
 		/obj/item/ego_weapon/city/zweihander,
+		/obj/item/ego_weapon/city/zweihander/knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
 		/obj/item/ego_weapon/city/zweibaton,)
@@ -357,23 +374,90 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader)
 
+//Tres - Tres Association (Not really accessible)
+/obj/structure/lootcrate/tres
+	name = "Tres Association Crate"
+	desc = "A crate recieved from the tres association. Open with a Crowbar."
+	icon_state = "crate_tres"
+	rarechance = 40
+	veryrarechance = 10
+	lootlist =	list(/obj/item/tresmetal)
+
+	rareloot =	list(
+	/obj/item/workshop_mod/regular/red,
+	/obj/item/workshop_mod/regular/white,
+	/obj/item/workshop_mod/regular/black,
+	/obj/item/workshop_mod/fast/red,
+	/obj/item/workshop_mod/fast/white,
+	/obj/item/workshop_mod/fast/black,
+	/obj/item/workshop_mod/slow/red,
+	/obj/item/workshop_mod/slow/white,
+	/obj/item/workshop_mod/slow/black,
+	/obj/item/workshop_mod/throwforce/red,
+	/obj/item/workshop_mod/throwforce/white,
+	/obj/item/workshop_mod/throwforce/black,
+		)
+
+	veryrareloot =	list(
+	/obj/item/workshop_mod/regular/pale,
+	/obj/item/workshop_mod/fast/pale,
+	/obj/item/workshop_mod/slow/pale,
+	/obj/item/workshop_mod/throwforce/pale,
+	/obj/item/workshop_mod/healing/red,
+	/obj/item/workshop_mod/healing/white,
+	/obj/item/workshop_mod/healing/black,
+	/obj/item/workshop_mod/healing/pale,
+	/obj/item/workshop_mod/sapping/red,
+	/obj/item/workshop_mod/sapping/white,
+	/obj/item/workshop_mod/sapping/black,
+	/obj/item/workshop_mod/sapping/pale,
+	)
+
+
 //Shi - Shi Association
 /obj/structure/lootcrate/shi
 	name = "Shi Association Crate"
 	desc = "A crate recieved from the shi association. Open with a Crowbar."
 	icon_state = "crate_shi"
 	lootlist =	list(
-		/obj/item/ego_weapon/city/shi_association,
+		/obj/item/ego_weapon/city/shi_assassin,
+		/obj/item/ego_weapon/city/shi_knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/shi,
-		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus,
+
 		)
 
 	rareloot =	list(
+		/obj/item/ego_weapon/city/shi_assassin/vet,
+		/obj/item/ego_weapon/city/shi_assassin/director,
 		/obj/item/clothing/suit/armor/ego_gear/city/shi/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director,
 		/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
 		)
+
+//Liu - Liu Association
+/obj/structure/lootcrate/liu
+	name = "Liu Association Crate"
+	desc = "A crate recieved from the liu association. Open with a Crowbar."
+	icon_state = "crate_liu"
+	lootlist =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/liu,
+		/obj/item/clothing/suit/armor/ego_gear/city/liu/section5,
+		/obj/item/ego_weapon/city/liu/fire
+		)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/city/liu/fire/fist,
+		/obj/item/ego_weapon/city/liu/fire/spear,
+		/obj/item/ego_weapon/city/liu/fire/sword,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuleader,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5,
+		)
+
 
 
 //Seven - Seven and its associates
@@ -427,6 +511,7 @@
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/index/proxy,
+		/obj/item/ego_weapon/city/index/proxy/spear,
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
 		/obj/item/ego_weapon/city/index/yan)
 
