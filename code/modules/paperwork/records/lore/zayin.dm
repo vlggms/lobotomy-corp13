@@ -84,5 +84,5 @@
 	In our world, there are few outcomes that result from perfect kindness. Having fairies that live in a forest visit you just because they like you or that you've done many good deeds is only something that happens in fairy tales. Even though we know this truth, we still sometimes become deluded. Thinking that "The Fairies' Care" is happening because of all the good deeds we've done, or that the fairies are "favoring" us because there is something that makes us more special than the other employees."<br>
 	<br>
 	"The fairies are no more than carnivorous monsters, and their "protection" is their method to keep the meat fresh. When an employee enters another Containment Unit, they gobble them up in fear that they would lose their food to something else.<br>
-	However, the employees were greatly satisfied by the fairies' care, and we saw a drastic decrease in the accident rate, so we deemed it unnecessary to tell the truth to the employees."<br>
+	However, the employees were greatly satisfied by the fairies' care, and we saw a drastic decrease in the accident rate, so we deemed it unnecessary to tell the truth to the employees."}
 
