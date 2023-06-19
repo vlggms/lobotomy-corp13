@@ -263,22 +263,15 @@
 	pixel_y = base_pixel_y
 	butcher_results = initial(butcher_results)
 
-/mob/living/simple_animal/hostile/ordeal/bigbirdEye/Aggro() //run away if alone, attack if more than 1
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Life()
     . = ..()
     buffed += 1
     if(buffed >= 2) //every 2 life ticks check for cowardace.
-        if(target && retreat_distance < 20 && !locate(/mob/living/simple_animal/hostile/ordeal/bigBirdEye) in oview(get_turf(src), 2))
+        if(!is_type_in_typecache(target,wanted_objects) && retreat_distance < 20 && !locate(/mob/living/simple_animal/hostile/ordeal/bigBirdEye) in oview(get_turf(src), 2))
             retreat_distance = 20
-            minimum_distance = 20
         else if(retreat_distance > 1)
             retreat_distance = null
-            minimum_distance = 1
         buffed = 0
-
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye/LoseAggro() //chill with other chickens
-	..()
-	if(!target)
-		retreat_distance = 0
 
 // K-Corp Drone
 /mob/living/simple_animal/hostile/kcorp/drone // kcorp section drone
