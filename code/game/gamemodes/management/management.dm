@@ -39,7 +39,8 @@
 	announce_span = "notice"
 	announce_text = "Manage a selection of abnormalities strictly from Lobotomy Corporation HQ!"
 	abno_types = list(
-		ABNORMALITY_ORIGIN_LOBOTOMY
+		ABNORMALITY_ORIGIN_LOBOTOMY,
+		ABNORMALITY_ORIGIN_ALTERED,
 		)
 
 /datum/game_mode/management/classic
@@ -83,7 +84,6 @@
 	announce_span = "notice"
 	announce_text = "Manage all abnormalities not originating from Lobotomy Corporation HQ, as well as a selection of joke and reference abnormalities."
 	abno_types = list(
-		ABNORMALITY_ORIGIN_LOBOTOMY,
 		ABNORMALITY_ORIGIN_ALTERED,
 		ABNORMALITY_ORIGIN_ARTBOOK,
 		ABNORMALITY_ORIGIN_WONDERLAB,
