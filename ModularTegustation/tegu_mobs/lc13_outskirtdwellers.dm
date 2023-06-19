@@ -1,5 +1,5 @@
 //ABBERATION
-	//ORDEAL PETS
+	//ORDEAL PETS AND BACKSTREET CREATURES
 
 			//Amber
 /mob/living/simple_animal/hostile/ordeal/amber_bug/morsel
@@ -228,3 +228,101 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/smallchuckles/CanTeleportTo(obj/machinery/computer/abnormality/CA)
 	return
+
+// bigBirdEye
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye //idk
+	name = "beak thing"
+	desc = "A giant eye creature that has an enormous beak protruding from the pupil."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi' // placeholder
+	icon_state = "imperfect_morsel" // placeholder
+	icon_living = "imperfect_morsel" // placeholder
+	faction = list("hostile") // should attack everything except its own
+	response_disarm_continuous = "pushes aside"
+	response_disarm_simple = "push aside"
+	verb_ask = "chirps"
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	maxHealth = 250
+	health = 250 // easier to kill
+	speed = 3
+	melee_damage_lower = 5
+	melee_damage_upper = 15 // crit damage
+	turns_per_move = 2
+	butcher_difficulty = 2
+	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
+	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/human, obj/item/food/meat/slab/crimson) // scower area for food and eat it
+	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
+	density = TRUE
+	search_objects = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
+
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Initialize() // not sure what this part does tbh
+	. = ..()
+	base_pixel_x = 0
+	pixel_x = base_pixel_x
+	base_pixel_y = 0
+	pixel_y = base_pixel_y
+	butcher_results = initial(butcher_results)
+
+/mob/living/simple_animal/hostile/ordeal/bigbirdEye/Aggro() //run away if alone, attack if more than 1
+	..()
+	if(!is_type_in_typecache(target,wanted_objects))
+		retreat_distance = 10
+
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye/LoseAggro() //chill with other chickens
+	..()
+	if(!target)
+		retreat_distance = 0
+
+// K-Corp Drone
+/mob/living/simple_animal/hostile/kcorp/drone // kcorp section drone
+	name = "K-Corp survey drone"
+	desc = "Medium sized drone suspensed in the air, humming as he flies."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi' // placeholder
+	icon_state = "imperfect_morsel" // placeholder
+	icon_living = "imperfect_morsel" // placeholder
+	faction = list("hostile") // should target humanoids only and annoy them to no end
+	response_disarm_continuous = "pushes aside" // should stun it
+	response_disarm_simple = "push aside" // should stun it
+	attack_verb_continuous = "bumps"
+	attack_verb_simple = "bumps"
+	verb_ask = "buzzes"
+	mob_biotypes = MOB_ROBOTIC
+	maxHealth = 300
+	health = 300
+	speed = 5 // extremely hard to catch
+	melee_damage_lower = 1
+	melee_damage_upper = 8 // should annoy, not kill
+	turns_per_move = 3
+	butcher_difficulty = 3
+	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1) // chicken and human for what he eats, egg? |MESSAGE BELOW|
+	deathmessage = "buzzes as he falls out of sky." // |MESSAGE ABOVE|
+	density = TRUE
+	search_objects = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
+
+/mob/living/simple_animal/hostile/kcorp/drone/AttackingTarget()
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/L = target
+		L.Knockdown(20)
+		L.dropItemToGround(held)
+
+/mob/living/simple_animal/hostile/kcorp/drone/Initialize()
+	. = ..()
+	base_pixel_x = 0
+	pixel_x = base_pixel_x
+	base_pixel_y = 0
+	pixel_y = base_pixel_y
+	butcher_results = initial(butcher_results)
+
+/mob/living/simple_animal/hostile/kcorp/drone/Aggro() //flash and push people, then run away |FLASH IS ANIMATED|
+	..()
+	can_patrol = FALSE
+	if(!is_type_in_typecache(target,wanted_objects))
+		retreat_distance = 5
+
+/mob/living/simple_animal/hostile/kcorp/drone/LoseAggro() //fly around the town
+	..()
+	if(!target)
+		can_patrol = TRUE
+		retreat_distance = 0
