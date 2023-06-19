@@ -217,8 +217,8 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/thirteen
-	name = "for whom the bell tolls"
-	desc = "It tolls for thee."
+	name = "dead silence"
+	desc = "No one can go against the flow of time."
 	icon_state = "thirteen"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
 	attribute_requirements = list(
