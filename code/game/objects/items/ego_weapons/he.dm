@@ -147,9 +147,9 @@
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(50, 50, 50, 30) // 180
-	projectile_block_cooldown = 0.5 SECONDS
-	block_duration = 0.5 SECONDS
+	reductions = list(40, 20, 20, 0) // 80
+	projectile_block_duration = 0.5 SECONDS
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/crumbling_parry.ogg'
 	projectile_block_message ="A God does not fear death!"
@@ -167,10 +167,10 @@
 	var/mob/living/carbon/human/myman = user
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		attack_speed = 0.33
-		projectile_block_cooldown = 0.33 SECONDS
+		projectile_block_duration = 0.33 SECONDS
 	else
 		attack_speed = 0.5
-		projectile_block_cooldown = 0.5 SECONDS
+		projectile_block_duration = 0.5 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
@@ -407,7 +407,7 @@
 	special = "This weapon has a slow attack speed and deals atrocious damage.	\
 			Block for longer when surrounded by allies."
 	icon_state = "bravery"
-	force = 20
+	force = 54
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -415,7 +415,7 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
 	reductions = list(60, 30, 50, 20) // 160
-	projectile_block_cooldown = 3 SECONDS
+	projectile_block_duration = 3 SECONDS
 	block_duration = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
 	block_cooldown = 5 SECONDS //always 6 seconds total before blocking again
 	block_sound = 'sound/abnormalities/scaredycat/cateleport.ogg'
@@ -525,7 +525,7 @@
 	desc = "I'll grind your bones to make my bread!"
 	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
-	force = 20
+	force = 54
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -533,7 +533,7 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
 	reductions = list(40, 20, 40, 20) // 120
-	projectile_block_cooldown = 3 SECONDS
+	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
 	attribute_requirements = list(
@@ -594,8 +594,8 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
-	reductions = list(30, 40, 50, 20) // 140 - longer parry, lower values; not a proper shield
-	projectile_block_cooldown = 1 SECONDS
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
@@ -696,8 +696,8 @@
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
-	reductions = list(30, 40, 50, 0) // 120 - Heals
-	projectile_block_cooldown = 0.5 SECONDS
+	reductions = list(30, 20, 30, 0) // 80
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
