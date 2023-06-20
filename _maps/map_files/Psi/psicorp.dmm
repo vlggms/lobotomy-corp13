@@ -1575,7 +1575,7 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/turf/open/space/basic,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "jf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -7003,7 +7003,7 @@
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
 	},
-/turf/open/space/basic,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Mc" = (
 /obj/effect/turf_decal/plaque{
@@ -8598,7 +8598,7 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Un" = (
 /turf/closed/indestructible/reinforced,
@@ -8904,7 +8904,7 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "VK" = (
 /obj/effect/turf_decal/tile/yellow,
