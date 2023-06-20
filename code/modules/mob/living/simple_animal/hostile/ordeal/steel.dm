@@ -66,8 +66,8 @@
 	maxHealth = 750
 	health = 750
 	rapid_melee = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
-	dextrous = FALSE
+	move_to_delay = 2.5
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	deathsound = 'sound/voice/mook_death.ogg'
@@ -92,9 +92,9 @@
 		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
-//flying varient trades movement and attack speed for a sweeping attack.
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying
-	name = "gene corp arial scout"
+// Flying varient trades movement and attack speed for a sweeping attack.
+/mob/living/simple_animal/hostile/ordeal/steel_noon/flying
+	name = "gene corp aerial scout"
 	desc = "A heavily mutated employee with wings and long insectoid arms. During the smoke war, rabbit teams would get ambushed by swarms that hid in the smoke choked sky."
 	icon_state = "gcorp6"
 	icon_living = "gcorp6"
@@ -200,7 +200,7 @@
 	deathmessage = "mutters something under their breath before collapsing."
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	ranged_cooldown_time = 15 SECONDS
-	a_intent = INTENT_HELP
+	move_to_delay = 3
 	maxHealth = 2000
 	health = 2000
 	melee_damage_lower = 40
@@ -208,9 +208,8 @@
 	vision_range = 12
 	move_to_delay = 3
 	ranged = TRUE
-	retreat_distance = 2
-	minimum_distance = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	minimum_distance = 4
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 0.6)
 	can_patrol = TRUE
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
@@ -219,6 +218,10 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	deathsound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
+	/// Amount of WHITE damage done by screech attack
+	var/screech_damage = 120
+	/// Do_after time delay for screech
+	var/screech_delay = 5 SECONDS
 	var/turf/fob
 	var/last_command = 0
 	var/chargecommand_cooldown = 0
@@ -339,7 +342,7 @@
 	var/visual_overlay = mutable_appearance('icons/effects/effects.dmi', "blip")
 	add_overlay(visual_overlay)
 	can_act = FALSE
-	if(!do_after(src, 5 SECONDS, target = src))
+	if(!do_after(src, screech_delay, target = src))
 		cut_overlay(visual_overlay)
 		can_act = TRUE
 		return
@@ -349,7 +352,9 @@
 	new /obj/effect/temp_visual/screech(get_turf(src))
 	for(var/mob/living/L in oview(10, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(120, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(screech_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(L.getarmor(null, WHITE_DAMAGE) < 100)
+				to_chat(L, "<span class='danger'>The horrible screech invades your mind!</span>")
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
 	var/list/whosehere = list()

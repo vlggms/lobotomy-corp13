@@ -37,10 +37,10 @@
 	annonce_sound = 'sound/effects/ordeals/green_start.ogg'
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
 	color = COLOR_DARK_LIME
-	bosstype = list(/mob/living/simple_animal/hostile/ordeal/green_dusk)
-	grunttype = list(/mob/living/simple_animal/hostile/ordeal/green_bot)
-	bossnumber = 3
-	gruntnumber = 1
+	boss_type = list(/mob/living/simple_animal/hostile/ordeal/green_dusk)
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/green_bot)
+	boss_amount = 3
+	grunt_amount = 1
 
 // Midnight
 /datum/ordeal/boss/green_midnight

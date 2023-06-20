@@ -116,22 +116,30 @@
 	level = 0
 	reward_percent = 0.20
 	color = "#4f4f4f"
-	//does ALL of these
-	var/list/bosstype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Guaranteed one of each on spawn.
-	//Randomly picked from these.
-	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Random units spawned around the boss mobs.
-	var/bossnumber = 4 //Basically how many groups spawned.
-	var/gruntnumber = 4 //Amount of troops around a boss.
+	/// Types of bosses to spawn per location. Spawns ALL of them at once
+	var/list/boss_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	/// Potential types of grunts that spawn around the boss mob. Grunt types are RANDOMLY picked from this, not all at once
+	var/list/grunt_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	/// Amount of boss mob types spawned, which will all spawn grunts around them
+	var/boss_amount = 4
+	/// Amount of troops around a boss mob(s)
+	var/grunt_amount = 4
+	/// Multiplier for player count, used to increase amount of bosses spawned. Set to 0 if you want it to not matter.
+	var/boss_player_multiplicator = 0.05
+	/// Same as above, but for amount of grunts. Keep in mind that it might not be needed, due to bosses spawning the group already
+	var/grunt_player_multiplicator = 0.1
 
 /datum/ordeal/simplecommander/Run()
-	..()
+	. = ..()
+	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
+	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
-	for(var/i = 1 to bossnumber)
+	for(var/i = 1 to round(boss_amount + boss_player_mod))
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
-		for(var/Y in bosstype)
+		for(var/Y in boss_type)
 			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
 			ordeal_mobs += C
 			C.ordeal_reference = src
-		spawngrunts(T, grunttype, gruntnumber)
+		spawngrunts(T, grunt_type, (grunt_amount + grunt_player_mod))

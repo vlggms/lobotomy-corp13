@@ -15,8 +15,8 @@
 /datum/ordeal/simplecommander/steel_dusk
 	name = "Dusk of Steel"
 	annonce_text = "If we lose this war we would would be cast to the streets, seen as less than human by even the rats."
-	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
-	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
+	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg' // And there
+	end_sound = 'sound/effects/ordeals/indigo_end.ogg' // Yep, too
 	level = 3
 	reward_percent = 0.2
 	color = "#444444"
@@ -24,3 +24,10 @@
 	grunttype = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn)
 	bossnumber = 3
 	gruntnumber = 4
+	color = "#71797E"
+	boss_type = list(/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/steel_noon/flying)
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/steel_noon)
+	boss_amount = 2
+	grunt_amount = 2
+	boss_player_multiplicator = 0.075
+	grunt_player_multiplicator = 0.25
