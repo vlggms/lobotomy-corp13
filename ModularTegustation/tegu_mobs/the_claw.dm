@@ -48,6 +48,7 @@
 	var/serumA_damage = 60
 	var/wide_slash_damage = 150
 	var/wide_slash_range = 5
+	var/wide_slash_angle = 120
 
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 5 // cooldown_time * distance:
@@ -270,37 +271,52 @@
 	forceMove(tp_loc)
 	face_atom(L)
 	playsound(tp_loc, 'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
-	L.Stun(5, TRUE, TRUE)
-	SLEEP_CHECK_DEATH(5)
+	L.Stun(12, TRUE, TRUE)
+	SLEEP_CHECK_DEATH(6)
 	qdel(eff)
-	GiveTarget(L)
-	charging = FALSE
-	var/turf/target_turf
+	L.visible_message(
+		"<span class='warning'>[src] disappears, taking [L] with them!</span>",
+		"<span class='userdanger'>[src] teleports with you through the entire facility!</span>"
+		)
+	var/list/teleport_turfs = list()
 	for(var/turf/T in shuffle(GLOB.department_centers))
 		if(T in range(18, src))
 			continue
-		target_turf = T
-		break
-	if(!istype(target_turf))
-		return
-	playsound(tp_loc, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
-	visible_message("<span class='warning'>[src] disappears, taking [L] with them!</span>")
-	tp_loc.Beam(target_turf, "nzcrentrs_power", time=25)
-	playsound(target_turf, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
-	forceMove(target_turf)
-	for(var/mob/living/LL in range(1, target_turf)) // Attacks everyone around.
-		if(faction_check_mob(LL))
-			continue
-		to_chat(target, "<span class='userdanger'>\The [src] slashes you!</span>")
-		LL.apply_damage(15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
-		new /obj/effect/temp_visual/cleave(get_turf(LL))
-	tp_loc = get_step(src, pick(1,2,4,5,6,8,9,10))
-	for(var/obj/item/I in get_turf(L)) // We take all dropped items with us, just to be fair, you know
-		if(I.anchored)
-			continue
-		I.forceMove(tp_loc)
-	to_chat(L, "<span class='userdanger'>[src] takes you away somewhere else! It's a duel!</span>")
-	L.forceMove(tp_loc)
+		teleport_turfs += T
+	for(var/i = 1 to 5)
+		if(!LAZYLEN(teleport_turfs))
+			break
+		var/turf/target_turf = pick(teleport_turfs)
+		playsound(tp_loc, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
+		tp_loc.Beam(target_turf, "nzcrentrs_power", time=15)
+		playsound(target_turf, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc, src)
+		D.color = COLOR_BRIGHT_BLUE
+		animate(D, alpha = 0, time = 5)
+		forceMove(target_turf)
+		for(var/mob/living/LL in range(1, target_turf)) // Attacks everyone around.
+			if(faction_check_mob(LL))
+				continue
+			if(LL == L)
+				continue
+			to_chat(LL, "<span class='userdanger'>\The [src] slashes you!</span>")
+			LL.apply_damage(15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
+			new /obj/effect/temp_visual/cleave(get_turf(LL))
+		tp_loc = get_step(src, pick(1,2,4,5,6,8,9,10))
+		for(var/obj/item/I in get_turf(L)) // We take all dropped items with us, just to be fair, you know
+			if(I.anchored)
+				continue
+			I.forceMove(tp_loc)
+		var/obj/effect/temp_visual/decoy/DL = new /obj/effect/temp_visual/decoy(L.loc, L)
+		DL.color = COLOR_BRIGHT_BLUE
+		animate(DL, alpha = 0, time = 5)
+		L.forceMove(tp_loc)
+		if(i < 5)
+			SLEEP_CHECK_DEATH(4)
+	to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
+	L.apply_damage(50, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
+	GiveTarget(L)
+	charging = FALSE
 
 // I hate how it's just a copy-paste of serum W, but oh well
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TriSerum()
@@ -471,10 +487,9 @@
 /mob/living/simple_animal/hostile/megafauna/claw/proc/WideSlash(target)
 	if(wide_slash_cooldown > world.time)
 		return
-	if(!isliving(target))
-		return
 	wide_slash_cooldown = world.time + wide_slash_cooldown_time
 	charging = TRUE
+	face_atom(target)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	icon_state = "claw_dash"
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
@@ -483,7 +498,7 @@
 	var/turf/T = get_turf(src)
 	var/rotate_dir = pick(1, -1)
 	var/angle_to_target = Get_Angle(T, get_turf(target))
-	var/angle = angle_to_target + (rotate_dir ? 120 : -120)
+	var/angle = angle_to_target + ((rotate_dir ? wide_slash_angle : -wide_slash_angle) * 0.5)
 	if(angle > 360)
 		angle -= 360
 	else if(angle < 0)
@@ -492,7 +507,7 @@
 	var/list/line = getline(T, T2)
 	INVOKE_ASYNC(src, .proc/DoLineAttack, line)
 	for(var/i = 1 to 20)
-		angle += (6 * rotate_dir)
+		angle += ((wide_slash_angle / 20) * rotate_dir)
 		if(angle > 360)
 			angle -= 360
 		else if(angle < 0)
@@ -514,5 +529,7 @@
 			if(L.stat == DEAD)
 				continue
 			if(L.status_flags & GODMODE)
+				continue
+			if(faction_check_mob(L))
 				continue
 			L.apply_damage(wide_slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
