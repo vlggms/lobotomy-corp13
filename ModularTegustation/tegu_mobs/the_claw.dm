@@ -314,7 +314,7 @@
 		if(i < 5)
 			SLEEP_CHECK_DEATH(4)
 	to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
-	L.apply_damage(50, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
+	L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	GiveTarget(L)
 	charging = FALSE
 
