@@ -189,7 +189,7 @@
 					if(faction_check_mob(L))
 						continue
 					targets_in_view += L
-				if(length(targets_in_view) > 4)
+				if(length(targets_in_view) > 3)
 					var/mob/living/L = pick(targets_in_view)
 					INVOKE_ASYNC(src, .proc/SerumW, L) // Will do targeted serum W
 					return
@@ -212,9 +212,11 @@
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	var/mob/living/carbon/human/H = null
-	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
+	if(!LAZYLEN(death_candidates)) // If there is 0 candidates - stop the spell.
 		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
+	if(length(death_candidates) == 1) // Exactly one? Do targeted thing for lulz
+		return TargetSerumW(pick(death_candidates))
 	for(var/i in 1 to 5)
 		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
 			break
@@ -237,7 +239,10 @@
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
-	new /obj/effect/temp_visual/emp/pulse(src.loc)
+	new /obj/effect/temp_visual/emp/pulse(loc)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc, src)
+	D.color = COLOR_BRIGHT_BLUE
+	animate(D, alpha = 0, time = 5)
 	visible_message("<span class='warning'>[src] blinks away!</span>")
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
@@ -249,10 +254,12 @@
 		if(faction_check_mob(L))
 			continue
 		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(75, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetSerumW(mob/living/L)
+	if(!istype(L))
+		return FALSE
 	charging = TRUE
 	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(L.loc)
 	uhoh.orbit(L, 0)
@@ -263,6 +270,8 @@
 	addtimer(CALLBACK(src, .proc/TargetEviscerate, target, uhoh), 15)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
+	if(!istype(L))
+		return FALSE
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	icon_state = icon_living
 	visible_message("<span class='warning'>[src] blinks away!</span>")
@@ -359,6 +368,9 @@
 	var/list/been_hit = list()
 	var/turf/prev_loc = get_turf(src)
 	new /obj/effect/temp_visual/emp/pulse(prev_loc)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(prev_loc, src)
+	D.color = COLOR_BRIGHT_BLUE
+	animate(D, alpha = 0, time = 5)
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
@@ -489,15 +501,16 @@
 		return
 	wide_slash_cooldown = world.time + wide_slash_cooldown_time
 	charging = TRUE
-	face_atom(target)
+	var/turf/TT = get_turf(target)
+	face_atom(TT)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
 	icon_state = "claw_dash"
-	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	SLEEP_CHECK_DEATH(0.7 SECONDS)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	icon_state = "claw_prepare"
 	var/turf/T = get_turf(src)
 	var/rotate_dir = pick(1, -1)
-	var/angle_to_target = Get_Angle(T, get_turf(target))
+	var/angle_to_target = Get_Angle(T, TT)
 	var/angle = angle_to_target + ((rotate_dir ? wide_slash_angle : -wide_slash_angle) * 0.5)
 	if(angle > 360)
 		angle -= 360
@@ -515,7 +528,7 @@
 		T2 = get_turf_in_angle(angle, T, wide_slash_range)
 		line = getline(T, T2)
 		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i * 0.04)
-	SLEEP_CHECK_DEATH(1 SECONDS)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	icon_state = icon_living
 	charging = FALSE
 
