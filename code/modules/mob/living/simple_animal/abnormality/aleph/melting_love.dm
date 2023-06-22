@@ -16,8 +16,8 @@
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 40 // AOE damage increases it drastically
+	melee_damage_lower = 55
+	melee_damage_upper = 60 // AOE damage increases it drastically
 	projectiletype = /obj/projectile/melting_blob
 	ranged = TRUE
 	minimum_distance = 0
@@ -78,21 +78,21 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
 	if(!can_act)
 		return FALSE
 
 	// Convert
-	if(ishuman(attacked_target))
-		var/mob/living/carbon/human/H = attacked_target
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
 		if((H.stat == DEAD) || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)))
 			return SlimeConvert(H)
 
 	// AOE attack
-	for(var/turf/open/T in view(1, attacked_target))
+	for(var/turf/open/T in view(1, target))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
 		S.color = "#FF0081"
-	for(var/mob/living/L in view(1, attacked_target))
+	for(var/mob/living/L in view(1, target))
 		if(faction_check_mob(L))
 			continue
 		L.apply_damage(radius_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -109,6 +109,11 @@
 	return TRUE
 
 /* Qliphoth things */
+/mob/living/simple_animal/hostile/abnormality/melting_love/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(33) && user == giften_human && pe >= datum_reference?.max_boxes)
+		datum_reference.qliphoth_change(1)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
@@ -116,18 +121,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/melting_love/ZeroQliphoth(mob/living/carbon/human/user)
-	if(gifted_human)
-		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
-		gifted_human.emote("scream")
-		gifted_human.gib()
-	else
-		Empower()
-	UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
-	UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
-	BreachEffect()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user)
@@ -139,6 +132,14 @@
 	pixel_x = -32
 	base_pixel_x = -32
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
+	if(istype(gifted_human))
+		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
+		gifted_human.emote("scream")
+		gifted_human.gib()
+	else
+		Empower()
+	UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
+	UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
 
 /* Gift */
 /mob/living/simple_animal/hostile/abnormality/melting_love/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -193,11 +194,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
 	move_to_delay -= 0.5
-	melee_damage_lower = 60
-	melee_damage_upper = 65
+	melee_damage_lower = 80
+	melee_damage_upper = 85
 	projectiletype = /obj/projectile/melting_blob/enraged
 	adjustBruteLoss(-maxHealth)
-	desc = initial(desc) + " It looks angry."
+	desc += " It looks angry."
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
 	var/turf/T = get_turf(gifted_human)
@@ -252,10 +253,10 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/slime/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/slime/AttackingTarget()
 	// Convert
-	if(ishuman(attacked_target))
-		var/mob/living/carbon/human/H = attacked_target
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
 		if((H.stat == DEAD) || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)))
 			return SlimeConvert(H)
 	return ..()
