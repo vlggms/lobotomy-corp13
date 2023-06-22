@@ -20,6 +20,7 @@
 	melee_damage_upper = 60 // AOE damage increases it drastically
 	projectiletype = /obj/projectile/melting_blob
 	ranged = TRUE
+	stat_attack = DEAD
 	minimum_distance = 0
 	ranged_cooldown_time = 5 SECONDS
 	move_to_delay = 3.5
@@ -85,7 +86,7 @@
 	// Convert
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if((H.stat == DEAD) || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)))
+		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
 			return SlimeConvert(H)
 
 	// AOE attack
@@ -247,8 +248,8 @@
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
+	if(isliving(the_target) && !ishuman(the_target))
+		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
@@ -257,7 +258,7 @@
 	// Convert
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if((H.stat == DEAD) || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)))
+		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
 			return SlimeConvert(H)
 	return ..()
 
