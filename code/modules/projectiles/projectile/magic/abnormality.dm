@@ -47,19 +47,16 @@
 
 /obj/projectile/melting_blob
 	name = "slime projectile"
-	icon_state = "slime"
 	desc = "A glob of infectious slime. It's going for your heart."
-	nodamage = TRUE
-	hitsound = "sound/effects/footstep/slime1.ogg"
-	var/maxdmg = null
-	var/mindmg = null
-	maxdmg = 90
-	mindmg = 50
-
-/obj/projectile/melting_blob/enraged
-	desc = "A glob of infectious slime. It's going for your heart, It seems bigger..."
-	maxdmg = 120
-	mindmg = 60
+	icon_state = "slime"
+	hitsound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 30 // Mainly a disabling tool, to pursue escaping opponents
+	spread = 5
+	slur = 5
+	eyeblur = 5
+	stamina = 30
 
 /obj/projectile/melting_blob/on_hit(target)
 	if(ismob(target))
@@ -75,13 +72,19 @@
 			H.gib()
 			new /mob/living/simple_animal/hostile/slime(T)
 			return BULLET_ACT_HIT
-		H.apply_damage(rand(mindmg,maxdmg), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+		H.apply_damage(damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+		H.adjustStaminaLoss(stamina)
 		if(!isbot(H) && isliving(H))
 			H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
 			for(var/i = 1 to 10)
 				addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
 			return BULLET_ACT_HIT
-	. = ..()
+	return ..()
+
+/obj/projectile/melting_blob/enraged
+	desc = "A glob of infectious slime. It's going for your heart, It seems bigger..."
+	damage = 40
+	stamina = 40 // Ranged cooldown is 5 seconds on ML, so it theoretically cannot stam crit
 
 /obj/projectile/mountain_spit
 	name = "spit"
