@@ -1,62 +1,65 @@
+// The base type
+/mob/living/simple_animal/hostile/ordeal/steel
+	name = "gene corp base mob"
+	desc = "This is something you are not meant to see."
+	faction = list("Gene_Corp")
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	vision_range = 8
+	wander = FALSE
+	a_intent = INTENT_HELP
+	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
+	var/leader
+
+// Passive regen when below 50% health.
+/mob/living/simple_animal/hostile/ordeal/steel/dawn/Life()
+	. = ..()
+	if(!.)
+		return
+	if(health <= maxHealth*0.5 && stat != DEAD)
+		adjustBruteLoss(-2)
+		if(!target)
+			adjustBruteLoss(-6)
+
+// Soldiers when off duty will let eachother move around.
+/mob/living/simple_animal/hostile/ordeal/steel/Aggro()
+	. = ..()
+	a_intent_change(INTENT_HARM)
+
+/mob/living/simple_animal/hostile/ordeal/steel/LoseAggro()
+	. = ..()
+	a_intent_change(INTENT_HELP)
+	if(leader)
+		Goto(leader, move_to_delay, 1)
+
 //G corp remenants, Survivors of the Smoke War
 //Their function is as common cannon fodder. Manager buffs make them much more effective in battle.
-/mob/living/simple_animal/hostile/ordeal/steel_dawn
+/mob/living/simple_animal/hostile/ordeal/steel/dawn
 	name = "gene corp remnant"
 	desc = "A insect augmented employee of the fallen Gene corp. Word on the street says that they banded into common backstreet gangs after the Smoke War."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "gcorp1"
 	icon_living = "gcorp1"
 	icon_dead = "gcorp_corpse"
-	faction = list("Gene_Corp")
-	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	maxHealth = 220
 	health = 220
-	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
-	vision_range = 8
 	move_to_delay = 2.2
 	melee_damage_lower = 10
 	melee_damage_upper = 13
-	wander = FALSE
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	footstep_type = FOOTSTEP_MOB_SHOE
-	a_intent = INTENT_HELP
-	dextrous = TRUE
-	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
-	//similar to a human
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
-	var/leader
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
+/mob/living/simple_animal/hostile/ordeal/steel/dawn/Initialize()
 	..()
 	attack_sound = "sound/effects/ordeals/steel/gcorp_attack[pick(1,2,3)].ogg"
-	if(!istype(src, /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon)) //due to being a root of noon
-		icon_living = "gcorp[pick(1,2,3,4)]"
-		icon_state = icon_living
-
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/Life()
-	. = ..()
-	//Passive regen when below 50% health.
-	if(health <= maxHealth*0.5 && stat != DEAD)
-		adjustBruteLoss(-2)
-		if(!target)
-			adjustBruteLoss(-6)
-
-	//Soldiers when off duty will let eachother move around.
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/Aggro()
-	. = ..()
-	a_intent_change(INTENT_HARM)
-
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/LoseAggro()
-	. = ..()
-	a_intent_change(INTENT_HELP)
-	if(leader)
-		Goto(leader,move_to_delay,1)
+	icon_living = "gcorp[pick(1,2,3,4)]"
+	icon_state = icon_living
 
 //More Mutated Subtype of Dawns, they are fast and hit faster.
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon
+/mob/living/simple_animal/hostile/ordeal/steel/noon
 	name = "gene corp corporal"
 	desc = "A heavily mutated employee with two sharp insectoid arms. Gene corp utilized those who have had a more volitile reaction to the treatment as shock troops during the smoke war."
 	icon_state = "gcorp5"
@@ -71,29 +74,36 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	deathsound = 'sound/voice/mook_death.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/moth = 2)
+	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 2)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
-	health+=10
+	var/self_destruct_delay = 2 SECONDS
+	var/self_destruct_radius = 2
+	var/self_destruct_damage = 50
+
+/mob/living/simple_animal/hostile/ordeal/steel/noon/AttackingTarget()
+	adjustBruteLoss(-10)
 	if(health <= maxHealth*0.15 && stat != DEAD && prob(75))
-		walk_to(src, 0)
+		move_to_delay += 4
 		say("FOR G CORP!!!")
-		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
-	..()
+		animate(src, transform = matrix()*1.8, color = "#FF0000", time = self_destruct_delay)
+		addtimer(CALLBACK(src, .proc/DeathExplosion), self_destruct_delay)
+	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()
+/mob/living/simple_animal/hostile/ordeal/steel/noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
-	for(var/mob/living/L in view(2, src))
-		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	for(var/turf/T in view(self_destruct_radius, src))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
+		S.color = COLOR_RED
+	for(var/mob/living/L in view(self_destruct_radius, src))
+		L.apply_damage(self_destruct_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
 // Flying varient trades movement and attack speed for a sweeping attack.
-/mob/living/simple_animal/hostile/ordeal/steel_noon/flying
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying
 	name = "gene corp aerial scout"
 	desc = "A heavily mutated employee with wings and long insectoid arms. During the smoke war, rabbit teams would get ambushed by swarms that hid in the smoke choked sky."
 	icon_state = "gcorp6"
@@ -109,30 +119,25 @@
 	move_to_delay = 3
 	var/charging = FALSE
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/Move()
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/Move()
 	if(buffed && !charging)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/MeleeAction()
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/AttackingTarget()
 	if(ranged_cooldown <= world.time && prob(30))
 		OpenFire()
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/CanAllowThrough(atom/movable/mover, turf/target)
-	if(charging && isliving(mover))
-		return TRUE
-	. = ..()
-
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/Shoot(atom/A)
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/OpenFire(atom/A)
 	if(buffed || !isliving(A))
 		return FALSE
 	animate(src, alpha = alpha - 50, pixel_y = base_pixel_y + 25, layer = 6, time = 10)
 	buffed = TRUE
 	density = FALSE
 	if(do_after(src, 2 SECONDS, target = src))
-		ArialSupport()
+		AerialSupport()
 	else
 		visible_message("<span class='notice'>[src] crashes to the ground.</span>")
 		apply_damage(100, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
@@ -144,8 +149,13 @@
 	pixel_y = initial(pixel_y)
 	base_pixel_y = initial(base_pixel_y)
 
-	//from current location fly to the enemy and hit them. Utilizes some little helper abnormality code. Later on i should make them less accurate.
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/ArialSupport()
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/CanAllowThrough(atom/movable/mover, turf/target)
+	if(charging && isliving(mover))
+		return TRUE
+	. = ..()
+
+// From current location fly to the enemy and hit them. Utilizes some little helper abnormality code. Later on i should make them less accurate.
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/proc/AerialSupport()
 	charging = TRUE
 	var/turf/target_turf = get_turf(target)
 	for(var/i=0 to 7)
@@ -160,7 +170,7 @@
 		SLEEP_CHECK_DEATH(0.5)
 	charging = FALSE
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/ClearSky(turf/T)
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/proc/ClearSky(turf/T)
 	if(!T || isclosedturf(T) || T == loc)
 		return FALSE
 	if(locate(/obj/structure/window) in T.contents)
@@ -170,16 +180,15 @@
 			return FALSE
 	return TRUE
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/SweepAttack(mob/living/sweeptarget)
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/proc/SweepAttack(mob/living/sweeptarget)
 	sweeptarget.visible_message("<span class='danger'>[src] slams into [sweeptarget]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
 	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
 	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
-		do_knockback(sweeptarget, src, get_dir(src, sweeptarget))
-		shake_camera(sweeptarget, 4, 3)
-		shake_camera(src, 2, 3)
+		DoKnockback(sweeptarget, src, get_dir(src, sweeptarget))
+		shake_camera(sweeptarget, 3, 2)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/do_knockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
+/mob/living/simple_animal/hostile/ordeal/steel/noon/flying/proc/DoKnockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
 	if(!ismovable(target) || throw_dir == null)
 		return
 	var/atom/movable/throwee = target
@@ -189,7 +198,7 @@
 	throwee.safe_throw_at(throw_target, 1, 1, thrower, gentle = TRUE)
 
 //Has a very complex AI that generally functions as the brain of a army.
-/mob/living/simple_animal/hostile/ordeal/steel_dusk
+/mob/living/simple_animal/hostile/ordeal/steel/dusk
 	name = "gene corp manager"
 	desc = "A bug headed manager of the fallen Gene corp. Gene corp hoped that the enhanced sonic abilities of their managers would embolden their own while shattering the minds of their enemies."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
@@ -229,40 +238,23 @@
 	var/can_act = TRUE
 	var/list/troops = list()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Initialize()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/Initialize()
 	..()
 	if(!fob)
 		fob = FindForwardBase()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Life()
-	. = ..()
-	if(health <= maxHealth*0.5 && stat != DEAD)
-		adjustBruteLoss(-2)
-		if(!target)
-			adjustBruteLoss(-6)
-
-	//Recruitment code
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Found(atom/A)
-	if(istype(A, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && troops.len < 8)
-		var/mob/living/simple_animal/hostile/ordeal/steel_dawn/S = A
-		if(S.stat != DEAD && !S.leader && !S.target && !S.client && faction_check_mob(S)) //are you dead? do you have a leader? are you currently fighting? Are you a player? Different faction?
-			S.Goto(src,move_to_delay - 0.2,1)
-			S.leader = src
-			troops += S
-			return
-
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/death()
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/M in troops)
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/death()
+	for(var/mob/living/simple_animal/hostile/ordeal/steel/M in troops)
 		M.leader = null
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/patrol_select()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/patrol_select()
 	if(troops.len)
 		if(prob(25))
 			say("Nothin here. Lets move on.")
 		HeadCount()
 		var/follower_speed = move_to_delay - 0.2
-		for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/soldier in troops)
+		for(var/mob/living/simple_animal/hostile/ordeal/steel/soldier in troops)
 			if(soldier.stat != DEAD) //second check to make sure the soldier isnt dead. First one is in headcount.
 				Goto(src , follower_speed, 1) //had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
 	else if(!troops.len)
@@ -272,7 +264,7 @@
 			return
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Aggro()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/Aggro()
 	. = ..()
 	if(chargecommand_cooldown <= world.time)
 		Command(1)
@@ -287,11 +279,11 @@
 		minimum_distance = initial(minimum_distance)
 	a_intent_change(INTENT_HARM)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/LoseAggro()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/OpenFire()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/OpenFire()
 	if(can_act)
 		if(!troops.len && ranged_cooldown <= world.time) //your on your own boss, give em hell.
 			ManagerScreech()
@@ -309,36 +301,36 @@
 				Command(pick(2,3))
 		ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Move()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/Command(manager_order) //used for attacks and commands. could possibly make this a modular spell or ability.
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/Command(manager_order) //used for attacks and commands. could possibly make this a modular spell or ability.
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_chitter.ogg', 60, TRUE)
 	switch(manager_order)
 		if(1)
 			if(prob(20))
 				say(pick("Lads we got a hostile!", "Shit, wake up troops hell just found us!", "I warn you, we dont die easy.", "Keep your cool and we can all get out of this alive!"))
-			for(var/mob/living/simple_animal/hostile/ordeal/G in oview(9, src))
-				if(istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && G.stat != DEAD && !has_status_effect(/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff))
+			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(G.stat != DEAD && !has_status_effect(/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff))
 					G.GiveTarget(target)
 					G.TemporarySpeedChange(-1, 1 SECONDS)
 			last_command = 1
 		if(2)
 			say("Hold fast!")
-			for(var/mob/living/simple_animal/hostile/ordeal/G in oview(9, src))
-				if((istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon) || istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn)) && G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
+			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
 					G.apply_status_effect(/datum/status_effect/all_armor_buff)
 			last_command = 2
 		if(3)
 			say("Onslaught!")
-			for(var/mob/living/simple_animal/hostile/ordeal/G in oview(9, src))
-				if((istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon) || istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn)) && G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
+			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
 					G.apply_status_effect(/datum/status_effect/minor_damage_buff)
 			last_command = 3
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/ManagerScreech()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/ManagerScreech()
 	var/visual_overlay = mutable_appearance('icons/effects/effects.dmi', "blip")
 	add_overlay(visual_overlay)
 	can_act = FALSE
@@ -356,15 +348,15 @@
 			if(L.getarmor(null, WHITE_DAMAGE) < 100)
 				to_chat(L, "<span class='danger'>The horrible screech invades your mind!</span>")
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
 	var/list/whosehere = list()
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/soldier in oview(src, 10))
+	for(var/mob/living/simple_animal/hostile/ordeal/steel/soldier in oview(src, 10))
 		if(soldier.stat != DEAD || soldier.client)
 			whosehere += soldier
 	var/list/absent_troops = difflist(troops, whosehere ,1)
 	if(absent_troops.len)
 		for(var/mob/living/simple_animal/hostile/ordeal/s in absent_troops)
-			var/mob/living/simple_animal/hostile/ordeal/steel_dawn/friend = s
+			var/mob/living/simple_animal/hostile/ordeal/steel/friend = s
 			if(friend && friend.stat != DEAD && friend.z == fob.z)
 				walk(friend, 0)
 				friend.patrol_to(fob)
@@ -372,7 +364,7 @@
 			troops -= s
 
 //The purpose of this code is to make it so that if a soldier gets lost, in a containment cell or some other part of the facility, they will go to central command and wait for their leader to return.
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/FindForwardBase()
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/FindForwardBase()
 	var/turf/second_choice
 	for(var/turf/T in GLOB.department_centers)
 		if(T.z != z)
