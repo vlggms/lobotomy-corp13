@@ -72,6 +72,8 @@
 		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
+		if(L.type == /mob/living/simple_animal/hostile/slime && health <= maxHealth * 0.8) // We need healing
+			return TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/OpenFire(atom/A)
@@ -89,14 +91,24 @@
 		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
 			return SlimeConvert(H)
 
+	// Consume a slime. Cannot work on the big one, so the check is not istype()
+	if(target.type == /mob/living/simple_animal/hostile/slime)
+		var/mob/living/simple_animal/hostile/slime/S = target
+		visible_message("<span class='warning'>[src] consumes \the [S], restoring its own health.</span>")
+		. = ..() // We do a normal attack without AOE and then consume the slime to restore HP
+		adjustBruteLoss(-maxHealth * 0.2)
+		S.adjustBruteLoss(S.maxHealth) // To make sure it dies
+		return .
+
 	// AOE attack
-	for(var/turf/open/T in view(1, target))
-		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
-		S.color = "#FF0081"
-	for(var/mob/living/L in view(1, target))
-		if(faction_check_mob(L))
-			continue
-		L.apply_damage(radius_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(isliving(target))
+		for(var/turf/open/T in view(1, target))
+			var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
+			S.color = "#FF0081"
+		for(var/mob/living/L in view(1, target))
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(radius_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
 	return ..()
 
@@ -169,7 +181,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedAnger(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
-		to_chat(gifted_human, "<span class='userdanger'>Melting Love didn't like that!</span>")
+		to_chat(gifted_human, "<span class='userdanger'>[src] didn't like that!</span>")
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
