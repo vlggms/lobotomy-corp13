@@ -2,6 +2,7 @@
 /mob/living/simple_animal/hostile/ordeal/steel
 	name = "gene corp base mob"
 	desc = "This is something you are not meant to see."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	faction = list("Gene_Corp")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	melee_damage_type = RED_DAMAGE
@@ -43,7 +44,6 @@
 /mob/living/simple_animal/hostile/ordeal/steel/dawn
 	name = "gene corp remnant"
 	desc = "A insect augmented employee of the fallen Gene corp. Word on the street says that they banded into common backstreet gangs after the Smoke War."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "gcorp1"
 	icon_living = "gcorp1"
 	icon_dead = "gcorp_corpse"
