@@ -251,9 +251,17 @@
 // Add mobs to the troops list once in a while
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/Life()
 	. = ..()
-	if(!.)
+	if(!. || AIStatus != AI_ON)
 		return
-
+	for(var/mob/living/simple_animal/hostile/ordeal/steel/S in view(9, src))
+		if(S.type == type) // Same type, including ourselves
+			continue
+		if(S.stat) // Dead
+			continue
+		if(S.leader) // Already has a leader
+			continue
+		troops |= S
+		S.leader = src
 
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/death()
 	for(var/mob/living/simple_animal/hostile/ordeal/steel/M in troops)
@@ -369,7 +377,7 @@
 			continue
 		troops -= soldier
 		soldier.leader = null
-		if(solder.z == fob.z && soldier.stat != DEAD)
+		if(soldier.z == fob.z && soldier.stat != DEAD)
 			soldier.patrol_to(fob)
 
 //The purpose of this code is to make it so that if a soldier gets lost, in a containment cell or some other part of the facility, they will go to central command and wait for their leader to return.
