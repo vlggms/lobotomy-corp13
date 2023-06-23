@@ -1,7 +1,7 @@
 // Right now the only core suppression with a proper reward, which is higher spawning stats.
 /datum/suppression/training
 	name = "Training Core Suppression"
-	desc = "All employees will have a -40 debuff on each attribute for the duration of suppression."
+	desc = "All employees will have a -30 debuff on each attribute for the duration of suppression."
 	reward_text = "Employees that survived through the suppression will be awarded with 20 increase and +5 buff to all attributes.\n\
 			All Agents that will join post-suppression will start with higher attributes."
 	run_text = "The core suppression of Training department has begun. All personnel will be suffering from symptoms of work fatigue."
@@ -13,13 +13,13 @@
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
-		H.adjust_all_attribute_buffs(-40)
+		H.adjust_all_attribute_buffs(-30)
 		affected_mobs += H
 
 /datum/suppression/training/End()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	for(var/mob/living/carbon/human/H in affected_mobs)
-		H.adjust_all_attribute_buffs(45)
+		H.adjust_all_attribute_buffs(35)
 		H.adjust_all_attribute_levels(20) // A tiny reward
 	for(var/datum/job/agent/J in SSjob.occupations)
 		J.normal_attribute_level += 5 // This allows agents to spawn with 100 in all stats
@@ -30,6 +30,6 @@
 	if(!ishuman(L))
 		return FALSE
 	var/mob/living/carbon/human/H = L
-	H.adjust_all_attribute_buffs(-40) // Suffer
+	H.adjust_all_attribute_buffs(-30) // Suffer
 	affected_mobs += H
 	return TRUE

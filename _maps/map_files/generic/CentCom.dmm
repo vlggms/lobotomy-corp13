@@ -12282,8 +12282,9 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
 "WE" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/coffee,
+/obj/machinery/computer/abnormality_auxiliary{
+	dir = 8
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "WF" = (
