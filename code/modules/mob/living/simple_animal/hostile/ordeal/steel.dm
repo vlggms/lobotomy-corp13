@@ -10,7 +10,12 @@
 	wander = FALSE
 	a_intent = INTENT_HELP
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
-	var/leader
+	/// Reference to the mob we will be following upon losing aggro
+	var/mob/leader
+
+/mob/living/simple_animal/hostile/ordeal/steel/Destroy()
+	leader = null
+	return ..()
 
 // Passive regen when below 50% health.
 /mob/living/simple_animal/hostile/ordeal/steel/dawn/Life()
@@ -197,7 +202,7 @@
 	var/atom/throw_target = get_edge_target_turf(throwee, throw_dir)
 	throwee.safe_throw_at(throw_target, 1, 1, thrower, gentle = TRUE)
 
-//Has a very complex AI that generally functions as the brain of a army.
+// Has a very complex AI that generally functions as the brain of a army.
 /mob/living/simple_animal/hostile/ordeal/steel/dusk
 	name = "gene corp manager"
 	desc = "A bug headed manager of the fallen Gene corp. Gene corp hoped that the enhanced sonic abilities of their managers would embolden their own while shattering the minds of their enemies."
@@ -231,10 +236,10 @@
 	var/screech_damage = 120
 	/// Do_after time delay for screech
 	var/screech_delay = 5 SECONDS
+	var/screech_cooldown = 0
 	var/turf/fob
 	var/last_command = 0
 	var/chargecommand_cooldown = 0
-	var/screech_cooldown = 0
 	var/can_act = TRUE
 	var/list/troops = list()
 
@@ -243,21 +248,29 @@
 	if(!fob)
 		fob = FindForwardBase()
 
+// Add mobs to the troops list once in a while
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/Life()
+	. = ..()
+	if(!.)
+		return
+
+
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/death()
 	for(var/mob/living/simple_animal/hostile/ordeal/steel/M in troops)
 		M.leader = null
-	..()
+	troops = null
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/patrol_select()
-	if(troops.len)
+	if(LAZYLEN(troops))
 		if(prob(25))
 			say("Nothin here. Lets move on.")
 		HeadCount()
 		var/follower_speed = move_to_delay - 0.2
 		for(var/mob/living/simple_animal/hostile/ordeal/steel/soldier in troops)
-			if(soldier.stat != DEAD) //second check to make sure the soldier isnt dead. First one is in headcount.
-				Goto(src , follower_speed, 1) //had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
-	else if(!troops.len)
+			if(soldier.stat != DEAD) // Second check to make sure the soldier isnt dead. First one is in headcount.
+				Goto(src, follower_speed, 1) // Had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
+	else
 		var/area/forward_base = get_area(fob)
 		if(!istype(get_area(src), forward_base) && z == fob.z)
 			patrol_path = get_path_to(src, fob, /turf/proc/Distance_cardinal, 0, 200)
@@ -277,11 +290,6 @@
 	else if(retreat_distance <= 0)
 		retreat_distance = initial(retreat_distance)
 		minimum_distance = initial(minimum_distance)
-	a_intent_change(INTENT_HARM)
-
-/mob/living/simple_animal/hostile/ordeal/steel/dusk/LoseAggro()
-	. = ..()
-	a_intent_change(INTENT_HELP)
 
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/OpenFire()
 	if(can_act)
@@ -313,22 +321,26 @@
 			if(prob(20))
 				say(pick("Lads we got a hostile!", "Shit, wake up troops hell just found us!", "I warn you, we dont die easy.", "Keep your cool and we can all get out of this alive!"))
 			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(istype(G, type)) // Ourselves or another manager mob
+					continue
 				if(G.stat != DEAD && !has_status_effect(/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff))
 					G.GiveTarget(target)
 					G.TemporarySpeedChange(-1, 1 SECONDS)
-			last_command = 1
 		if(2)
 			say("Hold fast!")
 			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(istype(G, type))
+					continue
 				if(G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
 					G.apply_status_effect(/datum/status_effect/all_armor_buff)
-			last_command = 2
 		if(3)
 			say("Onslaught!")
 			for(var/mob/living/simple_animal/hostile/ordeal/steel/G in oview(9, src))
+				if(istype(G, type))
+					continue
 				if(G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
 					G.apply_status_effect(/datum/status_effect/minor_damage_buff)
-			last_command = 3
+	last_command = manager_order
 
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/ManagerScreech()
 	var/visual_overlay = mutable_appearance('icons/effects/effects.dmi', "blip")
@@ -348,20 +360,17 @@
 			if(L.getarmor(null, WHITE_DAMAGE) < 100)
 				to_chat(L, "<span class='danger'>The horrible screech invades your mind!</span>")
 
-/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
-	var/list/whosehere = list()
-	for(var/mob/living/simple_animal/hostile/ordeal/steel/soldier in oview(src, 10))
-		if(soldier.stat != DEAD || soldier.client)
-			whosehere += soldier
-	var/list/absent_troops = difflist(troops, whosehere ,1)
-	if(absent_troops.len)
-		for(var/mob/living/simple_animal/hostile/ordeal/s in absent_troops)
-			var/mob/living/simple_animal/hostile/ordeal/steel/friend = s
-			if(friend && friend.stat != DEAD && friend.z == fob.z)
-				walk(friend, 0)
-				friend.patrol_to(fob)
-			friend.leader = null
-			troops -= s
+// Clears up the troops list from mobs that are out of view, dead or player controlled
+/mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/HeadCount()
+	var/list/my_view = view(src, 10)
+	listclearnulls(troops)
+	for(var/mob/living/simple_animal/hostile/ordeal/steel/soldier in troops)
+		if(soldier.stat != DEAD && !soldier.client && (soldier in my_view))
+			continue
+		troops -= soldier
+		soldier.leader = null
+		if(solder.z == fob.z && soldier.stat != DEAD)
+			soldier.patrol_to(fob)
 
 //The purpose of this code is to make it so that if a soldier gets lost, in a containment cell or some other part of the facility, they will go to central command and wait for their leader to return.
 /mob/living/simple_animal/hostile/ordeal/steel/dusk/proc/FindForwardBase()
