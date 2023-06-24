@@ -20,6 +20,7 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
+	actions_types = list(/datum/action/item_action/toggle_iff)
 	var/special_cooldown
 	var/special_cooldown_time
 	var/exchange_cooldown
@@ -30,6 +31,7 @@
 	var/locked_state = "gloves_unlocked"
 	var/unlocked = FALSE
 	var/list/unlocked_list = list()
+	var/iff = TRUE
 
 /obj/item/ego_weapon/black_silence_gloves/equipped(mob/user, slot)
 	. = ..()
@@ -44,6 +46,25 @@
 /obj/item/ego_weapon/black_silence_gloves/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
+
+/datum/action/item_action/toggle_iff
+	name = "Toggle IFF"
+	desc = "Toggles your ability to hit friendly targets."
+	icon_icon = 'icons/obj/black_silence_weapons.dmi'
+	button_icon_state = "gloves"
+
+/datum/action/item_action/toggle_iff/Trigger()
+	var/obj/item/ego_weapon/black_silence_gloves/H = target
+	if(istype(H))
+		H.toggle_iff(owner)
+
+/obj/item/ego_weapon/black_silence_gloves/proc/toggle_iff(mob/living/user)
+	if(iff)
+		iff = FALSE
+		to_chat(user,"<span class='warning'>You will now attack everything indiscriminately!</span>")
+	else
+		iff = TRUE
+		to_chat(user,"<span class='warning'>You will now only attack enemies!</span>")
 
 /obj/item/ego_weapon/black_silence_gloves/proc/dash(mob/living/user, turf/target_turf)
 	var/list/line_turfs = list(get_turf(user))
@@ -65,10 +86,14 @@
 		return
 	if(user.get_active_held_item() != src)
 		return
-	if(user.faction_check_mob(L))
-		return
 	if(special_cooldown > world.time)
 		return
+	if(iff)
+		if(user.faction_check_mob(L))
+			return
+	else
+		if(target == user)
+			return
 	Special(user, target)
 
 /obj/item/ego_weapon/black_silence_gloves/attack_self(mob/user)
@@ -114,6 +139,7 @@
 			var/time_left = max((furioso_time - world.time), 0)
 			addtimer(CALLBACK(Y, .proc/furioso_reset), time_left)
 			Y.furioso_time = world.time + time_left
+		Y.iff = iff
 		qdel(src)
 		user.put_in_hands(Y)
 		if(!(unlocked) && Y.unlocked_list.len > 8)
@@ -421,8 +447,12 @@
 		for (var/i = 0; i < 3; i++)
 			new /obj/effect/temp_visual/smash_effect(T)
 			for(var/mob/living/L in T)
-				if(user.faction_check_mob(L))
-					continue
+				if(iff)
+					if(user.faction_check_mob(L))
+						continue
+				else
+					if(L == user)
+						continue
 				L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 				exchange_cooldown -= 10
 			sleep(0.25 SECONDS)
@@ -545,8 +575,12 @@
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/L in T)
-			if(user.faction_check_mob(L))
-				continue
+			if(iff)
+				if(user.faction_check_mob(L))
+					continue
+			else
+				if(L == user)
+					continue
 			if(L in been_hit)
 				continue
 			if(!L.anchored)
@@ -563,12 +597,15 @@
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
-		var/obj/projectile/ego_bullet/atelier_logic/G = new /obj/projectile/ego_bullet/atelier_logic(proj_turf)
+		var/bullet_type = /obj/projectile/ego_bullet/atelier_logic
+		if(iff)
+			bullet_type = /obj/projectile/ego_bullet/atelier_logic/iff
+		var/obj/projectile/ego_bullet/atelier_logic/G = new bullet_type(proj_turf)
 		G.fired_from = src //for signal check
-		playsound(user, 'sound/weapons/black_silence/revolver.ogg', 60, 1)
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
+		playsound(user, 'sound/weapons/black_silence/revolver.ogg', 60, 1)
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
@@ -596,12 +633,14 @@
 	damage = 80
 	speed = 0.3
 	icon_state = "logic"
-	nodamage = TRUE
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/atelier_logic/iff
+	nodamage = TRUE
 	projectile_piercing = PASSMOB
 
-/obj/projectile/ego_bullet/atelier_logic/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/ego_bullet/atelier_logic/iff/on_hit(atom/target, blocked = FALSE)
 	if(!ishuman(target))
 		nodamage = FALSE
 	else
@@ -846,8 +885,12 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 			for(var/mob/living/L in T)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(user, L))
-				if(user.faction_check_mob(L))
-					continue
+				if(iff)
+					if(user.faction_check_mob(L))
+						continue
+				else
+					if(L == user)
+						continue
 				if(L in been_hit)
 					continue
 				if(!L.anchored)
@@ -886,7 +929,7 @@
 		if(!target.anchored)
 			target.Move(target_turf)
 		playsound(user, 'sound/weapons/black_silence/revolver.ogg', 100, 1)
-		sleep(7)
+		sleep(3.5)
 	
 	//Spear
 	icon_state = "allas"
@@ -895,7 +938,7 @@
 	T = get_turf(target)
 	new /obj/effect/temp_visual/smash_effect(T)
 	playsound(user, 'sound/weapons/black_silence/duelsword_strong.ogg', 100, 1)
-	sleep(4)
+	sleep(2)
 
 	//Hammer
 	icon_state = "old_boys"
@@ -905,17 +948,17 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	if(!target.anchored)
 		target.Move(target_turf)
-	sleep(8)
+	sleep(4)
 	
 	//LongSword
 	icon_state = "mook"
 	playsound(user, 'sound/weapons/black_silence/longsword_start.ogg', 100, 1)
-	sleep(3)
+	sleep(1.5)
 	T = get_turf(target)
 	playsound(T, 'sound/weapons/black_silence/longsword_atk.ogg', 100, 1)
 	for (i = 0; i < 3; i++)
 		new /obj/effect/temp_visual/smash_effect(T)
-		sleep(0.25 SECONDS)
+		sleep(1.25)
 
 	//Gauntlets & Shortsword
 	icon_state = "ranga"
@@ -927,23 +970,23 @@
 		new /obj/effect/temp_visual/smash_effect(T)
 		if(i == 0)
 			playsound(user, 'sound/weapons/black_silence/mace.ogg', 100, 1)
-			sleep(2)
+			sleep(1)
 		if(i == 1)
 			playsound(user, 'sound/weapons/black_silence/axe.ogg', 100, 1)
-			sleep(2)
+			sleep(1)
 		if(i == 2)
 			playsound(user, 'sound/weapons/black_silence/shortsword.ogg', 100, 1)
-			sleep(6)
+			sleep(3)
 			
 	//Mace & Axe
 	icon_state = "zelkova"
 	user.dir = get_dir(user, target)
 	playsound(user, 'sound/weapons/black_silence/axe.ogg', 100, 1)
 	new /obj/effect/temp_visual/smash_effect(T)
-	sleep(6)
+	sleep(3)
 	playsound(user, 'sound/weapons/black_silence/mace.ogg', 100, 1)
 	new /obj/effect/temp_visual/smash_effect(T)
-	sleep(6)
+	sleep(3)
 
 	//Greatsword
 	icon_state = "wheels"
@@ -952,7 +995,7 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	if(!target.anchored)
 		target.Move(target_turf)
-	sleep(10)
+	sleep(5)
 
 	//Dual Swords
 	icon_state = "crystal"
@@ -961,7 +1004,7 @@
 	T = get_turf(target)
 	new /obj/effect/temp_visual/smash_effect(T)
 	playsound(user, 'sound/weapons/black_silence/duelsword_strong.ogg', 100, 1)
-	sleep(8)
+	sleep(4)
 
 	//Shotgun
 	icon_state = "logic"
@@ -973,7 +1016,7 @@
 	target_turf = get_step(target_turf, get_dir(user, target))
 	if(!target.anchored)
 		target.Move(target_turf)
-	sleep(8)
+	sleep(4)
 	
 	//Durandal
 	icon_state = "durandal"
@@ -982,12 +1025,12 @@
 	playsound(user, 'sound/weapons/black_silence/durandal_down.ogg', 100, 1)
 	T = get_turf(target)
 	new /obj/effect/temp_visual/smash_effect(T)
-	sleep(7)
+	sleep(3.5)
 	target_turf = get_step(get_turf(target), get_dir(user, target))
 	dash(user, target_turf)
 	playsound(user, 'sound/weapons/black_silence/durandal_up.ogg', 100, 1)
 	new /obj/effect/temp_visual/smash_effect(T)
-	sleep(7)
+	sleep(3.5)
 	user.dir = get_dir(user, target)
 	target_turf = get_step(get_turf(target), get_dir(user, target))
 	playsound(user, 'sound/weapons/black_silence/durandal_strong.ogg', 100, 1)
@@ -995,7 +1038,7 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	if(!target.anchored)
 		target.Move(target_turf)
-	L.apply_damage(3000, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 10 sec, so 300 DPS as the final attack
+	L.apply_damage(1500, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 5 sec, so 300 DPS as the final attack
 	sleep(10)
 	
 	furioso_end(user, target)
