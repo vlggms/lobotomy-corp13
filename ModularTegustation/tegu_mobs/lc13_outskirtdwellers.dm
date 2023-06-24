@@ -1,5 +1,5 @@
 //ABBERATION
-	//ORDEAL PETS
+	//ORDEAL PETS AND BACKSTREET CREATURES
 
 			//Amber
 /mob/living/simple_animal/hostile/ordeal/amber_bug/morsel
@@ -228,3 +228,110 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/smallchuckles/CanTeleportTo(obj/machinery/computer/abnormality/CA)
 	return
+
+// bigBirdEye
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye
+	name = "beak thing"
+	desc = "A giant eye creature that has an enormous beak protruding from the pupil."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "beak_thing"
+	icon_living = "beak_thing"
+	faction = list("hostile") // should attack everything except its own
+	response_disarm_continuous = "pushes aside"
+	response_disarm_simple = "push aside"
+	verb_ask = "chirps"
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	maxHealth = 250
+	health = 250 // easier to kill
+	speed = 3
+	attack_sound = 'sound/weapons/bite.ogg'
+	melee_damage_lower = 5
+	melee_damage_upper = 15 // crit damage
+	turns_per_move = 2
+	butcher_difficulty = 2
+	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
+	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/slab/human, /obj/item/food/meat/slab/crimson,) // scower area for food and eat it
+	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
+	density = TRUE
+	search_objects = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
+
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Initialize() // not sure what this part does tbh
+	. = ..()
+	base_pixel_x = 0
+	pixel_x = base_pixel_x
+	base_pixel_y = 0
+	pixel_y = base_pixel_y
+	butcher_results = initial(butcher_results)
+
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Life()
+    . = ..()
+    buffed += 1
+    if(buffed >= 2) //every 2 life ticks check for cowardace.
+        if(!is_type_in_typecache(target,wanted_objects) && retreat_distance < 20 && !locate(/mob/living/simple_animal/hostile/ordeal/bigBirdEye) in oview(get_turf(src), 2))
+            retreat_distance = 20
+        else if(retreat_distance > 1)
+            retreat_distance = null
+        buffed = 0
+
+// K-Corp Drone
+/mob/living/simple_animal/hostile/kcorp/drone
+	name = "K-Corp survey drone"
+	desc = "Medium sized drone suspensed in the air, humming as he flies."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "kcorp_drone_idle"
+	icon_living = "kcorp_drone_idle"
+	faction = list("hostile") // should target humanoids only and annoy them to no end
+	response_disarm_continuous = "pushes aside"
+	response_disarm_simple = "push aside"
+	attack_verb_continuous = "flashes"
+	attack_verb_simple = "flash"
+	verb_ask = "buzzes"
+	mob_biotypes = MOB_ROBOTIC
+	maxHealth = 300
+	health = 300
+	speed = 5 // extremely hard to catch
+	melee_damage_lower = 1
+	melee_damage_upper = 8 // should annoy, not kill
+	turns_per_move = 3
+	butcher_difficulty = 3
+	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1)
+	deathmessage = "buzzes as he falls out of the air."
+	density = TRUE
+	search_objects = 1
+	var/current_size = RESIZE_DEFAULT_SIZE
+
+/mob/living/simple_animal/hostile/kcorp/drone/AttackingTarget()
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/L = target
+		icon_state = "kcorp_drone_angry"
+		icon_living = "kcorp_drone_angry"
+		animate(src, time = 1, loop = 0)
+		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
+		L.Paralyze(3 SECONDS)
+		var/obj/item/held = L.get_active_held_item()
+		L.dropItemToGround(held)
+		SLEEP_CHECK_DEATH(10)
+		icon_state = "kcorp_drone_idle"
+		icon_living = "kcorp_drone_idle"
+
+/mob/living/simple_animal/hostile/kcorp/drone/Initialize()
+	. = ..()
+	base_pixel_x = 0
+	pixel_x = base_pixel_x
+	base_pixel_y = 0
+	pixel_y = base_pixel_y
+	butcher_results = initial(butcher_results)
+
+/mob/living/simple_animal/hostile/kcorp/drone/Aggro() //flash and push people, then run away |FLASH IS ANIMATED|
+	..()
+	if(!is_type_in_typecache(target,wanted_objects))
+		retreat_distance = 3
+		can_patrol = FALSE
+
+/mob/living/simple_animal/hostile/kcorp/drone/LoseAggro() //fly around the town
+	..()
+	if(!target)
+		can_patrol = TRUE
+		retreat_distance = 0
