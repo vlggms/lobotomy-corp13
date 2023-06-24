@@ -51,7 +51,7 @@
 	health = 220
 	move_to_delay = 2.2
 	melee_damage_lower = 10
-	melee_damage_upper = 13
+	melee_damage_upper = 15
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
@@ -75,6 +75,8 @@
 	health = 750
 	rapid_melee = 2
 	move_to_delay = 2.5
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -217,8 +219,8 @@
 	move_to_delay = 3
 	maxHealth = 2000
 	health = 2000
-	melee_damage_lower = 40
-	melee_damage_upper = 57
+	melee_damage_lower = 50
+	melee_damage_upper = 55
 	vision_range = 12
 	move_to_delay = 3
 	ranged = TRUE
