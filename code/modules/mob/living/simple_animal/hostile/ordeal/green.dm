@@ -164,6 +164,8 @@
 		if(!T)
 			return
 		for(var/i = 1 to 4)
+			if(!T)
+				return
 			new /obj/effect/temp_visual/saw_effect(T)
 			for(var/mob/living/L in T.contents)
 				if(faction_check_mob(L))
