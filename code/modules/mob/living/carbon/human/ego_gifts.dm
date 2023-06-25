@@ -74,9 +74,12 @@
 		if("hide")
 			Refresh_Gift_Sprite(visible) //for uniquely colored gifts
 		if("dissolve")
-			var/datum/ego_gifts/empty/E = new
-			E.slot = src.slot
 			if(tgui_alert(owner, "Are you sure you want to dissolve the [src]?", "Dissolve Gift", list("Yes", "No"), 0) == "Yes") // We only go if they hit "Yes" specifically.
+				if(locked)
+					to_chat(owner, "<span class='warning'>[src] is locked and cannot be dissolved! Phew!</span>")
+					return
+				var/datum/ego_gifts/empty/E = new
+				E.slot = src.slot
 				if(datum_reference)
 					var/PE = 0
 					PE += (datum_reference.threat_level * datum_reference.threat_level)
