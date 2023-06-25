@@ -46,9 +46,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
-	var/list/ordeal_timelock = list(10 MINUTES, 25 MINUTES, 45 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
+	var/list/ordeal_timelock = list(10 MINUTES, 20 MINUTES, 35 MINUTES, 50 MINUTES, 0, 0, 0, 0, 0)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
+	/// List of currently running ordeals
+	var/list/current_ordeals = list()
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
 	// List of available core suppressions for manager to choose
@@ -61,10 +63,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/current_box = 0
 	var/box_goal = INFINITY // Initialized later
 	var/goal_reached = FALSE
-	//possession conditions
+	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
-
+	/// Amount of abnormalities that agents achieved full understanding on
 	var/understood_abnos = 0
+	/// The amount of core suppression options that will be available
+	var/max_core_options = 2
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
@@ -95,7 +99,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		message_admins("Tried to pick potential core suppressions, but there was no auxiliary consoles! Fix it!")
 		return
 	var/list/cores = subtypesof(/datum/suppression)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to max_core_options)
+		if(!LAZYLEN(cores))
+			break
 		var/core_type = pick(cores)
 		available_core_suppressions += core_type
 		cores -= core_type
@@ -159,9 +165,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	// Update list of abnormalities that can be affected by meltdown
-	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 30 MINUTES)
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 20 MINUTES)
 		qliphoth_meltdown_affected -= ZAYIN_LEVEL
-	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 60 MINUTES)
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 50 MINUTES)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
@@ -169,7 +175,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 4 + round(player_count * 0.5)
+	qliphoth_max = 2 + round(player_count * 0.65)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -218,7 +224,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			text_info += computer.datum_reference.name
 			if(y != meltdown_occured.len)
 				text_info += ", "
-		priority_announce("[alert_text] [text_info].", "Qliphoth Meltdown", sound=alert_sound)
+			text_info += "."
+		// Announce next ordeal
+		if(next_ordeal && (qliphoth_state + 1 >= next_ordeal_time))
+			text_info += "\n\n[next_ordeal.name] will trigger on the next meltdown."
+		priority_announce("[alert_text] [text_info]", "Qliphoth Meltdown", sound=alert_sound)
 		return meltdown_occured
 
 /datum/controller/subsystem/lobotomy_corp/proc/RollOrdeal()
