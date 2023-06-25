@@ -1,19 +1,24 @@
 //EGO shield subtype code
 
 /*
-	So, since this wasn't written, I'm gonna try and do a preliminary Block value thing.
-	RISK LEVEL	|  ARMOR TOTAL	|   ARMOR CAP	|	PALE ARMOR CAP	|
-	ZAYIN		|		80		|		30		|		 10			|
-	TETH		|		120		|		50		|		 20			|
-	HE			|	 	160		|		70		|		 30			|
-	WAW			|		200		|		80		|		 40			|
-	ALEPH		| 		300		|		90		|		 50			|
+	Regular Shields
+	RISK LEVEL    |    ARMOR TOTAL    |    ARMOR CAP     |    PALE ARMOR CAP     |
+	ZAYIN         |        60         |        30        |         10            |
+	TETH          |        90         |        50        |         20            |
+	HE            |        120        |        70        |         30            |
+	WAW           |        150        |        80        |         40            |
+	ALEPH         |        240        |        90        |         60            |
 
-	These can be adjusted based off time of the block. The longer the block, the worse the armor.
-	Shields should also be typically worse weapons. Typically.
-	Standard Block Time is 1 Second.
-	Going below this to 0.5 SECONDS grants you +20 Armor total.
-	Going above this reduces armor total by 10 per 0.5 SECONDS.
+	Hybrid-Shields
+	RISK LEVEL    |    ARMOR TOTAL    |    ARMOR CAP     |    PALE ARMOR CAP     |
+	ZAYIN         |        40         |        20        |         10            |
+	TETH          |        60         |        30        |         20            |
+	HE            |        80         |        40        |         30            |
+	WAW           |        100        |        50        |         40            |
+	ALEPH         |        150        |        60        |         60            |
+
+	Hybrid Shields are weapons that can parry and typically have a 1 second duration and a projectile block duration matching their attack_speed.
+	Regular Shields have very slow (3) attack speed and slow (speed 2) force. So for a teth, 3 speed and 40 force.
 
 */
 /obj/item/ego_weapon/shield
