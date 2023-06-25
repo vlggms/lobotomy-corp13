@@ -34,8 +34,8 @@
 	var/block_cooldown_message = "You reposition your shield"
 	var/projectile_block_message = "You block the projectile!"
 	var/block_sound = 'sound/weapons/ego/shield1.ogg'
-	var/parry_timer
 	var/projectile_timer
+	var/parry_timer
 
 /obj/item/ego_weapon/shield/Initialize()
 	. = ..()
@@ -49,7 +49,6 @@
 		resistances_list += list("BLACK" = reductions[3])
 	if(reductions[4] != 0)
 		resistances_list += list("PALE" = reductions[4])
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, ./proc/SlotChange)
 
 //Allows the user to deflect projectiles for however long recovery time is set to on a hit
 /obj/item/ego_weapon/shield/melee_attack_chain(mob/user, atom/target, params)
@@ -57,32 +56,11 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	attacking = TRUE
-	projectile_timer = addtimer(CALLBACK(src, .proc/DropStance), projectile_block_duration)
+	projectile_timer = addtimer(CALLBACK(src, .proc/DropStance), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/shield/proc/DropStance()
 	attacking = FALSE
 	projectile_timer = null
-
-/obj/item/ego_weapon/shield/proc/SlotChange(datum/source, mob/equipper, slot)
-	SIGNAL_HANDLER
-	if(!ishuman(equipper))
-		return FALSE
-	var/mob/living/carbon/human/H = equipper
-	if(source != src)
-		return FALSE
-	if(slot == ITEM_SLOT_HANDS)
-		RegisterSignal(src, COMSIG_ITEM_ATTACK_ZONE, ./proc/WeaponCheck)
-		return FALSE
-	if(!H.physiology.armor.bomb)
-		return FALSE
-	H.physiology.armor = H.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
-	UnregisterSignal(src, COMSIG_ITEM_ATTACK_ZONE)
-
-/obj/item/ego_weapon/shield/proc/WeaponCheck(datum/source, mob/living/human/hit_guy, mob/living/hitter, location)
-	SIGNAL_HANDLER
-	if(source != src)
-		return FALSE
-	DisableBlock(hit_guy)
 
 //This code is what allows the user to block
 /obj/item/ego_weapon/shield/attack_self(mob/user)
@@ -104,7 +82,7 @@
 		block_success = FALSE
 		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1) //bomb defense must be over 0
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration)
+		parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration, TIMER_STOPPABLE)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
 		return TRUE
 
@@ -113,7 +91,7 @@
 	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	deltimer(parry_timer)
-	parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown)
+	parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown, TIMER_STOPPABLE)
 	if (!block_success)
 		BlockFail(user)
 
@@ -129,7 +107,7 @@
 	user.physiology.black_mod *= 1.2
 	user.physiology.pale_mod *= 1.2
 	deltimer(parry_timer)
-	parry_timer = addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration)
+	parry_timer = addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/shield/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
