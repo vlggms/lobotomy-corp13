@@ -128,13 +128,14 @@
 		REMOVE_TRAIT(src, TRAIT_NODROP, src)
 
 /obj/item/ego_weapon/flower_waltz/attack(mob/living/target, mob/living/carbon/human/user, proximity)
-	var/enemy = 0
+	var/enemy = FALSE
 	for(var/found_faction in target.faction)
 		if(found_faction in nemesis_factions) // if we are hitting a nemesis...
 			force += faction_bonus_force
-			enemy = 1
+			enemy = TRUE
+			break
 	. = ..()
-	if(enemy == 1) // we should delete the extra force ONLY if we hit a nemesis
+	if(enemy) // we should delete the extra force ONLY if we hit a nemesis
 		force -= faction_bonus_force
 
 //Slightly different AI lines
