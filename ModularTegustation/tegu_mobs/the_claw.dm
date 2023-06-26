@@ -275,7 +275,7 @@
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	icon_state = icon_living
 	visible_message("<span class='warning'>[src] blinks away!</span>")
-	var/turf/tp_loc = get_step(L, pick(1,2,4,5,6,8,9,10))
+	var/turf/tp_loc = get_step(L, pick(GLOB.alldirs))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
 	face_atom(L)
