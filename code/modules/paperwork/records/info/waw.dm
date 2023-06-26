@@ -306,7 +306,7 @@
 		"When work was complete, everyone in the facility was healed.",
 		"During work, the employee took random damage continuously.",
 		"When work was completed 4 times, The Qliphoth counter lowered.",
-		"When the Qliphoth counter reached 0, two abnormalities breached containment.")
+		"When the Qliphoth counter reached 0, one abnormality breached containment.")
 	abno_work_damage_type = "Random"
 
 //Dimensional Refraction
@@ -324,6 +324,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/contract
 	abno_code = "C-03-140"
 	abno_info = list(
+		"When the work result was Good, C-03-140 signed a contract with the employee, raising the respective stats slightly, but reducing their workchance on subsequent works.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.")
