@@ -152,10 +152,29 @@
 	abno_code = "O-05-103"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work took longer than 30 seconds, O-05-102's Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, Yang assisted in Abnormality suppression and healed the SP of nearby employees.",
-		"WARNING: Upon Yang’s death, immediately evacuate the area surrounding Yang's corpse.")
+		"When struck, Yang's attacker took an equal amount of White Damage.",
+		"WARNING: Upon Yang’s death, immediately evacuate the area surrounding Yang's corpse.",
+		"WARNING: When Yang breached while O-05-102 was in the facility, O-05-102 breached and tried to meet with Yang.",
+		"WARNING: Both Yang and O-05-102 must be suppressed at the same time or they will revive and continue their journey.",
+		"When Yang and O-05-102 met, all that was became all which wasn't.",
+		"When Yang and O-05-102 are in the facility together, both their work rates and maximum PE improved.")
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "High"
+
+//Yin
+/obj/item/paper/fluff/info/waw/yin
+	abno_type = /mob/living/simple_animal/hostile/abnormality/yin
+	abno_code = "O-05-102"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work took longer than 30 seconds, O-05-103's Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached 0, Yin roamed the facility, dealing Black Damage to nearby employees.",
+		"WARNING: When Yin breached while O-05-103 was in the facility, O-05-103 breached and tried to meet with Yin.",
+		"WARNING: Both Yin and O-05-103 must be suppressed at the same time or they will revive and continue their journey.",
+		"When Yin and O-05-103 met, all that was not became all that was.",
+		"When Yin and O-05-103 are in the facility together, both their work rates and maximum PE improved.")
 
 //Alriune
 /obj/item/paper/fluff/info/waw/alriune
