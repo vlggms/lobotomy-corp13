@@ -141,3 +141,13 @@
 	damage = 7
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_syrinx
+	name = "syrinx"
+	icon_state = "ecstasy"
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	color = COLOR_GREEN
+	damage = 7
+	speed = 1.3
+	range = 6
