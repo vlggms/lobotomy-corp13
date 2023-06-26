@@ -175,7 +175,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player))
 			player_count += 1
-	qliphoth_max = 2 + round(player_count * 0.65)
+	qliphoth_max = 3 + round(player_count * 0.65)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -224,7 +224,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			text_info += computer.datum_reference.name
 			if(y != meltdown_occured.len)
 				text_info += ", "
-			text_info += "."
+		text_info += "."
 		// Announce next ordeal
 		if(next_ordeal && (qliphoth_state + 1 >= next_ordeal_time))
 			text_info += "\n\n[next_ordeal.name] will trigger on the next meltdown."
