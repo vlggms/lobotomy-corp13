@@ -540,7 +540,7 @@
 
 	var/obj/effect/pale_eye/eye = null
 	var/pulsating = FALSE
-	var/pulse_damage = 15 // Dealt each second
+	var/pulse_damage = 30 // Dealt each second
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/Initialize()
 	. = ..()
