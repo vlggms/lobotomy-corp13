@@ -550,7 +550,7 @@
  */
 /atom/proc/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone)
-	. = P.on_hit(src, 0, def_zone, piercing_hit)
+	. = P.on_hit(src, FALSE, piercing_hit)
 
 ///Return true if we're inside the passed in atom
 /atom/proc/in_contents_of(container)//can take class or object instance as argument

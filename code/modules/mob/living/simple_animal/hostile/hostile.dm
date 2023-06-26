@@ -188,6 +188,13 @@
 /mob/living/simple_animal/hostile/proc/UpdateSpeed()
 	set_varspeed(move_to_delay - 2)
 
+/mob/living/simple_animal/hostile/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable, mob/source)
+	. = ..()
+	if(. && source) // If we get hit and there's noone we care about, go beat up the dude that hit us with an AoE.
+		if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
+			FindTarget(list(source), TRUE)
+	return
+
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
 /mob/living/simple_animal/hostile/proc/ListTargets() //Step 1, find out what we can see

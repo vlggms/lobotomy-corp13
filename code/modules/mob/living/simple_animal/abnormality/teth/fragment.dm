@@ -90,7 +90,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 		SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time

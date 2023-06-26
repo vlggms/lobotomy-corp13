@@ -110,7 +110,7 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE, source = src)
 
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Move() //more damaging fog when moving
@@ -153,7 +153,7 @@
 		for(var/mob/living/H in F)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(ash_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.apply_damage(ash_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE, source = src)
 			if(H.health < 0 && ishuman(H))
 				H.dust()
 	T.dust()

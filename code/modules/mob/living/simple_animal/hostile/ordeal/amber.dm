@@ -183,7 +183,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in view(1, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), source = src)
 	burrowing = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned
@@ -329,7 +329,7 @@
 		if(faction_check_mob(L))
 			continue
 		var/distance_decrease = get_dist(src, L) * 75
-		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), source = src)
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

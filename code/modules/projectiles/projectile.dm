@@ -262,37 +262,6 @@
 
 	var/mob/living/L = target
 
-	if(blocked != 100) // not completely blocked
-		if(damage && L.blood_volume && (damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
-			var/splatter_dir = dir
-			if(starting)
-				splatter_dir = get_dir(starting, target_loca)
-			if(isalien(L))
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
-			else
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
-			if(prob(33))
-				L.add_splatter_floor(target_loca)
-		else if(impact_effect_type && !hitscan)
-			new impact_effect_type(target_loca, hitx, hity)
-
-		var/organ_hit_text = ""
-		var/limb_hit = hit_limb
-		if(limb_hit)
-			organ_hit_text = " in \the [parse_zone(limb_hit)]"
-		if(suppressed==SUPPRESSED_VERY)
-			playsound(loc, hitsound, 5, TRUE, -1)
-		else if(suppressed)
-			playsound(loc, hitsound, 5, TRUE, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
-		else
-			if(hitsound)
-				var/volume = vol_by_damage()
-				playsound(src, hitsound, volume, TRUE, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>You're hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
-		L.on_hit(src)
-
 	var/reagent_note
 	if(reagents?.reagent_list)
 		reagent_note = " REAGENTS:"
@@ -304,6 +273,38 @@
 	else
 		L.log_message("has been shot by [firer] with [src]", LOG_ATTACK, color="orange")
 
+	if(blocked) // FYM "not completely blocked" you ONLY care if it's blocked or not. Shut up.
+		return BULLET_ACT_BLOCK
+
+	if(damage && L.blood_volume && (damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
+		var/splatter_dir = dir
+		if(starting)
+			splatter_dir = get_dir(starting, target_loca)
+		if(isalien(L))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(target_loca, splatter_dir)
+		else
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(target_loca, splatter_dir)
+		if(prob(33))
+			L.add_splatter_floor(target_loca)
+	else if(impact_effect_type && !hitscan)
+		new impact_effect_type(target_loca, hitx, hity)
+
+	var/organ_hit_text = ""
+	var/limb_hit = hit_limb
+	if(limb_hit)
+		organ_hit_text = " in \the [parse_zone(limb_hit)]"
+	if(suppressed==SUPPRESSED_VERY)
+		playsound(loc, hitsound, 5, TRUE, -1)
+	else if(suppressed)
+		playsound(loc, hitsound, 5, TRUE, -1)
+		to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
+	else
+		if(hitsound)
+			var/volume = vol_by_damage()
+			playsound(src, hitsound, volume, TRUE, -1)
+		L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
+				"<span class='userdanger'>You're hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+	L.on_hit(src)
 	return BULLET_ACT_HIT
 
 /obj/projectile/proc/vol_by_damage()

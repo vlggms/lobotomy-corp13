@@ -402,7 +402,7 @@
 					continue
 				var/damage_before = L.get_damage_amount(BRUTE)
 				var/truedamage = ishuman(L) ? beam_damage_final : beam_damage_final/2 //half damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), source = src)
 				var/damage_dealt = abs(L.get_damage_amount(BRUTE)-damage_before)
 				if(!friendly)
 					if(ishuman(L))

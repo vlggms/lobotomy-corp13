@@ -147,5 +147,5 @@
 			var/mob/living/carbon/human/H = L
 			if(!H.sanity_lost)
 				continue
-		L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = user)
 

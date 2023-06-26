@@ -117,7 +117,7 @@
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
 			return
-	cooler_target.apply_damage(gun_damage, WHITE_DAMAGE, null, cooler_target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	cooler_target.apply_damage(gun_damage, WHITE_DAMAGE, null, cooler_target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 	visible_message("<span class='danger'>[cooler_target] is hit by butterflies!</span>")
 	//No longer because fuck you.
 	if(ishuman(target))

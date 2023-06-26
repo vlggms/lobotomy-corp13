@@ -194,7 +194,7 @@ GLOBAL_LIST_EMPTY(zombies)
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(100,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(100,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = src)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)

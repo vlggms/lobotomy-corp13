@@ -14,7 +14,7 @@
 	..()
 	for(var/turf/T in view(1, src))
 		for(var/mob/living/L in T)
-			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = firer)
 	new /obj/effect/explosion(get_turf(src))
 	qdel(src)
 	return BULLET_ACT_HIT

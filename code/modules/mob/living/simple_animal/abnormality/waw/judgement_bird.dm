@@ -88,7 +88,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE, source = src)
 	icon_state = icon_living
 	judging = FALSE
 

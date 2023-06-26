@@ -85,12 +85,12 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(explosion_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(explosion_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = src)
 	SLEEP_CHECK_DEATH(10)	//I kinda want it to be a bit of a delay but not too much
 
 	//White Hole effect
 	for(var/mob/living/carbon/human/L in view(14, src))
-		L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 	goonchem_vortex(get_turf(src), 1, 13)
 	can_act = TRUE
 	Teleport()
@@ -151,7 +151,7 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(100, WHITE_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(100, WHITE_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = firer)
 
 
 /obj/projectile/black_hole
@@ -170,6 +170,6 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = firer)
 
 

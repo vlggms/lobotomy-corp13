@@ -84,7 +84,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue

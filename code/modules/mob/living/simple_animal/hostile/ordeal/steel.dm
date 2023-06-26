@@ -346,7 +346,7 @@
 	new /obj/effect/temp_visual/screech(get_turf(src))
 	for(var/mob/living/L in oview(10, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(120, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(120, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
 	var/list/whosehere = list()

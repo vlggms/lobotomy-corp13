@@ -268,7 +268,7 @@
 		if(ishuman(target))
 			goldrush_damage = 50
 
-		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
+		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = user)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
@@ -424,7 +424,7 @@
 						continue
 				else
 					continue
-			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/censored/get_clamped_volume()
@@ -582,7 +582,7 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE, source = user)
 
 	if(!canaoe)
 		return
@@ -598,8 +598,8 @@
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
+			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = user)
 	icon_state = "space"
 	canaoe = FALSE
 

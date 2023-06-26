@@ -251,7 +251,7 @@
 						A.datum_reference.qliphoth_change(-1)
 					if(faction_check_mob(H))
 						continue
-					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = src)
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
@@ -262,7 +262,7 @@
 	for(var/mob/living/L in livinginview(10, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = src)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/EnableFire()
 	if(current_phase_num <= 1)

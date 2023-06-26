@@ -54,7 +54,7 @@
 /obj/item/ego_weapon/city/rosespanner/proc/release_charge(mob/living/target, mob/living/user)
 	to_chat(user, "<span class='notice'>[release_message].</span>")
 	sleep(2)
-	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE, source = user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 
 	if(overcharged)

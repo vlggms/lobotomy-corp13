@@ -141,9 +141,9 @@
 		return TRUE
 
 /mob/living/simple_animal/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	apply_damage(Proj.damage, Proj.damage_type)
-	Proj.on_hit(src, 0, piercing_hit)
-	return BULLET_ACT_HIT
+	var/blocked = run_armor_check(null, Proj.flag)
+	apply_damage(Proj.damage, Proj.damage_type, null, blocked, source = Proj.firer)
+	return Proj.on_hit(src, blocked >= 100, piercing_hit)
 
 /mob/living/simple_animal/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))

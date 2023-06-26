@@ -95,8 +95,7 @@
 				return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
 		if(check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration))
-			P.on_hit(src, 100, def_zone, piercing_hit)
-			return BULLET_ACT_HIT
+			return P.on_hit(src, TRUE, piercing_hit)
 
 	return ..()
 

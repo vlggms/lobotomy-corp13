@@ -228,7 +228,7 @@
 			heard_words[speaker] += raw_message
 	listen_chance = initial(listen_chance)
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable, mob/source)
 	. = ..()
 	if(damagetype == RED_DAMAGE || damage < 10)
 		return

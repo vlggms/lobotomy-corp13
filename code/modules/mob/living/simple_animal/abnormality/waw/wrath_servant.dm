@@ -245,7 +245,7 @@
 	if(!isliving(target) || (get_dist(target, src) > 1))
 		return
 	var/mob/living/L = target
-	L.apply_damage(rand(10, 15), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	L.apply_damage(rand(10, 15), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = src)
 	if(!istype(target, /mob/living/simple_animal/hostile/azure_hermit))
 		return
 	var/mob/living/simple_animal/hostile/azure_hermit/AZ = target
@@ -624,7 +624,7 @@
 			return
 		if(SW.health > 400)
 			playsound(SW, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 75, FALSE, 15, falloff_distance = 5)
-			SW.apply_damage(100, WHITE_DAMAGE, null, SW.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE) // We win these
+			SW.apply_damage(100, WHITE_DAMAGE, null, SW.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src) // We win these
 			var/list/show_area = list()
 			show_area |= view(3, src)
 			for(var/turf/sT in show_area)
@@ -701,7 +701,7 @@
 		if(faction_check_mob(L))
 			continue
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
-		L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 	can_act = TRUE
 	return
 

@@ -124,7 +124,7 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/crispynugget()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/L in livinginview(48, src))
-		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = src)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
 	if(dash_cooldown > world.time)

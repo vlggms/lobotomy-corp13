@@ -123,18 +123,18 @@
 	user.physiology.pale_mod /= 1.2
 
 //Handles block messages and sound effect
-/obj/item/ego_weapon/shield/proc/AnnounceBlock(datum/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/proc/AnnounceBlock(mob/living/carbon/human/blocker, damage, damagetype, def_zone, mob/source)
 	SIGNAL_HANDLER
-	if(!ishuman(source))
+	if(!istype(blocker))
 		return FALSE
-	var/mob/living/carbon/human/H = source
-	if(!H.is_holding(src))
-		DisableBlock(H)
-		return
+	if(!blocker.is_holding(src) || blocker == source)
+		DisableBlock(blocker)
+		return FALSE
 	block_success = TRUE
 
 	playsound(get_turf(src), block_sound, block_sound_volume, 0, 7)
-	H.visible_message("<span class='userdanger'>[H.real_name] [hit_message]</span>")
+	blocker.visible_message("<span class='userdanger'>[blocker.real_name] [hit_message]</span>")
+	return TRUE
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)

@@ -75,7 +75,7 @@
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
 
 
 /obj/item/ego_weapon/fury
@@ -744,13 +744,16 @@
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)//y'all can't behave
 
 /obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	. = ..()
+	if(!.)
+		return
 	if (damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='nicegreen'>Your [src] withers at the touch of death!</span>")
-		return ..()
+		return
 	to_chat(source,"<span class='nicegreen'>You are healed by [src].</span>")
 	source.adjustBruteLoss(-10)
 	source.adjustSanityLoss(-5)
-	..()
+	return
 
 /obj/item/ego_weapon/get_strong
 	name = "Get Strong"
@@ -871,7 +874,7 @@
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
 			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 		icon_state = "impending_day_extended"
 		sacrifice = TRUE
@@ -948,7 +951,7 @@
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#b52e19"
 

@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		playsound(L.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 		// The farther you are from white night - the less damage it deals
 		var/dealt_damage = max(5, holy_revival_damage - attack_range)
-		L.apply_damage(dealt_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(dealt_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE, source = src)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
 		to_chat(L, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
+			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE, source = src)
 			if(L.stat == DEAD) // Total overkill
 				for(var/i = 1 to 5) // Alternative to gib()
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
@@ -544,7 +544,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			for(var/mob/living/L in AT)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(staff_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(staff_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = src)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)

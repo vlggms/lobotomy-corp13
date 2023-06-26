@@ -88,8 +88,8 @@
 	pixel_x = base_pixel_x - 40
 	for(var/mob/living/L in oview(1, src))
 		if(faction_check_mob(L))
-			return
-		L.apply_damage(chop_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			continue
+		L.apply_damage(chop_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = src)
 		if(L.health < 0)
 			L.gib(FALSE,FALSE,TRUE)
 	SLEEP_CHECK_DEATH(2.5)

@@ -232,7 +232,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/violet_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable, mob/source)
 	. = ..()
 	if(health < retaliation_health)
 		retaliation_health -= maxHealth * 0.3

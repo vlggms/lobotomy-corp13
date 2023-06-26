@@ -21,14 +21,14 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
+	var/aoe = 25
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	aoe*=justicemod
 	for(var/mob/living/L in view(1, M))
-		var/aoe = 25
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE, source = user)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 
@@ -197,7 +197,7 @@
 	if(mode)
 		if(M in targets)
 			playsound(M, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
-			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			M.apply_damage(ranged_damage, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = user)
 			new /obj/effect/temp_visual/remorse(get_turf(M))
 			targets -= M
 	..()
@@ -318,7 +318,7 @@
 			if(special_checks_faction && user.faction_check_mob(L))
 				continue
 			to_chat(L, "<span class='userdanger'>You are hit by [src]!</span>")
-			L.apply_damage(dealing_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(dealing_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), source = user)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			dealing_damage = max(dealing_damage * 0.9, special_damage * 0.3)
 
@@ -409,7 +409,7 @@
 				else if(user.faction_check_mob(C))
 					continue
 				new /obj/effect/temp_visual/vinespike(get_turf(C))
-				C.apply_damage(vine_damage, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+				C.apply_damage(vine_damage, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE, source = user)
 				affected_mobs += 1
 			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', min(75, affected_mobs * 15), TRUE, round( affected_mobs * 0.5))
 		vine_cooldown = world.time + (3 SECONDS)
@@ -564,7 +564,7 @@
 			var/mob/living/carbon/human/H = L
 			if(!H.sanity_lost)
 				continue
-		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = user)
 		L.visible_message("<span class='danger'>[user] slices [L]!</span>")
 
 /obj/item/ego_weapon/wings/proc/Leap(mob/living/user, dir = SOUTH, times_ran = 3)
@@ -591,7 +591,7 @@
 					var/mob/living/carbon/human/H = L
 					if(!H.sanity_lost)
 						continue
-				L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE, source = user)
 				L.visible_message("<span class='danger'>[user] evicerates [L]!</span>")
 		return
 	for(var/turf/T in orange(1, user))
@@ -1200,7 +1200,7 @@
 	QDEL_IN(src, 1 SECONDS)
 
 /obj/item/ego_weapon/mini/infinity/proc/cast(mob/living/target, mob/living/user, damage_color)
-	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
+	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE, source = user)
 	playsound(loc, 'sound/weapons/fixer/generic/energyfinisher3.ogg', 15, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 	mark_damage = force
@@ -1261,7 +1261,7 @@
 		for(var/mob/living/L in range(2, user)) //knocks enemies away from you
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = user)
 			if(firsthit)
 				aoe = (aoe / 2)
 				firsthit = FALSE
@@ -1437,7 +1437,7 @@
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE, source = user)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#a2d2df"
 

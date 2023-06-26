@@ -454,8 +454,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	if(prob(final_block_chance))
 		owner.visible_message("<span class='danger'>[owner] blocks [attack_text] with [src]!</span>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/proc/talk_into(mob/M, input, channel, spans, datum/language/language, list/message_mods)
 	return ITALICS | REDUCE_RANGE
