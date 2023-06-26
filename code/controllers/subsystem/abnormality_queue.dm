@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 3.3 MINUTES
+	var/next_abno_spawn_time = 3.4 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
