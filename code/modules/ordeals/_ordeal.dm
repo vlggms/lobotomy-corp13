@@ -31,7 +31,7 @@
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
-	start_time = world.time
+	start_time = ROUNDTIME
 	SSlobotomy_corp.current_ordeals += src
 	priority_announce(annonce_text, name, sound='sound/effects/meltdownAlert.ogg')
 	if(annonce_sound)

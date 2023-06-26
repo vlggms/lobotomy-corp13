@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 3 MINUTES
+	var/next_abno_spawn_time = 3.3 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
 	rooms_start = GLOB.abnormality_room_spawners.len
-	next_abno_spawn_time -= min(30, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
+	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 5) * 6) SECONDS
 	// HE enabled, ZAYIN disabled
 	if(spawned_abnos > rooms_start * 0.2 && spawned_abnos <= rooms_start * 0.6)
 		if(ZAYIN_LEVEL in available_levels)

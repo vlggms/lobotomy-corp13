@@ -165,9 +165,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	// Update list of abnormalities that can be affected by meltdown
-	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && world.time >= 20 MINUTES)
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 20 MINUTES)
 		qliphoth_meltdown_affected -= ZAYIN_LEVEL
-	if((TETH_LEVEL in qliphoth_meltdown_affected) && world.time >= 50 MINUTES)
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 50 MINUTES)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
@@ -182,7 +182,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
 	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
-		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > world.time) // And it's on timelock
+		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > ROUNDTIME) // And it's on timelock
 			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
@@ -252,7 +252,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealEvent()
 	if(!next_ordeal)
 		return FALSE
-	if(ordeal_timelock[next_ordeal.level] > world.time)
+	if(ordeal_timelock[next_ordeal.level] > ROUNDTIME)
 		return FALSE // Time lock
 	next_ordeal.Run()
 	next_ordeal = null
