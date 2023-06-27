@@ -29,6 +29,11 @@
 	var/abno_count = SSlobotomy_corp.all_abnormality_datums.len
 	if(abno_count > 0)
 		check += "Abnormalit[abno_count > 1 ? "ies" : "y"] in the facility: __[abno_count]__.\n"
+	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
+		var/list/ordeal_names = list()
+		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+			ordeal_names += O.name
+		check += "[english_list(ordeal_names)] [length(ordeal_names) > 1 ? "are" : "is"] currently in the process.\n"
 	if(istype(SSlobotomy_corp.next_ordeal)) // Let's tell people what ordeal type is next
 		check += "Next ordeal type will be __[SSlobotomy_corp.next_ordeal.ReturnSecretName()]__.\n"
 	if(istype(SSlobotomy_corp.core_suppression)) // Currently active core suppression
