@@ -112,6 +112,8 @@
 				alarm_beep()
 				return FALSE
 
+#undef TUTORIAL_MESSAGE_COOLDOWN
+
 /obj/machinery/button/tutorialmeltdown
 	name = "tutorial meltdown device"
 	desc = "This device is used to train employees with abnormality meltdowns."
