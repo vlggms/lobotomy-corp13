@@ -2335,21 +2335,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/fairywine
 	name = "Fairy Wine"
-	description = "A very strong drink driping with slime, Smells quite pleasant"
+	description = "A very strong drink dripping with slime, Smells quite pleasant"
 	boozepwr = 70
 	color = "#125301"
 	quality = DRINK_GOOD
 	taste_description = "sweet and, sticky?"
 	glass_icon_state = "fairywine"
 	glass_name = "Fairywine"
-	glass_desc = "A very strong drink driping with slime, Smells quite pleasant"
+	glass_desc = "A very strong drink dripping with slime, Smells quite pleasant"
 	overdose_threshold = 20
 
 /datum/reagent/consumable/ethanol/fairywine/on_mob_life(mob/living/M)
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(-5) // That's healing
+	H.adjustSanityLoss(-2.5) // That's healing
 	return ..()
 
 /datum/reagent/consumable/ethanol/fairywine/on_mob_metabolize(mob/living/M)

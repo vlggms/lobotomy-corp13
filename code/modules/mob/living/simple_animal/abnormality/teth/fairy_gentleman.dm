@@ -7,9 +7,9 @@
 	health = 600
 	threat_level = TETH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 80,
-		ABNORMALITY_WORK_INSIGHT = 50,
-		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 65, 65, 70),
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_REPRESSION = list(30, 25, 25, 20, 15)
 			)
 	pixel_x = -32
@@ -17,11 +17,11 @@
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 
-	// ego_list = list(
-	// 	/datum/ego_datum/weapon/sloshing,
-	// 	/datum/ego_datum/armor/sloshing
-
-	// gift_type = /datum/ego_gifts/sloshing
+	//ego_list = list(
+	//	/datum/ego_datum/weapon/sloshing,
+	//	/datum/ego_datum/armor/sloshing
+	//)
+	//gift_type = /datum/ego_gifts/sloshing
 	gift_message = "This wine tastes quite well..."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/list/give_drink = list(
@@ -29,7 +29,7 @@
 				"Aright, I think you deserve this drink! Drink as much as you can!",
 				"HA HA HA HA!!! That was quite funny of you, Feel free to take this drink from my hands.",
 				"Come on now, No need to worry about this drink. I made it so you can just relax...",
-				"*Burp* Oh, That was quite rude of me. Here is a drink as an apology for my ungentleman-like behavior"
+				"*Burp* Oh, That was quite rude of me. Here is a drink as an apology for my behavior"
 				)
 	var/list/disappointed = list(
 				"Really now? I don't think this will help any of us if you continue like this.",
@@ -42,7 +42,7 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	new/obj/item/reagent_containers/food/drinks/fairywine(dispense_turf)
-	visible_message("<span class='notice'>[src] give out some fairy wine.</span>")
+	visible_message("<span class='notice'>[src] gives out some fairy wine.</span>")
 	say(pick(give_drink))
 	return
 
@@ -50,7 +50,7 @@
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			user.reagents.add_reagent(/datum/reagent/consumable/ethanol/fairywine, 10)
-			visible_message("<span class='notice'>[src] offers you a glass of his wine and you take a drink with him. </span>")
+			visible_message("<span class='notice'>You take a drink with the fairy gentleman. </span>")
 			say("Quite a lot of thanks for sharing this drink with me. Not many people often want to share this drink with me.")
 	return
 
