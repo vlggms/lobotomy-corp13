@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 3.4 MINUTES
+	var/next_abno_spawn_time = 3.5 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
@@ -118,10 +118,12 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = GLOB.clients.len
 	var/i
-	for(i=1 to round(clamp(player_count, 6, 30) / 6))
+	for(i=1 to round(clamp(player_count, 5, 30) / 5))
+		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
-		sleep(10 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 	message_admins("[i] round-start abnormalities have been spawned.")
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		Q.visible_message("<span class='notice'>All the initial abnormalities have arrived. Have a nice day.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
