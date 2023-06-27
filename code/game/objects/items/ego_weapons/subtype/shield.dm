@@ -124,6 +124,9 @@
 //Handles block messages and sound effect
 /obj/item/ego_weapon/shield/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
+	if(src != source.get_active_held_item() && src != source.get_inactive_held_item())
+		DisableBlock(source)
+		return
 	block_success = TRUE
 
 	playsound(get_turf(src), block_sound, 50, 0, 7)
