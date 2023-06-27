@@ -257,3 +257,12 @@
 		"When the abnormality found a corpse while breaching, it blessed a small area and destroyed the corpse. In this area, every employee recieved high PALE damage and every abnormality's Qliphoth Counter was lowered by 1.")
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Moderate"
+
+//Fairy Gentleman
+/obj/item/paper/fluff/info/teth/fairy_gentleman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_gentleman
+	abno_code = "F-01-11-12"
+	abno_info = list(
+		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
+		"Drinking the “Fairy Wine” increased the prudence of an agent and healed their sanity. However, Drinking this wine also will make the user drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking x using a sleeper or using the pens you can buy in cargo.",
+		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
