@@ -81,15 +81,15 @@
 
 	var/set_attribute = normal_attribute_level
 
-	if(ROUNDTIME >= 60 MINUTES) // Full facility expected
+	if(world.time >= 75 MINUTES) // Full facility expected
 		set_attribute *= 4
-	else if(ROUNDTIME >= 45 MINUTES) // More than one ALEPH
+	else if(world.time >= 60 MINUTES) // More than one ALEPH
 		set_attribute *= 3
-	else if(ROUNDTIME >= 30 MINUTES) // Wowzer, an ALEPH?
+	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
 		set_attribute *= 2.5
-	else if(ROUNDTIME >= 20 MINUTES) // Expecting WAW
+	else if(world.time >= 30 MINUTES) // Expecting WAW
 		set_attribute *= 2
-	else if(ROUNDTIME >= 10 MINUTES) // Usual time for HEs
+	else if(world.time >= 15 MINUTES) // Usual time for HEs
 		set_attribute *= 1.5
 
 	//if(SSlobotomy_corp.understood_abnos.len && SSlobotomy_corp.understood_abnos.len > 0)

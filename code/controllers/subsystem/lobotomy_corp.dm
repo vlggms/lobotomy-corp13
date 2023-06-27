@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
-	var/list/ordeal_timelock = list(10 MINUTES, 20 MINUTES, 35 MINUTES, 50 MINUTES, 0, 0, 0, 0, 0)
+	var/list/ordeal_timelock = list(10 MINUTES, 25 MINUTES, 45 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
 	/// List of currently running ordeals
@@ -165,9 +165,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothEvent()
 	// Update list of abnormalities that can be affected by meltdown
-	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 20 MINUTES)
+	if((ZAYIN_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 30 MINUTES)
 		qliphoth_meltdown_affected -= ZAYIN_LEVEL
-	if((TETH_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 50 MINUTES)
+	if((TETH_LEVEL in qliphoth_meltdown_affected) && ROUNDTIME >= 60 MINUTES)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
