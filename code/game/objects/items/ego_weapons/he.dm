@@ -165,7 +165,12 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
-	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 18
+		attack_speed = 0.25
+		projectile_block_cooldown = 0.33 SECONDS
+	else if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
 	else
@@ -176,9 +181,12 @@
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
 	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-		if(naked_parry)
-			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
+		if (istype(Z))
+			reductions = list(95, 95, 95, 100)
+		else if(naked_parry)
+			reductions = list(95, 95, 95, 100)
 		else
 			reductions = list(40, 20, 20, 0)
 	..()
@@ -191,20 +199,31 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	force = 12
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 18
+	else
+		force = 12
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	if (naked_parry)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		debuff_duration = 2 SECONDS
+	else if (naked_parry)
 		debuff_duration = 2 SECONDS
 	else
 		debuff_duration = 3 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = source.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
+	else if(istype(Z))
+		force = 25 // bonus damage for like, 2 seconds.
+		hit_message = "is untouchable!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
 	..()

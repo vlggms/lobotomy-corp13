@@ -30,6 +30,189 @@
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
+		return ..()
+/obj/effect/proc_holder/ability/shrimp
+	name = "Shrimp Backup"
+	desc = "Spawns some combat shrimp."
+	action_icon_state = "shrimp0"
+	base_icon_state = "shrimp"
+	cooldown_time = 180 SECONDS
+
+
+
+/obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
+	for(var/turf/T in view(0, user))
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
+	return ..()
+
+/* Big Bird - Eyes of God */
+/obj/effect/proc_holder/ability/lamp
+	name = "Lamp of Salvation"
+	desc = "An ability that slows and weakens all enemies around the user."
+	action_icon_state = "lamp0"
+	base_icon_state = "lamp"
+	cooldown_time = 30 SECONDS
+
+	var/damage_range = 8
+	var/damage_slowdown = 0.2 // Slowdown per pulse
+
+/obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
+	cooldown = world.time + (2 SECONDS)
+	if(!do_after(user, 1.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to see!</span>")
+		return
+	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		new /obj/effect/temp_visual/revenant(get_turf(L))
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(damage_slowdown, 15 SECONDS) // Slow down
+			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
+			H.add_overlay(new_overlay)
+			addtimer(CALLBACK (H, .atom/proc/cut_overlay, new_overlay), 15 SECONDS)
+			H.apply_status_effect(/datum/status_effect/salvation)
+	return ..()
+
+/datum/status_effect/salvation
+	id = "salvation"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/salvation
+
+/datum/status_effect/salvation/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[RED_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[RED_DAMAGE] += 0.1
+	if(M.damage_coeff[WHITE_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[WHITE_DAMAGE] += 0.1
+	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[BLACK_DAMAGE] += 0.1
+	if(M.damage_coeff[PALE_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[PALE_DAMAGE] += 0.1
+
+/datum/status_effect/salvation/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[RED_DAMAGE] -= 0.1
+	M.damage_coeff[WHITE_DAMAGE] -= 0.1
+	M.damage_coeff[BLACK_DAMAGE] -= 0.1
+	M.damage_coeff[PALE_DAMAGE] -= 0.1
+
+/atom/movable/screen/alert/status_effect/salvation
+	name = "Salvation"
+	desc = "You will be saved."
+	icon = 'icons/mob/actions/actions_ability.dmi'
+	icon_state = "salvation"
+
+/* Nothing There - Shell */
+/obj/effect/proc_holder/ability/goodbye
+	name = "Good Bye"
+	desc = "An ability that does massive damage in an area and heals you."
+	action_icon_state = "goodbye0"
+	base_icon_state = "goodbye"
+	cooldown_time = 30 SECONDS
+
+	var/damage_amount = 500 // Amount of good bye damage
+	var/damage_range = 9
+
+/obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	cooldown = world.time + (5 SECONDS)
+	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
+	if(!do_after(user, 4.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
+		return
+	for(var/turf/T in view(2, user))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			H.adjustBruteLoss(-10)
+			L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(L.health < 0)
+				L.gib()
+	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
+	return ..()
+/* Mosb - Laughter */
+/obj/effect/proc_holder/ability/screach
+	name = "Screach"
+	desc = "An ability that damages all enemies around the user and increases their weakness to black damage."
+	action_icon_state = "screach0"
+	base_icon_state = "screach"
+	cooldown_time = 20 SECONDS
+
+	var/damage_amount = 100 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_range = 7
+
+/obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
+	cooldown = world.time + (2 SECONDS)
+	playsound(get_turf(user), 'sound/abnormalities/mountain/bite.ogg', 50, 0)
+	if(!do_after(user, 1.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to screach!</span>")
+		return
+	var/mob/living/carbon/human/H = user
+	playsound(get_turf(user), 'sound/abnormalities/mountain/scream.ogg', 75, 0, 2)
+	visible_message("<span class='danger'>[H] screams wildly!</span>")
+	new /obj/effect/temp_visual/voidout(get_turf(H))
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_status_effect(/datum/status_effect/mosb_black_debuff)
+	return ..()
+
+/datum/status_effect/mosb_black_debuff
+	id = "mosb_black_debuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/judgement_pale_debuff
+
+/datum/status_effect/mosb_black_debuff/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod /= 1.3
+		return
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[BLACK_DAMAGE] += 0.3
+
+/datum/status_effect/mosb_black_debuff/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod *= 1.3
+		return
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[BLACK_DAMAGE] -= 0.3
+
+/atom/movable/screen/alert/status_effect/mosb_black_debuff
+	name = "Mosb"
+	desc = "H."
+	icon = 'icons/mob/actions/actions_ability.dmi'
+	icon_state = "judgement"
 
 /* Judgement Bird - Head of God */
 /obj/effect/proc_holder/ability/judgement
@@ -354,46 +537,119 @@
 		return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/ability/petal_blizzard
-	name = "Petal Blizzard"
-	desc = "Increases damage taken but you make a healing aura."
-	action_icon_state = "petalblizzard0"
-	base_icon_state = "petalblizzard"
-	cooldown_time = 30 SECONDS
-	var/damage_amount = 5 // Amount of healing to plater per "pulse".
-	var/damage_count = 15 // How many times the healing is applied
-	var/damage_range = 10
 
-/obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
+/obj/effect/proc_holder/ability/punishment
+	name = "Punishment"
+	desc = "Causes massive damage in a small area only when you take a blow."
+	action_icon_state = "bird0"
+	base_icon_state = "bird"
+	cooldown_time = 25 SECONDS
+	var/block_success
 
-	Pulse(user)
+/obj/effect/proc_holder/ability/punishment/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
-	H.apply_status_effect(/datum/status_effect/bloomdebuff)
-	for(var/i = 1 to damage_count - 1)
-		addtimer(CALLBACK(src, .proc/Pulse, user), i* 3)
+	H.apply_status_effect(/datum/status_effect/punishment)
 	return ..()
 
-/obj/effect/proc_holder/ability/petal_blizzard/proc/Pulse(mob/user)
-	new /obj/effect/temp_visual/cherry_aura(get_turf(user))
-	var/mob/living/carbon/human/H = user
-	if(!H.is_working) //time to suffer
-		H.adjustBruteLoss(-damage_amount)
-		H.adjustSanityLoss(-damage_amount)
-	for(var/mob/living/carbon/human/L in view(damage_range, user))
-		if(user.faction_check_mob(L, FALSE))
-			if(L.status_flags & GODMODE)
-				continue
-			if(L == src) //stop hitting yourself
-				continue
-			if(L.is_working) //no work heal :(
+
+
+/datum/status_effect/punishment
+	id = "EGO_P2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/punishment
+	duration = 2 SECONDS
+	var/block_success
+
+/atom/movable/screen/alert/status_effect/punishment
+	name = "Ready to punish"
+	desc = "You're ready to punish."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "punishment"
+
+/datum/status_effect/punishment/on_apply()
+	. = ..()
+	block_success = FALSE
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/Rage)
+
+/datum/status_effect/punishment/proc/Rage(mob/living/sorce, obj/item/thing, mob/living/attacker)
+	SIGNAL_HANDLER
+	block_success = TRUE
+	var/mob/living/carbon/human/H = owner
+	H.apply_status_effect(/datum/status_effect/pbird)
+	H.remove_status_effect(/datum/status_effect/punishment)
+	var/retaliation = 700
+	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
+	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
+	for(var/turf/T in view(1, H))
+		new /obj/effect/temp_visual/beakbite(T)
+		for(var/mob/living/L in T)
+			if(H.faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
 				continue
-			if(H.faction_check_mob(L))
-				if(L.stat < DEAD && L.stat > CONSCIOUS) // unhealthy but not dead
-					L.adjustBruteLoss(-damage_amount)
-					L.adjustSanityLoss(-damage_amount)
+			L.apply_damage(retaliation, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(L.health < 0)
+				L.gib()
+
+
+/datum/status_effect/pbird
+	id = "EGO_PBIRD"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/pbird
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/pbird
+	name = "Punishment"
+	desc = "Their wrong doing brings you rage. \
+		Your Justice is increased by 10."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "punishment"
+
+/datum/status_effect/pbird/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/pbird/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+
+/obj/effect/proc_holder/ability/petal_blizzard
+	name = "Petal Blizzard"
+	desc = "Creates a big area of healing at the cost of double damage taken for a short period of time."
+	action_icon_state = "petalblizzard0"
+	base_icon_state = "petalblizzard"
+	cooldown_time = 45 SECONDS
+	var/damage_amount = 70 // Amount of healing to plater per "pulse".
+	var/damage_count = 1 // How many times the healing is applied
+	var/damage_range = 8
+
+/obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
+	H.apply_status_effect(/datum/status_effect/bloomdebuff)
+	playsound(get_turf(user), 'sound/weapons/fixer/generic/sword3.ogg', 75, 0, 7)
+	if(!H.is_working) //time to suffer
+		H.adjustBruteLoss(-damage_amount)
+		H.adjustSanityLoss(-damage_amount)
+	for(var/turf/T in view(damage_range, user))
+		pick(new /obj/effect/temp_visual/cherry_aura(T), new /obj/effect/temp_visual/cherry_aura2(T), new /obj/effect/temp_visual/cherry_aura2(T))
+		for(var/mob/living/carbon/human/L in T)
+			if(user.faction_check_mob(L, FALSE))
+				if(L.status_flags & GODMODE)
+					continue
+				if(L == src) //stop hitting yourself
+					continue
+				if(L.stat == DEAD)
+					continue
+				if(!L.is_working) //no work heal :(
+					if(H.faction_check_mob(L))
+						if(L.stat < DEAD && L.stat > CONSCIOUS) // unhealthy but not dead
+							L.adjustBruteLoss(-damage_amount)
+							L.adjustSanityLoss(-damage_amount)
+	return ..()
+
 
 
 /datum/status_effect/bloomdebuff
@@ -424,8 +680,8 @@
 	if(owner.stat == DEAD)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.stat != DEAD)
-				H.adjustBruteLoss(-100) // It heals everyone to full
-				H.adjustSanityLoss(-100) // It heals everyone to full
+				H.adjustBruteLoss(-300) // It heals everyone to full
+				H.adjustSanityLoss(-300) // It heals everyone to full
 
 /datum/status_effect/bloomdebuff/on_remove()
 	. = ..()
