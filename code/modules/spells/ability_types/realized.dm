@@ -168,7 +168,7 @@
 	base_icon_state = "screach"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 100 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 175 // Amount of black damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 7
 
 /obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
