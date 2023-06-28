@@ -167,8 +167,8 @@
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if (istype(Z))
-		force = 18
-		attack_speed = 0.25
+		force = 25
+		attack_speed = 0.33
 		projectile_block_cooldown = 0.33 SECONDS
 	else if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		attack_speed = 0.33
@@ -201,7 +201,7 @@
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if (istype(Z))
-		force = 18
+		force = 25
 	else
 		force = 12
 	..()
@@ -220,7 +220,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = source.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(naked_parry)
 		hit_message = "is untouchable!"
-		force = 18 // bonus damage for like, 2 seconds.
+		force = 36 // bonus damage for like, 2 seconds.
 	else if(istype(Z))
 		force = 25 // bonus damage for like, 2 seconds.
 		hit_message = "is untouchable!"
