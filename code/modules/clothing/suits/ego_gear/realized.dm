@@ -55,6 +55,7 @@
 	desc = "And the mouth of god spoke: You will be punished."
 	icon_state = "mouth"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/punishment
 
 /obj/item/clothing/suit/armor/ego_gear/realization/universe
 	name = "one with the universe"
@@ -78,7 +79,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"
-	desc = "Man fears the darkness, and so he scrapes away at the edges of it with fire."
+	desc = "Man fears the darkness, and so he scrapes away at the edges of it with fire.\
+	Grants various buffs to life of a daredevil when equipped."
 	icon_state = "fear"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 20)
 	flags_inv = null
@@ -98,16 +100,16 @@
 
 /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom
 	name = "sakura bloom"
-	desc = "Spring is coming and the petals shall fall."
+	desc = "The forest will never return to its original state once it dies. Cherish the rain."
 	icon_state = "sakura_bloom"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
 	realized_ability = /obj/effect/proc_holder/ability/petal_blizzard
 	hat = /obj/item/clothing/head/ego_hat/sakura_hat
 /obj/item/clothing/head/ego_hat/sakura_hat
 	name = "sakura bloom"
-	desc = "The forest will never return to its original state once it dies. Cherish the rain."
+	desc = "Spring is coming."
+	worn_icon = 'icons/mob/clothing/big_hat.dmi'
 	icon_state = "sakura"
-	flags_inv = HIDEMASK
 /* HE Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/grinder
@@ -186,6 +188,7 @@
 	desc = "And the eyes of god spoke: You will be saved."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/lamp
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/examine(mob/user)
 	. = ..()
@@ -231,6 +234,7 @@
 	desc = "While the miser is merely a capitalist gone mad, the capitalist is a rational miser."
 	icon_state = "capitalism"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/shrimp
 
 /* ALEPH Realizations */
 
@@ -246,6 +250,12 @@
 	icon_state = "head"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 90)
 	realized_ability = /obj/effect/proc_holder/ability/judgement
+/obj/item/clothing/suit/armor/ego_gear/realization/shell
+	name = "shell"
+	desc = "Hello..."
+	icon_state = "shell"
+	realized_ability = /obj/effect/proc_holder/ability/goodbye
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/laughter
 	name = "laughter"
@@ -254,4 +264,5 @@
 	icon_state = "laughter"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 90, PALE_DAMAGE = 20)
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+	realized_ability = /obj/effect/proc_holder/ability/screach
 
