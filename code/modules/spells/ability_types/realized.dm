@@ -38,7 +38,7 @@
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
 	.=..()
-	QDEL_IN(src, (180 SECONDS))
+	QDEL_IN(src, (90 SECONDS))
 
 /obj/effect/proc_holder/ability/shrimp
 	name = "Backup Shrimp"
