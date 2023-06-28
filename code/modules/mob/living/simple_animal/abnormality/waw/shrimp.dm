@@ -184,6 +184,7 @@
 	icon_living = "wellcheers_soldier"
 	faction = list("neutral", "shrimp")
 
+
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"
 	desc = "A grenade used to call for a shrimp task force."

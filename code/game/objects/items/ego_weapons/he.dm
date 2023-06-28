@@ -183,6 +183,7 @@
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
 	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		realized_parry = istype(Z)
@@ -216,6 +217,7 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = source.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
