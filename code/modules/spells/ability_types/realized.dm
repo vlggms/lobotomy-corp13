@@ -31,21 +31,30 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
 		return ..()
+
+
+/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp
+	name = "wellcheers corp liquidation officer"
+
+/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
+	.=..()
+	QDEL_IN(src, (180 SECONDS))
+
 /obj/effect/proc_holder/ability/shrimp
-	name = "Shrimp Backup"
-	desc = "Spawns some combat shrimp."
+	name = "Backup Shrimp"
+	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
-	cooldown_time = 180 SECONDS
+	cooldown_time = 90 SECONDS
 
 
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
 	for(var/turf/T in view(0, user))
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
 	return ..()
 
 /* Big Bird - Eyes of God */
@@ -191,22 +200,22 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod /= 1.3
+		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[BLACK_DAMAGE] += 0.3
+	M.damage_coeff[BLACK_DAMAGE] += 0.5
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod *= 1.3
+		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] -= 0.3
+	M.damage_coeff[BLACK_DAMAGE] -= 0.5
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
 	name = "Mosb"
@@ -577,7 +586,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.apply_status_effect(/datum/status_effect/pbird)
 	H.remove_status_effect(/datum/status_effect/punishment)
-	var/retaliation = 700
+	var/retaliation = 500
 	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
 	for(var/turf/T in view(1, H))
@@ -634,7 +643,7 @@
 		H.adjustBruteLoss(-damage_amount)
 		H.adjustSanityLoss(-damage_amount)
 	for(var/turf/T in view(damage_range, user))
-		pick(new /obj/effect/temp_visual/cherry_aura(T), new /obj/effect/temp_visual/cherry_aura2(T), new /obj/effect/temp_visual/cherry_aura2(T))
+		pick(new /obj/effect/temp_visual/cherry_aura(T), new /obj/effect/temp_visual/cherry_aura2(T), new /obj/effect/temp_visual/cherry_aura3(T))
 		for(var/mob/living/carbon/human/L in T)
 			if(user.faction_check_mob(L, FALSE))
 				if(L.status_flags & GODMODE)
