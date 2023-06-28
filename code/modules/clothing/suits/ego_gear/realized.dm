@@ -263,7 +263,7 @@
 	desc = "Hello..."
 	icon_state = "shell"
 	realized_ability = /obj/effect/proc_holder/ability/goodbye
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/shell
 	name = "shell"
