@@ -314,3 +314,56 @@
 				AS.custom_speech = AS.default_speech.Copy()
 		return
 	return ..()
+
+
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn
+	name = "Cocoon summon"
+	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
+	action_icon_state = "cocoon0"
+	base_icon_state = "cocoon"
+	cooldown_time = 30 SECONDS
+
+	var/damage_amount = 20 // Amount of white damage dealt to enemies in the epicenter. Allies heal that amount of sanity instead.
+	var/damage_range = 6
+	var/damage_slow = 0.5
+
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
+	if(get_dist(user, target) > 10)
+		return
+	var/turf/target_turf = get_turf(target)
+	new /mob/living/simple_animal/hostile/cocoonability(target_turf)
+	return ..()
+
+
+/mob/living/simple_animal/hostile/cocoonability
+	name = "Cocoon"
+	desc = "A cocoon...."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "cocoon_large2"
+	icon_living = "cocoon_large2"
+	faction = list("neutral")
+	health = 300	//They're here to help
+	maxHealth = 300
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/damage_amount = 6 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
+/mob/living/simple_animal/hostile/cocoonability/Initialize()
+	QDEL_IN(src, (120 SECONDS))
+	for(var/i = 1 to 1000)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+
+/mob/living/simple_animal/hostile/cocoonability/proc/SplashEffect()
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in view(damage_range, src))
+		if(src.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(damage_slowdown, 2 SECONDS) // Slow down
+
+

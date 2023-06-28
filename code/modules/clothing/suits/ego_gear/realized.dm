@@ -76,6 +76,7 @@
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/aimed/cocoon_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"
@@ -261,14 +262,14 @@
 	desc = "Hello..."
 	icon_state = "shell"
 	realized_ability = /obj/effect/proc_holder/ability/goodbye
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/laughter
 	name = "laughter"
 	desc = "I do not recognize them, I must not, lest I end up like them. \
 			Through the silence, I hear them, I see them. The faces of all my friends are with me laughing too."
 	icon_state = "laughter"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 90, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	realized_ability = /obj/effect/proc_holder/ability/screach
 
