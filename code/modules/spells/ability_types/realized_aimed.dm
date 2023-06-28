@@ -345,7 +345,7 @@
 	health = 300	//They're here to help
 	maxHealth = 300
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	var/damage_amount = 6 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
 	var/damage_range = 2
 	var/damage_slowdown = 0.5
 /mob/living/simple_animal/hostile/cocoonability/Initialize()
