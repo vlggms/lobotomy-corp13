@@ -1338,7 +1338,7 @@
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
 	reductions = list(30, 40, 30, 20)
-	projectile_block_cooldown = 3 SECONDS
+	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/misc/moist_impact.ogg'
