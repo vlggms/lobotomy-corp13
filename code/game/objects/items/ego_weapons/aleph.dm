@@ -871,7 +871,7 @@
 	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
 	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
 	reductions = list(60, 60, 60, 60)
-	projectile_block_cooldown = 3 SECONDS
+	projectile_block_duration = 3 SECONDS
 	block_duration = 4.5 SECONDS
 	block_cooldown = 2.5 SECONDS
 	block_sound = 'sound/weapons/ego/heavy_guard.ogg'
