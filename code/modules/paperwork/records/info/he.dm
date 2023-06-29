@@ -340,7 +340,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
 	abno_info = list(
-		"Performing any work on three other abnormalities reduced the Qliphoth Counter.",
+		"Performing any work on other abnormalities slowly reduced the Qliphoth Counter.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"This abnormality generates additional PE-boxes when the Qliphoth Counter is lower.",
 		"When an employee performed Instinct work, the Qliphoth Counter rose to the maximum.",
@@ -348,7 +348,8 @@
 		"Instinct work was more successful at lower Qliphoth counters.",
 		"When the Qliphoth Counter reached 0, Doomsday Calendar appeared at a department center with an entourage of clay dolls, dubbed M-04-145-A.",
 		"Offering human remains or the remains of M-04-145-A to Doomsday Calendar during suppression work aided in suppression.",
-		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.")
+		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.",
+		"Failure to complete suppression work led to the reduction of Qliphoth Counters near the location of Doomsday Calendar.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
