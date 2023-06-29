@@ -697,8 +697,8 @@
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
-	reductions = list(90, 90, 90, 50)
-	projectile_block_cooldown = 1 SECONDS
+	reductions = list(10, 60, 20, 60) // 150
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_message = "You attempt to parry the attack!"

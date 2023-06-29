@@ -46,9 +46,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 0 SECONDS //No ranged parry
-	block_duration = 0.5 SECONDS
+	reductions = list(10, 30, 20, 0) // 60
+	projectile_block_duration = 0 SECONDS //No ranged parry
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
 	block_message = "You attempt to parry the attack!"

@@ -40,15 +40,15 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(20, 10, 10, 0) //longer parry, lower values; not a proper shield
-	projectile_block_cooldown = 1 SECONDS
+	reductions = list(20, 30, 10, 0) // 60
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
 	projectile_block_message = "You swat the projectile out of the air!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	block_cooldown_message = "You rearm your E.G.O."
+	block_cooldown_message = "You rearm your blade."
 
 /obj/item/ego_weapon/lance/suenoimpossible
 	name = "sueno impossible"
@@ -82,8 +82,8 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 0 SECONDS //No ranged parry
+	reductions = list(20, 20, 20, 0) // 60 - Diet Diet Daredevil
+	projectile_block_duration = 0 SECONDS //No ranged parry
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
@@ -167,15 +167,15 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 15
-	attack_speed = 2
+	force = 40
+	attack_speed = 3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 3 SECONDS
+	reductions = list(40, 20, 30, 0) // 90
+	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
 
