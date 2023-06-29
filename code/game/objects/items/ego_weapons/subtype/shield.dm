@@ -39,6 +39,7 @@
 	var/block_cooldown_message = "You reposition your shield"
 	var/projectile_block_message = "You block the projectile!"
 	var/block_sound = 'sound/weapons/ego/shield1.ogg'
+	var/block_sound_volume = 50
 	var/projectile_timer
 	var/parry_timer
 
@@ -129,7 +130,7 @@
 		return
 	block_success = TRUE
 
-	playsound(get_turf(src), block_sound, 50, 0, 7)
+	playsound(get_turf(src), block_sound, block_sound_volume, 0, 7)
 	source.visible_message("<span class='userdanger'>[source.real_name] [hit_message]</span>")
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.

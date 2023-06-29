@@ -701,6 +701,7 @@
 	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
@@ -740,6 +741,10 @@
 	icon_state = "wrath"
 	force = 80
 	attack_speed = 1.2
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -852,3 +857,66 @@
 
 /obj/item/ego_weapon/seasons/get_clamped_volume()
 	return 40
+
+/obj/item/ego_weapon/shield/distortion
+	name = "distortion"
+	desc = "The fragile human mind is fated to twist and distort."
+	special = "This weapon requires two hands to use and always blocks ranged attacks."
+	icon_state = "distortion"
+	force = 210 //Just make sure you don't hit anyone!
+	attack_speed = 3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
+	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
+	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
+	reductions = list(60, 60, 60, 60)
+	projectile_block_duration = 3 SECONDS
+	block_duration = 4.5 SECONDS
+	block_cooldown = 2.5 SECONDS
+	block_sound = 'sound/weapons/ego/heavy_guard.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	attacking = TRUE //ALWAYS blocking ranged attacks
+
+/obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 4 : 8)
+		target.throw_at(throw_target, rand(3, 4), whack_speed, user)
+
+/obj/item/ego_weapon/shield/distortion/CanUseEgo(mob/living/user)
+	. = ..()
+	if(user.get_inactive_held_item())
+		to_chat(user, "<span class='notice'>You cannot use [src] with only one hand!</span>")
+		return FALSE
+
+/obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	if(src != source.get_active_held_item() || !CanUseEgo(source))
+		DisableBlock(source)
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
+	if(!block)
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/shield/distortion/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(!CanUseEgo(owner)) //No blocking with one hand
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/DropStance() //ALWAYS blocking ranged attacks, NEVER drop your stance!
+	return

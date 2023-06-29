@@ -135,6 +135,10 @@
 	item_path = /obj/item/gun/ego_gun/harmony
 	cost = 35
 
+/datum/ego_datum/weapon/rhythm
+	item_path = /obj/item/ego_weapon/rhythm
+	cost = 35
+
 //The Watchman - Alleyway
 /datum/ego_datum/armor/alleyway
 	item_path = /obj/item/clothing/suit/armor/ego_gear/alley
@@ -275,6 +279,10 @@
 /datum/ego_datum/weapon/syrinx
 	item_path = /obj/item/gun/ego_gun/syrinx
 	cost = 35*/
+
+/datum/ego_datum/weapon/trachea
+	item_path = /obj/item/ego_weapon/shield/trachea
+	cost = 35
 
 //Red Shoes - Sanguine Desire
 /datum/ego_datum/armor/sanguine

@@ -63,7 +63,7 @@
 	name = "pointless hate"
 	desc = "If I am on the side of good, then someone has to be on the side of evil. Without someone to play the villain, I can’t exist."
 	icon_state = "hate"
-	inhand_icon_state = "hatred"
+	inhand_icon_state = "hate"
 	fire_delay = 1
 	autofire = 0.5 SECONDS
 	special = "This weapon heals humans that it hits."

@@ -536,6 +536,7 @@
 	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
+	block_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -1297,3 +1298,51 @@
 	if(target != stored_target)
 		stored_target = target
 		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
+
+/obj/item/ego_weapon/rhythm
+	name = "rhythm"
+	desc = "Nothing makes as fascinating music as a human can."
+	special = "Use this weapon in hand to deal a small portion of damage to yourself to heal the sanity of people around you."
+	icon_state = "rhythm"
+	force = 25
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "saws", "rips")
+	attack_verb_simple = list("slice", "saw", "rip")
+	hitsound = 'sound/abnormalities/singingmachine/crunch.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/rhythm/attack_self(mob/living/carbon/human/user)
+	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms you
+		playsound(src, 'sound/abnormalities/singingmachine/music.ogg', 100, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(3, get_turf(user)))
+			user.adjustBruteLoss(user.maxHealth*0.15)
+			L.adjustSanityLoss(-20)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/rhythm/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/shield/trachea
+	name = "trachea"
+	desc = "As if everything else were hollow and pointless, the wailing numbs even the brain, making it impossible to think."
+	special = "This weapon deals atrocious damage."
+	icon_state = "trachea"
+	force = 54
+	attack_speed = 3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("shoves", "bashes")
+	attack_verb_simple = list("shove", "bash")
+	hitsound = 'sound/weapons/bite.ogg'
+	reductions = list(30, 40, 30, 20)
+	projectile_block_duration = 3 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/misc/moist_impact.ogg'
+	block_sound_volume = 200
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

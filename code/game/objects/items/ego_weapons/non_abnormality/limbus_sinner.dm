@@ -178,6 +178,7 @@
 	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
+	block_sound_volume = 30
 
 /obj/item/ego_weapon/raskolot //horn but a boomerang
 	name = "raskolot"

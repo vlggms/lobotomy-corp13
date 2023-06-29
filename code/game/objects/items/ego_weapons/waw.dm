@@ -795,7 +795,7 @@
 	name = "swan"
 	desc = "Believing that it would turn white, the black swan wanted to lift the curse by weaving together nettles.\
 	All that was left is a worn parasol it once treasured."
-	special = "This weapon functions as a shield when opened."
+	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
 	icon_state = "swan_closed"
 	force = 17
 	attack_speed = 0.5
@@ -815,34 +815,70 @@
 							PRUDENCE_ATTRIBUTE = 80
 							)
 	var/close_cooldown
-	var/close_cooldown_time = 3 SECONDS
+	var/close_cooldown_time = 6 SECONDS
+	var/reflect_cooldown
+	var/reflect_cooldown_time = 1 //need to prevent simultaneous hits; bullets overlapping is very bad.
 
 /obj/item/ego_weapon/shield/swan/attack_self(mob/user)
 	if(close_cooldown > world.time) //prevents shield usage with no DPS loss
 		to_chat(user,"<span class='warning'>You cannot use this again so soon!</span>")
 		return
-	if(icon_state == "swan")
-		icon_state = "swan_closed"
-		to_chat(user,"<span class='nicegreen'>You close the umbrella.</span>")
-		return
-	if(icon_state == "swan_closed" && do_after(user, 4, src))
+	if(do_after(user, 4, src))
 		icon_state = "swan"
 		close_cooldown = world.time + close_cooldown_time
 		..()
+	user.update_inv_hands()
 
-/obj/item/ego_weapon/shield/swan/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	if(icon_state == "swan")
-		attack_speed = 1.5
-	else
-		attack_speed = 0.5
+/obj/item/ego_weapon/shield/swan/DisableBlock(mob/living/carbon/human/user)
 	. = ..()
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored && icon_state == "swan")
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+	icon_state = "swan_closed"
+	to_chat(user,"<span class='nicegreen'>You close the umbrella.</span>")
+	user.update_inv_hands()
+	return
 
+/obj/item/ego_weapon/shield/swan/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	. = ..()
+	INVOKE_ASYNC(src, .proc/Reflect, source, damage)
+
+/obj/item/ego_weapon/shield/swan/proc/Reflect(mob/living/carbon/human/user, damage, damagetype, def_zone)
+	if(!block)
+		return
+	if(reflect_cooldown > world.time)
+		return
+	reflect_cooldown = world.time + reflect_cooldown_time
+	var/turf/proj_turf = user.loc
+	if(!isturf(proj_turf))
+		return
+	var/list/mob_list = list()
+	for(var/mob/living/simple_animal/hostile/H in livinginview(8, user))
+		mob_list += H
+	if(!mob_list.len)
+		return
+	var/mob/living/simple_animal/hostile/target = pick(mob_list)
+	var/obj/projectile/ego_bullet/swan/S = new /obj/projectile/ego_bullet/swan(proj_turf)
+	S.fired_from = src //for signal check
+	playsound(user, 'sound/weapons/resonator_blast.ogg', 30, TRUE)
+	S.firer = user
+	S.preparePixelProjectile(target, user)
+	S.fire()
+	return
+
+/obj/item/ego_weapon/shield/swan/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	..()
+
+/obj/item/ego_weapon/shield/swan/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	return TRUE
+
+/obj/projectile/ego_bullet/swan
+	name = "mass of goo"
+	icon_state = "neurotoxin"
+	damage = 30
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
+	hitsound_wall = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"

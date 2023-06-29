@@ -119,3 +119,12 @@
 /datum/ego_datum/weapon/seasons
 	item_path = /obj/item/ego_weapon/seasons
 	cost = 100
+
+// Distorted Form - Distortion
+/datum/ego_datum/armor/distortion
+	item_path = /obj/item/clothing/suit/armor/ego_gear/distortion
+	cost = 100
+
+/datum/ego_datum/weapon/distortion
+	item_path = /obj/item/ego_weapon/shield/distortion
+	cost = 100
