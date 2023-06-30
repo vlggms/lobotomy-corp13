@@ -224,6 +224,10 @@
 	item_path = /obj/item/ego_weapon/shield/swan
 	cost = 50
 
+/datum/ego_datum/armor/swan
+	item_path = /obj/item/clothing/suit/armor/ego_gear/swan
+	cost = 50
+
 // Nosferatu - Dipsia
 /datum/ego_datum/armor/dipsia
 	item_path = /obj/item/clothing/suit/armor/ego_gear/dipsia
