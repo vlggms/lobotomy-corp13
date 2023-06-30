@@ -331,11 +331,11 @@
 	if(get_dist(user, target) > 10)
 		return
 	var/turf/target_turf = get_turf(target)
-	new /mob/living/simple_animal/hostile/cocoonability(target_turf)
+	new /mob/living/simple_animal/cocoonability(target_turf)
 	return ..()
 
 
-/mob/living/simple_animal/hostile/cocoonability
+/mob/living/simple_animal/cocoonability
 	name = "Cocoon"
 	desc = "A cocoon...."
 	icon = 'icons/effects/effects.dmi'
@@ -348,12 +348,12 @@
 	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
 	var/damage_range = 2
 	var/damage_slowdown = 0.5
-/mob/living/simple_animal/hostile/cocoonability/Initialize()
+/mob/living/simple_animal/cocoonability/Initialize()
 	QDEL_IN(src, (120 SECONDS))
 	for(var/i = 1 to 1000)
 		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
 
-/mob/living/simple_animal/hostile/cocoonability/proc/SplashEffect()
+/mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
 	for(var/mob/living/L in view(damage_range, src))
