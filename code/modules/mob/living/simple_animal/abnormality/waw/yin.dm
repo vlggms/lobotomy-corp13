@@ -254,20 +254,19 @@
 	dragon_spawned = TRUE
 	var/start_dir = pick(NORTH, EAST, SOUTH, WEST)
 	var/turf/start_turf
+	var/turf/mid_turf = get_turf(src)
 	var/angle
 	switch(start_dir)
 		if(NORTH)
 			start_turf = locate(1, 255, src.z)
-			angle = rand(125, 145)
 		if(EAST)
 			start_turf = locate(255, 255, src.z)
-			angle = rand(215, 235)
 		if(SOUTH)
 			start_turf = locate(255, 1, src.z)
-			angle = rand(305, 325)
 		if(WEST)
 			start_turf = locate(1, 1, src.z)
-			angle = rand(35, 55)
+	angle = Get_Angle(start_turf, mid_turf)
+	angle += rand(-10, 10)
 	var/turf/end_turf = get_turf_in_angle(angle, start_turf, 300)
 	var/list/path = getline(start_turf, end_turf)
 	sound_to_playing_players_on_level("sound/abnormalities/yin/dragon_spawn.ogg", 75, zlevel = src.z)
@@ -283,6 +282,7 @@
 			if(7)
 				DP = new /obj/effect/yinyang_dragon/dragon_tail(T)
 				DP.layer += 0.1
+				src.forceMove(DP)
 			else
 				DP = new(T)
 		var/matrix/M = matrix(DP.transform)
