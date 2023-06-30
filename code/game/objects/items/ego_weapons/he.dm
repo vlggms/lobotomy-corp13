@@ -169,7 +169,7 @@
 	if (istype(Z))
 		force = 25
 		attack_speed = 0.33
-		projectile_block_cooldown = 0.33 SECONDS
+		projectile_block_duration = 0.33 SECONDS
 	else if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
