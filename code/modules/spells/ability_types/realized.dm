@@ -30,8 +30,6 @@
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
-		return ..()
-
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp
 	name = "wellcheers corp liquidation officer"
