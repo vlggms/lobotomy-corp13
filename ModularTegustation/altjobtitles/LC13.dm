@@ -1,3 +1,8 @@
+/// Command
+/datum/job/manager
+	senior_title = "Administrator"
+	ultra_senior_title = "Architect"
+
 /// Security
 /datum/job/agent
 	alt_titles = list("Newbie Agent")
