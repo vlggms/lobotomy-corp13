@@ -345,6 +345,8 @@
 	health = 300	//They're here to help
 	maxHealth = 300
 	speed = 0
+	turns_per_move = 10000000000000
+	generic_canpass = FALSE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
 	var/damage_range = 2
