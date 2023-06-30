@@ -112,8 +112,7 @@
 	user.physiology.white_mod *= 1.2
 	user.physiology.black_mod *= 1.2
 	user.physiology.pale_mod *= 1.2
-	deltimer(parry_timer)
-	parry_timer = addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration)
 
 /obj/item/ego_weapon/shield/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
