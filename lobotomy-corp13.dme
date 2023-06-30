@@ -2746,7 +2746,6 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\warden.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\wrath_servant.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\yang.dm"
-#include "code\modules\mob\living\simple_animal\abnormality\waw\yin.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\bald.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\blubbering_toad.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\bottle.dm"
