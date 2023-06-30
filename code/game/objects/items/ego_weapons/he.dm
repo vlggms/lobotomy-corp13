@@ -160,7 +160,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/naked_parry
-
+	var/realized_parry
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
@@ -181,11 +181,11 @@
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
 	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
-		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-		if (istype(Z))
+		realized_parry = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if (realized_parry)
 			reductions = list(95, 95, 95, 100)
-		else if(naked_parry)
+		else if(naked_parry || realized_parry)
 			reductions = list(95, 95, 95, 100)
 		else
 			reductions = list(40, 20, 20, 0)
@@ -199,31 +199,26 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if (istype(Z))
+	if (realized_parry)
 		force = 25
 	else
 		force = 12
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if (istype(Z))
-		debuff_duration = 2 SECONDS
-	else if (naked_parry)
+	if (naked_parry || realized_parry)
 		debuff_duration = 2 SECONDS
 	else
 		debuff_duration = 3 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = source.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(naked_parry)
 		hit_message = "is untouchable!"
+		force = 18 // bonus damage for like, 2 seconds.
+	else if(realized_parry)
 		force = 36 // bonus damage for like, 2 seconds.
-	else if(istype(Z))
-		force = 25 // bonus damage for like, 2 seconds.
-		hit_message = "is untouchable!"
+		hit_message = "A GOD DOESN'T FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
 	..()
