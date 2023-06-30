@@ -99,29 +99,25 @@
 	. = ..()
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[RED_DAMAGE] <= 0)
-		qdel(src)
 		return
-	M.damage_coeff[RED_DAMAGE] += 0.1
+	M.damage_coeff[RED_DAMAGE] *= 1.1
 	if(M.damage_coeff[WHITE_DAMAGE] <= 0)
-		qdel(src)
 		return
-	M.damage_coeff[WHITE_DAMAGE] += 0.1
+	M.damage_coeff[WHITE_DAMAGE] *= 1.1
 	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
 		return
-	M.damage_coeff[BLACK_DAMAGE] += 0.1
+	M.damage_coeff[BLACK_DAMAGE] *= 1.1
 	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		qdel(src)
 		return
-	M.damage_coeff[PALE_DAMAGE] += 0.1
+	M.damage_coeff[PALE_DAMAGE] *= 1.1
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[RED_DAMAGE] -= 0.1
-	M.damage_coeff[WHITE_DAMAGE] -= 0.1
-	M.damage_coeff[BLACK_DAMAGE] -= 0.1
-	M.damage_coeff[PALE_DAMAGE] -= 0.1
+	M.damage_coeff[RED_DAMAGE] /= 1.1
+	M.damage_coeff[WHITE_DAMAGE] /= 1.1
+	M.damage_coeff[BLACK_DAMAGE] /= 1.1
+	M.damage_coeff[PALE_DAMAGE] /= 1.1
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
@@ -131,7 +127,7 @@
 
 /* Nothing There - Shell */
 /obj/effect/proc_holder/ability/goodbye
-	name = "Good Bye"
+	name = "Goodbye"
 	desc = "An ability that does massive damage in an area and heals you."
 	action_icon_state = "goodbye0"
 	base_icon_state = "goodbye"
@@ -155,7 +151,7 @@
 			if(L.stat == DEAD)
 				continue
 			H.adjustBruteLoss(-10)
-			L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
@@ -194,7 +190,7 @@
 	id = "mosb_black_debuff"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/judgement_pale_debuff
+	alert_type = /atom/movable/screen/alert/status_effect/mosb_black_debuff
 
 /datum/status_effect/mosb_black_debuff/on_apply()
 	. = ..()
@@ -206,7 +202,7 @@
 	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[BLACK_DAMAGE] += 0.5
+	M.damage_coeff[BLACK_DAMAGE] *= 1.5
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
@@ -215,13 +211,13 @@
 		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] -= 0.5
+	M.damage_coeff[BLACK_DAMAGE] /= 1.5
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
-	name = "Mosb"
-	desc = "H."
+	name = "Dread"
+	desc = "Your fear is causing you to be more vulnerable to BLACK attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
-	icon_state = "judgement"
+	icon_state = "screach"
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp
 	name = "wellcheers corp liquidation officer"
@@ -864,8 +860,8 @@
 	if(owner.stat == DEAD)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.stat != DEAD)
-				H.adjustBruteLoss(-300) // It heals everyone to full
-				H.adjustSanityLoss(-300) // It heals everyone to full
+				H.adjustBruteLoss(-100) // It heals everyone to full
+				H.adjustSanityLoss(-100) // It heals everyone to full
 
 /datum/status_effect/bloomdebuff/on_remove()
 	. = ..()
