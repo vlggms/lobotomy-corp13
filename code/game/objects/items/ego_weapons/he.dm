@@ -218,7 +218,7 @@
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
 		force = 36 // bonus damage for like, 2 seconds.
-		hit_message = "A GOD DOESN'T FEAR DEATH!"
+		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
 	..()
