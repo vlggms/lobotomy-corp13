@@ -26,7 +26,11 @@
 	var/busy = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 20 SECONDS
-	var/pulse_damage = 40 // Dealt consistently across the entire room 5 times
+	var/pulse_damage = 20 // Dealt consistently across the entire room 5 times
+	/// Default range of triggering meltdowns during pulse attack
+	var/pulse_range = 24
+	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
+	var/current_pulse_range = 24
 	var/hammer_cooldown
 	var/hammer_cooldown_time = 8 SECONDS
 	var/hammer_damage = 200
@@ -49,8 +53,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	if(amount < -10)
-		pulse_cooldown = world.time + (pulse_cooldown_time * 0.5)
+	if(amount > 10)
+		pulse_cooldown = max(pulse_cooldown, world.time + (pulse_cooldown_time * 0.3))
+		current_pulse_range = max(6, current_pulse_range - min(round(amount * 0.1), 4)) // Being attacked will reduce the range temporarily
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/AttackingTarget()
@@ -72,6 +77,7 @@
 	icon_state = "fixer_b_attack"
 	busy = TRUE
 	playsound(src, 'sound/effects/ordeals/white/black_ability_start.ogg', 100, FALSE, 10)
+	current_pulse_range = pulse_range
 	SLEEP_CHECK_DEATH(6)
 	playsound(src, 'sound/effects/ordeals/white/black_ability.ogg', 75, FALSE, 15)
 	for(var/i = 1 to 5)
@@ -83,7 +89,7 @@
 			L.apply_damage(pulse_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(5.6) // In total we wait for 2.8 seconds
 	playsound(src, 'sound/effects/ordeals/white/black_ability_end.ogg', 100, FALSE, 30)
-	for(var/obj/machinery/computer/abnormality/A in urange(24, src))
+	for(var/obj/machinery/computer/abnormality/A in urange(current_pulse_range, src))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-1, -2))
 	icon_state = icon_living
