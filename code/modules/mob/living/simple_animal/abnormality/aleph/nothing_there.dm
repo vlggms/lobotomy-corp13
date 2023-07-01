@@ -277,13 +277,10 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			for(var/mob/living/L in TF)
-				if(faction_check_mob(L) || (L in been_hit))
-					continue
-				been_hit += L
-				L.apply_damage(hello_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				if(L.health < 0)
-					L.gib()
+			been_hit = HurtInTurf(TF, been_hit, hello_damage, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
+	for(var/mob/living/L in been_hit)
+		if(L.health < 0)
+			L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3)
 	icon_state = icon_living
@@ -299,10 +296,7 @@
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(goodbye_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in HurtInTurf(TF, list(), goodbye_damage, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)

@@ -125,6 +125,7 @@
 			L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
+			to_chat(L, "<span class='warning'>The Azure hermit's magic being channeled through [src] racks your mind!</span>")
 		COOLDOWN_START(src, stun, stunned_cooldown)
 	if(stunned)
 		return
@@ -362,6 +363,7 @@
 		break
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
+	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
 	TemporarySpeedChange(-4, 1 SECONDS)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
@@ -398,13 +400,7 @@
 			else
 				hit_turfs = (view(i, src) - range(i-1, src)) // Respects walls for last 2
 			for(var/turf/T in hit_turfs)
-				for(var/mob/living/L in T)
-					if(L in been_hit)
-						continue
-					if(faction_check_mob(L) || L == src)
-						continue
-					been_hit += L
-					L.apply_damage(smash_damage, smash_damage_type, null, L.run_armor_check(null, smash_damage_type), spread_damage = TRUE)
+				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, null, TRUE, FALSE, TRUE, FALSE, TRUE)
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					if(friendly)

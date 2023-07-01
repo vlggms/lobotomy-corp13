@@ -649,3 +649,68 @@ GLOBAL_LIST_EMPTY(species_list)
 	return log(temp_diff * change_rate + 1) * BODYTEMP_AUTORECOVERY_DIVISOR
 
 #define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_MONKEYLIKE))
+
+/**
+ * Used to apply damage to all mobs in a turf.
+ * Allows for damage of vehicles as an option.
+ * vars:
+ * * target (optional) The targetted turf. If none is set it looks for all in the source's turf.
+ * * hit_list (optional) A list of things that have been hit. Will not be hit multiple times.
+ * * damage (required) How much damage is being dealt.
+ * * damage_type (required) What type of damage is being dealt. Defaults to RED_DAMAGE.
+ * * armor_type (optional) What type of armor we're tested against. If left blank, defaults to the damage type.
+ * * def_zone (optional) What body part we're hitting.
+ * * check_faction (optional) Whether or not we care about the faction of the units in the area. If TRUE, we don't harm allies.
+ * * exact_faction_match (optional) Pointless to set if check_faction isn't set. Do we care about the factions being an exact match?
+ * * hurt_mechs (optional) If this damage effect hurts mechs.
+ * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
+ * * hurt_structure (optional) If this damage applies to structures as well.
+ * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
+ * returns:
+ * * hit_list - A list containing all things hit by this proc.
+ */
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, \
+	. = hit_list
+	hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
+	if(!damage)
+		return
+	target = target ? target : get_turf(source)
+	armor_type = armor_type ? armor_type : damage_type
+	for(var/mob/living/L in target)
+		if(L == src)
+			continue
+		if(L in .)
+			continue
+		if(check_faction)
+			if(faction_check_mob(L, exact_faction_match))
+				continue
+		L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+		. += L
+	if(hurt_mechs)
+		for(var/obj/vehicle/V in target)
+			if(V in .)
+				continue
+			V.take_damage(damage, damage_type, armor_type)
+			. += V
+	if(hurt_hidden)
+		for(var/obj/structure/closet/C in target)
+			if(C in .)
+				continue
+			for(var/mob/living/H in C)
+				if(H in .)
+					continue
+				if(check_faction)
+					if(faction_check_mob(H, exact_faction_match))
+						continue
+				H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+				. += H
+			. += C
+	if(hurt_structure)
+		for(var/obj/structure/S in target)
+			if(S in .)
+				continue
+			if(break_not_destroy && (S.obj_integrity - damage <= 0))
+				damage += (S.obj_integrity - damage) - 1
+			S.take_damage(damage, damage_type, armor_type)
+			. += S
+	return
