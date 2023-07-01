@@ -48,11 +48,8 @@
 
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/turf/T in view(0, user))
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(T)
+	for(var/i = 1 to 4)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
 /* Big Bird - Eyes of God */
@@ -95,31 +92,35 @@
 
 /datum/status_effect/salvation/on_apply()
 	. = ..()
+	if(!isanimal(owner))
+		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] <= 0)
-		return
-	M.damage_coeff[RED_DAMAGE] *= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] <= 0)
-		return
-	M.damage_coeff[WHITE_DAMAGE] *= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		return
-	M.damage_coeff[BLACK_DAMAGE] *= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		return
-	M.damage_coeff[PALE_DAMAGE] *= 1.1
+	if(M.damage_coeff[RED_DAMAGE] > 0)
+		M.damage_coeff[RED_DAMAGE] *= 1.1
+	if(M.damage_coeff[WHITE_DAMAGE] > 0)
+		M.damage_coeff[WHITE_DAMAGE] *= 1.1
+	if(M.damage_coeff[BLACK_DAMAGE] > 0)
+		M.damage_coeff[BLACK_DAMAGE] *= 1.1
+	if(M.damage_coeff[PALE_DAMAGE] > 0)
+		M.damage_coeff[PALE_DAMAGE] *= 1.1
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
+	if(!isanimal(owner))
+		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[RED_DAMAGE] /= 1.1
-	M.damage_coeff[WHITE_DAMAGE] /= 1.1
-	M.damage_coeff[BLACK_DAMAGE] /= 1.1
-	M.damage_coeff[PALE_DAMAGE] /= 1.1
+	if(M.damage_coeff[RED_DAMAGE] > 0)
+		M.damage_coeff[RED_DAMAGE] *= 1.1
+	if(M.damage_coeff[WHITE_DAMAGE] > 0)
+		M.damage_coeff[WHITE_DAMAGE] *= 1.1
+	if(M.damage_coeff[BLACK_DAMAGE] > 0)
+		M.damage_coeff[BLACK_DAMAGE] *= 1.1
+	if(M.damage_coeff[PALE_DAMAGE] > 0)
+		M.damage_coeff[PALE_DAMAGE] *= 1.1
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
-	desc = "You will be saved."
+	desc = "You will be saved... Also makes you to be more vulnerable to all attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
 	icon_state = "salvation"
 
@@ -131,8 +132,7 @@
 	base_icon_state = "goodbye"
 	cooldown_time = 30 SECONDS
 
-	var/damage_amount = 500 // Amount of good bye damage
-	var/damage_range = 9
+	var/damage_amount = 400 // Amount of good bye damage
 
 /obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
@@ -194,7 +194,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod /= 1.5
+		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
@@ -206,7 +206,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod *= 1.5
+		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
 	M.damage_coeff[BLACK_DAMAGE] /= 1.5
