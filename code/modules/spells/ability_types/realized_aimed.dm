@@ -353,7 +353,8 @@
 	QDEL_IN(src, (120 SECONDS))
 
 /mob/living/simple_animal/cocoonability/Life()
-		addtimer(CALLBACK(src, .proc/SplashEffect), 2 SECONDS)
+	if(..())
+		SplashEffect()
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
