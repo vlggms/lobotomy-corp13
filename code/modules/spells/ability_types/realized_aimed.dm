@@ -323,10 +323,6 @@
 	base_icon_state = "cocoon"
 	cooldown_time = 30 SECONDS
 
-	var/damage_amount = 20 // Amount of white damage dealt to enemies in the epicenter. Allies heal that amount of sanity instead.
-	var/damage_range = 6
-	var/damage_slow = 0.5
-
 /obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
 	if(get_dist(user, target) > 10)
 		return
@@ -351,11 +347,13 @@
 	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
 	var/damage_range = 2
 	var/damage_slowdown = 0.5
+
 /mob/living/simple_animal/cocoonability/Initialize()
 	. = ..()
 	QDEL_IN(src, (120 SECONDS))
-	for(var/i = 1 to 1000)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+
+/mob/living/simple_animal/cocoonability/Life()
+		addtimer(CALLBACK(src, .proc/SplashEffect), 2 SECONDS)
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
