@@ -110,13 +110,13 @@
 		return
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 1.1
+		M.damage_coeff[RED_DAMAGE] /= 1.1
 	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 1.1
+		M.damage_coeff[WHITE_DAMAGE] /= 1.1
 	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 1.1
+		M.damage_coeff[BLACK_DAMAGE] /= 1.1
 	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 1.1
+		M.damage_coeff[PALE_DAMAGE] /= 1.1
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
