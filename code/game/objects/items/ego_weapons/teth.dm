@@ -408,10 +408,11 @@
 	var/turf/T = get_turf(src)
 	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
-	if(creator)
-		creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+
 	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+		if(creator)
+			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
 	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()

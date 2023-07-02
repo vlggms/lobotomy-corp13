@@ -296,7 +296,7 @@
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in HurtInTurf(TF, list(), goodbye_damage, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), goodbye_damage, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
