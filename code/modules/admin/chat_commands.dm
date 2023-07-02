@@ -128,3 +128,25 @@ GLOBAL_LIST(round_end_notifiees)
 /datum/tgs_chat_command/reload_admins/proc/ReloadAsync()
 	set waitfor = FALSE
 	load_admins()
+
+/datum/tgs_chat_command/tgsabnos
+	name = "abnos"
+	help_text = "Gets the current abnormalities in the facility by threat level."
+
+/datum/tgs_chat_command/tgsabnos/Run(datum/tgs_chat_user/sender, params)
+	var/abnos = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	if(!LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
+		return "There's currently no abnormalities in the facility!"
+
+	var/abnos_report = "Current abnormalities in the facility:\n"
+	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+		if(!(A.threat_level in abnos)) // How???
+			continue
+		abnos[A.threat_level] += A.name
+
+	for(var/threat in abnos)
+		if(!LAZYLEN(abnos[threat]))
+			continue
+		abnos_report += "- **[THREAT_TO_NAME[threat]]**: [english_list(abnos[threat])]."
+
+	return abnos_report
