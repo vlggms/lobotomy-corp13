@@ -134,19 +134,20 @@ GLOBAL_LIST(round_end_notifiees)
 	help_text = "Gets the current abnormalities in the facility by threat level."
 
 /datum/tgs_chat_command/tgsabnos/Run(datum/tgs_chat_user/sender, params)
-	var/list/abnos = list(list(), list(), list(), list(), list())
+	var/list/abnos = list("ZAYIN" = list(), "TETH" = list(), "HE" = list(), "WAW" = list(), "ALEPH" = list())
 	if(!LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		return "There's currently no abnormalities in the facility!"
 
 	var/abnos_report = "Current abnormalities in the facility:"
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(!(A.threat_level in abnos)) // How???
+		var/a_threat = THREAT_TO_NAME[A.threat_level]
+		if(!(a_threat in abnos)) // How???
 			continue
-		abnos[A.threat_level] += A.name
+		abnos[a_threat] += A.name
 
-	for(var/threat = 1 to length(abnos))
+	for(var/threat in abnos)
 		if(!LAZYLEN(abnos[threat]))
 			continue
-		abnos_report += "\n- **[THREAT_TO_NAME[threat]]**: [english_list(abnos[threat])]."
+		abnos_report += "\n- **[threat]**: [english_list(abnos[threat])]."
 
 	return abnos_report
