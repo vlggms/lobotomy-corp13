@@ -310,10 +310,7 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		forceMove(T)
 		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			new /obj/effect/temp_visual/cleave(L.loc)
 		if(T != turf_list[turf_list.len]) // Not the last turf
 			SLEEP_CHECK_DEATH(0.5)

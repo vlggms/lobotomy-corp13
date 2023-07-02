@@ -294,13 +294,7 @@
 		affected_turfs += TT
 		var/obj/effect/temp_visual/TV = new /obj/effect/temp_visual/revenant(TT)
 		TV.color = COLOR_SOFT_RED
-		for(var/mob/living/L in TT) // Direct hit
-			if(L in beats_hit)
-				continue
-			if(faction_check_mob(L))
-				continue
-			beats_hit += L
-			L.apply_damage(beats_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		beats_hit = HurtInTurf(TT, beats_hit, beats_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/BeamAttack(target)
 	if(beam_cooldown > world.time)
@@ -496,12 +490,7 @@
 	new_matrix.Scale(1.75)
 	VO.transform = new_matrix
 	for(var/turf/open/T in view(2, src))
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.apply_damage(explode_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier

@@ -66,7 +66,7 @@
 		for(var/mob/living/L in T)
 			if(!overcharged && (L == user || ishuman(L)))
 				continue
-			L.apply_damage(force, damtype, null, L.run_armor_check(null, armortype), spread_damage = TRUE)
+			L.apply_damage(aoe, damtype, null, L.run_armor_check(null, armortype), spread_damage = TRUE)
 
 	overcharged = FALSE
 	charged = FALSE

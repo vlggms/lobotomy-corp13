@@ -145,10 +145,7 @@
 			if(!T)
 				return
 			new /obj/effect/temp_visual/saw_effect(T)
-			for(var/mob/living/L in T.contents)
-				if(faction_check_mob(L))
-					continue
-				L.apply_damage(8, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			HurtInTurf(T, list(), 8, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()

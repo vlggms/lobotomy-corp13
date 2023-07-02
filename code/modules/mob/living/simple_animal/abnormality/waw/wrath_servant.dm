@@ -605,13 +605,7 @@
 			var/list/been_hit = list()
 			for(var/i = 1 to 3)
 				for(var/turf/T in (view(i, SW)-view(i-1,SW)))
-					for(var/mob/living/L in T)
-						if(L in been_hit)
-							continue
-						if(faction_check_mob(L))
-							continue
-						been_hit += L
-						L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					been_hit = HurtInTurf(T, been_hit, 10, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 				SLEEP_CHECK_DEATH(3)
 		else

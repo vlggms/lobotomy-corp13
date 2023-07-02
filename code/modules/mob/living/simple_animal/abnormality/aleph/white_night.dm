@@ -454,7 +454,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
 		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
-		been_hit |= new_hits
+		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>", "<span class='nicegreen'>You impaled heretic [L]!</span>")
 			new /obj/effect/temp_visual/cleave(get_turf(L))

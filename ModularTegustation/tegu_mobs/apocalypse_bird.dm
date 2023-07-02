@@ -258,13 +258,9 @@
 	var/list/been_hit = list()
 	for(var/turf/TF in area_of_effect)
 		new /obj/effect/temp_visual/beakbite(TF)
-		for(var/mob/living/L in TF)
-			if(faction_check_mob(L) || (L in been_hit))
-				continue
-			if (L == src)
-				continue
-			been_hit += L
-			L.apply_damage(bite_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		var/list/new_hits = HurtInTurf(TF, been_hit, bite_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(2 SECONDS)

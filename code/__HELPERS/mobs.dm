@@ -666,6 +666,7 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
+ *
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
@@ -673,7 +674,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	. = hit_list
 	if(!damage)
 		return
-	target = target ? target : get_turf(source)
+	target = target ? target : get_turf(src)
 	armor_type = armor_type ? armor_type : damage_type
 	for(var/mob/living/L in target) // Hit living targets
 		if(L == src)

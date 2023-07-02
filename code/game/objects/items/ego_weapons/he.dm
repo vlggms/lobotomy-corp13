@@ -345,7 +345,7 @@
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
 			var/smash_damage = (i > 2 ? 40 : 10)*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
-			user.HurtInTurf(T, list(), smash_damage, RED_DAMAGE)
+			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE)
 		if (i > 2)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 75, 0, 5) // BAM
 		else

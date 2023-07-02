@@ -542,7 +542,7 @@
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
 		var/list/new_hits = user.HurtInTurf(T, been_hit, 100, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
-		been_hit |= new_hits
+		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
@@ -838,7 +838,7 @@
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
 			var/list/new_hits = user.HurtInTurf(T, been_hit, 300, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
-			been_hit |= new_hits
+			been_hit += new_hits
 			for(var/mob/living/L in new_hits)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(user, L))
 				if(!L.anchored)
