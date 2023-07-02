@@ -280,10 +280,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/goldenapple/False_Attack2.ogg', 100, 0, 5)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//as powerful as goodbye, but only a 1-tile radius
+		for(var/mob/living/L in HurtInTurf(T, list(), 200, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			if(L.health < 0)
 				L.gib()
 				if(!last_target)//only the last person killed counts
@@ -399,18 +396,13 @@
 	dir = dir_to_target
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			if (L == src)
-				continue
+		for(var/mob/living/L in HurtInTurf(T, list(), smash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			var/datum/status_effect/stacking/maggots/G = L.has_status_effect(/datum/status_effect/stacking/maggots)
 			if(!G)
 				L.apply_status_effect(STATUS_EFFECT_MAGGOTS)
 			else
 				G.add_stacks(1)
 				G.refresh()
-			L.apply_damage(smash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			playsound(get_turf(src), 'sound/abnormalities/goldenapple/False_Attack2.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE

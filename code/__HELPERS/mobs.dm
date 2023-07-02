@@ -651,8 +651,8 @@ GLOBAL_LIST_EMPTY(species_list)
 #define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_MONKEYLIKE))
 
 /**
- * Used to apply damage to all mobs in a turf.
- * Allows for damage of vehicles as an option.
+ * Used to apply damage to all targets in a turf.
+ * Allows for damage of vehicles and structures as options.
  * vars:
  * * target (optional) The targetted turf. If none is set it looks for all in the source's turf.
  * * hit_list (optional) A list of things that have been hit. Will not be hit multiple times.
@@ -669,14 +669,13 @@ GLOBAL_LIST_EMPTY(species_list)
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
-/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, \
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
 	. = hit_list
-	hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
 	if(!damage)
 		return
 	target = target ? target : get_turf(source)
 	armor_type = armor_type ? armor_type : damage_type
-	for(var/mob/living/L in target)
+	for(var/mob/living/L in target) // Hit living targets
 		if(L == src)
 			continue
 		if(L in .)
@@ -686,13 +685,13 @@ GLOBAL_LIST_EMPTY(species_list)
 				continue
 		L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 		. += L
-	if(hurt_mechs)
+	if(hurt_mechs) // Hit Mechs
 		for(var/obj/vehicle/V in target)
 			if(V in .)
 				continue
 			V.take_damage(damage, damage_type, armor_type)
 			. += V
-	if(hurt_hidden)
+	if(hurt_hidden) // Hit living in closets (includes crates)
 		for(var/obj/structure/closet/C in target)
 			if(C in .)
 				continue
@@ -705,7 +704,7 @@ GLOBAL_LIST_EMPTY(species_list)
 				H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 				. += H
 			. += C
-	if(hurt_structure)
+	if(hurt_structure) // Hits structures
 		for(var/obj/structure/S in target)
 			if(S in .)
 				continue

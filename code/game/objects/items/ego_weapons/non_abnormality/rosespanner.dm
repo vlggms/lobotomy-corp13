@@ -60,13 +60,10 @@
 	if(overcharged)
 		to_chat(user, "<span class='danger'>You overcharged your weapon!.</span>")
 
+	var/aoe = force * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
 	for(var/turf/T in view(2, target))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(T))
 		for(var/mob/living/L in T)
-			var/aoe = force
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			aoe*=justicemod
 			if(!overcharged && (L == user || ishuman(L)))
 				continue
 			L.apply_damage(force, damtype, null, L.run_armor_check(null, armortype), spread_damage = TRUE)

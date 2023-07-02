@@ -253,14 +253,11 @@
 	if(stat == DEAD)
 		return
 	new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in T)
-		if(L == src)
-			continue
+	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
-		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		all_turfs -= T
+			break
 	if(slash_count >= range)
 		buddy_hit = FALSE
 		slashing = FALSE

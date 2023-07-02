@@ -456,8 +456,7 @@
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/thornspike(T)
-			for(var/mob/living/L in T.contents)
-				L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE)
 
 /obj/item/ego_weapon/wings // Is this overcomplicated? Yes. But I'm finally happy with what I want to make of this weapon.
 	name = "torn off wings"
@@ -1074,22 +1073,14 @@
 		if(prob(10))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
 		return
+	var/damage = aoe_damage * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	if(attacks == 0)
+		damage *= 3
 	for(var/turf/open/T in range(aoe_range, M))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		for(var/mob/living/L in T)
-			if(L == user)
-				continue
-			if(L.stat == DEAD)
-				continue
-			var/damage = aoe_damage
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			damage *= justicemod
-			if(attacks == 0)
-				damage *= 3
-			L.apply_damage(damage, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
-			L.apply_damage(damage, aoe_damage_type, null, L.run_armor_check(null, aoe_damage_type), spread_damage = TRUE)
+		user.HurtInTurf(T, list(), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
 

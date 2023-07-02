@@ -22,12 +22,7 @@
 	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	force*=justicemod
-	for(var/mob/living/L in T.contents)
-		if(L == user || L == target)
-			continue
-		if(L.stat >= DEAD)
-			continue
-		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	user.HurtInTurf(T, list(target), force, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	force = 30
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
