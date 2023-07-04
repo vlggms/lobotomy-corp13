@@ -142,7 +142,7 @@
 		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
 		return
 	for(var/turf/T in view(2, user))
-		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
 			if(user.faction_check_mob(L, FALSE))
 				continue
