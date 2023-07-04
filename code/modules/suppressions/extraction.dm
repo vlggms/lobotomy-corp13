@@ -482,9 +482,11 @@
 			continue
 		if(H.z != z)
 			continue
+		if(H.is_working)
+			continue
 		var/turf/T = get_turf(H)
 		new /obj/effect/arbiter_spike(T)
-		for(var/turf/TT in view(2, T))
+		for(var/turf/open/TT in view(2, T))
 			if(prob(50))
 				continue
 			if(locate(/obj/effect/arbiter_spike) in TT)
@@ -504,11 +506,11 @@
 	/// How much time must pass after Initialize() to activate
 	var/activation_delay = 2 SECONDS
 	/// Amount of BLACK damage done on activation
-	var/damage = 100
+	var/damage = 150
 
 /obj/effect/arbiter_spike/Initialize()
 	. = ..()
-	animate(src, alpha = 125, time = (activation_delay * 0.2))
+	animate(src, alpha = 100, time = (activation_delay * 0.2))
 	addtimer(CALLBACK(src, .proc/Activate), activation_delay)
 
 /obj/effect/arbiter_spike/proc/Activate()
