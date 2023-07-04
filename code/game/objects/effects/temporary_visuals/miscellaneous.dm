@@ -561,6 +561,8 @@
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
 
+//LC13 EFFECTS
+
 /obj/effect/temp_visual/bee_gas
 	icon_state = "mustard"
 	alpha = 0
@@ -902,3 +904,8 @@
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cloud_swirl"
 	duration = 10
+
+/obj/effect/temp_visual/nt_goodbye
+	name = "goodbye"
+	icon_state = "nt_goodbye"
+	duration = 5

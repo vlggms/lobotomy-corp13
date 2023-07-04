@@ -298,7 +298,7 @@
 	icon_state = "nothing_blade"
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
-		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
