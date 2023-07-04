@@ -906,6 +906,9 @@
 	if(do_after(user, 30))	//3 seconds for a big heal.
 		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
+			if(L.is_working)
+				to_chat(L, "<span class='nicegreen'>The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing.</span>")
+				continue
 			L.adjustSanityLoss(-10)
 	inuse = FALSE
 
