@@ -103,7 +103,7 @@
 	if(force && M == user && user.client)
 		user.client.give_award(/datum/award/achievement/misc/selfouch, user)
 
-	user.do_attack_animation(M)
+	user.do_attack_animation(M, no_effect = !run_item_attack_animation)
 	M.attacked_by(src, user)
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
