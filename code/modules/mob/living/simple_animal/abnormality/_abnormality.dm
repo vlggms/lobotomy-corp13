@@ -369,8 +369,8 @@
 	datum_reference.abno_radio = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
-//Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR It has qliphoth remaining
-	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter))
+//Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR has qliphoth remaining OR no qliphoth but can't breach
+	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter || (!datum_reference.qliphoth_meter && !can_breach)))
 		return TRUE
 	return FALSE
 
