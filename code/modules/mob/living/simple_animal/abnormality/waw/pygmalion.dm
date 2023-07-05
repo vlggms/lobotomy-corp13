@@ -127,8 +127,12 @@
 	UnregisterSignal(sculptor, COMSIG_HUMAN_INSANE)
 	remove_status_effect(STATUS_EFFECT_SCULPTOR)
 	threat_level = WAW_LEVEL
-	sculptor = null
+	if (sculptor)
+		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
+	if (missing_prudence)
+		restorePrudence()
 	faction = list()
+	sculptor = null
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
