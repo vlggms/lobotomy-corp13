@@ -616,7 +616,8 @@
 /datum/ego_gifts/galaxy
 	name = "Galaxy"
 	icon_state = "galaxy"
-	prudence_bonus = 2
+	fortitude_bonus = 1
+	prudence_bonus = 1
 	temperance_bonus = 3
 	slot = NECKWEAR
 

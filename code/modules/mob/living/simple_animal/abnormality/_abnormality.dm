@@ -376,7 +376,7 @@
 		datum_reference.overload_chance = 0
 	return
 
-/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0)
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)
 	return
 
 ///implants the abno with a slime radio implant, only really relevant during admeme or sentient abno rounds
