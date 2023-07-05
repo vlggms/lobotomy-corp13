@@ -53,8 +53,8 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
-	if(pe <= 0) //work fail
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	if(canceled)
 		return
 	if(!datum_reference.qliphoth_meter) //this sets galaxy_child to a state similar to just spawning in
 		datum_reference.qliphoth_change(1)
@@ -69,16 +69,14 @@
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 		src.say("I really, really like you! This pebble is super important to me! Please keep it with you forever.")
 
-/mob/living/simple_animal/hostile/abnormality/galaxy_child/GiftUser(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/GiftUser(mob/living/carbon/human/user, pe, chance)
 	if(pe <= 0) //work fail
 		return
-	var/old_chance = gift_chance
 	if(depressed)
-		gift_chance = 100
+		chance = 100
 		chance_modifier = 1
 		depressed = FALSE
-	. = ..()
-	gift_chance = old_chance
+	. = ..(user, pe, chance)
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/TurfTransform(turf/turf_type)
 	for(var/turf/T in range(1,src))

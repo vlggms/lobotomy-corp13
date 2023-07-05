@@ -285,11 +285,11 @@
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(pe >= datum_reference.success_boxes)
-		SuccessEffect(user, work_type, pe)
+		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
-		NeutralEffect(user, work_type, pe)
+		NeutralEffect(user, work_type, pe, work_time, canceled)
 	else
-		FailureEffect(user, work_type, pe)
+		FailureEffect(user, work_type, pe, work_time, canceled)
 	PostWorkEffect(user, work_type, pe, work_time, canceled)
 	GiftUser(user, pe)
 	return
@@ -299,15 +299,15 @@
 	return
 
 // Additional effects on good work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Additional effects on neutral work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Additional effects on work failure
-/mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Giving an EGO gift to the user after work is complete
