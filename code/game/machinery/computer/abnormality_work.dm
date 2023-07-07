@@ -73,16 +73,14 @@
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
 	var/list/work_list = datum_reference.available_work
-	if(!tutorial)
-		if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
-			work_list = shuffle(work_list) // A minor annoyance, at most
+	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+		work_list = shuffle(work_list) // A minor annoyance, at most
 	for(var/wt in work_list)
 		var/work_display = "[wt] Work"
 		if(scramble_list[wt] != null)
 			work_display += "?"
-		if(!tutorial)
-			if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
-				work_display = Gibberish(work_display, TRUE, 60)
+		if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+			work_display = Gibberish(work_display, TRUE, 60)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
