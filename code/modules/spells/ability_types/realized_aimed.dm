@@ -370,3 +370,48 @@
 			H.TemporarySpeedChange(damage_slowdown, 2 SECONDS) // Slow down
 
 
+/obj/effect/proc_holder/ability/aimed/blackhole
+	name = "blackhole"
+	desc = "An ability that allows its user to summon a black hole to drag everone near it."
+	action_icon_state = "blackhole0"
+	base_icon_state = "blackhole"
+	cooldown_time = 60 SECONDS
+
+/obj/effect/proc_holder/ability/aimed/blackhole/Perform(target, mob/user)
+	if(get_dist(user, target) > 10)
+		return
+	var/turf/target_turf = get_turf(target)
+	new /obj/projectile/black_hole_realized(target_turf)
+	return ..()
+
+/obj/projectile/black_hole_realized
+	name = "black hole"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "blackhole"
+	desc = "A mini black hole."
+	nodamage = TRUE
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	speed = 0
+	damage = 30
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_amount = 100 // Amount of black damage dealt to enemies in the epicenter.
+	var/damage_range = 3
+
+/obj/projectile/black_hole_realized/Initialize()
+	. = ..()
+	QDEL_IN(src, (60 SECONDS))
+	for(var/i = 1 to 30)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+
+/obj/projectile/black_hole_realized/proc/SplashEffect()
+	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/revenant(T)
+	for(var/mob/living/L in view(damage_range, src))
+		var/distance_decrease = get_dist(src, L) * 30
+		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
+		L.throw_at(throw_target, 1, 2)
