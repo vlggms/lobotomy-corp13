@@ -184,7 +184,7 @@
 	L.Stun(20, ignore_canstun = TRUE)
 	ADD_TRAIT(L, TRAIT_MUTE, TIMESTOP_TRAIT)
 	walk(L, 0) //stops them mid pathing even if they're stunimmune
-	if(isanimal(L))
+	if(isanimal(L) && !(L.status_flags & GODMODE))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(AI_OFF)
 	if(ishostile(L))
@@ -195,7 +195,7 @@
 	L.AdjustStun(-20, ignore_canstun = TRUE)
 	REMOVE_TRAIT(L, TRAIT_MUTE, TIMESTOP_TRAIT)
 	frozen_mobs -= L
-	if(isanimal(L))
+	if(isanimal(L) && !(L.status_flags & GODMODE))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(initial(S.AIStatus))
 
