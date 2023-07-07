@@ -35,6 +35,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/justitia = /obj/item/clothing/suit/armor/ego_gear/realization/head,
 		/obj/item/clothing/suit/armor/ego_gear/smile = /obj/item/clothing/suit/armor/ego_gear/realization/laughter,
 		/obj/item/clothing/suit/armor/ego_gear/mimicry = /obj/item/clothing/suit/armor/ego_gear/realization/shell,
+		/obj/item/clothing/suit/armor/ego_gear/space = /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors,
 		// Other
 		/obj/item/ego_weapon/paradise = /obj/item/toy/plush/ayin, // He-he
 		/obj/item/toy/plush/hokma = /obj/item/toy/plush/benjamin,

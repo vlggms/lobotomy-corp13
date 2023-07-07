@@ -275,3 +275,29 @@
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	realized_ability = /obj/effect/proc_holder/ability/screach
 
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors
+	name = "fallen color"
+	desc = "Quote here"
+	icon_state = "fallencolors"
+	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(item_action_slot_check(slot, user))
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamaged)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user)
+	//goonchem_vortex(get_turf(src), 1, 3)
+	for(var/turf/T in view(3, user))
+		new /obj/effect/temp_visual/revenant(T)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
+			L.throw_at(throw_target, 1, 1)
+			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+
+
