@@ -186,5 +186,3 @@
 	<br>
 
 	"We remind employees that Abnormalities are not meant to be treated as friends unless it is beneficial for the facility to do so. As the Abnormality does not benefit from such friendships, we require all employees to listen to it and nothing more."}
-
-	
