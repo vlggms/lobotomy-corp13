@@ -275,14 +275,26 @@
 	icon_state = "fallencolors"
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
+	var/canSUCC = TRUE
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
-	if(item_action_slot_check(slot, user))
+	if(slot == ITEM_SLOT_OCLOTHING)
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamaged)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/Reset()
+	canSUCC = TRUE
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user)
 	//goonchem_vortex(get_turf(src), 1, 3)
+	if(!canSUCC)
+		return
+	canSUCC = FALSE
+	addtimer(CALLBACK(src, .proc/Reset), 2 SECONDS)
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/L in T)
