@@ -1,21 +1,47 @@
-
 //EGO shield subtype code
+
+/*
+	Regular Shields
+	RISK LEVEL    |    ARMOR TOTAL    |    ARMOR CAP     |    PALE ARMOR CAP     |
+	ZAYIN         |        60         |        30        |         10            |
+	TETH          |        90         |        50        |         20            |
+	HE            |        120        |        70        |         30            |
+	WAW           |        150        |        80        |         40            |
+	ALEPH         |        240        |        90        |         60            |
+
+	Hybrid-Shields
+	RISK LEVEL    |    ARMOR TOTAL    |    ARMOR CAP     |    PALE ARMOR CAP     |
+	ZAYIN         |        40         |        20        |         10            |
+	TETH          |        60         |        30        |         20            |
+	HE            |        80         |        40        |         30            |
+	WAW           |        100        |        50        |         40            |
+	ALEPH         |        150        |        60        |         60            |
+
+	Hybrid Shields are weapons that can parry and typically have a 1 second duration and a projectile block duration matching their attack_speed.
+	Regular Shields have very slow (3) attack speed and slow (speed 2) force. So for a teth, 3 speed and 40 force.
+
+*/
 /obj/item/ego_weapon/shield
+	attack_speed = 3
+	force = 40
 	var/attacking = FALSE
 	var/block = FALSE
 	var/block_success
 	var/list/resistances_list = list()
 	// Change anything below this line for customization. Nothing above it.
-	var/projectile_block_cooldown = 1 SECONDS
+	var/projectile_block_duration = 1 SECONDS
 	var/block_cooldown = 3 SECONDS
 	var/block_duration = 1 SECONDS
 	var/debuff_duration = 3 SECONDS
-	var/list/reductions = list(50, 50, 50, 50) //Red/White/Black/Pale defense
+	var/list/reductions = list(20, 20, 20, 20) //Red/White/Black/Pale defense
 	var/block_message = "You attempt to block the attack!" //So you can change the text for parrying with swords
 	var/hit_message = "blocks the attack!"
 	var/block_cooldown_message = "You reposition your shield"
 	var/projectile_block_message = "You block the projectile!"
 	var/block_sound = 'sound/weapons/ego/shield1.ogg'
+	var/block_sound_volume = 50
+	var/projectile_timer
+	var/parry_timer
 
 /obj/item/ego_weapon/shield/Initialize()
 	. = ..()
@@ -36,10 +62,11 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	attacking = TRUE
-	addtimer(CALLBACK(src, .proc/DropStance), projectile_block_cooldown)
+	projectile_timer = addtimer(CALLBACK(src, .proc/DropStance), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/shield/proc/DropStance()
 	attacking = FALSE
+	projectile_timer = null
 
 //This code is what allows the user to block
 /obj/item/ego_weapon/shield/attack_self(mob/user)
@@ -61,7 +88,7 @@
 		block_success = FALSE
 		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1) //bomb defense must be over 0
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration)
+		parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration, TIMER_STOPPABLE)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
 		return TRUE
 
@@ -69,14 +96,16 @@
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)
 	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
-	addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown)
+	deltimer(parry_timer)
+	parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown, TIMER_STOPPABLE)
 	if (!block_success)
 		BlockFail(user)
 
 //Allows the user to block again when called
 /obj/item/ego_weapon/shield/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
-	to_chat(user,"<span class='nicegreen'>[block_cooldown_message]</span>")
+	if(user.is_holding(src))
+		to_chat(user,"<span class='nicegreen'>[block_cooldown_message]</span>")
 
 /obj/item/ego_weapon/shield/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
@@ -94,12 +123,18 @@
 	user.physiology.pale_mod /= 1.2
 
 //Handles block messages and sound effect
-/obj/item/ego_weapon/shield/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/proc/AnnounceBlock(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
+	if(!ishuman(source))
+		return FALSE
+	var/mob/living/carbon/human/H = source
+	if(!H.is_holding(src))
+		DisableBlock(H)
+		return
 	block_success = TRUE
 
-	playsound(get_turf(src), block_sound, 50, 0, 7)
-	source.visible_message("<span class='userdanger'>[source.real_name] [hit_message]</span>")
+	playsound(get_turf(src), block_sound, block_sound_volume, 0, 7)
+	H.visible_message("<span class='userdanger'>[H.real_name] [hit_message]</span>")
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
@@ -112,7 +147,7 @@
 //Examine text
 /obj/item/ego_weapon/shield/examine(mob/user)
 	. = ..()
-	if(projectile_block_cooldown)
+	if(projectile_block_duration)
 		. += "<span class='notice'>This weapon blocks ranged attacks while attacking and can block on command.</span>"
 	else
 		. += "<span class='notice'>This weapon can block on command.</span>"

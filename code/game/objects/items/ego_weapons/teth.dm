@@ -46,9 +46,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 0 SECONDS //No ranged parry
-	block_duration = 0.5 SECONDS
+	reductions = list(10, 30, 20, 0) // 60
+	projectile_block_duration = 0 SECONDS //No ranged parry
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
 	block_message = "You attempt to parry the attack!"
@@ -111,8 +111,13 @@
 		break
 	force = 20 + fortitude_mod + extra_mod
 	if(extra_mod > 0)
+		var/resistance = target.run_armor_check(null, damtype)
 		icon_state = "eyeball2"				// Cool sprite
-		if(target.run_armor_check(null, BLACK_DAMAGE) <= 0) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] <= 0)
+				resistance = 100
+		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
 			force *= 0.1
 			damtype = BRUTE
 	else

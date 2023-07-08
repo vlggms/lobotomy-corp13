@@ -6944,7 +6944,12 @@
 /area/facility_hallway/central)
 "pJ" = (
 /obj/machinery/computer/secure_data{
-	dir = 4
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -22187,12 +22192,30 @@
 /obj/structure/closet/secure_closet/record,
 /obj/structure/window/reinforced/spawner/east{
 	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_y = 2
 	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = 8
+	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = -8
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/plush/hokma,
+/obj/item/clothing/under/suit/lobotomy/records,
+/obj/item/clothing/suit/armor/records,
+/obj/item/radio/headset/headset_records,
+/obj/item/radio/headset/headset_records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/toner/extreme,
+/obj/item/toner/large,
+/obj/item/toner/large,
+/obj/item/folder/white,
+/obj/item/folder/white,
 /obj/item/toy/plush/dante,
-/obj/item/records/timestop,
-/obj/item/records/abnodelay,
-/obj/item/records/information,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -22276,31 +22299,18 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
 "WA" = (
-/obj/structure/closet/secure_closet/record,
-/obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+/obj/structure/filingcabinet{
+	pixel_x = -10
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = 8
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = -8
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
 	},
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/plush/hokma,
-/obj/item/clothing/under/suit/lobotomy/records,
-/obj/item/clothing/suit/armor/records,
-/obj/item/radio/headset/headset_records,
-/obj/item/radio/headset/headset_records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/toner/extreme,
-/obj/item/toner/large,
-/obj/item/toner/large,
-/obj/item/folder/white,
-/obj/item/folder/white,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "WB" = (

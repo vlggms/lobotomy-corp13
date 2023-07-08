@@ -21,6 +21,7 @@
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 //		/datum/ego_datum/weapon/syrinx,		Will update with the rest of the dump EGO
+		/datum/ego_datum/weapon/trachea,
 		/datum/ego_datum/armor/syrinx
 		)
 //	gift_type =  /datum/ego_gifts/syrinx

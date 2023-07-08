@@ -285,7 +285,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
-	var/attack_damage = 300 // Dealt once if hit
+	var/attack_damage = 150 // Dealt once if hit
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/StartAbility()
@@ -364,7 +364,7 @@
 	icon_dead = "violet_midnightw_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
 
-	var/attack_damage = 200
+	var/attack_damage = 100
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/StartAbility()
@@ -451,7 +451,7 @@
 	icon_dead = "violet_midnightb_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
 
-	var/attack_damage = 300
+	var/attack_damage = 150
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/StartAbility()
@@ -540,7 +540,7 @@
 
 	var/obj/effect/pale_eye/eye = null
 	var/pulsating = FALSE
-	var/pulse_damage = 50 // Dealt each second
+	var/pulse_damage = 30 // Dealt each second
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/Initialize()
 	. = ..()
