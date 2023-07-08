@@ -281,11 +281,14 @@
 	lootlist =	list(
 		/obj/item/ego_weapon/city/fixerblade,
 		/obj/item/ego_weapon/city/fixergreatsword,
+		/obj/item/clothing/suit/armor/ego_gear/city/misc,
+		/obj/item/clothing/suit/armor/ego_gear/city/misc/second,
 		/obj/item/ego_weapon/city/yun,
 		/obj/item/ego_weapon/city/yun/shortsword,
 		/obj/item/ego_weapon/city/yun/chainsaw,
 		/obj/item/ego_weapon/city/yun/fist,
 		/obj/item/ego_weapon/city/jeong,
+
 		)
 
 	rareloot =	list(
