@@ -1,11 +1,8 @@
-"ap" = (/obj/structure/flora/iceslab/alt{pixel_y = 10; pixel_x = -9},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "aB" = (/turf/open/space/basic,/area/space)
 "bA" = (/obj/structure/flora/icegrave,/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
 "dj" = (/obj/structure/flora/icestalagmite,/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
-"dQ" = (/obj/structure/flora/icechunk/alt,/obj/structure/flora/iceslab{pixel_y = -7; pixel_x = 13},/obj/structure/flora/iceshards{pixel_y = -4; pixel_x = -7},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
 "dU" = (/obj/effect/turf_decal/weather/snow/corner{dir = 10},/obj/structure/flora/icestalagmite{pixel_y = -6; pixel_x = -9},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "el" = (/obj/effect/turf_decal/weather/snow/corner{dir = 10},/obj/structure/flora/icestalagmite{pixel_y = -4; pixel_x = 8},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
-"eS" = (/obj/structure/flora/iceshards,/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "fC" = (/obj/item/chair/icequeen{plane = 0; desc = "A giant throne of ice, who would be comfortable sitting in this? It's super cold!"},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
 "gV" = (/obj/structure/flora/icestalagmite/small{pixel_y = 1; pixel_x = -8},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "hP" = (/obj/effect/turf_decal/weather/snow/corner{dir = 5},/obj/structure/flora/icestalagmite{pixel_y = -4; pixel_x = 8},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
@@ -26,7 +23,6 @@
 "sL" = (/obj/structure/flora/iceslab{pixel_x = -19; pixel_y = -12},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "td" = (/obj/effect/turf_decal/weather/snow/corner{dir = 9},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "tx" = (/obj/structure/flora/iceshards{pixel_y = 15},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
-"uV" = (/obj/effect/turf_decal/weather/snow/corner{dir = 5},/obj/structure/flora/icechunk/alt,/obj/structure/flora/iceslab/alt{pixel_y = -8; pixel_x = 21},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "vI" = (/obj/effect/turf_decal/weather/snow/corner,/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "wt" = (/obj/structure/flora/icegrave/alt{pixel_y = 22; pixel_x = 11},/turf/closed/mineral/snowmountain/cavern,/area/tdome/arena)
 "wB" = (/obj/structure/flora/iceshards{pixel_x = -4; pixel_y = 14},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
@@ -41,7 +37,7 @@
 "zz" = (/obj/structure/stairs{dir = 1; density = 1},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "Bd" = (/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
 "CJ" = (/obj/structure/flora/icechunk{pixel_y = -7},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
-"CR" = (/obj/effect/turf_decal/weather/snow/corner{dir = 10},/obj/structure/flora/icegrave,/obj/structure/flora/iceshards{pixel_y = 13; pixel_x = -3},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
+"CR" = (/obj/effect/turf_decal/weather/snow/corner{dir = 10},/obj/structure/flora/icegrave,/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "Do" = (/obj/effect/turf_decal/weather/snow/corner{dir = 6},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "GK" = (/obj/structure/flora/icechunk{pixel_x = -8},/obj/structure/flora/iceslab{pixel_y = -1; pixel_x = 9},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "He" = (/obj/structure/flora/iceshards{pixel_x = 26; pixel_y = 12},/obj/structure/flora/icestalactite{pixel_y = -9; pixel_x = -9},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
@@ -53,7 +49,6 @@
 "Km" = (/obj/effect/turf_decal/weather/snow/corner{dir = 6},/obj/structure/flora/iceslab/alt{pixel_y = 7},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "Ko" = (/obj/structure/flora/rock/pile/icy{pixel_x = -13},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "Kp" = (/obj/effect/turf_decal/weather/snow/corner{dir = 1},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
-"Lz" = (/obj/structure/flora/icegrave,/obj/structure/flora/iceslab{pixel_y = -12; pixel_x = -13},/obj/structure/flora/iceshards{pixel_y = -19; pixel_x = 11},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
 "LM" = (/obj/structure/flora/icestalagmite/small{pixel_x = -13; pixel_y = 24},/turf/closed/mineral/snowmountain/cavern,/area/tdome/arena)
 "Mn" = (/obj/structure/flora/icestalagmite{pixel_y = -4; pixel_x = 8},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow"; name = "snow"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow"},/area/tdome/arena)
 "MA" = (/obj/structure/flora/icechunk/alt{pixel_y = -3; pixel_x = 5},/obj/structure/flora/iceslab/alt{pixel_y = -2; pixel_x = -11},/turf/open/floor/plasteel/dark{icon = 'icons/turf/snow.dmi'; icon_state = "snow-ice"; name = "ice"; initial_gas_mix = "o2=22;n2=82;TEMP=270.15"; base_icon_state = "snow-ice"},/area/tdome/arena)
@@ -98,10 +93,10 @@ aBaBaBaBaBaBaBaBaBaBaBaBHVHVHVUwBdBdPLBdBdBdBdDoBdUwKpBdBdBdBdHvUwKpUwUwMJHVHVaB
 aBaBaBaBaBaBaBaBaBaBaBHVHVHVtdUwOjBdUwBdBdBdUwBdBdBdUwOjBdBdBdBdBdUwUwUwUwHVHVHVaBaBaBaBaBaBaBaBaBaB
 aBaBaBaBaBaBaBaBaBaBaBHVHVHWUwUwUwBdCRIRBdBdBdOjBdBdvIUwBdBdyAUwUwPLBdBdUwOCHVHVaBaBaBaBaBaBaBaBaBaB
 aBaBaBaBaBaBaBaBaBaBaBHVHVBdUwUwUwKmjxkZBdKpBdBdBdBdBdUwBdBdBdBdBdUwUwKpUwUwHVHVaBaBaBaBaBaBaBaBaBaB
-aBaBaBaBaBaBaBaBaBaBaBHVHVUwvIBdBdBdBdKpKpUwKpdQBdxzBdBdtdUwBdBdBdUwUwvIUwUwHVHVaBaBaBaBaBaBaBaBaBaB
-aBaBaBaBaBaBaBaBaBaBaBHVHVqkBdBdBdBdKpUwUwUwUwapeSUwUwBdBdBdtdBdyAUwLzBdUwUwHVHVaBaBaBaBaBaBaBaBaBaB
-aBaBaBaBaBaBaBaBaBaBaBHVHVgVBdBdxzOjBdBdBdUwPLBdBdvIvIBdBdBdBdBdBdBdUwuVBdUwHVHVaBaBaBaBaBaBaBaBaBaB
-aBaBaBaBaBaBaBaBaBaBaBHVHVBdBdBdBdUwKpBdUwPLBdBdOjBdBdxzUwKpKpKpUwBdPLjxBdUwHVHVaBaBaBaBaBaBaBaBaBaB
+aBaBaBaBaBaBaBaBaBaBaBHVHVUwvIBdBdBdBdKpKpUwKpBdBdxzBdBdtdUwBdBdBdUwUwvIUwUwHVHVaBaBaBaBaBaBaBaBaBaB
+aBaBaBaBaBaBaBaBaBaBaBHVHVqkBdBdBdBdKpUwUwUwUwUwUwUwUwBdBdBdtdBdyAUwUwBdUwUwHVHVaBaBaBaBaBaBaBaBaBaB
+aBaBaBaBaBaBaBaBaBaBaBHVHVgVBdBdxzOjBdBdBdUwPLBdBdvIvIBdBdBdBdBdBdBdUwOjBdUwHVHVaBaBaBaBaBaBaBaBaBaB
+aBaBaBaBaBaBaBaBaBaBaBHVHVBdBdBdBdUwKpBdUwPLBdBdOjBdBdxzUwKpKpKpUwBdPLBdBdUwHVHVaBaBaBaBaBaBaBaBaBaB
 aBaBaBaBaBaBaBaBaBaBaBHVHVxnsLBdtdBdBdBdBdUwUwUwPLBdBdBdBdBdBdBdBdBdPLBdUwPfHVHVaBaBaBaBaBaBaBaBaBaB
 aBaBaBaBaBaBaBaBaBaBaBHVHVHVUwBdBdUwBdtdBdBdBdBdBdxzUwBdBdUwOjBdBdKpUwBdUwyKHVHVaBaBaBaBaBaBaBaBaBaB
 aBaBaBaBaBaBaBaBaBaBaBaBHVHVTzBdxzUwUwvIRNUwvIOjBdBdUwBdBdBdQYNXBdyABdOjMnHVHVaBaBaBaBaBaBaBaBaBaBaB
