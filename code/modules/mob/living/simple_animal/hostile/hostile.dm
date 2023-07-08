@@ -724,9 +724,10 @@
 	if(patrol_move_timer)
 		deltimer(patrol_move_timer) // Calling this now stops the patrol guaranteed.
 	patrol_cooldown = world.time + patrol_cooldown_time
+	patrol_finish()
 
 /mob/living/simple_animal/hostile/proc/patrol_move(dest)
-	if(client || target || status_flags & GODMODE)
+	if(client || target)
 		patrol_reset()
 		return FALSE
 	if(!dest || !patrol_path || !patrol_path.len) //A-star failed or a path/destination was not set.
@@ -737,6 +738,7 @@
 	dest = get_turf(dest) //We must always compare turfs, so get the turf of the dest var if dest was originally something else.
 	var/turf/last_node = get_turf(patrol_path[patrol_path.len]) //This is the turf at the end of the path, it should be equal to dest.
 	if(get_turf(src) == dest) //We have arrived, no need to move again.
+		patrol_finish()
 		return TRUE
 	else if(dest != last_node) //The path should lead us to our given destination. If this is not true, we must stop.
 		patrol_reset()
@@ -750,7 +752,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_step(dest)
-	if(client || target  || status_flags & GODMODE || !patrol_path || !patrol_path.len)
+	if(client || target || !patrol_path || !patrol_path.len)
 		return FALSE
 	if(health <= 0) // No more moving corpses.
 		return FALSE
@@ -768,3 +770,7 @@
 		step_to(src, dest)
 		patrol_reset()
 	return TRUE
+
+/// Override for actions you want done once the creature stops patrolling.
+/mob/living/simple_animal/hostile/proc/patrol_finish()
+	return
