@@ -372,31 +372,31 @@
 	???: Ah. Ah. Highly excited!!! / Ahh~ Thoroughly amusing!!! / Da GAME of DEATH! (Three of the same voice can be heard speaking at different times.)<br>
 	Employee: The hell are those things?<br>
 	???: Strong! STRONG!!! / So excited!!! / Worktime! Worktime!<br>
-	Employee: Uh... Okay... Hello, ERD? This is the Containment Unit of 'You Must Become Strong...?'<br>
-	The Emergency Response Department (ERD): Hello, this is the Emergency Response Team. What’s the problem?<br>
+	Employee: Uh... Okay... Hello, Safety department? This is the Containment Unit of 'You Must Become Strong...?'<br>
+	Safety: Hello, this is the Safety department, Agent (Redacted) speaking. What’s the problem?<br>
 	Employee: I, uh... how do I explain this?<br>
 	???: Breadwinning!!! / Ding ding ding! Ding ding ding! / Phone call! Phone call!!!<br>
-	ERD: Have other employees gone insane?<br>
+	Safety: Have other employees gone insane?<br>
 	Employee: No, I... don't think so? The containment unit hasn't been opened since the breach, and the guy who worked on it last is playing with his new arm... I think these things came out of the Abnormality.<br>
 	???: Came out!? So excited!!! / Tear 'em of part! / Beat 'em to megadeath!!!<br>
-	ERD: We'll respond immediately. Please defend yourself as needed.<br>
+	Safety: We'll respond immediately. Please defend yourself as needed.<br>
 	Employee: Yeah, uh, I think I'm just gonna exit- what's that sound?<br>
-	ERD: What's happening?<br>
+	Safety: What's happening?<br>
 	Employee: I'm hearing some gear whirring- oh shit, they're all looking at me...<br>
 	???: Dissentering! Not cool, bro!!! / Hella weak!!! / You wanna get beat!? Hurtily!?<br>
-	ERD: The Emergency Response Team has been dispatched. They'll arrive-<br>
+	Safety: We've just dispatched three agents to your location. They'll arrive-<br>
 	Employee: Screw that, I'm getting the hell out of here!<br>
 	???: PUNISHMENT TIME!!! (The three voices could be heard in unison)<br>
-	Employee: Stop- Hey! Shit- Send the damn team in! The damn things are grabbing me-<br>
+	Employee: Stop- Hey! Shit- Send the damn agents in! The damn things are grabbing me-<br>
 	???: Grow powerful!! For realsies!? / Get to work! Get to work!<br>
-	ERD: Sir, are you still there?<br>
+	Safety: Sir, are you still there?<br>
 	Employee: DOES IT SOUND LIKE I'M STILL- (The sounds of the Abnormality activating can be heard, along with the sound of the Employee's screams. The Abnormality goes quiet, as does the Employee's screaming.)<br>
-	ERD: Sir?<br>
+	Safety: Sir?<br>
 	???: Make some riches! / Huge W! / Big gains!!!<br>
 	Employee: ...Sorry. I'm here.<br>
-	ERD: Are you alright?<br>
+	Safety: Are you alright?<br>
 	Employee: Yes. I need to get to work. I'm so busy...<br>
-	ERD: Sir, please refrain from any-<br>
+	Safety: Sir, please refrain from any-<br>
 	(The employee hangs up the phone.)<br>
 	Employee: I must become strong."<br>
 
