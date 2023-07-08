@@ -563,5 +563,18 @@
 	glass = TRUE
 	bound_width = 64 // 2x1
 
+/obj/machinery/door/airlock/snowqueen
+	name = "Snow Queen's Gate"
+	desc = "Are you ready for what lies ahead?"
+	icon = 'icons/obj/doors/snowqueendoor.dmi'
+	overlays_file = VV_NULL
+	opacity = TRUE
+	plane = 0
+	assemblytype = null
+	glass = TRUE
+	bound_width = 128
+	bound_height = 128
+	hackProof = TRUE
+
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return
