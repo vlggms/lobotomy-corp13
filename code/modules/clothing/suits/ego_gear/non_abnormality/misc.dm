@@ -22,3 +22,18 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/city/misc
+	name = "fixer suit"
+	desc = "A standard suit tailed for the outskirts."
+	icon_state = "uniqueoffice"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40,
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/misc/second
+	name = "fixer black suit"
+	icon_state = "uniqueoffice2"

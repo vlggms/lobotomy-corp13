@@ -1,0 +1,495 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed,
+/obj/item/bedsheet/ian,
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/cabinet,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/table/greyscale,
+/obj/machinery/microwave{
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"f" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"h" = (
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/bone{
+	desc = "Looks to be for dog usage.";
+	name = "chewed bones"
+	},
+/obj/item/food/meat/slab/human/mutant/skeleton{
+	desc = "Chewy.";
+	name = "chewbone"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/shower{
+	pixel_y = 15
+	},
+/obj/structure/curtain/cloth,
+/obj/item/soap/homemade,
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/table/wood,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/space/fancytech,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/chair/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"r" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"s" = (
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/toilet/secret,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/bed/dogbed/ian,
+/mob/living/simple_animal/pet/dog/corgi/puppy/ian{
+	desc = "It's everybodies favorite puppy. He looks a bit too thin though."
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"B" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale,
+/obj/effect/spawner/lootdrop/space/languagebook,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/table/greyscale,
+/obj/item/folder/documents{
+	desc = "A folder with a K-Corp labelled stamped on the front.";
+	name = "K-Corp Folder"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/chair/office{
+	desc = "A rather boring gaming chair.";
+	dir = 4;
+	name = "gaming chair"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/table/greyscale,
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"I" = (
+/obj/item/chair/wood,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/mineral_door/wood,
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+"O" = (
+/obj/machinery/modular_computer/console/preset/civilian{
+	desc = "A stationary computer. This one comes preloaded with generic programs, for personal use, of course.";
+	dir = 8;
+	name = "personal console"
+	},
+/obj/structure/table/greyscale,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/griddle,
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"R" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/table/greyscale,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/rollingpin,
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"T" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/freezer/meat/open,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Z" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/indestructible/hoteltile,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+a
+g
+b
+Y
+l
+c
+L
+"}
+(3,1,1) = {"
+L
+y
+b
+b
+b
+b
+J
+n
+"}
+(4,1,1) = {"
+L
+i
+b
+b
+b
+F
+U
+n
+"}
+(5,1,1) = {"
+L
+m
+b
+b
+C
+O
+B
+L
+"}
+(6,1,1) = {"
+L
+L
+K
+L
+L
+L
+L
+L
+"}
+(7,1,1) = {"
+L
+E
+k
+b
+W
+P
+e
+L
+"}
+(8,1,1) = {"
+L
+f
+b
+b
+r
+s
+H
+n
+"}
+(9,1,1) = {"
+L
+G
+b
+b
+R
+D
+S
+n
+"}
+(10,1,1) = {"
+L
+I
+t
+p
+b
+b
+A
+L
+"}
+(11,1,1) = {"
+L
+o
+v
+p
+b
+b
+b
+K
+"}
+(12,1,1) = {"
+L
+L
+L
+L
+A
+k
+b
+L
+"}
+(13,1,1) = {"
+L
+x
+d
+L
+G
+b
+J
+n
+"}
+(14,1,1) = {"
+L
+q
+Z
+N
+b
+b
+V
+n
+"}
+(15,1,1) = {"
+L
+j
+h
+L
+z
+T
+z
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

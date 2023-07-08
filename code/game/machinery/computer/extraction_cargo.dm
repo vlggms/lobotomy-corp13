@@ -82,7 +82,7 @@
 		new /datum/data/extraction_cargo("Skateboard ",					/obj/item/melee/skateboard,											100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Gar Glasses ",				/obj/item/clothing/glasses/sunglasses/gar,							100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skub ",						/obj/item/skub,														200, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("1000 Ahn ",					/obj/item/stack/spacecash/c10000,									200, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("1000 Ahn ",					/obj/item/stack/spacecash/c1000,									200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Margherita Pizza ",			/obj/item/food/pizza/margherita,									300, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Super Gar Glasses ",			/obj/item/clothing/glasses/sunglasses/gar/supergar,					500, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Agent Captain's Cloak ",		/obj/item/clothing/neck/cloak/hos/agent,							500, CAT_OTHER) = 1,

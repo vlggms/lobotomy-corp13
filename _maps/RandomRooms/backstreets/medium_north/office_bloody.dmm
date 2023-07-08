@@ -1,0 +1,380 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"b" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"f" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/plasteel/stairs/left,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -11
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 4
+	},
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"o" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper/crumpled,
+/obj/item/paper{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/machinery/light/dim,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"r" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paperslip{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/chair/greyscale{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"u" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/table/wood,
+/obj/item/paperslip,
+/obj/structure/fluff/paper/stack,
+/obj/effect/spawner/lootdrop/armory_contraband,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/libraryconsole{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"B" = (
+/obj/machinery/camera{
+	dir = 4;
+	pixel_y = -3
+	},
+/obj/structure/fluff/broken_flooring,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paperslip{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"F" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/window/reinforced/tinted/frosted,
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/filingcabinet{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"J" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table/wood,
+/obj/item/paper/crumpled,
+/obj/item/paper{
+	pixel_x = 8;
+	pixel_y = -14
+	},
+/obj/item/paper{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"M" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/camera{
+	dir = 9;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper{
+	pixel_x = -1;
+	pixel_y = 7
+	},
+/obj/item/paper{
+	pixel_x = -12;
+	pixel_y = 13
+	},
+/obj/item/paper{
+	pixel_x = -17;
+	pixel_y = -6
+	},
+/obj/item/paperslip{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/paperslip{
+	pixel_x = -41;
+	pixel_y = -8
+	},
+/obj/item/paperslip{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/turf/open/floor/plasteel/stairs/right,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"S" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/filingcabinet{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Y" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/chair/comfy/black{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood{
+	dir = 5;
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Z" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+n
+n
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+B
+h
+F
+p
+Q
+"}
+(3,1,1) = {"
+a
+l
+N
+S
+D
+J
+"}
+(4,1,1) = {"
+Q
+P
+Q
+Q
+V
+Q
+"}
+(5,1,1) = {"
+d
+r
+x
+x
+b
+Q
+"}
+(6,1,1) = {"
+d
+o
+c
+t
+b
+Z
+"}
+(7,1,1) = {"
+G
+Y
+z
+H
+u
+Z
+"}
+(8,1,1) = {"
+d
+A
+K
+t
+u
+Z
+"}
+(9,1,1) = {"
+Q
+m
+T
+I
+M
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+f
+Q
+"}

@@ -1,0 +1,178 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"i" = (
+/obj/structure/table/wood,
+/obj/item/book/manual/chef_recipes,
+/obj/item/toy/figure/chef,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"k" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/kirbyplants/random,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/slab/human,
+/obj/item/food/meat/slab/human,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/table/wood,
+/obj/effect/mob_spawn/human/corpse/damaged,
+/obj/machinery/light/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"q" = (
+/obj/machinery/smartfridge/drying_rack,
+/obj/machinery/light/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/table/wood,
+/obj/item/toy/plush/pierre,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/table/wood,
+/obj/item/kitchen/knife/butcher/deadly,
+/obj/item/clothing/gloves/butchering,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"A" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Malfunctioning Door"
+	},
+/area/city/backstreets_room)
+"C" = (
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"E" = (
+/mob/living/simple_animal/hostile/butcher,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"H" = (
+/turf/closed/indestructible/rock,
+/area/space)
+"J" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table/wood,
+/obj/item/gun/magic/hook,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/table/wood,
+/obj/machinery/light/red{
+	dir = 5
+	},
+/obj/item/clothing/suit/apron/chef,
+/obj/item/clothing/head/chefhat/i_am_assuming_direct_control,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/table/wood,
+/obj/item/food/meat/slab/human/mutant/skeleton,
+/obj/item/food/meat/slab/human/mutant/skeleton,
+/obj/item/food/meat/slab/human/mutant/skeleton,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+H
+H
+H
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+H
+H
+H
+x
+l
+n
+p
+Z
+K
+x
+"}
+(3,1,1) = {"
+x
+x
+A
+x
+l
+Y
+Y
+E
+y
+x
+"}
+(4,1,1) = {"
+A
+Y
+Y
+C
+Y
+Y
+Y
+Y
+T
+x
+"}
+(5,1,1) = {"
+x
+k
+Y
+x
+i
+J
+q
+J
+r
+x
+"}
+(6,1,1) = {"
+x
+x
+W
+x
+x
+x
+x
+x
+x
+x
+"}

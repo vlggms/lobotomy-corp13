@@ -1,0 +1,304 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/wood/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/gibs/bubblegum{
+	pixel_x = -12
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	pixel_x = -3
+	},
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"e" = (
+/obj/item/kirbyplants{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/bookcase/random,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs{
+	pixel_x = 11
+	},
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/door/poddoor,
+/turf/open/floor/plating/dirt/dark,
+/area/city/backstreets_room)
+"k" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"m" = (
+/turf/open/floor/plasteel/stairs/left{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"o" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"r" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	pixel_x = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_y = 9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/sign/poster/lobotomycorp/cleancorpses{
+	desc = "It's far too late for this, isn't it?"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 8
+	},
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/bed,
+/obj/effect/spawner/lootdrop/mafia_outfit{
+	layer = 2
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/structure/window/reinforced/spawner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder";
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/obj/item/bedsheet/purple,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"B" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/glowstick{
+	pixel_x = -2
+	},
+/obj/effect/spawner/lootdrop/glowstick{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/structure/window/reinforced/spawner,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/item/kirbyplants{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"F" = (
+/obj/effect/decal/cleanable/cobweb{
+	layer = 5
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"G" = (
+/obj/item/food/meat/slab/sweeper,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/stairs/right{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/dresser{
+	pixel_x = -2;
+	pixel_y = -3
+	},
+/obj/item/flashlight/lamp/green{
+	pixel_x = -6;
+	pixel_y = 13
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/wooden/crude{
+	layer = 3
+	},
+/turf/open/floor/plating/dirt/dark,
+/area/city/backstreets_room)
+"K" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/bookcase/random,
+/obj/effect/decal/cleanable/cobweb/cobweb2{
+	layer = 5
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/machinery/door/airlock/wood/glass,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/sepia,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/sign/plaques/kiddie/perfect_drone{
+	desc = "The image has been warn down from the weathering of time.";
+	pixel_y = 17
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+j
+j
+Q
+Q
+"}
+(2,1,1) = {"
+a
+B
+X
+y
+E
+Q
+"}
+(3,1,1) = {"
+N
+K
+r
+d
+g
+Q
+"}
+(4,1,1) = {"
+Q
+F
+Q
+m
+G
+Q
+"}
+(5,1,1) = {"
+I
+i
+x
+k
+L
+Q
+"}
+(6,1,1) = {"
+I
+L
+c
+t
+L
+o
+"}
+(7,1,1) = {"
+I
+e
+L
+Q
+Y
+o
+"}
+(8,1,1) = {"
+Q
+f
+v
+H
+C
+j
+"}
+(9,1,1) = {"
+Q
+M
+L
+L
+z
+j
+"}
+(10,1,1) = {"
+Q
+Q
+u
+Q
+Q
+Q
+"}
