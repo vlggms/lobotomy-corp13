@@ -260,13 +260,6 @@
 	realized_ability = /obj/effect/proc_holder/ability/goodbye
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
 
-/obj/item/clothing/suit/armor/ego_gear/realization/shell
-	name = "shell"
-	desc = "Armor of humans, for humans, by humans. Is it as 'human' as you?"
-	icon_state = "shell"
-	realized_ability = /obj/effect/proc_holder/ability/goodbye
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
-
 /obj/item/clothing/suit/armor/ego_gear/realization/laughter
 	name = "laughter"
 	desc = "I do not recognize them, I must not, lest I end up like them. \
