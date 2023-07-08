@@ -739,8 +739,6 @@
 	H.apply_status_effect(/datum/status_effect/punishment)
 	return ..()
 
-
-
 /datum/status_effect/punishment
 	id = "EGO_P2"
 	status_type = STATUS_EFFECT_UNIQUE
