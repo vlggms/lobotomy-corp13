@@ -161,199 +161,199 @@
 	info = {"<h2><center>O-01-67</center></h2>	<br>
 	Laetitia	<br>
 	"Similar to a child in size, and always maintaining a bright smile…<br>
-    A very very adoooorable little kid."<br>
+	A very very adoooorable little kid."<br>
 
-    "They call me an adorable little kid because I am a small and lovely child!<br>
-    The kid comes from a place far far away!<br>
-    And when the kid meets someone she likes, she will give them a gift made all by herself.<br>
-    The gift's content is a secret though!"<br>
+	"They call me an adorable little kid because I am a small and lovely child!<br>
+	The kid comes from a place far far away!<br>
+	And when the kid meets someone she likes, she will give them a gift made all by herself.<br>
+	The gift's content is a secret though!"<br>
 
-    "This is another really really important secret, but the kid has lots of talents!<br>
-    This girl has many friends, but they said she can't bring them here.<br>
-    She was so sad that she had to leave her dear friends behind, so she came up with a brilliant idea!"<br>
+	"This is another really really important secret, but the kid has lots of talents!<br>
+	This girl has many friends, but they said she can't bring them here.<br>
+	She was so sad that she had to leave her dear friends behind, so she came up with a brilliant idea!"<br>
 
-    "If I cover up my friends nicely and make it look like a gift, everyone will be surprised!<br>
-    And they'll all laugh together over my prank!<br>
-    Whoops, there goes the secret of the gift."<br>
+	"If I cover up my friends nicely and make it look like a gift, everyone will be surprised!<br>
+	And they'll all laugh together over my prank!<br>
+	Whoops, there goes the secret of the gift."<br>
 
-    "I hope to find lots of friends here too!<br>
-    The kid is shy, so the gift will be given in secret!<br>
-    Farewells are sad, I hope we can play more!<br>
-    And people here don't smile!<br>
-    That looks so gloomy!<br>
-    So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!<br>
-    I will be happy if everyone is pleased with my pranks!"}
+	"I hope to find lots of friends here too!<br>
+	The kid is shy, so the gift will be given in secret!<br>
+	Farewells are sad, I hope we can play more!<br>
+	And people here don't smile!<br>
+	That looks so gloomy!<br>
+	So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!<br>
+	I will be happy if everyone is pleased with my pranks!"}
 
 //Funeral
 /obj/item/paper/fluff/lore/he/funeral
 	name = "T-01-68"
 	info = {"<h2><center>T-01-68</center></h2>	<br>
 	Funeral of the Dead Butterflies	<br>
-    "Where does one go when they die?<br>
-    Where did all the employees who worked here go?"<br>
+	"Where does one go when they die?<br>
+	Where did all the employees who worked here go?"<br>
 
-    "- They must have returned home. To a haven where family and warmth await.<br>
-    The employees cannot leave; once they join the company, the only way to leave is to resign.<br>
-    - Then those "resigned" employees must have returned home, having earned what they wanted and being full of hope."<br>
+	"- They must have returned home. To a haven where family and warmth await.<br>
+	The employees cannot leave; once they join the company, the only way to leave is to resign.<br>
+	- Then those "resigned" employees must have returned home, having earned what they wanted and being full of hope."<br>
 
-    "We are the feathers of a Wing. Resignation isn't as simple as you think. Just like how a feather doesn't detach from a wing of its own will.<br>
-    - Then, where did all the resigned employees go?<br>
-    They're bound to the company the moment they enter. Even if they do resign, they are doomed to stay here forever."<br>
-    - Long ago, in some world, people believe that they would become beautiful beings with small wings when they died. It's a silly story. Nonsensical too.<br>
-    If we get wings, will we be able to leave this place? Do we get our wings only after we retire?"<br>
+	"We are the feathers of a Wing. Resignation isn't as simple as you think. Just like how a feather doesn't detach from a wing of its own will.<br>
+	- Then, where did all the resigned employees go?<br>
+	They're bound to the company the moment they enter. Even if they do resign, they are doomed to stay here forever."<br>
+	- Long ago, in some world, people believe that they would become beautiful beings with small wings when they died. It's a silly story. Nonsensical too.<br>
+	If we get wings, will we be able to leave this place? Do we get our wings only after we retire?"<br>
 
-    "They say the mourner with a huge luggage on his back had come to be a savior to all. Eventually, he himself was trapped in this place, and now he wanders the company with only the memory of an empty faith. He's carrying a coffin. A large coffin to pay tribute to the employees who have nowhere else to go. However, it is still too small to comfort those innocent sacrifices.<br>
-    Inside it is a kaleidoscope of butterflies waiting for the moment to fall asleep. Until then, they flutter their wings uselessly. The wings that may have been many jumbled into one, or one split into many. Butterflies are supposed to pollinate flowers, but not a single proper flower blooms in this place. There is no choice but to wait. After all, there must be an end to every world."}
+	"They say the mourner with a huge luggage on his back had come to be a savior to all. Eventually, he himself was trapped in this place, and now he wanders the company with only the memory of an empty faith. He's carrying a coffin. A large coffin to pay tribute to the employees who have nowhere else to go. However, it is still too small to comfort those innocent sacrifices.<br>
+	Inside it is a kaleidoscope of butterflies waiting for the moment to fall asleep. Until then, they flutter their wings uselessly. The wings that may have been many jumbled into one, or one split into many. Butterflies are supposed to pollinate flowers, but not a single proper flower blooms in this place. There is no choice but to wait. After all, there must be an end to every world."}
 
 //Porccubus
 /obj/item/paper/fluff/lore/he/porccubus
 	name = "O-02-98"
 	info = {"<h2><center>O-02-98</center></h2>	<br>
 	Porccubus	<br>
-    "<Time for the head to burst><br>
-    To be frank, life in this place isn't so great. The company says they provide healthy hobbies, but not many people engage in that notion. Everyone looks for their own escape; be it violence, gambling, gluttony...<br>
-    I thought I had strength in self-control and discipline compared to others. It did help me live a smoother life. Maybe that's the reason I was assigned to Porccubus' Containment Unit.<br>
-    Yes, Porccubus. Where the lowest of the low employees visit. I've heard a bit about what other employees do in that Containment Unit. They call it the "game of trust". A game of trust, what an elegant thing to name it."<br>
+	"<Time for the head to burst><br>
+	To be frank, life in this place isn't so great. The company says they provide healthy hobbies, but not many people engage in that notion. Everyone looks for their own escape; be it violence, gambling, gluttony...<br>
+	I thought I had strength in self-control and discipline compared to others. It did help me live a smoother life. Maybe that's the reason I was assigned to Porccubus' Containment Unit.<br>
+	Yes, Porccubus. Where the lowest of the low employees visit. I've heard a bit about what other employees do in that Containment Unit. They call it the "game of trust". A game of trust, what an elegant thing to name it."<br>
 
-    "(Omitted)<br>
-    According to other employees, it wouldn't be too difficult to become intimate with it. And once I get along with it, I could acquire all of it with ease. They said when the time comes, Porccubus will lean down so that I easily reach the thorns. It didn't take long until I got to where I could pet it."<br>
+	"(Omitted)<br>
+	According to other employees, it wouldn't be too difficult to become intimate with it. And once I get along with it, I could acquire all of it with ease. They said when the time comes, Porccubus will lean down so that I easily reach the thorns. It didn't take long until I got to where I could pet it."<br>
 
-    "(Omitted)<br>
-    When I first touched its thorns, it felt quite prickly. It felt like a giant needle penetrated my skin. Though there wasn’t any bleeding and the pain went away after a moment. Then there it was, the most intense happiness you'd ever experience. It'd make your knees weak. When I snapped out of it, I found myself drooling.<br>
-    It scared me, so I didn't go back for a while. Then, the situation gets worse. You'll get withdrawal symptoms, like retching or sweating. Different employees show different symptoms. One employee even pulled out all their teeth because they felt like bugs were crawling all over them."<br>
+	"(Omitted)<br>
+	When I first touched its thorns, it felt quite prickly. It felt like a giant needle penetrated my skin. Though there wasn’t any bleeding and the pain went away after a moment. Then there it was, the most intense happiness you'd ever experience. It'd make your knees weak. When I snapped out of it, I found myself drooling.<br>
+	It scared me, so I didn't go back for a while. Then, the situation gets worse. You'll get withdrawal symptoms, like retching or sweating. Different employees show different symptoms. One employee even pulled out all their teeth because they felt like bugs were crawling all over them."<br>
 
-    "How it felt? I can't find the words to describe it. Remember the greatest happiness you've ever felt in your life? This feeling would be hundreds of times better.<br>
-    You say I'm the last employee in charge of Porccubus? That's understandable, as the brain craves more intense stimulation. At first, all I had to do was be lightly pricked by one of the thorns. Now I have to rub my whole body against it to get the same high.<br>
-    I feel like all the blood in my body will rush to my head, eventually bursting it. I’ve already imagined my head bursting thousands of times anyhow."<br>
+	"How it felt? I can't find the words to describe it. Remember the greatest happiness you've ever felt in your life? This feeling would be hundreds of times better.<br>
+	You say I'm the last employee in charge of Porccubus? That's understandable, as the brain craves more intense stimulation. At first, all I had to do was be lightly pricked by one of the thorns. Now I have to rub my whole body against it to get the same high.<br>
+	I feel like all the blood in my body will rush to my head, eventually bursting it. I’ve already imagined my head bursting thousands of times anyhow."<br>
 
-    "I have to get going, it's almost time for work. Actually, I’m drenched with sweat right now, did you notice?<br>
-    Oh, and Porccubus doesn't show any aggression, unlike your speculation. It didn't eat us or bite our heads off or anything. All the corpses were smiling... happily? That's all. It just makes people smile "until death".<br>
-    No one is to blame. We have to go through hell every day. We're just having a small taste of heaven."<br>
+	"I have to get going, it's almost time for work. Actually, I’m drenched with sweat right now, did you notice?<br>
+	Oh, and Porccubus doesn't show any aggression, unlike your speculation. It didn't eat us or bite our heads off or anything. All the corpses were smiling... happily? That's all. It just makes people smile "until death".<br>
+	No one is to blame. We have to go through hell every day. We're just having a small taste of heaven."<br>
 
-    "You know what? I feel sorry for you. You've never felt these feelings and you never will, but you have to interview an employee on the edge like me while pretending to be decent.<br>
-    Now it's time for my head to burst. Good day."}
+	"You know what? I feel sorry for you. You've never felt these feelings and you never will, but you have to interview an employee on the edge like me while pretending to be decent.<br>
+	Now it's time for my head to burst. Good day."}
 
 //Child of the Galaxy
 /obj/item/paper/fluff/lore/he/galaxy_child
 	name = "O-01-55"
 	info = {"<h2><center>O-01-55</center></h2>	<br>
 	Child of the Galaxy	<br>
-    "It was a night veiled in gentle mist.<br>
-    A barefooted child was looking at me.<br>
-    I stopped, because I saw the sadness hanging on his face.<br>
-    He was crying, his dreamy eyes filled with sorrow.<br>
-    I gave him my help.<br>
-    The sadness hanging on his face stopped me in my tracks. He said he lost something precious, and when I offered to help, He gave me a big smile.<br>
-    A teardrop fell from the child's dewy eyes, as stars showered from the sky.<br>
-    The world falls into a slumber, trapped in an ecstatic lullaby.<br>
-    That night the galaxy descended with bare feet.<br>
-    - Excerpt from the diary of Employee (Redacted), who committed suicide."<br>
+	"It was a night veiled in gentle mist.<br>
+	A barefooted child was looking at me.<br>
+	I stopped, because I saw the sadness hanging on his face.<br>
+	He was crying, his dreamy eyes filled with sorrow.<br>
+	I gave him my help.<br>
+	The sadness hanging on his face stopped me in my tracks. He said he lost something precious, and when I offered to help, He gave me a big smile.<br>
+	A teardrop fell from the child's dewy eyes, as stars showered from the sky.<br>
+	The world falls into a slumber, trapped in an ecstatic lullaby.<br>
+	That night the galaxy descended with bare feet.<br>
+	- Excerpt from the diary of Employee (Redacted), who committed suicide."<br>
 	<br>
-    "It takes the form of a young boy with big eyes and skin that resembles the night sky."<br>
+	"It takes the form of a young boy with big eyes and skin that resembles the night sky."<br>
 
-    "The child shows great enjoyment with talking and playing with others. He has a strong attachment to the act of making contact with another."<br>
+	"The child shows great enjoyment with talking and playing with others. He has a strong attachment to the act of making contact with another."<br>
 
-    "If the child and an employee reach a certain level of intimacy, he will give a small pebble to the employee he now considers his friend. The employee will feel happiness and vigor while in possession of the pebble. However, this pebble will do more than just good if the employee happens to enter any Containment Unit other than his."<br>
+	"If the child and an employee reach a certain level of intimacy, he will give a small pebble to the employee he now considers his friend. The employee will feel happiness and vigor while in possession of the pebble. However, this pebble will do more than just good if the employee happens to enter any Containment Unit other than his."<br>
 
-    "If an employee in possession of one of the child’s pebbles (the sign of their strong friendship) dies, he will show deep grief and sorrow for their loss."<br>
+	"If an employee in possession of one of the child’s pebbles (the sign of their strong friendship) dies, he will show deep grief and sorrow for their loss."<br>
 	
-    <h3><center>Excerpt from Employee (Redacted)'s Diary</center></h3><br>
-    X/X/XX<br>
-    I looked into the child's eyes for a while. I may have spaced out a little bit because his eyes were so dreamy. I wanted to pet him, but I remembered my coworkers telling me not to have personal feelings towards Abnormalities.<br>
+	<h3><center>Excerpt from Employee (Redacted)'s Diary</center></h3><br>
+	X/X/XX<br>
+	I looked into the child's eyes for a while. I may have spaced out a little bit because his eyes were so dreamy. I wanted to pet him, but I remembered my coworkers telling me not to have personal feelings towards Abnormalities.<br>
 	
-    X/X/XX<br>
-    I told him my name. He repeated it with wide eyes as if he found out a big secret. Each time he called my name, it felt like it became something more than just a familiar thing I had been living with.<br>
+	X/X/XX<br>
+	I told him my name. He repeated it with wide eyes as if he found out a big secret. Each time he called my name, it felt like it became something more than just a familiar thing I had been living with.<br>
 
-    X/X/XX<br>
-    When another employee entered the child's Containment Unit, he did not follow that employee and looked for me instead. I felt basely triumphant after hearing about that. The kid follows me, not you.<br>
+	X/X/XX<br>
+	When another employee entered the child's Containment Unit, he did not follow that employee and looked for me instead. I felt basely triumphant after hearing about that. The kid follows me, not you.<br>
 
-    X/X/XX<br>
-    The moment I entered the child's room, he jumped into my arms crying. When I finally set him down, he shed a tear that became a small, white pebble that fell in my hand. "Please don't lose it, and don't give it to anyone else." The boy mumbled.<br>
+	X/X/XX<br>
+	The moment I entered the child's room, he jumped into my arms crying. When I finally set him down, he shed a tear that became a small, white pebble that fell in my hand. "Please don't lose it, and don't give it to anyone else." The boy mumbled.<br>
 
-    X/X/XX<br>
-    "Do you like it? More than you like me?" The boy quietly asked when I arrived after finishing working with another Abnormality. I asked how he knew what I was doing, and he answered lightly: "Isn't it obvious? I know everything. Whatever you do, wherever you go." His gaze lay on the pebble, then he smiled. His eyes gave me goosebumps.<br>
+	X/X/XX<br>
+	"Do you like it? More than you like me?" The boy quietly asked when I arrived after finishing working with another Abnormality. I asked how he knew what I was doing, and he answered lightly: "Isn't it obvious? I know everything. Whatever you do, wherever you go." His gaze lay on the pebble, then he smiled. His eyes gave me goosebumps.<br>
 
-    X/X/XX<br>
-    I tried to rid myself of the pebble, but I realized it was beyond my control. I don't get what I'm talking about right now but... "You still treasure it right?" The child smiles at me. Smiles. Smiles. Smiles. Smiles...<br>
+	X/X/XX<br>
+	I tried to rid myself of the pebble, but I realized it was beyond my control. I don't get what I'm talking about right now but... "You still treasure it right?" The child smiles at me. Smiles. Smiles. Smiles. Smiles...<br>
 
-    X/X/XX<br>
-    I can't get this pebble off me. My only hope is to wait for the child to tire of me. I'm waiting for that day... but will it ever come? (People tell me I’m an excellent employee. Idiots, they don’t know a thing. Shut up.)<br>
+	X/X/XX<br>
+	I can't get this pebble off me. My only hope is to wait for the child to tire of me. I'm waiting for that day... but will it ever come? (People tell me I’m an excellent employee. Idiots, they don’t know a thing. Shut up.)<br>
 
-    X/X/XX<br>
-    I can't take it anymore. I can't escape him. I thought I was in charge, but the truth is I was just a pebble in his hands the whole time. Whatever I do, wherever I go, I hear his whispers. (I have to end it, but I’m not even sure if I can.)<br>
-    -- "...I came from afar. I'm so glad to meet you. Become a pebble, and let's walk the galaxy together..." I hear his whispers and breath. Pitch black darkness follows... just like the night I met him."}
+	X/X/XX<br>
+	I can't take it anymore. I can't escape him. I thought I was in charge, but the truth is I was just a pebble in his hands the whole time. Whatever I do, wherever I go, I hear his whispers. (I have to end it, but I’m not even sure if I can.)<br>
+	-- "...I came from afar. I'm so glad to meet you. Become a pebble, and let's walk the galaxy together..." I hear his whispers and breath. Pitch black darkness follows... just like the night I met him."}
 
 //Singing Machine
 /obj/item/paper/fluff/lore/he/singing_machine
 	name = "O-05-30"
 	info = {"<h2><center>O-05-30</center></h2>	<br>
 	Singing Machine	<br>
-    "It takes the form of a long cuboid machine."<br>
+	"It takes the form of a long cuboid machine."<br>
 
-    "At first glance, all it seems to be is a simple industrial grinder. However, the existence of it having an individual “will” meets the criteria to be classified as an Abnormality."<br>
+	"At first glance, all it seems to be is a simple industrial grinder. However, the existence of it having an individual “will” meets the criteria to be classified as an Abnormality."<br>
 
-    "When approached or touched, the employee will become delirious and throw themself into the Abnormality's mechanical body. Afterward, the machine's ventilation fan will quickly shut off, and the sound of the Abnormality operating can be heard from within. This process takes about 5 minutes."<br>
+	"When approached or touched, the employee will become delirious and throw themself into the Abnormality's mechanical body. Afterward, the machine's ventilation fan will quickly shut off, and the sound of the Abnormality operating can be heard from within. This process takes about 5 minutes."<br>
 
-    "After a few experiments, we have concluded that the Abnormality desires to gain "music" from this interaction."<br>
+	"After a few experiments, we have concluded that the Abnormality desires to gain "music" from this interaction."<br>
 
-    "There is no detailed research into this Abnormality’s “music”, however, there is a hypothesis that it has a special characteristic that attracts humans in correlation to their specific behaviors or psychological counseling records. If one of our employees has been determined to be addicted to the music, they will need to be treated quickly to prevent any collateral damage."<br>
+	"There is no detailed research into this Abnormality’s “music”, however, there is a hypothesis that it has a special characteristic that attracts humans in correlation to their specific behaviors or psychological counseling records. If one of our employees has been determined to be addicted to the music, they will need to be treated quickly to prevent any collateral damage."<br>
 
 	<h3><center>Excerpt from Counseling Log</center></h3><br>
-    "I just wanted to write the observation report and get out, but he was acting odd.<br>
-    I warned him not to get too close, but <Redacted> took one step closer. He said he'll let me hear a fantasy, then he opened up the lid and jumped into the machine. The lid closed and a loud noise came from inside the creature. There was no way to know what was happening, but I was too terrified to do anything. (Omitted)<br>
-    In the dark, I realized that thing was playing an instrument. Crushing and cutting <Redacted>'s body, it was creating a rhythm. As I was contemplating my horrific realization, the lid opened again. Bits and pieces of <Redacted> were in there. So little that you had to wonder what happened to the rest. (Omitted)"<br>
+	"I just wanted to write the observation report and get out, but he was acting odd.<br>
+	I warned him not to get too close, but <Redacted> took one step closer. He said he'll let me hear a fantasy, then he opened up the lid and jumped into the machine. The lid closed and a loud noise came from inside the creature. There was no way to know what was happening, but I was too terrified to do anything. (Omitted)<br>
+	In the dark, I realized that thing was playing an instrument. Crushing and cutting <Redacted>'s body, it was creating a rhythm. As I was contemplating my horrific realization, the lid opened again. Bits and pieces of <Redacted> were in there. So little that you had to wonder what happened to the rest. (Omitted)"<br>
 
-    <h3>NOTICE, MUST READ: Symptoms of addiction to the music of ‘Singing Machine’</h3><br>
-    "1. Attempts to bring other employees to the Containment Unit of ‘Singing Machine’ by physical force.<br>
-    2. Dilated pupils.<br>
-    3. Greatly reduced concentration and cognitive abilities.<br>
-    4. Refusal to listen to other forms of music.<br>
-    Please list any additional symptoms that are found and immediately report any employees that are suspected of the noted symptoms."<br>
+	<h3>NOTICE, MUST READ: Symptoms of addiction to the music of ‘Singing Machine’</h3><br>
+	"1. Attempts to bring other employees to the Containment Unit of ‘Singing Machine’ by physical force.<br>
+	2. Dilated pupils.<br>
+	3. Greatly reduced concentration and cognitive abilities.<br>
+	4. Refusal to listen to other forms of music.<br>
+	Please list any additional symptoms that are found and immediately report any employees that are suspected of the noted symptoms."<br>
 
 	<h3><center>Excerpt from Incident Logs</center></h3><br>
-    "Date: XX/XX/XXXX<br>
-    Employee M1840 went missing in the company. 2 days later, on the XXth, part of a corpse was found inside the ‘Singing Machine’. Genomic analysis revealed that the corpse belonged to the missing employee. The employee was a new hire who had only worked for the company for 3 months, and they had no record of an assignment to work with the Abnormality.<br>
-    The culprit was found to be employee <Redacted>, who was in charge of the ‘Singing Machine’. <Redacted> confessed after extensive investigation. “I know it's crazy, but I had to hear that music again. It was stuck in my head for months. I performed all kinds of experiments.<br>
-    When the machine takes in a cat, it plays for 1 minute, a large dog, 2 minutes and 30 seconds. But nothing could compare to the music it makes when it eats a human.<br>
-    ...It might sound ridiculous, but I feel satisfied, having heard it once more."}
+	"Date: XX/XX/XXXX<br>
+	Employee M1840 went missing in the company. 2 days later, on the XXth, part of a corpse was found inside the ‘Singing Machine’. Genomic analysis revealed that the corpse belonged to the missing employee. The employee was a new hire who had only worked for the company for 3 months, and they had no record of an assignment to work with the Abnormality.<br>
+	The culprit was found to be employee <Redacted>, who was in charge of the ‘Singing Machine’. <Redacted> confessed after extensive investigation. “I know it's crazy, but I had to hear that music again. It was stuck in my head for months. I performed all kinds of experiments.<br>
+	When the machine takes in a cat, it plays for 1 minute, a large dog, 2 minutes and 30 seconds. But nothing could compare to the music it makes when it eats a human.<br>
+	...It might sound ridiculous, but I feel satisfied, having heard it once more."}
 
 //Schadenfreude
 /obj/item/paper/fluff/lore/he/schadenfreude
 	name = "O-05-76"
 	info = {"<h2><center>O-05-76</center></h2>	<br>
 	Schadenfreude	<br>
-    "A mechanical Abnormality capable of walking on its own."<br>
+	"A mechanical Abnormality capable of walking on its own."<br>
 
-    "Someone's persistent gaze can be felt from the keyhole inside the machine. It blinks, but never closes. The purpose of the eye or what it is observing is unknown."<br>
+	"Someone's persistent gaze can be felt from the keyhole inside the machine. It blinks, but never closes. The purpose of the eye or what it is observing is unknown."<br>
 
-    "After several experiments, it has been discovered that when one or more employees stare at the Abnormality, the condition becomes far worse."<br>
+	"After several experiments, it has been discovered that when one or more employees stare at the Abnormality, the condition becomes far worse."<br>
 
-    <h3>Experiment D-002</h3><br>
-    "An employee was sent in after covering their eyes with a thick cloth. The cloth must be made from a fine opaque material. Tests must be conducted to ensure the cloth completely blocks their vision. After entering the Abnormality's Containment Unit, they faced the direction of the Abnormality for 10 seconds. No reaction."<br>
+	<h3>Experiment D-002</h3><br>
+	"An employee was sent in after covering their eyes with a thick cloth. The cloth must be made from a fine opaque material. Tests must be conducted to ensure the cloth completely blocks their vision. After entering the Abnormality's Containment Unit, they faced the direction of the Abnormality for 10 seconds. No reaction."<br>
 
 	<h3>Experiment D-003</h3><br>
-    "Similar to Experiment D-002, an employee was sent in with their eyes covered. The cloth was identical to the one used in D-002, but allowed the employee to discern some forms.<br>
-    After entering the Containment Unit of the Abnormality, they faced towards the Abnormality for 10 seconds. After 5 seconds, it aggressively approached the employee. Experiment halted."<br>
+	"Similar to Experiment D-002, an employee was sent in with their eyes covered. The cloth was identical to the one used in D-002, but allowed the employee to discern some forms.<br>
+	After entering the Containment Unit of the Abnormality, they faced towards the Abnormality for 10 seconds. After 5 seconds, it aggressively approached the employee. Experiment halted."<br>
 
-    <h3>Experiment D-004</h3><br>
-    "This time, a blind employee* was sent in without any covering. The employee faced the Abnormality for more than 30 seconds. There was no reaction.<br>
-    *Please dispose of the subject used in D-004 immediately."<br>
+	<h3>Experiment D-004</h3><br>
+	"This time, a blind employee* was sent in without any covering. The employee faced the Abnormality for more than 30 seconds. There was no reaction.<br>
+	*Please dispose of the subject used in D-004 immediately."<br>
 
-    Memo:<br>
-    When training employees who have never worked with this Abnormality before, it goes without saying, but please make sure to tell them not to look at the Abnormality directly. If someone raises doubts about this, tell them what happened to employee Yumi, who didn't follow instructions and stared directly at the Abnormality.<br>
+	Memo:<br>
+	When training employees who have never worked with this Abnormality before, it goes without saying, but please make sure to tell them not to look at the Abnormality directly. If someone raises doubts about this, tell them what happened to employee Yumi, who didn't follow instructions and stared directly at the Abnormality.<br>
 
-    Memo 2:<br>
-    Employee Yumi can no longer be in charge of this Abnormality. She claims that she is under constant surveillance, but this is a preposterous accusation and we believe that she has a severe delusional disorder. Most of what she says is nonsense, but to put it simply, she claims that someone keeps watching her, whether she's eating or going to the restroom. Also, whenever she sees something like a keyhole or a crack between a door, she will become hysterical and try to seal any hole that she sees. However what's more aggravating is that her mental corruption levels read normal, which makes it difficult for us to dispose of her by the system. Please replace her soon…<br>
+	Memo 2:<br>
+	Employee Yumi can no longer be in charge of this Abnormality. She claims that she is under constant surveillance, but this is a preposterous accusation and we believe that she has a severe delusional disorder. Most of what she says is nonsense, but to put it simply, she claims that someone keeps watching her, whether she's eating or going to the restroom. Also, whenever she sees something like a keyhole or a crack between a door, she will become hysterical and try to seal any hole that she sees. However what's more aggravating is that her mental corruption levels read normal, which makes it difficult for us to dispose of her by the system. Please replace her soon…<br>
 
-    Memo 3:<br>
-    Oh, the request we made before was resolved. Employee Yumi was found in her room. She covered all the holes in her room with duct tape, including the vent. She even stabbed her eyes out with a pen. The delusional disorder seems to have been resolved as well; she's not muttering nonsense anymore... However, I have to wonder why you would want to send a blind employee to the Containment Unit again. I don't know what Experiment D-004 is about, but I don't think it will do much good...}
+	Memo 3:<br>
+	Oh, the request we made before was resolved. Employee Yumi was found in her room. She covered all the holes in her room with duct tape, including the vent. She even stabbed her eyes out with a pen. The delusional disorder seems to have been resolved as well; she's not muttering nonsense anymore... However, I have to wonder why you would want to send a blind employee to the Containment Unit again. I don't know what Experiment D-004 is about, but I don't think it will do much good...}
 	
 //You Must Become Strong
 /obj/item/paper/fluff/lore/he/you_strong
 	name = "T-09-140"
 	info = {"<h2><center>T-09-140</center></h2>	<br>
 	You Must Become Strong	<br>
-	A mysterious worn-out machine used for operations. This machine was designed to pull back the skin and destroy bone and muscle tissue safely and efficiently. This machine appears to have some degree of sentience compared to its counterpart machine. While the counterpart focuses on improving the mind, this machine focuses on the body."<br>
+	A mysterious worn-out machine used for operations. This machine was designed to pull back the skin and destroy bone and muscle tissue safely and efficiently. Upon further analysis, it appears to have some degree of sentience when compared to its counterpart machine. While the counterpart focuses on improving the mind, this machine focuses on the body."<br>
 
 	"Many of those who underwent an operation inside the machine have found themselves invigorated and healthy again. Those who answered “Yes” to the question “Do you love your City?” were allowed to become strong. Those who answered “No” had to become strong. The longer the machine is in use, the stronger a person becomes. Furthermore, the longer it is used, the more a person's body would fall in line with the machine's idea of strong."<br>
 
