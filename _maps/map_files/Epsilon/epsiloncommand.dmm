@@ -95,9 +95,6 @@
 /obj/structure/chair/sofa,
 /turf/open/floor/plasteel/dark,
 /area/city/fixers)
-"aP" = (
-/turf/closed/indestructible/rock,
-/area/city/backstreets_room)
 "aQ" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -2639,6 +2636,9 @@
 /obj/item/food/meat/slab,
 /turf/open/floor/facility,
 /area/city/shop)
+"wx" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
 "wB" = (
 /obj/structure/table/wood/fancy/cyan,
 /obj/item/paper/guides/jobs/aleph,
@@ -34945,11 +34945,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+ER
 Oq
 Oq
 Oq
@@ -35202,11 +35202,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -35459,11 +35459,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -35716,11 +35716,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -35973,11 +35973,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -36230,11 +36230,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -36487,11 +36487,11 @@ Oq
 kk
 hC
 hC
-kk
-Oq
-Oq
-Oq
-Oq
+XQ
+XQ
+XQ
+XQ
+XQ
 Oq
 Oq
 Oq
@@ -39573,7 +39573,7 @@ hC
 hC
 hC
 hC
-XQ
+wx
 XQ
 XQ
 XQ
@@ -40087,7 +40087,7 @@ Oq
 Oq
 Oq
 Oq
-aP
+Oq
 XQ
 XQ
 XQ
