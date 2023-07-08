@@ -408,3 +408,12 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/willing
+	name = "flesh is willing"
+	desc = "Is it immoral if you want it to happen?"
+	icon_state = "willing"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

@@ -59,3 +59,8 @@
 	name = "ringing casing"
 	desc = "A ringing casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_ringing
+
+/obj/item/ammo_casing/caseless/ego_syrinx
+	name = "syrinx casing"
+	desc = "A syrinx casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_syrinx

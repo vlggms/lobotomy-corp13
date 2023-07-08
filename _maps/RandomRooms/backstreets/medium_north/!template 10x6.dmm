@@ -1,0 +1,119 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/fakedoor,
+/area/city/backstreets_room)
+"c" = (
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"k" = (
+/obj/item/folder/blue{
+	desc = "Appears to be permits and documents of an unspecified workshop.";
+	name = "Workshop Folder"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"t" = (
+/obj/item/folder/white{
+	desc = "Looks to be remnants of the old G-Corp.";
+	name = "Outdated G-Corp Folder"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"x" = (
+/obj/item/folder/syndicate/blue{
+	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
+	name = "Highly Confidential Folder"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"B" = (
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(3,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(4,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(5,1,1) = {"
+a
+B
+x
+k
+B
+a
+"}
+(6,1,1) = {"
+a
+B
+c
+t
+B
+a
+"}
+(7,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(8,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(9,1,1) = {"
+a
+B
+B
+B
+B
+a
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

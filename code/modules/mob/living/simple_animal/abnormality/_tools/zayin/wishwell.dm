@@ -276,12 +276,19 @@
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(M != user)
-		return FALSE
-
 	if (!istype(M, /mob/living/carbon/human))
 		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
 		return FALSE // Can only extract from humans.
+
+	if(M != user)
+		to_chat(user, "<span class='warning'>You start pulling [M] into the well.</span>")
+		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
+			if(M.stat == DEAD)
+				to_chat(user, "<span class='notice'>You throw [M] in the well!</span>")
+				buckle_mob(M, check_loc = check_loc)
+			else
+				to_chat(user, "<span class='warning'>How could you be so cruel? [M] is still alive!</span>")
+		return
 
 	to_chat(user, "<span class='warning'>You start climbing into the well.</span>")
 	if(!do_after(user, 7 SECONDS))
@@ -290,6 +297,7 @@
 
 	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
 	return ..(M, user, check_loc = FALSE) //it just works
+
 
 /obj/structure/toolabnormality/wishwell/post_buckle_mob(mob/living/carbon/human/M)
 	if(!ishuman(M))

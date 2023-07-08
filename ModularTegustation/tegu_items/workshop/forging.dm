@@ -58,8 +58,8 @@
 
 /obj/item/hot_tresmetal/proc/spawn_option(obj/item/choice)
 	new choice(get_turf(src))
-	visible_message("<span class='notice'>The tresmetal is worked into a [choice.name].</span>")
 	qdel(src)
+	visible_message("<span class='notice'>The tresmetal is worked into a [initial(choice.name)].</span>")
 
 /obj/structure/table/anvil
 	name = "workshop anvil"

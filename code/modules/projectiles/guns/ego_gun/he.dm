@@ -256,3 +256,19 @@
 			playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 			spamcheck = world.time + 50
 			speech_args[SPEECH_SPANS] |= voicespan
+
+/obj/item/gun/ego_gun/syrinx
+	name = "syrinx"
+	desc = "What cry could be more powerful than one spurred by primal instinct?"
+	icon_state = "syrinx"
+	inhand_icon_state = "syrinx"
+	special = "This weapon fires slow bullets with limited range."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
+	weapon_weight = WEAPON_HEAVY
+	spread = 40
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
+	autofire = 0.08 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+	)
+

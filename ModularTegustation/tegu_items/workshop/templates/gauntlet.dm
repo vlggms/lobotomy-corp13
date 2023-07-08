@@ -20,8 +20,7 @@
 
 	if(do_after(user, attack_speed*5, target))
 
-		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
-						"<span class='userdanger'>[user] punches you with everything they got!!</span>", COMBAT_MESSAGE_RANGE, user)
+		to_chat(target, "<span class='userdanger'>[user] punches you with everything they got!!</span>")
 		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
 		var/punch_damage = force
 		//I gotta regrab  justice here
