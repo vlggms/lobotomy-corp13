@@ -73,7 +73,7 @@
 				LAZYADDASSOC(to_process, item.type, 1)
 		for(var/list_item in to_process)
 			item_count += to_process[list_item]
-		processing_time = processing_time_base * item_count/(1+0.2*(item_count - 1))
+		processing_time = processing_time_base / (1+0.2*(to_process.len - 1))
 		to_chat(user, "<span class='notice'>\The [S] was dumped into [src]. [item_count] total items have been loaded.</span>")
 		return TRUE
 
@@ -100,7 +100,7 @@
 
 	for(var/list_item in to_process)
 		item_count += to_process[list_item]
-	processing_time = processing_time_base / (1+0.2*(item_count - 1))
+	processing_time = processing_time_base / (1+0.2*(to_process.len - 1))
 	to_chat(user, "<span class='notice'>\The [I] was loaded into [src]. [item_count] total items have been loaded.</span>")
 	return TRUE
 
@@ -137,17 +137,19 @@
 	var/drop_quality = 0
 	for(var/I in to_process)
 		if(to_process[I] > 30 && prob(-300+to_process[I]*10))
-			LAZYREMOVEASSOC(to_process, I, 30)
+			to_process[I] = to_process[I] - 30
 			drop_quality = 3
 		else if(to_process[I] > 20 && prob(-200+to_process[I]*10))
-			LAZYREMOVEASSOC(to_process, I, 20)
+			to_process[I] = to_process[I] - 20
 			drop_quality = 2
 		else if(to_process[I] > 10 && prob(-100+to_process[I]*10))
-			LAZYREMOVEASSOC(to_process, I, 10)
+			to_process[I] = to_process[I] - 10
 			drop_quality = 1
 		else
-			LAZYREMOVEASSOC(to_process, I, 1)
+			to_process[I] = to_process[I] - 1
 		MakeDrop(I, drop_quality)
+		if(to_process[I] <= 0)
+			to_process -= I
 		break
 	if(to_process)
 		if(to_process.len > 0)
