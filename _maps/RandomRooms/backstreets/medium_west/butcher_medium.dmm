@@ -70,7 +70,7 @@
 /area/city/backstreets_room)
 "H" = (
 /turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/area/space)
 "J" = (
 /obj/machinery/smartfridge/drying_rack,
 /turf/open/floor/plasteel/sepia,

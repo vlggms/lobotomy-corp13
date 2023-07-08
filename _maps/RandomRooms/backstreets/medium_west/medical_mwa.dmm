@@ -1,43 +1,43 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/indestructible/reinforced,
-/area/space)
+/area/city/backstreets_room)
 "f" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "g" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "k" = (
 /obj/structure/curtain,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "l" = (
 /obj/machinery/vending/medical,
 /obj/item/storage/backpack/duffelbag/med/surgery{
 	pixel_y = 18
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "m" = (
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "s" = (
 /obj/structure/chair/plastic{
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "u" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "v" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -48,10 +48,10 @@
 	pixel_y = null
 	},
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "w" = (
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "x" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -60,23 +60,23 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "z" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "B" = (
 /obj/machinery/iv_drip,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "C" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "D" = (
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "E" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/mask/surgical,
@@ -90,28 +90,28 @@
 	light_color = "#e8eaff"
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "F" = (
 /obj/machinery/computer/operating{
 	dir = 4
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "G" = (
 /obj/structure/curtain,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "S" = (
 /obj/structure/table/reinforced,
 /obj/item/organ_storage,
 /obj/item/storage/organbox,
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "T" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "U" = (
 /obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood,
@@ -119,18 +119,18 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 "V" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/chair/plastic{
 	dir = 8
 	},
 /turf/open/floor/plasteel/sepia,
-/area/space)
+/area/city/backstreets_room)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/showroomfloor,
-/area/space)
+/area/city/backstreets_room)
 
 (1,1,1) = {"
 a

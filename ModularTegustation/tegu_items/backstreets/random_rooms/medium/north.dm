@@ -7,7 +7,7 @@
 
 /datum/map_template/random_room/backstreets/medium_north
 	name = "Bloody Office - Medium North"
-	room_id = "medical_mwa"
+	room_id = "bloody_office"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/office_bloody.dmm"
 	centerspawner = FALSE
 	template_width = 10
