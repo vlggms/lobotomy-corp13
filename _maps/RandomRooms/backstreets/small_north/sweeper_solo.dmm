@@ -1,0 +1,168 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/structure/fluff/broken_flooring,
+/obj/item/chair/plastic,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/reinforced,
+/obj/item/toy/redbutton{
+	anchored = 1;
+	desc = "A button meant for bolting the door shut. This one doesn't seem to work as intended, or at all.";
+	name = "door bolts button"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"f" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/fireaxe,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"j" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"k" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/table/reinforced,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"u" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	desc = "Its hanging out... and quite content with itself.";
+	name = "Leo"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/obj/machinery/light/dim{
+	dir = 8;
+	pixel_x = null;
+	pixel_y = null
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/reinforced,
+/obj/structure/fireaxecabinet{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"R" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/randomsnackvend,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"W" = (
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+R
+J
+y
+U
+"}
+(3,1,1) = {"
+U
+M
+u
+j
+P
+"}
+(4,1,1) = {"
+U
+d
+f
+W
+W
+"}
+(5,1,1) = {"
+U
+t
+e
+h
+o
+"}
+(6,1,1) = {"
+U
+k
+b
+q
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

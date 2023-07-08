@@ -1,0 +1,242 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -20
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -9
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"d" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations. What this specific one is doing in a dodgeball game is beyond you.";
+	name = "Corporation Folder";
+	pixel_x = 15
+	},
+/obj/item/toy/beach_ball/holoball/dodgeball,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"p" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "spear bot"
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/turf_decal/trimline/white/filled/line,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/obj/item/toy/beach_ball/holoball/dodgeball,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/item/toy/beach_ball/holoball/dodgeball,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/fence/door{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/fence/corner{
+	dir = 7
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/white/filled/line,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"D" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/fence/end,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 5
+	},
+/obj/item/toy/beach_ball/holoball/dodgeball,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -20
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -9
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/fence/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Z" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "spear bot"
+	},
+/obj/effect/turf_decal/trimline/white/filled/line{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+H
+H
+H
+H
+H
+H
+H
+H
+m
+"}
+(2,1,1) = {"
+N
+a
+v
+Y
+C
+Y
+Y
+v
+p
+N
+"}
+(3,1,1) = {"
+N
+Y
+D
+Y
+l
+Y
+Y
+d
+Y
+N
+"}
+(4,1,1) = {"
+N
+Y
+D
+Y
+s
+Y
+Y
+d
+Y
+N
+"}
+(5,1,1) = {"
+N
+U
+v
+Y
+C
+Y
+Y
+S
+Z
+N
+"}
+(6,1,1) = {"
+X
+b
+H
+H
+H
+H
+H
+H
+y
+z
+"}
