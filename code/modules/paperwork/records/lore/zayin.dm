@@ -115,6 +115,7 @@
 /obj/item/paper/fluff/lore/zayin/change
 	name = "T-09-85"
 	info = {"<h2><center>T-09-85</center></h2>	<br>
+	We Can Change Anything	<br>
 	"After the popularity of the “All-Around Helper” skyrocketed, “We Can Change Anything” was released as the second installment of XX Inc’s home robot series."<br>
 	<br>
 	"As to be expected of all of XX Inc’s products, it sports a variety of functions."<br>
@@ -144,6 +145,7 @@
 /obj/item/paper/fluff/lore/zayin/blubbering_toad
 	name = "T-02-158"
 	info = {"<h2><center>T-02-158</center></h2>	<br>
+	Blubbering Toad	<br>
 	"A large Abnormality resembling a toad. Despite its giant stature, it is actually quite tame compared to most Abnormalities of its size. It rarely moves from its spot and mainly occupies itself with crooning mournfully within the confines of its containment unit. To some, it sounds like a song- to others, it just sounds like pathetic croaking."<br>
 
 	"When working with this Abnormality, all an Agent has to do is listen to its cries until work is completed. This does not stop rookie Agents from panicking when their first assignment is this large and imposing Abnormality; such incidents frequently produce complaints to their superiors that they were incapable of handling such a basic assignment. Such superiors tend to roll their eyes at how they could fail such a simple task that they consider boring even to the most enthusiastic employees."<br>
@@ -156,7 +158,7 @@
 	"The Abnormality's containment unit is a safe place for it, where it can cry to itself for as long as it wants. Others are welcome to listen if they desire, and the Abnormality would happily welcome such good listeners. When a foolhardy agent invades that safe place, there is nothing left for the Abnormality. After all, tears are a powerful force which drives us to depression and rage alike."<br>
 	<br>
 
-	<h3><center><Excerpt from Counseling Log></center></h3><br>
+	<h3><center>Excerpt from Counseling Log</center></h3><br>
 	"This new employee, who I will keep anonymous as requested, was a pretty standard-fare rookie employee with an ego. Not E.G.O., mind you, but someone who thought that he was at the top of the world just because he got into a Wing. Judging by his answers to our personality test, he was oblivious to the lethal nature of his job. He seemed to like the idea of punishing Abnormalities for their 'impertinence' as he so put it.<br>
 
 	After his psychiatric evaluation, he got sent to work on the toad: repression work, just as he personally requested. That toad had an obvious effect on Agents sent to it, but I was curious to see how the new employee would respond to it. When he came back, I had to check his employee ID to verify it was him. With his face drenched in tears, he whispered a plea to recommend him to work on the toad again.<br>
@@ -184,5 +186,4 @@
 	<br>
 
 	"We remind employees that Abnormalities are not meant to be treated as friends unless it is beneficial for the facility to do so. As the Abnormality does not benefit from such friendships, we require all employees to listen to it and nothing more."}
-	
 	
