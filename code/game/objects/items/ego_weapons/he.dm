@@ -166,15 +166,16 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if (istype(Z))
-		force = 32
-	else if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		force = 12
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
 	else
-		force = 12
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if (istype(Z))
+			force = 32
+		else
+			force = 12
 		attack_speed = 0.5
 		projectile_block_duration = 0.5 SECONDS
 	..()
@@ -190,7 +191,7 @@
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
-			reductions = list(40, 20, 20, 0)
+			reductions = initial(reductions)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
@@ -219,7 +220,7 @@
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
-		force = 46 // bonus damage for like, 2 seconds.
+		force = 48 // bonus damage for like, 2 seconds.
 		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
