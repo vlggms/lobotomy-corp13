@@ -277,7 +277,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors
 	name = "fallen color"
-	desc = "Quote here"
+	desc = "Where does one go after falling into a black hole?"
 	icon_state = "fallencolors"
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
