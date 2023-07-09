@@ -180,6 +180,7 @@
 	SpawnAdds()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AnnounceBreach()
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5, "The day of the apocalypse has arrived.", 25))
 	for(var/mob/living/carbon/human/H in livinginrange(20, src))//same range as universe aflame when fully charged
 		if(H.z != z)
 			return
@@ -244,14 +245,17 @@
 			for(var/turf/T in range(aflame_range, src))
 				new /obj/effect/temp_visual/doomsday(T)
 				for(var/mob/living/H in T)
+					for(var/mob/living/simple_animal/hostile/abnormality/A in T)
+						if(!(A.IsContained()))
+							continue
+						A.datum_reference.qliphoth_change(-1)
 					if(faction_check_mob(H))
 						continue
 					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
-						//H.add_overlay(mutable_appearance('icons/mob/onfire.dmi', "Standing", -ABOVE_OBJ_LAYER))
-			adjustBruteLoss(500)
+			adjustBruteLoss(1000)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AoeBurn()
 	pulse_cooldown = world.time + pulse_cooldown_time
