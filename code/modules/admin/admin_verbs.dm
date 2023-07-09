@@ -78,7 +78,11 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel,
-	/client/proc/SpawnAbno //LC13 Testing
+	//LC13 Testing
+	/client/proc/SpawnAbno,
+	/client/proc/ClearAbno,
+	/client/proc/FullUnderstandAbno,
+	/client/proc/BreachAbno
 	)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -801,6 +805,56 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	SSblackbox.record_feedback("nested tally", "admin_spawn_abnormality", 1, list("Initiated Spawn Abnormality", "[SSabnormality_queue.queued_abnormality]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+// Suppresses all LC13 abnormalities
+/client/proc/ClearAbno()
+	set category = "Admin.Game"
+	set name = "Suppress All Abnormalities"
+	if(!check_rights(R_ADMIN))
+		return
+
+	if(alert("This will kill all abnormalities currently not in containment. Continue?",,"Yes","No") != "Yes")
+		return
+	if(alert("Are you sure? Continue?",,"Yes","No") != "Yes")
+		return
+	for(var/mob/living/simple_animal/hostile/abnormality/abno in GLOB.abnormality_mob_list)
+		if(abno.IsContained())
+			continue
+		abno.death()
+
+	log_admin("[key_name(usr)] has suppressed all abnormalities.")
+	message_admins("[key_name(usr)] has suppressed all abnormalities.")
+
+//Grants 100% understanding for a LC13 abnormality
+/client/proc/FullUnderstandAbno()
+	set category = "Admin.Game"
+	set name = "Fully Understand Abnormality"
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/mob/living/simple_animal/hostile/abnormality/abno_type = input("Choose the Abnormality to 100% understand",) as null|anything in GLOB.abnormality_mob_list
+	if(!abno_type || !abno_type.IsContained())
+		return to_chat(src, "<span class='interface'>LC13 Admin Verb Failed.</span>")
+	var/datum/abnormality/abno_datum = abno_type.datum_reference
+	if(abno_datum.understanding == abno_datum.max_understanding)
+		return to_chat(src, "<span class='interface'>Error Abnormality Already Full Understanding.</span>")
+	abno_datum.understanding = abno_datum.max_understanding
+
+	log_admin("[key_name(usr)] has fully understood [abno_type].")
+	message_admins("[key_name(usr)] has fully understood [abno_type].")
+
+//Breaches a LC13 Abnormality
+/client/proc/BreachAbno()
+	set category = "Admin.Game"
+	set name = "Breach Abnormality"
+	if(!check_rights(R_ADMIN))
+		return
+	var/mob/living/simple_animal/hostile/abnormality/abno_type = input("Choose the Abnormality to breach", "Dont Pick Already Breaching Abnormalities") as null|anything in GLOB.abnormality_mob_list
+	if(!abno_type || !abno_type.IsContained())
+		return to_chat(src, "<span class='interface'>LC13 Admin Verb Failed.</span>")
+	abno_type.ZeroQliphoth()
+
+	log_admin("[key_name(usr)] has breached [abno_type].")
+	message_admins("[key_name(usr)] has breached [abno_type].")
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
