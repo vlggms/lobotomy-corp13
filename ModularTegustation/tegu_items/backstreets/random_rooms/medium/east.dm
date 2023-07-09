@@ -20,8 +20,14 @@
 	room_id = "arcade_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/arcade_me.dmm"
 
-/datum/map_template/random_room/backstreets/medium_east/kcorp
+/datum/map_template/random_room/backstreets/medium_east/office_kcorp
 	name = "KCorp Office - Medium East"
 	room_id = "office_kcorp_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/office_kcorp.dmm"
+
+
+/datum/map_template/random_room/backstreets/medium_east/kcorp_storage
+	name = "KCorp Storage - Medium East"
+	room_id = "kcorp_storage_me"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/kcorp_storage.dmm"
 

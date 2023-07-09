@@ -14,3 +14,8 @@
 	template_height = 6
 	stock = 3
 	room_type = "backstreets_medium_south"
+
+/datum/map_template/random_room/backstreets/medium_south/eyes
+	name = "Apartment - Medium south A"
+	room_id = "eyes_temple"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/eyes_temple.dmm"
