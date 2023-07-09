@@ -19,3 +19,4 @@
     name = "Workshop - Medium North"
     room_id = "workshop_mn"
     mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn"
+
