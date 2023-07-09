@@ -10,12 +10,11 @@
 
 /obj/item/ego_weapon/city/liu/attack(mob/living/target, mob/living/user)
 	//Happens before the attack so you need to do another attack.
-	if(!ishuman(target))
-		return
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.sanity_lost)
+			H.death()
 
-	var/mob/living/carbon/human/H = target
-	if(H.sanity_lost)
-		H.adjustBruteLoss(H.maxHealth)
 	..()
 
 //Section 1&2, 6-5-4-2 as the grades
