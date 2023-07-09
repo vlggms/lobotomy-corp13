@@ -47,11 +47,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	switch(work_type)
-		if(ABNORMALITY_WORK_INSTINCT)
-			user.reagents.add_reagent(/datum/reagent/consumable/ethanol/fairywine, 10)
-			visible_message("<span class='notice'>You take a drink with the fairy gentleman. </span>")
-			say("Quite a lot of thanks for sharing this drink with me. Not many people often want to share this drink with me.")
+	if(work_type == ABNORMALITY_WORK_INSTINCT)
+		user.reagents.add_reagent(/datum/reagent/consumable/ethanol/fairywine, 10)
+		visible_message("<span class='notice'>You take a drink with the fairy gentleman. </span>")
+		say("Quite a lot of thanks for sharing this drink with me. Not many people often want to share this drink with me.")
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
