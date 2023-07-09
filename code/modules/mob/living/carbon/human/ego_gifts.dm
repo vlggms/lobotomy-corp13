@@ -637,14 +637,6 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/harmony
-	name = "Harmony"
-	icon_state = "harmony"
-	prudence_bonus = 5
-	temperance_bonus = -5
-	justice_bonus = 5
-	slot = MOUTH_2
-
 /datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
 	icon_state = "homing_instinct"
