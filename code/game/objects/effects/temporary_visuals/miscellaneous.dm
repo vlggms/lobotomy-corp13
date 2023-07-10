@@ -915,3 +915,8 @@
 /obj/effect/temp_visual/talisman/Initialize()
 	. = ..()
 	animate(src, alpha = 0, time = 10)
+
+/obj/effect/temp_visual/turn_book
+	name = "scattered pages"
+	icon_state = "turn_book"
+	duration = 6
