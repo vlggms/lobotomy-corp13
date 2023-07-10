@@ -264,5 +264,5 @@
 	abno_code = "F-01-11-12"
 	abno_info = list(
 		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
-		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper or using the pens you can buy in cargo.",
+		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
 		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
