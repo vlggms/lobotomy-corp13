@@ -36,13 +36,12 @@ Backstreets Butcher
 	name = "Backstreets Butcher"
 	jobtype = /datum/job/butcher
 	uniform = /obj/item/clothing/under/rank/civilian/chef
-	belt = /obj/item/gun/magic/hook
+	belt = /obj/item/melee/classic_baton	//So they can catch prey
 	suit = /obj/item/clothing/suit/apron/chef
 	l_pocket = /obj/item/restraints/handcuffs
 	ears = null
 
 	backpack_contents = list(
 		/obj/item/clothing/mask/muzzle = 1,
-		/obj/item/melee/classic_baton = 1,	//So they can catch prey
 		/obj/item/kitchen/knife/butcher/deadly = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)

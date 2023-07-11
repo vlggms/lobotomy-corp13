@@ -15,13 +15,13 @@ transformative extracts:
 		return FALSE
 	var/mob/living/simple_animal/slime/s = target
 	if (s.stat)
-		to_chat(user, span_warning("The slime is dead!"))
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
 	if (s.transformeffects & effect_applied)
-		to_chat(user,span_warning("This slime already has the [colour] transformative effect applied!"))
+		to_chat(user,"<span class='warning'>This slime already has the [colour] transformative effect applied!</span>")
 		return FALSE
 	s.transformeffects |= effect_applied
 	s.effectsapplied++
-	to_chat(user,span_notice("You apply [src] to [target]."))
+	to_chat(user,"<span class='notice'>You apply [src] to [target].</span>")
 	do_effect(s)
 
 /obj/item/slimecross/transformative/proc/do_effect(mob/living/simple_animal/slime/s)

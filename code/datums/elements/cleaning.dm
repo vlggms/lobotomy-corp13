@@ -2,7 +2,7 @@
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(Clean))
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/Clean)
 
 /datum/element/cleaning/Detach(datum/target)
 	. = ..()
@@ -29,4 +29,4 @@
 			if(cleaned_human.body_position == LYING_DOWN)
 				cleaned_human.wash(CLEAN_SCRUB)
 				cleaned_human.regenerate_icons()
-				to_chat(cleaned_human, span_danger("[AM] cleans your face!"))
+				to_chat(cleaned_human, "<span class='danger'>[AM] cleans your face!</span>")

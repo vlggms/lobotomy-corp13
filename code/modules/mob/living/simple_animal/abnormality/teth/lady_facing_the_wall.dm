@@ -3,7 +3,6 @@
 	desc = "An abnormality that is a pale, naked woman with long, black hair that completely obscures her face"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "ladyfacingthewall"
-	portrait = "lady_facing_the_wall"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -11,8 +10,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 55, 55, 55),
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 30, 30, 0),
 		ABNORMALITY_WORK_ATTACHMENT = list(100, 100, 100, 100, 100),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 30, 30, 30),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 30, 30, 30)
+		)
 	pixel_x = -32
 	base_pixel_x = -8
 
@@ -23,19 +22,17 @@
 	var/scream_damage = 45
 	ego_list = list(
 		/datum/ego_datum/weapon/wedge,
-		/datum/ego_datum/armor/wedge,
-	)
+		/datum/ego_datum/armor/wedge
+		)
 	gift_type =  /datum/ego_gifts/wedge
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(70))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -60,7 +57,9 @@
 		datum_reference.qliphoth_change(-1)
 
 	if((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40) && !(GODMODE in user.status_flags))
-		flick("ladyfacingthewall_active", src)
+		icon_state = "ladyfacingthewall_active"
 		user.adjustSanityLoss(user.maxSanity)
 		user.apply_status_effect(/datum/status_effect/panicked_lvl_4)
+		sleep(10)
+		icon_state = "ladyfacingthewall"
 	return

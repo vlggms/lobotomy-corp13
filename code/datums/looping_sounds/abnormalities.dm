@@ -97,7 +97,7 @@
 /datum/looping_sound/cloudedmonk_ambience
 	mid_sounds = 'sound/abnormalities/clouded_monk/run.ogg'
 	mid_length = 6 SECONDS
-	volume = 12.5 //SO ANNOYING
+	volume = 25
 	extra_range = -4
 
 /datum/looping_sound/orangetree_ambience
@@ -111,18 +111,6 @@
 	mid_sounds = 'sound/abnormalities/quietday/quietloop.ogg'
 	mid_length = 15 SECONDS
 	volume = 60
-	extra_range = -4
-
-/datum/looping_sound/redshoes_ambience
-	mid_sounds = 'sound/abnormalities/redshoes/RedShoes_Idle.ogg'
-	mid_length = 10 SECONDS
-	volume = 15
-	extra_range = -4
-
-/datum/looping_sound/distortedform
-	mid_sounds = 'sound/abnormalities/distortedform/DF_soundloop.ogg'
-	mid_length = 15 SECONDS
-	volume = 75
 	extra_range = -4
 
 // Ordeals

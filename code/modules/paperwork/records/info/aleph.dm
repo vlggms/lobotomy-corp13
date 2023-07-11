@@ -88,7 +88,6 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"Melting Love gave a lump of slime to the first employee (D-03-109-1) who performed any work other \than Repression with it. The lump healed D-03-109-1’s SP and improved their Temperance. However, further observation is needed to determine how the lump’s effects change according to the state of Melting Love.",
 		"When D-03-109-1 completed Repression Work, the Qliphoth Counter lowered.",
-		"When D-03-109-1 completed work on Melting Love, and the work result was Good, the Qliphoth Counter increased by 1 with a low probability.",
 		"The Qliphoth Counter dropped to 0 when D-03-109-1 died.",
 		"NOTICE: D-03-109-1 <strong>does not</strong> appear to carry any infectious agents.")
 
@@ -155,10 +154,10 @@
 		"When the Qlipthoth counter reached 0, the faciltiy experienced unusual weather that persisted indoors.",
 		"When the work result was bad, the Qliphoth counter decreased by one.")
 	abno_work_rates = list(
-			ABNORMALITY_WORK_INSTINCT = "High during \"Summer\" and Common during \"Spring\"",
-			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and Common during \"Winter\"",
-			ABNORMALITY_WORK_ATTACHMENT = "High during \"Autumn\" and Common during \"Summer\"",
-			ABNORMALITY_WORK_REPRESSION = "High during \"Winter\" and Common during \"Autumn\"")
+			ABNORMALITY_WORK_INSTINCT = "High during \"Spring\" and \"Summer\"",
+			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and \"Winter\"",
+			ABNORMALITY_WORK_ATTACHMENT = "High during \"Summer\" and \"Autumn\"",
+			ABNORMALITY_WORK_REPRESSION = "High during \"Autumn\" and \"Winter\"")
 	abno_work_damage_type = "White/Red/Black/Pale"
 	abno_breach_damage_type = "White/Red/Black/Pale"
 	abno_resistances = list(
@@ -182,7 +181,7 @@
 // The Crying Children
 /obj/item/paper/fluff/info/aleph/crying_children
 	abno_type = /mob/living/simple_animal/hostile/abnormality/crying_children
-	abno_code = "O-01-430" // Philip's Birthday April 30th
+	abno_code = "O-01-430" // Philip's Birthday April 30th 
 	abno_info = list(
 		"When 2 employees died, the Qliphoth Counter decreased.",
 		"When Attachment work was completed, the Qliphoth Counter increased.",
@@ -192,45 +191,15 @@
 		"When the abnormality breached, it sets the whole facility ablaze over time. Reducing it's health seems to delay the process.",
 		"When the abnormality split up into 3 children, all employees were cursed. Killing the children seems to lift said curse.",
 		"When all of the children died, they unite again and become stronger.")
-
-//Army in Black
-/obj/item/paper/fluff/info/aleph/army
-	abno_type = /mob/living/simple_animal/hostile/abnormality/army
-	abno_code = "D-01-106"
+		
+// Waxing of the Black Sun
+/obj/item/paper/fluff/info/aleph/black_sun
+	abno_type = /mob/living/simple_animal/hostile/abnormality/black_sun
+	abno_code = "M-03-192"
 	abno_info = list(
-	"Army in Black can be ordered to protect an employee. However, it should be noted that the Qliphoth Counter lowered when the order was given.",
-	"When Repression work was performed, the Qliphoth Counter lowered.",
-	"The Qliphoth Counter lowered after every 2 employee deaths.",
-	"When the work result was Bad, the Qliphoth Counter decreased.",
-	"When an Abnormality was suppressed, the Qliphoth Counter raised.")
-
-// Distorted Form
-/obj/item/paper/fluff/info/aleph/distortedform
-	abno_type = /mob/living/simple_animal/hostile/abnormality/distortedform
-	abno_code = "O-06-38"
-	abno_info = list(
-		"WARNING: O-06-38 will periodically take on the appearance of another abnormality. The abnormality will reveal its true form when work is attempted.",
-		"When an employee with Justice 4 or lower finished their work, or work result was a failure, O-06-38 let out a horrifying screech.",
-		"Other abnormalities became agitated by the screech. The situation needed to be handled as a Qliphoth Meltdown.",
-		"If agitated abnormalities were not worked on, multiple abnormalities breached simultaneously.",
-		"When the work result was Good, the Qliphoth Counter increased by 1.",
-		"When a Qliphoth Meltdown was ignored, the Qliphoth Counter decreased by 1.")
-	abno_work_damage_type = "All"
-	abno_breach_damage_type = "Random"
-
-// Nobody Is
-/obj/item/paper/fluff/info/aleph/nobodyis
-	abno_type = /mob/living/simple_animal/hostile/abnormality/nobody_is
-	abno_code = "O-06-180"
-	abno_info = list(
-		"The lower the working employee’s Prudence, the lower the success rate was and the less stable the work was.",
-		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
-		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
-		"When the selected employee completed work, they were assimilated into the abnormality.")
-	abno_breach_damage_count = "Extreme" // Once it transforms its over
-	abno_resistances = list(
-		RED_DAMAGE = "Endured/Endured/Resistant",
-		WHITE_DAMAGE = "Endured/Endured/Resistant",
-		BLACK_DAMAGE = "Resistant/Immune/Immune",
-		PALE_DAMAGE = "Weak/Normal/Endured")
+		"This abnormality will rise over the course of 20 minutes",
+		"As time goes on, this abnormality boosts your stats significantly",
+		"Working on this abnormality will start the next meltdown.",
+		"After some time, Waxing of The Black Sun will soak the floor of the facility with blood, causing employees to be filled with rage.",
+		"After The Black Sun reaches the zenith, all abnormalities will breach"
+		)

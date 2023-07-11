@@ -11,10 +11,10 @@
 		return TRUE
 
 /obj/item/book/granter/language_book/on_reading_start(mob/user)
-	to_chat(user, span_notice("You start leafing through the language book..."))
+	to_chat(user, "<span class='notice'>You start leafing through the language book...</span>")
 
 /obj/item/book/granter/language_book/on_reading_finished(mob/user)
-	to_chat(user, span_notice("You feel you've learned enough to understand [language_name]!"))
+	to_chat(user, "<span class='notice'>You feel you've learned enough to understand [language_name]!</span>")
 	user.grant_language(learnable_language)
 	var/obj/item/organ/tongue/T = user.getorgan(/obj/item/organ/tongue)
 	if(!(learnable_language in T.languages_possible))
@@ -24,12 +24,12 @@
 	desc += " The pages are blank. Seems like copy protection."
 
 /obj/item/book/granter/language_book/recoil(mob/user)
-	to_chat(user, span_notice("All the pages are blank, how useless!"))
+	to_chat(user, "<span class='notice'>All the pages are blank, how useless!</span>")
 
 /obj/item/book/granter/language_book/onlearned(mob/user)
 	..()
 	if(oneuse)
-		to_chat(user, span_notice("The words on the pages fade and vanish!"))
+		to_chat(user, "<span class='notice'>The words on the pages fade and vanish!</span>")
 
 /obj/item/book/granter/language_book/common
 	name = "Ashwalker's Guide To The Galaxy"

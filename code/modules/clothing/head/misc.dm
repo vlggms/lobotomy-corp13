@@ -390,16 +390,13 @@
 /obj/item/clothing/head/frenchberet/equipped(mob/M, slot)
 	. = ..()
 	if (slot == ITEM_SLOT_HEAD)
-		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-		ADD_TRAIT(M, TRAIT_GARLIC_BREATH, type)
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
-		REMOVE_TRAIT(M, TRAIT_GARLIC_BREATH, type)
 
 /obj/item/clothing/head/frenchberet/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
-	REMOVE_TRAIT(M, TRAIT_GARLIC_BREATH, type)
 
 /obj/item/clothing/head/frenchberet/proc/handle_speech(datum/source, mob/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -492,3 +489,21 @@
 	flags_inv = 0
 	armor = list(MELEE = 30, BULLET = 15, LASER = 30, ENERGY = 40, BOMB = 25, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
 	strip_delay = 140
+
+/obj/item/clothing/head/ego_hat
+	name = "ego hat"
+	desc = "an ego hat that you shouldn't be seeing!"
+	icon = 'icons/obj/clothing/ego_gear/head.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
+	icon_state = ""
+	flags_inv = HIDEMASK
+
+/obj/item/clothing/head/ego_hat/Destroy()
+	dropped()
+	return ..()
+
+/obj/item/clothing/head/ego_hat/equipped(mob/user, slot)
+	if(slot != ITEM_SLOT_HEAD)
+		Destroy()
+		return
+	. = ..()

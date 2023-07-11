@@ -4,7 +4,6 @@
 	desc = "A thoroughly aged suit of samurai style armor with a V shaped crest on the helmet. It appears desuetude."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
-	portrait = "crumbling_armor"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 3
@@ -13,15 +12,15 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
+			)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/daredevil,
-		/datum/ego_datum/armor/daredevil,
-	)
+		/datum/ego_datum/armor/daredevil
+		)
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -38,7 +37,6 @@
 		icon_state = "megalovania"
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
@@ -78,21 +76,21 @@
 				var/datum/ego_gifts/phase2/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("How much more will it take?"))
+				to_chat(user, "<span class='userdanger'>How much more will it take?</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase2)) // From Recklessness to Foolishness
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
 				var/datum/ego_gifts/phase3/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("You need more strength!"))
+				to_chat(user, "<span class='userdanger'>You need more strength!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase3)) // From Foolishness to Suicidal
 				playsound(get_turf(user), 'sound/abnormalities/crumbling/megalovania.ogg', 50, 0, 2)
 				var/datum/ego_gifts/phase4/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("DETERMINATION."))
+				to_chat(user, "<span class='userdanger'>DETERMINATION.</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/phase4)) // You can progress no further down this fool-hardy path
 				return
@@ -100,29 +98,29 @@
 			var/datum/ego_gifts/phase1/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
-			to_chat(user, span_userdanger("Just a drop of blood is what it takes..."))
+			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			to_chat(user, "<span class='userdanger'>Just a drop of blood is what it takes...</span>")
 		else
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage)) // From Courage to Recklessness
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
 				var/datum/ego_gifts/recklessCourage/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("Your muscles flex with strength!"))
+				to_chat(user, "<span class='userdanger'>Your muscles flex with strength!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessCourage)) // From Recklessness to Foolishness
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
 				var/datum/ego_gifts/recklessFoolish/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("You feel like you could take on the world!"))
+				to_chat(user, "<span class='userdanger'>You feel like you could take on the world!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/recklessFoolish)) // From Foolishness to Suicidal
 				playsound(get_turf(user), 'sound/machines/clockcult/stargazer_activate.ogg', 50, 0, 2)
 				var/datum/ego_gifts/foolish/CAEG = new
 				CAEG.datum_reference = datum_reference
 				user.Apply_Gift(CAEG)
-				to_chat(user, span_userdanger("You are a God among men!"))
+				to_chat(user, "<span class='userdanger'>You are a God among men!</span>")
 				return
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/foolish)) // You can progress no further down this fool-hardy path
 				return
@@ -130,8 +128,8 @@
 			var/datum/ego_gifts/courage/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
-			to_chat(user, span_userdanger("A strange power flows through you!"))
+			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			to_chat(user, "<span class='userdanger'>A strange power flows through you!</span>")
 	return
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/ZeroQliphoth(mob/living/carbon/human/user)
@@ -145,17 +143,17 @@
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/MeltdownEffect(mob/living/carbon/human/user)
 	var/list/potentialmarked = list()
 	var/list/marked = list()
+	var/mob/living/Y
 	sound_to_playing_players_on_level('sound/abnormalities/crumbling/globalwarning.ogg', 25, zlevel = z)
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+		if(faction_check_mob(Y, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
 		potentialmarked += L
-		to_chat(L, span_userdanger("You feel an overwhelming sense of dread."))
+		to_chat(L, "<span class='userdanger'>You feel an overwhelming sense of dread.</span>")
 
 	numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	sound_to_playing_players_on_level('sound/abnormalities/crumbling/warning.ogg', 50, zlevel = z)
-	var/mob/living/Y
 	for(var/i = numbermarked, i>=1, i--)
 		if(potentialmarked.len <= 0)
 			break
@@ -168,7 +166,7 @@
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(Y in marked)
-		to_chat(Y, span_userdanger("Show me that you can stand your ground!"))
+		to_chat(Y, "<span class='userdanger'>Show me that you can stand your ground!</span>")
 		new /obj/effect/temp_visual/markedfordeath(get_turf(Y))
 		Y.apply_status_effect(STATUS_EFFECT_COWARDICE)
 
@@ -176,9 +174,8 @@
 /datum/status_effect/cowardice
 	id = "cowardice"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 1 SECONDS
+	duration = 10		//Lasts 1 second
 	alert_type = /atom/movable/screen/alert/status_effect/cowardice
-	var/punishment_damage = 25
 
 /atom/movable/screen/alert/status_effect/cowardice
 	name = "Cowardice"
@@ -187,7 +184,7 @@
 	icon_state = "crumbling"
 
 /datum/status_effect/cowardice/on_apply()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Punishment))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/Punishment)
 	return..()
 
 /datum/status_effect/cowardice/on_remove()
@@ -196,17 +193,17 @@
 
 /datum/status_effect/cowardice/proc/Punishment()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/status_holder = owner
-	if(!istype(status_holder))
+	var/mob/living/carbon/human/H = owner
+	if(!istype(H))
 		return
-	var/obj/item/bodypart/head/holders_head = owner.get_bodypart("head")
-	if(!istype(holders_head))
+	var/obj/item/bodypart/head/head = owner.get_bodypart("head")
+	if(!istype(head))
 		return FALSE
-	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-	if(status_holder.health < 0)
-		holders_head.dismember()
-	new /obj/effect/temp_visual/slice(get_turf(status_holder))
+	playsound(get_turf(H), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
+	H.apply_damage(25, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(H.health < 0)
+		head.dismember()
+	new /obj/effect/temp_visual/slice(get_turf(H))
 	qdel(src)
 
 

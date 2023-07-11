@@ -23,7 +23,8 @@
 	health = 4000
 	maxHealth = 4000
 	obj_damage = 600
-	damage_coeff = list(RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
+	armortype = WHITE_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -33,18 +34,18 @@
 	start_qliphoth = 1
 	can_breach = TRUE
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-		ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-		ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-		ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55)
+						)
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/seasons,
-		/datum/ego_datum/armor/seasons,
-	)
+		/datum/ego_datum/armor/seasons
+		)
 
 	gift_type =  /datum/ego_gifts/seasons
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -55,50 +56,42 @@
 		"summer" = list(/datum/weather/heatwave, RED_DAMAGE, "Summer God", "Summer Deity, \"Great Heat\" T'cau", "A hot-headed spirit.","He looks angry."),
 		"fall" = list(/datum/weather/fog, BLACK_DAMAGE, "Autumn God", "Fall Deity, \"Hegemon\" Ber","A calm and collected spirit cloaked in leaves.","A powerful tree spirit."),
 		"winter" = list(/datum/weather/freezing_wind, PALE_DAMAGE, "Winter God", "Winter Deity, \"Quietus\" Fuyuryou","A regal-looking snow spirit.","This winter brings bitter cold.")
-	)
+		)
 
 	var/list/breaching_stats = list(
 		"spring" = list('sound/creatures/venus_trap_hurt.ogg', 'sound/abnormalities/seasons/spring_change.ogg', /obj/projectile/season_projectile/spring, /obj/effect/season_effect/spring, /obj/effect/season_effect/breath/spring, /obj/effect/season_warn/spring, /obj/effect/season_warn/spring),
 		"summer" = list('sound/abnormalities/seasons/summer_attack.ogg', 'sound/abnormalities/seasons/summer_change.ogg', /obj/projectile/season_projectile/summer, /obj/effect/season_effect/summer, /obj/effect/season_effect/breath/summer, /obj/effect/season_warn/summer, /obj/effect/season_warn/summer),
 		"fall" = list('sound/abnormalities/seasons/fall_attack.ogg', 'sound/abnormalities/seasons/fall_change.ogg', /obj/projectile/season_projectile/fall, /obj/effect/season_effect/fall, /obj/effect/season_effect/breath/fall, /obj/effect/season_warn/fall, /obj/effect/season_warn/fall),
 		"winter" = list('sound/abnormalities/seasons/winter_attack.ogg', 'sound/abnormalities/seasons/winter_change.ogg', /obj/projectile/season_projectile/winter, /obj/effect/season_effect/winter, /obj/effect/season_effect/breath/winter, /obj/effect/season_warn/winter, /obj/effect/season_warn/winterspikes)
-	)
+		)
 
 	var/list/modular_work_chance = list( //You can work anything on it! Just not all at once.
-		"spring" = list(
-			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
-			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-			ABNORMALITY_WORK_ATTACHMENT = 0,
-			ABNORMALITY_WORK_REPRESSION = 0,
-			),
+		"spring" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_ATTACHMENT = 0,
+						ABNORMALITY_WORK_REPRESSION = 0),
 
-		"summer" = list(
-			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-			ABNORMALITY_WORK_INSIGHT = 0,
-			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
-			ABNORMALITY_WORK_REPRESSION = 0,
-			),
+		"summer" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_INSIGHT = 0,
+						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_REPRESSION = 0),
 
-		"fall" = list(
-			ABNORMALITY_WORK_INSTINCT = 0,
-			ABNORMALITY_WORK_INSIGHT = 0,
-			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40),
-			),
+		"fall" = list(ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = 0,
+						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55)),
 
-		"winter" = list(
-			ABNORMALITY_WORK_INSTINCT = 0,
-			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
-			ABNORMALITY_WORK_ATTACHMENT = 0,
-			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
-			)
+		"winter" = list(ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_ATTACHMENT = 0,
+						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55))
 		)
 
 	var/list/modular_damage_coeff = list(
-		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
-		"summer" = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1), //Summer is tanky
-		"fall" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
-		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
+		"spring" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
+		"summer" = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5),
+		"fall" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
+		"winter" = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
 
 	//Work Vars
@@ -121,8 +114,8 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
-		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle,
-	)
+		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
+		)
 
 /datum/action/cooldown/seasons_slam
 	name = "Slam"
@@ -148,23 +141,23 @@
 	name = "Toggle Breath"
 	button_icon_state = "generic_toggle0"
 	chosen_attack_num = 2
-	chosen_message = span_colossus("You won't use your breath anymore.")
+	chosen_message = "<span class='colossus'>You won't use your breath anymore.</span>"
 	button_icon_toggle_activated = "generic_toggle1"
 	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now breath a cone of elemental energy.")
+	toggle_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
 	button_icon_toggle_deactivated = "generic_toggle0"
 
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/PostSpawn()
 	. = ..()
 	dir = SOUTH
 	Transform()
-	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if((locate(/obj/effect/season_turf) in range(1, src)))
 		return
 	Downgrade()
@@ -178,31 +171,28 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(CheckWeather())
-		to_chat(user, span_warning("The abnormality seems to be ignoring you!"))
+		to_chat(user, "<span class='warning'>The abnormality seems to be ignoring you!</span>")
 		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(downgraded)
 		return
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/seasons/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(!safe)
-		to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
+		to_chat(user, "<span class='nicegreen'>The abnormality seems to be satisfied, at least for now...</span>")
 		safe = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(!safe)
 		if(prob(25))
-			to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
+			to_chat(user, "<span class='nicegreen'>The abnormality seems to be satisfied, at least for now...</span>")
 			safe = TRUE
 			return
-		to_chat(user, span_warning("The abnormality seems to be indifferent to this attempt at work, perhaps you should try again?"))
+		to_chat(user, "<span class='warning'>The abnormality seems to be indifferent to this attempt at work, perhaps you should try again?</span>")
 
 /mob/living/simple_animal/hostile/abnormality/seasons/WorkChance(mob/living/carbon/human/user, chance) //suspect this does not work
 	if(downgraded)
@@ -214,13 +204,14 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
 	var/list/new_work_chances = modular_work_chance[current_season]
+	var/list/new_damage_coeff = modular_damage_coeff[current_season]
 	work_chances = new_work_chances.Copy()
 	datum_reference.available_work = work_chances
-	ChangeResistances(modular_damage_coeff[current_season])
+	damage_coeff = new_damage_coeff.Copy()
 	work_damage_type = season_stats[current_season][2]
+	armortype = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
-	portrait = "[current_season]_deity"
 	name = season_stats[current_season][4]
 	desc = season_stats[current_season][6]
 	attack_sound = breaching_stats[current_season][1]
@@ -229,7 +220,6 @@
 	projectiletype = breaching_stats[current_season][3]
 	if(downgraded)
 		icon_state = "[current_season]_mini"
-		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
 	if(current_season == "winter")
@@ -275,9 +265,9 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/WorkCheck()
 	if(!CheckWeather() && !safe)
 		StartWeather()
-		work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+		work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 		return
-	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if(safe)
 		if(CheckWeather())
 			SSweather.end_weather(season_stats[current_season][1])
@@ -291,8 +281,8 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
 	if(downgraded)
-		addtimer(CALLBACK(src, PROC_REF(Upgrade)), 10 SECONDS)
-		addtimer(CALLBACK(src, PROC_REF(EndWeather)), 60 SECONDS)
+		addtimer(CALLBACK(src, .proc/Upgrade), 10 SECONDS)
+		addtimer(CALLBACK(src, .proc/EndWeather), 60 SECONDS)
 	if(!CheckWeather())
 		StartWeather()
 
@@ -303,12 +293,12 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user)
 	if(downgraded)
 		Upgrade()
 		ZeroQliphoth()
 		return
-	. = ..()
+	..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 
@@ -419,7 +409,7 @@
 				continue
 			hit_list += L
 			L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-			to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
+			to_chat(L, "<span class='userdanger'>You have been hit by [src]'s breath attack!</span>")
 			if(ishuman(L))
 				Finisher(L)
 		SLEEP_CHECK_DEATH(1)
@@ -460,8 +450,8 @@
 				continue
 			if(T.density)
 				continue
-			addtimer(CALLBACK(src, PROC_REF(PulseWarn), T), (3 * (i+1)) + 0.1 SECONDS)
-			addtimer(CALLBACK(src, PROC_REF(PulseHit), T), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, .proc/PulseWarn, T), (3 * (i+1)) + 0.1 SECONDS)
+			addtimer(CALLBACK(src, .proc/PulseHit, T), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/PulseWarn(turf/T)
 	var/attacktype = breaching_stats[current_season][6]
@@ -504,16 +494,16 @@
 	name = "thunderstorm"
 	immunity_type = "rain"
 	desc = "Extreme thunderstorms "
-	telegraph_message = span_warning("It has begun to rain.")
+	telegraph_message = "<span class='warning'>It has begun to rain.</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "light_rain"
-	weather_message = span_userdanger("<i>The rain starts coming down hard!</i>")
+	weather_message = "<span class='userdanger'><i>The rain starts coming down hard!</i></span>"
 	weather_overlay = "rain_storm"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = span_boldannounce("The rain starts to let up.")
+	end_message = "<span class='boldannounce'>The rain starts to let up.</span>"
 	end_overlay = "light_rain"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -525,23 +515,21 @@
 		var/turf/open/OT = get_turf(L)
 		if(isopenturf(OT))
 			OT.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
-	if(prob(1))
-		new /obj/effect/thunderbolt/seasons(get_turf(L)) //Thunder!
 
 /datum/weather/heatwave //Summer weather, sets you on fire rarely.
 	name = "heatwaves"
 	immunity_type = "heatwave"
 	desc = "Extreme heatwaves caused by an abnormality."
-	telegraph_message = span_warning("The temperature suddenly skyrockets!")
+	telegraph_message = "<span class='warning'>The temperature suddenly skyrockets!</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "light_ash"
-	weather_message = span_userdanger("<i>It's too hot!</i>")
+	weather_message = "<span class='userdanger'><i>It's too hot!</i></span>"
 	weather_overlay = "heavy_ash"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = span_boldannounce("The temperature starts to return to normal.")
+	end_message = "<span class='boldannounce'>The temperature starts to return to normal.</span>"
 	end_overlay = "light_ash"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -549,38 +537,25 @@
 /datum/weather/heatwave/weather_act(mob/living/carbon/human/L)
 	if(!ishuman(L))
 		return
-	if(prob(3))
+	if(prob(1))
 		L.adjust_fire_stacks(rand(0.1, 1))
 		L.IgniteMob()
-		to_chat(L, span_warning("You are burning alive!"))
-	if(prob(1))
-		SpawnFire(L)
-
-/datum/weather/heatwave/proc/SpawnFire(mob/living/carbon/human/L) //Randomly spawn burning tiles near players
-	set waitfor = FALSE
-	for(var/turf/open/T in view(3, L))
-		if(prob(10))
-			if(prob(66))
-				sleep(rand(1,5))
-			new /obj/effect/hotspot(T)
-			for(var/mob/living/M in T.contents)
-				M.adjust_fire_stacks(3)
-				M.IgniteMob()
+		to_chat(L, "<span class='warning'>You are burning alive!</span>")
 
 /datum/weather/fog //Fall weather, causes nearsightedness.
 	name = "fog"
 	immunity_type = "fog"
 	desc = "An extreme surplus of humidity caused by an abnormality."
-	telegraph_message = span_warning("The air is becoming damp.")
+	telegraph_message = "<span class='warning'>The air is becoming damp.</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "light_fog"
-	weather_message = span_userdanger("<i>You can't see anything with all this fog in the way!</i>")
+	weather_message = "<span class='userdanger'><i>You can't see anything with all this fog in the way!</i></span>"
 	weather_overlay = "heavy_fog"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = span_boldannounce("The fog seems to be going away.")
+	end_message = "<span class='boldannounce'>The fog seems to be going away.</span>"
 	end_overlay = "light_pollen"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -589,12 +564,7 @@
 	if(!ishuman(L))
 		return
 	if(prob(1))
-		for(var/turf/open/T in view(3, L))
-			if(prob(25))
-				var/datum/effect_system/smoke_spread/S = new
-				S.set_up(3, T)
-				S.start()
-				return
+		L.emote("cough")
 	if(L.has_status_effect(STATUS_EFFECT_FOGBOUND))
 		return
 	L.apply_status_effect(STATUS_EFFECT_FOGBOUND)
@@ -608,16 +578,16 @@
 	name = "freezing wind"
 	immunity_type = "freezing"
 	desc = "An extreme snowstorm caused by an abnormality."
-	telegraph_message = span_warning("The temperature suddenly drops!")
+	telegraph_message = "<span class='warning'>The temperature suddenly drops!</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "snowfall_calm"
-	weather_message = span_userdanger("<i>It's so cold!</i>")
+	weather_message = "<span class='userdanger'><i>It's so cold!</i></span>"
 	weather_overlay = "snowfall_blizzard"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = span_boldannounce("The snow starts to let up.")
+	end_message = "<span class='boldannounce'>The snow starts to let up.</span>"
 	end_overlay = "snowfall_calm"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -630,7 +600,7 @@
 	var/randomslowdown = rand(0.5,1)
 	L.apply_status_effect(STATUS_EFFECT_FREEZING)
 	L.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/freezing, multiplicative_slowdown = randomslowdown)
-	to_chat(L, span_warning("The freezing wind chills your bones!"))
+	to_chat(L, "<span class='warning'>The freezing wind chills your bones!</span>")
 
 /datum/weather/freezing_wind/end()
 	..()
@@ -642,7 +612,7 @@
 /datum/status_effect/freezing
 	id = "freezing"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 30 SECONDS
+	duration = 300
 	alert_type = /atom/movable/screen/alert/status_effect/freezing
 
 /atom/movable/screen/alert/status_effect/freezing
@@ -654,7 +624,7 @@
 /datum/status_effect/fogbound
 	id = "fogbound"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 30 SECONDS
+	duration = 300
 	alert_type = /atom/movable/screen/alert/status_effect/fogbound
 
 /datum/status_effect/fogbound/on_apply()
@@ -690,13 +660,13 @@
 		"spring" = list("razorgrass", "A thick layer of razor sharp foilage that never seems to die down."),
 		"summer" = list("volcanic rock","Some incredibly hot igneus rock."),
 		"fall" = list("swampy grass","A thick marsh, deep enough that you need to wear boots."),
-		"winter" = list("snow","A patch of snow."),
-	)
+		"winter" = list("snow","A patch of snow.")
+		)
 	var/current_season
 
 /obj/effect/season_turf/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
 	Transform()
 
 /obj/effect/season_turf/proc/Transform()
@@ -737,16 +707,16 @@
 	switch(current_season)
 		if("spring")
 			if(prob(5))
-				to_chat(H, span_warning("Your legs are cut by brambles in the grass!"))
+				to_chat(H, "<span class='warning'>Your legs are cut by brambles in the grass!</span>")
 				H.apply_damage(5, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
 		if("summer")
 			if(icon_state == "lava")
-				to_chat(H, span_warning("You stumbled into a pool of lava!"))
+				to_chat(H, "<span class='warning'>You stumbled into a pool of lava!</span>")
 				H.adjust_fire_stacks(rand(0.1, 1))
 				H.IgniteMob()
 		if("fall")
 			if(prob(5))
-				to_chat(H, span_warning("You sink into the marsh!"))
+				to_chat(H, "<span class='warning'>You sink into the marsh!</span>")
 				animate(H, alpha = 255,pixel_x = 0, pixel_z = -3, time = 0.5 SECONDS)
 				H.pixel_z = -3
 				H.Immobilize(0.5 SECONDS)
@@ -755,7 +725,7 @@
 		if("winter")
 			if(icon_state == "ice")
 				if(prob(25))
-					to_chat(H, span_warning("You slip on the ice!"))
+					to_chat(H, "<span class='warning'>You slip on the ice!</span>")
 					H.slip(0, null, SLIDE_ICE, 0, FALSE) //might need to replace this as stuns are pretty annoying...
 					H.Immobilize(0.5 SECONDS)
 
@@ -809,7 +779,7 @@
 
 /obj/effect/season_effect/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(pop)), 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/pop), 0.5 SECONDS)
 
 /obj/effect/season_effect/proc/pop()
 	if(!locate(/obj/effect/season_turf/temporary) in get_turf(src))
@@ -878,10 +848,5 @@
 /obj/effect/season_effect/breath/spring/Initialize()
 	. = ..()
 	icon_state = pick("Light1", "Light1", "Light3")
-
-/obj/effect/thunderbolt/seasons
-
-/obj/effect/thunderbolt/seasons/Convert(mob/living/carbon/human/H) //haha, it doesn't actually convert.
-	return
 
 #undef SEASONS_SLAM_COOLDOWN

@@ -4,21 +4,20 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "cube"
 	icon_living = "cube"
-	portrait = "cube"
 	maxHealth = 50
 	health = 50
 	is_flying_animal = TRUE
 	threat_level = TETH_LEVEL
 	move_to_delay = 6
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 70,
-		ABNORMALITY_WORK_INSIGHT = 100,
-		ABNORMALITY_WORK_ATTACHMENT = 70,
-		ABNORMALITY_WORK_REPRESSION = 30,
-	)
+						ABNORMALITY_WORK_INSTINCT = 70,
+						ABNORMALITY_WORK_INSIGHT = 100,
+						ABNORMALITY_WORK_ATTACHMENT = 70,
+						ABNORMALITY_WORK_REPRESSION = 30,
+						)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	can_breach = TRUE
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
@@ -26,10 +25,10 @@
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 6
 
-/mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user)
+	..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, PROC_REF(die)), 60 SECONDS)
+	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/cube/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)

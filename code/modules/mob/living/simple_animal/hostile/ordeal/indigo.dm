@@ -1,5 +1,3 @@
-#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
-
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn
 	name = "unknown scout"
 	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
@@ -13,6 +11,7 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	melee_damage_lower = 10
 	melee_damage_upper = 12
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
@@ -20,9 +19,8 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
-	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
 	. = ..()
@@ -37,16 +35,10 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
-		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		//Would have made it based on biotypes but that has its own issues.
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth/2))
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -63,6 +55,7 @@
 	move_to_delay = 4
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
@@ -70,10 +63,8 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
-	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
-						/obj/item/stack/sheet/silk/indigo_simple = 2)
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
@@ -104,15 +95,10 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
-		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth/2))
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -148,14 +134,12 @@
 	health = 1500
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	rapid_melee = 1
 	melee_damage_lower = 13
 	melee_damage_upper = 17
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/indigo_elegant = 1,
-						/obj/item/stack/sheet/silk/indigo_advanced = 2,
-						/obj/item/stack/sheet/silk/indigo_simple = 4)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -172,9 +156,10 @@
 	icon_state = "adelheide"
 	icon_living = "adelheide"
 	melee_damage_type = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -189,9 +174,10 @@
 	icon_state = "maria"
 	icon_living = "maria"
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -200,7 +186,8 @@
 	icon_living = "jacques"
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	armortype = RED_DAMAGE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
 	name = "\proper Commander Silvina"
@@ -209,7 +196,8 @@
 	icon_living = "silvina"
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	armortype = PALE_DAMAGE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Found(atom/A) //every time she finds a sweeper that sweeper is compelled to follow her as family
@@ -273,12 +261,9 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth/2))
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -297,6 +282,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	move_to_delay = 3
 	speed = 3
 	rapid_melee = 2
@@ -308,7 +294,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
@@ -334,7 +320,8 @@
 	var/pissed_threshold = 16
 
 	//phase speedchange
-	var/phasespeedchange = -0.6
+	var/phase2speed = 2.4
+	var/phase3speed = 1.8
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
@@ -350,37 +337,30 @@
 			return TRUE
 	return ..()
 
-//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
-/mob/living/simple_animal/hostile/ordeal/indigo_midnight/ValueTarget(atom/target_thing)
-	//Higher brain functions have been turned off.
-	if(phase >= 3)
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/PickTarget(list/Targets)
+	//Default to normal targeting if already phase 3 or only have 1 target
+	if(phase >= 3 || Targets.len <= 1)
 		return ..()
+	for(var/i in Targets)
+		Targets[i] = ValueTarget(i)
+	return ReturnHighestValue(Targets)
 
-	. = ..()
-
+//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/ValueTarget(atom/target_thing, hate_value = 0)
 	if(isliving(target_thing))
 		var/mob/living/L = target_thing
-		//Hate for corpses since we eats them.
 		if(L.stat == DEAD)
-			. += 10
-		//Highest possible addition is + 9.9
+			return 100
+		hate_value += 1
 		if(iscarbon(L))
-			if(L.stat != DEAD && L.health <= (L.maxHealth * 0.6))
-				var/upper = L.maxHealth - HEALTH_THRESHOLD_DEAD
-				var/lower = L.health - HEALTH_THRESHOLD_DEAD
-				. += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
-
-	/*
-	Priority from greatest to least:
-	dead close: 90
-	close: 80
-	dead far: 40
-	far: 30
-	*/
+			hate_value += 10
+		if(L.health <= (L.maxHealth * 0.6))
+			hate_value += (10 * ( L.health / L.maxHealth ))
+	return hate_value
 
 //Stolen MOSB patrol code
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanStartPatrol()
-	return !(status_flags & GODMODE) && !target
+	return !(status_flags & GODMODE)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_reset()
 	. = ..()
@@ -416,11 +396,11 @@
 		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
 
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
-		return TRUE
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
 	//unsure if this patrol reset will cause the patrol cooldown even if there is not patrol path.
 	patrol_reset()
-	return FALSE
+	return
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
 	. = ..()
@@ -442,12 +422,9 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth*0.3))
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+	adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 	//Increase the Vore counter by 1
 	belly += 1
@@ -499,8 +476,9 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
-	SpeedChange(phasespeedchange)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
+	move_to_delay = phase2speed
+	speed = phase2speed
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -517,8 +495,9 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
-	SpeedChange(phasespeedchange)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
+	move_to_delay = phase3speed
+	speed = phase3speed
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -546,7 +525,7 @@
 			for(var/mob/living/carbon/human/L in T)
 				if(L == src || L.throwing)
 					continue
-				to_chat(L, span_userdanger("[src]'s ground slam shockwave sends you flying!"))
+				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				L.apply_damage(slam_damage, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -554,8 +533,6 @@
 			all_turfs -= T
 		sleep(delay)
 	slamming = FALSE
-
-#undef SWEEPER_TYPES
 
 /obj/effect/sweeperspawn
 	name = "bloodpool"
@@ -570,7 +547,7 @@
 
 /obj/effect/sweeperspawn/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(spawnscout)), 6)
+	addtimer(CALLBACK(src, .proc/spawnscout), 6)
 
 /obj/effect/sweeperspawn/proc/spawnscout()
 	new /mob/living/simple_animal/hostile/ordeal/indigo_spawn(get_turf(src))
@@ -589,10 +566,11 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = HARD_CRIT
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	melee_damage_lower = 21
 	melee_damage_upper = 24
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL

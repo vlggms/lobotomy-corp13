@@ -11,7 +11,7 @@
 	weather_immunities = list("ash")
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	mob_biotypes = MOB_ROBOTIC
-	death_sound = 'sound/voice/borg_deathsound.ogg'
+	deathsound = 'sound/voice/borg_deathsound.ogg'
 	speech_span = SPAN_ROBOT
 	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1 | RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	examine_cursor_icon = null
@@ -97,7 +97,7 @@
 	if(in_cooldown)
 		return
 
-	addtimer(CALLBACK(src, PROC_REF(show_alarms)), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/show_alarms), 3 SECONDS)
 
 /mob/living/silicon/proc/show_alarms()
 	if(alarms_to_show.len < 5)
@@ -163,7 +163,7 @@
 
 /mob/living/silicon/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, span_alert("[p_their(TRUE)] outer shell is too tough."))
+		to_chat(user, "<span class='alert'>[p_their(TRUE)] outer shell is too tough.</span>")
 	return FALSE
 
 /proc/islinked(mob/living/silicon/robot/bot, mob/living/silicon/ai/ai)
@@ -207,7 +207,7 @@
 
 	if (href_list["printlawtext"]) // this is kinda backwards
 		if (href_list["dead"] && (!isdead(usr) && !usr.client.holder)) // do not print deadchat law notice if the user is now alive
-			to_chat(usr, span_warning("You cannot view law changes that were made while you were dead."))
+			to_chat(usr, "<span class='warning'>You cannot view law changes that were made while you were dead.</span>")
 			return
 		to_chat(usr, href_list["printlawtext"])
 
@@ -337,7 +337,7 @@
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
 	if(!radio)
-		to_chat(src, span_alert("Radio not detected."))
+		to_chat(src, "<span class='alert'>Radio not detected.</span>")
 		return
 
 	//Ask the user to pick a channel from what it has available.
@@ -356,7 +356,7 @@
 				radiomod = ":" + key
 				break
 
-	to_chat(src, span_notice("Automatic announcements [Autochan == "None" ? "will not use the radio." : "set to [Autochan]."]"))
+	to_chat(src, "<span class='notice'>Automatic announcements [Autochan == "None" ? "will not use the radio." : "set to [Autochan]."]</span>")
 
 /mob/living/silicon/put_in_hand_check() // This check is for borgs being able to receive items, not put them in others' hands.
 	return FALSE
@@ -391,11 +391,11 @@
 		return
 	sensors_on = !sensors_on
 	if (!sensors_on)
-		to_chat(src, span_notice("Sensor overlay deactivated."))
+		to_chat(src, "<span class='notice'>Sensor overlay deactivated.</span>")
 		remove_sensors()
 		return
 	add_sensors()
-	to_chat(src, span_notice("Sensor overlay activated."))
+	to_chat(src, "<span class='notice'>Sensor overlay activated.</span>")
 
 /mob/living/silicon/proc/GetPhoto(mob/user)
 	if (aicamera)

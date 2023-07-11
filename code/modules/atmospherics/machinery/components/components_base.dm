@@ -26,7 +26,7 @@
 	. = ..()
 
 	if(hide)
-		RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(hide_pipe))
+		RegisterSignal(src, COMSIG_OBJ_HIDE, .proc/hide_pipe)
 
 // Iconnery
 
@@ -183,7 +183,7 @@
 /obj/machinery/atmospherics/components/ui_status(mob/user)
 	if(allowed(user))
 		return ..()
-	to_chat(user, span_danger("Access denied."))
+	to_chat(user, "<span class='danger'>Access denied.</span>")
 	return UI_CLOSE
 
 // Tool acts

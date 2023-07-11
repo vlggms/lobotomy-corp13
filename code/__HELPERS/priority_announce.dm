@@ -2,11 +2,6 @@
 	if(!text)
 		return
 
-	// All your text is gone. Enjoy.
-	var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
-	if(istype(I))
-		text = Gibberish(text, TRUE, I.gibberish_value)
-
 	var/announcement
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()

@@ -12,18 +12,12 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/smartfridge
-	/// What path boards used to construct it should build into when dropped. Needed so we don't accidentally have them build variants with items preloaded in them.
-	var/base_build_path = /obj/machinery/smartfridge
-	/// Maximum number of items that can be loaded into the machine
+
+	var/base_build_path = /obj/machinery/smartfridge ///What path boards used to construct it should build into when dropped. Needed so we don't accidentally have them build variants with items preloaded in them.
 	var/max_n_of_items = 1500
-	/// If the AI is allowed to retrive items within the machine
 	var/allow_ai_retrieve = FALSE
-	/// List of items that the machine starts with upon spawn
 	var/list/initial_contents
-	/// If the machine shows an approximate number of its contents on its sprite
 	var/visible_contents = TRUE
-	/// Unique icon name for light mask.
-	var/light_icon_state = "smartfridge-light-mask"
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -47,41 +41,36 @@
 		. += "<span class='notice'>The status display reads: This unit can hold a maximum of <b>[max_n_of_items]</b> items.</span>"
 
 /obj/machinery/smartfridge/update_icon_state()
-	if(machine_stat)
-		icon_state = "[initial(icon_state)]-off"
-		return ..()
-
-	if(!visible_contents)
-		icon_state = "[initial(icon_state)]"
-		return ..()
-
-	var/list/shown_contents = contents - component_parts
-	switch(shown_contents.len)
-		if(0)
-			icon_state = "[initial(icon_state)]"
-		if(1 to 25)
-			icon_state = "[initial(icon_state)]1"
-		if(26 to 75)
-			icon_state = "[initial(icon_state)]2"
-		if(76 to INFINITY)
-			icon_state = "[initial(icon_state)]3"
-	return ..()
-
-/obj/machinery/smartfridge/update_overlays()
-	. = ..()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(!machine_stat)
-		SSvis_overlays.add_vis_overlay(src, icon, light_icon_state, EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		SSvis_overlays.add_vis_overlay(src, icon, "smartfridge-light-mask", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		if (visible_contents)
+			switch(contents.len)
+				if(0)
+					icon_state = "[initial(icon_state)]"
+				if(1 to 25)
+					icon_state = "[initial(icon_state)]1"
+				if(26 to 75)
+					icon_state = "[initial(icon_state)]2"
+				if(76 to INFINITY)
+					icon_state = "[initial(icon_state)]3"
+		else
+			icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-off"
+
+
 
 /*******************
 *   Item Adding
 ********************/
 
-/obj/machinery/smartfridge/attackby(obj/item/O, mob/living/user, params)
+/obj/machinery/smartfridge/attackby(obj/item/O, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, O))
 		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
-		SStgui.update_uis(src)
+		updateUsrDialog()
 		return
 
 	if(default_pry_open(O))
@@ -92,20 +81,20 @@
 		return
 
 	if(default_deconstruction_crowbar(O))
-		SStgui.update_uis(src)
+		updateUsrDialog()
 		return
 
 	if(!machine_stat)
-		var/list/shown_contents = contents - component_parts
-		if(shown_contents.len >= max_n_of_items)
+
+		if(contents.len >= max_n_of_items)
 			to_chat(user, "<span class='warning'>\The [src] is full!</span>")
 			return FALSE
 
 		if(accept_check(O))
 			load(O)
 			user.visible_message("<span class='notice'>[user] adds \the [O] to \the [src].</span>", "<span class='notice'>You add \the [O] to \the [src].</span>")
-			SStgui.update_uis(src)
-			if(visible_contents)
+			updateUsrDialog()
+			if (visible_contents)
 				update_icon()
 			return TRUE
 
@@ -113,15 +102,15 @@
 			var/obj/item/storage/P = O
 			var/loaded = 0
 			for(var/obj/G in P.contents)
-				if(shown_contents.len >= max_n_of_items)
+				if(contents.len >= max_n_of_items)
 					break
 				if(accept_check(G))
 					load(G)
 					loaded++
-			SStgui.update_uis(src)
+			updateUsrDialog()
 
 			if(loaded)
-				if(shown_contents.len >= max_n_of_items)
+				if(contents.len >= max_n_of_items)
 					user.visible_message("<span class='notice'>[user] loads \the [src] with \the [O].</span>", \
 						"<span class='notice'>You fill \the [src] with \the [O].</span>")
 				else
@@ -138,10 +127,12 @@
 
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='warning'>\The [src] smartly refuses [O].</span>")
-		SStgui.update_uis(src)
+		updateUsrDialog()
 		return FALSE
 	else
 		return ..()
+
+
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O)
 	if(istype(O, /obj/item/food/grown/) || istype(O, /obj/item/seeds/) || istype(O, /obj/item/grown/) || istype(O, /obj/item/graft/))
@@ -169,6 +160,7 @@
 		O.forceMove(drop_location())
 		adjust_item_drop_location(O)
 
+
 /obj/machinery/smartfridge/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -187,9 +179,9 @@
 
 		var/atom/movable/O = I
 		if (!QDELETED(O))
-			var/md5name = md5(O.name) // This needs to happen because of a bug in a TGUI component, https://github.com/ractivejs/ractive/issues/744
-			if (listofitems[md5name]) // which is fixed in a version we cannot use due to ie8 incompatibility
-				listofitems[md5name]["amount"]++ // The good news is, #30519 made smartfridge UIs non-auto-updating
+			var/md5name = md5(O.name)				// This needs to happen because of a bug in a TGUI component, https://github.com/ractivejs/ractive/issues/744
+			if (listofitems[md5name])				// which is fixed in a version we cannot use due to ie8 incompatibility
+				listofitems[md5name]["amount"]++	// The good news is, #30519 made smartfridge UIs non-auto-updating
 			else
 				listofitems[md5name] = list("name" = O.name, "type" = O.type, "amount" = 1)
 	sortList(listofitems)
@@ -197,6 +189,7 @@
 	.["contents"] = listofitems
 	.["name"] = name
 	.["isdryer"] = FALSE
+
 
 /obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
 	SStgui.update_uis(src)
@@ -322,8 +315,7 @@
 	. = ..()
 	if(drying)
 		. += "drying_rack_drying"
-	var/list/shown_contents = contents - component_parts
-	if(shown_contents.len)
+	if(contents.len)
 		. += "drying_rack_filled"
 
 /obj/machinery/smartfridge/drying_rack/process()
@@ -427,7 +419,7 @@
 /obj/machinery/smartfridge/organ
 	name = "smart organ storage"
 	desc = "A refrigerated storage unit for organ storage."
-	max_n_of_items = 20 //vastly lower to prevent processing too long
+	max_n_of_items = 20	//vastly lower to prevent processing too long
 	base_build_path = /obj/machinery/smartfridge/organ
 	var/repair_rate = 0
 
@@ -438,7 +430,7 @@
 
 /obj/machinery/smartfridge/organ/load(obj/item/O)
 	. = ..()
-	if(!.) //if the item loads, clear can_decompose
+	if(!.)	//if the item loads, clear can_decompose
 		return
 	if(isorgan(O))
 		var/obj/item/organ/organ = O
@@ -450,8 +442,11 @@
 		repair_rate = max(0, STANDARD_ORGAN_HEALING * (B.rating - 1) * 0.5)
 
 /obj/machinery/smartfridge/organ/process(delta_time)
-	for(var/obj/item/organ/organ in contents)
-		organ.applyOrganDamage(-repair_rate * organ.maxHealth * delta_time)
+	for(var/organ in contents)
+		var/obj/item/organ/O = organ
+		if(!istype(O))
+			return
+		O.applyOrganDamage(-repair_rate * delta_time)
 
 /obj/machinery/smartfridge/organ/Exited(atom/movable/AM, atom/newLoc)
 	. = ..()
@@ -530,54 +525,9 @@
 	pass_flags = PASSTABLE
 	visible_contents = FALSE
 	base_build_path = /obj/machinery/smartfridge/disks
-	light_icon_state = "disktoaster-light-mask"
 
 /obj/machinery/smartfridge/disks/accept_check(obj/item/O)
 	if(istype(O, /obj/item/disk/))
-		return TRUE
-	else
-		return FALSE
-
-// ----------------------
-// LC13 EGO ARMORY ROOT | Remove this later on if theres a better system. -IP
-// ----------------------
-/obj/machinery/smartfridge/extraction_storage
-	name = "extraction storage root"
-	desc = "A broken prototype of a storage unit."
-	pass_flags = PASSTABLE
-	resistance_flags = INDESTRUCTIBLE
-	visible_contents = TRUE
-	base_build_path = null
-	flags_1 = NODECONSTRUCT_1
-	max_n_of_items = 100
-	light_icon_state = "extraction-light-mask"
-
-// ----------------------------
-// LC13 STABILIZED EGO ARMORY
-// ----------------------------
-/obj/machinery/smartfridge/extraction_storage/ego_weapon
-	name = "weapon fridge"
-	desc = "A machine capable of storing a variety of weapons and EGO."
-	icon_state = "egoweapon"
-	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_weapon
-
-/obj/machinery/smartfridge/extraction_storage/ego_weapon/accept_check(obj/item/O)
-	if(istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun))
-		return TRUE
-	else
-		return FALSE
-
-// ---------------------------------
-// LC13 STABILIZED EGO ARMOR CLOSET
-// ---------------------------------
-/obj/machinery/smartfridge/extraction_storage/ego_armor
-	name = "armor fridge"
-	desc = "A machine capable of storing a variety of armor and EGO."
-	icon_state = "egoarmor"
-	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_armor
-
-/obj/machinery/smartfridge/extraction_storage/ego_armor/accept_check(obj/item/O)
-	if(istype(O, /obj/item/clothing/suit/armor/ego_gear))
 		return TRUE
 	else
 		return FALSE

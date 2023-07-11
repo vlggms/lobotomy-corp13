@@ -5,7 +5,6 @@
 	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_self)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_other)
-	add_verb(src, /mob/living/carbon/human/verb/show_cores_info)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -17,7 +16,7 @@
 	init_attributes()
 
 	if(dna.species)
-		INVOKE_ASYNC(src, PROC_REF(set_species), dna.species.type)
+		INVOKE_ASYNC(src, .proc/set_species, dna.species.type)
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
@@ -26,7 +25,7 @@
 
 	. = ..()
 
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, .proc/clean_face)
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
@@ -85,7 +84,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.stat_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [round(atr.get_level()) + atr.initial_stat_value] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
@@ -127,37 +126,6 @@
 			[get_user_level(src) > 3 && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=lock'>[alpha_gift.locked ? "Locked" : "Unlocked"]</A>" : ""] \
 			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>[alpha_gift.visible ? "Hide" : "Show"]</A>" : ""]"
 	var/datum/browser/popup = new(viewer, "gifts", "<div align='center'>E.G.O. Gifts</div>", 600, 450)
-	popup.set_content(dat.Join("<br>"))
-	popup.open(FALSE)
-
-
-// Shows the list of specifically selected list of core suppressions and their status for this player
-/mob/living/carbon/human/verb/show_cores_info()
-	set category = "IC"
-	set name = "Display Cores Info"
-
-	var/list/dat = list()
-	// All the normal cores
-	for(var/core in GLOB.displayed_core_suppressions)
-		var/persistent_status = "N/A"
-		if(LAZYLEN(SSpersistence.cleared_core_suppressions))
-			if((ckey in SSpersistence.cleared_core_suppressions) && (core in SSpersistence.cleared_core_suppressions[ckey]))
-				persistent_status = "Yes"
-			else // N/A is used when persistence isn't loaded
-				persistent_status = "No"
-		dat += "<b>[core]</b>: [persistent_status]"
-	// Secret keter cores
-	for(var/core in GLOB.hidden_displayed_core_suppressions)
-		if(!LAZYLEN(SSpersistence.cleared_core_suppressions))
-			continue
-		if(!(ckey in SSpersistence.cleared_core_suppressions) || !(core in SSpersistence.cleared_core_suppressions[ckey]))
-			continue
-		var/secret_header = "<br><hr>"
-		if(!(secret_header in dat))
-			dat += secret_header
-		dat += "<b>[core]</b>: CLEARED!"
-
-	var/datum/browser/popup = new(src, "cores", "<div align='center'>Core Suppression Info</div>", 300, 500)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -399,9 +367,6 @@
 	var/mob/living/user = usr
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
-
-	if(href_list["see_attributes"])
-		show_attributes(usr)
 
 ///////HUDs///////
 	if(href_list["hud"])
@@ -871,28 +836,14 @@
 	return TRUE
 
 /**
- * Used to update the makeup on a human and apply/remove lipstick traits, then store/unstore them on the head object in case it gets severed
- */
-/mob/living/carbon/human/proc/update_lips(new_style, new_colour, apply_trait)
-	lip_style = new_style
-	lip_color = new_colour
-	update_body()
-
-	var/obj/item/bodypart/head/hopefully_a_head = get_bodypart(BODY_ZONE_HEAD)
-	REMOVE_TRAITS_IN(src, LIPSTICK_TRAIT)
-	hopefully_a_head?.stored_lipstick_trait = null
-
-	if(new_style && apply_trait)
-		ADD_TRAIT(src, apply_trait, LIPSTICK_TRAIT)
-		hopefully_a_head?.stored_lipstick_trait = apply_trait
-
-/**
- * A wrapper for [mob/living/carbon/human/proc/update_lips] that tells us if there were lip styles to change
+ * Cleans the lips of any lipstick. Returns TRUE if the lips had any lipstick and was thus cleaned
  */
 /mob/living/carbon/human/proc/clean_lips()
 	if(isnull(lip_style) && lip_color == initial(lip_color))
 		return FALSE
-	update_lips(null)
+	lip_style = null
+	lip_color = initial(lip_color)
+	update_body()
 	return TRUE
 
 /**
@@ -953,7 +904,7 @@
 			electrocution_skeleton_anim = mutable_appearance(icon, "electrocuted_base")
 			electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
 		add_overlay(electrocution_skeleton_anim)
-		addtimer(CALLBACK(src, PROC_REF(end_electrocution_animation), electrocution_skeleton_anim), anim_duration)
+		addtimer(CALLBACK(src, .proc/end_electrocution_animation, electrocution_skeleton_anim), anim_duration)
 
 	else //or just do a generic animation
 		flick_overlay_view(image(icon,src,"electrocuted_generic",ABOVE_MOB_LAYER), src, anim_duration)
@@ -1287,8 +1238,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
-		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
+		maxHealth = 100 + round(get_modified_attribute_level(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = 100 + round(get_modified_attribute_level(src, PRUDENCE_ATTRIBUTE))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss
@@ -1298,11 +1249,10 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 		return
-	// Gets a percent of lost health and applies the slowdown
-	var/health_missing_percent = (maxHealth - health) / maxHealth
-	if(health_missing_percent > 0.5)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_missing_percent * 0.5)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_missing_percent * 0.25)
+	var/health_deficiency = max((maxHealth - health), staminaloss)
+	if(health_deficiency >= 40)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 200)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 100)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
@@ -1392,7 +1342,7 @@
 
 /mob/living/carbon/human/species/Initialize()
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(set_species), race)
+	INVOKE_ASYNC(src, .proc/set_species, race)
 
 /mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update, pref_load)
 	. = ..()

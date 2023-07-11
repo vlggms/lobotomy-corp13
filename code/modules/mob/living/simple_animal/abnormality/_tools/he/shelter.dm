@@ -12,15 +12,7 @@
 	var/atom/movable/AM
 	if(user.pulling)
 		AM = user.pulling
-		if(ishuman(AM)) //We don't want players dragging the supplies in and out
-			var/mob/living/carbon/human/Person = AM
-			for(var/obj/item/storage/box/pcorp/foodbox in Person.GetAllContents())
-				Person.dropItemToGround(foodbox, TRUE)
-			for(var/obj/item/food/canned/pcorp/foodcan in Person.GetAllContents())
-				Person.dropItemToGround(foodcan, TRUE)
-			AM.forceMove(T)
-		else
-			user.stop_pulling()
+		AM.forceMove(T)
 	user.forceMove(T)
 	if(AM)
 		user.start_pulling(AM)
@@ -31,11 +23,11 @@
 
 /obj/structure/toolabnormality/shelter/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!istype(M, /mob/living/carbon/human))
-		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
+		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
 		return FALSE // Can only extract from humans.
 
 	if(M != user)
-		to_chat(user, span_warning("It's hard enough to get into the shelter on your own!"))
+		to_chat(user, "<span class='warning'>It's hard enough to get into the shelter on your own!</span>")
 		return FALSE
 	travel_check(M)
 	return
@@ -43,10 +35,10 @@
 /obj/structure/toolabnormality/shelter/proc/travel_check(mob/living/carbon/human/user)
 	icon_state = "shelter_in_opening"
 	if(!do_after(user, 30 SECONDS, user))
-		to_chat(user, span_notice("You decide not to enter [src]."))
+		to_chat(user, "<span class='notice'>You decide not to enter [src].</span>")
 		icon_state = "shelter_in"
 		return
-	to_chat(user, span_warning("You open the hatch and climb inside."))
+	to_chat(user, "<span class='warning'>You open the hatch and climb inside.</span>")
 	travel(user)
 	icon_state = "shelter_in"
 
@@ -66,9 +58,9 @@
 
 /obj/structure/toolabnormality/shelter/exit/travel_check(mob/living/carbon/human/user)
 	if(!do_after(user, 3 SECONDS, user))
-		to_chat(user, span_notice("You decide it's safer in the shelter."))
+		to_chat(user, "<span class='notice'>You decide it's safer in the shelter.</span>")
 		return
-	to_chat(user, span_warning("You open the hatch and climb out."))
+	to_chat(user, "<span class='warning'>You open the hatch and climb out.</span>")
 	for(var/obj/item/storage/box/pcorp/foodbox in user.GetAllContents())
 		user.dropItemToGround(foodbox, TRUE)
 	for(var/obj/item/food/canned/pcorp/foodcan in user.GetAllContents())
@@ -80,14 +72,15 @@
 		linked_structure = locate(/obj/structure/toolabnormality/shelter/entrance) in world.contents
 	..()
 	user.Stun(15 SECONDS)
-	to_chat(user, span_userdanger("You are suddenly overcome with fear and hesitation! What horrors could be lurking out here?"))
+	to_chat(user, "<span class='userdanger'>You are suddenly overcome with fear and hesitation! What horrors could be lurking out here?</span>")
 
 // Shelter contents
 // Crate
-/obj/structure/closet/crate/pcorp/shelter //Lots of storage but not normally accessible
-	name = "P-Corp crate"
+/obj/structure/closet/crate/pcorp
+	name = "p-corp crate"
 	desc = "A dark steel crate emblazoned with the symbol of P corp."
-	storage_capacity = 10
+	icon = 'icons/obj/crates.dmi'
+	icon_state = "pcorp_crate"
 
 // Food Box
 /obj/item/storage/box/pcorp

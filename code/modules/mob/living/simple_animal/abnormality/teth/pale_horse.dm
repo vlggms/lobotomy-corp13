@@ -7,7 +7,6 @@
 	icon_state = "palehorse"
 	icon_living = "palehorse"
 	icon_dead = "palehorse"
-	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
 	maxHealth = 800
@@ -15,23 +14,23 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	stat_attack = DEAD
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	can_breach = TRUE
 	start_qliphoth = 4
 	is_flying_animal = TRUE
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 30,
-		ABNORMALITY_WORK_INSIGHT = 50,
-		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50),
-	)
+						ABNORMALITY_WORK_INSTINCT = 30,
+						ABNORMALITY_WORK_INSIGHT = 50,
+						ABNORMALITY_WORK_ATTACHMENT = 55,
+						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50)
+						)
 	work_damage_amount = 3
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/revelation,
-		/datum/ego_datum/armor/revelation,
-	)
+		/datum/ego_datum/armor/revelation
+		)
 	gift_type =  /datum/ego_gifts/revelation
 	gift_message = "He will wipe away every tear from their eyes, and death shall be evermore."
 
@@ -41,13 +40,12 @@
 	var/teleport_cooldown_time = 30 SECONDS
 	//attack
 	var/mob/living/set_target
-	var/pulse_range = 11 //fairly large area - enough to breach several abnormalities
+	var/pulse_range = 7 //same range as scorched girl
 	var/fog_damage = 3
 	var/ash_damage = 20
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/pale_horse/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
@@ -59,7 +57,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
 	if(prob(1))
 		icon_state = "palehorse_hungry"
 
@@ -115,15 +113,13 @@
 			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
 
-/mob/living/simple_animal/hostile/abnormality/pale_horse/Moved() //more damaging fog when moving
-	. = ..()
-	if(!.)
-		return
+/mob/living/simple_animal/hostile/abnormality/pale_horse/Move() //more damaging fog when moving
 	var/turf/target_turf = get_turf(src)
 	for(var/turf/T in view(1, target_turf))
 		new /obj/effect/temp_visual/palefog(T)
+	..()
 
-/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget() //works but abnormality does not do it on its own todo: FIX!
 	. = ..()
 	if(!ishuman(target))
 		return FALSE
@@ -136,14 +132,14 @@
 			playsound(T, 'sound/abnormalities/palehorse/debuff.ogg', 50, 0, -1)
 		LoseTarget(T)
 	else
-		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
+		addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 		ToAshes(T)
 
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/proc/ToAshes(target)
 	var/mob/living/carbon/human/T = target
 	playsound(get_turf(src), 'sound/abnormalities/palehorse/kill.ogg', 50, 0, 8)
-	visible_message(span_danger("[T] collapses into a heap of ashes!"))
+	visible_message("<span class='danger'>[T] collapses into a heap of ashes!</span>")
 	new /obj/effect/particle_effect/smoke(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
@@ -205,7 +201,7 @@
 		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
 
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
 		return
 	return ..()
 
@@ -262,14 +258,13 @@
 	duration = 5
 
 //status effects
-//MORTIS - Raises pale vulnurability briefly and deals pale damage over time
+//MORTIS - Raises pale vulnurability briefly
 /datum/status_effect/mortis
 	id = "mortis"
 	duration = 15 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/mortis
 	var/datum/abnormality/datum_reference = null
-	var/damage = 2
 
 /atom/movable/screen/alert/status_effect/mortis
 	name = "Fated to die"
@@ -277,25 +272,18 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "mortis"
 
-/datum/status_effect/mortis/tick()
-	owner.apply_damage(damage, PALE_DAMAGE, null, owner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-	if(owner.health < 0 && ishuman(owner))
-		owner.dust()
-
 /datum/status_effect/mortis/on_apply()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	to_chat(owner, span_warning("You feel weak..."))
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.pale_mod *= 2
+	if(ishuman(owner))
+		to_chat(owner,"<span class='warning'>You feel weak...</span>")
+		var/mob/living/carbon/human/M = owner
+		M.physiology.pale_mod *= 2
 
 /datum/status_effect/mortis/on_remove()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	to_chat(owner, span_warning("You regain your vigor."))
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.physiology.pale_mod /= 2
+	if(ishuman(owner))
+		to_chat(owner,"<span class='warning'>You regain your vigor.</span>")
+		var/mob/living/carbon/human/M = owner
+		M.physiology.pale_mod /= 2
 
 #undef STATUS_EFFECT_MORTIS

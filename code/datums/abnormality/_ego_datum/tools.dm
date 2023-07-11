@@ -50,7 +50,7 @@
 
 /datum/ego_datum/weapon/hyde
 	item_path = /obj/item/ego_weapon/hyde
-	cost = 50
+	cost = 35
 
 //Third Fate's Loom - Destiny
 /datum/ego_datum/armor/destiny
@@ -59,13 +59,4 @@
 
 /datum/ego_datum/weapon/destiny
 	item_path = /obj/item/ego_weapon/destiny
-	cost = 35
-
-//Tree Sap - Giant tree branch
-/datum/ego_datum/weapon/giant_tree_branch
-	item_path = /obj/item/ego_weapon/giant_tree_branch
-	cost = 35
-
-/datum/ego_datum/armor/giant_tree_branch
-	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/giant_tree_branch
 	cost = 35

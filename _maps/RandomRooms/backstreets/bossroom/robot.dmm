@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "co" = (
-/obj/effect/landmark/cratespawn/corpo,
+/obj/structure/lootcrate/w_corp,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "kx" = (
-/obj/effect/landmark/cratespawn,
+/obj/structure/lootcrate/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "vv" = (

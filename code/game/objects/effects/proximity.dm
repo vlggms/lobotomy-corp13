@@ -24,7 +24,7 @@
 	else if(hasprox_receiver == host) //Default case
 		hasprox_receiver = H
 	host = H
-	RegisterSignal(host, COMSIG_MOVABLE_MOVED, PROC_REF(HandleMove))
+	RegisterSignal(host, COMSIG_MOVABLE_MOVED, .proc/HandleMove)
 	last_host_loc = host.loc
 	SetRange(current_range,TRUE)
 

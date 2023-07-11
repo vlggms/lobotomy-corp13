@@ -6,7 +6,6 @@
 	icon_living = "yang"
 	var/icon_breach = "yang_breach"
 	icon_dead = "yang_slain"
-	portrait = "yang"
 	is_flying_animal = TRUE
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800
@@ -24,29 +23,25 @@
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 0,
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
-		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
-		"Release" = 0,
-	)
+						ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+						"Release" = 0
+						)
 	max_boxes = 20
 	success_boxes = 16
 	neutral_boxes = 9
 
 	ego_list = list(
 		/datum/ego_datum/weapon/assonance,
-		/datum/ego_datum/armor/assonance,
-	)
+		/datum/ego_datum/armor/assonance
+		)
 	gift_type = /datum/ego_gifts/assonance
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/yin = 5, // TAKE THE FISH. DO IT NOW.
-	)
-
 	//Melee
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	melee_damage_type = WHITE_DAMAGE
@@ -88,6 +83,7 @@
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/yang/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	. = ..()
 	return YinCheck() ? chance + 10 : chance
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/YinCheck()
@@ -138,24 +134,24 @@
 		icon_state = "yang_blow"
 		exploding = TRUE
 		SSlobotomy_events.yang_downed = TRUE
-		addtimer(CALLBACK(src, PROC_REF(explode)), explosion_timer)
+		addtimer(CALLBACK(src, .proc/explode), explosion_timer)
 		return
 	if(SSlobotomy_events.yang_downed)
 		return
-	INVOKE_ASYNC(src, PROC_REF(BeDead))
+	INVOKE_ASYNC(src, .proc/BeDead)
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/BeDead()
 	icon_state = icon_dead
 	playsound(src, 'sound/effects/magic.ogg', 60)
 	SSlobotomy_events.yang_downed = TRUE
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	for(var/i = 1 to 12)
 		SLEEP_CHECK_DEATH(5 SECONDS)
 		if(SSlobotomy_events.yin_downed)
 			death()
 			return
 	adjustBruteLoss(-maxHealth)
-	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2))
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
 	SSlobotomy_events.yang_downed = FALSE
 	icon_state = icon_breach
 
@@ -196,6 +192,7 @@
 	hitscan = TRUE
 	damage = 70
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
 	tracer_type = /obj/effect/projectile/tracer/laser/white
 	impact_type = /obj/effect/projectile/impact/laser/white
@@ -214,12 +211,11 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/yang/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user)
+	..()
 	icon_state = icon_breach
 	SSlobotomy_events.yang_downed = FALSE
 

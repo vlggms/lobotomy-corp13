@@ -5,7 +5,6 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "todayshylook_neutral"
 	icon_living = "todayshylook_neutral"
-	portrait = "shy_look"
 
 	pixel_x = -16
 	base_pixel_x = -16
@@ -17,15 +16,15 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 45, 45, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(50, 45, 45, 40, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 45, 45, 40, 40),
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 45, 40, 40),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 45, 40, 40)
+		)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/shy,
-		/datum/ego_datum/armor/shy,
-	)
+		/datum/ego_datum/armor/shy
+		)
 	gift_type =  /datum/ego_gifts/shy
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

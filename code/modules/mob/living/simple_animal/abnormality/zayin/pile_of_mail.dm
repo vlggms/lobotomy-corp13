@@ -4,7 +4,6 @@
 	desc = "A pile of stamped letters, none reaching their intended receiver."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
-	portrait = "pile_of_mail"
 	maxHealth = 100
 	health = 100
 	threat_level = ZAYIN_LEVEL
@@ -13,7 +12,7 @@
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
 		ABNORMALITY_WORK_REPRESSION = 0,
-	)
+		)
 	pixel_x = 0
 	base_pixel_x = 0
 
@@ -21,14 +20,14 @@
 	work_damage_type = RED_DAMAGE
 
 	gift_type =  /datum/ego_gifts/mail
-	gift_message = "A postage stamp makes its way to your hands. Without thinking, you stick it on your cheek."
+	gift_message = "An empty envelope slowly makes its way into your hands."
 
 	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/letter_opener,
-		/datum/ego_datum/armor/letter_opener,
-	)
+		/datum/ego_datum/armor/letter_opener
+		)
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 	var/cooldown
@@ -52,12 +51,12 @@
 //papercut due to failed work
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
-		to_chat(user, span_warning("Ouch! I got a paper cut!"))
-	return ..()
+		to_chat(user,"<span class='warning'>Ouch! I got a paper cut!</span>")
+	return
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(cooldown < world.time)
-		to_chat(user, span_warning("You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you."))
+		to_chat(user,"<span class='warning'>You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you.</span>")
 		user.Stun(10 SECONDS)
 		var/letterssave = list()
 		for(var/i = 1 to 4)
@@ -85,11 +84,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/Delivery(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(prob(60))
-		to_chat(user, span_notice("It seems the pile did not find a message for you."))
+		to_chat(user,"<span class='notice'>It seems the pile did not find a message for you.</span>")
 		return
 	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
 
-	to_chat(user, span_notice("One of the letters from the pile slowly waves in the air."))
+	to_chat(user,"<span class='notice'>One of the letters from the pile slowly waves in the air.</span>")
 	var/obj/item/mailpaper/MAIL
 	if(prob(20))
 		if(prob(10))
@@ -106,7 +105,6 @@
 				MAIL = new /obj/item/mailpaper/attachment(get_turf(src),user)
 	MAIL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
 	return
-
 //players get a parcel / letters for completing works
 /mob/living/simple_animal/hostile/abnormality/mailpile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
@@ -123,44 +121,6 @@
 	. = ..()
 	Delivery(user,work_type,pe)
 	return
-
-// Pink Midnight
-/mob/living/simple_animal/hostile/abnormality/mailpile/BreachEffect(mob/living/carbon/human/user, breach_type)
-	if(breach_type == BREACH_PINK)
-		SendDeathThreat()
-		return TRUE
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/mailpile/proc/SendDeathThreat()
-	var/chance = 20
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		var/role = H.mind?.assigned_role
-		var/weaken = FALSE
-		if(isnull(role))
-			continue
-		if(H.stat == DEAD)
-			continue
-		if(!prob(chance))
-			chance *= 2
-			continue
-		chance = 20
-		if(role in list("Manager", "Extraction Officer", "Records Officer", "Sephirah"))
-			weaken = TRUE
-		var/threat_type = pickweight(list(
-			/obj/item/mailpaper/trapped/fairies = 10,
-			/obj/item/mailpaper/trapped/acid = 10,
-			/obj/item/mailpaper/trapped/urgent = 6,
-			/obj/item/mailpaper/trapped/flashbang = 3,
-			/obj/item/mailpaper/coupon = 1,
-		))
-		switch(threat_type)
-			if(/obj/item/mailpaper/trapped/fairies)
-				var/obj/item/mailpaper/trapped/fairies/MF = new threat_type(get_turf(H))
-				MF.weaken_fairy = weaken
-			else
-				new threat_type(get_turf(H))
-
-
 
 //what the fuck is this
 /obj/effect/letters_flow
@@ -234,14 +194,14 @@
 //this is using the parcel. you either go insane or get special ego
 /obj/item/parcelself/attack_self(mob/living/carbon/human/user)
 	if(receiver != user)
-		to_chat(user, span_notice("It feels wrong to try to open someone else's package."))
+		to_chat(user,"<span class='notice'>It feels wrong to try to open someone else's package.</span>")
 		return
 	if(prob(50))
 		new /obj/item/ego_weapon/mail_satchel(get_turf(user))
-		to_chat(user, span_nicegreen("As you unravel the parcel a satchel falls out."))
+		to_chat(user,"<span class='nicegood'>As you unravel the parcel a satchel falls out.</span>")
 	else
 		new /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener(get_turf(user))
-		to_chat(user, span_nicegreen("As you unravel the parcel an outfit falls out."))
+		to_chat(user,"<span class='nicegood'>As you unravel the parcel an outfit falls out.</span>")
 	qdel(src)
 	return
 
@@ -267,7 +227,7 @@
 	desc = "letter addressed to a scratched out name, by... Neco-Arc?"
 
 /obj/item/mailpaper/pipebomb/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_warning("What is this... Is this a pipebomb!?"))
+	to_chat(user,"<span class='warning'>What is this... Is this a pipebomb!?</span>")
 	sleep(10)
 	//add glitterbomb sfx, maybe a toot horn or something funny
 	for(var/direction in GLOB.alldirs)
@@ -276,16 +236,7 @@
 	qdel(src)
 
 /obj/item/mailpaper/junk
-	var/JUNKMAIL = list(
-		list(
-			"letter from RobustCO",
-			"The outside reads \"Improve your robustness today! Read our letter now!\"",
-		),
-		list(
-			"Suspicious message",
-			"Ever felt like you need a boost? Get swole today!",
-		),
-	)
+	var/JUNKMAIL = list(list("letter from RobustCO","The outside reads 'Improve your robustness today! Read our letter now!"),list("Suspicious message","Ever felt like you need a boost? Get swole today!"))
 
 /obj/item/mailpaper/junk/Initialize()
 	. = ..()
@@ -294,7 +245,7 @@
 	desc = temp[2]
 
 /obj/item/mailpaper/junk/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_notice("This was a waste of time..."))
+	to_chat(user,"<span class='notice'>This was a waste of time....</span>")
 	user.adjustSanityLoss(5)
 	qdel(src)
 
@@ -303,7 +254,7 @@
 	desc = "IHATEYOUIHATEYOUIHATEYOUIHATEYOUIHATEYOU."
 
 /obj/item/mailpaper/hatred/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_warning("The pages are filled with scribbles and threats..."))
+	to_chat(user,"<span class='warning'>The pages are filled with scribbles and threats...</span>")
 	user.adjustSanityLoss(5)
 	qdel(src)
 
@@ -314,8 +265,8 @@
 	desc = "A past letter from a friend addressed to \a [user]. The thought of such conduct makes you feel happy, albeit bittersweet."
 
 /obj/item/mailpaper/instinct/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("Reading the friendly letter helps you find peace in the passing of time."))
-	user.adjustSanityLoss(-10)
+	to_chat(user,"<span class='nicegood'>Reading the friendly letter helps you find peace in the passing of time.</span>")
+	user.adjustSanityLoss(-5)
 	qdel(src)
 
 /obj/item/mailpaper/insight
@@ -325,7 +276,7 @@
 	desc = "letter from coworkers addressed to \a [user]. It feels quite nostalgic."
 
 /obj/item/mailpaper/insight/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("Reading the letter from your coworkers steel your resolve."))
+	to_chat(user,"<span class='nicegood'>Reading the letter from your coworkers steel your resolve.</span>")
 	if(!HAS_TRAIT(user,TRAIT_WORKFEAR_IMMUNE) && !HAS_TRAIT(user,TRAIT_COMBATFEAR_IMMUNE))
 		user.apply_status_effect(/datum/status_effect/nofear_buff)
 	qdel(src)
@@ -337,159 +288,8 @@
 	desc = "A promotion letter addressed to \a [user]. The new manager of the corp!?!? Oh wait, that's from the future."
 
 /obj/item/mailpaper/attachment/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("Reading the promotion letter fills you with determination to work harder!"))
+	to_chat(user,"<span class='nicegood'>Reading the promotion letter fills you with determination to work harder!</span>")
 	var/datum/status_effect/workspeed_buff/TMPEFF = user.has_status_effect(/datum/status_effect/workspeed_buff)
 	if (!TMPEFF)
 		user.apply_status_effect(/datum/status_effect/workspeed_buff)
-	qdel(src)
-
-/obj/item/mailpaper/trapped
-	name = "From the Abnormalities"
-	desc = "Does something automatically or when opened."
-	var/datum/timedevent/effect_timer
-	var/effect_min_time = 6 SECONDS
-	var/effect_max_time = 12 SECONDS
-
-/obj/item/mailpaper/trapped/Initialize()
-	. = ..()
-	effect_timer = new(CALLBACK(src, PROC_REF(Trap)), rand(effect_min_time, effect_max_time))
-	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
-
-/obj/item/mailpaper/trapped/attack_self(mob/user)
-	to_chat(user, span_warning("What the-"))
-	Trap()
-
-/obj/item/mailpaper/trapped/proc/Trap()
-	set waitfor = FALSE
-	if(effect_timer)
-		deltimer(effect_timer)
-	qdel(src)
-	return
-
-/obj/item/mailpaper/trapped/fairies
-	desc = "Why does this paper smell faintly of Pixy Stix?"
-	var/fairy_count = 4
-	var/weaken_fairy = FALSE
-
-/obj/item/mailpaper/trapped/fairies/Trap()
-	var/turf/T = get_turf(src)
-	T.visible_message(span_warning("[fairy_count > 1 ? "Ravenous fairies" : "A ravenous fairy"] burst from the mail!"))
-	for(var/i = 1 to fairy_count)
-		var/mob/living/simple_animal/hostile/mini_fairy/MF =  new(T)
-		MF.faction += "pink"
-		if(weaken_fairy)
-			MF.adjustBruteLoss(43)
-			break
-	return ..()
-
-/obj/item/mailpaper/trapped/acid
-	desc = "Why does this paper smell faintly of battery acid?"
-
-/obj/item/mailpaper/trapped/acid/Trap()
-	var/turf/T = get_turf(src)
-	T.visible_message(span_warning("Acid sprays from the letter!"))
-	for(var/i = 1 to 8)
-		var/angle = rand(0, 360)
-		var/obj/effect/decal/cleanable/wrath_acid/bad/AB = new(get_turf(src))
-		MoveAcidAngle(AB, angle)
-	return ..()
-
-/obj/item/mailpaper/trapped/acid/proc/MoveAcidAngle(obj/effect/decal/cleanable/wrath_acid/bad/bad_acid, angle)
-	set waitfor = FALSE
-	var/turf/target_turf = get_turf_in_angle(angle, get_turf(src), pick(1, 2, 4))
-	while(step_towards(bad_acid, target_turf, 0))
-		stoplag(2)
-	return
-
-/obj/item/mailpaper/trapped/urgent
-	desc = "The paper has been stamped 'Urgent'."
-	effect_min_time = 10 SECONDS
-	effect_max_time = 10 SECONDS
-
-/obj/item/mailpaper/trapped/urgent/attack_self(mob/user)
-	to_chat(user, span_notice("If don't read this within 10 seconds we are going to kill you."))
-	to_chat(user, span_nicegreen("Well, you read it fast enough so that's nice!"))
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		H.adjustSanityLoss(-20)
-	deltimer(effect_timer)
-	qdel(src)
-	return
-
-/obj/item/mailpaper/trapped/urgent/Trap()
-	audible_message(span_warning("We are going to kill you."))
-	for(var/mob/living/carbon/human/H in hearers(7, src))
-		H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
-	return ..()
-
-/obj/item/mailpaper/trapped/flashbang
-	desc = "This paper has a large cylindrical lump in the middle of it..."
-	effect_min_time = 10 SECONDS
-	effect_max_time = 20 SECONDS
-
-/obj/item/mailpaper/trapped/flashbang/Trap()
-	var/turf/T = get_turf(src)
-	var/obj/item/grenade/flashbang/F = new(T)
-	T.visible_message(span_notice("A beeping flashbang drops out of the mail."))
-	T.visible_message(span_userdanger("WAIT, WHAT!?"))
-	F.det_time = isnull(timeleft(effect_timer)) ? 0 : timeleft(effect_timer)
-	F.arm_grenade()
-	return ..()
-
-/obj/item/mailpaper/coupon
-	name = "From the Abnormalities"
-	desc = "'Contains one (1) coupon for a free item!' *Contents may vary, user discretion is advised"
-	var/obj/item/coupon_lc13/C
-
-/obj/item/mailpaper/coupon/Initialize()
-	. = ..()
-	C = new(src)
-	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
-
-/obj/item/mailpaper/coupon/attack_self(mob/user)
-	user.visible_message(
-		span_notice("[user] rips the coupon out of the mail."),\
-		span_notice("You rip the coupon out of the mail."),\
-		span_notice("You hear the sound of ripping paper.")
-		)
-	playsound(user, 'sound/items/poster_ripped.ogg', 100)
-	C.forceMove(get_turf(user))
-	qdel(src)
-
-/obj/item/coupon_lc13
-	name = "coupon"
-	desc = "Hell yeah, a free item!"
-	icon_state = "data_1"
-	icon = 'icons/obj/card.dmi'
-	var/obj/item/item_type = null
-	var/list/potential_items = list()
-
-/obj/item/coupon_lc13/Initialize()
-	. = ..()
-	if(!isnull(item_type))
-		return
-	if(potential_items.len <= 0)
-		potential_items += subtypesof(/obj/item/food/pizza)
-		potential_items -= /obj/item/food/pizza/arnold
-		potential_items -= /obj/item/food/pizza/margherita/robo
-		potential_items += subtypesof(/obj/item/reagent_containers/food/drinks/soda_cans)
-		potential_items += subtypesof(/obj/item/toy)
-		potential_items -= /obj/item/toy/talking
-		potential_items -= /obj/item/toy/cards/cardhand
-		potential_items -= /obj/item/toy/cards/singlecard
-		potential_items -= /obj/item/toy/figure
-		potential_items -= /obj/item/toy/plush
-	item_type = pick(potential_items)
-
-/obj/item/coupon_lc13/examine(mob/user)
-	. = ..()
-	. += span_notice("Use in hand to have the [initial(item_type?.name)] sent right to you!")
-
-/obj/item/coupon_lc13/attack_self(mob/user)
-	var/obj/structure/closet/supplypod/centcompod/pod = new()
-	pod.explosionSize = list(0,0,0,0)
-	for(var/i = 1 to (istype(item_type, /obj/item/reagent_containers/food/drinks/soda_cans) ? 6 : 1))
-		new item_type(pod)
-	new /obj/effect/pod_landingzone(get_turf(user), pod)
-	to_chat(user, span_notice("Your [initial(item_type?.name)] is on it's way!"))
 	qdel(src)

@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		else
 			. += "crack3"
 
-/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
+/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	update_icon()
 
@@ -754,7 +754,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	else
 		return ..()
 
-/obj/machinery/newscaster/play_attack_sound(damage, damage_type = BRUTE)
+/obj/machinery/newscaster/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
 			if(machine_stat & BROKEN)
@@ -782,7 +782,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='warning'>The newscaster controls are far too complicated for your tiny brain!</span>")
 	else
-		take_damage(5, MELEE)
+		take_damage(5, BRUTE, MELEE)
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user)
 	var/obj/item/photo/photo = user.is_holding_item_of_type(/obj/item/photo)
@@ -852,7 +852,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			playsound(loc, 'sound/machines/twobeep_high.ogg', 75, TRUE)
 		alert = TRUE
 		update_icon()
-		addtimer(CALLBACK(src, PROC_REF(remove_alert)),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src,.proc/remove_alert),alert_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 
 	else if(!channel && update_alert)
 		say("Attention! Wanted issue distributed!")

@@ -61,12 +61,16 @@
 /obj/machinery/plumbing/synthesizer/ui_data(mob/user)
 	var/list/data = list()
 
+	var/is_hallucinating = user.hallucinating()
 	var/list/chemicals = list()
 
 	for(var/A in dispensable_reagents)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[A]
 		if(R)
-			chemicals.Add(list(list("title" = R.name, "id" = ckey(R.name))))
+			var/chemname = R.name
+			if(is_hallucinating && prob(5))
+				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(R.name))))
 	data["chemicals"] = chemicals
 	data["amount"] = amount
 	data["possible_amounts"] = possible_amounts

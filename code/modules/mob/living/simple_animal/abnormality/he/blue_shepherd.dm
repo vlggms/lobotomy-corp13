@@ -10,7 +10,6 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
-	portrait = "blue_shepherd"
 	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
@@ -25,12 +24,13 @@
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Release" = 100,
-	)
+		"Release" = 100
+		)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -43,14 +43,10 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oppression,
-		/datum/ego_datum/armor/oppression,
-	)
+		/datum/ego_datum/armor/oppression
+		)
 	gift_type = /datum/ego_gifts/oppression
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5,
-	)
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
@@ -64,52 +60,50 @@
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
 	var/list/people_list = list() //list of people shepperd can mention
-	var/buddy_hit = FALSE
-	var/red_hit = FALSE // Controls Little Red Riding Hooded Mercenary's ability to be "hit" by slash attacks
-	var/combat_map = FALSE
 	//lines said during combat
+	var/buddy_hit = FALSE
 	var/list/combat_lines = list(
-		"Have at you!",
-		"Take this!",
-		"I'll kill you!",
-		"This is for locking me up!",
-		"Die!",
-	)
+				"Have at you!",
+				"Take this!",
+				"I'll kill you!",
+				"This is for locking me up!",
+				"Die!"
+				)
 	//lines shepperd say when someone's dead
 	var/list/people_dead_lines = list(
-		" didn't last long huh?",
-		" died, if only I was here to help...",
-		"'s dead? what a shame, I kinda liked them.",
-	)
+				" didn't last long huh?",
+				" died, if only I was here to help...",
+				"'s dead? what a shame, I kinda liked them.",
+				)
 	//lines shepperd say when someone is still alive
 	var/list/people_alive_lines = list(
-		" is still alive somehow, won't last long though.",
-		" is doing much better than you, but I can take care of them if you want.",
-		"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
-		"'s would have released me by now, why can't you do the same?",
-	)
+				" is still alive somehow, won't last long though.",
+				" is doing much better than you, but I can take care of them if you want.",
+				"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
+				"'s would have released me by now, why can't you do the same?",
+				)
 	//lines shepperd say when something has breached
 	var/list/abno_breach_lines = list(
-		" has breached, I could help you know?",
-		" is out, are you sure you're strong enough to take care of it by yourself?",
-		" is going on a rampage, you guys really can't do your job right huh?",
-		" has breached and you're still wasting your time on me? I'm flattered.",
-	)
+				" has breached, I could help you know?",
+				" is out, are you sure you're strong enough to take care of it by yourself?",
+				" is going on a rampage, you guys really can't do your job right huh?",
+				" has breached and you're still wasting your time on me? I'm flattered.",
+				)
 	//lines shepperd say when an abno hasn't breached (yet)
 	var/list/abno_safe_lines = list(
-		" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
-		" hasn't breached yet, but I wouldn't count on it staying that way.",
-		" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
-		"'s doing fine, don't you have a manager to check those things for you?",
-	)
+				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
+				" hasn't breached yet, but I wouldn't count on it staying that way.",
+				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
+				"'s doing fine, don't you have a manager to check those things for you?",
+				)
 	//lines shepherd say about red buddy
 	var/list/red_buddy_lines = list(
-		"The wolf is coming down the hill...",
-		"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
-		"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
-		"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
-		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
-	)
+				"The wolf is coming down the hill...",
+				"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
+				"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
+				"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
+				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
+				)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)
@@ -118,20 +112,17 @@
 	name = "Toggle Spinning Slash"
 	button_icon_state = "sheperd_toggle0"
 	chosen_attack_num = 2
-	chosen_message = span_colossus("You won't spin anymore.")
+	chosen_message = "<span class='colossus'>You won't spin anymore.</span>"
 	button_icon_toggle_activated = "sheperd_toggle1"
 	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
+	toggle_message = "<span class='colossus'>You will now execute a spinning slash when ready.</span>"
 	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
-	if(IsCombatMap())
-		combat_map = TRUE
-		faction |= "hostile"
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Alright, here we go again
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnNewCrew))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 	//makes a list of people and abno to shit talk
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
@@ -144,7 +135,7 @@
 				buddy = A
 				return
 	if(!buddy)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if red buddy isn't in the facility, we wait for him
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if red buddy isn't in the facility, we wait for him
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -160,7 +151,6 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -182,7 +172,7 @@
 		Lying(buddy_abno, user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE
@@ -194,7 +184,7 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	return ..()
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	. = ..()
@@ -248,7 +238,7 @@
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		SpeedChange(-0.5)
+		move_to_delay = 2.5
 		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
 		set_health(health * 4)
 		med_hud_set_health()
@@ -262,7 +252,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	return ..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it
@@ -288,26 +278,17 @@
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
-			addtimer(CALLBACK(src, PROC_REF(SlashHit), T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, .proc/SlashHit, T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/SlashHit(turf/T, list/all_turfs, slash_count, buddy_hit)
 	if(stat == DEAD)
 		return
 	new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, check_faction = combat_map, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
+	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
 			break
-		if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
-			if(!red_hit)
-				red_hit = TRUE
-				var/mob/living/simple_animal/hostile/abnormality/red_hood/current_red = L
-				current_red.WatchIt()
-			all_turfs -= T
-			continue // Red doesn't get hit.
-		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		all_turfs -= T
 	if(slash_count >= range)
 		buddy_hit = FALSE
 		slashing = FALSE
@@ -335,7 +316,7 @@
 	if(prob(lie_chance))
 		lie = TRUE
 		if(buddy_abno)
-			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_buddy, ShepherdLying)), 90 SECONDS)
+			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
 			buddy_abno.lying = TRUE
 	else
 		lie = FALSE

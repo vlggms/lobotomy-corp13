@@ -4,7 +4,6 @@
 	desc = "A gigantic stem that reaches higher than the eye can see."
 	icon = 'ModularTegustation/Teguicons/64x98.dmi'
 	icon_state = "beanstalk"
-	portrait = "beanstalk"
 	maxHealth = 500
 	health = 500
 	threat_level = TETH_LEVEL
@@ -12,8 +11,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(35, 45, 55, 0, 10),
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 35,
-	)
+		ABNORMALITY_WORK_REPRESSION = 35
+			)
 	pixel_x = -16
 	base_pixel_x = -16
 	work_damage_amount = 7
@@ -22,7 +21,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/bean,
 		/datum/ego_datum/weapon/giant,
-		/datum/ego_datum/armor/bean,
+		/datum/ego_datum/armor/bean
 	)
 	gift_type = /datum/ego_gifts/bean
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -41,14 +40,10 @@
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
-		if(QDELETED(user))
-			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
-		if(QDELETED(user))
-			return
 		animate(user, alpha = 0,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
-		to_chat(user, span_userdanger("You will make it to the top, no matter what!"))
+		to_chat(user, "<span class='userdanger'>You will make it to the top, no matter what!</span>")
 		QDEL_IN(user, 3.5 SECONDS)
 
 //The special work, if you survive you get a powerful EGO gift.
@@ -61,31 +56,19 @@
 		user.Stun(3 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
-		if(QDELETED(user))
-			work_damage_amount = 7
-			climbing = FALSE
-			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
-		if(QDELETED(user))
-			work_damage_amount = 7
-			climbing = FALSE
-			return
-		to_chat(user, span_userdanger("You start to climb!"))
+		to_chat(user, "<span class='userdanger'>You start to climb!</span>")
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 		user.pixel_z = 16
 		user.Stun(10 SECONDS)
 		sleep(6 SECONDS)
-		if(QDELETED(user))
-			work_damage_amount = 7
-			climbing = FALSE
-			return
 		var/datum/ego_gifts/giant/BWJEG = new
 		BWJEG.datum_reference = datum_reference
 		user.Apply_Gift(BWJEG)
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 3 SECONDS)
 		user.pixel_z = 0
-		to_chat(user, span_userdanger("You return with the giant's treasure!"))
+		to_chat(user, "<span class='userdanger'>You return with the giant's treasure!</span>")
 
 	work_damage_amount = 7
 	climbing = FALSE

@@ -223,16 +223,12 @@
 	if(H.mind && (H.mind.assigned_role != H.mind.special_role))
 		var/assignment
 		var/trueassignment //tegu edit - alt job titles
-		var/jobabbreviation
 		if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
 		else if(H.job)
 			assignment = H.job
 		else
 			assignment = "Unassigned"
-
-		var/datum/job/J = SSjob.GetJob(H.job)
-		jobabbreviation = J ? "[J.job_abbreviation]" : "" //can't be null
 
 		//Tegu edit - Alt job titles
 		trueassignment = assignment
@@ -263,7 +259,6 @@
 		G.fields["name"]		= H.real_name
 		G.fields["rank"]		= assignment
 		G.fields["truerank"] = trueassignment //tegu edit - alt job titles
-		G.fields["jobabbrev"] = jobabbreviation
 		G.fields["age"]			= H.age
 		G.fields["species"]	= H.dna.species.name
 		G.fields["fingerprint"]	= md5(H.dna.uni_identity)

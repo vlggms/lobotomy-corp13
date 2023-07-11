@@ -4,7 +4,6 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "mhz"
 	icon_living = "mhz"
-	portrait = "MHz"
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -32
@@ -17,45 +16,36 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 20, 20),
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 10, 0, 0, 0),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60)
+		)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/noise,
-		/datum/ego_datum/armor/noise,
-	)
+		/datum/ego_datum/armor/noise
+		)
 	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
-	)
 
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
-		return chance * 1.25
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 40)
+		return chance * 0.75
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(1)
 	if(pe >= datum_reference.max_boxes)
 		datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/mhz/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/mhz/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -71,7 +61,7 @@
 		rose_available = TRUE
 		break
 
-	addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 4), reset_time)
+	addtimer(CALLBACK (datum_reference, /datum/abnormality/proc/qliphoth_change, 4), reset_time)
 
 	if(!rose_available)
 		SSweather.run_weather(/datum/weather/mhz)
@@ -92,14 +82,14 @@
 	name = "static"
 	immunity_type = "static"
 	desc = "Static created by 1.76 MHz."
-	telegraph_message = span_warning("You hear something in the distance.")
+	telegraph_message = "<span class='warning'>You hear something in the distance.</span>"
 	telegraph_duration = 300
-	weather_message = span_userdanger("<i>Are.... those the sounds of humans wailing? Are they suffering?</i>")
+	weather_message = "<span class='userdanger'><i>Are.... those the sounds of humans wailing? Are they suffering?</i></span>"
 	weather_overlay = "mhz"
 	weather_duration_lower = 1200		//2-3 minutes.
 	weather_duration_upper = 1800
 	end_duration = 100
-	end_message = span_boldannounce("It's all calm once more. You feel at peace.")
+	end_message = "<span class='boldannounce'>It's all calm once more. You feel at peace.</span>"
 	area_type = /area/facility_hallway
 	target_trait = ZTRAIT_STATION
 

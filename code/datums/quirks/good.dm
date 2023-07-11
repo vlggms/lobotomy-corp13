@@ -40,7 +40,7 @@
 //	hardcore_value = -2 // un-comment to let hardcore random cause chaos, unrecommended
 
 /datum/quirk/fluffy_tongue/on_spawn()
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
 
 /datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -195,7 +195,7 @@
 /datum/quirk/skittish
 	name = "Skittish"
 	desc = "You're easy to startle, and hide frequently. Run into a closed locker to jump into it, as long as you have access. You can walk to avoid this."
-	value = 2
+	value = 4
 	mob_trait = TRAIT_SKITTISH
 	medical_record_text = "Patient demonstrates a high aversion to danger and has described hiding in containers out of fear."
 

@@ -469,7 +469,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/training_rabbit/LateInitialize()
 	..()
 	datum_reference = new(src, /mob/living/simple_animal/hostile/abnormality/training_rabbit)
-	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.lobotomy_devices, src)
+	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.abnormality_consoles, src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
 		datum_reference.console = AR
@@ -487,7 +487,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/tutorial/LateInitialize()
 	..()
 	datum_reference = new(src, chosen)
-	//Since tutorial concoles aren't in GLOB.lobotomy_devices, we can just use oview
+	//Since tutorial concoles aren't in GLOB.abnormality_consoles, we can just use oview
 	var/obj/machinery/computer/abnormality/tutorial/AR = get_closest_atom(/obj/machinery/computer/abnormality/tutorial, oview(3, src), src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
@@ -505,18 +505,3 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/tutorial/fairy
 	name = "tutorial spawn (fairy)"
 	chosen = /mob/living/simple_animal/hostile/abnormality/fairy_swarm
-
-/obj/effect/radiojammer
-	name = "radio jammer"
-	desc = "Device used to disrupt nearby radio communication."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "gangtool-blue"
-	anchored = TRUE
-	layer = MID_LANDMARK_LAYER
-	invisibility = INVISIBILITY_ABSTRACT
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	var/range = 12
-
-/obj/effect/radiojammer/Initialize()
-	. = ..()
-	GLOB.active_jammers |= src

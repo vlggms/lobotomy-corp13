@@ -40,11 +40,11 @@
 /world/proc/enable_debugger()
 	var/dll = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (dll)
-		LIBCALL(dll, "auxtools_init")()
+		call(dll, "auxtools_init")()
 		enable_debugging()
 
 /world/Del()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 	if (debug_server)
-		LIBCALL(debug_server, "auxtools_shutdown")()
+		call(debug_server, "auxtools_shutdown")()
 	. = ..()

@@ -82,20 +82,15 @@
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Starts as a list and becomes a datum post Initialize()
-	var/datum/dam_coeff/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	/// The unmodified values for the dam_coeff datum
-	var/datum/dam_coeff/unmodified_damage_coeff_datum
-	/// The list of all modifiers to the current DC datum
-	var/list/damage_mods = list()
+	///Armor type that is checked when attacking someone
+	var/armortype = RED_DAMAGE
+	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
+	var/list/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	///Attacking verb in present continuous tense.
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
 	var/attack_verb_simple = "attack"
-	/// Sound played when the critter attacks.
-	var/attack_sound
-	/// Override for the visual attack effect shown on 'do_attack_animation()'.
-	var/attack_vis_effect
+	var/attack_sound = null
 	///Attacking, but without damage, verb in present continuous tense.
 	var/friendly_verb_continuous = "nuzzles"
 	///Attacking, but without damage, verb in present simple tense.
@@ -129,6 +124,7 @@
 	var/list/loot = list()
 	///Causes mob to be deleted on death, useful for mobs that spawn lootable corpses.
 	var/del_on_death = 0
+	var/deathmessage = ""
 
 	var/allow_movement_on_non_turfs = FALSE
 
@@ -204,28 +200,14 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if (islist(damage_coeff))
-		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
-		damage_coeff = makeDamCoeff(damage_coeff)
-	else if (!damage_coeff)
-		damage_coeff = makeDamCoeff()
-		unmodified_damage_coeff_datum = makeDamCoeff()
-	else if (!istype(damage_coeff, /datum/dam_coeff))
-		stack_trace("Invalid type [damage_coeff.type] found in .damage_coeff during /simple_animal Initialize()")
+	if(damage_coeff)
+		damage_coeff = string_assoc_list(damage_coeff)
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 	if(!unsuitable_cold_damage)
 		unsuitable_cold_damage = unsuitable_atmos_damage
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
-	//LC13 Check, it's here to give everything nightvision on Rcorp.
-	if(IsCombatMap())
-		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
-		AddSpell(bloodspell)
-	//LC13 Check. If it's the citymap, they all gain a faction
-	if(SSmaptype.maptype == "city")
-		faction += "city"
-
 
 /mob/living/simple_animal/Life()
 	. = ..()
@@ -261,9 +243,9 @@
 	if(!is_type_in_list(O, food_type))
 		return ..()
 	if(stat == DEAD)
-		to_chat(user, span_warning("[src] is dead!"))
+		to_chat(user, "<span class='warning'>[src] is dead!</span>")
 		return
-	user.visible_message(span_notice("[user] hand-feeds [O] to [src]."), span_notice("You hand-feed [O] to [src]."))
+	user.visible_message("<span class='notice'>[user] hand-feeds [O] to [src].</span>", "<span class='notice'>You hand-feed [O] to [src].</span>")
 	qdel(O)
 	if(tame)
 		return
@@ -280,7 +262,7 @@
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
+		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
 
 
 /mob/living/simple_animal/update_stat()
@@ -467,6 +449,12 @@
 		verb_say = pick(speak_emote)
 	return ..()
 
+
+/mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
+	if(stat)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value
 	update_simplemob_varspeed()
@@ -482,7 +470,7 @@
 	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
-	if(loot?.len)
+	if(loot.len)
 		for(var/i in loot)
 			new i(loc)
 
@@ -493,6 +481,9 @@
 	drop_loot()
 	if(dextrous)
 		drop_all_held_items()
+	if(!gibbed)
+		if(deathsound || deathmessage || !del_on_death)
+			emote("deathgasp")
 	if(del_on_death)
 		..()
 		//Prevent infinite loops if the mob Destroy() is overridden in such
@@ -731,7 +722,7 @@
 	return relaydrive(user, direction)
 
 /mob/living/simple_animal/deadchat_plays(mode = ANARCHY_MODE, cooldown = 12 SECONDS)
-	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, PROC_REF(stop_deadchat_plays)))
+	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, .proc/stop_deadchat_plays))
 
 	if(. == COMPONENT_INCOMPATIBLE)
 		return
@@ -740,10 +731,3 @@
 
 /mob/living/simple_animal/proc/stop_deadchat_plays()
 	stop_automated_movement = FALSE
-
-// -- LC13 THINGS --
-
-/mob/living/simple_animal/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		return TRUE
-	return FALSE

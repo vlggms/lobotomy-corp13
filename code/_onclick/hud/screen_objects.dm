@@ -102,7 +102,7 @@
 		return TRUE
 	var/area/A = get_area(usr)
 	if(!A.outdoors)
-		to_chat(usr, span_warning("There is already a defined structure here."))
+		to_chat(usr, "<span class='warning'>There is already a defined structure here.</span>")
 		return TRUE
 	create_area(usr)
 
@@ -315,49 +315,49 @@
 
 	if(C.internal)
 		C.internal = null
-		to_chat(C, span_notice("You are no longer running on internals."))
+		to_chat(C, "<span class='notice'>You are no longer running on internals.</span>")
 		icon_state = "internal0"
 	else
 		if(!C.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 			if(!istype(C.wear_mask, /obj/item/clothing/mask))
-				to_chat(C, span_warning("You are not wearing an internals mask!"))
+				to_chat(C, "<span class='warning'>You are not wearing an internals mask!</span>")
 				return 1
 			else
 				var/obj/item/clothing/mask/M = C.wear_mask
 				if(M.mask_adjusted) // if mask on face but pushed down
 					M.adjustmask(C) // adjust it back
 				if( !(M.clothing_flags & MASKINTERNALS) )
-					to_chat(C, span_warning("You are not wearing an internals mask!"))
+					to_chat(C, "<span class='warning'>You are not wearing an internals mask!</span>")
 					return
 
 		var/obj/item/I = C.is_holding_item_of_type(/obj/item/tank)
 		if(I)
-			to_chat(C, span_notice("You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))]."))
+			to_chat(C, "<span class='notice'>You are now running on internals from [I] in your [C.get_held_index_name(C.get_held_index_of_item(I))].</span>")
 			C.internal = I
 		else if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if(istype(H.s_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.s_store] on your [H.wear_suit.name]."))
+				to_chat(H, "<span class='notice'>You are now running on internals from [H.s_store] on your [H.wear_suit.name].</span>")
 				H.internal = H.s_store
 			else if(istype(H.belt, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.belt] on your belt."))
+				to_chat(H, "<span class='notice'>You are now running on internals from [H.belt] on your belt.</span>")
 				H.internal = H.belt
 			else if(istype(H.l_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.l_store] in your left pocket."))
+				to_chat(H, "<span class='notice'>You are now running on internals from [H.l_store] in your left pocket.</span>")
 				H.internal = H.l_store
 			else if(istype(H.r_store, /obj/item/tank))
-				to_chat(H, span_notice("You are now running on internals from [H.r_store] in your right pocket."))
+				to_chat(H, "<span class='notice'>You are now running on internals from [H.r_store] in your right pocket.</span>")
 				H.internal = H.r_store
 
 		//Separate so CO2 jetpacks are a little less cumbersome.
 		if(!C.internal && istype(C.back, /obj/item/tank))
-			to_chat(C, span_notice("You are now running on internals from [C.back] on your back."))
+			to_chat(C, "<span class='notice'>You are now running on internals from [C.back] on your back.</span>")
 			C.internal = C.back
 
 		if(C.internal)
 			icon_state = "internal1"
 		else
-			to_chat(C, span_warning("You don't have an oxygen tank!"))
+			to_chat(C, "<span class='warning'>You don't have an oxygen tank!</span>")
 			return
 	C.update_action_buttons_icon()
 
@@ -753,7 +753,7 @@
 		deltimer(timerid)
 	if (!streak)
 		return
-	timerid = addtimer(CALLBACK(src, PROC_REF(clear_streak)), 20, TIMER_UNIQUE | TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, .proc/clear_streak), 20, TIMER_UNIQUE | TIMER_STOPPABLE)
 	icon_state = "combo"
 	for (var/i = 1; i <= length(streak); ++i)
 		var/intent_text = copytext(streak, i, i + 1)
@@ -761,15 +761,11 @@
 		intent_icon.pixel_x = 16 * (i - 1) - 8 * length(streak)
 		add_overlay(intent_icon)
 
-/atom/movable/screen/vile_skull
-	name = "skull_mod"
+/atom/movable/screen/balance
+	name = "corruption_balance"
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
-	icon_state = "no_corruption"
+	icon_state = "balanced"
 	screen_loc = ui_mood
 
 /atom/movable/screen/mood/attack_tk()
 	return
-
-/atom/movable/screen/holomap
-	icon = 'icons/480x480.dmi'
-	icon_state = "blank"

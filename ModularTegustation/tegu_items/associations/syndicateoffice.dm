@@ -1,7 +1,7 @@
 /obj/item/structurecapsule/syndicate	//index
 	name = "Index Capsule"
 	desc = "Use this capsule in a designated syndicate hideout area to start your syndicate."
-	template_id = "indexfinger_base"
+	template_id = "index_base"
 	delay_time = 0
 
 /obj/item/structurecapsule/syndicate/attack_self()
@@ -11,26 +11,26 @@
 			ready = TRUE
 			break
 	if(!ready)
-		src.loc.visible_message(span_warning("\The [src] will not function in this area. Please move to a designated syndicate hideout space."))
+		src.loc.visible_message("<span class='warning'>\The [src] will not function in this area. Please move to a designated syndicate hideout space.</span>")
 		return
 	..()
 
 /obj/item/structurecapsule/syndicate/bladelineage
 	name = "Blade Lineage Capsule"
-	template_id = "bladelineageswordmen_base"
+	template_id = "bladelineage_base"
 
 
 /obj/item/structurecapsule/syndicate/thumb
 	name = "Thumb Capsule"
-	template_id = "thumbfinger_base"
+	template_id = "thumb_base"
 
 /obj/item/structurecapsule/syndicate/ncorp
 	name = "N-Corp Capsule"
-	template_id = "nagelcorp_base"
+	template_id = "ncorp_base"
 
 /obj/item/structurecapsule/syndicate/kurokumo
 	name = "Kurokumo Capsule"
-	template_id = "kurokumo_base"
+	template_id = "kuro_base"
 
 
 
@@ -38,31 +38,31 @@
 //Office templates
 /datum/map_template/shelter/index
 	name = "Index Base"
-	shelter_id = "indexfinger_base"
+	shelter_id = "index_base"
 	description = "A place for index."
-	mappath = "_maps/templates/syndicate_office/indexfinger.dmm"
+	mappath = "_maps/templates/syndicate_office/index.dmm"
 
 /datum/map_template/shelter/bladelineage
 	name = "Blade Lineage Base"
-	shelter_id = "bladelineageswordmen_base"
+	shelter_id = "bladelineage_base"
 	description = "A place for blade lineage."
-	mappath = "_maps/templates/syndicate_office/blade_lineageswordmen.dmm"
+	mappath = "_maps/templates/syndicate_office/blade_lineage.dmm"
 
 /datum/map_template/shelter/thumb
 	name = "Thumb Base"
-	shelter_id = "thumbfinger_base"
+	shelter_id = "thumb_base"
 	description = "A place for the thumb."
-	mappath = "_maps/templates/syndicate_office/thumbfinger.dmm"
+	mappath = "_maps/templates/syndicate_office/thumb.dmm"
 
 /datum/map_template/shelter/ncorp
 	name = "Ncorp Base"
-	shelter_id = "nagelcorp_base"
+	shelter_id = "ncorp_base"
 	description = "A place for the Ncorp Inquisition."
-	mappath = "_maps/templates/syndicate_office/nagelcorp.dmm"
+	mappath = "_maps/templates/syndicate_office/ncorp.dmm"
 
 /datum/map_template/shelter/kurokumo
 	name = "Kurokumo Base"
-	shelter_id = "kurokumo_base"
+	shelter_id = "kuro_base"
 	description = "A place for the Kurokumo Clan."
-	mappath = "_maps/templates/syndicate_office/kurokumosake.dmm"
+	mappath = "_maps/templates/syndicate_office/kurokumo.dmm"
 

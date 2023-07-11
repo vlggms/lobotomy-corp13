@@ -8,11 +8,11 @@ GLOBAL_LIST_INIT(basic_engiborg_manipulator_allowed, typecacheof(list(
 
 	var/obj/item/borg/apparatus/circuit/C = locate() in R.model.modules
 	if(!C)
-		to_chat(user, span_warning("This unit has no [C] to upgrade!"))
+		to_chat(user, "<span class='warning'>This unit has no [C] to upgrade!</span>")
 		return FALSE
 
 	if(C.upgraded) //Delete the basic manipulator if we have it
-		to_chat(user, span_warning("This unit already has an upgraded [C]."))
+		to_chat(user, "<span class='warning'>This unit already has an upgraded [C].</span>")
 		return FALSE
 
 	C.upgraded = TRUE

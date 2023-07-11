@@ -5,8 +5,7 @@
 	key = "cry"
 	key_third_person = "cries"
 	message = "cries."
-	message_mime = "sobs silently."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/dap
 	key = "dap"
@@ -23,8 +22,7 @@
 	key = "grumble"
 	key_third_person = "grumbles"
 	message = "grumbles!"
-	message_mime = "grumbles silently!"
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/handshake
 	key = "handshake"
@@ -44,8 +42,7 @@
 	key = "mumble"
 	key_third_person = "mumbles"
 	message = "mumbles!"
-	message_mime = "mumbles silently!"
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/scream
 	key = "scream"
@@ -84,14 +81,8 @@
 	key = "screech"
 	key_third_person = "screeches"
 	message = "screeches."
-	message_mime = "screeches silently."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 	vary = FALSE
-
-/datum/emote/living/carbon/human/scream/screech/should_play_sound(mob/user, intentional)
-	if(ismonkey(user))
-		return TRUE
-	return ..()
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
@@ -196,10 +187,6 @@
 
 //Ayy lmao
 
-/datum/emote/living/carbon/human/clear_throat
-	key = "clear"
-	key_third_person = "clears throat"
-	message = "clears their throat."
 
 ///Snowflake emotes only for le epic chimp
 /datum/emote/living/carbon/human/monkey
@@ -213,7 +200,6 @@
 	key = "gnarl"
 	key_third_person = "gnarls"
 	message = "gnarls and shows its teeth..."
-	message_mime = "gnarls silently, baring its teeth..."
 
 /datum/emote/living/carbon/human/monkey/roll
 	key = "roll"
@@ -231,14 +217,13 @@
 	key = "roar"
 	key_third_person = "roars"
 	message = "roars."
-	message_mime = "acts out a roar."
-	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/monkey/tail
 	key = "tail"
 	message = "waves their tail."
 
-/datum/emote/living/carbon/human/monkey/sign
+/datum/emote/living/carbon/human/monkeysign
 	key = "sign"
 	key_third_person = "signs"
 	message_param = "signs the number %t."

@@ -3,7 +3,7 @@
 	desc = "A strange humanoid creature with several gadgets attached to it."
 	health = 8000
 	maxHealth = 8000
-	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
@@ -31,8 +31,8 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "NTAF-V"
 	del_on_death = FALSE
-	death_message = "falls to the ground, decaying into glowing particles."
-	death_sound = 'ModularTegustation/Tegusounds/claw/death.ogg'
+	deathmessage = "falls to the ground, decaying into glowing particles."
+	deathsound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/swift_dash,
 							   /datum/action/innate/megafauna_attack/swift_dash_long,
@@ -69,42 +69,42 @@
 	name = "Serum 'W'"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "static"
-	chosen_message = span_colossus("You will now jump to random targets in the facility.")
+	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/swift_dash
 	name = "Swift Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = span_colossus("You will now dash forward for a short distance.")
+	chosen_message = "<span class='colossus'>You will now dash forward for a short distance.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/swift_dash_long
 	name = "Long Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
-	chosen_message = span_colossus("You will now dash forward for a long distance.")
+	chosen_message = "<span class='colossus'>You will now dash forward for a long distance.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/serum_a
 	name = "Serum 'A'"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "impact_laser"
-	chosen_message = span_colossus("You will now continously dash towards your target.")
+	chosen_message = "<span class='colossus'>You will now continously dash towards your target.</span>"
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/wide_slash
 	name = "Wide Slash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "bluestream"
-	chosen_message = span_colossus("You will now slash in a wide area with white damage.")
+	chosen_message = "<span class='colossus'>You will now slash in a wide area with white damage.</span>"
 	chosen_attack_num = 5
 
 /datum/action/innate/megafauna_attack/tri_serum
 	name = "Tri-Serum Attack"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "static"
-	chosen_message = span_colossus("You will now jump to random targets in the facility, dealing pale damage to anyone on your way.")
+	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility, dealing pale damage to anyone on your way.</span>"
 	chosen_attack_num = 6
 
 /obj/effect/temp_visual/target_field
@@ -141,35 +141,34 @@
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
-	if(charging)
-		return
-
 	if(client)
+		if(charging)
+			return
 		switch(chosen_attack)
 			if(1)
-				INVOKE_ASYNC(src, PROC_REF(SerumW), target)
+				INVOKE_ASYNC(src, .proc/SerumW, target)
 			if(2)
-				INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_short, 5)
+				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
 			if(3)
-				INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_long, 20)
+				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_long, 20)
 			if(4)
-				INVOKE_ASYNC(src, PROC_REF(SerumA), target)
+				INVOKE_ASYNC(src, .proc/SerumA, target)
 			if(5)
-				INVOKE_ASYNC(src, PROC_REF(WideSlash), target)
+				INVOKE_ASYNC(src, .proc/WideSlash, target)
 			if(6)
-				INVOKE_ASYNC(src, PROC_REF(TriSerum))
+				INVOKE_ASYNC(src, .proc/TriSerum)
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
 	if(serumA_cooldown <= world.time && !charging)
-		INVOKE_ASYNC(src, PROC_REF(SerumA), target)
+		INVOKE_ASYNC(src, .proc/SerumA, target)
 	else if(dash_cooldown <= world.time && !charging)
 		if(prob(15) && (health < maxHealth*0.5))
-			INVOKE_ASYNC(src, PROC_REF(ContinuousDash), target, 5)
+			INVOKE_ASYNC(src, .proc/ContinuousDash, target, 5)
 			return
-		INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_short, 5)
+		INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
 	else if(wide_slash_cooldown <= world.time && !charging)
-		INVOKE_ASYNC(src, PROC_REF(WideSlash), target)
+		INVOKE_ASYNC(src, .proc/WideSlash, target)
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
 	if(charging)
@@ -192,11 +191,11 @@
 					targets_in_view += L
 				if(length(targets_in_view) > 3)
 					var/mob/living/L = pick(targets_in_view)
-					INVOKE_ASYNC(src, PROC_REF(SerumW), L) // Will do targeted serum W
+					INVOKE_ASYNC(src, .proc/SerumW, L) // Will do targeted serum W
 					return
-				INVOKE_ASYNC(src, PROC_REF(SerumW)) // So we don't get stuck
+				INVOKE_ASYNC(src, .proc/SerumW) // So we don't get stuck
 			if(triserum_cooldown <= world.time && (health < maxHealth*0.2))
-				INVOKE_ASYNC(src, PROC_REF(TriSerum))
+				INVOKE_ASYNC(src, .proc/TriSerum)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/SerumW(target)
 	if(serumW_cooldown > world.time)
@@ -212,37 +211,31 @@
 			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
+	var/mob/living/carbon/human/H = null
 	if(!LAZYLEN(death_candidates)) // If there is 0 candidates - stop the spell.
-		to_chat(src, span_notice("There is no more human survivors in the facility."))
+		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
 	if(length(death_candidates) == 1) // Exactly one? Do targeted thing for lulz
-		return TargetSerumW(death_candidates[1])
+		return TargetSerumW(pick(death_candidates))
 	for(var/i in 1 to 5)
-		if(!LAZYLEN(death_candidates)) // No more candidates left? Let's stop picking through the list.
+		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
 			break
-		var/mob/living/carbon/human/H = pick(death_candidates)
+		H = pick(death_candidates)
+		addtimer(CALLBACK(src, .proc/eviscerate, H), i*4)
 		death_candidates.Remove(H)
-		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
-			continue
-		addtimer(CALLBACK(src, PROC_REF(eviscerate), H), i*4)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate(mob/living/carbon/human/target)
-	if(!istype(target) || QDELETED(target))
-		return
 	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(target.loc)
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
-	to_chat(target, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, PROC_REF(eviscerate2), target, uhoh), 30)
+	to_chat(target, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	addtimer(CALLBACK(src, .proc/eviscerate2, target, uhoh), 30)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
-	if(!istype(target) || QDELETED(target) || !target.loc)
-		qdel(eff)
-		return
-	if(prob(2) || target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
-		to_chat(src, span_notice("Your teleportation device malfunctions!"))
-		to_chat(target, span_notice("It seems you are safe. For now..."))
+	if(prob(2) || target.z != z || !target.loc.AllowClick() || !target) // Be happy, mortal. Did you just hide in a locker?
+		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
+		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
@@ -250,7 +243,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc, src)
 	D.color = COLOR_BRIGHT_BLUE
 	animate(D, alpha = 0, time = 5)
-	visible_message(span_warning("[src] blinks away!"))
+	visible_message("<span class='warning'>[src] blinks away!</span>")
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
@@ -260,12 +253,12 @@
 	for(var/mob/living/L in range(1, get_turf(src))) // Attacks everyone around.
 		if(faction_check_mob(L))
 			continue
-		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
+		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
 		L.apply_damage(75, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetSerumW(mob/living/L)
-	if(!istype(L) || QDELETED(L))
+	if(!istype(L))
 		return FALSE
 	charging = TRUE
 	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(L.loc)
@@ -273,16 +266,15 @@
 	playsound(L, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 1, 1)
 	icon_state = "claw_prepare"
-	to_chat(L, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, PROC_REF(TargetEviscerate), L, uhoh), 15)
+	to_chat(L, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	addtimer(CALLBACK(src, .proc/TargetEviscerate, target, uhoh), 15)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
-	if(!istype(L) || QDELETED(L))
-		charging = FALSE
+	if(!istype(L))
 		return FALSE
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	icon_state = icon_living
-	visible_message(span_warning("[src] blinks away!"))
+	visible_message("<span class='warning'>[src] blinks away!</span>")
 	var/turf/tp_loc = get_step(L, pick(GLOB.alldirs))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
@@ -291,23 +283,17 @@
 	L.Stun(12, TRUE, TRUE)
 	SLEEP_CHECK_DEATH(6)
 	qdel(eff)
-	if(!istype(L) || QDELETED(L))
-		charging = FALSE
-		return FALSE
 	L.visible_message(
-		span_warning("[src] disappears, taking [L] with them!"),
-		span_userdanger("[src] teleports with you through the entire facility!")
+		"<span class='warning'>[src] disappears, taking [L] with them!</span>",
+		"<span class='userdanger'>[src] teleports with you through the entire facility!</span>"
 		)
 	var/list/teleport_turfs = list()
 	for(var/turf/T in shuffle(GLOB.department_centers))
-		if(T in range(12, src))
+		if(T in range(18, src))
 			continue
 		teleport_turfs += T
 	for(var/i = 1 to 5)
 		if(!LAZYLEN(teleport_turfs))
-			break
-		if(!istype(L) || QDELETED(L))
-			charging = FALSE
 			break
 		var/turf/target_turf = pick(teleport_turfs)
 		playsound(tp_loc, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
@@ -322,7 +308,7 @@
 				continue
 			if(LL == L)
 				continue
-			to_chat(LL, span_userdanger("\The [src] slashes you!"))
+			to_chat(LL, "<span class='userdanger'>\The [src] slashes you!</span>")
 			LL.apply_damage(15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
 			new /obj/effect/temp_visual/cleave(get_turf(LL))
 		tp_loc = get_step(src, pick(1,2,4,5,6,8,9,10))
@@ -336,10 +322,9 @@
 		L.forceMove(tp_loc)
 		if(i < 5)
 			SLEEP_CHECK_DEATH(4)
-	if(istype(L) && !QDELETED(L))
-		to_chat(L, span_userdanger("\The [src] slashes you, finally releasing you from his grasp!"))
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-		GiveTarget(L)
+	to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
+	L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	GiveTarget(L)
 	charging = FALSE
 
 // I hate how it's just a copy-paste of serum W, but oh well
@@ -353,38 +338,33 @@
 			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
+	var/mob/living/carbon/human/H = null
 	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
-		to_chat(src, span_notice("There is no more human survivors in the facility."))
+		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
 	for(var/i in 1 to 5)
 		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
 			break
-		var/mob/living/carbon/human/H = pick(death_candidates)
+		H = pick(death_candidates)
+		addtimer(CALLBACK(src, .proc/triserum_eviscerate, H), i*5)
 		death_candidates.Remove(H)
-		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
-			continue
-		addtimer(CALLBACK(src, PROC_REF(triserum_eviscerate), H), i*5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate(mob/living/carbon/human/target)
-	if(!istype(target) || QDELETED(target))
-		return
 	var/obj/effect/temp_visual/target_field/blue/uhoh = new /obj/effect/temp_visual/target_field/blue(target.loc)
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
-	to_chat(target, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, PROC_REF(triserum_eviscerate2), target, uhoh), 40)
+	to_chat(target, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	addtimer(CALLBACK(src, .proc/triserum_eviscerate2, target, uhoh), 40)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
-	if(!istype(target) || QDELETED(target))
-		return
-	if(target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
-		to_chat(src, span_notice("Your teleportation device malfunctions!"))
-		to_chat(target, span_notice("It seems you are safe. For now..."))
+	if(target.z != z || !target.loc.AllowClick() || !target) // Be happy, mortal. Did you just hide in a locker?
+		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
+		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
-	visible_message(span_warning("[src] blinks away!"))
+	visible_message("<span class='warning'>[src] blinks away!</span>")
 	var/list/been_hit = list()
 	var/turf/prev_loc = get_turf(src)
 	new /obj/effect/temp_visual/emp/pulse(prev_loc)
@@ -404,7 +384,7 @@
 		if(faction_check_mob(L))
 			continue
 		been_hit |= L
-		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
+		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
 		L.apply_damage(70, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 	for(var/turf/B in getline(prev_loc, tp_loc))
@@ -414,15 +394,13 @@
 			if(faction_check_mob(L))
 				continue
 			been_hit |= L
-			to_chat(L, span_userdanger("\The [src] slashes you!"))
+			to_chat(L, "<span class='userdanger'>\The [src] slashes you!</span>")
 			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(atom/target, distance, wait_time)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(target, distance, wait_time)
 	if(dash_cooldown > world.time)
-		return
-	if(!istype(target) || QDELETED(target))
 		return
 	dash_cooldown = world.time + (dash_cooldown_time * distance)
 	charging = TRUE
@@ -436,7 +414,7 @@
 	SLEEP_CHECK_DEATH(wait_time)
 	icon_state = "claw_dash"
 	for(var/turf/T in turf_list)
-		if(!istype(T))
+		if(!T)
 			charging = FALSE
 			icon_state = icon_living
 			break
@@ -458,10 +436,10 @@
 
 // The idea behind this attack is that it entirely misses the "target", instead turning large area around it into
 // uninhabitable zone of death
-/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumA(mob/living/target)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumA(target)
 	if(serumA_cooldown > world.time)
 		return
-	if(!isliving(target) || QDELETED(target))
+	if(!isliving(target))
 		return
 	var/mob/living/LT = target
 	serumA_cooldown = world.time + serumA_cooldown_time
@@ -469,19 +447,17 @@
 	icon_state = "claw_prepare"
 	charging = TRUE
 	new /obj/effect/temp_visual/dir_setting/cult/phase(get_turf(LT))
-	face_atom(LT)
+	face_atom(target)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
-		if(!isliving(LT) || QDELETED(LT))
-			break
-		INVOKE_ASYNC(src, PROC_REF(blink), LT)
+		INVOKE_ASYNC(src, .proc/blink, LT)
 		SLEEP_CHECK_DEATH(2)
 	icon_state = icon_living
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
-	if(!istype(LT) || QDELETED(LT))
+	if(!LT)
 		var/list/potential_people = list()
 		for(var/mob/living/L in view(9, src))
 			if(faction_check_mob(L))
@@ -502,8 +478,6 @@
 		new /obj/effect/temp_visual/cult/sparks(T) // Telegraph the attack
 	face_atom(target_turf)
 	SLEEP_CHECK_DEATH(1)
-	if(!istype(LT) || QDELETED(LT))
-		return
 	forceMove(target_turf)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	for(var/turf/B in getline(start_turf, target_turf))
@@ -514,14 +488,12 @@
 					continue
 				if(victim == LT)
 					continue
-				to_chat(victim, span_userdanger("\The [src] slashes you!"))
+				to_chat(victim, "<span class='userdanger'>\The [src] slashes you!</span>")
 				victim.apply_damage(serumA_damage, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
 				new /obj/effect/temp_visual/cleave(victim.loc)
 				playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/WideSlash(atom/target)
-	if(!istype(target) || QDELETED(target))
-		return
+/mob/living/simple_animal/hostile/megafauna/claw/proc/WideSlash(target)
 	if(wide_slash_cooldown > world.time)
 		return
 	wide_slash_cooldown = world.time + wide_slash_cooldown_time
@@ -536,14 +508,14 @@
 	var/turf/T = get_turf(src)
 	var/rotate_dir = pick(1, -1)
 	var/angle_to_target = Get_Angle(T, TT)
-	var/angle = angle_to_target + (wide_slash_angle * rotate_dir) * 0.5
+	var/angle = angle_to_target + ((rotate_dir ? wide_slash_angle : -wide_slash_angle) * 0.5)
 	if(angle > 360)
 		angle -= 360
 	else if(angle < 0)
 		angle += 360
 	var/turf/T2 = get_turf_in_angle(angle, T, wide_slash_range)
 	var/list/line = getline(T, T2)
-	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), line)
+	INVOKE_ASYNC(src, .proc/DoLineAttack, line)
 	for(var/i = 1 to 20)
 		angle += ((wide_slash_angle / 20) * rotate_dir)
 		if(angle > 360)
@@ -552,7 +524,7 @@
 			angle += 360
 		T2 = get_turf_in_angle(angle, T, wide_slash_range)
 		line = getline(T, T2)
-		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line), i * 0.04)
+		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i * 0.04)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	icon_state = icon_living
 	charging = FALSE

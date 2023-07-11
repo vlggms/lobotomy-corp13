@@ -7,7 +7,7 @@
 	force = 32
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
@@ -18,9 +18,9 @@
 	icon_state = "axe_gang"
 	force = 42
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 60,
-		PRUDENCE_ATTRIBUTE = 40,
-		TEMPERANCE_ATTRIBUTE = 40,
-		JUSTICE_ATTRIBUTE = 40,
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
 

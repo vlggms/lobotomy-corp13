@@ -70,10 +70,10 @@
 	if(!active && !(flags_1 & NODECONSTRUCT_1))
 		if(O.tool_behaviour == TOOL_WRENCH)
 			if(!anchored && !isinspace())
-				to_chat(user,span_notice("You secure [src] to the floor."))
+				to_chat(user,"<span class='notice'>You secure [src] to the floor.</span>")
 				set_anchored(TRUE)
 			else if(anchored)
-				to_chat(user,span_notice("You unsecure and disconnect [src]."))
+				to_chat(user,"<span class='notice'>You unsecure and disconnect [src].</span>")
 				set_anchored(FALSE)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
@@ -87,14 +87,14 @@
 
 /obj/machinery/jukebox/ui_status(mob/user)
 	if(!anchored)
-		to_chat(user,span_warning("This device must be anchored by a wrench!"))
+		to_chat(user,"<span class='warning'>This device must be anchored by a wrench!</span>")
 		return UI_CLOSE
 	if(!allowed(user) && !isobserver(user))
-		to_chat(user,span_warning("Error: Access Denied."))
+		to_chat(user,"<span class='warning'>Error: Access Denied.</span>")
 		user.playsound_local(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	if(!songs.len && !isobserver(user))
-		to_chat(user,span_warning("Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue."))
+		to_chat(user,"<span class='warning'>Error: No music tracks have been authorized for your station. Petition Central Command to resolve this issue.</span>")
 		user.playsound_local(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	return ..()
@@ -135,7 +135,7 @@
 				return
 			if(!active)
 				if(stop > world.time)
-					to_chat(usr, span_warning("Error: The device is still resetting from the last activation, it will be ready again in [DisplayTimeText(stop-world.time)]."))
+					to_chat(usr, "<span class='warning'>Error: The device is still resetting from the last activation, it will be ready again in [DisplayTimeText(stop-world.time)].</span>")
 					if(!COOLDOWN_FINISHED(src, jukebox_error_cd))
 						return
 					playsound(src, 'sound/misc/compiler-failure.ogg', 50, TRUE)
@@ -148,7 +148,7 @@
 				return TRUE
 		if("select_track")
 			if(active)
-				to_chat(usr, span_warning("Error: You cannot change the song until the current one is over."))
+				to_chat(usr, "<span class='warning'>Error: You cannot change the song until the current one is over.</span>")
 				return
 			var/list/available = list()
 			for(var/datum/track/S in songs)
@@ -311,7 +311,7 @@
 						glow.set_light_color(COLOR_SOFT_RED)
 					glow.even_cycle = !glow.even_cycle
 		if(prob(2))  // Unique effects for the dance floor that show up randomly to mix things up
-			INVOKE_ASYNC(src, PROC_REF(hierofunk))
+			INVOKE_ASYNC(src, .proc/hierofunk)
 		sleep(selection.song_beat)
 		if(QDELETED(src))
 			return
@@ -332,7 +332,7 @@
 
 /obj/machinery/jukebox/disco/proc/dance2(mob/living/M)
 	for(var/i in 0 to 9)
-		dance_rotate(M, CALLBACK(M, TYPE_PROC_REF(/mob, dance_flip)))
+		dance_rotate(M, CALLBACK(M, /mob.proc/dance_flip))
 		sleep(20)
 
 /mob/proc/dance_flip()

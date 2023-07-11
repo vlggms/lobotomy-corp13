@@ -29,19 +29,11 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
-	. = ..()
-	if(.)
-		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(on_death))
-
-/obj/item/implant/chem/removed(mob/target, silent = FALSE, special = FALSE)
-	. = ..()
-	if(.)
-		UnregisterSignal(target, COMSIG_LIVING_DEATH)
-
-/obj/item/implant/chem/proc/on_death(mob/living/source)
-	SIGNAL_HANDLER
-	activate(reagents.total_volume)
+/obj/item/implant/chem/trigger(emote, mob/living/source)
+	if(emote == "deathgasp")
+		if(istype(source) && !(source.stat == DEAD))
+			return
+		activate(reagents.total_volume)
 
 /obj/item/implant/chem/activate(cause)
 	. = ..()
@@ -54,9 +46,9 @@
 	else
 		injectamount = cause
 	reagents.trans_to(R, injectamount)
-	to_chat(R, span_hear("You hear a faint beep."))
+	to_chat(R, "<span class='hear'>You hear a faint beep.</span>")
 	if(!reagents.total_volume)
-		to_chat(R, span_hear("You hear a faint click from your chest."))
+		to_chat(R, "<span class='hear'>You hear a faint click from your chest.</span>")
 		qdel(src)
 
 

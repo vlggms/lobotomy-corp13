@@ -110,12 +110,6 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("shower frame", /obj/structure/showerframe, 2, time= 2 SECONDS)
 ))
 
-GLOBAL_LIST_INIT(skeld_metal_recipes, list ( \
-	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("wall girders", /obj/structure/girder, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75), \
-	null, \
-))
-
 /obj/item/stack/sheet/metal
 	name = "metal"
 	desc = "Sheets made out of metal."
@@ -154,8 +148,6 @@ GLOBAL_LIST_INIT(skeld_metal_recipes, list ( \
 /obj/item/stack/sheet/metal/get_main_recipes()
 	. = ..()
 	. += GLOB.metal_recipes
-	if(SSmaptype.maptype in SSmaptype.spacemaps)
-		. += GLOB.skeld_reinforced_glass_recipes
 
 /obj/item/stack/sheet/metal/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] begins whacking [user.p_them()]self over the head with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -187,8 +179,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/plasteel
-	//	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20) LOBOTOMYCORPORATION EDIT CHANGE OLD
-	grind_results = list(/datum/reagent/iron = 20) // LOBOTOMYCORPORATION EDIT CHANGE NEW -- Removes plasma
+	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 	point_value = 23
 	tableVariant = /obj/structure/table/reinforced
 	material_flags = MATERIAL_NO_EFFECTS

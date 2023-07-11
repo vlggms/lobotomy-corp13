@@ -15,44 +15,44 @@
 	inhand_icon_state = "sevenassociation"
 	force = 38
 	damtype = BLACK_DAMAGE
-
+	armortype = BLACK_DAMAGE
 	var/stored_target
 	var/stored_target_hp
 	var/hit_number
 	var/hit_target = 7
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 60,
-		PRUDENCE_ATTRIBUTE = 60,
-		TEMPERANCE_ATTRIBUTE = 80,
-		JUSTICE_ATTRIBUTE = 60,
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60
+							)
 
 
 /obj/item/ego_weapon/city/seven/examine(mob/user)
 	. = ..()
-	. += span_notice("Attack an enemy [hit_target] times to store it.")
+	. += "<span class='notice'>Attack an enemy [hit_target] times to store it.</span>"
 
 /obj/item/ego_weapon/city/seven/attack_self(mob/living/carbon/human/user)
 	..()
 	if(!stored_target)
-		to_chat(user, span_notice("You have no information stored."))
+		to_chat(user, "<span class='notice'>You have no information stored.</span>")
 		return
 
 	//not enough info for vitals
 	var/mob/living/Y = stored_target
 	if(hit_number <= hit_target-1)
-		to_chat(user, span_notice("Current target is [Y.name]. Not enough information for vitals."))
+		to_chat(user, "<span class='notice'>Current target is [Y.name]. Not enough information for vitals.</span>")
 		return
 
 	//Reset if they died, don't reset if you don't have info on them.
 	if(Y.stat == DEAD)
-		to_chat(user, span_notice("The target has expired. Clearing information."))
+		to_chat(user, "<span class='notice'>The target has expired. Clearing information.</span>")
 		stored_target = null
 		return
 
 	//Get a very accurate % of their HP
 	var/printhealth = stored_target_hp/Y.maxHealth*100
-	to_chat(user, span_notice("Current target is [Y.name]. Their last health gathered is [printhealth]%"))
+	to_chat(user, "<span class='notice'>Current target is [Y.name]. Their last health gathered is [printhealth]%</span>")
 
 
 /obj/item/ego_weapon/city/seven/attack(mob/living/target, mob/living/user)
@@ -64,7 +64,7 @@
 	force = initial(force)
 	if(target != stored_target)
 		stored_target = target
-		to_chat(user, span_notice("You pursue a new target."))
+		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
 		hit_number = 0
 		return
 	else
@@ -72,7 +72,7 @@
 		stored_target_hp = target.health
 
 	if(hit_number == hit_target-1)
-		to_chat(user, span_danger("Target Analyzed. Combat effectiveness increased by 50%"))
+		to_chat(user, "<span class='danger'>Target Analyzed. Combat effectiveness increased by 50%</span>")
 
 
 /obj/item/ego_weapon/city/seven/vet
@@ -134,7 +134,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	force = 38
 	damtype = BLACK_DAMAGE
-
+	armortype = BLACK_DAMAGE
 	var/fencing_target
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -149,7 +149,7 @@
 		return
 	if(!fencing_target || fencing_target != M)
 		fencing_target = M
-		to_chat(user, span_notice("Target acquired."))
+		to_chat(user, "<span class='notice'>Target acquired.</span>")
 	else
 		force *= 1.35
 	..()

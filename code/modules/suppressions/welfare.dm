@@ -3,7 +3,7 @@
 
 // Right now the only core suppression with a proper reward, which is higher spawning stats.
 /datum/suppression/welfare
-	name = WELFARE_CORE_SUPPRESSION
+	name = "Welfare Core Suppression"
 	desc = "All employees will suffer from decreased resistance to randomly chosen damage types, which change on each meltdown."
 	reward_text = "All personnel will be able to avoid death/insanity by instantly healing to certain percentage \
 		of either health or sanity each time they reach that point. \
@@ -22,10 +22,10 @@
 		PALE_DAMAGE = 1,
 		)
 
-/datum/suppression/welfare/Run(run_white = FALSE, silent = FALSE)
+/datum/suppression/welfare/Run(run_white = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnJoin))
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
@@ -34,7 +34,7 @@
 		ApplyEffect(H)
 	OnMeltdown()
 
-/datum/suppression/welfare/End(silent = FALSE)
+/datum/suppression/welfare/End()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/datum/status_effect/welfare_damage_resist/S in affected_statuses)
@@ -59,8 +59,8 @@
 	SIGNAL_HANDLER
 	var/current_damage_mod = damage_mod
 	if(ordeal)
-		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x3 damage be like...)
-		damage_mod = min(4, damage_mod + 0.5) // With each ordeal passing, normal meltdowns will be more difficult
+		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x4 damage be like...)
+		damage_mod = min(4, damage_mod + 1) // With each ordeal passing, normal meltdowns will be more difficult
 		mod_count = min(3, mod_count + 1) // More damage types get rolled
 	var/list/temp_list = current_resist.Copy()
 	for(var/R in current_resist) // Reset values
@@ -161,13 +161,11 @@
 	var/minimum_restore_percentage = 0.1
 
 /datum/status_effect/welfare_reward/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamage))
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamage)
 	to_chat(owner, "<span class='notice'>Welfare Department modification has been applied to you!</span>")
-	return ..()
 
-/datum/status_effect/welfare_reward/on_remove()
+/datum/status_effect/welfare_reward/on_apply()
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
-	return ..()
 
 // Called before damage applies, so we must check whereas situation WOULD kill the user
 // This comes with an issue, however, as damage will still be applied afterwards
@@ -180,33 +178,22 @@
 	if(damage_taken <= 0)
 		return
 
-	var/block_damage = FALSE
 	switch(damagetype)
 		if(RED_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
-				block_damage = TRUE
 		if(WHITE_DAMAGE)
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
-				block_damage = TRUE
 		if(BLACK_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
-				block_damage = TRUE
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
-				block_damage = TRUE
 		if(PALE_DAMAGE)
 			damage_taken = H.maxHealth * (damage_taken / 100)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
-				block_damage = TRUE
-
-	// ALWAYS blocks damage so you don't die
-	if(block_damage)
-		return COMPONENT_MOB_DENY_DAMAGE
-	return
 
 /datum/status_effect/welfare_reward/proc/ActivateHealth()
 	var/mob/living/carbon/human/H = owner
@@ -230,7 +217,7 @@
 
 /datum/welfare_reward_tracker/New()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnJoin))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
 
 /datum/welfare_reward_tracker/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)

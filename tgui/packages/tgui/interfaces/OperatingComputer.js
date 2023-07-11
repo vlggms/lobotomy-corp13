@@ -19,10 +19,6 @@ const damageTypes = [
     label: 'Respiratory',
     type: 'oxyLoss',
   },
-  {
-    label: "Sanity",
-    type: "sanityLoss",
-  },
 ];
 
 export const OperatingComputer = (props, context) => {

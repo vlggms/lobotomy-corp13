@@ -195,22 +195,22 @@
 
 /obj/effect/proc_holder/spell/pointed/abyssal_gaze/cast(list/targets, mob/user)
 	if(!LAZYLEN(targets))
-		to_chat(user, span_warning("No target found in range!"))
+		to_chat(user, "<span class='warning'>No target found in range!</span>")
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE
 
 	var/mob/living/carbon/target = targets[1]
 	if(target.anti_magic_check(TRUE, TRUE))
-		to_chat(user, span_warning("The spell had no effect!"))
-		to_chat(target, span_warning("You feel a freezing darkness closing in on you, but it rapidly dissipates."))
+		to_chat(user, "<span class='warning'>The spell had no effect!</span>")
+		to_chat(target, "<span class='warning'>You feel a freezing darkness closing in on you, but it rapidly dissipates.</span>")
 		return FALSE
 
-	to_chat(target, span_userdanger("A freezing darkness surrounds you..."))
+	to_chat(target, "<span class='userdanger'>A freezing darkness surrounds you...</span>")
 	target.playsound_local(get_turf(target), 'sound/hallucinations/i_see_you1.ogg', 50, 1)
 	user.playsound_local(get_turf(user), 'sound/effects/ghost2.ogg', 50, 1)
 	target.become_blind(ABYSSAL_GAZE_BLIND)
-	addtimer(CALLBACK(src, PROC_REF(cure_blindness), target), 40)
+	addtimer(CALLBACK(src, .proc/cure_blindness, target), 40)
 	if(ishuman(targets[1]))
 		var/mob/living/carbon/human/humi = targets[1]
 		humi.adjust_coretemperature(-200)
@@ -233,7 +233,7 @@
 		return FALSE
 	if(!iscarbon(target))
 		if(!silent)
-			to_chat(user, span_warning("You can only target carbon based lifeforms!"))
+			to_chat(user, "<span class='warning'>You can only target carbon based lifeforms!</span>")
 		return FALSE
 	return TRUE
 
@@ -255,7 +255,7 @@
 
 /obj/effect/proc_holder/spell/pointed/dominate/cast(list/targets, mob/user)
 	if(!LAZYLEN(targets))
-		to_chat(user, span_notice("No target found in range."))
+		to_chat(user, "<span class='notice'>No target found in range.</span>")
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE
@@ -272,25 +272,25 @@
 		return FALSE
 	if(!isanimal(target))
 		if(!silent)
-			to_chat(user, span_warning("Target is not a lesser creature!"))
+			to_chat(user, "<span class='warning'>Target is not a lesser creature!</span>")
 		return FALSE
 
 	var/mob/living/simple_animal/S = target
 	if(S.mind)
 		if(!silent)
-			to_chat(user, span_warning("[S] is too intelligent to dominate!"))
+			to_chat(user, "<span class='warning'>[S] is too intelligent to dominate!</span>")
 		return FALSE
 	if(S.stat)
 		if(!silent)
-			to_chat(user, span_warning("[S] is dead!"))
+			to_chat(user, "<span class='warning'>[S] is dead!</span>")
 		return FALSE
 	if(S.sentience_type != SENTIENCE_ORGANIC)
 		if(!silent)
-			to_chat(user, span_warning("[S] cannot be dominated!"))
+			to_chat(user, "<span class='warning'>[S] cannot be dominated!</span>")
 		return FALSE
 	if("cult" in S.faction)
 		if(!silent)
-			to_chat(user, span_warning("[S] is already serving Nar'Sie!"))
+			to_chat(user, "<span class='warning'>[S] is already serving Nar'Sie!</span>")
 		return FALSE
 	return TRUE
 
@@ -331,5 +331,5 @@
 	new /obj/effect/temp_visual/cult/sac(T)
 	for(var/obj/O in range(src,1))
 		if(O.density && !istype(O, /obj/structure/destructible/cult))
-			O.take_damage(90, MELEE, 0)
+			O.take_damage(90, BRUTE, MELEE, 0)
 			new /obj/effect/temp_visual/cult/turf/floor(get_turf(O))

@@ -24,6 +24,7 @@
 	ranged = 1
 	ranged_cooldown_time = 40
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	melee_damage_lower = 24
 	melee_damage_upper = 28
 	retreat_distance = 2
@@ -38,7 +39,7 @@
 	if(!isturf(T))
 		return
 	if(get_dist(src, T) <= 8)
-		visible_message(span_warning("[src] raises its hand in the air as red light appears under [target]!"))
+		visible_message("<span class='warning'>[src] raises its hand in the air as red light appears under [target]!</span>")
 		ranged_cooldown = world.time + ranged_cooldown_time
 		var/list/fire_zone = list()
 		for(var/i = 0 to 2)
@@ -57,5 +58,5 @@
 					if("necromancer" in L.faction)
 						continue
 					L.apply_damage(25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-					to_chat(L, span_userdanger("You're hit by a death field!"))
+					to_chat(L, "<span class='userdanger'>You're hit by a death field!</span>")
 			SLEEP_CHECK_DEATH(1.5)

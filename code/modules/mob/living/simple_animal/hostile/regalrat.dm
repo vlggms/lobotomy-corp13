@@ -4,10 +4,11 @@
 
 /mob/living/simple_animal/hostile/regalrat
 	name = "feral regal rat"
-	desc = "An evolved rat, created through some strange science. They lead nearby rats with deadly efficiency to protect their kingdom. Not technically a king."
+	desc = "An evolved rat, created through some strange science. It leads nearby rats with deadly efficiency to protect its kingdom. Not technically a king."
 	icon_state = "regalrat"
 	icon_living = "regalrat"
 	icon_dead = "regalrat_dead"
+	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 5
 	maxHealth = 70
@@ -25,8 +26,7 @@
 	melee_damage_upper = 15
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attack_vis_effect = ATTACK_EFFECT_CLAW
+	attack_sound = 'sound/weapons/punch1.ogg'
 	ventcrawler = VENTCRAWLER_ALWAYS
 	unique_name = TRUE
 	faction = list("rat")
@@ -44,12 +44,12 @@
 	AddElement(/datum/element/waddling)
 
 /mob/living/simple_animal/hostile/regalrat/proc/get_player()
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be his crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key
 		notify_ghosts("All rise for the rat king, ascendant to the throne in \the [get_area(src)].", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Sentient Rat Created")
-	to_chat(src, span_notice("You are an independent, invasive force on the station! Horde coins, trash, cheese, and the like from the safety of darkness!"))
+	to_chat(src, "<span class='notice'>You are an independent, invasive force on the station! Horde coins, trash, cheese, and the like from the safety of darkness!</span>")
 
 /mob/living/simple_animal/hostile/regalrat/handle_automated_action()
 	if(prob(20))
@@ -76,22 +76,22 @@
 	if(istype(user,/mob/living/simple_animal/hostile/rat))
 		var/mob/living/simple_animal/hostile/rat/ratself = user
 		if(ratself.faction_check_mob(src, TRUE))
-			. += span_notice("This is your king. Long live their majesty!")
+			. += "<span class='notice'>This is your king. Long live his majesty!</span>"
 		else
-			. += span_warning("This is a false king! Strike them down!")
+			. += "<span class='warning'>This is a false king! Strike him down!</span>"
 	else if(user != src && istype(user,/mob/living/simple_animal/hostile/regalrat))
-		. += span_warning("Who is this foolish false king? This will not stand!")
+		. += "<span class='warning'>Who is this foolish false king? This will not stand!</span>"
 
 /mob/living/simple_animal/hostile/regalrat/AttackingTarget()
 	. = ..()
 	if(istype(target, /obj/item/food/cheesewedge))
-		cheese_heal(target, MINOR_HEAL, span_green("You eat [target], restoring some health."))
+		cheese_heal(target, MINOR_HEAL, "<span class='green'>You eat [target], restoring some health.</span>")
 
 	else if(istype(target, /obj/item/food/cheesewheel))
-		cheese_heal(target, MEDIUM_HEAL, span_green("You eat [target], restoring some health."))
+		cheese_heal(target, MEDIUM_HEAL, "<span class='green'>You eat [target], restoring some health.</span>")
 
 	else if(istype(target, /obj/item/food/royalcheese))
-		cheese_heal(target, MAJOR_HEAL, span_green("You eat [target], revitalizing your royal resolve completely."))
+		cheese_heal(target, MAJOR_HEAL, "<span class='green'>You eat [target], revitalizing your royal resolve completely.</span>")
 
 /**
  * Conditionally "eat" cheese object and heal, if injured.
@@ -107,7 +107,7 @@
 		heal_bodypart_damage(amount)
 		qdel(target)
 	else
-		to_chat(src, span_warning("You feel fine, no need to eat anything!"))
+		to_chat(src, "<span class='warning'>You feel fine, no need to eat anything!</span>")
 
 
 /mob/living/simple_animal/hostile/regalrat/controlled
@@ -115,7 +115,7 @@
 
 /mob/living/simple_animal/hostile/regalrat/controlled/Initialize()
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(get_player))
+	INVOKE_ASYNC(src, .proc/get_player)
 
 
 /**
@@ -137,15 +137,15 @@
 	var/loot = rand(1,100)
 	switch(loot)
 		if(1 to 5)
-			to_chat(owner, span_notice("Score! You find some cheese!"))
+			to_chat(owner, "<span class='notice'>Score! You find some cheese!</span>")
 			new /obj/item/food/cheesewedge(T)
 		if(6 to 10)
 			var/pickedcoin = pick(GLOB.ratking_coins)
-			to_chat(owner, span_notice("You find some leftover coins. More for the royal treasury!"))
+			to_chat(owner, "<span class='notice'>You find some leftover coins. More for the royal treasury!</span>")
 			for(var/i = 1 to rand(1,3))
 				new pickedcoin(T)
 		if(11)
-			to_chat(owner, span_notice("You find a... Hunh. This coin doesn't look right."))
+			to_chat(owner, "<span class='notice'>You find a... Hunh. This coin doesn't look right.</span>")
 			var/rarecoin = rand(1,2)
 			if (rarecoin == 1)
 				new /obj/item/coin/twoheaded(T)
@@ -153,11 +153,11 @@
 				new /obj/item/coin/antagtoken(T)
 		if(12 to 40)
 			var/pickedtrash = pick(GLOB.ratking_trash)
-			to_chat(owner, span_notice("You just find more garbage and dirt. Lovely, but beneath you now."))
+			to_chat(owner, "<span class='notice'>You just find more garbage and dirt. Lovely, but beneath you now.</span>")
 			new /obj/effect/decal/cleanable/dirt(T)
 			new pickedtrash(T)
 		if(41 to 100)
-			to_chat(owner, span_notice("Drat. Nothing."))
+			to_chat(owner, "<span class='notice'>Drat. Nothing.</span>")
 			new /obj/effect/decal/cleanable/dirt(T)
 	StartCooldown()
 
@@ -191,24 +191,24 @@
 		qdel(M)
 	if(!something_from_nothing)
 		if(LAZYLEN(SSmobs.cheeserats) >= cap)
-			to_chat(owner,span_warning("There's too many mice on this station to beckon a new one! Find them first!"))
+			to_chat(owner,"<span class='warning'>There's too many mice on this station to beckon a new one! Find them first!</span>")
 			return
 		new /mob/living/simple_animal/mouse(owner.loc)
-		owner.visible_message(span_warning("[owner] commands a mouse to their side!"))
+		owner.visible_message("<span class='warning'>[owner] commands a mouse to its side!</span>")
 	else
-		owner.visible_message(span_warning("[owner] commands their army to action, mutating them into rats!"))
+		owner.visible_message("<span class='warning'>[owner] commands its army to action, mutating them into rats!</span>")
 	StartCooldown()
 
 /mob/living/simple_animal/hostile/rat
 	name = "rat"
-	desc = "They're a nasty, ugly, evil, disease-ridden rodent with anger issues."
+	desc = "It's a nasty, ugly, evil, disease-ridden rodent with anger issues."
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
 	speak = list("Skree!","SKREEE!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("Hisses.")
-	emote_see = list("runs in a circle.", "stands on their hind legs.")
+	emote_see = list("runs in a circle.", "stands on its hind legs.")
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	obj_damage = 5
@@ -246,7 +246,7 @@
 /mob/living/simple_animal/hostile/rat/revive(full_heal = FALSE, admin_revive = FALSE)
 	var/cap = CONFIG_GET(number/ratcap)
 	if(!admin_revive && !ckey && LAZYLEN(SSmobs.cheeserats) >= cap)
-		visible_message(span_warning("[src] twitched but does not continue moving due to the overwhelming rodent population on the station!"))
+		visible_message("<span class='warning'>[src] twitched but does not continue moving due to the overwhelming rodent population on the station!</span>")
 		return FALSE
 	. = ..()
 	if(.)
@@ -257,15 +257,15 @@
 	if(istype(user,/mob/living/simple_animal/hostile/rat))
 		var/mob/living/simple_animal/hostile/rat/ratself = user
 		if(ratself.faction_check_mob(src, TRUE))
-			. += span_notice("You both serve the same king.")
+			. += "<span class='notice'>You both serve the same king.</span>"
 		else
-			. += span_warning("This fool serves a different king!")
+			. += "<span class='warning'>This fool serves a different king!</span>"
 	else if(istype(user,/mob/living/simple_animal/hostile/regalrat))
 		var/mob/living/simple_animal/hostile/regalrat/ratking = user
 		if(ratking.faction_check_mob(src, TRUE))
-			. += span_notice("This rat serves under you.")
+			. += "<span class='notice'>This rat serves under you.</span>"
 		else
-			. += span_warning("This peasant serves a different king! Strike them down!")
+			. += "<span class='warning'>This peasant serves a different king! Strike him down!</span>"
 
 /mob/living/simple_animal/hostile/rat/CanAttack(atom/the_target)
 	if(istype(the_target,/mob/living/simple_animal))
@@ -292,12 +292,12 @@
 			var/obj/structure/cable/C = locate() in F
 			if(C && prob(15))
 				if(C.avail())
-					visible_message(span_warning("[src] chews through the [C]. It's toast!"))
+					visible_message("<span class='warning'>[src] chews through the [C]. It's toast!</span>")
 					playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 					C.deconstruct()
 					death()
 			else if(C?.avail())
-				visible_message(span_warning("[src] chews through the [C]. It looks unharmed!"))
+				visible_message("<span class='warning'>[src] chews through the [C]. It looks unharmed!</span>")
 				playsound(src, 'sound/effects/sparks2.ogg', 100, TRUE)
 				C.deconstruct()
 
@@ -305,9 +305,9 @@
 	. = ..()
 	if(istype(target, /obj/item/food/cheesewedge))
 		if (health >= maxHealth)
-			to_chat(src, span_warning("You feel fine, no need to eat anything!"))
+			to_chat(src, "<span class='warning'>You feel fine, no need to eat anything!</span>")
 			return
-		to_chat(src, span_green("You eat \the [src], restoring some health."))
+		to_chat(src, "<span class='green'>You eat \the [src], restoring some health.</span>")
 		heal_bodypart_damage(MINOR_HEAL)
 		qdel(target)
 

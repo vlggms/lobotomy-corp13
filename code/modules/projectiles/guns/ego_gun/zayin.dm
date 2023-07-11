@@ -1,9 +1,12 @@
 /obj/item/gun/ego_gun/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
-	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
+	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
 	icon_state = "bald"
-	inhand_icon_state = "bald"
+	inhand_icon_state = "gun"
+	worn_icon_state = "gun"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 10
@@ -46,7 +49,7 @@
 		baldtargets += L
 		to_chat(L, "<span class='warning'>You have been hit by the baldy-bald psychological attack. If a non-bald person is reading this, they will be granted the privilege of going bald at an extremely rapid pace if they stay within range of [user]!</span>")
 	if(!burst_chain)
-		addtimer(CALLBACK(src, PROC_REF(BaldBlast), user, baldtargets, TRUE), blast_delay)
+		addtimer(CALLBACK(src, .proc/BaldBlast, user, baldtargets, TRUE), blast_delay)
 
 /obj/item/gun/ego_gun/pistol/tough/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_BALD))
@@ -60,7 +63,7 @@
 /obj/item/gun/ego_gun/pistol/soda
 	name = "soda pistol"
 	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
-	special = "Perish while wearing matching armor and Wellcheers shrimp will arrive to mourn you."
+	special = "This weapon has a special ability that activates when the user dies while wearing matching armor."
 	icon_state = "soda"
 	inhand_icon_state = "soda"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
@@ -76,21 +79,17 @@
 	if(!user)
 		return
 	shrimp_chosen = user
-	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, PROC_REF(ShrimpFuneral))
+	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, .proc/ShrimpFuneral)
 
 /obj/item/gun/ego_gun/pistol/soda/dropped(mob/user)
 	. = ..()
-	if(!user)
-		return
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 
 /obj/item/gun/ego_gun/pistol/soda/Destroy(mob/user)
-	if(!user)
-		return ..()
+	. = ..()
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
-	return ..()
 
 /obj/item/gun/ego_gun/pistol/soda/proc/ShrimpFuneral(mob/user)
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -170,7 +169,7 @@
 /obj/item/gun/ego_gun/pistol/nostalgia
 	name = "nostalgia"
 	desc = "An old-looking pistol made of wood"
-	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
+	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
 	icon_state = "nostalgia"
 	inhand_icon_state = "nostalgia"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nostalgia
@@ -221,12 +220,11 @@
 			continue
 		L.adjustSanityLoss(pulse_healing)
 		to_chat(L, "<span class='nicegreen'>A pulse from [user] makes your mind feel a bit clearer.</span>")
-	addtimer(CALLBACK(src, PROC_REF(HealPulse), user, count += 1), pulse_cooldown)
+	addtimer(CALLBACK(src, .proc/HealPulse, user, count += 1), pulse_cooldown)
 
 /obj/item/gun/ego_gun/pistol/nightshade
 	name = "nightshade"
 	desc = "Strange that it was more than just a bleeding person in a vegetative state."
-	special = "If you are wearing the matching armor, fired shots will heal friendlies on hit."
 	icon_state = "nightshade"
 	inhand_icon_state = "nightshade"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
@@ -249,7 +247,7 @@
 /obj/item/gun/ego_gun/bucket
 	name = "bucket"
 	desc = "A slingshot made from wooden staves that fires skipping stones. What will you wish for?"
-	special = "Use this weapon in your hand when wearing matching armor to create gifts for people nearby."
+	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
 	icon_state = "bucket"
 	inhand_icon_state = "bucket"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_bucket
@@ -308,16 +306,3 @@
 		new gift(get_turf(L))
 	var/gift = pick(lootoptions)//you get one too!
 	new gift(get_turf(user))
-
-/obj/item/gun/ego_gun/pistol/oceanic
-	name = "a taste of the ocean"
-	desc = "A pistol painted in a refreshing orange. Whenever this EGO is used, a faint scent of orange wafts through the air."
-	icon_state = "oceanic"
-	inhand_icon_state = "oceanic"
-	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
-	burst_size = 1
-	fire_delay = 10
-	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
-	vary_fire_sound = FALSE
-	fire_sound_volume = 70
-

@@ -51,16 +51,6 @@ SUBSYSTEM_DEF(job)
 			if(SSmaptype.maptype in job.maptype)
 				job.maptype = SSmaptype.maptype
 
-
-		//Okay, R-Corp has 2 sets of jobs; and none of them are available on multiple maps.
-		//If the map has multiple jobtypes, the set will be randomized in the Maptype SS.
-		//If the wrong maptype is set
-		if(SSmaptype.jobtype && job.maptype != SSmaptype.jobtype)
-			job.maptype = "Nullified"
-		if(SSmaptype.jobtype && job.maptype == SSmaptype.jobtype)
-			job.maptype = SSmaptype.maptype
-
-
 		//Checks if the maptype is the same as the map
 		if(job.maptype != SSmaptype.maptype)
 			if(job.maptype != "standard")		//Is the job standard on all maps?
@@ -610,7 +600,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(20)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
+		INVOKE_ASYNC(src, .proc/RecoverJob, J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)

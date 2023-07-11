@@ -3,6 +3,7 @@
 	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
 	icon_state = "despair"
 	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
 	damage = 40
 	alpha = 0
 	spread = 20
@@ -26,6 +27,7 @@
 	name = "light"
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	damage = 30
 	alpha = 0
 	spread = 45
@@ -39,6 +41,7 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	damage = 25
 	spread = 15
 
@@ -48,7 +51,7 @@
 	icon_state = "slime"
 	hitsound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 	damage = 30 // Mainly a disabling tool, to pursue escaping opponents
 	spread = 5
 	slur = 5
@@ -57,7 +60,7 @@
 
 /obj/projectile/melting_blob/prehit_pierce(atom/A)
 	if(isliving(A) && isliving(firer))
-		var/mob/living/mob_firer = firer
+		var/mob/living/mob_firer
 		var/mob/living/L = A
 		if(mob_firer.faction_check_mob(L))
 			return PROJECTILE_PIERCE_PHASE
@@ -65,7 +68,6 @@
 
 /obj/projectile/melting_blob/on_hit(target)
 	if(isliving(target))
-		new /obj/effect/gibspawner/generic/silent/melty_slime(get_turf(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD && ishuman(L))
 			var/turf/T = get_turf(L)
@@ -75,7 +77,8 @@
 			return BULLET_ACT_HIT
 		if(!isbot(L))
 			L.visible_message("<span class='warning'>[L] is hit by [src], they seem to wither away!</span>")
-			L.apply_status_effect(/datum/status_effect/melty_slimed)
+			for(var/i = 1 to 10)
+				addtimer(CALLBACK(L, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
 			return BULLET_ACT_HIT
 	return ..()
 
@@ -89,6 +92,7 @@
 	desc = "Gross, disgusting spit."
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
 	spread = 60
 	slur = 3
@@ -110,6 +114,7 @@
 	desc = "A blade thrown maliciously"
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 	damage = 5
 
 /obj/projectile/clown_throw/Initialize()
@@ -121,7 +126,7 @@
 		return ..()
 	var/mob/living/carbon/human/H = target
 	H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
-	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	..()
 
 /datum/movespeed_modifier/clowned
@@ -133,7 +138,7 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt"
 	damage_type = WHITE_DAMAGE
-
+	flag = WHITE_DAMAGE
 	damage = 25
 	spread = 10
 
@@ -142,7 +147,7 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt_enraged"
 	damage_type = WHITE_DAMAGE
-
+	flag = WHITE_DAMAGE
 	damage = 50
 	spread = 5
 
@@ -151,7 +156,7 @@
 	desc = "Report this to a dev"
 	icon_state = "mountain"
 	damage_type = RED_DAMAGE
-
+	flag = RED_DAMAGE
 	damage = 45
 
 /obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
@@ -167,28 +172,28 @@
 	desc = "A spiky burr"
 	icon_state = "toxin"
 	damage_type = WHITE_DAMAGE
-
+	flag = WHITE_DAMAGE
 
 /obj/projectile/season_projectile/summer
 	name = "fireball"
 	desc = "A ball of heated plasma"
 	icon_state = "fireball"
 	damage_type = RED_DAMAGE
-
+	flag = RED_DAMAGE
 
 /obj/projectile/season_projectile/fall
 	name = "wisp"
 	desc = "A glowing ember"
 	icon_state = "pulse1"
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 
 /obj/projectile/season_projectile/winter
 	name = "ice spear"
 	desc = "A sharp-looking icicle"
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
-
+	flag = PALE_DAMAGE
 	damage = 35
 
 //slow, dodgable, and make it hard to see and talk
@@ -196,101 +201,9 @@
 	name = "blood blob"
 	icon_state = "mini_leaper"
 	damage_type = RED_DAMAGE
-
+	flag = RED_DAMAGE
 	damage = 30
 	spread = 15
 	eyeblur = 10
 	slur = 5
 	speed = 2.4
-
-/obj/projectile/actor
-	name = "bullet"
-	icon_state = "bullet"
-	desc = "causes a lot of pain"
-	damage_type = WHITE_DAMAGE
-
-	damage = 10
-
-/obj/projectile/actor/on_hit(target)
-	. = ..()
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target
-	if(!H.sanity_lost)
-		return
-	damage = 0
-	QDEL_NULL(H.ai_controller)
-	H.ai_controller = /datum/ai_controller/insane/suicide/scene
-	H.InitializeAIController()
-	H.apply_status_effect(/datum/status_effect/panicked_type/scene)
-
-/obj/projectile/thunder_tomahawk
-	name = "tomahawk"
-	desc = "Look out!"
-	icon = 'icons/obj/ego_weapons.dmi'
-	icon_state = "warring2_firey"
-	damage_type = BLACK_DAMAGE
-
-	damage = 45
-
-/obj/projectile/thunder_tomahawk/Initialize()
-	. = ..()
-	SpinAnimation()
-
-/obj/projectile/beam/water_jet //it's just a reskin for gold ordeals
-	name = "water jet"
-	icon_state = "snapshot"
-	hitsound = null
-	damage = 10
-	damage_type = WHITE_DAMAGE
-
-	hitscan = TRUE
-	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
-	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
-	impact_type = /obj/effect/projectile/impact/laser/snapshot
-	wound_bonus = -100
-	bare_wound_bonus = -100
-
-/obj/projectile/hunter_blade
-	name = "hunter's scythe"
-	desc = "A weapon thrown with deadly accuracy."
-	icon_state = "hunter_blade_animated"
-	projectile_piercing = PASSMOB
-	range = 10
-	nondirectional_sprite = TRUE
-	speed = 1
-	pixel_y = 16
-	hitsound = 'sound/abnormalities/redhood/attack_2.ogg'
-
-/obj/projectile/hunter_blade/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)
-
-/obj/projectile/red_hollowpoint
-	name = "hollowpoint shell"
-	desc = "A bullet fired from a red-cloaked mercenary's ruthless weapon."
-	icon_state = "loyalty"
-	range = 15
-	speed = 0.6
-	spread = 10
-	pixel_y = 30
-
-/obj/projectile/red_hollowpoint/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)

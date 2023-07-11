@@ -11,11 +11,11 @@
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 55,
-		PRUDENCE_ATTRIBUTE = 55,
-		TEMPERANCE_ATTRIBUTE = 55,
-		JUSTICE_ATTRIBUTE = 55,
-	)
+							FORTITUDE_ATTRIBUTE = 55,
+							PRUDENCE_ATTRIBUTE = 55,
+							TEMPERANCE_ATTRIBUTE = 55,
+							JUSTICE_ATTRIBUTE = 55
+							)
 
 /obj/item/ego_weapon/city/rabbit_blade/attack_self(mob/living/user)
 	switch(damtype)
@@ -30,7 +30,8 @@
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
 			force = 35
-	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
+	armortype = damtype // TODO: In future, armortype should be gone entirely
+	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 //Command Sabre
@@ -59,7 +60,8 @@
 			damtype = PALE_DAMAGE
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
+	armortype = damtype // TODO: In future, armortype should be gone entirely
+	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 
@@ -73,7 +75,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	force = 40
 	damtype = WHITE_DAMAGE
-
+	armortype = WHITE_DAMAGE
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -126,11 +128,10 @@
 //Rcorp Guns
 
 /obj/item/gun/energy/e_gun/rabbit
-	name = "R-Corporation R-3000 'Mark 2'"
+	name = "R-Corporation Lawnmower 3000"
 	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "rabbit"
-	inhand_icon_state = "rabbit"
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
@@ -143,8 +144,7 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	//None of these fucking guys can use Rcorp guns
 	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
-		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
-		"R-Corp Roadrunner", "Roadrunner Squad Leader")
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
@@ -154,12 +154,12 @@
 /obj/item/gun/energy/e_gun/rabbit/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(user.mind)
 		if(user.mind.assigned_role in banned_roles)
-			to_chat(user, span_notice("You are not trained to use Rcorp firearms!"))
+			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
 			return FALSE
 	..()
 
 /obj/item/gun/energy/e_gun/rabbit/captain
-	name = "R-Corporation R-4000 'Mark 3'"
+	name = "R-Corporation Lawnmower 4000"
 	desc = "An energy gun produced especially for the rabbit captain. This weapon can be fired with one hand."
 	icon_state = "rabbitcaptain"
 	weapon_weight = WEAPON_LIGHT
@@ -167,7 +167,7 @@
 
 //you really shouldn't be having this as a spawned in rabbit
 /obj/item/gun/energy/e_gun/rabbit/nopin
-	name = "R-Corporation R-2800 'Mark 1'"
+	name = "R-Corporation Lawnmower 2700"
 	desc = "An energy gun produced specifically to suppress threats with a variety of damage types. This one is an older model, and only has 3 modes."
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
@@ -177,7 +177,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/energy/e_gun/rabbit/minigun
-	name = "R-Corporation X-15 Minigun"
+	name = "R-Corporation Minigun X-15"
 	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
 	icon_state = "rabbitmachinegun"
 	ammo_type = list(
@@ -194,16 +194,56 @@
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.05 SECONDS)
 
-/obj/item/gun/energy/e_gun/rabbit/minigun/tricolor
-	name = "R-Corporation R-3500 Minigun"
-	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
-	icon_state = "rabbitmachinegun"
-	projectile_damage_multiplier = 0.7
+/obj/item/gun/energy/e_gun/rabbitdash
+	name = "R-Corporation Lawnmower 2000"
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force."
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	icon_state = "rabbitk"
+	fire_delay = 5
+	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
-		/obj/item/ammo_casing/energy/laser/white,
-		/obj/item/ammo_casing/energy/laser/black
 		)
+	can_charge = FALSE
+	weapon_weight = WEAPON_HEAVY // No dual wielding
+	pin = /obj/item/firing_pin
+	//None of these fucking guys can use Rcorp guns
+	var/list/banned_roles = list("Reindeer Squad Captain","Rhino Squad Captain",
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+
+/obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	if(user.mind)
+		if(user.mind.assigned_role in banned_roles)
+			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
+			return FALSE
+	..()
+
+/obj/item/gun/energy/e_gun/rabbitdash/white
+	name = "R-Corporation Lawnmower 2100"
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire only white bullets."
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	icon_state = "rabbitk"
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/white,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/small
+	name = "R-Corporation Lawnmower 2200"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage"
+	icon_state = "rabbitsmall"
+	fire_delay = 7
+	projectile_damage_multiplier = 0.9
+	weapon_weight = WEAPON_LIGHT // No dual wielding
+
+/obj/item/gun/energy/e_gun/rabbitdash/sniper
+	name = "R-Corporation Marksman X-12"
+	desc = "An energy rifle sometimes used by Rcorp. Fires slower, and deals slightly more damage. Has a scope."
+	icon_state = "rabbitsniper"
+	fire_delay = 8
+	projectile_damage_multiplier = 1.2
+	zoom_amt = 5 //Long range, Slightly better range
+	zoomable = TRUE
+	zoom_out_amt = 0
 
 /obj/item/ego_weapon/city/rabbit_rush
 	name = "rush dagger"
@@ -216,7 +256,7 @@
 	force = 20
 	throwforce = 24
 	damtype = PALE_DAMAGE
-
+	armortype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")
@@ -236,10 +276,10 @@
 		return
 	if(teleporting)
 		teleporting = FALSE
-		to_chat(user,span_warning("You disable teleport."))
+		to_chat(user,"<span class='warning'>You disable teleport.</span>")
 	else
 		teleporting = TRUE
-		to_chat(user,span_warning("You prepare to teleport."))
+		to_chat(user,"<span class='warning'>You prepare to teleport.</span>")
 
 /obj/item/ego_weapon/city/rabbit_rush/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	var/turf/target_turf = get_turf(A)
@@ -259,7 +299,7 @@
 		targetfound = TRUE
 	//So you can't fucking teleport into a place where you are immune to all damage
 	if(!targetfound)
-		to_chat(user,span_warning("No target found!"))
+		to_chat(user,"<span class='warning'>No target found!</span>")
 		return
 
 	new /obj/effect/temp_visual/kinetic_blast(target_turf)
@@ -269,7 +309,7 @@
 	for(var/turf/open/Y in orange(1, target_turf))
 		teleport_targets+=Y
 	if(!LAZYLEN(teleport_targets))
-		to_chat(user,span_warning("Failed to Teleport!"))
+		to_chat(user,"<span class='warning'>Failed to Teleport!</span>")
 		return
 
 	new /obj/effect/temp_visual/guardian/phase (get_turf(user))

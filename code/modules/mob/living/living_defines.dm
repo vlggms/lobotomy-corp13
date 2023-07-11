@@ -57,11 +57,6 @@
 	var/last_special = 0 ///Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
-	///A message sent when the mob dies, with the *deathgasp emote
-	var/death_message = ""
-	///A sound sent when the mob dies, with the *deathgasp emote
-	var/death_sound
-
 	/**
 	  * Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	  *
@@ -119,7 +114,6 @@
 
 	var/list/butcher_results = null ///these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
 	var/list/guaranteed_butcher_results = null ///these will always be yielded from butchering
-	var/list/silk_results = null
 	var/butcher_difficulty = 0 ///effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
 
 	var/list/weather_immunities

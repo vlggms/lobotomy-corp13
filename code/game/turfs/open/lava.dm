@@ -66,7 +66,7 @@
 /turf/open/lava/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
-			to_chat(user, span_notice("You build a floor."))
+			to_chat(user, "<span class='notice'>You build a floor.</span>")
 			PlaceOnTop(/turf/open/floor/plating, flags = CHANGETURF_INHERIT_AIR)
 			return TRUE
 	return FALSE
@@ -96,14 +96,14 @@
 		var/obj/item/stack/rods/lava/R = C
 		var/obj/structure/lattice/lava/H = locate(/obj/structure/lattice/lava, src)
 		if(H)
-			to_chat(user, span_warning("There is already a lattice here!"))
+			to_chat(user, "<span class='warning'>There is already a lattice here!</span>")
 			return
 		if(R.use(1))
-			to_chat(user, span_notice("You construct a lattice."))
+			to_chat(user, "<span class='notice'>You construct a lattice.</span>")
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			new /obj/structure/lattice/lava(locate(x, y, z))
 		else
-			to_chat(user, span_warning("You need one rod to build a heatproof lattice."))
+			to_chat(user, "<span class='warning'>You need one rod to build a heatproof lattice.</span>")
 		return
 
 /turf/open/lava/proc/is_safe()

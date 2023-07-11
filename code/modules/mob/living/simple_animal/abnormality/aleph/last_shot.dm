@@ -5,30 +5,29 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A large ball of flesh, pulsating slowly."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "last_shot"
-	portrait = "last_shot"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 3100
 	health = 3100
 	threat_level = ALEPH_LEVEL
 
-	work_chances = list( //Calculated later
+	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 15,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 0, 0, 0),
-		ABNORMALITY_WORK_REPRESSION = 40,
-	)
+		ABNORMALITY_WORK_REPRESSION = 40
+	)		//Calculated later
 
 	work_damage_amount = 5		//Damage is low, could be doubled or quadrupled.
 	work_damage_type = RED_DAMAGE
 	max_boxes = 27
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	start_qliphoth = 2
 	can_breach = TRUE	//can't move so you know
 
 	ego_list = list(
 		/datum/ego_datum/weapon/willing,
-		/datum/ego_datum/armor/willing,
+		/datum/ego_datum/armor/willing
 	)
 	var/list/gremlins = list()	//For the meatballs
 	var/list/meat = list()		//For the floors
@@ -70,7 +69,6 @@ GLOBAL_LIST_EMPTY(meat_list)
 	return newchance
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -111,6 +109,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	health = 500
 	maxHealth = 500
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 20

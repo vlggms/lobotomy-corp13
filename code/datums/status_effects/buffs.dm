@@ -155,7 +155,7 @@
 	owner.add_stun_absorption("bloody bastard sword", duration, 2, "doesn't even flinch as the sword's power courses through them!", "You shrug off the stun!", " glowing with a blazing red aura!")
 	owner.spin(duration,1)
 	animate(owner, color = oldcolor, time = duration, easing = EASE_IN)
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/atom, update_atom_colour)), duration)
+	addtimer(CALLBACK(owner, /atom/proc/update_atom_colour), duration)
 	playsound(owner, 'sound/weapons/fwoosh.ogg', 75, FALSE)
 	return ..()
 
@@ -513,31 +513,33 @@
 
 //LC13 AI entity Buffs
 	//Buff Maroon Ordeal Soldiers, Feel free to cannibalize and rework to work for other creatures.
-
 /datum/status_effect/all_armor_buff //due to multiplication the effect works more on entities that are weak to the damage value.
 	id = "all armor armor"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 //12 seconds
+	duration = 120 //6 seconds
 	alert_type = null
 	var/visual
 
 /datum/status_effect/all_armor_buff/on_apply()
 	. = ..()
-	if(!isanimal(owner))
-		qdel(src)
-		return
 	visual = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
-	var/mob/living/simple_animal/M = owner
-	M.add_overlay(visual)
-	M.AddModifier(/datum/dc_change/maroon_buff)
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.add_overlay(visual)
+		M.damage_coeff[RED_DAMAGE] *= 0.8 //20% damage decrease
+		M.damage_coeff[WHITE_DAMAGE] *= 0.8
+		M.damage_coeff[BLACK_DAMAGE] *= 0.8
+		M.damage_coeff[PALE_DAMAGE] *= 0.8
 
 /datum/status_effect/all_armor_buff/on_remove()
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		M.RemoveModifier(/datum/dc_change/maroon_buff)
-	if(visual)
-		owner.cut_overlay(visual)
+		M.damage_coeff[RED_DAMAGE] /= 0.8
+		M.damage_coeff[WHITE_DAMAGE] /= 0.8
+		M.damage_coeff[BLACK_DAMAGE] /= 0.8
+		M.damage_coeff[PALE_DAMAGE] /= 0.8
+	owner.cut_overlay(visual)
 
 
 /datum/status_effect/minor_damage_buff

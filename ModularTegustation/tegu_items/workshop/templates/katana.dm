@@ -5,6 +5,8 @@
 	icon_state = "katanatemplate"
 	force = 22
 	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -23,17 +25,17 @@
 		return
 	ready = FALSE
 	user.Immobilize(attack_speed*attack_speed*10)
-	to_chat(user, span_userdanger("From moonlight."))
+	to_chat(user, "<span class='userdanger'>From moonlight.</span>")
 	force*=2
-	addtimer(CALLBACK(src, PROC_REF(Return), user), attack_speed*attack_speed*30)
+	addtimer(CALLBACK(src, .proc/Return, user), attack_speed*attack_speed*30)
 
 /obj/item/ego_weapon/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, span_userdanger("Over the sea."))
+		to_chat(user, "<span class='userdanger'>Over the sea.</span>")
 		force = initial(force)
 
 /obj/item/ego_weapon/template/katana/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, span_notice("Your blade is ready."))
+	to_chat(user, "<span class='notice'>Your blade is ready.</span>")

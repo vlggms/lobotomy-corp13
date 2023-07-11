@@ -56,35 +56,11 @@ Scavenger
 									JUSTICE_ATTRIBUTE = 20
 									)
 	..()
-	add_skill_book(H)
 
 /datum/outfit/job/scavenger
-	name = "Rat"
+	name = "Scavenger"
 	jobtype = /datum/job/scavenger
-	uniform = null
-	belt = null
-	suit = null
+	uniform = /obj/item/clothing/under/mercenary/camo
+	belt = /obj/item/melee/classic_baton	//hit the chefs and fucking die.
+	suit = /obj/item/clothing/suit/armor/vest/alt
 	ears = null
-	id = null			//All determined later
-
-/datum/outfit/job/scavenger/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	id = /obj/item/card/id
-	uniform = pick(/obj/item/clothing/under/shorts/black,
-		/obj/item/clothing/under/rank/prisoner,
-		/obj/item/clothing/under/color/random,
-		/obj/item/clothing/under/pants/classicjeans)
-
-	if(prob(50))
-		uniform = /obj/item/clothing/under/mercenary/camo
-
-	suit = pick(/obj/item/clothing/suit/armor/vest/alt,
-		/obj/item/clothing/suit/jacket/puffer,
-		/obj/item/clothing/suit/jacket/miljacket)
-
-	belt = pick(/obj/item/ego_weapon/city/rats,
-		/obj/item/ego_weapon/city/rats/knife,
-		/obj/item/ego_weapon/city/rats/scalpel,
-		/obj/item/ego_weapon/city/rats/brick,
-		/obj/item/gun/ego_gun/pistol/rats,
-		/obj/item/ego_weapon/city/rats/pipe)
-	..()

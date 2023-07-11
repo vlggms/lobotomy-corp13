@@ -237,7 +237,7 @@
 /obj/item/disk/holodisk/Initialize(mapload)
 	. = ..()
 	if(preset_record_text)
-		INVOKE_ASYNC(src, PROC_REF(build_record))
+		INVOKE_ASYNC(src, .proc/build_record)
 
 /obj/item/disk/holodisk/Destroy()
 	QDEL_NULL(record)
@@ -253,10 +253,10 @@
 			record.caller_image = holodiskOriginal.record.caller_image
 			record.entries = holodiskOriginal.record.entries.Copy()
 			record.language = holodiskOriginal.record.language
-			to_chat(user, span_notice("You copy the record from [holodiskOriginal] to [src] by connecting the ports!"))
+			to_chat(user, "<span class='notice'>You copy the record from [holodiskOriginal] to [src] by connecting the ports!</span>")
 			name = holodiskOriginal.name
 		else
-			to_chat(user, span_warning("[holodiskOriginal] has no record on it!"))
+			to_chat(user, "<span class='warning'>[holodiskOriginal] has no record on it!</span>")
 	..()
 
 /obj/item/disk/holodisk/proc/build_record()
@@ -570,7 +570,7 @@
 	DELAY 50
 	SAY Some objects such as the sleeper have shortcuts with specific functions. Examine them to find out what they can do.
 	DELAY 45
-	SAY After you have finished with the structures here, click-drag your player character onto the table blocking the exit.
+	SAY After you have finished with the structures here, proceed by getting over the railing.
 	DELAY 35"}
 
 /obj/item/disk/holodisk/tutorial/basicmechanic6
@@ -593,9 +593,9 @@
 	DELAY 35
 	SAY Harm intent (red) allows you to punch. It also ensures you will attack with the item you are holding.
 	DELAY 40
-	SAY When another player bumps into you, they will swap places with you if you're on help intent. Other intents will instead block their movement.
+	SAY All intents except for help will bodyblock, preventing other players from moving past you.
 	DELAY 40
-	SAY Swap to disarm intent by pressing 2 on your keyboard and then click on the box blocking your way to push it.
+	SAY Use disarm intent to push the box out of the way. Then vault over the railing.
 	DELAY 40"}
 
 /obj/item/disk/holodisk/tutorial/basicmechanic7

@@ -25,7 +25,7 @@
 
 /obj/item/assembly_holder/Initialize(mapload)
 	if(mapload && preassembled)
-		addtimer(CALLBACK(src, PROC_REF(assemble_contents)), 0)
+		addtimer(CALLBACK(src, .proc/assemble_contents), 0)
 	. = ..()
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
@@ -110,7 +110,7 @@
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
 	if(..())
 		return TRUE
-	to_chat(user, span_notice("You disassemble [src]!"))
+	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
 	if(a_left)
 		a_left.on_detach()
 		a_left = null
@@ -123,7 +123,7 @@
 /obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(!a_left || !a_right)
-		to_chat(user, span_danger("Assembly part missing!"))
+		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 		switch(alert("Which side would you like to use?",,"Left","Right"))

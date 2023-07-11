@@ -22,7 +22,7 @@
 	desc = "It's a green jumpsuit with some gold markings denoting the rank of \"Rear Admiral\"."
 	icon = 'icons/obj/clothing/under/centcom.dmi'
 	worn_icon = 'icons/mob/clothing/under/centcom.dmi'
-	icon_state = "officer"
+	icon_state = "centcom"
 	inhand_icon_state = "dg_suit"
 
 /obj/item/clothing/suit/armor/vest/officer

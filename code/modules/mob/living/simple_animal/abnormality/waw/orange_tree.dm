@@ -5,7 +5,6 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "orange_tree"
 	icon_living = "orange_tree"
-	portrait = "orange_tree"
 	faction = list("hostile")
 	speak_emote = list("hums")
 	is_flying_animal = TRUE
@@ -15,11 +14,11 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 0,
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
-		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 60),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45),
-	)
+						ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 60),
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45)
+						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -30,8 +29,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/innocence,
 		/datum/ego_datum/weapon/innocence/gun,
-		/datum/ego_datum/armor/innocence,
-	)
+		/datum/ego_datum/armor/innocence
+		)
 	gift_type =  /datum/ego_gifts/innocence
 	gift_message = "Everyone has their own sweet orange tree in their heart."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -61,14 +60,12 @@
 
 //Work/Breach
 /mob/living/simple_animal/hostile/abnormality/orange_tree/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(40))
 		var/datum/disease/orange_tree/D = new()
 		user.ForceContractDisease(D, FALSE, TRUE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/orange_tree/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	var/datum/disease/orange_tree/D = new()
@@ -145,11 +142,11 @@
 //Panic Ai Behavior
 /datum/ai_behavior/say_line/insanity_wander/orangetree //this subtype should make the lines cause white damage... probably.
 	lines = list(
-		"Come with me! I've got to introduce you to my new friend!",
-		"Where are you going? We're going to be late for supper!",
-		"Would you like an adventure now, or would like to have your tea first?",
-		"We're off to Neverland!",
-	)
+				"Come with me! I've got to introduce you to my new friend!",
+				"Where are you going? We're going to be late for supper!",
+				"Would you like an adventure now, or would like to have your tea first?",
+				"We're off to Neverland!"
+				)
 
 /datum/ai_behavior/insanity_chase_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
@@ -195,7 +192,7 @@
 /obj/effect/temp_visual/dancing_lights/Initialize()
 	..()
 	animate(src, alpha = rand(125,200), time = 5)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 5)
+	addtimer(CALLBACK(src, .proc/fade_out), 5)
 
 /obj/effect/temp_visual/dancing_lights/proc/fade_out()
 	animate(src, alpha = 0, time = duration-5)
@@ -226,7 +223,7 @@
 		if(flamethrower)
 			user.put_in_hands(flamethrower)
 			flamethrower = null
-			to_chat(user, span_notice("You take the flamethrower from the [name]."))
+			to_chat(user, "<span class='notice'>You take the flamethrower from the [name].</span>")
 			src.add_fingerprint(user)
 			update_icon()
 			return
@@ -262,7 +259,7 @@
 			if(!user.transferItemToLoc(F, src))
 				return
 			flamethrower = F
-			to_chat(user, span_notice("You place the [F.name] back in the [name]."))
+			to_chat(user, "<span class='notice'>You place the [F.name] back in the [name].</span>")
 			update_icon()
 			return
 	else

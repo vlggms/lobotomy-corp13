@@ -32,7 +32,7 @@
 	req_access = list()
 	req_one_access = list()
 	playsound(src, "sparks", 100, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(user, span_warning("You short out the access controller."))
+	to_chat(user, "<span class='warning'>You short out the access controller.</span>")
 
 /obj/machinery/door_buttons/proc/removeMe()
 
@@ -61,7 +61,7 @@
 	if(busy)
 		return
 	if(!allowed(user))
-		to_chat(user, span_warning("Access denied."))
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	if(controller && !controller.busy && door)
 		if(controller.machine_stat & NOPOWER)
@@ -78,7 +78,7 @@
 					controller.cycleClose(door)
 		else
 			controller.onlyClose(door)
-		addtimer(CALLBACK(src, PROC_REF(not_busy)), 2 SECONDS)
+		addtimer(CALLBACK(src, .proc/not_busy), 2 SECONDS)
 
 /obj/machinery/door_buttons/access_button/proc/not_busy()
 	busy = FALSE
@@ -129,7 +129,7 @@
 	if(busy)
 		return
 	if(!allowed(usr))
-		to_chat(usr, span_warning("Access denied."))
+		to_chat(usr, "<span class='warning'>Access denied.</span>")
 		return
 	switch(href_list["command"])
 		if("close_exterior")
@@ -207,7 +207,7 @@
 		goIdle(TRUE)
 		return
 	A.unbolt()
-	INVOKE_ASYNC(src, PROC_REF(do_openDoor), A)
+	INVOKE_ASYNC(src, .proc/do_openDoor, A)
 
 /obj/machinery/door_buttons/airlock_controller/proc/do_openDoor(obj/machinery/door/airlock/A)
 	if(A?.open())

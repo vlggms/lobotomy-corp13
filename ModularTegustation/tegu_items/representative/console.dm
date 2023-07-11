@@ -5,8 +5,6 @@
 #define L_CORP_REP "L corp"
 #define R_CORP_REP "R corp"
 #define W_CORP_REP "W corp"
-#define N_CORP_REP "N corp"
-#define P_CORP_REP "P corp"
 #define IS_MONIES istype(I, /obj/item/holochip)
 #define IS_REFINED_PE istype(I, /obj/item/refinedpe)
 #define IS_RAW_PE istype(I, /obj/item/rawpe)
@@ -28,14 +26,6 @@
 	var/list/research_list = list()
 	//For things we already researched.
 	var/list/researched_stuff = list()
-
-/obj/structure/representative_console/Initialize()
-	. = ..()
-	GLOB.lobotomy_devices += src
-
-/obj/structure/representative_console/Destroy()
-	GLOB.lobotomy_devices -= src
-	return ..()
 
 //Landmarks for placing office stuff
 /obj/effect/landmark/custom_office/poster
@@ -85,7 +75,7 @@
 	dat += " ----------------------------<br>"
 	for(var/datum/data/extraction_cargo/A in order_list)
 		if((A.catagory == our_corporation || A.catagory == ALL_REP_RESEARCH))
-			dat += " <A href='byond://?src=[REF(src)];purchase=[REF(A)]'>[A.equipment_name] ([A.cost] AHN)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[REF(A)]'>[A.equipment_name]([A.cost] AHN)</A><br>"
 
 	dat += " ----------------------------<br>"
 	dat += " :[our_corporation] RESEARCH:<br>"
@@ -93,7 +83,7 @@
 	dat += " ----------------------------<br>"
 	for(var/datum/data/lc13research/R in research_list)
 		if(!LAZYFIND(researched_stuff, R) && R.CanResearch(src))
-			dat += " <A href='byond://?src=[REF(src)];research=[REF(R)]'>[R.research_name] ([R.cost] PE)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];research=[REF(R)]'>[R.research_name]([R.cost] PE)</A><br>"
 			dat += "	:[R.research_desc] <br>"
 			dat += " -----<br>"
 	var/datum/browser/popup = new(user, "RepVendor", "RepVendor", 440, 640)
@@ -112,10 +102,10 @@
 		if(href_list["research"])
 			var/datum/data/lc13research/research_datum = locate(href_list["research"]) in research_list
 			if(!research_datum || locate(research_datum) in researched_stuff)
-				to_chat(usr, span_warning("ERROR."))
+				to_chat(usr, "<span class='warning'>ERROR.</span>")
 				return FALSE
 			if(pe_points < research_datum.cost)
-				to_chat(usr, span_warning("[our_corporation]: [usr] your research request requires more energy."))
+				to_chat(usr, "<span class='warning'>[our_corporation]: [usr] your research request requires more energy.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			AdjustPoints(-1 * research_datum.cost)
@@ -129,10 +119,10 @@
 			//The href_list returns the individual number code and only works if we have it in the first column. -IP
 			var/datum/data/extraction_cargo/product_datum = locate(href_list["purchase"]) in order_list
 			if(!product_datum)
-				to_chat(usr, span_warning("ERROR."))
+				to_chat(usr, "<span class='warning'>ERROR.</span>")
 				return FALSE
 			if(monies < product_datum.cost)
-				to_chat(usr, span_warning("INSUFFICENT FUNDS."))
+				to_chat(usr, "<span class='warning'>INSUFFICENT FUNDS.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
@@ -171,12 +161,12 @@
 			CustomizeOffice(/obj/structure/sign/departments/k_corp, /obj/structure/pe_sales/k_corp)
 			//add preloaded items to this list.
 			order_list = list(
-				new /datum/data/extraction_cargo("K Corp Intern Outfit", /obj/item/clothing/under/rank/k_corporation/intern, 100, K_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("K Corp Intern Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Baton", /obj/item/ego_weapon/city/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Axe", /obj/item/ego_weapon/city/kcorp/axe, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Shield", /obj/item/ego_weapon/shield/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/gun/ego_gun/pistol/kcorp, 400, K_CORP_REP) = 1,
-			)
+				)
 
 		if("Main Office Representative")
 			our_corporation = L_CORP_REP
@@ -184,45 +174,34 @@
 			order_list = list(
 				new /datum/data/extraction_cargo("L Corp Regeneration Augmentation Kit", /obj/item/safety_kit, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Slowing Trap Generator", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/vitals_projector, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/clerkbot_gadget, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Taser", /obj/item/powered_gadget/handheld_taser, 700, L_CORP_REP) = 1,
-			)
+				)
 
 		if("R Corp Representative")
 			our_corporation = R_CORP_REP
 			CustomizeOffice(/obj/structure/sign/departments/r_corp, /obj/structure/pe_sales/r_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("R Corp Mercenary Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 400, R_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("R Corp Lawnmower 2000", /obj/item/gun/energy/e_gun/rabbitdash, 500, R_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 500, R_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("R Corp Rush Dagger", /obj/item/ego_weapon/city/rabbit_rush, 700, R_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("R Corp Lawnmower 2000", /obj/item/gun/energy/e_gun/rabbitdash, 700, R_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("R Corp Officer Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
-			)
+				)
 
 		if("W Corp Representative")
 			our_corporation = W_CORP_REP
 			CustomizeOffice(/obj/structure/sign/departments/w_corp, /obj/structure/pe_sales/w_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("W Corp Cleanup Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/charge/wcorp, 500, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/wcorp, 100, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/wcorp, 500, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Armor Vest", /obj/item/clothing/suit/armor/ego_gear/wcorp, 700, W_CORP_REP) = 1,
-			)
-
-		if("N Corp Representative")
-			our_corporation = N_CORP_REP
-			CustomizeOffice(null, /obj/structure/pe_sales/n_corp)
-			order_list = list()
-
-		if("P Corp Representative")
-			our_corporation = P_CORP_REP
-			CustomizeOffice(null, null)
-			order_list = list(
-				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1,
-			)
+				)
 
 		else
-			to_chat(usr, span_warning("ASSIGNMENT ERROR."))
+			to_chat(usr, "<span class='warning'>ASSIGNMENT ERROR.</span>")
 			playsound(get_turf(src), 'sound/machines/uplinkerror.ogg', 20, 1)
 			return
 	CreateResearchList(our_corporation)
@@ -232,11 +211,11 @@
 
 /obj/structure/representative_console/proc/CustomizeOffice(obj/poster, obj/crate)
 	var/poster_place = get_turf(locate(/obj/effect/landmark/custom_office/poster) in GLOB.landmarks_list)
-	if((isturf(poster_place)) && poster)
+	if(isturf(poster_place))
 		new poster(get_turf(poster_place))
 
 	var/crate_place = get_turf(locate(/obj/effect/landmark/custom_office/crate) in GLOB.landmarks_list)
-	if((!crate_place) && crate)
+	if(!crate_place)
 		crate_place = get_turf(src)
 	new crate(get_turf(crate_place))
 

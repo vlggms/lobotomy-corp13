@@ -5,7 +5,6 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
-	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 1200
@@ -20,6 +19,7 @@
 	rapid_melee = 1
 	melee_queue_distance = 2
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("rasps", "growls", "gurgles")
 	can_breach = TRUE
@@ -27,18 +27,18 @@
 	start_qliphoth = 2
 	del_on_death = FALSE
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
-		ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
+						ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
+						ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35)
+						)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fluid_sac,
-		/datum/ego_datum/armor/fluid_sac,
-	)
+		/datum/ego_datum/armor/fluid_sac
+		)
 	gift_type =  /datum/ego_gifts/fluid_sac
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/can_act = TRUE
@@ -56,8 +56,8 @@
 	var/datum/beam/current_beam
 
 	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/IchthysJump,
-		/datum/action/innate/abnormality_attack/BloodCannon,
+	/datum/action/innate/abnormality_attack/IchthysJump,
+	/datum/action/innate/abnormality_attack/BloodCannon
 	)
 
 // Player-Controlled code
@@ -65,19 +65,19 @@
 	name = "Pressing Sac"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "_HE"
-	chosen_message = span_colossus("You will now jump with your next attack.")
+	chosen_message = "<span class='colossus'>You will now jump with your next attack.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/BloodCannon
 	name = "Blood Cannon"
 	icon_icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi'
 	button_icon_state = "heart"
-	chosen_message = span_colossus("You will now fire a blood cannon.")
+	chosen_message = "<span class='colossus'>You will now fire a blood cannon.</span>"
 	chosen_attack_num = 2
 
 // Attacks
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/proc/IchthysJump(mob/living/target)
-	if(!isliving(target) && !ismecha(target) || !can_act)
+	if(!istype(target) || !can_act)
 		return
 	var/dist = get_dist(target, src)
 	if(dist > 1 && jump_cooldown < world.time)
@@ -90,8 +90,7 @@
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 		var/turf/target_turf = get_turf(target)
 		SLEEP_CHECK_DEATH(1 SECONDS)
-		if(target_turf)
-			forceMove(target_turf) //look out, someone is rushing you!
+		forceMove(target_turf) //look out, someone is rushing you!
 		playsound(src, jump_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		src.pixel_z = 0
@@ -106,8 +105,6 @@
 				L.apply_damage(jump_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				if(L.health < 0)
 					L.gib()
-			for(var/obj/vehicle/sealed/mecha/V in T)
-				V.take_damage(jump_damage, BLACK_DAMAGE)
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		can_act = TRUE
 
@@ -147,8 +144,7 @@
 		for(var/turf/TF in hit_line)
 			if(TF.density)
 				break
-			var/list/turfs_to_check = range(1, TF)
-			for(var/mob/living/L in turfs_to_check)
+			for(var/mob/living/L in range(1, TF))
 				if(L.status_flags & GODMODE)
 					continue
 				if(L == src) //stop hitting yourself
@@ -164,11 +160,6 @@
 				already_hit += L
 				var/truedamage = ishuman(L) ? beam_damage : beam_damage/2 //half damage dealt to nonhumans
 				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-			for(var/obj/vehicle/sealed/mecha/V in turfs_to_check)
-				if(V in already_hit)
-					continue
-				V.take_damage(beam_damage, BLACK_DAMAGE, attack_dir = get_dir(V, src))
-				already_hit += V
 		SLEEP_CHECK_DEATH(1.71)
 	QDEL_NULL(current_beam)
 	SLEEP_CHECK_DEATH(4 SECONDS) //Rest after laser beam
@@ -221,7 +212,7 @@
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/proc/Enrage() //gains 25% more damage dealt and shorter cooldowns
 	if(enraged)
 		return
-	src.visible_message(span_userdanger("[src] looks angry!"))
+	src.visible_message("<span class='userdanger'>[src] looks angry!</span>")
 	enraged = TRUE
 	icon_state = "[icon_state]" + "_enraged"
 	melee_damage_lower = 25
@@ -242,19 +233,17 @@
 
 // Work stuff
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user)
+	..()
 	update_icon()
 	GiveTarget(user)
 	AddComponent(/datum/component/knockback, 2, FALSE, TRUE)

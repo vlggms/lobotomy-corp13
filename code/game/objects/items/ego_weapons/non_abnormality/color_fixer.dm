@@ -5,21 +5,17 @@
 	special = "Use in hand to cut HP in half. Each kill for the next 15 seconds increases damage by 1.5x, and heals you 10%."
 	icon_state = "vermillion"
 	inhand_icon_state = "vermillion"
-	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
 	force = 90
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 120,
-		PRUDENCE_ATTRIBUTE = 120,
-		TEMPERANCE_ATTRIBUTE = 120,
-		JUSTICE_ATTRIBUTE = 120,
-	)
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
 	var/ready = TRUE
 
 
@@ -31,10 +27,10 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, span_userdanger("READY."))
+	to_chat(user, "<span class='userdanger'>READY.</span>")
 	force*=1.5
 	user.adjustBruteLoss(user.maxHealth*0.5)
-	addtimer(CALLBACK(src, PROC_REF(Return), user), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/Return, user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/vermillion/attack(mob/living/target, mob/living/carbon/human/user)
@@ -47,23 +43,21 @@
 		living = FALSE
 
 	if(force != initial(force) && !living)
-		to_chat(user, span_userdanger("ANOTHER."))
+		to_chat(user, "<span class='userdanger'>ANOTHER.</span>")
 		force*=1.5
 		user.adjustBruteLoss(-user.maxHealth*0.1)
 
 /obj/item/ego_weapon/city/vermillion/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, span_notice("I AM NOT SATED."))
+	to_chat(user, "<span class='notice'>I AM NOT SATED.</span>")
+
+
 
 /obj/item/ego_weapon/mimicry/kali
 	name = "True Mimicry"
 	desc = "What is the meaning of 'Human'? Does it matter?"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
-	icon_state = "mimicry"
-	inhand_icon_state = "mimisword"
-	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	force = 100
 	attack_speed = 1.2
 	attribute_requirements = list(

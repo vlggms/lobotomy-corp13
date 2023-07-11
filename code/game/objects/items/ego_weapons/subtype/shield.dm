@@ -62,10 +62,7 @@
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	attacking = TRUE
-	if(cleaning)
-		DropStance()
-	else
-		projectile_timer = addtimer(CALLBACK(src, PROC_REF(DropStance)), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	projectile_timer = addtimer(CALLBACK(src, .proc/DropStance), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/shield/proc/DropStance()
 	attacking = FALSE
@@ -81,41 +78,26 @@
 		if(!CanUseEgo(shield_user))
 			return FALSE
 		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,span_warning("You're still off-balance!"))
+			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
 			return FALSE
 		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
 			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
+				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
 				return FALSE
 		block = TRUE
 		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
-		shield_user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
-		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
-		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
-		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
-		if(cleaning)
-			DisableBlock(shield_user)
-		else
-			parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
-		to_chat(user, span_userdanger("[block_message]"))
+		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1) //bomb defense must be over 0
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
+		parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration, TIMER_STOPPABLE)
+		to_chat(user,"<span class='userdanger'>[block_message]</span>")
 		return TRUE
 
 //Ends the block, causes you to take more damage for as long as debuff_duration if you did not block any damage
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)
-	user.physiology.armor = user.physiology.armor.modifyRating(bomb = -1)
-	user.physiology.red_mod /= max(0.001, (1 - ((reductions[1]) / 100)))
-	user.physiology.white_mod /= max(0.001, (1 - ((reductions[2]) / 100)))
-	user.physiology.black_mod /= max(0.001, (1 - ((reductions[3]) / 100)))
-	user.physiology.pale_mod /= max(0.001, (1 - ((reductions[4]) / 100)))
-
+	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	deltimer(parry_timer)
-	if(cleaning)
-		BlockCooldown(user)
-	else
-		parry_timer = addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), block_cooldown, TIMER_STOPPABLE)
+	parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown, TIMER_STOPPABLE)
 	if (!block_success)
 		BlockFail(user)
 
@@ -123,21 +105,18 @@
 /obj/item/ego_weapon/shield/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
 	if(user.is_holding(src))
-		to_chat(user,span_nicegreen("[block_cooldown_message]"))
+		to_chat(user,"<span class='nicegreen'>[block_cooldown_message]</span>")
 
 /obj/item/ego_weapon/shield/proc/BlockFail(mob/living/carbon/human/user)
-	to_chat(user,span_warning("Your stance is widened."))
+	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
 	user.physiology.red_mod *= 1.2
 	user.physiology.white_mod *= 1.2
 	user.physiology.black_mod *= 1.2
 	user.physiology.pale_mod *= 1.2
-	if(cleaning)
-		RemoveDebuff(user)
-	else
-		addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), debuff_duration)
+	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration)
 
 /obj/item/ego_weapon/shield/proc/RemoveDebuff(mob/living/carbon/human/user)
-	to_chat(user,span_nicegreen("You recollect your stance."))
+	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
 	user.physiology.red_mod /= 1.2
 	user.physiology.white_mod /= 1.2
 	user.physiology.black_mod /= 1.2
@@ -155,36 +134,26 @@
 	block_success = TRUE
 
 	playsound(get_turf(src), block_sound, block_sound_volume, 0, 7)
-	H.visible_message(span_userdanger("[H.real_name] [hit_message]"))
+	H.visible_message("<span class='userdanger'>[H.real_name] [hit_message]</span>")
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && attacking)
 		final_block_chance = 100
-		owner.visible_message(span_nicegreen("[owner.real_name] deflects the projectile!"), span_userdanger("[projectile_block_message]"))
+		owner.visible_message("<span class='nicegreen'>[owner.real_name] deflects the projectile!</span>", "<span class='userdanger'>[projectile_block_message]</span>")
 		return ..()
 	return ..()
-
-/obj/item/ego_weapon/shield/CleanUp()
-	. = ..()
-	for(var/datum/timedevent/T in active_timers)
-		var/datum/callback/TC = T.callBack
-		TC.InvokeAsync()
-		T.spent = world.time
-		T.bucketEject()
-		qdel(T)
-	return
 
 //Examine text
 /obj/item/ego_weapon/shield/examine(mob/user)
 	. = ..()
 	if(projectile_block_duration)
-		. += span_notice("This weapon blocks ranged attacks while attacking and can block on command.")
+		. += "<span class='notice'>This weapon blocks ranged attacks while attacking and can block on command.</span>"
 	else
-		. += span_notice("This weapon can block on command.")
+		. += "<span class='notice'>This weapon can block on command.</span>"
 
 	if(LAZYLEN(resistances_list))
-		. += span_notice("It has a <a href='?src=[REF(src)];list_resistances=1'>tag</a> listing its protection classes.")
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_resistances=1'>tag</a> listing its protection classes.</span>"
 
 //Code for armor tags
 /obj/item/ego_weapon/shield/Topic(href, href_list)

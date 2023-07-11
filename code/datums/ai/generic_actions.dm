@@ -1,5 +1,3 @@
-/datum/ai_behavior/resist
-	required_distance = 0
 
 /datum/ai_behavior/resist/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
@@ -14,7 +12,7 @@
 /datum/ai_behavior/battle_screech/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/mob, emote), pick(screeches))
+	INVOKE_ASYNC(living_pawn, /mob.proc/emote, pick(screeches))
 	finish_action(controller, TRUE)
 
 /datum/ai_behavior/say_line
@@ -24,5 +22,5 @@
 /datum/ai_behavior/say_line/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	INVOKE_ASYNC(living_pawn, TYPE_PROC_REF(/atom/movable, say), pick(lines))
+	INVOKE_ASYNC(living_pawn, /atom/movable.proc/say, pick(lines))
 	finish_action(controller, TRUE)

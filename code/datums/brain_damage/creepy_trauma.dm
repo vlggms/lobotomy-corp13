@@ -29,12 +29,12 @@
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
 	antagonist.trauma = src
-	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, PROC_REF(stare))
+	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, .proc/stare)
 	..()
 	//antag stuff//
 	antagonist.forge_objectives(obsession.mind)
 	antagonist.greet()
-	RegisterSignal(owner, COMSIG_CARBON_HUG, PROC_REF(on_hug))
+	RegisterSignal(owner, COMSIG_CARBON_HUG, .proc/on_hug)
 
 /datum/brain_trauma/special/obsessed/on_life()
 	if(!obsession || obsession.stat == DEAD)
@@ -85,15 +85,15 @@
 			owner.vomit()
 			fail = TRUE
 		if(2)
-			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "cough")
+			INVOKE_ASYNC(owner, /mob.proc/emote, "cough")
 			owner.dizziness += 10
 			fail = TRUE
 		if(3)
-			to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
+			to_chat(owner, "<span class='userdanger'>You feel your heart lurching in your chest...</span>")
 			owner.Stun(20)
 			shake_camera(owner, 15, 1)
 		if(4)
-			to_chat(owner, span_warning("You faint."))
+			to_chat(owner, "<span class='warning'>You faint.</span>")
 			owner.Unconscious(80)
 			fail = TRUE
 	return fail
@@ -105,7 +105,7 @@
 	if(examining_mob != owner || !triggering_examiner || prob(50))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), obsession, span_warning("You catch [examining_mob] staring at you..."), 3))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, obsession, "<span class='warning'>You catch [examining_mob] staring at you...</span>", 3))
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/brain_trauma/special/obsessed/proc/find_obsession()

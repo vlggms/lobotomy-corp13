@@ -36,8 +36,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 
 /datum/controller/subsystem/lobotomy_events/Initialize(start_timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnNewCrew))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
 
 /datum/controller/subsystem/lobotomy_events/fire(resumed)
 	if(season_last_change < world.time)
@@ -55,9 +54,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 				AB_breached += A.current
 				break
 	if(AB_breached.len >= 3)
-		INVOKE_ASYNC(src, PROC_REF(SpawnEvent), APOCALYPSE)
+		INVOKE_ASYNC(src, .proc/SpawnEvent, APOCALYPSE)
 	if(PruneList(YINYANG) && YY_breached.len >= 2 && isnull(YY_middle))
-		INVOKE_ASYNC(src, PROC_REF(SpawnEvent), YINYANG)
+		INVOKE_ASYNC(src, .proc/SpawnEvent, YINYANG)
 	else if(YY_breached.len >= 2 && !isnull(YY_middle))
 		for(var/mob/living/simple_animal/hostile/abnormality/A in YY_breached)
 			if(yin_downed && yang_downed)
@@ -84,7 +83,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 				continue
 			if(!A.IsContained())
 				continue
-			INVOKE_ASYNC(A.datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), -999)
+			INVOKE_ASYNC(A.datum_reference, /datum/abnormality/proc/qliphoth_change, -999)
 			break
 	return
 	//Further checks for event abnos can go here.
@@ -134,13 +133,13 @@ SUBSYSTEM_DEF(lobotomy_events)
 				A.density = FALSE // They ignore you and walk past you.
 				A.AIStatus = AI_OFF
 				A.can_patrol = FALSE
-				A.ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // You can kill the portal but not them.
+				A.damage_coeff = list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // You can kill the portal but not them.
 			AB_types = list() // So the event can't run again.
 			return
 		if(YINYANG)
 			if(YY_breached.len < 2)
 				return FALSE
-			var/list/meet_path = get_path_to(YY_breached[1], YY_breached[2], TYPE_PROC_REF(/turf, Distance), 0, 200)
+			var/list/meet_path = get_path_to(YY_breached[1], YY_breached[2], /turf/proc/Distance, 0, 200)
 			YY_middle = meet_path[round(meet_path.len/2)]
 			for(var/mob/living/simple_animal/hostile/abnormality/A in YY_breached)
 				A.patrol_to(YY_middle)
@@ -188,9 +187,3 @@ SUBSYSTEM_DEF(lobotomy_events)
 	current_season = seasons[index]
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SEASON_CHANGE, current_season)
 	return
-
-/datum/controller/subsystem/lobotomy_events/proc/OnNewCrew(datum_source, mob/living/carbon/human/newbie)
-	SIGNAL_HANDLER
-	if(!istype(newbie))
-		return
-	ApplySecurityLevelEffect(newbie)

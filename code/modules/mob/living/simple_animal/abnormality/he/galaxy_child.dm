@@ -4,7 +4,6 @@
 	desc = "A young, lost child."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "galaxy"
-	portrait = "galaxy_child"
 	maxHealth = 650
 	health = 650
 	threat_level = HE_LEVEL
@@ -13,16 +12,16 @@
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = 45,
-	)
+		ABNORMALITY_WORK_REPRESSION = 45
+		)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/galaxy,
-		/datum/ego_datum/armor/galaxy,
-	)
+		/datum/ego_datum/armor/galaxy
+		)
 	gift_type = /datum/ego_gifts/galaxy
 	gift_message = "A teardrop fell from the child’s dewy eyes, as stars showered from the sky."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -40,10 +39,9 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/examine(mob/user)
 	. = ..()
 	if(depressed)
-		. += span_info("He is sobbing inconsolably and has a forlorn demeanor.")
+		. += "<span class='info'>He is sobbing inconsolably and has a forlorn demeanor.</span>"
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostSpawn()
-	. = ..()
 	datum_reference.qliphoth_meter = 1
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/Life()
@@ -64,10 +62,11 @@
 		datum_reference.qliphoth_change(2)
 	else //Does math, gives them the required stuff
 		user.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
-		galaxy_friend |= user
+		galaxy_friend += user
 		heal_amount += heal_mod
 		damage_amount += damage_mod
-		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
+		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/FriendDeath)
+		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 		src.say("I really, really like you! This pebble is super important to me! Please keep it with you forever.")
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/GiftUser(mob/living/carbon/human/user, pe, chance)
@@ -77,7 +76,7 @@
 		chance = 100
 		chance_modifier = 1
 		depressed = FALSE
-	return ..(user, pe, chance)
+	. = ..(user, pe, chance)
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/TurfTransform(turf/turf_type)
 	for(var/turf/T in range(1,src))
@@ -90,22 +89,20 @@
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/ZeroQliphoth(mob/living/carbon/human/user)
 	if(LAZYLEN(galaxy_friend))
-		for(var/mob/living/carbon/human/L in galaxy_friend)
-			if(QDELETED(L))
-				continue
+		for (var/mob/living/carbon/human/L in galaxy_friend)
 			L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
-			UnregisterSignal(L, COMSIG_LIVING_DEATH)
 			new /obj/effect/temp_visual/pebblecrack(get_turf(L))
 			playsound(get_turf(L), "shatter", 50, TRUE)
-			to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
+			to_chat(L, "<span class='userdanger'>Your pebble violently shatters as Child of the Galaxy begins to weep!</span>")
+			L.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 	//reset everything
 	heal_amount = 0
 	damage_amount = 0
 	if(galaxy_friend.len >= 2)
 		depressed = TRUE
 		chance_modifier = 1.25
-	LAZYCLEARLIST(galaxy_friend)
+	galaxy_friend = list()
 	icon_state = "galaxy_weep"
 	TurfTransform(/turf/open/floor/fakespace)
 

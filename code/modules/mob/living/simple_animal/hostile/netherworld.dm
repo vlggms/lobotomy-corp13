@@ -46,10 +46,10 @@
 		return
 	var/turf/T = get_turf(N)
 	if (N.can_be_seen(T) || !do_after(N, 60, target = T))
-		to_chat(N, span_warning("You can't phase in or out while being observed and you must stay still!"))
+		to_chat(N, "<span class='warning'>You can't phase in or out while being observed and you must stay still!</span>")
 		return
 	if (get_dist(N, T) != 0 || N.can_be_seen(T))
-		to_chat(N, span_warning("Action cancelled, as you moved while reappearing or someone is now viewing your location."))
+		to_chat(N, "<span class='warning'>Action cancelled, as you moved while reappearing or someone is now viewing your location.</span>")
 		return
 	if(N.is_phased)
 		holder = N.loc
@@ -100,8 +100,8 @@
 	attack_verb_simple = "lacerate"
 	speed = -0.5
 	var/static/list/migo_sounds
-	death_message = "wails as its form turns into a pulpy mush."
-	death_sound = 'sound/voice/hiss6.ogg'
+	deathmessage = "wails as its form turns into a pulpy mush."
+	deathsound = 'sound/voice/hiss6.ogg'
 	phaser = FALSE
 
 /mob/living/simple_animal/hostile/netherworld/migo/Initialize()
@@ -136,7 +136,7 @@
 	melee_damage_upper = 10
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
-	death_message = "falls apart into a fine dust."
+	deathmessage = "falls apart into a fine dust."
 	phaser = FALSE
 
 /obj/structure/spawner/nether
@@ -158,17 +158,17 @@
 /obj/structure/spawner/nether/examine(mob/user)
 	. = ..()
 	if(isskeleton(user) || iszombie(user))
-		. += "A direct link to another dimension full of creatures very happy to see you. [span_nicegreen("You can see your house from here!")]"
+		. += "A direct link to another dimension full of creatures very happy to see you. <span class='nicegreen'>You can see your house from here!</span>"
 	else
-		. += "A direct link to another dimension full of creatures not very happy to see you. [span_warning("Entering the link would be a very bad idea.")]"
+		. += "A direct link to another dimension full of creatures not very happy to see you. <span class='warning'>Entering the link would be a very bad idea.</span>"
 
 /obj/structure/spawner/nether/attack_hand(mob/user)
 	. = ..()
 	if(isskeleton(user) || iszombie(user))
-		to_chat(user, span_notice("You don't feel like going home yet..."))
+		to_chat(user, "<span class='notice'>You don't feel like going home yet...</span>")
 	else
-		user.visible_message(span_warning("[user] is violently pulled into the link!"), \
-							span_userdanger("Touching the portal, you are quickly pulled through into a world of unimaginable horror!"))
+		user.visible_message("<span class='warning'>[user] is violently pulled into the link!</span>", \
+							"<span class='userdanger'>Touching the portal, you are quickly pulled through into a world of unimaginable horror!</span>")
 		contents.Add(user)
 
 /obj/structure/spawner/nether/process(delta_time)
@@ -182,5 +182,5 @@
 				blank = new(loc)
 				blank.name = "[M]"
 				blank.desc = "It's [M], but [M.p_their()] flesh has an ashy texture, and [M.p_their()] face is featureless save an eerie smile."
-				src.visible_message(span_warning("[M] reemerges from the link!"))
+				src.visible_message("<span class='warning'>[M] reemerges from the link!</span>")
 				qdel(M)

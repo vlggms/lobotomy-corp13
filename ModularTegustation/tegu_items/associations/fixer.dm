@@ -15,7 +15,7 @@
 
 /obj/item/choice_beacon/fixer/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
-	to_chat(M, span_hear("Make sure you put the equipment away."))
+	to_chat(M, "<span class='hear'>Make sure you put the equipment away.</span>")
 
 
 
@@ -103,7 +103,7 @@
 
 /obj/item/choice_beacon/fixerhard/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
-	to_chat(M, span_hear("Make sure you put the equipment away."))
+	to_chat(M, "<span class='hear'>Make sure you put the equipment away.</span>")
 
 
 
@@ -139,10 +139,10 @@
 	desc = "A kit containing Cane Office gear."
 
 /obj/item/storage/box/fixerhard/cane/PopulateContents()
-	new /obj/item/ego_weapon/city/charge/cane/cane/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/claw/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/fist/weak(src)
-	new /obj/item/ego_weapon/city/charge/cane/briefcase/weak(src)
+	new /obj/item/ego_weapon/city/cane/cane/weak(src)
+	new /obj/item/ego_weapon/city/cane/claw/weak(src)
+	new /obj/item/ego_weapon/city/cane/fist/weak(src)
+	new /obj/item/ego_weapon/city/cane/briefcase/weak(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)
 	new /obj/item/clothing/under/suit/tuxedo(src)

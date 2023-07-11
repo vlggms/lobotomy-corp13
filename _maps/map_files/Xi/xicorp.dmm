@@ -1812,14 +1812,6 @@
 /obj/structure/fluff/broken_flooring,
 /turf/open/floor/plating,
 /area/facility_hallway/central)
-"mM" = (
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2
-	},
-/obj/machinery/smartfridge/extraction_storage/ego_weapon,
-/turf/closed/indestructible/reinforced,
-/area/department_main/information)
 "mN" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -4138,7 +4130,7 @@
 /area/facility_hallway/control)
 "EJ" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 5;
 	pixel_y = 5
@@ -4273,7 +4265,7 @@
 /area/facility_hallway/command)
 "FE" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 5;
 	pixel_y = 5
@@ -4303,12 +4295,6 @@
 	color = "a1a1a1"
 	},
 /area/facility_hallway/information)
-"FP" = (
-/obj/machinery/vending/cigarette,
-/turf/open/floor/facility/white{
-	color = "a1a1a1"
-	},
-/area/facility_hallway/command)
 "FU" = (
 /turf/open/floor/mineral/titanium/white,
 /area/department_main/safety)
@@ -4626,15 +4612,8 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
-/obj/machinery/vending/custom/unbreakable,
+/obj/machinery/vending/cigarette,
 /turf/open/floor/carpet/purple,
-/area/department_main/information)
-"It" = (
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25
-	},
-/obj/machinery/smartfridge/extraction_storage/ego_armor,
-/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "Ix" = (
 /obj/structure/window/reinforced/spawner/north,
@@ -40494,7 +40473,7 @@ xx
 xx
 xx
 oa
-It
+jP
 rp
 II
 MO
@@ -40746,7 +40725,7 @@ il
 OL
 Du
 Du
-FP
+Du
 xx
 if
 if
@@ -41268,7 +41247,7 @@ oa
 MR
 aP
 lc
-mM
+pz
 hj
 hj
 hj

@@ -4,10 +4,7 @@
 	name = "drinking glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
-	base_icon_state = "glass_empty"
 	amount_per_transfer_from_this = 10
-	fill_icon_thresholds = list(0)
-	fill_icon_state = "drinking_glass"
 	volume = 50
 	custom_materials = list(/datum/material/glass=500)
 	max_integrity = 20
@@ -34,24 +31,25 @@
 	. = ..()
 	icon = initial(icon) // TEGU
 
-	if(!reagents.total_volume)
-		icon_state = base_icon_state
-		return ..()
-	var/datum/reagent/largest_reagent = reagents.get_master_reagent()
-	if(largest_reagent?.glass_tegu)
-		icon = 'ModularTegustation/Teguicons/teguitems.dmi' //Tegu, obviously.
-	var/glass_icon = get_glass_icon(largest_reagent)
-	if(glass_icon)
-		icon_state = glass_icon
-		fill_icon_thresholds = null
-	else
-		//Make sure the fill_icon_thresholds and the icon_state are reset. We'll use reagent overlays.
-		fill_icon_thresholds ||= list(0)
-		icon_state = base_icon_state
-	return ..()
+	if(!length(reagents.reagent_list))
+		icon_state = "glass_empty"
+		return
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/proc/get_glass_icon(datum/reagent/largest_reagent)
-	return largest_reagent?.glass_icon_state
+	var/datum/reagent/largest_reagent = reagents.get_master_reagent()
+	if(largest_reagent.glass_tegu)
+		icon = 'ModularTegustation/Teguicons/teguitems.dmi' //Tegu, obviously.
+	if(largest_reagent.glass_icon_state)
+		icon_state = largest_reagent.glass_icon_state
+	return NONE
+
+/obj/item/reagent_containers/food/drinks/drinkingglass/update_overlays()
+	. = ..()
+	if(icon_state != initial(icon_state))
+		return
+
+	var/mutable_appearance/reagent_overlay = mutable_appearance(icon, "glassoverlay")
+	reagent_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+	. += reagent_overlay
 
 //Shot glasses!//
 //  This lets us add shots in here instead of lumping them in with drinks because >logic  //
@@ -64,11 +62,9 @@
 	name = "shot glass"
 	desc = "A shot glass - the universal symbol for bad decisions."
 	icon_state = "shotglass"
-	base_icon_state = "shotglass"
 	gulp_size = 15
 	amount_per_transfer_from_this = 15
 	possible_transfer_amounts = list()
-	fill_icon_state = "shot_glass"
 	volume = 15
 	custom_materials = list(/datum/material/glass=100)
 	custom_price = PAYCHECK_ASSISTANT * 0.4
@@ -83,8 +79,27 @@
 	name = "filled shot glass"
 	desc = "The challenge is not taking as many as you can, but guessing what it is before you pass out."
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/get_glass_icon(datum/reagent/largest_reagent)
-	return largest_reagent?.shot_glass_icon_state
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/update_icon_state()
+	. = ..()
+	if(!length(reagents.reagent_list))
+		icon_state = "shotglass"
+		name = "shot glass"
+		desc = "A shot glass - the universal symbol for bad decisions."
+		return
+
+	var/datum/reagent/largest_reagent = reagents.get_master_reagent()
+	name = "filled shot glass"
+	desc = "The challenge is not taking as many as you can, but guessing what it is before you pass out."
+	icon_state = largest_reagent.shot_glass_icon_state || "shotglassclear"
+
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/update_overlays()
+	. = ..()
+	if(icon_state != "shotglassclear")
+		return
+
+	var/mutable_appearance/shot_overlay = mutable_appearance(icon, "shotglassoverlay")
+	shot_overlay.color = mix_color_from_reagents(reagents.reagent_list)
+	. += shot_overlay
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/soda
 	name = "Soda Water"
@@ -103,9 +118,9 @@
 		var/obj/item/food/egg/E = I
 		if(reagents)
 			if(reagents.total_volume >= reagents.maximum_volume)
-				to_chat(user, span_notice("[src] is full."))
+				to_chat(user, "<span class='notice'>[src] is full.</span>")
 			else
-				to_chat(user, span_notice("You break [E] in [src]."))
+				to_chat(user, "<span class='notice'>You break [E] in [src].</span>")
 				reagents.add_reagent(/datum/reagent/consumable/eggyolk, 5)
 				qdel(E)
 			return

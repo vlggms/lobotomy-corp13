@@ -6,7 +6,7 @@
 /// Physical fracturing and warping of the material.
 #define BRUTE		"brute"
 /// Scorching and charring of the material.
-#define BURN		"fire"
+#define BURN		"burn"
 /// Poisoning. Mostly caused by reagents.
 #define TOX			"toxin"
 /// Suffocation.

@@ -33,9 +33,9 @@
 
 /obj/machinery/computer/operating/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/disk/surgery))
-		user.visible_message(span_notice("[user] begins to load \the [O] in \the [src]..."), \
-			span_notice("You begin to load a surgery protocol from \the [O]..."), \
-			span_hear("You hear the chatter of a floppy drive."))
+		user.visible_message("<span class='notice'>[user] begins to load \the [O] in \the [src]...</span>", \
+			"<span class='notice'>You begin to load a surgery protocol from \the [O]...</span>", \
+			"<span class='hear'>You hear the chatter of a floppy drive.</span>")
 		var/obj/item/disk/surgery/D = O
 		if(do_after(user, 10, target = src))
 			advanced_surgeries |= D.surgeries
@@ -115,7 +115,6 @@
 	data["patient"]["maxHealth"] = patient.maxHealth
 	data["patient"]["minHealth"] = HEALTH_THRESHOLD_DEAD
 	data["patient"]["bruteLoss"] = patient.getBruteLoss()
-	data["patient"]["sanityLoss"] = patient.getSanityLoss()
 	data["patient"]["fireLoss"] = patient.getFireLoss()
 	data["patient"]["toxLoss"] = patient.getToxLoss()
 	data["patient"]["oxyLoss"] = patient.getOxyLoss()

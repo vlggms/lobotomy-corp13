@@ -48,40 +48,6 @@
 	icon_state = "maiden"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
 
-/obj/item/clothing/suit/armor/ego_gear/realization/wellcheers
-	name = "wellcheers"
-	desc = " I’ve found true happiness in cracking open a cold one after a hard day’s work, covered in sea water and sweat. \
-	I’m at the port now but we gotta take off soon to catch some more shrimp. Never know what your future holds, bros."
-	icon_state = "wellcheers"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/wellcheers
-	hat = /obj/item/clothing/head/ego_hat/wellcheers_hat
-
-/obj/item/clothing/head/ego_hat/wellcheers_hat
-	name = "wellcheers"
-	desc = "You’re really missing out on life if you’ve never tried shrimp."
-	icon_state = "wellcheers"
-
-/obj/item/clothing/suit/armor/ego_gear/realization/comatose
-	name = "comatose"
-	desc = "...ZZZ..."
-	icon_state = "comatose"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 90, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/comatose
-
-/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown
-	name = "broken crown"
-	desc = "Shall we get to work? All we need to do is what we’ve always done."
-	icon_state = "brokencrown"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/brokencrown
-	hat = /obj/item/clothing/head/ego_hat/brokencrown
-
-/obj/item/clothing/head/ego_hat/brokencrown
-	name = "broken crown"
-	desc = "One fell down and the rest came tumbling after."
-	icon_state = "brokencrown"
-
 /* TETH Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/mouth
@@ -110,7 +76,7 @@
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
+	realized_ability = /obj/effect/proc_holder/ability/aimed/cocoon_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"
@@ -146,7 +112,6 @@
 	desc = "Spring is coming."
 	worn_icon = 'icons/mob/clothing/big_hat.dmi'
 	icon_state = "sakura"
-
 /* HE Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/grinder
@@ -172,8 +137,7 @@
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
-	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
 	name = "together forever"
@@ -213,14 +177,6 @@
 	icon_state = "home"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 70)
 	flags_inv = HIDEGLOVES|HIDESHOES
-	realized_ability = /obj/effect/proc_holder/ability/aimed/house_spawn
-
-/obj/item/clothing/suit/armor/ego_gear/realization/dimension_ripper
-	name = "dimension ripper"
-	desc = "Lost and abandoned, tossed out like trash, having no place left in the City."
-	icon_state = "dimension_ripper"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)
-	realized_ability = /obj/effect/proc_holder/ability/rip_space
 
 /* WAW Realizations */
 
@@ -282,7 +238,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(item_action_slot_check(slot, user))
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/dropped(mob/user)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
@@ -294,7 +250,7 @@
 		return
 	if(loc.z != abno.z)
 		return
-	addtimer(CALLBACK(src, PROC_REF(NotifyEscape), loc, abno), rand(1 SECONDS, 3 SECONDS))
+	addtimer(CALLBACK(src, .proc/NotifyEscape, loc, abno), rand(1 SECONDS, 3 SECONDS))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/proc/NotifyEscape(mob/living/carbon/human/user, mob/living/simple_animal/hostile/abnormality/abno)
 	if(QDELETED(abno) || abno.stat == DEAD || loc != user)
@@ -326,58 +282,6 @@
 	icon_state = "capitalism"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
 	realized_ability = /obj/effect/proc_holder/ability/shrimp
-
-/obj/item/clothing/suit/armor/ego_gear/realization/duality_yang
-	name = "duality of harmony"
-	desc = "When good and evil meet discord and assonance will be quelled."
-	icon_state = "duality_yang"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 90, BLACK_DAMAGE = 40, PALE_DAMAGE = 90)
-	realized_ability = /obj/effect/proc_holder/ability/tranquility
-
-/obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
-	name = "harmony of duality"
-	desc = "All that isn't shall become all that is."
-	icon_state = "duality_yin"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
-
-/obj/item/clothing/suit/armor/ego_gear/realization/repentance
-	name = "repentance"
-	desc = "If you pray hard enough, perhaps god will answer it?"
-	icon_state = "repentance"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 90)
-	realized_ability = /obj/effect/proc_holder/ability/prayer
-
-/obj/item/clothing/suit/armor/ego_gear/realization/nest
-	name = "living nest"
-	desc = "Grow eternally, let our nest reach the horizon!"
-	icon_state = "nest"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)
-	realized_ability = /obj/effect/proc_holder/ability/nest
-	var/CanSpawn = FALSE
-
-/obj/item/clothing/suit/armor/ego_gear/realization/nest/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
-		CanSpawn = TRUE
-		addtimer(CALLBACK(src, PROC_REF(Spawn),user), 10 SECONDS)
-
-/obj/item/clothing/suit/armor/ego_gear/realization/nest/dropped(mob/user)
-	CanSpawn = FALSE
-	return ..()
-
-/obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Reset(mob/user)
-	if(!CanSpawn)
-		return
-	Spawn(user)
-
-/obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Spawn(mob/user)
-	if(!CanSpawn)
-		return
-	addtimer(CALLBACK(src, PROC_REF(Reset),user), 10 SECONDS)
-	playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
-	var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
-	W.origin_nest = user
 
 /* ALEPH Realizations */
 
@@ -421,7 +325,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamaged))
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamaged)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
@@ -434,10 +338,8 @@
 	//goonchem_vortex(get_turf(src), 1, 3)
 	if(!canSUCC)
 		return
-	if(user.is_working)
-		return
 	canSUCC = FALSE
-	addtimer(CALLBACK(src, PROC_REF(Reset)), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/Reset), 2 SECONDS)
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/L in T)

@@ -5,6 +5,7 @@
 	damage_type = OXY
 	nodamage = TRUE
 	armour_penetration = 100
+	flag = MAGIC
 
 /obj/projectile/magic/death
 	name = "bolt of death"
@@ -353,6 +354,7 @@
 	icon_state = "lavastaff"
 	damage = 15
 	damage_type = BURN
+	flag = MAGIC
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -372,6 +374,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 0
+	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/projectile/magic/arcane_barrage/on_hit(target)
@@ -388,6 +391,7 @@
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
+	flag = MAGIC
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -436,7 +440,7 @@
 /obj/structure/closet/decay/Initialize()
 	. = ..()
 	if(auto_destroy)
-		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
+		addtimer(CALLBACK(src, .proc/bust_open), 5 MINUTES)
 
 /obj/structure/closet/decay/after_weld(weld_state)
 	if(weld_state)
@@ -445,7 +449,7 @@
 ///Fade away into nothing
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 30)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 30)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 30)
 
 /obj/structure/closet/decay/open(mob/living/user, force = FALSE)
 	. = ..()
@@ -457,7 +461,7 @@
 	icon_state = weakened_icon
 	update_icon()
 
-	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
 
 /obj/projectile/magic/flying
 	name = "bolt of flying"
@@ -615,6 +619,7 @@
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
+	flag = MAGIC
 
 	var/zap_power = 20000
 	var/zap_range = 15
@@ -679,6 +684,7 @@
 
 	damage = 350
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 	armour_penetration = 0
 	speed = 1.5 // Slow
 	damage_falloff_tile = -5 // Loses a bit of damage so you don't get jumpscared out of nowhere
@@ -711,16 +717,19 @@
 /obj/projectile/magic/aoe/pillar/red
 	icon_state = "pillar_red"
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 	trail_type = /obj/effect/temp_visual/cult/sparks
 
 /obj/projectile/magic/aoe/pillar/white
 	icon_state = "pillar_white"
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/magic/aoe/pillar/pale
 	icon_state = "pillar_pale"
 	damage = 250
 	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
 
 //still magic related, but a different path
 
@@ -732,6 +741,7 @@
 	nodamage = FALSE
 	armour_penetration = 100
 	temperature = -200 // Cools you down greatly per hit
+	flag = MAGIC
 
 /obj/projectile/magic/nothing
 	name = "bolt of nothing"

@@ -7,7 +7,6 @@
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
 	icon_dead = "doomsday_egg"
-	portrait = "doomsday"
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
@@ -20,27 +19,26 @@
 	start_qliphoth = 5
 	max_boxes = 18//this is the normal amount
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 60,
-		ABNORMALITY_WORK_INSIGHT = 45,
-		ABNORMALITY_WORK_ATTACHMENT = 20,
-		ABNORMALITY_WORK_REPRESSION = 50,
-	)
+						ABNORMALITY_WORK_INSTINCT = 60,
+						ABNORMALITY_WORK_INSIGHT = 45,
+						ABNORMALITY_WORK_ATTACHMENT = 20,
+						ABNORMALITY_WORK_REPRESSION = 50
+						)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
 	wander = FALSE
 	del_on_death = FALSE
-	death_message = "crumbles into bits."
+	deathmessage = "crumbles into bits."
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg'
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/impending_day,
-		/datum/ego_datum/armor/impending_day,
-	)
+		/datum/ego_datum/armor/impending_day
+		)
 	gift_type =  /datum/ego_gifts/impending_day
-	gift_message = "Let the blood flow, the fire ignite, and the star fall."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/player_count
@@ -52,14 +50,13 @@
 	var/pulse_damage = 5
 	var/bonusRed = 0
 	var/next_phase_time
-	var/next_phase_time_cooldown = 45 SECONDS
 	var/current_phase_num = -1
 	var/aflame_range = 5//it goes up if ignored
 	var/aflame_damage = 20
 	var/gibtime = 5
 	var/is_fed = FALSE
 	var/is_firey = FALSE
-	var/doll_count_maximum = 2
+	var/doll_count_maximum = 1
 	var/list/spawned_dolls = list()
 	pet_bonus = "rumbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 
@@ -67,7 +64,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Initialize()
 	. = ..()
 	updateWorkMaximum()
-	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, PROC_REF(OnAbnoWork))
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Move()
 	return FALSE
@@ -79,7 +76,7 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(!IsContained())//if it's breaching
+	if(!(status_flags & GODMODE))//if it's breaching
 		CheckCountdown()
 		if((pulse_cooldown < world.time) && (is_firey == TRUE))
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50, TRUE)
@@ -88,14 +85,14 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/death()
 	density = FALSE
 	playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Dead.ogg', 100, 1)
-	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
-		D.death()
-		QDEL_IN(D, rand(1,5) SECONDS)
+	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls)
+		QDEL_IN(D, rand(5) SECONDS)
 		spawned_dolls -= D
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
+//delete the dolls when suppressed
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
 	return ..()
@@ -103,18 +100,18 @@
 //*** Work Mechanics ***//
 //Even clerks can appease it with their blood
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/funpet(mob/living/carbon/human/user)
-	if(IsContained() && datum_reference.qliphoth_meter != datum_reference.qliphoth_meter_max)
+	if(status_flags & GODMODE)
 		if(do_after(user, gibtime, target = src))
-			to_chat(user, span_warning("[src] bites you! It seems to have been appeased."))
+			to_chat(user,"<span class='warning'>The abnormality bites you! It seems to have been appeased.</span>")
 			user.adjustBruteLoss(75 - (datum_reference.qliphoth_meter * 15))
-			datum_reference.qliphoth_change(1)
+			datum_reference.qliphoth_change(4)
 			return
 		else
-			to_chat(user, span_notice("Maybe it's better to leave this thing alone."))
+			to_chat(user,"<span class='notice'>Maybe it's better to leave that thing alone.</span>")
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)//from punishing bird
 	SIGNAL_HANDLER
-	if(!IsContained()) // If it's breaching right now
+	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return FALSE
 	if(abno_datum == datum_reference)//If working on this abnormality
 		return FALSE
@@ -132,7 +129,6 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)
@@ -150,7 +146,7 @@
 		return..()
 	bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
 	if(bonusRed)
-		to_chat(user, span_warning("A clay doll arrives with a bowl, demanding blood."))
+		to_chat(user,"<span class='warning'>A clay doll arrives with a bowl, demanding blood.</span>")
 		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
 	return ..()
 
@@ -175,8 +171,8 @@
 	other_works_maximum = (4 + round(player_count / 6))
 
 //***Breach Mechanics***//
-/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/BreachEffect(mob/living/carbon/human/user)
+	..()
 	var/turf/T = pick(GLOB.department_centers)
 	icon_state = "doomsday_active"
 	forceMove(T)
@@ -184,12 +180,11 @@
 	SpawnAdds()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AnnounceBreach()
-	send_to_playing_players(span_narsiesmall("The day of the Apocalypse has arrived."))
-	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5, "The day of the apocalypse has arrived.", 25))
 	for(var/mob/living/carbon/human/H in livinginrange(20, src))//same range as universe aflame when fully charged
 		if(H.z != z)
 			return
-		to_chat(H, span_boldwarning("You hear rumbling..."))
+		to_chat(H, "<span class='warning'>You hear rumbling...</span>")
 
 
 /obj/effect/temp_visual/doomsday
@@ -204,49 +199,53 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/CheckCountdown()//grabbed from TSO
 	if(world.time >= next_phase_time) // Next phase
-		if(current_phase_num < 4)
-			current_phase_num += 1
+		current_phase_num += 1
 		switch(current_phase_num)
+			if(0)
+				next_phase_time = world.time + 45 SECONDS
 			if(1)
-				next_phase_time_cooldown = 30 SECONDS
+				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, span_boldwarning("[src] appears upset as its bricks begin to rattle."))
+					to_chat(H, "<span class='warning'>The abnormality appears upset. What should it be given?</span>")
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_angry"
 			if(2)
+				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, span_boldwarning("The heat emitting from [src] is unbearable."))
+					to_chat(H, "<span class='warning'>The heat of the abnormality is unbearable. An offering must be made to it.</span>")
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_firey"
 				EnableFire()
 			if(3)
+				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, span_boldwarning("[src] takes on an ominous appearance and starts glowing."))
+					to_chat(H, "<span class='warning'>The abnormality demands another offering.</span>")
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_charging"
 				EnableFire()
-			if(4)//begin nuking
+			if(4)//it loops back to this
+				next_phase_time = world.time + 30 SECONDS
 				CheckFed()
 				icon_state = "doomsday_universe"
 				EnableFire()
-		next_phase_time = world.time + next_phase_time_cooldown
+			if(5)
+				next_phase_time = world.time + 30 SECONDS
+				current_phase_num -= 1
 
 		if(current_phase_num >= 4)//UNIVERSE AFLAME!
 			for(var/turf/T in range(aflame_range, src))
 				for(var/mob/living/carbon/human/H in T)
-					to_chat(H, span_narsiesmall("The stars are twinkling. When they shine, they'll rob us all of our sight."))
+					to_chat(H, "<span class='userdanger'>The stars are twinkling. When they shine, they'll rob us all of our sight.</span>")
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Impending_Charge.ogg', 50, TRUE)
 			SLEEP_CHECK_DEATH(15 SECONDS)
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Universe.ogg', 50, TRUE)
 			for(var/turf/T in range(aflame_range, src))
-				if(prob(25))
-					new /obj/effect/temp_visual/doomsday(T)
+				new /obj/effect/temp_visual/doomsday(T)
 				for(var/mob/living/H in T)
-					if(isabnormalitymob(H))
-						var/mob/living/simple_animal/hostile/abnormality/A = H
+					for(var/mob/living/simple_animal/hostile/abnormality/A in T)
 						if(!(A.IsContained()))
 							continue
 						A.datum_reference.qliphoth_change(-1)
@@ -280,7 +279,7 @@
 	is_firey = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/CheckFed()
-	if(IsContained())
+	if((status_flags & GODMODE))
 		return
 	if(!is_fed)
 		pulse_damage += 2
@@ -290,28 +289,31 @@
 	is_fed = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	if(IsContained())//is contained
+	if((status_flags & GODMODE))//not contained
 		return FALSE
 	if(M.stat != DEAD)
 		return FALSE
 	if(do_after(user, 20, target = M))
 		if(!ishuman(M) && !istype(M, /mob/living/simple_animal/hostile/doomsday_doll))
-			to_chat(user, span_warning("[src] rejects your offering!"))
+			to_chat(user, "<span class='userdanger'>The abnormality rejects your offering!</span>")
 			return
 		if(istype(M ,/mob/living/simple_animal/hostile/doomsday_doll))
 			spawned_dolls -= M
-		to_chat(user, span_nicegreen("[src] is sated by your offering!"))
+		to_chat(user, "<span class='userdanger'>The abnormality accepts your offering!</span>")
 		M.gib()
 		is_fed = TRUE
 		adjustBruteLoss(100)
 		pulse_damage -= 1
 		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
-		AddModifier(/datum/dc_change/sacrificed)
+		for(var/damtype in src.damage_coeff)
+			if(damtype == BRUTE)
+				continue
+			damage_coeff[damtype] += 0.1
 
 //***Simple Mobs***//
 //clay dolls
 /mob/living/simple_animal/hostile/doomsday_doll
-	name = "doomsday clay doll"
+	name = "Doomsday Clay Doll"
 	desc = "A vaguely humanoid figure bearing a heavy clay helmet."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "doomsday_doll"
@@ -344,7 +346,7 @@
 	base_pixel_y = rand(-6,6)
 	pixel_y = base_pixel_y
 
-/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/SpawnAdds()
+/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/SpawnAdds(mob/target)
 	var/doll_count = length(spawned_dolls)
 	if (doll_count >= doll_count_maximum)
 		return

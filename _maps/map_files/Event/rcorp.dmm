@@ -1,79 +1,163 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aC" = (
-/turf/closed/wall/mineral/titanium/survival/pod,
+"aB" = (
+/obj/structure/table/wood,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"aQ" = (
-/obj/effect/landmark/wallspawner,
+"aI" = (
+/obj/structure/fireplace,
 /turf/open/floor/pod,
+/area/city/outskirts)
+"aR" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
 "bn" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/floor/fakepit,
+/turf/open/water/jungle,
 /area/city/outskirts)
-"bt" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/server/presets/engineering,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"cH" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"cL" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"cW" = (
-/obj/structure/chair/comfy{
-	dir = 4
+"bC" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "reindeer captain bunk";
+	req_access_txt = "5"
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"cg" = (
+/obj/structure/table/abductor,
+/obj/item/storage/firstaid/revival,
+/obj/item/gun/medbeam,
+/obj/item/gun/mindwhip,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ch" = (
+/obj/structure/table/abductor,
+/obj/item/powered_gadget/detector_gadget/abnormality,
+/obj/item/powered_gadget/vitals_projector,
+/obj/item/powered_gadget/slowingtrapmk1,
+/obj/item/wrench,
+/obj/item/powered_gadget/handheld_taser,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ci" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"cq" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"cL" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "dd" = (
 /obj/effect/spawner/room/rcorp,
 /turf/closed/indestructible/rock,
 /area/city/outskirts)
+"dg" = (
+/obj/structure/closet/crate,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/clothing/suit/armor/ego_gear/rabbit,
+/turf/open/floor/pod,
+/area/city/outskirts)
 "du" = (
-/obj/structure/table/abductor,
-/obj/item/powered_gadget/detector_gadget/abnormality,
-/obj/item/powered_gadget/vitals_projector,
-/obj/item/powered_gadget/slowingtrapmk1,
-/obj/item/powered_gadget/handheld_taser,
-/obj/item/grenade/smokebomb,
+/obj/structure/bed/pod,
+/obj/item/bedsheet/black,
 /turf/open/floor/pod,
 /area/city/outskirts)
-"dY" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/landmark/latejoin,
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"fv" = (
-/obj/effect/landmark/wallspawner,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"fC" = (
-/obj/structure/table/abductor,
-/obj/item/storage/lockbox/medal/officer,
+"dC" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/pod,
 /area/city/outskirts)
-"gk" = (
-/obj/structure/table/wood/bar,
-/obj/machinery/recharger,
-/turf/open/floor/pod/dark,
+"ea" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "officer's bunks"
+	},
+/turf/open/floor/pod,
 /area/city/outskirts)
-"gx" = (
+"et" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/service,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"eK" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"eP" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "raven captain bunk";
+	req_access_txt = "7"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"eV" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"fy" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "Officer's meet";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"fU" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/city/outskirts)
+"gh" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"gP" = (
+/turf/open/water/jungle,
+/area/city/outskirts)
+"gT" = (
+/turf/closed/indestructible/syndicate,
+/area/city/outskirts)
+"gX" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"hj" = (
 /obj/machinery/computer/mech_bay_power_console{
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
-	dir = 8
+	dir = 1
 	},
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -84,398 +168,44 @@
 	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"gG" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "lieutenant commander's bunk";
-	req_access_txt = "7;5"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"gM" = (
-/obj/structure/table/wood/bar,
-/obj/item/food/salad/herbsalad{
-	pixel_x = -2;
-	pixel_y = 5
-	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	pixel_x = 5;
-	pixel_y = 6
-	},
-/obj/item/food/meat/steak/plain/synth,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"gP" = (
-/turf/open/water/jungle,
-/area/city/outskirts)
-"hl" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_two,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"hr" = (
-/obj/structure/fireplace,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"hy" = (
-/obj/structure/table/wood,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/obj/item/food/bbqribs,
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
-"hP" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"ia" = (
-/obj/item/storage/firstaid/revival,
-/obj/structure/rack,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"ib" = (
-/obj/machinery/telecomms/message_server/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"ih" = (
-/obj/structure/table/abductor,
-/obj/machinery/button/door{
-	id = "outside";
-	name = "operation start button";
-	req_access_txt = "19"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"iY" = (
-/obj/structure/rack,
-/obj/effect/landmark/rcorpitemspawn,
-/obj/item/megaphone,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"jd" = (
-/obj/structure/chair/comfy{
-	dir = 8
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"jy" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cdr";
-	name = "Ground Commander's Weaponry";
-	req_access_txt = "20"
-	},
-/obj/item/gun/ballistic/automatic/pistol/deagle,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ammo_box/magazine/m50,
-/obj/item/ego_weapon/city/rabbit_blade/command,
-/obj/item/storage/lockbox/medal/cdr,
-/obj/item/gps,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"jC" = (
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/rabbit/minigun,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"kl" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"kr" = (
-/obj/structure/chair/comfy{
-	dir = 1
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"kG" = (
-/obj/structure/rack,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/obj/item/grenade/smokebomb,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"kN" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_one,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"ls" = (
-/obj/structure/rack,
-/obj/effect/landmark/rcorpitemspawn,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"lz" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"lT" = (
-/obj/machinery/telecomms/server/presets/command,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"mE" = (
-/obj/machinery/computer/communications,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"mH" = (
-/obj/structure/rack,
-/obj/item/gps,
-/obj/item/gps,
-/obj/item/gps,
-/obj/item/gps,
-/obj/item/gps,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"mR" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"nL" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "lcdr";
-	name = "Lieutenant Commander's Wardrobe";
-	req_access_txt = "19"
-	},
-/obj/item/clothing/suit/jacket,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/clothing/head/beret/tegu/rcorp,
-/obj/item/clothing/suit/jacket/miljacket,
-/obj/item/binoculars,
-/obj/item/ego_weapon/city/zweihander/knife/lcdr,
-/obj/item/clothing/suit/armor/ego_gear/rcorp_officer,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"oi" = (
-/turf/closed/indestructible/rock,
-/area/city/outskirts)
-"oj" = (
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/rabbitdash/pale,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"oR" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/hub/preset,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"pg" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"pi" = (
-/obj/structure/rack,
-/obj/item/gun/energy/e_gun/rabbitdash/heavy,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"pT" = (
-/obj/effect/turf_decal/sand,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"qQ" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/revival,
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"rk" = (
-/obj/machinery/telecomms/broadcaster/preset_left,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"su" = (
-/obj/structure/rack,
-/obj/effect/landmark/rcorpitemspawn,
-/obj/item/commandprojector,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"sS" = (
-/obj/structure/window/shuttle/survival_pod,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"tb" = (
-/obj/machinery/telecomms/server/presets/science,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"tc" = (
-/obj/structure/chair/plastic{
-	dir = 1
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"tZ" = (
-/obj/structure/table/wood,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/obj/item/food/burger/cheese,
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
-"uF" = (
-/obj/structure/rack,
-/obj/item/kitchen/knife/butcher,
-/obj/item/kitchen/knife/butcher,
-/obj/item/kitchen/knife/butcher,
-/obj/item/kitchen/knife/butcher,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"vo" = (
-/obj/machinery/mech_bay_recharge_port,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"vX" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "requisitions";
-	req_access_txt = "19"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"wA" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"wW" = (
+"ir" = (
 /obj/structure/table/abductor,
 /obj/effect/spawner/lootdrop/three_course_meal,
 /turf/open/floor/pod,
 /area/city/outskirts)
-"xh" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "ground commander bunk";
-	req_access_txt = "20"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"xi" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "outside"
-	},
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
-"xp" = (
+"iV" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/powered_gadget/detector_gadget/abnormality,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"xu" = (
-/obj/structure/table/abductor,
-/turf/open/floor/pod,
+"jr" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"xQ" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/clothing/head/beret/tegu/captain{
-	armor = list()
-	},
-/obj/item/ego_weapon/city/reindeer/captain,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"yz" = (
+"jG" = (
 /obj/structure/table/abductor,
 /obj/item/gun/energy/e_gun/rabbit/captain,
 /obj/item/clothing/head/rabbit_helmet,
 /turf/open/floor/pod,
 /area/city/outskirts)
-"yJ" = (
-/obj/item/disk/nuclear/rcorp,
-/obj/structure/table/abductor,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"za" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/black,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"zj" = (
-/obj/machinery/cryopod,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"zy" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "raven captain bunk";
-	req_access_txt = "7"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"zC" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/champagne,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -5
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Aq" = (
-/obj/structure/table/abductor,
-/obj/item/storage/lockbox/medal/lcdr,
-/obj/item/gun/ballistic/automatic/pistol/terragov/beretta,
-/obj/item/ammo_box/magazine/m9mm,
-/obj/item/ammo_box/magazine/m9mm,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"AS" = (
-/obj/structure/chair/stool/bar,
+"jM" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/revival,
 /turf/open/floor/pod/light,
 /area/city/outskirts)
-"Bk" = (
-/obj/structure/closet/crate,
-/obj/item/gun/energy/e_gun/rabbitdash/small,
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/clothing/suit/armor/ego_gear/rabbit/officer,
-/obj/item/gps,
-/turf/open/floor/pod,
+"lz" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"Bn" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "senior officer's bunks"
-	},
-/turf/open/floor/pod,
+"lA" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"Bs" = (
+"lG" = (
 /obj/structure/table/wood,
 /obj/item/food/cake/carrot,
 /obj/item/food/cake/carrot,
@@ -495,64 +225,93 @@
 /obj/item/kitchen/knife,
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"BZ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/server/presets/service,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"Cp" = (
-/obj/effect/turf_decal/loading_area{
-	dir = 1
-	},
+"md" = (
+/obj/machinery/computer/crew,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"CQ" = (
-/obj/machinery/fat_sucker,
-/turf/open/floor/plating/asteroid,
+"mn" = (
+/obj/structure/table/abductor,
+/obj/item/gun/ballistic/automatic/pistol/terragov/beretta,
+/obj/item/ammo_box/magazine/m9mm,
+/obj/item/ammo_box/magazine/m9mm,
+/turf/open/floor/pod,
 /area/city/outskirts)
-"Dp" = (
+"mt" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"nO" = (
 /obj/effect/turf_decal/sand,
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"ob" = (
+/obj/effect/turf_decal/sand/plating,
 /obj/structure/chair/plastic{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Dr" = (
-/obj/machinery/telecomms/server/presets/security,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"DH" = (
-/obj/effect/turf_decal/sand/plating,
+"oe" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/vehicle/sealed/mecha/combat/rhino,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Ed" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "officer's bunks"
-	},
-/turf/open/floor/pod,
+"oi" = (
+/turf/closed/indestructible/rock,
 /area/city/outskirts)
-"Et" = (
+"on" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade,
 /obj/item/clothing/head/beret/tegu/captain{
 	armor = list()
 	},
+/obj/item/storage/firstaid/revival,
 /turf/open/floor/pod,
 /area/city/outskirts)
-"Ew" = (
-/obj/effect/turf_decal/sand,
-/obj/structure/chair/bronze,
+"oA" = (
+/obj/item/bedsheet/black,
+/obj/structure/bed/pod,
 /turf/open/floor/pod,
 /area/city/outskirts)
-"EW" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "defensive equipment room";
-	req_access_txt = "7;5"
-	},
+"pa" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"pe" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"qt" = (
+/obj/structure/table/abductor,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Fj" = (
+"qK" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ri" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "rhino captain bunk";
+	req_access_txt = "3"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ry" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/tile{
@@ -568,29 +327,263 @@
 	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Fu" = (
-/obj/machinery/computer/crew,
+"sP" = (
+/obj/structure/table/wood,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"tu" = (
+/obj/structure/table/abductor,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"tv" = (
+/obj/structure/chair/stool/bar,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"FE" = (
-/obj/effect/landmark/observer_start,
+"tW" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"tZ" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"uz" = (
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"uJ" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/cryopod,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"vo" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"wq" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"wA" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/bronze,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"wG" = (
 /turf/open/floor/pod/light,
 /area/city/outskirts)
-"FG" = (
+"wS" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"xi" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "outside"
+	},
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"xq" = (
+/obj/structure/table/wood/bar,
+/obj/item/food/salad/herbsalad{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/food/meat/steak/plain/synth,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"xu" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"xB" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"xR" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"xS" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "junior officer quarters"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"xT" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"yU" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"zo" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"zp" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"zv" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/ego_weapon/city/rabbit_blade,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"zL" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"AG" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "ground commander bunk";
+	req_access_txt = "20"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Bp" = (
+/obj/structure/chair/comfy,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"BS" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "rhino team prep";
+	req_access_txt = "3"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"CE" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/obj/item/ego_weapon/city/reindeer/captain,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"CF" = (
+/obj/machinery/telecomms/server/presets/science,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"CR" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Lieutenant Commander's Wardrobe";
+	req_access_txt = "19"
+	},
+/obj/item/clothing/suit/jacket,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/rcorp,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Dk" = (
+/obj/structure/table/abductor,
+/obj/machinery/button/door{
+	id = "outside";
+	name = "operation start button";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Dq" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Dress Wardrobe";
+	req_access_txt = "20"
+	},
+/obj/item/clothing/suit/captunic{
+	name = "commander's parade tunic"
+	},
+/obj/item/clothing/head/beret/tegu/ce{
+	name = "commander's dress beret"
+	},
+/obj/item/clothing/under/suit/lobotomy/rcorp_command,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"DE" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"FH" = (
+"DF" = (
 /obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/bus/preset_one,
+/obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"FO" = (
-/obj/effect/turf_decal/sand,
+"DK" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Operations Wardrobe";
+	req_access_txt = "20"
+	},
+/obj/item/clothing/suit/armor/hos{
+	armor = list()
+	},
+/obj/item/clothing/head/beret/tegu/rcorp,
+/obj/item/clothing/neck/cloak/rcorp,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"EP" = (
+/obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
+/area/city/outskirts)
+"EX" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "lieutenant commander's bunk";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod,
 /area/city/outskirts)
 "FR" = (
 /obj/machinery/manned_turret/rcorp/stationary,
@@ -598,19 +591,142 @@
 /area/city/outskirts)
 "FT" = (
 /obj/structure/lattice/catwalk,
-/turf/open/floor/fakepit,
+/turf/open/water/jungle,
 /area/city/outskirts)
 "FU" = (
-/turf/closed/indestructible/syndicate,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
 /area/city/outskirts)
-"Gh" = (
+"Gd" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"Gq" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"GJ" = (
 /obj/machinery/door/airlock/survival_pod{
-	name = "tcomms room";
-	req_access_txt = "7;5"
+	name = "rabbit captain bunk";
+	req_access = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"HG" = (
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/vehicle/sealed/mecha/combat/rhinomelee,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Is" = (
+/obj/structure/rack,
+/obj/item/kitchen/knife/butcher,
+/obj/item/kitchen/knife/butcher,
+/obj/item/kitchen/knife/butcher,
+/obj/item/kitchen/knife/butcher,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Ix" = (
+/obj/structure/chair/comfy{
+	dir = 1
 	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Gl" = (
+"IA" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 1
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500"
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"IU" = (
+/obj/structure/table/abductor,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Jn" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Kj" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"LB" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Mf" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Mn" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/commandprojector,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Mo" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "reindeer team prep";
+	req_access_txt = "5"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Mp" = (
+/obj/machinery/mech_bay_recharge_port,
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "#CC5500";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile{
+	color = "#CC5500"
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Mz" = (
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
@@ -619,14 +735,22 @@
 	},
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"Gq" = (
-/obj/structure/table/abductor,
-/obj/item/storage/firstaid/revival,
-/obj/item/gun/medbeam,
-/obj/item/gun/mindwhip,
-/turf/open/floor/pod,
+"MC" = (
+/obj/structure/table/wood,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"Gz" = (
+"ML" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -643,351 +767,134 @@
 	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"GU" = (
-/obj/effect/turf_decal/sand,
+"MN" = (
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Hh" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/processor/preset_three,
+"MV" = (
+/obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"Hk" = (
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"HZ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"Ie" = (
-/obj/structure/rcorpcomms,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Im" = (
-/obj/structure/rack,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"ID" = (
+"Ng" = (
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
 /turf/open/floor/pod,
 /area/city/outskirts)
-"IV" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/weldingtool/experimental,
+"Nu" = (
+/obj/machinery/manned_turret/rcorp,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"Jc" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "reindeer captain bunk";
-	req_access_txt = "5"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Ju" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/revival,
-/obj/item/ego_weapon/city/reindeer,
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"Jz" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "raven team prep";
-	req_access_txt = "7"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Kh" = (
-/obj/structure/table/wood,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/obj/item/food/fries,
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
-"Kj" = (
-/obj/structure/table/abductor,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Ks" = (
-/obj/structure/chair/bronze{
-	dir = 8
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"KB" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"Ls" = (
-/obj/effect/turf_decal/loading_area{
+"Nz" = (
+/obj/structure/chair/comfy/black{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Lv" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"Mk" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/sleeper/syndie,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"My" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"MP" = (
-/obj/effect/turf_decal/sand,
-/obj/machinery/cryopod,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Nc" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "junior officer quarters"
-	},
 /turf/open/floor/pod,
 /area/city/outskirts)
-"Nj" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/clothing/head/beret/tegu/captain{
-	armor = list()
-	},
-/obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/gun/energy/e_gun/rabbitdash/small,
+"NV" = (
 /turf/open/floor/pod,
 /area/city/outskirts)
-"NT" = (
-/obj/effect/landmark/latejoin,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Oi" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"OA" = (
-/obj/structure/rack,
-/obj/effect/landmark/rcorpitemspawn,
-/obj/item/megaphone,
-/obj/item/stack/sheet/mineral/sandbags{
-	amount = 30
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"OE" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"OZ" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "rabbit captain bunk";
-	req_access = "19"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Pv" = (
+"Oz" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/bus/preset_three,
+/obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Pf" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cap";
+	name = "Ground Commander's Weaponry";
+	req_access_txt = "20"
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ego_weapon/city/rabbit_blade/command,
+/turf/open/floor/pod,
 /area/city/outskirts)
 "PG" = (
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"PL" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cdr";
-	name = "Ground Commander's Dress Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/captunic{
-	name = "commander's parade tunic"
-	},
-/obj/item/clothing/head/beret/tegu/ce{
-	name = "commander's dress beret"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
 "Qd" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"QM" = (
+/obj/structure/rack,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Qe" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "Officer's meet";
-	req_access_txt = "19"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Qn" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/structure/chair/plastic{
-	dir = 1
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Qp" = (
-/obj/structure/table/abductor,
-/obj/item/storage/firstaid/revival,
-/obj/item/gps,
-/obj/item/survivalcapsule/rcorpcommand,
-/obj/item/survivalcapsule/rcorpsmallcommand,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"QB" = (
-/obj/item/bedsheet/black,
-/obj/structure/bed/pod,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"QE" = (
-/obj/structure/table/wood,
-/obj/item/food/grown/tobacco,
-/obj/item/food/grown/tobacco,
-/obj/item/food/grown/tobacco,
-/obj/item/clothing/mask/cigarette/pipe,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"QF" = (
-/obj/item/clothing/suit/coordinator{
-	armor = list();
-	name = "commander's dress blues"
-	},
-/obj/structure/closet/secure_closet{
-	icon_state = "cdr";
-	name = "Ground Commander's Dress Blues";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/head/caphat/parade{
-	armor = list();
-	name = "commander's parade cap"
-	},
-/turf/open/floor/pod,
 /area/city/outskirts)
 "QN" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/fakepit,
+/turf/open/water/jungle,
 /area/city/outskirts)
-"QP" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"QY" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/mineral/sandbags/fifty,
-/obj/item/storage/box/barrier,
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Rv" = (
-/obj/structure/chair/comfy,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"RB" = (
-/turf/open/floor/pod,
-/area/city/outskirts)
-"RS" = (
-/obj/machinery/telecomms/server/presets/medical,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"RY" = (
-/obj/machinery/mech_bay_recharge_port,
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
+"Rg" = (
+/obj/structure/chair/bronze{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod,
 /area/city/outskirts)
-"Sf" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/landmark/rhinospawner,
-/turf/open/floor/pod/dark,
+"RQ" = (
+/obj/machinery/fat_sucker,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
-"Sh" = (
-/obj/structure/chair/comfy/black{
+"ST" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Tr" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Tu" = (
+/obj/structure/chair/comfy{
 	dir = 4
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"Tx" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/pod/dark,
 /area/city/outskirts)
 "Ty" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cdr";
-	name = "Ground Commander's Military Standard Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/jacket/miljacket,
-/obj/item/clothing/suit/jacket,
-/obj/item/clothing/under/mercenary/camo,
-/obj/item/clothing/suit/armor/ego_gear/rcorp_officer/cdr,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"Ua" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_right,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"UE" = (
-/obj/machinery/manned_turret/rcorp,
+/obj/machinery/cryopod,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"UK" = (
-/obj/effect/turf_decal/bot_red,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
+"Tz" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"TC" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"Un" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "requisitions";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"UH" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Vm" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/megaphone,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Vv" = (
+/obj/structure/chair/plastic{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/vehicle/sealed/mecha/combat/rhinomelee,
-/turf/open/floor/pod/dark,
+/turf/open/floor/pod/light,
 /area/city/outskirts)
-"Vo" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "rhino captain bunk";
-	req_access_txt = "3"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"VJ" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/processor/preset_four,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/city/outskirts)
-"VS" = (
+"VT" = (
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
@@ -996,112 +903,52 @@
 	},
 /turf/open/floor/pod/light,
 /area/city/outskirts)
-"Wj" = (
-/obj/machinery/computer/mech_bay_power_console{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "#CC5500"
-	},
-/turf/open/floor/pod/dark,
-/area/city/outskirts)
-"Ww" = (
-/obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/server/presets/supply,
+"VW" = (
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"WE" = (
-/obj/item/storage/lockbox/medal/officer,
-/obj/structure/table/abductor,
-/turf/open/floor/pod,
+"VY" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Wk" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/revival,
+/obj/item/ego_weapon/city/reindeer,
+/turf/open/floor/pod/light,
 /area/city/outskirts)
 "WF" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/telecomms/receiver/preset_left,
+/obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
 "WH" = (
 /obj/effect/spawner/room/rcorp_caves,
 /turf/closed/indestructible/rock,
 /area/city/outskirts)
-"Xg" = (
+"WY" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "raven team prep";
+	req_access_txt = "7"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Xz" = (
 /obj/structure/table/wood/bar,
+/obj/machinery/recharger,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
-"XS" = (
-/obj/effect/turf_decal/sand,
-/obj/structure/chair/plastic{
-	dir = 1
-	},
-/turf/open/floor/pod,
+"XN" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
-"Yd" = (
-/obj/effect/turf_decal/sand,
-/obj/structure/chair/plastic{
-	dir = 1
-	},
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"Yv" = (
-/obj/effect/turf_decal/sand/plating,
-/obj/effect/landmark/latejoin,
+"Zx" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbitdash/sniper,
 /turf/open/floor/pod/dark,
-/area/city/outskirts)
-"YM" = (
-/obj/structure/chair/plastic{
-	dir = 1
-	},
-/turf/open/floor/pod/light,
-/area/city/outskirts)
-"Zt" = (
-/obj/structure/table/abductor,
-/obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/clothing/head/beret/tegu/captain{
-	armor = list()
-	},
-/obj/item/gun/energy/e_gun/rabbitdash/small,
-/obj/item/weldingtool/experimental,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"ZA" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "rhino team prep";
-	req_access_txt = "3"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"ZC" = (
-/obj/machinery/door/airlock/survival_pod{
-	name = "reindeer team prep";
-	req_access_txt = "5"
-	},
-/turf/open/floor/pod,
-/area/city/outskirts)
-"ZG" = (
-/obj/structure/closet/secure_closet{
-	icon_state = "cdr";
-	name = "Ground Commander's Operations Wardrobe";
-	req_access_txt = "20"
-	},
-/obj/item/clothing/suit/armor/hos{
-	armor = list()
-	},
-/obj/item/clothing/head/beret/tegu/rcorp,
-/obj/item/clothing/neck/cloak/rcorp,
-/turf/open/floor/pod,
-/area/city/outskirts)
-"ZJ" = (
-/obj/effect/turf_decal/sand/plating,
-/turf/open/floor/pod/light,
 /area/city/outskirts)
 
 (1,1,1) = {"
@@ -2078,19 +1925,19 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
-aC
-aC
-aC
-aC
-aC
-aC
+fU
+fU
+fU
+fU
+fU
+fU
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -2279,23 +2126,17 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-IV
-Qd
-Qd
-Qd
-aC
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-Gl
+fU
+xR
+MN
+MN
+MN
+fU
 PG
 PG
 PG
@@ -2306,8 +2147,14 @@ PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -2481,27 +2328,29 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-vo
-Hk
-Hk
-Qd
-ZA
+fU
+Mf
+wG
+wG
+MN
+BS
 PG
 PG
 PG
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
 PG
 PG
 PG
@@ -2509,8 +2358,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -2683,27 +2530,29 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-Sf
-Hk
-Hk
-Qd
-aC
+fU
+oe
+wG
+wG
+MN
+fU
 PG
 PG
 PG
-aC
-uF
-Qd
-Qd
-Qd
-Qd
-Qd
-fv
-aC
+fU
+Is
+MN
+MN
+MN
+MN
+MN
+MN
+fU
 PG
 PG
 PG
@@ -2711,8 +2560,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -2885,37 +2732,37 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-Fj
-Hk
-Hk
-lz
-sS
+fU
+ry
+wG
+wG
+Kj
+eK
 PG
 PG
 PG
-aC
-Qd
-Ju
-Hk
-Hk
-Hk
-gM
-fv
-ZC
-PG
-PG
-PG
-PG
+fU
+MN
+Wk
+wG
+wG
+wG
+xq
+MN
+Mo
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -3087,37 +2934,37 @@ FR
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-vo
-Hk
-Hk
-vo
-sS
+fU
+Mf
+wG
+wG
+Mf
+eK
 PG
 PG
 PG
-aC
-Qd
-gM
-Hk
-Hk
-Hk
-qQ
-fv
-aC
-PG
-PG
-PG
-PG
+fU
+MN
+xq
+wG
+wG
+wG
+jM
+MN
+fU
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -3289,38 +3136,38 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-Sf
-Hk
-Hk
-UK
-sS
+fU
+oe
+wG
+wG
+HG
+eK
 PG
 PG
 PG
-aC
-Qd
-Ju
-Hk
-VS
-Hk
-gM
-fv
-sS
-PG
-PG
-PG
-PG
+fU
+MN
+Wk
+wG
+VT
+wG
+xq
+MN
+eK
 PG
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -3491,38 +3338,38 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-Fj
-Qd
-Qd
-Wj
-sS
+fU
+ry
+MN
+MN
+hj
+eK
 PG
 PG
 PG
-aC
-Qd
-gM
-Hk
-Hk
-Hk
-qQ
-fv
-sS
-Mk
-PG
-PG
-PG
-PG
+fU
+MN
+xq
+wG
+wG
+wG
+jM
+MN
+eK
+nO
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -3693,39 +3540,39 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-IV
-Qd
-Qd
-IV
-sS
+fU
+xR
+MN
+MN
+xR
+eK
 PG
 PG
 PG
-aC
-Qd
-Ju
-Hk
-Hk
-Hk
-gM
-fv
-sS
-Mk
-PG
-PG
-PG
-PG
+fU
+MN
+Wk
+wG
+wG
+wG
+xq
+MN
+eK
+nO
 PG
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -3895,39 +3742,39 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
-aC
-sS
-sS
-sS
-sS
-aC
+fU
+eK
+eK
+eK
+eK
+fU
 PG
 PG
 PG
-aC
-fv
-fv
-fv
-fv
-fv
-fv
-fv
-sS
-Mk
-PG
-PG
-PG
-PG
+fU
+MN
+MN
+MN
+MN
+MN
+MN
+MN
+eK
+nO
 PG
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
+PG
+PG
 oi
 oi
 oi
@@ -4097,6 +3944,8 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -4109,15 +3958,15 @@ PG
 PG
 PG
 PG
-aC
-sS
-sS
-sS
-sS
-sS
-sS
-sS
-aC
+fU
+eK
+eK
+eK
+eK
+eK
+eK
+eK
+fU
 PG
 PG
 PG
@@ -4128,8 +3977,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -4299,6 +4146,8 @@ FR
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -4326,13 +4175,11 @@ PG
 PG
 PG
 PG
-sS
-sS
-sS
-sS
-aC
-oi
-oi
+eK
+eK
+eK
+eK
+fU
 oi
 oi
 "}
@@ -4501,6 +4348,8 @@ PG
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -4528,13 +4377,11 @@ PG
 PG
 PG
 PG
-DH
-GU
-NT
-zj
-aC
-oi
-oi
+Tz
+tZ
+zp
+Ty
+fU
 oi
 oi
 "}
@@ -4704,6 +4551,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -4715,13 +4564,13 @@ PG
 PG
 PG
 PG
-aC
-GU
-GU
-DH
-DH
-DH
-aC
+fU
+tZ
+tZ
+Tz
+Tz
+Tz
+fU
 PG
 PG
 PG
@@ -4730,13 +4579,11 @@ PG
 PG
 PG
 PG
-ZJ
-hP
-wA
-zj
-aC
-oi
-oi
+pe
+ci
+FU
+Ty
+fU
 oi
 oi
 "}
@@ -4906,6 +4753,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -4917,13 +4766,13 @@ PG
 PG
 PG
 PG
-Qd
-RB
-pT
-XS
-XS
-XS
-Qn
+MN
+NV
+Gq
+qK
+qK
+qK
+ob
 PG
 PG
 PG
@@ -4933,12 +4782,10 @@ PG
 PG
 PG
 PG
-ZJ
-FO
-zj
-aC
-oi
-oi
+pe
+zL
+Ty
+fU
 oi
 oi
 "}
@@ -5108,39 +4955,39 @@ QN
 QN
 QN
 QN
+QN
+QN
 PG
 PG
 PG
 PG
-Gl
-PG
-PG
-PG
-PG
-PG
-PG
-Qd
-RB
-Hk
-YM
-YM
-XS
-Qn
+Mz
 PG
 PG
 PG
 PG
 PG
 PG
+MN
+NV
+wG
+Vv
+Vv
+qK
+ob
 PG
 PG
 PG
-ZJ
-FO
-zj
-aC
-oi
-oi
+PG
+PG
+PG
+PG
+PG
+PG
+pe
+zL
+Ty
+fU
 oi
 oi
 "}
@@ -5310,6 +5157,8 @@ FT
 FT
 FT
 FT
+FT
+FT
 PG
 PG
 PG
@@ -5321,13 +5170,13 @@ PG
 PG
 PG
 PG
-Qd
-Ew
-FE
-YM
-Yd
-XS
-Qn
+MN
+wA
+wG
+Vv
+Gd
+qK
+ob
 PG
 PG
 PG
@@ -5337,12 +5186,10 @@ PG
 PG
 PG
 PG
-ZJ
-FO
-zj
-aC
-oi
-oi
+pe
+zL
+Ty
+fU
 oi
 oi
 "}
@@ -5512,6 +5359,8 @@ FT
 FT
 FT
 FT
+FT
+FT
 PG
 PG
 PG
@@ -5523,13 +5372,13 @@ PG
 PG
 PG
 PG
-Qd
-RB
-Hk
-YM
-YM
-XS
-Qn
+MN
+NV
+wG
+Vv
+Vv
+qK
+ob
 PG
 PG
 PG
@@ -5540,11 +5389,9 @@ PG
 PG
 PG
 PG
-dY
-MP
-aC
-oi
-oi
+EP
+uJ
+fU
 oi
 oi
 "}
@@ -5714,6 +5561,8 @@ bn
 bn
 bn
 bn
+bn
+bn
 PG
 PG
 PG
@@ -5725,13 +5574,13 @@ PG
 PG
 PG
 PG
-Qd
-pT
-RB
-XS
-tc
-tc
-Dp
+MN
+Gq
+NV
+qK
+uz
+uz
+vo
 PG
 PG
 PG
@@ -5742,11 +5591,9 @@ PG
 PG
 PG
 PG
-Yv
-MP
-aC
-oi
-oi
+xT
+uJ
+fU
 oi
 oi
 "}
@@ -5916,6 +5763,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -5927,13 +5776,13 @@ PG
 PG
 PG
 PG
-aC
-Qd
-Qd
-Qd
-GU
-Qd
-aC
+fU
+MN
+MN
+MN
+tZ
+MN
+fU
 PG
 PG
 PG
@@ -5944,11 +5793,9 @@ PG
 PG
 PG
 PG
-sS
-sS
-aC
-oi
-oi
+eK
+eK
+fU
 oi
 oi
 "}
@@ -6118,6 +5965,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -6148,8 +5997,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -6320,6 +6167,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -6350,8 +6199,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -6523,6 +6370,8 @@ gP
 gP
 gP
 gP
+gP
+gP
 PG
 PG
 PG
@@ -6535,13 +6384,13 @@ PG
 PG
 PG
 PG
-Kh
-aC
-sS
-sS
-sS
-sS
-aC
+aB
+fU
+eK
+eK
+eK
+eK
+fU
 PG
 PG
 PG
@@ -6552,8 +6401,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -6723,27 +6570,29 @@ PG
 gP
 gP
 gP
-aC
-aC
-aC
-sS
-sS
-sS
-sS
-sS
-aC
-aC
+gP
+gP
+fU
+fU
+fU
+eK
+eK
+eK
+eK
+eK
+fU
+fU
 PG
 PG
 PG
 PG
-tZ
-aC
-gM
-My
-Qd
-Im
-aC
+MC
+fU
+xq
+tv
+MN
+MN
+fU
 PG
 PG
 PG
@@ -6753,8 +6602,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -6922,30 +6769,32 @@ PG
 PG
 PG
 FR
+PG
 gP
 gP
 gP
-aC
-Fu
-kr
-Qd
-Qd
-Qd
-Qd
-Qd
-ih
-aC
+gP
+fU
+md
+Ix
+MN
+MN
+MN
+MN
+MN
+Dk
+fU
 PG
 PG
 PG
 PG
-hy
-aC
-gk
-Hk
-Hk
-Im
-aC
+sP
+fU
+Xz
+wG
+wG
+MN
+fU
 PG
 PG
 PG
@@ -6955,8 +6804,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -7124,30 +6971,32 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-Kj
-Qd
-mR
-cW
-cW
-cW
-RB
-xu
-aC
+gP
+fU
+qt
+MN
+dC
+Tu
+Tu
+Tu
+NV
+tu
+fU
 PG
 PG
 PG
 PG
-Bs
-aC
-gM
-AS
-Hk
-Qd
-aC
+lG
+fU
+xq
+TC
+wG
+MN
+fU
 PG
 PG
 PG
@@ -7156,8 +7005,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -7326,30 +7173,32 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-Fu
-kr
-RB
-xu
-xu
-xu
-RB
-Qd
-aC
+gP
+fU
+md
+Ix
+NV
+tu
+tu
+tu
+NV
+MN
+fU
 PG
 PG
 PG
 PG
-CQ
-aC
-Xg
-Hk
-Hk
-Qd
-Jz
+RQ
+fU
+Tx
+wG
+wG
+MN
+WY
 PG
 PG
 PG
@@ -7357,8 +7206,6 @@ PG
 PG
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -7528,38 +7375,38 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-Kj
-Qd
-Rv
-wW
-xu
-wW
-kl
-Qd
-aC
+gP
+fU
+qt
+MN
+Bp
+ir
+tu
+ir
+wq
+MN
+fU
 PG
 PG
 PG
-Gl
+Mz
 PG
-aC
-gM
-AS
-Hk
-Qd
-sS
-PG
-PG
+fU
+xq
+TC
+wG
+MN
+eK
 PG
 PG
 PG
 PG
-oi
-oi
+PG
+PG
 oi
 oi
 oi
@@ -7730,37 +7577,37 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-mE
-kr
-RB
-xu
-xu
-xu
-RB
-Qd
-Qe
+gP
+fU
+LB
+Ix
+NV
+tu
+tu
+tu
+NV
+MN
+fy
 PG
 PG
 PG
 PG
 PG
-aC
-gk
-Hk
-Hk
-kG
-sS
+fU
+Xz
+wG
+wG
+MN
+eK
 PG
 PG
-Gl
+Mz
 PG
 PG
-oi
-oi
 oi
 oi
 oi
@@ -7931,34 +7778,34 @@ PG
 PG
 PG
 PG
-FR
+PG
+PG
 gP
 gP
 gP
-aC
-Qd
-Qd
-Rv
-wW
-xu
-wW
-kl
-Qd
-aC
+gP
+fU
+MN
+MN
+Bp
+ir
+tu
+ir
+wq
+MN
+fU
 PG
 PG
 PG
 PG
 PG
-aC
-gM
-My
-Qd
-mH
-sS
+fU
+xq
+tv
+MN
+MN
+eK
 PG
-oi
-oi
 oi
 oi
 oi
@@ -8134,32 +7981,32 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-Qd
-Qd
-RB
-xu
-wW
-xu
-RB
-Qd
-aC
-Oi
-Oi
-Oi
-cL
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-oi
-oi
+gP
+fU
+MN
+MN
+NV
+tu
+ir
+tu
+NV
+MN
+fU
+UH
+UH
+UH
+zo
+fU
+fU
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -8336,29 +8183,29 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-Ls
-Qd
-RB
-jd
-Ks
-RB
-RB
-Qd
-aC
-Qd
-Qd
-Qd
-Qd
-Im
-aC
-jC
-jC
-jC
-aC
+gP
+fU
+MN
+MN
+NV
+mt
+Rg
+NV
+NV
+MN
+fU
+MN
+MN
+MN
+MN
+QM
+fU
+oi
+oi
 oi
 oi
 oi
@@ -8538,29 +8385,29 @@ PG
 PG
 PG
 PG
+PG
 gP
 gP
 gP
-aC
-yJ
-Cp
-Qd
-Qd
-Qd
-Qd
-Qd
-Qd
-vX
-Qd
-Hk
-Hk
-Hk
-Qd
-EW
-Qd
-lz
-xp
-aC
+gP
+fU
+MN
+MN
+MN
+MN
+MN
+MN
+MN
+MN
+Un
+MN
+wG
+wG
+wG
+iV
+fU
+oi
+oi
 oi
 oi
 oi
@@ -8739,41 +8586,41 @@ PG
 PG
 PG
 PG
+PG
+PG
 gP
 gP
 gP
-aC
-aC
-aC
-aC
-aC
-Ed
-aC
-aC
-aC
-aC
-aC
-UE
-Hk
-Hk
-Hk
-pi
-aC
-QY
-Qd
-ia
-aC
+fU
+fU
+fU
+fU
+fU
+ea
+fU
+fU
+fU
+fU
+fU
+Nu
+wG
+wG
+wG
+Zx
+fU
 oi
 oi
 oi
 oi
-FU
-FU
-FU
-FU
-FU
 oi
 oi
+oi
+oi
+gT
+gT
+gT
+gT
+gT
 oi
 oi
 oi
@@ -8941,41 +8788,41 @@ PG
 PG
 PG
 PG
+PG
+PG
 gP
 gP
 gP
-aC
-Et
-yz
-fC
-aC
-aQ
-aC
-Zt
-fC
-RY
-aC
-UE
-Qd
-Qd
-Qd
-oj
-aC
-aC
-Gh
-aC
-aC
+fU
+zv
+jG
+NV
+fU
+NV
+fU
+IU
+NV
+Mp
+fU
+Nu
+MN
+MN
+MN
+QM
+fU
 oi
 oi
 oi
 oi
-FU
-tb
-ib
-RS
-FU
 oi
 oi
+oi
+oi
+gT
+CF
+VW
+wS
+gT
 oi
 oi
 oi
@@ -9142,42 +8989,42 @@ PG
 PG
 PG
 PG
-gP
-gP
-oi
-oi
-aC
-RB
-RB
-mR
-OZ
-RB
-Vo
-RB
-mR
-Gz
-aC
-aC
-aC
-vX
-aC
-aC
-aC
-Qd
-lz
-Qd
-aC
+PG
+PG
 oi
 oi
 oi
 oi
-FU
-FG
-hl
-Ua
-FU
+fU
+NV
+NV
+dC
+GJ
+NV
+ri
+NV
+dC
+ML
+fU
+fU
+fU
+Un
+fU
+fU
+fU
 oi
 oi
+oi
+oi
+oi
+oi
+oi
+oi
+gT
+DE
+Tr
+eV
+gT
 oi
 oi
 oi
@@ -9344,42 +9191,42 @@ PG
 PG
 PG
 PG
-gP
-gP
-oi
-oi
-aC
-QB
-RB
-RB
-aC
-RB
-aC
-za
-RB
-gx
-aC
-OA
-Qd
-Qd
-Qd
-ls
-aC
-Qd
-Qd
-Qd
-aC
+PG
+PG
 oi
 oi
 oi
 oi
-FU
-kN
-FH
-WF
-Ww
+fU
+oA
+NV
+NV
+fU
+NV
+fU
+du
+NV
+IA
+fU
+Vm
+MN
+MN
+MN
+cL
+fU
 oi
 oi
+oi
+oi
+oi
+oi
+oi
+oi
+gT
+aR
+ST
+XN
+jr
 oi
 oi
 oi
@@ -9545,43 +9392,43 @@ oi
 PG
 PG
 PG
-gP
-gP
-oi
-oi
-oi
-aC
-aC
-aC
-aC
-aC
-mR
-aC
-aC
-aC
-aC
-aC
-ls
-Hk
-mR
-Hk
-iY
-aC
-Qd
-Ie
-Qd
-aC
+PG
+PG
 oi
 oi
 oi
 oi
-FU
-VJ
-Pv
-KB
-bt
+oi
+fU
+fU
+fU
+fU
+fU
+dC
+fU
+fU
+fU
+fU
+fU
+cL
+wG
+dC
+wG
+Vm
+fU
 oi
 oi
+oi
+oi
+oi
+oi
+oi
+oi
+gT
+DF
+lz
+pa
+Oz
 oi
 oi
 oi
@@ -9745,45 +9592,45 @@ oi
 oi
 oi
 oi
-gP
-gP
-gP
-gP
-oi
-oi
-oi
-aC
-xQ
-Gq
-fC
-aC
-RB
-aC
-WE
-du
-Nj
-aC
-su
-Hk
-Hk
-Hk
-su
-aC
-aC
-aC
-aC
-aC
+PG
+PG
+PG
+PG
 oi
 oi
 oi
 oi
-FU
-Hh
-pg
-rk
-BZ
+oi
+fU
+CE
+cg
+NV
+fU
+NV
+fU
+NV
+ch
+xu
+fU
+Mn
+wG
+wG
+wG
+Mn
+fU
 oi
 oi
+oi
+oi
+oi
+oi
+oi
+oi
+gT
+VY
+lA
+Jn
+et
 oi
 oi
 oi
@@ -9954,23 +9801,25 @@ oi
 oi
 oi
 oi
-aC
-za
-RB
-mR
-Jc
-RB
-zy
-mR
-RB
-RB
-aC
-ls
-ls
-ls
-ls
-ls
-aC
+oi
+oi
+fU
+NV
+NV
+NV
+bC
+NV
+eP
+dC
+NV
+NV
+fU
+cL
+cL
+cL
+cL
+cL
+fU
 oi
 oi
 oi
@@ -9979,13 +9828,11 @@ oi
 oi
 oi
 oi
-FU
-cH
-HZ
-oR
-FU
-oi
-oi
+gT
+WF
+gX
+yU
+gT
 oi
 oi
 oi
@@ -10156,23 +10003,25 @@ oi
 oi
 oi
 oi
-aC
-aC
-aC
-aC
-aC
-RB
-aC
-RB
-za
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
+oi
+oi
+fU
+du
+NV
+dC
+fU
+NV
+fU
+NV
+NV
+du
+fU
+fU
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -10181,13 +10030,11 @@ oi
 oi
 oi
 oi
-FU
-Lv
-lT
-Dr
-FU
-oi
-oi
+gT
+Qd
+xB
+MV
+gT
 oi
 oi
 oi
@@ -10358,22 +10205,19 @@ oi
 oi
 oi
 oi
-aC
-Bk
-Bk
-Bk
-aC
-RB
-aC
-aC
-aC
-aC
-RB
-RB
-RB
-RB
-mR
-aC
+oi
+oi
+fU
+fU
+fU
+fU
+fU
+NV
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
@@ -10383,13 +10227,16 @@ oi
 oi
 oi
 oi
-FU
-FU
-FU
-FU
-FU
 oi
 oi
+oi
+oi
+oi
+gT
+gT
+gT
+gT
+gT
 oi
 oi
 oi
@@ -10560,25 +10407,25 @@ oi
 oi
 oi
 oi
-aC
-RB
-RB
-mR
-Nc
-RB
-Bn
-mR
-RB
-RB
-RB
-aC
-aC
-aC
-xh
-aC
-aC
-aC
-aC
+oi
+oi
+fU
+dg
+dg
+dg
+fU
+NV
+fU
+CR
+mn
+on
+fU
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 oi
 oi
@@ -10762,25 +10609,25 @@ oi
 oi
 oi
 oi
-aC
-za
-za
-za
-aC
-aC
-aC
-aC
-gG
-aC
-aC
-aC
-RB
-RB
-RB
-aC
-RB
-QF
-aC
+oi
+oi
+fU
+NV
+NV
+dC
+xS
+NV
+EX
+dC
+NV
+NV
+fU
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 oi
 oi
@@ -10964,25 +10811,25 @@ oi
 oi
 oi
 oi
-aC
-aC
-aC
-aC
-aC
 oi
-aC
-Aq
-RB
-nL
-aC
-Sh
-RB
-mR
-RB
-xh
-RB
-Ty
-aC
+oi
+fU
+du
+du
+du
+fU
+NV
+fU
+cq
+Ng
+du
+fU
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 oi
 oi
@@ -11168,23 +11015,23 @@ oi
 dd
 oi
 oi
+fU
+fU
+fU
+fU
+fU
+AG
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi
 oi
-aC
-Qp
-RB
-mR
-aC
-zC
-OE
-RB
-RB
-aC
-mR
-PL
-aC
+oi
+oi
 oi
 oi
 oi
@@ -11371,22 +11218,22 @@ oi
 oi
 oi
 oi
+fU
+Nz
+NV
+NV
+NV
+NV
+fU
 oi
 oi
 oi
-aC
-QP
-ID
-za
-aC
-hr
-za
-jy
-QE
-aC
-RB
-ZG
-aC
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 oi
 oi
@@ -11573,22 +11420,22 @@ oi
 oi
 oi
 oi
+fU
+tW
+gh
+NV
+dC
+NV
+fU
 oi
 oi
 oi
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
-aC
+oi
+oi
+oi
+oi
+oi
+oi
 oi
 oi
 oi
@@ -11775,13 +11622,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+aI
+NV
+NV
+NV
+NV
+fU
 oi
 oi
 oi
@@ -11977,13 +11824,13 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+du
+Pf
+Dq
+DK
+fU
 oi
 oi
 oi
@@ -12180,12 +12027,12 @@ oi
 oi
 oi
 oi
-oi
-oi
-oi
-oi
-oi
-oi
+fU
+fU
+fU
+fU
+fU
+fU
 oi
 oi
 oi

@@ -17,7 +17,7 @@
 		return ..()
 	if(type == resource_type && quality == 0)
 		return ..()
-	to_chat(user, span_notice("You break [src] down into it's original parts."))
+	to_chat(user, "<span class='notice'>You break [src] down into it's original parts.</span>")
 	var/make_amount = quality > 0 ? quality * 10 : 1
 	if(make_amount > 1)
 		var/obj/item/storage/box/materials_disposable/MD = new(get_turf(src))
@@ -68,7 +68,7 @@
 	var/cool_timer
 
 /obj/item/hot_tresmetal/Initialize()
-	cool_timer = addtimer(CALLBACK(src, PROC_REF(cooling)), 5 MINUTES, TIMER_STOPPABLE)
+	cool_timer = addtimer(CALLBACK(src, .proc/cooling), 5 MINUTES, TIMER_STOPPABLE)
 	..()
 	name = "heated " + initial(original_mat.name)
 	desc += " Put it on an anvil and hit with a hammer to work it."
@@ -76,7 +76,7 @@
 /obj/item/hot_tresmetal/proc/cooling()
 	var/obj/item/tresmetal/cooled = new original_mat(get_turf(src))
 	cooled.SetQuality(quality)
-	visible_message(span_notice("The [src] cooled down to it's original form."))
+	visible_message("<span class='notice'>The [src] cooled down to it's original form.</span>")
 	qdel(src)
 
 /obj/item/hot_tresmetal/proc/SetQuality(value)
@@ -100,7 +100,7 @@
 	..()
 	if(istype(I, /obj/item/forginghammer))
 		if(!(locate(/obj/structure/table/anvil) in loc))
-			to_chat(user, span_warning("You need this to be on an anvil to work it."))
+			to_chat(user, "<span class='warning'>You need this to be on an anvil to work it.</span>")
 			return
 
 		if(!do_after(user, 10 SECONDS))
@@ -127,7 +127,7 @@
 /obj/item/hot_tresmetal/proc/spawn_option(obj/item/choice)
 	var/obj/item/creation = new choice(get_turf(src))
 	OnCreation(creation)
-	visible_message(span_notice("The tresmetal is worked into a [creation.name]."))
+	visible_message("<span class='notice'>The tresmetal is worked into a [creation.name].</span>")
 	deltimer(cool_timer)
 	qdel(src)
 
@@ -139,6 +139,7 @@
 	creation.attack_speed *= attack_mult
 	if(type_override)
 		creation.damtype = type_override
+		creation.armortype = type_override
 		creation.type_overriden = TRUE
 	if(hitsound_override)
 		creation.hitsound = hitsound_override
@@ -257,14 +258,11 @@
 	if(!..())
 		return
 	creation.AddComponent(/datum/component/edible,\
-		initial_reagents = list(
-			/datum/reagent/consumable/nutriment/protein = 20*(quality+1),
-			/datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
-			foodtypes = MEAT,\
-			volume = 1000,\
-			tastes = list("pain", "meat", "hunger"),\
-			eat_time = 0,\
-		)
+		initial_reagents = list(/datum/reagent/consumable/nutriment/protein = 20*(quality+1), /datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
+		foodtypes = MEAT,\
+		volume = 1000,\
+		tastes = list("pain", "meat", "hunger"),\
+		eat_time = 0)
 	return
 
 

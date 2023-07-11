@@ -1,24 +1,24 @@
 /datum/suppression/safety
-	name = SAFETY_CORE_SUPPRESSION
+	name = "Safety Core Suppression"
 	desc = "Regenerators will stop operating normally, all personnel will be healed after each meltdown instead.\n\
 			Sleepers and EMAIS will be non-functional.\n\
 			Medi-pens will have a chance to malfunction and require a delay on each activation."
 	reward_text = "All regenerators will receive a permanent +3 boost to healing power."
 	run_text = "The core suppression of Safety department has begun. The regenerators and sleepers will stop operating normally. All personnel will be automatically healed after each meltdown instead."
 
-/datum/suppression/safety/Run(run_white = FALSE, silent = FALSE)
+/datum/suppression/safety/Run(run_white = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
-	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	for(var/obj/machinery/regenerator/R in GLOB.regenerators)
 		R.reset_timer = INFINITY
 		R.burst_cooldown = TRUE
 		R.modified = TRUE
 	for(var/obj/machinery/sleeper/S in GLOB.sleepers)
 		S.set_machine_stat(S.machine_stat | BROKEN)
 
-/datum/suppression/safety/End(silent = FALSE)
+/datum/suppression/safety/End()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
-	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices) // All regenerators gain permanent buff
+	for(var/obj/machinery/regenerator/R in GLOB.regenerators) // All regenerators gain permanent buff
 		R.reset_timer = 0
 		R.regeneration_amount += 3
 	for(var/obj/machinery/sleeper/S in GLOB.sleepers)

@@ -26,7 +26,7 @@
 		. += "[src.name] is ready to be used."
 	else
 		//We want to make sure that the failed verson is different enuff that at a glance someone can tell
-		. += "[src.name] can not currently be used."
+		. += "[src.name] is can not currently be used."
 
 
 //This is used to make sure that are records watch is able to be used by the player
@@ -34,12 +34,12 @@
 	//First we check if they are a Records Officer
 	if(user?.mind?.assigned_role != "Records Officer")
 		//We were not the RO so give feedback and fail the check
-		to_chat(user, span_warning("You cannot use this!"))
+		to_chat(user, "<span class='warning'>You cannot use this!")
 		return FALSE
 	//Make sure are current records watch is not on cooldown
 	if(!usable)
 		//We were on cooldown so fail the check and give feedback
-		to_chat(user, span_warning("It hasn't recharged yet!"))
+		to_chat(user, "<span class='warning'>It hasn't recharged yet!")
 		return FALSE
 	//We passed the checks thus we return true
 	return TRUE
@@ -49,7 +49,7 @@
 	//Ask if we do infact have a cooldown or not
 	if(records_cooldown_timer)
 		//We have a cooldown, so first to not cheat the player out of time we first start the cooldown timer
-		addtimer(CALLBACK(src, PROC_REF(reset)), records_cooldown_timer)
+		addtimer(CALLBACK(src, .proc/reset), records_cooldown_timer)
 		//Set the watch to not be usable as we are now on cooldown
 		usable = FALSE
 
@@ -58,6 +58,6 @@
 	//We first tell are watch we can be used again
 	usable = TRUE
 	//Give everyone around the watch feedback that the watch can be used again
-	audible_message(span_notice("[src] is ready to use!"))
+	audible_message("<span class='notice'>[src] is ready to use!</span>")
 	//Additional sound feedback for people that dont read chat, and have sound on
 	playsound(get_turf(src), 'sound/machines/dun_don_alert.ogg', 50, TRUE)

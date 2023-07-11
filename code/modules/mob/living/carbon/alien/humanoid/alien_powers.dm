@@ -47,15 +47,15 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/proc/cost_check(check_turf = FALSE, mob/living/carbon/user, silent = FALSE)
 	if(user.stat)
 		if(!silent)
-			to_chat(user, span_noticealien("You must be conscious to do this."))
+			to_chat(user, "<span class='noticealien'>You must be conscious to do this.</span>")
 		return FALSE
 	if(user.getPlasma() < plasma_cost)
 		if(!silent)
-			to_chat(user, span_noticealien("Not enough plasma stored."))
+			to_chat(user, "<span class='noticealien'>Not enough plasma stored.</span>")
 		return FALSE
 	if(check_turf && (!isturf(user.loc) || isspaceturf(user.loc)))
 		if(!silent)
-			to_chat(user, span_noticealien("Bad place for a garden!"))
+			to_chat(user, "<span class='noticealien'>Bad place for a garden!</span>")
 		return FALSE
 	return TRUE
 
@@ -76,9 +76,9 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/plant/fire(mob/living/carbon/user)
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(user))
-		to_chat(user, span_warning("There's already a weed node here!"))
+		to_chat(user, "<span class='warning'>There's already a weed node here!</span>")
 		return FALSE
-	user.visible_message(span_alertalien("[user] plants some alien weeds!"))
+	user.visible_message("<span class='alertalien'>[user] plants some alien weeds!</span>")
 	new/obj/structure/alien/weeds/node(user.loc)
 	return TRUE
 
@@ -96,16 +96,16 @@ Doesn't work on other aliens/AI.*/
 	if(!M)
 		return FALSE
 	if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
-		to_chat(user, span_noticealien("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
+		to_chat(user, "<span class='noticealien'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
 		return FALSE
 	var/msg = sanitize(input("Message:", "Alien Whisper") as text|null)
 	if(msg)
 		if(M.anti_magic_check(FALSE, FALSE, TRUE, 0))
-			to_chat(user, span_notice("As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled."))
+			to_chat(user, "<span class='notice'>As you try to communicate with [M], you're suddenly stopped by a vision of a massive tinfoil wall that streches beyond visible range. It seems you've been foiled.</span>")
 			return
 		log_directed_talk(user, M, msg, LOG_SAY, tag="alien whisper")
 		to_chat(M, "<span class='noticealien'>You hear a strange, alien voice in your head...</span>[msg]")
-		to_chat(user, span_noticealien("You said: \"[msg]\" to [M]"))
+		to_chat(user, "<span class='noticealien'>You said: \"[msg]\" to [M]</span>")
 		for(var/ded in GLOB.dead_mob_list)
 			if(!isobserver(ded))
 				continue
@@ -136,10 +136,10 @@ Doesn't work on other aliens/AI.*/
 		if (get_dist(user,M) <= 1)
 			M.adjustPlasma(amount)
 			user.adjustPlasma(-amount)
-			to_chat(M, span_noticealien("[user] has transferred [amount] plasma to you."))
-			to_chat(user, span_noticealien("You transfer [amount] plasma to [M]."))
+			to_chat(M, "<span class='noticealien'>[user] has transferred [amount] plasma to you.</span>")
+			to_chat(user, "<span class='noticealien'>You transfer [amount] plasma to [M].</span>")
 		else
-			to_chat(user, span_noticealien("You need to be closer!"))
+			to_chat(user, "<span class='noticealien'>You need to be closer!</span>")
 	return
 
 /obj/effect/proc_holder/alien/acid
@@ -157,13 +157,13 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/acid/proc/corrode(atom/target,mob/living/carbon/user = usr)
 	if(target in oview(1,user))
 		if(target.acid_act(200, 1000))
-			user.visible_message(span_alertalien("[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!"))
+			user.visible_message("<span class='alertalien'>[user] vomits globs of vile stuff all over [target]. It begins to sizzle and melt under the bubbling mess of acid!</span>")
 			return TRUE
 		else
-			to_chat(user, span_noticealien("You cannot dissolve this object."))
+			to_chat(user, "<span class='noticealien'>You cannot dissolve this object.</span>")
 			return FALSE
 
-	to_chat(src, span_noticealien("[target] is too far away."))
+	to_chat(src, "<span class='noticealien'>[target] is too far away.</span>")
 	return FALSE
 
 
@@ -195,10 +195,10 @@ Doesn't work on other aliens/AI.*/
 /obj/effect/proc_holder/alien/neurotoxin/fire(mob/living/carbon/user)
 	var/message
 	if(active)
-		message = span_notice("You empty your neurotoxin gland.")
+		message = "<span class='notice'>You empty your neurotoxin gland.</span>"
 		remove_ranged_ability(message)
 	else
-		message = span_notice("You prepare your neurotoxin gland. <B>Left-click to fire at a target!</B>")
+		message = "<span class='notice'>You prepare your neurotoxin gland. <B>Left-click to fire at a target!</B></span>"
 		add_ranged_ability(user, message, TRUE)
 
 /obj/effect/proc_holder/alien/neurotoxin/update_icon()
@@ -217,7 +217,7 @@ Doesn't work on other aliens/AI.*/
 	var/mob/living/carbon/user = ranged_ability_user
 
 	if(user.getPlasma() < p_cost)
-		to_chat(user, span_warning("You need at least [p_cost] plasma to spit."))
+		to_chat(user, "<span class='warning'>You need at least [p_cost] plasma to spit.</span>")
 		remove_ranged_ability()
 		return FALSE
 
@@ -226,7 +226,7 @@ Doesn't work on other aliens/AI.*/
 	if(!isturf(U) || !isturf(T))
 		return FALSE
 
-	user.visible_message(span_danger("[user] spits neurotoxin!"), span_alertalien("You spit neurotoxin."))
+	user.visible_message("<span class='danger'>[user] spits neurotoxin!</span>", "<span class='alertalien'>You spit neurotoxin.</span>")
 	var/obj/projectile/neurotoxin/neurotoxin = new /obj/projectile/neurotoxin(user.loc)
 	neurotoxin.preparePixelProjectile(target, user, params)
 	neurotoxin.fire()
@@ -267,7 +267,7 @@ Doesn't work on other aliens/AI.*/
 
 /obj/effect/proc_holder/alien/resin/fire(mob/living/carbon/user)
 	if(locate(/obj/structure/alien/resin) in user.loc)
-		to_chat(user, span_warning("There is already a resin structure there!"))
+		to_chat(user, "<span class='warning'>There is already a resin structure there!</span>")
 		return FALSE
 
 	if(!check_vent_block(user))
@@ -278,8 +278,8 @@ Doesn't work on other aliens/AI.*/
 		return FALSE
 	if (!cost_check(check_turf,user))
 		return FALSE
-	to_chat(user, span_notice("You shape a [choice]."))
-	user.visible_message(span_notice("[user] vomits up a thick purple substance and begins to shape it."))
+	to_chat(user, "<span class='notice'>You shape a [choice].</span>")
+	user.visible_message("<span class='notice'>[user] vomits up a thick purple substance and begins to shape it.</span>")
 
 	choice = structures[choice]
 	new choice(user.loc)
@@ -297,12 +297,12 @@ Doesn't work on other aliens/AI.*/
 		user.alpha = 75 //Still easy to see in lit areas with bright tiles, almost invisible on resin.
 		user.sneaking = 1
 		active = 1
-		to_chat(user, span_noticealien("You blend into the shadows..."))
+		to_chat(user, "<span class='noticealien'>You blend into the shadows...</span>")
 	else
 		user.alpha = initial(user.alpha)
 		user.sneaking = 0
 		active = 0
-		to_chat(user, span_noticealien("You reveal yourself!"))
+		to_chat(user, "<span class='noticealien'>You reveal yourself!</span>")
 
 
 /mob/living/carbon/proc/getPlasma()

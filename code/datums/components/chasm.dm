@@ -22,13 +22,11 @@
 		/obj/effect/light_emitter/tendril,
 		/obj/effect/collapse,
 		/obj/effect/particle_effect/ion_trails,
-		/obj/effect/dummy/phased_mob,
-		/obj/effect/mapping_helpers,
-		/obj/effect/wisp,
-	))
+		/obj/effect/dummy/phased_mob
+		))
 
 /datum/component/chasm/Initialize(turf/target)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(Entered))
+	RegisterSignal(parent, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/Entered)
 	target_turf = target
 	START_PROCESSING(SSobj, src) // process on create, in case stuff is still there
 
@@ -63,7 +61,7 @@
 	for (var/thing in to_check)
 		if (droppable(thing))
 			. = 1
-			INVOKE_ASYNC(src, PROC_REF(drop), thing)
+			INVOKE_ASYNC(src, .proc/drop, thing)
 
 /datum/component/chasm/proc/droppable(atom/movable/AM)
 	// avoid an infinite loop, but allow falling a large distance
@@ -85,7 +83,7 @@
 			if(istype(H.belt, /obj/item/wormhole_jaunter))
 				var/obj/item/wormhole_jaunter/J = H.belt
 				//To freak out any bystanders
-				H.visible_message(span_boldwarning("[H] falls into [parent]!"))
+				H.visible_message("<span class='boldwarning'>[H] falls into [parent]!</span>")
 				J.chasm_react(H)
 				return FALSE
 	return TRUE
@@ -99,8 +97,8 @@
 
 	if(T)
 		// send to the turf below
-		AM.visible_message(span_boldwarning("[AM] falls into [parent]!"), span_userdanger("[fall_message]"))
-		T.visible_message(span_boldwarning("[AM] falls from above!"))
+		AM.visible_message("<span class='boldwarning'>[AM] falls into [parent]!</span>", "<span class='userdanger'>[fall_message]</span>")
+		T.visible_message("<span class='boldwarning'>[AM] falls from above!</span>")
 		AM.forceMove(T)
 		if(isliving(AM))
 			var/mob/living/L = AM
@@ -110,7 +108,7 @@
 
 	else
 		// send to oblivion
-		AM.visible_message(span_boldwarning("[AM] falls into [parent]!"), span_userdanger("[oblivion_message]"))
+		AM.visible_message("<span class='boldwarning'>[AM] falls into [parent]!</span>", "<span class='userdanger'>[oblivion_message]</span>")
 		if (isliving(AM))
 			var/mob/living/L = AM
 			L.notransform = TRUE
@@ -143,7 +141,7 @@
 		qdel(AM)
 		if(AM && !QDELETED(AM))	//It's indestructible
 			var/atom/parent = src.parent
-			parent.visible_message(span_boldwarning("[parent] spits out [AM]!"))
+			parent.visible_message("<span class='boldwarning'>[parent] spits out [AM]!</span>")
 			AM.alpha = oldalpha
 			AM.color = oldcolor
 			AM.transform = oldtransform

@@ -10,7 +10,7 @@
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, PRUDENCE_ATTRIBUTE) >= 100)
-		to_chat(user, span_notice("You've learned all that you could."))
+		to_chat(user, "<span class='notice'>You've learned all that you could.</span>")
 		return //You don't need any more.
 
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
@@ -20,7 +20,7 @@
 		user.physiology.white_mod *= 1.15
 
 	user.apply_status_effect(STATUS_EFFECT_SKIN)
-	to_chat(user, span_userdanger("You read the book, and take the time to burn these passages into your brain."))
+	to_chat(user, "<span class='userdanger'>You read the book, and take the time to burn these passages into your brain.</span>")
 
 // Status Effect
 /datum/status_effect/skin
@@ -31,7 +31,7 @@
 
 /datum/status_effect/skin/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_HUMAN_INSANE, PROC_REF(UserInsane))
+	RegisterSignal(owner, COMSIG_HUMAN_INSANE, .proc/UserInsane)
 
 /datum/status_effect/skin/on_remove()
 	. = ..()

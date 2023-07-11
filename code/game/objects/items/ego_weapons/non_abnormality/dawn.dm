@@ -6,17 +6,17 @@
 	icon_state = "philip"
 	inhand_icon_state = "philip"
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	var/aoe_range
 	var/aoe_target
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 60,
-		PRUDENCE_ATTRIBUTE = 60,
-		TEMPERANCE_ATTRIBUTE = 60,
-		JUSTICE_ATTRIBUTE = 80,
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 /obj/item/ego_weapon/city/dawn/attack(mob/living/target, mob/living/user)
 	..()

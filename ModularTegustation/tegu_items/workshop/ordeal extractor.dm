@@ -36,7 +36,7 @@
 		PEOPLE_MAT,
 		GREEN_MAT,
 		INDIGO_MAT,
-		AMBER_MAT,
+		AMBER_MAT
 	)
 
 	var/list/to_process = list()
@@ -47,7 +47,7 @@
 
 /obj/structure/ordeal_extractor/examine(mob/user)
 	. = ..()
-	. += span_notice("Hit with a storage item to dump all items in it into the machine.")
+	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
 
 /obj/structure/ordeal_extractor/Initialize()
 	. = ..()
@@ -59,7 +59,7 @@
 	if(user.a_intent != INTENT_HELP)
 		return ..()
 	if(processing)
-		to_chat(user, span_notice("[src] is currently processing, you can't add anything into it!"))
+		to_chat(user, "<span class='notice'>[src] is currently processing, you can't add anything into it!</span>")
 		return ..()
 
 	var/item_count = 0
@@ -83,7 +83,7 @@
 				LAZYADDASSOC(to_process, item.type, 1)
 		for(var/list_item in to_process)
 			item_count += to_process[list_item]
-		to_chat(user, span_notice("\The [S] was dumped into [src]. [item_count] total items have been loaded."))
+		to_chat(user, "<span class='notice'>\The [S] was dumped into [src]. [item_count] total items have been loaded.</span>")
 		playsound(I, "rustle", 50, TRUE, -5)
 		if(istype(S, /obj/item/storage/box/materials_disposable))
 			S.emptyStorage() // If SOMEHOW unvalid materials got in
@@ -91,11 +91,11 @@
 		return TRUE
 
 	if(!(I.type in allowed_items))
-		to_chat(user, span_danger("[src] can't proccess [I]!"))
+		to_chat(user, "<span class='danger'>[src] can't proccess [I]!</span>")
 		return ..()
 
 	if(!user.transferItemToLoc(I, src))
-		to_chat(user, span_warning("\The [I] is stuck to your hand!"))
+		to_chat(user, "<span class='warning'>\The [I] is stuck to your hand!</span>")
 		return FALSE
 
 
@@ -113,12 +113,12 @@
 
 	for(var/list_item in to_process)
 		item_count += to_process[list_item]
-	to_chat(user, span_notice("\The [I] was loaded into [src]. [item_count] total items have been loaded."))
+	to_chat(user, "<span class='notice'>\The [I] was loaded into [src]. [item_count] total items have been loaded.</span>")
 	return TRUE
 
 /obj/structure/ordeal_extractor/AltClick(mob/user)
 	if(get_dist(user, src) > 1)
-		to_chat(user, span_danger("You must be closer to interact with [src]!"))
+		to_chat(user, "<span class='danger'>You must be closer to interact with [src]!</span>")
 		return FALSE
 	var/list/material_list = list()
 	var/M = input(user,"What would you like to create?","Select Material") as null|anything in GetMaterials(material_list)
@@ -165,25 +165,25 @@
 
 /obj/structure/ordeal_extractor/CtrlClick(mob/user)
 	if(get_dist(user, src) > 1)
-		to_chat(user, span_danger("You must be closer to interact with [src]!"))
+		to_chat(user, "<span class='danger'>You must be closer to interact with [src]!</span>")
 		return FALSE
 	if(processing)
-		to_chat(user, span_notice("[src] is currently processing, you can't empty it!"))
+		to_chat(user, "<span class='notice'>[src] is currently processing, you can't empty it!</span>")
 		return FALSE
 	return SpillContents(user)
 
 /obj/structure/ordeal_extractor/proc/StartProcessing(mob/user, material_type, quality)
 	if(to_process.len < 1)
-		to_chat(user, span_danger("There's nothing in [src]!"))
+		to_chat(user, "span class='danger'>There's nothing in [src]!</span>")
 		return FALSE
 	if(processing)
-		to_chat(user, span_notice("[src] is currently processing, you can't start it again?!"))
+		to_chat(user, "<span class='notice'>[src] is currently processing, you can't start it again?!</span>")
 		return FALSE
 	processing = TRUE
-	processing_timer = addtimer(CALLBACK(src, PROC_REF(ProcessContents), material_type, quality), processing_time_base, TIMER_UNIQUE)
+	processing_timer = addtimer(CALLBACK(src, .proc/ProcessContents, material_type, quality), processing_time_base, TIMER_UNIQUE)
 	icon_state = "smoke1"
 	playsound(src, "sound/items/welder.ogg", 70)
-	visible_message(span_nicegreen("[src] has begun processing materials."))
+	visible_message("<span class='nicegreen'>[src] has begun processing materials.</span>")
 	return TRUE
 
 /obj/structure/ordeal_extractor/proc/ProcessContents(material_type, quality)
@@ -229,12 +229,12 @@
 		else
 			drop = new drop_type(get_turf(src))
 	drop.SetQuality(drop_quality)
-	visible_message(span_nicegreen("[src] distills \a [drop]!"))
+	visible_message("<span class='nicegreen'>[src] distills \a [drop]!</span>")
 	return TRUE
 
 /obj/structure/ordeal_extractor/proc/FinishProcessing()
 	playsound(src, "sound/machines/terminal_success.ogg", 50)
-	visible_message(span_nicegreen("[src] has finished processing materials."))
+	visible_message("<span class='nicegreen'>[src] has finished processing materials.</span>")
 	processing = FALSE
 	icon_state = "smoke0"
 	return
@@ -253,7 +253,7 @@
 			MD = new(get_turf(src)) // Make a new one if full
 			ST = MD.GetComponent(/datum/component/storage)
 			ST.handle_item_insertion(D, TRUE, null)
-	visible_message(span_notice("[src] drops it's contents onto the ground."))
+	visible_message("<span class='notice'>[src] drops it's contents onto the ground.</span>")
 	contents.Cut()
 	to_process.Cut()
 	return
@@ -275,7 +275,7 @@
 		typecacheof(GREEN),
 		typecacheof(INDIGO),
 		typecacheof(AMBER),
-	)
+		)
 	ST.max_w_class = WEIGHT_CLASS_BULKY
 	ST.max_combined_w_class = 80 // Max 20 Bulky Items
 	ST.max_items = 21 // Rows of 7, so 21 for 3 rows.

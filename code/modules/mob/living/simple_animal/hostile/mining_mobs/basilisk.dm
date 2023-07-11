@@ -28,7 +28,6 @@
 	attack_verb_simple = "bite into"
 	speak_emote = list("chitters")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attack_vis_effect = ATTACK_EFFECT_BITE
 	aggro_vision_range = 9
 	turns_per_move = 5
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -43,6 +42,7 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
+	flag = ENERGY
 	temperature = -50 // Cools you down! per hit!
 
 /obj/projectile/temp/basilisk/heated
@@ -71,18 +71,18 @@
 /mob/living/simple_animal/hostile/asteroid/basilisk/AttackingTarget()
 	. = ..()
 	if(lava_drinker && !warmed_up && istype(target, /turf/open/lava))
-		visible_message(span_warning("[src] begins to drink from [target]..."))
+		visible_message("<span class='warning'>[src] begins to drink from [target]...</span>")
 		if(do_after(src, 70, target = target))
-			visible_message(span_warning("[src] begins to fire up!"))
+			visible_message("<span class='warning'>[src] begins to fire up!</span>")
 			fully_heal()
 			icon_state = "Basilisk_alert"
 			set_varspeed(0)
 			warmed_up = TRUE
 			projectiletype = /obj/projectile/temp/basilisk/heated
-			addtimer(CALLBACK(src, PROC_REF(cool_down)), 3000)
+			addtimer(CALLBACK(src, .proc/cool_down), 3000)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/proc/cool_down()
-	visible_message(span_warning("[src] appears to be cooling down..."))
+	visible_message("<span class='warning'>[src] appears to be cooling down...</span>")
 	if(stat != DEAD)
 		icon_state = "Basilisk"
 	set_varspeed(3)
@@ -109,7 +109,6 @@
 	a_intent = INTENT_HARM
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
-	attack_vis_effect = null // doesn't bite unlike the parent type.
 	stat_attack = HARD_CRIT
 	is_flying_animal = TRUE
 	robust_searching = 1
@@ -136,13 +135,13 @@
 		distanced = get_dist(loc,diamonds.loc)
 		if(distanced <= 1 && diamonds)
 			qdel(diamonds)
-			src.visible_message(span_notice("[src] consumes [diamonds], and it disappears! ...At least, you think."))
+			src.visible_message("<span class='notice'>[src] consumes [diamonds], and it disappears! ...At least, you think.</span>")
 	if(bait)
 		var/distanceb = 0
 		distanceb = get_dist(loc,bait.loc)
 		if(distanceb <= 1 && bait)
 			qdel(bait)
-			src.visible_message(span_notice("[src] examines [bait] closer, and telekinetically shatters the pen."))
+			src.visible_message("<span class='notice'>[src] examines [bait] closer, and telekinetically shatters the pen.</span>")
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/random/Initialize()
 	. = ..()

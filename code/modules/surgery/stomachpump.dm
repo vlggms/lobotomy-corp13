@@ -1,5 +1,5 @@
 /datum/surgery/stomach_pump
-	name = "Stomach pump"
+	name = "Stomach Pump"
 	steps = list(/datum/surgery_step/incise,
 				/datum/surgery_step/retract_skin,
 				/datum/surgery_step/incise,

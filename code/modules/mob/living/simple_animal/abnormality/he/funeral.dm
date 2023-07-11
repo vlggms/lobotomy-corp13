@@ -5,7 +5,6 @@
 	icon_state = "funeral"
 	icon_living = "funeral"
 	icon_dead = "funeral_dead"
-	portrait = "funeral"
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350
@@ -24,23 +23,23 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 0, 0),
-		ABNORMALITY_WORK_INSIGHT = 50,
-		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 0, 0),
+						ABNORMALITY_WORK_INSIGHT = 50,
+						ABNORMALITY_WORK_ATTACHMENT = 0,
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
+						)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16
-	death_message = "gently descends into its own coffin."
+	deathmessage = "gently descends into its own coffin."
 	base_pixel_x = -16
 	pixel_x = -16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/solemnvow,
 		/datum/ego_datum/weapon/solemnlament,
-		/datum/ego_datum/armor/solemnlament,
-	)
+		/datum/ego_datum/armor/solemnlament
+		)
 	gift_type =  /datum/ego_gifts/solemnlament
 	gift_message = "The butterflies are waiting for the end of the world."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -63,10 +62,10 @@
 	name = "Toggle Casket Swarm"
 	button_icon_state = "funeral_toggle0"
 	chosen_attack_num = 2
-	chosen_message = span_colossus("You will now unleash a swarm of butterflies.")
+	chosen_message = "<span class='colossus'>You will now unleash a swarm of butterflies.</span>"
 	button_icon_toggle_activated = "funeral_toggle1"
 	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now fire butterflies from your hands.")
+	toggle_message = "<span class='colossus'>You will now fire butterflies from your hands.</span>"
 	button_icon_toggle_deactivated = "funeral_toggle0"
 
 
@@ -105,7 +104,7 @@
 		return
 	can_act = FALSE
 	icon_state = "funeral_gun"
-	visible_message(span_danger("[src] levels one of its arms at [cooler_target]!"))
+	visible_message("<span class='danger'>[src] levels one of its arms at [cooler_target]!</span>")
 	cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
 	dir = get_cardinal_dir(src, target)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
@@ -119,7 +118,7 @@
 		if(DensityCheck(T))
 			return
 	cooler_target.apply_damage(gun_damage, WHITE_DAMAGE, null, cooler_target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-	visible_message(span_danger("[cooler_target] is hit by butterflies!"))
+	visible_message("<span class='danger'>[cooler_target] is hit by butterflies!</span>")
 	//No longer because fuck you.
 	if(ishuman(target))
 		var/mob/living/carbon/human/kickass_grade1_target = target
@@ -150,14 +149,14 @@
 		return
 	can_act = FALSE
 	dir = dir_to_target
-	visible_message(span_danger("[src] prepares to open its coffin!"))
+	visible_message("<span class='danger'>[src] prepares to open its coffin!</span>")
 	icon_state = "funeral_coffin_butterfly_less"
 	SLEEP_CHECK_DEATH(1.75 SECONDS)
 	icon_state = "funeral_coffin"
 	playsound(get_turf(src), 'sound/abnormalities/funeral/coffin.ogg', 40, extrarange = 10, ignore_walls = TRUE) // bwiiiiiiinng >flapping
 	var/i = 0
 	for(var/turf/T in middle_line)
-		addtimer(CALLBACK(src, PROC_REF(SwarmTurf), T, dir_to_target), i*1.4) //swarm travel speed
+		addtimer(CALLBACK(src, .proc/SwarmTurf, T, dir_to_target), i*1.4) //swarm travel speed
 		i++
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	icon_state = icon_living
@@ -218,11 +217,11 @@
 		if(locate(/obj/effect/temp_visual/funeral_swarm) in TT)
 			continue
 		new /obj/effect/temp_visual/funeral_swarm(TT)
-		addtimer(CALLBACK(src, PROC_REF(SwarmTurfLinger), TT))
+		addtimer(CALLBACK(src, .proc/SwarmTurfLinger, TT))
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE))
 			if(H.stat == DEAD)
 				continue
 			if(H.sanity_lost)
@@ -268,7 +267,6 @@
 //he die
 
 /mob/living/simple_animal/hostile/abnormality/funeral/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

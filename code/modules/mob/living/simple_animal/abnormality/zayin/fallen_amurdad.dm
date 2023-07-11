@@ -5,22 +5,21 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "amurdad"
 	icon_living = "amurdad"
-	portrait = "fallen_amurdad"
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_INSIGHT = 70,
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(70, 60, 50, 50, 50),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
+						ABNORMALITY_WORK_INSIGHT = 70,
+						ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
+						ABNORMALITY_WORK_REPRESSION = list(70, 60, 50, 50, 50)
+						)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 10
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nightshade,
-		/datum/ego_datum/armor/nightshade,
-	)
+		/datum/ego_datum/armor/nightshade
+		)
 	gift_type = /datum/ego_gifts/nightshade
 	gift_message = "The lifeless body of amurdad hands you a flower."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -43,11 +42,8 @@
 		/obj/item/seeds/galaxythistle/amurdad,
 		/obj/item/seeds/peas/worldpeas,
 		/obj/item/seeds/corpseflower,
-		/obj/item/seeds/jupitercup,
-	)
-
-	/// How many bombs are placed on breach.
-	var/max_bombs = 12
+		/obj/item/seeds/jupitercup
+		)
 
 //Start us off with some soil trays and grass
 /mob/living/simple_animal/hostile/abnormality/fallen_amurdad/PostSpawn()
@@ -72,50 +68,6 @@
 		S.Fill(pick(seed_list))
 		if(prob(30))
 			break
-
-// Pink Midnight stuff
-/mob/living/simple_animal/hostile/abnormality/fallen_amurdad/BreachEffect(mob/living/carbon/human/user, breach_type)
-	if(breach_type == BREACH_PINK)
-		var/turf/DC = pick(GLOB.department_centers)
-		var/list/potential_area = spiral_range_turfs(15, DC)
-		var/list/remove_list = list()
-		for(var/turf/T in potential_area)
-			if(T.density)
-				remove_list += T
-				continue
-			if(T.z != z)
-				remove_list += T
-				continue
-			if(istype(T.loc, /area/containment_zone))
-				remove_list += T
-				continue
-			if(istype(T, /turf/open/floor/plating))
-				remove_list += T
-				continue
-			if(istype(T, /turf/open/floor/circuit))
-				remove_list += T
-				continue
-			for(var/obj/O in T)
-				if(O.density)
-					remove_list += T
-					break
-
-		potential_area -= remove_list
-		var/bombs = 0
-		while((bombs < max_bombs) && potential_area.len > 0)
-			var/turf/open/T = pick(potential_area)
-			var/list/seen_area = view(3, T)
-			var/loop = FALSE
-			for(var/obj/structure/amurdad_bomb/AB in seen_area)
-				potential_area -= seen_area
-				loop = TRUE
-				break
-			if(loop)
-				continue
-			new /obj/structure/amurdad_bomb(T)
-			bombs++
-		return TRUE
-	return ..()
 
 //Magic bullshit amurdad soil
 /obj/machinery/hydroponics/soil/amurdad
@@ -176,25 +128,14 @@
 // Non-toxic varieties of normal plants
 /obj/item/seeds/berry/glow/amurdad
 	genes = list(/datum/plant_gene/trait/glow/white)
-	reagents_add = list(
-		/datum/reagent/iodine = 0.2,
-		/datum/reagent/consumable/nutriment/vitamin = 0.04,
-		/datum/reagent/consumable/nutriment = 0.1,
-	)
+	reagents_add = list(/datum/reagent/iodine = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/seeds/cannabis/white/amurdad
 	genes = list()
-	reagents_add = list(
-		/datum/reagent/drug/space_drugs = 0.15,
-		/datum/reagent/consumable/nutriment/vitamin = 0.04,
-		/datum/reagent/consumable/nutriment = 0.1,
-	)
+	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
 
 /obj/item/seeds/amanita/amurdad
-	reagents_add = list(
-		/datum/reagent/drug/space_drugs = 0.15,
-		/datum/reagent/consumable/nutriment = 0.04,
-	)
+	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/consumable/nutriment = 0.04)
 
 // Modified Weeds
 /obj/item/seeds/starthistle/amurdad
@@ -231,11 +172,7 @@
 	icon_dead = "worldpeas-dead"
 	genes = list ()
 	mutatelist = list ()
-	reagents_add = list (
-		/datum/reagent/consumable/sugar = 0.05,
-		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/wellcheers_zero = 0.07,
-	)
+	reagents_add = list (/datum/reagent/consumable/sugar = 0.05, /datum/reagent/consumable/nutriment = 0.07, /datum/reagent/abnormality/wellcheers_zero = 0.07)
 	rarity = 30
 
 /obj/item/food/grown/worldpeas
@@ -268,10 +205,7 @@
 	icon_dead = "corpse-flower-dead"
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
-	reagents_add = list(
-		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/quiet_day = 0.07,
-	)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/abnormality/quiet_day = 0.07)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
@@ -301,11 +235,7 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(
-		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/consumable/sugar = 0.07,
-		/datum/reagent/abnormality/we_can_change_anything = 0.07,
-	)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07, /datum/reagent/abnormality/we_can_change_anything = 0.07)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 
@@ -314,142 +244,3 @@
 	name = "jupiter-cup"
 	desc = "This has to be eaten carefully."
 	icon_state = "jupitercup"
-
-/obj/structure/amurdad_bomb
-	name = "Rising Amurdad"
-	desc = "A mound of soil growing something...\nIt reinforces nearby plants."
-	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "soil"
-	density = TRUE
-	anchored = TRUE
-	max_integrity = 300
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
-	var/stage = 0
-	var/grow_interval = 5 SECONDS
-	var/list/protected_plants = list()
-
-/obj/structure/amurdad_bomb/Initialize()
-	. = ..()
-	Grow()
-	proximity_monitor = new(src, 1)
-
-/obj/structure/amurdad_bomb/proc/ProtectPlants()
-	for(var/obj/structure/spreading/apple_vine/AV in view(2, src))
-		if(AV in protected_plants)
-			AV.obj_integrity += 50
-			continue
-		protected_plants += AV
-		AV.max_integrity = 300
-		AV.obj_integrity = 300
-
-/obj/structure/amurdad_bomb/proc/Grow()
-	stage = stage + 1 > 5 ? 5 : stage + 1
-	UpdateStage()
-	ProtectPlants()
-	if(stage >= 5)
-		return
-	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
-
-/obj/structure/amurdad_bomb/proc/UpdateStage()
-	cut_overlays()
-	if(stage == 0)
-		return
-	var/mutable_appearance/plant_overlay = mutable_appearance('icons/obj/hydroponics/growing.dmi', "deathnettle-grow[stage]", layer = OBJ_LAYER + 0.01)
-	add_overlay(plant_overlay)
-
-/obj/structure/amurdad_bomb/HasProximity(atom/movable/AM)
-	if(stage <= 4)
-		return
-	if(!isliving(AM))
-		return
-	if(isbot(AM))
-		return
-	var/mob/living/L = AM
-	if(("hostile" in L.faction))
-		return
-	Explode()
-
-/obj/structure/amurdad_bomb/bullet_act(obj/projectile/P)
-	. = ..()
-	if(stage <= 3)
-		return
-	Explode()
-
-/obj/structure/amurdad_bomb/proc/Explode()
-	var/list/all_the_turfs_were_gonna_lacerate = RANGE_TURFS(stage, src) - RANGE_TURFS(stage-1, src)
-	stage = 0
-	UpdateStage()
-	for(var/turf/shootat_turf in all_the_turfs_were_gonna_lacerate)
-		INVOKE_ASYNC(src, PROC_REF(FireProjectile), shootat_turf)
-	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
-
-/obj/structure/amurdad_bomb/proc/FireProjectile(atom/target)
-	var/obj/projectile/P = new /obj/projectile/needle(get_turf(src))
-
-	P.spread = 0
-	if(prob(25))
-		P.original = target // Allows roughly 25% of them to hit the activator who's prone
-	P.fired_from = src
-	P.firer = src
-	P.impacted = list(src = TRUE)
-	P.suppressed = SUPPRESSED_QUIET
-	P.preparePixelProjectile(target, src)
-	P.fire()
-
-/obj/projectile/needle
-	name = "venomous needle"
-	desc = "a venomous thorn from a plant"
-	icon_state = "needle"
-	ricochet_chance = 60
-	ricochets_max = 2
-	damage = 1
-	damage_type = RED_DAMAGE
-	eyeblur = 2
-	ricochet_ignore_flag = TRUE
-
-/obj/projectile/needle/can_hit_target(atom/target, direct_target, ignore_loc, cross_failed)
-	if(!fired)
-		return FALSE
-	return ..()
-
-/obj/projectile/needle/on_hit(atom/target, blocked, pierce_hit)
-	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		H.reagents.add_reagent(/datum/reagent/toxin/amurdad_poison, 10)
-
-/datum/reagent/toxin/amurdad_poison
-	name = "Fallen Nightshade"
-	description = "A poison that corrupts the blood and turns the stomach foul."
-	taste_description = "iron"
-	glass_name = "glass of fallen nightshade"
-	glass_desc = "It smells of roses and yet looks awful."
-	color = "#433748"
-	can_synth = FALSE
-	harmful = TRUE
-	toxpwr = 0
-	metabolization_rate = REAGENTS_METABOLISM * 4
-
-/datum/reagent/toxin/amurdad_poison/on_mob_metabolize(mob/living/L)
-	. = ..()
-	to_chat(L, span_warning("You feel nauseous..."))
-
-/datum/reagent/toxin/amurdad_poison/on_mob_end_metabolize(mob/living/L)
-	. = ..()
-	to_chat(L, span_danger("You start to feel better."))
-
-/datum/reagent/toxin/amurdad_poison/on_mob_life(mob/living/M)
-	var/damage_mod = 1
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/liver/LV = locate() in H.internal_organs
-		if(volume <= LV.toxTolerance)
-			return ..()
-		damage_mod = LV.toxLethality * 100
-	metabolization_rate = max(volume * REAGENTS_METABOLISM, REAGENTS_METABOLISM)
-	M.apply_damage(volume*REAGENTS_METABOLISM*damage_mod, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	if(ishuman(M))
-		if(DT_PROB(3, 6))
-			var/mob/living/carbon/human/H = M
-			H.vomit(10, FALSE, FALSE, 2)
-	return ..()

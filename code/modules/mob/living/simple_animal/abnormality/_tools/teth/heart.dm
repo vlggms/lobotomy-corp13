@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aspiration,
-		/datum/ego_datum/armor/aspiration,
-	)
+		/datum/ego_datum/armor/aspiration
+		)
 
 /obj/structure/toolabnormality/aspiration/attack_hand(mob/living/carbon/human/user)
 	. = ..()
@@ -17,11 +17,11 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_ASPIRATION)
-		to_chat(user, span_userdanger("You feel your heart slow again."))
+		to_chat(user, "<span class='userdanger'>You feel your heart slow again.</span>")
 	else
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_ASPIRATION)
-		to_chat(user, span_userdanger("You feel your blood pumping faster."))
+		to_chat(user, "<span class='userdanger'>You feel your blood pumping faster.</span>")
 
 // Status Effect
 /datum/status_effect/display/aspiration

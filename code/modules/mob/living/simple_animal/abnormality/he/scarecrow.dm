@@ -5,16 +5,16 @@
 	icon_state = "scarecrow"
 	icon_living = "scarecrow"
 	icon_dead = "scarecrow_dead"
-	portrait = "scarecrow"
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 2
 	move_to_delay = 3
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
 	attack_verb_continuous = "stabs"
@@ -23,35 +23,24 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = list(50, 60, 70, 80, 90),
-		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = 45,
-	)
+						ABNORMALITY_WORK_INSTINCT = 45,
+						ABNORMALITY_WORK_INSIGHT = list(50, 60, 70, 80, 90),
+						ABNORMALITY_WORK_ATTACHMENT = 45,
+						ABNORMALITY_WORK_REPRESSION = 45
+						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
-	death_message = "stops moving, with its torso rotating forwards."
-	death_sound = 'sound/abnormalities/scarecrow/death.ogg'
+	deathmessage = "stops moving, with its torso rotating forwards."
+	deathsound = 'sound/abnormalities/scarecrow/death.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/harvest,
-		/datum/ego_datum/armor/harvest,
-	)
+		/datum/ego_datum/armor/harvest
+		)
 	gift_type =  /datum/ego_gifts/harvest
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
-		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
-		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
-		// Ozma = 2,
-		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
-	)
-
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
-	var/braineating = TRUE
-	var/healthmodifier = 0.05	// Can restore 30% of HP
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/CanAttack(atom/the_target)
 	if(finishing)
@@ -87,20 +76,18 @@
 				playsound(get_turf(src), 'sound/abnormalities/scarecrow/drink.ogg', 50, 1)
 				if(H.health < -120) //prevents infinite healing, corpse is too mangled
 					break
-				adjustBruteLoss(-(maxHealth*healthmodifier))
+				adjustBruteLoss(-(maxHealth*0.05)) // Can restore 30% of HP
 				H.adjustBruteLoss(20)
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE
 				return
-			if(braineating)
-				for(var/obj/item/organ/O in H.getorganszone(BODY_ZONE_HEAD, TRUE))
-					O.Remove(H)
-					QDEL_NULL(O)
+			for(var/obj/item/organ/O in H.getorganszone(BODY_ZONE_HEAD, TRUE))
+				O.Remove(H)
+				QDEL_NULL(O)
 			finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -109,8 +96,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scarecrow/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/scarecrow/BreachEffect(mob/living/carbon/human/user)
+	..()
 	icon_living = "scarecrow_breach"
 	icon_state = icon_living
 	GiveTarget(user)

@@ -10,7 +10,7 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "q" = (
-/obj/effect/landmark/cratespawn,
+/obj/structure/lootcrate/workshopleaf,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "u" = (

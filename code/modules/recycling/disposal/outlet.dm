@@ -46,9 +46,9 @@
 	if((start_eject + 30) < world.time)
 		start_eject = world.time
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 50, FALSE, FALSE)
-		addtimer(CALLBACK(src, PROC_REF(expel_holder), H, TRUE), 20)
+		addtimer(CALLBACK(src, .proc/expel_holder, H, TRUE), 20)
 	else
-		addtimer(CALLBACK(src, PROC_REF(expel_holder), H), 20)
+		addtimer(CALLBACK(src, .proc/expel_holder, H), 20)
 
 /obj/structure/disposaloutlet/proc/expel_holder(obj/structure/disposalholder/H, playsound=FALSE)
 	if(playsound)
@@ -68,9 +68,9 @@
 		return TRUE
 
 	playsound(src, 'sound/items/welder2.ogg', 100, TRUE)
-	to_chat(user, span_notice("You start slicing the floorweld off [src]..."))
+	to_chat(user, "<span class='notice'>You start slicing the floorweld off [src]...</span>")
 	if(I.use_tool(src, user, 20))
-		to_chat(user, span_notice("You slice the floorweld off [src]."))
+		to_chat(user, "<span class='notice'>You slice the floorweld off [src].</span>")
 		stored.forceMove(loc)
 		transfer_fingerprints_to(stored)
 		stored = null
@@ -81,17 +81,17 @@
 	. = ..()
 	switch(eject_speed)
 		if(EJECT_SPEED_SLOW)
-			. += span_info("An LED image of a turtle is displayed on the side of the outlet.")
+			. += "<span class='info'>An LED image of a turtle is displayed on the side of the outlet.</span>"
 		if(EJECT_SPEED_MED)
-			. += span_info("An LED image of a bumblebee is displayed on the side of the outlet.")
+			. += "<span class='info'>An LED image of a bumblebee is displayed on the side of the outlet.</span>"
 		if(EJECT_SPEED_FAST)
-			. += span_info("An LED image of a speeding bullet is displayed on the side of the outlet.")
+			. += "<span class='info'>An LED image of a speeding bullet is displayed on the side of the outlet.</span>"
 		if(EJECT_SPEED_YEET)
-			. += span_info("An LED image of a grawlix is displayed on the side of the outlet.")
+			. += "<span class='info'>An LED image of a grawlix is displayed on the side of the outlet.</span>"
 
 /obj/structure/disposaloutlet/multitool_act(mob/living/user, obj/item/I)
 	. = ..()
-	to_chat(user, span_notice("You adjust the ejection force on \the [src]."))
+	to_chat(user, "<span class='notice'>You adjust the ejection force on \the [src].</span>")
 	switch(eject_speed)
 		if(EJECT_SPEED_SLOW)
 			eject_speed = EJECT_SPEED_MED
@@ -110,5 +110,5 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, span_notice("You silently disable the sanity checking on \the [src]'s ejection force."))
+	to_chat(user, "<span class='notice'>You silently disable the sanity checking on \the [src]'s ejection force.</span>")
 	obj_flags |= EMAGGED

@@ -1,11 +1,11 @@
 /datum/ordeal/fixers
 	name = "Fixers"
-	announce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
+	annonce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
 	can_run = FALSE
 	delay = 1 // Goes back-to-back
 	random_delay = FALSE
 	reward_percent = 0.1
-	announce_sound = 'sound/effects/ordeals/white_start.ogg'
+	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 	var/mobs_amount = 1
 	var/list/potential_types = list(
@@ -31,11 +31,9 @@
 
 // Dawn
 /datum/ordeal/fixers/white_dawn
-	name = "The Dawn of White"
-	flavor_name = "A Request"
-	announce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
+	name = "Dawn of White"
+	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
 	so long as you pay them sufficiently."
-	end_announce_text = "They work in the Offices, Syndicates, and the Wings. Their tasks vary from banal things to something truly sublime."
 	can_run = TRUE
 	level = 6
 	reward_percent = 0.1
@@ -51,23 +49,18 @@
 		N.potential_types -= dawn_type
 
 /datum/ordeal/fixers/white_noon
-	name = "The Noon of White"
-	flavor_name = "Armaments"
-	announce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
-	the Reliques of the Outskirts, the Artefacts of the Ruins..."
-	end_announce_text = "As they have always done, they will overcome all that impedes them, weapons in hand."
+	name = "Noon of White"
+	annonce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
+	the Reliques of the Outskirts, the Artefacts of the Ruins…"
 	can_run = TRUE
 	level = 7
 	reward_percent = 0.15
 	mobs_amount = 2
 
 /datum/ordeal/fixers/white_dusk
-	name = "The Dusk of White"
-	flavor_name = "The Fixers"
-	announce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
+	name = "Dusk of White"
+	annonce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
 	to be drawn to such a mystic place of life and death."
-	end_announce_text = "Bookhunters… One day they will rummage through The Library reigned over by the Pale Librarian. \
-	They are what shall become of the Fixers."
 	can_run = TRUE
 	level = 8
 	reward_percent = 0.2
@@ -81,17 +74,14 @@
 
 // Midnight
 /datum/ordeal/white_midnight
-	name = "The Midnight of White"
-	flavor_name = "The Claw"
-	announce_text = "To know and manipulate all the secrets of the world; that is the \
+	name = "Midnight of White"
+	annonce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
-	end_announce_text = "No one dares to stand against them. As long as they exist, \
-	the tale of the Nest will never reach its close."
 	level = 9
 	delay = 1
 	random_delay = FALSE
 	reward_percent = 0.25
-	announce_sound = 'sound/effects/ordeals/white_start.ogg'
+	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 
 /datum/ordeal/white_midnight/Run()
@@ -106,5 +96,5 @@
 	if(istype(SSlobotomy_corp.core_suppression)) // If it all was a part of core suppression
 		SSlobotomy_corp.core_suppression_state = 3
 		SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_CLAW_DEAD)
-		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, End)), 10 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 10 SECONDS)
 	return ..()

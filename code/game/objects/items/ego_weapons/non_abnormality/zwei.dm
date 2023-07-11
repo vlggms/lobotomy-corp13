@@ -7,10 +7,14 @@
 	desc = "A zweihander used by the zwei association."
 	special = "Use in hand to buff your defense, and those of everyone around you."
 	icon_state = "zwei"
+	inhand_icon_state = "zwei"
 	force = 55
 	attack_speed = 2
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
+	inhand_icon_state = "claymore"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -19,11 +23,11 @@
 	var/defense_buff_others = 0.8
 	var/list/buffed_people = list()
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 60,
-		PRUDENCE_ATTRIBUTE = 40,
-		TEMPERANCE_ATTRIBUTE = 40,
-		JUSTICE_ATTRIBUTE = 40,
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
 
 
 /obj/item/ego_weapon/city/zweihander/attack_self(mob/living/carbon/human/user)
@@ -39,7 +43,7 @@
 	user.physiology.white_mod *= defense_buff_self
 	user.physiology.black_mod *= defense_buff_self
 	user.physiology.pale_mod *= defense_buff_self
-	to_chat(user, span_userdanger("HOLD THE LINE!"))
+	to_chat(user, "<span class='userdanger'>HOLD THE LINE!</span>")
 
 	buffed_people = list()
 
@@ -51,30 +55,30 @@
 		buffed_people += L
 
 		//Visible message just didn't work here. No clue why.
-		to_chat(L, span_userdanger("HOLD THE LINE!"))
+		to_chat(L, "<span class='userdanger'>HOLD THE LINE!</span>")
 
 	playsound(src, 'sound/misc/whistle.ogg', 50, TRUE)
-	addtimer(CALLBACK(src, PROC_REF(Return), user), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/Return, user), 3 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Return(mob/living/carbon/human/user)
 	user.physiology.red_mod /= defense_buff_self
 	user.physiology.white_mod /= defense_buff_self
 	user.physiology.black_mod /= defense_buff_self
 	user.physiology.pale_mod /= defense_buff_self
-	to_chat(user, span_notice("Your defense buff has expired!"))
+	to_chat(user, "<span class='notice'>Your defense buff has expired!</span>")
 
 	for(var/mob/living/carbon/human/L in buffed_people)
 		L.physiology.red_mod /= defense_buff_others
 		L.physiology.white_mod /= defense_buff_others
 		L.physiology.black_mod /= defense_buff_others
 		L.physiology.pale_mod /= defense_buff_others
-		to_chat(L, span_notice("Your defense buff has expired!"))
+		to_chat(L, "<span class='notice'>Your defense buff has expired!</span>")
 
-	addtimer(CALLBACK(src, PROC_REF(Cooldown), user), 15 SECONDS)
+	addtimer(CALLBACK(src, .proc/Cooldown, user), 15 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Cooldown(mob/living/carbon/human/user)
 	ready = TRUE
-	to_chat(user, span_notice("You can use your defense buff again."))
+	to_chat(user, "<span class='notice'>You can use your defense buff again.</span>")
 
 //Vet Zwei
 /obj/item/ego_weapon/city/zweihander/vet
@@ -115,7 +119,7 @@
 	force = 30
 	attack_speed = 2
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(

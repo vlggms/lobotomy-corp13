@@ -11,9 +11,10 @@
 	message = "The blob stabs you"
 	reagent = /datum/reagent/blob/reactive_spines
 
-/datum/blobstrain/reagent/reactive_spines/damage_reaction(obj/structure/blob/B, damage, damage_type)
+/datum/blobstrain/reagent/reactive_spines/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
 	if(damage && ((damage_type == BRUTE) || (damage_type == BURN)) && B.obj_integrity - damage > 0) //is there any damage, is it burn or brute, and will we be alive
-		B.visible_message("<span class='boldwarning'>The blob retaliates, lashing out!</span>")
+		if(damage_flag == MELEE)
+			B.visible_message("<span class='boldwarning'>The blob retaliates, lashing out!</span>")
 		for(var/atom/A in range(1, B))
 			A.blob_act(B)
 	return ..()

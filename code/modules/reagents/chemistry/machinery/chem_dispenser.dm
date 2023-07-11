@@ -85,11 +85,11 @@
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
+	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
 	if(emagged_reagents)
-		emagged_reagents = sortList(emagged_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
+		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
 	if(upgrade_reagents)
-		upgrade_reagents = sortList(upgrade_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
+		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
 	if(is_operational)
 		begin_processing()
 	update_icon()
@@ -144,8 +144,8 @@
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 
 	if(beaker)
-		var/mutable_appearance/new_beaker_overlay = display_beaker()
-		. += new_beaker_overlay
+		beaker_overlay = display_beaker()
+		. += beaker_overlay
 
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
@@ -210,10 +210,16 @@
 		data["beakerTransferAmounts"] = null
 
 	var/chemicals[0]
+	var/is_hallucinating = FALSE
+	if(user.hallucinating())
+		is_hallucinating = TRUE
 	for(var/re in dispensable_reagents)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[re]
-		if(R)
-			chemicals.Add(list(list("title" = R.name, "id" = ckey(R.name))))
+		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
+		if(temp)
+			var/chemname = temp.name
+			if(is_hallucinating && prob(5))
+				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
 	data["chemicals"] = chemicals
 	data["recipes"] = saved_recipes
 

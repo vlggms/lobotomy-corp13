@@ -22,10 +22,7 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 	/obj/structure/toolabnormality/skin,
 	/obj/structure/toolabnormality/snake_oil,
 	/obj/structure/toolabnormality/theresia,
-	/obj/structure/toolabnormality/mirror,
-	/obj/structure/toolabnormality/researcher,
-	/obj/structure/toolabnormality/promise,
-	/obj/structure/toolabnormality/you_happy,
+	/obj/structure/toolabnormality/mirror
 ))
 
 /obj/effect/landmark/toolspawn
@@ -35,7 +32,6 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 	icon_state = "x4"
 
 /obj/effect/landmark/toolspawn/Initialize()
-	SHOULD_CALL_PARENT(TRUE)
 	..()
 	if(!LAZYLEN(GLOB.unspawned_tools)) // You shouldn't ever need this but I mean go on I guess
 		return INITIALIZE_HINT_QDEL

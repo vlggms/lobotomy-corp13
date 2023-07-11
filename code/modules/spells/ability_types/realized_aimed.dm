@@ -14,21 +14,8 @@
 	var/turf/target_turf = get_turf(user)
 	var/list/line_turfs = list(target_turf)
 	var/list/mobs_to_hit = list()
-	var/stop_charge = FALSE
 	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, target, dash_range)))
 		if(!dash_ignore_walls && T.density)
-			break
-		if(!dash_ignore_walls)
-			for(var/obj/structure/window/W in T.contents)
-				stop_charge = TRUE
-				break
-			for(var/obj/machinery/door/MD in T.contents)
-				if(!MD.CanAStarPass(null))
-					stop_charge = TRUE
-					break
-				if(MD.density)
-					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
-		if(stop_charge)
 			break
 		target_turf = T
 		line_turfs += T
@@ -48,6 +35,9 @@
 		D.alpha = min(150 + i*15, 255)
 		animate(D, alpha = 0, time = 2 + i*2)
 		playsound(D, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(10, 30), 1, 3)
+		for(var/obj/machinery/door/MD in T.contents)
+			if(MD.density)
+				addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
 	// Damage
 	for(var/mob/living/L in mobs_to_hit)
 		if(user.faction_check_mob(L))
@@ -78,7 +68,7 @@
 		return
 	var/turf/target_turf = get_turf(target)
 	new /obj/effect/temp_visual/cross/fall(target_turf)
-	addtimer(CALLBACK(src, PROC_REF(SplashEffect), target_turf, user), 5.5)
+	addtimer(CALLBACK(src, .proc/SplashEffect, target_turf, user), 5.5)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/cross_spawn/proc/SplashEffect(turf/T, mob/user)
@@ -99,11 +89,10 @@
 		L.apply_damage((damage_amount - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 
-/* Knight of Despair - Quenched with Blood */
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
 	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
-		Each sword deals damage equal to 5% of the target's max HP as Pale, to a minimum of 120."
+		Each sword deals damage equal to 2% of the target's max HP as Pale, to a minimum of 40."
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
@@ -126,9 +115,7 @@
 		RP.xo = target_turf.x - T.x
 		RP.original = target_turf
 		RP.preparePixelProjectile(target_turf, T)
-		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
-	sleep(3)
-	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
+		addtimer(CALLBACK (RP, .obj/projectile/proc/fire), 3)
 	return ..()
 
 /obj/projectile/despair_rapier/ego
@@ -144,11 +131,10 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		H.TemporarySpeedChange(1, 10 SECONDS)
-		damage = max(0.05*H.maxHealth, 120)
+		damage = max(0.02*H.maxHealth, 40)
 	..()
 	qdel(src)
 
-/* Queen of Hatred - Love and Justice */
 /obj/effect/proc_holder/ability/aimed/arcana_slave
 	name = "Arcana Slave"
 	desc = "An ability that allows you to fire off a large laser after channelling for a while. \
@@ -178,7 +164,7 @@
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
+	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
@@ -210,11 +196,11 @@
 		S.transform = M
 		if(speak)
 			if(custom_speech.len <= 0)
-				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2]), 10)
+				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2]), 10)
 			else
-				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
+				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2]), 10)
 		if(!Channel(H, 20))
 			CleanUp(user)
 			return
@@ -231,7 +217,7 @@
 	justice++
 	beam_damage *= justice
 	if(speak)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
+		addtimer(CALLBACK(H, .atom/movable/proc/say, "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
 		if(accumulated_beam_damage >= 150 && beam_stage < 2)
@@ -329,55 +315,21 @@
 		return
 	return ..()
 
-/* Spider Bud - Death Stare */
-/obj/effect/proc_holder/ability/aimed/gleaming_eyes
-	name = "Gleaming Eyes"
-	desc = "An ability that allows its user to do a jump attack that causes a slowing aoe when landing."
+
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn
+	name = "Cocoon summon"
+	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
-	cooldown_time = 20 SECONDS
-	var/damage_amount = 80 // Amount of red damage dealt to enemies in the epicenter.
-	var/damage_range = 2
-	var/damage_slowdown = 0.5
+	cooldown_time = 15 SECONDS
 
-/obj/effect/proc_holder/ability/aimed/gleaming_eyes/Perform(target, mob/user)
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
-	playsound(user, 'sound/abnormalities/spider_bud/jump.ogg', 50, FALSE, -1)
 	var/turf/target_turf = get_turf(target)
-	//new /mob/living/simple_animal/cocoonability(target_turf) FUCK YOU NO COCOON!!!!!!!!!!!
-	animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
-	user.pixel_z = 16
-	sleep(0.5 SECONDS)
-	for(var/i in 2 to get_dist(user, target_turf))
-		step_towards(user,target_turf)
-	animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
-	user.pixel_z = 0
-	sleep(0.1 SECONDS)
-	JumpAttack(target_turf,user)
+	new /mob/living/simple_animal/cocoonability(target_turf)
 	return ..()
 
-/obj/effect/proc_holder/ability/aimed/gleaming_eyes/proc/JumpAttack(target, mob/user)
-	playsound(user, 'sound/abnormalities/spider_bud/land.ogg', 50, FALSE, -1)
-	for(var/mob/living/L in view(1, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		var/obj/item/held = user.get_active_held_item()
-		if(held)
-			held.attack(L, user)
-	for(var/turf/T in view(damage_range, user))
-		new /obj/effect/temp_visual/smash_effect/red(T)
-	for(var/mob/living/L in view(damage_range, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		if(ishostile(L))
-			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(H.move_to_delay * damage_slowdown, 10 SECONDS) // Slow down
 
 /mob/living/simple_animal/cocoonability
 	name = "Cocoon"
@@ -386,8 +338,8 @@
 	icon_state = "cocoon_large2"
 	icon_living = "cocoon_large2"
 	faction = list("neutral")
-	health = 250	//They're here to help
-	maxHealth = 250
+	health = 300	//They're here to help
+	maxHealth = 300
 	speed = 0
 	turns_per_move = 10000000000000
 	generic_canpass = FALSE
@@ -399,8 +351,10 @@
 /mob/living/simple_animal/cocoonability/Initialize()
 	. = ..()
 	QDEL_IN(src, (30 SECONDS))
-	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 3 SECONDS)
+
+/mob/living/simple_animal/cocoonability/Life()
+	if(..())
+		SplashEffect()
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
@@ -413,9 +367,9 @@
 		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
+			H.TemporarySpeedChange(damage_slowdown, 2 SECONDS) // Slow down
 
-/* Lady out of Space - Fallen Colors */
+
 /obj/effect/proc_holder/ability/aimed/blackhole
 	name = "blackhole"
 	desc = "An ability that allows its user to summon a black hole to drag everone near it."
@@ -440,199 +394,24 @@
 	speed = 0
 	damage = 30
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
-	var/damage_amount = 200 // Amount of black damage dealt to enemies in the epicenter.
+	var/damage_amount = 100 // Amount of black damage dealt to enemies in the epicenter.
 	var/damage_range = 3
 
 /obj/projectile/black_hole_realized/Initialize()
 	. = ..()
 	QDEL_IN(src, (20 SECONDS))
 	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
 
 /obj/projectile/black_hole_realized/proc/SplashEffect()
 	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
 	for(var/turf/T in view(damage_range, src))
 		new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in view(damage_range, src))
-		var/distance_decrease = get_dist(src, L) * 40
+		var/distance_decrease = get_dist(src, L) * 30
 		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
 		L.throw_at(throw_target, 1, 2)
-
-/* Harmony of Duality - Anarchy */
-/obj/effect/proc_holder/ability/aimed/yin_laser
-	name = "Anarchy"
-	desc = "An ability that summons a devastating laser. \
-		If another player gets hit by the laser they get +20 justice for a period of time. \
-		If the person that gets hit is wearing duality of harmony, they will get huge buffs to their defenses and stats."
-	action_icon_state = "yinform0"
-	base_icon_state = "yinform"
-	cooldown_time = 60 SECONDS
-	var/laser_range = 20
-
-/obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
-	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
-	return ..()
-
-/obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
-	user.face_atom(target)
-	var/turf/my_turf = get_turf(user)
-	var/turf/target_turf = get_ranged_target_turf_direct(user, target, laser_range)
-	var/list/to_hit = getline(user, target_turf)
-	var/datum/beam/beam  = my_turf.Beam(target_turf, "volt_ray")
-	for(var/turf/open/OT in to_hit)
-		if(!istype(OT) || OT.density)
-			break
-		beam.target = OT
-		beam.redrawing()
-		sleep(1)
-		new /obj/effect/temp_visual/revenant/cracks/yinfriend(OT)
-	qdel(beam)
-
-/obj/effect/temp_visual/revenant/cracks/yinfriend
-	icon_state = "yincracks"
-	duration = 9
-	var/damage = 175  // Amount of black damage dealt to enemies from the laser.
-	var/list/faction = list("neutral")
-
-/obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()
-	for(var/turf/T in range(1, src))
-		if(T.z != z)
-			continue
-		for(var/mob/living/L in T)
-			if(faction_check(L.faction, src.faction))
-				continue
-			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		for(var/mob/living/carbon/human/L in T)
-			if(!faction_check(L.faction, src.faction))
-				continue
-			L.apply_status_effect(/datum/status_effect/yinboost)
-			if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang))
-				L.apply_status_effect(/datum/status_effect/duality_yin)
-		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)
-	return ..()
-
-/datum/status_effect/yinboost
-	id = "EGO_YIN"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/yinboost
-	duration = 90 SECONDS
-
-/atom/movable/screen/alert/status_effect/yinboost
-	name = "Yin Boost"
-	desc = "Anarchy reigns supreme. \
-		Your Justice is increased by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "yinbuff"
-
-/datum/status_effect/yinboost/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
-
-/datum/status_effect/yinboost/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
-
-/datum/status_effect/duality_yin
-	id = "EGO_YIN2"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/duality_yin
-	duration = 90 SECONDS
-
-/atom/movable/screen/alert/status_effect/duality_yin
-	name = "Harmony of duality"
-	desc = "Decreases red and black damage taken by 25%. \
-		All your stats are increased by 10."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "duality"
-
-/datum/status_effect/duality_yin/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.75
-	H.physiology.black_mod *= 0.75
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
-
-/datum/status_effect/duality_yin/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.75
-	H.physiology.black_mod /= 0.75
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
-
-/* The Road Home - Forever Home */
-/obj/effect/proc_holder/ability/aimed/house_spawn
-	name = "You... Wicked Wizard!"
-	desc = "Summon a home that WILL be reached on your enemies dealing BLACK damage and buffing your allies defenses."
-	action_icon_state = "home_spawn0"
-	base_icon_state = "home_spawn"
-	cooldown_time = 20 SECONDS
-	var/damage_amount = 300
-	var/damage_range = 10
-
-/obj/effect/proc_holder/ability/aimed/house_spawn/Perform(target, mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-	if(get_dist(user, target) > 10)
-		return
-	var/turf/target_turf = get_turf(target)
-	var/obj/effect/temp_visual/house/F = new(target_turf)
-	animate(F, pixel_z = 0, alpha = 255, time = 1 SECONDS)
-	playsound(user, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 50, FALSE, 8)
-	addtimer(CALLBACK(src, PROC_REF(HouseSlam), target_turf, user), 1 SECONDS)
-	return ..()
-
-/obj/effect/proc_holder/ability/aimed/house_spawn/proc/HouseSlam(turf/T, mob/user)
-	visible_message("<span class='warning'>A giant House falls down on the ground!</span>")
-	playsound(T, 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 75, FALSE, 10, falloff_exponent = 0.75) //LOUD
-	for(var/turf/open/TF in view(damage_range, T))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-	for(var/mob/living/L in view(damage_range, T))
-		if(user.faction_check_mob(L))
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				H.apply_status_effect(/datum/status_effect/home_buff)
-			continue
-		var/distance_decrease = get_dist(T, L) * 10
-		L.apply_damage((damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-		new /obj/effect/temp_visual/revenant(get_turf(L))
-
-/datum/status_effect/home_buff
-	id = "homebuff"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 10 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/home_buff
-
-/atom/movable/screen/alert/status_effect/home_buff
-	name = "A Road Walked Together"
-	desc = "The sight of a home so familiar encourages you to hang on!"
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "home"
-
-/datum/status_effect/home_buff/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.75
-	H.physiology.white_mod *= 0.75
-	H.physiology.black_mod *= 0.75
-	H.physiology.pale_mod *= 0.75
-
-/datum/status_effect/home_buff/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.75
-	H.physiology.white_mod /= 0.75
-	H.physiology.black_mod /= 0.75
-	H.physiology.pale_mod /= 0.75

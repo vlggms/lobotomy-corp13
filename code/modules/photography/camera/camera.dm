@@ -45,13 +45,13 @@
 /obj/item/camera/attack_self(mob/user)
 	if(!disk)
 		return
-	to_chat(user, span_notice("You eject [disk] out the back of [src]."))
+	to_chat(user, "<span class='notice'>You eject [disk] out the back of [src].</span>")
 	user.put_in_hands(disk)
 	disk = null
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to change its focusing, allowing you to set how big of an area it will capture.")
+	. += "<span class='notice'>Alt-click to change its focusing, allowing you to set how big of an area it will capture.</span>"
 
 /obj/item/camera/proc/adjust_zoom(mob/user)
 	var/desired_x = input(user, "How high do you want the camera to shoot, between [picture_size_x_min] and [picture_size_x_max]?", "Zoom", picture_size_x) as num|null
@@ -78,23 +78,23 @@
 /obj/item/camera/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
-			to_chat(user, span_notice("[src] still has some film in it!"))
+			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
 			return
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
-		to_chat(user, span_notice("You insert [I] into [src]."))
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
 		qdel(I)
 		pictures_left = pictures_max
 		return
 	if(istype(I, /obj/item/disk/holodisk))
 		if (!disk)
 			if(!user.transferItemToLoc(I, src))
-				to_chat(user, span_warning("[I] is stuck to your hand!"))
+				to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
 				return TRUE
-			to_chat(user, span_notice("You slide [I] into the back of [src]."))
+			to_chat(user, "<span class='notice'>You slide [I] into the back of [src].</span>")
 			disk = I
 		else
-			to_chat(user, span_warning("There's already a disk inside [src]."))
+			to_chat(user, "<span class='warning'>There's already a disk inside [src].</span>")
 		return TRUE //no afterattack
 	..()
 
@@ -132,18 +132,18 @@
 			disk.record.caller_name = M.name
 			disk.record.set_caller_image(M)
 		else
-			to_chat(user, span_warning("Invalid holodisk target."))
+			to_chat(user, "<span class='warning'>Invalid holodisk target.</span>")
 			return
 
 	if(!can_target(target, user, flag))
 		return
 
 	on = FALSE
-	addtimer(CALLBACK(src, PROC_REF(cooldown)), cooldown)
+	addtimer(CALLBACK(src, .proc/cooldown), cooldown)
 
 	icon_state = state_off
 
-	INVOKE_ASYNC(src, PROC_REF(captureimage), target, user, flag, picture_size_x - 1, picture_size_y - 1)
+	INVOKE_ASYNC(src, .proc/captureimage, target, user, flag, picture_size_x - 1, picture_size_y - 1)
 
 
 /obj/item/camera/proc/cooldown()
@@ -160,7 +160,7 @@
 /obj/item/camera/proc/captureimage(atom/target, mob/user, flag, size_x = 1, size_y = 1)
 	if(flash_enabled)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, PROC_REF(flash_end)), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
+		addtimer(CALLBACK(src, .proc/flash_end), FLASH_LIGHT_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 	blending = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!isturf(target_turf))
@@ -224,7 +224,7 @@
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(p)
 		pictures_left--
-		to_chat(user, span_notice("[pictures_left] photos left."))
+		to_chat(user, "<span class='notice'>[pictures_left] photos left.</span>")
 		var/customise = "No"
 		if(can_customise)
 			customise = alert(user, "Do you want to customize the photo?", "Customization", "Yes", "No")

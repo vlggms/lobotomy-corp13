@@ -4,18 +4,17 @@
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "express_booth0"
 	icon_living = "express_booth0"
-	portrait = "express_train"
 	faction = list("hostile")
 	speak_emote = list("drones")
 
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 35,
-		ABNORMALITY_WORK_INSIGHT = 35,
-		ABNORMALITY_WORK_ATTACHMENT = 35,
-		ABNORMALITY_WORK_REPRESSION = 35,
-	)
+						ABNORMALITY_WORK_INSTINCT = 35,
+						ABNORMALITY_WORK_INSIGHT = 35,
+						ABNORMALITY_WORK_ATTACHMENT = 35,
+						ABNORMALITY_WORK_REPRESSION = 35
+						)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	pixel_x = -16
@@ -24,8 +23,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/intentions,
 		/datum/ego_datum/armor/intentions,
-		/datum/ego_datum/weapon/laststop,
-	)
+		/datum/ego_datum/weapon/laststop
+		)
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	var/meltdown_tick = 60 SECONDS
@@ -138,8 +137,8 @@
 			else if(i % 2)
 				persX -= xIncrement/4
 		segments += seg
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
-	addtimer(CALLBACK(src, PROC_REF(moveTrain)), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
+	addtimer(CALLBACK(src, .proc/moveTrain), 10 SECONDS)
 	/*
 	The logic is pretty simple in what it's SUPPOSED to produce.
 	Every train segment is comprised of 2 effects; the spawn positions of these effects are four tiles offset from one another. This number cannot change.
@@ -150,7 +149,7 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/moveTrain()
 	// I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS
 	if(LAZYLEN(src.segments))
-		addtimer(CALLBACK(src, PROC_REF(moveTrain)), 0.5)
+		addtimer(CALLBACK(src, .proc/moveTrain), 0.5)
 		for(var/obj/effect/expresstrain/seg in segments)
 			if((seg.x < 10 && seg.dir == WEST) || (seg.x > 245 && seg.dir == EAST))
 				QDEL_IN(seg, 1)

@@ -4,12 +4,12 @@
 	desc = "Appears to be a little girl standing next to a looming shadow. Your instincts tell you to avoid her at all costs."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "reaper"
-	portrait = "missed_reaper"
 	maxHealth = 400
 	health = 400
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	melee_damage_type = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	attack_verb_continuous = "pierces"
 	attack_verb_simple = "pierce"
 	faction = list("hostile")
@@ -20,14 +20,14 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0),
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0)
 	)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grasp,
-		/datum/ego_datum/armor/grasp,
+		/datum/ego_datum/armor/grasp
 	)
 	gift_type = /datum/ego_gifts/grasp
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -61,7 +61,6 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/missed_reaper/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -69,21 +68,13 @@
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
-		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
-		return
 	user.attack_animal(src)
 	sleep(0.2 SECONDS)
-	if(QDELETED(user))
-		return
 	user.attack_animal(src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
-		return
-	to_chat(user, span_userdanger("[src] stabs you!"))
+	to_chat(user, "<span class='userdanger'>[src] stabs you!</span>")
 	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 	return
@@ -123,7 +114,7 @@
 		playsound(get_turf(Y), 'sound/abnormalities/missed_reaper/shadowcast.ogg', 50, FALSE, -1)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(Y in marked)
-		to_chat(Y, span_userdanger("A shadow appears beneath your feet!"))
+		to_chat(Y, "<span class='userdanger'>A shadow appears beneath your feet!</span>")
 		new /obj/effect/malicious_shadow(get_turf(Y))
 
 // Decorations
@@ -172,7 +163,7 @@
 
 /obj/effect/malicious_shadow/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
 
 /obj/effect/malicious_shadow/proc/explode() //repurposed code from artillary bees, a delayed attack
 	playsound(get_turf(src), 'sound/abnormalities/missed_reaper/shadowhit.ogg', 50, 0, 8)

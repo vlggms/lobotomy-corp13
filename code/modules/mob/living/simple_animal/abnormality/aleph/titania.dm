@@ -5,7 +5,6 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "titania"
 	icon_living = "titania"
-	portrait = "titania"
 	maxHealth = 3500
 	health = 3500
 	is_flying_animal = TRUE
@@ -14,8 +13,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 35),
-		ABNORMALITY_WORK_REPRESSION = 0,
-	)
+		ABNORMALITY_WORK_REPRESSION = 0
+			)
 	start_qliphoth = 3
 	move_to_delay = 4
 
@@ -25,14 +24,15 @@
 
 	melee_damage_lower = 92
 	melee_damage_upper = 99		//Will never one shot you.
+	armortype = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soulmate,
-		/datum/ego_datum/armor/soulmate,
-	)
+		/datum/ego_datum/armor/soulmate
+		)
 	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -52,28 +52,9 @@
 	var/law_damage = 30		//Take damage, idiot
 	var/law_timer = 60 SECONDS
 	var/law_startup = 3 SECONDS
-	//Oberon stuff
-	var/fused = FALSE
-
-/mob/living/simple_animal/hostile/abnormality/titania/Life()
-	. = ..()
-	if(fused) // So you can't just spoon her to death while in nobody is.
-		adjustBruteLoss(-(maxHealth))
-
-/mob/living/simple_animal/hostile/abnormality/titania/Move()
-	if(fused)
-		return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/titania/CanAttack(atom/the_target)
-	if(fused)
-		return FALSE
-	return ..()
 
 //Attacking code
 /mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
-	if(fused)
-		return FALSE
 	var/mob/living/carbon/human/H = target
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))
@@ -81,27 +62,29 @@
 		H.gib()
 		for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
 			var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
-			V.faction = faction
 			spawned_mobs+=V
 		return
 
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
+		armortype = PALE_DAMAGE
 		melee_damage_type = PALE_DAMAGE
 		melee_damage_lower = 61
 		melee_damage_upper = 72
 	else if(nemesis)		//If there's still a nemesis, you need to reset the damage
+		armortype = initial(armortype)
 		melee_damage_type = initial(melee_damage_type)
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper)
+
 	. = ..()
 
 	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
-		SpeedChange(-1)
+		move_to_delay = 3
 		melee_damage_lower = 110
 		melee_damage_upper = 140
 		adjustBruteLoss(-maxHealth) // Round 2, baby
 
-		to_chat(src, span_userdanger("[nemesis], my beloved devil, I finally get my revenge."))
+		to_chat(src, "<span class='userdanger'>[nemesis], my beloved devil, I finally get my revenge.</span>")
 		nemesis = null
 		if(!client)
 			say("Oberon. The abhorrent taker of my child. You are slain.")
@@ -109,7 +92,7 @@
 
 //Spawning Fairies
 /mob/living/simple_animal/hostile/abnormality/titania/proc/FairyLoop()
-	if(IsCombatMap())
+	if(CheckCombat())
 		return
 	//Blurb about how many we have spawned
 	listclearnulls(spawned_mobs)
@@ -123,13 +106,12 @@
 	//Actually spawning them
 	for(var/i=fairy_spawn_number, i>=1, i--)	//This counts down.
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
-		V.faction = faction
 		spawned_mobs+=V
-	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), fairy_spawn_time)
+	addtimer(CALLBACK(src, .proc/FairyLoop), fairy_spawn_time)
 
 //Setting the nemesis
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ChooseNemesis()
-	if(IsCombatMap())
+	if(CheckCombat())
 		return
 
 	var/list/potentialmarked = list()
@@ -154,13 +136,13 @@
 //------------------------------------------------------------------------------
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/SetLaw()
-	if(IsCombatMap())
+	if(CheckCombat())
 		return
 
 
 	var/lawmessage
 
-	if(!nemesis || nemesis.stat == DEAD || fused)
+	if(!nemesis || nemesis.stat == DEAD)
 		laws -= "nemesis"
 	nextlaw = pick(laws.Copy() - currentlaw)
 
@@ -179,25 +161,25 @@
 			lawmessage = "Mine fairies will come to my aid if you strike me with ranged attacks."
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		to_chat(H, span_colossus("[lawmessage]"))
-	addtimer(CALLBACK(src, PROC_REF(ActivateLaw)), law_startup)	//Start Law 3 Seconds
+		to_chat(H,"<span class='colossus'>[lawmessage]</span>")
+	addtimer(CALLBACK(src, .proc/ActivateLaw), law_startup)	//Start Law 3 Seconds
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ActivateLaw()
-	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
 	currentlaw = nextlaw
-	to_chat(GLOB.clients, span_danger("The new law is now in effect."))
+	to_chat(GLOB.clients,"<span class='danger'>The new law is now in effect.</span>")
 
 	if(currentlaw == "fairies")
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1))
+			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1)
 	else
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
+			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)
-	to_chat(sinner, span_userdanger("You are hurt due to breaking Fairy Law."))
+	to_chat(sinner,"<span class='userdanger'>You are hurt due to breaking Fairy Law.</span>")
 	sinner.apply_damage(law_damage, PALE_DAMAGE, null, sinner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(sinner), pick(GLOB.alldirs))
 
@@ -221,7 +203,6 @@
 
 	if(currentlaw == "ranged fairy")
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
-		V.faction = faction
 		spawned_mobs+=V
 
 //Melee stuff
@@ -243,13 +224,13 @@
 
 
 //Breach, work, 'n' stuff
-/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user)
+	..()
 	ChooseNemesis()
-	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), 10 SECONDS)	//10 seconds from now you start spawning fairies
-	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
+	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
 	if(nemesis)
-		to_chat(src, span_userdanger("[nemesis], you are to die!"))
+		to_chat(src, "<span class='userdanger'>[nemesis], you are to die!</span>")
 	if(!client && nemesis)
 		say("[nemesis], you are a monster and I will slay you.")
 
@@ -260,7 +241,6 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/titania/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 
@@ -279,6 +259,7 @@
 	maxHealth = 80
 	melee_damage_lower = 12
 	melee_damage_upper = 15
+	armortype = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE

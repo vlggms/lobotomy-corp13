@@ -5,7 +5,6 @@
 	icon_state = "beauty"
 	icon_living = "beauty"
 	icon_dead = "beauty_dead"
-	portrait = "beauty_beast"
 
 	pixel_x = -8
 	base_pixel_x = -8
@@ -18,22 +17,21 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 20, -20, -20, -20),
 		ABNORMALITY_WORK_INSIGHT = list(50, 50, 40, 30, 30),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, -50, -50, -50),
-		ABNORMALITY_WORK_REPRESSION = 65,
-	)
+		ABNORMALITY_WORK_REPRESSION = 65
+		)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/horn,
-		/datum/ego_datum/armor/horn,
-	)
+		/datum/ego_datum/armor/horn
+		)
 	gift_type =  /datum/ego_gifts/horn
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/injured = FALSE
 
 //it needs to use PostSpawn or we can't get the datum of beauty
 /mob/living/simple_animal/hostile/abnormality/beauty/PostSpawn()
-	. = ..()
 	var/cursed = RememberVar(1)
 	if(!cursed)
 		return
@@ -41,8 +39,8 @@
 		if(O.ckey == cursed)
 			O.mind.transfer_to(src)
 			src.ckey = cursed
-			to_chat(src, span_userdanger("You begin to have hundreds of eyes burst from your mouth, while a pair of horns expel from your eye sockets, adorning themselves with flowers. Now the Beast, you forever search for someone to lift your curse."))
-			to_chat(src, span_notice("(If you wish to leave this body you can simply ghost with the ooc tab > ghost, there is no consequence for doing so.)"))
+			to_chat(src, "<span class='userdanger'>You begin to have hundreds of eyes burst from your mouth, while a pair of horns expel from your eye sockets, adorning themselves with flowers. Now the Beast, you forever search for someone to lift your curse.</span>")
+			to_chat(src, "<span class='notice'>(If you wish to leave this body you can simply ghost with the ooc tab > ghost, there is no consequence for doing so.)</span>")
 			TransferVar(1, null) //we reset the cursed just in case
 			return
 

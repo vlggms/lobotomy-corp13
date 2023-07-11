@@ -3,6 +3,7 @@
 	icon_state = "pulse0"
 	damage = 35 // Direct hit
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -15,26 +16,31 @@
 	name = "beak"
 	damage = 4
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
 	damage = 10
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
 	damage = 40	//Slow as balls
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_beakmagnum
 	name = "beak"
 	damage = 30	//entirely accurate. should have 32 DPS, it suffers.
 	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
 	name = "today's expression"
 	damage = 4 //Can dual wield, full auto
 	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"
@@ -42,13 +48,13 @@
 	damage = 6
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
-
+	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_page
 	name = "page"
 	damage = 20
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 
 //Snapshot, hitscan laser
 /obj/projectile/beam/snapshot
@@ -57,7 +63,7 @@
 	hitsound = null
 	damage = 18
 	damage_type = WHITE_DAMAGE
-
+	flag = WHITE_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
 	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
@@ -82,7 +88,7 @@
 	icon_state = "wishing_rock"
 	damage = 5
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_wishing/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -95,14 +101,14 @@
 	icon_state = "wishing_kunai"
 	damage = 10
 	damage_type = BLACK_DAMAGE
-
+	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_aspiration
 	name = "aspiration"
 	icon_state = "lava"
 	damage = 25
 	damage_type = RED_DAMAGE
-
+	flag = RED_DAMAGE
 	hitscan = TRUE
 	tracer_type = /obj/effect/projectile/tracer/laser/aspiration
 
@@ -112,18 +118,16 @@
 
 /obj/projectile/ego_bullet/ego_aspiration/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(!isliving(target))
-		return
-	var/mob/living/T = target
+	var/mob/living/carbon/human/H = target
 	var/mob/living/user = firer
-	if(firer == target)
+	if(firer==target)
 		return BULLET_ACT_BLOCK
-	if(user.faction_check_mob(T)) // Our faction
-		T.adjustBruteLoss(-10)
+	if(user.faction_check_mob(H)) // Our faction
+		H.adjustBruteLoss(-10)
 		return BULLET_ACT_BLOCK
 
 /obj/projectile/ego_bullet/ego_patriot
 	name = "patriot"
 	damage = 15
 	damage_type = RED_DAMAGE
-
+	flag = RED_DAMAGE

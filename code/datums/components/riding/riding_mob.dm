@@ -33,9 +33,9 @@
 
 /datum/component/riding/creature/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOB_EMOTE, PROC_REF(check_emote))
+	RegisterSignal(parent, COMSIG_MOB_EMOTE, .proc/check_emote)
 	if(can_be_driven)
-		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move)) // this isn't needed on riding humans or cyborgs since the rider can't control them
+		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, .proc/driver_move) // this isn't needed on riding humans or cyborgs since the rider can't control them
 
 /// Creatures need to be logged when being mounted
 /datum/component/riding/creature/proc/log_riding(mob/living/living_parent, mob/living/rider)
@@ -62,8 +62,8 @@
 	if(!kick_us_off)
 		return TRUE
 
-	rider.visible_message(span_warning("[rider] falls off of [living_parent]!"), \
-					span_warning("You fall off of [living_parent]!"))
+	rider.visible_message("<span class='warning'>[rider] falls off of [living_parent]!</span>", \
+					"<span class='warning'>You fall off of [living_parent]!</span>")
 	rider.Paralyze(1 SECONDS)
 	rider.Knockdown(4 SECONDS)
 	living_parent.unbuckle_mob(rider)
@@ -81,7 +81,7 @@
 	if(!keycheck(user))
 		if(ispath(keytype, /obj/item))
 			var/obj/item/key = keytype
-			to_chat(user, span_warning("You need a [initial(key.name)] to ride [movable_parent]!"))
+			to_chat(user, "<span class='warning'>You need a [initial(key.name)] to ride [movable_parent]!</span>")
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	var/mob/living/living_parent = parent
 	var/turf/next = get_step(living_parent, direction)
@@ -102,12 +102,12 @@
 	rider.Move(targetm)
 	rider.Knockdown(3 SECONDS)
 	if(gentle)
-		rider.visible_message(span_warning("[rider] is thrown clear of [movable_parent]!"), \
-		span_warning("You're thrown clear of [movable_parent]!"))
+		rider.visible_message("<span class='warning'>[rider] is thrown clear of [movable_parent]!</span>", \
+		"<span class='warning'>You're thrown clear of [movable_parent]!</span>")
 		rider.throw_at(target, 8, 3, movable_parent, gentle = TRUE)
 	else
-		rider.visible_message(span_warning("[rider] is thrown violently from [movable_parent]!"), \
-		span_warning("You're thrown violently from [movable_parent]!"))
+		rider.visible_message("<span class='warning'>[rider] is thrown violently from [movable_parent]!</span>", \
+		"<span class='warning'>You're thrown violently from [movable_parent]!</span>")
 		rider.throw_at(target, 14, 5, movable_parent, gentle = FALSE)
 
 /// If we're a cyborg or animal and we spin, we yeet whoever's on us off us
@@ -157,8 +157,8 @@
 
 /datum/component/riding/creature/human/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(on_host_unarmed_melee))
-	RegisterSignal(parent, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(check_carrier_fall_over))
+	RegisterSignal(parent, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
+	RegisterSignal(parent, COMSIG_LIVING_SET_BODY_POSITION, .proc/check_carrier_fall_over)
 
 /datum/component/riding/creature/human/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))
@@ -195,9 +195,9 @@
 		human_parent.unbuckle_mob(rider)
 		rider.Paralyze(1 SECONDS)
 		rider.Knockdown(4 SECONDS)
-		human_parent.visible_message(span_danger("[rider] topples off of [human_parent] as they both fall to the ground!"), \
-					span_warning("You fall to the ground, bringing [rider] with you!"), span_hear("You hear two consecutive thuds."), COMBAT_MESSAGE_RANGE, ignored_mobs=rider)
-		to_chat(rider, span_danger("[human_parent] falls to the ground, bringing you with [human_parent.p_them()]!"))
+		human_parent.visible_message("<span class='danger'>[rider] topples off of [human_parent] as they both fall to the ground!</span>", \
+					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>", COMBAT_MESSAGE_RANGE, ignored_mobs=rider)
+		to_chat(rider, "<span class='danger'>[human_parent] falls to the ground, bringing you with [human_parent.p_them()]!</span>")
 
 /datum/component/riding/creature/human/handle_vehicle_layer(dir)
 	var/atom/movable/AM = parent
@@ -231,8 +231,8 @@
 	AM.unbuckle_mob(dismounted_rider)
 	dismounted_rider.Paralyze(1 SECONDS)
 	dismounted_rider.Knockdown(4 SECONDS)
-	dismounted_rider.visible_message(span_warning("[AM] pushes [dismounted_rider] off of [AM.p_them()]!"), \
-						span_warning("[AM] pushes you off of [AM.p_them()]!"))
+	dismounted_rider.visible_message("<span class='warning'>[AM] pushes [dismounted_rider] off of [AM.p_them()]!</span>", \
+						"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
 
 
 //Now onto cyborg riding//
@@ -246,7 +246,7 @@
 	var/mob/living/carbon/carbonuser = user
 	if(!carbonuser.usable_hands)
 		Unbuckle(user)
-		to_chat(user, span_warning("You can't grab onto [robot_parent] with no hands!"))
+		to_chat(user, "<span class='warning'>You can't grab onto [robot_parent] with no hands!</span>")
 
 /datum/component/riding/creature/cyborg/handle_vehicle_layer(dir)
 	var/atom/movable/robot_parent = parent

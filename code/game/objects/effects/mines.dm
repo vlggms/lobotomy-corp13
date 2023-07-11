@@ -17,7 +17,7 @@
 	if(arm_delay)
 		armed = FALSE
 		icon_state = "uglymine-inactive"
-		addtimer(CALLBACK(src, PROC_REF(now_armed)), arm_delay)
+		addtimer(CALLBACK(src, .proc/now_armed), arm_delay)
 
 /obj/effect/mine/examine(mob/user)
 	. = ..()
@@ -26,7 +26,7 @@
 
 /// The effect of the mine
 /obj/effect/mine/proc/mineEffect(mob/victim)
-	to_chat(victim, span_danger("*click*"))
+	to_chat(victim, "<span class='danger'>*click*</span>")
 
 /// If the landmine was previously inactive, this beeps and displays a message marking it active
 /obj/effect/mine/proc/now_armed()
@@ -62,7 +62,7 @@
 
 	triggermine(AM)
 
-/obj/effect/mine/take_damage(damage_amount, damage_type, sound_effect, attack_dir)
+/obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
 	//Stops us for exploding more then once
 	if(safety_check())
 		return
@@ -87,9 +87,9 @@
 	if(triggered) //too busy detonating to detonate again
 		return
 	if(triggerer)
-		visible_message(span_danger("[triggerer] sets off [icon2html(src, viewers(src))] [src]!"))
+		visible_message("<span class='danger'>[triggerer] sets off [icon2html(src, viewers(src))] [src]!</span>")
 	else
-		visible_message(span_danger("[icon2html(src, viewers(src))] [src] detonates!"))
+		visible_message("<span class='danger'>[icon2html(src, viewers(src))] [src] detonates!</span>")
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
@@ -123,7 +123,7 @@
 
 /obj/effect/mine/kickmine/mineEffect(mob/victim)
 	if(isliving(victim) && victim.client)
-		to_chat(victim, span_userdanger("You have been kicked FOR NO REISIN!"))
+		to_chat(victim, "<span class='userdanger'>You have been kicked FOR NO REISIN!</span>")
 		qdel(victim.client)
 
 
@@ -217,16 +217,16 @@
 		user_human.throw_mode_on()
 
 	playsound(src, 'sound/weapons/armbomb.ogg', 70, TRUE)
-	to_chat(user, span_warning("You arm \the [src], causing it to shake! It will deploy in 3 seconds."))
+	to_chat(user, "<span class='warning'>You arm \the [src], causing it to shake! It will deploy in 3 seconds.</span>")
 	active = TRUE
-	addtimer(CALLBACK(src, PROC_REF(deploy_mine)), 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/deploy_mine), 3 SECONDS)
 
 /// Deploys the mine and deletes itself
 /obj/item/minespawner/proc/deploy_mine()
 	do_alert_animation()
 	playsound(loc, 'sound/machines/chime.ogg', 30, FALSE, -3)
 	var/obj/effect/mine/new_mine = new mine_type(get_turf(src))
-	visible_message(span_danger("\The [src] releases a puff of smoke, revealing \a [new_mine]!"))
+	visible_message("<span class='danger'>\The [src] releases a puff of smoke, revealing \a [new_mine]!</span>")
 	var/obj/effect/particle_effect/smoke/poof = new (get_turf(src))
 	poof.lifetime = 3
 	qdel(src)

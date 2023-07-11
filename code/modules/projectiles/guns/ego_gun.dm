@@ -12,8 +12,7 @@
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list()
 	var/special
-	///In deciseconds per round
-	var/autofire
+	var/autofire	//In Rounds per second
 
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
@@ -43,7 +42,7 @@
 
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
-		var/rpm = 600 / autofire
+		var/rpm = (1/autofire*10)*60
 		rpm = round(rpm,5)
 		. += "<span class='notice'>This weapon is automatic.</span>"
 		. += "<span class='notice'>This weapon fires at [rpm] rounds per minute.</span>"
@@ -63,9 +62,8 @@
 
 /obj/item/gun/ego_gun/proc/EgoAttackInfo(mob/user)
 	if(chambered && chambered.BB)
-		if(projectile_damage_multiplier != 1)
-			return "<span class='notice'>Its bullets deal [round((chambered.BB.damage * projectile_damage_multiplier), 0.1)] [chambered.BB.damage_type] damage. (+ [(projectile_damage_multiplier - 1) * 100]%)</span>"
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] [chambered.BB.damage_type] damage.</span>"
+	return
 
 /obj/item/gun/ego_gun/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(!CanUseEgo(user))

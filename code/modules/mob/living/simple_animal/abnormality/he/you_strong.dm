@@ -4,7 +4,6 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
-	portrait = "grown_strong"
 	maxHealth = 200
 	health = 200
 	threat_level = HE_LEVEL
@@ -15,14 +14,14 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"YES" = 0,
-		"NO" = 0,
+		"NO" = 0
 	)
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
-		/datum/ego_datum/weapon/get_strong,
-		/datum/ego_datum/armor/get_strong,
-	)
+			/datum/ego_datum/weapon/get_strong,
+			/datum/ego_datum/armor/get_strong
+		)
 	gift_type = /datum/ego_gifts/get_strong
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -42,14 +41,14 @@
 		/obj/item/bodypart/r_leg,
 		/obj/item/bodypart/l_arm,
 		/obj/item/bodypart/r_arm,
-		/obj/item/bodypart/head,
-	)
+		/obj/item/bodypart/head
+		)
 	var/rejected_parts = list(
 		/obj/item/bodypart/l_leg/robot,
 		/obj/item/bodypart/r_leg/robot,
 		/obj/item/bodypart/l_arm/robot,
 		/obj/item/bodypart/r_arm/robot,
-	)
+		)
 	var/datum/looping_sound/server/soundloop
 
 	var/operating = FALSE
@@ -66,7 +65,6 @@
 		src.datum_reference.qliphoth_change(-1) // No. Don't.
 	work_count++
 	icon_state = "you_strong_pause"
-	penalize = FALSE
 	if(work_count < 3)
 		return
 	work_count = 0
@@ -78,13 +76,13 @@
 	if(src.datum_reference.qliphoth_meter == 0)
 		return FALSE
 	if(operating)
-		to_chat(user, span_notice("Please wait for current operations to cease."))
+		to_chat(user, "<span class='notice'>Please wait for current operations to cease.</span>")
 		return FALSE
 	if(!(work_type in list("YES", "NO")) && !question && ..())
 		icon_state = "you_strong_work"
 		return TRUE
 	if((work_type in list("YES", "NO")) && !question)
-		to_chat(user, span_notice("You have not been prompted."))
+		to_chat(user, "<span class='notice'>You have not been prompted.</span>")
 		return FALSE
 	if((work_type in list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION) && question))
 		say("Do you love the City you live in?")
@@ -103,6 +101,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if(penalize)
+		penalize = FALSE
 		return chance /= 2
 	return ..()
 
@@ -127,18 +126,18 @@
 	if(!(I.type in taken_parts))
 		return ..()
 	if(I.type in rejected_parts)
-		to_chat(user, span_notice("[src] rejects [I]."))
+		to_chat(user, "<span class='notice'>[src] rejects [I].</span>")
 		return
 	if(src.datum_reference.qliphoth_meter == 0 || src.datum_reference.working || operating)
-		to_chat(user, span_notice("Please wait for current operations to cease."))
+		to_chat(user, "<span class='notice'>Please wait for current operations to cease.</span>")
 		return
-	visible_message(span_notice("[user.first_name()] starts feeding [I] into [src]."))
+	visible_message("<span class='notice'>[user.first_name()] starts feeding [I] into [src].</span>")
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	soundloop.start()
 	icon_state = "you_strong_work"
 	operating = TRUE
 	if(!do_after(user, 2 SECONDS, src))
-		to_chat(user, span_notice("But you changed your mind..."))
+		to_chat(user, "<span class='notice'>But you changed your mind...</span>")
 		soundloop.stop()
 		icon_state = "you_strong_pause"
 		operating = FALSE
@@ -147,7 +146,7 @@
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	qdel(I)
 	src.datum_reference.stored_boxes += 2
-	visible_message(span_nicegreen("[src] produced 2 PE!"))
+	visible_message("<span class='nicegreen'>[src] produced 2 PE!</span>")
 	manual_emote("begins to emit a whirling noise before quieting down.")
 	icon_state = "you_strong_pause"
 	operating = FALSE
@@ -158,19 +157,19 @@
 	if(!(selected_part in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG)))
 		return ..()
 	if(src.datum_reference.working || src.datum_reference.qliphoth_meter == 0 || operating)
-		to_chat(M, span_notice("Please wait for current operations to cease."))
+		to_chat(M, "<span class='notice'>Please wait for current operations to cease.</span>")
 		return
 	var/obj/item/bodypart/old_part = M.get_bodypart(selected_part)
 	if(old_part.type in list(/obj/item/bodypart/r_leg/grown_strong, /obj/item/bodypart/l_leg/grown_strong, /obj/item/bodypart/r_arm/grown_strong, /obj/item/bodypart/l_arm/grown_strong))
-		to_chat(M, span_notice("Only original parts are accepted."))
+		to_chat(M, "<span class='notice'>Only original parts are accepted.</span>")
 		return
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	soundloop.start()
-	visible_message(span_notice("[M.first_name()] plunges their [old_part.name] into [src]..."))
+	visible_message("<span class='notice'>[M.first_name()] plunges their [old_part.name] into [src]...</span>")
 	icon_state = "you_strong_work"
 	operating = TRUE
 	if(!do_after(M, 5 SECONDS, src))
-		visible_message(span_notice("[M.first_name()] pulls out their [old_part.name] before [src] engages!"))
+		visible_message("<span class='notice'>[M.first_name()] pulls out their [old_part.name] before [src] engages!</span>")
 		soundloop.stop()
 		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 		icon_state = "you_strong_pause"
@@ -197,7 +196,7 @@
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
 	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
-	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
+	to_chat(M, "<span class='notice'>Your [old_part.name] has been replaced!</span>")
 	qdel(old_part)
 	M.regenerate_icons()
 	src.datum_reference.qliphoth_change(-1)
@@ -215,12 +214,13 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	maxHealth = 500
 	health = 500
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 
 	move_to_delay = 5
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 
 	attack_sound = "swing_hit"
 	attack_verb_continuous = "bashes"
@@ -235,29 +235,28 @@
 	var/gear = 2
 	COOLDOWN_DECLARE(gear_shift)
 	var/gear_cooldown = 1 MINUTES
-	//tracks speed change even if altered by other speed modifiers.
-	var/gear_speed = 0
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
-	return ..()
+	. = ..()
+	return
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
-	return ..()
+	. = ..()
+	return
+
+/mob/living/simple_animal/hostile/grown_strong/Initialize()
+	. = ..()
+	//icon_state = pick("1", "2", "3")
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
-	//Reset the speed. First proc changes this only with 0.
-	SpeedChange(gear_speed)
-	//Calculate speed change.
-	gear_speed = FLOOR(gear / 3, 1)
-	//CRANK UP THE SPEED.
-	SpeedChange(-gear_speed)
+	move_to_delay = 5 - FLOOR(gear / 3, 1)
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()
@@ -266,14 +265,14 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(150, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
 	if(maxHealth > 200)
-		INVOKE_ASYNC(src, PROC_REF(Undie))
+		INVOKE_ASYNC(src, .proc/Undie)
 		return FALSE
-	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
+	visible_message("<span class='notice'>[src] explodes into a mess of plastic and gore!</span>")
 	. = ..()
 	gib(TRUE, TRUE, TRUE)
 	return
@@ -307,14 +306,8 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE,
-	)
-	buff_type = pick(
-		FORTITUDE_ATTRIBUTE,
-		PRUDENCE_ATTRIBUTE,
-		TEMPERANCE_ATTRIBUTE,
-		JUSTICE_ATTRIBUTE,
-	)
+		COLOR_ASSEMBLY_PURPLE)
+	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/r_leg/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -357,14 +350,8 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE,
-	)
-	buff_type = pick(
-		FORTITUDE_ATTRIBUTE,
-		PRUDENCE_ATTRIBUTE,
-		TEMPERANCE_ATTRIBUTE,
-		JUSTICE_ATTRIBUTE,
-	)
+		COLOR_ASSEMBLY_PURPLE)
+	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/l_leg/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -407,14 +394,8 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE,
-	)
-	buff_type = pick(
-		FORTITUDE_ATTRIBUTE,
-		PRUDENCE_ATTRIBUTE,
-		TEMPERANCE_ATTRIBUTE,
-		JUSTICE_ATTRIBUTE,
-	)
+		COLOR_ASSEMBLY_PURPLE)
+	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/r_arm/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -462,14 +443,8 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE,
-	)
-	buff_type = pick(
-		FORTITUDE_ATTRIBUTE,
-		PRUDENCE_ATTRIBUTE,
-		TEMPERANCE_ATTRIBUTE,
-		JUSTICE_ATTRIBUTE,
-	)
+		COLOR_ASSEMBLY_PURPLE)
+	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 /obj/item/bodypart/l_arm/grown_strong/drop_limb(special)
 	if(!ishuman(owner))

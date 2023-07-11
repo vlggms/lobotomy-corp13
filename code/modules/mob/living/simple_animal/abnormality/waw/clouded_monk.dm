@@ -7,7 +7,6 @@
 	icon_living = "cloudedmonk"
 	var/icon_aggro = "pretamonk"
 	icon_dead = "pretamonk"
-	portrait = "clouded_monk"
 	maxHealth = 2500
 	health = 2500
 	rapid_melee = 2
@@ -15,64 +14,49 @@
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 30
 	melee_damage_upper = 45
-	obj_damage = 22 //otherwise his charge just destroys everything
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
+	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/abnormalities/clouded_monk/monk_attack.ogg'
-	attack_vis_effect = ATTACK_EFFECT_CLAW
-	attack_verb_continuous = "swipes"
-	attack_verb_simple = "swipe"
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bash"
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 0,
-		ABNORMALITY_WORK_INSIGHT = list(20, 20, 55, 55, 55),
-		ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
-		ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40),
-	)
+						ABNORMALITY_WORK_INSTINCT = 0,
+						ABNORMALITY_WORK_INSIGHT = list(20, 20, 55, 55, 55),
+						ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
+						ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40)
+						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/amrita,
-		/datum/ego_datum/armor/amrita,
-	)
+		/datum/ego_datum/armor/amrita
+		)
 	gift_type =  /datum/ego_gifts/amrita
-	gift_message = "But if you were to consume them, perhaps, you would display more sarira than Buddha himself..."
+	gift_message = "Anyone can become a Buddha by washing away the anguish and delusion in their heart."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/datum/looping_sound/cloudedmonk_ambience/soundloop
 	var/charging = FALSE
-	var/revving_charge = FALSE
 	var/charge_ready = FALSE
-	var/monk_charge_cooldown = 0
-	var/monk_charge_cooldown_time = 6 SECONDS
+	var/dash_num = 25
+	var/dash_cooldown = 0
+	var/dash_cooldown_time = 6 SECONDS
+	var/list/been_hit = list() // Don't get hit twice.
 	var/deathcount
 	var/heal_amount = 250
-	var/charge_damage = 350
 	var/eaten = FALSE
 	var/damage_taken
-
-	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/toggle/monk_charge
-	)
-
-/datum/action/innate/abnormality_attack/toggle/monk_charge
-	name = "Toggle Triple Charge"
-	button_icon_state = "kog_charge" //placeholder, also recode toggle actions to not need this var
-	chosen_attack_num = 0
-	chosen_message = span_colossus("You won't charge anymore.")
-	button_icon_toggle_activated = "kog_charge1"
-	toggle_attack_num = 1 //Activate() and Deactivate() need to be flipped for this naming to make sense
-	toggle_message = span_colossus("You will now triple charge at the target you click on if damaged enough.")
-	button_icon_toggle_deactivated = "kog_charge"
 
 //init
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Hell
 	soundloop = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Destroy()
@@ -99,162 +83,139 @@
 /* Eventually there needs to be code here that causes it to breach when Yin gets too close. Yin is not implemented at this time. */
 //work code
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(30))
+	if(prob(25))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		user.adjustSanityLoss(-30) // It's healing
-		to_chat(user, span_nicegreen("[src] guides you through a session of meditation."))
+		to_chat(user, "<span class='nicegreen'>[src] restores your SP with calming words.</span>")
 	return
-
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
-	soundloop.start()
-	playsound(src, 'sound/abnormalities/clouded_monk/howl.ogg', 50, 1)
-	playsound(src, 'sound/abnormalities/clouded_monk/transform.ogg', 50, 1)
-	icon_state = icon_aggro
-	desc = "A monk that has forgotten he has become a demon. It resembles a preta from legends."
-	GiveTarget(user)
 
 //breach code
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(revving_charge || charging) //ignore damage taken while charging, we reset it after a triple charge
-		return
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= 200 && !charge_ready)
 		charge_ready = TRUE
+		damage_taken = 0
 
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/Goto(target, delay, minimum_distance)
-	if(revving_charge || charging)
-		return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/MoveToTarget(list/possible_targets)
-	if(revving_charge || charging)
-		return FALSE
-	return ..()
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/BreachEffect(mob/living/carbon/human/user)
+	..()
+	soundloop.start()
+	playsound(src, 'sound/abnormalities/clouded_monk/howl.ogg', 50, 1)
+	playsound(src, 'sound/abnormalities/clouded_monk/transform.ogg', 50, 1)
+	icon_state = icon_aggro
+	desc = "A monk that turned into a demon. It resembles a preta from legends..."
+	GiveTarget(user)
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Move()
-	if(revving_charge)
-		return FALSE
 	if(charging)
-		new /obj/effect/temp_visual/decoy/fading(loc,src)
-		DestroySurroundings() //to break tables ssin the way
+		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/AttackingTarget()
-	if(revving_charge || charging)
+	if(charging)
 		return
-	if(monk_charge_cooldown <= world.time && prob(33) && !client && charge_ready)
-		TripleCharge(target)
+	if(dash_cooldown <= world.time && prob(10) && !client && charge_ready)
+		PrepCharge(target)
 		return
 	. = ..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(H.health < 0)
+		H.gib()
+		playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
+		adjustBruteLoss(-heal_amount)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/OpenFire()
-	if(revving_charge || charging)
-		return
-	if(client && monk_charge_cooldown <= world.time && charge_ready)
+	if(client && charge_ready)
 		switch(chosen_attack)
 			if(1)
-				TripleCharge(target)
+				PrepCharge(target)
 		return
 
-	if(monk_charge_cooldown <= world.time && prob(33) && charge_ready)
-		TripleCharge(target)
+	if(dash_cooldown <= world.time && charge_ready)
+		var/chance_to_dash = 25
+		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		if(dir_to_target in list(NORTH, SOUTH, WEST, EAST))
+			chance_to_dash = 100
+		if(prob(chance_to_dash))
+			PrepCharge(target)
 
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/TripleCharge(atom/target_atom)
-	if(revving_charge || charging || monk_charge_cooldown > world.time)
+//dash code
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/PrepCharge(target)
+	if(charging || dash_cooldown > world.time)
 		return
-	for(var/i in 1 to 3)
-		Charge(chargeat = target_atom, delay = (2 SECONDS/(2*i))) //1 second, 0.5 second, 0.25 second delays
-	ResetCharge()
-
-//charge code
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/Charge(atom/chargeat = target, delay = 1 SECONDS, chargepast = 3)
-	if(stat == DEAD)
-		return
-	if(monk_charge_cooldown > world.time || charging || revving_charge)
-		return
-	if(!chargeat)
-		return
-	face_atom(chargeat)
-	var/turf/T = get_ranged_target_turf(chargeat, dir, chargepast)
-	if(!T)
-		return
-	var/turf/chargeturf = get_turf(chargeat)
-	if(chargeturf) //for some reason this can end up being null
-		new /obj/effect/temp_visual/cult/sparks(chargeturf) //in case the big effect is behind a wall
-	new /obj/effect/temp_visual/dragon_swoop/bubblegum(T)
 	icon_state = "pretarage"
-	revving_charge = TRUE
+	dash_cooldown = world.time + dash_cooldown_time
+	charging = TRUE
+	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	been_hit = list()
+	dash_num = (get_dist(src, target) + 3)
+	addtimer(CALLBACK(src, .proc/Charge, dir_to_target, 0), 2 SECONDS)
 	charge_ready = FALSE
-	walk(src, 0)
 	if(!eaten) //different sfx before and after eating someone
 		playsound(src, 'sound/abnormalities/clouded_monk/monk_cast.ogg', 100, 1)
-	else
-		playsound(src, 'sound/abnormalities/clouded_monk/monk_groggy.ogg', 150, 1)
-	SLEEP_CHECK_DEATH(delay)
-	if(!revving_charge) //to end charges prematurely
 		return
-	charging = TRUE
-	revving_charge = FALSE
-	var/movespeed = 0.8
-	walk_towards(src, T, movespeed)
-	SLEEP_CHECK_DEATH(get_dist(src, T) * movespeed)
-	EndCharge()
+	playsound(src, 'sound/abnormalities/clouded_monk/eat_groggy.ogg', 100, 1)
 
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/EndCharge()
-	if(!charging)
+/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/Charge(move_dir, times_ran)
+	var/stop_charge = FALSE
+	if(times_ran >= dash_num)
+		stop_charge = TRUE
+	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		charging = FALSE
 		return
-	charging = FALSE
-	revving_charge = FALSE
-	walk(src, 0) // cancel the movement
-	icon_state = icon_aggro
-
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/ResetCharge()
-	monk_charge_cooldown = world.time + monk_charge_cooldown_time
-	charge_ready = FALSE //redundancy is good
-	damage_taken = 0
-
-/mob/living/simple_animal/hostile/abnormality/clouded_monk/Bump(atom/A)
-	if(charging)
-		if(isliving(A))
-			var/mob/living/L = A
-			if(!faction_check_mob(L))
-				visible_message(span_boldwarning("[src] bites [L]!"), span_boldwarning("You take a bite out of [L]!"), ignored_mobs = L)
-				to_chat(L, span_userdanger("[src] takes a bite out of you!"))
-				do_attack_animation(L, ATTACK_EFFECT_BITE)
-				playsound(src, 'sound/abnormalities/clouded_monk/monk_bite.ogg', 75, 1)
-				shake_camera(L, 4, 3)
-				shake_camera(src, 2, 3)
-				if(ishuman(L))
-					var/mob/living/carbon/human/H = A
-					H.apply_damage(charge_damage,RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-					if(H.health < 0)
-						H.gib()
-						adjustBruteLoss(-heal_amount)
-						if(!eaten)
-							playsound(src, 'sound/abnormalities/clouded_monk/eat.ogg', 75, 1)
-							eaten = TRUE
-						else
-							playsound(src, 'sound/abnormalities/clouded_monk/eat_groggy.ogg', 75, 1)
-				else
-					L.adjustRedLoss(charge_damage/10)
-				EndCharge()
-				ResetCharge()
-		else if(isvehicle(A))
-			var/obj/vehicle/V = A
-			V.take_damage(charge_damage/10, RED_DAMAGE)
-			for(var/mob/living/occupant in V.occupants)
-				to_chat(occupant, span_userdanger("Your [V.name] is bit by [src]!"))
-	return ..()
+	if(T.density)
+		stop_charge = TRUE
+	for(var/obj/structure/window/W in T.contents)
+		stop_charge = TRUE
+	for(var/obj/machinery/door/poddoor/P in T.contents)//FIXME: Still opens the "poddoor" secure shutters
+		stop_charge = TRUE
+		continue
+	if(stop_charge)
+		charging = FALSE
+		icon_state = icon_aggro
+		return
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			D.open(2)
+	forceMove(T)
+	playsound(src, 'sound/abnormalities/clouded_monk/monk_groggy.ogg', 150, 1)
+	for(var/turf/TF in range(1, T))//Smash AOE visual
+		new /obj/effect/temp_visual/smash_effect(TF)
+	for(var/mob/living/L in range(1, T))//damage applied to targets in range
+		if(faction_check_mob(L))
+			continue
+		if(L in been_hit)
+			continue
+		if(L.z != z)
+			continue
+		visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
+		to_chat(L, "<span class='userdanger'>[src] takes a bite out of you!</span>")
+		var/turf/LT = get_turf(L)
+		new /obj/effect/temp_visual/kinetic_blast(LT)
+		L.apply_damage(350,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		been_hit += L
+		playsound(L, "sound/abnormalities/clouded_monk/monk_bite.ogg", 75, 1)
+		if(!ishuman(L))
+			continue
+		var/mob/living/carbon/human/H = L
+		if(H.health < 0)
+			H.gib()
+			playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
+			adjustBruteLoss(-heal_amount)
+			times_ran = dash_num //stop the charge, we got the meats!
+			if(!eaten)
+				eaten = TRUE
+	addtimer(CALLBACK(src, .proc/Charge, move_dir, (times_ran + 1)), 1)

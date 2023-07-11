@@ -5,19 +5,19 @@
 	icon_state = "wayward"
 	icon_living = "wayward_breach"
 	icon_dead = "wayward_dead"
-	portrait = "wayward_passenger"
 	del_on_death = FALSE
 	maxHealth = 1200
 	health = 1200
 
 	move_to_delay = 4
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red
 	stat_attack = HARD_CRIT
 
 	ranged = TRUE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
 	can_breach = TRUE
 	can_buckle = FALSE
@@ -26,11 +26,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
-		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
-		ABNORMALITY_WORK_ATTACHMENT = 30,
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
+						ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
+						ABNORMALITY_WORK_ATTACHMENT = 30,
+						ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55)
+						)
 	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
 	fear_level = WAW_LEVEL
@@ -41,16 +41,16 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/warp,
 		/datum/ego_datum/weapon/warp/spear,
-		/datum/ego_datum/armor/warp,
-	)
+		/datum/ego_datum/armor/warp
+		)
 	gift_type =  /datum/ego_gifts/warp
 	gift_message = "This lighter is branded with a certain company logo."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/wayward_tele,
-		/datum/action/innate/abnormality_attack/wayward_dash,
-	)
+		/datum/action/innate/abnormality_attack/wayward_dash
+		)
 
 	//teleport vars
 	var/teleport_cooldown
@@ -68,14 +68,14 @@
 	name = "Teleport"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = span_colossus("You will now teleport to your target.")
+	chosen_message = "<span class='colossus'>You will now teleport to a random target.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/wayward_dash
 	name = "Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
-	chosen_message = span_colossus("You will now charge towards your target.")
+	chosen_message = "<span class='colossus'>You will now charge towards your target.</span>"
 	chosen_attack_num = 2
 
 //*** Simple mob procs ***
@@ -91,7 +91,7 @@
 		return
 	if(IsContained())
 		return
-	if(client || IsCombatMap())
+	if(client)
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
@@ -106,10 +106,7 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 30)))
-					to_chat(src, span_notice("Invalid target."))
-					return
-				TryTeleport(get_turf(target))
+				TryTeleport()//TODO: add (get_turf(target)) as an argument with some sanity checks. With OOB fixed it should be pretty fun
 			if(2)
 				Dash(target)
 		return
@@ -119,13 +116,11 @@
 
 //*** Work mechanics ***
 /mob/living/simple_animal/hostile/abnormality/wayward/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(75))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/wayward/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(20))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -136,24 +131,24 @@
 		"-1" = list("I've got this.", "How boring.", "Doesn't even phase me."),
 		"0" = list("Just calm down, do what we always do.", "Just don't lose your head and stick to the manual.", "Focus...", "Just call the squire... wait, what?", "I've seen that logo somewhere..."),
 		"3" = list("Why do I feel so angry?", "Help me...", "I don't want to die!", "Why does this look familiar?"),
-		"4" = list("Is that... from a wing?!", "No... it can't be...", "WHAT IS THAT THING?!"),
-	)
+		"4" = list("Is that... from a wing?!", "No... it can't be...", "WHAT IS THAT THING?!")
+		)
 	return pick(result_text_list[level])
 
 //*** Breach mechanics ***
 
-/mob/living/simple_animal/hostile/abnormality/wayward/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/wayward/BreachEffect(mob/living/carbon/human/user)
 	icon_state = "wayward_breach"
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)//this is the sound effect used for Tomerry in the lovetown reception
-	. = ..()
+	..()
 
 //*** Teleport code ***//
-/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is used when the proc is called with a client
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is for the playable version, currently unused
 	if(teleport_cooldown > world.time || !can_act)
 		return FALSE
 	teleport_cooldown = world.time + teleport_cooldown_time//so it doesn't get called twice by life()
 	if(!teleport_target)
-		var/list/teleport_potential = list()
+		var/list/teleport_potential = list()//TODO: skip this process entirely for the playable version
 		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE || faction_check_mob(L))
 				continue
@@ -208,7 +203,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, PROC_REF(Do_Dash), dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
+	addtimer(CALLBACK(src, .proc/Do_Dash, dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
 	playsound(src, 'sound/abnormalities/wayward_passenger/attack1.ogg', 300, 1)
 	icon_state = "wayward_charge"
 
@@ -226,13 +221,14 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-		break
+	for(var/obj/machinery/door/poddoor/P in T.contents)
+		stop_charge = TRUE
+		continue
 	for(var/obj/machinery/door/D in T.contents)
-		if(!D.CanAStarPass(null))
-			stop_charge = TRUE
-			break
+		if(istype(D, /obj/machinery/door/poddoor))
+			continue
 		if(D.density)
-			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+			D.open(2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE
@@ -240,29 +236,22 @@
 		return
 	forceMove(T)
 	playsound(src,"sound/abnormalities/thunderbird/tbird_peck.ogg", rand(50, 70), 1)
-	var/list/turfs_to_hit = range(1, T)
-	for(var/turf/TF in turfs_to_hit)//Smash AOE visual
+	for(var/turf/TF in range(1, T))//Smash AOE visual
 		new /obj/effect/temp_visual/smash_effect(TF)
-	for(var/mob/living/L in turfs_to_hit)//damage applied to targets in range
+	for(var/mob/living/L in range(1, T))//damage applied to targets in range
+		if(L.z != z)
+			continue
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			L.visible_message(span_boldwarning("[src] slices through [L]!"), span_userdanger("[src] rushes past you, searing you with its blades!"))
+			L.visible_message("<span class='boldwarning'>[src] slices through [L]!</span>", "<span class='userdanger'>[src] rushes past you, searing you with its blades!</span>")
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			been_hit += L
-	for(var/obj/vehicle/sealed/mecha/V in turfs_to_hit)
-		if(V in been_hit)
-			continue
-		V.visible_message(span_boldwarning("[src] slices through [V]!"))
-		to_chat(V.occupants, span_userdanger("[src] rushes past you, searing your mech with its blades!"))
-		playsound(V, attack_sound, 75, 1)
-		new /obj/effect/temp_visual/kinetic_blast(get_turf(V))
-		V.take_damage(60, RED_DAMAGE, attack_dir = get_dir(V, src))
-		been_hit += V
-	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
+			L.apply_damage(60,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(!(L in been_hit))
+				been_hit += L
+	addtimer(CALLBACK(src, .proc/Do_Dash, move_dir, (times_ran + 1)), 1)
 
 /obj/effect/portal/abno_warp
 	name = "dimensional rift"

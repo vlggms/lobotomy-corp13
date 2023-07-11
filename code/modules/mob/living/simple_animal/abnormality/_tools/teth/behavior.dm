@@ -12,11 +12,11 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BEHAVIOR)
-		to_chat(user, span_userdanger("You feel your intellect returning."))
+		to_chat(user, "<span class='userdanger'>You feel your intellect returning.</span>")
 	else
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_BEHAVIOR)
-		to_chat(user, span_userdanger("You feel as though you've been adjusted to become righteous."))
+		to_chat(user, "<span class='userdanger'>You feel as though you've been adjusted to become righteous.</span>")
 
 // Status Effect
 /datum/status_effect/display/behavior
@@ -32,7 +32,7 @@
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
-		RegisterSignal(H, COMSIG_HUMAN_INSANE, PROC_REF(UserInsane))
+		RegisterSignal(H, COMSIG_HUMAN_INSANE, .proc/UserInsane)
 
 /datum/status_effect/display/behavior/on_remove()
 	. = ..()
@@ -47,7 +47,7 @@
 	H.emote("laugh")
 	var/obj/item/organ/eyes/O = H.getorgan(/obj/item/organ/eyes)
 	if(istype(O))
-		H.visible_message(span_danger("[H] tears [H.p_their(FALSE)] eyes out!"))
+		H.visible_message("<span class='danger'>[H] tears [H.p_their(FALSE)] eyes out!</span>")
 		playsound(get_turf(H), 'sound/abnormalities/behavior/eyes_out.ogg', 35, TRUE)
 		O.Remove(H)
 		O.forceMove(get_turf(H))

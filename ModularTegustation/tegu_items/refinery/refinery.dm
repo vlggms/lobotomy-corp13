@@ -21,29 +21,19 @@
 	//TRUE is for loaded
 	var/loaded = FALSE
 
-/obj/structure/refinery/Initialize()
-	. = ..()
-	GLOB.lobotomy_devices += src
-
-/obj/structure/refinery/Destroy()
-	GLOB.lobotomy_devices -= src
-	if(loaded)
-		new /obj/item/rawpe(get_turf(src))
-	return ..()
-
 /obj/structure/refinery/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/rawpe))
 		if(!loaded)
 			loaded = TRUE
-			to_chat(user, span_notice("You load PE into the machine."))
+			to_chat(user, "<span class='notice'>You load PE into the machine.</span>")
 			qdel(I)
 			blackjack = rand(2,21)
 			timeleft = refine_timer
 			counter()
 			playsound(get_turf(src), 'sound/misc/box_deploy.ogg', 5, 0)
-			to_chat(user, span_notice("The required filter strength is [blackjack]."))
+			to_chat(user, "<span class='notice'>The required filter strength is [blackjack].</span>")
 		else
-			to_chat(user, span_notice("Something is already loaded."))
+			to_chat(user, "<span class='notice'>Something is already loaded.</span>")
 
 
 	if(!loaded || !(istype(I, /obj/item/refiner_filter))	)
@@ -67,21 +57,21 @@
 
 
 	qdel(I)
-	to_chat(user, span_notice("You insert a filter."))
+	to_chat(user, "<span class='notice'>You insert a filter.</span>")
 	playsound(get_turf(src), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 	if(blackjack < 0)
-		to_chat(user, span_danger("You filtered it too hard! The PE box was destroyed."))
+		to_chat(user, "<span class='danger'>You filtered it too hard! The PE box was destroyed.</span>")
 		loaded = FALSE
 	else if(blackjack == 0)
-		timeleft -= round(refine_timer/3)
-		to_chat(user, span_notice("You correctly filter the PE, speeding up refining."))
+		timeleft -= 20
+		to_chat(user, "<span class='notice'>You correctly filter the PE, speding up refining.</span>")
 
 /obj/structure/refinery/proc/counter()
 	timeleft--
 	if(timeleft <= 0)
 		loaded = FALSE
 		new /obj/item/refinedpe(get_turf(src))
-		visible_message(span_notice("The refinery finishes refining a box."))
+		visible_message("<span class='notice'>The refinery finishes refining a box.</span>")
 
 	if(loaded)
-		addtimer(CALLBACK(src, PROC_REF(counter)), 1 SECONDS)
+		addtimer(CALLBACK(src, .proc/counter), 1 SECONDS)

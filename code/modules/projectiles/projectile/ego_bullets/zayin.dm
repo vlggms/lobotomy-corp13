@@ -2,6 +2,7 @@
 	name = "9mm tough bullet"
 	damage = 12 // Being bald is the optimal gameplay choice!
 	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_soda
 	name = "9mm soda bullet"
@@ -26,23 +27,19 @@
 /obj/projectile/ego_bullet/ego_nightshade/healing
 
 /obj/projectile/ego_bullet/ego_nightshade/healing/on_hit(atom/target, blocked = FALSE)
-	if(isliving(firer) && isliving(target))
+	if(ishuman(target) && isliving(firer))
+		var/mob/living/carbon/human/H = target
 		var/mob/living/user = firer
-		var/mob/living/victim = target
-		if(firer == victim)
+		if(firer==target)
 			return BULLET_ACT_BLOCK
-		if(user.faction_check_mob(victim)) // Our faction
-			if(ishuman(victim))
-				var/mob/living/carbon/human/H = victim
-				if(H.is_working)
-					H.visible_message("<span class='warning'>[src] embeds itself in [H]... but nothing happens!</span>")
-					qdel(src)
-				H.adjustSanityLoss(-damage*0.15)
-				H.adjustBruteLoss(-damage*0.15)
+		if(user.faction_check_mob(H)) // Our faction
+			if(H.is_working)
+				H.visible_message("<span class='warning'>[src] embeds itself in [H]... but nothing happens!</span>")
+				qdel(src)
 				return BULLET_ACT_BLOCK
-			else
-				victim.adjustBruteLoss(-damage*0.3)
-			victim.visible_message("<span class='warning'>[src] embeds itself in [victim]!</span>")
+			H.adjustSanityLoss(-damage*0.15)
+			H.adjustBruteLoss(-damage*0.15)
+			H.visible_message("<span class='warning'>[src] embeds itself in [H]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	..()
@@ -52,10 +49,4 @@
 	icon_state = "wishing_rock"
 	damage = 20
 	damage_type = RED_DAMAGE
-
-
-/obj/projectile/ego_bullet/ego_oceanic
-	name = "oceanic"
-	damage = 11		//Worse than tough lol
-	damage_type = WHITE_DAMAGE
-
+	flag = RED_DAMAGE

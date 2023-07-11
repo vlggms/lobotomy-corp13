@@ -1,6 +1,6 @@
 //Realizer
 /obj/item/paper/fluff/info/tool/realization
-	name = "Realization Engine V1 - O-09-121"
+	name = "O-09-121"
 	info = {"<h1><center>O-04-121</center></h1>	<br>
 	Name : Realization Engine V1<br>
 	Risk Class : ZAYIN	<br>
@@ -10,7 +10,7 @@
 
 //Mirror
 /obj/item/paper/fluff/info/tool/mirror
-	name = "Mirror of Adjustment - O-09-81"
+	name = "O-09-81"
 	info = {"<h1><center>O-09-81</center></h1>	<br>
 	Name : Mirror Of Adjustment<br>
 	Risk Class : ZAYIN	<br>
@@ -19,7 +19,7 @@
 
 //Theresia
 /obj/item/paper/fluff/info/tool/theresia
-	name = "Theresia - T-09-09"
+	name = "T-09-09"
 	info = {"<h1><center>T-09-09</center></h1>	<br>
 	Name : Theresia<br>
 	Risk Class : TETH	<br>
@@ -28,7 +28,7 @@
 
 //Skin Prophecy
 /obj/item/paper/fluff/info/tool/skin
-	name = "Skin Prophecy - T-09-90"
+	name = "T-09-90"
 	info = {"<h1><center>T-09-90</center></h1>	<br>
 	Name : Skin Prophecy<br>
 	Risk Class : TETH	<br>
@@ -39,7 +39,7 @@
 
 //Don't touch me
 /obj/item/paper/fluff/info/tool/touch
-	name = "Don't Touch Me - O-05-47"
+	name = "O-05-47"
 	info = {"<h1><center>O-05-47</center></h1>	<br>
 	Name : Don't Touch Me<br>
 	Risk Class : ZAYIN	<br>
@@ -47,7 +47,7 @@
 
 //Wishing Well
 /obj/item/paper/fluff/info/tool/wishwell
-	name = "Wishing Well - F-09-34"
+	name = "F-09-34"
 	info = {"<h1><center>F-09-34</center></h1>	<br>
 	Name : Wishing Well<br>
 	Risk Class: ZAYIN <br>
@@ -58,7 +58,7 @@
 
 //Behavior Adjustment
 /obj/item/paper/fluff/info/tool/behavior
-	name = "Behavior Adjustment - O-09-96"
+	name = "O-09-96"
 	info = {"<h1><center>O-09-96</center></h1>	<br>
 	Name : Behavior Adjustment <br>
 	Risk Class: TETH <br>
@@ -67,7 +67,7 @@
 
 //Tree Sap
 /obj/item/paper/fluff/info/tool/treesap
-	name = "Giant Tree Sap - T-09-80"
+	name = "T-09-80"
 	info = {"<h1><center>T-09-80</center></h1>	<br>
 	Name : Giant Tree Sap <br>
 	Risk Class: TETH <br>
@@ -77,7 +77,7 @@
 
 //Heart of Aspiration
 /obj/item/paper/fluff/info/tool/heart
-	name = "Heart of Aspiration - T-09-77"
+	name = "T-09-77"
 	info = {"<h1><center>T-09-77</center></h1>	<br>
 	Name : Heart of Aspiration<br>
 	Risk Class: TETH <br>
@@ -86,7 +86,7 @@
 
 //Bracelet
 /obj/item/paper/fluff/info/tool/bracelet
-	name = "Luminous Bracelet - O-09-95"
+	name = "O-09-95"
 	info = {"<h1><center>O-09-95</center></h1>	<br>
 	Name : Luminous Bracelet <br>
 	Risk Class: TETH <br>
@@ -98,7 +98,7 @@
 
 //Loom
 /obj/item/paper/fluff/info/tool/fateloom
-	name = "Third Fate's Loom - T-09-142"
+	name = "T-09-142"
 	info = {"<h1><center>T-09-142</center></h1>	<br>
 	Name : Third Fate's Loom <br>
 	Risk Class: HE <br>
@@ -109,7 +109,7 @@
 
 //Dr. Jekyll's Formula
 /obj/item/paper/fluff/info/tool/dr_jekyll
-	name = "Dr. Jekyll's Tincture - F-09-148"
+	name = "F-09-148"
 	info = {"<h1><center>F-09-148</center></h1>	<br>
 	Name : Dr. Jekyll's Tincture<br>
 	Risk Class : HE	<br>
@@ -120,7 +120,7 @@
 
 //All-Natural Snake Oil
 /obj/item/paper/fluff/info/tool/snake_oil
-	name = "All-Natural Snake Oil - T-09-164"
+	name = "T-09-164"
 	info = {"<h1><center>T-09-164</center></h1>	<br>
 	Name : All-Natural Snake Oil<br>
 	Risk Class : TETH	<br>
@@ -131,7 +131,7 @@
 
 //Viva Voce
 /obj/item/paper/fluff/info/tool/vivavoce
-	name = "Viva Voce - T-09-151" //Agoraphobia
+	name = "T-09-151" //Agoraphobia
 	info = {"<h1><center>T-09-151</center></h1>	<br>
 	Name : Viva Voce<br>
 	Risk Class : HE	<br>
@@ -142,7 +142,7 @@
 
 //Theonite Slab
 /obj/item/paper/fluff/info/tool/theonite_slab
-	name = "Theonite Slab - O-09-144"
+	name = "O-09-144"
 	info = {"<h1><center>O-09-144</center></h1>	<br>
 	Name : Theonite Slab<br>
 	Risk Class : HE	<br>
@@ -154,7 +154,7 @@
 
 //Shelter From The 27th Of March
 /obj/item/paper/fluff/info/tool/shelter
-	name = "Shelter From The 27th Of March - T-09-82"
+	name = "T-09-82"
 	info = {"<h1><center>T-09-82</center></h1>	<br>
 	Name : Shelter From The 27th Of March<br>
 	Risk Class : HE	<br>
@@ -164,7 +164,7 @@
 
 //Backwards Clock
 /obj/item/paper/fluff/info/tool/clock
-	name = "Backwards Clock - D-09-104"
+	name = "D-09-104"
 	info = {"<h1><center>D-09-104</center></h1>	<br>
 	Name : Backwards Clock<br>
 	Risk Class : WAW	<br>
@@ -174,34 +174,3 @@
 	- When triggered, the abnormality deals heavy damage to every escaped abnormality and hostile entity in the facility, dealing more damage depending on the level of the employee.	<br>
 	- The employee who triggered the abnormality's ability crumbles into dust. In addition, the abnormality overheats, needing five minutes to cool down.	<br>
 	- Certain powerful beings are entirely immune to this abnormality's effect, and the mere presence of some creatures will prevent the abnormality from activating at all. If Don't Touch Me is pressed, the abnormality overheats."}
-
-//Notes from a Crazed Researcher
-/obj/item/paper/fluff/info/tool/researcher
-	name = "Notes from a Crazed Researcher - T-09-78"
-	info = {"<h1><center>T-09-78</center></h1>	<br>
-	Name : Notes from a Crazed Researcher<br>
-	Risk Class : HE	<br>
-	- One’s observational skill will improve just by holding this item.	<br>
-	- However, if it is returned without fulfilling the yearning for knowledge, the incompetent shall explode.	<br>
-	- When the yearning for knowledge is sated, the abnormality appears to return to containment.	<br>
-	- In addition, if the damage recieved while holding these notes exceeds the users maximum combined HP and SP, the user will explode. "}
-
-//You Must Be Happy
-/obj/item/paper/fluff/info/tool/you_happy
-	name = "You Must Be Happy - T-09-94"
-	info = {"<h1><center>T-09-94</center></h1>	<br>
-	Name : You Must Be Happy<br>
-	Risk Class : ZAYIN	<br>
-	- When the machine is used before a previously applied effect expires, the user perishes.	<br>
-	- Those who answered \"Yes\" to the question \"Do you love your city?\" gained a small, temporary boost in all attributes. Those who answered \"No\" instead lost some attributes in the same manner.	<br>
-	- The longer the machine is in use, the more profound the change becomes. Furthermore, the longer it is used, the faster the question will change. "}
-
-//Old Faith and Promise
-/obj/item/paper/fluff/info/tool/promise
-	name = "Old Faith and Promise - T-09-97"
-	info = {"<h1><center>T-09-94</center></h1>	<br>
-	Name : Old Faith and Promise<br>
-	Risk Class : ZAYIN	<br>
-	- Utilize the Abnormality to fortify an E.G.O Weapon. The fortified weapon will have higher Attack Power.	<br>
-	- However, there is a possibility of losing the E.G.O during the fortification process.	<br>
-	- The likelihood of losing the E.G.O. during the fortification process increased dramatically as the E.G.O. was empowered further."}

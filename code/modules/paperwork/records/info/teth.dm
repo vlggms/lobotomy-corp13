@@ -13,9 +13,7 @@
 	abno_code = "T-02-43"
 	abno_info = list(
 		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
-		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.",
-		"For each person encased in a cocoon, Spider Bud's max PE available from work was increased by 2.",
-		"Employees were entirely unable to get a good work result from spider bud.",)
+		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.")
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
@@ -51,11 +49,8 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When the work result was Bad, the employee was immediately consumed by Dingle-Dangle with a normal probability.",
-		"When employees with Prudence Level 3 or higher completed their work, they were consumed by Dingle-Dangle unless their Fortitude was Level 4 or higher.",
-		"When employees with Prudence Level 2 or lower completed their work with Dingle-Dangle, the Qliphoth Counter decreased.",
-		"These employees reported a sense of confusion as well heightened combat capabilities.",
-		"When the Qliphoth Counter reached 0, everyone in the facility was afflicted with delirium.")
+		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.",
+		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
 
 //Beauty and the Beast
 /obj/item/paper/fluff/info/teth/beauty
@@ -149,7 +144,7 @@
 	abno_info = list(
 		"When the work result was Good, the Qliphoth Counter lowered.",
 		"When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.",
-		"When the Qliphoth Counter reached 0, five employees were marked for death. Whilst under its effect, employees with the mark recieved 4x as much damage from all sources.",
+		"When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.",
 		"Upon the death of one of these employees, the HP and SP of every employee in the facility was healed, and all marks were removed.")
 
 //Gone with a Simple Smile
@@ -166,19 +161,15 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
 	abno_code = "T-01-115"
 	abno_info = list(
-		"When an Agent, who had Temperance and Prudence Level 1, completed the work process, the employee began to panic, and started dancing frantically. When left alone for too long. the employee cut off their own feet.",
-		"When an Agent, who had Prudence Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
+		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
+		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
 
 //Drowned Sisters
 /obj/item/paper/fluff/info/teth/drowned
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
 	abno_code = "T-01-133"
 	abno_info = list(
-		"When the Employee perfomed Instinct work, the Qliphoth counter lowered.",
-		"When the Qliphoth counter reached zero, the employee mysteriously died on the spot. An autopsy revealed scratch marks from an incredibly large feline.",
-		"When the Employee performed Attachment work, the Qliphoth counter increased.",
-		"If the Qliphoth counter increased while already at its maximum, the cell was flooded with water. Any employees inside eventually awoke somewhere else in the facility.",
-		"The work damage done to the employee working on The Drowned Sisters increased immensely when Prudence was low, especially below level 2.",
+		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
 		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 
 //Void Dream
@@ -216,7 +207,7 @@
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern
 	abno_type = /mob/living/simple_animal/hostile/abnormality/meat_lantern
-	abno_code = "O-04-84"
+	abno_code = "D-02-107"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
@@ -241,8 +232,6 @@
 		"When work was performed, the employee felt compelled to write in the book regardless of result.",
 		"Employees suffered from higher amounts of damage during work when the book was closer to completion.",
 		"Upon finishing repression work, employee Noah felt compelled to rip pages out of the abnormality.",
-		"When the abnormality was not full of words when pages were torn out, the torn pages twisted into hostile forms and attacked nearby employees.",
-		"When the abnormality was full of words when pages were torn out, the torn pages became friendly creatures instead.",
 		"Attempted repression work when the book was already empty nearly always ended in failure. In constrast, repression work performed when the book was full was usually successful.")
 
 //Someone's Portrait
@@ -274,10 +263,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_gentleman
 	abno_code = "F-01-161"
 	abno_info = list(
-		"After generating 11 or more PE boxes with the Fairy Gentleman, he gives the employee a bottle of what he calls “Fairy Wine.”",
+		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
 		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
-		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"Performing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
+		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
 
 //Fairy-Long-Legs
 /obj/item/paper/fluff/info/teth/fairy_longlegs
@@ -301,8 +289,7 @@
 		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their movement speed and attack power.",
 		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
 		"If too many yellow talismans attached to the employee, they also became purple talismans.",
-		"Purple talismans seem to sap the strength from whomever they are attached, reducing their movement speed and attack power. The talismans slowly vanished after several minutes.",
-		"After completing work with purple talismans, the Qliphoth Counter lowered.")
+		"Purple talismans seem to sap the strength from whomever they are attached, reducing their movement speed and attack power. The talismans slowly vanished after several minutes.")
 
 //Red Blooded American
 /obj/item/paper/fluff/info/teth/redblooded
@@ -327,33 +314,3 @@
 		"After an employee completed their work, the abnormality began to ramble, specifying a specific work type.",
 		"The abnormality repeated its request when petted by an employee.",
 		"Observations have concluded that each request corresponded to a specific work type. Performing this work type will result in significantly increased work success rate.")
-
-//All-Around Cleaner
-/obj/item/paper/fluff/info/teth/cleaner
-	abno_type = /mob/living/simple_animal/hostile/abnormality/cleaner
-	abno_code = "T-05-186"
-	abno_info = list(
-		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
-		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
-		"During the breach, T-05-186 cleaned up the facility unprompted.",)
-
-//Skin Prophet
-/obj/item/paper/fluff/info/teth/skin_prophet
-	abno_type = /mob/living/simple_animal/hostile/abnormality/skin_prophet
-	abno_code = "T-03-189"
-	abno_info = list(
-		"On work failure, a candle was snuffed, and work damage was increased.",
-		"When Attachment or Repression was completed, if the employee had no buffs in the respective stat, they were turned to ash.",
-		"When Attachment or Repression work was done, the work rates were equal to the total stat buffs of the employee.",
-		"When Attachment or Repression work was completed with a good work result, the employee's respective buff was reduced to 0, and their stat maximum was increased by the same amount.",)
-
-//Faelantern
-/obj/item/paper/fluff/info/teth/faelantern
-	abno_type = /mob/living/simple_animal/hostile/abnormality/faelantern
-	abno_code = "F-01-178"
-	abno_info = list(
-		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When an Agent with Temperance Level 2 or greater completed repression work, the Qliphoth Counter lowered",
-		"When an Agent with Level 1 Temperance completed any other work type, the Qliphoth Counter lowered",
-		"When approached during suppression work, F-01-178 attempted to lure agents with Temperance I.",
-		"During work, the final result of any modified attributes were recognized by Faelantern.")

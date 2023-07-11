@@ -95,7 +95,7 @@
 
 /obj/machinery/abnormality_monitor/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(UpdateNetwork)) //return a list of the abnormalities
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/UpdateNetwork) //return a list of the abnormalities
 
 /obj/machinery/abnormality_monitor/examine(mob/user)
 	. = ..()
@@ -120,7 +120,7 @@
 
 /obj/machinery/abnormality_monitor/proc/UpdateNetwork()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(PingFacilityNetwork))
+	INVOKE_ASYNC(src, .proc/PingFacilityNetwork)
 
 /obj/machinery/abnormality_monitor/proc/PingFacilityNetwork()
 	sleep(20) //2 seconds i think. Delay so that the most recently linked containment panel reads its console.
@@ -130,179 +130,58 @@
 			LAZYADD(abnormalities, "[C.AbnormalityInfo()]: [C.relative_location]")
 	sortList(abnormalities)
 
-	/*---------------\
-	|Torso Fabricator|
-	\---------------*/
-#define ANIMATE_FABRICATOR_ACTIVE flick("fab_robot_a", src)
-/*
-* When someone who has the time to convert tegu cloners
-* into ours you can remove this code. -IP
-*/
-/obj/machinery/body_fabricator
-	name = "torso fabricator"
-	desc = "A fabricator for constructing humanoid bodies for the bodiless. Place a brain inside and activate! -NO REFUNDS-."
-	icon = 'icons/mob/hivebot.dmi'
-	icon_state = "fab_robot"
-	density = TRUE
-	layer = BELOW_OBJ_LAYER
-	use_power = NO_POWER_USE
-	var/active = FALSE
-	var/stored_money = 0
-	var/prosthetic_cost = 300
-	var/organic_cost = 1200
-	var/obj/item/organ/brain/slotted_brain
+	//Spreading Structures Code
+	//Stolen and edited from alien weed code. I wanted a spreading structure that doesnt have the atmospheric element attached to its root.
+/obj/structure/spreading
+	name = "spreading structure"
+	desc = "This thing seems to spread when supplied with a outside signal."
+	max_integrity = 15
+	anchored = TRUE
+	density = FALSE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
+	var/conflict_damage = 10
+	var/last_expand = 0 //last world.time this weed expanded
+	var/expand_cooldown = 1.5 SECONDS
+	var/can_expand = TRUE
+	var/static/list/blacklisted_turfs
 
-/obj/machinery/body_fabricator/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/holochip))
-		var/obj/item/holochip/H = I
-		var/ahn_amount = H.get_item_credit_value()
-		H.spend(ahn_amount)
-		AdjustMoney(ahn_amount)
+/obj/structure/spreading/Initialize()
+	. = ..()
+
+	if(!blacklisted_turfs)
+		blacklisted_turfs = typecacheof(list(
+			/turf/open/space,
+			/turf/open/chasm,
+			/turf/open/lava,
+			/turf/open/openspace))
+
+/obj/structure/spreading/proc/expand(bypasscooldown = FALSE)
+	if(!can_expand)
 		return
 
-	if(!slotted_brain)
-		if(istype(I, /obj/item/bodypart/head))
-			var/obj/item/bodypart/head/heed = I
-			if(heed.brain)
-				SlottedHead(heed)
-				return
-		if(istype(I, /obj/item/organ/brain))
-			var/obj/item/organ/brain/B = I
-			SlottedBrain(B)
-			return
-	..()
+	if(!bypasscooldown)
+		last_expand = world.time + expand_cooldown
 
-/obj/machinery/body_fabricator/ui_interact(mob/user)
-	. = ..()
-	if(isliving(user))
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
-	var/dat
-	dat += "<b>FABRICATION_FUNDS: [stored_money]</b><br>----------------------<br>"
-	if(slotted_brain)
-		if(slotted_brain)
-			dat += "BRAIN DETECTED|<br>--<br>"
-		dat += " <A href='byond://?src=[REF(src)];PRINT_PROSTHETIC=[REF(src)]'>PRINT PROSTHETIC TORSO: [prosthetic_cost] AHN:</A><br>"
-		dat += " Areas of the body have been replaced with scrap prosthetics. Clients have claimed to suffer a small attribute decrease.<br>"
-		dat += " <A href='byond://?src=[REF(src)];PRINT_ORGANIC=[REF(src)]'>PRINT ORGANIC TORSO: [organic_cost] AHN</A><br>"
-		dat += " Through undisclosed means we will print you a new torso with no attribute decay.<br>"
-	else
-		dat += "<b>NO BRAIN DETECTED|</b><br>--<br>"
-	var/datum/browser/popup = new(user, "body_fab", "body fabricator", 500, 550)
-	popup.set_content(dat)
-	popup.open()
-	return
-
-/obj/machinery/body_fabricator/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return .
-	if(ishuman(usr))
-		usr.set_machine(src)
-		add_fingerprint(usr)
-		if(href_list["PRINT_PROSTHETIC"])
-			if(stored_money < prosthetic_cost)
-				return
-			ConstructTorso(2)
-			AdjustMoney(-prosthetic_cost)
-			updateUsrDialog()
-			return TRUE
-		if(href_list["PRINT_ORGANIC"])
-			if(stored_money < organic_cost)
-				return
-			ConstructTorso(1)
-			AdjustMoney(-organic_cost)
-			updateUsrDialog()
-			return TRUE
-
-/obj/machinery/body_fabricator/proc/AdjustMoney(amount)
-	stored_money += amount
-
-/*
-* In Library of Ruina there is a fixer that has their body
-* damaged by clowns so their coworkers behead them and take
-* them to get a new body cloned for them. That is the
-* inspiration for the torso fabricator.
-*/
-/obj/machinery/body_fabricator/proc/SlottedBrain(obj/item/organ/brain/B)
-	if(slotted_brain)
+	var/turf/U = get_turf(src)
+	if(is_type_in_typecache(U, blacklisted_turfs))
+		qdel(src)
 		return FALSE
-	slotted_brain = B
-	B.forceMove(src)
+
+	var/list/spread_turfs = U.GetAtmosAdjacentTurfs()
+	shuffle_inplace(spread_turfs)
+	for(var/turf/T in spread_turfs)
+		if(locate(/obj/structure/spreading) in T)
+			var/obj/structure/spreading/S = locate(/obj/structure/spreading) in T
+			if(S.type != type) //if it is not another of the same spreading structure.
+				S.take_damage(conflict_damage, BRUTE, "melee", 1)
+				break
+			last_expand += (0.6 SECONDS) //if you encounter another of the same then the delay increases
+			continue
+
+		if(is_type_in_typecache(T, blacklisted_turfs))
+			continue
+
+		new type(T)
+		break
 	return TRUE
-
-/obj/machinery/body_fabricator/proc/SlottedHead(obj/item/bodypart/head/H)
-	if(slotted_brain)
-		return FALSE
-	if(!H.brain)
-		return FALSE
-	slotted_brain = H.brain
-	H.drop_organs()
-	slotted_brain.forceMove(src)
-	qdel(H)
-	return TRUE
-
-/*
-* Okay so when your gibbed your head contains your brainmob
-* but when your brain is cut out of the head the brain now
-* contains the brainmob. The brainmob is the one who has
-* the previous owners dna stored in it.
-*/
-/obj/machinery/body_fabricator/proc/ConstructTorso(biotype = 1)
-	playsound(get_turf(src), 'sound/machines/click.ogg', 10, TRUE)
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
-	//YOU DIDNT PAY FOR LIMBS
-	RemoveAllLimbs(H)
-
-	//DNA TRANSFER GO!!!
-	if(slotted_brain)
-		var/mob/living/brain/B = locate(/mob/living/brain) in slotted_brain
-		var/datum/dna/gibbed_dna = B.stored_dna
-		if(gibbed_dna)
-			H.real_name = gibbed_dna.real_name
-			gibbed_dna.transfer_identity(H)
-
-	//BRAIN INSERTION
-	if(slotted_brain)
-		slotted_brain.Insert(H)
-
-	//REVIVE
-	H.revive(full_heal = FALSE, admin_revive = FALSE)
-	H.emote("gasp")
-	H.Jitter(100)
-
-	//YOU DIDNT PAY FOR PREMIUM SO WE ARE MAKING YOUR BODY WORSE
-	if(biotype == 2)
-		RoboticizeBody(H)
-		H.adjust_all_attribute_levels(-5)
-	H.updateappearance()
-	DumpBody(H)
-
-/obj/machinery/body_fabricator/proc/RoboticizeBody(mob/living/carbon/human/H)
-	var/obj/item/bodypart/head/robot/robohead = new /obj/item/bodypart/head/robot(src)
-	var/old_head = H.get_bodypart(BODY_ZONE_HEAD)
-	robohead.replace_limb(H)
-	qdel(old_head)
-
-	var/obj/item/bodypart/chest/robot/robobody = new /obj/item/bodypart/chest/robot(src)
-	var/refuse = H.get_bodypart(BODY_ZONE_CHEST)
-	robobody.replace_limb(H)
-	qdel(refuse)
-
-/obj/machinery/body_fabricator/proc/RemoveAllLimbs(mob/living/carbon/human/H)
-	var/static/list/zones = list(BODY_ZONE_R_ARM, BODY_ZONE_L_ARM, BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-	for(var/zone in zones)
-		var/obj/item/bodypart/BP = H.get_bodypart(zone)
-		if(BP)
-			BP.drop_limb()
-			qdel(BP)
-
-/obj/machinery/body_fabricator/proc/DumpBody(mob/living/carbon/human/dude)
-	slotted_brain = null
-	ANIMATE_FABRICATOR_ACTIVE
-	playsound(get_turf(src), 'sound/effects/cashregister.ogg', 35, 3, 3)
-	sleep(32)
-	playsound(get_turf(src), 'sound/effects/bin_close.ogg', 35, 3, 3)
-	playsound(get_turf(src), 'sound/misc/splort.ogg', 35, 3, 3)
-	dude.forceMove(get_turf(src))
-
-#undef ANIMATE_FABRICATOR_ACTIVE

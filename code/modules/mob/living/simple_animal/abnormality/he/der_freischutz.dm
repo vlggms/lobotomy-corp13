@@ -3,23 +3,22 @@
 	desc = "A tall man adorned in grey, gold, and regal blue. His aim is impeccable."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "derfreischutz"
-	portrait = "der_freischutz"
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 30, // Can you believe he has actual attachment work rates in LC proper, despite that you can't do attachment work on him there?
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60)
+		)
 	work_damage_amount = 8 // This was halved what it should be.
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/magicbullet,
 		/datum/ego_datum/weapon/magicpistol,
-		/datum/ego_datum/armor/magicbullet,
-	)
+		/datum/ego_datum/armor/magicbullet
+		)
 	gift_type =  /datum/ego_gifts/magicbullet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -127,7 +126,7 @@
 			var/obj/effect/magic_bullet/B = new(T)
 			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 0, 20)
 			B.dir = freidir
-			addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/effect/magic_bullet, moveBullet)), 0.1)
+			addtimer(CALLBACK(B, .obj/effect/magic_bullet/proc/moveBullet), 0.1)
 			src.icon = 'ModularTegustation/Teguicons/32x64.dmi'
 			src.update_icon()
 			for(var/obj/effect/frei_magic/Port in portals)

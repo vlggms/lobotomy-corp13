@@ -50,7 +50,7 @@
 			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
 		// Common folk
 		if("Agent")
-			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf, /obj/item/toy/plush/pinocchio)
+			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf)
 		if("Agent Intern")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)
 		if("Clerk")
@@ -97,10 +97,6 @@
 
 /datum/quirk/artist/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
-	var/list/banned = list("rcorp", "wcorp", "city")
-	if(SSmaptype.maptype in banned)
-		to_chat(H, "<span class='warning'>There was no time to grab your art supplies!</span>")
-		return
 	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
 	H.put_in_hands(art)
 
@@ -479,19 +475,6 @@
 		"hands" = ITEM_SLOT_HANDS
 	)
 	H.equip_in_one_of_slots(camera, camera_slots , qdel_on_fail = TRUE)
-	H.regenerate_icons()
-
-/datum/quirk/colorist
-	name = "Colorist"
-	desc = "You like carrying around a hair dye spray to quickly apply color patterns to your hair."
-	value = 0
-	medical_record_text = "Patient enjoys dyeing their hair with pretty colors."
-
-/datum/quirk/colorist/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/dyespray/spraycan = new(get_turf(H))
-	H.put_in_hands(spraycan)
-	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
 	H.regenerate_icons()
 
 /datum/quirk/bongin

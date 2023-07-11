@@ -9,7 +9,7 @@
 	var/mode = 1
 
 /obj/item/pet_whistle/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("You blow the [src]."))
+	to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
 	playsound(get_turf(user), 'sound/effects/whistlereset.ogg', 10, 3, 3)
 	for(var/mob/living/simple_animal/SA in oview(get_turf(user), 7))
 		if(!SA.client && SA.stat != DEAD && !anchored)
@@ -39,14 +39,17 @@
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
 	name = "Lobotomy Corporation Radio"
-	desc = "A device that can call L Corp HQ and slow down the Abnormality arrival rate. Use in hand to activate."
+	desc = "A device to call HQ and slow down abnormality arrival rate. Use in hand to activate."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-yellow"
 
 /obj/item/lc13_abnospawn/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("You feel that you now have more time."))
+	to_chat(user, "<span class='nicegreen'>You feel that you now have more time.</span>")
 	SSabnormality_queue.next_abno_spawn_time *= 1.5
 	qdel(src)
+
+
+
 
 //Command projector
 /obj/item/commandprojector
@@ -59,73 +62,73 @@
 	var/commandtype = 1
 	var/commanddelay = 1.5 SECONDS
 	var/cooldown = 0
-	//Used for limiting the amount of commands that can exist.
-	var/current_commands = 0
-	var/max_commands = 5
-	//Command Types that can be deployed. Listed in order of commandtype.
-	var/list/commandtypes = list(
-		/obj/effect/temp_visual/holo_command/command_move,
-		/obj/effect/temp_visual/holo_command/command_warn,
-		/obj/effect/temp_visual/holo_command/command_guard,
-		/obj/effect/temp_visual/holo_command/command_heal,
-		/obj/effect/temp_visual/holo_command/command_fight_a,
-		/obj/effect/temp_visual/holo_command/command_fight_b,
-	)
+	var/static/list/commandtypes = typecacheof(list(
+		/obj/effect/temp_visual/commandMove,
+		/obj/effect/temp_visual/commandWarn,
+		/obj/effect/temp_visual/commandGaurd,
+		/obj/effect/temp_visual/commandHeal,
+		/obj/effect/temp_visual/commandFightA,
+		/obj/effect/temp_visual/commandFightB
+		))
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
 	switch(commandtype)
 		if(0) //if 0 change to 1
-			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		if(1)
-			to_chat(user, span_robot("WARN IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>WARN IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		if(2)
-			to_chat(user, span_robot("GUARD IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>GUARD IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		if(3)
-			to_chat(user, span_robot("HEAL IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>HEAL IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		if(4)
-			to_chat(user, span_robot("LIGHT FIGHTING IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>FIGHT_LIGHT IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		if(5)
-			to_chat(user, span_robot("HEAVY FIGHTING IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>FIGHT_HEAVY IMAGE INITIALIZED.</span>")
 			commandtype += 1
 		else
 			commandtype -= 5
-			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
+			to_chat(user, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(cooldown <= world.time)
-		for(var/obj/effect/temp_visual/holo_command/V in get_turf(target))
-			qdel(V)
-			return
-		if(current_commands >= max_commands)
-			to_chat(user, span_warning("COMMAND CAPACITY REACHED."))
-			return
-		if(commandtype > 0 && commandtype <= 6)
-			var/thing_to_spawn = commandtypes[commandtype]
-			var/thing_spawned = new thing_to_spawn(get_turf(target))
-			current_commands++
-			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, PROC_REF(ReduceCommandAmount))
-		else
-			to_chat(user, span_warning("CALIBRATION ERROR."))
+		for(var/obj/effect/temp_visual/V in range(get_turf(target), 0))
+			if(is_type_in_typecache(V, commandtypes))
+				qdel(V)
+				return
+		switch(commandtype)
+			if(1)
+				new /obj/effect/temp_visual/commandMove(get_turf(target))
+			if(2)
+				new /obj/effect/temp_visual/commandWarn(get_turf(target))
+			if(3)
+				new /obj/effect/temp_visual/commandGaurd(get_turf(target))
+			if(4)
+				new /obj/effect/temp_visual/commandHeal(get_turf(target))
+			if(5)
+				new /obj/effect/temp_visual/commandFightA(get_turf(target))
+			if(6)
+				new /obj/effect/temp_visual/commandFightB(get_turf(target))
+			else
+				to_chat(user, "<span class='warning'>CALIBRATION ERROR.</span>")
 		cooldown = world.time + commanddelay
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
-/obj/item/commandprojector/proc/ReduceCommandAmount()
-	SIGNAL_HANDLER
-	current_commands--
+
+
 
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
 	name = "deep scan kit"
-	desc = "A contraption of various tools capable of scanning the interior form of an entity.\n\
-			Scanning nonhuman entities will make it 10% weaker to all damage types."
+	desc = "A collection of tools used for scanning the physical form of an entity."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -140,32 +143,21 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, span_notice("Previous Scan:\n[deep_scan_log]"))
+		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
-	return
-
-/obj/item/deepscanner/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	if(!istype(target))
+	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
+	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+	if(!do_after(user, 2 SECONDS, target = user))
 		return
-	Scan(target, user)
-
-/obj/item/deepscanner/proc/Scan(mob/living/target, mob/user)
-	if(!isanimal(target) && !ishuman(target))
-		return
-	user.visible_message(span_notice("[user] takes a tool out of [src] and begins scanning [target]."), span_notice("You begin scanning [target]."))
-	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7)))
-		return
-	check1e = FALSE
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		var/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		check1a = H.physiology.red_mod
 		check1b = H.physiology.white_mod
 		check1c = H.physiology.black_mod
 		check1d = H.physiology.pale_mod
+		check1e = "Unknown"
 		if(suit)
 			check1a = 1 - (H.getarmor(null, RED_DAMAGE) / 100)
 			check1b = 1 - (H.getarmor(null, WHITE_DAMAGE) / 100)
@@ -173,42 +165,68 @@
 			check1d = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
 		if(H.job)
 			check1e = H.job
+		to_chat(user, "<span class='notice'>[check1e] [H] [H.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	else
-		var/mob/living/simple_animal/mon = target
-		if(!(mon.status_flags & GODMODE))
-			if(!mon.HasDamageMod(/datum/dc_change/scanned))
-				mon.AddModifier(/datum/dc_change/scanned)
-				to_chat(user, span_nicegreen("[mon]'s weakness was analyzed!"))
-		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
-		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
-		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
-		check1d = mon.damage_coeff.getCoeff(PALE_DAMAGE)
-		if(isabnormalitymob(mon))
-			var/mob/living/simple_animal/hostile/abnormality/abno = mon
-			check1e = THREAT_TO_NAME[abno.threat_level]
+		var/mob/living/simple_animal/hostile/mon = M
+		if((mon.status_flags & GODMODE))
+			return
+		check1a = mon.damage_coeff[RED_DAMAGE]
+		check1b = mon.damage_coeff[WHITE_DAMAGE]
+		check1c = mon.damage_coeff[BLACK_DAMAGE]
+		check1d = mon.damage_coeff[PALE_DAMAGE]
+		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
+	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
-	var/output = "--------------------\n[check1e ? check1e+" [target]" : "[target]"]\nHP [target.health]/[target.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n--------------------"
-	to_chat(user, span_notice("[output]"))
-	deep_scan_log = output
-	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+
+//Kcorp Syringes
+/obj/item/ksyringe
+	name = "k-corp nanomachine ampule"
+	desc = "A syringe of kcorp healing nanobots."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ksyringe/attack_self(mob/living/user)
+	..()
+	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
+	user.adjustBruteLoss(-40)
+	qdel(src)
+
+/obj/item/krevive
+	name = "k-corp nanomachine ampule"
+	desc = "A syringe of kcorp healing nanobots."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/krevive/attack(mob/living/M, mob/user)
+	to_chat(user, "<span class='notice'>You inject the syringe.</span>")
+	if(M.revive(full_heal = TRUE, admin_revive = TRUE))
+		M.revive(full_heal = TRUE, admin_revive = TRUE)
+		M.grab_ghost(force = TRUE) // even suicides
+		to_chat(M, "<span class='notice'>You rise with a start, you're alive!!!</span>")
+	qdel(src)
 
 
 //General Invitation
 /obj/item/invitation //intended for ordeals
 	name = "General Invitation"
-	desc = "A mysterious invitation to a certain Library. Using this on an Abnormality will cause them to transform into an incomplete Book upon death."
+	desc = "A mysterious invitation to a certain library. Using this on an abnormality seems to teleport them away when they die, leaving an incomplete book on the spot."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "invitation"
 
 /obj/item/invitation/attack(mob/living/M, mob/user)
 	if(isabnormalitymob(M) && !(M.status_flags & GODMODE) && !(M.has_status_effect(/datum/status_effect/invitation)))
-		to_chat(user, span_nicegreen("You blow the [src]."))
-		M.visible_message(span_notice("[user] sticks a general invitation on [M]!"))
+		to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
+		M.visible_message("<span class='notice'>[user] sticks a general invitation on [M]!</span>")
 		M.apply_status_effect(/datum/status_effect/invitation)
 		playsound(get_turf(M), 'sound/abnormalities/book/scribble.ogg', 50, TRUE)
 		qdel(src)
 	else
-		M.visible_message(span_warning("[M] refuses to sign the general invitation!"))
+		M.visible_message("<span class='warning'>[M] refuses to sign the general invitation!</span>")
 
 /datum/status_effect/invitation
 	id = "general invitation"
@@ -218,7 +236,7 @@
 
 /datum/status_effect/invitation/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(invite))
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, .proc/invite)
 
 /datum/status_effect/invitation/proc/invite()
 	SIGNAL_HANDLER
@@ -230,17 +248,11 @@
 
 
 //**RAK Regenerator Augmentation Kit.**
-#define RAK_HP_MODE "HP mode"
-#define RAK_SP_MODE "SP mode"
-#define RAK_DUAL_MODE "Dual mode"
-#define RAK_CRIT_MODE "Crit mode"
-#define RAK_BURST_MODE "Burst mode"
 /obj/item/safety_kit
-	name = "\improper Safety Department Regenerator Augmentation Kit"
-	desc = "This gadget is necessary for making temporary modifications on regenerators."
+	name = "Safety Department Regenerator Augmentation Kit"
+	desc = "R.A.K. for short, it's utilized to enhance and modify regenerators for short periods of time."
 	icon = 'icons/obj/tools.dmi'
-	icon_state = "HP mode_rak"
-	inhand_icon_state = "sdrak"
+	icon_state = "sdrak"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
@@ -256,114 +268,58 @@
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
-	var/mode = RAK_HP_MODE
+	var/mode = 1
 
 /obj/item/safety_kit/attack_self(mob/user)
 	if(!clerk_check(user))
-		to_chat(user, span_warning("You don't know how to use this."))
+		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
-	ChangeMode(user)
+	switch(mode)
+		if(1)
+			mode = 2
+			to_chat(user, "<span class='notice'>You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration.</span>")
+		if(2)
+			mode = 3
+			to_chat(user, "<span class='notice'>You will now slightly improve the overall performance of the Regenerator.</span>")
+		if(3)
+			mode = 4
+			to_chat(user, "<span class='notice'>You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance.</span>")
+		if(4)
+			mode = 5
+			to_chat(user, "<span class='notice'>You will now cause the Regenerator to heal a large burst of HP and SP.</span>")
+			to_chat(user, "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>")
+		if(5)
+			mode = 1
+			to_chat(user, "<span class='notice'>You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration.</span>")
 	return
-
-/obj/item/safety_kit/attack_obj(obj/O, mob/living/user)
-	if(!istype(O, /obj/machinery/regenerator))
-		return ..()
-	Augment(O, user)
-
-/obj/item/safety_kit/proc/Augment(obj/machinery/regenerator/R, mob/living/user)
-	. = FALSE
-	if(!clerk_check(user))
-		to_chat(user, span_warning("You don't know how to use this."))
-		return
-	if(R.modified)
-		to_chat(user, span_notice("[R] is already modified."))
-		return
-	to_chat(user, span_notice("You begin tinkering with the [R]."))
-	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
-		to_chat(user, span_warning("Your work has been interrupted!"))
-		return
-	R.modified = TRUE
-	switch(mode)
-		if(RAK_HP_MODE)
-			R.HpFocus(user)
-		if(RAK_SP_MODE)
-			R.SpFocus(user)
-		if(RAK_DUAL_MODE)
-			R.EqualFocus(user)
-		if(RAK_CRIT_MODE)
-			R.CriticalFocus(user)
-		if(RAK_BURST_MODE)
-			R.OverloadHeal(user)
-	return TRUE
-
-/obj/item/safety_kit/proc/ModifiedCheck(obj/machinery/regenerator/R)
-	return !R.modified
-
-/obj/item/safety_kit/proc/ChangeMode(mob/user)
-	var/list/choice_list = list()
-	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE, RAK_BURST_MODE))
-		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
-
-	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
-	if(!choice || !check_menu(user))
-		return
-
-	mode = choice
-	icon_state = mode+"_rak"
-
-	switch(mode)
-		if(RAK_HP_MODE)
-			to_chat(user, span_notice("You will now greatly improve the HP Regeneration of regenerators at the cost of the SP Regeneration."))
-		if(RAK_SP_MODE)
-			to_chat(user, span_notice("You will now greatly improve the SP Regeneration of regenerators at the cost of the HP Regeneration."))
-		if(RAK_DUAL_MODE)
-			to_chat(user, span_notice("You will now slightly improve the overall performance of regenerators."))
-		if(RAK_CRIT_MODE)
-			to_chat(user, span_notice("You will now enable regenerators to heal those in critical conditions at the cost of overall performance."))
-		if(RAK_BURST_MODE)
-			to_chat(user, span_notice("You will now cause regenerators to provide a large burst of HP and SP recovery."))
-			to_chat(user, span_warning("This will cause regenerators to go on a cooldown period afterwards."))
-
-
-/obj/item/safety_kit/proc/check_menu(mob/user)
-	if(!istype(user))
-		return FALSE
-	if(QDELETED(src))
-		return FALSE
-	if(user.incapacitated() || !user.is_holding(src))
-		return FALSE
-	return TRUE
 
 /obj/item/safety_kit/examine(mob/user)
 	. = ..()
 	switch(mode)
-		if(RAK_HP_MODE)
-			. += span_info("Currently set to increase HP regen by sacrificing SP regen.")
-		if(RAK_SP_MODE)
-			. += span_info("Currently set to increase SP regen by sacrificing HP regen.")
-		if(RAK_DUAL_MODE)
-			. += span_info("Currently set to slightly increase both HP and SP regen.")
-		if(RAK_CRIT_MODE)
-			. += span_info("Currently set to enable healing insane and crit people but reducing overall healing.")
-		if(RAK_BURST_MODE)
-			. += span_info("Currently set to cause regenerators to create a burst of healing.")
-			. += span_warning("This will disable regenerators for a short period afterwards.")
+		if(1)
+			. += "Currently set to sacrifice SP Regeneration for HP Regeneration."
+		if(2)
+			. += "Currently set to sacrifice HP Regeneration for SP Regeneration."
+		if(3)
+			. += "Currently set to improve overall Regenerator functions."
+		if(4)
+			. += "Currently set to allow healing of those in Critical Condition."
+		if(5)
+			. += "Currently set to cause the Regenerator to burst recovery."
+			. += "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>"
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
 		return TRUE
 	return FALSE
 
-#undef RAK_HP_MODE
-#undef RAK_SP_MODE
-#undef RAK_DUAL_MODE
-#undef RAK_CRIT_MODE
-#undef RAK_BURST_MODE
+
+
 
 //Tool E.G.O extractor
 /obj/item/tool_extractor
 	name = "Enkephalin Resonance Unit"
-	desc = "A specialized tool that allows E.G.O extraction from tool Abnormalities."
+	desc = "A specialized set of tools that allows E.G.O extraction from tool abnormalities."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "RPED"
 	w_class = WEIGHT_CLASS_BULKY
@@ -371,7 +327,7 @@
 	var/stored_enkephalin = 0
 	var/maximum_enkephalin = 250
 	var/drawn_amount = 50
-	var/list/possible_drawn_amounts = list(5, 10, 15, 20, 25, 50)
+	var/list/possible_drawn_amounts = list(5,10,15,20,25,50)
 	var/ego_selection
 	var/ego_array
 
@@ -384,7 +340,7 @@
 	if(!drawn_selected)
 		return
 	drawn_amount = drawn_selected
-	to_chat(user, span_notice("[src]'s transfer rate is now [drawn_amount] enkephalin."))
+	to_chat(user, "<span class='notice'>[src]'s transfer rate is now [drawn_amount] enkephalin.</span>")
 	return
 
 
@@ -395,7 +351,7 @@
 		if(stored_enkephalin + drawn_amount > maximum_enkephalin)
 			var/drawn_total = (maximum_enkephalin - stored_enkephalin)//top off without going over the max
 			if(drawn_total == 0)//if the stored enkephalin is already at max
-				to_chat(usr, span_warning("[src] is at full capacity."))
+				to_chat(usr, "<span class='warning'>[src] is at full capacity.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return
 			stored_enkephalin += drawn_total
@@ -404,7 +360,7 @@
 			to_chat(usr, "Transferred [drawn_total] enkephalin into [src].")
 			return
 		if(SSlobotomy_corp.available_box < drawn_amount)
-			to_chat(usr, span_warning("There is not enough enkephalin stored for this operation."))
+			to_chat(usr, "<span class='warning'>There is not enough enkephalin stored for this operation.</span>")
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 			return
 		stored_enkephalin += drawn_amount
@@ -428,181 +384,9 @@
 			enkephalin_cost *= 2
 	if(enkephalin_cost > stored_enkephalin)
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
-		to_chat(usr, span_warning("There is not enough enkephalin in the device for this operation."))
+		to_chat(usr, "<span class='warning'>There is not enough enkephalin in the device for this operation.</span>")
 		return
 	new loot(get_turf(src))
 	stored_enkephalin -= enkephalin_cost
-	to_chat(usr, span_notice("E.G.O extracted successfully!"))
+	to_chat(usr, "<span class='notice'>E.G.O extracted successfully!</span>")
 	return
-
-//Lobotomizer
-/obj/item/lobotomizer
-	name = "Lobotomizer"
-	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "lobotomizer"
-	var/lobotomizing = FALSE
-	var/datum/looping_sound/lobotomizer/soundloop
-
-/obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
-	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)) || lobotomizing)
-		to_chat(user, span_warning("The lobotomizer completely ignores you."))
-		return
-	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
-	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
-	ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
-	soundloop = new(list(src), FALSE)
-	soundloop.start()
-	lobotomizing = TRUE
-	for(var/i = 1 to 20) //2 minutes to clear severe traumas
-		if(user.is_working) // No, you can't just cheese this process
-			to_chat(user, span_warning("The lobotomizer seems to be more interested in the abnormality."))
-			EndLoop(user)
-			return
-		if(do_after(user, 6 SECONDS, src))
-			user.visible_message(span_warning("The lobotomizer viciously probes [user]'s brain!"))
-			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -10)
-			user.adjustSanityLoss(5)
-			user.adjustBruteLoss(5)
-			user.emote("scream")
-			user.Jitter(5)
-		else
-			to_chat(user, span_warning("The process was stopped midway, you can feel dissapointment emanating from the lobotomizer."))
-			EndLoop(user)
-			return
-		if(i == 10) //Cures mild traumas in 1 minute
-			user.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
-	user.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
-	EndLoop(user)
-
-/obj/item/lobotomizer/proc/EndLoop(mob/living/user)
-	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
-	REMOVE_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
-	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
-	lobotomizing = FALSE
-	QDEL_NULL(soundloop)
-
-/datum/looping_sound/lobotomizer
-	mid_sounds = list(
-		'sound/effects/wounds/blood3.ogg',
-		'sound/weapons/circsawhit.ogg',
-		'sound/weapons/bladeslice.ogg',
-		'sound/weapons/bite.ogg',
-	)
-	mid_length = 2 SECONDS
-	volume = 20
-
-//Clerkbot Spawner
-/obj/item/clerkbot_gadget
-	name = "Instant Clerkbot Constructor"
-	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. In order to prevent \
-		unauthorized access, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
-		will last for 2 minutes before it automatically shuts down."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "clerkbot2_deactivated"
-
-/obj/item/clerkbot_gadget/attack_self(mob/user)
-	..()
-	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
-		return
-	new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
-	to_chat(user, span_nicegreen("The Gadget turns warm and sparks."))
-	qdel(src)
-
-	//Clerkbot spawned by the Clerkbot Spawner
-/mob/living/simple_animal/hostile/clerkbot
-	name = "A Well Rounded Clerkbot"
-	desc = "Trusted and loyal best friend."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "clerkbot2"
-	icon_living = "clerkbot2"
-	gender = NEUTER
-	mob_biotypes = MOB_ROBOTIC
-	faction = list("neutral")
-	health = 150
-	maxHealth = 150
-	healable = FALSE
-	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 12
-	melee_damage_upper = 14
-	robust_searching = TRUE
-	stat_attack = HARD_CRIT
-	del_on_death = TRUE
-	attack_verb_continuous = "buzzes"
-	attack_verb_simple = "buzz"
-	attack_sound = 'sound/weapons/etherealhit.ogg'
-	verb_say = "states"
-	verb_ask = "queries"
-	verb_exclaim = "declares"
-	verb_yell = "alarms"
-	bubble_icon = "machine"
-	speech_span = SPAN_ROBOT
-
-/mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
-	QDEL_IN(src, (120 SECONDS))
-	if(prob(50))
-		icon_state = "clerkbot1"
-		icon_living = "clerkbot1"
-
-/mob/living/simple_animal/hostile/clerkbot/Login()
-	. = ..()
-	if(!. || !client)
-		return FALSE
-	to_chat(src, "<b>WARNING:THIS CREATURE IS TEMPORARY AND WILL DELETE ITSELF AFTER A GIVEN TIME!</b>")
-
-/mob/living/simple_animal/hostile/clerkbot/Destroy()
-	new /obj/item/clerkbot_gadget(get_turf(src))
-	return ..()
-
-/mob/living/simple_animal/hostile/clerkbot/spawn_gibs()
-	new /obj/effect/gibspawner/robot(drop_location(), src)
-
-
-/// Info Page Printer (Does not print info sheets)
-
-/obj/item/info_printer
-	name = "Abnormality Information Display System"
-	desc = "" // Done later
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "aids"
-	var/use_time = 150 // For future mods, maybe? :shrug:
-
-/obj/item/info_printer/examine(mob/user)
-	. = ..()
-	. += "Use on an Abnormality to display its information on screen after [use_time/10] seconds."
-
-/obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
-	if(Scan(A, user))
-		return TRUE
-	return ..()
-
-/obj/item/info_printer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(Scan(target, user))
-		return TRUE
-	return ..()
-
-/obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
-	if(!isabnormalitymob(A))
-		return FALSE
-	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, A, 7)))
-		var/list/information = GenerateInfo(A)
-		if(information)
-			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)
-			popup.set_content(information)
-			popup.open(FALSE)
-	return TRUE
-
-/obj/item/info_printer/proc/GenerateInfo(mob/living/simple_animal/hostile/abnormality/abno_mob)
-	for(var/path in subtypesof(/obj/item/paper/fluff/info))
-		var/obj/item/paper/fluff/info/info_paper = path
-		if(abno_mob.type == initial(info_paper.abno_type))
-			info_paper = new path(src)
-			stoplag(1)
-			. = info_paper.info
-			QDEL_NULL(info_paper)
-			return
-	return FALSE
-

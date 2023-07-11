@@ -96,18 +96,18 @@
 	description = "Originally developed as a prototype-gym supliment for those looking for quick workout turnover, this oral medication quickly repairs broken muscle tissue but causes lactic acid buildup, tiring the patient. Overdosing can cause extreme drowsiness. An Influx of nutrients promotes the muscle repair even further."
 	reagent_state = SOLID
 	color = "#FFFF6B"
-	overdose_threshold = 25
+	overdose_threshold = 20
 
 /datum/reagent/medicine/c2/probital/on_mob_life(mob/living/M)
 	M.adjustBruteLoss(-2.25*REM, FALSE)
-	var/ooo_youaregettingsleepy = 1.1
+	var/ooo_youaregettingsleepy = 3.5
 	switch(round(M.getStaminaLoss()))
 		if(10 to 40)
-			ooo_youaregettingsleepy = 1
+			ooo_youaregettingsleepy = 3
 		if(41 to 60)
-			ooo_youaregettingsleepy = 0.9
+			ooo_youaregettingsleepy = 2.5
 		if(61 to 200) //you really can only go to 120
-			ooo_youaregettingsleepy = 0.8
+			ooo_youaregettingsleepy = 2
 	M.adjustStaminaLoss(ooo_youaregettingsleepy*REM, FALSE)
 	..()
 	. = TRUE

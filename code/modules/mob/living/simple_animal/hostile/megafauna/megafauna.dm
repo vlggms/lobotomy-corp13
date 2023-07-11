@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, span_alert("[p_they(TRUE)] [p_are(TRUE)] too tough!"))
+		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] too tough!</span>")
 	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/Moved()
@@ -137,8 +137,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
+		"<span class='danger'>[src] devours [L]!</span>",
+		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()

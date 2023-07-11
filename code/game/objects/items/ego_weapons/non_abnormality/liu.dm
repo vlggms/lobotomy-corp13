@@ -2,11 +2,11 @@
 /obj/item/ego_weapon/city/liu
 	name = "Liu template"
 	damtype = WHITE_DAMAGE
-
+	armortype = WHITE_DAMAGE
 
 /obj/item/ego_weapon/city/liu/examine(mob/user)
 	. = ..()
-	. += span_notice("This weapon kills insane people.")
+	. += "<span class='notice'>This weapon kills insane people.</span>"
 
 /obj/item/ego_weapon/city/liu/attack(mob/living/target, mob/living/user)
 	//Happens before the attack so you need to do another attack.
@@ -108,21 +108,21 @@
 
 /obj/item/ego_weapon/city/liu/fist/examine(mob/user)
 	. = ..()
-	. += span_notice("This weapon has light and heavy attacks. Use in hand to activate a heavy attack. Combos are as follows:")
-	. += span_notice("LLLLL - 5 Hit fast combo, ending in a knockback attack.")
-	. += span_notice("H 	 - Windup fist attack for 1.5x damage and deals massive stamina damage to humans.")
-	. += span_notice("LH 	 - AOE Fire fist attack. This does not kill insane people.")
-	. += span_notice("LLH 	 - High Damage Combo, last attack has a windup and deals 2x damage.")
-	. += span_notice("LLLH  - Deals good damage. Last hit backsteps you 2 tiles.")
-	. += span_notice("LLLLH - High Damage combo, last hit ends in a 2x damage boost with no windup.")
+	. += "<span class='notice'>This weapon has light and heavy attacks. Use in hand to activate a heavy attack. Combos are as follows:</span>"
+	. += "<span class='notice'>LLLLL - 5 Hit fast combo, ending in a knockback attack.</span>"
+	. += "<span class='notice'>H 	 - Windup fist attack for 1.5x damage and deals massive stamina damage to humans.</span>"
+	. += "<span class='notice'>LH 	 - AOE Fire fist attack. This does not kill insane people.</span>"
+	. += "<span class='notice'>LLH 	 - High Damage Combo, last attack has a windup and deals 2x damage.</span>"
+	. += "<span class='notice'>LLLH  - Deals good damage. Last hit backsteps you 2 tiles.</span>"
+	. += "<span class='notice'>LLLLH - High Damage combo, last hit ends in a 2x damage boost with no windup.</span>"
 
 /obj/item/ego_weapon/city/liu/fist/attack_self(mob/living/carbon/user)
 	if(activated)
 		activated = FALSE
-		to_chat(user, span_danger("You revoke your preparation of a heavy attack."))
+		to_chat(user, "<span class='danger'>You revoke your preparation of a heavy attack.</span>")
 	else
 		activated = TRUE
-		to_chat(user, span_danger("You prep a heavy attack!"))
+		to_chat(user, "<span class='danger'>You prep a heavy attack!</span>")
 
 
 /obj/item/ego_weapon/city/liu/fist/attack(mob/living/target, mob/living/user)
@@ -146,7 +146,7 @@
 	switch(chain)
 		if(1)
 			if(activated) //H - Solar Plexus attack
-				to_chat(user, span_danger("You prepare to strike the solar plexus."))
+				to_chat(user, "<span class='danger'>You prepare to strike the solar plexus.</span>")
 				during_windup = TRUE
 				if(do_after(user, 5, target))
 					during_windup = FALSE
@@ -160,13 +160,13 @@
 
 		if(2)
 			if(activated) //LH - Fire AOE
-				to_chat(user, span_danger("You release a wave of fire."))
+				to_chat(user, "<span class='danger'>You release a wave of fire.</span>")
 				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 				aoe(target, user)
 
 		if(3)
 			if(activated) //LLH - Higher damage windup attack
-				to_chat(user, span_danger("You prepare a strong punch."))
+				to_chat(user, "<span class='danger'>You prepare a strong punch.</span>")
 				during_windup = TRUE
 				if(do_after(user, 5, target))
 					during_windup = FALSE
@@ -178,7 +178,7 @@
 
 		if(4)
 			if(activated) //LLLH - Fast hit and jump back
-				to_chat(user, span_danger("You hit them and hop back."))
+				to_chat(user, "<span class='danger'>You hit them and hop back.</span>")
 				force *= 1.5
 				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 				hopback(user)
@@ -189,7 +189,7 @@
 				hitsound = 'sound/weapons/fixer/generic/finisher2.ogg'
 			else
 				force*=2
-				to_chat(user, span_danger("You hit them with all you got!."))
+				to_chat(user, "<span class='danger'>You hit them with all you got!.</span>")
 				hitsound = 'sound/weapons/fixer/generic/finisher2.ogg'
 			chain=0
 
@@ -201,7 +201,7 @@
 	//Reset Everything
 	if(activated)
 		chain=0
-		to_chat(user, span_danger("Your chain is reset."))
+		to_chat(user, "<span class='danger'>Your chain is reset.</span>")
 		activated = FALSE
 	force = initial(force)
 	hitsound = initial(hitsound)

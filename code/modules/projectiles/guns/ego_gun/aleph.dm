@@ -142,69 +142,75 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away."
+	special = "This weapon fires faster when the corresponding suit is worn."
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
 	fire_delay = 18
-	zoomable = TRUE
-	zoom_amt = 10
-	zoom_out_amt = 13
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/mob/current_holder
 
-/obj/item/gun/ego_gun/pink/attack_self(mob/user)
-	zoom(user, user.dir)
+/obj/item/gun/ego_gun/pink/before_firing(atom/target, mob/user)
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/pink/Y = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		fire_delay = 12//FIXME: change it to 15% damage. Or keep it this way, whatever people like
+	..()
+	
+/obj/item/gun/ego_gun/arcadia
+	name = "Et in Arcadia Ego"
+	desc = "With the waxing of the sun, humanity wanes."
+	icon_state = "arcadia"
+	inhand_icon_state = "arcadia"
+	special = "Use in hand to load bullets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_arcadia
+	weapon_weight = WEAPON_HEAVY
+	spread = 5
+	recoil = 1.5
+	fire_sound = 'sound/weapons/gun/rifle/shot_atelier.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 30
+	fire_delay = 7
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+
+	var/shotsleft = 16	//Based off a henry .44
+	var/reloadtime = 0.5 SECONDS
+
+/obj/item/gun/ego_gun/arcadia/process_chamber()
+	if(shotsleft)
+		shotsleft-=1
 	..()
 
-/obj/item/gun/ego_gun/pink/zoom(mob/living/user, direc, forced_zoom)
-	if(!CanUseEgo(user))
-		return
-	if(!user || !user.client)
-		return
-	if(isnull(forced_zoom))
-		zoomed = !zoomed
-	else
-		zoomed = forced_zoom
-	if(src != user.get_active_held_item())
-		if(!zoomed)
-			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-			UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-			user.client.view_size.zoomIn()
-		return
-	if(!zoomed)
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
-		user.client.view_size.zoomIn()
-	else
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
-		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
-	return zoomed
+/obj/item/gun/ego_gun/arcadia/can_shoot()
+	..()
+	if(shotsleft)
+		return TRUE
+	visible_message("<span class='notice'>The gun is out of ammo.</span>")
+	playsound(src, dry_fire_sound, 30, TRUE)
+	return FALSE
 
-/obj/item/gun/ego_gun/pink/proc/UserMoved(mob/living/user, direc)
-	SIGNAL_HANDLER
-	attack_self(user)//disengage
+/obj/item/gun/ego_gun/arcadia/attack_self(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+		shotsleft +=1
 
-/obj/item/gun/ego_gun/pink/Destroy(mob/user)//FIXME: causes component runtimes
-	if(!user)
-		return ..()
-	if(zoomed)
-		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
-		current_holder = null
-		return ..()
-
-/obj/item/gun/ego_gun/pink/dropped(mob/user)
+/obj/item/gun/ego_gun/arcadia/examine(mob/user)
 	. = ..()
-	if(!user)
-		return
-	if(zoomed)
-		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
-		current_holder = null
+	. += "Ammo Counter: [shotsleft]/[initial(shotsleft)]."
+

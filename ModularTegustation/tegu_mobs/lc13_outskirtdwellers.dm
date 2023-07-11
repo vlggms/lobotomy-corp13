@@ -32,7 +32,7 @@
 	turns_per_move = 2
 	butcher_difficulty = 2
 	buffed = 0
-	death_message = "pops."
+	deathmessage = "pops."
 	density = TRUE
 	search_objects = 1
 	tame_chance = 5
@@ -44,16 +44,15 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 1)
 	wanted_objects = list(/obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	var/current_size = RESIZE_DEFAULT_SIZE
 
 /mob/living/simple_animal/hostile/morsel/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] will consume body parts and gibs to increase their maximum health. [src] will flee from hostiles if their health is below 200.")
+	. += "<span class='notice'>[src] will consume body parts and gibs to increase their maximum health. [src] will flee from hostiles if their health is below 200.</span>"
 	if(maxHealth >= 250)
-		. += span_notice("Drag yourself onto [src] in order to ride them.")
+		. += "<span class='notice'>Drag yourself onto [src] in order to ride them.</span>"
 
 /mob/living/simple_animal/hostile/morsel/AttackingTarget()
 	retreat_distance = 0
@@ -89,7 +88,7 @@
 	if(.)
 		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
-		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
+		addtimer(CALLBACK(src, .proc/AnimateBack), 2)
 		for(var/i = 1 to 2)
 			var/turf/T = get_step(get_turf(src), dir_to_target)
 			if(T.density)
@@ -106,7 +105,7 @@
 	if(!is_type_in_list(O, food_type))
 		return ..()
 	if(stat == DEAD)
-		to_chat(user, span_warning("[src] is dead!"))
+		to_chat(user, "<span class='warning'>[src] is dead!</span>")
 		return
 	if(!locate(user) in friends)
 		if(prob(tame_chance))
@@ -114,7 +113,7 @@
 			tame_chance = 5
 		else
 			tame_chance += bonus_tame_chance
-	visible_message(span_notice("[src] bites [O] and grinds it into a digestable paste."))
+	visible_message("<span class='notice'>[src] bites [O] and grinds it into a digestable paste.</span>")
 	playsound(get_turf(user), 'sound/items/eatfood.ogg', 10, 3, 3)
 	buffed = (buffed + 1)
 	adjustBruteLoss(-5)
@@ -124,7 +123,7 @@
 
 /mob/living/simple_animal/hostile/morsel/proc/PustuleChurn()
 	var/newsize = current_size
-	visible_message(span_notice("[src]'s grows more chitin."))
+	visible_message("<span class='notice'>[src]'s grows more chitin.</span>")
 	if(maxHealth <= 2000)
 		maxHealth = maxHealth + 10
 	switch(maxHealth)
@@ -152,12 +151,12 @@
 		if(250)
 			response_help_continuous = "pets"
 			response_help_simple = "pet"
-			death_message = "collapses as their pustules lose their bright orange hue."
+			deathmessage = "collapses as their pustules lose their bright orange hue."
 			guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 4)
 			can_buckle = TRUE
 			buckle_lying = 0
 			mob_size = MOB_SIZE_LARGE
-			visible_message(span_notice("[src] looks big enough to use as a steed now."))
+			visible_message("<span class='notice'>[src] looks big enough to use as a steed now.</span>")
 			AddElement(/datum/element/ridable, /datum/component/riding/creature/no_monsteroffset)
 	var/extra_meat = (maxHealth-120)/20
 	extra_meat = round(extra_meat)
@@ -200,7 +199,7 @@
 	a_intent = "help"
 	maxHealth = 300 //100 less due to loss of arm
 	health = 300
-	death_message = "falls to their knees as the sound of gears slowly fades."
+	deathmessage = "falls to their knees as the sound of gears slowly fades."
 	melee_damage_lower = 0
 	melee_damage_upper = 4
 	mob_size = MOB_SIZE_LARGE
@@ -210,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/price/examine(mob/user)
 	. = ..()
-	. += span_notice("Attacking [src] with a light source will attach it to them. [src] will obey simple commands when touched with a bare hand.")
+	. += "<span class='notice'>Attacking [src] with a light source will attach it to them. [src] will obey simple commands when touched with a bare hand.</span>"
 
 /mob/living/simple_animal/hostile/price/Login()
 	. = ..()
@@ -261,10 +260,10 @@
 		if(A == M || anchored == 1)
 			return
 		if(!A)
-			to_chat(M, span_notice("There is no objects nearby that [src] can haul..."))
+			to_chat(M, "<span class='notice'>There is no objects nearby that [src] can haul...</span>")
 			return
 		start_pulling(A)
-		visible_message(span_notice("[src] begins to haul [A]."))
+		visible_message("<span class='notice'>[src] begins to haul [A].</span>")
 		break
 
 		//Crimson
@@ -305,7 +304,7 @@
 
 /mob/living/simple_animal/hostile/smallchuckles/examine(mob/user)
 	. = ..()
-	. += span_notice("[src] will do a trick and heal 5 sanity when touched with a bare hand.")
+	. += "<span class='notice'>[src] will do a trick and heal 5 sanity when touched with a bare hand.</span>"
 
 /mob/living/simple_animal/hostile/smallchuckles/Login()
 	. = ..()
@@ -327,13 +326,13 @@
 /mob/living/simple_animal/hostile/smallchuckles/death(gibbed)
 	playsound(get_turf(src), 'sound/machines/honkbot_evil_laugh.ogg', 10, 3, 3)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
+	addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
 	..()
 
 /mob/living/simple_animal/hostile/smallchuckles/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && buffed <= world.time && can_act)
 		can_act = FALSE
-		to_chat(M, span_notice("You watch [src] do a trick!"))
+		to_chat(M, "<span class='notice'>You watch [src] do a trick!</span>")
 		buffed = world.time + (10 SECONDS) //to avoid spamming
 		if(do_after(M, 4 SECONDS, target = M))
 			for(var/mob/living/carbon/human/L in oview(get_turf(src), 2)) //Even if the trick is bad hes trying his best.
@@ -350,7 +349,7 @@
 /mob/living/simple_animal/hostile/smallchuckles/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message(span_danger("[src] suddenly explodes!"))
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
@@ -378,7 +377,7 @@
 	butcher_difficulty = 2
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg = 1,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/slab/human, /obj/item/food/meat/slab/crimson,) // scower area for food and eat it
-	death_message = "screeches as it falls over." // |MESSAGE ABOVE|
+	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
 	density = TRUE
 	search_objects = 1
 	del_on_death = TRUE
@@ -401,7 +400,7 @@
 	icon_state = "kcorp_drone_idle"
 	icon_living = "kcorp_drone_idle"
 	icon_dead = "kcorp_drone_idle"
-	faction = list("hostile", "kcorp") // should target humanoids only and annoy them to no end
+	faction = list("hostile") // should target humanoids only and annoy them to no end
 	response_disarm_continuous = "pushes aside"
 	response_disarm_simple = "push aside"
 	attack_verb_continuous = "flashes"
@@ -416,7 +415,7 @@
 	turns_per_move = 3
 	butcher_difficulty = 3
 	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1)
-	death_message = "buzzes as he falls out of the air."
+	deathmessage = "buzzes as he falls out of the air."
 	density = FALSE
 	search_objects = 1
 	del_on_death = TRUE
@@ -438,7 +437,7 @@
 		L.Paralyze(5 SECONDS) //you better dodge it
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drops everyone's weapons
-		to_chat(L, span_danger("[src] shines a blinding light!"))
+		to_chat(L, "<span class='danger'>[src] shines a blinding light!</span>")
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = "kcorp_drone_idle"
@@ -492,6 +491,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_to_delay = 4
 	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	butcher_results = list(/obj/item/food/meat/slab = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -499,13 +499,12 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	mob_size = MOB_SIZE_HUGE
 	a_intent = INTENT_HARM
 	var/mob_spawn_amount = 1 //the weakest will spawn just one suicidal, higher tiers will spawn more
-	var/spawn_prob = 66 //chance to spawn suicials on death, default is 33%
 
 //Proc below is a modified crimson DeathExplosion()
 /mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal() //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
 	if(QDELETED(src))
 		return
-	visible_message(span_danger("[src] flesh rips apart!"))
+	visible_message("<span class='danger'>[src] flesh rips apart!</span>")
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -515,8 +514,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		if(!TF.is_blocked_turf(TRUE))
 			valid_directions += d
 	for(var/i = 1 to mob_spawn_amount)
-		if(prob(spawn_prob))
-			continue
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		new/mob/living/simple_animal/hostile/lovetown/suicidal(T)
 	gib()
@@ -524,7 +521,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/death(gibbed)
 	if(mob_spawn_amount > 0)
 		animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-		addtimer(CALLBACK(src, PROC_REF(SpawnSuicidal)), 5)
+		addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
 	..()
 
 //Love Town Suicidal - Weak, screams around itself occasionally, spawned by other enemies on death.
@@ -541,7 +538,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/can_act = TRUE
 	var/scream_cooldown
-	var/scream_cooldown_time = 6 SECONDS
+	var/scream_cooldown_time = 4 SECONDS
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/AttackingTarget()
 	return OpenFire()
@@ -560,13 +557,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	scream_cooldown = world.time + scream_cooldown_time
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 50, TRUE, 3)
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 2)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
-		animate(D, alpha = 0, transform = matrix()*1.5, time = 4)
-		SLEEP_CHECK_DEATH(6)
-	for(var/mob/living/L in view(3, src))
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
+		SLEEP_CHECK_DEATH(3)
+	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	can_act = TRUE
 
 //Love Town Slasher - TETH goons, not much of a threat
@@ -636,7 +633,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 4 //on death explodes into 4 suicidals
-	spawn_prob = 33 //66% chance to spawn suicidals, higher than normal
 
 	var/scream_cooldown
 	var/scream_cooldown_time = 7 SECONDS
@@ -659,13 +655,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	can_act = FALSE
 	scream_cooldown = world.time + scream_cooldown_time
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, TRUE, 3)
-	for(var/i = 1 to 4)
+	for(var/i = 1 to 3)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
-		animate(D, alpha = 0, transform = matrix()*1.5, time = 3)
-		SLEEP_CHECK_DEATH(6)
-	for(var/mob/living/L in view(4, src))
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
+		SLEEP_CHECK_DEATH(3)
+	for(var/mob/living/L in view(6, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	can_act = TRUE
 
 // Love Town Slumberer - HE threat,, quite damaging and can grab you, stuns you for some time.
@@ -683,6 +679,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "grapples"
 	attack_verb_simple = "grapple"
@@ -749,7 +746,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
 		SLEEP_CHECK_DEATH(1.5 SECONDS) //so we  dont instantly grab people
 		grab_ready = TRUE
-		addtimer(CALLBACK (src, PROC_REF(DisableCounter)), 4 SECONDS)
+		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
 		damage_taken = 0
 
 //WAW(?) miniboss, takes quite a lot of firepower to take down
@@ -776,7 +773,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2 //:(
-	spawn_prob = 0 //100%, always spawn them
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
@@ -787,7 +783,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/counter_threshold = 500 //300 at stage 2
 	var/counter_ready = FALSE //are we ready to counter?
 
-	var/counter_speed = 2 //subtracted from the movedelay when dashing
+	var/counter_speed = -2 //subtracted from the movedelay when dashing
+	var/original_speed = 6 //used to reset speed after dashing
 
 	var/lovewhip_damage = 100
 	var/damage_taken
@@ -797,8 +794,9 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(!countering && can_act)
 		icon_state = icon_living
 	current_stage = 2
-	//Speed changed from 6 to 4
-	SpeedChange(-counter_speed)
+	move_to_delay = 4
+	counter_speed = -1
+	original_speed = 4
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
@@ -835,13 +833,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			icon_state = "lovetown_abomination_dash2"
 	countering = TRUE
 	counter_ready = FALSE
-	//Speed becomes 4 or 2 and returns to 6 or 4 after 4 seconds.
-	TemporarySpeedChange(-counter_speed, 4 SECONDS)
-	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
-	addtimer(CALLBACK(src, PROC_REF(DisableCounter)), 4 SECONDS) //disables the counter after 4 seconds
+	move_to_delay += counter_speed
+	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	addtimer(CALLBACK(src, .proc/DisableCounter), 4 SECONDS) //disables the counter after 4 seconds
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the counter
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the speed
 	if(countering)
+		move_to_delay = original_speed
 		countering = FALSE
 		playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_end.ogg', 75, 0, 3)
 		SLEEP_CHECK_DEATH(10)

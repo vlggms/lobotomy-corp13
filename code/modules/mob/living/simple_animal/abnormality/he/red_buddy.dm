@@ -5,7 +5,6 @@
 	icon_state = "redbuddy"
 	icon_living = "redbuddy"
 	icon_dead = "redbuddy_dead"
-	portrait = "red_buddy"
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
@@ -18,15 +17,16 @@
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
 	threat_level = HE_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
-		ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
-		ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
-		ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60),
-	)
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+						ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
+						ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
+						ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
+						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
+						)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 70 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE
@@ -40,14 +40,10 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/totalitarianism,
-		/datum/ego_datum/armor/totalitarianism,
-	)
+		/datum/ego_datum/armor/totalitarianism
+		)
 	gift_type = /datum/ego_gifts/totalitarianism
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5,
-	)
 
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master
@@ -72,15 +68,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Initialize()
 	. = ..()
-	if(IsCombatMap())
-		faction |= "hostile"
 	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
 			if(A.name == "Blue Smocked Shepherd")
 				master = A
 				return
 	if(!master)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if shepherd isn't here yet, buddy will wait for him like a good dog
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if shepherd isn't here yet, buddy will wait for him like a good dog
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/OnAbnoSpawn(datum/source, datum/abnormality/abno)
 	SIGNAL_HANDLER
@@ -89,14 +83,12 @@
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	AdjustSuffering(3)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)
@@ -175,8 +167,7 @@
 		awoo_cooldown = 0 //resets the awoo cooldown too
 		melee_damage_lower = 60
 		melee_damage_upper = 80
-		SpeedChange(-1) //this doesn't matter as much as you'd think because he can't move before shepherd
-		UpdateSpeed()
+		move_to_delay = 4 //this doesn't matter as much as you'd think because he can't move before shepherd
 		vision_range = 3
 		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
 		can_patrol = FALSE //just in case
@@ -184,14 +175,14 @@
 ///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
 	if(!awakened_master || (moving_diagonally && !target))
-		return ..()
+		return . = ..()
 
 	if(!awakened_master.Adjacent(newloc) && !awakened_master.moving_diagonally)
 		return FALSE
-	return ..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
-	. = ..()
+	..()
 	deltimer(lying_timer)
 	icon_state = "redbuddy_active"
 
@@ -204,7 +195,7 @@
 		master.qliphoth_change(-1) //shepherd doesn't breach instantly but it's only a matter of time
 	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
 	for(var/i = 1 to 4)
-		addtimer(CALLBACK(src, PROC_REF(AwooDamage), abused), 1 SECONDS * (i))
+		addtimer(CALLBACK(src, .proc/AwooDamage, abused), 1 SECONDS * (i))
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AwooDamage(abused = FALSE)
 	var/heard_awoo = FALSE //red buddy is only hurt by his howl if someone hears it
@@ -244,7 +235,7 @@
 		awakened_master.melee_damage_lower = 10
 		awakened_master.melee_damage_upper = 15
 		awakened_master.slash_damage = 20
-		awakened_master.SpeedChange(-0.8) //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
+		awakened_master.move_to_delay = 1.7 //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
 		awakened_master.say("A wolf. A wolf. Why won't you believe me? it's right there. IT WAS RIGHT THERE!")
 	awakened_master = null
 	density = FALSE

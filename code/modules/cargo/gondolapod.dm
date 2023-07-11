@@ -49,9 +49,9 @@
 /mob/living/simple_animal/pet/gondola/gondolapod/examine(mob/user)
 	. = ..()
 	if (contents.len)
-		. += span_notice("It looks like it hasn't made its delivery yet.</b>")
+		. += "<span class='notice'>It looks like it hasn't made its delivery yet.</b></span>"
 	else
-		. += span_notice("It looks like it has already made its delivery.</b>")
+		. += "<span class='notice'>It looks like it has already made its delivery.</b></span>"
 
 /mob/living/simple_animal/pet/gondola/gondolapod/verb/check()
 	set name = "Count Contents"
@@ -59,14 +59,14 @@
 	set desc = "Take a deep look inside youself, and count up what's inside"
 	var/total = contents.len
 	if (total)
-		to_chat(src, span_notice("You detect [total] object\s within your incredibly vast belly."))
+		to_chat(src, "<span class='notice'>You detect [total] object\s within your incredibly vast belly.</span>")
 	else
-		to_chat(src, span_notice("A closer look inside yourself reveals... nothing."))
+		to_chat(src, "<span class='notice'>A closer look inside yourself reveals... nothing.</span>")
 
 /mob/living/simple_animal/pet/gondola/gondolapod/setOpened()
 	opened = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, setClosed)), 50)
+	addtimer(CALLBACK(src, /atom/.proc/setClosed), 50)
 
 /mob/living/simple_animal/pet/gondola/gondolapod/setClosed()
 	opened = FALSE

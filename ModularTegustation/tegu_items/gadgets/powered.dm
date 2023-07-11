@@ -41,18 +41,18 @@
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
 		if(cell)
 			W.play_tool_sound(src)
-			to_chat(user, span_notice("You undo the safety lock and remove the [cell]."))
+			to_chat(user, "<span class='notice'>You undo the safety lock and remove the [cell].</span>")
 			user.put_in_hands(cell)
 			ReplacePowerCell()
 	if(istype(W, /obj/item/stock_parts/cell))
 		if(!cell)
 			if(ReplacePowerCell(W, user))
-				to_chat(user, span_notice("You insert [W] into [src]."))
+				to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
 			return
 		else
 			user.dropItemToGround(cell)
 			if(ReplacePowerCell(W, user))
-				to_chat(user, span_notice("You preform what could be called a tactical reload on the [src]."))
+				to_chat(user, "<span class='notice'>You preform what could be called a tactical reload on the [src].</span>")
 			return
 
 	if(cantbeused(user))
@@ -63,9 +63,9 @@
 /obj/item/powered_gadget/examine(mob/living/M)
 	. = ..()
 	if(cell)
-		. += span_notice("Its display shows: [DisplayEnergy(cell.charge)].")
+		. += "<span class='notice'>Its display shows: [DisplayEnergy(cell.charge)].</span>"
 	else
-		. += span_notice("Its display is dark.")
+		. += "<span class='notice'>Its display is dark.</span>"
 
 /obj/item/powered_gadget/update_icon_state()
 	if(default_icon)
@@ -95,27 +95,27 @@
 /obj/item/powered_gadget/proc/toggle_on(mob/user)
 	if(cell && cell.charge >= batterycost)
 		turned_on = !turned_on
-		to_chat(user, span_notice("[src] is now [turned_on ? "on" : "off"]."))
+		to_chat(user, "<span class='notice'>[src] is now [turned_on ? "on" : "off"].</span>")
 	else
 		turned_on = FALSE
 		if(!cell)
-			to_chat(user, span_warning("[src] does not have a power source!"))
+			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
 		else
-			to_chat(user, span_warning("[src] is out of charge."))
+			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
 	update_icon()
 	add_fingerprint(user)
 
 /obj/item/powered_gadget/proc/cantbeused(mob/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, span_warning("You don't have the dexterity to use [src]!"))
+		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
 		return TRUE
 
 	if(!cell)
-		to_chat(user, span_warning("[src] doesn't have a power cell installed!"))
+		to_chat(user, "<span class='warning'>[src] doesn't have a power cell installed!</span>")
 		return TRUE
 
 	if(!cell.charge)
-		to_chat(user, span_warning("[src]'s battery is dead!"))
+		to_chat(user, "<span class='warning'>[src]'s battery is dead!</span>")
 		return TRUE
 	return FALSE
 
@@ -189,15 +189,11 @@
 
 /obj/item/powered_gadget/teleporter/attack_self(mob/user)
 	..()
-	var/area/turf_area = get_area(get_turf(user))
-	if(istype(turf_area, /area/fishboat))
-		to_chat(user, span_warning("The machine won't work, it's too damp!."))
-		return
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
 		icon_state = default_icon
 	else if (cell && cell.charge < batterycost)
-		to_chat(user, span_notice("The batteries are dead."))
+		to_chat(user, "<span class='notice'>The batteries are dead.</span>")
 		update_icon()
 		return
 	else if (!cell)
@@ -207,7 +203,7 @@
 	if(inuse)
 		return
 	inuse = TRUE
-	to_chat(user, span_notice("You press the button and begin to teleport."))
+	to_chat(user, "<span class='notice'>You press the button and begin to teleport.</span>")
 	if(do_after(user, 100))	//Ten seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 
@@ -218,6 +214,56 @@
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 	inuse = FALSE
 	update_icon()
+
+/obj/item/powered_gadget/clerkbot_gadget
+	name = "Instant Clerkbot Constructor"
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
+	icon_state = "clerkbot2_deactivated"
+	batterycost = 10000
+
+/obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
+	..()
+	if(cell && cell.charge >= batterycost)
+		cell.charge = cell.charge - batterycost
+		if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
+			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
+			return
+		new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
+		to_chat(user, "<span class='nicegreen'>The Gadget turns warm and sparks.</span>")
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	if(prob(50))
+		icon_state = "clerkbot1"
+		icon_living = "clerkbot1"
+
+/mob/living/simple_animal/hostile/clerkbot
+	name = "A Well Rounded Clerkbot"
+	desc = "Trusted and loyal best friend."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	faction = list("neutral")
+	health = 150
+	maxHealth = 150
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 12
+	melee_damage_upper = 14
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "buzzes"
+	attack_verb_simple = "buzz"
+	attack_sound = 'sound/weapons/bite.ogg'
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	QDEL_IN(src, (120 SECONDS))
 
 //The taser
 /obj/item/powered_gadget/handheld_taser
@@ -232,31 +278,31 @@
 
 /obj/item/powered_gadget/handheld_taser/attack_self(mob/user)
 	if(!cell || cell.charge < batterycost_slow)
-		to_chat(user, span_notice("The Gadget buzzes. Battery charge too low."))
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 		return
 	if(batterycost == batterycost_slow)
 		if(cell.charge < batterycost_stun)
-			to_chat(user, span_notice("The Gadget buzzes. Battery charge too low."))
+			to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 			return
 		batterycost = batterycost_stun
-		to_chat(user, span_nicegreen("The Gadget's light burns orange before clicking ready to Stun."))
+		to_chat(user, "<span class='nicegreen'>The Gadget's light burns orange before clicking ready to Stun.</span>")
 		return
 	batterycost = batterycost_slow
-	to_chat(user, span_nicegreen("The Gadget's light blinks yellow before clicking ready to Slow."))
+	to_chat(user, "<span class='nicegreen'>The Gadget's light blinks yellow before clicking ready to Slow.</span>")
 
 /obj/item/powered_gadget/handheld_taser/attack(var/mob/living/T, mob/living/user)
 	if(user.a_intent != INTENT_HARM)
-		hit_message = span_notice("[user] lightly pokes [T] with the taser.")
+		hit_message = "<span class='notice'>[user] lightly pokes [T] with the taser.</span>"
 		user.visible_message(hit_message)
 		return
-	hit_message = span_userdanger("[user] smashes the taser into [T].")
+	hit_message = "<span class='userdanger'>[user] smashes the taser into [T].</span>"
 	if(ishostile(T) && cell.charge >= batterycost_slow)
 		cell.charge = cell.charge - batterycost_slow
 		user.visible_message(hit_message)
 		T.apply_status_effect(/datum/status_effect/qliphothoverload)
 		return
 	if (!cell || cell.charge < batterycost || isabnormalitymob(T))
-		to_chat(user, span_notice("The Gadget buzzes. Battery charge too low."))
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 		return
 	if (batterycost == batterycost_stun)
 		T.apply_status_effect(/datum/status_effect/qliphothoverload)
@@ -274,29 +320,26 @@
 	icon_state = "gadgetmod"
 	 //roundabout way of making update item easily changed. Used in updateicon proc.
 	default_icon = "gadgetmod"
-	force = 0
 
-/obj/item/powered_gadget/vitals_projector/Initialize()
-	. = ..()
-	batterycost = round(cell.maxcharge * 0.10)
-
-/obj/item/powered_gadget/vitals_projector/attack_self(mob/user)
-	var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
-	if(do_after(user, 3 SECONDS, user, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE))
-		switch(mod1_ask)
-			if("cancel")
-				return
-			if("Human")
-				chosen_target_type = 1
-				batterycost = round(cell.maxcharge * 0.10)
-			if("Ordeal")
-				chosen_target_type = 2
-				batterycost = round(cell.maxcharge * 0.15)
-			if("Abnormality")
-				chosen_target_type = 3
-				batterycost = round(cell.maxcharge * 0.20)
-		update_icon()
-	return
+/obj/item/powered_gadget/vitals_projector/attackby(obj/item/W, mob/user)
+	if(W.tool_behaviour == TOOL_WRENCH)
+		var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
+		batterycost = initial(batterycost)
+		if(do_after(user, 5 SECONDS, target = user))
+			switch(mod1_ask)
+				if("cancel")
+					return
+				if("Human")
+					chosen_target_type = 1
+				if("Ordeal")
+					chosen_target_type = 2
+					batterycost += round(cell.maxcharge * 0.15)
+				if("Abnormality")
+					chosen_target_type = 3
+					batterycost += round(cell.maxcharge * 0.25)
+			update_icon()
+			return
+	return ..()
 
 /obj/item/powered_gadget/vitals_projector/update_overlays()
 	. = ..()
@@ -311,30 +354,25 @@
 /obj/item/powered_gadget/vitals_projector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(!chosen_target_type)
-		to_chat(user, span_warning("Use in-hand to set the target type!"))
-		return
-	if(cell && cell.charge >= batterycost)
-		if(isliving(target))
-			if(!target_check(target))
-				to_chat(user, span_warning("The projector fails to scan [target] with its current setting."))
-				return
-			cell.charge -= batterycost
-			var/mob/living/L = target
-			to_chat(user, span_notice("Projection of [target] Vitals Initializing."))
-			L.apply_status_effect(/datum/status_effect/visualize_vitals)
+		to_chat(user, "<span class='warning'>A wrench is needed to set the target type!</span>")
+	if(cell && cell.charge >= batterycost && target_check(target))
+		cell.charge -= batterycost
+		var/mob/living/L = target
+		to_chat(user, "<span class='notice'>Projection of [target] Vitals Initializing.</span>")
+		L.apply_status_effect(/datum/status_effect/visualize_vitals)
 	else if(!cell || cell.charge <= batterycost)
-		to_chat(user, span_warning("Insufficent Energy for Projection."))
+		to_chat(user, "<span class='warning'>Insufficent Energy for Projection.</span>")
 		update_icon()
 
 /obj/item/powered_gadget/vitals_projector/examine(mob/living/M)
 	. = ..()
 	switch(chosen_target_type)
 		if(1)
-			. += span_notice("Its currently set to Human.")
+			. += "<span class='notice'>Its currently set to Human.</span>"
 		if(2)
-			. += span_notice("Its currently set to Ordeal.")
+			. += "<span class='notice'>Its currently set to Ordeal.</span>"
 		if(3)
-			. += span_notice("Its currently set to Abnormality.")
+			. += "<span class='notice'>Its currently set to Abnormality.</span>"
 
 //status effects
 /datum/status_effect/visualize_vitals
@@ -390,9 +428,7 @@
 //Injector
 /obj/item/powered_gadget/enkephalin_injector
 	name = "Prototype Enkephalin Injector"
-	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. \
-			However, the development was discontinued after the safety department abused it for... other purposes. \
-			This version only makes the entities even more hostile towards you. Only for clerks"
+	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. However, the development was discontinued after the safety department abused it for... other purposes. This version only makes the entities even more hostile towards you. Only for clerks"
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
@@ -400,25 +436,22 @@
 
 /obj/item/powered_gadget/enkephalin_injector/attack(mob/living/T, mob/user)
 	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
-		return
-	if(T.status_flags & GODMODE)
-		to_chat(user, span_notice("[T] simply ignores you."))
+		to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 		return
 	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
 		var/mob/living/simple_animal/hostile/H = T
 		if(H.target != user)
-			hit_message = span_warning("[user] injected some enkephalin into [T].")
-			H.GiveTarget(user)
+			hit_message = "<span class='warning'>[user] injected some enkephalin into [T].</span>"
+			H.target = user
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
 			update_icon()
 			return
 		else
-			to_chat(user, span_warning("[T] is already targetting you."))
+			to_chat(user, "<span class='warning'>[T] is already targetting you.</span>")
 			return
 	if (!cell || cell.charge < batterycost)
-		to_chat(user, span_notice("The Gadget buzzes. Battery charge too low."))
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
 		update_icon()
 		return
-	to_chat(user, span_notice("You can't use this on [T]."))
+	to_chat(user, "<span class='notice'>You can't use this on [T].</span>")

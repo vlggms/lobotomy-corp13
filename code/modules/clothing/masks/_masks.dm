@@ -13,12 +13,12 @@
 	if((clothing_flags & VOICEBOX_TOGGLABLE))
 		clothing_flags ^= (VOICEBOX_DISABLED)
 		var/status = !(clothing_flags & VOICEBOX_DISABLED)
-		to_chat(user, span_notice("You turn the voice box in [src] [status ? "on" : "off"]."))
+		to_chat(user, "<span class='notice'>You turn the voice box in [src] [status ? "on" : "off"].</span>")
 
 /obj/item/clothing/mask/equipped(mob/M, slot)
 	. = ..()
 	if (slot == ITEM_SLOT_MASK && modifies_speech)
-		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 
@@ -32,7 +32,7 @@
 		if(M.get_item_by_slot(ITEM_SLOT_MASK) == src)
 			if(vval)
 				if(!modifies_speech)
-					RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+					RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
 			else if(modifies_speech)
 				UnregisterSignal(M, COMSIG_MOB_SAY)
 	return ..()
@@ -67,11 +67,11 @@
 		clothing_flags |= visor_flags
 		flags_inv |= visor_flags_inv
 		flags_cover |= visor_flags_cover
-		to_chat(user, span_notice("You push \the [src] back into place."))
+		to_chat(user, "<span class='notice'>You push \the [src] back into place.</span>")
 		slot_flags = initial(slot_flags)
 	else
 		icon_state += "_up"
-		to_chat(user, span_notice("You push \the [src] out of the way."))
+		to_chat(user, "<span class='notice'>You push \the [src] out of the way.</span>")
 		gas_transfer_coefficient = null
 		permeability_coefficient = null
 		clothing_flags &= ~visor_flags

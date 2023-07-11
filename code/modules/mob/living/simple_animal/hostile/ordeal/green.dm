@@ -18,11 +18,10 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	death_sound = 'sound/effects/ordeals/green/dawn_dead.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	deathsound = 'sound/effects/ordeals/green/dawn_dead.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/green_simple = 1)
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
@@ -51,8 +50,6 @@
 	. = ..()
 	if(.)
 		if(!istype(target, /mob/living/carbon/human))
-			return
-		if(SSmaptype.maptype == "city")
 			return
 		var/mob/living/carbon/human/TH = target
 		if(TH.health < 0)
@@ -113,7 +110,6 @@
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
-	attack_vis_effect = ATTACK_EFFECT_CLAW
 	ranged = 1
 	rapid = 5
 	rapid_fire_delay = 2
@@ -121,12 +117,10 @@
 	check_friendly_fire = TRUE //stop shooting each other
 	projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
-	death_sound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/green_advanced = 1,
-						/obj/item/stack/sheet/silk/green_simple = 2)
 
 	/// Can't move/attack when it's TRUE
 	var/reloading = FALSE
@@ -220,13 +214,10 @@
 	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 3000
 	health = 3000
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
-	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
-						/obj/item/stack/sheet/silk/green_advanced = 2,
-						/obj/item/stack/sheet/silk/green_simple = 4)
-	death_sound = 'sound/effects/ordeals/green/dusk_dead.ogg'
+	deathsound = 'sound/effects/ordeals/green/dusk_dead.ogg'
 	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
@@ -270,7 +261,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "green_dusk_create"
 	SLEEP_CHECK_DEATH(6)
-	visible_message(span_danger("\The [src] produces a new set of robots!"))
+	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
 		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
@@ -340,10 +331,10 @@
 	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 50000
 	health = 50000
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
-	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
+	deathsound = 'sound/effects/ordeals/green/midnight_dead.ogg'
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS
@@ -372,7 +363,7 @@
 	laser_cooldown = world.time + 6 SECONDS
 	next_health_mark = maxHealth * 0.9
 	laserloop = new(list(src), FALSE)
-	addtimer(CALLBACK(src, PROC_REF(OpenShell)), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/OpenShell), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Destroy()
 	QDEL_NULL(left_shell)
@@ -418,7 +409,7 @@
 	if(firing)
 		return FALSE
 	if(world.time > laser_cooldown)
-		INVOKE_ASYNC(src, PROC_REF(SetupLaser))
+		INVOKE_ASYNC(src, .proc/SetupLaser)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/OpenShell()
 	animate(left_shell, pixel_x = base_pixel_x - 24, time = 4 SECONDS, easing = QUAD_EASING)
@@ -439,7 +430,7 @@
 		var/obj/effect/greenmidnight_laser/L = new(get_turf(src))
 		lasers[L] = get_turf_in_angle(new_angle, get_turf(src), 64)
 		playsound(get_turf(src), 'sound/effects/ordeals/green/midnight_laser_new.ogg', 50 + 5 * (i - max_lasers), FALSE)
-		addtimer(CALLBACK(src, PROC_REF(PrepareLaser), L, new_angle), 0.5 SECONDS)
+		addtimer(CALLBACK(src, .proc/PrepareLaser, L, new_angle), 0.5 SECONDS)
 		var/old_angle = new_angle
 		for(var/attempt = 1 to 3) // Just so that we don't get ourselves absolutely the same angle twice in a row
 			new_angle = rand(0, 360)
@@ -488,7 +479,7 @@
 		B.visuals.transform = M
 		beams += B
 		hit_line |= getline(T, lasers[L])
-	INVOKE_ASYNC(src, PROC_REF(LaserEffect))
+	INVOKE_ASYNC(src, .proc/LaserEffect)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/LaserEffect()
 	if(stat == DEAD)

@@ -90,7 +90,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
 	taste_description = "piss water"
-	glass_icon_state = "beerglass"
 	glass_name = "glass of beer"
 	glass_desc = "A freezing pint of beer."
 
@@ -1957,22 +1956,21 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	generate_data_info(data)
 
 /datum/reagent/consumable/ethanol/fruit_wine/proc/generate_data_info(list/data)
-	var/const/minimum_percent = 0.15 
-	var/const/notable_percent = minimum_percent * 2
+	var/minimum_percent = 0.15 //Percentages measured between 0 and 1.
 	var/list/primary_tastes = list()
 	var/list/secondary_tastes = list()
 	glass_name = "glass of [name]"
 	glass_desc = description
 	for(var/taste in tastes)
 		switch(tastes[taste])
-			if(notable_percent to INFINITY) //Percentages measured between 0 and 1.
+			if(minimum_percent*2 to INFINITY)
 				primary_tastes += taste
-			if(minimum_percent to notable_percent)
+			if(minimum_percent to minimum_percent*2)
 				secondary_tastes += taste
 
 	var/minimum_name_percent = 0.35
 	name = ""
-	var/list/names_in_order = sortTim(names, GLOBAL_PROC_REF(cmp_numeric_dsc), TRUE)
+	var/list/names_in_order = sortTim(names, /proc/cmp_numeric_dsc, TRUE)
 	var/named = FALSE
 	for(var/fruit_name in names)
 		if(names[fruit_name] >= minimum_name_percent)

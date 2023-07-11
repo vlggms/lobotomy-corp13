@@ -7,7 +7,6 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "nakednest_inert"
 	icon_living = "nakednest_inert"
-	portrait = "naked_nest"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 800
@@ -17,8 +16,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 55),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 45, 45, 50),
-		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40),
-	)
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40)
+		)
 	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
 	max_boxes = 22
@@ -27,34 +26,36 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/exuviae,
-		/datum/ego_datum/armor/exuviae,
-		/datum/ego_datum/exuviae,
-	)
+		/datum/ego_datum/armor/exuviae
+		)
 	gift_type =  /datum/ego_gifts/exuviae
 	gift_message = "You manage to shave off a patch of scales."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	can_patrol = FALSE
-	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
 	stat_attack = HARD_CRIT
 	ranged = TRUE
 	ranged_cooldown_time = 1
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	death_message = "collapses as its residents flee."
-	death_sound = 'sound/effects/dismember.ogg'
+	deathmessage = "collapses as its residents flee."
+	deathsound = 'sound/effects/dismember.ogg'
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
 
+/mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	to_chat(user, "<span class='notice'>The serpents seem to avoid areas of their nest covered in this solution.</span>")
+	new /obj/item/serpentspoison(get_turf(user))
+	return
+
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
+	if(prob(30 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
+	if(prob(60 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
@@ -131,12 +132,12 @@
 /mob/living/simple_animal/hostile/abnormality/naked_nest/proc/RecoverSerpent(mob/living/simple_animal/hostile/naked_nest_serpent/S) //destination of serpents nest proc
 	if(serpentsnested <= 5)
 		if(S.client)
-			to_chat(src, span_nicegreen("You return to the safety of the nest."))
+			to_chat(src, "<span class='nicegreen'>You return to the safety of the nest.</span>")
 		playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 10, 1)
 		qdel(S)
 		serpentsnested = serpentsnested + 1
 	else if(S.client)
-		to_chat(S, span_notice("This nest has no more room."))
+		to_chat(S, "<span class='notice'>This nest has no more room.</span>")
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/proc/Nest() //return to the nest
 	for(var/mob/living/simple_animal/hostile/naked_nest_serpent/M in range(0, src))
@@ -154,7 +155,7 @@
 	maxHealth = 5
 	health = 5 //STOMP THEM STOMP THEM NOW.
 	move_to_delay = 3
-	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	density = FALSE //they are worms.
 	robust_searching = 1
@@ -186,7 +187,7 @@
 	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
 		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = target
 		nest.RecoverSerpent(src)
-	return ..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/CanAttack(atom/the_target)
 	if(panic_timer > world.time)
@@ -220,8 +221,8 @@
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/proc/EnterHost(mob/living/carbon/host)
 	if(prob(50 * (host.health / host.maxHealth)))
-		to_chat(host, span_warning("You feel something cold touch the back of your leg!"))
-	to_chat(src, span_nicegreen("You’ve found a new nest!"))
+		to_chat(host, "<span class='warning'>You feel something cold touch the back of your leg!</span>")
+	to_chat(src, "<span class='nicegreen'>You’ve found a new nest!</span>")
 	new /obj/item/organ/naked_nest(host)
 	QDEL_IN(src, 5)
 
@@ -254,14 +255,15 @@
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
-	death_message = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
+	deathmessage = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	maxHealth = 300
 	health = 300
 	stat_attack = CONSCIOUS //When you are put into crit the nested will continue to transform into a nest. I thought about having the nested infest you if your in crit but that seemed a bit too cruel.
-	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_size = MOB_SIZE_HUMAN
 	minbodytemp = INHOSPITABLE_FOR_NESTING
 	guaranteed_butcher_results = list(/obj/item/food/meatball/human = 1) //considered having it spawn a single worm on butcher but that seemed cruel.
@@ -294,31 +296,30 @@
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(N)
-	N.ChangeResistances(damage_coeff)
+	N.damage_coeff = damage_coeff
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 30, 1)
 	qdel(src)
 
 /mob/living/simple_animal/hostile/naked_nested/proc/UpdateArmor()
-	var/list/damage_list = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	var/obj/item/clothing/suit/armor/host_armor = locate(/obj/item/clothing/suit/armor) in contents
 	if(host_armor)
 		if(host_armor.armor[RED_DAMAGE])
 			fortitude = 1 - (host_armor.armor[RED_DAMAGE] / 100) // 100 armor / 100 = 1
-			if(fortitude <= damage_list[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
-				damage_list[RED_DAMAGE] = fortitude
+			if(fortitude <= damage_coeff[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
+				damage_coeff[RED_DAMAGE] = fortitude
 		if(host_armor.armor[WHITE_DAMAGE])
 			prudence = 1 - (host_armor.armor[WHITE_DAMAGE] / 100)
-			if(prudence <= damage_list[WHITE_DAMAGE] && prudence > 0)
-				damage_list[WHITE_DAMAGE] = prudence
+			if(prudence <= damage_coeff[WHITE_DAMAGE] && prudence > 0)
+				damage_coeff[WHITE_DAMAGE] = prudence
 		if(host_armor.armor[BLACK_DAMAGE])
 			temperance = 1 - (host_armor.armor[BLACK_DAMAGE] / 100)
 			if(temperance > 0)
-				damage_list[BLACK_DAMAGE] = temperance
+				damage_coeff[BLACK_DAMAGE] = temperance
 		if(host_armor.armor[PALE_DAMAGE])
 			justice = 1 - (host_armor.armor[PALE_DAMAGE] / 100)
 			if(justice > 0)
-				damage_list[PALE_DAMAGE] = justice
-		ChangeResistances(damage_list)
+				damage_coeff[PALE_DAMAGE] = justice
 		return TRUE
 
 /mob/living/simple_animal/hostile/naked_nested/hour_nesting //for dungeon gamemodes
@@ -354,7 +355,7 @@
 
 /obj/item/organ/naked_nest/on_find(mob/living/finder)
 	. = ..()
-	to_chat(finder, span_warning("A portion of [owner]'s brain has been converted into a scaly green tumor."))
+	to_chat(finder, "<span class='warning'>A portion of [owner]'s brain has been converted into a scaly green tumor.")
 
 /obj/item/organ/naked_nest/on_death()
 	. = ..()
@@ -369,7 +370,7 @@
 /obj/item/organ/naked_nest/Remove(mob/living/carbon/human/M, special = 0)
 	if(M && M.stat != DEAD)
 		SerpentsPoison(M, FALSE)
-		visible_message(span_warning("A green worm leaps out of [M]'s [zone]!"))
+		visible_message("<span class='warning'>A green worm leaps out of [M]'s [zone]!</span>")
 	. = ..()
 
 /obj/item/organ/naked_nest/on_life()
@@ -384,9 +385,9 @@
 	if((H.drunkenness >= 5 || H.bodytemperature <= INHOSPITABLE_FOR_NESTING) && H.stat != DEAD) //increases duration of infection.
 		grow_process += (0.8 SECONDS)
 		if(prob(30))
-			to_chat(H, span_warning("You feel a gurgling noise inside of you..."))
+			to_chat(H, "<span class='warning'>You feel a gurgling noise inside of you...</span>")
 		else if(physical_symptoms && prob(20))
-			to_chat(H, span_warning("A sudden spasming headache overtakes you..."))
+			to_chat(H, "<span class='warning'>A sudden spasming headache overtakes you...</span>")
 	if(world.time >= (green_skin_time))
 		if(!physical_symptoms)
 			physical_symptoms = TRUE
@@ -433,12 +434,12 @@
 	color = "gold"
 
 /obj/item/serpentspoison/attack(mob/living/M, mob/user)
-	user.visible_message(span_notice("[user] injects [M] with [src]."))
+	user.visible_message("<span class='notice'>[user] injects [M] with [src].</span>")
 	Cure(M)
 	qdel(src)
 
 /obj/item/serpentspoison/attack_self(mob/living/carbon/user)
-	user.visible_message(span_notice("[user] injects themselves with [src]."))
+	user.visible_message("<span class='notice'>[user] injects themselves with [src].</span>")
 	Cure(user)
 	qdel(src)
 

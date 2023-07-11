@@ -7,18 +7,17 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/divinity,
-		/datum/ego_datum/armor/divinity,
-	)
+		/datum/ego_datum/armor/divinity
+		)
 
 /obj/structure/toolabnormality/theonite_slab/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, JUSTICE_ATTRIBUTE) >= 50)
-		to_chat(user, span_notice("That's enough."))
+		to_chat(user, "<span class='notice'>That's enough.</span>")
 		return //You don't need any more.
 
-	flick(icon_state, src)
 	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
 	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
 	if(!(user in users))
@@ -29,7 +28,7 @@
 			S.add_stacks(1)
 
 	user.apply_status_effect(STATUS_EFFECT_SLAB)
-	to_chat(user, span_userdanger("You caress the slab, and blood painlessly flows from your fingers. The runes begin to glow."))
+	to_chat(user, "<span class='userdanger'>You caress the spikes, and blood flows painlessly. The runes begin to glow.</span>")
 
 // Status Effect
 /datum/status_effect/stacking/slab
@@ -46,7 +45,7 @@
 	var/punishment_size
 
 /datum/status_effect/stacking/slab/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(Punishment))
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/Punishment)
 	return ..()
 
 /datum/status_effect/stacking/slab/on_remove()
@@ -71,7 +70,7 @@
 	var/turf/R = get_turf(H)
 	for(var/turf/T in view(punishment_size, R))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
-	addtimer(CALLBACK(src, PROC_REF(PunishHit), R, damage, damagetype), clamp(punishment_size, 1, 2) SECONDS)
+	addtimer(CALLBACK(src, .proc/PunishHit, R, damage, damagetype), clamp(punishment_size, 1, 2) SECONDS)
 
 /datum/status_effect/stacking/slab/proc/PunishHit(turf/R, damage, damagetype)
 	for(var/turf/T in view(punishment_size, R))

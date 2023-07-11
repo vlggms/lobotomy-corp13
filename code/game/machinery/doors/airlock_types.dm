@@ -565,14 +565,6 @@
 	glass = TRUE
 	bound_width = 64 // 2x1
 
-/obj/machinery/door/airlock/glass_large/narsie_act()
-	return
-
-//////////////////////////////////
-/*
-	LC13 Airlocks
-*/
-
 /obj/machinery/door/airlock/snowqueen
 	name = "Snow Queen's Gate"
 	desc = "Are you ready for what lies ahead?"
@@ -585,12 +577,6 @@
 	bound_width = 128
 	bound_height = 128
 	hackProof = TRUE
-	doorOpen = 'sound/effects/stonedoor_openclose.ogg'
-	doorClose = 'sound/effects/stonedoor_openclose.ogg'
 
-/obj/machinery/door/airlock/snowqueen/bumpopen(mob/living/user)
-	if(!ishuman(user))
-		return ..()
-	for(var/obj/item/ego_weapon/THESWORD in user.GetAllContents())
-		return ..() //Only open once they pick up the sword
+/obj/machinery/door/airlock/glass_large/narsie_act()
 	return

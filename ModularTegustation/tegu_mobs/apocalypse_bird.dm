@@ -4,7 +4,7 @@
 	that terrorizes the forest, without realizing that it is looking for itself."
 	health = 600000
 	maxHealth = 600000
-	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	icon_state = "apocalypse"
 	icon_living = "apocalypse"
 	//icon_dead = "apocalypse_dead"
@@ -22,8 +22,8 @@
 	base_pixel_x = -96
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
-	death_message = "finally stops moving, falling to the ground."
-	death_sound = 'sound/abnormalities/apocalypse/dead.ogg'
+	deathmessage = "finally stops moving, falling to the ground."
+	deathsound = 'sound/abnormalities/apocalypse/dead.ogg'
 
 	loot = list(
 		/obj/item/ego_weapon/twilight,
@@ -94,7 +94,7 @@
 		QDEL_NULL(m)
 	var/blurb_text = "Three birds, now as one, looked around to find the monster but couldn't find it.\
 	There were no creatures, no sun and moon, and no monsters. All that is left is just a bird, and the black forest."
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 25), 5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, blurb_text, 25), 5 SECONDS)
 	for(var/mob/living/carbon/human/M in GLOB.player_list)
 		if(M.stat != DEAD && M.client)
 			M.Apply_Gift(new /datum/ego_gifts/twilight)
@@ -157,7 +157,7 @@
 	flick("apocalypse_slam", src)
 	SLEEP_CHECK_DEATH(4)
 	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
-	visible_message(span_danger("[src] slams at the floor with its talons!"))
+	visible_message("<span class='danger'>[src] slams at the floor with its talons!</span>")
 	// Shake effect
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
@@ -189,9 +189,9 @@
 	animate(src, alpha = 0, time = 15)
 	SLEEP_CHECK_DEATH(1.8 SECONDS)
 	animate(src, alpha = 255, time = 5)
-	visible_message(span_danger("[src] suddenly disappears!"))
+	visible_message("<span class='danger'>[src] suddenly disappears!</span>")
 	forceMove(T)
-	visible_message(span_danger("[src] suddenly appears in front of you!"))
+	visible_message("<span class='danger'>[src] suddenly appears in front of you!</span>")
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	teleport_cooldown = world.time + teleport_cooldown_time
 	attacking = FALSE
@@ -254,7 +254,7 @@
 	SLEEP_CHECK_DEATH(10)
 	flick("apocalypse_slam", src)
 	playsound(src, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	visible_message(span_danger("[src] opens its mouth and devours everything in its path!"))
+	visible_message("<span class='danger'>[src] opens its mouth and devours everything in its path!</span>")
 	var/list/been_hit = list()
 	for(var/turf/TF in area_of_effect)
 		new /obj/effect/temp_visual/beakbite(TF)
@@ -324,7 +324,7 @@
 		H.InitializeAIController()
 		enchanted_list.Add(H)
 		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
-		addtimer(CALLBACK(src, PROC_REF(EndEnchant), H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src,.proc/EndEnchant, H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	special_cooldown = world.time + special_cooldown_time
@@ -367,7 +367,7 @@
 		P.xo = PT.x - T.x
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 6.5 SECONDS)
+		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 6.5 SECONDS)
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)
@@ -412,7 +412,7 @@
 	return ..()
 
 /mob/living/simple_animal/apocalypse_egg/death(gibbed)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBCC", flash_time = 50)
@@ -436,7 +436,7 @@
 	icon_living = "egg_beak"
 	icon_damaged = "egg_beak_damaged"
 	icon_dead = "egg_beak_dead"
-	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	blurb_text = "And Little Bird's mouth that devours everything has been shut."
 
 /mob/living/simple_animal/apocalypse_egg/beak/death(gibbed)
@@ -450,7 +450,7 @@
 	icon_living = "egg_arm"
 	icon_damaged = "egg_arm_damaged"
 	icon_dead = "egg_arm_dead"
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
 	blurb_text = "A head that looked up to the cosmos has been lowered."
 
 /mob/living/simple_animal/apocalypse_egg/arm/death(gibbed)
@@ -464,7 +464,7 @@
 	icon_living = "egg_eyes"
 	icon_damaged = "egg_eyes_damaged"
 	icon_dead = "egg_eyes_dead"
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
 	blurb_text = "Far-sighted eyes of Big Bird have been blinded."
 
 /mob/living/simple_animal/apocalypse_egg/eyes/death(gibbed)
@@ -490,7 +490,7 @@
 	faction = list("Apocalypse", "hostile")
 	maxHealth = 30000
 	health = 30000
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
 	move_resist = MOVE_FORCE_STRONG
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE
@@ -521,7 +521,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
 	COOLDOWN_START(src, speak_bird, 10 SECONDS)
 	COOLDOWN_START(src, summon_bird, 30 SECONDS)
 	force_bird_time = world.time + 3 MINUTES
@@ -576,7 +576,7 @@
 	for(var/mob/living/simple_animal/hostile/abnormality/bird in SSlobotomy_events.AB_breached)
 		bird.death()
 	SSlobotomy_events.AB_breached = list()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "But that is a story for another time...", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "But that is a story for another time...", 25))
 	. = ..()
 	return
 
@@ -610,7 +610,7 @@
 	stored_birds["unspoken"] -= bird // Remove it from list
 	stored_birds["spoken"] += bird // Add it to the one where they spoke
 	update_icon()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
@@ -621,7 +621,7 @@
 			B.forceMove(AB)
 			AB.birds += B
 		var/final_text = "In chaotic cries, somebody shouted: \"It's the monster! Big terrible monster lives in the dark, black forest!\""
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, final_text, 50))
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, final_text, 50))
 		sound_to_playing_players_on_level('sound/abnormalities/apocalypse/appear.ogg', 100, zlevel = z)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z && M.client)
@@ -643,6 +643,7 @@
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
 	var/last_message = 0
+	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(
@@ -690,7 +691,7 @@
 		return
 
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
+		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
 		if(!controller.current_path.len) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -723,7 +724,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
-			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
+			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
 			return TRUE
 	finish_action(controller, FALSE)
 	return FALSE

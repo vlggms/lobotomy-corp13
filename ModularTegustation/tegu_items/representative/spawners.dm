@@ -12,7 +12,6 @@
 	var/spawn_level = 60
 	faction = list("neutral", "rabbit")
 	var/team_name = "rabbit team"
-	var/reject_message = "Fourth Pack HQ: Sending in another team would cost more energy from our hatcheries than we are being paid."
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/Initialize(mapload, datum/team/ert/rabbit_team)
 	. = ..()
@@ -21,7 +20,7 @@
 /obj/effect/mob_spawn/human/supplypod/r_corp/allow_spawn(mob/user)
 	if(!(user.key in players_spawned))//one per person
 		return TRUE
-	to_chat(user, span_warning("<b>[reject_message]</b>"))
+	to_chat(user, "<span class='warning'><b>Fourth Pack HQ: Sending in another team would cost more energy from our hatcheries than we are being paid.</b>.</span>")
 	return FALSE
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/special(mob/living/carbon/human/new_spawn)
@@ -44,7 +43,7 @@
 	name = "raven teleport zone"
 	desc = "A authorized zone for teleporting in ravens."
 	mob_name = "Scout Raven"
-	outfit = /datum/outfit/job/raven/ert
+	outfit = /datum/outfit/job/raven
 	assignedrole = "SPC"
 	spawn_level = 40
 
@@ -88,14 +87,12 @@
 	short_desc = "You are part of the WARP Cleanup Crew, stick together and help cleanup to gain some experience."
 	flavour_text = "Your team is new to assisting L-Corp, you're just looking for that monthly bonus, and to skip 2 weeks of training. Fight out as long as you can."
 	mob_name = "Cleanup Agent"
-	team_name = "WARP cleanup crew"
 	outfit = /datum/outfit/wcorp
-	assignedrole = "L1"
+	assignedrole = "L0"
 	spawn_level = 40
 	faction = list("neutral", "wcorp")
 	icon_state = "Warp"
 	uses = 10	//More because they suck
-	reject_message = "W-Corp HQ: We've lost too many resources to this \"L-Corp\" training program already. Sending in another team is out of the question."
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level2
 	name = "Wcorp L2 teleport zone"
@@ -106,14 +103,6 @@
 	spawn_level = 80
 	uses = 4	//Not at much.
 
-/obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level3
-	name = "Wcorp L3 teleport zone"
-	desc = "A authorized zone for teleporting in wcorp L3 agents."
-	flavour_text = "Your team is here for a special kind of cleanup. Clean any L-Corp personnel within the facility and retrieve stolen company property."
-	outfit = /datum/outfit/wcorp/level3
-	assignedrole = "L3"
-	spawn_level = 130 //They need it badly
-	uses = 20
 
 //Fixers
 /obj/effect/mob_spawn/human/supplypod/r_corp/zwei_call
@@ -128,35 +117,3 @@
 	faction = list("neutral", "zwei")
 	icon_state = "zwei"
 	uses = 8	//More because they job
-
-//Kcorp
-/obj/effect/mob_spawn/human/supplypod/r_corp/kcorp_call
-	name = "Kcorp Class 1 teleport zone"
-	desc = "A authorized zone for teleporting in kcorp combat employees."
-	short_desc = "You a part of K-Corps Security, hired to handle any physical threats as long as the pay's big enough."
-	flavour_text = "Your team has been hired by L-Corp to assist in any way you can. Considering your speciality expect some heavy resistance. Stick together and neutralize all threats."
-	mob_name = "Kcorp Security"
-	outfit = /datum/outfit/kcorp
-	assignedrole = "Class 1"
-	spawn_level = 60 // Bit more combat orientated
-	faction = list("neutral", "kcorp")
-	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
-	icon_state = "kcorp_logo"
-	uses = 6 // Who knows, they might be good
-	reject_message = "K-Corp HQ: We've only been paid enough for one team, anymore and we'd be operating at a loss."
-
-/obj/effect/mob_spawn/human/supplypod/r_corp/kcorp_call/level3
-	name = "Kcorp Class 3 teleport zone"
-	outfit = /datum/outfit/kcorp/level3
-	flavour_text = "Your team has been hired by L-Corp to assist in any way you can. You were just bored enough to take the contract. Stick together and neutralize all threats."
-	assignedrole = "Class 3"
-	spawn_level = 80
-	uses = 3	// Only 3, they're quite strong.
-
-/obj/effect/mob_spawn/human/supplypod/r_corp/kcorp_call/killteam
-	name = "Kcorp Asset Protection Team teleport zone"
-	outfit = /datum/outfit/kcorp/level3/kill
-	flavour_text = "You have been called to wipe the entire L-Corp facility for stealing HQ assets. Don't hold back."
-	assignedrole = "Asset Protection Staff"
-	spawn_level = 100 // Goodluck, idiot.
-	uses = 20	// Evil Excision staff

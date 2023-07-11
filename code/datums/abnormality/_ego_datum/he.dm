@@ -92,7 +92,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/courage
-	item_path = /obj/item/ego_weapon/mini/courage
+	item_path = /obj/item/ego_weapon/courage
 	cost = 35
 
 /datum/ego_datum/weapon/bravery
@@ -190,10 +190,6 @@
 
 /datum/ego_datum/weapon/homing_instinct
 	item_path = /obj/item/ego_weapon/homing_instinct
-	cost = 35
-
-/datum/ego_datum/weapon/brick_road
-	item_path = /obj/item/ego_weapon/lance/brick_road
 	cost = 35
 
 /datum/ego_datum/armor/homing_instinct_old
@@ -332,13 +328,11 @@
 	cost = 35
 
 /datum/ego_datum/weapon/warp
-	item_category = "Weapon (Knife)"
-	item_path = /obj/item/ego_weapon/warp/knife
+	item_path = /obj/item/ego_weapon/warp
 	cost = 35
 
 /datum/ego_datum/weapon/warp/spear
-	item_category = "Weapon (Spear)"
-	item_path = /obj/item/ego_weapon/warp
+	item_path = /obj/item/ego_weapon/warp/spear
 	cost = 35
 
 //Missed Reaper - Grasp
@@ -380,77 +374,4 @@
 
 /datum/ego_datum/weapon/split
 	item_path = /obj/item/ego_weapon/lance/split
-	cost = 35
-
-//Basilisoup - Lifetime Stew
-/datum/ego_datum/armor/lifestew
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/lifestew
-	cost = 35
-
-/datum/ego_datum/weapon/lifestew_lance
-	item_category = "Weapon (Lance)"
-	item_path = /obj/item/ego_weapon/lance/lifestew_lance
-	cost = 35
-
-/datum/ego_datum/weapon/lifestew
-	item_category = "Weapon (Mace)"
-	item_path = /obj/item/ego_weapon/lifestew
-	cost = 35
-
-//Faelantern - Midwinter Nightmare
-/datum/ego_datum/weapon/faelantern
-	item_path = /obj/item/ego_weapon/faelantern
-	cost = 35
-
-//Memories of a Better Time - Morii
-/datum/ego_datum/armor/morii
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/morii
-	cost = 35
-
-/datum/ego_datum/weapon/morii
-	item_path = /obj/item/ego_weapon/morii
-	cost = 35
-
-//Will You Play - Voodoo doll
-/datum/ego_datum/armor/voodoo
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
-	cost = 35
-
-/datum/ego_datum/weapon/voodoo
-	item_path = /obj/item/ego_weapon/mini/voodoo
-	cost = 35
-
-//Eris - Coiling
-/datum/ego_datum/armor/coiling
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/coiling
-	cost = 35
-
-/datum/ego_datum/weapon/coiling
-	item_path = /obj/item/ego_weapon/coiling
-	cost = 35
-
-//Highway Devotee - Uturn
-/datum/ego_datum/armor/uturn
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/uturn
-	cost = 35
-
-/datum/ego_datum/weapon/uturn
-	item_path = /obj/item/ego_weapon/uturn
-	cost = 35
-
-//Steam Transport Machine - Nixie Divergence (PH)
-/datum/ego_datum/armor/nixie
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/nixie
-	cost = 35
-
-/datum/ego_datum/weapon/nixie
-	item_path = /obj/item/ego_weapon/nixie
-	cost = 35
-
-/datum/ego_datum/armor/sunshower
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sunshower
-	cost = 35
-
-/datum/ego_datum/weapon/sunshower
-	item_path = /obj/item/ego_weapon/sunshower
 	cost = 35

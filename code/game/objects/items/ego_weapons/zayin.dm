@@ -15,20 +15,20 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	if(ability_cooldown > world.time)
-		to_chat(H, span_warning("You have used this ability too recently!"))
+		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return FALSE
 	var/obj/item/clothing/suit/armor/ego_gear/zayin/P = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(P, matching_armor))
 		pulse_enabled = TRUE
 		ability_cooldown = world.time + ability_cooldown_time
-		to_chat(H, span_nicegreen("[use_message]"))
+		to_chat(H, "<span class='nicegreen'>[use_message]</span>")
 		H.playsound_local(get_turf(H), use_sound, 25, 0)
 		Pulse(user, 0)
 		return TRUE
 	else
 		if(pulse_enable_toggle)
 			pulse_enabled = FALSE
-		to_chat(H, span_warning("You must have the corrosponding armor equipped to use this ability!"))
+		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return FALSE
 
 /obj/item/ego_weapon/support/dropped(mob/user)
@@ -46,17 +46,18 @@
 		return
 	if(count >= 10)
 		return
-	addtimer(CALLBACK(src, PROC_REF(Pulse), user, count += 1), pulse_delay)
+	addtimer(CALLBACK(src, .proc/Pulse, user, count += 1), pulse_delay)
 
 /obj/item/ego_weapon/support/penitence
 	name = "penitence"
 	desc = "A mace meant to purify the evil thoughts."
-	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "penitence"
 	force = 14
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
+
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence
 	pulse_enable_toggle = TRUE
 	use_message = "You use penitence to emit sanity healing pulses!"
@@ -69,18 +70,19 @@
 		if(L.stat == DEAD || L == user || L.is_working) //no self-healing
 			continue
 		L.adjustSanityLoss(pulse_healing)
-		to_chat(L, span_nicegreen("A pulse from [user] makes your mind feel a bit clearer."))
+		to_chat(L, "<span class='nicegreen'>A pulse from [user] makes your mind feel a bit clearer.</span>")
 
 /obj/item/ego_weapon/support/little_alice
 	name = "little alice"
 	desc = "You, now in wonderland!"
-	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
 	icon_state = "little_alice"
 	force = 14
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/little_alice
 	use_message = "You use little alice to share snacks!"
 	use_sound = "sound/items/eatfood.ogg"
@@ -93,7 +95,7 @@
 			continue
 		if(L.nutrition > NUTRITION_LEVEL_WELL_FED)
 			continue
-		to_chat(L, span_warning("[user] gives you a snack!"))
+		to_chat(L, "<span class='warning'>[user] gives you a snack!</span>")
 		var/gift = pick(foodoptions)
 		new gift(get_turf(L))
 
@@ -101,11 +103,12 @@
 	name = "wingbeat"
 	desc = "If NAME can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
 	icon_state = "wingbeat"
-	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
+
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/wingbeat
 	pulse_enable_toggle = TRUE
 	use_message = "You use wingbeat to emit healing pulses!"
@@ -118,15 +121,16 @@
 		if(L.stat == DEAD || L == user || L.is_working) //no self-healing
 			continue
 		L.adjustBruteLoss(pulse_healing)
-		to_chat(L, span_nicegreen("Fairies come from [user] to heal your wounds."))
+		to_chat(L, "<span class='nicegreen'>Fairies come from [user] to heal your wounds.</span>")
 
 /obj/item/ego_weapon/change
 	name = "change"
 	desc = "A hammer made with the desire to change anything"
-	special = "Attack a friendly human while wearing matching armor to heal their HP slightly."
+	special = "Attack a friendly human while wearing matching armor to activate this weapon's special ability."
 	icon_state = "change"
 	force = 14
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
@@ -140,23 +144,24 @@
 		return
 	var/mob/living/carbon/human/HT = M
 	if(HT.is_working)
-		to_chat(user,span_notice("You cannot defend others from responsibility!"))
+		to_chat(user,"<span class='notice'>You cannot defend others from responsibility!</span>")
 		return
 	playsound(get_turf(user), 'sound/abnormalities/change/change_end.ogg', 25, 0, -9)
-	HT.visible_message(span_nicegreen("[HT] is patched up with [src] by [user]!"))
+	HT.visible_message("<span class='nicegreen'>[HT] is patched up with [src] by [user]!</span>")
 	HT.adjustBruteLoss(-10)
 	user.changeNext_move(CLICK_CD_MELEE * 3)
 
 /obj/item/ego_weapon/support/doze
 	name = "dozing"
 	desc = "Knock the daylights out of 'em!"
-	special = "Use this weapon in your hand when wearing matching armor to heal the HP and SP of others nearby. Using this ability will briefly put you to sleep."
 	icon_state = "doze"
 	force = 14
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
+
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/doze
 	use_message = "You use the doze to emit healing pulses! It knocks you right out!"
 	use_sound = "sound/abnormalities/happyteddy/teddy_lullaby.ogg"
@@ -177,17 +182,19 @@
 			continue
 		L.adjustSanityLoss(pulse_healing)
 		L.adjustBruteLoss(pulse_healing)
-		to_chat(L, span_nicegreen("You feel warmth coming from [user]!"))
+		to_chat(L, "<span class='nicegreen'>You feel warmth coming from [user]!</span>")
 
+#define STATUS_EFFECT_EVENING /datum/status_effect/evening
 /obj/item/ego_weapon/support/evening
 	name = "evening twilight"
 	desc = "I accepted the offer and paid the price."
-	special = "Use this weapon in your hand when wearing matching armor to generate weak pale shields for others nearby."
 	icon_state = "evening"
 	force = 12
 	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
+
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	use_message = "You use evening to generate pale shields!"
 	use_sound = "sound/abnormalities/lighthammer/chain.ogg"
@@ -209,7 +216,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_nicegreen("A shield from [owner] increases your resistance to pale damage!"))
+	to_chat(H,"<span class='nicegreen'>A shield from [owner] increases your resistance to pale damage!</span>")
 	H.physiology.pale_mod /= 1.1
 	return ..()
 
@@ -217,18 +224,20 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_warning("Your shield has warn off."))
+	to_chat(H,"<span class='warning'>Your shield has warn off.</span>")
 	H.physiology.pale_mod *= 1.1
 	return ..()
 
+#undef STATUS_EFFECT_EVENING
 
 /obj/item/ego_weapon/melty_eyeball
 	name = "melty eyeball"
 	desc = "I felt like I was being dragged deeper into the swamp of gloom as the fight went on."
-	special = "Attack a friendly human while wearing matching armor to heal their HP and SP by a small amount."
+	special = "Attack a friendly human while wearing matching armor to activate this weapon's special ability."
 	icon_state = "melty_eyeball"
 	force = 14
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
@@ -243,10 +252,10 @@
 		return
 	var/mob/living/carbon/human/HT = M
 	if(HT.is_working)
-		to_chat(user,span_notice("You cannot defend others from responsibility!"))
+		to_chat(user,"<span class='notice'>You cannot defend others from responsibility!</span>")
 		return
 	playsound(get_turf(user), 'sound/abnormalities/blubbering_toad/blurble3.ogg', 25, 0, -9) //change to blubber sfx when toad is merged
-	HT.visible_message(span_nicegreen("[HT] is healed by the resin on [src] by [user]!"))
+	HT.visible_message("<span class='nicegreen'>[HT] is healed by the resin on [src] by [user]!</span>")
 	HT.adjustSanityLoss(-5)
 	HT.adjustBruteLoss(-5)
 	user.changeNext_move(CLICK_CD_MELEE * 3)
@@ -254,13 +263,14 @@
 /obj/item/ego_weapon/support/letter_opener
 	name = "letter opener"
 	desc = "Trusty aid of a mailman."
-	special = "Use this weapon in your hand when wearing matching armor to send a secret letter to a person of your choice."
 	icon_state = "letteropener"
 	force = 14
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+
 	ability_cooldown_time = 30 SECONDS
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	use_message = "You use letter opener to send a message!"
@@ -273,29 +283,12 @@
 	var/msg = stripped_input(usr, "What do you wish to tell [M]?", null, "")
 	if(!msg)
 		return
-	to_chat(M, span_warning("[user] has sent you a message!"))
+	to_chat(M, "<span class='warning'>[user] has sent you a message!</span>")
 	var/obj/item/paper/P = new(get_turf(M))
 	P.setText(msg)
 	P.icon_state = "mail"
-	var/mob/living/carbon/human/H = M
-	var/datum/attribute/highest_attribute = null
-	for(var/datum/attribute/A in H.attributes)
-		if(isnull(highest_attribute))
-			highest_attribute = A
-			continue
-		if(A.get_level() > highest_attribute.get_level())
-			highest_attribute = A
-	switch(highest_attribute)
-		if(/datum/attribute/fortitude)
-			new /obj/item/mailpaper/instinct(get_turf(H), H)
-		if(/datum/attribute/prudence)
-			new /obj/item/mailpaper/insight(get_turf(H), H)
-		if(/datum/attribute/temperance)
-			new /obj/item/mailpaper/coupon(get_turf(H))
-		if(/datum/attribute/justice) // "These two seem to be backwards?" Yes. Justice is the one stat that does basically nothing for grinding, this buffs those who want to be able to do damage AND work.
-			new /obj/item/mailpaper/attachment(get_turf(H), H)
 	QDEL_IN(P, 30 SECONDS)
-	to_chat(user, span_boldnotice("You transmit to [M]:</span> <span class='notice'>[msg]"))
+	to_chat(user, "<span class='boldnotice'>You transmit to [M]:</span> <span class='notice'>[msg]</span>")
 	for(var/ded in GLOB.dead_mob_list)
 		if(!isobserver(ded))
 			continue
@@ -314,13 +307,27 @@
 	sortList(.)
 	return
 
-/obj/item/ego_weapon/eclipse
-	name = "eclipse of scarlet moths"
-	desc = "It's beautiful."
-	icon_state = "eclipse"
-	force = 14
+//special ego for pile of mail from parcels
+/obj/item/ego_weapon/mail_satchel
+	name = "envelope"
+	desc = "Heavy satchel filled to the brim with letters."
+	icon_state = "mailsatchel"
+	force = 12
+	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("smacks", "strikes", "beats")
-	attack_verb_simple = list("smack", "strike", "beat")
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slams", "bashes", "strikes")
+	attack_verb_simple = list("slams", "bashes", "strikes")
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
+
+/obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
+	force = 12 + temperance_mod
+	..()
+	force = initial(force)
+	damtype = initial(damtype)
+	if(prob(30))
+		new /obj/effect/temp_visual/maildecal(get_turf(A))
 
 

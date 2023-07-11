@@ -4,7 +4,6 @@
 	desc = "A long flowerlike creature covered in thorns"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "porrcubus_inert"
-	portrait = "porccubus"
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -10
@@ -15,9 +14,9 @@
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Touch" = 100,
-	) //for some reason all its work rates are uniform through attribute levels in LC
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
+		"Touch" = 100
+			) //for some reason all its work rates are uniform through attribute levels in LC
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_lower = 15
@@ -29,9 +28,10 @@
 	stat_attack = HARD_CRIT
 	work_damage_type = BLACK_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
-	death_sound = 'sound/abnormalities/porccubus/porccu_death.ogg'
+	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg'
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "stabs"
@@ -39,8 +39,8 @@
 	faction = list("hostile", "porccubus") //so that he stops attacking overdosed people while still not attacking random abnormalities
 	ego_list = list(
 		/datum/ego_datum/weapon/pleasure,
-		/datum/ego_datum/armor/pleasure,
-	)
+		/datum/ego_datum/armor/pleasure
+		)
 	gift_type = /datum/ego_gifts/pleasure
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -57,10 +57,10 @@
 	name = "Toggle Dash"
 	button_icon_state = "porccubus_toggle0"
 	chosen_attack_num = 2
-	chosen_message = span_colossus("You won't dash anymore.")
+	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
 	button_icon_toggle_activated = "porccubus_toggle1"
 	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now dash to your target when possible.")
+	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
 	button_icon_toggle_deactivated = "porccubus_toggle0"
 
 //Work Code
@@ -88,7 +88,6 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -120,8 +119,8 @@
 //Breach Code
 //Porccubus can't actually move so it's more of a "bring your friend to beat it to death it isn't going anywhere" type of thing.
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
-/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
+	..()
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"
 	icon_state = icon_living
@@ -134,7 +133,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Life()
-	. = ..()
+	. =..()
 	if(status_flags & GODMODE)
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
@@ -152,7 +151,7 @@
 		damage_taken = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/bullet_act(obj/projectile/P)
-	visible_message(span_warning("Porccubus playfully swat [P] projectile away!"))
+	visible_message("<span class='warning'>Porccubus playfully swat [P] projectile away!</span>")
 	return FALSE //COME CLOSER AND GET DRUGGED COWARD
 
 //Breach Code Attacks
@@ -250,10 +249,9 @@
 	withdrawal_cooldown = withdrawal_cooldown_time + world.time
 	var/datum/abnormality/porc_datum
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(A.name != "Porccubus")
-			continue
-		porc_datum = A
-		break
+		if(A.name == "Porccubus")
+			porc_datum = A
+			break
 	if(!ishuman(owner))
 		owner.remove_status_effect(src)
 		return
@@ -304,33 +302,32 @@
 
 /datum/status_effect/porccubus_addiction/on_remove()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	if(previous_addict)
-		to_chat(addict, span_userdanger("Your body has a sudden allergic reaction to the substance!"))
-		addict.vomit()
-		return
-	var/obj/item/bodypart/head/head = addict.get_bodypart("head")
-	if(QDELETED(head))
-		return
-	playsound(addict, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
-	var/obj/expanding_head = HeadExplode(head)
-	sleep(2 SECONDS) //mostly so the head exploding is synced in with the sound effect and animation
-	head.dismember(silent = TRUE)
-	QDEL_NULL(head)
-	addict.regenerate_icons()
-	addict.vis_contents -= expanding_head
-	playsound(addict, 'sound/abnormalities/porccubus/head_explode.ogg', 50, FALSE, 4)
-	var/turf/orgin = get_turf(addict)
-	var/list/all_turfs = RANGE_TURFS(2, orgin)
-	new /obj/effect/gibspawner/generic/silent(get_turf(addict))
-	for(var/i = 1 to 3)
-		var/obj/item/porccubus_drug/drug = new(get_turf(addict)) //if you still want to try it out after seeing a man's head fucking explode
-		var/turf/open/Y = pick(all_turfs - orgin)
-		if(!LAZYLEN(all_turfs))
+	if(ishuman(owner))
+		if(previous_addict)
+			to_chat(addict, "<span class='userdanger'>Your body has a sudden allergic reaction to the substance!</span>")
+			addict.vomit()
 			return
-		drug.throw_at(Y, 2, 3)
-		all_turfs -= Y //so it doesn't throw all of them on the same tiles
+		var/obj/item/bodypart/head/head = addict.get_bodypart("head")
+		if(QDELETED(head))
+			return
+		playsound(addict, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
+		var/obj/expanding_head = HeadExplode(head)
+		sleep(2 SECONDS) //mostly so the head exploding is synced in with the sound effect and animation
+		head.dismember(silent = TRUE)
+		QDEL_NULL(head)
+		addict.regenerate_icons()
+		addict.vis_contents -= expanding_head
+		playsound(addict, 'sound/abnormalities/porccubus/head_explode.ogg', 50, FALSE, 4)
+		var/turf/orgin = get_turf(addict)
+		var/list/all_turfs = RANGE_TURFS(2, orgin)
+		new /obj/effect/gibspawner/generic/silent(get_turf(addict))
+		for(var/i = 1 to 3)
+			var/obj/item/porccubus_drug/drug = new(get_turf(addict)) //if you still want to try it out after seeing a man's head fucking explode
+			var/turf/open/Y = pick(all_turfs - orgin)
+			if(!LAZYLEN(all_turfs))
+				return
+			drug.throw_at(Y, 2, 3)
+			all_turfs -= Y //so it doesn't throw all of them on the same tiles
 
 //we copy the head icon and apply it as a vis content. because while overlays can't be animated, visual objects that have overlays on them can
 /datum/status_effect/porccubus_addiction/proc/HeadExplode(obj/item/bodypart/head/head)

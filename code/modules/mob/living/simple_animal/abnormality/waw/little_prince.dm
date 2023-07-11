@@ -4,23 +4,22 @@
 	Dark blue hands hangs by its branches on a string"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "little_prince"
-	portrait = "little_prince"
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	threat_level = WAW_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-		ABNORMALITY_WORK_INSIGHT = list(25, 30, 35, 40, 45),
-		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 50, 55),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+						ABNORMALITY_WORK_INSIGHT = list(25, 30, 35, 40, 45),
+						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 50, 55)
+						)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	start_qliphoth = 2
 
 	ego_list = list(
 		/datum/ego_datum/weapon/spore,
-		/datum/ego_datum/armor/spore,
-	)
+		/datum/ego_datum/armor/spore
+		)
 	gift_type = /datum/ego_gifts/spore
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -49,9 +48,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
-		to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
+		to_chat(user, "<span class='userdanger'>You see mushrooms growing all over your body!</span>")
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.adjustSanityLoss(500)
+		user.adjustSanityLoss(-500)
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	QDEL_NULL(user.ai_controller)
 	user.ai_controller = /datum/ai_controller/insane/hypno
@@ -62,7 +61,7 @@
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
 	for (var/i=0, i<5, i++)
 		user.apply_damage(rand(10, 20), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE))
-		to_chat(user, span_warning("You feel something growing from under your skin..."))
+		to_chat(user, "<span class='warning'>You feel something growing from under your skin...</span>")
 		if (user.sanity_lost)
 			Hypno(user)
 			return
@@ -84,11 +83,11 @@
 	hypnotized -= user
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	var/turf/T = get_turf(user)
-	user.visible_message(span_danger("Mushrooms rapidly grow all over [user]'s body, forming a giant mass!"))
+	user.visible_message("<span class='danger'>Mushrooms rapidly grow all over [user]'s body, forming a giant mass!</span>")
 	user.emote("scream")
 	user.gib()
 	var /mob/living/simple_animal/hostile/little_prince_1/S = new(T)
-	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(PrinceDeath))
+	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/PrinceDeath)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
@@ -116,7 +115,7 @@
 		twice += user
 	if (!(user in once) && !(user in twice))
 		once += user
-		RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnAbnoWork))
+		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/OnAbnoWork)
 
 	//insight work checks
 	if (work_type == ABNORMALITY_WORK_INSIGHT)
@@ -151,7 +150,6 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -180,15 +178,16 @@
 	maxHealth = 1500
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 40
 	melee_damage_upper = 50		//slow melee and has nothing else.
 	stat_attack = HARD_CRIT
-	death_sound = 'sound/abnormalities/littleprince/Prince_Death.ogg'
+	deathsound = 'sound/abnormalities/littleprince/Prince_Death.ogg'
 	attack_verb_continuous = "smashes"
 	attack_verb_simple = "smash"
 	attack_sound = 'sound/abnormalities/littleprince/Prince_Attack.ogg'
-	death_message = "shakes violently."
+	deathmessage = "shakes violently."
 	can_patrol = TRUE
 
 /mob/living/simple_animal/hostile/little_prince_1/Initialize()
@@ -211,11 +210,11 @@
 
 /datum/ai_behavior/say_line/insanity_hypno
 	lines = list(
-		"I'm coming...",
-		"I have to go...",
-		"It's calling for me...",
-		"We'll finally be together...",
-	)
+				"I'm coming...",
+				"I have to go...",
+				"It's calling for me...",
+				"We'll finally be together..."
+				)
 
 /datum/ai_controller/insane/hypno/SelectBehaviors(delta_time)
 	..()
@@ -259,11 +258,11 @@
 		return
 
 	if(!LAZYLEN(current_path))
-		current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
+		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
-	addtimer(CALLBACK(src, PROC_REF(Movement), controller), 1.25 SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, .proc/Movement, controller), 1.25 SECONDS, TIMER_UNIQUE)
 
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)

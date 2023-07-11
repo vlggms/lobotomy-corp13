@@ -71,7 +71,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning("You must wait [DisplayTimeText(use_delay - world.time)] to use the [target] again!"))
+		to_chat(owner, "<span class='warning'>You must wait [DisplayTimeText(use_delay - world.time)] to use the [target] again!</span>")
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
@@ -79,7 +79,7 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if(target_area.area_flags & ABDUCTOR_PROOF)
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, "<span class='warning'>This area is too heavily shielded to safely transport to.</span>")
 		return
 
 	use_delay = (world.time + abductor_pad_cooldown)
@@ -111,7 +111,7 @@
 	if(!target || !iscarbon(owner))
 		return
 	if(world.time < use_delay)
-		to_chat(owner, span_warning("You can only teleport to one place at a time!"))
+		to_chat(owner, "<span class='warning'>You can only teleport to one place at a time!</span>")
 		return
 	var/mob/living/carbon/human/C = owner
 	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
@@ -119,7 +119,7 @@
 
 	var/area/target_area = get_area(remote_eye)
 	if(target_area.area_flags & ABDUCTOR_PROOF)
-		to_chat(owner, span_warning("This area is too heavily shielded to safely transport to."))
+		to_chat(owner, "<span class='warning'>This area is too heavily shielded to safely transport to.</span>")
 		return
 
 	use_delay = (world.time + teleport_self_cooldown)

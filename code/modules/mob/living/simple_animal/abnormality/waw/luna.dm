@@ -5,7 +5,6 @@
 	desc = "A piano, with a woman sitting on the stool next to it"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
-	portrait = "luna"
 	maxHealth = 400
 	health = 400
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -16,8 +15,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Performance" = 70,
-	)
+		"Performance" = 70
+		)
 	pixel_x = -32
 	base_pixel_x = -32
 	work_damage_amount = 10
@@ -25,8 +24,8 @@
 	max_boxes = 20
 	ego_list = list(
 		/datum/ego_datum/weapon/moonlight,
-		/datum/ego_datum/armor/moonlight,
-	)
+		/datum/ego_datum/armor/moonlight
+		)
 	gift_type =  /datum/ego_gifts/moonlight
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/performance = FALSE
@@ -37,35 +36,21 @@
 	var/killspawn
 
 /mob/living/simple_animal/hostile/abnormality/luna/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/ZeroQliphoth(mob/living/carbon/human/user)
 	icon_state = "dellaluna_breach"
-	//Normal breach
-	if(!IsCombatMap())
-		var/turf/W = pick(GLOB.department_centers)
-		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
-		breached_monster = spawningmonster
-		addtimer(CALLBACK(src, PROC_REF(BreachEnd), user), breach_length)
-
-	//--Side Gamemodes stuff--
-	//Timer will not run the timer on Rcorp.
-	else
-		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
-		breached_monster = spawningmonster
-		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
-
+	var/turf/W = pick(GLOB.department_centers)
+	var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
+	breached_monster = spawningmonster
 	breached = TRUE
-	if(client)
-		mind.transfer_to(breached_monster) //For playable abnormalities, directly lets the playing currently controlling pianto get control of the spawned mob
+	addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/WorkComplete(mob/living/carbon/human/user, work_type, pe)
@@ -85,8 +70,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Performance")
-		to_chat(user, span_nicegreen("Please wait until the performance is completed."))
-		addtimer(CALLBACK(src, PROC_REF(PerformanceEnd), user), performance_length)
+		to_chat(user, "<span class='nicegreen'>Please wait until the performance is completed.</span>")
+		addtimer(CALLBACK(src, .proc/PerformanceEnd, user), performance_length)
 		for(var/mob/living/carbon/human/L in GLOB.player_list)
 			L.apply_status_effect(STATUS_EFFECT_LUNAR)
 
@@ -111,13 +96,8 @@
 
 	killspawn = FALSE
 	performance = FALSE
-	to_chat(user, span_nicegreen("The performance is completed."))
+	to_chat(user, "<span class='nicegreen'>The performance is completed.</span>")
 
-
-//Side Gamemodes stuff, should only ever be called outside of the main gamemode
-/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type)
-	ZeroQliphoth()
-	return FALSE
 
 /* Monster Half */
 /mob/living/simple_animal/hostile/luna
@@ -130,6 +110,7 @@
 	health = 2600
 	maxHealth = 2600
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 32
 	melee_damage_upper = 41
@@ -163,8 +144,8 @@
 	aoeactive = TRUE
 	canaoe = FALSE
 	playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
-	addtimer(CALLBACK(src, PROC_REF(AOE)), 9)
-	addtimer(CALLBACK(src, PROC_REF(Reset)), 7 SECONDS)
+	addtimer(CALLBACK(src, .proc/AOE), 9)
+	addtimer(CALLBACK(src, .proc/Reset), 7 SECONDS)
 
 
 /mob/living/simple_animal/hostile/luna/proc/AOE()
@@ -181,7 +162,7 @@
 /datum/status_effect/lunar
 	id = "lunar"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 60 SECONDS
+	duration = 600		//Lasts 60 seconds
 	alert_type = /atom/movable/screen/alert/status_effect/lunar
 
 /atom/movable/screen/alert/status_effect/lunar
@@ -192,18 +173,16 @@
 
 /datum/status_effect/lunar/on_apply()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
-	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 
 /datum/status_effect/lunar/on_remove()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
-	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 
 #undef STATUS_EFFECT_LUNAR

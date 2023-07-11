@@ -13,13 +13,11 @@
 	var/list/level_1 = list(
 		/obj/item/food/meat/slab/sweeper,
 		/obj/item/food/meat/slab/worm,
-		/obj/item/food/meat/slab/robot,
-		/obj/item/food/meat/slab/human/mutant/moth,
-	)
+		/obj/item/food/meat/slab/robot
+		)
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
-		/obj/item/gun/ego_gun,
 	)
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,
@@ -53,10 +51,6 @@
 		temp.Add(typecacheof(T))
 	level_2 = temp.Copy()
 	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/misc))
-	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/indigo_armor))
-	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/steel_armor))
-	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/amber_armor))
-	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/green_armor))
 	temp.Cut()
 	for(var/T in level_3)
 		temp.Add(typecacheof(T))
@@ -67,7 +61,7 @@
 
 /obj/structure/itemselling/examine(mob/user)
 	. = ..()
-	. += span_notice("Hit with a storage item to dump all items in it into the machine.")
+	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
 	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 3 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_2=1'>List Tier 2 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_1=1'>List Tier 1 Prices</a>"
@@ -90,16 +84,16 @@
 	var/display_text = ""
 	var/list/items = list()
 	if(href_list["tier_3"])
-		display_text = span_notice("<b>The following items are worth 1000 Ahn:</b>")
+		display_text = "<span class='notice'><b>The following items are worth 1000 Ahn:</b></span>"
 		items.Add(level_3)
 	if(href_list["tier_2"])
-		display_text = span_notice("<b>The following items are worth 200 Ahn:</b>")
+		display_text = "<span class='notice'><b>The following items are worth 200 Ahn:</b></span>"
 		items.Add(level_2)
 	if(href_list["tier_1"])
-		display_text = span_notice("<b>The following items are worth 50 Ahn:</b>")
+		display_text = "<span class='notice'><b>The following items are worth 50 Ahn:</b></span>"
 		items.Add(level_1)
 	if(href_list["tier_0"])
-		display_text = span_notice("<b>The following items are worth 10 Ahn:</b>")
+		display_text = "<span class='notice'><b>The following items are worth 10 Ahn:</b></span>"
 		items.Add(level_0)
 	for(var/I in items)
 		item_name = ""
@@ -120,7 +114,7 @@
 		if(item_name in said_names)
 			continue
 		said_names += item_name
-		display_text += span_notice("\n[item_name]")
+		display_text += "\n <span class='notice'>[item_name]</span>"
 	to_chat(usr, display_text)
 
 /obj/structure/itemselling/attackby(obj/item/I, mob/living/user, params)
@@ -128,7 +122,7 @@
 		var/obj/item/storage/S = I
 		for(var/obj/item/IT in S)
 			ManageSales(IT, user)
-		to_chat(user, span_notice("\The [S] was dumped into [src]."))
+		to_chat(user, "<span class='notice'>\The [S] was dumped into [src].</span>")
 		playsound(I, "rustle", 50, TRUE, -5)
 		return TRUE
 	return ManageSales(I, user)
@@ -144,12 +138,14 @@
 	else if (is_type_in_typecache(I, level_0))
 		spawntype = /obj/item/stack/spacecash/c10
 	else
-		to_chat(user, span_warning("You cannot sell [I]."))
+		to_chat(user, "<span class='warning'>You cannot sell [I].</span>")
 		return FALSE
 
 	if(spawntype)
 		new spawntype (get_turf(src))
 		qdel(I)
+		if(prob(5))
+			new /obj/structure/lootcrate/tres (get_turf(src))
 	return TRUE
 
 /obj/structure/potential
@@ -160,51 +156,28 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
-	var/list/stats = list(
-		FORTITUDE_ATTRIBUTE,
-		PRUDENCE_ATTRIBUTE,
-		TEMPERANCE_ATTRIBUTE,
-		JUSTICE_ATTRIBUTE,
-	)
+	var/list/stats = list(FORTITUDE_ATTRIBUTE,
+			PRUDENCE_ATTRIBUTE,
+			TEMPERANCE_ATTRIBUTE,
+			JUSTICE_ATTRIBUTE)
 
-//Very dumb way to implement "empty hand AND full hand."
-//These two code blocks are the same except for their triggers - if you've got a better idea, please use it.
-/obj/structure/potential/proc/calculate_grade(mob/living/user)
-	if (ishuman(user))
+/obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/stattotal
 		var/grade
 		for(var/attribute in stats)
-			stattotal += get_attribute_level(H, attribute)
-		stattotal /= 4	// Potential is an average of stats
-		grade = round((stattotal) / 20)	// Get the average level-20, divide by 20
-		// Under grade 9 doesn't register
-		if (10 - grade >= 10)
-			to_chat(user, span_notice("Potential too low to give grade. Not recommended to issue fixer license."))
+			stattotal+=get_attribute_level(H, attribute)
+		stattotal /= 4	//Potential is an average of stats
+		grade = round((stattotal)/20)	//Get the average level-20, divide by 20
+		//Under grade 9 doesn't register
+		if(10-grade>=10)
+			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
 			return
 
-		to_chat(user, span_notice("Recommended Grade - [10-grade]."))
-		to_chat(user, span_notice("This grade may be adjusted by your local Hana representative."))
+		to_chat(user, "<span class='notice'>Recommended Grade - [10-grade].</span>")
+		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
 		return
 
-	to_chat(user, span_notice("No human potential identified."))
+	to_chat(user, "<span class='notice'>No human potential identified.</span>")
 
-/obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
-	calculate_grade(user)
-
-/obj/structure/potential/attack_hand(mob/living/user)
-	calculate_grade(user)
-
-/obj/structure/timelock
-	name = "T-Corp locking mechanism"
-	desc = "A machine that is impossible to pass"
-	anchored = TRUE
-	density = TRUE
-	resistance_flags = INDESTRUCTIBLE
-
-/obj/structure/timelock/Initialize()
-	..()
-	addtimer(CALLBACK(src, PROC_REF(die)), 15 MINUTES)
-
-/obj/structure/timelock/proc/die()
-	qdel(src)

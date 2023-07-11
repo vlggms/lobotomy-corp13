@@ -534,7 +534,7 @@
 	status = rcd_status
 	delay = rcd_delay
 	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 11)
+		addtimer(CALLBACK(src, /atom/.proc/update_icon), 11)
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
@@ -556,7 +556,7 @@
 		qdel(src)
 	else
 		icon_state = "rcd_end"
-		addtimer(CALLBACK(src, PROC_REF(end)), 15)
+		addtimer(CALLBACK(src, .proc/end), 15)
 
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
@@ -571,7 +571,7 @@
 /obj/effect/temp_visual/bee_gas/Initialize()
 	. = ..()
 	animate(src, alpha = rand(125,200), time = 5)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 5)
+	addtimer(CALLBACK(src, .proc/fade_out), 5)
 
 /obj/effect/temp_visual/bee_gas/proc/fade_out()
 	animate(src, alpha = 0, time = duration-5)
@@ -597,7 +597,7 @@
 
 /obj/effect/temp_visual/judgement/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 10)
+	addtimer(CALLBACK(src, .proc/fade_out), 10)
 
 /obj/effect/temp_visual/judgement/proc/fade_out()
 	animate(src, alpha = 0, time = duration-10)
@@ -634,7 +634,7 @@
 /obj/effect/temp_visual/water_waves/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 10)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 10 SECONDS)
+	addtimer(CALLBACK(src, .proc/fade_out), 10 SECONDS)
 
 /obj/effect/temp_visual/water_waves/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 10 SECONDS))
@@ -702,11 +702,6 @@
 	icon_state = "slice"
 	duration = 4
 
-/obj/effect/temp_visual/mech_fire
-	name = "mech_fire"
-	icon_state = "mech_fire"
-	duration = 4
-
 /obj/effect/temp_visual/dir_setting/slash
 	name = "slash"
 	icon_state = "slash"
@@ -736,7 +731,7 @@
 	. = ..()
 	icon_state = "flesh[rand(0,3)]"
 	animate(src, alpha = 255, time = 5)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 4 SECONDS)
+	addtimer(CALLBACK(src, .proc/fade_out), 4 SECONDS)
 
 /obj/effect/temp_visual/flesh/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 4 SECONDS))
@@ -768,9 +763,9 @@
 /obj/effect/temp_visual/censored/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 2)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 17)
+	addtimer(CALLBACK(src, .proc/fade_out), 17)
 	for(var/i = 1 to 9)
-		addtimer(CALLBACK(src, PROC_REF(shake)), 2*i)
+		addtimer(CALLBACK(src, .proc/shake), 2*i)
 
 /obj/effect/temp_visual/censored/proc/shake()
 	animate(src, pixel_x = base_pixel_x + rand(-4, 4), pixel_y = base_pixel_y + rand(-4, 4), time = 1)
@@ -789,6 +784,20 @@
 	icon_state = "apocalypse_enchant_effect"
 	layer = ABOVE_ALL_MOB_LAYER
 
+/obj/effect/temp_visual/ambermidnight_hole
+	name = "hole"
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	icon_state = "ambermidnight_hole"
+	duration = 10 SECONDS
+	pixel_x = -96
+	base_pixel_x = -96
+	pixel_y = -16
+	base_pixel_y = -16
+
+/obj/effect/temp_visual/ambermidnight_hole/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = duration)
+
 /obj/effect/temp_visual/cross
 	name = "holy cross"
 	icon = 'icons/effects/32x64.dmi'
@@ -801,7 +810,7 @@
 
 /obj/effect/temp_visual/cross/fall/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 6 SECONDS)
+	addtimer(CALLBACK(src, .proc/FadeOut), 6 SECONDS)
 
 /obj/effect/temp_visual/cross/fall/proc/FadeOut()
 	animate(src, alpha = 0, time = 2 SECONDS)
@@ -835,7 +844,7 @@
 /obj/effect/temp_visual/alriune_curtain/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 5)
-	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 5)
+	addtimer(CALLBACK(src, .proc/FadeOut), 5)
 
 /obj/effect/temp_visual/alriune_curtain/proc/FadeOut()
 	animate(src, alpha = 0, time = 15)
@@ -851,16 +860,7 @@
 
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
-	layer = ABOVE_ALL_MOB_LAYER
-	duration = 8
-
-/obj/effect/temp_visual/healing/Initialize(mapload)
-	. = ..()
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 0)
-
-/obj/effect/temp_visual/healing/no_dam
-	icon_state = "no_dam"
+	duration = 10
 
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
@@ -916,9 +916,6 @@
 	. = ..()
 	animate(src, alpha = 0, time = 10)
 
-/obj/effect/temp_visual/talisman/curse
-	icon_state = "curse_talisman"
-
 /obj/effect/temp_visual/turn_book
 	name = "scattered pages"
 	icon_state = "turn_book"
@@ -933,132 +930,3 @@
 	name = "whip"
 	icon_state = "lovetown_whip"
 	duration = 4
-
-/obj/effect/temp_visual/galaxy_aura
-	name = "galaxy_aura"
-	icon_state = "galaxy_aura"
-	duration = 6
-
-/obj/effect/temp_visual/human_horizontal_bisect
-	icon = 'icons/mob/mob.dmi'
-	icon_state = "Hbisected-h"
-	duration = 15
-
-/obj/effect/temp_visual/rip_space
-	name = "dimensional rift"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "rift"
-	duration = 2
-
-/obj/effect/temp_visual/ripped_space
-	name = "ripped space"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "ripped_space"
-	duration = 3
-
-/obj/effect/temp_visual/rip_space_slash
-	name = "ripped space"
-	icon_state = "rift"
-	duration = 2
-
-/obj/effect/temp_visual/rip_space_slash/Initialize()
-	. = ..()
-	var/matrix/M = matrix()
-	transform = M.Turn(45)
-	transform = M.Scale(5, 0.5)
-	transform = M.Turn(rand(0, 360))
-	animate(src, alpha = 0, transform = transform*2, time = 2)
-
-/obj/effect/temp_visual/mustardgas
-	icon_state = "mustard"
-	duration = 5
-
-/obj/effect/temp_visual/smash_effect/red
-	color = COLOR_RED
-
-/obj/effect/temp_visual/house
-	name = "home"
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_state = "House"
-	duration = 4 SECONDS
-	pixel_x = -34
-	pixel_z = 128
-
-/obj/effect/temp_visual/house/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 2 SECONDS)
-
-/obj/effect/temp_visual/house/proc/FadeOut()
-	animate(src, alpha = 0, time = 1 SECONDS)
-
-/obj/effect/temp_visual/v_noon
-	name = "violet noon"
-	icon = 'ModularTegustation/Teguicons/48x64.dmi'
-	icon_state = "violet_noon_ability"
-	pixel_x = -8
-
-/obj/effect/temp_visual/blubbering_smash
-	name = "blubbering smash"
-	icon_state = "blubbering_smash"
-	duration = 5
-
-/obj/effect/temp_visual/onesin_punishment
-	name = "heavenly punishment"
-	icon_state = "onesin_punishment"
-	duration = 6
-
-/obj/effect/temp_visual/onesin_blessing
-	name = "heavenly blessing"
-	icon_state = "onesin_blessing"
-	duration = 12
-
-/obj/effect/temp_visual/distortedform_shift
-	name = "shift"
-	icon_state = "shift"
-	duration = 3
-
-/obj/effect/temp_visual/warning3x3
-	name = "warning3x3"
-	icon = 'icons/effects/96x96.dmi'
-	icon_state = "warning_gray"
-	duration = 2 SECONDS
-	pixel_x = -32
-	pixel_z = -32
-
-/obj/effect/temp_visual/nobody_grab
-	name = "goodbye"
-	icon_state = "nobody_slash"
-	duration = 5
-
-/obj/effect/temp_visual/holo_command
-	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
-	light_range = 1.5
-	light_power = 0.2
-	light_system = MOVABLE_LIGHT
-	duration = 150 		//15 Seconds
-
-/obj/effect/temp_visual/holo_command/command_move
-	icon_state = "Move_here_wagie"
-	light_range = 1
-	light_power = 1
-	light_color = COLOR_VERY_LIGHT_GRAY
-
-/obj/effect/temp_visual/holo_command/command_warn
-	icon_state = "Watch_out_wagie"
-	light_color = COLOR_PALE_RED_GRAY
-
-/obj/effect/temp_visual/holo_command/command_guard
-	icon_state = "Guard_this_wagie"
-	light_color = COLOR_VERY_SOFT_YELLOW
-
-/obj/effect/temp_visual/holo_command/command_heal
-	icon_state = "Heal_this_wagie"
-	light_color = COLOR_VERY_PALE_LIME_GREEN
-
-/obj/effect/temp_visual/holo_command/command_fight_a
-	icon_state = "Fight_this_wagie1"
-	light_color = COLOR_PALE_BLUE_GRAY
-
-/obj/effect/temp_visual/holo_command/command_fight_b
-	icon_state = "Fight_this_wagie2"
-	light_color = COLOR_PALE_BLUE_GRAY

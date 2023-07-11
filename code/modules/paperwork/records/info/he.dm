@@ -19,9 +19,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/red_queen
 	abno_code = "F-01-112"
 	abno_info = list(
-		"Due to Red Queen’s fickle nature, it prefers a different work type every shift but the desired work does not change during the shift.",
-		"Red Queen does not seem to provide feedback on what work it likes and will only communicate its dislikes by attempting to behead those who aggravate it.",
-		"Upon completion of a non-preferred work, there was a 1 in 5 chance she would attempt to behead the employee, dealing massive RED damage.")
+		"Due to Red Queen’s fickle nature, it prefers a different work type every shift.",
+		"Red Queen does not seem to provide feedback on what work it likes or dislikes.",
+		"Employees who failed to satisfy the Red Queen by completing inefficient work were likely to be beheaded.")
 
 //Scarecrow
 /obj/item/paper/fluff/info/he/scarecrow
@@ -37,7 +37,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/whitelake
 	abno_code = "F-01-120"
 	abno_info = list(
-		"When an employee with Fortitude Level 2 or lower finished their work with a good result, White Lake appointed them as her champion with a gift.",
+		"When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.",
 		"When an employee with Fortitude Level 3 or higher worked on White Lake, the work success rate was lowered.",
 		"When the work result was Bad, the Qliphoth Counter lowered. If the employee also had Fortitude Level 3 or higher, the Qliphoth Counter lowered again.",
 		"When the Qliphoth Counter reached 0, the champion panicked and began attacking those around them. If there was no champion, all employees in the facility received heavy WHITE damage.")
@@ -191,7 +191,7 @@
 		"When the work result was Normal or Bad, the Qliphoth Counter lowered.",
 		"When the work result was Good, Piscine Mermaid offered a crown if no other copies were present in the facility. (From then on, the employee wearing the crown will be referred to as O-01-129-1).",
 		"O-01-129-1 had greatly increased work success rates with any Abnormality, but the Qliphoth Counter would periodically decrease as long as the crown was worn.",
-		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased by 2. This would also delay the reduction of the Qlipoth Counter",
+		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased.",
 		"The Qliphoth Counter dropped to 0 when O-01-129-1 removed their crown.",
 		"When the Qliphoth Counter reached 0, the crown was destroyed. O-01-129-1 was greatly slowed before Piscine Mermaid teleported to them.",
 		"Piscine Mermaid slowly suffocated everyone within sight. O-01-129-1 could not breath as long as Piscine Mermaid was alive.",
@@ -241,8 +241,7 @@
 	abno_info = list(
 		"The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.",
 		"Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.",
-		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth Meltdown.",
-		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
+		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds.")
 
 //680 KHz
 /obj/item/paper/fluff/info/he/khz
@@ -324,7 +323,6 @@
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
 		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
 	)
-	abno_can_breach = TRUE
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -344,15 +342,17 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
 	abno_info = list(
-		"When an employee entered the Containment Unit of another Abnormality, Doomsday Calendar’s Qliphoth Counter eventually decreased.",
-		"The lower the Qliphoth Counter, the more PE-Boxes Doomsday Calender produced. Instinct Work also had a higher success rate.",
-		"When an employee performed Instinct Work, the Qliphoth Counter increased by 4.",
-		"While the Qliphoth Counter was below 5, Doomsday Calendar continuously dealt low RED damage to the employee during Instinct Work.",
-		"When the work result was Bad, the Qliphoth Counter lowered unless Instinct Work was performed.",
+		"Performing any work on other abnormalities slowly reduced the Qliphoth Counter.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"This abnormality generates additional PE-boxes when the Qliphoth Counter is lower.",
+		"When an employee performed Instinct work, the Qliphoth Counter rose to the maximum.",
+		"When an employee performed Instinct work while the Qliphoth Counter was 4 or lower, Doomsday Calendar continuously dealt additional RED damage to them.",
+		"Instinct work was more successful at lower Qliphoth counters.",
 		"When the Qliphoth Counter reached 0, Doomsday Calendar appeared at a department center with an entourage of clay dolls, dubbed M-04-145-A.",
-		"Offering the remains of M-04-145-A or employees to Doomsday Calendar aided in suppression. Failing to do so caused Doomsday Calendar to become progressively more dangerous.",
-		"If Doomsday Calender is not suppressed, it will deal BLACK damage to an entire department, and the Qliphoth Counter of all nearby Abnormalities will decrease.")
-	abno_breach_damage_type = "Red/Black"
+		"Offering human remains or the remains of M-04-145-A to Doomsday Calendar during suppression work aided in suppression.",
+		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.",
+		"Failure to complete suppression work led to the reduction of Qliphoth Counters near the location of Doomsday Calendar.")
+	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
 
@@ -379,8 +379,7 @@
 		"When a level one employee comes in close contact with this abnormality, they may recieve a blessing. (From then on, the employee will be referred to as F-02-24-1).",
 		"Thanks to the blessing, F-02-24-1 experienced an increase in attributes as well as a small increase in resistance to all damage types.",
 		"F-02-24-1 found themselves incapable of using certain items that provide an unfair advantage in battle.",
-		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. This also occured when a Qliphoth Meltdown on F-02-24 was ignored.",
-		"After the blessing was gone, a new employee could receive it.",
+		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
 		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
 
@@ -416,99 +415,10 @@
 //Wayward Passenger
 /obj/item/paper/fluff/info/he/wayward
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
-	abno_code = "T-02-170"//T-02-21-07 in LCB
+	abno_code = "T-01-170"//LCB ID TBA in line 2
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
 		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
 		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
 		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
-
-//Norinori
-/obj/item/paper/fluff/info/he/norinori
-	abno_type = /mob/living/simple_animal/hostile/abnormality/norinori
-	abno_code = "O-02-25"
-	abno_info = list(
-		"After an employee died within the facility, the Qliphoth Counter decreased.",
-		"When communicating with the abnormality as a part of Attachment Work, the employee was viciously attacked and killed by the abnormality.",
-		"When the employee initiated close physical interaction, such as petting, the Qliphoth counter was reduced by 1.",
-		"If the employee's Temperance Level was below 3, the employee was killed instead.",
-		"When the work result was Bad, the Qliphoth Counter lowered.")
-
-//Red Shoes
-/obj/item/paper/fluff/info/he/red_shoes
-	abno_type = /mob/living/simple_animal/hostile/abnormality/red_shoes
-	abno_code = "O-04-08"
-	abno_info = list(
-		"Employees with Temperance level 2 or lower should not work with Red Shoes. The shoes remember their previous owner.",
-		"When the work result was normal, qliphoth counter reduced with a normal probability.",
-		"When the work result was bad, qliphoth counter reduced with a high probability.",
-		"When the qliphoth counter became zero, employees were allured by the abnormality and recieved WHITE damage.",
-		"Allured employees had their prudence attribute reduced by 50 for two minutes.",
-		"Allured employees recovered quickly after their mental corruption was resolved.",
-		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
-	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
-
-//Eris
-/obj/item/paper/fluff/info/he/eris
-	abno_type = /mob/living/simple_animal/hostile/abnormality/eris
-	abno_code = "C-01-184"
-	abno_info = list(
-		"Every death reduced the Qliphoth counter of C-01-184 by 1.",
-		"On a Bad result, the Qliphoth counter lowered by 3.",
-		"After Attachment work, there is a small chance of Eris and the Employee -REDACTED-.",
-		"While breached, C-01-184 healed all entities nearby, and would seek out and consume humans that are dead or near death.",
-		"Attacking C-01-184 while breached resulted in the employee taking white damage.")
-
-//Will You Play
-/obj/item/paper/fluff/info/he/willyouplay
-	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
-	abno_code = "T-01-187"
-	abno_info = list(
-		"T-01-187 refused standard work, insisting that the employee play a game of rock paper scissors.",
-		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
-		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats.")
-
-
-//Highway Devotee
-/obj/item/paper/fluff/info/he/highway
-	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
-	abno_code = "T-01-189"
-	abno_info = list(
-		"When the work result was neutral, the Qliphoth counter lowered.",
-		"When the work result was bad, the Qliphoth counter lowered by 2.")
-
-//Memories of a Better Time
-/obj/item/paper/fluff/info/he/better_memories
-	abno_type = /mob/living/simple_animal/hostile/abnormality/better_memories
-	abno_code = "T-05-195"
-	abno_info = list(
-		"Employees with a Temperance level of less than 3 found a sentimental item in the pile around T-05- before suffering \
-			from the same effect that is applied by T-05-195-1.",
-		"When T-05-195 breached it released T-05-195-1 into the facility.",
-		"T-05-195-1 avoided combat but constantly tried to take a photo of employees using its head",
-		"When a employee had their photo taken they suffered a 15 second reduction to their temperance, prudance, and work success rate due to mental anguish.",
-		"When fleeing from combat T-05-195-1 sought out employees who were in the middle of work.",
-		"Clerk Gamma9 reports that they cant recall what memory T-05-195-1 effect made them remember.",
-		"T-05-195-1 is to be considered a pest and suppressed whenever possible to prevent interference.")
-
-//Steam Transport Machine
-/obj/item/paper/fluff/info/he/steam
-	abno_type = /mob/living/simple_animal/hostile/abnormality/steam
-	abno_code = "O-05-197"
-	abno_info = list(
-		"When the work result was Neutral, the Qliphoth counter lowered at a moderate probability.",
-		"When the work result was Bad, the Qliphoth counter lowered.",
-		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
-		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
-		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
-
-//Drifting Fox
-/obj/item/paper/fluff/info/he/drifting_fox
-	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
-	abno_code = "T-02-173"
-	abno_info = list(
-		"It was noted that working on T-02-11-03 with a Temperance level of less than 2 lowered the Qliphoth counter.",
-		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
-		"When the work result was Bad, the Qliphoth counter lowered.")
-

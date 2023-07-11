@@ -4,7 +4,6 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
 	icon_living = "woodsman_breach"
-	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
 	health = 1433
@@ -15,7 +14,7 @@
 	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
 	can_buckle = TRUE
@@ -23,11 +22,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = 45,
-		ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
-		ABNORMALITY_WORK_REPRESSION = 45,
-	)
+						ABNORMALITY_WORK_INSTINCT = 45,
+						ABNORMALITY_WORK_INSIGHT = 45,
+						ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
+						ABNORMALITY_WORK_REPRESSION = 45
+						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	move_to_delay = 4
@@ -36,19 +35,10 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/logging,
-		/datum/ego_datum/armor/logging,
-	)
+		/datum/ego_datum/armor/logging
+		)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
-		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
-		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
-		// Ozma = 2,
-		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
-	)
-
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7
@@ -65,10 +55,10 @@
 	name = "Toggle Deforestation"
 	button_icon_state = "woodsman_toggle0"
 	chosen_attack_num = 2
-	chosen_message = span_colossus("You won't fell hearts anymore.")
+	chosen_message = "<span class='colossus'>You won't fell hearts anymore.</span>"
 	button_icon_toggle_activated = "woodsman_toggle1"
 	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now attempt to fell all hearts in your path.")
+	toggle_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
 	button_icon_toggle_deactivated = "woodsman_toggle0"
 
 
@@ -108,9 +98,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
-	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \
-		span_notice("You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough."), \
-		span_hear("You hear a metal clange and squishing."))
+	src.visible_message("<span class='warning'>[src] plunges their hand into [body]'s chest and rips out their heart!</span>", \
+		"<span class='notice'>You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough.</span>", \
+		"<span class='hear'>You hear a metal clange and squishing.</span>")
 	src.adjustBruteLoss(-666) // Actually just the conversion of health he heals scaled to equivalent health that Helper has.
 	for(var/obj/item/organ/O in body.getorganszone(BODY_ZONE_CHEST, TRUE))
 		if(istype(O,/obj/item/organ/heart))
@@ -250,7 +240,6 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -268,7 +257,7 @@
 	if (GODMODE in user.status_flags)
 		return
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, span_userdanger("The Woodsman swings his axe down!"))
+		to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
 		datum_reference.qliphoth_change(-1)
 		user.gib()
 
@@ -276,7 +265,7 @@
 	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
 	. = ..()
-	to_chat(user, span_userdanger("The Woodsman swings his axe down and...!"))
+	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	var/obj/item/organ/heart/O = M.getorgan(/obj/item/organ/heart)
 	if(istype(O))
@@ -284,15 +273,15 @@
 		QDEL_NULL(O)
 	M.gib()
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, span_nicegreen("Rests it on the ground."))
+		to_chat(user, "<span class='nicegreen'>Rests it on the ground.</span>")
 		datum_reference.qliphoth_change(1)
 		icon_state = "woodsman"
 	else
-		to_chat(user, span_userdanger("Stands up!"))
+		to_chat(user, "<span class='userdanger'>Stands up!</span>")
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)
+	.=..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living
 	if (!isnull(user))

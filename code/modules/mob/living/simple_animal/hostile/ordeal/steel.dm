@@ -12,6 +12,7 @@
 	maxHealth = 220
 	health = 220
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	vision_range = 8
 	move_to_delay = 2.2
 	melee_damage_lower = 10
@@ -23,9 +24,8 @@
 	a_intent = INTENT_HELP
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	//similar to a human
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
-	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
 	var/leader
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
@@ -51,7 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
-	if(leader && stat != DEAD)
+	if(leader)
 		Goto(leader,move_to_delay,1)
 
 //More Mutated Subtype of Dawns, they are fast and hit faster.
@@ -61,14 +61,14 @@
 	icon_state = "gcorp5"
 	icon_living = "gcorp5"
 	icon_dead = "gcorp_corpse2"
-	death_message = "salutes weakly before falling."
+	deathmessage = "salutes weakly before falling."
 	maxHealth = 750
 	health = 750
 	rapid_melee = 2
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	death_sound = 'sound/voice/mook_death.ogg'
+	deathsound = 'sound/voice/mook_death.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/moth = 2)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
@@ -77,13 +77,13 @@
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
+		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message(span_danger("[src] suddenly explodes!"))
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
 	for(var/mob/living/L in view(2, src))
@@ -132,7 +132,7 @@
 	if(do_after(src, 2 SECONDS, target = src))
 		ArialSupport()
 	else
-		visible_message(span_notice("[src] crashes to the ground."))
+		visible_message("<span class='notice'>[src] crashes to the ground.</span>")
 		apply_damage(100, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	//return to the ground
 	density = TRUE
@@ -169,7 +169,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/SweepAttack(mob/living/sweeptarget)
-	sweeptarget.visible_message(span_danger("[src] slams into [sweeptarget]!"), span_userdanger("[src] slams into you!"))
+	sweeptarget.visible_message("<span class='danger'>[src] slams into [sweeptarget]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
 	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
 	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
@@ -195,7 +195,7 @@
 	icon_living = "gcorp1"
 	icon_dead = "gcorp_corpse"
 	faction = list("Gene_Corp")
-	death_message = "mutters something under their breath before collapsing."
+	deathmessage = "mutters something under their breath before collapsing."
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	ranged_cooldown_time = 15 SECONDS
 	a_intent = INTENT_HELP
@@ -208,13 +208,13 @@
 	ranged = TRUE
 	retreat_distance = 2
 	minimum_distance = 2
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
 	can_patrol = TRUE
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
 	footstep_type = FOOTSTEP_MOB_SHOE
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
-	death_sound = 'sound/voice/hiss5.ogg'
+	deathsound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	var/turf/fob
 	var/last_command = 0
@@ -262,7 +262,7 @@
 	else if(!troops.len)
 		var/area/forward_base = get_area(fob)
 		if(!istype(get_area(src), forward_base) && z == fob.z)
-			patrol_path = get_path_to(src, fob, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+			patrol_path = get_path_to(src, fob, /turf/proc/Distance_cardinal, 0, 200)
 			return
 	..()
 
@@ -315,7 +315,7 @@
 			if(prob(20))
 				say(pick("Lads we got a hostile!", "Shit, wake up troops hell just found us!", "I warn you, we dont die easy.", "Keep your cool and we can all get out of this alive!"))
 			for(var/mob/living/simple_animal/hostile/ordeal/G in oview(9, src))
-				if(istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && G.stat != DEAD && (!has_status_effect(/datum/status_effect/all_armor_buff) || !has_status_effect(/datum/status_effect/minor_damage_buff)))
+				if(istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && G.stat != DEAD && !has_status_effect(/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff))
 					G.GiveTarget(target)
 					G.TemporarySpeedChange(-1, 1 SECONDS)
 			last_command = 1

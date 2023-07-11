@@ -166,3 +166,10 @@
 	icon_state = "beret_cmo"
 	armor = list(BIO = 30, ACID = 20)
 	strip_delay = 60
+
+	//LC13
+/obj/item/clothing/head/beret/tegu/fishing_hat
+	name = "unhinged fishing hat"
+	desc = "On the white part of this hat is the words: <span class='boldwarning'>Women fear me, fish fear me, men turn their eyes away from me as i walk, no beast dare make a sound in my presence, i am alone on this barren earth...</span> at the end of this manifesto is the picture of a very silly salmon."
+	icon_state = "fishing_hat"
+	strip_delay = 60

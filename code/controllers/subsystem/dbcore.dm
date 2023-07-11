@@ -190,9 +190,9 @@ SUBSYSTEM_DEF(dbcore)
 	for (var/thing in querys)
 		var/datum/db_query/query = thing
 		if (warn)
-			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/db_query, warn_execute))
+			INVOKE_ASYNC(query, /datum/db_query.proc/warn_execute)
 		else
-			INVOKE_ASYNC(query, TYPE_PROC_REF(/datum/db_query, Execute))
+			INVOKE_ASYNC(query, /datum/db_query.proc/Execute)
 
 	for (var/thing in querys)
 		var/datum/db_query/query = thing
@@ -319,7 +319,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 /datum/db_query/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
-		to_chat(usr, span_danger("A SQL error occurred during this operation, check the server logs."))
+		to_chat(usr, "<span class='danger'>A SQL error occurred during this operation, check the server logs.</span>")
 
 /datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")

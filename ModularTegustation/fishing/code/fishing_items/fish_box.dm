@@ -11,4 +11,3 @@
 	new /obj/item/fishing_component/hook(src)
 	new /obj/item/storage/bag/fish(src)
 	new /obj/item/fishing_net(src)
-	new /obj/item/book/granter/fish_skill(src)

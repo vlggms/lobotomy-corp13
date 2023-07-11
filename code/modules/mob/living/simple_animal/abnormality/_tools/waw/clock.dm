@@ -17,26 +17,25 @@
 
 	var/list/exceptions = list( //It only affects abnormalities and ordeals, so claw and arbiter are not even included.
 	/mob/living/simple_animal/hostile/abnormality/white_night,
-	/mob/living/simple_animal/hostile/abnormality/distortedform,
-	/mob/living/simple_animal/hostile/abnormality/nihil,
+	/mob/living/simple_animal/hostile/abnormality/nihil
 	)
 
 /obj/structure/toolabnormality/clock/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(user.ckey in banned)
-		to_chat(user, span_notice("It won't respond to you at all."))
+		to_chat(user, "<span class='notice'>It won't respond to you at all.</span>")
 		return
 	if(get_user_level(user) <= 2)
-		to_chat(user, span_notice("It won't budge!"))
+		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		return
 	if((clock_cooldown > world.time))
-		to_chat(user, span_notice("It's too hot to operate!"))
+		to_chat(user, "<span class='notice'>It's too hot to operate!</span>")
 		return
 	if(!do_after(user, 30, user))
 		return
 	if(light_count < 4)
 		if(user.ckey in crankers)
-			to_chat(user, span_notice("You have already powered this, the machine gives off a hiss of protest!"))
+			to_chat(user, "<span class='notice'>You have already powered this, the machine gives off a hiss of protest!</span>")
 			playsound(src.loc, 'sound/abnormalities/clock/end.ogg', 15, FALSE)
 			duplicate_crankers += 1
 		crankers += user.ckey
@@ -53,7 +52,7 @@
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
 			if(O.level >= 4)
-				to_chat(user, span_notice("The abnormality cannot operate with such powerful ordeals present in the facility!"))
+				to_chat(user, "<span class='notice'>The abnormality cannot operate with such powerful ordeals present in the facility!</span>")
 				playsound(src.loc, 'sound/abnormalities/clock/end.ogg', 75, TRUE)
 				return //No helping with midnight ordeals!
 

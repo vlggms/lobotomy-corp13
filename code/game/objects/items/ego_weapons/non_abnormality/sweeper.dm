@@ -6,16 +6,16 @@
 	icon_state = "sweeper_hook"
 	force = 27
 	damtype = BLACK_DAMAGE
-
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	hitsound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 40,
-		PRUDENCE_ATTRIBUTE = 60,
-		TEMPERANCE_ATTRIBUTE = 40,
-		JUSTICE_ATTRIBUTE = 40,
-	)
+							FORTITUDE_ATTRIBUTE = 40,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
 
 /obj/item/ego_weapon/city/sweeper/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))

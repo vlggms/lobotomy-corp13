@@ -4,6 +4,7 @@
 	icon_state = "training"
 	force = 22
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 
@@ -16,6 +17,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -29,6 +31,7 @@
 	throw_speed = 5
 	throw_range = 7
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -40,6 +43,7 @@
 	force = 22
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -58,14 +62,78 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
+	special = "Knocks certain enemies backwards."
 	icon_state = "eyes"
-	force = 35 //Still less DPS, replaces baseball bat
+	force = 35					//Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
-	knockback = KNOCKBACK_LIGHT
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+
+/obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/eyeball
+	name = "eyeball scooper"
+	desc = "Mind if I take them?"
+	special = "This weapon grows more powerful as you do, but its potential is limited if you possess any other EGO weapons."
+	icon_state = "eyeball1"
+	force = 20
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
+
+/obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
+	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
+	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
+	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
+	var/list/search_area = user.contents.Copy()
+	for(var/obj/item/storage/spare_space in search_area)
+		search_area |= spare_space.contents
+	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
+		extra_mod = 0
+		break
+	for(var/obj/item/ego_weapon/disloyal_weapon in search_area)
+		if(disloyal_weapon == src)
+			continue
+		extra_mod = 0
+		break
+	force = 20 + fortitude_mod + extra_mod
+	if(extra_mod > 0)
+		var/resistance = target.run_armor_check(null, damtype)
+		icon_state = "eyeball2"				// Cool sprite
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] <= 0)
+				resistance = 100
+		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
+			force *= 0.1
+			damtype = BRUTE
+	else
+		icon_state = "eyeball1"				//Cool sprite gone
+	if(ishuman(target))
+		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
+	..()
+	force = initial(force)
+	damtype = initial(damtype)
+
+	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
+	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
+	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
+	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
+	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
 
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
@@ -75,6 +143,7 @@
 	force = 7
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
 
@@ -96,6 +165,7 @@
 	icon_state = "regret"
 	force = 38				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_speed = 2 // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
@@ -111,12 +181,13 @@
 	throw_speed = 1
 	throw_range = 7
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
@@ -130,17 +201,19 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/slashmiss.ogg'
 
 /obj/item/ego_weapon/mini/trick
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 16
-	throwforce = 35		//You can only hold 4 so go nuts.
+	force = 17
+	throwforce = 25		//You can only hold 4 so go nuts.
 	throw_speed = 5
 	throw_range = 7
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("jabs")
 	attack_verb_simple = list("jabs")
 	hitsound = 'sound/weapons/slashmiss.ogg'
@@ -153,15 +226,12 @@
 	force = 32					//Bad DPS, can teleport
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
 
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
-	var/area/turf_area = get_area(get_turf(user))
-	if(istype(turf_area, /area/fishboat))
-		to_chat(user, span_warning("[src] will not work here!."))
-		return
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 		user.adjustBruteLoss(user.maxHealth*0.3)
@@ -179,6 +249,7 @@
 	icon_state = "sorority"
 	force = 17					//Also a support weapon
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("zaps", "prods")
 	attack_verb_simple = list("zap", "prod")
 	hitsound = 'sound/weapons/fixer/generic/baton4.ogg'
@@ -197,6 +268,7 @@
 	icon_state = "bean"
 	force = 20
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -206,15 +278,12 @@
 	desc = "Home sweet home. Warmth and safety aplenty."
 	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
 	var/icon_on = "hearth_glow"
 	var/icon_off = "hearth"
 	force = 18
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("swipes", "slashes")
 	attack_verb_simple = list("swipe", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
@@ -249,7 +318,7 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	icon_state = icon_on
 	//light_on = TRUE
-	addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
+	addtimer(CALLBACK(src, .proc/IconOff), 20)
 	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 0))
@@ -263,8 +332,8 @@
 	icon_state = "smash1"
 	duration = 3
 
-#define LANTERN_MODE_REMOTE (1<<0)
-#define LANTERN_MODE_AUTO (1<<1)
+#define LANTERN_MODE_REMOTE 1
+#define LANTERN_MODE_AUTO 2
 
 /obj/item/ego_weapon/lantern //meat lantern
 	name = "lantern"
@@ -272,22 +341,21 @@
 	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
 	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
 	icon_state = "lantern"
-	force = 30 //not 8 black damage any more but still less than normal teth tier dps.
-	attack_speed = 1.5
+	force = 8 //less than the baton, don't hit things with it
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+
 	var/mode = LANTERN_MODE_REMOTE
 	var/traplimit = 6
 	var/list/traps = list()
-	var/burst_cooldown
-	var/burst_cooldown_time = 5 SECONDS
 
 /obj/item/ego_weapon/lantern/attack_self(mob/user)
 	if(mode == LANTERN_MODE_REMOTE)
-		to_chat(user, span_info("You adjust any newly-placed traps to be set off by motion."))
+		to_chat(user, "<span class='info'>You adjust any newly-placed traps to be set off by motion.</span>")
 		mode = LANTERN_MODE_AUTO
 	else
-		to_chat(user, span_info("You can now remotely trigger any placed traps."))
+		to_chat(user, "<span class='info'>You can now remotely trigger any placed traps.</span>")
 		mode = LANTERN_MODE_REMOTE
 
 /obj/item/ego_weapon/lantern/proc/CreateTrap(target, mob/user, proximity_flag)
@@ -298,18 +366,10 @@
 	if(R)
 		if(!proximity_flag && mode != LANTERN_MODE_REMOTE)
 			return
-		if(burst_cooldown <= world.time)
-			R.burst()
-			burst_cooldown = world.time + burst_cooldown_time
-		else
-			to_chat(user, "<span class='warning'>You bursted a mine too recently!")
+		R.burst()
 		return
 	if(proximity_flag && (LAZYLEN(traps) < traplimit))
-		var/obj/effect/temp_visual/lanterntrap/trap = new(T, user, src, mode)
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		trap.damage_multiplier*=justicemod
-		trap.damage_multiplier*=force_multiplier
+		new /obj/effect/temp_visual/lanterntrap(T, user, src, mode)
 		user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/ego_weapon/lantern/afterattack(atom/target, mob/living/user, proximity_flag, params)
@@ -319,24 +379,20 @@
 
 /obj/effect/temp_visual/lanterntrap
 	name = "lantern trap"
-	icon_state = "mini_lantern" //temp visual
+	icon_state = "shield1" //temp visual
 	layer = ABOVE_ALL_MOB_LAYER
-	duration = 60 SECONDS
-	var/resonance_damage = 30
+	duration = 30 SECONDS
+	var/resonance_damage = 35
 	var/damage_multiplier = 1
 	var/mob/creator
 	var/obj/item/ego_weapon/lantern/res
 	var/rupturing = FALSE //So it won't recurse
-	var/range = 1
-	var/mine_mode
 
 /obj/effect/temp_visual/lanterntrap/Initialize(mapload, set_creator, set_resonator, mode)
-	mine_mode = mode
 	if(mode == LANTERN_MODE_AUTO)
-		icon_state = "mini_lantern_auto" //temp visual
+		icon_state = "shield2" //temp visual
 		resonance_damage = 25
-		range = 0
-		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(burst_check))
+		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst)
 	. = ..()
 	creator = set_creator
 	res = set_resonator
@@ -344,7 +400,7 @@
 		res.traps += src
 	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
 	deltimer(timerid)
-	timerid = addtimer(CALLBACK(src, PROC_REF(burst)), duration, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/lanterntrap/Destroy()
 	if(res)
@@ -353,33 +409,20 @@
 	creator = null
 	. = ..()
 
-/obj/effect/temp_visual/lanterntrap/proc/burst_check()
-	for(var/mob/living/L in get_turf(src))
-		if(creator.faction_check_mob(L))
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				if(H.sanity_lost)
-					burst()
-		if(!creator.faction_check_mob(L))
-			burst()
-
 /obj/effect/temp_visual/lanterntrap/proc/burst()
+	rupturing = TRUE
 	var/turf/T = get_turf(src)
-	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
-	for(var/turf/open/T2 in range(range, src))
-		new /obj/effect/temp_visual/yellowsmoke(T2)
-		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			to_chat(L, span_userdanger("[src] bites you!"))
-			if(creator)
-				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
-	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
-		rupturing = TRUE
-		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
-			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident.
-				field.burst()
-		qdel(src)
-	else
-		qdel(src)
+	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
+	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
+
+	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+		if(creator)
+			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
+		if(field != src && !field.rupturing)
+			field.burst()
+	qdel(src)
 
 #undef LANTERN_MODE_REMOTE
 #undef LANTERN_MODE_AUTO
@@ -391,6 +434,7 @@
 	force = 38
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 	hitsound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -402,13 +446,14 @@
 	icon_state = "red_sheet"
 	force = 22
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/nocry/ego_redsheet.ogg'
 	var/hit_count = 0
 
 /obj/item/ego_weapon/red_sheet/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
 	. = ..()
-	if(!.)
-		return FALSE
 	if(isliving(target))
 		++hit_count
 		if(hit_count >= 4)
@@ -429,6 +474,7 @@
 	force = 22
 	attack_speed = 1
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -448,6 +494,7 @@
 	force = 12
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
@@ -467,7 +514,7 @@
 	//Crit itself.
 	if(prob(poise*2))
 		force*=3
-		to_chat(user, span_userdanger("Critical!"))
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
 		poise = 0
 	..()
 	force = initial(force)
@@ -479,16 +526,19 @@
 	icon_state = "zauberhorn"
 	force = 10
 	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	attack_speed = 0.5
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 
 	var/gun_cooldown
+	var/blademark_cooldown
+	var/gunmark_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
@@ -504,7 +554,6 @@
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
-		G.damage*=force_multiplier
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
@@ -518,52 +567,4 @@
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
 	damage = 20
 	damage_type = BLACK_DAMAGE
-
-/obj/item/ego_weapon/sanitizer
-	name = "sanitizer"
-	desc = "It's very shocking."
-	icon_state = "sanitizer"
-	force = 35 //Still less DPS, replaces baseball bat?
-	attack_speed = 1.6
-	damtype = BLACK_DAMAGE
-	knockback = KNOCKBACK_LIGHT
-	attack_verb_continuous = list("beats", "smacks")
-	attack_verb_simple = list("beat", "smack")
-	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
-/obj/item/ego_weapon/lance/curfew
-	name = "curfew"
-	desc = "The thing itself had never forgotten its glory days."
-	icon_state = "curfew"
-	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
-	inhand_x_dimension = 96
-	inhand_y_dimension = 96
-	force = 22
-	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.8// really slow
-	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("bludgeons", "whacks")
-	attack_verb_simple = list("bludgeon", "whack")
-	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
-
-/obj/item/ego_weapon/lance/visions
-	name = "visions of future past"
-	desc = "A polearm that collapses, and extends while charging."
-	icon_state = "prophet"
-	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
-	damtype = WHITE_DAMAGE
-	force = 18
-	inhand_x_dimension = 96
-	inhand_y_dimension = 96
-	attack_speed = 2
-	attack_verb_continuous = list("stabs", "impales")
-	attack_verb_simple = list("stab", "impale")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reach = 1
-	force_cap = 50
-	force_per_tile = 5
-	pierce_force_cost = 20
-	charge_speed_cap = 2
-	couch_cooldown_time = 3 SECONDS
+	flag = BLACK_DAMAGE

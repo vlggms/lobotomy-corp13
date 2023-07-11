@@ -91,7 +91,6 @@
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer/grunt
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeermed
 	l_pocket = /obj/item/flashlight/seclite
-	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	l_hand = /obj/item/gun/medbeam
 	belt = null
 
@@ -108,7 +107,7 @@
 /datum/outfit/job/reindeer/captain
 	name = "Reindeer Squad Captain"
 	jobtype = /datum/job/rcorp_captain/reindeer
-	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
+	glasses = /obj/item/clothing/glasses/hud/health/night
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeercap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer

@@ -17,7 +17,7 @@
 
 /obj/structure/railing/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, PROC_REF(can_be_rotated)),CALLBACK(src, PROC_REF(after_rotation)))
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS ,null,CALLBACK(src, .proc/can_be_rotated),CALLBACK(src,.proc/after_rotation))
 
 
 /obj/structure/railing/Initialize()
@@ -65,15 +65,6 @@
 	if(get_dir(loc, target) & dir)
 		var/checking = FLYING | FLOATING
 		return . || mover.throwing || mover.movement_type & checking
-	return TRUE
-
-/obj/structure/railing/CanAStarPass(ID, to_dir, caller)
-	if(!density)
-		return TRUE
-	if(dir & to_dir)
-		var/checking = FLYING | FLOATING
-		var/atom/movable/mover = caller
-		return istype(mover) && (mover.throwing || mover.movement_type & checking)
 	return TRUE
 
 /obj/structure/railing/corner/CanPass()

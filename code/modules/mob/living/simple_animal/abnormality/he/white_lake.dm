@@ -7,7 +7,6 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "white_lake"
 	icon_living = "white_lake"
-	portrait = "white_lake"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
@@ -15,18 +14,20 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 40,
+		ABNORMALITY_WORK_REPRESSION = 40
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+	/// Grab her champion
+	var/champion
 	//Has the weapon been given out?
 	var/sword = FALSE
 	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
-		/datum/ego_datum/armor/wings,
-	)
+		/datum/ego_datum/armor/wings
+		)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -39,52 +40,44 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Right in the zone
-		user.Apply_Gift(new gift_type)	//It's a gift now! Free shit! And there are absolutely, positively no downsides, nope!
-		to_chat(user, span_nicegreen("A cute crown appears on your head!"))
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
+		champion = user
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
+
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)	//Lower it again.
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(faction_check_mob(H, FALSE) || H.z != z || H.stat == DEAD)
-			continue
-		if(istype(H.ego_gift_list[HELMET], /datum/ego_gifts/waltz)) // You're still wearing the gift? Pitiable fool...
-			TurnChampion(H)
-			return
-		BreachAttack(H)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/whitelake/proc/BreachAttack(mob/living/carbon/human/H)
-	set waitfor = FALSE
-	new /obj/effect/temp_visual/whitelake(get_turf(H))
-	var/userfort = (get_attribute_level(H, FORTITUDE_ATTRIBUTE))
-	var/damage_dealt = clamp((0 + (userfort / 2)), 30, 65)//deals between 30 and 60 white damage depending on your fortitude attribute when applied.
-	H.apply_damage(damage_dealt, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-
-/mob/living/simple_animal/hostile/abnormality/whitelake/proc/TurnChampion(mob/living/carbon/human/H)
+	if(!champion)	//no champion? Fuck you.
+		for(var/mob/living/L in GLOB.player_list)
+			if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
+				continue
+			new /obj/effect/temp_visual/whitelake(get_turf(L))
+			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		return
+	var/mob/living/carbon/human/H = champion
+	H.Apply_Gift(new gift_type)	//It's a gift now! Free shit! Oh wait you- oh god you just stabbed that man.
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)
 	//Replaces AI with murder one
-	if(!H.sanity_lost)
+	if (!H.sanity_lost)
 		H.adjustSanityLoss(500)
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.InitializeAIController()
+	champion = null
+	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
 	H.dropItemToGround(held) //Drop weapon
-	RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(Champion_Death_Sword))
+	RegisterSignal(H, COMSIG_LIVING_DEATH, .proc/Champion_Death_Sword)
 	ADD_TRAIT(wep, TRAIT_NODROP, wep)
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE
@@ -118,6 +111,7 @@
 	icon_state = "flower_waltz"
 	force = 22
 	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -150,10 +144,10 @@
 
 /datum/ai_behavior/say_line/insanity_whitelake
 	lines = list(
-		"I will protect her!!",
-		"You're in the way!",
-		"I will dance with her forever!",
-	)
+				"I will protect her!!",
+				"You're in the way!",
+				"I will dance with her forever!"
+				)
 //CHAMPION
 //Sets the defenses of the champion
 /datum/status_effect/champion
@@ -170,33 +164,30 @@
 
 /datum/status_effect/champion/on_apply()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/status_holder = owner
-	ADD_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
-	ADD_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
-	status_holder.physiology.red_mod *= 0.6
-	status_holder.physiology.white_mod *= 0.4
-	status_holder.physiology.black_mod *= 0.4
-	status_holder.physiology.pale_mod *= 0.6
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
+		ADD_TRAIT(L, TRAIT_PUSHIMMUNE, type)
+		L.physiology.red_mod *= 0.6
+		L.physiology.white_mod *= 0.4
+		L.physiology.black_mod *= 0.4
+		L.physiology.pale_mod *= 0.6
 
 /datum/status_effect/champion/tick()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/status_holder = owner
-	if(!status_holder.sanity_lost)
-		status_holder.remove_status_effect(STATUS_EFFECT_CHAMPION)
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		if(!L.sanity_lost)
+			L.remove_status_effect(STATUS_EFFECT_CHAMPION)
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/status_holder = owner
-	REMOVE_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
-	REMOVE_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
-	status_holder.physiology.red_mod /= 0.6
-	status_holder.physiology.white_mod /= 0.4
-	status_holder.physiology.black_mod /= 0.4
-	status_holder.physiology.pale_mod /= 0.6
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
+		REMOVE_TRAIT(L, TRAIT_PUSHIMMUNE, type)
+		L.physiology.red_mod /= 0.6
+		L.physiology.white_mod /= 0.4
+		L.physiology.black_mod /= 0.4
+		L.physiology.pale_mod /= 0.6
 
 #undef STATUS_EFFECT_CHAMPION

@@ -8,16 +8,16 @@
 	force = 30
 	attack_speed = 0.7
 	damtype = BLACK_DAMAGE
-
+	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "stabs")
 	attack_verb_simple = list("slice", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 60,
-		PRUDENCE_ATTRIBUTE = 60,
-		TEMPERANCE_ATTRIBUTE = 80,
-		JUSTICE_ATTRIBUTE = 60,
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60
+							)
 	var/ready = TRUE
 
 
@@ -29,21 +29,21 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, span_userdanger("Low at Night."))
+	to_chat(user, "<span class='userdanger'>Low at Night.</span>")
 	force*=3
-	user.adjustBruteLoss(user.maxHealth*0.2)
-	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
+	user.adjustBruteLoss(user.maxHealth*0.4)
+	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/jeong/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, span_userdanger("High at Day."))
+		to_chat(user, "<span class='userdanger'>High at Day.</span>")
 		force = initial(force)
 
 /obj/item/ego_weapon/city/jeong/proc/Return(mob/living/carbon/human/user)
 	ready = TRUE
 	force = initial(force)
-	to_chat(user, span_notice("Your blade is ready."))
+	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
 
 //Grade 4
 /obj/item/ego_weapon/city/jeong/large

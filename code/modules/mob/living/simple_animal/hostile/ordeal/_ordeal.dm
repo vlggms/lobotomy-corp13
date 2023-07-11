@@ -29,9 +29,3 @@
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
 	..()
-
-//You should let these gib on Citymap
-/mob/living/simple_animal/hostile/ordeal/Initialize()
-	..()
-	if(SSmaptype.maptype == "city")
-		stat_attack = HARD_CRIT	//Guarantee this

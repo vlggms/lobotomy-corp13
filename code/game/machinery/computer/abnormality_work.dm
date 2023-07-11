@@ -24,11 +24,11 @@
 
 /obj/machinery/computer/abnormality/Initialize()
 	. = ..()
-	GLOB.lobotomy_devices += src
+	GLOB.abnormality_consoles += src
 	flags_1 |= NODECONSTRUCT_1
 
 /obj/machinery/computer/abnormality/Destroy()
-	GLOB.lobotomy_devices -= src
+	GLOB.abnormality_consoles -= src
 	..()
 
 /obj/machinery/computer/abnormality/update_overlays()
@@ -40,13 +40,13 @@
 	. = ..()
 	if(!datum_reference)
 		return
-	. += span_info("This console is connected to [datum_reference.GetName()]'s containment unit.")
-	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.GetRiskLevel()]]'>[THREAT_TO_NAME[datum_reference.GetRiskLevel()]]</span>"
-	. += span_info("Risk Level: ") + "[threat_level]" // Professionals have standards
+	. += "<span class='info'>This console is connected to [datum_reference.name]'s containment unit.</span>"
+	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
+	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
-		. += span_info("Current Qliphoth Counter: [datum_reference.qliphoth_meter].")
-	if(datum_reference.overload_chance[user.ckey])
-		. += span_warning("Current Personal Qliphoth Overload: [datum_reference.overload_chance[user.ckey]]%.")
+		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
+	if(datum_reference.overload_chance != 0)
+		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
@@ -58,36 +58,22 @@
 				melt_text = " of Waves. Upon clearing the meltdown the dark waves will disappear"
 			if(MELTDOWN_CYAN)
 				melt_text = " of Pillars. Success rates reduced by 20%. Failing to clear it will cause Arbiter to perform their deadly attack"
-			if(MELTDOWN_BLACK)
-				melt_text = " of Lunacy. Failure to clear the meltdown will cause another abnormality to breach"
-		. += span_warning("The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].")
+		. += "<span class='warning'>The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].</span>"
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	if(!istype(datum_reference))
-		to_chat(user, span_boldannounce("The console has no information stored!"))
+		to_chat(user, "<span class='boldannounce'>The console has no information stored!</span>")
 		return
 	var/dat
-	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.GetRiskLevel()]]'>\[[THREAT_TO_NAME[datum_reference.GetRiskLevel()]]\]</span> [datum_reference.GetName()]</b><br>"
-	if(datum_reference.overload_chance[user.ckey])
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Personal Work Success Rates are modified by [datum_reference.overload_chance[user.ckey]]%.</span><br>"
-		if(datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit) // How the fuck did you hit the limit..?
-			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work on other abnormalities, I beg you...</span><br>"
+	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
+	if(datum_reference.overload_chance != 0)
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Success Rates are modified by [datum_reference.overload_chance]%.</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
-
-	//Abnormality portraits
-	var/list/paths = get_portrait_path()
-	for(var/pahs in paths)
-		user << browse_rsc(pahs)
-	dat += {"<div style="float:right; width: 60%;">
-	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
-	</div>"}
-	dat += "<br>"
-
 	var/list/work_list = datum_reference.available_work
 	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
@@ -95,15 +81,13 @@
 		var/work_display = "[wt] Work"
 		if(scramble_list[wt] != null)
 			work_display += "?"
-		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
-		if(!tutorial && istype(I))
-			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
+		if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+			work_display = Gibberish(work_display, TRUE, 60)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
-
-	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 350)
+	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 300)
 	popup.set_content(dat)
 	popup.open()
 	return
@@ -116,21 +100,21 @@
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
 			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work training rabbit
-				to_chat(usr, span_warning("The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!"))
+				to_chat(usr, "<span class='warning'>The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
 				return
 			if(datum_reference.working)
-				to_chat(usr, span_warning("The console is currently being operated!"))
+				to_chat(usr, "<span class='warning'>The console is currently being operated!</span>")
 				return
 			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
-				to_chat(usr, span_warning("The Abnormality is currently in the process of revival!"))
+				to_chat(usr, "<span class='warning'>The Abnormality is currently in the process of revival!</span>")
 				return
 			if(!(datum_reference.current.status_flags & GODMODE))
-				to_chat(usr, span_warning("The Abnormality has breached containment!"))
+				to_chat(usr, "<span class='warning'>The Abnormality has breached containment!</span>")
 				return
 			var/work_attempt = datum_reference.current.AttemptWork(usr, href_list["do_work"])
 			if(!work_attempt)
 				if(work_attempt == FALSE)
-					to_chat(usr, span_warning("This operation is currently unavailable."))
+					to_chat(usr, "<span class='warning'>This operation is currently unavailable.</span>")
 				return
 			start_work(usr, href_list["do_work"])
 
@@ -164,20 +148,19 @@
 		return
 	switch(sanity_result)
 		if(-INFINITY to -1)
-			to_chat(user, span_nicegreen("This assignment is too easy!"))
+			to_chat(user, "<span class='nicegreen'>This assignment is too easy!</span>")
 		if(0)
-			to_chat(user, span_notice("I'll handle it as I always do."))
+			to_chat(user, "<span class='notice'>I'll handle it as I always do.</span>")
 		if(1)
-			to_chat(user, span_warning("Just follow standard procedures..."))
+			to_chat(user, "<span class='warning'>Just follow standard procedures...</span>")
 		if(2)
-			to_chat(user, span_danger("Calm down... Calm down..."))
+			to_chat(user, "<span class='danger'>Calm down... Calm down...</span>")
 		if(3 to INFINITY)
-			to_chat(user, span_userdanger("I'm not ready for this!"))
+			to_chat(user, "<span class='userdanger'>I'm not ready for this!</span>")
 	var/was_melting = meltdown //to remember if it was melting down before the work started
 	meltdown = FALSE // Reset meltdown
 	if(was_melting)
 		SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, TRUE)
-		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, TRUE)
 	update_icon()
 	datum_reference.working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
@@ -221,7 +204,7 @@
 			for(var/i = 0 to round((work_time - total_boxes)*(1-((work_chance*0.5)/100)), 1)) // Take double of what you'd fail on average as NE box damage.
 				datum_reference.current.WorktickFailure(user)
 			playsound(src, 'sound/machines/synth_no.ogg', 75, FALSE, -4)
-			to_chat(user, span_warning("The Abnormality grows frustrated as you cut your work short!"))
+			to_chat(user, "<span class='warning'>The Abnormality grows frustrated as you cut your work short!")
 			success_boxes = 0
 			canceled = TRUE
 			break
@@ -256,18 +239,14 @@
 		linked_panel.console_status(src)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
-	if(datum_reference.max_boxes != 0) // All these messages should be visible (on the console) and audible (announced by machine)
-		audible_message(span_notice("[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired."),\
-				span_notice("[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired."))
+	if(datum_reference.max_boxes != 0)
+		visible_message("<span class='notice'>[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired.</span>")
 		if(pe >= datum_reference.success_boxes)
-			audible_message(span_notice("Work Result: Good"),\
-				span_notice("Work Result: Good"))
+			visible_message("<span class='notice'>Work Result: Good</span>")
 		else if(pe >= datum_reference.neutral_boxes)
-			audible_message(span_notice("Work Result: Normal"),\
-				span_notice("Work Result: Normal"))
+			visible_message("<span class='notice'>Work Result: Normal</span>")
 		else
-			audible_message(span_notice("Work Result: Bad"),\
-				span_notice("Work Result: Bad"))
+			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
@@ -289,8 +268,7 @@
 				qliphoth_meltdown_effect()
 
 /obj/machinery/computer/abnormality/proc/start_meltdown(melt_type = MELTDOWN_NORMAL, min_time = 60, max_time = 90)
-	meltdown_time = rand(min_time, max_time) + (GetFacilityUpgradeValue(UPGRADE_ABNO_MELT_TIME) * \
-					(GetCoreSuppression(/datum/suppression/command) ? 0.5 : 1))
+	meltdown_time = rand(min_time, max_time)
 	meltdown = melt_type
 	datum_reference.current.MeltdownStart()
 	update_icon()
@@ -302,17 +280,11 @@
 	update_icon()
 	datum_reference.qliphoth_change(-999)
 	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, FALSE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, FALSE)
 	return TRUE
 
 // Scrambles work types for this specific console
 /obj/machinery/computer/abnormality/proc/Scramble()
-	var/list/normal_works = shuffle(list(
-		ABNORMALITY_WORK_INSTINCT,
-		ABNORMALITY_WORK_INSIGHT,
-		ABNORMALITY_WORK_ATTACHMENT,
-		ABNORMALITY_WORK_REPRESSION,
-	))
+	var/list/normal_works = shuffle(list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION))
 	var/list/choose_from = normal_works.Copy()
 	for(var/work in normal_works)
 		scramble_list[work] = pick(choose_from - work)
@@ -336,7 +308,7 @@
 //Don't add tutorial consoles to global list, prevents them from being affected by Control suppression or other effects
 /obj/machinery/computer/abnormality/tutorial/Initialize()
 	. = ..()
-	GLOB.lobotomy_devices -= src
+	GLOB.abnormality_consoles -= src
 
 //don't scramble our poor interns
 /obj/machinery/computer/abnormality/tutorial/Scramble()

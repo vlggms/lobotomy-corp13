@@ -4,44 +4,35 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "road_home"
 	icon_living = "road_home"
-	portrait = "road_home"
 	maxHealth = 1000
 	health = 1000
 	move_resist = MOVE_FORCE_STRONG //So she can't be yeeted away and delayed indefinitely
 	move_to_delay = 13 //She needs to be slow so she doesn't reach home too fast
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2) //Endure red because catt mentions physical attacks can't hurt her at all.
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2) //Endure red because catt mentions physical attacks can't hurt her at all.
 	melee_damage_lower = 1
 	melee_damage_upper = 1 //Irrelevant, she does not attack of her own volition
 	generic_canpass = FALSE
 	melee_damage_type = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 20,
-		ABNORMALITY_WORK_INSIGHT = 45,
-		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = list(50, 60, 70, 80, 90),
-	)
+						ABNORMALITY_WORK_INSTINCT = 20,
+						ABNORMALITY_WORK_INSIGHT = 45,
+						ABNORMALITY_WORK_ATTACHMENT = 45,
+						ABNORMALITY_WORK_REPRESSION = list(50, 60, 70, 80, 90)
+						)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
-	death_sound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
+	deathsound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
 	ego_list = list(
-		/datum/ego_datum/weapon/brick_road,
 		/datum/ego_datum/weapon/homing_instinct,
-		/datum/ego_datum/armor/homing_instinct,
-	)
+		/datum/ego_datum/armor/homing_instinct
+		)
 	gift_type = /datum/ego_gifts/homing_instinct
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-
-	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
-		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
-		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
-		// Ozma = 2,
-		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5
-	)
 
 	///Stuff related to the house and its path
 	var/obj/road_house/house
@@ -53,10 +44,10 @@
 
 	///If those abnos are available, she will make a path towards them instead. (isn't used for anything right now)
 	var/list/preferred_abno_list = list(
-		/mob/living/simple_animal/hostile/abnormality/woodsman,
-		/mob/living/simple_animal/hostile/abnormality/scarecrow,
-		/mob/living/simple_animal/hostile/abnormality/scaredy_cat,
-	)
+									/mob/living/simple_animal/hostile/abnormality/woodsman,
+									/mob/living/simple_animal/hostile/abnormality/scarecrow,
+									/mob/living/simple_animal/hostile/abnormality/scaredy_cat
+									)
 	var/move_timer_id
 	var/spawn_tried = 0
 	var/flip_cooldown_time = 10 SECONDS
@@ -69,13 +60,12 @@
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/road_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user)
 	flip_cooldown = world.time + flip_cooldown_time //we set it before she breach just so she doesn't affect everyone the moment she spawns
-	. = ..()
+	..()
 	toggle_ai(AI_OFF) //Road home doesn't need to attack or patrol so the AI is unecessary
 	NewHouse()
 	CreateRoad()
@@ -95,7 +85,7 @@
 	for(var/obj/effect/golden_road/GR in user_turf.contents)
 		retaliation = 3
 	attacker.apply_damage(retaliation, BLACK_DAMAGE, null, attacker.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	to_chat(attacker, span_userdanger("[src] counter attacks!"))
+	to_chat(attacker, "<span class='userdanger'>[src] counter attacks!</span>")
 	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
 	attacker.apply_status_effect(/datum/status_effect/stay_home)
@@ -109,7 +99,7 @@
 		road_segment_finished = TRUE
 		return
 	for(var/i = 1 to road_range)
-		addtimer(CALLBACK(src, PROC_REF(AddBrick), i, road_range), 0.25 SECONDS * i) //The road is created slowly for dramatic effect
+		addtimer(CALLBACK(src, .proc/AddBrick, i, road_range), 0.25 SECONDS * i) //The road is created slowly for dramatic effect
 
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/AddBrick(current_brick, max_brick)
 	if(brick_list.len == house_path.len)
@@ -134,7 +124,7 @@
 		SpinAnimation(20,1)
 		flip_cooldown = world.time + flip_cooldown_time
 		playsound(src, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 100, FALSE, 8)
-		addtimer(CALLBACK(src, PROC_REF(FlipAttack)), 2 SECONDS)
+		addtimer(CALLBACK(src, .proc/FlipAttack), 2 SECONDS)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/road_home/Destroy(gibbed)
@@ -200,7 +190,7 @@
 
 
 	deltimer(move_timer_id)
-	move_timer_id = addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_to_delay, TIMER_STOPPABLE)
+	move_timer_id = addtimer(CALLBACK(src, .proc/MoveToBrick), move_to_delay, TIMER_STOPPABLE)
 
 ///If road home fails to advance, destroy everything in front of her so she can't be infinitely blocked.
 ///This includes bolted doors, barriers or built walls (even indestructible ones)
@@ -242,7 +232,7 @@
 		NewHouse()
 		return
 	var/house_turf = pick(potential_centers)
-	house_path = get_path_to(road_home_turf, house_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 400)
+	house_path = get_path_to(road_home_turf, house_turf, /turf/proc/Distance_cardinal, 0, 400)
 	if(!house_path.len)
 		spawn_tried++
 		NewHouse()
@@ -256,12 +246,12 @@
 	house.alpha = 0
 	house.road_home_mob = src
 
-	addtimer(CALLBACK(house, TYPE_PROC_REF(/obj/road_house, FallDown)), 3 SECONDS)
+	addtimer(CALLBACK(house, .obj/road_house/proc/FallDown), 3 SECONDS)
 	road_finished = FALSE
 	road_segment_finished = FALSE
 	if(move_timer_id)
 		deltimer(move_timer_id)
-	move_timer_id = addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), 10 SECONDS, TIMER_STOPPABLE) //We give the players a slight headstart to beat the shit out of her
+	move_timer_id = addtimer(CALLBACK(src, .proc/MoveToBrick), 10 SECONDS, TIMER_STOPPABLE) //We give the players a slight headstart to beat the shit out of her
 	for(var/obj/effect/golden_road/GR in brick_list)
 		brick_list -= GR
 		qdel(GR)
@@ -304,7 +294,7 @@
 	if(fall_speed > 0.5 SECONDS) //it falls very slowly at first but it can get very fast if you let her reach home too many times.
 		fall_speed -= 0.5 SECONDS //home falls faster and faster
 
-	visible_message(span_danger("[src] falls down on the ground!"))
+	visible_message("<span class='danger'>[src] falls down on the ground!</span>")
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 3)
 	var/turf/orgin = get_turf(src)
@@ -356,15 +346,15 @@
 
 /datum/ai_behavior/say_line/insanity_road_home
 	lines = list(
-		"The sound of back home... If I can just go back...",
-		"Let us all gather, let us all dance around...",
-		"Let's go on an adventure!",
-	)
+				"The sound of back home... If I can just go back...",
+				"Let us all gather, let us all dance around...",
+				"Let's go on an adventure!"
+				)
 
 /datum/ai_controller/insane/road_home/PossessPawn(atom/new_pawn)
 	. = ..()
 	move_speed = rand(14, 23) //Everyone has a slightly different move speed so they don't trip over each other. They should also be slower than the road home.
-	addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_speed)
+	addtimer(CALLBACK(src, .proc/MoveToBrick), move_speed)
 
 /datum/ai_controller/insane/road_home/proc/MoveToBrick()
 	var/mob/living/living_pawn = pawn
@@ -375,7 +365,7 @@
 	for(var/obj/effect/golden_road/GR in orgin.contents)
 		if(GR.brick_number < road_home_mob.brick_list.len && living_pawn.stat != DEAD)
 			step_towards(living_pawn, road_home_mob.brick_list[GR.brick_number + 1], 1)
-		addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_speed)
+		addtimer(CALLBACK(src, .proc/MoveToBrick), move_speed)
 
 /datum/status_effect/stay_home
 	id = "stay home"
@@ -386,12 +376,10 @@
 /atom/movable/screen/alert/status_effect/stay_home
 	name = "stay home"
 	desc = "Everyone must go home eventually, you are no different."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "home"
 
 /datum/status_effect/stay_home/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/Moved)
 
 ///If someone has this status effect, they will be incapable of leaving the gold road if they ever step on it.
 /datum/status_effect/stay_home/proc/Moved(datum/source, atom/new_location)

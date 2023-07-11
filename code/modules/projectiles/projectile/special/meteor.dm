@@ -3,8 +3,9 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small1"
 	damage = 0
-	damage_type = BULLET
+	damage_type = BRUTE
 	nodamage = TRUE
+	flag = BULLET
 
 /obj/projectile/meteor/Bump(atom/A)
 	if(A == firer)

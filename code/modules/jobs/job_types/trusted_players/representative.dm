@@ -22,8 +22,6 @@
 								JUSTICE_ATTRIBUTE = 0
 								)
 
-	job_abbreviation = "REP"
-
 /datum/job/representative/after_spawn(mob/living/carbon/human/H, mob/M)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
@@ -36,7 +34,7 @@
 	jobtype = /datum/job/representative
 
 	belt = /obj/item/pda/lawyer
-	ears = /obj/item/radio/headset/heads/rep
+	ears = /obj/item/radio/headset/heads
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
@@ -44,7 +42,7 @@
 /// Alternate corps you cna pick
 /datum/job/representative
 	alt_titles = list("R Corp Representative", "W Corp Representative",
-			"K Corp Representative", "N Corp Representative", "P Corp Representative")
+			"K Corp Representative")
 
 /datum/outfit/job/representative/rcorprepresentative
 	name = "R Corp Representative"
@@ -57,12 +55,3 @@
 /datum/outfit/job/representative/kcorprepresentative
 	name = "K Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/kcorp
-	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci
-
-/datum/outfit/job/representative/ncorprepresentative
-	name = "N Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/ncorp
-
-/datum/outfit/job/representative/pcorprepresentative
-	name = "P Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp

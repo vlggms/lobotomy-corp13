@@ -686,7 +686,9 @@
 			paint_color = "#C0C0C0"
 		update_icon()
 		if(actually_paints)
-			H.update_lips("spray_face", paint_color)
+			H.lip_style = "spray_face"
+			H.lip_color = paint_color
+			H.update_body()
 		var/used = use_charges(user, 10, FALSE)
 		reagents.trans_to(user, used, volume_multiplier, transfered_by = user, methods = VAPOR)
 
@@ -737,7 +739,10 @@
 			flash_color(C, flash_color=paint_color, flash_time=40)
 		if(ishuman(C) && actually_paints)
 			var/mob/living/carbon/human/H = C
-			H.update_lips("spray_face", paint_color)
+			H.lip_style = "spray_face"
+			H.lip_color = paint_color
+			H.update_body()
+
 		. = use_charges(user, 10, FALSE)
 		var/fraction = min(1, . / reagents.maximum_volume)
 		reagents.expose(C, VAPOR, fraction * volume_multiplier)
@@ -749,16 +754,10 @@
 			var/list/rgb = hex2rgb(paint_color)
 			var/list/hsl = rgb2hsl(rgb[1], rgb[2], rgb[3])
 			var/color_is_dark = hsl[3] < DARK_COLOR_LIGHTNESS_THRESHOLD
-			
-			if(SSmaptype.maptype == "city")
-				to_chat(user, "<span class='warning'>Vandalizing the head's property is punishable by death...</span>")
-				return FALSE
 
-			/*
 			if (color_is_dark && !(target.flags_1 & ALLOW_DARK_PAINTS_1))
 				to_chat(user, "<span class='warning'>A color that dark on an object like this? Surely not...</span>")
 				return FALSE
-			*/
 
 			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
 			SEND_SIGNAL(target, COMSIG_OBJ_PAINTED, color_is_dark)

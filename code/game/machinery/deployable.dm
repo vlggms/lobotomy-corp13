@@ -31,7 +31,7 @@
 			if(!I.tool_start_check(user, amount=0))
 				return
 
-			to_chat(user, span_notice("You begin repairing [src]..."))
+			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 			if(I.use_tool(src, user, 40, volume=40))
 				obj_integrity = clamp(obj_integrity + 20, 0, max_integrity)
 	else
@@ -62,6 +62,23 @@
 	icon_state = "woodenbarricade"
 	bar_material = WOOD
 	var/drop_amount = 3
+
+/obj/structure/barricade/wooden/attackby(obj/item/I, mob/user)
+	if(istype(I,/obj/item/stack/sheet/mineral/wood))
+		var/obj/item/stack/sheet/mineral/wood/W = I
+		if(W.amount < 5)
+			to_chat(user, "<span class='warning'>You need at least five wooden planks to make a wall!</span>")
+			return
+		else
+			to_chat(user, "<span class='notice'>You start adding [I] to [src]...</span>")
+			if(do_after(user, 50, target=src))
+				W.use(5)
+				var/turf/T = get_turf(src)
+				T.PlaceOnTop(/turf/closed/wall/mineral/wood/nonmetal)
+				qdel(src)
+				return
+	return ..()
+
 
 /obj/structure/barricade/wooden/crude
 	name = "crude plank barricade"
@@ -114,14 +131,14 @@
 
 /obj/structure/barricade/security/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(deploy)), deploy_time)
+	addtimer(CALLBACK(src, .proc/deploy), deploy_time)
 
 /obj/structure/barricade/security/proc/deploy()
 	icon_state = "barrier1"
 	density = TRUE
 	anchored = TRUE
 	if(deploy_message)
-		visible_message(span_warning("[src] deploys!"))
+		visible_message("<span class='warning'>[src] deploys!</span>")
 
 
 /obj/item/grenade/barrier
@@ -135,7 +152,7 @@
 
 /obj/item/grenade/barrier/examine(mob/user)
 	. = ..()
-	. += span_notice("Alt-click to toggle modes.")
+	. += "<span class='notice'>Alt-click to toggle modes.</span>"
 
 /obj/item/grenade/barrier/AltClick(mob/living/carbon/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
@@ -151,7 +168,7 @@
 		if(HORIZONTAL)
 			mode = SINGLE
 
-	to_chat(user, span_notice("[src] is now in [mode] mode."))
+	to_chat(user, "<span class='notice'>[src] is now in [mode] mode.</span>")
 
 /obj/item/grenade/barrier/detonate(mob/living/lanced_by)
 	. = ..()

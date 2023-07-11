@@ -128,7 +128,7 @@
 		on = !on
 
 	if("inject" in signal.data)
-		INVOKE_ASYNC(src, PROC_REF(inject))
+		INVOKE_ASYNC(src, .proc/inject)
 		return
 
 	if("set_volume_rate" in signal.data)
@@ -136,7 +136,7 @@
 		var/datum/gas_mixture/air_contents = airs[1]
 		volume_rate = clamp(number, 0, air_contents.volume)
 
-	addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2)
+	addtimer(CALLBACK(src, .proc/broadcast_status), 2)
 
 	if(!("status" in signal.data)) //do not update_icon
 		update_icon()
@@ -182,7 +182,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
+		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
 		return FALSE
 
 // mapping

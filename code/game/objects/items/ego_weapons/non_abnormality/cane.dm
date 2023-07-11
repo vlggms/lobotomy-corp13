@@ -1,35 +1,44 @@
 //Like this so we can add a charge mechanic to one of them and have it carry down.
 //All of these weapons are grade 4.
-/obj/item/ego_weapon/city/charge/cane
+/obj/item/ego_weapon/city/cane
 	name = "cane office template"
 	desc = "This is a template and should not be seen."
 	force = 18
 	damtype = WHITE_DAMAGE
-
+	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
-	release_message = "You release your charge, damaging your opponent!"
-	charge_effect = "deal an extra attack in damage."
-	charge_cost = 2
+	var/release_message = "You release your charge, damaging your opponent!"
+	var/charge_effect = "deal an extra attack in damage."
+	var/charge_cost = 2
+	var/charge
+	var/activated
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 80,
-		PRUDENCE_ATTRIBUTE = 100,
-		TEMPERANCE_ATTRIBUTE = 60,
-		JUSTICE_ATTRIBUTE = 80,
-	)
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
 
-/obj/item/ego_weapon/city/charge/cane/attack_self(mob/user)
+/obj/item/ego_weapon/city/cane/attack_self(mob/user)
 	..()
-	if(!CanUseEgo(user))
-		return FALSE
 	if(charge>=charge_cost)
-		var/target //Didn't even need new var, could literally put anything for first arg, but for consistency sake and less confusion
-		release_charge(target, user)
+		charge -= charge_cost
+		release_charge(user)
 	else
-		to_chat(user, span_notice("You don't have enough charge."))
+		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
-/obj/item/ego_weapon/city/charge/cane/release_charge(target, mob/living/user)
+/obj/item/ego_weapon/city/cane/examine(mob/user)
+	. = ..()
+	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+
+/obj/item/ego_weapon/city/cane/attack(mob/living/target, mob/living/user)
 	..()
+	if(charge<20 && target.stat != DEAD)
+		charge+=1
+
+/obj/item/ego_weapon/city/cane/proc/release_charge(mob/living/user)
+	to_chat(user, "<span class='notice'>[release_message].</span>")
 	sleep(2)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
@@ -37,7 +46,7 @@
 
 
 //Actual weapons
-/obj/item/ego_weapon/city/charge/cane/cane
+/obj/item/ego_weapon/city/cane/cane
 	name = "cane office - cane"
 	desc = "A white cane that holds electricity."
 	icon_state = "cane_cane"
@@ -49,14 +58,14 @@
 	charge_effect = "heal yourself."
 	charge_cost = 8
 
-/obj/item/ego_weapon/city/charge/cane/cane/release_charge(target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/cane/cane/release_charge(mob/living/carbon/human/user)
 	..()
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
-	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
 
-/obj/item/ego_weapon/city/charge/cane/cane/proc/Return(mob/living/carbon/human/user)
-	to_chat(user, span_notice("You heal once more."))
+/obj/item/ego_weapon/city/cane/cane/proc/Return(mob/living/carbon/human/user)
+	to_chat(user, "<span class='notice'>You heal once more.</span>")
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
@@ -65,7 +74,7 @@
 
 
 
-/obj/item/ego_weapon/city/charge/cane/claw
+/obj/item/ego_weapon/city/cane/claw
 	name = "cane office - claw"
 	desc = "A white claw seen in use by the cane office."
 	icon_state = "cane_claw"
@@ -79,7 +88,7 @@
 	charge_cost = 3
 	var/dodgelanding
 
-/obj/item/ego_weapon/city/charge/cane/claw/release_charge(target, mob/living/user)
+/obj/item/ego_weapon/city/cane/claw/release_charge(mob/living/user)
 	..()
 	if(user.dir == NORTH)
 		dodgelanding = locate(user.x, user.y + 5, user.z)
@@ -92,7 +101,7 @@
 	user.throw_at(dodgelanding, 3, 2, spin = FALSE)
 
 
-/obj/item/ego_weapon/city/charge/cane/fist
+/obj/item/ego_weapon/city/cane/fist
 	name = "cane office - gauntlet"
 	desc = "A gauntlet seen in use by the cane office."
 	icon_state = "cane_gauntlet"
@@ -104,15 +113,15 @@
 	charge_effect = "boost this weapon's attack."
 	charge_cost = 8
 
-/obj/item/ego_weapon/city/charge/cane/fist/release_charge(target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/cane/fist/release_charge(mob/living/carbon/human/user)
 	..()
 	force = force*2
-	addtimer(CALLBACK(src, PROC_REF(Return), user), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/Return, user), 2 SECONDS)
 
-/obj/item/ego_weapon/city/charge/cane/fist/proc/Return(mob/living/user)
+/obj/item/ego_weapon/city/cane/fist/proc/Return(mob/living/user)
 	force = initial(force)
 
-/obj/item/ego_weapon/city/charge/cane/briefcase
+/obj/item/ego_weapon/city/cane/briefcase
 	name = "cane office - briefcase"
 	desc = "A briefcase seen in use by the cane office."
 	icon_state = "cane_briefcase"
@@ -124,7 +133,7 @@
 	charge_effect = "knock others backwards!"
 	charge_cost = 4
 
-/obj/item/ego_weapon/city/charge/cane/briefcase/release_charge(target, mob/living/user)
+/obj/item/ego_weapon/city/cane/briefcase/release_charge(mob/living/user)
 	..()
 	goonchem_vortex(get_turf(src), 1, 4)
 

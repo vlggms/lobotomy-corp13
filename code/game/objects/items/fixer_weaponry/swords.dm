@@ -20,14 +20,14 @@
 
 /obj/item/durandal/attack_self(mob/living/carbon/user)
 	if(attack_strong_cooldown > world.time)
-		to_chat(user, span_warning("You are not ready to perform strong attack yet!"))
+		to_chat(user, "<span class='warning'>You are not ready to perform strong attack yet!</span>")
 		return
 	if(attack_variation == 2)
 		attack_variation = 0
-		to_chat(user, span_notice("You decide to use normal attacks for now."))
+		to_chat(user, "<span class='notice'>You decide to use normal attacks for now.</span>")
 		return
 	attack_variation = 2
-	to_chat(user, span_notice("You prepare a strong attack."))
+	to_chat(user, "<span class='notice'>You prepare a strong attack.</span>")
 
 /obj/item/durandal/attack(mob/living/M, mob/living/user)
 	var/old_force = force

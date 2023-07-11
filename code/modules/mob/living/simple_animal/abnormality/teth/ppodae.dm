@@ -4,7 +4,6 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
-	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 550 //fast but low hp abno
@@ -15,14 +14,14 @@
 	response_help_continuous = "pet"
 	response_help_simple = "pet"
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 60,
-		ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
-	)
+						ABNORMALITY_WORK_INSTINCT = 60,
+						ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
+						ABNORMALITY_WORK_ATTACHMENT = 40,
+						ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
+						)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	can_breach = TRUE
 	start_qliphoth = 2
 	vision_range = 14
@@ -36,8 +35,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
-		/datum/ego_datum/armor/cute,
-	)
+		/datum/ego_datum/armor/cute
+		)
 	gift_type =  /datum/ego_gifts/cute
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -50,7 +49,7 @@
 	if(!can_act)
 		return FALSE
 	var/mob/living/carbon/L = target
-	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
+	if(L.health < 0 || L.stat == DEAD)
 		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 			return
 		var/list/parts = list()
@@ -170,11 +169,10 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
+/mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user)
+	..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)

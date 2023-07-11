@@ -9,13 +9,7 @@
 
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
-	item_category = "Weapon (Rifle)"
 	item_path = /obj/item/gun/ego_gun/hornet
-	cost = 50
-
-/datum/ego_datum/weapon/tattered_kingdom
-	item_category = "Weapon (Lance)"
-	item_path = /obj/item/ego_weapon/lance/tattered_kingdom
 	cost = 50
 
 /datum/ego_datum/armor/hornet
@@ -192,12 +186,6 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/exuviae
 	cost = 50
 
-/datum/ego_datum/exuviae
-	name = "Naked Nest Cure"
-	item_category = "Extract"
-	item_path = /obj/item/serpentspoison
-	cost = 20
-
 // Ebony Queen's Apple - Ebony Stem
 /datum/ego_datum/armor/ebony_stem
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/ebony_stem
@@ -223,13 +211,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/warring
-	item_category = "Weapon (Bow)"
 	item_path = /obj/item/gun/ego_gun/warring
-	cost = 50
-
-/datum/ego_datum/weapon/warring2
-	item_category = "Weapon (Axe)"
-	item_path = /obj/item/ego_weapon/charge/warring
 	cost = 50
 
 // Clown Smiling at Me - Dark Carnival
@@ -370,6 +352,15 @@
 	item_path = /obj/item/gun/ego_gun/pistol/crimson
 	cost = 50
 
+//Pure Hearted Believer - Untainted Faith
+/datum/ego_datum/armor/faith
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/faith
+	cost = 50
+
+/*/datum/ego_datum/weapon/faith
+	item_path = /obj/item/ego_weapon/faith
+	cost = 50*/
+
 //My Sweet Orange Tree - Innocence
 /datum/ego_datum/armor/innocence
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/innocence
@@ -443,35 +434,3 @@
 /datum/ego_datum/weapon/cobalt
 	item_path = /obj/item/ego_weapon/cobalt
 	cost = 50
-
-//Poor Screenwriter's Note - Scenario
-/datum/ego_datum/armor/scene
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/scene
-	cost = 50
-
-/datum/ego_datum/weapon/scene
-	item_path = /obj/item/ego_weapon/scene
-	cost = 50
-
-//Sign of Roses - Garden Of Thorns
-/datum/ego_datum/armor/rosa
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
-	cost = 50
-
-/datum/ego_datum/weapon/rosa
-	item_path = /obj/item/ego_weapon/rosa
-	cost = 50
-
-//Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
-/datum/ego_datum/armor/blind_obsession
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
-	cost = 50
-
-/datum/ego_datum/weapon/blind_obsession
-	item_path = /obj/item/ego_weapon/blind_obsession
-	cost = 50
-
-/datum/ego_datum/weapon/abyssal_route
-	item_path = /obj/item/ego_weapon/abyssal_route
-	cost = 50
-

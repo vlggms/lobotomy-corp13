@@ -5,7 +5,7 @@
 	icon_state = "leaflet"
 	force = 20
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
@@ -28,10 +28,10 @@
 	if(!CanUseEgo(user))
 		return
 	if(broken)
-		to_chat(user, span_notice("You start reparing your weapon..."))
+		to_chat(user, "<span class='notice'>You start reparing your weapon...</span>")
 		if(!do_after(user, 12 SECONDS, src))
 			return
-		to_chat(user, span_notice("You finish repairing your weapon"))
+		to_chat(user, "<span class='notice'>You finish repairing your weapon</span>")
 		durability = max_durability
 		force = initial(force)
 
@@ -41,7 +41,7 @@
 		durability -= 1
 	else if(durability == 0 && !broken)
 		broken = TRUE
-		to_chat(user, span_userdanger("Your weapon has broken!"))
+		to_chat(user, "<span class='userdanger'>Your weapon has broken!</span>")
 		force = force*0.5
 		playsound(src, 'sound/weapons/ego/shield1.ogg', 100, FALSE, 4)
 

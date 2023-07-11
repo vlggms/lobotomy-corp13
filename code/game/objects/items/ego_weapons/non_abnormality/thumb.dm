@@ -15,11 +15,11 @@
 	var/shotsleft = 5		//Based off the Mas 36, That's what my Girlfirend things it looks like. Holds 5 bullets.
 	var/reloadtime = 5 SECONDS
 	attribute_requirements = list(
-		FORTITUDE_ATTRIBUTE = 80,
-		PRUDENCE_ATTRIBUTE = 60,
-		TEMPERANCE_ATTRIBUTE = 60,
-		JUSTICE_ATTRIBUTE = 60,
-	)
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
 
 
 /obj/item/gun/ego_gun/city/thumb/process_chamber()
@@ -37,12 +37,12 @@
 	..()
 	if(shotsleft)
 		return TRUE
-	visible_message(span_notice("The gun is out of ammo."))
+	visible_message("<span class='notice'>The gun is out of ammo.</span>")
 	playsound(src, dry_fire_sound, 30, TRUE)
 	return FALSE
 
 /obj/item/gun/ego_gun/city/thumb/attack_self(mob/user)
-	to_chat(user,span_notice("You start loading a new clip, one bullet at a time."))
+	to_chat(user,"<span class='notice'>You start loading a new clip, one bullet at a time.</span>")
 	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
 	if(do_after(user, reloadtime, src)) //gotta reload
 		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
@@ -50,7 +50,7 @@
 
 /obj/item/gun/ego_gun/city/thumb/EgoAttackInfo(mob/user)
 	if(chambered && chambered.BB)
-		return span_notice("Its bullets deal [chambered.BB.damage*projectile_damage_multiplier] [chambered.BB.damage_type] damage.")
+		return "<span class='notice'>Its bullets deal [chambered.BB.damage*projectile_damage_multiplier] [chambered.BB.damage_type] damage.</span>"
 	return
 
 /obj/item/gun/ego_gun/city/thumb/examine(mob/user)
@@ -94,7 +94,7 @@
 	icon_state = "thumb_duster"
 	force = 44
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
@@ -105,7 +105,7 @@
 	icon_state = "thumb_cane"
 	force = 65
 	damtype = RED_DAMAGE
-
+	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'

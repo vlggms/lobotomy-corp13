@@ -6,36 +6,36 @@
 	icon_state = "sweet_home"
 	icon_living = "sweet_home"
 	icon_dead = "sweet_home_death"
-	portrait = "my_sweet_home"
 	var/can_act = TRUE
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
 	del_on_death = FALSE
 	maxHealth = 600
-	health = 600
+	health = 500
 	move_to_delay = 5
-	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	melee_queue_distance = 1
 	retreat_distance = 0
 	minimum_distance = 0
 	stat_attack = CONSCIOUS
 	attack_verb_continuous = "stomps"
 	attack_verb_simple = "stomp"
-	death_message = "crumbles."
+	deathmessage = "crumbles."
 	faction = list("hostile")
 	start_qliphoth = 1
 	var/ranged_damage = 15
 	var/damage_dealt = 0
 
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
-		ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
-		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
-		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
-	)
+						ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
+						ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
+						ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
+						ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
+						)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
@@ -47,8 +47,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
-		/datum/ego_datum/armor/hearth,
-	)
+		/datum/ego_datum/armor/hearth
+		)
 
 	gift_type =  /datum/ego_gifts/hearth
 
@@ -61,23 +61,22 @@
 		playsound(get_turf(src), 'sound/abnormalities/sweethome/walk.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	to_chat(user, span_danger("It whispers in your mind..."))
+	to_chat(user, "<span class='danger'>It whispers in your mind...</span>")
 	if(prob(50))
-		to_chat(user, span_danger("...and you accept."))
+		to_chat(user, "<span class='danger'>...and you accept.</span>")
 		SLEEP_CHECK_DEATH(3)
 		user.Stun(10 SECONDS)
 		datum_reference.qliphoth_change(-1)
 		user.gib()
 		BreachEffect(user)
 	else
-		to_chat(user, span_danger("...and you almost agree but refuse at the last moment."))
+		to_chat(user, "<span class='danger'>...and you almost agree but refuse at the last moment.</span>")
 	return
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time) //grabbed from FAN
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		if(user in counter2)
-			to_chat(user, span_danger("You grip the key and approach."))
+			to_chat(user, "<span class='danger'>You grip the key and approach.</span>")
 			user.Stun(10 SECONDS)
 			SLEEP_CHECK_DEATH(3)
 			user.gib()
@@ -85,7 +84,7 @@
 			BreachEffect(user)
 		else if(user in counter1)
 			counter2+=user
-			to_chat(user, span_danger("It speaks in your mind, reassuring you, you feel safe."))
+			to_chat(user, "<span class='danger'>It speaks in your mind, reassuring you, you feel safe.</span>")
 		else
 			counter1+=user
 	return
@@ -116,7 +115,7 @@
 	duration = 3
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(user)//code grabbed from scorched_girl
-	. = ..()
+	..()
 	update_icon_state()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_icon_state() //code grabbed from forsaken_murderer and smile

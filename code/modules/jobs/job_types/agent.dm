@@ -4,7 +4,7 @@
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "the Manager"
+	supervisors = "the manager"
 	selection_color = "#ccaaaa"
 	exp_requirements = 60
 	exp_type = EXP_TYPE_CREW
@@ -25,11 +25,9 @@
 								JUSTICE_ATTRIBUTE = 20
 								)
 
-	job_important = "You are a L-Corp Agent. Your job is to work on and suppress Abnormalities. Use :h to talk on your departmental radio."
+	job_important = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
 
-	job_abbreviation = "AGT"
-
-	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
+	var/normal_attribute_level = 20 // Scales with round time
 
 /datum/job/agent/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	// Assign department security
@@ -64,7 +62,7 @@
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
 
-		else //Pick a department or get training.
+		else	//Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 
@@ -83,22 +81,32 @@
 
 	var/set_attribute = normal_attribute_level
 
-	// Variables from abno queue subsystem
-	var/spawned_abnos = SSabnormality_queue.spawned_abnos
-	var/rooms_start = SSabnormality_queue.rooms_start
-
-	if(spawned_abnos > rooms_start * 0.95) // Full facility!
+	if(world.time >= 75 MINUTES) // Full facility expected
 		set_attribute *= 4
-	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
+	else if(world.time >= 60 MINUTES) // More than one ALEPH
 		set_attribute *= 3
-	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
+	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
 		set_attribute *= 2.5
-	else if(spawned_abnos > rooms_start * 0.35) // HEs
+	else if(world.time >= 30 MINUTES) // Expecting WAW
 		set_attribute *= 2
-	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
+	else if(world.time >= 15 MINUTES) // Usual time for HEs
 		set_attribute *= 1.5
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+	//if(SSlobotomy_corp.understood_abnos.len && SSlobotomy_corp.understood_abnos.len > 0)
+	//	var/numberlol = SSlobotomy_corp.understood_abnos.len
+	//	var/totalcells = SSabnormality_queue.rooms_start
+	//	var/percentageofunderstanding = numberlol / totalcells
+	//	if(percentageofunderstanding == 0.5)
+	//		set_attribute *= 5
+	//	else if (percentageofunderstanding >= 0.4)
+	//		set_attribute *= 4
+	//	else if (percentageofunderstanding >= 0.3)
+	//		set_attribute *= 3
+	//	else if (percentageofunderstanding >= 0.2)
+	//		set_attribute *= 2
+	//	else if (percentageofunderstanding >= 0.1)
+	//		set_attribute *= 1.5
+
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
@@ -115,8 +123,7 @@
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/info_printer=1)
+	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -129,16 +136,14 @@
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	normal_attribute_level = 20 // Used to have 21, but it was just picked for the roundstart +1 stat to instantly mirror. - Kirie/Kitsunemitsu
+	normal_attribute_level = 21 // :)
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	mapexclude = list("wonderlabs", "mini")
-	job_important = "You are an Agent Captain. As an experienced Agent, you are expected to disseminate important information and use your experience lead other Agents."
-
-	job_abbreviation = "CPT"
+	job_important = "You are an Agent Captain. You're an experienced agent, that is expected to disseminate your information and experience as well as help lead the agents."
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
@@ -147,9 +152,6 @@
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
 	suit = /obj/item/clothing/suit/armor/vest/alt
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/info_printer=1,
-		/obj/item/announcementmaker/lcorp)
 
 // Trainee, for new players
 /datum/job/agent/intern
@@ -161,10 +163,8 @@
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
 	exp_requirements = 0
-	job_important = "You are an Agent Intern. Your main goal is to learn how to work on Abnormalities and assist in suppressions. Other Agents will be more aware of your inexperience. \
-	If there is a Records Officer, seek them out for assistance."
-
-	job_abbreviation = "INRN"
+	job_important = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
+	If there is a Records Officer, seek them for assistance."
 
 /datum/outfit/job/agent/intern
 	name = "Agent Intern"
@@ -174,5 +174,4 @@
 		/obj/item/paper/fluff/tutorial/levels=1 ,
 		/obj/item/paper/fluff/tutorial/risk=1,
 		/obj/item/paper/fluff/tutorial/damage=1,
-		/obj/item/paper/fluff/tutorial/tips=1,
-		/obj/item/info_printer=1)
+		/obj/item/paper/fluff/tutorial/tips=1,)

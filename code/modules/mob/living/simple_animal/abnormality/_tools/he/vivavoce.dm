@@ -7,15 +7,15 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ringing,
-		/datum/ego_datum/armor/ringing,
-	)
+		/datum/ego_datum/armor/ringing
+		)
 
 /obj/structure/toolabnormality/vivavoce/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) >= 50)
-		to_chat(user, span_notice("It's silent."))
+		to_chat(user, "<span class='notice'>It's silent.</span>")
 		return //You don't need any more.
 
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 5)
@@ -30,7 +30,7 @@
 			R.add_stacks(1)
 
 	user.apply_status_effect(STATUS_EFFECT_ROLECALL)
-	to_chat(user, span_userdanger("You pick up the phone and hear nothing, but you feel as if someone is behind you."))
+	to_chat(user, "<span class='userdanger'>You pick up the phone and hear nothing, but you feel as if someone is behind you.</span>")
 
 // Status Effect
 /datum/status_effect/stacking/rolecall
@@ -45,8 +45,8 @@
 	var/damage_mod
 
 /datum/status_effect/stacking/rolecall/on_apply()
-	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(UserDebuff))
-	RegisterSignal(owner, COMSIG_WORK_COMPLETED, PROC_REF(UserBuff))
+	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/UserDebuff)
+	RegisterSignal(owner, COMSIG_WORK_COMPLETED, .proc/UserBuff)
 	return ..()
 
 /datum/status_effect/stacking/rolecall/on_remove()
@@ -60,10 +60,10 @@
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
 		return
-	to_chat(H, span_userdanger("What if I'm attacked? I can't focus!"))
+	to_chat(H, "<span class='userdanger'>What if I'm attacked? I can't focus!</span>")
 	if(prob(5))
 		playsound(H, 'sound/abnormalities/vivavoce/doorknock.ogg', 100, FALSE, -5)
-		to_chat(H, span_userdanger("What was that?"))
+		to_chat(H, "<span class='userdanger'>What was that?</span>")
 	H.physiology.red_mod *= damage_mod
 	H.physiology.white_mod *= damage_mod
 	H.physiology.black_mod *= damage_mod

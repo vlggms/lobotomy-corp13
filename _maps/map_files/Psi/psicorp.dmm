@@ -1578,8 +1578,13 @@
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
 "je" = (
-/obj/machinery/smartfridge/extraction_storage/ego_armor,
-/turf/closed/indestructible/reinforced,
+/obj/machinery/vending/custom/unbreakable{
+	pixel_x = -3
+	},
+/obj/structure/window/reinforced/spawner/east{
+	max_integrity = 25
+	},
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "jf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -4490,14 +4495,6 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/east)
-"yK" = (
-/obj/structure/disposalpipe/segment{
-	color = "#0000ff";
-	dir = 4
-	},
-/obj/effect/spawner/xmastree,
-/turf/open/floor/carpet/orange,
-/area/department_main/control)
 "yS" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -5476,9 +5473,6 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = -3
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Dn" = (
@@ -5497,7 +5491,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/door/window/southleft,
-/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/item/reagent_containers/medigel/sterilizine{
 	pixel_x = -5;
 	pixel_y = 6
@@ -6831,9 +6825,6 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = -3
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Kx" = (
@@ -7058,8 +7049,13 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Ma" = (
-/obj/machinery/smartfridge/extraction_storage/ego_weapon,
-/turf/closed/indestructible/reinforced,
+/obj/machinery/vending/custom/unbreakable{
+	pixel_x = 3
+	},
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25
+	},
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Mc" = (
 /obj/effect/turf_decal/plaque{
@@ -44780,7 +44776,7 @@ DZ
 Sq
 Fv
 yf
-yK
+FD
 Kq
 Fv
 Br

@@ -4,6 +4,8 @@
 	desc = "A glowing weapon made using Wcorp charge technology."
 	icon_state = "chargetemplate"
 	force = 18
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -20,10 +22,10 @@
 /obj/item/ego_weapon/template/chargeblade/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
+		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
 		activated = TRUE
 	else
-		to_chat(user, span_notice("You don't have enough charge."))
+		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
 /obj/item/ego_weapon/template/chargeblade/examine(mob/user)
 	. = ..()
@@ -39,7 +41,7 @@
 		activated = FALSE
 
 /obj/item/ego_weapon/template/chargeblade/proc/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, span_notice("[release_message]."))
+	to_chat(user, "<span class='notice'>[release_message].</span>")
 	sleep(2)
 	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)

@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/frog
 	name = "frog"
-	desc = "They seem a little sad."
+	desc = "It seems a little sad."
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"
@@ -35,7 +35,7 @@
 	. = ..()
 	if(prob(1))
 		name = "rare frog"
-		desc = "They seem a little smug."
+		desc = "It seems a little smug."
 		icon_state = "rare_frog"
 		icon_living = "rare_frog"
 		icon_dead = "rare_frog_dead"

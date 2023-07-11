@@ -304,8 +304,7 @@
 		/obj/item/organ/heart/gland/slime = 4,
 		/obj/item/organ/heart/gland/spiderman = 5,
 		/obj/item/organ/heart/gland/ventcrawling = 1,
-//		/obj/item/organ/body_egg/alien_embryo = 1, Removed due to the fact that this has a chance of spawning in every loot room with this spawner.
-//		I do not have to explain why xenos are bad for the game
+		/obj/item/organ/body_egg/alien_embryo = 1,
 		/obj/item/organ/regenerative_core = 2)
 	lootcount = 3
 
@@ -622,6 +621,7 @@
 /obj/effect/spawner/lootdrop/space/rareseed
 	lootcount = 5
 	loot = list(
+		/obj/item/seeds/random = 30,
 		/obj/item/seeds/glowshroom/shadowshroom = 1,
 		/obj/item/seeds/liberty = 5,
 		/obj/item/seeds/plump/walkingmushroom = 1

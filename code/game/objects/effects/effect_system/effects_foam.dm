@@ -19,10 +19,9 @@
 	var/lifetime = 40
 	var/reagent_divisor = 7
 	var/static/list/blacklisted_turfs = typecacheof(list(
-		/turf/open/space/transit,
-		/turf/open/chasm,
-		/turf/open/lava,
-	))
+	/turf/open/space/transit,
+	/turf/open/chasm,
+	/turf/open/lava))
 	var/slippery_foam = TRUE
 
 /obj/effect/particle_effect/foam/firefighting
@@ -286,7 +285,7 @@
 /obj/structure/foamedmetal/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/foamedmetal/play_attack_sound(damage_amount, damage_type = BRUTE)
+/obj/structure/foamedmetal/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	playsound(src.loc, 'sound/weapons/tap.ogg', 100, TRUE)
 
 /obj/structure/foamedmetal/attack_hand(mob/user)
