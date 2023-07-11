@@ -1,0 +1,99 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/wood,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"K" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"N" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+q
+a
+z
+z
+a
+"}
+(3,1,1) = {"
+a
+K
+N
+Q
+U
+N
+a
+"}
+(4,1,1) = {"
+a
+N
+J
+a
+x
+U
+a
+"}
+(5,1,1) = {"
+a
+X
+Q
+a
+a
+a
+a
+"}
