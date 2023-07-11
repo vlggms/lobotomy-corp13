@@ -191,3 +191,15 @@
 		"When the abnormality breached, it sets the whole facility ablaze over time. Reducing it's health seems to delay the process.",
 		"When the abnormality split up into 3 children, all employees were cursed. Killing the children seems to lift said curse.",
 		"When all of the children died, they unite again and become stronger.")
+		
+// Waxing of the Black Sun
+/obj/item/paper/fluff/info/aleph/black_sun
+	abno_type = /mob/living/simple_animal/hostile/abnormality/black_sun
+	abno_code = "M-03-192"
+	abno_info = list(
+		"This abnormality will rise over the course of 20 minutes",
+		"As time goes on, this abnormality boosts your stats significantly",
+		"Working on this abnormality will start the next meltdown.",
+		"After some time, Waxing of The Black Sun will soak the floor of the facility with blood, causing employees to be filled with rage.",
+		"After The Black Sun reaches the zenith, all abnormalities will breach"
+		)

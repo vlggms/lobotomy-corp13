@@ -51,3 +51,8 @@
 	projectile_type = /obj/projectile/ego_bullet/pink
 	pellets = 1
 	variance = 0
+	
+/obj/item/ammo_casing/caseless/ego_arcadia
+	name = "arcadia slug"
+	desc = "An arcaida slug."
+	projectile_type = /obj/projectile/ego_bullet/arcadia

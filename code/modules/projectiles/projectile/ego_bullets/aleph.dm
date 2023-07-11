@@ -107,3 +107,9 @@
 	damage = 150
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+	
+/obj/projectile/ego_bullet/arcadia
+	name = "arcadia"
+	damage = 150 // lol
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

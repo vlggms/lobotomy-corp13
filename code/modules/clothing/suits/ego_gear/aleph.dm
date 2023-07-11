@@ -408,3 +408,15 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/arcadia
+	name = "Et in Arcadia Ego"
+	desc = "And by noon, nothing will be left"
+	icon_state = "arcadia"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 50) // 230
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)

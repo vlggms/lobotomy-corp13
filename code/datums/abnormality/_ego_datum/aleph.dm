@@ -174,3 +174,12 @@
 /datum/ego_datum/weapon/iron_maiden
 	item_path = /obj/item/ego_weapon/iron_maiden
 	cost = 1000
+	
+// Waxing of The Black Sun - Et in Arcadia Ego & Judge
+/datum/ego_datum/weapon/arcadia
+	item_path = /obj/item/gun/ego_gun/arcadia
+	cost = 100
+
+/datum/ego_datum/armor/arcadia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/arcadia
+	cost = 100

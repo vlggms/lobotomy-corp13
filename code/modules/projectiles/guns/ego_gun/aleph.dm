@@ -162,3 +162,55 @@
 	if(istype(Y))
 		fire_delay = 12//FIXME: change it to 15% damage. Or keep it this way, whatever people like
 	..()
+	
+/obj/item/gun/ego_gun/arcadia
+	name = "Et in Arcadia Ego"
+	desc = "With the waxing of the sun, humanity wanes."
+	icon_state = "arcadia"
+	inhand_icon_state = "arcadia"
+	special = "Use in hand to load bullets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_arcadia
+	weapon_weight = WEAPON_HEAVY
+	spread = 5
+	recoil = 1.5
+	fire_sound = 'sound/weapons/gun/rifle/shot_atelier.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 30
+	fire_delay = 7
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+
+	var/shotsleft = 16	//Based off a henry .44
+	var/reloadtime = 0.5 SECONDS
+
+/obj/item/gun/ego_gun/arcadia/process_chamber()
+	if(shotsleft)
+		shotsleft-=1
+	..()
+
+/obj/item/gun/ego_gun/arcadia/can_shoot()
+	..()
+	if(shotsleft)
+		return TRUE
+	visible_message("<span class='notice'>The gun is out of ammo.</span>")
+	playsound(src, dry_fire_sound, 30, TRUE)
+	return FALSE
+
+/obj/item/gun/ego_gun/arcadia/attack_self(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+		shotsleft +=1
+
+/obj/item/gun/ego_gun/arcadia/examine(mob/user)
+	. = ..()
+	. += "Ammo Counter: [shotsleft]/[initial(shotsleft)]."
+
