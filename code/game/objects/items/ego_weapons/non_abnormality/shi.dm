@@ -25,7 +25,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(target == user)
-		force = 999999
+		user.death()
 		for(var/mob/M in GLOB.player_list)
 			to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] has gone out with honor. 灰から灰へ</span>")
 		new /obj/effect/temp_visual/BoD(get_turf(target))
@@ -64,7 +64,7 @@
 		return
 	ready = FALSE
 	user.Immobilize(17)
-	to_chat(user, "<span class='userdanger'>Ready.</span>")
+	to_chat(user, "<span class='userdanger'>Draw.</span>")
 	force*=2
 	damtype = PALE_DAMAGE
 	armortype = damtype
