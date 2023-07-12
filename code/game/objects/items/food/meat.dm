@@ -965,6 +965,19 @@
 /obj/item/food/meat/slab/crimson/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/crimson, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
+/obj/item/food/meat/slab/abomination
+	name = "meat"
+	desc = "A slab of red-ish meat. Smells terribly."
+	icon_state = "rottenmeat"
+	color = COLOR_MAROON
+	slab_color = COLOR_MAROON
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 3, /datum/reagent/yuck = 1)
+	tastes = list("evolution" = 1, "weird blood" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+/obj/item/food/meat/slab/abomination/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/abomination, rand(20 SECONDS, 40 SECONDS), TRUE, TRUE)
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak
@@ -1081,6 +1094,12 @@
 	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1)
 	foodtypes = MEAT
 
+/obj/item/food/meat/steak/abomination
+	name = "abominable steak"
+	desc = "Still as delicious as before it was cooked. You must be hallucinating, but it is certainly moving..."
+	color = COLOR_MAROON
+	tastes = list("bar crimes" = 1, "evolution" = 1, "\"meat\"")
+	foodtypes = MEAT
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 
