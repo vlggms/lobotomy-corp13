@@ -127,7 +127,12 @@
 	desc = "A machine used to send PE to the zwei association."
 	icon_state = "machinezwei"
 	crate = /obj/structure/lootcrate/zwei
-	crate_timer = 240	//Two boxes per
+
+/obj/structure/pe_sales/liu
+	name = "Liu Association Power Input"
+	desc = "A machine used to send PE to the liu association."
+	icon_state = "machineliu"
+	crate = /obj/structure/lootcrate/liu
 
 /obj/structure/pe_sales/shi
 	name = "Shi Association Power Input"
@@ -141,19 +146,19 @@
 	desc = "A machine used to send PE to seven association."
 	icon_state = "machineseven"
 	crate = /obj/structure/lootcrate/seven
-	crate_timer = 360
+	crate_timer = 240	//Two boxes per
 
 /obj/structure/pe_sales/syndicate
 	name = "Syndicate Workshop Power Input"
 	desc = "A machine used to send PE to the syndicate workshop"
 	icon_state = "machinesyndicate"
 	crate = /obj/structure/lootcrate/syndicate
-	crate_timer = 420	//The most expensive sales, takes about 3.5 boxes. The worst you'll get is still extremely good
+	crate_timer = 360	//The most expensive sales, takes about 3.5 boxes. The worst you'll get is still extremely good
 
 /obj/structure/pe_sales/l_corp
 	name = "Headquarters Power Input"
 	desc = "A machine used to send PE to L-Corp headquarters."
 	icon_state = "machinelc"
 	crate = /obj/structure/lootcrate/l_corp
-	power_timer = 120 	//L Corp is where you drain your power
-	crate_timer = 120	//And it's super cheap
+	power_timer = 60 	//L Corp is where you drain your power
+	crate_timer = 60	//And it's super cheap
