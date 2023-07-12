@@ -418,3 +418,16 @@
 		"When D-04-108's flowers bloomed, blessed employees suffered heavy mental corruption until the flowers were destroyed with repression work.",
 		"D-04-108-1 secretes a contagious and highly fatal toxin, the area was easily decontaminated on removal of D-04-108-1.",
 		"NOTICE: Employees preforming repression work to destroy D-04-108's flowers prevented the transformation of employees who were transforming into D-04-108-1.") //yes i did put this hint in twice.
+
+//Dream of Black Swan
+//Parasite Tree
+/obj/item/paper/fluff/info/waw/black_swan
+	abno_type = /mob/living/simple_animal/hostile/abnormality/black_swan
+	abno_code = "F-02-70"
+	abno_info = list(
+		"When 5 employees died F-02-70-1 eyes suddenly melted.",
+		"When 5 employees panicked F-02-70-2 arms vanished.",
+		"When 3 abnormalities breached F-02-70-3 legs were reduced to a sludge.",
+		"When work result was bad F-02-70-4 lost their ears and cheeks.",
+		"When work result was normal F-02-70-5 lost the entire lower half of their face.",
+		"When the abnormality had its Qliphoth Counter decreased due to a meltdown or sabotage one of the brothers was wounded.")

@@ -989,6 +989,16 @@
 	temperance_bonus = 5
 	slot = HAT
 
+//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
+//so right now its 10 temp
+/datum/ego_gifts/swan
+	name = "Black Swan"
+	icon_state = "swan"
+	fortitude_bonus = -4
+	prudence_bonus = -4
+	temperance_bonus = 10
+	slot = HAT
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"

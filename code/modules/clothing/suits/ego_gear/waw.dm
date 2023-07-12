@@ -418,3 +418,11 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/swan
+	name = "black swan"
+	desc = "Whenever she felt exhausted from the agony and struggle, she looked at her brooch, a memento of the past, to stifle her feelings."
+	icon_state = "swan"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80)
