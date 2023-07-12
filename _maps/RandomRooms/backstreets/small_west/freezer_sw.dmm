@@ -1,0 +1,23 @@
+"a" = (/obj/structure/sink/kitchen{dir = 1},/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"b" = (/obj/machinery/atmospherics/components/unary/thermomachine/freezer,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"d" = (/obj/structure/closet/secure_closet/freezer/fridge,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"g" = (/obj/structure/closet/secure_closet/freezer/kitchen,/mob/living/simple_animal/hostile/ordeal/amber_bug/morsel,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"l" = (/obj/machinery/door/airlock/freezer,/turf/open/space/basic,/area/city/backstreets_alley)
+"s" = (/obj/structure/kitchenspike,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"t" = (/obj/structure/closet/secure_closet/freezer/meat,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"B" = (/obj/structure/table/rolling,/obj/item/kitchen/knife,/obj/item/kitchen/rollingpin,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"J" = (/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"K" = (/obj/structure/closet/secure_closet/freezer/cream_pie,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/mob/living/simple_animal/hostile/ordeal/amber_bug,/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"P" = (/turf/open/floor/grass/snow,/area/city/backstreets_alley)
+"X" = (/obj/machinery/light/cold{dir = 1},/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"Y" = (/turf/open/floor/plating/asteroid/snow,/area/city/backstreets_alley)
+
+(1,1,1) = {"
+JJJJJ
+JsBtJ
+lPPgJ
+lYYKJ
+lYPdJ
+JabPJ
+JJXJJ
+"}

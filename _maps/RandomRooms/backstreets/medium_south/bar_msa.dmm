@@ -1,0 +1,33 @@
+"a" = (/obj/structure/sign/poster/contraband/smoke,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"b" = (/obj/machinery/vending/snack/blue,/turf/open/floor/wood,/area/city/backstreets_alley)
+"c" = (/obj/structure/sign/poster/official/bless_this_spess,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"d" = (/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"f" = (/obj/structure/table/wood/bar,/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{dir = 4},/turf/open/floor/wood,/area/city/backstreets_alley)
+"h" = (/obj/item/storage/toolbox/mechanical,/obj/structure/closet,/obj/item/gun/ballistic/shotgun/automatic,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/obj/item/ammo_casing/shotgun/rubbershot,/turf/open/floor/wood,/area/city/backstreets_alley)
+"i" = (/obj/structure/window/reinforced/tinted/fulltile,/obj/structure/barricade/wooden,/turf/open/floor/wood,/area/city/backstreets_alley)
+"j" = (/obj/machinery/vending/snack/orange,/turf/open/floor/wood,/area/city/backstreets_alley)
+"k" = (/obj/machinery/vending/boozeomat/all_access,/turf/open/floor/wood,/area/city/backstreets_alley)
+"m" = (/obj/structure/sign/poster/official/love_ian,/obj/machinery/light/warm{dir = 1},/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"p" = (/turf/open/floor/wood,/area/city/backstreets_alley)
+"t" = (/obj/structure/mineral_door/wood,/turf/open/space/basic,/area/city/backstreets_alley)
+"v" = (/obj/machinery/door/window{dir = 4},/turf/open/floor/wood,/area/city/backstreets_alley)
+"w" = (/obj/structure/sign/poster/lobotomycorp/suckmyenegy,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"y" = (/obj/structure/sign/poster/official/high_class_martini,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"z" = (/obj/structure/sign/poster/lobotomycorp/bearbeer,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"C" = (/obj/structure/sign/poster/contraband/space_cube,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"E" = (/obj/structure/table/wood/bar,/turf/open/floor/wood,/area/city/backstreets_alley)
+"H" = (/obj/structure/table/wood/bar,/obj/machinery/chem_dispenser/drinks/fullupgrade{dir = 4},/turf/open/floor/wood,/area/city/backstreets_alley)
+"N" = (/obj/structure/sign/poster/contraband/red_rum,/obj/machinery/light/warm{dir = 4},/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"Q" = (/obj/machinery/vending/cigarette{dir = 1},/turf/open/floor/wood,/area/city/backstreets_alley)
+"V" = (/obj/structure/sign/poster/lobotomycorp/wellcheers,/obj/machinery/light/warm,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+"X" = (/obj/machinery/vending/cola,/turf/open/floor/wood,/area/city/backstreets_alley)
+"Z" = (/obj/structure/sign/poster/official/cohiba_robusto_ad,/turf/closed/indestructible/reinforced,/area/city/backstreets_alley)
+
+(1,1,1) = {"
+ddczddyVdd
+dkppvpjXpi
+wfppEppppt
+NHppEppppt
+dhppEpQbpi
+ddaCddZmdd
+"}

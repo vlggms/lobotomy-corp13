@@ -1,0 +1,30 @@
+"a" = (/turf/open/indestructible/white,/area/city/backstreets_room)
+"g" = (/obj/structure/closet/crate/secure/science,/obj/item/clothing/under/rank/rnd/scientist/skirt,/obj/item/clothing/under/rank/rnd/scientist,/obj/item/clothing/head/helmet/space/plasmaman/science,/obj/item/clothing/glasses/science,/obj/item/storage/backpack/science,/obj/item/clothing/under/plasmaman/science,/turf/open/indestructible/white,/area/city/backstreets_room)
+"j" = (/mob/living/simple_animal/hostile/morph,/turf/open/indestructible/white,/area/city/backstreets_room)
+"k" = (/turf/closed/indestructible/fakeglass,/area/city/backstreets_room)
+"m" = (/mob/living/simple_animal/hostile/asteroid/goliath/beast{faction = list("neutral")},/turf/open/indestructible/white,/area/city/backstreets_room)
+"n" = (/obj/machinery/door/airlock/survival_pod/glass,/turf/open/indestructible/white,/area/city/backstreets_room)
+"s" = (/obj/machinery/door/airlock/freezer,/turf/open/indestructible/white,/area/city/backstreets_alley)
+"w" = (/obj/machinery/door/airlock/freezer,/turf/open/indestructible/white,/area/city/backstreets_room)
+"x" = (/obj/structure/safe,/obj/item/folder/syndicate/blue,/obj/item/folder/syndicate/blue,/obj/item/folder/syndicate/red,/obj/item/folder/blue,/obj/item/folder/blue,/turf/open/indestructible/white,/area/city/backstreets_room)
+"y" = (/obj/machinery/modular_computer/console/preset/research,/turf/open/indestructible/white,/area/city/backstreets_room)
+"E" = (/obj/machinery/light/warm,/turf/open/indestructible/white,/area/city/backstreets_room)
+"H" = (/turf/closed/indestructible/riveted/plastinum,/area/city/backstreets_room)
+"L" = (/obj/machinery/light/dim,/turf/closed/indestructible/riveted/plastinum,/area/city/backstreets_room)
+"O" = (/obj/structure/closet/secure_closet/armory1{dir = 4},/obj/item/gun/energy/tesla_cannon,/obj/item/gun/energy/lasercannon,/obj/item/clothing/suit/armor/heavy,/obj/item/clothing/suit/armor/heavy,/obj/item/clothing/suit/armor/heavy,/obj/item/gun/energy/ionrifle,/turf/open/indestructible/white,/area/city/backstreets_room)
+"S" = (/mob/living/simple_animal/hostile/blob/blobspore/weak{faction = list("neutral")},/turf/open/indestructible/white,/area/city/backstreets_room)
+"U" = (/obj/machinery/atmospherics/components/unary/cryo_cell{plane = 0},/mob/living/carbon/human{pixel_y = 24; anchored = 1},/turf/open/indestructible/white,/area/city/backstreets_room)
+"W" = (/mob/living/simple_animal/hostile/carp/megacarp{faction = list("neutral")},/turf/open/indestructible/white,/area/city/backstreets_room)
+"Y" = (/obj/effect/spawner/structure/window/shuttle,/turf/open/indestructible/white,/area/city/backstreets_room)
+"Z" = (/obj/machinery/light/red,/turf/closed/indestructible/riveted/plastinum,/area/city/backstreets_room)
+
+(1,1,1) = {"
+HHZHHZHHZHHZHHLH
+HmamkWakSSkaakOH
+HamakaakaakjakaH
+HkkkkkkkkkkkkknH
+HaaaUaaxaaUaaaaH
+HayaaaaaaaaaayaH
+HgEaaaaaaaaaaEaH
+HHHYYYHwsHYYYHHH
+"}

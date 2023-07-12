@@ -14,3 +14,11 @@
 	template_height = 6
 	stock = 3
 	room_type = "backstreets_medium_south"
+
+/datum/map_template/random_room/backstreets/medium_south
+	name = "Bar - Medium south A"
+	room_id = "bar_msa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/bar_msa.dmm"
+
+
+
