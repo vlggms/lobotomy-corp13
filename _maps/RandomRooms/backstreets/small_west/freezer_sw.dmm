@@ -1,76 +1,106 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/structure/sink/kitchen{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
 	},
-/turf/open/floor/grass/snow,
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "b" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
-/turf/open/floor/grass/snow,
-/area/city/backstreets_alley)
-"d" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
-/mob/living/simple_animal/hostile/ordeal/amber_bug,
-/mob/living/simple_animal/hostile/ordeal/amber_bug,
-/mob/living/simple_animal/hostile/ordeal/amber_bug,
-/turf/open/floor/grass/snow,
+/obj/machinery/light,
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "g" = (
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/mob/living/simple_animal/hostile/ordeal/amber_bug/morsel,
-/turf/open/floor/grass/snow,
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "l" = (
-/obj/machinery/door/airlock/freezer,
-/turf/open/space/basic,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "s" = (
-/obj/structure/kitchenspike,
-/turf/open/floor/grass/snow,
-/area/city/backstreets_alley)
-"t" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
-/turf/open/floor/grass/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 9
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"t" = (
+/obj/structure/kitchenspike,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"w" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "B" = (
 /obj/structure/table/rolling,
 /obj/item/kitchen/knife,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor/grass/snow,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 "J" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "K" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"P" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/mob/living/simple_animal/hostile/ordeal/amber_bug/morsel,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"V" = (
+/obj/structure/sink/kitchen{
+	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"X" = (
+/obj/machinery/door/airlock/freezer,
+/turf/open/space/basic,
+/area/city/backstreets_alley)
+"Y" = (
 /obj/structure/closet/secure_closet/freezer/cream_pie,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
 /mob/living/simple_animal/hostile/ordeal/amber_bug,
-/turf/open/floor/grass/snow,
-/area/city/backstreets_alley)
-"P" = (
-/turf/open/floor/grass/snow,
-/area/city/backstreets_alley)
-"X" = (
-/obj/machinery/light/cold{
-	dir = 1
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
 	},
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_alley)
-"Y" = (
-/turf/open/floor/plating/asteroid/snow,
+/turf/open/floor/plasteel/freezer,
 /area/city/backstreets_alley)
 
 (1,1,1) = {"
 J
 J
-l
-l
-l
+J
+J
+J
 J
 J
 "}
@@ -79,34 +109,34 @@ J
 s
 P
 Y
-Y
+w
 a
 J
 "}
 (3,1,1) = {"
 J
 B
-P
-Y
-P
+g
+g
+g
 b
-X
+J
 "}
 (4,1,1) = {"
 J
 t
 g
 K
-d
-P
+g
+V
 J
 "}
 (5,1,1) = {"
-J
-J
-J
-J
-J
-J
-J
+l
+l
+l
+X
+l
+l
+l
 "}
