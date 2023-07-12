@@ -7,6 +7,8 @@
 	icon_living = "clown_smiling"
 	var/icon_aggro = "clown_breach"
 	icon_dead = "clown_breach"
+	pixel_y = 64
+	base_pixel_y = 64
 	speak_emote = list("honks")
 	maxHealth = 1800
 	health = 1800
@@ -17,7 +19,7 @@
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
-	stat_attack = HARD_CRIT
+	stat_attack = DEAD
 	speed = 2
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
@@ -66,6 +68,7 @@
 	AddElement(/datum/element/waddling)
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 	GiveTarget(user)
+	src.pixel_y = 0
 
 /mob/living/simple_animal/hostile/abnormality/clown/Moved()
 	. = ..()
@@ -177,9 +180,10 @@
 	icon_state = "clown_picture"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
+	layer = WALL_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE
+	pixel_y = 64
+	base_pixel_y = 64
 	var/datum/looping_sound/clown_ambience/circustime
 
 /obj/structure/clown_picture/Initialize()

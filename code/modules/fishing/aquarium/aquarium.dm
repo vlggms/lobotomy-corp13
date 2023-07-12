@@ -5,6 +5,7 @@
 
 /obj/structure/aquarium
 	name = "aquarium"
+	desc = "Interacting with this structure with a empty hand allows you to admire it and restore sanity based on the quality of the creatures inside."
 	density = TRUE
 	anchored = TRUE
 
@@ -14,10 +15,12 @@
 	integrity_failure = 0.3
 
 	var/fluid_type = AQUARIUM_FLUID_FRESHWATER
-	var/fluid_temp = MIN_AQUARIUM_TEMP
+	var/fluid_temp = DEFAULT_AQUARIUM_TEMP
 	var/min_fluid_temp = MIN_AQUARIUM_TEMP
 	var/max_fluid_temp = MAX_AQUARIUM_TEMP
-	var/lamp = FALSE
+
+	/// Can fish reproduce in this quarium.
+	var/allow_breeding = FALSE
 
 	var/glass_icon_state = "aquarium_glass"
 	var/broken_glass_icon_state = "aquarium_glass_broken"
@@ -35,14 +38,22 @@
 	///Current layers in use by aquarium contents
 	var/list/used_layers = list()
 
-	var/alive_fish = 0
-	var/dead_fish = 0
+	/// /obj/item/fish in the aquarium - does not include things with aquarium visuals that are not fish
+	var/list/tracked_fish = list()
 
-/obj/structure/aquarium/Initialize()
+/obj/structure/aquarium/Initialize(mapload)
 	. = ..()
 	update_icon()
 	RegisterSignal(src,COMSIG_PARENT_ATTACKBY, .proc/feed_feedback)
 
+/obj/structure/aquarium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(istype(arrived,/obj/item/fish))
+		tracked_fish += arrived
+
+/obj/structure/aquarium/Exited(atom/movable/gone, direction)
+	. = ..()
+	tracked_fish -= gone
 
 /obj/structure/aquarium/proc/request_layer(layer_type)
 	/**
@@ -91,7 +102,7 @@
 	. += "<span class='notice'>Alt-click to [panel_open ? "close" : "open"] the control panel.</span>"
 
 /obj/structure/aquarium/AltClick(mob/user)
-	if(!user.canUseTopic(src, BE_CLOSE))
+	if(!isliving(user))
 		return ..()
 	panel_open = !panel_open
 	update_icon()
@@ -105,7 +116,7 @@
 		var/obj/item/stack/sheet/glass/glass = I
 		if(istype(glass))
 			if(glass.get_amount() < 2)
-				to_chat(user, "<span class='warning'>You need two glass sheets to fix the case!</span>")
+				to_chat(user, "<span class='notice'>You need two glass sheets to fix the case!</span>")
 				return
 			to_chat(user, "<span class='notice'>You start fixing [src]...</span>")
 			if(do_after(user, 2 SECONDS, target = src))
@@ -115,9 +126,6 @@
 				update_icon()
 			return TRUE
 	else
-		// This signal exists so we common items instead of adding component on init can just register creation of one in response.
-		// This way we can avoid the cost of 9999 aquarium components on rocks that will never see water in their life.
-		SEND_SIGNAL(I,COMSIG_AQUARIUM_BEFORE_INSERT_CHECK,src)
 		var/datum/component/aquarium_content/content_component = I.GetComponent(/datum/component/aquarium_content)
 		if(content_component && content_component.is_ready_to_insert(src))
 			if(user.transferItemToLoc(I,src))
@@ -130,13 +138,12 @@
 /obj/structure/aquarium/proc/feed_feedback(datum/source, obj/item/thing, mob/user, params)
 	SIGNAL_HANDLER
 	if(istype(thing, /obj/item/fish_feed))
-		to_chat(user,"<span class='notice'>You feed the fish.</span>")
+		to_chat(user, "<span class='nicegreen'>You feed the fish.</span>")
 	return NONE
 
 /obj/structure/aquarium/interact(mob/user)
-	if(!broken && user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(!broken && user.pulling && isliving(user.pulling))
 		var/mob/living/living_pulled = user.pulling
-		SEND_SIGNAL(living_pulled, COMSIG_AQUARIUM_BEFORE_INSERT_CHECK,src)
 		var/datum/component/aquarium_content/content_component = living_pulled.GetComponent(/datum/component/aquarium_content)
 		if(content_component && content_component.is_ready_to_insert(src))
 			try_to_put_mob_in(user)
@@ -147,30 +154,48 @@
 
 /// Tries to put mob pulled by the user in the aquarium after a delay
 /obj/structure/aquarium/proc/try_to_put_mob_in(mob/user)
-	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))
+	if(user.pulling && isliving(user.pulling))
 		var/mob/living/living_pulled = user.pulling
 		if(living_pulled.buckled || living_pulled.has_buckled_mobs())
-			to_chat(user, "<span class='warning'>[living_pulled] is attached to something!</span>")
+			to_chat(user, "<span class='notice'>[living_pulled] is attached to something!</span>")
 			return
-		user.visible_message("<span class='danger'>[user] starts to put [living_pulled] into [src]!</span>")
+		user.visible_message("<span class='notice'>[user] starts to put [living_pulled] into [src]!</span>")
 		if(do_after(user, 10 SECONDS, target = src))
-			if(QDELETED(living_pulled) || user.pulling != living_pulled || living_pulled.buckled  || living_pulled.has_buckled_mobs())
+			if(QDELETED(living_pulled) || user.pulling != living_pulled || living_pulled.buckled || living_pulled.has_buckled_mobs())
 				return
 			var/datum/component/aquarium_content/content_component = living_pulled.GetComponent(/datum/component/aquarium_content)
 			if(content_component || content_component.is_ready_to_insert(src))
 				return
-			user.visible_message("<span class='danger'>[user] stuffs [living_pulled] into [src]!</span>")
+			user.visible_message("[user] stuffs [living_pulled] into [src]!")
 			living_pulled.forceMove(src)
 			update_icon()
 
-///Mmmm... Fish :)
-/obj/structure/aquarium/proc/admire(mob/user)
+///Apply sanity bonus depending on aquarium status
+/obj/structure/aquarium/proc/admire(mob/living/user)
 	to_chat(user,"<span class='notice'>You take a moment to watch [src].</span>")
+	if(do_after(user, 5 SECONDS, target = src))
+		if(ishuman(user))
+			var/mob/living/carbon/human/L = user
+			var/fish_points = 0
+			for(var/obj/item/fish/fish in tracked_fish)
+				var/this_fish_point = 0.5
+				switch(fish.random_case_rarity)
+					if(FISH_RARITY_RARE)
+						this_fish_point = 1
+					if(FISH_RARITY_VERY_RARE)
+						this_fish_point = 2
+					if(FISH_RARITY_GOOD_LUCK_FINDING_THIS)
+						this_fish_point = 4
+				if(fish.status == FISH_ALIVE)
+					this_fish_point *= -1
+				fish_points += this_fish_point
+			L.adjustSanityLoss(fish_points)
 
 /obj/structure/aquarium/ui_data(mob/user)
 	. = ..()
 	.["fluid_type"] = fluid_type
 	.["temperature"] = fluid_temp
+	.["allow_breeding"] = allow_breeding
 	var/list/content_data = list()
 	for(var/atom/movable/fish in contents)
 		content_data += list(list("name"=fish.name,"ref"=ref(fish)))
@@ -199,6 +224,9 @@
 				fluid_type = params["fluid"]
 				SEND_SIGNAL(src, COMSIG_AQUARIUM_FLUID_CHANGED, fluid_type)
 				. = TRUE
+		if("allow_breeding")
+			allow_breeding = !allow_breeding
+			. = TRUE
 		if("remove")
 			var/atom/movable/inside = locate(params["ref"]) in contents
 			if(inside)
@@ -206,7 +234,7 @@
 					user.put_in_hands(inside)
 				else
 					inside.forceMove(get_turf(src))
-				to_chat(user,"<span class='notice'>You take out [inside] from [src].</span>")
+				to_chat(user, "<span class='notice'>You take out [inside] from [src].</span>")
 
 /obj/structure/aquarium/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -240,3 +268,14 @@
 #undef AQUARIUM_LAYER_STEP
 #undef AQUARIUM_MIN_OFFSET
 #undef AQUARIUM_MAX_OFFSET
+
+
+/obj/structure/aquarium/prefilled/Initialize(mapload)
+	. = ..()
+
+	new /obj/item/aquarium_prop/rocks(src)
+	new /obj/item/aquarium_prop/seaweed(src)
+
+	new /obj/item/fish/goldfish(src)
+	new /obj/item/fish/angelfish(src)
+	new /obj/item/fish/guppy(src)

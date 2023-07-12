@@ -2205,9 +2205,6 @@
 /area/department_main/safety)
 "hF" = (
 /obj/structure/closet/secure_closet/record,
-/obj/item/records/information,
-/obj/item/records/abnodelay,
-/obj/item/records/timestop,
 /obj/item/toy/plush/dante,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -4760,6 +4757,11 @@
 	},
 /turf/open/floor/carpet,
 /area/facility_hallway/control)
+"qX" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/closet,
+/turf/open/floor/plasteel/dark,
+/area/department_main/records)
 "qZ" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -5410,7 +5412,6 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/control)
 "tq" = (
-/obj/structure/closet/secure_closet/record,
 /obj/item/clothing/under/suit/lobotomy/records,
 /obj/item/clothing/suit/armor/records,
 /obj/item/clothing/accessory/armband/lobotomy/records,
@@ -5431,6 +5432,9 @@
 /obj/item/toy/plush/hokma,
 /obj/item/folder/white,
 /obj/item/folder/white,
+/obj/structure/closet{
+	icon_state = "records"
+	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "tr" = (
@@ -29942,7 +29946,7 @@ wd
 CK
 BB
 mG
-xq
+qX
 Ts
 Tx
 GY

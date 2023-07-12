@@ -20,3 +20,7 @@
 	room_id = "freezer_sw"
 	mappath = "_maps/RandomRooms/backstreets/small_west/freezer_swa.dmm"
 
+/datum/map_template/random_room/backstreets/small_west/gcorp_swa
+	name = "G-Corp - Small West"
+	room_id = "gcorp_swa"
+	mappath = "_maps/RandomRooms/backstreets/small_west/gcorp_swa.dmm"

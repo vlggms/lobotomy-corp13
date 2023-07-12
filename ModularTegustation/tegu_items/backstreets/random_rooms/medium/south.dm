@@ -20,5 +20,7 @@
 	room_id = "bar_msa"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/bar_msa.dmm"
 
-
-
+/datum/map_template/random_room/backstreets/medium_south/eyes
+	name = "Eyes Temple"
+	room_id = "eyes_temple"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/eyes_temple.dmm"
