@@ -27,5 +27,4 @@
 
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
-	for(var/mob/M in GLOB.player_list)
-		to_chat(M, "<span class='userdanger'>Players have taken too long! Round automatically ending.</span>")
+	to_chat(world, "<span class='userdanger'>Players have taken too long! Round automatically ending.</span>")
