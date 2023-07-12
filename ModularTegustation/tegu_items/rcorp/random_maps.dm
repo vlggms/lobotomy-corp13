@@ -11,13 +11,14 @@
 	template_width = 100
 	template_height = 161
 	room_type = "rcorp_inside"
+	weight = 0
 
 
 /datum/map_template/random_room/rcorp/standard
 	name = "Rcorp - old"
 	room_id = "rcorp_inside_standard"
 	mappath = "_maps/RandomRooms/rcorp/facility/standard.dmm"
-	weight = 20
+	weight = 10
 
 
 /datum/map_template/random_room/rcorp/maze
@@ -34,8 +35,8 @@
 	weight = 5
 
 /datum/map_template/random_room/rcorp/beach
-	name = "Rcorp - sewers alt"
+	name = "Rcorp - beaches"
 	room_id = "rcorp_inside_beaches"
 	mappath = "_maps/RandomRooms/rcorp/facility/beaches.dmm"
-	weight = 5
+	weight = 10
 
