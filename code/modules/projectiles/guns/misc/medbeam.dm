@@ -56,6 +56,11 @@
 	LoseTarget()
 
 /obj/item/gun/medbeam/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	var/list/banned_roles = list("R-Corp Scout Raven", "R-Corp Support Raven", "Raven Squad Captain", "R-Corp Suppressive Rabbit", "R-Corp Assault Rabbit", "R-Corp Suppressive Rabbit")
+	if(istype(user) && (user?.mind?.assigned_role in banned_roles))
+		to_chat(user, "<span class='notice'>You don't know how to use this.</span>")
+		return
+
 	if(isliving(user))
 		add_fingerprint(user)
 

@@ -22,8 +22,8 @@
 	access = list(ACCESS_COMMAND)
 	minimal_access = (ACCESS_COMMAND)
 	rank_title = "LT"
-	job_important = "You are a non-combative support and command role in Rcorp. Advise the Commander, protect and man the base."
-	job_notice = "Run the Requisitions, assist Rcorp personnel on the base, and ship supplies to the frontline."
+	job_important = "You are a support and command role in Rcorp. Advise the Commander, Run requisitions and then deploy."
+	job_notice = "Run the Requisitions, assist Rcorp personnel on the base. After deployment, use your beacon to select which class you'd like."
 
 	alt_titles = list("Staff Officer", "Field Officer",	"Command Officer",	"Junior Officer")
 
@@ -31,11 +31,12 @@
 /datum/outfit/job/officer
 	name = "Operations Officer"
 	jobtype = /datum/job/juniorofficer
-	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit/officer
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	ears =  /obj/item/radio/headset/heads
 	head = /obj/item/clothing/head/beret/tegu/rcorpofficer
-	l_pocket = /obj/item/commandprojector
+	l_hand = /obj/item/choice_beacon/officer
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
 
 // Beret
@@ -44,3 +45,47 @@
 	desc = "An orange beret used by Rcorp junior officers."
 	icon_state = "beret_engineering"
 
+
+
+//Officer beacon
+/obj/item/choice_beacon/officer
+	name = "officer beacon"
+	desc = "A beacon officers can use to select their role."
+
+/obj/item/choice_beacon/officer/generate_display_names()
+	var/static/list/officer_item_list
+	if(!officer_item_list)
+		officer_item_list = list()
+		var/list/templist = subtypesof(/obj/item/storage/box/officer) //we have to convert type = name to name = type, how lovely!
+		for(var/V in templist)
+			var/atom/A = V
+			officer_item_list[initial(A.name)] = A
+	return officer_item_list
+
+/obj/item/choice_beacon/officer/spawn_option(obj/choice,mob/living/M)
+	new choice(get_turf(M))
+	to_chat(M, "<span class='hear'>Thank you for your service..</span>")
+
+/obj/item/storage/box/officer/gunner
+	name = "Gunner Officer"
+	desc = "Includes the Rcorp machine gun."
+
+/obj/item/storage/box/officer/gunner/PopulateContents()
+	new /obj/item/gun/energy/e_gun/rabbit/minigun(src)
+
+/obj/item/storage/box/officer/medic
+	name = "Medic Officer"
+	desc = "Includes medical supplies."
+
+/obj/item/storage/box/officer/medic/PopulateContents()
+	new /obj/item/reagent_containers/hypospray/emais(src)
+	new /obj/item/clothing/glasses/hud/health(src)
+
+/obj/item/storage/box/officer/command
+	name = "Command Officer"
+	desc = "Includes various command gear for assisting a captain."
+
+/obj/item/storage/box/officer/command/PopulateContents()
+	new /obj/item/clothing/glasses/night(src)
+	new /obj/item/binoculars(src)
+	new /obj/item/megaphone(src)

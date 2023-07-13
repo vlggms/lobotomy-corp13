@@ -19,6 +19,9 @@ SUBSYSTEM_DEF(maptype)
 	//Ghosts should be possessbale at all times
 	var/list/autopossess = list("rcorp")
 
+	//These end after 40 minutes.
+	var/list/autoend = list("rcorp")
+
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
 
