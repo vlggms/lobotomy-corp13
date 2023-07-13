@@ -290,17 +290,6 @@ SUBSYSTEM_DEF(job)
 
 	HandleFeedbackGathering()
 
-	//People who wants to be the overflow role, sure, go on.
-	JobDebug("DO, Running Overflow Check 1")
-	var/datum/job/overflow = GetJob(SSjob.overflow_role)
-	var/list/overflow_candidates = FindOccupationCandidates(overflow, JP_LOW)
-	JobDebug("AC1, Candidates: [overflow_candidates.len]")
-	for(var/mob/dead/new_player/player in overflow_candidates)
-		JobDebug("AC1 pass, Player: [player]")
-		AssignRole(player, SSjob.overflow_role)
-		overflow_candidates -= player
-	JobDebug("DO, AC1 end")
-
 	//Select one head
 	JobDebug("DO, Running Head Check")
 	FillHeadPosition()
@@ -379,8 +368,7 @@ SUBSYSTEM_DEF(job)
 	//Mop up people who can't leave.
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
-			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
-				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
+			return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
 
 	return validate_required_jobs(required_jobs)
 
