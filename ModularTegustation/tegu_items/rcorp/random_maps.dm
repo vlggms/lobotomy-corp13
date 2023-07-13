@@ -15,27 +15,27 @@
 
 
 /datum/map_template/random_room/rcorp/standard
-	name = "Rcorp - old"
+	name = "Rcorp - Facility"
 	room_id = "rcorp_inside_standard"
 	mappath = "_maps/RandomRooms/rcorp/facility/standard.dmm"
 	weight = 10
 
 
 /datum/map_template/random_room/rcorp/maze
-	name = "Rcorp - sewers"
+	name = "Rcorp - Sewers"
 	room_id = "rcorp_inside_maze"
 	mappath = "_maps/RandomRooms/rcorp/facility/maze.dmm"
 	weight = 5
 
 
 /datum/map_template/random_room/rcorp/maze2
-	name = "Rcorp - sewers alt"
+	name = "Rcorp - Sewers alt"
 	room_id = "rcorp_inside_mazealt"
 	mappath = "_maps/RandomRooms/rcorp/facility/maze2.dmm"
 	weight = 5
 
 /datum/map_template/random_room/rcorp/beach
-	name = "Rcorp - beaches"
+	name = "Rcorp - Beaches"
 	room_id = "rcorp_inside_beaches"
 	mappath = "_maps/RandomRooms/rcorp/facility/beaches.dmm"
 	weight = 10
