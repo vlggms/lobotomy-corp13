@@ -6,7 +6,7 @@
 
 /obj/item/ego_weapon/city/liu/examine(mob/user)
 	. = ..()
-	. += "This weapon kills insane people."
+	. += "<span class='notice'>This weapon kills insane people.</span>"
 
 /obj/item/ego_weapon/city/liu/attack(mob/living/target, mob/living/user)
 	//Happens before the attack so you need to do another attack.
@@ -14,7 +14,6 @@
 		var/mob/living/carbon/human/H = target
 		if(H.sanity_lost)
 			H.death()
-
 	..()
 
 //Section 1&2, 6-5-4-2 as the grades
@@ -84,3 +83,165 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+
+
+//Section 4/5/6, 6-4
+/obj/item/ego_weapon/city/liu/fist
+	name = "liu combat gloves"
+	icon_state = "liufist"
+	desc = "A gauntlet used by Liu Sections 4,5 and 6. Requires martial arts training to make use of."
+	force = 20
+	attack_speed = 0.7
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/chain = 0
+	var/activated
+	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
+
+	var/combo_time
+	var/combo_wait = 10
+
+
+/obj/item/ego_weapon/city/liu/fist/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This weapon has light and heavy attacks. Use in hand to activate a heavy attack. Combos are as follows:</span>"
+	. += "<span class='notice'>LLLLL - 5 Hit fast combo, ending in a knockback attack.</span>"
+	. += "<span class='notice'>H 	 - Windup fist attack for 1.5x damage and deals massive stamina damage to humans.</span>"
+	. += "<span class='notice'>LH 	 - AOE Fire fist attack. This does not kill insane people.</span>"
+	. += "<span class='notice'>LLH 	 - High Damage Combo, last attack has a windup and deals 2x damage.</span>"
+	. += "<span class='notice'>LLLH  - Deals good damage. Last hit backsteps you 2 tiles.</span>"
+	. += "<span class='notice'>LLLLH - High Damage combo, last hit ends in a 2x damage boost with no windup.</span>"
+
+/obj/item/ego_weapon/city/liu/fist/attack_self(mob/living/carbon/user)
+	if(activated)
+		activated = FALSE
+		to_chat(user, "<span class='danger'>You revoke your preparation of a heavy attack.</span>")
+	else
+		activated = TRUE
+		to_chat(user, "<span class='danger'>You prep a heavy attack!</span>")
+
+
+/obj/item/ego_weapon/city/liu/fist/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+
+	if(world.time > combo_time)
+		chain = 0
+	combo_time = world.time + combo_wait
+
+	var/during_windup //can't attack during windup
+	if(during_windup)
+		return
+
+	//Setting chain and attack speed to 0
+	chain+=1
+	attack_speed = initial(attack_speed)
+
+	//Teh Chain of attacks. See the examine for what each chain does.
+
+	switch(chain)
+		if(1)
+			if(activated) //H - Solar Plexus attack
+				to_chat(user, "<span class='danger'>You prepare to strike the solar plexus.</span>")
+				during_windup = TRUE
+				if(do_after(user, 5, target))
+					during_windup = FALSE
+					force *= 1.5
+					hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+					if(ishuman(target))
+						target.Paralyze(20)
+				else
+					during_windup = FALSE
+					return
+
+		if(2)
+			if(activated) //LH - Fire AOE
+				to_chat(user, "<span class='danger'>You release a wave of fire.</span>")
+				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+				aoe(target, user)
+
+		if(3)
+			if(activated) //LLH - Higher damage windup attack
+				to_chat(user, "<span class='danger'>You prepare a strong punch.</span>")
+				during_windup = TRUE
+				if(do_after(user, 5, target))
+					during_windup = FALSE
+					force *= 2
+					hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+				else
+					during_windup = FALSE
+					return
+
+		if(4)
+			if(activated) //LLLH - Fast hit and jump back
+				to_chat(user, "<span class='danger'>You hit them and hop back.</span>")
+				force *= 1.5
+				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+				hopback(user)
+
+		if(5)
+			if(!activated)
+				knockback(target, user)
+				hitsound = 'sound/weapons/fixer/generic/finisher2.ogg'
+			else
+				force*=2
+				to_chat(user, "<span class='danger'>You hit them with all you got!.</span>")
+				hitsound = 'sound/weapons/fixer/generic/finisher2.ogg'
+			chain=0
+
+	//Special attacks are slower.
+	if(attack_speed == initial(attack_speed) && activated)
+		attack_speed = 2
+	. = ..()
+
+	//Reset Everything
+	if(activated)
+		chain=0
+		to_chat(user, "<span class='danger'>Your chain is reset.</span>")
+		activated = FALSE
+	force = initial(force)
+	hitsound = initial(hitsound)
+
+
+/obj/item/ego_weapon/city/liu/fist/proc/knockback(mob/living/target, mob/living/user)
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 3), whack_speed, user)
+
+/obj/item/ego_weapon/city/liu/fist/proc/aoe(mob/living/target, mob/living/user)
+	for(var/turf/T in view(force/5, target))
+		if(prob(30))
+			new /obj/effect/temp_visual/fire/fast(T)
+		for(var/mob/living/L in T)
+			if(L == user)
+				continue
+			L.apply_damage(force*0.5, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+
+/obj/item/ego_weapon/city/liu/fist/proc/hopback(mob/living/carbon/user)
+	var/dodgelanding
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y - 2, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y + 2, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x - 2, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x + 2, user.y, user.z)
+	user.throw_at(dodgelanding, 3, 2, spin = FALSE)
+
+
+/obj/item/ego_weapon/city/liu/fist/vet
+	name = "liu veteran combat gloves"
+	icon_state = "liufist_vet"
+	force = 32
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)

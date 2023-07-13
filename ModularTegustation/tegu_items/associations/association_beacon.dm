@@ -21,7 +21,7 @@
 
 //Seven Asso
 /obj/item/storage/box/association/seven
-	name = "Seven Association Section 12"
+	name = "Seven Association Section 6"
 	desc = "A kit from Section 1 containing Seven association gear."
 
 /obj/item/storage/box/association/seven/PopulateContents()
@@ -43,7 +43,7 @@
 
 //Zwei Asso
 /obj/item/storage/box/association/zwei
-	name = "Zwei Association Section 12"
+	name = "Zwei Association Section 6"
 	desc = "A kit from Section 1 containing Zwei association gear."
 
 /obj/item/storage/box/association/zwei/PopulateContents()
@@ -59,3 +59,19 @@
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweileader(src)
 
 
+//Liu Asso
+/obj/item/storage/box/association/liu
+	name = "Liu Association Section 5"
+	desc = "A kit from Section 1 containing Liu association gear."
+
+/obj/item/storage/box/association/liu/PopulateContents()
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist/vet(src)
+	new /obj/item/ego_weapon/city/liu/fist/vet(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5(src)

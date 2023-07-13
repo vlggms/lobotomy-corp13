@@ -32,7 +32,7 @@
 /obj/item/ego_weapon/city/yun/fist
 	name = "yun office gloves"
 	desc = "Gloves used by the lead of the yun office. "
-	icon_state = "yun_fix"
+	icon_state = "yun_fist"
 	force = 32
 	attack_verb_continuous = list("punches", "jabs", "slaps")
 	attack_verb_simple = list("punches", "jabs", "slaps")

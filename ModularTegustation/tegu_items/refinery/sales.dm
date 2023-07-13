@@ -58,6 +58,14 @@
 	if(generating == TRUE)
 		addtimer(CALLBACK(src, .proc/counter), 1 SECONDS)
 
+/obj/structure/pe_sales/l_corp
+	name = "Headquarters Power Input"
+	desc = "A machine used to send PE to L-Corp headquarters."
+	icon_state = "machinelc"
+	crate = /obj/structure/lootcrate/l_corp
+	power_timer = 60 	//L Corp is where you drain your power
+	crate_timer = 60	//And it's super cheap
+
 /obj/structure/pe_sales/limbus
 	name = "Limbus Company Power Input"
 	desc = "A machine used to send PE to limbus company."
@@ -97,7 +105,7 @@
 	desc = "A machine used to send PE to N-Corp."
 	icon_state = "machinen"
 	crate = /obj/structure/lootcrate/n_corp
-	crate_timer = 120
+	crate_timer = 60
 
 /obj/structure/pe_sales/leaflet
 	name = "Leaflet Workshop Power Input"
@@ -122,6 +130,23 @@
 	desc = "A machine used to send PE to the rosespanner workshop"
 	icon_state = "machinerosespanner"
 	crate = /obj/structure/lootcrate/workshoprosespanner
+	crate_timer = 60
+
+/obj/structure/pe_sales/hana
+	name = "Syndicate Workshop Power Input"
+	desc = "A machine used to send PE to the hana association"
+	icon_state = "machinehana"
+	crate = /obj/structure/lootcrate/hana
+	power_timer = 180 	//Takes a long fucking time
+	crate_timer = 540	//Very expensive stuff. Takes 10 minutes to get 1 box.
+
+/obj/structure/pe_sales/hana
+	name = "Syndicate Workshop Power Input"
+	desc = "A machine used to send PE to the hana association"
+	icon_state = "machinehana"
+	crate = /obj/structure/lootcrate/hana
+	power_timer = 180 	//Takes a long fucking time
+	crate_timer = 540	//Very expensive stuff. Takes 10 minutes to get 1 box.
 
 /obj/structure/pe_sales/zwei
 	name = "Zwei Association Power Input"
@@ -129,18 +154,18 @@
 	icon_state = "machinezwei"
 	crate = /obj/structure/lootcrate/zwei
 
-/obj/structure/pe_sales/liu
-	name = "Liu Association Power Input"
-	desc = "A machine used to send PE to the liu association."
-	icon_state = "machineliu"
-	crate = /obj/structure/lootcrate/liu
-
 /obj/structure/pe_sales/shi
 	name = "Shi Association Power Input"
 	desc = "A machine used to send PE to the shi association."
 	icon_state = "machineshi"
 	crate = /obj/structure/lootcrate/shi
 	crate_timer = 240	//Two boxes per
+
+/obj/structure/pe_sales/liu
+	name = "Liu Association Power Input"
+	desc = "A machine used to send PE to the liu association."
+	icon_state = "machineliu"
+	crate = /obj/structure/lootcrate/liu
 
 /obj/structure/pe_sales/seven
 	name = "Seven Association Power Input"
@@ -156,10 +181,10 @@
 	crate = /obj/structure/lootcrate/syndicate
 	crate_timer = 360	//The most expensive sales, takes about 3.5 boxes. The worst you'll get is still extremely good
 
-/obj/structure/pe_sales/l_corp
-	name = "Headquarters Power Input"
-	desc = "A machine used to send PE to L-Corp headquarters."
-	icon_state = "machinelc"
-	crate = /obj/structure/lootcrate/l_corp
-	power_timer = 60 	//L Corp is where you drain your power
-	crate_timer = 60	//And it's super cheap
+/obj/structure/pe_sales/backstreet
+	name = "Backstreets Workshop Power Input"
+	desc = "A machine used to send PE to a backstreets workshop."
+	icon_state = "machinebackstreets"
+	crate = /obj/structure/lootcrate/backstreets
+	power_timer = 180 	//Takes a bit
+	crate_timer = 180	//And it's super cheap
