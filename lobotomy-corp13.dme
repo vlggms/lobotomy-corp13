@@ -3512,6 +3512,7 @@
 #include "code\modules\suppressions\information.dm"
 #include "code\modules\suppressions\safety.dm"
 #include "code\modules\suppressions\training.dm"
+#include "code\modules\suppressions\welfare.dm"
 #include "code\modules\surgery\amputation.dm"
 #include "code\modules\surgery\blood_filter.dm"
 #include "code\modules\surgery\bone_mending.dm"
