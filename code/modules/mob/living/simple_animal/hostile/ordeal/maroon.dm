@@ -26,6 +26,8 @@
 	icon_living = "broodling"
 	icon_dead = "broodling_dead"
 	pass_flags = PASSTABLE | PASSMOB
+	density = TRUE // For time being, they, for some reason, don't try to pass through each other despite swarming component
+	mob_size = MOB_SIZE_TINY
 	maxHealth = 120
 	health = 120
 	move_to_delay = 1.5
@@ -36,7 +38,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/slashmiss.ogg'
-	attack_sound_volume = 25
+	attack_sound_volume = 15
 	deathsound = 'sound/effects/ordeals/maroon/broodling_death.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/abomination = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/abomination = 2)
@@ -60,8 +62,8 @@
 	health = 250
 	move_to_delay = 2
 	rapid_melee = 2
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 18
+	melee_damage_upper = 23
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/alien_claw_flesh1.ogg'
@@ -72,10 +74,6 @@
 	var/fly_cooldown
 	var/fly_cooldown_time = 5 SECONDS
 	var/fly_duration = 5 SECONDS
-
-/mob/living/simple_animal/hostile/ordeal/infestation/floatfly/Initialize()
-	. = ..()
-	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_animal/hostile/ordeal/infestation/floatfly/death()
 	animate(src, pixel_z = 0, time = 3)
@@ -134,9 +132,11 @@
 	icon_state = "eviscerator"
 	icon_living = "eviscerator"
 	icon_dead = "eviscerator_dead"
+	pixel_x = -8
+	base_pixel_x = -8
 	maxHealth = 700
 	health = 700
-	move_to_delay = 3
+	move_to_delay = 3.5
 	melee_damage_lower = 35
 	melee_damage_upper = 40
 	attack_verb_continuous = "stabs"
@@ -180,9 +180,11 @@
 	icon_state = "assembler"
 	icon_living = "assembler"
 	icon_dead = "assembler_dead"
+	pixel_x = -8
+	base_pixel_x = -8
 	maxHealth = 900
 	health = 900
-	move_to_delay = 3.5
+	move_to_delay = 4
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	attack_verb_continuous = "pierces"
@@ -219,7 +221,7 @@
 		return
 
 /mob/living/simple_animal/hostile/ordeal/infestation/assembler/AttackingTarget()
-	if(isliving(target))
+	if(isliving(target) && !QDELETED(target))
 		var/mob/living/L = target
 		if(L.stat != DEAD)
 			return ..()
@@ -232,6 +234,8 @@
 		L.gib()
 		nutrient_stored += 5
 		for(var/mob/living/LL in livinginview(8, src))
+			if(faction_check_mob(LL))
+				continue
 			LL.apply_damage(50, WHITE_DAMAGE, null, LL.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 	return ..()
 
