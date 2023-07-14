@@ -136,9 +136,9 @@
 
 /obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	cooldown = world.time + (5 SECONDS)
+	cooldown = world.time + (3 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
-	if(!do_after(user, 4.5 SECONDS))
+	if(!do_after(user, 1.5 SECONDS))
 		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
 		return
 	for(var/turf/T in view(2, user))
