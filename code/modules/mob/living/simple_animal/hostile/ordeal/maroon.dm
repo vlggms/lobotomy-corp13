@@ -266,6 +266,7 @@
 /mob/living/simple_animal/hostile/ordeal/infestation/larva
 	name = "larva"
 	desc = "A weird insect-like creature."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "larva"
 	icon_living = "larva"
 	icon_dead = "larva_dead"
@@ -384,6 +385,8 @@
 	transformation_time = world.time + 5 SECONDS
 
 /mob/living/simple_animal/hostile/ordeal/infestation/larva/implanter/AttackingTarget()
+	if(ishuman(loc)) // Don't attack from inside, as funny as it is.
+		return
 	if(ishuman(target) && transformation_time == null)
 		var/mob/living/carbon/human/H = target
 		visible_message("<span class='danger'>[src] bites through [H]'s clothes and skin and wriggles inside!</span>")
