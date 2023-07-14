@@ -143,12 +143,21 @@
 	can_charge = FALSE
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin/implant/mindshield
+	//None of these fucking guys can use Rcorp guns
+	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
+		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
 	AddComponent(/datum/component/automatic_fire, 0.16 SECONDS)
 
 
+/obj/item/gun/energy/e_gun/rabbit/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	if(user.mind)
+		if(user.mind.assigned_role in banned_roles)
+			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
+			return FALSE
+	..()
 
 /obj/item/gun/energy/e_gun/rabbit/captain
 	name = "R-Corporation Lawnmower 4000"
@@ -199,6 +208,16 @@
 	can_charge = FALSE
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin
+	//None of these fucking guys can use Rcorp guns
+	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
+		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+
+/obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
+	if(user.mind)
+		if(user.mind.assigned_role in banned_roles)
+			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
+			return FALSE
+	..()
 
 /obj/item/gun/energy/e_gun/rabbitdash/white
 	name = "R-Corporation Lawnmower 2100"

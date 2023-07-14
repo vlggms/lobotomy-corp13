@@ -1,0 +1,15 @@
+{
+	"version": 1,
+	"map_name": "Facility K-909",
+	"map_path": "map_files/Lambda",
+	"map_file": [
+		"lambdacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}

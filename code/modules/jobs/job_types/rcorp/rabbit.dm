@@ -88,7 +88,7 @@
 
 /datum/outfit/job/rabbit/assault
 	name = "R-Corp Assault Rabbit"
-	jobtype = /datum/job/rabbit
+	jobtype = /datum/job/rabbit/assault
 
 	suit_store = /obj/item/gun/energy/e_gun/rabbitdash
 	belt = /obj/item/ego_weapon/city/rabbit_rush
