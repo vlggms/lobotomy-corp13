@@ -45,7 +45,7 @@
 		/mob/living/simple_animal/hostile/ordeal/infestation/floatfly,
 		/mob/living/simple_animal/hostile/ordeal/infestation/eviscerator
 		)
-	bossnumber = 5
-	gruntnumber = 10 // It's a heckin' party!
+	bossnumber = 6
+	gruntnumber = 25 // It's a heckin' party!
 	color = COLOR_MAROON
 	reward_percent = 0.2

@@ -134,11 +134,11 @@
 	icon_dead = "eviscerator_dead"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 700
-	health = 700
+	maxHealth = 800
+	health = 800
 	move_to_delay = 3.5
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	melee_damage_lower = 40
+	melee_damage_upper = 45
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/maroon/eviscerator_attack.ogg'
@@ -182,11 +182,11 @@
 	icon_dead = "assembler_dead"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 900
-	health = 900
+	maxHealth = 1200
+	health = 1200
 	move_to_delay = 4
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 35
+	melee_damage_upper = 40
 	attack_verb_continuous = "pierces"
 	attack_verb_simple = "pierce"
 	attack_sound = 'sound/weapons/rapidslice.ogg'
@@ -227,16 +227,18 @@
 			return ..()
 		playsound(src, 'sound/effects/ordeals/maroon/assembler_consume.ogg', 50, TRUE)
 		visible_message("<span class='danger'>[src] starts to consume \the [L]!</span>")
-		if(!do_after(src, 3 SECONDS, target = L))
+		if(!do_after(src, 2 SECONDS, target = L))
 			return
-		for(var/turf/open/T in view(2, L))
+		if(!Adjacent(L) || L.stat != DEAD)
+			return
+		for(var/turf/open/T in view(8, L))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(T, pick(GLOB.alldirs))
-		L.gib()
-		nutrient_stored += 5
-		for(var/mob/living/LL in livinginview(8, src))
+		for(var/mob/living/LL in livinginview(8, L))
 			if(faction_check_mob(LL))
 				continue
-			LL.apply_damage(50, WHITE_DAMAGE, null, LL.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			LL.apply_damage(ishuman(L) ? 75 : 15, BLACK_DAMAGE, null, LL.run_armor_check(null, BKLACK_DAMAGE), spread_damage = TRUE)
+		nutrient_stored += ishuman(L) ? 5 : 1
+		L.gib()
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/infestation/assembler/proc/AttemptLarva(forced_type = null)
