@@ -81,7 +81,7 @@
 	animate(src, pixel_z = 0, time = 3)
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/infestation/floatfly/adjustBruteLoss(amount)
+/mob/living/simple_animal/hostile/ordeal/infestation/floatfly/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	. = ..()
 	if(prob(amount * 5)) // Dodge everything like a pro
 		animate(src, pixel_x = base_pixel_x + rand(-10, 10), pixel_y = base_pixel_y + rand(-10, 10), time = 2)
@@ -153,7 +153,7 @@
 		'sound/effects/ordeals/maroon/eviscerator_aggro_3.ogg',
 		)
 
-/mob/living/simple_animal/hostile/ordeal/infestation/eviscerator/adjustBruteLoss(amount)
+/mob/living/simple_animal/hostile/ordeal/infestation/eviscerator/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	. = ..()
 	if(prob(amount * 5) && world.time > aggro_sound_cooldown)
 		aggro_sound_cooldown = world.time + 2 SECONDS
