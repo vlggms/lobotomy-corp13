@@ -2,14 +2,7 @@
 "a" = (
 /turf/open/floor/plating,
 /area/city/backstreets_room)
-"l" = (
-/obj/item/folder/syndicate/blue{
-	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
-	name = "Highly Confidential Folder"
-	},
-/turf/open/floor/plating,
-/area/city/backstreets_room)
-"s" = (
+"t" = (
 /obj/item/folder/syndicate/red{
 	desc = "A folder belonging to one of the City's corporations.";
 	name = "Corporation Folder"
@@ -17,95 +10,79 @@
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "x" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
-"H" = (
-/turf/closed/indestructible/fakedoor,
-/area/city/backstreets_room)
-"P" = (
 /obj/item/folder/white{
 	desc = "Looks to be remnants of the old G-Corp.";
 	name = "Outdated G-Corp Folder"
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_room)
-"Y" = (
+"M" = (
+/obj/item/folder/syndicate/blue{
+	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
+	name = "Highly Confidential Folder"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"P" = (
+/turf/closed/indestructible/fakedoor,
+/area/city/backstreets_room)
+"R" = (
 /obj/item/folder/blue{
 	desc = "Appears to be permits and documents of an unspecified workshop.";
 	name = "Workshop Folder"
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 
 (1,1,1) = {"
-x
-H
-H
-H
-H
-H
-H
-H
-H
-x
+U
+U
+U
+U
+U
 "}
 (2,1,1) = {"
-x
+U
 a
 a
 a
-a
-a
-a
-a
-a
-x
+P
 "}
 (3,1,1) = {"
-x
+U
+M
 a
-a
-a
-l
-Y
-a
-a
-a
-x
+R
+P
 "}
 (4,1,1) = {"
-x
+U
 a
 a
 a
-s
 P
-a
-a
-a
-x
 "}
 (5,1,1) = {"
-x
-a
-a
-a
-a
-a
-a
-a
+U
+t
 a
 x
+P
 "}
 (6,1,1) = {"
-x
-H
-H
-H
-H
-H
-H
-H
-H
-x
+U
+a
+a
+a
+P
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
 "}

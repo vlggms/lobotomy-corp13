@@ -6,7 +6,8 @@
 	},
 /obj/structure/fence/post{
 	layer = 2;
-	pixel_x = 15
+	pixel_x = 15;
+	density = 0
 	},
 /obj/structure/railing/corner,
 /obj/machinery/light/dim{
@@ -16,7 +17,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "aS" = (
 /obj/structure/fence{
@@ -35,7 +36,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonmisc{
 	pixel_x = -3
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "dX" = (
 /obj/effect/decal/cleanable/blood/gibs{
@@ -68,7 +69,7 @@
 	pixel_x = -6;
 	pixel_y = -4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "ek" = (
 /obj/effect/turf_decal/starfury/seven,
@@ -80,7 +81,7 @@
 /obj/effect/decal/cleanable/blood/gibs{
 	pixel_x = 25
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "eA" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -92,14 +93,14 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "spear bot"
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "eH" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "fq" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -113,14 +114,15 @@
 /obj/structure/fence/post{
 	layer = 3;
 	pixel_x = -13;
-	pixel_y = 24
+	pixel_y = 24;
+	density = 0
 	},
 /obj/item/bodypart/chest,
 /obj/effect/decal/cleanable/blood/old{
 	pixel_x = 17;
 	pixel_y = -7
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "gx" = (
 /obj/structure/fence/corner{
@@ -132,7 +134,7 @@
 /area/city/backstreets_room)
 "ig" = (
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "ik" = (
 /obj/machinery/door/airlock/grunge,
@@ -145,7 +147,7 @@
 	pixel_x = 7
 	},
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "lu" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -153,7 +155,7 @@
 	pixel_x = -6
 	},
 /obj/structure/flora/rock/jungle,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "mj" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -165,7 +167,7 @@
 	pixel_y = 27
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "mr" = (
 /obj/machinery/door/airlock/grunge,
@@ -178,7 +180,7 @@
 	},
 /obj/structure/flora/rock/jungle,
 /obj/structure/lootcrate/seven,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "ng" = (
 /obj/structure/fence{
@@ -197,7 +199,7 @@
 	pixel_x = 5;
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "qd" = (
 /obj/effect/decal/cleanable/blood,
@@ -240,7 +242,7 @@
 	pixel_x = 7;
 	pixel_y = 1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "rM" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -251,7 +253,7 @@
 /obj/effect/decal/cleanable/blood/gibs/old{
 	pixel_x = 11
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "sl" = (
 /obj/structure/fence/corner{
@@ -269,7 +271,7 @@
 	},
 /obj/structure/flora/grass/jungle/b,
 /obj/structure/railing,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "tp" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -285,18 +287,18 @@
 	pixel_x = 11;
 	pixel_y = 10
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "vi" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "vp" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "vu" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -304,7 +306,7 @@
 	pixel_y = -5
 	},
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "wj" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -316,7 +318,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "yS" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -330,13 +332,13 @@
 	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "zh" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/organ_spawner,
 /obj/effect/spawner/lootdrop/armory_contraband/cybersun,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "zF" = (
 /obj/effect/turf_decal/starfury/one,
@@ -351,7 +353,8 @@
 /obj/structure/fence/post{
 	layer = 3;
 	pixel_x = 11;
-	pixel_y = 2
+	pixel_y = 2;
+	density = 0
 	},
 /obj/item/bodypart/chest,
 /obj/effect/decal/cleanable/blood,
@@ -360,7 +363,7 @@
 	pixel_x = -15;
 	pixel_y = 4
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Aa" = (
 /obj/effect/decal/cleanable/blood/splatter{
@@ -375,7 +378,7 @@
 	pixel_x = 5;
 	pixel_y = -1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "AE" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -389,7 +392,7 @@
 /obj/structure/fence/post{
 	pixel_x = 7
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "AO" = (
 /obj/structure/table/reinforced,
@@ -401,7 +404,7 @@
 	pixel_x = 1;
 	pixel_y = 2
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "AT" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -409,7 +412,7 @@
 	},
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "BA" = (
 /obj/structure/fence/cut/large{
@@ -428,7 +431,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonmisc{
 	pixel_x = 3
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Cr" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -437,7 +440,7 @@
 /obj/structure/fence/post{
 	pixel_x = 15
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "De" = (
 /obj/structure/table/reinforced,
@@ -446,7 +449,7 @@
 	pixel_y = 9
 	},
 /obj/effect/spawner/lootdrop/armory_contraband,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Do" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -459,7 +462,7 @@
 	pixel_y = 2
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "DY" = (
 /obj/structure/fence/corner{
@@ -480,7 +483,7 @@
 	pixel_x = 7;
 	pixel_y = -5
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Gs" = (
 /turf/closed/indestructible/reinforced,
@@ -491,7 +494,7 @@
 	pixel_y = 11
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "GQ" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -500,14 +503,14 @@
 	pixel_y = -8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Ht" = (
 /obj/effect/decal/cleanable/blood/footprints{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "HJ" = (
 /obj/structure/fence/cut/large{
@@ -518,14 +521,14 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "HQ" = (
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "IL" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/sign/warning/securearea{
 	pixel_x = 32
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Ja" = (
 /obj/effect/decal/cleanable/blood/splatter{
@@ -538,7 +541,7 @@
 	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Jn" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -552,16 +555,17 @@
 	pixel_y = 2
 	},
 /obj/structure/fence/post{
-	pixel_x = -12
+	pixel_x = -12;
+	density = 0
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Jt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "JU" = (
 /obj/effect/decal/cleanable/blood{
@@ -570,7 +574,7 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "JW" = (
 /obj/effect/decal/cleanable/blood,
@@ -578,7 +582,7 @@
 	pixel_x = -13;
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Kk" = (
 /obj/item/bodypart/chest{
@@ -593,7 +597,7 @@
 /obj/effect/decal/cleanable/blood/gibs/old{
 	pixel_x = 19
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Kq" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -605,7 +609,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/seven,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "KU" = (
 /obj/effect/decal/cleanable/blood/footprints{
@@ -614,7 +618,7 @@
 	pixel_y = -8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Ln" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -632,7 +636,7 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "spear bot"
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Lv" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -640,20 +644,20 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "LV" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot_big{
 	name = "gun bot"
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Mm" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "spear bot"
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "NF" = (
 /obj/structure/railing/corner{
@@ -665,7 +669,7 @@
 	pixel_x = -13;
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "OI" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -677,7 +681,7 @@
 	pixel_x = -23;
 	pixel_y = 2
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "OP" = (
 /obj/structure/sign/warning/securearea,
@@ -691,13 +695,14 @@
 /obj/structure/fence/post{
 	layer = 2;
 	pixel_x = 15;
-	pixel_y = 2
+	pixel_y = 2;
+	density = 0
 	},
 /obj/structure/railing/corner,
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "spear bot"
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Rw" = (
 /obj/effect/decal/cleanable/blood/splatter{
@@ -709,7 +714,7 @@
 	pixel_x = 17;
 	pixel_y = -7
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "RA" = (
 /obj/structure/fence/corner{
@@ -730,10 +735,6 @@
 	pixel_x = 11;
 	pixel_y = -5
 	},
-/obj/item/organ/heart/demon{
-	pixel_x = -5;
-	pixel_y = -11
-	},
 /obj/item/organ/heart/fly{
 	pixel_x = -7;
 	pixel_y = 8
@@ -742,7 +743,7 @@
 	pixel_x = 5;
 	pixel_y = -1
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "SE" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -755,7 +756,7 @@
 	pixel_x = -6;
 	pixel_y = 8
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "SM" = (
 /obj/effect/turf_decal/trimline/neutral/corner{
@@ -764,15 +765,15 @@
 	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "SP" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Tk" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Uj" = (
 /obj/machinery/light/red{
@@ -780,10 +781,10 @@
 	pixel_x = 4;
 	pixel_y = -6
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "Vr" = (
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_room)
 "WI" = (
 /obj/effect/turf_decal/starfury/seven,
@@ -793,9 +794,10 @@
 	},
 /obj/structure/flora/rock/pile,
 /obj/structure/fence/post{
-	pixel_x = -11
+	pixel_x = -11;
+	density = 0
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Xe" = (
 /obj/structure/fence{
@@ -821,13 +823,13 @@
 	pixel_y = -7
 	},
 /obj/structure/lootcrate/w_corp,
-/turf/open/floor/plating/dirt/dark,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Yj" = (
 /obj/effect/decal/cleanable/blood/splatter{
 	pixel_x = -18
 	},
-/turf/open/floor/holofloor/dark,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Za" = (
 /obj/effect/turf_decal/trimline/neutral/line{
@@ -841,7 +843,7 @@
 /obj/structure/railing{
 	dir = 10
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Zm" = (
 /obj/structure/fence{
