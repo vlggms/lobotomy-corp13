@@ -220,7 +220,7 @@
 		return FALSE
 
 	if(M.attack_sound)
-		playsound(loc, M.attack_sound, 50, TRUE, TRUE)
+		playsound(loc, M.attack_sound, M.attack_sound_volume, TRUE, TRUE)
 	M.do_attack_animation(src)
 	visible_message("<span class='danger'>\The [M] [M.attack_verb_continuous] [src]!</span>", \
 					"<span class='userdanger'>\The [M] [M.attack_verb_continuous] you!</span>", null, COMBAT_MESSAGE_RANGE, M)
