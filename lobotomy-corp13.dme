@@ -2175,6 +2175,7 @@
 #include "code\modules\fields\timestop.dm"
 #include "code\modules\fields\turf_objects.dm"
 #include "code\modules\fishing\simple_fishing.dm"
+#include "code\modules\fishing\simple_fishing_equipment.dm"
 #include "code\modules\fishing\aquarium\aquarium.dm"
 #include "code\modules\fishing\aquarium\aquarium_kit.dm"
 #include "code\modules\fishing\fish\_fish.dm"

@@ -4,7 +4,7 @@
 	max_stages = 4
 	cure_text = "Surgical removal of the liver."
 	agent = "Consuming Live Parasites"
-	spread_text = "Non-Biological"
+	spread_text = "Intermediate Parasite"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
 	desc = "If left untreated the subject will passively lose nutrients, and eventually lose their liver."

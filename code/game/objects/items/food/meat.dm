@@ -66,6 +66,27 @@
 	foodtypes = MEAT | VEGETABLES | FRIED
 	w_class = WEIGHT_CLASS_SMALL
 
+/obj/item/food/cooked_fish
+	name = "cooked fish"
+	desc = "A unbutchered fish thats been cooked."
+	icon_state = "punishedfish"
+	food_reagents = list (/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 2)
+	tastes = list("fish" = 1, "crunchy" = 1)
+	foodtypes = MEAT
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/food/cooked_fish/MakeProcessable()
+	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/sashimi, 6, 30)
+
+/obj/item/food/sashimi
+	name = "sashimi"
+	desc = "Its just cut up fish right?"
+	icon_state = "sashimi"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	tastes = list("fish" = 1, "hot peppers" = 1)
+	foodtypes = MEAT
+	w_class = WEIGHT_CLASS_TINY
+
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
 /obj/item/food/tofu
@@ -427,19 +448,6 @@
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/sashimi
-	name = "carp sashimi"
-	desc = "Celebrate surviving attack from hostile alien lifeforms by hospitalising yourself."
-	icon_state = "sashimi"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/capsaicin = 9, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("fish" = 1, "hot peppers" = 1)
-	foodtypes = MEAT | TOXIC
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/food/sashimi/Initialize()
-	. = ..()
-	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CARP, CELL_VIRUS_TABLE_GENERIC_MOB)
-
 /obj/item/food/nugget
 	name = "chicken nugget"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -675,6 +683,7 @@
 	name = " meat (rotten)"
 	icon_state = "rottenmeat"
 	desc = "Halfway to becoming fertilizer for your garden."
+	food_reagents = list(/datum/reagent/consumable/nutriment/vile_fluid = 6)
 	tastes = list("brains" = 1, "meat" = 1)
 	foodtypes = RAW | MEAT | TOXIC
 
