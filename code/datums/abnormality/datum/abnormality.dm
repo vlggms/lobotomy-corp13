@@ -190,34 +190,6 @@
 	stored_boxes += pe
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
-	if(pe <= 0) // Work failure
-		return
-	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
-	var/maximum_attribute_level = 0
-	switch(threat_level)
-		if(ZAYIN_LEVEL)
-			maximum_attribute_level = 40
-		if(TETH_LEVEL)
-			maximum_attribute_level = 60
-		if(HE_LEVEL)
-			maximum_attribute_level = 80
-		if(WAW_LEVEL)
-			maximum_attribute_level = 100
-		if(ALEPH_LEVEL)
-			maximum_attribute_level = 130
-	var/datum/attribute/user_attribute = user.attributes[attribute_type]
-	if(!user_attribute) //To avoid runtime if it's a custom work type like "Release".
-		return
-	var/user_attribute_level = max(1, user_attribute.level)
-	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
-	if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
-		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-	if(attribute_given == 0)
-		if(was_melting)
-			attribute_given = threat_level //pity stats on meltdowns
-		else
-			to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
-	user.adjust_attribute_level(attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
