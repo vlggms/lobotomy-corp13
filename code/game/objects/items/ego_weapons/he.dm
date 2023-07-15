@@ -161,7 +161,7 @@
 							)
 	var/naked_parry
 	var/realized_parry
-	
+
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
@@ -191,7 +191,7 @@
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
-			reductions = initial(reductions)
+			list(40, 20, 20, 0)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)

@@ -321,7 +321,7 @@
 	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
-	cooldown_time = 30 SECONDS
+	cooldown_time = 15 SECONDS
 
 /obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
 	if(get_dist(user, target) > 10)
@@ -350,7 +350,7 @@
 
 /mob/living/simple_animal/cocoonability/Initialize()
 	. = ..()
-	QDEL_IN(src, (120 SECONDS))
+	QDEL_IN(src, (30 SECONDS))
 
 /mob/living/simple_animal/cocoonability/Life()
 	if(..())
@@ -375,7 +375,7 @@
 	desc = "An ability that allows its user to summon a black hole to drag everone near it."
 	action_icon_state = "blackhole0"
 	base_icon_state = "blackhole"
-	cooldown_time = 60 SECONDS
+	cooldown_time = 30 SECONDS
 
 /obj/effect/proc_holder/ability/aimed/blackhole/Perform(target, mob/user)
 	if(get_dist(user, target) > 10)
@@ -402,8 +402,8 @@
 
 /obj/projectile/black_hole_realized/Initialize()
 	. = ..()
-	QDEL_IN(src, (60 SECONDS))
-	for(var/i = 1 to 30)
+	QDEL_IN(src, (20 SECONDS))
+	for(var/i = 1 to 10)
 		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
 
 /obj/projectile/black_hole_realized/proc/SplashEffect()

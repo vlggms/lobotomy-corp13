@@ -60,16 +60,15 @@
 	base_icon_state = "lamp"
 	cooldown_time = 30 SECONDS
 
-	var/damage_range = 8
-	var/damage_slowdown = 0.2 // Slowdown per pulse
-
+	var/debuff_range = 8
+	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
 		to_chat(user, "<span class='warning'>You must stand still to see!</span>")
 		return
 	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
-	for(var/mob/living/L in view(damage_range, user))
+	for(var/mob/living/L in view(debuff_range, user))
 		if(user.faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
@@ -77,11 +76,7 @@
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(damage_slowdown, 15 SECONDS) // Slow down
-			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
-			H.add_overlay(new_overlay)
-			addtimer(CALLBACK (H, .atom/proc/cut_overlay, new_overlay), 15 SECONDS)
-			H.apply_status_effect(/datum/status_effect/salvation)
+			H.TemporarySpeedChange(debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
 	return ..()
 
 /datum/status_effect/salvation
@@ -136,9 +131,9 @@
 
 /obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	cooldown = world.time + (3 SECONDS)
+	cooldown = world.time + (1.5 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
-	if(!do_after(user, 1.5 SECONDS))
+	if(!do_after(user, 1 SECONDS))
 		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
 		return
 	for(var/turf/T in view(2, user))
@@ -216,27 +211,6 @@
 	desc = "Your fear is causing you to be more vulnerable to BLACK attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
 	icon_state = "screach"
-
-/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp
-	name = "wellcheers corp liquidation officer"
-
-/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
-	.=..()
-	QDEL_IN(src, (90 SECONDS))
-
-/obj/effect/proc_holder/ability/shrimp
-	name = "Backup Shrimp"
-	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
-	action_icon_state = "shrimp0"
-	base_icon_state = "shrimp"
-	cooldown_time = 90 SECONDS
-
-
-
-/obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/i = 1 to 4)
-		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
-	return ..()
 
 /* Judgement Bird - Head of God */
 /obj/effect/proc_holder/ability/judgement
