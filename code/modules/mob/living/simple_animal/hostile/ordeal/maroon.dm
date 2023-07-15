@@ -236,7 +236,7 @@
 		for(var/mob/living/LL in livinginview(8, L))
 			if(faction_check_mob(LL))
 				continue
-			LL.apply_damage(ishuman(L) ? 75 : 15, BLACK_DAMAGE, null, LL.run_armor_check(null, BKLACK_DAMAGE), spread_damage = TRUE)
+			LL.apply_damage(ishuman(L) ? 75 : 15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		nutrient_stored += ishuman(L) ? 5 : 1
 		L.gib()
 	return ..()
