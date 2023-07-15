@@ -43,9 +43,16 @@
 	if(AM.movement_type & FLYING)
 		return
 
+	if(!ismob(AM))
+		return
+
 	triggermine(AM)
 
 /obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+	. = ..()
+	triggermine()
+
+/obj/effect/mine/hitby()
 	. = ..()
 	triggermine()
 
