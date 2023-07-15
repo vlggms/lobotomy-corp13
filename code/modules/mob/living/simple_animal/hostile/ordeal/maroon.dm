@@ -26,7 +26,7 @@
 	icon_living = "broodling"
 	icon_dead = "broodling_dead"
 	pass_flags = PASSTABLE | PASSMOB
-	density = TRUE // For time being, they, for some reason, don't try to pass through each other despite swarming component
+	density = FALSE // For time being, they, for some reason, don't try to pass through each other despite swarming component
 	mob_size = MOB_SIZE_TINY
 	maxHealth = 120
 	health = 120
