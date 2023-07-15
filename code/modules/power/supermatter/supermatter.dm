@@ -456,7 +456,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			if (M.z == z)
 				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 			else
 				to_chat(M, "<span class='boldannounce'>You hold onto \the [M.loc] as hard as you can, as reality distorts around you. You feel safe.</span>")
 

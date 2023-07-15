@@ -340,7 +340,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
 	abno_info = list(
-		"Performing any work on three other abnormalities reduced the Qliphoth Counter.",
+		"Performing any work on other abnormalities slowly reduced the Qliphoth Counter.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"This abnormality generates additional PE-boxes when the Qliphoth Counter is lower.",
 		"When an employee performed Instinct work, the Qliphoth Counter rose to the maximum.",
@@ -348,7 +348,8 @@
 		"Instinct work was more successful at lower Qliphoth counters.",
 		"When the Qliphoth Counter reached 0, Doomsday Calendar appeared at a department center with an entourage of clay dolls, dubbed M-04-145-A.",
 		"Offering human remains or the remains of M-04-145-A to Doomsday Calendar during suppression work aided in suppression.",
-		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.")
+		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.",
+		"Failure to complete suppression work led to the reduction of Qliphoth Counters near the location of Doomsday Calendar.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
@@ -367,3 +368,15 @@
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
+
+//Puss in Boots
+/obj/item/paper/fluff/info/he/puss_in_boots
+	abno_type = /mob/living/simple_animal/hostile/abnormality/puss_in_boots
+	abno_code = "F-02-24"
+	abno_info = list(
+		"When a level one employee comes in close contact with this abnormality, they may recieve a blessing. (From then on, the employee will be referred to as F-02-24-1).",
+		"Thanks to the blessing, F-02-24-1 experienced an increase in attributes as well as a small increase in resistance to all damage types.",
+		"F-02-24-1 found themselves incapable of using certain items that provide an unfair advantage in battle.",
+		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
+		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
+		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")

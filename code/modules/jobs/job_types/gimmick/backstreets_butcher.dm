@@ -26,7 +26,7 @@ Backstreets Butcher
 
 
 /datum/job/butcher/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	H.set_attribute_limit(0)
+	H.set_attribute_limit(40)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	to_chat(M, "<span class='userdanger'>Stay out of L-Corp's facility. Fixers are not inherently hostile to you, but they can and will find a reason to put you down. \
 			Your primary goal is to cook people and make more money than HHPP. You own The Bistro in town.</span>")

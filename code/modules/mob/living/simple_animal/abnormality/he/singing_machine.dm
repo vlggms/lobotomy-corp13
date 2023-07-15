@@ -24,6 +24,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/harmony,
+		/datum/ego_datum/weapon/rhythm,
 		/datum/ego_datum/armor/harmony
 		)
 	gift_type = /datum/ego_gifts/harmony

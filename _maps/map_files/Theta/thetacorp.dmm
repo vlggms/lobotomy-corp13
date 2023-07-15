@@ -1622,7 +1622,7 @@
 /obj/structure/railing{
 	dir = 4;
 	name = "invincible railing";
-	max_integrity = 10000000
+	max_integrity = 1e+007
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6944,7 +6944,12 @@
 /area/facility_hallway/central)
 "pJ" = (
 /obj/machinery/computer/secure_data{
-	dir = 4
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -7458,7 +7463,7 @@
 /obj/structure/railing{
 	dir = 6;
 	name = "invincible railing";
-	max_integrity = 10000000
+	max_integrity = 1e+007
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -12862,6 +12867,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/information)
+"CP" = (
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "CQ" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1;
@@ -15644,14 +15653,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"ID" = (
-/obj/structure/fluff/big_chain{
-	pixel_y = 10
-	},
-/obj/machinery/light/small,
-/turf/open/floor/grass/fakebasalt,
-/turf/open/floor/grass/fakebasalt,
-/area/facility_hallway/central)
 "IF" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
@@ -16696,13 +16697,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
-"KG" = (
-/obj/structure/fluff/big_chain{
-	pixel_y = 10
-	},
-/turf/open/floor/grass/fakebasalt,
-/turf/open/floor/grass/fakebasalt,
-/area/facility_hallway/central)
 "KJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -18704,7 +18698,7 @@
 /obj/structure/railing{
 	dir = 4;
 	name = "invincible railing";
-	max_integrity = 10000000
+	max_integrity = 1e+007
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -20342,6 +20336,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/records)
+"RR" = (
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_x = 32
+	},
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "RS" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/wood,
@@ -22191,12 +22192,30 @@
 /obj/structure/closet/secure_closet/record,
 /obj/structure/window/reinforced/spawner/east{
 	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_y = 2
 	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = 8
+	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = -8
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/plush/hokma,
+/obj/item/clothing/under/suit/lobotomy/records,
+/obj/item/clothing/suit/armor/records,
+/obj/item/radio/headset/headset_records,
+/obj/item/radio/headset/headset_records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/clothing/accessory/armband/lobotomy/records,
+/obj/item/toner/extreme,
+/obj/item/toner/large,
+/obj/item/toner/large,
+/obj/item/folder/white,
+/obj/item/folder/white,
 /obj/item/toy/plush/dante,
-/obj/item/records/timestop,
-/obj/item/records/abnodelay,
-/obj/item/records/information,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -22280,31 +22299,18 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
 "WA" = (
-/obj/structure/closet/secure_closet/record,
-/obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+/obj/structure/filingcabinet{
+	pixel_x = -10
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = 8
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
 	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = -8
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
 	},
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/plush/hokma,
-/obj/item/clothing/under/suit/lobotomy/records,
-/obj/item/clothing/suit/armor/records,
-/obj/item/radio/headset/headset_records,
-/obj/item/radio/headset/headset_records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/clothing/accessory/armband/lobotomy/records,
-/obj/item/toner/extreme,
-/obj/item/toner/large,
-/obj/item/toner/large,
-/obj/item/folder/white,
-/obj/item/folder/white,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "WB" = (
@@ -48902,7 +48908,7 @@ ik
 jo
 mi
 bj
-eC
+CP
 zo
 VH
 sg
@@ -49159,7 +49165,7 @@ ik
 jo
 Gy
 EX
-eC
+CP
 ZC
 VH
 Ki
@@ -49386,7 +49392,7 @@ Yq
 JT
 zk
 zk
-ID
+hG
 Yu
 VA
 on
@@ -50187,7 +50193,7 @@ gx
 Sr
 tm
 EX
-eC
+CP
 OZ
 VH
 Ki
@@ -50444,7 +50450,7 @@ QR
 Te
 Pm
 EX
-sJ
+RR
 BN
 VH
 Dt
@@ -50928,7 +50934,7 @@ JZ
 wf
 zk
 zk
-ID
+hG
 Yu
 fv
 on
@@ -62736,7 +62742,7 @@ qI
 qS
 gw
 gw
-KG
+mN
 zk
 zk
 iQ
@@ -64278,7 +64284,7 @@ rt
 AT
 gw
 gw
-KG
+mN
 zk
 zk
 FQ

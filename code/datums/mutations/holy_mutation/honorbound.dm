@@ -15,8 +15,6 @@
 /datum/mutation/human/honorbound/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	//moodlet
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "honorbound", /datum/mood_event/honorbound)
 	//checking spells cast by honorbound
 	RegisterSignal(owner, COMSIG_MOB_CAST_SPELL, .proc/spell_check)
 	RegisterSignal(owner, COMSIG_MOB_FIRED_GUN, .proc/staff_check)
@@ -32,7 +30,6 @@
 	RegisterSignal(owner, COMSIG_MOB_CLICKON, .proc/attack_honor)
 
 /datum/mutation/human/honorbound/on_losing(mob/living/carbon/human/owner)
-	SEND_SIGNAL(owner, COMSIG_CLEAR_MOOD_EVENT, "honorbound")
 	UnregisterSignal(owner, list(
 		COMSIG_PARENT_ATTACKBY,
 		COMSIG_ATOM_HULK_ATTACK,
@@ -186,14 +183,12 @@
 		if(SCHOOL_NECROMANCY, SCHOOL_FORBIDDEN)
 			to_chat(user, "<span class='userdanger'>[GLOB.deity] is enraged by your use of forbidden magic!</span>")
 			lightningbolt(user)
-			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "honorbound", /datum/mood_event/banished)
 			user.dna.remove_mutation(HONORBOUND)
 			user.mind.holy_role = NONE
 			to_chat(user, "<span class='userdanger'>You have been excommunicated! You are no longer holy!</span>")
 		else
 			to_chat(user, "<span class='userdanger'>[GLOB.deity] is angered by your use of [school] magic!</span>")
 			lightningbolt(user)
-			SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "honorbound", /datum/mood_event/holy_smite)//permanently lose your moodlet after this
 
 /datum/mutation/human/honorbound/proc/lightningbolt(mob/living/user)
 	var/turf/lightning_source = get_step(get_step(user, NORTH), NORTH)

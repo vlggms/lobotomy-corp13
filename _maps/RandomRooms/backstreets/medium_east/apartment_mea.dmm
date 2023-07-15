@@ -1,0 +1,178 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Malfunctioning Door"
+	},
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/turf_decal/siding{
+	dir = 5
+	},
+/obj/structure/bed/pod,
+/obj/item/bedsheet/rd/royal_cape,
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder";
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/turf_decal/siding{
+	dir = 9
+	},
+/obj/structure/table/rolling,
+/obj/machinery/computer/secure_data/laptop{
+	desc = "An interestingly high-tech laptop, wonder who owned this.";
+	name = "high-tech laptop"
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"A" = (
+/obj/machinery/computer/med_data/laptop{
+	desc = "Guess this cat is a bit of a medical professional."
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/turf_decal/siding{
+	dir = 10
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"G" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	name = "Strange Airlock"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"H" = (
+/obj/effect/turf_decal/siding{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/fluff/broken_flooring,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"O" = (
+/mob/living/simple_animal/pet/cat/breadcat,
+/obj/structure/bed/dogbed{
+	desc = "A comfy-looking cat bed. You can even strap your pet in, in case the gravity turns off.";
+	name = "cat bed"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"S" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/table/wood,
+/obj/machinery/microwave{
+	pixel_y = 5
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"X" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/bed/maint,
+/obj/item/ego_weapon/city/rats/scalpel,
+/obj/effect/spawner/lootdrop/maint_drugs,
+/obj/effect/spawner/lootdrop/maint_drugs,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+u
+x
+x
+x
+u
+x
+x
+u
+x
+"}
+(2,1,1) = {"
+f
+X
+X
+G
+X
+X
+G
+X
+X
+f
+"}
+(3,1,1) = {"
+x
+x
+P
+x
+P
+x
+x
+P
+x
+x
+"}
+(4,1,1) = {"
+x
+p
+E
+x
+M
+v
+x
+S
+S
+x
+"}
+(5,1,1) = {"
+x
+g
+H
+x
+Y
+V
+x
+A
+O
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

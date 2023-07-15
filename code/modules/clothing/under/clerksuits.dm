@@ -37,6 +37,12 @@
 	desc = "A red tracksuit with athletic white lines worn by clerks from the discipline department."
 	icon_state = "disciplinary"
 
+/obj/item/clothing/under/suit/lobotomy/discipline/alternative
+	name = "discipline department uniform"
+	desc = "A black tracksuit with athletic white lines worn by clerks from the old discipline department."
+	icon_state = "disciplinary_alt"
+
+
 /obj/item/clothing/under/suit/lobotomy/welfare
 	name = "welfare department uniform"
 	desc = "An old fashioned gray sailor outfit with a blue necktie, worn by clerks from the welfare department."
@@ -65,6 +71,16 @@
 	name = "\improper r-corp uniform"
 	desc = "A black uniform with a orange line worn by R-corps mercenaries."
 	icon_state = "rabbit"
+
+/obj/item/clothing/under/suit/lobotomy/rabbit/officer
+	name = "\improper officer's uniform"
+	desc = "A black uniform with a orange line worn by R-corps lieutenant commanders. The rank boards on this are bronze."
+	icon_state = "rabbitofficer"
+
+/obj/item/clothing/under/suit/lobotomy/rabbit/lcdr
+	name = "\improper lieutenant commander's uniform"
+	desc = "A black uniform with a orange line worn by R-corps lieutenant commanders. The rank boards on this are silver."
+	icon_state = "rabbitlcdr"
 
 /obj/item/clothing/under/suit/lobotomy/wcorp
 	name = "\improper w-corp uniform"

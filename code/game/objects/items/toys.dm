@@ -152,23 +152,6 @@
 	inhand_icon_state = "syndballoon"
 	random_color = FALSE
 
-/obj/item/toy/balloon/syndicate/pickup(mob/user)
-	. = ..()
-	if(user && user.mind && user.mind.has_antag_datum(/datum/antagonist, TRUE))
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "badass_antag", /datum/mood_event/badass_antag)
-
-/obj/item/toy/balloon/syndicate/dropped(mob/user)
-	if(user)
-		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "badass_antag", /datum/mood_event/badass_antag)
-	. = ..()
-
-
-/obj/item/toy/balloon/syndicate/Destroy()
-	if(ismob(loc))
-		var/mob/M = loc
-		SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "badass_antag", /datum/mood_event/badass_antag)
-	. = ..()
-
 
 /obj/item/toy/balloon/arrest
 	name = "arreyst balloon"

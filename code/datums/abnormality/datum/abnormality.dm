@@ -100,8 +100,14 @@
 		max_boxes = threat_level * 6
 	else
 		max_boxes = current.max_boxes
-	success_boxes = round(max_boxes * 0.7)
-	neutral_boxes = round(max_boxes * 0.4)
+	if(!current.success_boxes)
+		success_boxes = round(max_boxes * 0.7)
+	else
+		success_boxes = current.success_boxes
+	if(!current.neutral_boxes)
+		neutral_boxes = round(max_boxes * 0.4)
+	else
+		neutral_boxes = current.neutral_boxes
 	available_work = current.work_chances
 	switch(threat_level)
 		if(ZAYIN_LEVEL)
@@ -173,11 +179,11 @@
 		return
 	var/user_attribute_level = max(1, user_attribute.level)
 	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
-	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
+	if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 	if(attribute_given == 0)
 		if(was_melting)
-			attribute_given = 2 //pity stats on meltdowns
+			attribute_given = threat_level //pity stats on meltdowns
 		else
 			to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
 	user.adjust_attribute_level(attribute_type, attribute_given)

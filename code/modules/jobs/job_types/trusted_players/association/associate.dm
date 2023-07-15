@@ -12,6 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
+	paycheck = 700
 	maptype = "wonderlabs"
 
 

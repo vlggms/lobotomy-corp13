@@ -76,7 +76,7 @@
 /datum/outfit/job/commander/lieutenant
 	name = "Lieutenant Commander"
 	jobtype = /datum/job/rcorp_captain/commander/lieutenant
-	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit/lcdr
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 
 
@@ -102,11 +102,22 @@
 /*
 Rcorp Ranks in order:
 
+	Sr. Officer
 CDR - Commander
 LCDR - Lt Commander
 CPT - Captain
+
+	Jr. Officer
 LT - Lieutenant
+
+	Non-Officer
+
 SGT - Sergeant
+Sergeants are the heavy weapons specialists in the 4th Pack.
+
 SPC - Specialist
+Specialists are roles have have a job other than shooting. This includes medics, and scouts
+
 RAF - RCorp Assault Force
+Assault Rabbits.
 */

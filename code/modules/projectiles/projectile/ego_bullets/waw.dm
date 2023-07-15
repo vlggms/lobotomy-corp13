@@ -345,7 +345,8 @@
 
 /obj/projectile/ego_bullet/ego_hypocrisy
 	name = "hypocrisy"
-	icon_state = "arrow_hypocrisy"
+	icon_state = "arrow_greyscale"
+	color = "#AAFF00"
 	damage = 90 //50 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE

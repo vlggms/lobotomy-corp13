@@ -1,0 +1,169 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/dresser{
+	dir = 6
+	},
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/chair/sofa/corp/left,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/table/glass,
+/obj/item/flashlight/lamp{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder";
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"h" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"s" = (
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/chair/sofa/corp/right,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"N" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"R" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Malfunctioning Door"
+	},
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -11
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 11
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/table/glass,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/closet/cabinet,
+/obj/item/ego_weapon/city/streetlight_bat,
+/obj/item/gun/ego_gun/clerk{
+	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
+	name = "9mm Pistol"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+a
+N
+N
+N
+N
+N
+N
+Z
+x
+"}
+(3,1,1) = {"
+b
+y
+s
+D
+s
+Y
+O
+s
+N
+R
+"}
+(4,1,1) = {"
+b
+y
+s
+d
+s
+Y
+h
+s
+f
+x
+"}
+(5,1,1) = {"
+x
+a
+N
+N
+N
+N
+N
+N
+V
+x
+"}
+(6,1,1) = {"
+x
+x
+H
+x
+x
+b
+b
+b
+x
+x
+"}

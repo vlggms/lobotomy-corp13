@@ -14,7 +14,6 @@
 		owner.visible_message("<span class='danger'>[owner] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		owner.Unconscious(200 * GET_MUTATION_POWER(src))
 		owner.Jitter(1000 * GET_MUTATION_POWER(src))
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "epilepsy", /datum/mood_event/epilepsy)
 		addtimer(CALLBACK(src, .proc/jitter_less), 90)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()

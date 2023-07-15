@@ -1,0 +1,945 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"bY" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"cb" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"co" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/obj/structure/table/wood/fancy/black,
+/obj/item/folder/yellow{
+	desc = "A folder containing sheet music. The contents are gibberish to you, however.";
+	name = "sheet music"
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"do" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"en" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/book/codex_gigas,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"gQ" = (
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"ht" = (
+/obj/structure/closet/crate/large,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"hK" = (
+/obj/machinery/light/broken,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"iO" = (
+/obj/structure/chair/pew/left,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"kx" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder";
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"mN" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"qV" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/dresser,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 20
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"rx" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"rD" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"us" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"vv" = (
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/structure/chair/pew,
+/obj/item/instrument/glockenspiel,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"wd" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"wA" = (
+/obj/machinery/door/airlock/cult/unruned/friendly{
+	name = "cult airlock"
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"xD" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"xR" = (
+/obj/structure/table/wood/fancy/black,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"zt" = (
+/obj/structure/chair/comfy/shuttle{
+	desc = "A comfortable throne fit for a king like yourself.";
+	name = "throne";
+	pixel_x = 17
+	},
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"Am" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 5
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"An" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Ax" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"AI" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 9
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Bh" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"BF" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 6
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"BR" = (
+/obj/structure/closet/crate/necropolis,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ct" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Dt" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/instrument/guitar,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Eb" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ew" = (
+/obj/structure/closet/crate/large,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"EP" = (
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"EQ" = (
+/obj/machinery/door/airlock/cult/friendly,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"EW" = (
+/obj/structure/altar_of_gods,
+/obj/item/clothing/suit/armor/riot/chaplain/clock,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Fy" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Gl" = (
+/obj/structure/destructible/cult/tome,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"GP" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"GY" = (
+/obj/structure/chair/pew,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"HO" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Jo" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/dresser,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 20
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Jr" = (
+/obj/item/stack/sheet/plastic{
+	pixel_x = 5
+	},
+/obj/item/stack/sheet/runed_metal{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/silk,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"JT" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ka" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red{
+	name = "\proper Lieutenant Maledy"
+	},
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"Kn" = (
+/obj/structure/lootcrate/workshopleaf,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ku" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"LC" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"LK" = (
+/obj/structure/table/wood,
+/obj/item/documents/ncorporation,
+/obj/item/book_of_babel,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ns" = (
+/obj/structure/chair/office{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"NJ" = (
+/obj/structure/chair/pew/left,
+/obj/item/instrument/violin/golden,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"NK" = (
+/obj/item/chair/wood/wings,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"NN" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/book/granter/language_book/narsian,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"NW" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"Or" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"OJ" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"OL" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"Pw" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"PH" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/glass/beaker/unholywater,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Qj" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Rb" = (
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Rz" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"SY" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Td" = (
+/obj/structure/destructible/cult/talisman,
+/obj/item/clothing/head/helmet/chaplain/clock,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"TO" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"TV" = (
+/obj/structure/destructible/cult/forge,
+/obj/machinery/light/red{
+	dir = 5
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"UM" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 10
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"UT" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 7
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Vo" = (
+/obj/structure/table/wood/fancy/black,
+/obj/effect/spawner/lootdrop/gloves,
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"Wh" = (
+/obj/structure/sacrificealtar,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Xj" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"XV" = (
+/obj/structure/chair/pew/right,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"XW" = (
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"XX" = (
+/obj/structure/table/wood,
+/obj/machinery/computer/med_data/laptop{
+	desc = "A laptop with indescribable markings all around. Strangely, it contains medical records of sorts.";
+	name = "Strange Laptop"
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"YH" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"YK" = (
+/obj/structure/table/wood/fancy/black,
+/obj/effect/spawner/lootdrop/organ_spawner,
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+"YU" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"ZT" = (
+/obj/structure/fluff/divine/convertaltar,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/necropolis,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+"}
+(2,1,1) = {"
+An
+Dt
+Jr
+co
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+Or
+An
+Gl
+Wh
+An
+"}
+(3,1,1) = {"
+An
+XW
+NK
+JT
+EP
+YH
+xD
+Bh
+EP
+EP
+EP
+rx
+EP
+EP
+EP
+EP
+An
+EP
+EP
+An
+"}
+(4,1,1) = {"
+An
+NJ
+XW
+LC
+YH
+BF
+GP
+Am
+Bh
+wd
+EP
+wd
+EP
+wd
+EP
+rx
+EQ
+EP
+TV
+An
+"}
+(5,1,1) = {"
+An
+vv
+Ax
+JT
+Pw
+gQ
+gQ
+gQ
+HO
+Xj
+EP
+Rb
+EP
+Qj
+EP
+wd
+An
+EP
+EP
+An
+"}
+(6,1,1) = {"
+An
+XV
+XW
+Ct
+Pw
+gQ
+gQ
+gQ
+HO
+Rb
+EP
+Rb
+EP
+Rb
+EP
+Rb
+An
+Td
+EW
+An
+"}
+(7,1,1) = {"
+An
+qV
+Rz
+bY
+Pw
+gQ
+gQ
+gQ
+HO
+Rb
+EP
+Rb
+EP
+Rb
+EP
+Rb
+An
+An
+An
+An
+"}
+(8,1,1) = {"
+An
+Kn
+TO
+xD
+BF
+gQ
+gQ
+OL
+Am
+YU
+xD
+YU
+xD
+YU
+xD
+YU
+Bh
+EP
+EP
+An
+"}
+(9,1,1) = {"
+An
+Ew
+BF
+xR
+YK
+gQ
+gQ
+gQ
+gQ
+gQ
+gQ
+OL
+gQ
+gQ
+gQ
+gQ
+Am
+Bh
+do
+EP
+"}
+(10,1,1) = {"
+An
+UT
+zt
+gQ
+gQ
+OL
+ZT
+gQ
+gQ
+gQ
+gQ
+gQ
+OL
+gQ
+gQ
+gQ
+gQ
+OJ
+EP
+Fy
+"}
+(11,1,1) = {"
+An
+UT
+gQ
+gQ
+gQ
+Ka
+ZT
+gQ
+gQ
+gQ
+gQ
+gQ
+OL
+gQ
+gQ
+gQ
+gQ
+OJ
+EP
+Fy
+"}
+(12,1,1) = {"
+An
+ht
+SY
+xR
+Vo
+gQ
+gQ
+gQ
+gQ
+gQ
+gQ
+OL
+gQ
+gQ
+gQ
+gQ
+AI
+cb
+do
+EP
+"}
+(13,1,1) = {"
+An
+Kn
+BR
+Ku
+SY
+gQ
+gQ
+OL
+AI
+Eb
+Ku
+Eb
+Ku
+Eb
+Ku
+Eb
+cb
+EP
+EP
+An
+"}
+(14,1,1) = {"
+An
+Jo
+aB
+UM
+Pw
+gQ
+gQ
+gQ
+HO
+Rb
+EP
+Rb
+EP
+Rb
+do
+Rb
+An
+An
+An
+An
+"}
+(15,1,1) = {"
+An
+iO
+XW
+Ct
+Pw
+gQ
+gQ
+gQ
+HO
+Rb
+EP
+Rb
+EP
+Rb
+EP
+Rb
+An
+kx
+LK
+An
+"}
+(16,1,1) = {"
+An
+GY
+XW
+JT
+Pw
+gQ
+gQ
+gQ
+HO
+Rb
+EP
+Rb
+rx
+Rb
+EP
+us
+An
+XX
+Ns
+An
+"}
+(17,1,1) = {"
+An
+XV
+Ax
+JT
+rD
+SY
+NW
+AI
+cb
+us
+EP
+us
+EP
+us
+EP
+rx
+wA
+EP
+hK
+An
+"}
+(18,1,1) = {"
+An
+en
+XW
+JT
+EP
+rD
+Ku
+cb
+EP
+rx
+EP
+EP
+EP
+EP
+EP
+EP
+An
+mN
+EP
+An
+"}
+(19,1,1) = {"
+An
+PH
+NN
+JT
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+Or
+An
+mN
+EP
+An
+"}
+(20,1,1) = {"
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+"}

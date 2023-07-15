@@ -8,7 +8,6 @@
 	roundend_category = "revolutionaries" // if by some miracle revolutionaries without revolution happen
 	antagpanel_category = "Revolution"
 	job_rank = ROLE_REV
-	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_type = ANTAG_HUD_REV
 	antag_hud_name = "rev"
 	var/datum/team/revolution/rev_team

@@ -333,3 +333,15 @@
 			armor = armor.modifyRating(red = -40, white = 20, black = 20)
 		if("winter")
 			armor = armor.modifyRating(red = 20, black = -40, pale = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/distortion
+	name = "distortion"
+	desc = "To my eyes, I’m the only one who doesn’t appear distorted. In a world full of distorted people, could the one person who remains unchanged be the \"distorted\" one?"
+	icon_state = "distortion"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)

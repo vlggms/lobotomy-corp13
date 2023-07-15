@@ -70,6 +70,7 @@
 	var/patrol_cooldown_time = 30 SECONDS
 	var/list/patrol_path = list()
 	var/patrol_tries = 0 //max of 5
+	var/patrol_move_timer = null
 
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()
@@ -704,6 +705,10 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
+	//Mobs should stay unpatroled on combat maps.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return
+
 	var/turf/target_center
 	var/list/potential_centers = list()
 	for(var/pos_targ in GLOB.department_centers)
@@ -720,6 +725,8 @@
 	patrol_path = list()
 	patrol_tries = 0
 	stop_automated_movement = 0
+	if(patrol_move_timer)
+		deltimer(patrol_move_timer) // Calling this now stops the patrol guaranteed.
 	patrol_cooldown = world.time + patrol_cooldown_time
 
 /mob/living/simple_animal/hostile/proc/patrol_move(dest)
@@ -743,7 +750,7 @@
 	else
 		patrol_reset()
 		return FALSE
-	addtimer(CALLBACK(src, .proc/patrol_move, dest), move_to_delay)
+	patrol_move_timer = addtimer(CALLBACK(src, .proc/patrol_move, dest), move_to_delay, TIMER_STOPPABLE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_step(dest)

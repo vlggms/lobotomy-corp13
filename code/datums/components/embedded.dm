@@ -95,7 +95,6 @@
 		playsound(victim,'sound/weapons/bladeslice.ogg', 40)
 		weapon.add_mob_blood(victim)//it embedded itself in you, of course it's bloody!
 		damage += weapon.w_class * impact_pain_mult
-		SEND_SIGNAL(victim, COMSIG_ADD_MOOD_EVENT, "embedded", /datum/mood_event/embedded)
 
 	if(damage > 0)
 		var/armor = victim.run_armor_check(limb.body_zone, MELEE, "Your armor has protected your [limb.name].", "Your armor has softened a hit to your [limb.name].",I.armour_penetration)
@@ -105,7 +104,6 @@
 	var/mob/living/carbon/victim = parent
 	if(victim && !victim.has_embedded_objects())
 		victim.clear_alert("embeddedobject")
-		SEND_SIGNAL(victim, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 	if(weapon)
 		UnregisterSignal(weapon, list(COMSIG_MOVABLE_MOVED, COMSIG_PARENT_QDELETING))
 	weapon = null

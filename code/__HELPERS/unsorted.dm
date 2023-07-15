@@ -979,10 +979,10 @@ rough example of the "cone" made by the 3 dirs checked
 
 	var/list/mobs = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
-		var/check_place = L
+		var/atom/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(get_dist(center, check_place) <= dist)
+		if(get_dist(center, check_place) <= dist && center.z == check_place.z)
 			mobs += L
 
 	return mobs
@@ -993,11 +993,12 @@ rough example of the "cone" made by the 3 dirs checked
 		return list()
 
 	var/list/mobs = list()
+	var/list/my_view = view(dist, center)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(check_place in view(dist, center))
+		if(check_place in my_view)
 			mobs += L
 
 	return mobs

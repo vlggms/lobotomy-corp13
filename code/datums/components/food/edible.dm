@@ -348,7 +348,7 @@ Behavior that's still missing from this component that original food items had t
 		return FALSE
 	return TRUE
 
-///Check foodtypes to see if we should send a moodlet
+///Check foodtypes to see if we modify disgust.
 /datum/component/edible/proc/checkLiked(fraction, mob/M)
 	if(last_check_time + 50 > world.time)
 		return FALSE
@@ -356,9 +356,6 @@ Behavior that's still missing from this component that original food items had t
 		return FALSE
 	var/mob/living/carbon/human/H = M
 
-	//Bruh this breakfast thing is cringe and shouldve been handled separately from food-types, remove this in the future (Actually, just kill foodtypes in general)
-	if((foodtypes & BREAKFAST) && world.time - SSticker.round_start_time < STOP_SERVING_BREAKFAST)
-		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "breakfast", /datum/mood_event/breakfast)
 	last_check_time = world.time
 
 	if(HAS_TRAIT(H, TRAIT_AGEUSIA))
@@ -384,15 +381,12 @@ Behavior that's still missing from this component that original food items had t
 		if(FOOD_TOXIC)
 			to_chat(H,"<span class='warning'>What the hell was that thing?!</span>")
 			H.adjust_disgust(25 + 30 * fraction)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "toxic_food", /datum/mood_event/disgusting_food)
 		if(FOOD_DISLIKED)
 			to_chat(H,"<span class='notice'>That didn't taste very good...</span>")
 			H.adjust_disgust(11 + 15 * fraction)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "gross_food", /datum/mood_event/gross_food)
 		if(FOOD_LIKED)
 			to_chat(H,"<span class='notice'>I love this taste!</span>")
 			H.adjust_disgust(-5 + -2.5 * fraction)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "fav_food", /datum/mood_event/favorite_food)
 
 ///Delete the item when it is fully eaten
 /datum/component/edible/proc/On_Consume(mob/living/eater, mob/living/feeder)

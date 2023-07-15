@@ -865,13 +865,11 @@
 				M.soundbang_act(1, 0, 30, 3)
 				M.add_confusion(10)
 				M.jitteriness += 4
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			if(2 to 3)
 				M.show_message("<span class='cult'>GONG!</span>", MSG_AUDIBLE)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 75, TRUE)
 				M.soundbang_act(1, 0, 15, 2)
 				M.jitteriness += 3
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			else
 				M.show_message("<span class='warning'>GONG!</span>", MSG_AUDIBLE)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 50, TRUE)
@@ -1042,7 +1040,6 @@
 
 		to_chat(L, "<span class='cultlarge'>A spine-chilling sound chills you to the bone!</span>")
 		L.apply_status_effect(/datum/status_effect/bonechill)
-		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "spooked", /datum/mood_event/spooked)
 
 /datum/species/golem/snow
 	name = "Snow Golem"

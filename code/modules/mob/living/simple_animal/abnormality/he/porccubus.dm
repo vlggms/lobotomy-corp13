@@ -133,7 +133,7 @@
 		return
 	PorcDash(target)
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount)
+/mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount, updating_health, forced)
 	..()
 	if(amount > 0)
 		damage_taken = TRUE

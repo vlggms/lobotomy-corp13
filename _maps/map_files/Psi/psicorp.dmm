@@ -656,6 +656,7 @@
 /obj/structure/mirror{
 	pixel_x = 27
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/white,
 /area/facility_hallway/west)
 "ej" = (
@@ -1574,7 +1575,7 @@
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
-/turf/open/space/basic,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "jf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -3418,6 +3419,7 @@
 /obj/structure/mirror{
 	pixel_x = -27
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/white,
 /area/facility_hallway/east)
 "sQ" = (
@@ -7001,7 +7003,7 @@
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
 	},
-/turf/open/space/basic,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Mc" = (
 /obj/effect/turf_decal/plaque{
@@ -7727,6 +7729,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
 "QA" = (
@@ -8595,7 +8598,7 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Office"
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Un" = (
 /turf/closed/indestructible/reinforced,
@@ -8901,7 +8904,7 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
 	},
-/turf/open/floor/facility/halls,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "VK" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -9003,6 +9006,7 @@
 	color = "#440000";
 	dir = 5
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/red,
 /area/department_main/command)
 "Wk" = (

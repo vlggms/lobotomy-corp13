@@ -39,7 +39,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/cooldown_time = 3
-	var/aoe_damage = 8
+	var/aoe_damage = 12
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))

@@ -22,7 +22,6 @@
 	can_elimination_hijack = ELIMINATION_PREVENT
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	antag_moodlet = /datum/mood_event/focused
 	antag_attributes = list(
 		FORTITUDE_ATTRIBUTE = 70,
 		PRUDENCE_ATTRIBUTE = 70,

@@ -405,3 +405,32 @@
 		colored_overlay.pixel_y = -owner.pixel_y
 	previous_overlay = colored_overlay
 	L.add_overlay(colored_overlay)
+
+//Injector
+/obj/item/powered_gadget/enkephalin_injector
+	name = "Prototype Enkephalin Injector"
+	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. However, the development was discontinued after the safety department abused it for... other purposes. This version only makes the entities even more hostile towards you. Only for clerks"
+	icon_state = "e_injector"
+	default_icon = "e_injector"
+	batterycost = 5000
+	var/hit_message= null
+
+/obj/item/powered_gadget/enkephalin_injector/attack(mob/living/T, mob/user)
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
+		to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
+		return
+	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
+		var/mob/living/simple_animal/hostile/H = T
+		if(H.target != user)
+			hit_message = "<span class='warning'>[user] injected some enkephalin into [T].</span>"
+			H.target = user
+			user.visible_message(hit_message)
+			cell.charge -= batterycost
+			return
+		else
+			to_chat(user, "<span class='warning'>[T] is already targetting you.</span>")
+			return
+	if (!cell || cell.charge < batterycost)
+		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+		return
+	to_chat(user, "<span class='notice'>You can't use this on [T].</span>")

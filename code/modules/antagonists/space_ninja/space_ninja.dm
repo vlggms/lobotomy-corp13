@@ -6,7 +6,6 @@
 	antag_hud_name = "space_ninja"
 	show_name_in_check_antagonists = TRUE
 	show_to_ghosts = TRUE
-	antag_moodlet = /datum/mood_event/focused
 	///Whether or not this ninja will obtain objectives
 	var/give_objectives = TRUE
 	///Whether or not this ninja receives the standard equipment

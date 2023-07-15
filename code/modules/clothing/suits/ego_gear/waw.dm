@@ -217,8 +217,8 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/thirteen
-	name = "for whom the bell tolls"
-	desc = "It tolls for thee."
+	name = "dead silence"
+	desc = "No one can go against the flow of time."
 	icon_state = "thirteen"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 140
 	attribute_requirements = list(
@@ -418,3 +418,11 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/swan
+	name = "black swan"
+	desc = "Whenever she felt exhausted from the agony and struggle, she looked at her brooch, a memento of the past, to stifle her feelings."
+	icon_state = "swan"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = 50, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 80)

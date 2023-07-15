@@ -115,7 +115,7 @@
 
 /obj/item/ego_weapon/city/cane/fist/release_charge(mob/living/carbon/human/user)
 	..()
-	force = 100
+	force = force*2
 	addtimer(CALLBACK(src, .proc/Return, user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/cane/fist/proc/Return(mob/living/user)

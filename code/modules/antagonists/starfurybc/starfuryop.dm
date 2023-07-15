@@ -5,7 +5,6 @@
 	job_rank = ROLE_TRAITOR
 	antag_hud_type = ANTAG_HUD_OPS
 	antag_hud_name = "synd"
-	antag_moodlet = /datum/mood_event/focused
 	var/datum/team/starfuryop/sbccrew
 	show_to_ghosts = TRUE
 

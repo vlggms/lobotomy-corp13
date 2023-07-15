@@ -135,6 +135,10 @@
 	item_path = /obj/item/gun/ego_gun/harmony
 	cost = 35
 
+/datum/ego_datum/weapon/rhythm
+	item_path = /obj/item/ego_weapon/rhythm
+	cost = 35
+
 //The Watchman - Alleyway
 /datum/ego_datum/armor/alleyway
 	item_path = /obj/item/clothing/suit/armor/ego_gear/alley
@@ -271,10 +275,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/syrinx
 	cost = 35
 
-/* Not done yet.
 /datum/ego_datum/weapon/syrinx
 	item_path = /obj/item/gun/ego_gun/syrinx
-	cost = 35*/
+	cost = 35
+
+/datum/ego_datum/weapon/trachea
+	item_path = /obj/item/ego_weapon/shield/trachea
+	cost = 35
 
 //Red Shoes - Sanguine Desire
 /datum/ego_datum/armor/sanguine
@@ -304,10 +311,10 @@
 	cost = 35*/
 
 //Til the Last Shot - Flesh Is Willing
-/*/datum/ego_datum/armor/flesh
-	item_path = /obj/item/clothing/suit/armor/ego_gear/flesh
+/datum/ego_datum/armor/willing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/willing
 	cost = 35
-
+/*
 /datum/ego_datum/weapon/flesh
 	item_path = /obj/item/ego_weapon/flesh
 	cost = 35*/

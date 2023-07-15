@@ -74,9 +74,12 @@
 		if("hide")
 			Refresh_Gift_Sprite(visible) //for uniquely colored gifts
 		if("dissolve")
-			var/datum/ego_gifts/empty/E = new
-			E.slot = src.slot
 			if(tgui_alert(owner, "Are you sure you want to dissolve the [src]?", "Dissolve Gift", list("Yes", "No"), 0) == "Yes") // We only go if they hit "Yes" specifically.
+				if(locked)
+					to_chat(owner, "<span class='warning'>[src] is locked and cannot be dissolved! Phew!</span>")
+					return
+				var/datum/ego_gifts/empty/E = new
+				E.slot = src.slot
 				if(datum_reference)
 					var/PE = 0
 					PE += (datum_reference.threat_level * datum_reference.threat_level)
@@ -420,6 +423,13 @@
 	prudence_bonus = -1
 	slot = NECKWEAR
 
+/datum/ego_gifts/revelation
+	name = "Revelation"
+	icon_state = "revelation"
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = EYE
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -626,14 +636,6 @@
 	temperance_bonus = 1
 	justice_bonus = 1
 	slot = HAND_1
-
-/datum/ego_gifts/harmony
-	name = "Harmony"
-	icon_state = "harmony"
-	prudence_bonus = 5
-	temperance_bonus = -5
-	justice_bonus = 5
-	slot = MOUTH_2
 
 /datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
@@ -868,7 +870,15 @@
 	prudence_bonus = 2
 	temperance_bonus = 2
 	justice_bonus = 2
-	slot = NECKWEAR
+	slot = HAT
+
+/datum/ego_gifts/discord
+	name = "Discord"
+	icon_state = "discord"
+	fortitude_bonus = -10
+	prudence_bonus = -10
+	justice_bonus = 20
+	slot = HELMET
 
 /datum/ego_gifts/diffraction
 	name = "Diffraction"
@@ -969,6 +979,16 @@
 	icon_state = "bride"
 	prudence_bonus = 2
 	temperance_bonus = 5
+	slot = HAT
+
+//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
+//so right now its 10 temp
+/datum/ego_gifts/swan
+	name = "Black Swan"
+	icon_state = "swan"
+	fortitude_bonus = -4
+	prudence_bonus = -4
+	temperance_bonus = 10
 	slot = HAT
 
 /// All ALEPH EGO Gifts
