@@ -25,7 +25,6 @@
 	var/obj/item/stock_parts/cell/high/cell
 	var/combat = FALSE //if true, revive through hardsuits, allow for combat shocking
 	var/cooldown_duration = 5 SECONDS//how long does it take to recharge
-	custom_premium_price = PAYCHECK_MEDIUM * 14
 
 /obj/item/defibrillator/get_cell()
 	return cell

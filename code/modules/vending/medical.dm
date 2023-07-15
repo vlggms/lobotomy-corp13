@@ -30,10 +30,7 @@
 					/obj/item/pinpointer/crew = 2,
 					/obj/item/storage/firstaid/advanced = 2,
 					/obj/item/shears = 1,
-					/obj/item/storage/organbox = 1,
-					/obj/item/wallframe/defib_mount = 1,
-					/obj/item/wallframe/defib_mount/charging = 1,
-					/obj/item/defibrillator/loaded = 2)
+					/obj/item/storage/organbox = 1)
 	refill_canister = /obj/item/vending_refill/medical
 	default_price = PAYCHECK_EASY
 	extra_price = PAYCHECK_COMMAND
