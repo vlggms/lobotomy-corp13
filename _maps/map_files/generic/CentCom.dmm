@@ -6505,7 +6505,9 @@
 "zh" = (
 /obj/machinery/door/airlock/hatch{
 	hackProof = 1;
+	max_integrity = 25000000;
 	name = "Arcade Secure Storage";
+	normal_integrity = 25000000;
 	req_access_txt = "69"
 	},
 /turf/open/floor/plasteel/dark,
