@@ -165,7 +165,7 @@
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/tick()//TODO:change this to golden apple's life tick for less lag
-	if(istype(owner, /mob/living/simple_animal))
+	if(isanimal(owner))
 		owner.adjustBruteLoss(stacks * -5)
 		return
 	owner.adjustBruteLoss(stacks * -0.5)
