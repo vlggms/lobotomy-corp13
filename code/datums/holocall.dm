@@ -503,7 +503,9 @@
 	SAY Try clicking on the nearby objects with an empty hand to see what they do. You'll need to be next to them to use them.
 	DELAY 45
 	SAY If you are currently holding an item and cannot interact with the objects, hit Q to drop the item.
-	DELAY 40"}
+	DELAY 40
+	SAY Most machinery can only be operated with an empty hand. For example, you can manually start and end my messages by clicking on the holopad.
+	DELAY 50"}
 
 /obj/item/disk/holodisk/tutorial/basicmechanic2
 	preset_record_text = {"
@@ -760,22 +762,20 @@
 	DELAY 10
 	SAY The most important section of your onboarding lies ahead.
 	DELAY 30
-	SAY You will begin working with our beginner Abnormalities. Their record can be found in their Containment Unit.
-	DELAY 40
-	SAY Main department rooms, which look similar to this room, have a regenerator that restore health and sanity. Be sure to return here whenever you are injured.
-	DELAY 55
-	SAY LobCorp takes workplace safety seriously, but employees are required to have a certain level of initiative and tenacity.
-	DELAY 45
-	SAY As such, new employees are expected to suppress any escaped Abnormalities on their own.
-	DELAY 40
+	SAY You will begin working with some simple Abnormalities. Their records can be found here as well as in their respective Containment Unit.
+	DELAY 50
+	SAY Main department rooms like this room have a regenerator that restore health and sanity. Be sure to return here whenever you are injured.
+	DELAY 50
 	SAY When you first witness a breached Abnormality, you will suffer from "Fear", taking sanity damage proportional to the difference between its threat level and your Agent Level.
 	DELAY 55
 	SAY Abnormalities will deal a type of damage and have varying resistances to each damage type. Read their records to take advantage of this during suppressions.
 	DELAY 50
-	SAY <span class='warning'>Remember to not move while working.</span> Otherwise you will automatically fail the process, losing all generated PEs and taking work damage based on the amount of remaining work.
+	SAY <span class='warning'>Remember to not move while working.</span> Otherwise you will automatically fail the process, losing all generated PEs and taking damage based on the amount of remaining work.
 	DELAY 55
 	SAY If need be, you may utilize this feature if you find yourself in immediate danger due to external threats.
-	DELAY 45
+	DELAY 40
+	SAY Completing works will raises your Stats, which you can view through "IC" Tab > "Show Attributes".
+	DELAY 40
 	SAY Don't forget to wear the appropriate EGO while working to minimize injury. Return them to the racks when you are finished.
 	DELAY 45"}
 

@@ -11,6 +11,8 @@
 	var/meltdown_time = 0
 	/// Can the abnormality even meltdown?
 	var/can_meltdown = TRUE
+	/// Will works send signals and be logged?
+	var/recorded = TRUE
 	/// Special tutorial abnormality behaviors
 	var/tutorial = FALSE
 	/// Work types will instead redirect to those, if listed
@@ -119,7 +121,7 @@
 	add_fingerprint(usr)
 	updateUsrDialog()
 
-/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type, training = FALSE)
+/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = 0
 	switch(sanity_result)
@@ -134,7 +136,7 @@
 	var/work_time = datum_reference.max_boxes
 	if(work_type in scramble_list)
 		work_type = scramble_list[work_type]
-	if(!training)
+	if(recorded)
 		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_STARTED, datum_reference, user, work_type)
 	if(linked_panel)
@@ -211,7 +213,7 @@
 	user.density = TRUE
 	user.set_anchored(FALSE)
 	user.is_working = FALSE
-	finish_work(user, work_type, success_boxes, work_speed, training, was_melting, canceled)
+	finish_work(user, work_type, success_boxes, work_speed, was_melting, canceled)
 
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
 	if(user.sanity_lost)
@@ -229,8 +231,8 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE, was_melting, canceled = FALSE)
-	if(!training)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, was_melting, canceled = FALSE)
+	if(recorded)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_COMPLETED, datum_reference, user, work_type)
 	if(linked_panel)
@@ -246,13 +248,8 @@
 		else
 			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
-		if(training)
-			if(tutorial)
-				datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled, tutorial)
-			else //only called by training rabbit, skips stat gain
-				datum_reference.current.WorkComplete(user, work_type, pe, work_speed*datum_reference.max_boxes)
-		else
-			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
+		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
+		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
 	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
 	if(attachment)
@@ -300,22 +297,18 @@
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit
 	can_meltdown = FALSE
-
-/obj/machinery/computer/abnormality/training_rabbit/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
-	..(user, work_type, training = training) //training disables signals
+	recorded = FALSE
 
 //special tutorial console: similar to training rabbit but actually give stats and not affected by suppressions
 /obj/machinery/computer/abnormality/tutorial
 	can_meltdown = FALSE
+	recorded = FALSE
 	tutorial = TRUE
 
 //Don't add tutorial consoles to global list, prevents them from being affected by Control suppression or other effects
 /obj/machinery/computer/abnormality/tutorial/Initialize()
 	. = ..()
 	GLOB.abnormality_consoles -= src
-
-/obj/machinery/computer/abnormality/tutorial/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
-	..(user, work_type, training = training)
 
 //don't scramble our poor interns
 /obj/machinery/computer/abnormality/tutorial/Scramble()

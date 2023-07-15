@@ -469,10 +469,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/training_rabbit/LateInitialize()
 	..()
 	datum_reference = new(src, /mob/living/simple_animal/hostile/abnormality/training_rabbit)
-	//incredibly dumb idea that only works if there's one training rabbit console
 	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.abnormality_consoles, src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
+		datum_reference.console = AR
 	return
 
 
@@ -491,6 +491,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	var/obj/machinery/computer/abnormality/tutorial/AR = get_closest_atom(/obj/machinery/computer/abnormality/tutorial, oview(3, src), src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
+		datum_reference.console = AR
 	return
 
 /obj/effect/landmark/abnormality_spawn/tutorial/shadow
