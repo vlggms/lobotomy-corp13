@@ -31,7 +31,8 @@
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
-	start_time = world.time
+	start_time = ROUNDTIME
+	SSlobotomy_corp.current_ordeals += src
 	priority_announce(annonce_text, name, sound='sound/effects/meltdownAlert.ogg')
 	if(annonce_sound)
 		for(var/mob/M in GLOB.player_list)
@@ -42,8 +43,9 @@
 // Ends the event
 /datum/ordeal/proc/End()
 	var/total_reward = SSlobotomy_corp.box_goal * reward_percent
-	SSlobotomy_corp.AdjustBoxes(total_reward)
 	priority_announce("The ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
+	SSlobotomy_corp.AdjustBoxes(total_reward)
+	SSlobotomy_corp.current_ordeals -= src
 	if(end_sound)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
@@ -52,7 +54,7 @@
 	if(level == 4 && !istype(SSlobotomy_corp.core_suppression) && \
 	!LAZYLEN(SSlobotomy_corp.available_core_suppressions) && \
 	start_time <= CONFIG_GET(number/suppression_time_limit))
-		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions), 10 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions), 20 SECONDS)
 	qdel(src)
 	return
 

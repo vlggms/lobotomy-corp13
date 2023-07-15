@@ -295,7 +295,7 @@
 	icon_state = "nothing_blade"
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
-		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), goodbye_damage, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(L.health < 0)
 				L.gib()

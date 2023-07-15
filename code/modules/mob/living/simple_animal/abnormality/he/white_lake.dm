@@ -115,6 +115,10 @@
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	// The damage we add when attacking the nemesis faction (abnormalities)
+	var/faction_bonus_force = 22
+	// list of nemesis factions (things we deal bonus damage to)
+	var/list/nemesis_factions = list("hostile")
 	//No requirements because who knows who will use it.
 
 // Sets the weapon to not be droppable until it's moved from the main hand. No more leg sweeping.
@@ -123,16 +127,16 @@
 	if (slot != ITEM_SLOT_HANDS)
 		REMOVE_TRAIT(src, TRAIT_NODROP, src)
 
-/obj/item/ego_weapon/flower_waltz/pre_attack(atom/A, mob/living/user, params)
+/obj/item/ego_weapon/flower_waltz/attack(mob/living/target, mob/living/carbon/human/user, proximity)
+	var/enemy = FALSE
+	for(var/found_faction in target.faction)
+		if(found_faction in nemesis_factions) // if we are hitting a nemesis...
+			force += faction_bonus_force
+			enemy = TRUE
+			break
 	. = ..()
-	if (!ishuman(A) && istype(A, /mob/living))
-		force = 44
-	return
-
-/obj/item/ego_weapon/flower_waltz/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	force = 22
-	return
+	if(enemy) // we should delete the extra force ONLY if we hit a nemesis
+		force -= faction_bonus_force
 
 //Slightly different AI lines
 /datum/ai_controller/insane/murder/whitelake

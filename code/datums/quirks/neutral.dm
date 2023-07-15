@@ -25,6 +25,73 @@
 	H.physiology.red_mod -= 0.05
 	H.physiology.white_mod += 0.1
 
+/datum/quirk/family_heirloom // re-naming the quirk in the code causes a lot of problems, so leaving it as-is
+	name = "Plushie lover"
+	desc = "You love plushies so much that you take them to work with you, you start with 1 plushie that changes depending on your job"
+	value = 0
+	var/obj/item/heirloom
+	var/where
+	medical_record_text = "This patient takes their plushies everywhere."
+
+/datum/quirk/family_heirloom/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/heirloom_type
+	switch(quirk_holder.mind.assigned_role)
+		// Command
+		if("Manager")
+			heirloom_type = pick(/obj/item/toy/plush/angela)
+		if("Extraction Officer")
+			heirloom_type = pick(/obj/item/toy/plush/binah)
+		if("Records Officer")
+			heirloom_type = pick(/obj/item/toy/plush/hokma)
+		if("Agent Captain")
+			heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt)
+		if("Sephirah") //Today im NOT giving a GUN to HOD
+			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
+		// Common folk
+		if("Agent")
+			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf)
+		if("Agent Intern")
+			heirloom_type = pick(/obj/item/toy/plush/scorched)
+		if("Clerk")
+			heirloom_type = pick(/obj/item/toy/plush/moth)
+		// Ruins test
+		if("Rabbit Team Leader")
+			heirloom_type = pick(/obj/item/toy/plush/myo)
+		if("Rabbit Team")
+			heirloom_type = pick(/obj/item/toy/plush/rabbit)
+	if(!heirloom_type) // we fucked up, give them whatever
+		heirloom_type = pick(
+		/obj/item/toy/cards/deck,
+		/obj/item/lighter,
+		/obj/item/dice/d20)
+	heirloom = new heirloom_type(get_turf(quirk_holder))
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+/datum/quirk/family_heirloom/post_add()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
+
+	var/list/names = splittext(quirk_holder.real_name, " ")
+	var/family_name = names[names.len]
+
+	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
+
+/datum/quirk/artist
+	name = "Artist"
+	desc = "You are an artist and constantly seek out inspiration in your enviroment, you carry art supplies with you"
+	value = 0
+	medical_record_text = "The patient always has painting supplies with them, do not ask them why else they might become aggresive"
+
+/datum/quirk/artist/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
+	H.put_in_hands(art)
+
 // Special quirks end
 
 /datum/quirk/nearsighted //t. errorage
@@ -52,72 +119,6 @@
 	gain_text = "<span class='danger'>You feel like a pushover.</span>"
 	lose_text = "<span class='notice'>You feel like standing up for yourself.</span>"
 	medical_record_text = "Patient presents a notably unassertive personality and is easy to manipulate."
-
-/datum/quirk/family_heirloom
-	name = "Family Heirloom"
-	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
-	value = 0
-	var/obj/item/heirloom
-	var/where
-	medical_record_text = "This patient takes their family heirloom everywhere."
-
-/datum/quirk/family_heirloom/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/heirloom_type
-
-	if(ismoth(H) && prob(50))
-		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
-	else
-		switch(quirk_holder.mind.assigned_role)
-			//Command
-			if("Manager")
-				heirloom_type = pick(/obj/item/toy/plush/angela)
-			if("Extraction Officer")
-				heirloom_type = pick(/obj/item/toy/plush/binah)
-			if("Records Officer")
-				heirloom_type = pick(/obj/item/toy/plush/hokma)
-			if("Agent Captain")
-				heirloom_type = pick(/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind)
-			//Common folk
-			if("Veteran Agent")
-				heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt, /obj/item/toy/plush/moth)
-			if("Senior Agent")
-				heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
-			if("Agent")
-				heirloom_type = pick(/obj/item/clothing/accessory/armband/lobotomy, /obj/item/clothing/accessory/armband/lobotomy/training, /obj/item/clothing/accessory/armband/lobotomy/safety, /obj/item/clothing/accessory/armband/lobotomy/command, /obj/item/clothing/accessory/armband/lobotomy/info, /obj/item/clothing/accessory/armband/lobotomy/discipline)
-			if("Agent Intern")
-				heirloom_type = pick(/obj/item/paper/guides/jobs/zayin/guide)
-			if("Clerk")
-				heirloom_type = pick(/obj/item/toy/crayon/spraycan/infinite)
-			//Technically un-obtainable, but im adding them anyway because why not.
-			if("Rabbit Team Leader")
-				heirloom_type = pick(/obj/item/toy/plush/myo)
-			if("Rabbit Team")
-				heirloom_type = pick(/obj/item/toy/plush/rabbit)
-			//Today im giving a GUN to HOD, lets see what happens :)
-			if("Sephirah")
-				heirloom_type = pick(/obj/item/gun/ego_gun/clerk)
-
-	if(!heirloom_type)
-		heirloom_type = pick(
-		/obj/item/toy/cards/deck,
-		/obj/item/lighter,
-		/obj/item/dice/d20)
-	heirloom = new heirloom_type(get_turf(quirk_holder))
-	var/list/slots = list(
-		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-		LOCATION_HANDS = ITEM_SLOT_HANDS
-	)
-	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
-
-/datum/quirk/family_heirloom/post_add()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
-
-	var/list/names = splittext(quirk_holder.real_name, " ")
-	var/family_name = names[names.len]
-
-	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 /datum/quirk/empath
 	name = "Empath"

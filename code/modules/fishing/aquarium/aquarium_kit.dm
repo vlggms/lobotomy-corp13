@@ -1,6 +1,4 @@
-#define AQUARIUM_COMPANY "Aquatech Ltd."
-
-// Fish feed can
+///Fish feed can
 /obj/item/fish_feed
 	name = "fish feed can"
 	desc = "Autogenerates nutritious fish feed based on sample inside."
@@ -8,12 +6,73 @@
 	icon_state = "fish_feed"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/fish_feed/Initialize()
+/obj/item/fish_feed/Initialize(mapload)
 	. = ..()
 	create_reagents(5, OPENCONTAINER)
 	reagents.add_reagent(/datum/reagent/consumable/nutriment, 1) //Default fish diet
 
-// Stasis fish case container for moving fish between aquariums safely.
+/obj/item/aquarium_kit
+	name = "DIY Aquarium Construction Kit"
+	desc = "Everything you need to build your own aquarium. Raw materials sold separately."
+	icon = 'icons/obj/aquarium.dmi'
+	icon_state = "construction_kit"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/aquarium_kit/attack_self(mob/user)
+	. = ..()
+	to_chat(user,"There's instruction and tools necessary to build aquarium inside. All you need is to start crafting.")
+
+
+/obj/item/aquarium_prop
+	name = "generic aquarium prop"
+	desc = "very boring"
+	icon = 'icons/obj/aquarium.dmi'
+
+	w_class = WEIGHT_CLASS_TINY
+	var/layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/aquarium_prop/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/aquarium_content)
+
+/obj/item/aquarium_prop/rocks
+	name = "rocks"
+	icon_state = "rocks"
+
+/obj/item/aquarium_prop/seaweed_top
+	name = "dense seaweeds"
+	icon_state = "seaweeds_front"
+	layer_mode = AQUARIUM_LAYER_MODE_TOP
+
+/obj/item/aquarium_prop/seaweed
+	name = "seaweeds"
+	icon_state = "seaweeds_back"
+	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/aquarium_prop/rockfloor
+	name = "rock floor"
+	icon_state = "rockfloor"
+	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/aquarium_prop/treasure
+	name = "tiny treasure chest"
+	icon_state = "treasure"
+	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/aquarium_prop/lcorp
+	name = "tiny lobotomy corp"
+	icon_state = "lcorp"
+	layer_mode = AQUARIUM_LAYER_MODE_BOTTOM
+
+/obj/item/storage/box/aquarium_props
+	name = "aquarium props box"
+	desc = "All you need to make your aquarium look good."
+
+/obj/item/storage/box/aquarium_props/PopulateContents()
+	for(var/prop_type in subtypesof(/obj/item/aquarium_prop))
+		new prop_type(src)
+
+//FISH CASE
 /obj/item/storage/fish_case
 	name = "stasis fish case"
 	desc = "A small case keeping the fish inside in stasis."
@@ -28,17 +87,6 @@
 /obj/item/storage/fish_case/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_FISH_SAFE_STORAGE, TRAIT_GENERIC)
-
-/// Fish case with single random fish inside.
-/obj/item/storage/fish_case/random/PopulateContents()
-	. = ..()
-	generate_fish(src, select_fish_type())
-
-/obj/item/storage/fish_case/random/proc/select_fish_type()
-	return random_fish_type()
-
-/obj/item/storage/fish_case/random/freshwater/select_fish_type()
-	return random_fish_type(required_fluid=AQUARIUM_FLUID_FRESHWATER)
 
 /// Book detailing where to get the fish and their properties.
 /obj/item/book/fish_catalog
@@ -62,8 +110,8 @@
 	var/static/fish_info
 	if(!fish_info)
 		fish_info = list()
-		for(var/_fish_behaviour in subtypesof(/datum/aquarium_behaviour/fish))
-			var/datum/aquarium_behaviour/fish/fish_behaviour = _fish_behaviour
+		for(var/_fish_behaviour in subtypesof(/obj/item/fish))
+			var/obj/item/fish/fish_behaviour = _fish_behaviour
 			var/list/fish_data = list()
 			if(!initial(fish_behaviour.show_in_catalog))
 				continue
@@ -74,7 +122,7 @@
 			fish_data["temp_max"] = initial(fish_behaviour.required_temperature_max)
 			fish_data["icon"] = sanitize_css_class_name("[initial(fish_behaviour.icon)][initial(fish_behaviour.icon_state)]")
 			fish_data["color"] = initial(fish_behaviour.color)
-			fish_data["source"] = initial(fish_behaviour.availible_in_random_cases) ? "[AQUARIUM_COMPANY] Fish Packs" : "Unknown"
+			fish_data["source"] = "Unknown"
 			var/datum/reagent/food_type = initial(fish_behaviour.food)
 			if(food_type != /datum/reagent/consumable/nutriment)
 				fish_data["feed"] = initial(food_type.name)
@@ -89,37 +137,3 @@
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/fish)
 	)
-
-/obj/item/aquarium_kit
-	name = "DIY Aquarium Construction Kit"
-	desc = "Everything you need to build your own aquarium.(Raw materials sold separately)"
-	icon = 'icons/obj/aquarium.dmi'
-	icon_state = "construction_kit"
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/aquarium_kit/attack_self(mob/user)
-	. = ..()
-	to_chat(user,"<span class='notice'>There's instruction and tools necessary to build aquarium inside. All you need is to start crafting.</span>")
-
-
-/obj/item/aquarium_prop
-	name = "generic aquarium prop"
-	desc = "very boring"
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/storage/box/aquarium_props
-	name = "aquarium props box"
-	desc = "All you need to make your aquarium look good"
-
-/obj/item/storage/box/aquarium_props/PopulateContents()
-	for(var/prop_type in subtypesof(/datum/aquarium_behaviour/prop))
-		generate_fish(src, prop_type, /obj/item/aquarium_prop)
-
-/obj/item/storage/box/fish_debug
-	name = "box full of fish"
-
-/obj/item/storage/box/fish_debug/PopulateContents()
-	for(var/fish_type in subtypesof(/datum/aquarium_behaviour/fish))
-		generate_fish(src,fish_type)
-
-#undef AQUARIUM_COMPANY

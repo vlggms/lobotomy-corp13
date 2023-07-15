@@ -637,14 +637,6 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/harmony
-	name = "Harmony"
-	icon_state = "harmony"
-	prudence_bonus = 5
-	temperance_bonus = -5
-	justice_bonus = 5
-	slot = MOUTH_2
-
 /datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
 	icon_state = "homing_instinct"
@@ -987,6 +979,16 @@
 	icon_state = "bride"
 	prudence_bonus = 2
 	temperance_bonus = 5
+	slot = HAT
+
+//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
+//so right now its 10 temp
+/datum/ego_gifts/swan
+	name = "Black Swan"
+	icon_state = "swan"
+	fortitude_bonus = -4
+	prudence_bonus = -4
+	temperance_bonus = 10
 	slot = HAT
 
 /// All ALEPH EGO Gifts

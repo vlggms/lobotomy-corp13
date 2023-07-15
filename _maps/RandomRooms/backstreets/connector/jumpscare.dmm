@@ -1,0 +1,500 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"cU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"dA" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"ei" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"fB" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ht" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ih" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"iB" = (
+/obj/structure/chair/pew/left{
+	desc = "For resting your legs.";
+	name = "bench"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"iI" = (
+/obj/structure/chair/pew/right{
+	desc = "For resting your legs.";
+	name = "bench"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"jF" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 10
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"lW" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"mH" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"qO" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"sv" = (
+/obj/structure/flora/grass/jungle{
+	pixel_x = -8;
+	pixel_y = -10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"tV" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wt" = (
+/obj/machinery/vending/cigarette/beach,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wA" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wH" = (
+/obj/structure/flora/rock/pile{
+	pixel_x = 6;
+	pixel_y = -13
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"xf" = (
+/obj/effect/spawner/randomsnackvend,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"yf" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"yo" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"zf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"AP" = (
+/obj/structure/flora/rock/pile{
+	pixel_x = -11
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Bo" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 9
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Cz" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/key/displaycase,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"GT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Ie" = (
+/obj/structure/displaycase/trophy{
+	alert = 0
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"LV" = (
+/obj/structure/statue/sandstone/venus{
+	desc = "To know and manipulate all the secrets of the world; that is the privilege of the Head, the Eye, and the Claws. It is their honor and absolute power.";
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "fixer_p";
+	name = "statue of a tax collector";
+	pixel_y = null
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"MH" = (
+/obj/structure/displaycase/trophy{
+	alert = 0
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"MI" = (
+/obj/structure/flora/rock/pile/largejungle{
+	pixel_x = -2;
+	pixel_y = -10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"MY" = (
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/folder/syndicate/blue{
+	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
+	name = "Highly Confidential Folder"
+	},
+/obj/effect/turf_decal/siding/wideplating/dark,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NU" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/weather/dirt{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Pz" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"QK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Rd" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Sc" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Tq" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"TT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"VL" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"VM" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 5
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"VO" = (
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"VR" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Wh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"XA" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"XV" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"ZS" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+dA
+dA
+dA
+dA
+dA
+dA
+Tq
+XA
+VO
+dA
+dA
+dA
+dA
+dA
+dA
+"}
+(2,1,1) = {"
+dA
+fB
+Rd
+Rd
+yf
+fB
+Tq
+XA
+VO
+yf
+wH
+Rd
+MI
+MI
+dA
+"}
+(3,1,1) = {"
+dA
+Rd
+sv
+Rd
+Rd
+Rd
+Tq
+XA
+VO
+Rd
+Rd
+Rd
+Rd
+MI
+dA
+"}
+(4,1,1) = {"
+dA
+yf
+Rd
+Rd
+ei
+NU
+Wh
+Wh
+Wh
+qO
+Rd
+AP
+yf
+Rd
+dA
+"}
+(5,1,1) = {"
+dA
+Rd
+Rd
+fB
+NU
+yo
+VR
+VR
+VR
+GT
+qO
+Rd
+Rd
+AP
+dA
+"}
+(6,1,1) = {"
+VL
+VL
+VL
+VL
+Pz
+VR
+Bo
+Ie
+jF
+VR
+QK
+VL
+VL
+VL
+VL
+"}
+(7,1,1) = {"
+XA
+XA
+XA
+XA
+Pz
+VR
+Cz
+LV
+MY
+VR
+QK
+XA
+XA
+XA
+XA
+"}
+(8,1,1) = {"
+XV
+XV
+XV
+XV
+Pz
+VR
+VM
+MH
+Sc
+VR
+QK
+XV
+XV
+XV
+XV
+"}
+(9,1,1) = {"
+dA
+ht
+Rd
+yf
+lW
+zf
+VR
+VR
+VR
+cU
+ZS
+yf
+Rd
+ih
+dA
+"}
+(10,1,1) = {"
+dA
+iB
+Rd
+Rd
+ei
+lW
+TT
+TT
+TT
+ZS
+Rd
+Rd
+Rd
+Rd
+dA
+"}
+(11,1,1) = {"
+dA
+iI
+Rd
+Rd
+Rd
+Rd
+XA
+XA
+VO
+yf
+Rd
+Rd
+Rd
+yf
+dA
+"}
+(12,1,1) = {"
+dA
+mH
+tV
+wt
+xf
+yf
+XA
+XA
+VO
+wA
+Rd
+Rd
+Rd
+fB
+dA
+"}
+(13,1,1) = {"
+dA
+dA
+dA
+dA
+dA
+dA
+Tq
+XA
+VO
+dA
+dA
+dA
+dA
+dA
+dA
+"}

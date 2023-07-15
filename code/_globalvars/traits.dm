@@ -179,6 +179,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_SKILLED" = TRAIT_SKILLED,
 		"TRAIT_NERD" = TRAIT_NERD,
 		"TRAIT_BRAWLER" = TRAIT_BRAWLER,
+		"TRAIT_ARTIST" = TRAIT_ARTIST,
 		"TRAIT_GUNS" = TRAIT_GUNS,               // used for the "no guns" challenge
 		"TRAIT_HEALING" = TRAIT_HEALING,          // used for the "no medipens" challenge
 		"TRAIT_FLUFFY_TONGUE" = TRAIT_FLUFFY_TONGUE

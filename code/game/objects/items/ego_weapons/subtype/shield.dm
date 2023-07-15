@@ -104,7 +104,8 @@
 //Allows the user to block again when called
 /obj/item/ego_weapon/shield/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
-	to_chat(user,"<span class='nicegreen'>[block_cooldown_message]</span>")
+	if(user.is_holding(src))
+		to_chat(user,"<span class='nicegreen'>[block_cooldown_message]</span>")
 
 /obj/item/ego_weapon/shield/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
@@ -122,15 +123,18 @@
 	user.physiology.pale_mod /= 1.2
 
 //Handles block messages and sound effect
-/obj/item/ego_weapon/shield/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/proc/AnnounceBlock(datum/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(src != source.get_active_held_item() && src != source.get_inactive_held_item())
-		DisableBlock(source)
+	if(!ishuman(source))
+		return FALSE
+	var/mob/living/carbon/human/H = source
+	if(!H.is_holding(src))
+		DisableBlock(H)
 		return
 	block_success = TRUE
 
 	playsound(get_turf(src), block_sound, block_sound_volume, 0, 7)
-	source.visible_message("<span class='userdanger'>[source.real_name] [hit_message]</span>")
+	H.visible_message("<span class='userdanger'>[H.real_name] [hit_message]</span>")
 
 //Adds projectile deflection on attack cooldown, you can override and return 0 to prevent this from happening.
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)

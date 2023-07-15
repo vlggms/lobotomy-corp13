@@ -31,6 +31,10 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
+	"East Office Director",
+	"East Office Fixer",
+	"North Office Director",
+	"North Office Fixer",
 	))
 
 
@@ -44,6 +48,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Scavenger",
 	"Backstreets Butcher",
 	"Doctor",
+	"Workshop Attendant",
 	"Main Office Representative",
 	))
 

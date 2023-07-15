@@ -215,15 +215,6 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
-	//These maps need all abnos breached.
-	//Fucking Maptype initializes before Ticker so I need to do this here
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		if(!(istype(mode, /datum/game_mode/combat)))
-			mode = new /datum/game_mode/combat
-	else
-		if(istype(mode, /datum/game_mode/combat))
-			mode = new /datum/game_mode/management/classic
-
 	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
 
@@ -253,7 +244,17 @@ SUBSYSTEM_DEF(ticker)
 			SSjob.ResetOccupations()
 			return FALSE
 
+	//These maps need all abnos breached.
+	//Fucking Maptype initializes before Ticker so I need to do this here
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		if(!(istype(mode, /datum/game_mode/combat)))
+			mode = new /datum/game_mode/combat
+	else
+		if(istype(mode, /datum/game_mode/combat))
+			mode = new /datum/game_mode/management/classic
+
 	CHECK_TICK
+
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
 	can_continue = src.mode.pre_setup()		//Choose antagonists

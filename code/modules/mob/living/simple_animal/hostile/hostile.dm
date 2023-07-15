@@ -705,6 +705,10 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
+	//Mobs should stay unpatroled on combat maps.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return
+
 	var/turf/target_center
 	var/list/potential_centers = list()
 	for(var/pos_targ in GLOB.department_centers)

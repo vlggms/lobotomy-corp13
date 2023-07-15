@@ -53,6 +53,7 @@
 	Risk Class: ZAYIN <br>
 	- When an employee dropped E.G.O or ahn into Wishing well, they received a random gift. <br>
 	- The greater the employee's sacrifice, the greater the reward will be. <br>
+	- Employees should be careful to make sure that they do not fall inside of the well. <br>
 	- There is no way of knowing what lies at the bottom of Wishing Well."}
 
 //Behavior Adjustment
@@ -137,7 +138,7 @@
 	- If the employee listens to the abnormality, they will experience an increase in Temperance.	<br>
 	- If the employee continues to listen, the employee's Temperance will increase until it reaches its limit.	<br>
 	- Unless exposure is minimal, the employee will become increasingly vulnerable to BLACK damage.	<br>
-	- Exposure to this abnormality causes employees to become highly paranoid and careless when working with abnormalities, taking double damage."}
+	- Exposure to this abnormality causes employees to become highly paranoid and careless when working with abnormalities, taking up to double damage with excessive use."}
 
 //Theonite Slab
 /obj/item/paper/fluff/info/tool/theonite_slab
@@ -148,4 +149,5 @@
 	- Upon exposure to this abnormality, the employee will experience an increase in Justice.	<br>
 	- Repeated exposure will increase ones Justice until it reaches its limit.	<br>
 	- For every use beyond the first, the employee will become vulnerable to PALE damage.	<br>
-	- WARNING! Employees who use this abnormality have reported being attacked by an unknown entity in stressful situations."}
+	- WARNING! Employees who use this abnormality have reported being attacked by an unknown entity when hurt by PALE damage, or otherwise injured significantly.	<br>
+	- Such attacks seem to harmlessly pass through other employees who are not affected by this abnormality. In addition, the attacks become larger and take more time to prepare with more uses."}

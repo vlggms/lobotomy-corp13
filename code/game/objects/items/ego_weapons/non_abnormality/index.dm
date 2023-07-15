@@ -22,6 +22,10 @@
 
 /obj/item/ego_weapon/city/index/attack_self(mob/user)
 	..()
+	if(force != initial(force))
+		to_chat(user, "<span class='notice'>The prescript buff is still active.</span>")
+		return
+
 	//Okay, check if you have a prescript
 	if(prescript_target && user == weapon_owner)
 		var/mob/living/simple_animal/hostile/abnormality/Y = prescript_target
@@ -66,11 +70,11 @@
 /obj/item/ego_weapon/city/index/proc/prescript_complete(mob/living/user)
 	prescript_target = null
 	to_chat(user, "<span class='userdanger'>You have completed your prescript, and you have been graced.</span>")
-	force *= 1.3	//BEEG BONUS
+	force *= 1.45	//BEEG BONUS
 	addtimer(CALLBACK(src, .proc/Return, user), 5 MINUTES)
 
 /obj/item/ego_weapon/city/index/proc/Return(mob/living/carbon/human/user)
-	force /= 1.3	//BEEG BONUS
+	force /= 1.45	//BEEG BONUS
 	to_chat(user, "<span class='notice'>The power from your prescript is now gone.</span>")
 
 
@@ -80,6 +84,9 @@
 	desc = "A long sword used by index proxies."
 	icon_state = "indexlongsword"
 	inhand_icon_state = "indexlongsword"
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	force = 56
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -88,12 +95,25 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+//Just gonna set this to the big proxy weapon for requirement reasons
+/obj/item/ego_weapon/city/index/proxy/spear
+	name = "index spear"
+	desc = "A spear used by index proxies."
+	icon_state = "indexspear"
+	inhand_icon_state = "indexspear"
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
+	attack_speed = 1.2
+	reach = 2
+
 //Fockin massive sword
 /obj/item/ego_weapon/city/index/yan
 	name = "index greatsword"
 	desc = "A greatsword sword used by a specific index messenger."
 	icon_state = "indexgreatsword"
 	inhand_icon_state = "indexgreatsword"
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleaves", "cuts")
+	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
 	force = 130
 	attack_speed = 2
 	attribute_requirements = list(

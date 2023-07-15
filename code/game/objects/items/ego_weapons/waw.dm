@@ -791,8 +791,8 @@
 	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/shield/swan
-	name = "swan"
-	desc = "Believing that it would turn white, the black swan wanted to lift the curse by weaving together nettles.\
+	name = "black swan"
+	desc = "It yeared for a dream it would never wake up from, but reality was as cruel as ever.\
 	All that was left is a worn parasol it once treasured."
 	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
 	icon_state = "swan_closed"
@@ -800,8 +800,8 @@
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
-	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	attack_verb_continuous = list("bashs", "whaps", "beats", "prods", "pokes")
+	attack_verb_simple = list("bash", "whap", "beat", "prod", "poke")
 	hitsound = 'sound/weapons/fixer/generic/spear1.ogg'
 	reductions = list(40, 30, 50, 30) // 150
 	projectile_block_duration = 1 SECONDS
@@ -905,6 +905,9 @@
 	if(do_after(user, 30))	//3 seconds for a big heal.
 		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
+			if(L.is_working)
+				to_chat(L, "<span class='nicegreen'>The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing.</span>")
+				continue
 			L.adjustSanityLoss(-10)
 	inuse = FALSE
 

@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	// I am using this all because default subsystem waiting and next_fire is done in a very... interesting way.
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
-	/// Wait time for next abno spawn
+	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
 	var/next_abno_spawn_time = 4 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
 	rooms_start = GLOB.abnormality_room_spawners.len
-	next_abno_spawn_time -= min(30, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
+	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -118,10 +118,12 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = GLOB.clients.len
 	var/i
-	for(i=1 to round(clamp(player_count, 6, 30) / 6))
+	for(i=1 to round(clamp(player_count, 5, 30) / 5))
+		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
-		sleep(10 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 	message_admins("[i] round-start abnormalities have been spawned.")
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		Q.visible_message("<span class='notice'>All the initial abnormalities have arrived. Have a nice day.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
