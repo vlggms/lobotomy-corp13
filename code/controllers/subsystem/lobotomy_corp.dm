@@ -185,7 +185,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			pod.explosionSize = list(0,0,0,0)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
-		available_box = max(available_box - (goal_boxes - box_goal), 0) // Consume the remaining "available boxes" (The stuff we can spend) to fill out the goal.
 	return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
