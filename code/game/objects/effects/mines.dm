@@ -52,7 +52,7 @@
 	. = ..()
 	triggermine()
 
-/obj/effect/mine/hitby()
+/obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	. = ..()
 	triggermine()
 
