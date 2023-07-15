@@ -334,6 +334,8 @@
 	parts += goal_report()
 	//Economy & Money
 	parts += market_report()
+	//PE Quota
+	parts += pe_report()
 
 	listclearnulls(parts)
 
@@ -557,6 +559,25 @@
 	else
 		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
 	return parts
+
+/datum/controller/subsystem/ticker/proc/pe_report()
+	. = list()
+	. += "<span class='header'>PE Quota</span>"
+	. += "<div class='panel stationborder'>"
+	. += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
+	if(SSlobotomy_corp.goal_boxes)
+		. += "[SSlobotomy_corp.goal_boxes] PE was refined or otherwise generated through alternative means.<br>"
+	if(SSlobotomy_corp.total_spent)
+		. += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
+	if(SSlobotomy_corp.goal_reached)
+		. += "PE Quota was reached!<br>"
+	else
+		if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
+		else
+			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
+	. += "</div>"
+	return
 
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
