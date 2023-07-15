@@ -711,10 +711,11 @@
 /area/centcom/hub)
 "cV" = (
 /obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
 	max_integrity = 250000000;
-	name = "Representative's Office";
+	name = "Sefirot Offices";
 	normal_integrity = 250000000;
-	req_access_txt = "69"
+	req_access_txt = "67"
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
@@ -6503,7 +6504,10 @@
 /area/department_main/manager)
 "zh" = (
 /obj/machinery/door/airlock/hatch{
+	hackProof = 1;
+	max_integrity = 25000000;
 	name = "Arcade Secure Storage";
+	normal_integrity = 25000000;
 	req_access_txt = "69"
 	},
 /turf/open/floor/plasteel/dark,
@@ -9174,15 +9178,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
-"JY" = (
-/obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
-	name = "Sefirot Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67"
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Ka" = (
 /obj/machinery/light{
 	dir = 1
@@ -24197,9 +24192,9 @@ qp
 qp
 qp
 JP
-JY
+cV
 JP
-JY
+cV
 JP
 qp
 qp
