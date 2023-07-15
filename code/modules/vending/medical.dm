@@ -20,7 +20,6 @@
 					/obj/item/reagent_containers/hypospray/medipen/mental = 6,
 					/obj/item/reagent_containers/hypospray/medipen/salacid = 6,
 					/obj/item/storage/box/bodybags = 4,
-					/obj/item/storage/box/gloves = 1,
 					/obj/item/storage/box/masks = 1)
 	contraband = list(/obj/item/storage/box/gum/happiness = 3,
 						/obj/item/storage/box/hug/medical = 1)
