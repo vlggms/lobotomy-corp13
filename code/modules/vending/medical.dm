@@ -5,7 +5,8 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MEDICAL)
-	products = list(/obj/item/stack/medical/gauze = 8,
+	products = list(/obj/item/flashlight/pen = 12,
+					/obj/item/stack/medical/gauze = 8,
 					/obj/item/reagent_containers/syringe = 12,
 					/obj/item/reagent_containers/dropper = 3,
 					/obj/item/reagent_containers/glass/bottle/ethanol = 5,
@@ -30,6 +31,8 @@
 					/obj/item/storage/firstaid/advanced = 2,
 					/obj/item/shears = 1,
 					/obj/item/storage/organbox = 1,
+					/obj/item/wallframe/defib_mount = 1,
+					/obj/item/wallframe/defib_mount/charging = 1,
 					/obj/item/defibrillator = 2)
 	refill_canister = /obj/item/vending_refill/medical
 	default_price = PAYCHECK_EASY
