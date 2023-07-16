@@ -57,3 +57,5 @@
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
 		return TRUE
 	return FALSE
+
+
