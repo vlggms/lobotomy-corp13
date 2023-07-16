@@ -324,7 +324,7 @@
 	cooldown_time = 15 SECONDS
 
 /obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
-	if(get_dist(user, target) > 10)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
 	var/turf/target_turf = get_turf(target)
 	new /mob/living/simple_animal/cocoonability(target_turf)
@@ -378,7 +378,7 @@
 	cooldown_time = 30 SECONDS
 
 /obj/effect/proc_holder/ability/aimed/blackhole/Perform(target, mob/user)
-	if(get_dist(user, target) > 10)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
 	var/turf/target_turf = get_turf(target)
 	new /obj/projectile/black_hole_realized(target_turf)
