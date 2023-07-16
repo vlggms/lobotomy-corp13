@@ -330,7 +330,7 @@
 
 	if(CK.mode == 2)
 		if(can_meltdown && meltdown && meltdown_time > 0)
-			meltdown_time *= 1.5
+			meltdown_time += CK.meltdowntimer_increase
 			to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [meltdown_time].</span>")
 			qdel(CK)
 			return

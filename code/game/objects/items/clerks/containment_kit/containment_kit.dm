@@ -5,7 +5,7 @@
 //Otherwise completely unuseable!
 
 /obj/item/containment_kit
-	name = "Qliphoth Unitily And Containment Kit"
+	name = "Qliphoth Unitily Abnormality Containment Kit"
 	desc = "Q.U.A.C.K for short, this one time use kit allows a containment unit to meltdown for longer or restore a qliphoth!"
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "quack"
@@ -25,6 +25,11 @@
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	var/mode = 1
+	var/meltdowntimer_increase = 20
+
+//Better verson gives another 60 seconds to rush over and deal with this
+/obj/item/containment_kit/long_increase
+	meltdowntimer_increase = 60
 
 /obj/item/containment_kit/attack_self(mob/user)
 	if(!clerk_check(user))
@@ -33,7 +38,7 @@
 	switch(mode)
 		if(1)
 			mode = 2
-			to_chat(user, "<span class='notice'>The kit will now be able to increase a meltdown timer.</span>")
+			to_chat(user, "<span class='notice'>The kit will now be able to increase a meltdown timer by [meltdowntimer_increase].</span>")
 		if(2)
 			mode = 1
 			to_chat(user, "<span class='notice'>The kit will now restore if possable a Qliphoth Count on a abnormality.</span>")
@@ -46,7 +51,7 @@
 		if(1)
 			. += "Is currently set to restore 1 Qliphoth Counter on a abnormality."
 		if(2)
-			. += "Is currently set to increase a containment units meltdown timer."
+			. += "Is currently set to increase a containment units meltdown timer by [meltdowntimer_increase]."
 
 /obj/item/containment_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
