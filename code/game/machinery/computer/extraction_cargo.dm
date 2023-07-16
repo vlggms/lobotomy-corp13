@@ -69,6 +69,7 @@
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Q.U.A.C.K ",					/obj/item/containment_kit,											200, CAT_RESOURCE) = 1,
 
 		//Random stuff
 		new /datum/data/extraction_cargo("Bubblegum Gum Packet ",		/obj/item/storage/box/gum/bubblegum,								15, CAT_OTHER) = 1,

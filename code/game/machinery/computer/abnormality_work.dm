@@ -32,6 +32,12 @@
 	if(meltdown)
 		SSvis_overlays.add_vis_overlay(src, icon, "abnormality_meltdown[meltdown]", layer + 0.1, plane, dir)
 
+/obj/machinery/computer/abnormality/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/containment_kit))
+		containment_kit_modifications(I, user)
+		return FALSE
+	..()
+
 /obj/machinery/computer/abnormality/examine(mob/user)
 	. = ..()
 	if(!datum_reference)
@@ -304,3 +310,35 @@
 
 /obj/machinery/computer/abnormality/tutorial/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
 	..(user, work_type, training = training)
+
+//Fancy Quack Kit Intraction
+/obj/machinery/computer/abnormality/proc/containment_kit_modifications(obj/item/I, mob/user)
+	//Just in case for some reason theirs no datum
+	if(!datum_reference)
+		return
+
+	//Adds a sanity check to make sure we dont assume its a kit always (directly call procs)
+	if(!istype(I, /obj/item/containment_kit))
+		to_chat(user,"<span class='warning'>Something has gone wrong with a abnormality console, oh no! Report this to LCorp 13 Coders</span>")
+		return
+
+	var/obj/item/containment_kit/CK = I
+	//Only Clerks risking their frail civ life can operate this.
+	if(user?.mind?.assigned_role != "Clerk")
+		to_chat(user,"<span class='warning'>You don't know how to use [CK.name].</span>")
+		return
+
+	if(CK.mode == 2)
+		if(can_meltdown && meltdown && meltdown_time > 0)
+			meltdown_time *= 1.5
+			to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [meltdown_time].</span>")
+			qdel(CK)
+			return
+		else
+			to_chat(user,"<span class='warning'>This abnormality is not in a meltdown.</span>")
+			return
+
+	if(CK.mode == 1)
+		datum_reference.qliphoth_change(1, user, always_give_feedback = TRUE)
+		qdel(CK)
+		return
