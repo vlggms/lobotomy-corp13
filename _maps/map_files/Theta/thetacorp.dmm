@@ -19294,6 +19294,25 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
+"PO" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/purple,
+/obj/structure/window/reinforced/spawner{
+	max_integrity = 25
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/structure/table/abductor,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/information)
 "PP" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/structure/disposaloutlet{
@@ -57886,7 +57905,7 @@ qy
 Cx
 vX
 Uw
-NA
+PO
 bk
 bk
 bk

@@ -2667,6 +2667,18 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"OO" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "OV" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/siding{
@@ -41349,7 +41361,7 @@ Yb
 Mv
 wQ
 nD
-Ne
+OO
 MS
 Yq
 JS
