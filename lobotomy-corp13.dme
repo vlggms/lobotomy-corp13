@@ -2317,6 +2317,7 @@
 #include "code\modules\jobs\job_types\gimmick\workshop.dm"
 #include "code\modules\jobs\job_types\gimmick\fixer\east.dm"
 #include "code\modules\jobs\job_types\gimmick\fixer\north.dm"
+#include "code\modules\jobs\job_types\gimmick\onemap\fishing.dm"
 #include "code\modules\jobs\job_types\rcorp\command.dm"
 #include "code\modules\jobs\job_types\rcorp\officer.dm"
 #include "code\modules\jobs\job_types\rcorp\rabbit.dm"
