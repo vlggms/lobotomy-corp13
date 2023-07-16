@@ -75,7 +75,7 @@
 			item_count += to_process[list_item]
 		processing_time = processing_time_base / (1+0.2*(to_process.len - 1))
 		to_chat(user, "<span class='notice'>\The [S] was dumped into [src]. [item_count] total items have been loaded.</span>")
-		playsound(A, "rustle", 50, TRUE, -5)
+		playsound(I, "rustle", 50, TRUE, -5)
 		return TRUE
 
 	if(!(I.type in allowed_items))
