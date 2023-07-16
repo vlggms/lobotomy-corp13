@@ -342,3 +342,4 @@
 		datum_reference.qliphoth_change(1, user, always_give_feedback = TRUE)
 		qdel(CK)
 		return
+
