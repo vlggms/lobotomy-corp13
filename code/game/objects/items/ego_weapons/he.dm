@@ -191,7 +191,7 @@
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
-			list(40, 20, 20, 0)
+			reductions = list(40, 20, 20, 0)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
