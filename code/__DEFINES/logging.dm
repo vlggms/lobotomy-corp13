@@ -40,6 +40,7 @@
 #define LOG_CLONING			(1 << 17)
 #define LOG_SHUTTLE			(1 << 18)
 #define LOG_ECON			(1 << 19)
+#define LOG_WISHINGWELL		(1 << 20)
 
 //Individual logging panel pages
 #define INDIVIDUAL_ATTACK_LOG		(LOG_ATTACK)

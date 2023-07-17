@@ -207,9 +207,10 @@
 		return
 
 	var/gift = null
+	log_wishingwell("[key_name(user)] threw [I] into wishing well!")
 	qdel(I)
 	var/gacha = rand(1,100)
-	if(gacha > 50)
+	if(gacha > 70)
 		playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
 		to_chat(user, "<span class='notice'>Nothing happens...</span>")
 		return
@@ -217,55 +218,55 @@
 	switch(output)
 		if("MONEY")
 			switch(gacha)
-				if(1 to 5) //5% odds, spawn trash....
+				if(1 to 15) //15% odds, spawn trash
 					gift = pick(trash)
-				if(6 to 15)// 10% odds, down 1 risk level
+				if(16 to 35)// 20% odds, down 1 risk level
 					gift = pick(baditem)
-				if(16 to 50)//35% odds, spawn an item of the same tier
+				if(36 to 70)//35% odds, spawn an item of the same tier
 					gift = pick(normalitem)
 		if("ZAYIN")
 			switch(gacha)
-				if(1 to 5)//5% odds, ...or a hostile mob if using EGO
+				if(1 to 15)//15% odds, a hostile mob or trash
 					gift = pick(pick(dawn),pick(trash))
-				if(6 to 15)
+				if(16 to 35)
 					gift = pick(normalitem)
-				if(16 to 50)
+				if(36 to 70)
 					gift = pick(zayinitem)
 		if("TETH")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 15)
 					gift = pick(dawn)
-				if(6 to 15)
+				if(16 to 35)
 					gift = pick(zayinitem)
-				if(16 to 50)
+				if(36 to 70)
 					gift = pick(tethitem)
 		if("HE")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 15)
 					gift = pick(noon)
-				if(6 to 15)
+				if(16 to 36)
 					gift = pick(tethitem)
-				if(16 to 50)
+				if(36 to 70)
 					gift = pick(heitem)
 		if("WAW")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 15)
 					gift = pick(dusk)
-				if(6 to 15)
+				if(16 to 30)
 					gift = pick(heitem)
-				if(16 to 20)//5% odds to get a rarer item at WAW/ALEPH
+				if(31 to 36)//5% odds to get a rare item
 					gift = pick(/obj/item/ego_weapon/city/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
-				if(21 to 50)
+				if(36 to 70)
 					gift = pick(wawitem)
 		if("ALEPH")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 15)
 					gift = pick(midnight)
-				if(6 to 15)
+				if(16 to 30)
 					gift = pick(wawitem)
-				if(16 to 20)
+				if(31 to 36)//5% odds to get a rare item
 					gift = pick(pick(alephitem),/obj/item/toy/plush/bongbong) //egor says no PL/flowering/twilight
-				if(21 to 50)
+				if(36 to 70)
 					gift = pick(alephitem)
 
 	//Gacha now locked in
@@ -273,6 +274,24 @@
 		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
 		new gift(get_turf(src))
 		visible_message("<span class='notice'>Something comes out of the well!</span>")
+		var/tier = GachaCalc(gacha, output)
+		log_wishingwell("[key_name(user)] recieved [tier] [gift] from wishing well!")
+
+/obj/structure/toolabnormality/wishwell/proc/GachaCalc(gacha ,output) //temporary logging proc
+	var/current_tier
+	var/list/tiers = list("TRASH", "MONEY", "ZAYIN", "TETH", "HE", "WAW", "ALEPH", "EXTRA RARE")
+	var/index = tiers.Find(output)
+	switch(gacha)
+		if(1 to 15)
+			index = 1
+		if(16 to 35)
+			index = (index % tiers.len) - 1
+		if(36 to 70)
+			index = (index % tiers.len)
+	current_tier = tiers[index]
+	if(current_tier == "MONEY")
+		current_tier = "TRASH"
+	return current_tier
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
@@ -296,6 +315,7 @@
 		return FALSE
 
 	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
+	log_wishingwell("[key_name(user)] threw someone into wishing well!")
 	return ..(M, user, check_loc = FALSE) //it just works
 
 
@@ -332,3 +352,4 @@
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
 	visible_message("<span class='notice'>Something comes out of the well!</span>")
 	..()
+	log_wishingwell("[key_name(M)] fell into wishing well, becoming [deathgift]!")
