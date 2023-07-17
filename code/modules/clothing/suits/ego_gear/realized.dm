@@ -55,6 +55,7 @@
 	desc = "And the mouth of god spoke: You will be punished."
 	icon_state = "mouth"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/punishment
 
 /obj/item/clothing/suit/armor/ego_gear/realization/universe
 	name = "one with the universe"
@@ -75,10 +76,12 @@
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/aimed/cocoon_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"
-	desc = "Man fears the darkness, and so he scrapes away at the edges of it with fire."
+	desc = "Man fears the darkness, and so he scrapes away at the edges of it with fire.\
+	Grants various buffs to life of a daredevil when equipped."
 	icon_state = "fear"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 20)
 	flags_inv = null
@@ -98,16 +101,17 @@
 
 /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom
 	name = "sakura bloom"
-	desc = "Spring is coming and the petals shall fall."
+	desc = "The forest will never return to its original state once it dies. Cherish the rain."
 	icon_state = "sakura_bloom"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
 	realized_ability = /obj/effect/proc_holder/ability/petal_blizzard
 	hat = /obj/item/clothing/head/ego_hat/sakura_hat
+
 /obj/item/clothing/head/ego_hat/sakura_hat
 	name = "sakura bloom"
-	desc = "The forest will never return to its original state once it dies. Cherish the rain."
+	desc = "Spring is coming."
+	worn_icon = 'icons/mob/clothing/big_hat.dmi'
 	icon_state = "sakura"
-	flags_inv = HIDEMASK
 /* HE Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/grinder
@@ -186,6 +190,7 @@
 	desc = "And the eyes of god spoke: You will be saved."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/lamp
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/examine(mob/user)
 	. = ..()
@@ -237,6 +242,7 @@
 	desc = "While the miser is merely a capitalist gone mad, the capitalist is a rational miser."
 	icon_state = "capitalism"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/shrimp
 
 /* ALEPH Realizations */
 
@@ -253,11 +259,57 @@
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 90)
 	realized_ability = /obj/effect/proc_holder/ability/judgement
 
+/obj/item/clothing/suit/armor/ego_gear/realization/shell
+	name = "shell"
+	desc = "Armor of humans, for humans, by humans. Is it as 'human' as you?"
+	icon_state = "shell"
+	realized_ability = /obj/effect/proc_holder/ability/goodbye
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)
+
 /obj/item/clothing/suit/armor/ego_gear/realization/laughter
 	name = "laughter"
 	desc = "I do not recognize them, I must not, lest I end up like them. \
 			Through the silence, I hear them, I see them. The faces of all my friends are with me laughing too."
 	icon_state = "laughter"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 90, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
+	realized_ability = /obj/effect/proc_holder/ability/screach
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors
+	name = "fallen color"
+	desc = "Where does one go after falling into a black hole?"
+	icon_state = "fallencolors"
+	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 50)
+	var/canSUCC = TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamaged)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/Reset()
+	canSUCC = TRUE
+
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user)
+	//goonchem_vortex(get_turf(src), 1, 3)
+	if(!canSUCC)
+		return
+	canSUCC = FALSE
+	addtimer(CALLBACK(src, .proc/Reset), 2 SECONDS)
+	for(var/turf/T in view(3, user))
+		new /obj/effect/temp_visual/revenant(T)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
+			L.throw_at(throw_target, 1, 1)
+			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+
 

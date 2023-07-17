@@ -50,6 +50,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Doctor",
 	"Workshop Attendant",
 	"Main Office Representative",
+	"Fishhook Office Fixer",
 	))
 
 

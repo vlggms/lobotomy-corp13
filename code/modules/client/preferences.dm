@@ -908,7 +908,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/lastJob
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(job.total_positions == 0)	//Is the job admin only?
+			if(job.total_positions == 0 && job.spawn_positions == 0)	//Is the job unavailable
 				continue
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))
