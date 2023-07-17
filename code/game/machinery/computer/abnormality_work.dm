@@ -368,6 +368,3 @@
 		to_chat(user,"<span class='warning'>Winding the watch this soon after will not have any affect.</span>")
 		return
 
-	to_chat(user,"<span class='warning'>You don't know how to use [QR.name].</span>")
-
-
