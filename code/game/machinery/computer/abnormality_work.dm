@@ -36,6 +36,11 @@
 	if(istype(I, /obj/item/containment_kit))
 		containment_kit_modifications(I, user)
 		return FALSE
+
+	if(istype(I, /obj/item/records/qliphoth_repair))
+		containment_stopwatch_modifications(I, user)
+		return FALSE
+
 	..()
 
 /obj/machinery/computer/abnormality/examine(mob/user)
@@ -328,18 +333,41 @@
 		to_chat(user,"<span class='warning'>You don't know how to use [CK.name].</span>")
 		return
 
-	if(CK.mode == 2)
-		if(can_meltdown && meltdown && meltdown_time > 0)
-			meltdown_time += CK.meltdowntimer_increase
-			to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [meltdown_time].</span>")
-			qdel(CK)
-			return
-		else
-			to_chat(user,"<span class='warning'>This abnormality is not in a meltdown.</span>")
-			return
-
-	if(CK.mode == 1)
-		datum_reference.qliphoth_change(1, user, always_give_feedback = TRUE)
+	if(can_meltdown && meltdown && meltdown_time > 0)
+		meltdown_time += CK.meltdowntimer_increase
+		to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [meltdown_time].</span>")
 		qdel(CK)
 		return
+	else
+		to_chat(user,"<span class='warning'>This abnormality is not in a meltdown.</span>")
+		return
+
+
+//Fancy Quack Kit Intraction
+/obj/machinery/computer/abnormality/proc/containment_stopwatch_modifications(obj/item/I, mob/user)
+	//Just in case for some reason theirs no datum
+	if(!datum_reference)
+		return
+
+	//Adds a sanity check to make sure we dont assume its a kit always (directly call procs)
+	if(!istype(I, /obj/item/records/qliphoth_repair))
+		to_chat(user,"<span class='warning'>Something has gone wrong with a abnormality console, oh no! Report this to LCorp 13 Coders</span>")
+		return
+
+	var/obj/item/records/qliphoth_repair/QR = I
+	//Only Clerks risking their frail civ life can operate this.
+	if(user?.mind?.assigned_role != "Records Officer")
+		to_chat(user,"<span class='warning'>You don't know how to use [QR.name].</span>")
+		return
+
+	if(QR.usable)
+		datum_reference.qliphoth_change(1, user, always_give_feedback = TRUE)
+		QR.cooldown()
+		return
+	else
+		to_chat(user,"<span class='warning'>Winding the watch this soon after will not have any affect.</span>")
+		return
+
+	to_chat(user,"<span class='warning'>You don't know how to use [QR.name].</span>")
+
 

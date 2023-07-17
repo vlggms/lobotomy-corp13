@@ -1,7 +1,6 @@
 //Containment Kit!
 //Works simular to the Safty Kits but for containment units.
-//Mode 1: Increases if applicable the qliphoth by 1
-//Mode 2: If a meltdown is accouring, will give more time.
+//If a meltdown is accouring, will give more time.
 //Otherwise completely unuseable!
 
 /obj/item/containment_kit
@@ -24,7 +23,6 @@
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
-	var/mode = 1
 	var/meltdowntimer_increase = 20
 
 //Better verson gives another 60 seconds to rush over and deal with this
@@ -35,23 +33,11 @@
 	if(!clerk_check(user))
 		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
-	switch(mode)
-		if(1)
-			mode = 2
-			to_chat(user, "<span class='notice'>The kit will now be able to increase a meltdown timer by [meltdowntimer_increase].</span>")
-		if(2)
-			mode = 1
-			to_chat(user, "<span class='notice'>The kit will now restore if possable a Qliphoth Count on a abnormality.</span>")
-
 	return
 
 /obj/item/containment_kit/examine(mob/user)
 	. = ..()
-	switch(mode)
-		if(1)
-			. += "Is currently set to restore 1 Qliphoth Counter on a abnormality."
-		if(2)
-			. += "Is currently set to increase a containment units meltdown timer by [meltdowntimer_increase]."
+	. += "Is currently set to increase a containment units meltdown timer by [meltdowntimer_increase]."
 
 /obj/item/containment_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))

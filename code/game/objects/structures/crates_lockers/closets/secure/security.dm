@@ -309,6 +309,7 @@
 
 /obj/structure/closet/secure_closet/record/PopulateContents()
 	..()
-	new /obj/item/records/timestop (src)
-	new /obj/item/records/information (src)
-	new /obj/item/records/abnodelay (src)
+	new /obj/item/records/timestop(src)
+	new /obj/item/records/information(src)
+	new /obj/item/records/abnodelay(src)
+	new /obj/item/records/qliphoth_repair(src)
