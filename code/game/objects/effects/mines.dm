@@ -41,15 +41,22 @@
 		return
 	. = ..()
 
+	//If are atom is being thrown we have to check it futher
 	if(AM.throwing)
+		//Grab a dummy datum for its vars and match the throwing datum of are item
 		var/datum/thrownthing/T = AM.throwing
+		//We need to know are landmines location, so grab it
 		var/myturf = get_turf(src)
+		//Check are throwing datum's goal tile and see if its the same as are landmines tile.
 		if(T.target_turf == myturf)
+			//Both match up so trigger the landmine
 			triggermine()
 
+	//If are atom is flying over the mine, we dont trigger
 	if(AM.movement_type & FLYING)
 		return
 
+	//If the crossed atom isnt a mob, and has gotton this far, then we dont trigger are mine
 	if(!ismob(AM))
 		return
 
