@@ -48,6 +48,7 @@
 		cut_overlays()
 		var/obj/item/holochip/C = new (get_turf(src))
 		C.credits = rand(ahn_amount/4,ahn_amount)
+		SSlobotomy_corp.AdjustGoalBoxes(100) // 50 PE for 100 PE, not including the cost of filters. This eventually gets us positive in spendable PE, once we reach goal...
 
 	//gacha time
 	if(crate_timer  <= 0)

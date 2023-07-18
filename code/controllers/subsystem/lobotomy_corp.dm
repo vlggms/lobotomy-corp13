@@ -60,8 +60,17 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// Work logs from all abnormalities
 	var/list/work_logs = list()
 
-	var/current_box = 0
-	var/box_goal = INFINITY // Initialized later
+	// PE available to be spent
+	var/available_box = 0
+	// PE specifically for PE Quota
+	var/goal_boxes = 0
+	// Total PE generated
+	var/total_generated = 0
+	// Total PE spent
+	var/total_spent = 0
+	// The number we must reach
+	var/box_goal = 0 // Initialized later
+	// Where we reached our goal
 	var/goal_reached = FALSE
 	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
@@ -138,11 +147,31 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/WorkComplete(amount = 0, qliphoth_change = TRUE)
 	if(qliphoth_change)
 		QliphothUpdate()
-	AdjustBoxes(amount)
+	AdjustAvailableBoxes(amount)
 
-/datum/controller/subsystem/lobotomy_corp/proc/AdjustBoxes(amount)
-	current_box = clamp((current_box + amount), 0, box_goal)
-	if((current_box >= box_goal) && !goal_reached) // Also TODO: Make it do something other than this
+/datum/controller/subsystem/lobotomy_corp/proc/AdjustAvailableBoxes(amount)
+	available_box = max((available_box + amount), 0)
+	if(amount > 0)
+		total_generated += amount
+	else
+		total_spent -= amount
+	CheckGoal()
+
+/datum/controller/subsystem/lobotomy_corp/proc/AdjustGoalBoxes(amount)
+	if(goal_reached)
+		AdjustAvailableBoxes(amount)
+		return
+	goal_boxes = max(goal_boxes + amount, 0)
+	if(amount > 0)
+		total_generated += amount
+	else
+		total_spent -= amount
+	CheckGoal()
+
+/datum/controller/subsystem/lobotomy_corp/proc/CheckGoal()
+	if(goal_reached || box_goal == 0)
+		return
+	if(available_box + goal_boxes >= box_goal)
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
 		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
@@ -156,7 +185,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			pod.explosionSize = list(0,0,0,0)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
-		return
+	return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
 	qliphoth_meter += amount

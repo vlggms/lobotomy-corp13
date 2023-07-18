@@ -112,7 +112,14 @@
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat
-	dat += "[SSlobotomy_corp.current_box]/[SSlobotomy_corp.box_goal] PE <br>"
+	dat += "Available PE: [SSlobotomy_corp.available_box] <br>"
+	if(SSlobotomy_corp.box_goal != 0)
+		if(SSlobotomy_corp.goal_reached)
+			dat += "PE Quota has been reached, well done!<br>"
+		else
+			dat += "Goal Progress: [max(SSlobotomy_corp.available_box+SSlobotomy_corp.goal_boxes, 0)]/[SSlobotomy_corp.box_goal] <br>"
+	else
+		dat += "Today's PE Quota is still being calculated, please hold. <br>"
 	for(var/level = CAT_GADGET to CAT_OTHER) //IF YOU ADD A NEW CATAGORY GO FROM FIRST DEFINED CATAGORY TO LAST TO AVOID BREAKAGE  -IP
 		dat += "<A href='byond://?src=[REF(src)];set_level=[level]'>[level == selected_level ? "<b><u>[name_catagory(level)]</u></b>" : "[name_catagory(level)]"]</A>"
 	dat += "<br>"
@@ -145,12 +152,12 @@
 			if(!product_datum)
 				to_chat(usr, "<span class='warning'>ERROR.</span>")
 				return FALSE
-			if(SSlobotomy_corp.current_box < product_datum.cost)
+			if(SSlobotomy_corp.available_box < product_datum.cost)
 				to_chat(usr, "<span class='warning'>Not enough PE boxes stored for this operation.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
-			SSlobotomy_corp.AdjustBoxes(-1 * product_datum.cost)
+			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost)
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
