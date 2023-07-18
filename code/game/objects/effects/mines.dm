@@ -35,10 +35,17 @@
 	playsound(src, 'sound/machines/nuke/angry_beep.ogg', 40, FALSE, -2)
 	visible_message("<span class='danger'>\The [src] beeps softly, indicating it is now active.<span>", vision_distance = COMBAT_MESSAGE_RANGE)
 
-/obj/effect/mine/Crossed(atom/movable/AM)
-	if(triggered || !isturf(loc) || !armed)
+/obj/effect/mine/Crossed(atom/movable/AM, datum/thrownthing/throwingdatum)
+	//Stops us for exploding more then once
+	if(safty_check())
 		return
 	. = ..()
+
+	if(AM.throwing)
+		var/datum/thrownthing/T = AM.throwing
+		var/myturf = get_turf(src)
+		if(T.target_turf == myturf)
+			triggermine()
 
 	if(AM.movement_type & FLYING)
 		return
@@ -49,12 +56,24 @@
 	triggermine(AM)
 
 /obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+	//Stops us for exploding more then once
+	if(safty_check())
+		return
 	. = ..()
 	triggermine()
 
 /obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	//Stops us for exploding more then once
+	if(safty_check())
+		return
 	. = ..()
 	triggermine()
+
+/obj/effect/mine/proc/safty_check()
+	//If we are already triggered, not ona  vaid turf or not armed, we dont explod!
+	if(triggered || !isturf(loc) || !armed)
+		return TRUE
+	return FALSE
 
 /// When something sets off a mine
 /obj/effect/mine/proc/triggermine(atom/movable/triggerer)
