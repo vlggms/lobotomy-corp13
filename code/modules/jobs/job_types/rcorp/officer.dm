@@ -37,6 +37,7 @@
 	head = /obj/item/clothing/head/beret/tegu/rcorpofficer
 	l_hand = /obj/item/choice_beacon/officer
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/flashlight/seclite
 
 
 // Beret
@@ -89,3 +90,24 @@
 	new /obj/item/clothing/glasses/night(src)
 	new /obj/item/binoculars(src)
 	new /obj/item/megaphone(src)
+
+/obj/item/storage/box/officer/engineer
+	name = "Engineering Officer"
+	desc = "Includes various engineering gear for repairing rhinos and setting up defenses."
+
+/obj/item/storage/box/officer/engineer/PopulateContents()
+	new /obj/item/weldingtool/experimental(src)
+	new /obj/item/stack/sheet/mineral/sandbags(src)
+	new /obj/item/stack/sheet/mineral/sandbags(src)
+	new /obj/item/stack/sheet/mineral/sandbags(src)
+	new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src)
+	new /obj/item/clothing/head/welding(src)
+
+
+/obj/item/storage/box/officer/delivery
+	name = "Delivery Officer"
+	desc = "Includes a set of wheelies and night vision for going to and from the front quickly."
+
+/obj/item/storage/box/officer/delivery/PopulateContents()
+	new /obj/item/clothing/shoes/wheelys(src)
+	new /obj/item/clothing/glasses/night(src)

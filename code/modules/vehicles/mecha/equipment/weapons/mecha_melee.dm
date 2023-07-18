@@ -1,5 +1,5 @@
 /obj/item/mecha_parts/mecha_equipment/hammer
-	name = "Rhino Hammer"
+	name = "Rhino Hammer (Red)"
 	desc = "Equipment for smashing and bashing. Does Red Damage"
 	icon_state = "mecha_drill"
 	equip_cooldown = 15
@@ -11,8 +11,8 @@
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
-/obj/item/mecha_parts/mecha_equipment/rhinoblade
-	name = "Rhino Blade"
+/obj/item/mecha_parts/mecha_equipment/hammer/rhinoblade
+	name = "Rhino Hammer (Black)"
 	desc = "Equipment for cutting and slicing. Does Black damage"
 	icon_state = "mecha_drill"
 	equip_cooldown = 15
@@ -31,7 +31,7 @@
 
 	if(isliving(target))
 		var/mob/living/L = target
-		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(force, damtype, null, L.run_armor_check(null, armortype), spread_damage = TRUE)
 		playsound(src,'sound/weapons/fixer/generic/club2.ogg',40,TRUE)
 
 	new /obj/effect/temp_visual/smash_effect(get_turf(target))

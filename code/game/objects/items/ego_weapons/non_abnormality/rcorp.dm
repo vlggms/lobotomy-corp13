@@ -70,7 +70,7 @@
 	name = "R-corp reindeer staff"
 	desc = "A staff used by the reindeer team. The ranged attack does black damage."
 	icon_state = "rcorp_staff"
-	inhand_icon_state = "staffofanimation"
+	inhand_icon_state = "staffofstorms"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	force = 40
@@ -145,7 +145,7 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	//None of these fucking guys can use Rcorp guns
 	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
-		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
@@ -209,8 +209,8 @@
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin
 	//None of these fucking guys can use Rcorp guns
-	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
-		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+	var/list/banned_roles = list("Reindeer Squad Captain","Rhino Squad Captain",
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(user.mind)

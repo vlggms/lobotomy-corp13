@@ -18,3 +18,18 @@
 	name = "\improper rabbit team suit"
 	desc = "An armored combat suit worn by R-Corporation mercenaries in the field"
 	icon_state = "rabbit_grunt"
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/assault
+	name = "\improper rabbit assault suit"
+	desc = "An armored combat suit worn by R-Corporation mercenaries in the field"
+	icon_state = "rabbit_grunt"
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/raven
+	name = "\improper raven scout suit"
+	desc = "An armored combat suit worn by R-Corporation mercenaries in the field"
+	icon_state = "raven_scout"
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
+	name = "\improper raven team command suit"
+	desc = "An armored combat suit worn by R-Corporation mercenaries in the field, interestingly"
+	icon_state = "raven_captain"

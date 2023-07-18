@@ -7,7 +7,7 @@
 	internals_req_access = list(ACCESS_CENT_GENERAL)
 	movedelay = 3
 	dir_in = 1 //Facing North.
-	max_integrity = 800
+	max_integrity = 1000
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 40
@@ -42,9 +42,9 @@
 	base_icon_state = "rhino"
 	operation_req_access = list(ACCESS_CENT_THUNDER)
 	internals_req_access = list(ACCESS_CENT_THUNDER)
-	movedelay = 5
+	movedelay = 4
 	dir_in = 1 //Facing North.
-	max_integrity = 1000
+	max_integrity = 1500
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 40, BOMB = 100, BIO = 100, RAD = 100, FIRE = 100, ACID = 100)
 	max_temperature = 30000
 	force = 60
@@ -54,6 +54,8 @@
 /obj/vehicle/sealed/mecha/combat/rhinomelee/Initialize()
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/hammer(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/hammer/rhinoblade(src)
 	ME.attach(src)
 	max_ammo()
 
