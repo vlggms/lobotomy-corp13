@@ -18,12 +18,18 @@
 
 /obj/item/ramshackle_fishing_rod/afterattack(atom/target, mob/user, proximity_flag)
 	if(istype(target, /turf/open/water/deep) && isliving(user) && !isfishing && user.z == target.z)
+		if(istype(user.get_inactive_held_item(), /obj/item/ramshackle_fishing_rod))
+			to_chat(user, "<span class='notice'>You attempt to cast two lines at once but they get tangled together.</span>")
+			return
 		var/fishing_amount = input(user, "How many fish do you want to catch?", "You can choose to fish a maximum of 10 at a time.") as num|null
 		fishing_amount = round(fishing_amount)
 		if(fishing_amount <= 0)
 			return . = ..()
 		if(fishing_amount > 10)
 			fishing_amount = 10
+		//Multicasting is too chaotic
+		if(isfishing)
+			return
 		StartFishing(user, target, fishing_amount) //Maybe we can make it call something else with this proc.
 		return
 	. = ..()
@@ -60,7 +66,7 @@
 		//~~~FISHING BEGINS~~~
 	for(var/i = 1 to amount)
 		//random extra time to the fishing for a unpredictable feel rather than making a chance to just not fish up anything.
-		var/fishing_time = ((10 SECONDS) * fishing_skill) + (rand(1,3) SECONDS)
+		var/fishing_time = ((15 SECONDS) * fishing_skill) + (rand(1,3) SECONDS)
 		if(!do_after(user, fishing_time, target = fishing_spot))
 			isfishing = FALSE
 			break
