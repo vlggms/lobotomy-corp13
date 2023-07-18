@@ -32,16 +32,6 @@
 	if(meltdown)
 		SSvis_overlays.add_vis_overlay(src, icon, "abnormality_meltdown[meltdown]", layer + 0.1, plane, dir)
 
-/obj/machinery/computer/abnormality/attackby(obj/item/I, mob/living/user, params)
-	//Asking if the user is attacking the console with a watch, this hijacks the normal attackby proc to do a fancy intraction with this item
-	if(istype(I, /obj/item/records))
-		//Call the proc to do the intraction, with the I item and user following along
-		records_modifications(I, user)
-		//So we dont hit the console with the watch, we return FALSE
-		return FALSE
-	//It was not a records item, so carry on to are parrent
-	..()
-
 /obj/machinery/computer/abnormality/examine(mob/user)
 	. = ..()
 	if(!datum_reference)
@@ -315,60 +305,3 @@
 /obj/machinery/computer/abnormality/tutorial/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
 	..(user, work_type, training = training)
 
-//Fancy Stopwatch Intractions
-/obj/machinery/computer/abnormality/proc/records_modifications(obj/item/I, mob/user)
-	//Just in case for some reason theirs no datum
-	if(!datum_reference)
-		return
-
-	//This is so were 100% sure that its a RO doing this
-	if(user?.mind?.assigned_role != "Records Officer")
-		to_chat(user,"<span class='warning'>You don't know how to use [I.name].</span>")
-		return
-
-	//Checking to see if are records is the repair type
-	if(istype(I, /obj/item/records/qliphoth_repair))
-		//Grab a path and tell are item its said path, so we have the required vars and can proc call
-		var/obj/item/records/qliphoth_repair/QR = I
-		//Are we on cooldown or not.
-		if(QR.usable)
-			//Simple proccall to on the datum to give us more Qliphoth with forced feedback to the user
-			datum_reference.qliphoth_change(QR.restore_qliphoth_counter_amount, user, always_give_feedback = TRUE)
-			//Set are cooldown on the records watch
-			QR.watch_action()
-			return
-		else
-			//This means we were on cooldown, give the user a warning and fast erturn from are check
-			to_chat(user,"<span class='warning'>Winding the watch this soon after will not have any affect.</span>")
-			return
-
-	//Checking to see if are records is the meltdown exstender type
-	if(istype(I, /obj/item/records/meltdown_exstender))
-		//Grab a path and tell are item its said path, so we have the required vars and can proc call
-		var/obj/item/records/meltdown_exstender/ME = I
-		/*
-		A set of 3 TRUE if statment
-		1: If we can meltdown
-		2: If we *are* melting down currently
-		3: If are meltdown time is greater then 0
-		*/
-		if(can_meltdown && meltdown && meltdown_time > 0)
-			//Make sure are stopwatch is not on cooldown
-			if(ME.usable)
-				//The stopwatch itself has the time increase, we grab it and add that (in seconds)
-				meltdown_time += ME.meltdowntimer_increase
-				//Give feedback and tell the user how much time left
-				to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [meltdown_time].</span>")
-				//Give us are cooldown
-				ME.watch_action()
-				return
-			else
-				//This means it was on cooldown when trying to use, give the user feedback of this
-				to_chat(user,"<span class='warning'>The [ME.name], unable to grant more time this soon after last use, ticks pointlessly.</span>")
-		else
-			//The unit does not need its timer exstended, give again feedback of this.
-			to_chat(user,"<span class='warning'>This abnormality is not in a meltdown.</span>")
-	//Gross set of Returns to ensure we dont hang proc this and brick something down the line.
-			return
-		return
-	return
