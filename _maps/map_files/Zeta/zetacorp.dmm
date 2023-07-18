@@ -1737,9 +1737,6 @@
 /turf/open/floor/wood,
 /area/department_main/control)
 "lz" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
@@ -7876,6 +7873,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
+"WR" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "WT" = (
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
@@ -42962,7 +42965,7 @@ Bp
 MH
 MH
 gu
-Nz
+WR
 lL
 MH
 MH
