@@ -92,28 +92,14 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 1.1
+	M.AddModifier(/datum/dc_change/salvation)
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] /= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] /= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] /= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] /= 1.1
+	M.RemoveModifier(/datum/dc_change/salvation)
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
@@ -194,10 +180,7 @@
 		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[BLACK_DAMAGE] *= 1.5
+	M.AddModifier(/datum/dc_change/mosb_black)
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
@@ -206,7 +189,7 @@
 		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.5
+	M.RemoveModifier(/datum/dc_change/mosb_black)
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
 	name = "Dread"
@@ -257,10 +240,7 @@
 		H.physiology.pale_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[PALE_DAMAGE] += 0.5
+	M.AddModifier(/datum/dc_change/godhead)
 
 /datum/status_effect/judgement_pale_debuff/on_remove()
 	. = ..()
@@ -269,7 +249,7 @@
 		H.physiology.pale_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[PALE_DAMAGE] -= 0.5
+	M.RemoveModifier(/datum/dc_change/godhead)
 
 /atom/movable/screen/alert/status_effect/judgement_pale_debuff
 	name = "Soul Drain"

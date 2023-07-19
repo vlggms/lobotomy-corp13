@@ -305,10 +305,7 @@
 		adjustBruteLoss(100)
 		pulse_damage -= 1
 		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
-		for(var/damtype in src.damage_coeff)
-			if(damtype == BRUTE)
-				continue
-			damage_coeff[damtype] += 0.1
+		AddModifier(/datum/dc_change/sacrificed)
 
 //***Simple Mobs***//
 //clay dolls

@@ -282,10 +282,10 @@
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE, 7)
 	visible_message("<span class='warning>[src] starts praying!</span>")
 	icon_state = "fixer_w_pray"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	icon_state = icon_living
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1))
 	damage_reflection = FALSE
 	can_act = TRUE
 

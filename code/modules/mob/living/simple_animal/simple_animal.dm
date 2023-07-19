@@ -82,8 +82,14 @@
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
+	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Modifying this variable post-Initialize is pointless.
 	var/list/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	/// The datum that stores the damage_coeff post Initialize()
+	var/datum/dam_coeff/damage_coeff_datum
+	/// The unmodified values for the dam_coeff datum
+	var/datum/dam_coeff/unmodified_damage_coeff_datum
+	/// The list of all modifiers to the current DC datum
+	var/list/damage_mods = list()
 	///Attacking verb in present continuous tense.
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
@@ -198,8 +204,13 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if(damage_coeff)
+	if(LAZYLEN(damage_coeff))
 		damage_coeff = string_assoc_list(damage_coeff)
+		damage_coeff_datum = makeDamCoeff(damage_coeff)
+		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
+	else
+		damage_coeff_datum = getDamCoeff()
+		unmodified_damage_coeff_datum = getDamCoeff()
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 	if(!unsuitable_cold_damage)
@@ -207,7 +218,6 @@
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
 
-	damage_coeff = damage_coeff.Copy()
 
 /mob/living/simple_animal/Life()
 	. = ..()
