@@ -1797,6 +1797,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/records)
+"ea" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "gcorpswitch1"
+	},
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/south)
 "eb" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
@@ -1876,7 +1883,7 @@
 "ep" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id = "gcorpswitch2"
+	id = "gcorpswitch1"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/south)
@@ -2519,7 +2526,7 @@
 "fY" = (
 /obj/machinery/conveyor{
 	dir = 4;
-	id = "gcorpswitch2"
+	id = "gcorpswitch1"
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/white,
@@ -5401,8 +5408,8 @@
 /area/department_main/information)
 "mc" = (
 /obj/machinery/conveyor{
-	dir = 1;
-	id = "gcorpswitch2"
+	dir = 9;
+	id = "gcorpswitch1"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -5466,6 +5473,13 @@
 /obj/structure/sign/ordealmonitor,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/extraction)
+"mh" = (
+/obj/machinery/conveyor{
+	dir = 10;
+	id = "gcorpswitch2"
+	},
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/north)
 "mi" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -5766,12 +5780,12 @@
 /turf/open/floor/facility/white,
 /area/facility_hallway/training)
 "mU" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "gcorpswitch2"
-	},
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "gcorpswitch1"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/south)
@@ -9786,12 +9800,12 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
 "wo" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "gcorpswitch2"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 9;
+	id = "gcorpswitch2"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/north)
@@ -16563,11 +16577,12 @@
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "Kr" = (
-/obj/machinery/conveyor{
-	id = "gcorpswitch2"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 5;
+	id = "gcorpswitch2"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/north)
@@ -19646,15 +19661,15 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/welfare)
 "Qw" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "gcorpswitch2"
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "gcorpswitch1"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/south)
@@ -23042,9 +23057,9 @@
 /turf/open/floor/facility/white,
 /area/facility_hallway/north)
 "Yh" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "gcorpswitch2"
+/obj/machinery/conveyor/inverted{
+	dir = 6;
+	id = "gcorpswitch1"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/south)
@@ -23600,6 +23615,7 @@
 /area/facility_hallway/central)
 "Zt" = (
 /obj/machinery/conveyor{
+	dir = 6;
 	id = "gcorpswitch2"
 	},
 /turf/open/floor/plasteel/white,
@@ -56641,7 +56657,7 @@ de
 TI
 Rb
 ep
-Yh
+ea
 ep
 VH
 nF
@@ -56898,7 +56914,7 @@ Uu
 Rb
 Rb
 ep
-Yh
+ea
 fY
 VH
 nF
@@ -57155,7 +57171,7 @@ de
 Dv
 Rb
 sk
-Yh
+ea
 ep
 VH
 nF
@@ -57308,7 +57324,7 @@ nF
 nF
 qE
 Zt
-dD
+mh
 XT
 Za
 JN
