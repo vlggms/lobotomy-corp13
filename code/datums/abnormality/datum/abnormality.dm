@@ -208,7 +208,7 @@
 		current?.OnQliphothChange(user, amount)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
-	//Feedback if your action has not lead to a change in Qlevel
+	//Feedback if your action has not lead to a change in Qlevel, mostly used for debugging at the moment
 	if(pre_qlip == qliphoth_meter && always_give_feedback)
 		current?.visible_message("<span class='notice'>Qliphoth level unchanged.</span>")
 		playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
