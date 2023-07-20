@@ -1,8 +1,7 @@
 //Wedge - Grade 4 with two range.
 /obj/item/ego_weapon/city/wedge
 	name = "wedge office spear"
-	desc = "A black, ornate spear used by the wedge office."
-	icon_state = "wedge"
+	desc = "A black, ornate spear. Some say it pierces any weakness... Though that may just be what the office who used these says."
 	force = 52
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
@@ -20,7 +19,7 @@
 
 /obj/item/ego_weapon/city/fixerblade
 	name = "fixer blade"
-	desc = "A basic fixer blade found in the hands of many fixers."
+	desc = "A common fixer blade, mass-produced and easy to use."
 	icon_state = "fixer_blade"
 	force = 22
 	damtype = RED_DAMAGE
@@ -31,7 +30,7 @@
 
 /obj/item/ego_weapon/city/fixergreatsword
 	name = "fixer greatsword"
-	desc = "A heafty fixer blade found in the hands of many fixers."
+	desc = "A heftier variant of the more common fixer blade."
 	icon_state = "fixer_greatsword"
 	force = 32
 	attack_speed = 1.4

@@ -48,14 +48,14 @@
 //Grade 6 with grade 5 damage This shit breaks
 /obj/item/ego_weapon/city/leaflet/round
 	name = "leaflet round hammer"
-	desc = "A round hammer used by leaflet."
+	desc = "A serviceable round hammer manufactured by the Leaflet Workshop. Fixers can buy these for a modest price."
 	icon_state = "leaflet_round"
 	force = 44
 
 //The Knockback version
 /obj/item/ego_weapon/city/leaflet/wide
 	name = "leaflet wide hammer"
-	desc = "A wide hammer used by leaflet."
+	desc = "A A serviceable wide hammer manufactured by the Leaflet Workshop. Fixers can buy these for a modest price."
 	special = "This weapon knocks the enemy back on hit."
 	icon_state = "leaflet_wide"
 	force = 44
@@ -71,7 +71,7 @@
 //Grade 5 with grade 4 damage
 /obj/item/ego_weapon/city/leaflet/square
 	name = "leaflet square hammer"
-	desc = "A square hammer used by leaflet."
+	desc = "A quality square hammer manufactured by the Leaflet Workshop. Rumors say syndicates can buy these for a high price."
 	icon_state = "leaflet_hammer"
 	force = 55
 	attribute_requirements = list(

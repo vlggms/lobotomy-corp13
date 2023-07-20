@@ -37,7 +37,7 @@
 //Philip's Sword
 /obj/item/ego_weapon/city/dawn/sword
 	name = "dawn office sword"
-	desc = "A plain sword used by the dawn office."
+	desc = "A plain sword. Oddly enough, there's a broken heating mechanism in the hilt."
 	icon_state = "philip"
 	inhand_icon_state = "philip"
 	force = 35
@@ -49,7 +49,7 @@
 //Yuna's Cello Case
 /obj/item/ego_weapon/city/dawn/cello
 	name = "dawn office cello case"
-	desc = "A unique cello case used by the dawn office."
+	desc = "A cello case custom-made for a fixer of the Dawn Office. The inside is filled with extendable blades..."
 	icon_state = "yuna"
 	inhand_icon_state = "yuna"
 	force = 40		//Bigger range, less force
@@ -59,7 +59,7 @@
 //Salvador's Zweihander
 /obj/item/ego_weapon/city/dawn/zwei
 	name = "dawn office zweihander"
-	desc = "A zweihander used by dawn office's director."
+	desc = "A zweihander fitted with a heating mechanism. The blade burns your enemy."
 	icon_state = "salvador"
 	inhand_icon_state = "salvador"
 	force = 50		//Bigger range, less force
