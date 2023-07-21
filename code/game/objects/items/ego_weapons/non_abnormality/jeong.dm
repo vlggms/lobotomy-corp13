@@ -2,7 +2,7 @@
 //The brightest stars last half as long
 /obj/item/ego_weapon/city/jeong
 	name = "jeong's office wakizashi"
-	desc = "A small blade used by Jeong's fixers"
+	desc = "A small blade, easy to keep with you. It would be nice to have on hand in a casino brawl."
 	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 5x damage. This weapon fits in an EGO belt."
 	icon_state = "jeong_fixer"
 	force = 30
@@ -48,7 +48,7 @@
 //Grade 4
 /obj/item/ego_weapon/city/jeong/large
 	name = "jeong's office katana"
-	desc = "A long blade seen in the hands of Hanafuda of Jeong's Office."
+	desc = "A long blade, lightweight and easy to move with. It would be simple to break up a fight with this."
 	icon_state = "jeong_long"
 	force = 70
 	attack_speed = 1.5
