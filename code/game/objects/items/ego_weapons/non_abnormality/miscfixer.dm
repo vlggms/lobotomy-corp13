@@ -2,6 +2,7 @@
 /obj/item/ego_weapon/city/wedge
 	name = "wedge office spear"
 	desc = "A black, ornate spear. Some say it pierces any weakness... Though that may just be what the office who used these says."
+	icon_state = "wedge"
 	force = 52
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
