@@ -535,16 +535,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
-"cv" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Sefirot Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67"
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "cx" = (
 /obj/machinery/cryopod{
 	dir = 1
@@ -2639,6 +2629,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"ld" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Sefirot Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "67";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "le" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -6216,6 +6217,17 @@
 /obj/item/food/carpmeat,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"zW" = (
+/obj/machinery/door/airlock/hatch{
+	hackProof = 1;
+	max_integrity = 25000000;
+	name = "Arcade Secure Storage";
+	normal_integrity = 25000000;
+	req_access_txt = "69";
+	whitelist_door = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "zX" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -7672,6 +7684,17 @@
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
+/area/facility_hallway/manager)
+"Hu" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Representative Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "67";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "Hv" = (
 /obj/machinery/door/airlock/external{
@@ -10058,16 +10081,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
-"QQ" = (
-/obj/machinery/door/airlock/hatch{
-	hackProof = 1;
-	max_integrity = 25000000;
-	name = "Arcade Secure Storage";
-	normal_integrity = 25000000;
-	req_access_txt = "69"
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "QS" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Security Equipment";
@@ -15085,7 +15098,7 @@ uN
 UG
 Sa
 sA
-QQ
+zW
 sA
 sA
 xR
@@ -17134,7 +17147,7 @@ pE
 OX
 ew
 Xc
-cv
+Hu
 dz
 RE
 NM
@@ -23041,9 +23054,9 @@ qp
 qp
 qp
 JP
-cv
+ld
 JP
-cv
+ld
 JP
 qp
 qp
