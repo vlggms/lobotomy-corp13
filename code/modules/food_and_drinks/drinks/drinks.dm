@@ -597,6 +597,12 @@
 	volume = 30
 	spillable = TRUE
 
+/obj/item/reagent_containers/food/drinks/fairywine
+	name = "Fairy Wine"
+	desc = "A very strong drink driping with slime, Smells quite pleasant"
+	icon_state = "fairy_wine"
+	list_reagents = list(/datum/reagent/consumable/ethanol/fairywine = 15)
+
 //////////////////////////soda_cans//
 //These are in their own group to be used as IED's in /obj/item/grenade/ghettobomb.dm
 
