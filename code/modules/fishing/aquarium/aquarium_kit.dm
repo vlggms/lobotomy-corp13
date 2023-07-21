@@ -110,8 +110,8 @@
 	var/static/fish_info
 	if(!fish_info)
 		fish_info = list()
-		for(var/_fish_behaviour in subtypesof(/obj/item/fish))
-			var/obj/item/fish/fish_behaviour = _fish_behaviour
+		for(var/_fish_behaviour in subtypesof(/obj/item/food/fish))
+			var/obj/item/food/fish/fish_behaviour = _fish_behaviour
 			var/list/fish_data = list()
 			if(!initial(fish_behaviour.show_in_catalog))
 				continue
@@ -122,7 +122,7 @@
 			fish_data["temp_max"] = initial(fish_behaviour.required_temperature_max)
 			fish_data["icon"] = sanitize_css_class_name("[initial(fish_behaviour.icon)][initial(fish_behaviour.icon_state)]")
 			fish_data["color"] = initial(fish_behaviour.color)
-			fish_data["source"] = "Unknown"
+			fish_data["source"] = initial(fish_behaviour.habitat)
 			var/datum/reagent/food_type = initial(fish_behaviour.food)
 			if(food_type != /datum/reagent/consumable/nutriment)
 				fish_data["feed"] = initial(food_type.name)

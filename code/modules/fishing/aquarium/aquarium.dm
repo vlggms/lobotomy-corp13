@@ -1,3 +1,6 @@
+//WARNING in order to port aquarium code you also need to port over signals_fish.dm
+//and the entire fish folder since it heavily relies on those signals.
+//There is also a small dependancy on LC13 sanity code but thats only on the admire proc.
 #define AQUARIUM_LAYER_STEP 0.01
 /// Aquarium content layer offsets
 #define AQUARIUM_MIN_OFFSET 0.01
@@ -48,7 +51,7 @@
 
 /obj/structure/aquarium/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(istype(arrived,/obj/item/fish))
+	if(istype(arrived,/obj/item/food/fish))
 		tracked_fish += arrived
 
 /obj/structure/aquarium/Exited(atom/movable/gone, direction)
@@ -177,7 +180,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/L = user
 			var/fish_points = 0
-			for(var/obj/item/fish/fish in tracked_fish)
+			for(var/obj/item/food/fish/fish in tracked_fish)
 				var/this_fish_point = 0.5
 				switch(fish.random_case_rarity)
 					if(FISH_RARITY_RARE)
@@ -276,6 +279,6 @@
 	new /obj/item/aquarium_prop/rocks(src)
 	new /obj/item/aquarium_prop/seaweed(src)
 
-	new /obj/item/fish/goldfish(src)
-	new /obj/item/fish/angelfish(src)
-	new /obj/item/fish/guppy(src)
+	new /obj/item/food/fish/goldfish(src)
+	new /obj/item/food/fish/angelfish(src)
+	new /obj/item/food/fish/guppy(src)

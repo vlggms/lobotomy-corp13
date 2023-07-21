@@ -523,8 +523,8 @@
 	name = "fish"
 
 /datum/asset/spritesheet/fish/register()
-	for (var/path in subtypesof(/obj/item/fish))
-		var/obj/item/fish/fish_type = path
+	for (var/path in subtypesof(/obj/item/food/fish))
+		var/obj/item/food/fish/fish_type = path
 		var/fish_icon = initial(fish_type.icon)
 		var/fish_icon_state = initial(fish_type.icon_state)
 		var/id = sanitize_css_class_name("[fish_icon][fish_icon_state]")
