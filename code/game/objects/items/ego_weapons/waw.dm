@@ -1467,11 +1467,14 @@
 							)
 
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
-	..()
+	if(!..())
+		return
 	sleep(2)
 	for(var/i = 1 to 3)
 		sleep(2)
 		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 
