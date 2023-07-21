@@ -479,7 +479,7 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	reductions = list(20, 20, 20, 0)
-	block_duration = 0.5 SECONDS
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/fixer/generic/dodge.ogg'
 	block_message = "You attempt to dodge the attack!"
