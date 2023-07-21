@@ -32,8 +32,8 @@
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/heaven,
-//		/datum/ego_datum/armor/heaven
+		/datum/ego_datum/weapon/heaven,
+		/datum/ego_datum/armor/heaven
 		)
 //	gift_type =  /datum/ego_gifts/heaven
 
