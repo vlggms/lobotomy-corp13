@@ -20,8 +20,8 @@
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
 	var/burst = FALSE // Set to heal in a large burst
 	var/burst_cooldown = FALSE // Whether it's operational due to Burst Cooldown
-	var/short_duration = 30 SECONDS
-	var/long_duration = 60 SECONDS
+	var/short_duration = 60 SECONDS
+	var/long_duration = 120 SECONDS
 	var/reset_timer = 0
 	var/colored_overlay
 	var/Threat = FALSE
