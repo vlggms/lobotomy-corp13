@@ -139,7 +139,7 @@
 	var/mob/living/M = target
 	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target = user))
+	if(!do_after(user, 6, target = user))
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -165,7 +165,7 @@
 		check1b = mon.damage_coeff[WHITE_DAMAGE]
 		check1c = mon.damage_coeff[BLACK_DAMAGE]
 		check1d = mon.damage_coeff[PALE_DAMAGE]
-		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
+		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] HP | [check1a] RED | [check1b] WHITE | [check1c] BLACK | [check1d] PALE</span>")
 		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 	..()
