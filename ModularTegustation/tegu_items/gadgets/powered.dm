@@ -176,7 +176,7 @@
 	var/inuse
 	default_icon = "teleporter"
 
-/obj/item/powered_gadget/teleporter/attack_self(mob/user)
+/obj/item/powered_gadget/teleporter/attack_self(mob/living/carbon/human/user)
 	..()
 
 	if(cell && cell.charge >= batterycost)
@@ -202,6 +202,20 @@
 		user.forceMove(T)
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+
+	else	//You moving?
+		to_chat(user, "<span class='userdange'>You press the button again activating emergency teleportation mode!</span>")
+		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
+
+		//teleporting half
+		var/turf/T = pick(GLOB.department_centers)
+		user.forceMove(T)
+		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
+		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
+		cell.charge = 0
+		user.Paralyze(20)
+
+
 	inuse = FALSE
 
 /obj/item/powered_gadget/clerkbot_gadget
@@ -337,13 +351,13 @@
 	return ..()
 
 /obj/item/powered_gadget/vitals_projector/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
 	if(!chosen_target_type)
 		to_chat(user, "<span class='warning'>A wrench is needed to set the target type!</span>")
 	if(cell && cell.charge >= batterycost && target_check(target))
 		cell.charge -= batterycost
 		var/mob/living/L = target
 		L.apply_status_effect(/datum/status_effect/visualize_vitals)
+	. = ..()
 
 /obj/item/powered_gadget/vitals_projector/examine(mob/living/M)
 	. = ..()
@@ -409,16 +423,13 @@
 //Injector
 /obj/item/powered_gadget/enkephalin_injector
 	name = "Prototype Enkephalin Injector"
-	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. However, the development was discontinued after the safety department abused it for... other purposes. This version only makes the entities even more hostile towards you. Only for clerks"
+	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. However, the development was discontinued after the safety department abused it for... other purposes. This version only makes the entities even more hostile towards you."
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
 	var/hit_message= null
 
 /obj/item/powered_gadget/enkephalin_injector/attack(mob/living/T, mob/user)
-	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-		to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
-		return
 	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
 		var/mob/living/simple_animal/hostile/H = T
 		if(H.target != user)

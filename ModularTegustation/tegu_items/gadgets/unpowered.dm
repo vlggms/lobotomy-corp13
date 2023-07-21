@@ -133,7 +133,10 @@
 	if(deep_scan_log)
 		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
 
-/obj/item/deepscanner/attack(mob/living/M, mob/user)
+/obj/item/deepscanner/afterattack(atom/target, mob/user, proximity_flag)
+	if(!isliving(target))
+		return
+	var/mob/living/M = target
 	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 	if(!do_after(user, 2 SECONDS, target = user))
@@ -165,7 +168,7 @@
 		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-
+	..()
 
 //Kcorp Syringe
 /obj/item/ksyringe
