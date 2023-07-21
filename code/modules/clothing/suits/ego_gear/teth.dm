@@ -187,3 +187,21 @@
 	desc = "Excessive aspiration would bring about unwarranted frenzy."
 	icon_state = "aspiration"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/sloshing
+	name = "sloshing"
+	desc = "Straight as you can see, this glass o’ fairy wine is all I have. Would ya care for a drink?"
+	icon_state = "sloshing"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/red_sheet
+	name = "red sheet"
+	desc = "Those tears are better reserved for those who need them more dearly."
+	icon_state = "red_sheet"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = -10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/capote
+	name = "capote"
+	desc = "It suffered for such a long time... Unable to do anything about the raging thirst, the flesh endlessly burning and searing."
+	icon_state = "capote"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) // 0

@@ -313,3 +313,21 @@
 			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 
+/* Effloresced (Personal) E.G.O */
+/obj/item/clothing/suit/armor/ego_gear/realization/farmwatch
+	name = "farmwatch"
+	desc = "Haha. You're right, the calf doesn't recognize me."
+	icon_state = "farmwatch"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
+	hat = /obj/item/clothing/head/ego_hat/farmwatch_hat
+
+/obj/item/clothing/head/ego_hat/farmwatch_hat
+	name = "farmwatch"
+	desc = "I'll gather a team again... hire another secretary... There'll be a lot to do."
+	icon_state = "farmwatch"
+
+/obj/item/clothing/suit/armor/ego_gear/realization/spicebush
+	name = "spicebush"
+	desc = "I've always wished to be a bud. Soon to bloom, bearing a scent within."
+	icon_state = "spicebush"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 90, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)

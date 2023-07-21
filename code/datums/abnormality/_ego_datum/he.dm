@@ -403,3 +403,21 @@
 /datum/ego_datum/weapon/destiny
 	item_path = /obj/item/ego_weapon/destiny
 	cost = 35
+
+//Pink Shoes - Roseate Desire
+/datum/ego_datum/armor/roseate
+	item_path = /obj/item/clothing/suit/armor/ego_gear/roseate
+	cost = 35
+
+/datum/ego_datum/weapon/roseate
+	item_path = /obj/item/ego_weapon/roseate
+	cost = 35
+
+//Shock Centipede- AEDD
+/datum/ego_datum/armor/aedd
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aedd
+	cost = 35
+
+/datum/ego_datum/weapon/aedd
+	item_path = /obj/item/ego_weapon/aedd
+	cost = 35

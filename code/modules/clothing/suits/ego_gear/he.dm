@@ -417,3 +417,23 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/roseate
+	name = "roseate desire"
+	desc = "I'll carry you wherever you wish to go."
+	icon_state = "roseate_desire"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 70
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/aedd
+	name = "AEDD"
+	desc = "Apply stimulation and pain to the centipede to increase the discharge intensity."
+	icon_state = "aedd"
+	flags_inv = NONE//it's just a coat
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

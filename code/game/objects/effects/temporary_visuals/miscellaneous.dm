@@ -905,3 +905,13 @@
 	name = "goodbye"
 	icon_state = "nt_goodbye"
 	duration = 5
+
+/obj/effect/temp_visual/talisman
+	name = "talisman"
+	icon_state = "talisman"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 10
+
+/obj/effect/temp_visual/talisman/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = 10)

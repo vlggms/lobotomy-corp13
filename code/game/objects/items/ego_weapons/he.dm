@@ -1363,3 +1363,70 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/roseate
+	name = "roseate desire"
+	desc = "A salacious cat o' nine tails made from pink ribbons. Merely touching it ushers a primal excitement."
+	special = "The damage of this weapon is significantly lowered depending on the user's temperance attribute."
+	icon_state = "roseate_desire"
+	force = 35
+	attack_speed = 0.8//about 44 dps
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "slaps", "flicks")
+	attack_verb_simple = list("whip", "slap", "flick")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/roseate/attack(mob/living/M, mob/living/user)//negative temperance multiplier
+	force = 35
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperancemod = 1 + usertemp/200
+	force /= temperancemod
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
+	name = "AEDD"
+	desc = "A nasty-looking bat covered with nails."
+	special = "Activating the weapon in your hand prepares an attack with additional black damage."
+	icon_state = "aedd"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 25
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "crushes")
+	attack_verb_simple = list("bash", "crush")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/charged
+
+/obj/item/ego_weapon/aedd/attack_self(mob/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 30, src))//3 seconds
+		to_chat(user, "<span class='notice'>You hoist [src] over your shoulder.</span>")
+		charged = TRUE
+
+/obj/item/ego_weapon/aedd/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charged)
+		power_attack(target, user)
+		charged = FALSE
+
+/obj/item/ego_weapon/aedd/proc/power_attack(mob/living/target, mob/living/user)
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	target.apply_damage((force * justicemod), BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
+	var/turf/T = get_turf(target)
+	new /obj/effect/temp_visual/justitia_effect(T)
