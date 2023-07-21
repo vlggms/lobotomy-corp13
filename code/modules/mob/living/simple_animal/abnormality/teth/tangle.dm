@@ -29,8 +29,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/tangle/WorkChance(mob/living/carbon/human/user, chance)
 	if(HAS_TRAIT(user, TRAIT_BALD))
+		if(prob(20))
+			datum_reference.qliphoth_change(-1)
 		return chance -10
 	return chance
+
+/mob/living/simple_animal/hostile/abnormality/tangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(80))
+		datum_reference.qliphoth_change(-1)
+	return
 
 	//breach effect: spreading hair
 /obj/structure/spreading/tangled_hair
