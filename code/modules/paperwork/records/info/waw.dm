@@ -431,7 +431,7 @@
 		"When work result was bad F-02-70-4 lost their ears and cheeks.",
 		"When work result was normal F-02-70-5 lost the entire lower half of their face.",
 		"When the abnormality had its Qliphoth Counter decreased due to a meltdown or sabotage one of the brothers was wounded.")
-		
+
 //Apex Predator
 /obj/item/paper/fluff/info/waw/predator
 	abno_type = /mob/living/simple_animal/hostile/abnormality/apex_predator
@@ -440,7 +440,7 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the employee working with Apex predator started work with less than max health, the work damage was drastically increased.",
-		"When the employee working with Apex predator died during work, the Qliphoth Counter lowered.",
+		"When the employee working with Apex predator died, or went unconcious during work, the Qliphoth Counter lowered.",
 		"DANGER - When Apex Predator breached, it should be located immediately.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Very High"

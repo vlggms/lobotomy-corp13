@@ -172,7 +172,6 @@
 		if(L.stat == DEAD)
 			continue
 		L.apply_damage(jump_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	busy = TRUE
 	addtimer(CALLBACK(src, .proc/Reset), 12)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Reset()
