@@ -9,11 +9,19 @@
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	mapexclude = list("wonderlabs", "mini")
+	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
+	job_notice = "In the OOC tab you have a verb called 'randomize current abnormality'. \
+		It is to be used to spice up boring rounds, and punish manager players you think are playing too safe. \
+		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
+		Abusing this will result in a loss of whitelist."
 
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	//You're a fucking robot.
 	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
+
+	//Let'em Grief
+	add_verb(H, /client/proc/randomabno)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -55,3 +63,23 @@
 
 GLOBAL_LIST_INIT(sephirah_names, list(
 	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha",))
+
+
+/client/proc/randomabno()
+	set name = "Randomize Current Abnormality"
+	set category = "OOC"
+	var/obj/machinery/computer/abnormality_queue/Q = pick(GLOB.abnormality_queue_consoles)
+	var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
+	if(!Q.locked)
+		to_chat(src, "<span class='danger'>The abnormality was already randomized. </span>")
+		return
+
+	Q.UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
+	SSabnormality_queue.AnnounceLock()
+	SSabnormality_queue.ClearChoices()
+
+	//Literally being griefed.
+	SSlobotomy_corp.available_box += 500
+	minor_announce("Due to a lack of resources; a random abnormality has been chosen and PE has been deposited in your account. \
+			Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
+

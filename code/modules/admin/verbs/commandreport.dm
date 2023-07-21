@@ -2,11 +2,19 @@
 #define DEFAULT_ANNOUNCEMENT_SOUND "default_announcement"
 
 /// Preset central command names to chose from for centcom reports.
-#define CENTCOM_PRESET "Central Command"
-#define TERRAGOV_PRESET "Terran Government"
-#define SYNDICATE_PRESET "The Syndicate"
-#define WIZARD_PRESET "The Wizard Federation"
-#define CUSTOM_PRESET "Custom Command Name"
+#define CENTCOM_PRESET 		"Central Command"
+#define CONTROL_PRESET 		"HQ Control"
+#define INFO_PRESET 		"HQ Information"
+#define SAFETY_PRESET 		"HQ Safety"
+#define TRAINING_PRESET 	"HQ Training"
+#define DISCIPLINARY_PRESET "HQ Disciplinary"
+#define WELFARE_PRESET 		"HQ Welfare"
+#define RECORDS_PRESET		"HQ Records"
+#define EXTRACTION_PRESET 	"HQ Extraction"
+#define ARCHITECTURE_PRESET "Architecture"
+#define ASSOCIATION_PRESET 	"Association HQ"
+#define RCORP_PRESET 		"R-Corp Command"
+#define CUSTOM_PRESET 		"Custom Command Name"
 
 /// Verb to change the global command name.
 /client/proc/cmd_change_command_name()
@@ -50,7 +58,9 @@
 	/// The sound that's going to accompany our message.
 	var/played_sound = DEFAULT_ANNOUNCEMENT_SOUND
 	/// A static list of preset names that can be chosen.
-	var/static/list/preset_names = list(CENTCOM_PRESET, TERRAGOV_PRESET, SYNDICATE_PRESET, WIZARD_PRESET, CUSTOM_PRESET)
+	var/static/list/preset_names = list(CENTCOM_PRESET, CONTROL_PRESET, INFO_PRESET, SAFETY_PRESET, TRAINING_PRESET,
+	DISCIPLINARY_PRESET, WELFARE_PRESET, RECORDS_PRESET, EXTRACTION_PRESET,
+	ARCHITECTURE_PRESET, ASSOCIATION_PRESET, RCORP_PRESET)
 
 /datum/command_report_menu/New(mob/user)
 	ui_user = user
@@ -142,7 +152,15 @@
 #undef DEFAULT_ANNOUNCEMENT_SOUND
 
 #undef CENTCOM_PRESET
-#undef TERRAGOV_PRESET
-#undef SYNDICATE_PRESET
-#undef WIZARD_PRESET
+#undef CONTROL_PRESET
+#undef INFO_PRESET
+#undef SAFETY_PRESET
+#undef TRAINING_PRESET
+#undef DISCIPLINARY_PRESET
+#undef WELFARE_PRESET
+#undef RECORDS_PRESET
+#undef EXTRACTION_PRESET
+#undef ARCHITECTURE_PRESET
+#undef ASSOCIATION_PRESET
+#undef RCORP_PRESET
 #undef CUSTOM_PRESET
