@@ -23,7 +23,6 @@
 
 	del_on_death = FALSE
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 

@@ -17,7 +17,6 @@
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/abnormalities/clouded_monk/monk_attack.ogg'

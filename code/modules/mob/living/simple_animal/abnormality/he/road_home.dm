@@ -11,7 +11,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2) //Endure red because catt mentions physical attacks can't hurt her at all.
 	melee_damage_lower = 1
 	melee_damage_upper = 1 //Irrelevant, she does not attack of her own volition
-	speed = 4
 	generic_canpass = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE

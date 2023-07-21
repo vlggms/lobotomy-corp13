@@ -24,7 +24,6 @@
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
-	speed = 4
 	move_to_delay = 2.8
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
