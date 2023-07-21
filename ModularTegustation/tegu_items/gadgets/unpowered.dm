@@ -181,3 +181,36 @@
 	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
 	user.adjustBruteLoss(-40)
 	qdel(src)
+
+//General Invitation
+/obj/item/invitation //intended for ordeals
+	name = "General Invitation"
+	desc = "A mysterious invitation to a certain library. Using this on an abnormality seems to teleport them away when they die, leaving an incomplete book on the spot."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "invitation"
+
+/obj/item/invitation/attack(mob/living/M, mob/user)
+	if(isabnormalitymob(M) && !(M.status_flags & GODMODE) && !(M.has_status_effect(/datum/status_effect/invitation)))
+		to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
+		M.visible_message("<span class='notice'>[user] sticks a general invitation on [M]!</span>")
+		M.apply_status_effect(/datum/status_effect/invitation)
+		playsound(get_turf(M), 'sound/abnormalities/book/scribble.ogg', 50, TRUE)
+		qdel(src)
+	else
+		M.visible_message("<span class='warning'>[M] refuses to sign the general invitation!</span>")
+
+/datum/status_effect/invitation
+	id = "general invitation"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+	alert_type = null
+
+/datum/status_effect/invitation/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, .proc/invite)
+
+/datum/status_effect/invitation/proc/invite()
+	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_LIVING_DEATH)
+	var/mob/living/O = owner
+	O.turn_book()
