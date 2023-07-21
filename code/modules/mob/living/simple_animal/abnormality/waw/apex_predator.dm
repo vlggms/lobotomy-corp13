@@ -103,12 +103,12 @@
 		Decloak()
 		SLEEP_CHECK_DEATH(3)
 
+		var/mob/living/V = target
 		//Backstab
 		if(target in range(1,src))
 			visible_message("<span class='danger'>\The [src] rips out [target]'s guts!</span>")
-			new /obj/effect/gibspawner/generic(get_turf(target))
-			target.apply_damage(backstab_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-
+			new /obj/effect/gibspawner/generic(get_turf(V))
+			V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			SLEEP_CHECK_DEATH(20)
 			Cloak()
 			//Remove target
