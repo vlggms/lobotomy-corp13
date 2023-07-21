@@ -21,7 +21,7 @@
 	var/burst = FALSE // Set to heal in a large burst
 	var/burst_cooldown = FALSE // Whether it's operational due to Burst Cooldown
 	var/short_duration = 60 SECONDS
-	var/long_duration = 120 SECONDS
+	var/long_duration = 180 SECONDS
 	var/reset_timer = 0
 	var/colored_overlay
 	var/Threat = FALSE
