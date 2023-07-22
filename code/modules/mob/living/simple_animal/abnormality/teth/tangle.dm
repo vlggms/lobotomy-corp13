@@ -48,12 +48,14 @@ GLOBAL_LIST_EMPTY(hair_list)
 		return chance -10
 	return chance
 
+/////////////////////////////////////// find a way to make this drop on a random living player on breach
 var/list/workedTangle = list()
 
 /mob/living/simple_animal/hostile/abnormality/tangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!(user in workedTangle))
 		workedTangle+=user
 		new /obj/item/hairbrush(get_turf(user))
+///////////////////////////////////////
 
 /mob/living/simple_animal/hostile/abnormality/tangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
@@ -64,21 +66,27 @@ var/list/workedTangle = list()
 	if(datum_reference.qliphoth_meter == 1)
 		icon_state = "tangle_awake"
 		return
-	else if (datum_reference.qliphoth_meter == 0)
+
+/mob/living/simple_animal/hostile/abnormality/tangle/BreachEffect()
 		SpreadHair()
-		icon = 'ModularTegustation/Teguicons/32x64.dmi'
-		icon_state = "tangle_angry"
+		Transform()
 //		dropBrush()
 		return
+
+/mob/living/simple_animal/hostile/abnormality/tangle/proc/Transform()
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	return
 
 	//breach effect: spreading hair
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/SpreadHair()
+	say("Successfully procced hair")
 	if(!isturf(loc) || isspaceturf(loc))
 		return
 	if(locate(/obj/structure/spreading/tangled_hair) in get_turf(src))
 		return
 	new /obj/structure/spreading/tangled_hair(loc)
+	return
 
 /obj/structure/spreading/tangled_hair
 	gender = PLURAL
@@ -176,5 +184,6 @@ var/list/workedTangle = list()
 		datum_reference.qliphoth_change(2)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_state = "tangle_asleep"
+		qdel(src)
 		//qdel(hairbrush)
 		return
