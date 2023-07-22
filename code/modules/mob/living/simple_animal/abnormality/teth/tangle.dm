@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(hair_list)
+
 /mob/living/simple_animal/hostile/abnormality/tangle
 	name = "Tangle"
 	desc = "An abnormality with extremely long, flowing hair."
@@ -6,6 +8,7 @@
 	maxHealth = 300
 	health = 300
 	start_qliphoth = 2
+	can_breach = TRUE
 	wander = 0
 	can_patrol = FALSE
 	threat_level = TETH_LEVEL
@@ -45,6 +48,13 @@
 		return chance -10
 	return chance
 
+var/list/workedTangle = list()
+
+/mob/living/simple_animal/hostile/abnormality/tangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+	if(!(user in workedTangle))
+		workedTangle+=user
+		new /obj/item/hairbrush(get_turf(user))
+
 /mob/living/simple_animal/hostile/abnormality/tangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
@@ -55,11 +65,21 @@
 		icon_state = "tangle_awake"
 		return
 	else if (datum_reference.qliphoth_meter == 0)
+		SpreadHair()
 		icon = 'ModularTegustation/Teguicons/32x64.dmi'
 		icon_state = "tangle_angry"
+//		dropBrush()
 		return
 
 	//breach effect: spreading hair
+
+/mob/living/simple_animal/hostile/abnormality/tangle/proc/SpreadHair()
+	if(!isturf(loc) || isspaceturf(loc))
+		return
+	if(locate(/obj/structure/spreading/tangled_hair) in get_turf(src))
+		return
+	new /obj/structure/spreading/tangled_hair(loc)
+
 /obj/structure/spreading/tangled_hair
 	gender = PLURAL
 	name = "tangled hair"
@@ -76,7 +96,7 @@
 /obj/structure/spreading/tangled_hair/Initialize() //borrowed from snow white's apple
 	. = ..()
 
-	GLOB.vine_list += src
+	GLOB.hair_list += src
 
 	if(!atom_remove_condition)
 		atom_remove_condition = typecacheof(list(
@@ -92,7 +112,7 @@
 			/mob/dead))
 
 /obj/structure/spreading/tangled_hair/Destroy()
-	GLOB.vine_list -= src
+	GLOB.hair_list -= src
 	return ..()
 
 /obj/structure/spreading/tangled_hair/Crossed(atom/movable/AM)
@@ -102,9 +122,9 @@
 	if(is_type_in_typecache(AM, ignore_typecache))		// Don't want the traps triggered by sparks, ghosts or projectiles.
 		return
 	if(isliving(AM))
-		vine_effect(AM)
+		hair_effect(AM)
 
-/obj/structure/spreading/tangled_hair/proc/vine_effect(mob/living/L)
+/obj/structure/spreading/tangled_hair/proc/hair_effect(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/lonely = L
 		var/obj/item/trimming = lonely.get_active_held_item()
@@ -135,24 +155,19 @@
 	throw_range = 7
 	force = 0
 
-/mob/living/simple_animal/hostile/abnormality/tangle/proc/dropBrush() //borrowed from parasite tree
+/*mob/living/simple_animal/hostile/abnormality/tangle/proc/dropBrush() //borrowed from parasite tree
 	SIGNAL_HANDLER
 
-	if(datum_reference.qliphoth_meter == 0)
-		var/list/potentialBrusher = list()
-		for(var/mob/living/carbon/human/L in GLOB.player_list)
-			if(!faction_check_mob(L) && L.stat != DEAD && L.z == z)
-				potentialBrusher += L
-				potentialBrusher[L] = 1
-		if(potentialBrusher.len)
-			var/mob/living/carbon/human/chosen_agent = pickweight(potentialBrusher)
-			to_chat(chosen_agent, "<span class='nicegreen'>A dainty hairbrush appears nearby. Did someone lose it?</span>")
-			var/list/possiblebrushturf = list()
-			for(var/turf/T in oview(3, chosen_agent))
-				if(!T.density && !locate(/obj/structure/window || /obj/machinery/door) in T.contents)
-					possiblebrushturf += T
-			if(possiblebrushturf.len > 8) //if you're in a area with less than 8 steps of space then theres no room for a brush
-				new /obj/item/hairbrush(pick(possiblebrushturf))
+	var/list/potentialBrusher = list()
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		if(!faction_check_mob(L) && L.stat != DEAD && L.z == z)
+			potentialBrusher += L
+			potentialBrusher[L] = 1
+	if(potentialBrusher.len)
+		var/mob/living/carbon/human/chosen_agent = pickweight(potentialBrusher)
+		to_chat(chosen_agent, "<span class='nicegreen'>A dainty hairbrush appears nearby. Did someone lose it?</span>")
+		new /obj/item/hairbrush(get_turf(chosen_agent))
+		return*/
 
 	//recontain procedure: brushie brushie
 /mob/living/simple_animal/hostile/abnormality/tangle/attackby(obj/item/hairbrush, mob/user)
@@ -161,5 +176,5 @@
 		datum_reference.qliphoth_change(2)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_state = "tangle_asleep"
-		qdel(hairbrush)
+		//qdel(hairbrush)
 		return
