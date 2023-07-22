@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/tangle
 	name = "Tangle"
 	desc = "An abnormality with extremely long, flowing hair."
-//	icon = "" 	CHANGE to tangle icon
-//	iconstate = ""
-	maxhealth = 300
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "tangle_asleep"
+	maxHealth = 300
 	health = 300
 	start_qliphoth = 2
 	wander = 0
@@ -19,13 +19,13 @@
 //	base_pixel_x =
 
 	work_damage_amount = 7
-	work_damage_type = WHITE
+	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
 //		/datum/ego_datum/weapon/? CHANGE to actual ego gear and gift
 //		/datum/ego_datum/armor/?
 	)
 //	gift_type = /datum/ego_gifts/?
-	abnormality_origin: ABNORMALITY_ORIGIN_WONDERLAB
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 /mob/living/simple_animal/hostile/abnormality/tangle/WorkChance(mob/living/carbon/human/user, chance)
 	if(HAS_TRAIT(user, TRAIT_BALD))
@@ -39,16 +39,25 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/tangle/OnQliphothChange(mob/living/carbon/human/user)
+	if(datum_reference.qliphoth_meter == 1)
+		icon_state = "tangle_awake"
+		return
+	else if (datum_reference.qliphoth_meter == 0)
+		icon = 'ModularTegustation/Teguicons/32x64.dmi'
+		icon_state = "tangle_angry"
+		return
+
 	//breach effect: spreading hair
 /obj/structure/spreading/tangled_hair
 	gender = PLURAL
 	name = "tangled hair"
 	desc = "Long golden hair has been let down."
-	icon = 'icons/effects/spacevines.dmi'//CHANGE to hair decal
-	icon_state = "Med1"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tangled_hair"
 	resistance_flags = FLAMMABLE
-	base_icon_state = "Med1"
-	color = "#808000"
+	base_icon_state = "tangled_hair"
+	color = "#E8BE77"
 	//strictly for crossed proc
 	var/list/static/ignore_typecache
 	var/list/static/atom_remove_condition
@@ -88,7 +97,6 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/lonely = L
 		var/obj/item/trimming = lonely.get_active_held_item()
-			return
 		if(!isnull(trimming))
 			if(istype(trimming, /obj/item/ego_weapon/stem))
 				return
@@ -108,8 +116,8 @@
 /obj/item/hairbrush
 	name = "hairbrush"
 	desc = "A dainty hairbrush."
-//	icon = "" CHANGE add icons
-//	icon_state = ""
+	icon = 'ModularTegustation/Teguicons/32x32.dmi' //CHANGE add icons
+	icon_state = "tangle_asleep"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 3
@@ -119,9 +127,8 @@
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/dropBrush() //borrowed from parasite tree
 	SIGNAL_HANDLER
 
-	if(origin_cooldown <= world.time && datum_reference.qliphoth_meter > 0)
+	if(datum_reference.qliphoth_meter == 0)
 		var/list/potentialBrusher = list()
-		origin_cooldown = world.time + (10 SECONDS)
 		for(var/mob/living/carbon/human/L in GLOB.player_list)
 			if(!faction_check_mob(L) && L.stat != DEAD && L.z == z)
 				potentialBrusher += L
@@ -134,11 +141,13 @@
 				if(!T.density && !locate(/obj/structure/window || /obj/machinery/door) in T.contents)
 					possiblebrushturf += T
 			if(possiblebrushturf.len > 8) //if you're in a area with less than 8 steps of space then theres no room for a brush
-				new /obj/structure/hairbrush(pick(possiblebrushturf))
+				new /obj/item/hairbrush(pick(possiblebrushturf))
 
 	//recontain procedure: brushie brushie
 /mob/living/simple_animal/hostile/abnormality/tangled/attackby(obj/item/hairbrush, mob/user)
 	if(!datum_reference.qliphoth_meter)
 		to_chat(user, "<span class='nicegreen'>You brush out the tangled hair, and the abnormality calms.</span")
 		datum_reference.qliphoth_change(2)
+		icon = 'ModularTegustation/Teguicons/32x32.dmi'
+		icon_state = "tangle_asleep"
 		return
