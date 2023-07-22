@@ -28,7 +28,6 @@
 	deathmessage = "slowly falls to the ground."
 	check_friendly_fire = TRUE
 
-	speed = 2
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE

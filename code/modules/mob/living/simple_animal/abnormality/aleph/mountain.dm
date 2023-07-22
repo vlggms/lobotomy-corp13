@@ -17,7 +17,6 @@
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE
-	speed = 2
 	move_to_delay = 2
 	generic_canpass = FALSE
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -227,15 +226,16 @@
 					return
 
 				icon_living = "mosb_breach2"
-				speed = 4
+				speed = 1
 				move_to_delay = 5
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				speed = 3
+				speed = 0.5
 				move_to_delay = 4
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
+			update_simplemob_varspeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -249,17 +249,18 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		speed = 2
+		speed = -0.5
 		move_to_delay = 2
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		speed = 3
+		speed = 0.5
 		move_to_delay = 4
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
+	update_simplemob_varspeed()
 	return TRUE
 
 /* Special attacks */

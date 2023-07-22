@@ -11,7 +11,6 @@
 	base_pixel_x = -8
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
-	speed = 4
 	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 70
@@ -64,11 +63,12 @@
 			// it gets faster.
 			if(move_to_delay>1)
 				move_to_delay -= move_to_delay*0.25
-				speed += speed*0.2
+				speed -= speed*0.2
 				if(melee_damage_lower > 30)
 					melee_damage_lower -=5
 
 			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
+			update_simplemob_varspeed()
 
 			finishing = FALSE
 			icon_state = "warden"

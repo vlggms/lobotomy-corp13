@@ -22,7 +22,6 @@
 	del_on_death = FALSE
 	deathsound = 'sound/abnormalities/despairknight/dead.ogg'
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE

@@ -20,7 +20,6 @@
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = DEAD
-	speed = 2
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
