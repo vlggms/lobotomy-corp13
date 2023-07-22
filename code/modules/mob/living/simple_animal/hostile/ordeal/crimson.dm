@@ -283,3 +283,231 @@
 			if(!(L in been_hit))
 				been_hit += L
 	addtimer(CALLBACK(src, .proc/do_roll, move_dir, (times_ran + 1)), 1.5)
+
+// Crimson midnight
+/mob/living/simple_animal/hostile/ordeal/crimson_tent
+	name = "a chorus of saliva"
+	desc = "A circus tent stitched together with sinew. It has a giant, gaping maw."
+	icon = 'ModularTegustation/Teguicons/64x96.dmi'
+	icon_state = "crimson_midnight"
+	icon_dead = "crimson_midnight"
+	faction = list("crimson_ordeal")
+	maxHealth = 15000
+	health = 15000
+	pixel_x = -16
+	base_pixel_x = -16
+	melee_damage_lower = 32
+	melee_damage_upper = 36
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
+	butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
+
+	var/spawn_time
+	var/spawn_time_cooldown = 20 SECONDS
+	var/list/spawned_mobs = list()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/Initialize()
+	. = ..()
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_appear.ogg', 50, FALSE)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	listclearnulls(spawned_mobs)
+	for(var/mob/living/L in spawned_mobs)
+		if(L.stat == DEAD || QDELETED(L))
+			spawned_mobs -= L
+	update_icon()
+	if(length(spawned_mobs) >= 8)
+		return
+	if((spawn_time > world.time))
+		return
+	spawn_time = world.time + spawn_time_cooldown
+	visible_message("<span class='danger'>\The [src] opens wide and more clowns appear from inside!</span>")
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_spawn.ogg', 75, FALSE)
+	var/spawnchance = pick(1,2)
+	for(var/i = 1 to spawnchance)
+		var/turf/T = get_step(get_turf(src), pick(0, EAST))
+		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned, /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned)
+		var/mob/living/simple_animal/hostile/ordeal/nb = new picked_mob(T)
+		spawned_mobs += nb
+		if(ordeal_reference)
+			nb.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nb
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/death(gibbed)
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_dead.ogg', 30, 0)
+	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 2.8 SECONDS)
+	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 2.8 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/proc/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	for(var/turf/L in view(4, src))
+		if(prob(25) && !(L.density))
+			new /obj/item/food/meat/slab/crimson (get_turf(L))
+		var/obj/effect/decal/cleanable/blood/B = new /obj/effect/decal/cleanable/blood(get_turf(L))
+		B.bloodiness = 100
+	for(var/mob/living/L in view(5, src))
+		if(!faction_check_mob(L))
+			L.apply_damage(700, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	gib()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight //oh god why
+	name = "pinnacle of thew"
+	desc = "A gargantuan clown with gigantic muscles."
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "crimson_midnight"
+	icon_living = "crimson_midnight"
+	icon_dead = "crimson_midnight"
+	faction = list("crimson_ordeal")
+	maxHealth = 4000
+	health = 4000
+	pixel_x = -16
+	base_pixel_x = -16
+	melee_damage_lower = 48
+	melee_damage_upper = 56
+	move_to_delay = 4
+	attack_verb_continuous = "punches"
+	attack_verb_simple = "punch"
+	attack_sound = 'sound/effects/ordeals/crimson/midnight_slam.ogg'
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
+	mob_spawn_amount = 2
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/Initialize()
+	..()
+	animate(src, transform = matrix()*1.3, time = 0 SECONDS)
+	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
+	for(var/i = 1 to mob_spawn_amount)
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
+		var/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/nc = new(T)
+		if(ordeal_reference)
+			nc.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nc
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	gib()
+
+// Tent spawned variants
+// Dawn
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned //Weaker variant that dies in 60 seconds
+	name = "a cacophony of smiles"
+	maxHealth = 50
+	health = 50
+
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/Initialize() //this should effectively limit how many are active at a time
+	. = ..()
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
+	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/TeleportAway()
+	if(console_attack_counter >= 10)
+		death()
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/DeathExplosion()
+	if(QDELETED(src))
+		return
+	gib()
+
+// Noon
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned //weaker variant that explodes into clowns if ignored
+	name = "moment of indulgence"
+	maxHealth = 500
+	health = 500
+	mob_spawn_amount = 1
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
+	. = ..()
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 45 SECONDS)
+	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 45 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/death(gibbed)
+	. = ..()
+	if(!gibbed)
+		gib()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
+	for(var/i = 1 to mob_spawn_amount)
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
+		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/nc = new(T)
+		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/.proc/TeleportAway), 1)
+		if(ordeal_reference)
+			nc.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nc
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	gib()
+
+// Dusk
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned //weaker variant that explodes into clowns if ignored
+	name = "summit of trepidation"
+	maxHealth = 1000
+	health = 1000
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
+	. = ..()
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
+	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/death(gibbed)
+	. = ..()
+	if(!gibbed)
+		gib()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
+	for(var/i = 1 to mob_spawn_amount)
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
+		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/nc = new(T)
+		if(ordeal_reference)
+			nc.ordeal_reference = ordeal_reference
+			ordeal_reference.ordeal_mobs += nc
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	gib()
