@@ -287,7 +287,7 @@
 	for(var/atom/movable/harvest in contents)
 		harvest.forceMove(dropoff)
 	new /obj/item/simple_fishing_net(dropoff)
-	QDEL_IN(src, 2)
+	qdel(src)
 
 /obj/structure/destructible/simple_fishing_net/proc/CatchFish()
 	SIGNAL_HANDLER
