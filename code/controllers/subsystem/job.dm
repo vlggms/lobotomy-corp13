@@ -46,8 +46,12 @@ SUBSYSTEM_DEF(job)
 
 
 		//THIS IS FOR MAPTYPES.
+		//Something has two maptypes? well, check if it's matching our maptype right now, and set it to ours.
+		if(islist(job.maptype))
+			if(SSmaptype.maptype in job.maptype)
+				job.maptype = SSmaptype.maptype
+
 		//Checks if the maptype is the same as the map
-		//Checks mapexclude.
 		if(job.maptype != SSmaptype.maptype)
 			if(job.maptype != "standard")		//Is the job standard on all maps?
 				if(!job.loadalways)	//We don't really need this, but still important
@@ -55,6 +59,7 @@ SUBSYSTEM_DEF(job)
 					job.spawn_positions = 0
 					continue
 
+		//Checks mapexclude.
 		if(SSmaptype.maptype in job.mapexclude)
 			if(!job.loadalways)	//Will the game break if we remove it?
 				continue
@@ -65,7 +70,7 @@ SUBSYSTEM_DEF(job)
 		//Checks the clearmap, I will configure this to
 		if(SSmaptype.maptype in SSmaptype.clearmaps)	//Is the maptype a maptype that clears all jobs?
 			if(job.maptype != SSmaptype.maptype)		//This clears all the job from the map. Runs after the top one to fully remove a job.
-				if(!job.loadalways)				//THIS one we need. If a job can't be removed without breaking the game then
+				if(!job.loadalways)				//THIS one we need. If a job can't be removed without breaking the game then don't unload it
 					continue
 				else
 					job.total_positions = 0
