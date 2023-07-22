@@ -15,8 +15,6 @@
 		ABNORMALITY_WORK_ATTACHMENT = 70,
 		ABNORMALITY_WORK_REPRESSION = 30
 		)
-//	pixel_x = CHANGE: proper positioning within cell?
-//	base_pixel_x =
 
 	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
@@ -26,6 +24,19 @@
 	)
 //	gift_type = /datum/ego_gifts/?
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+/obj/structure/tangled_hair
+	gender = PLURAL
+	name = "tangled hair"
+	desc = "Long golden hair has been let down."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tangled_hair"
+
+/mob/living/simple_animal/hostile/abnormality/tangle/PostSpawn()
+	..()
+	var/list/hair_area = range(1, src)
+	for(var/turf/open/O in hair_area)
+		new /obj/structure/tangled_hair(O)
 
 /mob/living/simple_animal/hostile/abnormality/tangle/WorkChance(mob/living/carbon/human/user, chance)
 	if(HAS_TRAIT(user, TRAIT_BALD))
@@ -39,7 +50,7 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/tangle/OnQliphothChange(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/tangle/OnQliphothChange()
 	if(datum_reference.qliphoth_meter == 1)
 		icon_state = "tangle_awake"
 		return
@@ -109,15 +120,15 @@
 				return
 			return
 	if(prob(10))
-		to_chat(L, "<span class='warning'>The [name] tighten around you.</span>")
+		to_chat(L, "<span class='warning'>The [name] tightens around you.</span>")
 	L.adjustStaminaLoss(10, TRUE, TRUE)
 
 	//breach effect: spawn hairbrush
 /obj/item/hairbrush
 	name = "hairbrush"
 	desc = "A dainty hairbrush."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi' //CHANGE add icons
-	icon_state = "tangle_asleep"
+	icon = 'ModularTegustation/Teguicons/hairbrush.dmi'
+	icon_state = "hairbrush"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 3
@@ -144,10 +155,11 @@
 				new /obj/item/hairbrush(pick(possiblebrushturf))
 
 	//recontain procedure: brushie brushie
-/mob/living/simple_animal/hostile/abnormality/tangled/attackby(obj/item/hairbrush, mob/user)
+/mob/living/simple_animal/hostile/abnormality/tangle/attackby(obj/item/hairbrush, mob/user)
 	if(!datum_reference.qliphoth_meter)
 		to_chat(user, "<span class='nicegreen'>You brush out the tangled hair, and the abnormality calms.</span")
 		datum_reference.qliphoth_change(2)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_state = "tangle_asleep"
+		qdel(hairbrush)
 		return
