@@ -672,8 +672,6 @@ GLOBAL_LIST_EMPTY(species_list)
  */
 /mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
 	. = hit_list
-	if(!damage)
-		return
 	target = target ? target : get_turf(src)
 	armor_type = armor_type ? armor_type : damage_type
 	for(var/mob/living/L in target) // Hit living targets
