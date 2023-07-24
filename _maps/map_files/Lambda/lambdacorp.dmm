@@ -9997,9 +9997,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "KK" = (
-/obj/item/records/timestop,
-/obj/item/records/information,
-/obj/item/records/abnodelay,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -12659,7 +12656,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral,
-/obj/structure/closet/secure_closet/record,
+/obj/structure/closet{
+	icon_state = "records"
+	},
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff"
 	},
