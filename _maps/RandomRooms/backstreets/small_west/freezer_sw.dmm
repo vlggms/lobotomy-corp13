@@ -1,0 +1,142 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 10
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"b" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"g" = (
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"l" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"s" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 9
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"t" = (
+/obj/structure/kitchenspike,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"w" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"B" = (
+/obj/structure/table/rolling,
+/obj/item/kitchen/knife,
+/obj/item/kitchen/rollingpin,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"J" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"K" = (
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"P" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/mob/living/simple_animal/hostile/ordeal/amber_bug/morsel,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"V" = (
+/obj/structure/sink/kitchen{
+	dir = 1
+	},
+/obj/effect/turf_decal/weather/snow/corner,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+"X" = (
+/obj/machinery/door/airlock/freezer,
+/turf/open/space/basic,
+/area/city/backstreets_alley)
+"Y" = (
+/obj/structure/closet/secure_closet/freezer/cream_pie,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/effect/turf_decal/weather/snow/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_alley)
+
+(1,1,1) = {"
+J
+J
+J
+J
+J
+J
+J
+"}
+(2,1,1) = {"
+J
+s
+P
+Y
+w
+a
+J
+"}
+(3,1,1) = {"
+J
+B
+g
+g
+g
+b
+J
+"}
+(4,1,1) = {"
+J
+t
+g
+K
+g
+V
+J
+"}
+(5,1,1) = {"
+l
+l
+l
+X
+l
+l
+l
+"}

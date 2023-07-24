@@ -38,5 +38,11 @@
 	mappath = "_maps/RandomRooms/backstreets/large_north/scorp.dmm"
 	stock = 1	//THE CANON PLACE OF SCORP!!!!
 
+/datum/map_template/random_room/backstreets/large_north/robot_lna
+	name = "Laboratory - Large North"
+	room_id = "lab_ln"
+	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
+
+
 
 

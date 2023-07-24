@@ -20,4 +20,9 @@
 	room_id = "sweeper_solo"
 	mappath = "_maps/RandomRooms/backstreets/small_north/sweeper_solo.dmm"
 
+/datum/map_template/random_room/backstreets/small_north/sweepersolo
+	name = "Apartment - Small North A"
+	room_id = "apartment_sna"
+	mappath = "_maps/RandomRooms/backstreets/small_north/apartment_sna.dmm"
+
 
