@@ -125,6 +125,8 @@
 		new /datum/data/extraction_cargo("Discount Quality Suture ",	/obj/item/stack/medical/suture/emergency,							100) = 1,
 		new /datum/data/extraction_cargo("Aquarium Rocks ",				/obj/item/aquarium_prop/rocks,										250) = 1,
 		new /datum/data/extraction_cargo("Aquarium Seaweed ",			/obj/item/aquarium_prop/seaweed,									250) = 1,
+		new /datum/data/extraction_cargo("Sinew Fishing Line ",			/obj/item/fishing_line/sinew,										250) = 1,
+		new /datum/data/extraction_cargo("Bone Fishing Hook ",			/obj/item/fishing_hook/bone,										250) = 1,
 		new /datum/data/extraction_cargo("Fishin Starting Pack ",		/obj/item/storage/box/fishing,										450) = 1,
 		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_hook/weighted,									500) = 1,
 		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_line/reinforced,									500) = 1,
