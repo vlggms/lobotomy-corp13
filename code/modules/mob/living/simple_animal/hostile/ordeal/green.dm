@@ -19,6 +19,7 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	deathsound = 'sound/effects/ordeals/green/dawn_dead.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 
@@ -82,10 +83,10 @@
 	guaranteed_butcher_results = list()
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/factory/death(gibbed)
-		density = FALSE
-		animate(src, alpha = 0, time = 5 SECONDS)
-		QDEL_IN(src, 5 SECONDS)
-		..()
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
 
 // Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
@@ -214,12 +215,12 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 3000
+	health = 3000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
-
+	deathsound = 'sound/effects/ordeals/green/dusk_dead.ogg'
 	var/spawn_progress = 18
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
