@@ -84,29 +84,10 @@
 	else	//If you're literally alone it's an armor check.
 		SLEEP_CHECK_DEATH(120 SECONDS)
 
-// unique patrol
-/mob/living/simple_animal/hostile/abnormality/burrowingheaven/patrol_select()
-	var/list/target_turfs = list() // Stolen from Punishing Bird
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.z != z) // Not on our level
-			continue
-		if(H.stat == DEAD)//Fucking dead.
-			continue
-		if(get_dist(src, H) < 4) // Unnecessary for this distance
-			continue
-		target_turfs += get_turf(H)
-
-	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
-	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
-		return
-	return ..()
-
-
 //Work stuff
 //Need 2 people to actually work on it
 /mob/living/simple_animal/hostile/abnormality/burrowingheaven/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
-	if(seen) //If you're only considered "seen" because the other living player(s) are all on another Z level, disregard it during work specifically.
+	if(!seen) //If you're only considered "seen" because the other living player(s) are all on another Z level, disregard it during work specifically.
 		to_chat(user, "<span class='warning'>You are injured by [src]!</span>") // Keeping it clear that the bad work is from being seen and not just luck.
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 		datum_reference.qliphoth_change(-1)
