@@ -59,7 +59,6 @@
 
 	//Only gets mad if you are NOT alone.
 	if(people_watching > 1)
-		datum_reference.qliphoth_change(-1)
 		seen = TRUE
 	else
 		seen = FALSE
