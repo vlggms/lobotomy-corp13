@@ -387,4 +387,11 @@
 
 /datum/ego_datum/armor/my_own_bride
 	item_path = /obj/item/clothing/suit/armor/ego_gear/my_own_bride
+	
+// Apex Predator
+/datum/ego_datum/armor/animalism
+	item_path = /obj/item/clothing/suit/armor/ego_gear/animalism
+	cost = 50
+
+/datum/ego_datum/weapon/animalism
 	cost = 50

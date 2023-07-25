@@ -271,7 +271,15 @@
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
+							JUSTICE_ATTRIBUTE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/animalism
+	name = "Animalism"
+	desc = "Nothing left behind your eyes, just animal instinct and a hollow mind - impervious to everything and everyone."
+	icon_state = "animalism"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) //140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/darkcarnival
