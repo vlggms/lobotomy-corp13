@@ -90,7 +90,11 @@
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
 	var/attack_verb_simple = "attack"
+	// Code for attacking mobs is defined in living_defense.dm
+	/// The sound to play when attacking in melee
 	var/attack_sound = null
+	/// How loud is the sound
+	var/attack_sound_volume = 50
 	///Attacking, but without damage, verb in present continuous tense.
 	var/friendly_verb_continuous = "nuzzles"
 	///Attacking, but without damage, verb in present simple tense.
