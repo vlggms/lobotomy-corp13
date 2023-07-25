@@ -97,7 +97,6 @@
 	if(!revealed)
 		//Will want this to be crazy
 		say("Behind you.")
-		FearEffect()
 
 		SLEEP_CHECK_DEATH(7)
 		Decloak()
