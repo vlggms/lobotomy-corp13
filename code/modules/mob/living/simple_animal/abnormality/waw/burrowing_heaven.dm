@@ -39,6 +39,7 @@
 
 	var/seen	//Are you being looked at right now?
 	var/solo_punish //Are you alone?
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 //Sight Check
 /mob/living/simple_animal/hostile/abnormality/burrowingheaven/Life()
