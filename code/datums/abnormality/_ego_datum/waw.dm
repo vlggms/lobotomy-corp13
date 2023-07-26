@@ -394,4 +394,5 @@
 	cost = 50
 
 /datum/ego_datum/weapon/animalism
+	item_path = obj/item/ego_weapon/animalism
 	cost = 50
