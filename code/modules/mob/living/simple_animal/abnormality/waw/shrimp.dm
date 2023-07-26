@@ -58,7 +58,7 @@
 				/obj/item/gun/ego_gun/sodasmg,
 				/obj/item/gun/ego_gun/sodashotty,
 				/obj/item/gun/ego_gun/sodarifle,
-				/obj/item/clothing/suit/armor/ego_gear/soda,
+				/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
 				)

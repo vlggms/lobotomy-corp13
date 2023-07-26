@@ -1,6 +1,14 @@
 // ALEPH armor, go wild, but attempt to keep total armor at ~240 total.
 
-/obj/item/clothing/suit/armor/ego_gear/paradise
+/* Lead Developer's note:
+Think before you code!
+Any attempt to code risk class armor will result in a 10 day Github ban.*/
+
+/obj/item/clothing/suit/armor/ego_gear/aleph
+	icon = 'icons/obj/clothing/ego_gear/abnormality/aleph.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/aleph.dmi'
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/paradise
 	name = "paradise lost"
 	desc = "\"My loved ones, do not worry; I have heard your prayers. \
 	Have you not yet realized that pain is but a speck to a determined mind?\""
@@ -13,7 +21,7 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/justitia
+/obj/item/clothing/suit/armor/ego_gear/aleph/justitia
 	name = "justitia"
 	desc = "A black, bandaged coat with golden linings covering it."
 	icon_state = "justitia"
@@ -25,7 +33,7 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/star
+/obj/item/clothing/suit/armor/ego_gear/aleph/star
 	name = "sound of a star"
 	desc = "At the heart of the armor is a shard that emits an arcane gleam. \
 	The gentle glow feels somehow more brilliant than a flashing light."
@@ -38,7 +46,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/da_capo
+/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo
 	name = "da capo"
 	desc = "A splendid tailcoat perfect for a symphony. \
 	Superb leadership is required to create a perfect ensemble."
@@ -51,7 +59,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/mimicry
+/obj/item/clothing/suit/armor/ego_gear/aleph/mimicry
 	name = "mimicry"
 	desc = "It takes human hide to protect human flesh. To protect humans, you need something made out of humans."
 	icon_state = "mimicry"
@@ -63,7 +71,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/twilight
+/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 	name = "twilight"
 	desc = "The three birds united their efforts to defeat the beast. \
 	This could stop countless incidents, but you’ll have to be prepared to step into the Black Forest…"
@@ -76,7 +84,7 @@
 							JUSTICE_ATTRIBUTE = 120
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/adoration
+/obj/item/clothing/suit/armor/ego_gear/aleph/adoration
 	name = "adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
@@ -89,7 +97,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/smile
+/obj/item/clothing/suit/armor/ego_gear/aleph/smile
 	name = "smile"
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
@@ -102,7 +110,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/blooming
+/obj/item/clothing/suit/armor/ego_gear/aleph/blooming
 	name = "blooming"
 	desc = "Just looking at this, you feel quite tacky."
 	icon_state = "blooming"
@@ -115,7 +123,7 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/flowering
+/obj/item/clothing/suit/armor/ego_gear/aleph/flowering
 	name = "flowering night"
 	desc = "Ah, magicians are actually in greater need of mercy."
 	icon_state = "air"
@@ -128,7 +136,7 @@
 							JUSTICE_ATTRIBUTE = 120
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/praetorian
+/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian
 	name = "praetorian"
 	desc = "The queen's last line of defense."
 	icon_state = "praetorian"
@@ -140,7 +148,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/mockery
+/obj/item/clothing/suit/armor/ego_gear/aleph/mockery
 	name = "mockery"
 	desc = "It's smug aura is almost mocking you."
 	icon_state = "mockery"
@@ -152,7 +160,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/censored
+/obj/item/clothing/suit/armor/ego_gear/aleph/censored
 	name = "CENSORED"
 	desc = "Goodness, that’s disgusting."
 	icon_state = "censored"
@@ -164,7 +172,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/soulmate
+/obj/item/clothing/suit/armor/ego_gear/aleph/soulmate
 	name = "Soulmate"
 	desc = "I’ll follow thee and make a heaven of hell, to die upon the hand I love so well."
 	icon_state = "soulmate"
@@ -177,7 +185,7 @@
 							)
 
 
-/obj/item/clothing/suit/armor/ego_gear/space
+/obj/item/clothing/suit/armor/ego_gear/aleph/space
 	name = "out of space"
 	desc = "It was just a colour out of space, a frightful messenger from unformed realms of infinity beyond all Nature as we know it."
 	icon_state = "space"
@@ -189,7 +197,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/nihil
+/obj/item/clothing/suit/armor/ego_gear/aleph/nihil
 	name = "nihil"
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
@@ -204,15 +212,15 @@
 	var/equipped
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
 
-/obj/item/clothing/suit/armor/ego_gear/nihil/equipped(mob/user, slot, initial = FALSE)
+/obj/item/clothing/suit/armor/ego_gear/aleph/nihil/equipped(mob/user, slot, initial = FALSE)
 	..()
 	equipped = TRUE
 
-/obj/item/clothing/suit/armor/ego_gear/nihil/dropped(mob/user)
+/obj/item/clothing/suit/armor/ego_gear/aleph/nihil/dropped(mob/user)
 	..()
 	equipped = FALSE
 
-/obj/item/clothing/suit/armor/ego_gear/nihil/attackby(obj/item/I, mob/living/user, params)
+/obj/item/clothing/suit/armor/ego_gear/aleph/nihil/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/nihil))
 		return
@@ -240,7 +248,7 @@
 	else
 		to_chat(user,"<span class='warning'>You have already used this upgrade!</span>")
 
-/obj/item/clothing/suit/armor/ego_gear/nihil/proc/IncreaseAttributes(user, current_suit)
+/obj/item/clothing/suit/armor/ego_gear/aleph/nihil/proc/IncreaseAttributes(user, current_suit)
 	for(var/atr in attribute_requirements)
 		if(atr == TEMPERANCE_ATTRIBUTE)
 			attribute_requirements[atr] += 5
@@ -265,7 +273,7 @@
 			armor = armor.modifyRating(black = 20, pale = 10)
 			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to BLACK and PALE damage!</span>")
 
-/obj/item/clothing/suit/armor/ego_gear/seasons
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons
 	name = "season's greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
@@ -285,22 +293,22 @@
 		"winter" = list("winter solstice","In the past, folk believed that the dead would visit as winter came.")
 		)
 
-/obj/item/clothing/suit/armor/ego_gear/seasons/Initialize()
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 	ChangeSeasons()
 
-/obj/item/clothing/suit/armor/ego_gear/seasons/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!user)
 		return
 	current_holder = user
 
-/obj/item/clothing/suit/armor/ego_gear/seasons/dropped(mob/user)
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/dropped(mob/user)
 	. = ..()
 	current_holder = null
 
-/obj/item/clothing/suit/armor/ego_gear/seasons/proc/ChangeSeasons()
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/ChangeSeasons()
 	switch(current_season)
 		if("spring")
 			current_season = "summer"
@@ -313,7 +321,7 @@
 	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
 	Transform()
 
-/obj/item/clothing/suit/armor/ego_gear/seasons/proc/Transform()
+/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/Transform()
 	icon_state = "[current_season]"
 	update_icon_state()
 	if(current_holder)
@@ -334,7 +342,7 @@
 		if("winter")
 			armor = armor.modifyRating(red = 20, black = -40, pale = 20)
 
-/obj/item/clothing/suit/armor/ego_gear/distortion
+/obj/item/clothing/suit/armor/ego_gear/aleph/distortion
 	name = "distortion"
 	desc = "To my eyes, I’m the only one who doesn’t appear distorted. In a world full of distorted people, could the one person who remains unchanged be the \"distorted\" one?"
 	icon_state = "distortion"

@@ -23,7 +23,7 @@
 		/datum/ego_datum/armor/loyalty
 		)
 	gift_type =  /datum/ego_gifts/loyalty
-	loot = list(/obj/item/clothing/suit/armor/ego_gear/praetorian) // Don't think it was dropping before, this should make it do so
+	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
 	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
 	health = 3000
 	maxHealth = 3000

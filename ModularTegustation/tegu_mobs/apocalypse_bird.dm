@@ -27,7 +27,7 @@
 
 	loot = list(
 		/obj/item/ego_weapon/twilight,
-		/obj/item/clothing/suit/armor/ego_gear/twilight
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 		)
 
 	var/list/eggs = list()
