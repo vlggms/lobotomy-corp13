@@ -142,7 +142,7 @@
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/golden_sheen
 	consumed_on_threshold = FALSE
-	var/glowstuff
+	var/obj/item/glow_object/glowstuff
 
 /atom/movable/screen/alert/status_effect/golden_sheen
 	name = "Golden Sheen"
