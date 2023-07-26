@@ -1,6 +1,6 @@
 // White night - Paradise lost
 /datum/ego_datum/armor/paradise
-	item_path = /obj/item/clothing/suit/armor/ego_gear/paradise
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/paradise
 	cost = 200
 
 // Judgement bird - Justitia
@@ -9,7 +9,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/justitia
-	item_path = /obj/item/clothing/suit/armor/ego_gear/justitia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/justitia
 	cost = 100
 
 // Blue star - Sound of a star
@@ -18,7 +18,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/star_sound
-	item_path = /obj/item/clothing/suit/armor/ego_gear/star
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/star
 	cost = 100
 
 // Silent orchestra - Da capo
@@ -27,7 +27,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/da_capo
-	item_path = /obj/item/clothing/suit/armor/ego_gear/da_capo
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/da_capo
 	cost = 100
 
 // Nothing there - Mimicry
@@ -36,7 +36,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/mimicry
-	item_path = /obj/item/clothing/suit/armor/ego_gear/mimicry
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/mimicry
 	cost = 100
 
 // Melting Love - Adoration
@@ -45,7 +45,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/adoration
-	item_path = /obj/item/clothing/suit/armor/ego_gear/adoration
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/adoration
 	cost = 100
 
 // Mountain of smiling bodies - Smile
@@ -54,7 +54,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/smile
-	item_path = /obj/item/clothing/suit/armor/ego_gear/smile
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/smile
 	cost = 100
 
 // Staining Rose - Blooming & Flowering Night
@@ -63,11 +63,11 @@
 	cost = 100
 
 /datum/ego_datum/armor/blooming
-	item_path = /obj/item/clothing/suit/armor/ego_gear/blooming
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/blooming
 	cost = 100
 
 /datum/ego_datum/armor/flowering
-	item_path = /obj/item/clothing/suit/armor/ego_gear/flowering
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/flowering
 	cost = 250	//You have to constantly be working on this, I'll reward you by letting you buy a much better armor
 
 // CENSORED - CENSORED
@@ -76,7 +76,7 @@
 	cost = 100
 
 /datum/ego_datum/armor/censored
-	item_path = /obj/item/clothing/suit/armor/ego_gear/censored
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/censored
 	cost = 100
 
 // The King Of Greed - Gold Rush
@@ -90,12 +90,12 @@
 	cost = 100
 
 /datum/ego_datum/armor/soulmate
-	item_path = /obj/item/clothing/suit/armor/ego_gear/soulmate
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/soulmate
 	cost = 100
 
 // Lady out of Space - Out of Space
 /datum/ego_datum/armor/space
-	item_path = /obj/item/clothing/suit/armor/ego_gear/space
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/space
 	cost = 100
 
 /datum/ego_datum/weapon/space
@@ -104,7 +104,7 @@
 
 // Jester of Nihil - Nihil
 /datum/ego_datum/armor/nihil
-	item_path = /obj/item/clothing/suit/armor/ego_gear/nihil
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/nihil
 	cost = 100
 
 /datum/ego_datum/weapon/nihil
@@ -113,7 +113,7 @@
 
 // God of the Seasons - Season's Greetings
 /datum/ego_datum/armor/seasons
-	item_path = /obj/item/clothing/suit/armor/ego_gear/seasons
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
 	cost = 100
 
 /datum/ego_datum/weapon/seasons
@@ -122,7 +122,7 @@
 
 // Distorted Form - Distortion
 /datum/ego_datum/armor/distortion
-	item_path = /obj/item/clothing/suit/armor/ego_gear/distortion
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/distortion
 	cost = 100
 
 /datum/ego_datum/weapon/distortion

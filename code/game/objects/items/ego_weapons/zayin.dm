@@ -17,7 +17,7 @@
 	if(ability_cooldown > world.time)
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return FALSE
-	var/obj/item/clothing/suit/armor/ego_gear/P = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/P = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(P, matching_armor))
 		pulse_enabled = TRUE
 		ability_cooldown = world.time + ability_cooldown_time
@@ -58,7 +58,7 @@
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/penitence
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence
 	pulse_enable_toggle = TRUE
 	use_message = "You use penitence to emit sanity healing pulses!"
 	use_sound = "sound/abnormalities/onesin/bless.ogg"
@@ -83,7 +83,7 @@
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/little_alice
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/little_alice
 	use_message = "You use little alice to share snacks!"
 	use_sound = "sound/items/eatfood.ogg"
 	ability_cooldown_time = 60 SECONDS
@@ -109,7 +109,7 @@
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/wingbeat
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/wingbeat
 	pulse_enable_toggle = TRUE
 	use_message = "You use wingbeat to emit healing pulses!"
 	use_sound = "sound/abnormalities/fairyfestival/fairylaugh.ogg"
@@ -138,7 +138,7 @@
 	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || (user.a_intent != INTENT_HELP))
 		..()
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/change/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/change/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		..()
 		return
@@ -162,7 +162,7 @@
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
 
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/doze
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/doze
 	use_message = "You use the doze to emit healing pulses! It knocks you right out!"
 	use_sound = "sound/abnormalities/happyteddy/teddy_lullaby.ogg"
 	var/pulse_healing = -2
@@ -195,7 +195,7 @@
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/evening
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	use_message = "You use evening to generate pale shields!"
 	use_sound = "sound/abnormalities/lighthammer/chain.ogg"
 
@@ -246,7 +246,7 @@
 	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || (user.a_intent != INTENT_HELP))
 		..()
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/melty_eyeball/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		..()
 		return
@@ -272,7 +272,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 	ability_cooldown_time = 30 SECONDS
-	matching_armor = /obj/item/clothing/suit/armor/ego_gear/letter_opener
+	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	use_message = "You use letter opener to send a message!"
 	use_sound = 'sound/items/handling/paper_drop.ogg'
 

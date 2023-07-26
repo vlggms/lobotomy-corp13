@@ -87,7 +87,7 @@
 /obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
 		fire_delay = 15
