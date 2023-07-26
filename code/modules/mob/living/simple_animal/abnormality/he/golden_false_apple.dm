@@ -61,7 +61,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
 	chem_type = /datum/reagent/abnormality/ambrosia
 	harvest_phrase = "<span class='notice'>You score %ABNO and it bleeds a golden syrup into %VESSEL.</span>"
-	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syruo into %VESSEL."
+	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
 	var/is_maggot = FALSE
 	var/smash_length = 2
 	var/smash_width = 2
@@ -141,8 +141,8 @@
 	stacks = 1
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/golden_sheen
-	var/glow
 	consumed_on_threshold = FALSE
+	var/glowstuff
 
 /atom/movable/screen/alert/status_effect/golden_sheen
 	name = "Golden Sheen"
@@ -151,17 +151,16 @@
 	icon_state = "golden_sheen"
 
 /datum/status_effect/stacking/golden_sheen/on_apply()
-	var/mob/living/carbon/human/H = owner
-	H.set_light(3, (stacks * 2), "D4FAF37")//you actually can glow brighter
-	H.set_light_on(TRUE)
-	H.update_light()
+	glowstuff = new /obj/item/glow_object(owner)
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/on_remove()
-	var/mob/living/carbon/human/H = owner
-	H.set_light()//sets it to false
-	H.set_light_on(FALSE)
-	H.update_light()
+	qdel(glowstuff)
+	return ..()
+
+/datum/status_effect/stacking/golden_sheen/add_stacks()
+	var/obj/item/glow_object = glowstuff
+	glow_object.set_light(3, (stacks * 2), "D4FAF37")
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/tick()//TODO:change this to golden apple's life tick for less lag
@@ -171,6 +170,14 @@
 	owner.adjustBruteLoss(stacks * -0.5)
 	var/mob/living/carbon/human/H = owner
 	H.adjustSanityLoss(stacks * -0.5)
+
+/obj/item/glow_object
+	name = "golden apple core"
+	desc = "You shouldn't be able to see this."
+	light_range = 3
+	light_power = 2
+	light_color = "D4FAF37"
+	light_on = TRUE
 
 //debuff definition
 
