@@ -538,9 +538,9 @@
 	DELAY 40
 	SAY Click on a held storage item with an empty hand to view its contents.
 	DELAY 40
-	SAY You can also do this by click-dragging the storage item onto your <span class='bold'>sprite</span>.
+	SAY You can also do this by click-dragging the storage item's sprite onto your <span class='bold'>sprite</span>.
 	DELAY 40
-	SAY To unequip storage items such as your backpack, click-drag that item's sprite onto a hand slot.
+	SAY To unequip storage items such as your backpack, click-drag that item's sprite onto a <span class='bold'>hand slot</span>.
 	DELAY 45"}
 
 /obj/item/disk/holodisk/tutorial/basicmechanic4
@@ -612,7 +612,7 @@
 	DELAY 40
 	SAY While you are crawling, projectiles cannot hit you unless they specifically target you.
 	DELAY 30
-	SAY Now, crawl under the plastic flaps and enter the portal to continue to the LobCorp-specific training.
+	SAY Now, crawl under the plastic flaps and into the portal to continue to the LobCorp-specific training.
 	DELAY 40"}
 
 /obj/item/disk/holodisk/tutorial/stats
@@ -753,6 +753,8 @@
 	DELAY 50
 	SAY EGO is acquired from a console located in the <span class='italics'>Extraction Department</span> of our facilties.
 	DELAY 45
+	SAY As a reminder, the ego small arms belt does not work with the tutorial EGOs.
+	DELAY 40
 	SAY Equip a set of EGO armor and weapon from the nearby racks. You will need them shortly.
 	DELAY 40"}
 
@@ -796,6 +798,8 @@
 	DELAY 30
 	SAY The Qliphoth Meter, which can be seen by examining an <span class='italics'>ordeal monitor</span>, increases every time a work is completed.
 	DELAY 50
+	SAY This means that working progresses the round, increasing the difficulty over time. Try to be efficient with your works.
+	DELAY 45
 	SAY When it reaches a threshold, an announcement reveals which Abnormalities have been affected by Qliphoth Meltdowns.
 	DELAY 45
 	SAY These Abnormalities must be worked on within a set amount of time, or else they will immediately breach. You can see this timer by examining their console.

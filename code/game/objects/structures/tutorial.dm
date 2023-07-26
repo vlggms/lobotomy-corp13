@@ -107,7 +107,7 @@
 		for(var/obj/O in H.get_contents())
 			if(O.type in prohibited_objects)
 				if(!check_times[H] || check_times[H] < world.time)
-					to_chat(H, "<span class='warning'>Please return any Lobotomy Corp property you have taken!</span>")
+					to_chat(H, "<span class='warning'>Please return any tutorial items you have taken!</span>")
 					check_times[H] = world.time + TUTORIAL_MESSAGE_COOLDOWN
 				alarm_beep()
 				return FALSE

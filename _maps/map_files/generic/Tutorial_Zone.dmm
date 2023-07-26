@@ -771,7 +771,7 @@
 /area/department_main/human)
 "FC" = (
 /obj/machinery/holopad/tutorial{
-	proximity_cooldown_time = 600
+	proximity_cooldown_time = 1200
 	},
 /obj/item/disk/holodisk/tutorial/warning,
 /turf/open/floor/plasteel/dark,
@@ -872,7 +872,7 @@
 /area/department_main/human)
 "Jz" = (
 /obj/machinery/holopad/tutorial{
-	proximity_cooldown_time = 600
+	proximity_cooldown_time = 1200
 	},
 /obj/item/disk/holodisk/tutorial/mainroom,
 /obj/effect/light_emitter{
