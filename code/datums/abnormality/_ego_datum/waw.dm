@@ -387,6 +387,7 @@
 
 /datum/ego_datum/armor/my_own_bride
 	item_path = /obj/item/clothing/suit/armor/ego_gear/my_own_bride
+	cost = 50
 	
 // Apex Predator
 /datum/ego_datum/armor/animalism
@@ -394,4 +395,5 @@
 	cost = 50
 
 /datum/ego_datum/weapon/animalism
+	item_path = /obj/item/ego_weapon/animalism //I didn't know how this was forgotten.
 	cost = 50
