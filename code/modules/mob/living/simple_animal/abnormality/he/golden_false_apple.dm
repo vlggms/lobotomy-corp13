@@ -159,8 +159,7 @@
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/add_stacks()
-	var/obj/item/glow_object = glowstuff
-	glow_object.set_light(3, (stacks * 2), "D4FAF37")
+	glowstuff.set_light(3, (stacks * 2), "D4FAF37")
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/tick()//TODO:change this to golden apple's life tick for less lag
