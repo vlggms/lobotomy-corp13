@@ -221,7 +221,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	deathsound = 'sound/effects/ordeals/green/dusk_dead.ogg'
-	var/spawn_progress = 18
+	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
 
