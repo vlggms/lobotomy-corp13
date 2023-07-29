@@ -5,7 +5,7 @@
 	Standard Training Dummy Rabbit	<br>
 	"An Abnormality in the shape of a training dummy used to train up-and-coming managers."<br>
 
-	"Rumor has it this Abnormality was chosen to be used for training as it is the most docile and tame of any that we have extracted. Itís called a training dummy ìrabbitî, but it doesnít seem to enjoy carrots. It likes people.<br>
+	"Rumor has it this Abnormality was chosen to be used for training as it is the most docile and tame of any that we have extracted. It‚Äôs called a training dummy ‚Äúrabbit‚Äù, but it doesn‚Äôt seem to enjoy carrots. It likes people.<br>
 	If it escapes, it is merely following the employee as they leave its Containment Unit."<br>
 	
 	<h3><center>Warning: Only authorized personnel are permitted to read this document.</center></h3><br>
@@ -24,7 +24,7 @@
 	info = {"<h2><center>T-02-43</center></h2>	<br>
 	Spider Bud	<br>
 	"An Abnormality that takes the form of a giant spider, guarding its domain in darkness. It's difficult to see the Abnormality with bare eyes. Small spiderlings skitter around the floor."<br>
-	"Our proud employee, Peter, entered the Abnormalityís Containment Unit one day. When he shone the flashlight on the floor, small little spiders skittered away from the light."<br>
+	"Our proud employee, Peter, entered the Abnormality‚Äôs Containment Unit one day. When he shone the flashlight on the floor, small little spiders skittered away from the light."<br>
 
 	"When Peter squashed one of the spiderlings by accident, a giant spider descended from the ceiling. Peter was dragged to the ceiling in only a moment. The cocooned employee hanging off the ceiling of the Containment Unit will be a healthy meal for the spider's offspring."<br>
 
@@ -37,7 +37,7 @@
 	"We do appreciate your suggestion. However, our own research indicates that your concerns are unlikely to be true. Furthermore, it is proven that the presence of a cocoon in the Containment Unit increases the energy output. For these reasons, we will not implement a rescue procedure for employees who are caught by Spider Bud as it is against our interests. However, we will allocate more resources into researching this specimen in the future per your opinion. Please be advised that disrupting the atmosphere of our workspace by spreading unconfirmed rumors is against the code of conduct, and may even be subject to penalties including dismissal. Lobotomy always values the welfare and voices of its employees. - Head of the Welfare Department, Lobotomy Corporation."<br>
 
 	"There's an eerie rumor spreading among employees. It's not out of the ordinary for a rumor or two to spread in a company like this, but it is interesting that the number of alleged witnesses seems to multiply.<br>
-	The rumor says the following: ìWhispers can be heard in the Containment Unit at night...î ìIt was the voice of Alex, who went missing a few days ago...î ìThey say the voice wept in terror, asking to be saved from the darkness...î "}
+	The rumor says the following: ‚ÄúWhispers can be heard in the Containment Unit at night...‚Äù ‚ÄúIt was the voice of Alex, who went missing a few days ago...‚Äù ‚ÄúThey say the voice wept in terror, asking to be saved from the darkness...‚Äù "}
 
 //Scorched Girl
 /obj/item/paper/fluff/lore/teth/scorched
@@ -53,7 +53,7 @@
 	"We paid a boatload and that's all they have to say?"<br>
 
 	<h3><center>Excerpt from Recorded Staff Conversation</center></h3><br>
-	"Well, sheís like a ticking time bomb. No one can tell if sheís in a good mood or not. We just hope that we wonít be the one blown up before entering the Containment Unit. She wonít get any better, we can only try and keep her from getting worse."<br>
+	"Well, she‚Äôs like a ticking time bomb. No one can tell if she‚Äôs in a good mood or not. We just hope that we won‚Äôt be the one blown up before entering the Containment Unit. She won‚Äôt get any better, we can only try and keep her from getting worse."<br>
 
 	<h3><center>Excerpt from Counseling Log</center></h3><br>
 	"I never thought the abnormality would be able to escape. Maybe we were getting careless, but it seemed that all it could do was burn up the match stuck in its body. Yes, our response was a bit late. (Omitted)<br>
@@ -66,7 +66,7 @@
 	Punishing Bird	<br>
 	"A small and confident bird that punishes the evil, guilty, and all sorts of irreverent people. Some employees have said that it is cute when the bird mightily flutters its tiny wings."<br>
 
-	"People have been committing sins since long ago. Why do they commit sins, knowing it's wrong?" The small bird wondered. ìIt must be because there's no one to punish people for their misdeeds. If someone takes that role, then no foul act would happen in this world ever again!î With this in mind, the little bird left the forest it had been living in, and never went back."}
+	"People have been committing sins since long ago. Why do they commit sins, knowing it's wrong?" The small bird wondered. ‚ÄúIt must be because there's no one to punish people for their misdeeds. If someone takes that role, then no foul act would happen in this world ever again!‚Äù With this in mind, the little bird left the forest it had been living in, and never went back."}
 
 //Fragment of the Universe
 /obj/item/paper/fluff/lore/teth/frag
@@ -75,11 +75,11 @@
 	Fragment of the Universe	<br>
 	"An Abnormality that resembles a child's innocent doodles. Originally, it had no stable form, its shape would continually morph. To this day its aspects still change, albeit at a much slower pace. Component analysis has revealed that the Abnormality consists of matter that does not exist on Earth. It is notable for its metaphysical appearance that one cannot explain with words."<br>
 
-	"It often shows incomprehensible linguistic activity. One employee tried to decipher its speech (see Document #1 <Employee Davidís Song>), but their mental contamination level rose beyond the limit within several days. They suffered severe psychosis and had to be quarantined."<br>
+	"It often shows incomprehensible linguistic activity. One employee tried to decipher its speech (see Document #1 <Employee David‚Äôs Song>), but their mental contamination level rose beyond the limit within several days. They suffered severe psychosis and had to be quarantined."<br>
 
-	"The Abnormality's tentacles (which are quite different from what we consider the average tentacle; for simplicityís sake weíve monickered them as ìtentaclesî) can pierce through the barrier of humanity. Employees impaled by the tentacles will suffer semi-permanent brain damage."<br>
+	"The Abnormality's tentacles (which are quite different from what we consider the average tentacle; for simplicity‚Äôs sake we‚Äôve monickered them as ‚Äútentacles‚Äù) can pierce through the barrier of humanity. Employees impaled by the tentacles will suffer semi-permanent brain damage."<br>
 
-	"When the Abnormality escapes its Containment Unit, it will emit noises in the corridor. As the sounds it makes have what could be considered a melody and syllables, we consider it ìsingingî. However, none of our staff can precisely remember it, given that most of the time they are unable to describe it due to their serious brain damage. Those who were within 100 meters of the ìsingingî called it a sound unheard of in this world. Because of these descriptions, weíve titled it ìEchoes from the Beyondî. (See Document #2 <Singing>)"<br>
+	"When the Abnormality escapes its Containment Unit, it will emit noises in the corridor. As the sounds it makes have what could be considered a melody and syllables, we consider it ‚Äúsinging‚Äù. However, none of our staff can precisely remember it, given that most of the time they are unable to describe it due to their serious brain damage. Those who were within 100 meters of the ‚Äúsinging‚Äù called it a sound unheard of in this world. Because of these descriptions, we‚Äôve titled it ‚ÄúEchoes from the Beyond‚Äù. (See Document #2 <Singing>)"<br>
 
 	<h3><center>Experiment_1 - The Possibility of Communication</center></h3><br>
 	"We have determined that the Abnormality has an intelligence similar to (or even higher than) that of humans, and gave it a simple language learning course. As a result, a crude communication by combining words has become possible. The following is a segment of the communication record with the Abnormality.<br>
@@ -95,26 +95,26 @@
 
 	This section is an attempt to decipher the conversation with the Abnormality.<br>
 	1. It based its form on a picture drawn by a child. It changed its form because the child's expression while drawing it was happy.<br>
-	2. It came here to share its speciesí knowledge with us. The moment we fully understand that knowledge, we will know their ultimate goal.<br>
+	2. It came here to share its species‚Äô knowledge with us. The moment we fully understand that knowledge, we will know their ultimate goal.<br>
 	3. There is no such thing as a coincidence in the universe."<br>
 
 	<h3><center>Experiment_2 - An Experiment on Laughter</center></h3><br>
-	"After watching a video about laughing for 30 minutes, the Abnormality understood the concept of ìlaughingî. After that, when employees entered its Containment Unit to work with it, it would sometimes emit a strange noise with what appeared to be the shape of a smile on its face. It looked like it was mimicking laughter."<br>
+	"After watching a video about laughing for 30 minutes, the Abnormality understood the concept of ‚Äúlaughing‚Äù. After that, when employees entered its Containment Unit to work with it, it would sometimes emit a strange noise with what appeared to be the shape of a smile on its face. It looked like it was mimicking laughter."<br>
 
 	<h3><center>Experiment_3 - Comprehension of Symbols</center></h3><br>
 	We taught it the meaning of various symbols along with language. Among them was the shape of a heart. This symbol provoked a distinct change from the Abnormality.<br>
 
-	Q (Showing the Abnormality a picture of a heart): This is the symbol of the ìheartî. Many people believe that emotions come from the heart, and this symbol is used to express positive emotions or a liking towards someone. (Omitted)<br>
+	Q (Showing the Abnormality a picture of a heart): This is the symbol of the ‚Äúheart‚Äù. Many people believe that emotions come from the heart, and this symbol is used to express positive emotions or a liking towards someone. (Omitted)<br>
 
-	Afterwards, several symbols resembling hearts were seen on the Abnormalityís body. It seemed to understand that the symbol could be used to express friendliness towards humans. Combining the results of the previous two experiments, we can confirm that this Abnormality is non-hostile to humans, and wishes to become friends."<br>
+	Afterwards, several symbols resembling hearts were seen on the Abnormality‚Äôs body. It seemed to understand that the symbol could be used to express friendliness towards humans. Combining the results of the previous two experiments, we can confirm that this Abnormality is non-hostile to humans, and wishes to become friends."<br>
 
-	<h3><center>Document #1 - Employee Davidís Song</center></h3><br>
+	<h3><center>Document #1 - Employee David‚Äôs Song</center></h3><br>
 	"David was famous in his department for his attempts to communicate with the 'Fragment of the Universe'. He was an intellectual who enjoyed reading philosophical books and gazing at the stars. He held interest in the Abnormality and as such he got the job; he researched its language and behaviour purely out of personal interest.<br>
-	So what became of David? Eventually, he succeeded in entering the domain of the Fragment of the Universe. However, it was obvious that his small brain couldn't withstand it. He was transferred to the psychiatric ward, and died of starvation while singing an unrecognizable song. This is why the Abnormalityís voice cannot be revealed to the public.<br>
+	So what became of David? Eventually, he succeeded in entering the domain of the Fragment of the Universe. However, it was obvious that his small brain couldn't withstand it. He was transferred to the psychiatric ward, and died of starvation while singing an unrecognizable song. This is why the Abnormality‚Äôs voice cannot be revealed to the public.<br>
 	Audio Record: Echoes in the Universe (Currently Removed)"<br>
 
 	<h3><center>Document #2 - Singing</center></h3><br>
-	"...Why didn't you tell me earlier that the Abnormality was responsible for their condition? I have no idea if thereís any pattern, but they all show the same strange behavior on the exact same days. Can you imagine a group of patients staring at the sky with dazed faces, wailing strange noises in the corridor at night while everyone is asleep? I had such a difficult time persuading the other patients that they must have been practicing for the companyís upcoming Halloween event. Psychiatric treatment and medicine won't help.<br>
+	"...Why didn't you tell me earlier that the Abnormality was responsible for their condition? I have no idea if there‚Äôs any pattern, but they all show the same strange behavior on the exact same days. Can you imagine a group of patients staring at the sky with dazed faces, wailing strange noises in the corridor at night while everyone is asleep? I had such a difficult time persuading the other patients that they must have been practicing for the company‚Äôs upcoming Halloween event. Psychiatric treatment and medicine won't help.<br>
 	"Coming, coming, still coming," they keep repeating these words, and anything else they utter is not from any language we know. I think sending them to a general hospital was an unwise decision.<br>
 	-Doctor from the (Record Deleted) Ward."}
 	
@@ -152,7 +152,7 @@
 	1.76 MHz	<br>
 	"This Abnormality is a phenomenon with no visible form. It was discovered when employees began to exhibit shared symptoms when entering a specific area of the facility. They all suffered hallucinations of a specific nature, and their mental corruption increased."<br>
 
-	"After setting a radioís frequency to 1.76 MHz, we waited. Following 12 minutes, a mysterious voice was heard through static. It was difficult to make out what it was saying, but it appeared to be in distress and was asking for help."<br>
+	"After setting a radio‚Äôs frequency to 1.76 MHz, we waited. Following 12 minutes, a mysterious voice was heard through static. It was difficult to make out what it was saying, but it appeared to be in distress and was asking for help."<br>
 
 	"17 minutes in, the voice stopped and 3 loud explosions were heard, which were then followed by 2 smaller explosions. It can be assumed that the situation the voice was in was chaotic, as based on the various levels of screaming that could be heard.<br>
 
@@ -162,22 +162,22 @@
 
 	Continuing past 30 minutes, everyone in the area was suddenly filled with rage and started to exhibit the desire to assault one another with extreme aggression."<br>
 
-	"Following the incident, all employees who took part refused to seek counseling (we couldnít make it mandatory as no one was injured). It is still unknown what caused the collective rage."<br>
+	"Following the incident, all employees who took part refused to seek counseling (we couldn‚Äôt make it mandatory as no one was injured). It is still unknown what caused the collective rage."<br>
 
-	"Afterwards, unknown noises and hallucinations started to occur near the Containment Unit. This is a recording of the day we must never forget. It brings us to a chaotic placeóforgotten by manyóthat must never be forgotten."}
+	"Afterwards, unknown noises and hallucinations started to occur near the Containment Unit. This is a recording of the day we must never forget. It brings us to a chaotic place‚Äîforgotten by many‚Äîthat must never be forgotten."}
 
 //Crumbling Armor
 /obj/item/paper/fluff/lore/teth/crumbling
 	name = "O-05-61"
 	info = {"<h2><center>O-05-61</center></h2>	<br>
 	Crumbling Armor	<br>
-	"An armor that seems to have been used hundreds of years ago. An engraving on its bottom states: ìLife is only granted to those who hold no fear of death.î Obviously, putting this armor on is forbidden by the company regulations.<br>
+	"An armor that seems to have been used hundreds of years ago. An engraving on its bottom states: ‚ÄúLife is only granted to those who hold no fear of death.‚Äù Obviously, putting this armor on is forbidden by the company regulations.<br>
 	Note: There have been rumors of employees pretending to put on the armor for fun. Please look into this immediately!"<br>
 
 	"This armor was secured from a museum. The information below is the fragments of its legend.<br>
-	ÖThis armor once belonged to General XXXX, who joined the War of XX during the year of XXX. It was a family heirloom, passed down through many generations. The general always wore this armor to keep himself protected. By a stroke of bad luck however, an arrow flew into a gap in the armor, killing him instantly. Somehow, the armor was undamaged.<br>
-	After the death of General XXXX, the armor was presented to Commander XXX of Battalion 00. The commander was always seen steel-clad each time he set out into battle. During one of his battles, the commander fell from his horse while fleeing from the enemy and died due to a fatal injury upon his skull. Still, the armor once again remained undamaged. There are many others throughout this armorís history who have had their hands on it, and each and every one of them has died in battle. Meanwhile, the armor still kept its pristine condition.<br>
-	Over the years, the armor made its way to a warrior named XXX. He was known for simply keeping the armor in storage, not wearing it for a single battle. Eventually, XXX died of old age after participating in dozens of wars without sustaining a single injury. During his lifetime, the armorís right arm became damaged, but there was no sign of exterior impact. XXXís family later donated the armor to a museum."<br>
+	‚Ä¶This armor once belonged to General XXXX, who joined the War of XX during the year of XXX. It was a family heirloom, passed down through many generations. The general always wore this armor to keep himself protected. By a stroke of bad luck however, an arrow flew into a gap in the armor, killing him instantly. Somehow, the armor was undamaged.<br>
+	After the death of General XXXX, the armor was presented to Commander XXX of Battalion 00. The commander was always seen steel-clad each time he set out into battle. During one of his battles, the commander fell from his horse while fleeing from the enemy and died due to a fatal injury upon his skull. Still, the armor once again remained undamaged. There are many others throughout this armor‚Äôs history who have had their hands on it, and each and every one of them has died in battle. Meanwhile, the armor still kept its pristine condition.<br>
+	Over the years, the armor made its way to a warrior named XXX. He was known for simply keeping the armor in storage, not wearing it for a single battle. Eventually, XXX died of old age after participating in dozens of wars without sustaining a single injury. During his lifetime, the armor‚Äôs right arm became damaged, but there was no sign of exterior impact. XXX‚Äôs family later donated the armor to a museum."<br>
 
 	"After running a few tests on the armor, we have come up with the following conclusions: If this armor is worn by a cowardly employee, their chances of fatal injury and death are drastically increased. Inversely, when an employee who holds no fear of death wears it, their chances of injury and death are exceedingly decreased."<br>
 
@@ -188,13 +188,13 @@
 	name = "T-05-51"
 	info = {"<h2><center>T-05-51</center></h2>	<br>
 	Bloodbath	<br>
-	"An Abnormality which contains the pain of all those who couldnít take their sorrow in stride."<br>
+	"An Abnormality which contains the pain of all those who couldn‚Äôt take their sorrow in stride."<br>
 	
 	"A bath of a gloomy color, topped up with blood. The blood is always kept in equilibrium; it never overflows. Only despair can be found in its sunken depths. Unbearable depression overwhelms all who look into the bath. In an instant, it can pull a nearby person into it. It bears no considerable strength, but those who suffer from its crushing depression do not resist. It devours the victim until nothing remains except for their wrists. All the hands which float in the bath are pale, exsanguinated; they stretch into the air and reach out as if asking for help."<br>
 	
-	"It is no easy feat to cut oneís wrist with a sane mind. A strong will is needed with the resolve to make multiple attempts. Only when it is sliced as if one were simply cutting a mere slab of meat, can they achieve this. Only when one yearns for death that much, can they succeed."<br>
+	"It is no easy feat to cut one‚Äôs wrist with a sane mind. A strong will is needed with the resolve to make multiple attempts. Only when it is sliced as if one were simply cutting a mere slab of meat, can they achieve this. Only when one yearns for death that much, can they succeed."<br>
 	"I eternally regret not realizing to ask her why she needed that industrial knife. I eternally regret not realizing that she was hiding her wrists with long sleeves. I eternally regret not realizing that she always took extra care to hide them whenever I spoke with her. I eternally regret not realizing that I never heard her cheerful laughter anymore, and that she roamed around the company with lifeless eyes more and more often."<br>
-	"I canít even imagine how painful it would be to cut your wrist. I found out that the only reason she could manage to do something like that was she cut hers straight through."<br>
+	"I can‚Äôt even imagine how painful it would be to cut your wrist. I found out that the only reason she could manage to do something like that was she cut hers straight through."<br>
 	"We always popped open a bottle of wine every time we succeeded. It became one of our customs. She told us that it only takes one slight misstep to fall into indifferent habit if we get too used to success. Thus, we should always smile, rejoice, and celebrate every little thing in the wake of success. And we should never neglect failure, as success can be born from a pile of failures. When I saw the latticework of scars on her wrist, I was reminded of our wine cabinet. We had used up so many of the bottles; there was only one left. That day, I popped the cork off the last one."}
 
 //Old Lady
@@ -204,11 +204,11 @@
 	Old Lady	<br>
 	"An Abnormality taking the form of an old and feeble woman. Anytime someone enters its Containment Unit, it will talk to that person."<br>
 
-	"What it tells differs from time to time, however, it will always commence with ìDearie, dearie, would you like to hear a story?î. This story could be a lullaby, an unspecified poem, a nursery rhyme, a common childrenís story, or something entirely new.<br>
-	It knows every childrenís story and will not stop recounting until the listener finally leaves."<br>
+	"What it tells differs from time to time, however, it will always commence with ‚ÄúDearie, dearie, would you like to hear a story?‚Äù. This story could be a lullaby, an unspecified poem, a nursery rhyme, a common children‚Äôs story, or something entirely new.<br>
+	It knows every children‚Äôs story and will not stop recounting until the listener finally leaves."<br>
 
 	<h3><center>Excerpt from Counseling Log</center></h3><br>
-	She may be the loneliest of all the Abnormalities. Sheís filled with loneliness, and tells her tales to fill that void. Well, every story needs a listener. When someone enters her room, sheíll try to fill that void. Of course, listening to her is a very dangerous thing. She knows every story on Earth and even those that cannot possibly exist. Our minds canít cope with such a thing. She could fry your brain in an instant.}
+	"She may be the loneliest of all the Abnormalities. She‚Äôs filled with loneliness, and tells her tales to fill that void. Well, every story needs a listener. When someone enters her room, she‚Äôll try to fill that void. Of course, listening to her is a very dangerous thing. She knows every story on Earth and even those that cannot possibly exist. Our minds can‚Äôt cope with such a thing. She could fry your brain in an instant.}
 
 //Forsaken Murderer
 /obj/item/paper/fluff/lore/teth/murderer
@@ -221,11 +221,11 @@
 	It was difficult to determine who was worse: A man who murdered the innocent with no remorse, or the researchers who wanted to open up his brain to satiate their curiosity."<br>
 	"A wide range of medicine and chemicals were injected into him. Some were used for the sake of humanity's future, while others were for new medical techniques. They all had the potential of changing the world. The researchers were getting more and more excited. Although they didn't openly express so, it was almost palpable.<br>
 	They said they found a cure, but they never said what was cured. The prisoner spoke less and less. His aggressiveness was suppressed, but at the same time, he lost himself. After an extensive review, he was permitted to have the straitjacket removed."<br>
-	" ìIt feels like my head is turning into metal. I sometimes hear metallic creaks in my head...î<br>
+	" ‚ÄúIt feels like my head is turning into metal. I sometimes hear metallic creaks in my head...‚Äù<br>
 	As the days passed by, he began inflicting self-harm. He would continuously hit his head on the wall or hard surfaces. He insisted on checking if his head really was turning into metal. One day they eventually decided to leave him with the hope that he would stop once he was wounded. However, even with blood pouring down his face, he wouldn't stop until his wound was so deep the whites of his skull were peeking through. He had to wear the straitjacket again, but he was no longer feared or monitored like before."<br>
 	"A researcher died. It would have been difficult to identify him without his ID card as his head was violently crushed. Lax security meant that the door was often left unlocked or unattended. The prisoner that everyone believed to be confined was moving around on his knees.<br>
-	ìMy head... turning into metal... folds in my brain, being flattened...î He kept repeating strange words, and the final procedure was quickly put in place. Treatment was halted, and he was dissected so his brain could be used for research. How do I know? I sedated him myself. He kept muttering nonsense until the end.<br>
-	ìEnds, begins, ends, begins, endî "}
+	‚ÄúMy head... turning into metal... folds in my brain, being flattened...‚Äù He kept repeating strange words, and the final procedure was quickly put in place. Treatment was halted, and he was dissected so his brain could be used for research. How do I know? I sedated him myself. He kept muttering nonsense until the end.<br>
+	‚ÄúEnds, begins, ends, begins, end‚Äù "}
 
 //Ppodae
 /obj/item/paper/fluff/lore/teth/ppodae
@@ -233,52 +233,52 @@
 	info = {"<h2><center>D-02-107</center></h2>	<br>
 	Ppodae	<br>
 	"A super fluffy ultra-cute puppy with white fur like fresh snow.<br>
-	This Abnormality is so cute that just taking a short little glance at it will make you feel so much better. It has the eyes of an angel and is the purest thing in the world. (Further descriptions of this creature have been omitted for brevityís sake. The rest of the sentences are essentially just saying ìItís so cute!î in various ways.)"<br>
+	This Abnormality is so cute that just taking a short little glance at it will make you feel so much better. It has the eyes of an angel and is the purest thing in the world. (Further descriptions of this creature have been omitted for brevity‚Äôs sake. The rest of the sentences are essentially just saying ‚ÄúIt‚Äôs so cute!‚Äù in various ways.)"<br>
 
-	"This little Abnormality couldnít be evil at all. The only thing you have to worry about is your heart aching if you look at it too long because itís just so cute. In fact, employees who enter this Abnormalityís Containment Unit tend to lose themselves a bit and often need to be forcibly removed from the unit by other employees. Caution needs to be taken as the assisting employees can also become captivated by its cuteness and become lost as well.<br>
+	"This little Abnormality couldn‚Äôt be evil at all. The only thing you have to worry about is your heart aching if you look at it too long because it‚Äôs just so cute. In fact, employees who enter this Abnormality‚Äôs Containment Unit tend to lose themselves a bit and often need to be forcibly removed from the unit by other employees. Caution needs to be taken as the assisting employees can also become captivated by its cuteness and become lost as well.<br>
 	+ Attempts to bring the Abnormality out of its unit may occur from time to time, but this is not a concern as they are typically prevented by other employees.<br>
 	+ When too many employees want to work with this Abnormality, a lottery will be held to decide who gets the privilege of doing so.<br>
 	+ Our employees tend to show symptoms of mental regression such as oddly toned speech with a high pitch upon entering its Containment Unit, but it seems this is only a temporary problem.<br>
-	+ Many of our employees refer to this Abnormality as ìThe Goodest Boy in the World Ppodaeî, however, its official designation is simply ëPpodaeí. Please make sure you donít get confused.<br>
+	+ Many of our employees refer to this Abnormality as ‚ÄúThe Goodest Boy in the World Ppodae‚Äù, however, its official designation is simply ‚ÄòPpodae‚Äô. Please make sure you don‚Äôt get confused.<br>
 	++++ Every employee who enters its Containment Unit must upload a video or photo report of this Abnormality. (This is highly, extremely, UBER important; ensure that nobody misses this step.)"<br>
 
 	"A company of this size will always have a rumor or two floating around."<br>
-	ìI heard that you can hear someoneís bones breaking if you walk the hallways at night...î<br>
-	ìIf you try and track down that sound, youíll find a Yeti whoís eating one of our employees...!î<br>
-	ìHowever, we donít have an Abnormality that looks anything like a Yeti...î "<br>
+	‚ÄúI heard that you can hear someone‚Äôs bones breaking if you walk the hallways at night...‚Äù<br>
+	‚ÄúIf you try and track down that sound, you‚Äôll find a Yeti who‚Äôs eating one of our employees...!‚Äù<br>
+	‚ÄúHowever, we don‚Äôt have an Abnormality that looks anything like a Yeti...‚Äù "<br>
 
 	<h3><center>Excerpt of an Audio Record</center></h3><br>
-	"John: You should be thankful, dude. Youíve got a lucky chance to get to work with The Goodest Boy in the World Ppodae.<br>
-	Jacob: Uh... Itís bapping me with its paws. Is this an attack?<br>
-	John: He just wants you to feed him. Donít you know that itís a trend in our company to always carry a packet of dog food or two?<br>
-	Jacob: Well... I donít really like animals... (John lets out an irritated mumble.) By the way, this lilí puppyís pretty beefy. Is that how dogs usually are? I guess this oneís played a lot of catch, huh?<br>
+	"John: You should be thankful, dude. You‚Äôve got a lucky chance to get to work with The Goodest Boy in the World Ppodae.<br>
+	Jacob: Uh... It‚Äôs bapping me with its paws. Is this an attack?<br>
+	John: He just wants you to feed him. Don‚Äôt you know that it‚Äôs a trend in our company to always carry a packet of dog food or two?<br>
+	Jacob: Well... I don‚Äôt really like animals... (John lets out an irritated mumble.) By the way, this lil‚Äô puppy‚Äôs pretty beefy. Is that how dogs usually are? I guess this one‚Äôs played a lot of catch, huh?<br>
 	John: We used to play fetch with him pretty often just to watch how cute he was running after the ball. Though, we stopped for some reason... <br>
 	Jacob: Hey, did you see its face when I fed it? It was super creepy, I swear...<br>
-	John: Itís just your imagination man. Heís always like our little angel. IsnThatWight? WhosAGoodBoi?<br>
+	John: It‚Äôs just your imagination man. He‚Äôs always like our little angel. IsnThatWight? WhosAGoodBoi?<br>
 	Jacob: Geez, does this thing have some kinda power to mentally manipulate people?<br>
-	John: No idea what youíre on about, Jacob. DoYouDoWiddleBuddie? WiddleCutiepie? DoYouDoYou?"<br>
+	John: No idea what you‚Äôre on about, Jacob. DoYouDoWiddleBuddie? WiddleCutiepie? DoYouDoYou?"<br>
 
 	"John: Did you wait for me, Ppodae boy?<br>
-	Jacob: Uh, hey, itís eating something. Arenít we supposed to be the first people in its unit today?<br>
-	John: My widdle goody-good good boi was just hungwy, uh-huh uh-huh. Man, heís just so cute. Look at how heís nomming on that~<br>
-	Jacob: What the hell is it chewing on... Shit! I knew it! Thatís... Thatís Jamesí finger, man! He went missing during the last patrol shift! Canít you see the nail?! Remember him bragging about having a heart painted on his nails? I told you, dude! This thingís up to no good!<br>
-	John: I... I canít believe it... who...<br>
-	Jacob: This Abnormalityís the killer! I get that youíre shocked, but I told you a bunch of times that thereís no way a ìcuteî pet could be harmless in this place. Man, Iím glad you finally came to your senó<br>
-	John: Who... Who wouldnít feed him on time?!<br>
+	Jacob: Uh, hey, it‚Äôs eating something. Aren‚Äôt we supposed to be the first people in its unit today?<br>
+	John: My widdle goody-good good boi was just hungwy, uh-huh uh-huh. Man, he‚Äôs just so cute. Look at how he‚Äôs nomming on that~<br>
+	Jacob: What the hell is it chewing on... Shit! I knew it! That‚Äôs... That‚Äôs James‚Äô finger, man! He went missing during the last patrol shift! Can‚Äôt you see the nail?! Remember him bragging about having a heart painted on his nails? I told you, dude! This thing‚Äôs up to no good!<br>
+	John: I... I can‚Äôt believe it... who...<br>
+	Jacob: This Abnormality‚Äôs the killer! I get that you‚Äôre shocked, but I told you a bunch of times that there‚Äôs no way a ‚Äúcute‚Äù pet could be harmless in this place. Man, I‚Äôm glad you finally came to your sen‚Äî<br>
+	John: Who... Who wouldn‚Äôt feed him on time?!<br>
 	Jacob: ........<br>
-	John: Poor little guyís been starving all night! Itís... Itís so heartbreaking...<br>
-	Jacob: Well uh... I think weíre supposed to suppress it?<br>
+	John: Poor little guy‚Äôs been starving all night! It‚Äôs... It‚Äôs so heartbreaking...<br>
+	Jacob: Well uh... I think we‚Äôre supposed to suppress it?<br>
 	John: How could you even suggest doing something so heartless to a cute little good boy like this? Just wook at his eyes... How could an innocent animal do anything wrong? IsnThatWightYouGoodWiddleCutieBoi.<br>
 	(The Abnormality shows no reaction. Only the sound of a bone being gnawed on is audible.)<br>
-	Jacob: Dude... your ìlittle angelî is gnawing on our colleagueís finger.<br>
-	John: What are you, a newbie? Donít you know everything cute is forgiven here?<br>
-	Jacob: Iíve never heard that, and I seriously donít think itís true. Weíve gotta tranquilize it. And if you wonít, then Iíll do it by myself!<br>
+	Jacob: Dude... your ‚Äúlittle angel‚Äù is gnawing on our colleague‚Äôs finger.<br>
+	John: What are you, a newbie? Don‚Äôt you know everything cute is forgiven here?<br>
+	Jacob: I‚Äôve never heard that, and I seriously don‚Äôt think it‚Äôs true. We‚Äôve gotta tranquilize it. And if you won‚Äôt, then I‚Äôll do it by myself!<br>
 	(The sound of a tranquilizer shot being fired can be heard.)<br>
 	John: NOOOO!!!!!<br>
 	(The Abnormality begins to whimper.)<br>
 	(The recording cuts off after a bit of shouting.)<br>
-	...Following the evidence Iíve provided in the recording, I request that Jacob be immediately demoted for firing such a thing at Ppodae. A terrible, evil animal abuser has no place working in our company. Our Goodest Boy in the World Ppodae has been traumatized. Traumatized!<br>
-	By this incident. Heíll only eat 5kg of his favorite snack now. To help him cope with the trauma, I suggest we request a new snack for Ppodae: ìPremium grade salmon rich with Vitamin Bî. Iíll be waiting for your reply."<br>
+	...Following the evidence I‚Äôve provided in the recording, I request that Jacob be immediately demoted for firing such a thing at Ppodae. A terrible, evil animal abuser has no place working in our company. Our Goodest Boy in the World Ppodae has been traumatized. Traumatized!<br>
+	By this incident. He‚Äôll only eat 5kg of his favorite snack now. To help him cope with the trauma, I suggest we request a new snack for Ppodae: ‚ÄúPremium grade salmon rich with Vitamin B‚Äù. I‚Äôll be waiting for your reply."<br>
 
 	"Reply:<br>
 	Your requests have been accepted.<br>
@@ -293,23 +293,23 @@
 
 	"One sunny day, when they were sincerely drying the laundry in the yard, sadness struck suddenly.<br>
 
-	ìIn our city, sacrifices for corporates must be highly praised. Honor for their deaths. No reason for you to cry either. Rather, you should be glad.î<br>
+	‚ÄúIn our city, sacrifices for corporates must be highly praised. Honor for their deaths. No reason for you to cry either. Rather, you should be glad.‚Äù<br>
 
-	ìWhat's with that look on your face? That kind of facial expression isn't recommended in our city.î<br>
+	‚ÄúWhat's with that look on your face? That kind of facial expression isn't recommended in our city.‚Äù<br>
 
-	ìGoodness, why are you making such a face? You're making others feel gloomy too. Please be more considerate, you don't live in this world alone after all.î<br>
+	‚ÄúGoodness, why are you making such a face? You're making others feel gloomy too. Please be more considerate, you don't live in this world alone after all.‚Äù<br>
 
-	ìYou are very poor at expressing your emotions. You must be quite shy.î<br>
+	‚ÄúYou are very poor at expressing your emotions. You must be quite shy.‚Äù<br>
 
-	ìHey, try to look more pleased, that way those living in the Outskirts will be more envious of us.î<br>
+	‚ÄúHey, try to look more pleased, that way those living in the Outskirts will be more envious of us.‚Äù<br>
 
-	ìPut a bigger smile on your face! It's not that hard.î<br>
+	‚ÄúPut a bigger smile on your face! It's not that hard.‚Äù<br>
 
-	ìNext time, try to express yourself more clearly, it's very important to express oneself in this society.î<br>
+	‚ÄúNext time, try to express yourself more clearly, it's very important to express oneself in this society.‚Äù<br>
 
 	One sunny day, just like that day they sincerely dried the laundry, they dried their own skin."<br>
 
-	"Everyone was finally satisfied when they showed a bright smile. If they met people who asked what was wrong, they would respond: ìI'm just shy, that's all. Just shy...î"<br>
+	"Everyone was finally satisfied when they showed a bright smile. If they met people who asked what was wrong, they would respond: ‚ÄúI'm just shy, that's all. Just shy...‚Äù"<br>
 
 	"If one tries to look at the face behind the skin, the result will not be pretty. The space behind their skin is the only personal space they have left. Leaving it uninvaded is the last bit of generosity the City can offer."}
 
@@ -321,31 +321,31 @@
 	"A tree that stands in the middle of the Containment Unit. It never withers even if it is not given any form of nutrition. Some employees take time to rest near this tree. Employees sometimes enter its Containment Unit for leisure."<br>
 
 	"Pansy: Hey Xavier, did you see that new Abnormality? I think you got put in charge of it.<br>
-	Xavier: Yeah, I saw it alright. Just some tree with buds along its branches. I donít think theyíll be able to blossom without sunlight.<br>
+	Xavier: Yeah, I saw it alright. Just some tree with buds along its branches. I don‚Äôt think they‚Äôll be able to blossom without sunlight.<br>
 	Pansy: Did you start making observations and writing reports yet?<br>
-	Xavier: Nah, I think Iíll get to it soon enough, though.<br>
+	Xavier: Nah, I think I‚Äôll get to it soon enough, though.<br>
 	Pansy: Alrighty, take care."<br>
 
-	"Pansy: Heya, long time no see. Howís it going lately?<br>
-	Xavier: Yo, get this! Yíknow that Abnormality we talked about before? I donít think itís hostile. And guess what? It started blooming! It was so surreal looking at them, it felt like spring had come for the first time in this place.<br>
+	"Pansy: Heya, long time no see. How‚Äôs it going lately?<br>
+	Xavier: Yo, get this! Y‚Äôknow that Abnormality we talked about before? I don‚Äôt think it‚Äôs hostile. And guess what? It started blooming! It was so surreal looking at them, it felt like spring had come for the first time in this place.<br>
 	Pansy: Is that okay? Usually, any sort of change is a bad omen for something catastrophic here.<br>
-	Xavier: Donít worry, itís just some harmless little flowers. Thanks for worrying about me though."<br>
+	Xavier: Don‚Äôt worry, it‚Äôs just some harmless little flowers. Thanks for worrying about me though."<br>
 
-	Pansy: Bonjour again. Howís work been going for you?<br>
-	Xavier: Golly, the flowers just keep blooming. I think itíll fill up the whole unit at this rate. You should see it for yourself. Itís really beautiful. I donít think Iíd ever get sick of looking at it.<br>
-	Pansy: Iíd love to, man, but I canít. Iíve been so busy lately.<br>
-	Xavier: Really? Damn, what a shame... Itís absolutely magnificent, Iím telling ya.<br>
-	Pansy: Hmm... You doing alright by the way? Youíve been making a lotta mistakes these days... It seems like youíve been spacing out a ton too.<br>
-	Xavier: Donít worry, itís nothing. I gotta head back now. Oh, Iíve been making a sketch of the tree, actually. Iíll let you be the first person to see it when Iím done.<br>
+	Pansy: Bonjour again. How‚Äôs work been going for you?<br>
+	Xavier: Golly, the flowers just keep blooming. I think it‚Äôll fill up the whole unit at this rate. You should see it for yourself. It‚Äôs really beautiful. I don‚Äôt think I‚Äôd ever get sick of looking at it.<br>
+	Pansy: I‚Äôd love to, man, but I can‚Äôt. I‚Äôve been so busy lately.<br>
+	Xavier: Really? Damn, what a shame... It‚Äôs absolutely magnificent, I‚Äôm telling ya.<br>
+	Pansy: Hmm... You doing alright by the way? You‚Äôve been making a lotta mistakes these days... It seems like you‚Äôve been spacing out a ton too.<br>
+	Xavier: Don‚Äôt worry, it‚Äôs nothing. I gotta head back now. Oh, I‚Äôve been making a sketch of the tree, actually. I‚Äôll let you be the first person to see it when I‚Äôm done.<br>
 
 	<h3><center>Audio Recording of Counseling Session</center></h3><br>
-	"...Yeah, Iíve been better recently. I got better at managing Abnormalities, too. Going to Grave of Cherry Blossomsís chamber makes me feel weirdly amazing, like you said. I never believed that mumbo-jumbo about flora giving out a good aura or whatever...<br>
-	But I guess it was true. Itís such a shame I canít see those cherry blossoms with Xavier. I got to see his work in progress sketch when I was rummaging through his stuff one time. The actual tree was much more beautiful. It was more magnificent than everything heíd described it as. Itís such a tragedy that he went missing before seeing how it is now. If you find any Abnormality suspicious, please make sure you look into ëem, alright?<br>
-	...Yep, Iím fine now. I shook off that feeling. The cherry blossoms all fell after I saw it that time. Yet, I saw buds poking out of the branches again... Would it be alright if I oversaw the Abnormality from now on? No, itís no big deal. I just wanna see those flowers in full bloom again. Yes, thank you."<br>
+	"...Yeah, I‚Äôve been better recently. I got better at managing Abnormalities, too. Going to Grave of Cherry Blossoms‚Äôs chamber makes me feel weirdly amazing, like you said. I never believed that mumbo-jumbo about flora giving out a good aura or whatever...<br>
+	But I guess it was true. It‚Äôs such a shame I can‚Äôt see those cherry blossoms with Xavier. I got to see his work in progress sketch when I was rummaging through his stuff one time. The actual tree was much more beautiful. It was more magnificent than everything he‚Äôd described it as. It‚Äôs such a tragedy that he went missing before seeing how it is now. If you find any Abnormality suspicious, please make sure you look into ‚Äòem, alright?<br>
+	...Yep, I‚Äôm fine now. I shook off that feeling. The cherry blossoms all fell after I saw it that time. Yet, I saw buds poking out of the branches again... Would it be alright if I oversaw the Abnormality from now on? No, it‚Äôs no big deal. I just wanna see those flowers in full bloom again. Yes, thank you."<br>
 
 	<h3><center>Notice of Advice</center></h3><br>
-	"Weíve received reports about an alarming increase in the number of employees who want to view Grave of Cherry Blossomsís containment. This fervent rush of requests is likely due to the absence of natural scenery in our facility. However, I donít think there is any need to make a rule against it. Weíve found that our staffís mental contamination indices decreased when looking at Grave of Cherry Blossoms.<br>
-	The reason behind this is unimportant. It could be ìflora giving out a good auraî for all anyone cares. The only thing thatís certain is that Grave of Cherry Blossoms captivates our employees, and they donít know what lies beneath its roots. Did you realize that the cherry blossoms are strikingly crimson, and its unmatched beauty is caused by its color? The more blood it has, the more beautiful it is. Our employees who are oblivious to it are drawn to it again and again... Just keep everything hush-hush for now. Itís how things work in this place."}
+	"We‚Äôve received reports about an alarming increase in the number of employees who want to view Grave of Cherry Blossoms‚Äôs containment. This fervent rush of requests is likely due to the absence of natural scenery in our facility. However, I don‚Äôt think there is any need to make a rule against it. We‚Äôve found that our staff‚Äôs mental contamination indices decreased when looking at Grave of Cherry Blossoms.<br>
+	The reason behind this is unimportant. It could be ‚Äúflora giving out a good aura‚Äù for all anyone cares. The only thing that‚Äôs certain is that Grave of Cherry Blossoms captivates our employees, and they don‚Äôt know what lies beneath its roots. Did you realize that the cherry blossoms are strikingly crimson, and its unmatched beauty is caused by its color? The more blood it has, the more beautiful it is. Our employees who are oblivious to it are drawn to it again and again... Just keep everything hush-hush for now. It‚Äôs how things work in this place."}
 
 //Penitent Girl
 /obj/item/paper/fluff/lore/teth/penitent
@@ -369,36 +369,36 @@
 	info = {"<h2><center>T-02-99</center></h2>	<br>
 	Void Dream	<br>
 	" 'I wished to sleep eternally.'<br>
-	'So donít bother trying to wake me up again.' "<br>
+	'So don‚Äôt bother trying to wake me up again.' "<br>
 
-	"An Abnormality whose form sports a goatís fur and horns. It is not unique in regards to its appearance with the exception of several colorful eyes embedded upon its body. Gaining information about this Abnormality is expected to be difficult due to its ceaseless slumber."<br>
+	"An Abnormality whose form sports a goat‚Äôs fur and horns. It is not unique in regards to its appearance with the exception of several colorful eyes embedded upon its body. Gaining information about this Abnormality is expected to be difficult due to its ceaseless slumber."<br>
 
-	"The following counseling log illustrates how Void Dreamís ability to make any person slumber psychologically affects the employees. The results indicate that we cannot utilize this ability to reduce the mental corruption of our staff. Please refer to this record for further research.<br>
+	"The following counseling log illustrates how Void Dream‚Äôs ability to make any person slumber psychologically affects the employees. The results indicate that we cannot utilize this ability to reduce the mental corruption of our staff. Please refer to this record for further research.<br>
 	Vincent: Please, make it quick... I gotta sleep...<br>
 	Counselor: Is that because of the Abnormality?<br>
-	Vincent: Yeah, I remember seeing something that looked like a sheep pass by me, and... well, I fell asleep. Since then Iíve been like this.<br>
+	Vincent: Yeah, I remember seeing something that looked like a sheep pass by me, and... well, I fell asleep. Since then I‚Äôve been like this.<br>
 	Counselor: Do you remember the dream you had back when that occurred?<br>
 	Vincent: Oh, I could never forget that dream...<br>
 	Counselor: Could you please tell me as much as you can about it?<br>
-	Vincent: It was a happy, wonderful, sweet dream. Thatís all the words I need to describe it. Heck, I even felt glad to be working for this company. And I saw a guy whoís not with me anymore, he was right next to me... (Omitted) ...Because of that I couldn't get a hold on myself when I woke up.<br>
+	Vincent: It was a happy, wonderful, sweet dream. That‚Äôs all the words I need to describe it. Heck, I even felt glad to be working for this company. And I saw a guy who‚Äôs not with me anymore, he was right next to me... (Omitted) ...Because of that I couldn't get a hold on myself when I woke up.<br>
 
-	Counselor: I see. Iíve heard a little about you from the other employees recently. All of them say that the only thing you do outside of work hours is sleep. Could you please tell me why?<br>
-	Vincent: Donít you understand what Iím talking about? I just want to have that dream again. That dream where I was there with him. Recalling those happy moments... But I couldnít go back no matter how many times I slept. I slept, and slept, and slept, and slept, and slept, and yet...!<br>
-	Counselor: ...I see. Iíd advise you to take some rest in your room.<br>
-	Vincent: ...They said everyone who woke up after hearing that Abnormalityís sound went mad. People think itís because they all had a horrible nightmare they couldnít handle, but itís actually the other way around. The reality they had to wake up to was so terrible that the soul gave up on waking life. As you know, time flows differently in dreams. A mere instant of waking life constitutes an eternity in the dreamworld. Maybe, if Void Dream were to put me to sleep once again, then I might just have that wonderful dream anew.<br>
-	Counselor: ...Iíll prescribe you some sleep medicine. I assure you that itíll help you sleep. Please get some rest for now. Finally, you will be prohibited from entering the Abnormalityís Containment Unit from now on."<br>
+	Counselor: I see. I‚Äôve heard a little about you from the other employees recently. All of them say that the only thing you do outside of work hours is sleep. Could you please tell me why?<br>
+	Vincent: Don‚Äôt you understand what I‚Äôm talking about? I just want to have that dream again. That dream where I was there with him. Recalling those happy moments... But I couldn‚Äôt go back no matter how many times I slept. I slept, and slept, and slept, and slept, and slept, and yet...!<br>
+	Counselor: ...I see. I‚Äôd advise you to take some rest in your room.<br>
+	Vincent: ...They said everyone who woke up after hearing that Abnormality‚Äôs sound went mad. People think it‚Äôs because they all had a horrible nightmare they couldn‚Äôt handle, but it‚Äôs actually the other way around. The reality they had to wake up to was so terrible that the soul gave up on waking life. As you know, time flows differently in dreams. A mere instant of waking life constitutes an eternity in the dreamworld. Maybe, if Void Dream were to put me to sleep once again, then I might just have that wonderful dream anew.<br>
+	Counselor: ...I‚Äôll prescribe you some sleep medicine. I assure you that it‚Äôll help you sleep. Please get some rest for now. Finally, you will be prohibited from entering the Abnormality‚Äôs Containment Unit from now on."<br>
 
 	"A demon must change its shape to deceive others. A demon must grant sweet dreams to deceive others. A crack appears in the human mind when it is shown the dream it yearns for. A demon will never miss this chance to bring one to their doom.<br>
 
-	Donít say such complicated things, donít say those scary words.<br>
+	Don‚Äôt say such complicated things, don‚Äôt say those scary words.<br>
 	I just want to grant people sweet dreams; Grant them the enrapturing dreams they want.<br>
-	Those whoíve had my dreams are destined to come back to me.<br>
+	Those who‚Äôve had my dreams are destined to come back to me.<br>
 	So, just close your eyes..."<br>
 
 	"In the dream, your smile was beaming, and we chatted with such liveliness. When I came back to waking life, I realized I was back in a world in which you no longer existed; I felt a void as big as that fleeting happiness I felt in my dream fill my heart.
-	I closed my eyes and forced myself to sleep, but morning was still to come no matter what. I think thatís when my soul started to crumble. In fact, I was already broken since the day I parted with you, but Iíve only been acting fine. My soul was already shattering itself into fragments after the passing of that day. Once I saw you again, my yearning for you began to bear down too heavily, I couldnít ever go back to my old self again.<br>
+	I closed my eyes and forced myself to sleep, but morning was still to come no matter what. I think that‚Äôs when my soul started to crumble. In fact, I was already broken since the day I parted with you, but I‚Äôve only been acting fine. My soul was already shattering itself into fragments after the passing of that day. Once I saw you again, my yearning for you began to bear down too heavily, I couldn‚Äôt ever go back to my old self again.<br>
 	Counseling... Rest... All of it was useless. I spent days by myself, agonizing until I finally realized it. It lured me with an unforgettable bait. That was the price for eating away my nightmares. And then it left me with nothing but void, so I would have no choice but to return to it. Then... I have lost to it.<br>
-	I donít want to know anything anymore.<br>
+	I don‚Äôt want to know anything anymore.<br>
 	Please, eat my dreams."}
 
 //Meat Lantern
@@ -430,9 +430,9 @@
 	"She will attempt to talk to or pique the interest of those who are about to leave her Containment Unit. However, one should never look back in response, as it may cause mental damage. Certain rumors insist that one may turn to stone upon looking back, but this is clearly not true."<br>
 	
 	<h3><center>Excerpt from Observation Log 1-304</center></h3><br> 
-	"There is only one important rule to follow: Ignore her. She always tries to draw our attention. She mutters incoherently in an attempt to have those in the room pay closer attention to what sheís saying. Sheíll even plead or whisper maliciously when someone is about to leave in the hopes that they may instinctively look back. The subconscious is a threat to your own health in her presence; it is important to have your guard up and to be aware of what is occurring when you are in the room with her. If you forget the warnings for even a second and let your guard down, you may find yourself looking back towards here. I have another warning to leave to all who read this: Do not let this insidious Abnormality learn your name. If she learns your name, she may use it to trick you into turning around. No matter what you hear or what she may do to tempt you while you are in the room with her, DO NOT and I repeat DO NOT under any circumstance look at her. Curiosity is a luxury you must NEVER indulge in when you are in her Containment Unit."<br>
+	"There is only one important rule to follow: Ignore her. She always tries to draw our attention. She mutters incoherently in an attempt to have those in the room pay closer attention to what she‚Äôs saying. She‚Äôll even plead or whisper maliciously when someone is about to leave in the hopes that they may instinctively look back. The subconscious is a threat to your own health in her presence; it is important to have your guard up and to be aware of what is occurring when you are in the room with her. If you forget the warnings for even a second and let your guard down, you may find yourself looking back towards here. I have another warning to leave to all who read this: Do not let this insidious Abnormality learn your name. If she learns your name, she may use it to trick you into turning around. No matter what you hear or what she may do to tempt you while you are in the room with her, DO NOT and I repeat DO NOT under any circumstance look at her. Curiosity is a luxury you must NEVER indulge in when you are in her Containment Unit."<br>
 	
 	<h3><center>Excerpt from Counseling Log #9-39</center></h3><br>
-	"Employee F5004: <Redacted> was a colleague of mine for whom I cared deeply. Well, I cared for all my coworkers, but <Redacted> was different. The amount of passion they poured into their work was something I have rarely witnessed in life. Anyways, I have no idea how she, that Abnormality, learned <Redacted>ís name. Maybe someone called it out to them while they were inside the Containment Unit and she heard it. We should have sent two in for work with her. The common procedure was to have a team of two sent into the Containment Unit, but as you know, weíre always shorthanded. Besides, that Abnormality was low on the threat scale. If we followed the procedure and sent two inside, the powers that be would not have been happy about it one bit. (Omitted)<br>
-	Well, you know the rest. The day the incident happened, <Redacted> was sent to the Containment Unit as usual, but they didnít come out for a long time. I know <Redacted> was a prompt and diligent worker, so I headed straight for the Containment Unit fearing the worst. Thankfully, I found them without even a scratch, but the kid looked out of it. Like, way out of it. (Omitted)<br>
-	The next day, the kid was resigned. I heard they sent ëem to an asylum, but no one ever saw <Redacted> again. The kid just kept staring at the wall, murmuring and not responding to anyone. That was the very last time I saw <Redacted>. No one knows what happened inside the Containment Unit. You wonít find it out from the kid either."}
+	"Employee F5004: <Redacted> was a colleague of mine for whom I cared deeply. Well, I cared for all my coworkers, but <Redacted> was different. The amount of passion they poured into their work was something I have rarely witnessed in life. Anyways, I have no idea how she, that Abnormality, learned <Redacted>‚Äôs name. Maybe someone called it out to them while they were inside the Containment Unit and she heard it. We should have sent two in for work with her. The common procedure was to have a team of two sent into the Containment Unit, but as you know, we‚Äôre always shorthanded. Besides, that Abnormality was low on the threat scale. If we followed the procedure and sent two inside, the powers that be would not have been happy about it one bit. (Omitted)<br>
+	Well, you know the rest. The day the incident happened, <Redacted> was sent to the Containment Unit as usual, but they didn‚Äôt come out for a long time. I know <Redacted> was a prompt and diligent worker, so I headed straight for the Containment Unit fearing the worst. Thankfully, I found them without even a scratch, but the kid looked out of it. Like, way out of it. (Omitted)<br>
+	The next day, the kid was resigned. I heard they sent ‚Äòem to an asylum, but no one ever saw <Redacted> again. The kid just kept staring at the wall, murmuring and not responding to anyone. That was the very last time I saw <Redacted>. No one knows what happened inside the Containment Unit. You won‚Äôt find it out from the kid either."}
