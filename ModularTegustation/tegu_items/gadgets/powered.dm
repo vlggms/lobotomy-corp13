@@ -204,7 +204,7 @@
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 
 	else	//You moving?
-		to_chat(user, "<span class='userdange'>You press the button again activating emergency teleportation mode!</span>")
+		to_chat(user, "<span class='userdanger'>You press the button again activating emergency teleportation mode!</span>")
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 
 		//teleporting half
