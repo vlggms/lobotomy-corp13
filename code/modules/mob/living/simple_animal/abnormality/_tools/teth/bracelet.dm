@@ -1,4 +1,4 @@
-#define STATUS_EFFECT_BRACELET /datum/status_effect/bracelet
+#define STATUS_EFFECT_BRACELET /datum/status_effect/display/bracelet
 /obj/structure/toolabnormality/bracelet
 	name = "luminous bracelet"
 	desc = "A glowing white bracelet."
@@ -12,7 +12,6 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BRACELET)
-		user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "bracelet", -MUTATIONS_LAYER))
 		if(user.health != user.maxHealth)
 			to_chat(user, "<span class='userdanger'>You put the bracelet back, and feel your heart explode!</span>")
 			user.gib()
@@ -22,24 +21,24 @@
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_BRACELET)
 		to_chat(user, "<span class='userdanger'>You pick up the bracelet, and feel your wounds mending.</span>")
-		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "bracelet", -MUTATIONS_LAYER))
 
 // Status Effect
-/datum/status_effect/bracelet
+/datum/status_effect/display/bracelet
 	id = "bracelet"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 	alert_type = null
+	display_name = "bracelet"
 	var/healthtracker = 0
 	var/warningtracker = 0
 
-/datum/status_effect/bracelet/on_apply()
+/datum/status_effect/display/bracelet/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
 
-/datum/status_effect/bracelet/tick()
+/datum/status_effect/display/bracelet/tick()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.adjustBruteLoss(-5) // Your health heals quite fast
@@ -65,7 +64,7 @@
 	if(healthtracker == 15 || warningtracker == 10)
 		H.gib()
 
-/datum/status_effect/bracelet/on_remove()
+/datum/status_effect/display/bracelet/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
