@@ -41,6 +41,8 @@
 	spawn_places = 3
 	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_dusk
+	place_player_multiplicator = 0
+	spawn_player_multiplicator = 0
 
 // Midnight
 /datum/ordeal/boss/green_midnight

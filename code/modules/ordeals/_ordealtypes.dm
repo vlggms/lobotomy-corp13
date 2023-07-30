@@ -1,23 +1,12 @@
-//Shared Ordeal Procs
-/datum/ordeal/proc/spawngrunts(turf/T, list/grunttype, spawn_amount = 4)
-	var/list/deployment_area = DeploymentZone(T) //deployable areas.
-	var/turf/deploy_spot = T //spot grunt will be deployed
-	var/spawntype = pick(grunttype) //default to grunttype if there is no list.
-	for(var/i = 1 to spawn_amount) //spawn boys on one of each turf.
-		if(deployment_area.len) //if list is empty just deploy them ontop of boss. Sorry boss.
-			deploy_spot = pick_n_take(deployment_area)
-		else //bit crowded in here boss.
-			deploy_spot = T
-		if(grunttype.len > 1) //if list is more than 1 pick a type of grunt. Dont know if this helps with processing power to bypass picking every time.
-			spawntype = pick(grunttype)
-		var/mob/living/simple_animal/hostile/ordeal/M = new spawntype (deploy_spot)
-		ordeal_mobs += M
-		M.ordeal_reference = src
+// All these ordeal subtypes except for Boss spawn at xeno spawns
 
-/datum/ordeal/proc/DeploymentZone(turf/T)
+/datum/ordeal/proc/DeploymentZone(turf/T, no_center = FALSE)
 	var/list/deploymentzone = list()
-	for(var/turf/freearea in oview(1, T)) //get area around boss.
-		if(!freearea.density && isfloorturf(freearea)) //if not dense and is a floor. We will always have issues with windows and doors but at least they wont spawn on adjacent chasms.
+	var/list/turf/nearby_turfs = RANGE_TURFS(1,T)
+	if(no_center)
+		nearby_turfs -= get_turf(T)
+	for(var/turf/freearea in nearby_turfs)
+		if(!freearea.is_blocked_turf(exclude_mobs = TRUE) && !(islava(freearea) || ischasm(freearea)))
 			deploymentzone += freearea
 	return deploymentzone
 
@@ -42,21 +31,54 @@
 	..()
 	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
 	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	if(!LAZYLEN(GLOB.xeno_spawn))
+		message_admins("No xeno spawns found when spawning in ordeal!")
+		return
+	var/list/spawn_turfs = GLOB.xeno_spawn.Copy()
 	for(var/i = 1 to (spawn_places + place_player_mod))
-		var/X = pick(GLOB.xeno_spawn)
+		if(!LAZYLEN(spawn_turfs)) //if list empty, recopy xeno spawns
+			spawn_turfs = GLOB.xeno_spawn.Copy()
+		var/X = pick_n_take(spawn_turfs)
 		var/turf/T = get_turf(X)
 		var/list/deployment_area = list()
 		if((spawn_amount + spawn_player_mod) > 1)
-			deployment_area = DeploymentZone(T) //deployable areas.
-		var/turf/deploy_spot = T //spot you are being deployed
+			deployment_area = DeploymentZone(T) //deployable areas for groups
 		for(var/y = 1 to (spawn_amount + spawn_player_mod))
-			if(deployment_area.len) //if list is empty just deploy them,
+			var/turf/deploy_spot = T //spot you are being deployed
+			if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
 				deploy_spot = pick_n_take(deployment_area)
-			else //bit crowded in here.
-				deploy_spot = T
 			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(deploy_spot)
 			ordeal_mobs += M
 			M.ordeal_reference = src
+
+//Simple Commanders
+/datum/ordeal/simplecommander
+	name = "Commander Ordeal"
+	level = 0
+	reward_percent = 0.20
+	color = "#4f4f4f"
+	//does ALL of these
+	var/list/bosstype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Guaranteed one of each on spawn.
+	//Randomly picked from these.
+	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Random units spawned around the boss mobs.
+	var/bossnumber = 4 //Basically how many groups spawned.
+	var/gruntnumber = 4 //Amount of troops around a boss.
+
+/datum/ordeal/simplecommander/Run()
+	..()
+	if(!LAZYLEN(GLOB.xeno_spawn))
+		message_admins("No xeno spawns found when spawning in ordeal!")
+		return
+	var/list/available_locs = GLOB.xeno_spawn.Copy()
+	for(var/i = 1 to bossnumber)
+		var/turf/T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		for(var/Y in bosstype)
+			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
+			ordeal_mobs += C
+			C.ordeal_reference = src
+		spawngrunts(T, grunttype, gruntnumber)
 
 //Specific Commanders
 /datum/ordeal/specificcommanders //Functions similarly to simplecommanders but deploys one of each potential_types as unique bosses.
@@ -68,6 +90,9 @@
 
 /datum/ordeal/specificcommanders/Run()
 	..()
+	if(!LAZYLEN(GLOB.xeno_spawn))
+		message_admins("No xeno spawns found when spawning in ordeal!")
+		return
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
 	for(var/i = 1 to potential_types.len)
 		if(!potential_types.len)
@@ -81,6 +106,22 @@
 		ordeal_mobs += C
 		C.ordeal_reference = src
 		spawngrunts(T, grunttype)
+
+//Shared Ordeal Procs
+/datum/ordeal/proc/spawngrunts(turf/T, list/grunttype, spawn_amount = 4)
+	var/list/deployment_area = DeploymentZone(T, TRUE) //deployable areas.
+	var/turf/deploy_spot = T //spot grunt will be deployed
+	var/spawntype = pick(grunttype) //default to grunttype if there is no list.
+	for(var/i = 1 to spawn_amount) //spawn boys on one of each turf.
+		if(deployment_area.len) //if list is empty just deploy them ontop of boss. Sorry boss.
+			deploy_spot = pick_n_take(deployment_area)
+		else //bit crowded in here boss.
+			deploy_spot = T
+		if(grunttype.len > 1) //if list is more than 1 pick a type of grunt. Dont know if this helps with processing power to bypass picking every time.
+			spawntype = pick(grunttype)
+		var/mob/living/simple_animal/hostile/ordeal/M = new spawntype (deploy_spot)
+		ordeal_mobs += M
+		M.ordeal_reference = src
 
 // One Boss
 /datum/ordeal/boss
