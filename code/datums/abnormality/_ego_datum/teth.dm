@@ -173,11 +173,11 @@
 
 //Beanstalk without Jack - Magic Bean
 /datum/ego_datum/armor/bean
-	item_category = "Weapon (Sword)"
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/bean
 	cost = 20
 
 /datum/ego_datum/weapon/bean
+	item_category = "Weapon (Sword)"
 	item_path = /obj/item/ego_weapon/mini/bean
 	cost = 20
 
