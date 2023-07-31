@@ -7,8 +7,8 @@
 	spread_text = "Intermediate Parasite"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 1
-	desc = "If left untreated the subject will passively lose nutrients, and eventually lose their liver."
-	severity = DISEASE_SEVERITY_HARMFUL
+	desc = "If left untreated the subject will passively lose nutrients and eventually suffer liver damage."
+	severity = DISEASE_SEVERITY_NONTHREAT
 	disease_flags = CAN_CARRY|CAN_RESIST
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	required_organs = list(/obj/item/organ/liver)
@@ -47,9 +47,5 @@
 						to_chat(affected_mob, "<span class='warning'>You feel like your body's shedding weight rapidly!</span>")
 					affected_mob.adjust_nutrition(-12)
 				else
-					to_chat(affected_mob, "<span class='warning'>You feel much, MUCH lighter!</span>")
-					affected_mob.vomit(20, TRUE)
-					affected_liver.Remove(affected_mob)
-					affected_liver.forceMove(get_turf(affected_mob))
-					cure()
+					affected_mob.adjustOrganLoss(ORGAN_SLOT_LIVER, 5, 200)
 					return FALSE
