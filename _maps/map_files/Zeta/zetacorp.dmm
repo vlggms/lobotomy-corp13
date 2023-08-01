@@ -4255,8 +4255,8 @@
 /obj/structure/table/wood,
 /obj/item/fish_feed,
 /obj/item/fish_feed,
-/obj/item/ramshackle_fishing_rod,
-/obj/item/ramshackle_fishing_rod,
+/obj/item/simple_fishing_rod,
+/obj/item/simple_fishing_rod,
 /obj/item/storage/fish_case,
 /obj/item/storage/fish_case,
 /turf/open/floor/carpet/stellar,
@@ -6890,7 +6890,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
 	},
-/obj/structure/aquarium,
+/obj/machinery/fish_market,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "PC" = (
