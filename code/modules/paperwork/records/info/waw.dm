@@ -458,3 +458,13 @@
 		"Every time Baba Yaga landed, a small group of frozen slaves arrived from the scene to attack nearby employees.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Extreme"
+
+//Big and Will be Bad Wolf
+/obj/item/paper/fluff/info/waw/big_wolf
+	abno_type = /mob/living/simple_animal/hostile/abnormality/big_wolf
+	name = "F-02-58"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered and the employee working on F-02-58 was consumed.",
+		"When the employee had a good result while preforming instinct work F-02-58 vomited all of the previously consumed employees.",
+		"When F-02-58 is below 50% health their howl will weaken the containment of nearby abnormalities."
+		)
