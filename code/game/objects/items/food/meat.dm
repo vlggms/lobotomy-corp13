@@ -39,6 +39,10 @@
 	desc = "A fillet of unspecified fish meat."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2) //No carpotoxin
 
+/obj/item/food/carpmeat/icantbeliveitsnotcarp/Initialize()
+	. = ..()
+	AddComponent(/datum/component/grillable, /obj/item/food/carpmeat/icantbeliveitsnotcarp, rand(30 SECONDS, 40 SECONDS), TRUE)
+
 /obj/item/food/fishfingers
 	name = "fish fingers"
 	desc = "A finger of fish."
