@@ -23,11 +23,24 @@ SUBSYSTEM_DEF(lobotomy_events)
 	var/yin_downed = TRUE
 	var/yang_downed = TRUE
 
+	///God of the Seasons
+	var/current_season
+	var/list/seasons = list("spring", "summer", "fall", "winter")
+	var/list/seasons_weather_list = list(/datum/weather/thunderstorm,
+		/datum/weather/heatwave,
+		/datum/weather/fog,
+		/datum/weather/freezing_wind
+		)
+	var/season_change_time = 5 MINUTES
+	var/season_last_change
+
 /datum/controller/subsystem/lobotomy_events/Initialize(start_timeofday)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
 
 /datum/controller/subsystem/lobotomy_events/fire(resumed)
+	if(season_last_change < world.time)
+		ChangeSeasons()
 	if(PruneList(APOCALYPSE) && (AB_breached.len == 2))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
 			var/skip = FALSE
@@ -151,4 +164,26 @@ SUBSYSTEM_DEF(lobotomy_events)
 		sleep(1 SECONDS)
 	return
 
-
+//proc for handling season subsystem
+/datum/controller/subsystem/lobotomy_events/proc/ChangeSeasons()
+	if(!(current_season in seasons))
+		current_season = pick(seasons)
+		season_last_change = world.time + season_change_time
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SEASON_CHANGE, current_season)
+		return
+	for(var/W in SSweather.processing)
+		var/datum/weather/V = W
+		if(V.type in seasons_weather_list)
+			return
+	var/mob/living/simple_animal/hostile/abnormality/seasons/S = locate() in GLOB.abnormality_mob_list
+	if(S)
+		if(S.datum_reference.working)
+			return
+		if(!S.IsContained())
+			return
+	season_last_change = world.time + season_change_time
+	var/index = seasons.Find(current_season)
+	index = (index % seasons.len) + 1
+	current_season = seasons[index]
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SEASON_CHANGE, current_season)
+	return

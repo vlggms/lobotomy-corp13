@@ -146,3 +146,48 @@
 	flag = WHITE_DAMAGE
 	damage = 50
 	spread = 5
+
+/obj/projectile/season_projectile
+	name = "buggy mess"
+	desc = "Report this to a dev"
+	icon_state = "mountain"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	damage = 45
+
+/obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
+	. = ..()
+	if(!isturf(loc) || isspaceturf(loc))
+		return
+	if(locate(/obj/effect/season_turf/temporary) in get_turf(src))
+		return
+	new /obj/effect/season_turf/temporary(get_turf(src))
+
+/obj/projectile/season_projectile/spring
+	name = "burr"
+	desc = "A spiky burr"
+	icon_state = "toxin"
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+
+/obj/projectile/season_projectile/summer
+	name = "fireball"
+	desc = "A ball of heated plasma"
+	icon_state = "fireball"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+
+/obj/projectile/season_projectile/fall
+	name = "wisp"
+	desc = "A glowing ember"
+	icon_state = "pulse1"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+
+/obj/projectile/season_projectile/winter
+	name = "ice spear"
+	desc = "A sharp-looking icicle"
+	icon_state = "ice_2"
+	damage_type = PALE_DAMAGE
+	flag = PALE_DAMAGE
+	damage = 35
