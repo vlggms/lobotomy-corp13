@@ -358,7 +358,7 @@
 	set_vehicle_dir_offsets(EAST, movable_parent.pixel_x, 0)
 	set_vehicle_dir_offsets(WEST, movable_parent.pixel_x, 0)
 
-/datum/component/riding/creature/no_monsteroffset // made by IP
+/datum/component/riding/creature/no_monsteroffset // made by IP for LC13
 	can_use_abilities = TRUE
 
 /datum/component/riding/creature/no_monsteroffset/handle_specials()

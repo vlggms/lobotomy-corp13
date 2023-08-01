@@ -629,9 +629,9 @@
 
 /mob/living/simple_animal/hostile/tamed(whomst)
 	. = ..()
-	if(isliving(whomst))
+	if(isliving(whomst) && !locate(whomst) in friends)
 		var/mob/living/fren = whomst
-		friends = fren
+		friends += fren
 		faction = fren.faction.Copy()
 
 /**
