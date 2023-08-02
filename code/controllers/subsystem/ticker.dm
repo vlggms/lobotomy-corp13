@@ -562,7 +562,7 @@ SUBSYSTEM_DEF(ticker)
 		var/network_name = CONFIG_GET(string/cross_comms_network)
 		if(network_name)
 			payload["network"] = network_name
-		send2otherserver(news_source, news_message, "News_Report", payload)
+		send2otherserver(news_source, news_message, "News_Report", additional_data = payload)
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))

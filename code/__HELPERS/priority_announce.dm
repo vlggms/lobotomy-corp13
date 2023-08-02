@@ -67,7 +67,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
-			to_chat(M, "<span class='minorannounce'>[title]</span><BR><font color = red>[message]</font color><BR>")
+			to_chat(M, "<span class='minorannounce'>[title]</span><BR><BR><font color = red>[message]</font color><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(alert)
 					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
