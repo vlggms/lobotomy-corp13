@@ -49,6 +49,14 @@
 	var/retaliation = 10
 	var/PRUDENCE_CAP = 60
 
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAttack(atom/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		if (human_target.sanity_lost)
+			return FALSE
+
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/pygmalion/AttackingTarget(atom/attacked_target)
 	return OpenFire()
 
