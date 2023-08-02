@@ -65,6 +65,10 @@
 	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
+	// Silly stuff: When killing with "Goodbye" - reconnects you to Tegu Station
+	/// If TRUE - will send to Tegu on kill
+	var/goodbye_sends_to_tegu = TRUE
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -303,6 +307,9 @@
 				continue
 			L.apply_damage(goodbye_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(L.health < 0)
+				if(goodbye_sends_to_tegu && L.client)
+					visible_message("<span class='danger'>[L] has been sent to Tegu Station!</span>")
+					L.client << link("byond://tegu.cupcore.net:4100")
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(3)
