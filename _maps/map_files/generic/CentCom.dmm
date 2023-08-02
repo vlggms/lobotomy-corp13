@@ -137,13 +137,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
-"aE" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/structure/closet/crate/bin,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "aF" = (
 /obj/machinery/door/airlock/wood{
 	name = "Officer Bunks"
@@ -788,6 +781,17 @@
 "dN" = (
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
+"dP" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Sefirot Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "67";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "dQ" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -2629,17 +2633,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"ld" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Sefirot Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "le" = (
 /obj/machinery/computer/crew{
 	dir = 1
@@ -3962,16 +3955,6 @@
 /obj/item/gun/energy/e_gun/rabbit,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-"rp" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/obj/machinery/computer/camera_advanced{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "ru" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -3988,6 +3971,10 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"rv" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/manager)
 "rx" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -4295,6 +4282,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
+"sJ" = (
+/obj/machinery/door/airlock/hatch{
+	hackProof = 1;
+	max_integrity = 25000000;
+	name = "Arcade Secure Storage";
+	normal_integrity = 25000000;
+	req_access_txt = "69";
+	whitelist_door = null
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "sK" = (
 /obj/structure/chair/sofa/corp,
 /turf/open/floor/plasteel/dark,
@@ -6217,17 +6215,6 @@
 /obj/item/food/carpmeat,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"zW" = (
-/obj/machinery/door/airlock/hatch{
-	hackProof = 1;
-	max_integrity = 25000000;
-	name = "Arcade Secure Storage";
-	normal_integrity = 25000000;
-	req_access_txt = "69";
-	whitelist_door = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "zX" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -7245,6 +7232,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"EQ" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/manager)
 "EV" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 5
@@ -7469,6 +7463,16 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
+"Gc" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Representative";
+	payment_department = "SEC";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/carpet/black,
+/area/facility_hallway/manager)
 "Gj" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -7543,15 +7547,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"GC" = (
-/obj/machinery/requests_console{
-	department = "R-Corp Representative";
-	payment_department = "SEC";
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "GD" = (
 /obj/machinery/vending/clothing{
 	pixel_y = -10
@@ -7674,6 +7669,17 @@
 	},
 /turf/open/floor/holofloor/hyperspace,
 /area/centcom/supplypod/supplypod_temp_holding)
+"Hs" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Representative Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "69";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "Ht" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -7684,17 +7690,6 @@
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
-/area/facility_hallway/manager)
-"Hu" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Representative Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
 "Hv" = (
 /obj/machinery/door/airlock/external{
@@ -15098,7 +15093,7 @@ uN
 UG
 Sa
 sA
-zW
+sJ
 sA
 sA
 xR
@@ -17147,7 +17142,7 @@ pE
 OX
 ew
 Xc
-Hu
+Hs
 dz
 RE
 NM
@@ -17157,7 +17152,7 @@ RE
 Sp
 OX
 OX
-GC
+Gc
 qp
 aa
 aa
@@ -17410,8 +17405,8 @@ RE
 uQ
 dY
 Ez
-rp
-qp
+EQ
+rv
 bn
 OX
 ew
@@ -17667,8 +17662,8 @@ RL
 tL
 tL
 tL
-aE
-qp
+TK
+rv
 aH
 cO
 nH
@@ -23054,9 +23049,9 @@ qp
 qp
 qp
 JP
-ld
+dP
 JP
-ld
+dP
 JP
 qp
 qp
