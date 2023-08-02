@@ -26,7 +26,7 @@
 		"Performing Attachment work lowered the Qliphoth Counter.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, Shadow Man escaped its Containment Unit.",
-		"Shadow Man returned to Containment Unit after a minute.")
+		"Shadow Man returned to its Containment Unit after a minute.")
 
 /obj/item/paper/fluff/info/tutorial/fairy
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_swarm
