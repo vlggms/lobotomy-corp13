@@ -381,6 +381,7 @@
 	density = TRUE
 	search_objects = 1
 	var/current_size = RESIZE_DEFAULT_SIZE
+	del_on_death = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/bigBirdEye/Initialize() // not sure what this part does tbh
 	. = ..()
@@ -416,7 +417,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 300
 	health = 300
-	speed = 5 // extremely hard to catch
+	move_to_delay = 2
 	melee_damage_lower = 1
 	melee_damage_upper = 8 // should annoy, not kill
 	turns_per_move = 3
@@ -426,6 +427,7 @@
 	density = TRUE
 	search_objects = 1
 	var/current_size = RESIZE_DEFAULT_SIZE
+	del_on_death = TRUE
 
 /mob/living/simple_animal/hostile/kcorp/drone/AttackingTarget()
 	. = ..()
