@@ -30,5 +30,6 @@
 	priority_announce(end_text, name, sound=end_sound)
 	SSlobotomy_corp.core_suppression = null
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 2) // Finished core suppression
+	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED)
 	qdel(src)
 	return
