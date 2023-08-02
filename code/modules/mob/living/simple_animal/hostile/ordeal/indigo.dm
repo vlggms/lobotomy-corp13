@@ -297,6 +297,8 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
+	can_patrol = TRUE
 
 	//How many people has she eaten
 	var/belly = 0
@@ -323,9 +325,82 @@
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
-	if(slamming)
+	if(slamming) //slammin B)
 		return FALSE
 	..()
+
+//Prototype Complex Targeting -IP
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanAttack(atom/the_target)
+	if(isliving(the_target))
+		var/mob/living/L = the_target
+		if(stat == DEAD && !faction_check_mob(L))
+			return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/PickTarget(list/Targets)
+	//Default to normal targeting if already phase 3 or only have 1 target
+	if(phase >= 3 || Targets.len <= 1)
+		return ..()
+	for(var/i in Targets)
+		Targets[i] = ValueTarget(i)
+	return ReturnHighestValue(Targets)
+
+//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/ValueTarget(atom/target_thing, hate_value = 0)
+	if(isliving(target_thing))
+		var/mob/living/L = target_thing
+		if(L.stat == DEAD)
+			return 100
+		hate_value += 1
+		if(iscarbon(L))
+			hate_value += 10
+		if(L.health <= (L.maxHealth * 0.6))
+			hate_value += (10 * ( L.health / L.maxHealth ))
+	return hate_value
+
+//Stolen MOSB patrol code
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanStartPatrol()
+	return !(status_flags & GODMODE)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_reset()
+	. = ..()
+	FindTarget() // Start eating corpses IMMEDIATELLY
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_select()
+	var/list/low_priority_turfs = list() // Oh, you're wounded, how nice.
+	var/list/medium_priority_turfs = list() // You're about to die and you are close? Splendid.
+	var/list/high_priority_turfs = list() // IS THAT A DEAD BODY?
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(H.z != z) // Not on our level
+			continue
+		if(get_dist(src, H) < 4) // Way too close
+			continue
+		if(H.stat != DEAD) // Not dead people
+			if(H.health < H.maxHealth*0.5)
+				if(get_dist(src, H) > 24) // Way too far
+					low_priority_turfs += get_turf(H)
+					continue
+				medium_priority_turfs += get_turf(H)
+			continue
+		if(get_dist(src, H) > 24) // Those are dead people
+			medium_priority_turfs += get_turf(H)
+			continue
+		high_priority_turfs += get_turf(H)
+
+	var/turf/target_turf
+	if(LAZYLEN(high_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
+	else if(LAZYLEN(medium_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
+	else if(LAZYLEN(low_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
+
+	if(istype(target_turf))
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
+	//unsure if this patrol reset will cause the patrol cooldown even if there is not patrol path.
+	patrol_reset()
+	return
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
 	. = ..()
