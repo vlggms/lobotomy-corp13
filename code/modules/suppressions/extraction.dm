@@ -17,6 +17,7 @@
 /datum/suppression/extraction/End()
 	..()
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 3)
+	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_ARBITER_DEAD)
 
 /datum/suppression/extraction/proc/OnArbiterDeath(datum/source)
 	SIGNAL_HANDLER

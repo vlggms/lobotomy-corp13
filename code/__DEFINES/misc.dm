@@ -330,6 +330,7 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define COLOUR_PRIORITY_AMOUNT 4 //how many priority levels there are.
 
 //Endgame Results
+// - Old SS13 stuff, remove later
 #define NUKE_NEAR_MISS 1
 #define NUKE_MISS_STATION 2
 #define NUKE_SYNDICATE_BASE 3
@@ -354,6 +355,12 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define SHUTTLE_HIJACK 24
 #define GANG_DESTROYED 25
 #define GANG_OPERATING 26
+// - LC13 news reports
+#define CORE_SUPPRESSED 27
+#define CORE_SUPPRESSED_CLAW_DEAD 28
+#define CORE_SUPPRESSED_ARBITER_DEAD 29
+#define CORE_SUPPRESSED_REDMIST_DEAD 30
+
 
 #define FIELD_TURF 1
 #define FIELD_EDGE 2
