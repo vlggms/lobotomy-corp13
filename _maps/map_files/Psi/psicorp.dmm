@@ -684,10 +684,13 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
 "en" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Records Office Secure Area"
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
 	},
-/turf/open/floor/facility/halls,
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "eo" = (
 /obj/effect/turf_decal/siding/blue{
@@ -3200,6 +3203,10 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
+"rA" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "rJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -3543,6 +3550,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
+"ts" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "tw" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -3917,6 +3928,9 @@
 	},
 /obj/effect/turf_decal/tile/bar{
 	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
@@ -5939,6 +5953,10 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
+"Fg" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Fi" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -6110,6 +6128,10 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"FY" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "Ga" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
@@ -6562,6 +6584,9 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
+"Jc" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "Jd" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9"
@@ -6661,6 +6686,12 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/control)
+"JF" = (
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "JK" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -8238,6 +8269,12 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/east)
+"Sy" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "Sz" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -8918,6 +8955,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
+"VA" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "VH" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
@@ -9869,6 +9910,15 @@
 "ZU" = (
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"ZX" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/machinery/door/airlock/vault{
+	name = "Dont Touch Me containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "ZZ" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -26125,7 +26175,7 @@ Zq
 aT
 jc
 jc
-ml
+jc
 jc
 jc
 jc
@@ -26352,8 +26402,8 @@ Ct
 Bf
 Ql
 jc
-jc
-jc
+sO
+Fg
 BC
 LT
 BC
@@ -26582,7 +26632,7 @@ yb
 sO
 en
 BC
-oA
+ts
 bs
 jc
 ml
@@ -26807,7 +26857,7 @@ BC
 BC
 AS
 Ql
-jc
+Fg
 BC
 UJ
 BC
@@ -27031,7 +27081,7 @@ lc
 fS
 Wu
 BC
-BC
+oA
 AS
 Hk
 jc
@@ -27261,7 +27311,7 @@ BC
 BC
 AS
 Ql
-jc
+Fg
 BC
 LT
 BC
@@ -27488,7 +27538,7 @@ Jl
 RX
 Cw
 sO
-en
+ZX
 BC
 Su
 bs
@@ -27714,8 +27764,8 @@ tA
 Aw
 Ql
 jc
-jc
-jc
+sO
+Fg
 BC
 UJ
 BC
@@ -27941,7 +27991,7 @@ mk
 yy
 jc
 jc
-ml
+jc
 jc
 jc
 jc
@@ -42222,11 +42272,11 @@ TP
 qB
 GB
 GB
-ge
+zZ
 TP
-ml
-ml
-ml
+TP
+TP
+TP
 TP
 cH
 cH
@@ -42449,11 +42499,11 @@ TP
 yT
 GB
 GB
-zZ
-TP
-ml
-ml
-ml
+ge
+VA
+Jc
+Jc
+Sy
 TP
 cH
 cH
@@ -42677,10 +42727,10 @@ qB
 GB
 GB
 ge
-TP
-ml
-ml
-ml
+JF
+Jc
+FY
+rA
 TP
 cH
 cH
@@ -42903,11 +42953,11 @@ TP
 qB
 GB
 GB
-WX
-TP
-ml
-ml
-ml
+ge
+VA
+Jc
+Jc
+Jc
 TP
 TP
 TP
