@@ -98,6 +98,7 @@
 		return
 
 	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
+	message_admins("Comms_Console message received from [input["source"]]; Sender ckey: [input["message_sender_ckey"]].")
 	for(var/obj/machinery/computer/communications/CM in GLOB.machines)
 		CM.override_cooldown()
 

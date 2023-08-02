@@ -29,3 +29,6 @@ GLOBAL_LIST_EMPTY(poll_options)
 GLOBAL_PROTECT(poll_options)
 
 GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)
+
+// World.time of last sent cross-comms message
+GLOBAL_VAR_INIT(last_cross_comms_message_time, 0)

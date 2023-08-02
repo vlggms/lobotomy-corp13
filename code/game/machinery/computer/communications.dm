@@ -6,6 +6,8 @@
 #define STATE_MAIN "main"
 #define STATE_MESSAGES "messages"
 
+#define CROSSCOMMS_COOLDOWN 1 MINUTES
+
 // The communications computer
 /obj/machinery/computer/communications
 	name = "communications console"
@@ -244,6 +246,9 @@
 				return
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
+			if(GLOB.last_cross_comms_message_time > world.time)
+				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time - world.time) / 10)] seconds before trying again!</span>")
+				return
 
 			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
 			if (!message)
@@ -257,12 +262,14 @@
 			var/network_name = CONFIG_GET(string/cross_comms_network)
 			if (network_name)
 				payload["network"] = network_name
+			payload["message_sender_ckey"] = usr.ckey
 
 			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload)
 			minor_announce(message, title = "Outgoing message to allied station")
 			usr.log_talk(message, LOG_SAY, tag = "message to the other server")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server\[s].")
 			deadchat_broadcast(" has sent an outgoing message to the other station(s).</span>", "<span class='bold'>[usr.real_name]", usr, message_type = DEADCHAT_ANNOUNCEMENT)
+			GLOB.last_cross_comms_message_time = world.time + CROSSCOMMS_COOLDOWN
 
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("setState")
