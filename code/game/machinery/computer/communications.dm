@@ -6,7 +6,7 @@
 #define STATE_MAIN "main"
 #define STATE_MESSAGES "messages"
 
-#define CROSSCOMMS_COOLDOWN 1 MINUTES
+#define CROSSCOMMS_COOLDOWN 2 MINUTES
 
 // The communications computer
 /obj/machinery/computer/communications
@@ -246,12 +246,17 @@
 				return
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
-			if(GLOB.last_cross_comms_message_time > world.time)
+			if(GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN > world.time)
 				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time - world.time) / 10)] seconds before trying again!</span>")
 				return
 
 			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
 			if (!message)
+				return
+
+			// Double check to prevent people from "saving" the window with input to ignore the cooldown
+			if(GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN > world.time)
+				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time - world.time) / 10)] seconds before trying again!</span>")
 				return
 
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
@@ -265,11 +270,11 @@
 			payload["message_sender_ckey"] = usr.ckey
 
 			send2otherserver(station_name(), message, "Comms_Console", destination == "all" ? null : list(destination), additional_data = payload)
-			minor_announce(message, title = "Outgoing message to allied station")
+			priority_announce(message, title = "Outgoing message to allied station")
 			usr.log_talk(message, LOG_SAY, tag = "message to the other server")
 			message_admins("[ADMIN_LOOKUPFLW(usr)] has sent a message to the other server\[s].")
 			deadchat_broadcast(" has sent an outgoing message to the other station(s).</span>", "<span class='bold'>[usr.real_name]", usr, message_type = DEADCHAT_ANNOUNCEMENT)
-			GLOB.last_cross_comms_message_time = world.time + CROSSCOMMS_COOLDOWN
+			GLOB.last_cross_comms_message_time = world.time
 
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("setState")

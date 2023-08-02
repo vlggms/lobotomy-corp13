@@ -90,6 +90,11 @@
 	keyword = "Comms_Console"
 	require_comms_key = TRUE
 
+/datum/world_topic/comms_console/TryRun(list/input)
+	if(!GLOB.cross_comms_allowed)
+		return FALSE
+	return ..()
+
 /datum/world_topic/comms_console/Run(list/input)
 	// Reject comms messages from other servers that are not on our configured network,
 	// if this has been configured. (See CROSS_COMMS_NETWORK in comms.txt)
@@ -105,6 +110,11 @@
 /datum/world_topic/news_report
 	keyword = "News_Report"
 	require_comms_key = TRUE
+
+/datum/world_topic/news_report/TryRun(list/input)
+	if(!GLOB.cross_comms_allowed)
+		return FALSE
+	return ..()
 
 /datum/world_topic/news_report/Run(list/input)
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")

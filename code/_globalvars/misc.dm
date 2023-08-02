@@ -32,3 +32,6 @@ GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)
 
 // World.time of last sent cross-comms message
 GLOBAL_VAR_INIT(last_cross_comms_message_time, 0)
+
+// If FALSE - All incoming cross-comms messages will be denied.
+GLOBAL_VAR_INIT(cross_comms_allowed, TRUE)

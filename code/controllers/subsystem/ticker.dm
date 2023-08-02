@@ -558,7 +558,11 @@ SUBSYSTEM_DEF(ticker)
 			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, nonetheless a very powerful one. All employees were rewarded handsomely for their job."
 
 	if(news_message)
-		send2otherserver(news_source, news_message,"News_Report")
+		var/list/payload = list()
+		var/network_name = CONFIG_GET(string/cross_comms_network)
+		if(network_name)
+			payload["network"] = network_name
+		send2otherserver(news_source, news_message, "News_Report", payload)
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))
