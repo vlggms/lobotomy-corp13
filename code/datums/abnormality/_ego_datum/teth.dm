@@ -276,3 +276,12 @@
 /datum/ego_datum/weapon/capote
 	item_path = /obj/item/ego_weapon/shield/capote
 	cost = 20
+
+//Fairy-Long-Legs - Four-Leaf Clover
+/datum/ego_datum/armor/fourleaf_clover
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
+	cost = 20
+
+/datum/ego_datum/weapon/fourleaf_clover
+	item_path = /obj/item/ego_weapon/mini/fourleaf_clover
+	cost = 20
