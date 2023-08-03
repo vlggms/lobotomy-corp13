@@ -438,6 +438,13 @@
 	justice_bonus = 1
 	slot = CHEEK
 
+/datum/ego_gifts/fourleaf_clover
+	name = "Four-Leaf Clover"
+	icon_state = "fourleaf_clover"
+	fortitude_bonus = -2
+	prudence_bonus = 4
+	slot = HAT
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"

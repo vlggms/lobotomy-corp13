@@ -207,3 +207,9 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "It suffered for such a long time... Unable to do anything about the raging thirst, the flesh endlessly burning and searing."
 	icon_state = "capote"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0) // 0
+
+/obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
+	name = "four-leaf clover"
+	desc = "Waiting for the prey to fall into a trap is a vital skill to learn for those who cannot face direct conflict."
+	icon_state = "fourleaf_clover"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
