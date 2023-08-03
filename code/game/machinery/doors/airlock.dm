@@ -925,17 +925,7 @@
 			return
 
 		if(whitelist_door)		//Whitelist doors kill you if you fucking open them. Crispy clerk.
-			if(ishuman(user))
-				var/mob/living/H = user
-				to_chat(H, "<span class='userdanger'>YOU ARE SHOCKED WITH THE FORCE OF 10,000 VOLTS!</span>")
-				to_chat(H, "<span class='notice'>This log will be sent to admins. Repeated attempts will result in a ban.</span>")
-				//It doesn't, I just fucking hate you.
-
-				//Tell everyone who you are
-				for(var/mob/M in GLOB.player_list)
-					to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] HAS BEEN SMITED BY THE HEAD.</span>")
-				H.apply_damage(999999999, BURN, BODY_ZONE_CHEST)	//Sick of fucking clerks ngl.
-				return
+			return
 
 		panel_open = !panel_open
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
