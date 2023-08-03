@@ -266,3 +266,14 @@
 		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
 		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
 		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
+
+//Fairy-Long-Legs
+/obj/item/paper/fluff/info/teth/fairy_longlegs
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_longlegs
+	abno_code = "F-01-162"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Every few works, rain started pouring in the containment cell, and the abnormality offered cover from the rain to the agent.",
+		"Taking cover is not advised, as it would expose the employee's back to the abnormality.",
+		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter completely.",
+		"Upon attacking, Fairy-Long-Legs scrapped off the skin of the victim and inserted it inside their chest's cavity, healing themselves in the process.")
