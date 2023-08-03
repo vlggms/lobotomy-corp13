@@ -31,7 +31,7 @@
 	attack_verb_simple = "claw"
 	faction = list("hostile, nihil")
 	attack_sound = 'sound/abnormalities/nihil/attack.ogg'
-	can_spawn = FALSE //not ready yet
+//	can_spawn = FALSE //not ready yet
 //	can_breach = TRUE not yet.
 	start_qliphoth = 4
 	ranged = TRUE
