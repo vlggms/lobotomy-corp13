@@ -272,8 +272,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_longlegs
 	abno_code = "F-01-162"
 	abno_info = list(
+		"When an employee with Fortitude Level 1 completed the work, the Qliphoth Counter lowered twice",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"Every few works, rain started pouring in the containment cell, and the abnormality offered cover from the rain to the agent.",
 		"Taking cover is not advised, as it would expose the employee's back to the abnormality.",
-		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter completely.",
+		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter twice.",
 		"Upon attacking, Fairy-Long-Legs scrapped off the skin of the victim and inserted it inside their chest's cavity, healing themselves in the process.")
