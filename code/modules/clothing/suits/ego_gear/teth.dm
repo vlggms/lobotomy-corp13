@@ -212,4 +212,4 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "four-leaf clover"
 	desc = "Waiting for the prey to fall into a trap is a vital skill to learn for those who cannot face direct conflict."
 	icon_state = "fourleaf_clover"
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
