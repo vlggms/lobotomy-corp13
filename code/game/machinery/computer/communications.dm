@@ -247,7 +247,7 @@
 			if (!COOLDOWN_FINISHED(src, important_action_cooldown))
 				return
 			if(GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN > world.time)
-				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time - world.time) / 10)] seconds before trying again!</span>")
+				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN - world.time) / 10)] seconds before trying again!</span>")
 				return
 
 			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
@@ -256,7 +256,7 @@
 
 			// Double check to prevent people from "saving" the window with input to ignore the cooldown
 			if(GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN > world.time)
-				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time - world.time) / 10)] seconds before trying again!</span>")
+				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN - world.time) / 10)] seconds before trying again!</span>")
 				return
 
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
