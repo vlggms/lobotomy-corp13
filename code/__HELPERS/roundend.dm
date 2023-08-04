@@ -212,8 +212,8 @@
 	rounds_since_vote = text2num(rounds_since_vote)
 	rounds_since_vote += 1
 	if(rounds_since_vote < 3)
-		if(GLOB.master_mode != "classic")
-			SSticker.save_mode("classic")
+		if(GLOB.master_mode != "sidebranch")
+			SSticker.save_mode("sidebranch")
 	else
 		SSvote.initiate_vote("gamemode", "automatic gamemode selection vote")
 		rounds_since_vote = 0
