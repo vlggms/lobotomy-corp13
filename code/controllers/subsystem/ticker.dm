@@ -559,7 +559,7 @@ SUBSYSTEM_DEF(ticker)
 			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after."
 
 		if(CORE_STARTED)
-			news_messsage = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources."
+			news_message = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources."
 		if(CORE_SUPPRESSED)
 			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation."
 		if(CORE_SUPPRESSED_CLAW_DEAD)
