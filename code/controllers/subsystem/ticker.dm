@@ -540,14 +540,26 @@ SUBSYSTEM_DEF(ticker)
 	var/news_message
 	var/news_source = "Lobotomy Corporation News"
 	switch(news_report)
-		if(STATION_DESTROYED_NUKE)
-			news_message = "We would like to reassure all employees that the reports of a nuclear explosion on [station_name()] are, in fact, a hoax. Have a secure day!"
 		if(STATION_EVACUATED)
+			var/round_state = "has been successfuly finished"
+			switch(SSlobotomy_corp.next_ordeal_level)
+				if(1,2)
+					round_state = "abruptly ended"
+				if(3,4)
+					round_state = "has finished early"
 			if(emergency_reason)
-				news_message = "[station_name()] has been evacuated after transmitting the following distress beacon:\n\n[emergency_reason]"
+				news_message = "A work shift on [station_name()] [round_state] after transmitting the following signal:\n\n[emergency_reason]"
 			else
-				news_message = "The employees of [station_name()] have been evacuated amid unconfirmed reports of enemy activity."
+				news_message = "A work shift on [station_name()] [round_state]. No additional data was transmitted."
 
+		if(STATION_DESTROYED_NUKE)
+			news_message = "We would like to reassure all personnel that the reports of a nuclear explosion on [station_name()] are, in fact, a hoax. Have a secure day!"
+
+		if(SHUTTLE_HIJACK)
+			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after."
+
+		if(CORE_STARTED)
+			news_messsage = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources."
 		if(CORE_SUPPRESSED)
 			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation."
 		if(CORE_SUPPRESSED_CLAW_DEAD)
