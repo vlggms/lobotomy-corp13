@@ -2,7 +2,7 @@
 Coded by nutterbutter, "senior" junior developer, during hell week 2022.
 Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a miracle. Praise be.
 */
-#define STATUS_EFFECT_MUSIC /datum/status_effect/singing_machine
+#define STATUS_EFFECT_MUSIC /datum/status_effect/display/singing_machine
 /mob/living/simple_animal/hostile/abnormality/singing_machine
 	name = "Singing Machine"
 	desc = "A shiny metallic device with a large hinge. You feel a sense of dread about what might be inside..."
@@ -186,11 +186,12 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		"Now, I am reborn."
 		)
 
-/datum/status_effect/singing_machine
+/datum/status_effect/display/singing_machine
 	id = "music"
 	status_type = STATUS_EFFECT_REFRESH
 	duration = 5 MINUTES // Just like WCCA
 	alert_type = /atom/movable/screen/alert/status_effect/singing_machine
+	display_name = "musical_addiction"
 	var/addictionTick = 10 SECONDS
 	var/addictionTimer = 0
 	var/addictionSanityMin = 2
@@ -202,7 +203,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "musical_addiction"
 
-/datum/status_effect/singing_machine/on_apply()
+/datum/status_effect/display/singing_machine/on_apply()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -210,14 +211,13 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 		H.physiology.white_mod *= 1.1
-		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "musical_addiction", -MUTATIONS_LAYER))
 
-/datum/status_effect/singing_machine/tick()
+/datum/status_effect/display/singing_machine/tick()
 	if(world.time % addictionTick == 0 && ishuman(owner)) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
 		var/mob/living/carbon/human/H = owner
 		H.adjustSanityLoss(rand(addictionSanityMax, addictionSanityMin))
 
-/datum/status_effect/singing_machine/on_remove()
+/datum/status_effect/display/singing_machine/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -225,6 +225,5 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 5)
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 		H.physiology.white_mod /= 1.1
-		H.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "musical_addiction", -MUTATIONS_LAYER))
 
 #undef STATUS_EFFECT_MUSIC
