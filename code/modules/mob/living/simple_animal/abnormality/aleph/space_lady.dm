@@ -12,6 +12,7 @@
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
+	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 3
 	work_chances = list(
@@ -44,9 +45,8 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget()
-	OpenFire()
-	return FALSE
+/mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget(atom/attacked_target)
+	return OpenFire()
 
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/OpenFire()
