@@ -6,6 +6,11 @@
 	var/usage_cooldown
 	var/usage_cooldown_time = 5 SECONDS
 
+	ego_list = list(
+		/datum/ego_datum/weapon/destiny,
+		/datum/ego_datum/armor/destiny
+		)
+
 /obj/structure/toolabnormality/fateloom/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 10))

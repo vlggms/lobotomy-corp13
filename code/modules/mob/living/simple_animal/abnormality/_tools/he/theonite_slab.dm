@@ -5,6 +5,11 @@
 	icon_state = "slab"
 	var/list/users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/divinity,
+		/datum/ego_datum/armor/divinity
+		)
+
 /obj/structure/toolabnormality/theonite_slab/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 6, user))

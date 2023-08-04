@@ -266,7 +266,7 @@
 	if(ability_cooldown > world.time)
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/zayin/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/tools/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(T))
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return

@@ -7,6 +7,9 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 
+	/// List of ego equipment datums
+	var/list/ego_list = list()
+
 GLOBAL_LIST_INIT(unspawned_tools, list(
 	/obj/structure/toolabnormality/dr_jekyll,
 	/obj/structure/toolabnormality/fateloom,

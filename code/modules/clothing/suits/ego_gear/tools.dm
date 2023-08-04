@@ -3,11 +3,17 @@
 	icon = 'icons/obj/clothing/ego_gear/abnormality/tools.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/tools.dmi'
 
+/obj/item/clothing/suit/armor/ego_gear/tools/bucket
+	name = "bucket"
+	desc = "The man lost his balance after seeing what the well's bucket had drawn."
+	icon_state = "bucket"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
 /obj/item/clothing/suit/armor/ego_gear/tools/swindle
 	name = "swindle"
 	desc = "All-natural snake oil! Cleans the skin, removes pimples, impetigo, and other defects!"
 	icon_state = "swindle"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = -30, BLACK_DAMAGE = -30, PALE_DAMAGE = 0) // 10
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40)
 

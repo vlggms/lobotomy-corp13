@@ -1,3 +1,20 @@
+// Wishing Well - Bucket
+/datum/ego_datum/weapon/bucket
+	item_path = /obj/item/gun/ego_gun/bucket
+	cost = 12
+
+/datum/ego_datum/armor/bucket
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/bucket
+	cost = 12
+
+//Heart of Aspiration - Aspiration
+/datum/ego_datum/armor/aspiration
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/aspiration
+	cost = 20
+
+/datum/ego_datum/weapon/aspiration
+	item_path = /obj/item/gun/ego_gun/aspiration
+	cost = 20
 
 //All-Natural Snake Oil - Swindle
 /datum/ego_datum/armor/swindle
@@ -43,12 +60,3 @@
 /datum/ego_datum/weapon/destiny
 	item_path = /obj/item/ego_weapon/destiny
 	cost = 35
-
-//Heart of Aspiration - Aspiration
-/datum/ego_datum/armor/aspiration
-	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/aspiration
-	cost = 20
-
-/datum/ego_datum/weapon/aspiration
-	item_path = /obj/item/gun/ego_gun/aspiration
-	cost = 20

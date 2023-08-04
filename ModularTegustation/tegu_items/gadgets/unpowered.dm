@@ -295,3 +295,81 @@
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
 		return TRUE
 	return FALSE
+
+
+
+
+//Tool E.G.O extractor
+/obj/item/tool_extractor
+	name = "Enkephalin Resonance Unit"
+	desc = "A specialized set of tools that allows E.G.O extraction from tool abnormalities."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "RPED"
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BELT
+	var/stored_enkephalin = 0
+	var/maximum_enkephalin = 250
+	var/drawn_amount = 50
+	var/list/possible_drawn_amounts = list(5,10,15,20,25,50)
+	var/ego_selection
+	var/ego_array
+
+/obj/item/tool_extractor/examine(mob/user)
+	. = ..()
+	. += "Currently storing [stored_enkephalin]/[maximum_enkephalin] enkephalin."
+
+/obj/item/tool_extractor/attack_self(mob/user)
+	var/drawn_selected = input(user, "How quick should the transfer rate be?") as null|anything in possible_drawn_amounts
+	if(!drawn_selected)
+		return
+	drawn_amount = drawn_selected
+	to_chat(user, "<span class='notice'>[src]'s transfer rate is now [drawn_amount] enkephalin.</span>")
+	return
+
+
+/obj/item/tool_extractor/attack_obj(obj/O, mob/living/carbon/user)
+	if(user.a_intent == INTENT_HARM)
+		return ..()
+	if(istype(O ,/obj/machinery/computer/extraction_cargo))//console stuff here
+		if(stored_enkephalin + drawn_amount > maximum_enkephalin)
+			var/drawn_total = (maximum_enkephalin - stored_enkephalin)//top off without going over the max
+			if(drawn_total == 0)//if the stored enkephalin is already at max
+				to_chat(usr, "<span class='warning'>[src] is at full capacity.</span>")
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return
+			stored_enkephalin += drawn_total
+			SSlobotomy_corp.AdjustAvailableBoxes(-1 * drawn_total)
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)//bit of duplicate code but it doesn't change the drawn_amount selection
+			to_chat(usr, "Transferred [drawn_total] enkephalin into [src].")
+			return
+		if(SSlobotomy_corp.available_box < drawn_amount)
+			to_chat(usr, "<span class='warning'>There is not enough enkephalin stored for this operation.</span>")
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+			return
+		stored_enkephalin += drawn_amount
+		SSlobotomy_corp.AdjustAvailableBoxes(-1 * drawn_amount)
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+		to_chat(usr, "Transferred [drawn_amount] enkephalin into [src].")
+		return
+	if(!istype(O, /obj/structure/toolabnormality))//E.G.O stuff below here
+		return
+	var/obj/structure/toolabnormality/P = O
+	ego_selection = input(user, "Which E.G.O will you extract?") as null|anything in P.ego_list
+	if(!ego_selection)
+		return
+	var/datum/ego_datum/D = ego_selection
+	var/enkephalin_cost = initial(D.cost)
+	var/loot = initial(D.item_path)
+	switch(enkephalin_cost)//might see some scrutiny in testmerges. Original cost formula is multiplied by risk level
+		if(45 to 99)
+			enkephalin_cost *= 1.5
+		if(100 to INFINITY)//unobtainable
+			enkephalin_cost *= 2
+	if(enkephalin_cost > stored_enkephalin)
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		to_chat(usr, "<span class='warning'>There is not enough enkephalin in the device for this operation.</span>")
+		return
+	new loot(get_turf(src))
+	stored_enkephalin -= enkephalin_cost
+	to_chat(usr, "<span class='notice'>E.G.O extracted successfully!</span>")
+	return
