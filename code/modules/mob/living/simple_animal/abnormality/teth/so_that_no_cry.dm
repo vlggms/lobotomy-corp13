@@ -22,14 +22,26 @@
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talismans(mob/living/carbon/human/user)
+	var/datum/status_effect/stacking/talismans/T = user.has_status_effect(/datum/status_effect/stacking/talismans)
+	playsound(src, 'sound/abnormalities/goldenapple/Gold_Sparkle.ogg', 60, 1)
+	if(!T)//applying the buff for the first time (it lasts for four minutes)
+		user.apply_status_effect(STATUS_EFFECT_TALISMANS)
+		to_chat(user, "<span class='nicegreen'>A talisman quietly dettaches from the abnormality and sticks to your clothes.</span>")
+	else//if the employee already has the buff
+		to_chat(user, "<span class='nicegreen'>Another talisman sticks to you.</span>")
+		T.add_stacks(1)
+		T.refresh()
+	return
+
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	user.apply_status_effect(STATUS_EFFECT_TALISMANS)
-	to_chat(user, "<span class='nicegreen'>Talismaned</span>")
+	if(work_type == ABNORMALITY_WORK_INSIGHT)
+		Apply_Talismans(user)
 
 /datum/status_effect/stacking/talismans
-	id = "taslimans"
+	id = "talismans"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 10 SECONDS	//Lasts for a minute
+	duration = 60 SECONDS	//Lasts for four minute
 	max_stacks = 6 //Actual maximum is 5 for a +20 justice bonus, 6 will instantly curse you.
 	stacks = 1
 	on_remove_on_mob_delete = TRUE
@@ -41,6 +53,24 @@
 	desc = "Talismans desc."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "golden_sheen"
+
+/datum/status_effect/stacking/talismans/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE,stacks * 4)
+
+/datum/status_effect/stacking/talismans/add_stacks()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE,(stacks * 4)-4)
+
+/datum/status_effect/stacking/talismans/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE,stacks * -4)
 
 
 #undef STATUS_EFFECT_TALISMANS
