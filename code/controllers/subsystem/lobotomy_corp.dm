@@ -202,9 +202,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
-		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
+		if(isliving(player))
 			player_count += 1
-	qliphoth_max = (player_count > 1 ? 4 : 3) + round(player_count * 0.8) // Some extra help on non solo rounds
+	qliphoth_max = 3 + round(player_count * 0.65)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
