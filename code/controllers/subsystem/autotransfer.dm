@@ -10,8 +10,9 @@ SUBSYSTEM_DEF(autotransfer)
 /datum/controller/subsystem/autotransfer/Initialize(timeofday)
 	starttime = world.time
 	targettime = starttime + CONFIG_GET(number/vote_autotransfer_initial)
-	
-	can_fire = FALSE
+
+	if(!CONFIG_GET(flag/vote_autotransfer_enabled))
+		can_fire = FALSE
 
 	. = ..()
 
