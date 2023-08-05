@@ -250,7 +250,7 @@
 				to_chat(usr, "<span class='warning'>A message was sent too recently! Wait for [round((GLOB.last_cross_comms_message_time + CROSSCOMMS_COOLDOWN - world.time) / 10)] seconds before trying again!</span>")
 				return
 
-			var/message = trim(html_encode(params["message"]), MAX_MESSAGE_LEN)
+			var/message = strip_html_simple(params["message"], MAX_MESSAGE_LEN)
 			if (!message)
 				return
 
