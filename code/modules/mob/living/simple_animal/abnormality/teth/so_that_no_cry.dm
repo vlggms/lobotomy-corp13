@@ -107,7 +107,7 @@
 /datum/status_effect/stacking/curse_talisman //Justice DECREASING talismans
 	id = "curse_talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 10 SECONDS //Lasts for 4 minutes
+	duration = 10 SECONDS //Lasts for 5 minutes
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 // -7 per stack, up to -42 Justice
 	stacks = 1
