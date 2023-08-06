@@ -1153,13 +1153,13 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 45		//Does more damage for being harder to use.
+	force = 30	//Does more damage for being harder to use.
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
 
@@ -1167,13 +1167,14 @@
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
+	..()
 	if(do_after(user, 4, src))
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		target.visible_message("<span class='danger'>[user] markes [target]!</span>", \
 						"<span class='userdanger'>[user] marks you!</span>", COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, "<span class='danger'>You enscribe a code on [target]!</span>")
 
-		mark_damage = force
+		mark_damage = force*2
 		//I gotta grab  justice here
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
