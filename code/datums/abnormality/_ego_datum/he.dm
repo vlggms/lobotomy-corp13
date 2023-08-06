@@ -371,11 +371,20 @@
 	item_path = /obj/item/ego_weapon/roseate
 	cost = 35
 
-//Shock Centipede- AEDD
+//Shock Centipede - AEDD
 /datum/ego_datum/armor/aedd
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/aedd
 	cost = 35
 
 /datum/ego_datum/weapon/aedd
 	item_path = /obj/item/ego_weapon/aedd
+	cost = 35
+
+//Norinori - Split
+/datum/ego_datum/armor/split
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/split
+	cost = 35
+
+/datum/ego_datum/weapon/split
+	item_path = /obj/item/ego_weapon/lance/split
 	cost = 35

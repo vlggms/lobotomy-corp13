@@ -1477,4 +1477,26 @@
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
+/obj/item/ego_weapon/psychic
+	name = "psychic dagger"
+	desc = "A saber from the deepest sea, meant for a groom's mortality."
+	special = "Use this weapon in hand to dodgeroll."
+	icon_state = "psychic"
+	force = 13
+	attack_speed = 0.3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/knife4.ogg'
+	var/dodgelanding
 
+/obj/item/ego_weapon/psychic/attack_self(mob/living/carbon/user)
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = TRUE)

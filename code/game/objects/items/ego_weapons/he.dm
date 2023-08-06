@@ -1430,3 +1430,31 @@
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
 	new /obj/effect/temp_visual/justitia_effect(T)
+
+/obj/item/ego_weapon/lance/split
+	name = "split"
+	desc = "They existed everywhere, but we were the ones to first discover their existence. We were the first to encounter them. We were faced with fear. They were - are fear itself."
+	icon_state = "split"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 33
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.8// really slow
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/lance/split/LowerLance(mob/user)
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/RaiseLance(mob/user)
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/get_clamped_volume()
+	return 40
