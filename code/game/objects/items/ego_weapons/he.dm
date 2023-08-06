@@ -1728,3 +1728,39 @@
 		if(faction_check(H.faction, faction))
 			continue
 		H.apply_status_effect(/datum/status_effect/brown_bricks)
+		
+/obj/item/ego_weapon/coiling
+	name = "coiling"
+	desc = "The snake leather used in this whip is hardened by the sun"
+	icon_state = "coiling"
+	force = 30
+	reach = 4		//Has 4 Square Reach.
+	attack_speed = 1.8
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/voodoo
+	name = "voodoo"
+	desc = "What seems to be a giant half of a scissors pair."
+	icon_state = "voodoo"
+	special = "This weapon deals both red and white damage."
+	force = 20
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "slashes", "attacks")
+	attack_verb_simple = list("stab", "slash", "attack")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/voodoo/attack(mob/living/target, mob/living/user)
+	..()
+	target.apply_damage(force, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+

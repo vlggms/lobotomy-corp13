@@ -95,3 +95,19 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL!"
 	icon_state = "letter_opener"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
+	name = "eclipse of scarlet moths"
+	desc = "A bright suit that brings you warmth."
+	icon_state = "eclipse"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+//TEMPORARY!!!
+/obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
+	name = "taste of the sea"
+	desc = "A suit that's old but made of thick plastic."
+	icon_state = "oceanic"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+
+

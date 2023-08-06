@@ -314,3 +314,22 @@
 		"After an employee completed their work, the abnormality began to ramble, specifying a specific work type.",
 		"The abnormality repeated its request when petted by an employee.",
 		"Observations have concluded that each request corresponded to a specific work type. Performing this work type will result in significantly increased work success rate.")
+
+//All-Around Cleaner
+/obj/item/paper/fluff/info/teth/cleaner
+	abno_type = /mob/living/simple_animal/hostile/abnormality/cleaner
+	abno_code = "T-05-186"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
+		"During the breach, T-05-186 cleaned up the facility unprompted.",)
+
+//Skin Prophet
+/obj/item/paper/fluff/info/teth/skin_prophet
+	abno_type = /mob/living/simple_animal/hostile/abnormality/skin_prophet
+	abno_code = "T-03-189"
+	abno_info = list(
+		"On work failure, a candle was snuffed, and work damage was increased.",
+		"When Attachment or Repression work was done, the work rates were equal to the total stat buffs of the employee.",
+		"When Attachment or Repression work was completed with a good work result, the employee's respective buff was reduced to 0, and their stat maximum was increased by the same amount.",)
+

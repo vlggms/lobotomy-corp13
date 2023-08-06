@@ -447,3 +447,33 @@
 		"Allured employees recovered quickly after their mental corruption was resolved.",
 		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
+	
+//Eris
+/obj/item/paper/fluff/info/he/eris
+	abno_type = /mob/living/simple_animal/hostile/abnormality/eris
+	abno_code = "C-01-184"
+	abno_info = list(
+		"Every death reduced the Qliphoth counter of C-01-184 by 1.",
+		"After Attachment work, there is a small chance of Eris and the Employee -REDACTED-.",
+		"On a Bad result, the Qliphoth counter lowered by 3.")
+
+//Will You Play
+/obj/item/paper/fluff/info/he/willyouplay
+	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
+	abno_code = "T-01-187"
+	abno_info = list(
+		"T-01-187 refused standard work, insisting that the employee play a game of rock paper scissors.",
+		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats.")
+
+
+//Highway Devotee
+/obj/item/paper/fluff/info/he/highway
+	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
+	abno_code = "T-01-189"
+	abno_info = list(
+		"When the work result was neutral, the Qliphoth counter lowered.",
+		"When the work result was bad, the Qliphoth counter lowered by 2.")
+
+
+
