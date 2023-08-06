@@ -9,7 +9,7 @@
 	health = 800
 	threat_level = TETH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSTINCT = 35,
 		ABNORMALITY_WORK_INSIGHT = list(45, 50, 55, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 60
@@ -42,6 +42,7 @@
 		G.safe_removal = TRUE
 		user.remove_status_effect(STATUS_EFFECT_TALISMAN)
 		to_chat(user, "<span class='nicegreen'>You place all of your talismans back onto the abnormality.</span>")
+	return
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
@@ -59,7 +60,7 @@
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 //actual max is 5 for +25 Justice, 6 instantly curses you
 	stacks = 1
-	stack_threshold = 6
+	stack_threshold = 6 //instacurse
 	alert_type = /atom/movable/screen/alert/status_effect/talisman
 	consumed_on_threshold = TRUE
 	var/safe_removal = FALSE
@@ -68,37 +69,40 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5 * stacks) //max of 25
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
 
 /datum/status_effect/stacking/talisman/add_stacks(stacks_added)
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5 * stacks_added)
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5 * stacks_added)//max of 25
+
+/datum/status_effect/stacking/talisman/threshold_cross_effect()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
+	H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+	G.add_stacks(5)
 
 /datum/status_effect/stacking/talisman/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/i
+		var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -5 * stacks)
 		if(safe_removal == TRUE)
-			return
+			return ..()
 		if (stacks > 0)
 			safe_removal = FALSE
-			for(i=1,i<stacks, i++)
-				to_chat(owner, "<span class='nicegreen'>stacks removed.</span>")
-				H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
-
-/datum/status_effect/stacking/talisman/on_threshold_cross() //6 talismans will curse you
-	owner.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
-	return ..()
+			H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+			G.add_stacks(stacks-1)
 
 /atom/movable/screen/alert/status_effect/talisman
 	name = "Talisman"
 	desc = "These feel oddly soothing, as if they gave you stregth."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "talisman"
+
 //CURSE TALISMAN
 /datum/status_effect/stacking/curse_talisman //Justice DECREASING talismans
 	id = "curse_talisman"
@@ -114,18 +118,18 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/i
-		for(i=0,i<stacks, i++)
-			to_chat(owner, "<span class='nicegreen'>stacks.</span>")
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks)
+
+datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of 25
 
 /datum/status_effect/stacking/curse_talisman/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/j
-		for(j=0 ,j<stacks, j)
-			to_chat(owner, "<span class='nicegreen'>stacks removed.</span>")
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 7 * stacks)
 
 /atom/movable/screen/alert/status_effect/curse_talisman
@@ -138,6 +142,7 @@
 #undef STATUS_EFFECT_CURSETALISMAN
 
 /* current issues:
-justice doesnt recover correctly with curse talismans, apparently the stacks fucking vanish into thin air --fixed?
-6 talismans are giving you 7 stacks for some god forsaken reason --fixed?
+curse talismans dont inherit the correct amount of stacks
+curse talismans put in wacky values of -justice, doesnt remove properly
+6 talismans are giving you 7 stacks for some god forsaken reason --fixed i think
 */
