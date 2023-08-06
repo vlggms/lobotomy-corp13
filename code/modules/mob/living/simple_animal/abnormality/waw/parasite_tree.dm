@@ -32,6 +32,7 @@
 		/datum/ego_datum/armor/hypocrisy
 		)
 
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	gift_type =  /datum/ego_gifts/hypocrisy
 	gift_message = "Your ears seem to have grown longer. Weird."
 	var/origin_cooldown = 0 //null when compared to numbers is a eldritch concept so world.time cannot be more or less.
