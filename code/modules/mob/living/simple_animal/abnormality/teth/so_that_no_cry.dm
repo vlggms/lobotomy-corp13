@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_TALISMAN /datum/status_effect/stacking/talisman
+#define STATUS_EFFECT_CURSETALISMAN /datum/status_effect/stacking/curse_talisman
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry
 	name = "So That No One Will Cry"
 	desc = "An abnormality taking the form of a wooden doll, various talismans are attached to it's body."
@@ -27,9 +28,9 @@
 	playsound(src, 'sound/abnormalities/goldenapple/Gold_Sparkle.ogg', 100, 1)
 	if(!G)//applying the buff for the first time (it lasts for four minutes)
 		user.apply_status_effect(STATUS_EFFECT_TALISMAN)
-		to_chat(user, "<span class='nicegreen'>Your body is engulfed with a warm glow, numbing your injuries.</span>")
+		to_chat(user, "<span class='nicegreen'>A talisman quietly dettaches from the abnormality and sticks to you.</span>")
 	else//if the employee already has the buff
-		to_chat(user, "<span class='nicegreen'>The glow surrounding your body brightens.</span>")
+		to_chat(user, "<span class='nicegreen'>Another talisman sticks to you.</span>")
 		G.add_stacks(1)
 		G.refresh()
 	return
@@ -39,16 +40,18 @@
 		Apply_Talisman(user)
 	return
 
-/datum/status_effect/stacking/talisman
+//**   STATUS EFFECTS  **//
+/datum/status_effect/stacking/talisman //Justice increasing talismans
 	id = "talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
 	duration = 10 SECONDS //SHOULD last 10 seconds
 	stack_decay = 0
 	max_stacks = 6 //actual max is 5 for +20 justice, 6 instantly curses you
 	stacks = 1
+	stack_threshold = 6
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/talisman
-	consumed_on_threshold = FALSE
+	consumed_on_threshold = TRUE
 
 /datum/status_effect/stacking/talisman/on_apply()
 	. = ..()
@@ -62,6 +65,9 @@
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 4 * stacks_added)
 
+/datum/status_effect/stacking/talisman/on_threshold_cross()
+	. = ..()
+
 /datum/status_effect/stacking/talisman/on_remove()
 	. = ..()
 	if(ishuman(owner))
@@ -74,4 +80,24 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "talisman"
 
+/datum/status_effect/stacking/curse_talisman //Justice DECREASING talismans
+	id = "curse_talisman"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 10 SECONDS //SHOULD last 10 seconds
+	stack_decay = 0
+	max_stacks = 6 //actual max is 5 for +20 justice, 6 instantly curses you
+	stacks = 1
+	stack_threshold = 6
+	on_remove_on_mob_delete = TRUE
+	alert_type = /atom/movable/screen/alert/status_effect/curse_talisman
+	consumed_on_threshold = FALSE
+
+/atom/movable/screen/alert/status_effect/curse_talisman
+	name = "Curse Talisman"
+	desc = "CTDescription."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "talisman"
+
 #undef STATUS_EFFECT_TALISMAN
+#undef STATUS_EFFECT_CURSETALISMAN
+
