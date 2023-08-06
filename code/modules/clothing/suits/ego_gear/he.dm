@@ -399,3 +399,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/split
+	name = "split"
+	desc = "It took the form of an adorable mascot that looked like a cute fox. In fact, it's actually a cat, not a fox... Anyways, that thing is a monster."
+	icon_state = "split"
+	flags_inv = NONE//it's just a coat
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = -10) // 70
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)

@@ -328,7 +328,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
 	switch(current_season) //you are probably wondering why didn't I use setRating()... well, it does not seem to work here.
 		if("spring")
-			src.armor = new(red = 60, white = 80, black = 40, pale = 40)
+			src.armor = new(red = 60, white = 80, black = 40, pale = 60)
 		if("summer")
 			src.armor = new(red = 80, white = 40, black = 60, pale = 60)
 		if("fall")
