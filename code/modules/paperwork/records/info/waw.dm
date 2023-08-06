@@ -73,7 +73,7 @@
 //General Bee
 /obj/item/paper/fluff/info/waw/generalbee
 	abno_type = /mob/living/simple_animal/hostile/abnormality/general_b
-	abno_code = "O-01-118"
+	abno_code = "T-01-118"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
