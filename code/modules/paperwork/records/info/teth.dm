@@ -159,7 +159,7 @@
 //Penitent Girl
 /obj/item/paper/fluff/info/teth/penitent
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
-	abno_code = "F-01-115"
+	abno_code = "T-01-115"
 	abno_info = list(
 		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
 		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
@@ -247,7 +247,7 @@
 //Pale Horse
 /obj/item/paper/fluff/info/teth/palehorse
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pale_horse
-	abno_code = "T-02-14"
+	abno_code = "M-02-14"
 	abno_info = list(
 		"When the work result was Good, the Qliphoth Counter increased.",
 		"After an employee died within the facility, the Qliphoth Counter decreased.",
