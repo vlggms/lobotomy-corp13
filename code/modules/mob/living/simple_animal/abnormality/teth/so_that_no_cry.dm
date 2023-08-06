@@ -22,10 +22,21 @@
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
+	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
+	playsound(src, 'sound/abnormalities/goldenapple/Gold_Sparkle.ogg', 100, 1)
+	if(!G)//applying the buff for the first time (it lasts for four minutes)
+		user.apply_status_effect(STATUS_EFFECT_TALISMAN)
+		to_chat(user, "<span class='nicegreen'>Your body is engulfed with a warm glow, numbing your injuries.</span>")
+	else//if the employee already has the buff
+		to_chat(user, "<span class='nicegreen'>The glow surrounding your body brightens.</span>")
+		G.add_stacks(1)
+		G.refresh()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
-		user.apply_status_effect(STATUS_EFFECT_TALISMAN)
+		Apply_Talisman(user)
 	return
 
 /datum/status_effect/stacking/talisman
@@ -33,9 +44,9 @@
 	status_type = STATUS_EFFECT_MULTIPLE
 	duration = 10 SECONDS //SHOULD last 10 seconds
 	stack_decay = 0
-	max_stacks = 6
+	max_stacks = 6 //actual max is 5 for +20 justice, 6 instantly curses you
 	stacks = 1
-	on_remove_on_mob_delete = FALSE
+	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/talisman
 	consumed_on_threshold = FALSE
 
