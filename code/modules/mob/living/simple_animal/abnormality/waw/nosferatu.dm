@@ -25,7 +25,7 @@
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 8
+	work_damage_amount = 13
 	work_damage_type = RED_DAMAGE
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"

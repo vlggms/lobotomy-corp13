@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 60, 65, 65),
 		ABNORMALITY_WORK_REPRESSION = 0
 			)
-	work_damage_amount = 8
+	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16 // Accurate to base game
 

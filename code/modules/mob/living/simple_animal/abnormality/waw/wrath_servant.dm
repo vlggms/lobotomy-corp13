@@ -28,7 +28,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 40, 40, 50),
 		"Request" = 100
 	)
-	work_damage_amount = 12
+	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 
 	armortype = RED_DAMAGE

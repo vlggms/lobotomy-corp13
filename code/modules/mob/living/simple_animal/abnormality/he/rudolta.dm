@@ -24,7 +24,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 50, 45, 40),
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 10
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	friendly_verb_continuous = "scorns"
 	friendly_verb_simple = "scorns"

@@ -32,7 +32,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
 						)
-	work_damage_amount = 14
+	work_damage_amount = 17
 	work_damage_type = BLACK_DAMAGE
 	/* Sounds */
 	projectilesound = 'sound/effects/attackblob.ogg'

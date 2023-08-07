@@ -14,7 +14,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 100,
 		ABNORMALITY_WORK_REPRESSION = 100
 	)
-	work_damage_amount = 5	//This literally does not matter
+	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	max_boxes = 12
 

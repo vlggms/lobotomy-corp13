@@ -15,7 +15,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 35,
 						ABNORMALITY_WORK_REPRESSION = 35
 						)
-	work_damage_amount = 8
+	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
 	pixel_x = -16
 	base_pixel_x = -16

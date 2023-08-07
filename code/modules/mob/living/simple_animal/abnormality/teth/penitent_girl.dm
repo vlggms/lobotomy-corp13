@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50
 	)
 	is_flying_animal = TRUE
-	work_damage_amount = 6
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

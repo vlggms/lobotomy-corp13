@@ -25,7 +25,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 60,
 						ABNORMALITY_WORK_REPRESSION = 60
 						)
-	work_damage_amount = 10
+	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
 
 //Only done to non-humans, objects, and strong(er) agents

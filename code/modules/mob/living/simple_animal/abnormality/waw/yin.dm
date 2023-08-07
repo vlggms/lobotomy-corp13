@@ -20,7 +20,7 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	threat_level = WAW_LEVEL
-	work_damage_amount = 10
+	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),

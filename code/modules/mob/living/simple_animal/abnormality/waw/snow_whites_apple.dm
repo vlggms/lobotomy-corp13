@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 0, 0),
 						ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60)
 						)
-	work_damage_amount = 8
+	work_damage_amount = 13
 	work_damage_type = BLACK_DAMAGE
 	initial_language_holder = /datum/language_holder/plant //mostly flavor
 	var/togglemovement

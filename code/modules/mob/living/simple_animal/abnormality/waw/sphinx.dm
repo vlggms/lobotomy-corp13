@@ -31,7 +31,7 @@
 		"Riddle" = 0,		//These should never be used, but they're here for clarity.
 		"Make Offering" = 0
 	)
-	work_damage_amount = 12
+	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

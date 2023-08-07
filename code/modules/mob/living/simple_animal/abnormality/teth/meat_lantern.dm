@@ -22,7 +22,7 @@
 	del_on_death = FALSE
 	deathmessage = "explodes in a shower of gore."
 
-	work_damage_amount = 5
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 1
 	max_boxes = 14

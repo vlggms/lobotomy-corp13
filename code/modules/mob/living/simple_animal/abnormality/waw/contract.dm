@@ -16,7 +16,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	start_qliphoth = 2
-	work_damage_amount = 8
+	work_damage_amount = 9
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
 
 	ego_list = list(
@@ -112,14 +112,14 @@
 				temp_havers |= user
 			else
 				return
-				
+
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(just_havers.len < total_per_contract)
 				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, (just_havers.len - 3)*-1 )
 				just_havers |= user
 			else
 				return
-				
+
 	total_havers |= user
 	say("Just sign here on the dotted line... and I'll take care of the rest.")
 	return

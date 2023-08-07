@@ -18,7 +18,7 @@
 	start_qliphoth = 3
 	move_to_delay = 4
 
-	work_damage_amount = 16
+	work_damage_amount = 17
 	work_damage_type = RED_DAMAGE
 	can_breach = TRUE
 

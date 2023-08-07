@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
 		"Confess" = 100
 		)
-	work_damage_amount = 6
+	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

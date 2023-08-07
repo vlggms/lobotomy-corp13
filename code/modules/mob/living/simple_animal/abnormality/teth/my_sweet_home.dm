@@ -36,7 +36,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
 						ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
 						)
-	work_damage_amount = 5
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 
 	var/list/counter1 = list() //from FAN, although changed

@@ -24,7 +24,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 20,
 						ABNORMALITY_WORK_REPRESSION = 50
 						)
-	work_damage_amount = 8
+	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
 	wander = FALSE

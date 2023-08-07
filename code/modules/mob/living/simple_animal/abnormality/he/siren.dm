@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 50
 		)
-	work_damage_amount = 11
+	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

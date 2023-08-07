@@ -15,7 +15,7 @@
 		"Input One" = 0,		//These should never be used, but it's here for brevity
 		"Input Zero" = 0
 	)
-	work_damage_amount = 12
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

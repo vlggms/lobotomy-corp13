@@ -3,7 +3,7 @@
 	switch(resist)
 		if(0 to 0) //Just putting 0 doesn't work.
 			return "Immune"
-		if(1 to 1) 
+		if(1 to 1)
 			return "Normal"
 		if(-INFINITY to 0)
 			return "Absorbed"
@@ -48,17 +48,17 @@
 			return "None"
 		if(-INFINITY to 0)
 			return "Healing"
-		if(0 to 3)
+		if(0 to 5)
 			return "Very Low"
-		if(3 to 6)
+		if(5 to 7)
 			return "Low"
-		if(6 to 9)
+		if(7 to 10)
 			return "Moderate"
-		if(9 to 12)
+		if(10 to 14)
 			return "High"
-		if(15 to INFINITY)
+		if(18 to INFINITY)
 			return "Extreme"
-		if(12 to 15)
+		if(14 to 18)
 			return "Very High"
 
 	return "Unknown ([damage])"

@@ -29,7 +29,7 @@
 	var/work_count = 0
 	var/breach_count = 4	//when do you breach?
 	var/reset_time = 1 MINUTES
-	var/damage_amount = 7
+	var/damage_amount = 13
 	var/run_num = 2		//How many things you breach
 
 	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,

@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(zombies)
 						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
 						ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 15
 	work_damage_type = WHITE_DAMAGE
 
 	//change the E.G.O to "warring"

@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50)
 			)
 	start_qliphoth = 1
-	work_damage_amount = 14
+	work_damage_amount = 15
 	work_damage_type = PALE_DAMAGE
 	pixel_x = -16
 	base_pixel_x = -16

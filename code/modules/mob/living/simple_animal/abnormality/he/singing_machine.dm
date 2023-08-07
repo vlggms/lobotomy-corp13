@@ -20,7 +20,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		ABNORMALITY_WORK_REPRESSION = 40
 	)
 	// Adjusted the work chances a little to really funnel people through Instinct work. You can do other stuff... sort of.
-	work_damage_amount = 12
+	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/harmony,

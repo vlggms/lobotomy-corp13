@@ -31,7 +31,7 @@
 						ABNORMALITY_WORK_REPRESSION = 0,
 						"Take cover" = 0,
 						)
-	work_damage_amount = 5
+	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 	deathmessage = "coalesces into a primordial egg."
 	deathsound = 'sound/abnormalities/fairy_longlegs/death.ogg'

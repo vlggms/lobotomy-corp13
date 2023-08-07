@@ -18,7 +18,7 @@
 		ABNORMALITY_WORK_REPRESSION = 20
 			)
 	start_qliphoth = 3
-	work_damage_amount = 5
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

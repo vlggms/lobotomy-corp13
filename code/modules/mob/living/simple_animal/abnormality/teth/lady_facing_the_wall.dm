@@ -15,7 +15,7 @@
 	pixel_x = -32
 	base_pixel_x = -8
 
-	work_damage_amount = 7
+	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 2
 	var/scream_range = 10

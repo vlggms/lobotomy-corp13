@@ -14,7 +14,7 @@
 			)
 	pixel_x = -32
 	base_pixel_x = -32
-	work_damage_amount = 8
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(

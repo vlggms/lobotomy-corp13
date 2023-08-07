@@ -50,6 +50,7 @@
 
 //papercut due to failed work
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
+	..()
 	if(prob(10))
 		to_chat(user,"<span class='warning'>Ouch! I got a paper cut!</span>")
 	return

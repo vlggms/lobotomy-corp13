@@ -22,7 +22,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = -50,
 						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60)
 						)
-	work_damage_amount = 0
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
 

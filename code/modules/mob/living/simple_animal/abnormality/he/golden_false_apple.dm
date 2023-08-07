@@ -47,7 +47,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45)
 		)
-	work_damage_amount = 12//decently high due to mechanics
+	work_damage_amount = 11//decently high due to mechanics
 	work_damage_type = RED_DAMAGE
 	max_boxes = 18
 

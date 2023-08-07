@@ -36,7 +36,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
 						ABNORMALITY_WORK_REPRESSION = 35
 						)
-	work_damage_amount = 12
+	work_damage_amount = 13
 	work_damage_type = WHITE_DAMAGE
 	deathmessage = "blows up like a balloon!"
 	speak_chance = 2

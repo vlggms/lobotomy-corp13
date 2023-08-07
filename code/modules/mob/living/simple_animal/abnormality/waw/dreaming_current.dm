@@ -23,7 +23,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
 						ABNORMALITY_WORK_REPRESSION = 45
 						)
-	work_damage_amount = 10
+	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 
 	can_breach = TRUE

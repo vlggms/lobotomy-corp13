@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(apostles)
 						ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
 						ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45)
 						)
-	work_damage_amount = 14
+	work_damage_amount = 17
 	work_damage_type = PALE_DAMAGE
 	can_patrol = FALSE
 

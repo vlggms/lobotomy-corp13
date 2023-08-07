@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45)
 			)
 	start_qliphoth = 1
-	work_damage_amount = 10
+	work_damage_amount = 13
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(

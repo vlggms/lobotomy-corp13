@@ -29,7 +29,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 13
 	work_damage_type = RED_DAMAGE
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS

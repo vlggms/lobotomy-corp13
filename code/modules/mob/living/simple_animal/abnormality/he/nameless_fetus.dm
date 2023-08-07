@@ -17,7 +17,7 @@
 	base_pixel_x = -8
 
 	max_boxes = 16
-	work_damage_amount = 7
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 //		/datum/ego_datum/weapon/syrinx,		Will update with the rest of the dump EGO

@@ -19,7 +19,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 60),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 13
 	work_damage_type = WHITE_DAMAGE
 
 	light_color = COLOR_ORANGE

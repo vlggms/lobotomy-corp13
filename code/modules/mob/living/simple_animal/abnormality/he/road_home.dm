@@ -23,7 +23,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 45,
 						ABNORMALITY_WORK_REPRESSION = list(50, 60, 70, 80, 90)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 11
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
 	deathsound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'

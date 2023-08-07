@@ -15,7 +15,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 15
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/loyalty,

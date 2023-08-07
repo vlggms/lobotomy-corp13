@@ -29,7 +29,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
 						ABNORMALITY_WORK_REPRESSION = 0
 						)
-	work_damage_amount = 10
+	work_damage_amount = 12
 	work_damage_type = PALE_DAMAGE
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)

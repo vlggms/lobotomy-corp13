@@ -23,7 +23,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 0,
 						ABNORMALITY_WORK_REPRESSION = 40
 						)
-	work_damage_amount = 16
+	work_damage_amount = 19
 	work_damage_type = WHITE_DAMAGE
 	can_patrol = FALSE
 

@@ -40,7 +40,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 0,
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
 						)
-	work_damage_amount = 12
+	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 	deathmessage = "weeps a green sludge while clutching her brooch."
 	base_pixel_x = -16

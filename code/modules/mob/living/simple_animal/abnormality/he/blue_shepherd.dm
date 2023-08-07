@@ -32,7 +32,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 10
+	work_damage_amount = 11
 	work_damage_type = BLACK_DAMAGE
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"

@@ -35,7 +35,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55)
 						)
-	work_damage_amount = 10
+	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(

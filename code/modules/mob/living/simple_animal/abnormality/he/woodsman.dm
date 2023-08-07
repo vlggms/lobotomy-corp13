@@ -28,7 +28,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
 						ABNORMALITY_WORK_REPRESSION = 45
 						)
-	work_damage_amount = 10
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	move_to_delay = 4
 	base_pixel_x = -16

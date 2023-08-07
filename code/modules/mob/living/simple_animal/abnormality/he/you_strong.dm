@@ -16,7 +16,7 @@
 		"YES" = 0,
 		"NO" = 0
 	)
-	work_damage_amount = 8
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 			/datum/ego_datum/weapon/get_strong,

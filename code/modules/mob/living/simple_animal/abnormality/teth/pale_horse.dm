@@ -24,7 +24,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 55,
 						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50)
 						)
-	work_damage_amount = 3
+	work_damage_amount = 4
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(

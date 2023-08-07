@@ -15,7 +15,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 30,
 						ABNORMALITY_WORK_REPRESSION = -100	//He's a snobby shrimp dude.
 						)
-	work_damage_amount = 11
+	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE	//He insults you.
 
 	ego_list = list(

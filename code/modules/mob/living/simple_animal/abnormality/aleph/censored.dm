@@ -32,7 +32,7 @@
 						ABNORMALITY_WORK_REPRESSION = 0,
 						"Sacrifice" = 999,
 						)
-	work_damage_amount = 14
+	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(

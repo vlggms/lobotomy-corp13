@@ -18,7 +18,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, 0, -40, -50),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
 		)
-	work_damage_amount = 6
+	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("hostile")

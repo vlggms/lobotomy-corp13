@@ -19,7 +19,7 @@
 		)
 	pixel_x = -32
 	base_pixel_x = -32
-	work_damage_amount = 10
+	work_damage_amount = 13
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 20
 	ego_list = list(

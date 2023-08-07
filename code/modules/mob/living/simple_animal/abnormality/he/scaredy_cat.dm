@@ -30,7 +30,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
 						ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40)
 						) //higher work chance than the rest of oz because he can breach so easily
-	work_damage_amount = 7 //Shit damage because it's a small cat
+	work_damage_amount = 9 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	can_patrol = FALSE
 	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
