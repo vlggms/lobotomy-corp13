@@ -1138,7 +1138,7 @@
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
 	sleep(1)
 	for(var/i = 1 to attack_amount)
-		sleep(2)
+		sleep(1.6)
 		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 		user.do_attack_animation(target)
 		playsound(loc, hitsound, 50, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
@@ -1149,10 +1149,10 @@
 	..()
 	if (isliving(target))
 		user.changeNext_move(CLICK_CD_MELEE * ramping) // Starts slow, but....
-		if (ramping > 0.3)
+		if (ramping > 0.2)
 			ramping -= 0.05
 		else
-			user.adjustBruteLoss(user.maxHealth*0.1) //hits 4 times so 0.4 hp per hit, may be too little
+			user.adjustBruteLoss(user.maxHealth*0.2) //hits 4 times so 0.8 hp per hit, may be too much?
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 1.15)
 
@@ -1162,10 +1162,11 @@
 	if (ramping > 0.6 && ramping <= 1) //4 hits to get here
 		Multihit(target, user, 1)
 		return
-	if (ramping > 0.3 && ramping <= 0.6) //(7) more 3 hits to get here
+	if (ramping > 0.2 && ramping <= 0.6) //(7) more 3 hits to get here
 		Multihit(target, user, 2)
 		return
-	if (ramping  <= 0.3) //(11) more 2 hits to get here
+	if (ramping  <= 0.2) //(11) more 2 hits to get here
+		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		Multihit(target, user, 3)
 	return
 
@@ -1176,6 +1177,6 @@
 		if(ramping == 1.15)
 			to_chat(user,"<span class='notice'>It was already revved down!</span>")
 			return
-		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, TRUE)
+		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
 		ramping = 1.15
-		to_chat(user,"<span class='notice'>The bloodlust on [src] dies down!</span>")
+		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")
