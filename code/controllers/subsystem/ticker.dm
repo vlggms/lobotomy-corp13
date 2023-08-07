@@ -544,7 +544,7 @@ SUBSYSTEM_DEF(ticker)
 			var/round_state = "has been successfuly finished"
 			if(SSlobotomy_corp.next_ordeal_level <= 3)
 				round_state = "abruptly ended"
-			if(SSlobotomy_corp.next_ordeal_level <= 5 && (!SSlobotomy_corp.next_ordeal || SSlobotomy_corp.next_ordeal.level < 5))
+			else if(SSlobotomy_corp.next_ordeal_level <= 5 || SSlobotomy_corp?.next_ordeal.level < 5 || LAZYLEN(SSlobotomy_corp.current_ordeals))
 				round_state = "has finished early"
 
 			if(emergency_reason)
@@ -562,17 +562,21 @@ SUBSYSTEM_DEF(ticker)
 		if(CORE_STARTED)
 			news_message = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources.\
 				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED)
 			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation.\
 				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_CLAW_DEAD)
 			news_message = "The employees of [station_name()] have defeated the manifestation of a Claw, a formidable opponent, during a remote core suppression. We would like to congratulate them for their job\
 				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_ARBITER_DEAD)
 			news_message = "A reminder that an 'Arbiter' found dead on [station_name()] during remote core suppression was not the real deal and that families of the employees responsible are not in any sort of danger. Have a nice day!\
 				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_REDMIST_DEAD)
-			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, nonetheless a very powerful one. All employees were rewarded handsomely for their job.\
+			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, but nonetheless a very powerful one. All employees were rewarded handsomely for their job.\
 				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
 
 	if(news_message)
