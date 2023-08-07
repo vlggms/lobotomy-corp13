@@ -542,9 +542,9 @@ SUBSYSTEM_DEF(ticker)
 	switch(news_report)
 		if(STATION_EVACUATED)
 			var/round_state = "has been successfuly finished"
-			if(SSlobotomy_corp.next_ordeal_level <= 3)
+			if(SSlobotomy_corp.next_ordeal_level < 3)
 				round_state = "abruptly ended"
-			else if(SSlobotomy_corp.next_ordeal_level <= 5 || SSlobotomy_corp?.next_ordeal.level < 5 || LAZYLEN(SSlobotomy_corp.current_ordeals))
+			else if(SSlobotomy_corp.next_ordeal_level < 5 || SSlobotomy_corp?.next_ordeal.level < 5 || LAZYLEN(SSlobotomy_corp.current_ordeals))
 				round_state = "has finished early"
 
 			if(emergency_reason)
