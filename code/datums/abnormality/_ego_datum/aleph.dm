@@ -169,3 +169,7 @@
 /datum/ego_datum/armor/combust
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/combust
 	cost = 100
+//We Can Change Anything - Iron maiden
+/datum/ego_datum/weapon/iron_maiden
+	item_path = /obj/item/ego_weapon/iron_maiden
+	cost = 1000

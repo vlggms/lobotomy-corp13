@@ -1119,3 +1119,64 @@
 	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	if(B.safety)
 		user.remove_status_effect(STATUS_EFFECT_LCBURN)
+/obj/item/ego_weapon/iron_maiden
+	name = "iron maiden"
+	desc = "A versatile equipment made to cut down trees and people alike."
+	special = "This weapon builds up attack speed and the amount of times it hits per click as you attack, at maximum speed it will damage you per hit."
+	icon_state = "iron_maiden"
+	force = 33
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = "chops"
+	attack_verb_simple = "chop"
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 0
+							)
+	var/ramping = 1.15 //maximum of 0.3
+
+/obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
+	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	sleep(1)
+	for(var/i = 1 to attack_amount)
+		sleep(1.5)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if (isliving(target))
+		user.changeNext_move(CLICK_CD_MELEE * ramping) // Starts slow, but....
+		if (ramping > 0.3)
+			ramping -= 0.05
+		else
+			user.adjustBruteLoss(user.maxHealth*0.1) //hits 4 times so 0.4 hp per hit, may be too much
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 1.15)
+
+/obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
+	if(!..())
+		return
+	if (ramping > 0.6 && ramping <= 1) //4 hits to get here
+		Multihit(target, user, 1)
+		return
+	if (ramping > 0.3 && ramping <= 0.6) //(7) 3 hits to get here
+		Multihit(target, user, 2)
+		return
+	if (ramping  <= 0.3) //(11) 2 hits to get here
+		Multihit(target, user, 3)
+	return
+
+/obj/item/ego_weapon/iron_maiden/attack_self(mob/user)
+	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
+	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+	if(do_after(user, 2.5 SECONDS, src))
+		if(ramping == 1.15)
+			to_chat(user,"<span class='notice'>It was already revved down!</span>")
+			return
+		playsound(src, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 50, TRUE)
+		ramping = 1.15
+		to_chat(user,"<span class='notice'>The bloodlust on [src] dies down!</span>")

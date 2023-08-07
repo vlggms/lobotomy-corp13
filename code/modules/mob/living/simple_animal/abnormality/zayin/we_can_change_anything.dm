@@ -11,7 +11,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 60, 60),
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 65, 70, 75)
+		ABNORMALITY_WORK_REPRESSION = list(55, 60, 65, 70, 75),
+		"Sacrifice" = 100 //throw yoursel inside the iron maiden, it'll be fun they said
 		)
 	work_damage_amount = 0
 	work_damage_type = RED_DAMAGE
@@ -19,7 +20,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/change,
-		/datum/ego_datum/armor/change
+		/datum/ego_datum/armor/change,
+		/datum/ego_datum/weapon/iron_maiden
 		)
 
 	gift_type =  /datum/ego_gifts/change
