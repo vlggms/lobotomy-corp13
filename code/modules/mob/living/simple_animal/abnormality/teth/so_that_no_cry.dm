@@ -17,7 +17,7 @@
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 	base_pixel_x = -16
-	pixel_x = 16
+	pixel_x = -16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/red_sheet,
@@ -149,6 +149,4 @@ datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
 
 /* current issues:
 curse talismans dont inherit the correct amount of stacks
-curse talismans put in wacky values of -justice, doesnt remove properly
-6 talismans are giving you 7 stacks for some god forsaken reason --fixed i think
 */
