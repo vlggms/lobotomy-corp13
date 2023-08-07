@@ -41,6 +41,7 @@
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
 	force = 22
+	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
