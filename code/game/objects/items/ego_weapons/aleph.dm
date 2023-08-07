@@ -1136,14 +1136,13 @@
 	var/ramping = 1.15 //maximum of 0.3
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
-	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	sleep(1)
 	for(var/i = 1 to attack_amount)
-		sleep(1.5)
+		sleep(2)
 		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 		user.do_attack_animation(target)
-		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, hitsound, 50, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
@@ -1153,7 +1152,7 @@
 		if (ramping > 0.3)
 			ramping -= 0.05
 		else
-			user.adjustBruteLoss(user.maxHealth*0.1) //hits 4 times so 0.4 hp per hit, may be too much
+			user.adjustBruteLoss(user.maxHealth*0.1) //hits 4 times so 0.4 hp per hit, may be too little
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 1.15)
 
@@ -1163,10 +1162,10 @@
 	if (ramping > 0.6 && ramping <= 1) //4 hits to get here
 		Multihit(target, user, 1)
 		return
-	if (ramping > 0.3 && ramping <= 0.6) //(7) 3 hits to get here
+	if (ramping > 0.3 && ramping <= 0.6) //(7) more 3 hits to get here
 		Multihit(target, user, 2)
 		return
-	if (ramping  <= 0.3) //(11) 2 hits to get here
+	if (ramping  <= 0.3) //(11) more 2 hits to get here
 		Multihit(target, user, 3)
 	return
 
@@ -1177,6 +1176,6 @@
 		if(ramping == 1.15)
 			to_chat(user,"<span class='notice'>It was already revved down!</span>")
 			return
-		playsound(src, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 50, TRUE)
+		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, TRUE)
 		ramping = 1.15
 		to_chat(user,"<span class='notice'>The bloodlust on [src] dies down!</span>")
