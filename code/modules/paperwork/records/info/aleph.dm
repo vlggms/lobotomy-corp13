@@ -174,7 +174,9 @@
 	abno_code = "C-06-152"
 	abno_info = list(
 		"Employees with low Temperance had their work chance increased dramatically.",
-		"Employees with Justice or Fortitude under level 5 recieved more work damage.",
+		"Employees with high Temperance had their work chance reduced dramatically.",
+		"Employees with Fortitude under level 5 received more work damage.",
+		"Employees with Justice under level 5 received more work damage.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphtoh Counter reached 0, last shot bred flesh until it was destroyed in it's containment.")
 
