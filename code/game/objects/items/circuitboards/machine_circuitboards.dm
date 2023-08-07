@@ -427,7 +427,9 @@
 		/obj/machinery/smartfridge/organ = "organs",
 		/obj/machinery/smartfridge/chemistry = "chems",
 		/obj/machinery/smartfridge/chemistry/virology = "viruses",
-		/obj/machinery/smartfridge/disks = "disks")
+		/obj/machinery/smartfridge/disks = "disks",
+		/obj/machinery/smartfridge/extraction_storage/ego_weapon = "ego weapons",
+		/obj/machinery/smartfridge/extraction_storage/ego_armor = "ego armors")
 	needs_anchored = FALSE
 	var/is_special_type = FALSE
 
