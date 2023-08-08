@@ -173,8 +173,8 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/last_shot
 	abno_code = "C-06-152"
 	abno_info = list(
-		"Employees with low Temperance had their work chance increased dramatically.",
-		"Employees with high Temperance had their work chance reduced dramatically.",
+		"Employees with Temperance level 3 or below had their work chance increased dramatically.",
+		"Employees with Temperance level 5 or above had their work chance reduced dramatically.",
 		"Employees with Fortitude under level 5 received more work damage.",
 		"Employees with Justice under level 5 received more work damage.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
