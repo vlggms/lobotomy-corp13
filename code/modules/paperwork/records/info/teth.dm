@@ -272,9 +272,21 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_longlegs
 	abno_code = "F-01-162"
 	abno_info = list(
-		"When an employee with Fortitude Level 1 completed the work, the Qliphoth Counter lowered twice",
+		"When an employee with Fortitude Level 1 completed the work, the Qliphoth Counter lowered to 0",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"Every few works, rain started pouring in the containment cell, and the abnormality offered cover from the rain to the agent.",
 		"Taking cover is not advised, as it would expose the employee's back to the abnormality.",
-		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter twice.",
+		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter to 0.",
 		"Upon attacking, Fairy-Long-Legs scrapped off the skin of the victim and inserted it inside their chest's cavity, healing themselves in the process.")
+
+//So That No One Will Cry
+/obj/item/paper/fluff/info/teth/so_that_no_cry
+	abno_type = /mob/living/simple_animal/hostile/abnormality/so_that_no_cry
+	abno_code = "T-04-193"
+	abno_info = list(
+		"When Insight Work was performed with So That No One Will Cry, a yellow talisman attached to the employee's body",
+		"Physical contact through performing Instinct work seemed to get rid of all the yellow talismans.",
+		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their Justice.",
+		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
+		"If too many yellow talismans attached to the employee, they also became purple talismans.",
+		"Purple talismans seem to sap the strength from whomever they are attached, reducing their Justice, and slowly vanished after several minutes.")

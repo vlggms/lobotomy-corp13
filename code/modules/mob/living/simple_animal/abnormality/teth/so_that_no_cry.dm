@@ -2,22 +2,22 @@
 #define STATUS_EFFECT_CURSETALISMAN /datum/status_effect/stacking/curse_talisman
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry
 	name = "So That No One Will Cry"
-	desc = "An abnormality taking the form of a wooden doll, various talismans are attached to it's body."
+	desc = "An abnormality taking the form of a wooden doll, various strange paper talismans are attached to it's body."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "so_that_no_cry"
 	maxHealth = 800
 	health = 800
 	threat_level = TETH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 35,
+		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = list(45, 50, 55, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 60
 				)
-	work_damage_amount = 6
+	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
-	base_pixel_x = -16
-	pixel_x = -16
+	base_pixel_x = -12
+	pixel_x = -12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/red_sheet,
@@ -29,7 +29,7 @@
 	var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
 	playsound(src, 'sound/abnormalities/so_that_no_cry/talisman.ogg', 100, 1)
-	if (!C)
+	if (!C)//cant take talismans if cursed already
 		if(!G)//applying the buff for the first time (it lasts for four minutes)
 			user.apply_status_effect(STATUS_EFFECT_TALISMAN)
 			to_chat(user, "<span class='nicegreen'>A talisman quietly dettaches from the abnormality and sticks to you.</span>")
@@ -41,7 +41,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Remove_Talisman(mob/living/carbon/human/user)
 	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
-	if(G)
+	if(G)//remove the buff
 		G.safe_removal = TRUE
 		user.remove_status_effect(STATUS_EFFECT_TALISMAN)
 		to_chat(user, "<span class='nicegreen'>You place all of your talismans back onto the abnormality.</span>")
@@ -59,7 +59,7 @@
 /datum/status_effect/stacking/talisman //Justice increasing talismans
 	id = "talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 10 SECONDS //Lasts for 4 minutes
+	duration = 240 SECONDS //Lasts for 4 minutes
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 //actual max is 5 for +25 Justice, 6 instantly curses you
 	stacks = 1
@@ -82,16 +82,15 @@
 
 /datum/status_effect/stacking/talisman/threshold_cross_effect()
 	var/mob/living/carbon/human/H = owner
-	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 	safe_removal = TRUE
 	H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 	G.add_stacks(5)
 	return ..()
 
 /datum/status_effect/stacking/talisman/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -5 * stacks)
 		if(safe_removal == TRUE)
 			safe_removal = FALSE
@@ -99,6 +98,7 @@
 		if (stacks > 0)
 			safe_removal = FALSE
 			H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+			var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 			G.add_stacks(stacks-1)
 	return ..()
 
@@ -112,7 +112,7 @@
 /datum/status_effect/stacking/curse_talisman //Justice DECREASING talismans
 	id = "curse_talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 10 SECONDS //Lasts for 5 minutes
+	duration = 360 SECONDS //Lasts for 6 minutes
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 // -7 per stack, up to -42 Justice
 	stacks = 1
@@ -129,7 +129,7 @@
 datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of 25
+		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of -42
 	return ..()
 
 /datum/status_effect/stacking/curse_talisman/on_remove()
@@ -146,7 +146,3 @@ datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
 
 #undef STATUS_EFFECT_TALISMAN
 #undef STATUS_EFFECT_CURSETALISMAN
-
-/* current issues:
-curse talismans dont inherit the correct amount of stacks
-*/
