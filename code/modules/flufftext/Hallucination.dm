@@ -895,6 +895,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if(H == target)
 				continue
 			humans += H
+		if(humans.len <= 0)
+			qdel(src)
+			return
 		person = pick(humans)
 
 	if(isnull(person))
