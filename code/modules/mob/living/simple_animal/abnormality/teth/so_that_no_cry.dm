@@ -35,6 +35,8 @@
 			to_chat(user, "<span class='nicegreen'>A talisman quietly dettaches from the abnormality and sticks to you.</span>")
 		else//if the employee already has the buff, add a stack and refresh
 			to_chat(user, "<span class='nicegreen'>Another talisman sticks to you.</span>")
+			if (G.stacks == 5)
+				playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
 			G.add_stacks(1)
 			G.refresh()
 	return
@@ -121,7 +123,6 @@
 
 /datum/status_effect/stacking/curse_talisman/on_apply()
 	if(ishuman(owner))
-		playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks)
 	return ..()
