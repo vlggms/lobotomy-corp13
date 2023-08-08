@@ -127,7 +127,7 @@
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks)
 	return ..()
 
-datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
+/datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of -42
