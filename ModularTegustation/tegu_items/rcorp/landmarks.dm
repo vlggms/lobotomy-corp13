@@ -1,7 +1,6 @@
 GLOBAL_LIST_INIT(easycombat, list(
 	/mob/living/simple_animal/hostile/abnormality/ppodae,
 	/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
-	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
 	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
 	/mob/living/simple_animal/hostile/abnormality/helper))
@@ -21,8 +20,7 @@ GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
 	/mob/living/simple_animal/hostile/abnormality/clown,
 	/mob/living/simple_animal/hostile/abnormality/nosferatu,
-	/mob/living/simple_animal/hostile/abnormality/big_bird,
-	/mob/living/simple_animal/hostile/abnormality/greed_king,))
+	/mob/living/simple_animal/hostile/abnormality/big_bird,))
 
 GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality/sphinx,
 	/mob/living/simple_animal/hostile/abnormality/judgement_bird,
@@ -34,7 +32,9 @@ GLOBAL_LIST_INIT(hardtank, list(/mob/living/simple_animal/hostile/abnormality/me
 	/mob/living/simple_animal/hostile/abnormality/nothing_there,
 	/mob/living/simple_animal/hostile/abnormality/mountain,
 	/mob/living/simple_animal/hostile/abnormality/censored,
-	/mob/living/simple_animal/hostile/abnormality/titania))
+	/mob/living/simple_animal/hostile/abnormality/titania,
+	/mob/living/simple_animal/hostile/abnormality/golden_apple,
+	/mob/living/simple_animal/hostile/abnormality/greed_king,))
 
 //Split into 3 groups, Combat for damaging abnos, Support for ranged, AOE and otherwise support abnos, and tank for abnos that can take a beating reliably
 /obj/effect/landmark/abnospawn/easycombat

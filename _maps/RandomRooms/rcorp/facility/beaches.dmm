@@ -2,269 +2,269 @@
 "aN" = (
 /obj/item/shard,
 /turf/open/water,
-/area/space)
+/area/city/outskirts)
 "bN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red{
 	list_reagents = list(/datum/reagent/consumable/wellcheers_red = 0)
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "cl" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "ee" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/water,
-/area/space)
+/area/city/outskirts)
 "ez" = (
 /turf/open/water,
-/area/space)
+/area/city/outskirts)
 "fB" = (
 /mob/living/simple_animal/hostile/abnormality/wellcheers,
 /turf/open/floor/plasteel,
-/area/space)
+/area/city/outskirts)
 "fP" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ashplanet/ash,
-/area/space)
+/area/city/outskirts)
 "gH" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "gM" = (
 /obj/effect/landmark/abnospawn/hardsupport,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "ij" = (
 /turf/open/floor/plasteel/stairs/left,
-/area/space)
+/area/city/outskirts)
 "iD" = (
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "jx" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red{
 	list_reagents = list(/datum/reagent/consumable/wellcheers_red = 0)
 	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "jK" = (
 /obj/machinery/light/broken{
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "jN" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "kI" = (
 /turf/closed/indestructible/fakedoor{
 	desc = "These things are thick. Doesn't look like they stopped anything important...";
 	name = "broken cell door"
 	},
-/area/space)
+/area/city/outskirts)
 "nB" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/ash,
-/area/space)
+/area/city/outskirts)
 "od" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "pm" = (
 /turf/open/floor/plasteel/stairs/medium,
-/area/space)
+/area/city/outskirts)
 "qb" = (
 /obj/effect/landmark/abnospawn/hardtank,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "qG" = (
 /turf/open/floor/plasteel/stairs/right,
-/area/space)
+/area/city/outskirts)
 "sT" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "sY" = (
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "th" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "tU" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "uO" = (
 /turf/open/floor/plating/ashplanet/ash,
-/area/space)
+/area/city/outskirts)
 "vQ" = (
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "xM" = (
 /obj/effect/landmark/abnospawn/hardcombat,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "zA" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red{
 	list_reagents = list(/datum/reagent/consumable/wellcheers_red = 0)
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Aj" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "AA" = (
 /obj/item/shard,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Bq" = (
 /obj/structure/toolabnormality/touch,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "DP" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "Gf" = (
 /obj/structure/riser/dark,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "GB" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "GH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "GZ" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	id = "inside"
 	},
 /turf/open/floor/plating/asteroid,
-/area/space)
+/area/city/outskirts)
 "HG" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "HL" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Ig" = (
 /turf/open/floor/plasteel,
-/area/space)
+/area/city/outskirts)
 "Jx" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Kq" = (
 /obj/effect/mob_spawn/human/corpse,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Kr" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple{
 	list_reagents = list(/datum/reagent/consumable/wellcheers_purple = 0)
 	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "Lh" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/space/basic,
-/area/space)
+/area/city/outskirts)
 "LR" = (
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel,
-/area/space)
+/area/city/outskirts)
 "Ml" = (
 /obj/machinery/button/door/indestructible{
 	id = "inside"
 	},
 /turf/closed/indestructible/syndicate,
-/area/space)
+/area/city/outskirts)
 "Mq" = (
 /turf/closed/indestructible/syndicate,
-/area/space)
+/area/city/outskirts)
 "MS" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "MZ" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel,
-/area/space)
+/area/city/outskirts)
 "Oz" = (
 /obj/structure/grille/broken,
 /turf/open/water,
-/area/space)
+/area/city/outskirts)
 "Rf" = (
 /obj/item/shard,
 /turf/open/floor/plating/ashplanet/ash,
-/area/space)
+/area/city/outskirts)
 "Sp" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/water,
-/area/space)
+/area/city/outskirts)
 "SD" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "SE" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "Tf" = (
 /turf/closed/indestructible/rock,
-/area/space)
+/area/city/outskirts)
 "Ui" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "WU" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating/ashplanet/ash,
-/area/space)
+/area/city/outskirts)
 "YI" = (
 /obj/item/shard,
 /turf/open/floor/plasteel/dark,
-/area/space)
+/area/city/outskirts)
 "Zc" = (
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white{
 	list_reagents = list(/datum/reagent/consumable/wellcheers_white = 0)
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city/outskirts)
 "Ze" = (
 /obj/item/shard,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 
 (1,1,1) = {"
 Tf
@@ -12225,20 +12225,20 @@ ez
 ez
 ez
 ez
+Tf
+Tf
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
 ez
 ez
 Mq
@@ -12398,9 +12398,9 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
+Tf
+Tf
+Tf
 ez
 ez
 ez
@@ -13047,7 +13047,7 @@ vQ
 gM
 vQ
 vQ
-xM
+vQ
 vQ
 ez
 ez
@@ -13208,7 +13208,7 @@ ez
 vQ
 vQ
 vQ
-qb
+vQ
 vQ
 vQ
 vQ
@@ -14665,18 +14665,18 @@ ez
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
 ez
 ez
 ez
@@ -14825,23 +14825,23 @@ uO
 ez
 ez
 ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
-ez
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
+Tf
 ez
 ez
 ez

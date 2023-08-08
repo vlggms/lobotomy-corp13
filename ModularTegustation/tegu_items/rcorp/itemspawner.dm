@@ -6,10 +6,10 @@
 	icon_state = "x4"
 	var/list/possible_items = list(
 	/obj/item/storage/firstaid/revival,
-	/obj/item/powered_gadget/handheld_taser,
 	/obj/item/reagent_containers/hypospray/medipen/salacid,
 	/obj/item/reagent_containers/hypospray/medipen/mental,
 	/obj/item/stack/sheet/mineral/sandbags,
+	/obj/item/weldingtool,
 	)
 	var/list/possible_weapons = list(
 	/obj/item/gun/energy/e_gun/rabbitdash,

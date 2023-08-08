@@ -94,7 +94,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 
 /datum/outfit/job/raven/support
@@ -104,7 +104,8 @@
 		/obj/item/wrench = 1,
 		/obj/item/powered_gadget/slowingtrapmk1 = 1,
 		/obj/item/powered_gadget/detector_gadget/abnormality = 1,
-		/obj/item/powered_gadget/vitals_projector = 1)
+		/obj/item/powered_gadget/vitals_projector = 1,
+		/obj/item/powered_gadget/handheld_taser = 1)
 
 
 
@@ -113,6 +114,6 @@
 	jobtype = /datum/job/rcorp_captain/raven
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	head = /obj/item/clothing/head/rabbit_helmet/raven
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
 	suit_store = null
 	ears = /obj/item/radio/headset/heads/headset_information

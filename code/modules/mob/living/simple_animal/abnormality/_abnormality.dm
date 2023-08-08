@@ -392,7 +392,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
-	if(SSmaptype.maptype in  SSmaptype.combatmaps)
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
 
