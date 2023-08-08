@@ -375,21 +375,13 @@
 	melee_damage_upper = 15 // crit damage
 	turns_per_move = 2
 	butcher_difficulty = 2
-	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
+	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg = 1,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/slab/human, /obj/item/food/meat/slab/crimson,) // scower area for food and eat it
 	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
 	density = TRUE
 	search_objects = 1
 	var/current_size = RESIZE_DEFAULT_SIZE
 	del_on_death = TRUE
-
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye/Initialize() // not sure what this part does tbh
-	. = ..()
-	base_pixel_x = 0
-	pixel_x = base_pixel_x
-	base_pixel_y = 0
-	pixel_y = base_pixel_y
-	butcher_results = initial(butcher_results)
 
 /mob/living/simple_animal/hostile/ordeal/bigBirdEye/Life()
     . = ..()
@@ -443,14 +435,6 @@
 		SLEEP_CHECK_DEATH(10)
 		icon_state = "kcorp_drone_idle"
 		icon_living = "kcorp_drone_idle"
-
-/mob/living/simple_animal/hostile/kcorp/drone/Initialize()
-	. = ..()
-	base_pixel_x = 0
-	pixel_x = base_pixel_x
-	base_pixel_y = 0
-	pixel_y = base_pixel_y
-	butcher_results = initial(butcher_results)
 
 /mob/living/simple_animal/hostile/kcorp/drone/Aggro() //flash and push people, then run away |FLASH IS ANIMATED|
 	..()
