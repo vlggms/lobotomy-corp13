@@ -2728,6 +2728,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\scorched_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\shy_look.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\simple_smile.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\so_that_no_cry.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\someonesportrait.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\spider_bud.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\training_rabbit.dm"
