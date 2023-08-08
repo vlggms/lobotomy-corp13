@@ -170,8 +170,8 @@
 			drop = new CRIMSON_MAT(get_turf(src))
 		if(INDIGO)
 			drop = new INDIGO_MAT(get_turf(src))
-		if(AMBER)
-			drop = new AMBER_MAT(get_turf(src))
+		if(GREEN)
+			drop = new GREEN_MAT(get_turf(src))
 		if(PEOPLE)
 			drop = new PEOPLE_MAT(get_turf(src))
 		else
