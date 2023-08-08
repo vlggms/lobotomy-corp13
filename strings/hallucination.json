@@ -1,253 +1,89 @@
 {
-	"suspicion": [
-		"@pick(add_name)i'm watching you...",
-		"@pick(add_name)i know what you're doing",
-		"@pick(add_name)what are you hiding?",
-		"I saw that"
-	],
-
-	"conversation": [
-		"Yes",
-		"Yeah",
-		"Yup",
-		"No",
-		"Nah",
-		"I doubt it",
-		"Uh...",
-		"Why?",
-		"But...",
-		"Hold on",
-		"Hmm",
-		"Yeah, i know",
-		"Weird"
-	],
-
-	"greetings": [
-		"",
-		"Hey, ",
-		"Hi ",
-		"Hello ",
-		"Wait, ",
-		"It's "
-	],
-
-	"getout": [
-		"@pick(add_name)get out",
-		"@pick(add_name)get out!",
-		"@pick(add_name)go away",
-		"@pick(add_name)fuck off",
-		"OUT!",
-		"@pick(add_name)out!"
-	],
-
-	"weird": [
-		"Kchck-Chkck? Kchchck!",
-		"Kchckchk...",
-		"EEEeeeeEEEE",
-		"khhhhh",
-		"#@§*&£",
-		"H**p m*",
-		"H-hhhhh..."
-	],
-
-	"didyouhearthat": [
-		"Did you hear that?",
-		"Did you see that?",
-		"What was that?"
-	],
-
 	"add_name": [
 		"%TARGETNAME%, ",
 		"%TARGETNAME% ",
 		""
 	],
 
-	"doubt": [
-		"Why?",
-		"What?",
-		"Wait, what?",
-		"@pick(add_name)wait",
-		"@pick(add_name)hold on",
-		"Uh..."
+	"breach": [
+		" is out in ",
+		" breached in ",
+		" "
 	],
 
-	"aggressive": [
-		"@pick(add_name)give me that!",
-		"@pick(add_name)stop it!",
-		"@pick(add_name)i'm going to kill you!",
-		"@pick(add_name)fuck you!"
+	"meltdown": [
+		"Insane in ",
+		"@pick(add_name)stimm me on ",
+		"14 left on ",
+		"I'm breaching ",
+		"What stats do I need for ",
+		"Why are there so many pens in ",
+		"BREACH INSANE AT "
 	],
 
-	"help": [
-		"HELP",
-		"HELP",
-		"HELP",
-		"HELP",
-		"HELP",
-		"HELP ME",
-		"HELP HIM",
-		"HELP HER",
-		"HELP THEM",
-		"HELP US",
-		"HELP YOURSELF"
+	"sick": [
+		"Why am I green?",
+		"Hey @pick(add_name)why am I losing sanity?",
+		"Why am I losing health?",
+		"Hey @pick(add_name)why am I losing health?",
+		"What does 'You feel something cold touch the back of your leg' mean?",
+		"Why is my sanity decreasing?",
+		"What does Orange Tree do?"
 	],
 
-	"escape": [
-		"@pick(add_name)RUN!!",
-		"They're behind me!",
-		"It's here!",
-		"@pick(add_name)follow me!",
-		"@pick(add_name)follow me"
+	"nothing": [
+		"Cool… Cool. Cool.",
+		"Than… k you… Thank you. Thank you.",
+		"Want… a shell… Shell…",
+		"Love… Lo… ou… I love you…",
+		"Help…me… Hel… HELP ME!!!",
+		"Is anyone… nyone… there?! ANYONE THERE!!!",
+		"Do… n‘t wan… D… don’t wanna… I don’t wanna die…",
+		"Hello. Hell-o. He… llo… Hello.",
+		"Mon… ster. That… mons… ter… That monster… why is it here…",
+		"…er!!! …ger!!! Save… me!",
+		"Th… Tha… horr… ible… monster… monster…",
+		"el… llo… Hello? ello… Hello?"
 	],
 
-	"infection_advice": [
-		"@pick(add_name)stay away",
-		"@pick(add_name)don't get close",
-		"@pick(add_name)be careful",
-		"@pick(add_name)help me",
-		"@pick(add_name)kill me"
+	"clerk": [
+		"THERE'S A CLERK WITH A BOMB IN MANAGER'S OFFICE!!!",
+		"What the hell are they doing in botany?",
+		"Why are the Botany windows spray painted?",
+		"Someone broke the elevator console.",
+		"WHO IS MOPPING!?",
+		"How did the Clerks get METH!?",
+		"Who took all the pens?"
 	],
 
-	"people": [
-		"Captain",
-		"Hos",
-		"Cmo",
-		"Rd",
-		"Ce",
-		"Hop",
-		"Janitor",
-		"AI",
-		"Viro",
-		"Qm",
-		"%TARGETNAME%"
+	"combat": [
+		"bullet please",
+		"BULLET",
+		"I need a bullet please",
+		"MANAGER",
+		"BREACH INSANE"
 	],
 
-	"accusations": [
-		"dead",
-		"rogue",
-		"cult",
-		"a cultist",
-		"clockcult",
-		"a clock cultist",
-		"a revhead",
-		"a rev",
-		"a gang leader",
-		"a gangster",
-		"a traitor",
-		"a tator",
-		"a ling",
-		"a changeling"
+	"ordeal": [
+		"GREEN DUSK",
+		"I hate amber midnight dude...",
+		"INDIGO MIDNIGHT, clean up bodies.",
+		"Prepare for core suppression.",
+		"2 WORKS UNTIL MIDNIGHT",
+		"1 WORK UNTIL MELTDOWN",
+		"STOP WORKING!!!",
+		"Get black resist for Green Dusk."
 	],
 
-	"threat": [
-		"Cult",
-		"Wizard",
-		"Blob",
-		"Ling",
-		"Ops",
-		"Swarmers",
-		"Spiders",
-		"Xenos",
-		"Revenant",
-		"Traitor",
-		"Harm",
-		"Blue APC",
-		"I hear flashing",
-		"Help",
-		"%TARGETNAME%"
-	],
-
-	"location": [
-		"space near @pick(sublocation)",
-		"the bridge",
-		"the armory",
-		"sec",
-		"security",
-		"science",
-		"xenobio",
-		"engineering",
-		"cargo",
-		"medbay",
-		"atmos",
-		"maint",
-		"@pick(sublocation) maint",
-		"virology",
-		"morgue",
-		"hops office",
-		"captains office",
-		"the chapel",
-		"the library",
-		"tool storage",
-		"botany",
-		"the kitchen",
-		"the ai sat"
-	],
-
-	"sublocation": [
-		"the bridge",
-		"the armory",
-		"sec",
-		"security",
-		"science",
-		"xenobio",
-		"engineering",
-		"cargo",
-		"medbay",
-		"atmos",
-		"maint",
-		"virology",
-		"morgue",
-		"hops office",
-		"captains office",
-		"the chapel",
-		"the library",
-		"tool storage",
-		"botany",
-		"the kitchen",
-		"the ai sat"
-	],
-
-	"advice": [
-		"Hmm...not sure about that.",
-		"Yes. You're doing the right thing.",
-		"No. Stop what you're doing.",
-		"You should be wary of that person.",
-		"Trust that person.",
-		"That person wants to kill you.",
-		"Kill that person. You know who.",
-		"You should go somewhere else. Quickly.",
-		"Good luck. You'll need it.",
-		"You have my permission. Do it.",
-		"Just do it."
-	],
-
-	"chemicals": [
-		"Something",
-		"Ooze",
-		"Fire",
-		"Earth",
-		"Lightning",
-		"Air",
-		"Magic",
-		"Spiders",
-		"Button",
-		"Surprise",
-		"Happiness",
-		"Despair",
-		"Blood",
-		"Awesome",
-		"Infinity",
-		"Electronics",
-		"Time",
-		"Space",
-		"Pain",
-		"Guts",
-		"Life",
-		"Death",
-		"Phlebotinium",
-		"Mana",
-		"Energy",
-		"?????"
+	"work":[
+		"I died.",
+		"Someone died to letter again.",
+		"Red Queen doesn't like Instinct.",
+		"Red Queen doesn't like Insight.",
+		"Red Queen doesn't like Attachment.",
+		"Red Queen doesn't like Repression.",
+		"Can I take KoD blessing?",
+		"I'm taking KoD blessing.",
+		"Performing attachment work on the green fumo."
 	]
-
 }

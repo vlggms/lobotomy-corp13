@@ -20,6 +20,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 60	//Shouldn't really attack unless a player in controlling it, I guess.
 	melee_damage_upper = 80
+	attack_sound = 'sound/abnormalities/kog/GreedHit1.ogg'
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
@@ -169,12 +170,13 @@
 
 	//Hiteffect stuff
 	for(var/mob/living/L in range(1, T))
-		if(L in been_hit || L == src)
+		if((L in been_hit) || L == src)
 			continue
 		been_hit+=L
 		visible_message("<span class='boldwarning'>[src] crunches [L]!</span>")
 		to_chat(L, "<span class='userdanger'>[src] rends you with its teeth!</span>")
-		playsound(L, attack_sound, 75, 1)
+		playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+		playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
 		if(ishuman(L))
