@@ -1121,19 +1121,19 @@
 		user.remove_status_effect(STATUS_EFFECT_LCBURN)
 /obj/item/ego_weapon/iron_maiden
 	name = "iron maiden"
-	desc = "A versatile equipment made to cut down trees and people alike."
+	desc = "It’s quite simple. Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
 	special = "This weapon builds up attack speed and the amount of times it hits as you attack, at maximum speed it will damage you per hit."
 	icon_state = "iron_maiden"
-	force = 33
+	force = 20
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
-	attack_verb_continuous = "chops"
-	attack_verb_simple = "chop"
+	attack_verb_continuous = "clamps"
+	attack_verb_simple = "clamp"
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 0
 							)
-	var/ramping = 1.15 //maximum of 0.3
+	var/ramping = 1.15 //maximum of 0.25
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
 	sleep(1)
