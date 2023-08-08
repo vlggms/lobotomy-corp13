@@ -45,6 +45,9 @@
 	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
 		WhitePulse()
 
+/mob/living/simple_animal/hostile/abnormality/cube/AttackingTarget(atom/attacked_target)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/cube/proc/WhitePulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	playsound(src, 'sound/magic/disable_tech.ogg', 50, FALSE, 4)
