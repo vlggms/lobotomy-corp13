@@ -189,8 +189,8 @@
 		for(var/obj/vehicle/V in new_hits)
 			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
 			V.visible_message("<span class='boldwarning'>[src] crunches [V]!</span>")
-			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
-			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
+			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
 
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
