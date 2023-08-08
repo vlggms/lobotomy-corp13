@@ -1124,7 +1124,7 @@
 	desc = "It’s quite simple. Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
 	special = "This weapon builds up attack speed and the amount of times it hits as you attack, at maximum speed it will damage you per hit."
 	icon_state = "iron_maiden"
-	force = 20
+	force = 25
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = "clamps"
@@ -1152,7 +1152,7 @@
 		if (ramping > 0.25)
 			ramping -= 0.05
 		else
-			user.adjustBruteLoss(user.maxHealth*0.125) //hits 4 times so 0.5% hp per hit, may be too much?
+			user.adjustBruteLoss(user.maxHealth*0.075) //hits 4 times so 0.3% hp per hit, may be too little?
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 1.15)
 
