@@ -15,6 +15,7 @@
 	var/finisheddesc = "A finished weapon."
 	var/specialmod
 	var/aoe_range
+	var/type_overriden = FALSE
 
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!active)
@@ -38,10 +39,12 @@
 	active = TRUE
 	force *= mod.forcemod
 	attack_speed *= mod.attackspeedmod
-	damtype = mod.damagetype
-	armortype = mod.damagetype
+	if(!type_overriden)
+		damtype = mod.damagetype
+		armortype = mod.damagetype
 	aoe_range += mod.aoemod
-	color = mod.weaponcolor
+	if(!color) // Material color overwrites
+		color = mod.weaponcolor
 	specialmod = mod.specialmod
 	//throwforce is special
 	if(throwforce>force)

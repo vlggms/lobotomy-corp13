@@ -141,3 +141,27 @@
 		"When the Qlipthoth counter reached 0, the faciltiy was cloaked in choking darkness.",
 		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.")
 	abno_work_damage_type = "All"
+
+// God of the Seasons
+/obj/item/paper/fluff/info/aleph/seasons
+	abno_type = /mob/living/simple_animal/hostile/abnormality/seasons
+	abno_code = "M-06-35"
+	abno_info = list(
+		"The abnormality shifts between four states over time. The states are hereby referred to as \"Spring\", \"Summer\", \"Autumn\", and \"Winter\".",
+		"When the abnormality first appeared in the facility, it appeared in a mostly harmless, diminutive state. At this stage, any work result causes a drop in Qliphoth counter.",
+		"When the Qliphoth counter reached 0 for the first time, or the abnormality is left alone for too long, the abnormality revealed its true form. The maximum Qliphoth also lowered to 1.",
+		"The employee took different types of damage from the abnormality depending on its state, both during work and during a breach.",
+		"When the Qlipthoth counter reached 0, the faciltiy experienced unusual weather that persisted indoors.",
+		"When the work result was bad, the Qliphoth counter decreased by one.")
+	abno_work_rates = list(
+			ABNORMALITY_WORK_INSTINCT = "High during \"Spring\" and \"Summer\"",
+			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and \"Winter\"",
+			ABNORMALITY_WORK_ATTACHMENT = "High during \"Summer\" and \"Autumn\"",
+			ABNORMALITY_WORK_REPRESSION = "High during \"Autumn\" and \"Winter\"")
+	abno_work_damage_type = "White/Red/Black/Pale"
+	abno_breach_damage_type = "White/Red/Black/Pale"
+	abno_resistances = list(
+		RED_DAMAGE = "Endured/Resistant/Endured/Weak",
+		WHITE_DAMAGE = "Resistant/Normal/Normal/Normal",
+		BLACK_DAMAGE = "Normal/Endured/Resistant/Endured",
+		PALE_DAMAGE = "Weak/Weak/Weak/Resistant")

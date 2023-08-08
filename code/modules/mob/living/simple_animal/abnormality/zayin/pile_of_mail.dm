@@ -200,7 +200,7 @@
 		new /obj/item/ego_weapon/mail_satchel(get_turf(user))
 		to_chat(user,"<span class='nicegood'>As you unravel the parcel a satchel falls out.</span>")
 	else
-		new /obj/item/clothing/suit/armor/ego_gear/letter_opener(get_turf(user))
+		new /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener(get_turf(user))
 		to_chat(user,"<span class='nicegood'>As you unravel the parcel an outfit falls out.</span>")
 	qdel(src)
 	return

@@ -21,7 +21,6 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 75
 	melee_damage_upper = 80
-	speed = 3
 	move_to_delay = 4
 	/* Works */
 	start_qliphoth = 2

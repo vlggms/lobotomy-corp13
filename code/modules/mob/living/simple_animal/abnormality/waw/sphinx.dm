@@ -14,7 +14,6 @@
 	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 100

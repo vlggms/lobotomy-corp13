@@ -430,6 +430,21 @@
 	justice_bonus = 4
 	slot = EYE
 
+/datum/ego_gifts/sloshing
+	name = "Green Spirit"
+	icon_state = "sloshing"
+	fortitude_bonus = 3
+	prudence_bonus = -1
+	justice_bonus = 1
+	slot = CHEEK
+
+/datum/ego_gifts/fourleaf_clover
+	name = "Four-Leaf Clover"
+	icon_state = "fourleaf_clover"
+	fortitude_bonus = -2
+	prudence_bonus = 4
+	slot = HAT
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -687,6 +702,14 @@
 	prudence_bonus = 3
 	justice_bonus = -2
 	slot = FACE
+
+/datum/ego_gifts/roseate_desire
+	name = "Roseate Desire"
+	icon_state = "roseate_desire"
+	prudence_bonus = 2
+	temperance_bonus = -4
+	justice_bonus = 4
+	slot = EYE
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional

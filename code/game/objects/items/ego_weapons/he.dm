@@ -156,15 +156,22 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/naked_parry
+	var/realized_parry
 
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+		force = 12
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
 	else
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if (istype(Z))
+			force = 32
+		else
+			force = 12
 		attack_speed = 0.5
 		projectile_block_duration = 0.5 SECONDS
 	..()
@@ -173,6 +180,10 @@
 	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		realized_parry = istype(Z)
+		if (realized_parry)
+			reductions = list(40, 30, 20, 60) // 150
 		if(naked_parry)
 			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
@@ -187,11 +198,14 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	force = 12
+	if (realized_parry)
+		force = 32
+	else
+		force = 12
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	if (naked_parry)
+	if (naked_parry || realized_parry)
 		debuff_duration = 2 SECONDS
 	else
 		debuff_duration = 3 SECONDS
@@ -201,6 +215,9 @@
 	if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
+	else if(realized_parry)
+		force = 48 // bonus damage for like, 2 seconds.
+		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
 	..()
@@ -1334,3 +1351,98 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/roseate
+	name = "roseate desire"
+	desc = "A salacious cat o' nine tails made from pink ribbons. Merely touching it ushers a primal excitement."
+	special = "The damage of this weapon is significantly lowered depending on the user's temperance attribute."
+	icon_state = "roseate_desire"
+	force = 35
+	attack_speed = 0.8//about 44 dps
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "slaps", "flicks")
+	attack_verb_simple = list("whip", "slap", "flick")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/roseate/attack(mob/living/M, mob/living/user)//negative temperance multiplier
+	force = 35
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperancemod = 1 + usertemp/200
+	force /= temperancemod
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
+	name = "AEDD"
+	desc = "A nasty-looking bat covered with nails."
+	special = "Activating the weapon in your hand prepares an attack with additional black damage."
+	icon_state = "aedd"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 25
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "crushes")
+	attack_verb_simple = list("bash", "crush")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/charged
+
+/obj/item/ego_weapon/aedd/attack_self(mob/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 30, src))//3 seconds
+		to_chat(user, "<span class='notice'>You hoist [src] over your shoulder.</span>")
+		charged = TRUE
+
+/obj/item/ego_weapon/aedd/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charged)
+		power_attack(target, user)
+		charged = FALSE
+
+/obj/item/ego_weapon/aedd/proc/power_attack(mob/living/target, mob/living/user)
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	target.apply_damage((force * justicemod), BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
+	var/turf/T = get_turf(target)
+	new /obj/effect/temp_visual/justitia_effect(T)
+
+/obj/item/ego_weapon/lance/split
+	name = "split"
+	desc = "They existed everywhere, but we were the ones to first discover their existence. We were the first to encounter them. We were faced with fear. They were - are fear itself."
+	icon_state = "split"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 33
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.8// really slow
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/lance/split/LowerLance(mob/user)
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/RaiseLance(mob/user)
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/get_clamped_volume()
+	return 40

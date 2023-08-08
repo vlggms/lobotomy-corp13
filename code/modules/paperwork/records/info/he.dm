@@ -380,3 +380,15 @@
 		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
 		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
+
+//Pinocchio
+/obj/item/paper/fluff/info/he/pinocchio
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pinocchio
+	abno_code = "F-04-160"
+	abno_info = list(
+		"When work was completed, the abnormality would attempt to decieve the next employee at a small chance.",
+		"The abnormality's trick involved changing the abnormality console to display invalid types of work.",
+		"When the employee was successfully decieved, the Qliphoth counter was reduced by 1.",
+		"When the abnormality was caught telling lies successfully, the abnormality console returned to normal.",
+		"A baseless accusation will reduce the Qliphoth counter by 1.",
+		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")

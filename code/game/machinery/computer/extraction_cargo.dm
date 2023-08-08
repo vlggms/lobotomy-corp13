@@ -69,6 +69,7 @@
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Mysterious Invitation ",		/obj/item/invitation,												1500, CAT_RESOURCE) = 1,
 
 		//Random stuff
 		new /datum/data/extraction_cargo("Bubblegum Gum Packet ",		/obj/item/storage/box/gum/bubblegum,								15, CAT_OTHER) = 1,
@@ -77,13 +78,16 @@
 		new /datum/data/extraction_cargo("Spraycan ",					/obj/item/toy/crayon/spraycan,										40, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Magic 8-Ball ",				/obj/item/toy/eightball,											70, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Six-Pack ",					/obj/item/storage/cans,												70, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("Fishing Rod ",				/obj/item/ramshackle_fishing_rod,									70, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Fishing Equipment ",			/obj/item/storage/box/fishing,										70, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Whiskey ",					/obj/item/reagent_containers/food/drinks/bottle/whiskey,			100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Absinthe ",					/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium,	100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skateboard ",					/obj/item/melee/skateboard,											100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Gar Glasses ",				/obj/item/clothing/glasses/sunglasses/gar,							100, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Skub ",						/obj/item/skub,														200, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Gold Fishing Hook ",			/obj/item/fishing_hook/shiny,										200, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Reinforced Fishing Line ",	/obj/item/fishing_line/reinforced,									200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("1000 Ahn ",					/obj/item/stack/spacecash/c1000,									200, CAT_OTHER) = 1,
+		new /datum/data/extraction_cargo("Pet Whistle",					/obj/item/pet_whistle,												200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Margherita Pizza ",			/obj/item/food/pizza/margherita,									300, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Super Gar Glasses ",			/obj/item/clothing/glasses/sunglasses/gar/supergar,					500, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Agent Captain's Cloak ",		/obj/item/clothing/neck/cloak/hos/agent,							500, CAT_OTHER) = 1,
@@ -112,7 +116,14 @@
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat
-	dat += "[SSlobotomy_corp.current_box]/[SSlobotomy_corp.box_goal] PE <br>"
+	dat += "Available PE: [SSlobotomy_corp.available_box] <br>"
+	if(SSlobotomy_corp.box_goal != 0)
+		if(SSlobotomy_corp.goal_reached)
+			dat += "PE Quota has been reached, well done!<br>"
+		else
+			dat += "Goal Progress: [max(SSlobotomy_corp.available_box+SSlobotomy_corp.goal_boxes, 0)]/[SSlobotomy_corp.box_goal] <br>"
+	else
+		dat += "Today's PE Quota is still being calculated, please hold. <br>"
 	for(var/level = CAT_GADGET to CAT_OTHER) //IF YOU ADD A NEW CATAGORY GO FROM FIRST DEFINED CATAGORY TO LAST TO AVOID BREAKAGE  -IP
 		dat += "<A href='byond://?src=[REF(src)];set_level=[level]'>[level == selected_level ? "<b><u>[name_catagory(level)]</u></b>" : "[name_catagory(level)]"]</A>"
 	dat += "<br>"
@@ -145,12 +156,12 @@
 			if(!product_datum)
 				to_chat(usr, "<span class='warning'>ERROR.</span>")
 				return FALSE
-			if(SSlobotomy_corp.current_box < product_datum.cost)
+			if(SSlobotomy_corp.available_box < product_datum.cost)
 				to_chat(usr, "<span class='warning'>Not enough PE boxes stored for this operation.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
-			SSlobotomy_corp.AdjustBoxes(-1 * product_datum.cost)
+			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost)
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE

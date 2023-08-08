@@ -10,7 +10,6 @@
 	base_pixel_x = -16
 	maxHealth = 2000
 	health = 2000
-	speed = 4
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = WAW_LEVEL

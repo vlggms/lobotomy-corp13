@@ -20,7 +20,6 @@
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = DEAD
-	speed = 2
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -86,10 +85,17 @@
 		icon_state = icon_aggro
 
 //Execution code from green dawn with inflated damage numbers
+/mob/living/simple_animal/hostile/abnormality/clown/CanAttack(atom/the_target)
+	if(isliving(the_target) && !ishuman(the_target))
+		var/mob/living/L = the_target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget()
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!ishuman(target))
 			return
 		var/mob/living/carbon/human/TH = target
 		if(TH.health < 0)
@@ -170,7 +176,6 @@
 	..()
 	if(locate(/obj/structure/clown_picture) in get_turf(src))
 		return
-	icon_state = "clown_smiling"
 	new /obj/structure/clown_picture(get_turf(src))
 
 /obj/structure/clown_picture

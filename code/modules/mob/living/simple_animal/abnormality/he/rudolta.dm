@@ -16,7 +16,6 @@
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
-	speed = 5
 	move_to_delay = 6
 	minimum_distance = 2 // Don't move all the way to melee
 	work_chances = list(

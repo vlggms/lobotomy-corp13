@@ -10,7 +10,6 @@
 	base_pixel_x = -8
 	maxHealth = 2200 //Tanky but hurts itself every now and then to make up for it
 	health = 2200
-	speed = 4
 	move_to_delay = 5
 	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1

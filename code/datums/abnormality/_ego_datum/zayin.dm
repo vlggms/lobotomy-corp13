@@ -4,7 +4,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/penitence
-	item_path = /obj/item/clothing/suit/armor/ego_gear/penitence
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence
 	cost = 12
 
 // You are bald - Tough
@@ -13,7 +13,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/tough
-	item_path = /obj/item/clothing/suit/armor/ego_gear/tough
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/tough
 	cost = 12
 
 // Wellcheers vending machine - Soda
@@ -22,7 +22,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/soda
-	item_path = /obj/item/clothing/suit/armor/ego_gear/soda
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/soda
 	cost = 12
 
 // Fairy Festival - Wingbeat
@@ -31,7 +31,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/wingbeat
-	item_path = /obj/item/clothing/suit/armor/ego_gear/wingbeat
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/wingbeat
 	cost = 12
 
 // Bottle Of Tears - Little Alice
@@ -40,7 +40,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/little_alice
-	item_path = /obj/item/clothing/suit/armor/ego_gear/little_alice
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/little_alice
 	cost = 12
 
 // We can change anything - Change
@@ -49,7 +49,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/change
-	item_path = /obj/item/clothing/suit/armor/ego_gear/change
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/change
 	cost = 12
 
 // Sleeping Beauty - Doze
@@ -58,7 +58,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/doze
-	item_path = /obj/item/clothing/suit/armor/ego_gear/doze
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/doze
 	cost = 12
 
 // A Quiet Day - Nostalgia
@@ -67,7 +67,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/nostalgia
-	item_path = /obj/item/clothing/suit/armor/ego_gear/nostalgia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/nostalgia
 	cost = 12
 
 // Hammer of Light - Evening Twilight
@@ -76,7 +76,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/evening
-	item_path = /obj/item/clothing/suit/armor/ego_gear/evening
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	cost = 12
 
 // Blubbering Toad - Melty Eyeball
@@ -85,7 +85,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/melty_eyeball
-	item_path = /obj/item/clothing/suit/armor/ego_gear/melty_eyeball
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball
 	cost = 12
 
 // Fallen Amurdad - Nightshade
@@ -94,7 +94,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/nightshade
-	item_path = /obj/item/clothing/suit/armor/ego_gear/nightshade
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/nightshade
 	cost = 12
 
 // Pile of mail - Letter Opener
@@ -103,7 +103,7 @@
 	cost = 12
 
 /datum/ego_datum/armor/letter_opener
-	item_path = /obj/item/clothing/suit/armor/ego_gear/letter_opener
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	cost = 12
 
 // Wishing Well - Bucket
@@ -112,5 +112,5 @@
 	cost = 12
 
 /datum/ego_datum/armor/bucket
-	item_path = /obj/item/clothing/suit/armor/ego_gear/bucket
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/bucket
 	cost = 12

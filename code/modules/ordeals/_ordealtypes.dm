@@ -116,22 +116,30 @@
 	level = 0
 	reward_percent = 0.20
 	color = "#4f4f4f"
-	//does ALL of these
-	var/list/bosstype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Guaranteed one of each on spawn.
-	//Randomly picked from these.
-	var/list/grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon) //Random units spawned around the boss mobs.
-	var/bossnumber = 4 //Basically how many groups spawned.
-	var/gruntnumber = 4 //Amount of troops around a boss.
+	//Types of bosses to spawn per location. Spawns ALL of them at once
+	var/list/boss_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	// Potential types of grunts that spawn around the boss mob. Grunt types are RANDOMLY picked from this, not all at once
+	var/list/grunt_type = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
+	//Minimum amount of bosstype groups spawned.
+	var/boss_amount = 4
+	//Minimum amount of troops spawned around the bosses. If each boss would spawn 4 dudes there would be 4 groups of 5 including the boss.
+	var/grunt_amount = 4
+	//Multiplier for player count, used to increase amount of bosses spawned.
+	//How this works currently is gruntnumber + grunt_player_multiplicator, 10 players would equal one additional grunt in a squad if each player equals 0.1.
+	var/boss_player_multiplicator = 0.05
+	var/grunt_player_multiplicator = 0.1
 
 /datum/ordeal/simplecommander/Run()
-	..()
+	. = ..()
+	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
+	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
 	var/list/available_locs = GLOB.xeno_spawn.Copy()
-	for(var/i = 1 to bossnumber)
+	for(var/i = 1 to round(boss_amount + boss_player_mod))
 		var/turf/T = pick(available_locs)
 		if(available_locs.len > 1)
 			available_locs -= T
-		for(var/Y in bosstype)
+		for(var/Y in boss_type)
 			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
 			ordeal_mobs += C
 			C.ordeal_reference = src
-		spawngrunts(T, grunttype, gruntnumber)
+		spawngrunts(T, grunt_type, (grunt_amount + grunt_player_mod))

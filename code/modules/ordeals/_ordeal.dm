@@ -42,9 +42,9 @@
 
 // Ends the event
 /datum/ordeal/proc/End()
-	var/total_reward = SSlobotomy_corp.box_goal * reward_percent
+	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
-	SSlobotomy_corp.AdjustBoxes(total_reward)
+	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
 	if(end_sound)
 		for(var/mob/M in GLOB.player_list)

@@ -15,7 +15,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
-	speed = 2
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -8

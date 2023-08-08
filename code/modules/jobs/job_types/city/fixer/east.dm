@@ -15,7 +15,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE) // East office is 54
 	minimal_access = list(ACCESS_MINING_STATION, ACCESS_RC_ANNOUNCE)
-	maptype = "wonderlabs"
+	maptype = list("city-small", "wonderlabs")
 
 
 	//80s in everything, they're barebones goobers

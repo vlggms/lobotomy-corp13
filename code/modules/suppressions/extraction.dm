@@ -17,6 +17,7 @@
 /datum/suppression/extraction/End()
 	..()
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 3)
+	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_ARBITER_DEAD)
 
 /datum/suppression/extraction/proc/OnArbiterDeath(datum/source)
 	SIGNAL_HANDLER
@@ -315,8 +316,9 @@
 	current_meltdown_type = meltdown_type
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
-		if(isliving(player))
-			player_count += 1
+		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
+			player_count += 1.5
+	player_count = round(player_count) + (player_count > round(player_count) ? 1 : 0) // Trying to round up
 	meltdowns = SSlobotomy_corp.InitiateMeltdown(clamp(rand(player_count*0.5, player_count), 1, 10), TRUE, meltdown_type, meltdown_min_time, meltdown_max_time, meltdown_text, 'sound/magic/arbiter/meltdown.ogg')
 	for(var/obj/machinery/computer/abnormality/A in meltdowns)
 		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, .proc/OnMeltdownFinish)

@@ -314,3 +314,104 @@
 				AS.custom_speech = AS.default_speech.Copy()
 		return
 	return ..()
+
+
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn
+	name = "Cocoon summon"
+	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
+	action_icon_state = "cocoon0"
+	base_icon_state = "cocoon"
+	cooldown_time = 15 SECONDS
+
+/obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
+		return
+	var/turf/target_turf = get_turf(target)
+	new /mob/living/simple_animal/cocoonability(target_turf)
+	return ..()
+
+
+/mob/living/simple_animal/cocoonability
+	name = "Cocoon"
+	desc = "A cocoon...."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "cocoon_large2"
+	icon_living = "cocoon_large2"
+	faction = list("neutral")
+	health = 300	//They're here to help
+	maxHealth = 300
+	speed = 0
+	turns_per_move = 10000000000000
+	generic_canpass = FALSE
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
+
+/mob/living/simple_animal/cocoonability/Initialize()
+	. = ..()
+	QDEL_IN(src, (30 SECONDS))
+
+/mob/living/simple_animal/cocoonability/Life()
+	if(..())
+		SplashEffect()
+
+/mob/living/simple_animal/cocoonability/proc/SplashEffect()
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in view(damage_range, src))
+		if(src.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(damage_slowdown, 2 SECONDS) // Slow down
+
+
+/obj/effect/proc_holder/ability/aimed/blackhole
+	name = "blackhole"
+	desc = "An ability that allows its user to summon a black hole to drag everone near it."
+	action_icon_state = "blackhole0"
+	base_icon_state = "blackhole"
+	cooldown_time = 30 SECONDS
+
+/obj/effect/proc_holder/ability/aimed/blackhole/Perform(target, mob/user)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
+		return
+	var/turf/target_turf = get_turf(target)
+	new /obj/projectile/black_hole_realized(target_turf)
+	return ..()
+
+/obj/projectile/black_hole_realized
+	name = "black hole"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "blackhole"
+	desc = "A mini black hole."
+	nodamage = TRUE
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	speed = 0
+	damage = 30
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_amount = 100 // Amount of black damage dealt to enemies in the epicenter.
+	var/damage_range = 3
+
+/obj/projectile/black_hole_realized/Initialize()
+	. = ..()
+	QDEL_IN(src, (20 SECONDS))
+	for(var/i = 1 to 10)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+
+/obj/projectile/black_hole_realized/proc/SplashEffect()
+	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/revenant(T)
+	for(var/mob/living/L in view(damage_range, src))
+		var/distance_decrease = get_dist(src, L) * 30
+		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
+		L.throw_at(throw_target, 1, 2)

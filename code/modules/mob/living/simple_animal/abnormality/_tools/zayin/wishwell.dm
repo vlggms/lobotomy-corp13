@@ -9,11 +9,11 @@
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
-		/obj/item/clothing/suit/armor/ego_gear/twilight,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight,
 		/obj/item/ego_weapon/twilight
 		)
 	var/list/alephitem = list(//less junk items at higher risk levels
-		/obj/item/clothing/suit/armor/ego_gear/praetorian,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian,
 		/obj/item/toy/plush/mosb,
 		/obj/item/toy/plush/melt
 		)
@@ -34,7 +34,7 @@
 		/obj/item/gun/ego_gun/sodashotty,
 		/obj/item/gun/ego_gun/sodarifle,
 		/obj/item/gun/ego_gun/sodasmg,
-		/obj/item/clothing/suit/armor/ego_gear/lutemis,
+		/obj/item/clothing/suit/armor/ego_gear/he/lutemis,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,
 		/obj/item/clothing/glasses/sunglasses/reagent,
@@ -42,7 +42,7 @@
 		/obj/item/clothing/neck/necklace/dope,
 		)
 	var/list/tethitem = list(
-		/obj/item/clothing/suit/armor/ego_gear/training,
+		/obj/item/clothing/suit/armor/ego_gear/teth/training,
 		/obj/item/ego_weapon/training,
 		/obj/item/clothing/suit/armor/ego_gear/rookie,
 		/obj/item/clothing/suit/armor/ego_gear/fledgling,

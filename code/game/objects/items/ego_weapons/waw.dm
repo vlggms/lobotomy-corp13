@@ -448,7 +448,7 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
+	if((get_dist(user, target_turf) < 2) || !(target_turf in view(10, user)))
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -1144,13 +1144,13 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 45		//Does more damage for being harder to use.
+	force = 30	//Does more damage for being harder to use.
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
 
@@ -1158,13 +1158,14 @@
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
+	..()
 	if(do_after(user, 4, src))
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		target.visible_message("<span class='danger'>[user] markes [target]!</span>", \
 						"<span class='userdanger'>[user] marks you!</span>", COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, "<span class='danger'>You enscribe a code on [target]!</span>")
 
-		mark_damage = force
+		mark_damage = force*2
 		//I gotta grab  justice here
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
@@ -1440,3 +1441,54 @@
 		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#a2d2df"
+
+/obj/item/ego_weapon/animalism
+	name = "animalism"
+	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
+	special = "This weapon hits 4 times for every hit"
+	icon_state = "animalism"
+	force = 20
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "saws", "rips")
+	attack_verb_simple = list("slice", "saw", "rip")
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
+	if(!..())
+		return
+	sleep(2)
+	for(var/i = 1 to 3)
+		sleep(2)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/psychic
+	name = "psychic dagger"
+	desc = "A saber from the deepest sea, meant for a groom's mortality."
+	special = "Use this weapon in hand to dodgeroll."
+	icon_state = "psychic"
+	force = 13
+	attack_speed = 0.3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/knife4.ogg'
+	var/dodgelanding
+
+/obj/item/ego_weapon/psychic/attack_self(mob/living/carbon/user)
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = TRUE)

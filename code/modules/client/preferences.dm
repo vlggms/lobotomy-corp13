@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//doohickeys for savefiles
 	var/path
 	var/default_slot = 1 //Holder so it doesn't default to slot 1, rather the last one used
-	var/max_save_slots = 5
+	var/max_save_slots = 7
 
 	//non-preference stuff
 	var/muted = 0
@@ -908,7 +908,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/lastJob
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(job.total_positions == 0)	//Is the job admin only?
+			if(job.total_positions == 0 && job.spawn_positions == 0)	//Is the job unavailable
 				continue
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))

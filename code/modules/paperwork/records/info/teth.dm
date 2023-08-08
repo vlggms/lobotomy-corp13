@@ -257,3 +257,24 @@
 		"When the abnormality found a corpse while breaching, it blessed a small area and destroyed the corpse. In this area, every employee recieved high PALE damage and every abnormality's Qliphoth Counter was lowered by 1.")
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Moderate"
+
+//Fairy Gentleman
+/obj/item/paper/fluff/info/teth/fairy_gentleman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_gentleman
+	abno_code = "F-01-161"
+	abno_info = list(
+		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
+		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
+		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
+
+//Fairy-Long-Legs
+/obj/item/paper/fluff/info/teth/fairy_longlegs
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_longlegs
+	abno_code = "F-01-162"
+	abno_info = list(
+		"When an employee with Fortitude Level 1 completed the work, the Qliphoth Counter lowered twice",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Every few works, rain started pouring in the containment cell, and the abnormality offered cover from the rain to the agent.",
+		"Taking cover is not advised, as it would expose the employee's back to the abnormality.",
+		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter twice.",
+		"Upon attacking, Fairy-Long-Legs scrapped off the skin of the victim and inserted it inside their chest's cavity, healing themselves in the process.")

@@ -2,7 +2,7 @@
 //They're generic weapons for the refinery, which is fine
 /obj/item/ego_weapon/city/streetlight_greatsword
 	name = "streetlight greatsword"
-	desc = "A greatsword used by a fixer with big shoes to fill.'Maybe... I should have told her how I feel.'"
+	desc = "A greatsword used by a fixer with big shoes to fill.'Maybe... I should have told her how I felt.'"
 	icon_state = "streetlight_greatsword"
 	force = 38
 	attack_speed = 2

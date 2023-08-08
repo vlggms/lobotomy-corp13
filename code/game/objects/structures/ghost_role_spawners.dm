@@ -920,7 +920,7 @@
 	outfit = /datum/outfit/tutorial
 	short_desc = "Welcome to Lobotomy Corporation! In the onboarding process you will get to see exactly how our company works."
 	flavour_text = "Be sure to read the tutorial sheets, \
-	experiment, and have fun. When you are done, Cryo and respawn to join the game. \
+	experiment, and have fun. When you are done, Cryo and Respawn to join the game. \
 	Try out the mechanics, and maybe breach some abnormalities to get a feel for the combat."
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
@@ -950,13 +950,13 @@
 	roundstart = FALSE
 	random = FALSE
 	name = "records librarian sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. It's just a front, stored underground are many librarians."
+	desc = "A humming sleeper with a silhouetted occupant inside. It's connected to a vast underground network storing countless people."
 	mob_name = "Records Librarian"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/librarian
-	short_desc = "A place for players to read up on lore and information while not affecting the actual round \
-	When you are done, Cryo and respawn to join the game."
+	short_desc = "A place for players to read up on lore and information while also observing the current round. \
+	When you are done, Cryo and Respawn to join the game."
 	assignedrole = "Lobotomy Corporation Records Librarian"
 
 //Tutorial agent

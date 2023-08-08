@@ -44,7 +44,6 @@
 	max_boxes = 14
 	//success_boxes = 7 //said to be a undefined var
 	zone_selected = BODY_ZONE_CHEST //alternate is BODY_ZONE_HEAD but this made damage go past the armor
-	speed = 5 //Player speed indipendent of Move to Delay.
 	wander = 0 //0 prevents wandering when idle. 1 activates it.
 	ego_list = list(
 		/datum/ego_datum/weapon/regret,

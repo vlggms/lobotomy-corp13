@@ -22,7 +22,6 @@
 	attack_verb_simple = "stab"
 	footstep_type = FOOTSTEP_MOB_SHOE
 	a_intent = INTENT_HELP
-	dextrous = TRUE
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	//similar to a human
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
@@ -67,7 +66,6 @@
 	health = 750
 	rapid_melee = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
-	dextrous = FALSE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	deathsound = 'sound/voice/mook_death.ogg'
@@ -215,7 +213,6 @@
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
 	footstep_type = FOOTSTEP_MOB_SHOE
-	dextrous = TRUE
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	deathsound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)

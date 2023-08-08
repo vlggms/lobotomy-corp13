@@ -64,7 +64,7 @@
 		if(!istype(target, /mob/living/carbon/human))
 			return
 		var/mob/living/carbon/human/H = target
-		if(H.health < 0 && stat != DEAD && !finishing)
+		if(H.health < 0 && stat != DEAD && !finishing && H.getorgan(/obj/item/organ/brain))
 			finishing = TRUE
 			H.Stun(10 SECONDS)
 			playsound(get_turf(src), 'sound/abnormalities/scarecrow/start_drink.ogg', 50, 1)
@@ -74,7 +74,10 @@
 					finishing = FALSE
 					return
 				playsound(get_turf(src), 'sound/abnormalities/scarecrow/drink.ogg', 50, 1)
+				if(H.health < -120) //prevents infinite healing, corpse is too mangled
+					break
 				adjustBruteLoss(-(maxHealth*0.05)) // Can restore 30% of HP
+				H.adjustBruteLoss(20)
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE

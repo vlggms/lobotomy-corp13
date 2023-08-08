@@ -14,13 +14,13 @@
 	attack_verb_simple = "chomps"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	speak_emote = list("states")
-	speed = 4
 	vision_range = 14
 	aggro_vision_range = 20
 	attack_action_types = list(/datum/action/innate/abnormality_attack/kog_dash, /datum/action/innate/abnormality_attack/kog_teleport)
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 60	//Shouldn't really attack unless a player in controlling it, I guess.
 	melee_damage_upper = 80
+	attack_sound = 'sound/abnormalities/kog/GreedHit1.ogg'
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
@@ -184,9 +184,13 @@
 				L.adjustRedLoss(80)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
+			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
 		for(var/obj/vehicle/V in new_hits)
 			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
 			V.visible_message("<span class='boldwarning'>[src] crunches [V]!</span>")
+			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
 
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))

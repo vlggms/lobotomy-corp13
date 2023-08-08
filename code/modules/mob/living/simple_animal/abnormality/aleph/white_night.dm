@@ -235,7 +235,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	obj_damage = 400
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	speed = 4
 	move_to_delay = 5
 	pixel_x = -8
 	base_pixel_x = -8
@@ -328,7 +327,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	name = "guardian apostle"
 	health = 3000
 	maxHealth = 3000
-	speed = 5
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE

@@ -10,7 +10,6 @@
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800
 	move_to_delay = 7
-	speed = 7
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8

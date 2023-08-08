@@ -82,9 +82,6 @@
 /area/city/backstreets_room)
 "T" = (
 /obj/structure/table/wood,
-/obj/machinery/light/red{
-	dir = 5
-	},
 /obj/item/clothing/suit/apron/chef,
 /obj/item/clothing/head/chefhat/i_am_assuming_direct_control,
 /turf/open/floor/plasteel/sepia,

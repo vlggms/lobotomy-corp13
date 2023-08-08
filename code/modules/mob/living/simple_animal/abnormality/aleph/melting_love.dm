@@ -22,7 +22,6 @@
 	ranged = TRUE
 	minimum_distance = 0
 	ranged_cooldown_time = 5 SECONDS
-	speed = 2
 	move_to_delay = 4
 	/* Works */
 	start_qliphoth = 3

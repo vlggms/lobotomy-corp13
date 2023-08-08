@@ -2332,3 +2332,46 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/telepole/on_mob_end_metabolize(mob/living/affected_mob)
 	REMOVE_TRAIT(affected_mob, TRAIT_SHOCKIMMUNE, type)
 	return ..()
+
+/datum/reagent/consumable/ethanol/fairywine
+	name = "Fairy Wine"
+	description = "A very strong drink dripping with slime, Smells quite pleasant"
+	boozepwr = 70
+	color = "#125301"
+	quality = DRINK_GOOD
+	taste_description = "sweet and, sticky?"
+	glass_icon_state = "fairywine"
+	glass_name = "Fairywine"
+	glass_desc = "A very strong drink dripping with slime, Smells quite pleasant"
+	overdose_threshold = 20
+
+/datum/reagent/consumable/ethanol/fairywine/on_mob_life(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	H.adjustSanityLoss(-2.5) // That's healing
+	return ..()
+
+/datum/reagent/consumable/ethanol/fairywine/on_mob_metabolize(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	to_chat(M, "<span class='notice'>You know... This wine is quite good...</span>")
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
+
+/datum/reagent/consumable/ethanol/fairywine/on_mob_end_metabolize(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	to_chat(M, "<span class='notice'>Oh... This good feeling is now gone...</span>")
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -15)
+
+/datum/reagent/consumable/ethanol/fairywine/overdose_start(mob/living/M)
+	to_chat(M, "<span class='userdanger'>Oh wow... This feels weird... You really *Burp* shouldn't have drank all *Burp* of that [name]!</span>")
+
+/datum/reagent/consumable/ethanol/fairywine/overdose_process(mob/living/M)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	H.adjustToxLoss(1.5*REM, 0)
+	to_chat(M, "<span class='red'> You feel quite a bit sick from drinking that much wine... </span>")
