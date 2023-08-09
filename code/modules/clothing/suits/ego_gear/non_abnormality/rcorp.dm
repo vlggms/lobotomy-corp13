@@ -22,7 +22,7 @@
 /obj/item/clothing/suit/armor/ego_gear/rabbit/assault
 	name = "\improper rabbit assault suit"
 	desc = "An armored combat suit worn by R-Corporation mercenaries in the field"
-	icon_state = "rabbit_grunt"
+	icon_state = "rabbit_ass"
 
 /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
 	name = "\improper raven scout suit"
