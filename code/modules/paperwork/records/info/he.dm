@@ -392,3 +392,5 @@
 		"When the abnormality was caught telling lies successfully, the abnormality console returned to normal.",
 		"A baseless accusation will reduce the Qliphoth counter by 1.",
 		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")
+
+

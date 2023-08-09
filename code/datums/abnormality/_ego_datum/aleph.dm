@@ -142,3 +142,12 @@
 /datum/ego_datum/weapon/spicebush/fan
 	item_path = /obj/item/ego_weapon/spicebush
 	cost = 100//appears in wishing well
+
+//Til the Last Shot - Flesh Is Willing
+/datum/ego_datum/armor/willing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/willing
+	cost = 100
+
+/datum/ego_datum/weapon/willing
+	item_path = /obj/item/ego_weapon/willing
+	cost = 100

@@ -371,3 +371,18 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+
+//for testing, fix before merge
+/obj/item/clothing/suit/armor/ego_gear/aleph/willing
+	name = "flesh is willing"
+	desc = "Is it immoral if you want it to happen?"
+	icon_state = "willing"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+

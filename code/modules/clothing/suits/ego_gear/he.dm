@@ -371,15 +371,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 								PRUDENCE_ATTRIBUTE = 40
 								)
 
-/obj/item/clothing/suit/armor/ego_gear/he/willing
-	name = "flesh is willing"
-	desc = "Is it immoral if you want it to happen?"
-	icon_state = "willing"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/he/roseate
 	name = "roseate desire"
 	desc = "I'll carry you wherever you wish to go."

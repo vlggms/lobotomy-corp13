@@ -191,3 +191,15 @@
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
 	damage = 35
+	
+//slow, dodgable, and make it hard to see and talk
+/obj/projectile/fleshblob
+	name = "blood blob"
+	icon_state = "mini_leaper"
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	damage = 30
+	spread = 15
+	eyeblur = 10
+	slur = 5
+	speed = 2.4
