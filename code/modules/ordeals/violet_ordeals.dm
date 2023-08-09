@@ -36,7 +36,29 @@
 		M.ordeal_reference = src
 		spawned_in += 1
 
-// Noon
+// Dusk
+/datum/ordeal/violet_dusk
+	name = "Dusk of Violet"
+	annonce_text = "A god, an evil, them. They embraced us on the day of rest."
+	annonce_sound = 'sound/effects/ordeals/violet_start.ogg'
+	end_sound = 'sound/effects/ordeals/violet_end.ogg'
+	level = 3
+	reward_percent = 0.2
+	color = "#B642F5"
+	var/spawn_amount = 8
+
+/datum/ordeal/violet_dusk/Run() //temporary AF
+	..()
+	var/spawned_in = 0
+	for(var/turf/T in shuffle(GLOB.department_centers))
+		if(spawned_in >= spawn_amount)
+			return
+		var/mob/living/simple_animal/hostile/ordeal/violet_monolith/M = new(T)
+		ordeal_mobs += M
+		M.ordeal_reference = src
+		spawned_in += 1
+
+// Midnight
 /datum/ordeal/violet_midnight
 	name = "Midnight of Violet"
 	annonce_text = "We incessantly tried to accept it. We wanted to understand them in our heads by any means, regardless of the consequences."

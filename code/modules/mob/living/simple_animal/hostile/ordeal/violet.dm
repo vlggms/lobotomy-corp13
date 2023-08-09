@@ -181,6 +181,9 @@
 		CA.datum_reference.qliphoth_change(-1)
 	icon_state = "violet_noon_attack"
 
+// Violet dusk
+//mob/living/simple_animal/hostile/ordeal/violet_dusk
+
 // Violet midnight
 /mob/living/simple_animal/hostile/ordeal/violet_midnight
 	name = "god delusion"
