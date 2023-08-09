@@ -49,3 +49,16 @@
 	place_player_multiplicator = 0.05
 	spawn_player_multiplicator = 0
 	color = "#DC143C"
+
+/datum/ordeal/simplecommander/crimson_midnight
+	name = "Midnight of Crimson"
+	annonce_text = "Let us make a performance about what has already come true, and march further on from wence we came."
+	level = 4
+	reward_percent = 0.25
+	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
+	color = "#DC143C"
+	boss_type = list(/mob/living/simple_animal/hostile/ordeal/crimson_tent)
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight)
+	boss_amount = 2
+	grunt_amount = 2
