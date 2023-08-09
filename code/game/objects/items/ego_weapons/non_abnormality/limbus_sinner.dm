@@ -168,7 +168,6 @@
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	force = 40
-	attack_speed = 3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")

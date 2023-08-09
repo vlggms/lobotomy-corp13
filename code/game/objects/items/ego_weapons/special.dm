@@ -122,6 +122,7 @@
 	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
 	force = 40
+	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")

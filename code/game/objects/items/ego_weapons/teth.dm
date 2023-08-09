@@ -475,6 +475,7 @@
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "capote"
 	force = 22
+	attack_speed = 1
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")

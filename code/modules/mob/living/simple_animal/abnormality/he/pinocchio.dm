@@ -118,12 +118,11 @@
 		datum_reference.available_work = work_chances
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/pinocchio/ZeroQliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/pinocchio/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
 	playsound(src, 'sound/abnormalities/pinocchio/activate.ogg', 40, 0, 1)
 	density = FALSE
 	animate(src, alpha = 0,pixel_x = 0, pixel_z = 16, time = 4 SECONDS)
 	SLEEP_CHECK_DEATH(1 SECONDS)
-
 	realboy = new (get_turf(src)) //Technically the breach version is a separate entity, requires a lot of tinkering but works.
 	RegisterSignal(realboy, COMSIG_LIVING_DEATH, .proc/PuppetDeath)
 	realboy.name = "Pinocchio the Liar"
@@ -156,7 +155,6 @@
 		realboy.dropItemToGround(realboy.get_active_held_item())
 		QDEL_IN(realboy, 15) //In theory we could do an egg transformation at this point but I have no sprite.
 	death()
-
 
 //Special item
 /obj/item/ego_weapon/marionette/abnormality
