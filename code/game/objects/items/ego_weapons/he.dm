@@ -142,6 +142,7 @@
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
 	force = 12
+	attack_speed = 0.5
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
@@ -425,7 +426,6 @@
 			Block for longer when surrounded by allies."
 	icon_state = "bravery"
 	force = 54
-	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
@@ -543,7 +543,6 @@
 	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
 	force = 54
-	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
@@ -607,6 +606,7 @@
 	desc = "If friends were flowers, I'd pick you!"
 	icon_state = "maneater"
 	force = 30
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")

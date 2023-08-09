@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_FREEZING /datum/status_effect/freezing
+#define STATUS_EFFECT_FOGBOUND /datum/status_effect/fogbound
 /mob/living/simple_animal/hostile/abnormality/seasons
 	name = "God of the Seasons"
 	desc = "By jove, what is that?!?"
@@ -511,15 +512,16 @@
 /datum/weather/fog/weather_act(mob/living/carbon/human/L)
 	if(!ishuman(L))
 		return
-	L.become_nearsighted(TRAUMA_TRAIT)
 	if(prob(1))
 		L.emote("cough")
+	if(L.has_status_effect(STATUS_EFFECT_FOGBOUND))
 		return
+	L.apply_status_effect(STATUS_EFFECT_FOGBOUND)
 
 /datum/weather/fog/end()
 	..()
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		L.cure_nearsighted(TRAUMA_TRAIT)
+		L.remove_status_effect(STATUS_EFFECT_FOGBOUND)
 
 /datum/weather/freezing_wind //Winter weather, causes slowdown.
 	name = "freezing wind"
@@ -568,7 +570,28 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "freezing"
 
+/datum/status_effect/fogbound
+	id = "fogbound"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 300
+	alert_type = /atom/movable/screen/alert/status_effect/fogbound
+
+/datum/status_effect/fogbound/on_apply()
+	owner.become_nearsighted(TRAUMA_TRAIT)
+	return ..()
+
+/datum/status_effect/fogbound/on_remove()
+	owner.cure_nearsighted(TRAUMA_TRAIT)
+	return ..()
+
+/atom/movable/screen/alert/status_effect/fogbound
+	name = "Fogbound"
+	desc = "You can hardly see anything!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "foggy"
+
 #undef STATUS_EFFECT_FREEZING
+#undef STATUS_EFFECT_FOGBOUND
 
 /datum/movespeed_modifier/freezing
 	multiplicative_slowdown = 0
