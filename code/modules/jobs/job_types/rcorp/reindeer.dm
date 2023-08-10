@@ -23,7 +23,7 @@
 								JUSTICE_ATTRIBUTE = 60
 								)
 	rank_title = "SPC"
-	job_important = "You take the role of medical support. DO NOT CROSS THE BEAMS."
+	job_important = "You take the role of defensive medical support. DO NOT CROSS THE BEAMS."
 	job_notice = "You are a mostly support role. Gather your supplies in the medical tent to the SW of the base. Split up for maximum effectiveness."
 
 /datum/job/reindeer/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -89,7 +89,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeermed
 	l_pocket = /obj/item/flashlight/seclite
 	l_hand = /obj/item/gun/medbeam
 	belt = null
@@ -101,13 +101,14 @@
 
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	l_hand = /obj/item/gun/mindwhip
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk
 
 
 /datum/outfit/job/reindeer/captain
 	name = "Reindeer Squad Captain"
 	jobtype = /datum/job/rcorp_captain/reindeer
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeercap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer
 	ears = /obj/item/radio/headset/heads/headset_welfare
