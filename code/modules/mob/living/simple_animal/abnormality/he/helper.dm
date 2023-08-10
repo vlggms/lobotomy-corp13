@@ -46,23 +46,21 @@
 	var/list/been_hit = list() // Don't get hit twice.
 
 /datum/action/innate/abnormality_attack/helper_dash
-	name = "Helper Dash"
+	name = "Helper Dash Toggle"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "helper"
 	chosen_message = "<span class='colossus'>You will use your blades.</span>"
 	chosen_attack_num = 2
-	var/is_active = FALSE
 
-/*
 /datum/action/innate/abnormality_attack/helper_dash/Activate()
-	if (!is_active)
 		chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
 		chosen_attack_num = 1
-		is_active = TRUE
-	if (!is_active)
-		chosen_message = "<span class='colossus'>You will use your blades.</span>"
+		active = 1
+
+/datum/action/innate/abnormality_attack/helper_dash/Deactivate()
+		to_chat(A, "<span class='colossus'>You will use your blades.</span>")
 		chosen_attack_num = 2
-		is_active = FALSE */
+		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)
