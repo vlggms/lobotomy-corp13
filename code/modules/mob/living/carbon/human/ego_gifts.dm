@@ -775,11 +775,12 @@
 	instinct_mod = 6
 	slot = HAND_1
 
+// Slightly buffed compared to base game
 /datum/ego_gifts/aroma
 	name = "Faint Aroma"
 	icon_state = "aroma"
-	prudence_bonus = 4
-	temperance_bonus = 2 // This is techincally a buff from base game.
+	prudence_bonus = 6
+	temperance_bonus = 4
 	slot = HAT
 
 /datum/ego_gifts/stem
