@@ -18,7 +18,7 @@
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)//, /datum/action/innate/abnormality_attack/helper_normal)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash_toggle)
 
 	can_breach = TRUE
 	threat_level = HE_LEVEL
@@ -45,21 +45,20 @@
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 
-/datum/action/innate/abnormality_attack/helper_dash
+/datum/action/innate/abnormality_attack/helper_dash_toggle
 	name = "Helper Dash Toggle"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "helper"
-	chosen_message = "<span class='colossus'>You will use your blades.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/helper_dash/Activate()
-		chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
-		chosen_attack_num = 1
+		to_chat (A,"<span class='colossus'>You will now dash in that direction.</span>")
+		A.chosen_attack = 1
 		active = 1
 
 /datum/action/innate/abnormality_attack/helper_dash/Deactivate()
 		to_chat(A, "<span class='colossus'>You will use your blades.</span>")
-		chosen_attack_num = 2
+		A.chosen_attack = 2
 		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
