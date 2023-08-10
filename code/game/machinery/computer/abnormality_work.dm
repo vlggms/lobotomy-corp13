@@ -99,7 +99,7 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
-			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work tutorial rabbit
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work training rabbit
 				to_chat(usr, "<span class='warning'>The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
 				return
 			if(datum_reference.working)
