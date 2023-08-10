@@ -18,7 +18,7 @@
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)//, /datum/action/innate/abnormality_attack/helper_normal)
 
 	can_breach = TRUE
 	threat_level = HE_LEVEL
@@ -49,8 +49,20 @@
 	name = "Helper Dash"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "helper"
-	chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
-	chosen_attack_num = 1
+	chosen_message = "<span class='colossus'>You will use your blades.</span>"
+	chosen_attack_num = 2
+	var/is_active = FALSE
+
+/*
+/datum/action/innate/abnormality_attack/helper_dash/Activate()
+	if (!is_active)
+		chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
+		chosen_attack_num = 1
+		is_active = TRUE
+	if (!is_active)
+		chosen_message = "<span class='colossus'>You will use your blades.</span>"
+		chosen_attack_num = 2
+		is_active = FALSE */
 
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)
@@ -70,6 +82,8 @@
 		switch(chosen_attack)
 			if(1)
 				helper_dash(target)
+			if(2)
+				return
 		return
 
 	if(dash_cooldown <= world.time)
