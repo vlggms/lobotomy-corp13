@@ -46,7 +46,7 @@
 	if(datum_reference.qliphoth_meter_max > 0)
 		. += "<span class='notice'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
 	if(datum_reference.overload_chance != 0)
-		. += "<span class='warning'>Current Success Rate Modifier: [datum_reference.overload_chance]%.</span>"
+		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
