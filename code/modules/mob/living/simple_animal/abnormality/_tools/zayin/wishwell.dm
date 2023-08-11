@@ -6,6 +6,11 @@
 	max_buckled_mobs = 1
 	var/list/bastards = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/bucket,
+		/datum/ego_datum/armor/bucket
+		)
+
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,

@@ -95,9 +95,3 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Liberty. Reason. Justice. Civility. Edification. Perfection. MAIL!"
 	icon_state = "letter_opener"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
-
-/obj/item/clothing/suit/armor/ego_gear/zayin/bucket
-	name = "bucket"
-	desc = "The man lost his balance after seeing what the well's bucket had drawn."
-	icon_state = "bucket"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)

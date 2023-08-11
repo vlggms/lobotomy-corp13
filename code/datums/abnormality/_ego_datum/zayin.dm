@@ -106,11 +106,3 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	cost = 12
 
-// Wishing Well - Bucket
-/datum/ego_datum/weapon/bucket
-	item_path = /obj/item/gun/ego_gun/bucket
-	cost = 12
-
-/datum/ego_datum/armor/bucket
-	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/bucket
-	cost = 12
