@@ -59,12 +59,12 @@
 	button_icon_state = "helper"
 	chosen_attack_num = 2
 
-/datum/action/innate/abnormality_attack/helper_dash/Activate()
+/datum/action/innate/abnormality_attack/kqe_grab_toggle/Activate()
 		to_chat (A, "<span class='colossus'>You will attempt to grab a visitor.</span>")
 		A.chosen_attack = 1
 		active = 1
 
-/datum/action/innate/abnormality_attack/helper_dash/Deactivate()
+/datum/action/innate/abnormality_attack/kqe_grab_toggle/Deactivate()
 		to_chat(A, "<span class='colossus'>You won't grab visitors anymore.</span>")
 		A.chosen_attack = 2
 		active = 0

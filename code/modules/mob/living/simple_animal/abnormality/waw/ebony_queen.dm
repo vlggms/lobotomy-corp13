@@ -73,19 +73,19 @@
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/ebony_barrage_toggle
-	name = "Root Barrage"
+	name = "Root Barrage Toggle"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
 	chosen_attack_num = 3
 
 /datum/action/innate/abnormality_attack/ebony_barrage_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You won't fire your roots now.</span>")
-		A.chosen_attack = 3
+		A.chosen_attack = 4
 		active = 1
 
 /datum/action/innate/abnormality_attack/ebony_barrage_toggle/Deactivate()
 		to_chat (A, "<span class='colossus'>You will now attack with a barrage of roots.</span>")
-		A.chosen_attack = 4
+		A.chosen_attack = 3
 		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
