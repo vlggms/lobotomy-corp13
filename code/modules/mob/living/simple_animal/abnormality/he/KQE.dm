@@ -177,7 +177,7 @@
 /mob/living/simple_animal/hostile/abnormality/kqe/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if ((grab_cooldown <= world.time) && prob(35))
+	if ((grab_cooldown <= world.time) && prob(35) && (!client))
 		var/turf/target_turf = get_turf(target)
 		return ClawGrab(target_turf)
 	return Whip_Attack()
