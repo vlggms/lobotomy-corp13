@@ -38,7 +38,7 @@
 		CutLegs(user)
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(50))
+	if(prob(20))
 		CutLegs(user)
 
 

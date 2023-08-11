@@ -39,7 +39,7 @@
 		user.adjustSanityLoss(-heal_amount)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/drownedsisters/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/drownedsisters/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	user.Paralyze(30)
 	user.adjustOxyLoss(100)
 	visible_message("<span class='boldwarning'>[user] falls into the pool!</span>")

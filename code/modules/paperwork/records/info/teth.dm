@@ -171,7 +171,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
 	abno_code = "T-01-133"
 	abno_info = list(
-		"When the work result was Bad, the employee was dragged into the pool, and re-emerged at a department centre.",
+		"When the work result was Neutral, the employee was dragged into the pool, and re-emerged at a department centre.",
 		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
 		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 
