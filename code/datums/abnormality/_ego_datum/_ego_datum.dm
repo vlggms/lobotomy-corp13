@@ -84,10 +84,12 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	qdel(E)
 
 /datum/ego_datum/weapon/PrintOutInfo()
-	var/dat = "[name]<br><br>"
-	dat += "Attribute requirements:<br>"
-	for(var/attr in information["attribute_requirements"])
-		dat += "- [attr]: [information["attribute_requirements"][attr]]<br><hr>"
+	var/dat = "[capitalize(name)]<br><br>"
+	if(islist(information["attribute_requirements"]))
+		dat += "Attribute requirements:<br>"
+		for(var/attr in information["attribute_requirements"])
+			dat += "- [attr]: [information["attribute_requirements"][attr]]<br>"
+		dat += "<hr>"
 	dat += "[information["attack_info"]]<br>"
 	if("special" in information)
 		dat += "[information["special"]]<br>"
@@ -118,12 +120,16 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	qdel(E)
 
 /datum/ego_datum/armor/PrintOutInfo()
-	var/dat = "[name]<br><br>"
-	dat += "Attribute requirements:<br>"
-	for(var/attr in information["attribute_requirements"])
-		dat += "- [attr]: [information["attribute_requirements"][attr]]<br><hr>"
+	var/dat = "[capitalize(name)]<br><br>"
+	if(islist(information["attribute_requirements"]))
+		dat += "Attribute requirements:<br>"
+		for(var/attr in information["attribute_requirements"])
+			dat += "- [attr]: [information["attribute_requirements"][attr]]<br>"
+		dat += "<hr>"
 	dat += "Armor:<br>"
 	for(var/armor_type in information["armor"])
-		dat += "- [armor_type]: [information["armor"][armor_type]].<br>"
+		if(!(information["armor"][armor_type])) // Zero armor and such
+			continue
+		dat += "- [capitalize(armor_type)]: [information["armor"][armor_type]].<br>"
 	dat += "<br>"
 	return dat
