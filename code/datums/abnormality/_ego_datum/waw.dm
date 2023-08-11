@@ -420,3 +420,8 @@
 /datum/ego_datum/weapon/psychic
 	item_path = /obj/item/ego_weapon/psychic
 	cost = 50
+
+//Missed Reaper - Grasp
+/datum/ego_datum/weapon/grasp
+	item_path = /obj/item/ego_weapon/grasp
+	cost = 50

@@ -264,7 +264,7 @@
 	item_path = /obj/item/ego_weapon/impending_day
 	cost = 35
 
-//Headless Icthys - Fluid Sac
+//Headless Ichthys - Fluid Sac
 /datum/ego_datum/armor/fluid_sac
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/fluid_sac
 	cost = 35
@@ -338,10 +338,6 @@
 //Missed Reaper - Grasp
 /datum/ego_datum/armor/grasp
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/grasp
-	cost = 35
-
-/datum/ego_datum/weapon/grasp
-	item_path = /obj/item/ego_weapon/grasp
 	cost = 35
 
 //Pinnochio - Marionette

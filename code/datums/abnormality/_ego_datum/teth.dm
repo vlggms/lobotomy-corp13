@@ -285,3 +285,21 @@
 /datum/ego_datum/weapon/fourleaf_clover
 	item_path = /obj/item/ego_weapon/mini/fourleaf_clover
 	cost = 20
+
+//Red Blooded American - Patriot
+/datum/ego_datum/armor/patriot
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/patriot
+	cost = 20
+
+/datum/ego_datum/weapon/patriot
+	item_path = /obj/item/gun/ego_gun/patriot
+	cost = 20
+
+//Spirit of Falada - Zauberhorn
+/datum/ego_datum/armor/zauberhorn
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/zauberhorn
+	cost = 20
+
+/datum/ego_datum/weapon/zauberhorn
+	item_path = /obj/item/ego_weapon/zauberhorn
+	cost = 20

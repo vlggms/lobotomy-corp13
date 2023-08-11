@@ -44,3 +44,10 @@
 		var/obj/item/gun/ego_gun/nihil/G = fired_from
 		var/obj/projectile/ego_bullet/nihil/GG = BB
 		GG.powers = G.powers
+
+/obj/item/ammo_casing/caseless/pink
+	name = "pink bullet"
+	desc = "A pink bullet."
+	projectile_type = /obj/projectile/ego_bullet/pink
+	pellets = 1
+	variance = 0

@@ -151,3 +151,12 @@
 /datum/ego_datum/weapon/willing
 	item_path = /obj/item/ego_weapon/willing
 	cost = 100
+
+//Army In Black - Pink
+/datum/ego_datum/armor/pink
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/pink
+	cost = 100
+
+/datum/ego_datum/weapon/pink
+	item_path = /obj/item/gun/ego_gun/pink
+	cost = 100

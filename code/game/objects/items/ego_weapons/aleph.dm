@@ -721,7 +721,7 @@
 	desc = "The fragile human mind is fated to twist and distort."
 	special = "This weapon requires two hands to use and always blocks ranged attacks."
 	icon_state = "distortion"
-	force = 210 //Just make sure you don't hit anyone!
+	force = 180 //Just make sure you don't hit anyone!
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
