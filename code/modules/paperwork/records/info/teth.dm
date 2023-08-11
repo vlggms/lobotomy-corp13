@@ -162,6 +162,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
 	abno_code = "T-01-115"
 	abno_info = list(
+		"When the work result was Neutral, the employee working on T-01-115 may have been compelled to cut their own feet off.",
 		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
 		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
 

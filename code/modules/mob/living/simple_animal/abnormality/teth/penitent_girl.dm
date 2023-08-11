@@ -33,12 +33,19 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	// you are going to cut your own leg off
+	work_damage_type = initial(work_damage_type)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
-		user.apply_status_effect(STATUS_EFFECT_PENITENCE)
-		to_chat(user, "<span class='danger'>Something feels strange.</span>") //I have to write something here
-		work_damage_type = initial(work_damage_type)
+		CutLegs(user)
 
+/mob/living/simple_animal/hostile/abnormality/penitentgirl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(50))
+		CutLegs(user)
+
+
+	// you are going to cut your own leg off
+/mob/living/simple_animal/hostile/abnormality/proc/penitentgirl/CutLegs(mob/living/carbon/human/user)
+	user.apply_status_effect(STATUS_EFFECT_PENITENCE)
+	to_chat(user, "<span class='danger'>Something feels strange.</span>") //I have to write something here
 
 /datum/status_effect/penitence
 	id = "penitence"
