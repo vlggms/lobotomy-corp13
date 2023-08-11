@@ -20,7 +20,11 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	stat_attack = HARD_CRIT
-	attack_action_types = list(/datum/action/innate/abnormality_attack/nt_goodbye, /datum/action/innate/abnormality_attack/nt_hello, /datum/action/innate/abnormality_attack/nt_normal)
+	attack_action_types = list(
+	/datum/action/innate/abnormality_attack/nt_goodbye,
+	/datum/action/innate/abnormality_attack/nt_hello,
+	/datum/action/innate/abnormality_attack/nt_normal
+	)
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1

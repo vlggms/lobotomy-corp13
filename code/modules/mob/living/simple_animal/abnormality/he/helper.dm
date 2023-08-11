@@ -19,7 +19,6 @@
 	vision_range = 14
 	aggro_vision_range = 20
 	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash_toggle)
-
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
@@ -52,12 +51,12 @@
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/helper_dash/Activate()
-		to_chat (A,"<span class='colossus'>You will now dash in that direction.</span>")
+		to_chat (A, "<span class='colossus'>You will now dash in that direction.</span>")
 		A.chosen_attack = 1
 		active = 1
 
 /datum/action/innate/abnormality_attack/helper_dash/Deactivate()
-		to_chat(A, "<span class='colossus'>You will use your blades.</span>")
+		to_chat(A, "<span class='colossus'>You won't dash anymore.</span>")
 		A.chosen_attack = 2
 		active = 0
 

@@ -23,6 +23,11 @@
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
+	attack_action_types = list(
+	/datum/action/innate/abnormality_attack/ebony_root,
+	/datum/action/innate/abnormality_attack/ebony_barrier,
+	/datum/action/innate/abnormality_attack/ebony_barrage_toggle
+	)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
@@ -52,6 +57,36 @@
 	)
 	gift_type =  /datum/ego_gifts/ebony_stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+/datum/action/innate/abnormality_attack/ebony_root
+	name = "Root Spike"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will shoot a devastating line of roots.</span>"
+	chosen_attack_num = 1
+
+/datum/action/innate/abnormality_attack/ebony_barrier
+	name = "Thorn Barrier"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will create a barrier of thorns.</span>"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/ebony_barrage_toggle
+	name = "Root Barrage"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_attack_num = 3
+
+/datum/action/innate/abnormality_attack/ebony_barrage_toggle/Activate()
+		to_chat(A, "<span class='colossus'>You won't fire your roots now.</span>")
+		A.chosen_attack = 3
+		active = 1
+
+/datum/action/innate/abnormality_attack/ebony_barrage_toggle/Deactivate()
+		to_chat (A, "<span class='colossus'>You will now attack with a barrage of roots.</span>")
+		A.chosen_attack = 4
+		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
@@ -105,6 +140,17 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/OpenFire()
 	if(!can_act)
+		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				rootStab(target)
+				icon_state = icon_aggro
+			if(2)
+				thornBarrier(target)
+			if(3)
+				rootBarrage(target)
 		return
 
 	if((stab_cooldown <= world.time) && prob(50))

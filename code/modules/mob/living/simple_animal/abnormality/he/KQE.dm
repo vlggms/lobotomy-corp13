@@ -20,6 +20,7 @@
 	pixel_x = -24
 	base_pixel_x = -24
 	stat_attack = HARD_CRIT
+	attack_action_types = list(/datum/action/innate/abnormality_attack/kqe_grab_toggle)
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
@@ -51,6 +52,22 @@
 	var/heart = FALSE
 	var/heart_threshold = 700
 	var/heart_list = list()
+
+/datum/action/innate/abnormality_attack/kqe_grab_toggle
+	name = "Helper Dash Toggle"
+	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	button_icon_state = "helper"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/helper_dash/Activate()
+		to_chat (A, "<span class='colossus'>You will attempt to grab a visitor.</span>")
+		A.chosen_attack = 1
+		active = 1
+
+/datum/action/innate/abnormality_attack/helper_dash/Deactivate()
+		to_chat(A, "<span class='colossus'>You won't grab visitors anymore.</span>")
+		A.chosen_attack = 2
+		active = 0
 
 /*** Basic Procs ***/
 /mob/living/simple_animal/hostile/abnormality/kqe/Initialize()
@@ -182,6 +199,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/kqe/OpenFire()
 	if(!can_act)
+		return
+	if(client)
+		switch (chosen_attack)
+			if (1)
+				ClawGrab(target)
+			if (2)
+				return
 		return
 	if(grab_cooldown <= world.time)
 		ClawGrab(target)
