@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 			return
 		var/obj/item/gun/ego_gun/E = new item_path(src)
 		information["attribute_requirements"] = E.attribute_requirements.Copy()
-		information["attack_info"] = E.EgoAttackInfo()
+		information["attack_info"] = "Its bullets deal [E.chambered.BB.damage] [E.chambered.BB.damage_type] damage."
 		information["special"] = E.special
 		var/fire_delay = E.fire_delay
 		if(E.autofire)
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		qdel(E)
 		return
 	var/obj/item/ego_weapon/E = new item_path(src)
-	information["attack_info"] = E.EgoAttackInfo()
+	information["attack_info"] = "It deals [E.force] [E.damtype] damage."
 	information["throwforce"] = E.throwforce
 	information["special"] = E.special
 	information["attribute_requirements"] = E.attribute_requirements.Copy()

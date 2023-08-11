@@ -21,7 +21,7 @@
 		dat += "[A.name] ([A.stored_boxes] PE):<br>"
 		for(var/datum/ego_datum/E in A.ego_datums)
 			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A>"
-			var/info = E.PrintOutInfo()
+			var/info = html_encode(E.PrintOutInfo())
 			if(info)
 				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
 			dat += "<br>"
@@ -64,7 +64,7 @@
 			updateUsrDialog()
 			return TRUE
 		if(href_list["info"])
-			var/dat = href_list["info"]
+			var/dat = html_decode(href_list["info"])
 			var/datum/browser/popup = new(usr, "ego_info", "EGO Purchase Console", 340, 400)
 			popup.set_content(dat)
 			popup.open()
