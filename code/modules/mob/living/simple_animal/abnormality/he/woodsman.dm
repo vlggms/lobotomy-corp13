@@ -53,7 +53,6 @@
 	name = "Deforestation"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "training_rabbit"
-	chosen_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/woodsman_flurry_toggle/Activate()

@@ -37,6 +37,7 @@
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"
 	faction = list("blueshep")
+	attack_action_types = list(/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle)
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 4
@@ -104,6 +105,22 @@
 				"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
 				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
 				)
+
+/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle
+	name = "Deforestation"
+	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	button_icon_state = "training_rabbit"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Activate()
+		to_chat (A, "<span class='colossus'>You will now execute a deadly spinning slash.</span>")
+		A.chosen_attack = 1
+		active = 1
+
+/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Deactivate()
+		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
+		A.chosen_attack = 2
+		active = 0
 
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
@@ -173,9 +190,23 @@
 		hired = FALSE
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(slash_current == 0)
+					slash_current = slash_cooldown
+					say(pick(combat_lines))
+					slashing = TRUE
+					slash()
+			if(2)
+				return
+		return
+
+
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	slash_current-=1
-	if(slash_current == 0)
+	if((slash_current == 0) && (!client))
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE
