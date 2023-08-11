@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 
 /datum/ego_datum/weapon/PrintOutInfo()
 	var/dat = "[capitalize(name)]<br><br>"
-	if(islist(information["attribute_requirements"]))
+	if(LAZYLEN(information["attribute_requirements"]))
 		dat += "Attribute requirements:<br>"
 		for(var/attr in information["attribute_requirements"])
 			dat += "- [attr]: [information["attribute_requirements"][attr]]<br>"
@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 
 /datum/ego_datum/armor/PrintOutInfo()
 	var/dat = "[capitalize(name)]<br><br>"
-	if(islist(information["attribute_requirements"]))
+	if(LAZYLEN(information["attribute_requirements"]))
 		dat += "Attribute requirements:<br>"
 		for(var/attr in information["attribute_requirements"])
 			dat += "- [attr]: [information["attribute_requirements"][attr]]<br>"
