@@ -57,9 +57,8 @@
 
 /datum/action/innate/abnormality_attack/hypnosis
 	name = "Hypnosis"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now stun random humans near you.</span>"
+	button_icon_state = ""
+	chosen_message = "<span class='colossus'>You will now lull random humans near you.</span>"
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()

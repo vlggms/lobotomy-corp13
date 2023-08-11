@@ -44,21 +44,23 @@
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 
+//Playables Buttons
 /datum/action/innate/abnormality_attack/helper_dash_toggle
-	name = "Helper Dash Toggle"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "helper"
-	chosen_attack_num = 2
+	name = "Toggle Dash"
+	button_icon_state = "helper_toggle0"
 
 /datum/action/innate/abnormality_attack/helper_dash_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You will now dash in that direction.</span>")
-		A.chosen_attack = 1
+		to_chat(A, "<span class='colossus'>You won't dash anymore.</span>")
+		button_icon_state = "helper_toggle1"
+		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/helper_dash_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You won't dash anymore.</span>")
-		A.chosen_attack = 2
+		to_chat (A, "<span class='colossus'>You will now dash in that direction.</span>")
+		button_icon_state = "helper_toggle0"
+		A.chosen_attack = 1
 		active = 0
+
 
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)

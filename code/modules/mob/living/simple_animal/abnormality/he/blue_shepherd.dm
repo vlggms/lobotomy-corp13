@@ -106,20 +106,21 @@
 				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
 				)
 
+//Playables Buttons
 /datum/action/innate/abnormality_attack/bluesheperd_spin_toggle
-	name = "Deforestation"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "training_rabbit"
-	chosen_attack_num = 2
+	name = "Toggle Spin"
+	button_icon_state = "bluesheperd_toggle0"
 
 /datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You will now execute a deadly spinning slash.</span>")
-		A.chosen_attack = 1
+		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
+		button_icon_state = "bluesheperd_toggle1"
+		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
-		A.chosen_attack = 2
+		to_chat (A, "<span class='colossus'>You will now execute a spinning slash when ready.</span>")
+		button_icon_state = "bluesheperd_toggle0"
+		A.chosen_attack = 1
 		active = 0
 
 

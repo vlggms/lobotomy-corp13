@@ -398,8 +398,8 @@
 
 // Actions
 /datum/action/innate/abnormality_attack
-	name = "Megafauna Attack"
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	name = "Abnormality Attack"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = ""
 	var/mob/living/simple_animal/hostile/abnormality/A
 	var/chosen_message

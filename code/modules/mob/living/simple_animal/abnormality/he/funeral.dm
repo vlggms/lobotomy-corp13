@@ -16,6 +16,7 @@
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
+	chosen_attack = 2 //defaults to GUN
 	attack_action_types = list(/datum/action/innate/abnormality_attack/funeral_butterfly_toggle)
 	can_breach = TRUE
 	can_buckle = FALSE
@@ -56,21 +57,23 @@
 	var/list/swarm_killed = list()
 	var/can_act = TRUE
 
+//Playables Buttons
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle
-	name = "Casket Toggle"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicmd"
-	chosen_attack_num = 1
+	name = "Toggle Casket Swarm"
+	button_icon_state = "funeral_toggle0"
 
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Activate()
-		to_chat (A,"<span class='colossus'>You will now fire butterflies.</span>")
-		A.chosen_attack = 1
+		to_chat(A, "<span class='colossus'>You will now unleash a swarm of butterflies.</span>")
+		button_icon_state = "funeral_toggle1"
+		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You will now unleash a swarm of butterflies.</span>")
-		A.chosen_attack = 2
+		to_chat (A,"<span class='colossus'>You will now fire butterflies from your hands.</span>")
+		button_icon_state = "funeral_toggle0"
+		A.chosen_attack = 1
 		active = 0
+
 
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
 	return OpenFire()

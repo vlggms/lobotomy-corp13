@@ -70,6 +70,7 @@
 	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
+//Playables Buttons
 /datum/action/innate/abnormality_attack/nt_goodbye
 	name = "Goodbye"
 	icon_icon = 'icons/obj/wizard.dmi'
@@ -90,6 +91,7 @@
 	button_icon_state = "magicm"
 	chosen_message = "<span class='colossus'>You will now pummel foes with your hand.</span>"
 	chosen_attack_num = 3
+
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
