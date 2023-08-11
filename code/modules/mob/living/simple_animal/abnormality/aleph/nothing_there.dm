@@ -20,6 +20,7 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	stat_attack = HARD_CRIT
+	attack_action_types = list(/datum/action/innate/abnormality_attack/nt_goodbye, /datum/action/innate/abnormality_attack/nt_hello, /datum/action/innate/abnormality_attack/nt_normal)
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
@@ -65,6 +66,27 @@
 	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
+/datum/action/innate/abnormality_attack/nt_goodbye
+	name = "Goodbye"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now do a devastating slash attack.</span>"
+	chosen_attack_num = 1
+
+/datum/action/innate/abnormality_attack/nt_hello
+	name = "Hello"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now shoot a strong sonic wave.</span>"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/nt_normal
+	name = "Normal Attack"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now pummel foes with your hand.</span>"
+	chosen_attack_num = 3
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -106,20 +128,29 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
-		return Goodbye()
-	if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
-		var/turf/target_turf = get_turf(target)
-		for(var/i = 1 to 3)
-			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
-		return Hello(target_turf)
+	if(!client)
+		if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
+			return Goodbye()
+		if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to 3)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			return Hello(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/OpenFire()
 	if(!can_act)
 		return
-
 	if(current_stage == 3)
+		if(client)
+			switch(chosen_attack)
+				if(1)
+					Goodbye()
+				if(2)
+					Hello(target)
+				if(3)
+					return
+			return
 		if(hello_cooldown <= world.time)
 			Hello(target)
 		if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
