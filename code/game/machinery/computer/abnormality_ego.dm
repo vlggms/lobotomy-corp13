@@ -20,7 +20,11 @@
 			continue
 		dat += "[A.name] ([A.stored_boxes] PE):<br>"
 		for(var/datum/ego_datum/E in A.ego_datums)
-			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A>"
+			var/info = E.PrintOutInfo()
+			if(info)
+				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
+			dat += "<br>"
 		dat += "<br>"
 	var/datum/browser/popup = new(user, "ego_purchase", "EGO Purchase Console", 440, 640)
 	popup.set_content(dat)
@@ -59,3 +63,9 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
+		if(href_list["info"])
+			var/dat = href_list["info"]
+			var/datum/browser/popup = new(usr, "ego_info", "EGO Purchase Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			return
