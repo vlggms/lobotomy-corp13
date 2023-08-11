@@ -50,6 +50,7 @@
 	abno_code = "T-04-111"
 	abno_info = list(
 		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.",
+		"When employees with Fortitude Level 5 were immune to the above effect.",
 		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
 
 //Beauty and the Beast
@@ -169,6 +170,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
 	abno_code = "T-01-133"
 	abno_info = list(
+		"When the work result was Bad, the employee was dragged into the pool, and re-emerged at a department centre.",
 		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
 		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 

@@ -26,7 +26,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60 && get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 100)
 		//I mean it does this in wonderlabs
 		user.dust()
 

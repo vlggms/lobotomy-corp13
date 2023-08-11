@@ -29,11 +29,21 @@
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/AttemptWork(mob/living/carbon/human/user, work_type)
 	//Deals scaling work damage based off your stats.
 	work_damage_amount = (get_attribute_level(user, PRUDENCE_ATTRIBUTE) -60) * -0.5
-	work_damage_amount = max(1, work_damage_amount)	//So you don't get healing
+	work_damage_amount = max(5, work_damage_amount)	//So you don't get healing
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 // okay so according to the lore you're not really supposed to remember the stories she says so we're going to make it so your sanity goes back up
 	if(!user.sanity_lost && pe != 0)
-		user.adjustSanityLoss(-get_attribute_level(user, PRUDENCE_ATTRIBUTE))
+		var/heal_amount = min(30, get_attribute_level(user, PRUDENCE_ATTRIBUTE)* -0.5)
+		user.adjustSanityLoss(-heal_amount)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/drownedsisters/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	user.Paralyze(30)
+	user.adjustOxyLoss(100)
+	visible_message("<span class='boldwarning'>[user] falls into the pool!</span>")
+	to_chat(user, "<span class='userdanger'>You're lungs are filling with water!</span>")
+	user.forceMove(pick(GLOB.department_centers))
+
+
