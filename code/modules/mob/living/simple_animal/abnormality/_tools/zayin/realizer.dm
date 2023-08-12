@@ -27,8 +27,10 @@
 		/obj/item/clothing/suit/armor/ego_gear/waw/despair 			= /obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood,
 		/obj/item/clothing/suit/armor/ego_gear/waw/hatred 			= /obj/item/clothing/suit/armor/ego_gear/realization/lovejustice,
 		/obj/item/clothing/suit/armor/ego_gear/waw/blind_rage 		= /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage,
+		/obj/item/clothing/suit/armor/ego_gear/waw/crimson 			= /obj/item/clothing/suit/armor/ego_gear/realization/crimson,
 		/obj/item/clothing/suit/armor/ego_gear/waw/lamp 			= /obj/item/clothing/suit/armor/ego_gear/realization/eyes,
 		/obj/item/clothing/suit/armor/ego_gear/waw/oppression 		= /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
+		/obj/item/clothing/suit/armor/ego_gear/waw/thirteen 		= /obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls,
 		/obj/item/clothing/suit/armor/ego_gear/waw/executive 		= /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,
 		// ALEPH
 		/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo 		= /obj/item/clothing/suit/armor/ego_gear/realization/alcoda,
