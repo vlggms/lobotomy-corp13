@@ -2708,6 +2708,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\galaxy_child.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\golden_false_apple.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\happy_teddy_bear.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\headless_ichthys.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\helper.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\jangsan.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\KHz.dm"
