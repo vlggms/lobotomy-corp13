@@ -333,7 +333,7 @@
 		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.</span>"
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and a <a href='?src=[REF(src)];explain=1'>tag</a> explaining the armor system.</span>"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -354,6 +354,14 @@
 
 		to_chat(usr, "[readout.Join()]")
 
+	if(href_list["explain"])
+		var/list/readout = list("<span class='notice'><u><b>ROMAN NUMERAL ARMOR SYSTEM</u></b>")
+		readout += "\nThis system is a % of damage resisted, multiplied by 10. Each 1 armor is 10% resisted."
+		readout += "\nThe Roman numeral system uses only seven symbols: I, V, X, L, C, D, and M. To read the armor values, you need to know: I represents the number 1, V represents 5, X is 10."
+		readout += "\nYou can add numbers together by putting the symbols in descending order from left to right. You’d add all of the symbols’ individual values together to get the total value. For example, VI is 5 + 1 or 6."
+		readout += "\nYou can also subtract numbers from each other by placing a symbol with a smaller value to the left of one with a larger value. The value of the smaller symbol is subtracted from that of the larger symbol to get the total value, so IV is 5 - 1, or 4."
+		readout += "\nExamples: \nIX = 10-1 = 9. \nVI = 5+1 = 6. \nVIII = 5+1+1+1 = 8.
+		to_chat(usr, "[readout.Join()]")
 
 /**
  * Rounds armor_value to nearest 10, divides it by 10 and then expresses it in roman numerals up to 10
