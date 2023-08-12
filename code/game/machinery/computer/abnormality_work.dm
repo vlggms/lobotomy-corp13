@@ -40,11 +40,11 @@
 	. = ..()
 	if(!datum_reference)
 		return
-	. += "<span class='notice'>This console is connected to [datum_reference.name]'s containment unit.</span>"
+	. += "<span class='info'>This console is connected to [datum_reference.name]'s containment unit.</span>"
 	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
-	. += "<span class='notice'>Risk Level:</span> [threat_level]<span class='notice'>.</span>" // Professionals have standards
+	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
-		. += "<span class='notice'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
+		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
 	if(datum_reference.overload_chance != 0)
 		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
@@ -70,7 +70,7 @@
 	var/dat
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
 	if(datum_reference.overload_chance != 0)
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current Success Rate is modified by [datum_reference.overload_chance]%</span><br>"
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Success Rates are modified by [datum_reference.overload_chance]%.</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
