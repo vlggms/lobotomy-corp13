@@ -30,7 +30,7 @@
 	var/heal_cooldown
 	var/list/galaxy_friend = list()
 	var/heal_mod = 0.5 //0.25 heal/sec
-	var/damage_mod = 55
+	var/damage_mod = 60
 	var/heal_amount
 	var/damage_amount
 	var/depressed = FALSE
