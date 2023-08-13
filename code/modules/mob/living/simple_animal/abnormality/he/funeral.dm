@@ -64,12 +64,14 @@
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You will now unleash a swarm of butterflies.</span>")
 		button_icon_state = "funeral_toggle1"
+		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Deactivate()
 		to_chat (A,"<span class='colossus'>You will now fire butterflies from your hands.</span>")
 		button_icon_state = "funeral_toggle0"
+		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0
 

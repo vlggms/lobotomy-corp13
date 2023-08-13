@@ -18,6 +18,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	faction = list("hostile")
+	attack_action_types = list(/datum/action/innate/abnormality_attack/fragment_song)
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
@@ -29,9 +30,6 @@
 						)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
-
-	attack_action_types = list(/datum/action/innate/abnormality_attack/fragment_song)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/fragment
@@ -43,12 +41,26 @@
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/fragment_song
-	name = "An Echo From Beyond"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
 	chosen_message = "<span class='colossus'>You will now deal white damage to all enemies around you.</span>"
 	chosen_attack_num = 1
+
+/datum/action/innate/abnormality_attack/fragment_song_toggle
+	name = "Toggle Song"
+	button_icon_state = "bluesheperd_toggle0"
+
+/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Activate()
+		to_chat(A, "<span class='colossus'>You will now deal white damage to all enemies around you.</span>")
+		button_icon_state = "bluesheperd_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 1
+		active = 1
+
+/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Deactivate()
+		to_chat (A, "<span class='colossus'>You won't sing your song anymore.</span>")
+		button_icon_state = "bluesheperd_toggle0"
+		UpdateButtonIcon()
+		A.chosen_attack = 2
+		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)

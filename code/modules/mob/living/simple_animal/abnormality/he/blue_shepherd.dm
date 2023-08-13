@@ -114,12 +114,14 @@
 /datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
 		button_icon_state = "bluesheperd_toggle1"
+		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Deactivate()
 		to_chat (A, "<span class='colossus'>You will now execute a spinning slash when ready.</span>")
 		button_icon_state = "bluesheperd_toggle0"
+		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0
 
@@ -191,23 +193,11 @@
 		hired = FALSE
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				if(slash_current == 0)
-					slash_current = slash_cooldown
-					say(pick(combat_lines))
-					slashing = TRUE
-					slash()
-			if(2)
-				return
-		return
-
-
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	slash_current-=1
-	if((slash_current == 0) && (!client))
+	if(client && chosen_attack == 2)
+		return
+	if(slash_current == 0)
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE

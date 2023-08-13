@@ -26,7 +26,8 @@
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/ebony_root,
 	/datum/action/innate/abnormality_attack/ebony_barrier,
-	/datum/action/innate/abnormality_attack/ebony_barrage_toggle
+	/datum/action/innate/abnormality_attack/ebony_barrage,
+	/datum/action/innate/abnormality_attack/ebony_normal
 	)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
@@ -72,21 +73,19 @@
 	chosen_message = "<span class='colossus'>You will create a barrier of thorns.</span>"
 	chosen_attack_num = 2
 
-/datum/action/innate/abnormality_attack/ebony_barrage_toggle
-	name = "Root Barrage Toggle"
+/datum/action/innate/abnormality_attack/ebony_barrage
+	name = "Root Barrage"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will shoot your roots from the ground.</span>"
 	chosen_attack_num = 3
 
-/datum/action/innate/abnormality_attack/ebony_barrage_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You won't fire your roots now.</span>")
-		A.chosen_attack = 4
-		active = 1
-
-/datum/action/innate/abnormality_attack/ebony_barrage_toggle/Deactivate()
-		to_chat (A, "<span class='colossus'>You will now attack with a barrage of roots.</span>")
-		A.chosen_attack = 3
-		active = 0
+/datum/action/innate/abnormality_attack/ebony_normal
+	name = "Normal attacks"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
@@ -150,7 +149,7 @@
 			if(2)
 				thornBarrier(target)
 			if(3)
-				rootBarrage(target)
+				rootBarrage(target) //if at 4 (normal attacks) will simply continue
 		return
 
 	if((stab_cooldown <= world.time) && prob(50))

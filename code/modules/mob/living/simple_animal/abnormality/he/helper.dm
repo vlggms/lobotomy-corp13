@@ -52,12 +52,14 @@
 /datum/action/innate/abnormality_attack/helper_dash_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You won't dash anymore.</span>")
 		button_icon_state = "helper_toggle1"
+		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/helper_dash_toggle/Deactivate()
 		to_chat (A, "<span class='colossus'>You will now dash in that direction.</span>")
 		button_icon_state = "helper_toggle0"
+		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0
 
