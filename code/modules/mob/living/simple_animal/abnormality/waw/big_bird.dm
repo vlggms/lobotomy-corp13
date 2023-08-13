@@ -41,7 +41,7 @@
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 
-	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
@@ -55,11 +55,23 @@
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
 
-/datum/action/innate/abnormality_attack/hypnosis
-	name = "Hypnosis"
-	button_icon_state = ""
-	chosen_message = "<span class='colossus'>You will now lull random humans near you.</span>"
-	chosen_attack_num = 1
+/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle
+	name = "Toggle Hypnosis"
+	button_icon_state = "bigbird_toggle0"
+
+/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle/Activate()
+		to_chat (A, "<span class='colossus'>You won't lull humans anymore.</span>")
+		button_icon_state = "bigbird_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 2
+		active = 1
+
+/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle/Deactivate()
+		to_chat(A, "<span class='colossus'>You will now lull random humans near you.</span>")
+		button_icon_state = "v"
+		UpdateButtonIcon()
+		A.chosen_attack = 1
+		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()
 	if(client)

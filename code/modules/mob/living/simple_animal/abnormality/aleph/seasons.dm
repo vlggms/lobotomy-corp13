@@ -109,6 +109,33 @@
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 15
 
+	attack_action_types = list(
+		/datum/action/innate/abnormality_attack/seasons_cone,
+		/datum/action/innate/abnormality_attack/seasons_slam,
+		/datum/action/innate/abnormality_attack/seasons_normal
+		)
+
+/datum/action/innate/abnormality_attack/seasons_cone
+	name = "Breath"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
+	chosen_attack_num = 1
+
+/datum/action/innate/abnormality_attack/seasons_slam
+	name = "Slam"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now do a powerful slam.</span>"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/seasons_normal
+	name = "Normal Attacks"
+	icon_icon = 'icons/obj/wizard.dmi'
+	button_icon_state = "magicm"
+	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	chosen_attack_num = 3
+
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
 	. = ..()
@@ -281,10 +308,11 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if((cone_attack_cooldown <= world.time) && prob(35))
-		return ConeAttack(target)
-	if((slam_cooldown <= world.time) && prob(35))
-		return Slam()
+	if(!client)
+		if((cone_attack_cooldown <= world.time) && prob(35))
+			return ConeAttack(target)
+		if((slam_cooldown <= world.time) && prob(35))
+			return Slam()
 	if(ishuman(target))
 		if(Finisher(target))
 			return
@@ -293,6 +321,17 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/OpenFire()
 	if(!can_act)
 		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(cone_attack_cooldown <= world.time)
+					ConeAttack(target)
+			if(2)
+				if(slam_cooldown <= world.time)
+					Slam()
+		return
+
 	if(cone_attack_cooldown <= world.time)
 		ConeAttack(target)
 		return

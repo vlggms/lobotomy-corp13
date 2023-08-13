@@ -23,12 +23,14 @@
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claws"
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
+
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/ebony_root,
 	/datum/action/innate/abnormality_attack/ebony_barrier,
 	/datum/action/innate/abnormality_attack/ebony_barrage,
 	/datum/action/innate/abnormality_attack/ebony_normal
 	)
+
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1

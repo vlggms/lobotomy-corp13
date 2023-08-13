@@ -31,6 +31,9 @@
 	attack_verb_simple = "claw"
 	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
+
+	attack_action_types = list(/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle)
+
 	can_breach = TRUE
 	start_qliphoth = 3
 	ranged = TRUE
@@ -59,6 +62,24 @@
 	var/summon_cooldown_time = 60 SECONDS
 	var/bat_spawn_limit = 6
 	var/bat_spawn_number = 3
+
+/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle
+	name = "Toggle Banquet"
+	button_icon_state = "bigbird_toggle0"
+
+/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle/Activate()
+		to_chat (A, "<span class='colossus'>You won't feast anymore.</span>")
+		button_icon_state = "bigbird_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 2
+		active = 1
+
+/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle/Deactivate()
+		to_chat(A, "<span class='colossus'>You will now feast upon humans near you.</span>")
+		button_icon_state = "bigbird_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 1
+		active = 0
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -140,6 +161,14 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/OpenFire()
 	if(!can_act)
 		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if (banquet_cooldown < world.time)
+					Banquet()
+		return
+
 	if((banquet_cooldown < world.time) && (get_dist(src, target) < 4))
 		Banquet()
 		return
