@@ -151,3 +151,13 @@
 	- For every use beyond the first, the employee will become vulnerable to PALE damage.	<br>
 	- WARNING! Employees who use this abnormality have reported being attacked by an unknown entity when hurt by PALE damage, or otherwise injured significantly.	<br>
 	- Such attacks seem to harmlessly pass through other employees who are not affected by this abnormality. In addition, the attacks become larger and take more time to prepare with more uses."}
+
+//Shelter From The 27th Of March
+/obj/item/paper/fluff/info/tool/shelter
+	name = "T-09-82"
+	info = {"<h1><center>T-09-82</center></h1>	<br>
+	Name : Shelter From The 27th Of March<br>
+	Risk Class : HE	<br>
+	- A bomb shelter that completely protects its interior from all hazardous influences of the outside world, including light.	<br>
+	- Those who take refuge inside were perfectly shielded from physical and psychological attacks, even as far as being shielded from radio communications.	<br>
+	- However, this shelter, while perfectly safe on the inside, alters the reality of the outside to be even more hopeless. By keeping agents safely contained, it literally makes itself into the safest place on Earth."}

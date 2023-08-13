@@ -781,17 +781,6 @@
 "dN" = (
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/manager)
-"dP" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Sefirot Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "dQ" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -943,6 +932,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
+"eM" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "eO" = (
 /obj/machinery/light,
 /obj/machinery/camera/autoname{
@@ -2347,6 +2343,10 @@
 	name = "WARP Station Exit"
 	},
 /area/centcom/control)
+"jF" = (
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "jH" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 1
@@ -2373,6 +2373,17 @@
 	dir = 10
 	},
 /area/tdome/tdomeadmin)
+"jS" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Representative Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "69";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "jV" = (
 /turf/closed/indestructible/fakedoor{
 	name = "CentCom Warehouse"
@@ -3225,6 +3236,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"nY" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/manager)
 "oe" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "ccdroppod";
@@ -3971,10 +3989,6 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"rv" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "rx" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -4282,17 +4296,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
-"sJ" = (
-/obj/machinery/door/airlock/hatch{
-	hackProof = 1;
-	max_integrity = 25000000;
-	name = "Arcade Secure Storage";
-	normal_integrity = 25000000;
-	req_access_txt = "69";
-	whitelist_door = null
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
+"sI" = (
+/obj/machinery/light/small,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "sK" = (
 /obj/structure/chair/sofa/corp,
 /turf/open/floor/plasteel/dark,
@@ -5235,6 +5243,22 @@
 	dir = 1
 	},
 /area/tdome/tdomeobserve)
+"wt" = (
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/structure/closet/crate/pcorp,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "wu" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -5332,6 +5356,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
+"wU" = (
+/turf/closed/indestructible/reinforced,
+/area/shelter)
 "wV" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -6115,6 +6142,10 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"zC" = (
+/obj/effect/landmark/salesspawn,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/manager)
 "zD" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6341,6 +6372,16 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
+"AG" = (
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Representative";
+	payment_department = "SEC";
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/carpet/black,
+/area/facility_hallway/manager)
 "AH" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
@@ -7232,13 +7273,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
-"EQ" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "EV" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 5
@@ -7424,6 +7458,9 @@
 	dir = 1
 	},
 /area/tdome/tdomeobserve)
+"FI" = (
+/turf/closed/indestructible/rock,
+/area/shelter)
 "FJ" = (
 /obj/structure/table,
 /obj/item/pen/fourcolor,
@@ -7463,16 +7500,10 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
-"Gc" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Representative";
-	payment_department = "SEC";
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
+"Gh" = (
+/obj/item/jammer/self_activated,
+/turf/closed/indestructible/rock,
+/area/shelter)
 "Gj" = (
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 8
@@ -7669,17 +7700,6 @@
 	},
 /turf/open/floor/holofloor/hyperspace,
 /area/centcom/supplypod/supplypod_temp_holding)
-"Hs" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Representative Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "69";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Ht" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -7853,6 +7873,17 @@
 "Ie" = (
 /turf/closed/indestructible/riveted,
 /area/tdome/arena)
+"If" = (
+/obj/machinery/door/airlock/hatch{
+	hackProof = 1;
+	max_integrity = 25000000;
+	name = "Arcade Secure Storage";
+	normal_integrity = 25000000;
+	req_access_txt = "69";
+	whitelist_door = null
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "Il" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeobserve)
@@ -10349,6 +10380,15 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sf" = (
+/obj/structure/closet/crate/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
@@ -10858,6 +10898,17 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
+"UM" = (
+/obj/machinery/door/airlock/public/glass{
+	hackProof = 1;
+	max_integrity = 250000000;
+	name = "Sefirot Offices";
+	normal_integrity = 250000000;
+	req_access_txt = "67";
+	whitelist_door = 1
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "UP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -11256,6 +11307,18 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"WO" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/crate/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "WQ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -11501,6 +11564,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
+"XJ" = (
+/obj/structure/toolabnormality/shelter/exit,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "XL" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
@@ -11669,6 +11737,18 @@
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Yw" = (
+/obj/structure/closet/crate/pcorp,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/effect/shelter_forcefield,
+/turf/open/floor/shelter,
+/area/shelter)
 "YA" = (
 /turf/closed/indestructible/fakeglass,
 /area/centcom/hub)
@@ -15093,7 +15173,7 @@ uN
 UG
 Sa
 sA
-sJ
+If
 sA
 sA
 xR
@@ -17142,7 +17222,7 @@ pE
 OX
 ew
 Xc
-Hs
+jS
 dz
 RE
 NM
@@ -17152,7 +17232,7 @@ RE
 Sp
 OX
 OX
-Gc
+AG
 qp
 aa
 aa
@@ -17405,8 +17485,8 @@ RE
 uQ
 dY
 Ez
-EQ
-rv
+nY
+zC
 bn
 OX
 ew
@@ -17663,7 +17743,7 @@ tL
 tL
 tL
 TK
-rv
+zC
 aH
 cO
 nH
@@ -23049,9 +23129,9 @@ qp
 qp
 qp
 JP
-dP
+UM
 JP
-dP
+UM
 JP
 qp
 qp
@@ -71666,15 +71746,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
 aa
 aa
 aa
@@ -71923,15 +72003,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
 aa
 aa
 aa
@@ -72180,15 +72260,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+wU
+wU
+wU
+wU
+FI
+FI
 aa
 aa
 aa
@@ -72437,15 +72517,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+Sf
+WO
+wt
+wU
+FI
+FI
 aa
 aa
 aa
@@ -72694,15 +72774,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+jF
+jF
+jF
+wU
+FI
+FI
 aa
 aa
 aa
@@ -72951,15 +73031,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+eM
+XJ
+sI
+wU
+Gh
+FI
 aa
 aa
 aa
@@ -73208,15 +73288,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+jF
+jF
+jF
+wU
+FI
+FI
 aa
 aa
 aa
@@ -73465,15 +73545,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+Sf
+Yw
+wt
+wU
+FI
+FI
 aa
 aa
 aa
@@ -73722,15 +73802,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+wU
+wU
+wU
+wU
+wU
+FI
+FI
 aa
 aa
 aa
@@ -73979,15 +74059,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
 aa
 aa
 aa
@@ -74236,15 +74316,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
+FI
 aa
 aa
 aa

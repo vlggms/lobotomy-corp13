@@ -75,6 +75,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
+"bx" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "bA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -534,13 +538,9 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "is" = (
-/obj/machinery/light,
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/goldrush{
-	armor = 0
-	},
+/obj/structure/toolabnormality/wishwell,
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/department_main/extraction)
 "it" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -551,6 +551,7 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 9
 	},
+/obj/machinery/vending/cola/shamblers,
 /turf/open/indestructible/white,
 /area/department_main/safety)
 "iz" = (
@@ -666,6 +667,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/cigarette,
 /turf/open/indestructible/white,
 /area/department_main/safety)
 "kB" = (
@@ -1058,6 +1060,17 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
 "qf" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
+/obj/item/clothing/accessory/armband/lobotomy/safety,
 /obj/effect/landmark/department_center,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -1335,18 +1348,8 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "uF" = (
-/obj/structure/table/wood/fancy/green,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/obj/item/clothing/accessory/armband/lobotomy/safety,
-/turf/open/floor/carpet/green,
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "uJ" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
@@ -1727,6 +1730,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"AJ" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "AN" = (
 /obj/effect/turf_decal/siding/green/corner,
 /turf/open/indestructible/white,
@@ -2051,12 +2058,11 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Fn" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/praetorian{
-	armor = null
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/department_main/extraction)
 "Fx" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -2101,6 +2107,12 @@
 /obj/machinery/blackbox_recorder,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"Gw" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "GA" = (
 /obj/machinery/light,
 /obj/structure/rack,
@@ -2130,9 +2142,6 @@
 "Hf" = (
 /obj/machinery/light,
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/mimicry{
-	armor = null
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Hh" = (
@@ -2161,10 +2170,10 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "HE" = (
-/obj/effect/turf_decal/siding/green{
-	dir = 6
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
 	},
-/turf/open/floor/carpet/green,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "HH" = (
 /obj/machinery/camera/autoname,
@@ -2395,11 +2404,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Li" = (
-/obj/effect/spawner/randomsnackvend,
+/obj/effect/turf_decal/siding/green{
+	dir = 8
+	},
 /obj/effect/turf_decal/siding/green{
 	dir = 10
 	},
-/turf/open/indestructible/white,
+/turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Ln" = (
 /obj/structure/closet/crate,
@@ -2411,16 +2422,16 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/safety)
 "LR" = (
-/obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/siding/green,
+/obj/effect/turf_decal/siding/green{
+	dir = 4
+	},
+/obj/effect/spawner/randomsnackvend,
 /turf/open/indestructible/white,
 /area/department_main/safety)
 "Mc" = (
-/obj/machinery/vending/cola/shamblers,
 /obj/effect/turf_decal/siding/green{
 	dir = 6
 	},
-/obj/machinery/light,
 /turf/open/indestructible/white,
 /area/department_main/safety)
 "Mf" = (
@@ -2444,6 +2455,10 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"Ms" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Mu" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
@@ -2723,8 +2738,12 @@
 /area/department_main/discipline)
 "Pi" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 10
+	dir = 4
 	},
+/obj/effect/turf_decal/siding/green{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/green,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Pj" = (
@@ -2781,6 +2800,10 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
+"Qx" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "QC" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -2989,9 +3012,6 @@
 /area/facility_hallway/safety)
 "Tw" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/mockery{
-	armor = null
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "TF" = (
@@ -3265,7 +3285,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "Xz" = (
-/turf/open/floor/carpet/green,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "XE" = (
 /turf/closed/indestructible/reinforced,
@@ -18699,8 +18720,8 @@ dq
 YP
 Uh
 oS
-oS
-Pi
+Li
+HR
 HR
 TF
 Mm
@@ -18955,9 +18976,9 @@ YS
 Hw
 rz
 HM
-Xz
 sW
 Hk
+HR
 HR
 Kd
 Mm
@@ -19212,10 +19233,10 @@ YS
 YS
 iz
 HM
-Xz
 tz
 Hk
 AN
+mv
 Kw
 Mm
 MD
@@ -19470,9 +19491,9 @@ YS
 iK
 HM
 qf
-uF
 Hk
 HX
+YS
 YS
 YS
 YS
@@ -19726,13 +19747,13 @@ VI
 VI
 YP
 HM
-Xz
 xc
 Hk
-HX
-YS
-YS
-QD
+Is
+Qx
+bx
+VI
+VI
 Zs
 qW
 ru
@@ -19983,13 +20004,13 @@ VI
 VI
 YP
 HM
-Xz
 yp
 Hk
-Is
-Li
-YS
-QD
+HR
+HE
+VI
+uF
+Xz
 Zs
 qW
 ru
@@ -20241,12 +20262,12 @@ VI
 YP
 kJ
 vm
-vm
-HE
-HR
-LR
-YS
-QD
+Pi
+AN
+Qx
+VI
+VI
+VI
 Zs
 qW
 ru
@@ -20496,14 +20517,14 @@ YS
 YS
 YS
 nE
-mv
+LR
 BR
-HR
 AN
-mv
 Mc
 YS
-QD
+YS
+YS
+YS
 Zs
 qW
 ru
@@ -52707,7 +52728,7 @@ pw
 RO
 nn
 yq
-Fn
+Tw
 XE
 QD
 QD
@@ -53221,7 +53242,7 @@ pw
 KM
 jE
 yq
-is
+Hf
 XE
 QD
 QD
@@ -56031,9 +56052,9 @@ QD
 KP
 KP
 KP
-KP
-KP
-KP
+Ms
+Fn
+Ms
 KP
 QD
 QD
@@ -56287,11 +56308,11 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
+KP
+AJ
+kU
+kU
+KP
 QD
 QD
 QD
@@ -56544,11 +56565,11 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
+KP
+Gw
+is
+kU
+KP
 QD
 QD
 QD
@@ -56801,11 +56822,11 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
+KP
+kU
+kU
+kU
+KP
 QD
 QD
 QD
@@ -57058,11 +57079,11 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
-QD
+KP
+KP
+KP
+KP
+KP
 QD
 QD
 QD
