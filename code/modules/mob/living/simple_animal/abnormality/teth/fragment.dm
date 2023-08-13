@@ -1,4 +1,4 @@
-#define FRAGMENT_SONG_COOLDOWN (10 SECONDS)
+#define FRAGMENT_SONG_COOLDOWN (14 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fragment
 	name = "Fragment of the Universe"
@@ -20,7 +20,6 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	faction = list("hostile")
-	attack_action_types = list(/datum/action/cooldown/fragment_song)
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
@@ -43,14 +42,16 @@
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
 
-//Playables buttons
+	//PLAYABLES ACTIONS
+	attack_action_types = list(/datum/action/cooldown/fragment_song)
+
 /datum/action/cooldown/fragment_song
 	name = "Sing"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "fragment"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = FRAGMENT_SONG_COOLDOWN //12 seconds
+	cooldown_time = FRAGMENT_SONG_COOLDOWN //14 seconds
 
 /datum/action/cooldown/fragment_song/Trigger()
 	if(!..())

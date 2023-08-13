@@ -37,7 +37,6 @@
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"
 	faction = list("blueshep")
-	attack_action_types = list(/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle)
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 4
@@ -106,21 +105,23 @@
 				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
 				)
 
-//Playables Buttons
-/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/sheperd_spin_toggle)
+
+/datum/action/innate/abnormality_attack/sheperd_spin_toggle
 	name = "Toggle Spin"
 	button_icon_state = "bluesheperd_toggle0"
 
-/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Activate()
+/datum/action/innate/abnormality_attack/sheperd_spin_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
-		button_icon_state = "bluesheperd_toggle1"
+		button_icon_state = "sheperd_toggle1"
 		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
-/datum/action/innate/abnormality_attack/bluesheperd_spin_toggle/Deactivate()
+/datum/action/innate/abnormality_attack/sheperd_spin_toggle/Deactivate()
 		to_chat (A, "<span class='colossus'>You will now execute a spinning slash when ready.</span>")
-		button_icon_state = "bluesheperd_toggle0"
+		button_icon_state = "sheperd_toggle0"
 		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0
@@ -195,9 +196,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	slash_current-=1
-	if(client && chosen_attack == 2)
-		return
 	if(slash_current == 0)
+
+		if(client && chosen_attack == 2)
+			return
+
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE

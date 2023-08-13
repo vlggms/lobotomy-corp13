@@ -28,7 +28,6 @@
 	melee_damage_type = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	start_qliphoth = 2
-	attack_action_types = list(/datum/action/innate/abnormality_attack/porccubus_dash_toggle)
 	can_breach = TRUE
 	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg'
@@ -51,20 +50,23 @@
 	var/teleport_cooldown
 	var/damage_taken = FALSE
 
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/porccubus_dash_toggle)
+
 /datum/action/innate/abnormality_attack/porccubus_dash_toggle
 	name = "Toggle Dash"
-	button_icon_state = "bigbird_toggle0"
+	button_icon_state = "porccubus_toggle0"
 
 /datum/action/innate/abnormality_attack/porccubus_dash_toggle/Activate()
 		to_chat (A, "<span class='colossus'>You won't dash anymore.</span>")
-		button_icon_state = "bigbird_toggle1"
+		button_icon_state = "porccubus_toggle1"
 		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/porccubus_dash_toggle/Deactivate()
 		to_chat(A, "<span class='colossus'>You will now dash when possible.</span>")
-		button_icon_state = "bigbird_toggle1"
+		button_icon_state = "porccubus_toggle0"
 		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0

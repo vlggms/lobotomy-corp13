@@ -69,8 +69,8 @@
 //Playables buttons
 /datum/action/cooldown/sphinx_gaze
 	name = "Sphinx's Gaze"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "sphinx"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds

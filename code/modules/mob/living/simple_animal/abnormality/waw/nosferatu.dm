@@ -1,3 +1,4 @@
+#define NOSFERATU_BANQUET_COOLDOWN (12 SECONDS)
 //Coded by Coxswain, sprited by crabby
 /mob/living/simple_animal/hostile/abnormality/nosferatu
 	name = "Nosferatu"
@@ -31,9 +32,6 @@
 	attack_verb_simple = "claw"
 	faction = list("hostile")
 	attack_sound = 'sound/abnormalities/nosferatu/attack.ogg'
-
-	attack_action_types = list(/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle)
-
 	can_breach = TRUE
 	start_qliphoth = 3
 	ranged = TRUE
@@ -63,23 +61,27 @@
 	var/bat_spawn_limit = 6
 	var/bat_spawn_number = 3
 
-/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle
-	name = "Toggle Banquet"
-	button_icon_state = "bigbird_toggle0"
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/nosferatu_banquet)
 
-/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You won't feast anymore.</span>")
-		button_icon_state = "bigbird_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
+//Playables buttons
+/datum/action/cooldown/nosferatu_banquet
+	name = "Banquet"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nosferatu"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = NOSFERATU_BANQUET_COOLDOWN //12 seconds
 
-/datum/action/innate/abnormality_attack/nosferatu_banquet_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You will now feast upon humans near you.</span>")
-		button_icon_state = "bigbird_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+/datum/action/cooldown/nosferatu_banquet/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nosferatu))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/nosferatu/nosferatu = owner
+	StartCooldown()
+	nosferatu.Banquet()
+	return TRUE
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -163,10 +165,6 @@
 		return
 
 	if(client)
-		switch(chosen_attack)
-			if(1)
-				if (banquet_cooldown < world.time)
-					Banquet()
 		return
 
 	if((banquet_cooldown < world.time) && (get_dist(src, target) < 4))
@@ -258,3 +256,5 @@
 			B = new /obj/effect/decal/cleanable/blood(get_turf(src))
 			B.bloodiness = 100
 	return ..()
+
+#undef NOSFERATU_BANQUET_COOLDOWN

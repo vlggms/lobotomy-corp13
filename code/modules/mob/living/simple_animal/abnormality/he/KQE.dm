@@ -20,7 +20,6 @@
 	pixel_x = -24
 	base_pixel_x = -24
 	stat_attack = HARD_CRIT
-	attack_action_types = list(/datum/action/innate/abnormality_attack/kqe_grab_toggle)
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
@@ -53,19 +52,25 @@
 	var/heart_threshold = 700
 	var/heart_list = list()
 
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/kqe_grab_toggle)
+
 /datum/action/innate/abnormality_attack/kqe_grab_toggle
 	name = "Helper Dash Toggle"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "helper"
+	button_icon_state = "kqe_toggle0"
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/kqe_grab_toggle/Activate()
 		to_chat (A, "<span class='colossus'>You will attempt to grab a visitor.</span>")
+		button_icon_state = "kqe_toggle1"
+		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 1
 
 /datum/action/innate/abnormality_attack/kqe_grab_toggle/Deactivate()
 		to_chat(A, "<span class='colossus'>You won't grab visitors anymore.</span>")
+		button_icon_state = "kqe_toggle0"
+		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 0
 
@@ -177,7 +182,7 @@
 /mob/living/simple_animal/hostile/abnormality/kqe/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if ((grab_cooldown <= world.time) && prob(35) && (!client))
+	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
 		var/turf/target_turf = get_turf(target)
 		return ClawGrab(target_turf)
 	return Whip_Attack()

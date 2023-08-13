@@ -43,8 +43,6 @@
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 
-	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
 		/datum/ego_datum/armor/lamp
@@ -57,12 +55,13 @@
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
 
-//Playables buttons
 /datum/action/cooldown/big_bird_hypnosis
 	name = "Dazzle"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "big_bird"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = BIGBIRD_HYPNOSIS_COOLDOWN //16 seconds
@@ -73,8 +72,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
-	big_bird.hypnotize()
 	StartCooldown()
+	big_bird.hypnotize()
 	return TRUE
 
 

@@ -18,7 +18,6 @@
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash_toggle)
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
@@ -44,7 +43,9 @@
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 
-//Playables Buttons
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash_toggle)
+
 /datum/action/innate/abnormality_attack/helper_dash_toggle
 	name = "Toggle Dash"
 	button_icon_state = "helper_toggle0"
@@ -82,8 +83,6 @@
 		switch(chosen_attack)
 			if(1)
 				helper_dash(target)
-			if(2)
-				return
 		return
 
 	if(dash_cooldown <= world.time)

@@ -16,7 +16,6 @@
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
-	attack_action_types = list(/datum/action/innate/abnormality_attack/funeral_butterfly_toggle)
 	can_breach = TRUE
 	can_buckle = FALSE
 	vision_range = 14
@@ -56,7 +55,9 @@
 	var/list/swarm_killed = list()
 	var/can_act = TRUE
 
-//Playables Buttons
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/funeral_butterfly_toggle)
+
 /datum/action/innate/abnormality_attack/funeral_butterfly_toggle
 	name = "Toggle Casket Swarm"
 	button_icon_state = "funeral_toggle0"

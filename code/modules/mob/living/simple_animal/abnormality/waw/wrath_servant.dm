@@ -70,6 +70,7 @@
 	var/ending = FALSE
 	var/hunted_target
 
+	//PLAYABLES ACTIONS
 	attack_action_types = list(
 		/datum/action/cooldown/wrath_smash,
 		/datum/action/cooldown/wrath_dash
@@ -77,8 +78,8 @@
 
 /datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "wrath_smash"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = SERVANT_SMASH_COOLDOWN //30 seconds
@@ -95,8 +96,7 @@
 
 /datum/action/cooldown/wrath_dash
 	name = "Dash"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	button_icon_state = "wrath_dash"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = SERVANT_DASH_COOLDOWN //15 seconds

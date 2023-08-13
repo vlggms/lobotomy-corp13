@@ -111,16 +111,16 @@
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 15
 
+	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
 		/datum/action/innate/abnormality_attack/seasons_cone_toggle
 		)
 
-//Playables buttons
 /datum/action/cooldown/seasons_slam
 	name = "Slam"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "swan"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "generic_slam"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = SEASONS_SLAM_COOLDOWN //20 seconds
@@ -131,27 +131,28 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/seasons))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/seasons = owner
-	seasons.Slam()
 	StartCooldown()
+	seasons.Slam()
 	return TRUE
 
 /datum/action/innate/abnormality_attack/seasons_cone_toggle
 	name = "Toggle Breath"
-	button_icon_state = "helper_toggle0"
+	button_icon_state = "generic_toggle0"
 
 /datum/action/innate/abnormality_attack/seasons_cone_toggle/Activate()
 		to_chat(A, "<span class='colossus'>You won't use your breath anymore.</span>")
-		button_icon_state = "helper_toggle1"
+		button_icon_state = "generic_toggle1"
 		UpdateButtonIcon()
 		A.chosen_attack = 2
 		active = 1
 
 /datum/action/innate/abnormality_attack/seasons_cone_toggle/Deactivate()
 		to_chat (A, "<span class='colossus'>You will now breath a cone of elemental energy.</span>")
-		button_icon_state = "helper_toggle0"
+		button_icon_state = "generic_toggle0"
 		UpdateButtonIcon()
 		A.chosen_attack = 1
 		active = 0
+
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()

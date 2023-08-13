@@ -46,8 +46,6 @@
 	base_pixel_x = -16
 	pixel_x = -16
 
-	attack_action_types = list(/datum/action/cooldown/blackswan_umbrella)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/swan,
 		/datum/ego_datum/armor/swan
@@ -73,9 +71,12 @@
 	//cooldowns
 	var/umbrella_cooldown = 0
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/blackswan_umbrella)
+
 /datum/action/cooldown/blackswan_umbrella
 	name = "Black Swan's Umbrella"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = "swan"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
@@ -90,6 +91,7 @@
 	swan.OpenUmbrella()
 	StartCooldown()
 	return TRUE
+
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/Initialize()
 	. = ..()
