@@ -1,5 +1,7 @@
 #define STATUS_EFFECT_FREEZING /datum/status_effect/freezing
 #define STATUS_EFFECT_FOGBOUND /datum/status_effect/fogbound
+#define SEASONS_SLAM_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/seasons
 	name = "God of the Seasons"
 	desc = "By jove, what is that?!?"
@@ -110,31 +112,46 @@
 	var/pulse_damage = 15
 
 	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/seasons_cone,
-		/datum/action/innate/abnormality_attack/seasons_slam,
-		/datum/action/innate/abnormality_attack/seasons_normal
+		/datum/action/cooldown/seasons_slam,
+		/datum/action/innate/abnormality_attack/seasons_cone_toggle
 		)
 
-/datum/action/innate/abnormality_attack/seasons_cone
-	name = "Breath"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
-	chosen_attack_num = 1
-
-/datum/action/innate/abnormality_attack/seasons_slam
+//Playables buttons
+/datum/action/cooldown/seasons_slam
 	name = "Slam"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now do a powerful slam.</span>"
-	chosen_attack_num = 2
+	icon_icon = 'icons/obj/ego_weapons.dmi'
+	button_icon_state = "swan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SEASONS_SLAM_COOLDOWN //20 seconds
 
-/datum/action/innate/abnormality_attack/seasons_normal
-	name = "Normal Attacks"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
-	chosen_attack_num = 3
+/datum/action/cooldown/seasons_slam/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/seasons))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/seasons/seasons = owner
+	seasons.Slam()
+	StartCooldown()
+	return TRUE
+
+/datum/action/innate/abnormality_attack/seasons_cone_toggle
+	name = "Toggle Breath"
+	button_icon_state = "helper_toggle0"
+
+/datum/action/innate/abnormality_attack/seasons_cone_toggle/Activate()
+		to_chat(A, "<span class='colossus'>You won't use your breath anymore.</span>")
+		button_icon_state = "helper_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 2
+		active = 1
+
+/datum/action/innate/abnormality_attack/seasons_cone_toggle/Deactivate()
+		to_chat (A, "<span class='colossus'>You will now breath a cone of elemental energy.</span>")
+		button_icon_state = "helper_toggle0"
+		UpdateButtonIcon()
+		A.chosen_attack = 1
+		active = 0
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
@@ -327,10 +344,7 @@
 			if(1)
 				if(cone_attack_cooldown <= world.time)
 					ConeAttack(target)
-			if(2)
-				if(slam_cooldown <= world.time)
-					Slam()
-		return
+		return ..()
 
 	if(cone_attack_cooldown <= world.time)
 		ConeAttack(target)
@@ -839,3 +853,5 @@
 /obj/effect/season_effect/breath/spring/Initialize()
 	. = ..()
 	icon_state = pick("Light1", "Light1", "Light3")
+
+#undef SEASONS_SLAM_COOLDOWN

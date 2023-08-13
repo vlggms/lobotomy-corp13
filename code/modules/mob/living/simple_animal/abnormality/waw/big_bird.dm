@@ -1,3 +1,5 @@
+#define BIGBIRD_HYPNOSIS_COOLDOWN (16 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/big_bird
 	name = "Big Bird"
 	desc = "A large, many-eyed bird that patrols the dark forest with an everlasting lamp. \
@@ -41,7 +43,7 @@
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 
-	attack_action_types = list(/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle)
+	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
@@ -55,29 +57,29 @@
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
 
-/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle
-	name = "Toggle Hypnosis"
-	button_icon_state = "bigbird_toggle0"
 
-/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You won't lull humans anymore.</span>")
-		button_icon_state = "bigbird_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
+//Playables buttons
+/datum/action/cooldown/big_bird_hypnosis
+	name = "Dazzle"
+	icon_icon = 'icons/obj/ego_weapons.dmi'
+	button_icon_state = "swan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = BIGBIRD_HYPNOSIS_COOLDOWN //16 seconds
 
-/datum/action/innate/abnormality_attack/bigbird_hypnosis_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You will now lull random humans near you.</span>")
-		button_icon_state = "v"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+/datum/action/cooldown/big_bird_hypnosis/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
+	big_bird.hypnotize()
+	StartCooldown()
+	return TRUE
+
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()
 	if(client)
-		switch(chosen_attack)
-			if(1)
-				hypnotize()
 		return
 
 	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time)
@@ -163,3 +165,5 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
+
+#undef BIGBIRD_HYPNOSIS_COOLDOWN

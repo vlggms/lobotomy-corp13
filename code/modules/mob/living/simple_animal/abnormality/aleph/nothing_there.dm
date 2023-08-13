@@ -1,3 +1,5 @@
+#define NT_GOODBYE_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there
 	name = "Nothing There"
 	desc = "A wicked creature that consists of various human body parts and organs."
@@ -21,9 +23,8 @@
 	base_pixel_x = -8
 	stat_attack = HARD_CRIT
 	attack_action_types = list(
-	/datum/action/innate/abnormality_attack/nt_goodbye,
-	/datum/action/innate/abnormality_attack/nt_hello,
-	/datum/action/innate/abnormality_attack/nt_normal
+	/datum/action/cooldown/nt_goodbye,
+	/datum/action/innate/abnormality_attack/nt_hello_toggle
 	)
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
@@ -71,26 +72,44 @@
 	var/worker = null
 
 //Playables Buttons
-/datum/action/innate/abnormality_attack/nt_goodbye
+
+/datum/action/cooldown/nt_goodbye
 	name = "Goodbye"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now do a devastating slash attack.</span>"
-	chosen_attack_num = 1
+	icon_icon = 'icons/obj/ego_weapons.dmi'
+	button_icon_state = "swan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = NT_GOODBYE_COOLDOWN //20 seconds
 
-/datum/action/innate/abnormality_attack/nt_hello
-	name = "Hello"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now shoot a strong sonic wave.</span>"
-	chosen_attack_num = 2
+/datum/action/cooldown/nt_goodbye/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nothing_there))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/nothing_there/nothing_there = owner
+	if(nothing_there.current_stage != 3)
+		return FALSE
+	nothing_there.Goodbye()
+	StartCooldown()
+	return TRUE
 
-/datum/action/innate/abnormality_attack/nt_normal
-	name = "Normal Attack"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now pummel foes with your hand.</span>"
-	chosen_attack_num = 3
+/datum/action/innate/abnormality_attack/nt_hello_toggle
+	name = "Toggle Hello"
+	button_icon_state = "helper_toggle0"
+
+/datum/action/innate/abnormality_attack/nt_hello_toggle/Activate()
+		to_chat(A, "<span class='colossus'>You won't shoot anymore.</span>")
+		button_icon_state = "helper_toggle1"
+		UpdateButtonIcon()
+		A.chosen_attack = 2
+		active = 1
+
+/datum/action/innate/abnormality_attack/nt_hello_toggle/Deactivate()
+		to_chat (A, "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>")
+		button_icon_state = "helper_toggle0"
+		UpdateButtonIcon()
+		A.chosen_attack = 1
+		active = 0
 
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
@@ -148,15 +167,13 @@
 	if(!can_act)
 		return
 	if(current_stage == 3)
+
 		if(client)
 			switch(chosen_attack)
 				if(1)
-					Goodbye()
-				if(2)
 					Hello(target)
-				if(3)
-					return
 			return
+
 		if(hello_cooldown <= world.time)
 			Hello(target)
 		if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
@@ -398,3 +415,5 @@
 		new /obj/effect/temp_visual/flesh(T)
 	forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
+
+#undef NT_GOODBYE_COOLDOWN

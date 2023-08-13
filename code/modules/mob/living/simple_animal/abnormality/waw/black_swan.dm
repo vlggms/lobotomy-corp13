@@ -74,7 +74,7 @@
 	var/umbrella_cooldown = 0
 
 /datum/action/cooldown/blackswan_umbrella
-	name = "Black Swan Umbrella"
+	name = "Black Swan's Umbrella"
 	icon_icon = 'icons/obj/ego_weapons.dmi'
 	button_icon_state = "swan"
 	check_flags = AB_CHECK_CONSCIOUS

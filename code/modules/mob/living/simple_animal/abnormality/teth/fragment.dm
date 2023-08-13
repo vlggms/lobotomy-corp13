@@ -1,3 +1,5 @@
+#define FRAGMENT_SONG_COOLDOWN (10 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/fragment
 	name = "Fragment of the Universe"
 	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
@@ -18,7 +20,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	faction = list("hostile")
-	attack_action_types = list(/datum/action/innate/abnormality_attack/fragment_song_toggle)
+	attack_action_types = list(/datum/action/cooldown/fragment_song)
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
@@ -41,23 +43,25 @@
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/fragment_song_toggle
-	name = "Toggle Song"
-	button_icon_state = "bluesheperd_toggle0"
+//Playables buttons
+/datum/action/cooldown/fragment_song
+	name = "Sing"
+	icon_icon = 'icons/obj/ego_weapons.dmi'
+	button_icon_state = "swan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = FRAGMENT_SONG_COOLDOWN //12 seconds
 
-/datum/action/innate/abnormality_attack/fragment_song_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You won't sing your song anymore.</span>")
-		button_icon_state = "bluesheperd_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 1
+/datum/action/cooldown/fragment_song/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/fragment))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/fragment/fragment = owner
+	StartCooldown()
+	fragment.song()
+	return TRUE
 
-/datum/action/innate/abnormality_attack/fragment_song_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You will now deal white damage to all enemies around you.</span>")
-		button_icon_state = "bluesheperd_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -65,13 +69,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/OpenFire()
-	if(!can_act)
-		return
-
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				song()
+	if(!can_act || client)
 		return
 
 	if(song_cooldown <= world.time)
@@ -120,3 +118,5 @@
 	else // Breaching
 		icon_state = "fragment_breach"
 	icon_living = icon_state
+
+#undef FRAGMENT_SONG_COOLDOWN

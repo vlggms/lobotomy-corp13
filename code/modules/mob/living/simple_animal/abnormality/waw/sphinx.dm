@@ -1,4 +1,6 @@
 //Coded by Coxswain
+#define SPHINX_GAZE_COOLDOWN (12 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/sphinx
 	name = "Sphinx"
 	desc = "A gigantic stone feline."
@@ -18,7 +20,7 @@
 	melee_damage_lower = 70
 	melee_damage_upper = 100
 	attack_sound = 'sound/abnormalities/sphinx/attack.ogg'
-	attack_action_types = list(/datum/action/innate/abnormality_attack/sphinx_gaze_toggle)
+	attack_action_types = list(/datum/action/cooldown/sphinx_gaze)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
@@ -64,21 +66,25 @@
 	var/curse_cooldown
 	var/curse_cooldown_time = 12 SECONDS
 
-/datum/action/innate/abnormality_attack/sphinx_gaze_toggle
-	name = "Sphinx Gaze Toggle"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "helper"
-	chosen_attack_num = 1
+//Playables buttons
+/datum/action/cooldown/sphinx_gaze
+	name = "Sphinx's Gaze"
+	icon_icon = 'icons/obj/ego_weapons.dmi'
+	button_icon_state = "swan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
 
-/datum/action/innate/abnormality_attack/sphinx_gaze_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You will now use your petrifying gaze.</span>")
-		A.chosen_attack = 1
-		active = 1
+/datum/action/cooldown/sphinx_gaze/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sphinx))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	StartCooldown()
+	sphinx.StoneVision(FALSE)
+	return TRUE
 
-/datum/action/innate/abnormality_attack/sphinx_gaze_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You won't use your gaze anymore.</span>")
-		A.chosen_attack = 2
-		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/Initialize() //1 in 100 chance for cringe aah aah sphinx by popular demand
 	. = ..()
@@ -251,14 +257,7 @@
 	LoseTarget(H)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/OpenFire()
-	if(!can_act)
-		return
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				StoneVision(FALSE)
-			if(2)
-				return
+	if(!can_act || client)
 		return
 
 	if((curse_cooldown <= world.time))
@@ -547,3 +546,5 @@
 		insert_showpiece(W, user)
 	else
 		return ..()
+
+#undef SPHINX_GAZE_COOLDOWN
