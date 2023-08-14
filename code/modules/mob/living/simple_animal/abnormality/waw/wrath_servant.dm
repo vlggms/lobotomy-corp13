@@ -96,6 +96,7 @@
 
 /datum/action/cooldown/wrath_dash
 	name = "Dash"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = "wrath_dash"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
@@ -385,6 +386,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	if(client)
+		var/original_speed = speed
+		set_varspeed(-0.5)
+		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 1.5 SECONDS) //bigger duration since delay makes things wacky for the player
+		return
 	TemporarySpeedChange(-4, 1 SECONDS)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
