@@ -56,7 +56,7 @@
 	attack_action_types = list(/datum/action/innate/abnormality_attack/kqe_grab_toggle)
 
 /datum/action/innate/abnormality_attack/kqe_grab_toggle
-	name = "Helper Dash Toggle"
+	name = "Claw Toggle"
 	button_icon_state = "kqe_toggle0"
 	chosen_attack_num = 2
 
