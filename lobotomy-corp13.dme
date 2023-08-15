@@ -2743,6 +2743,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\drowned_sisters.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\fairy_gentleman.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\fairy_long_legs.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\falada.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\forsaken_murderer.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\fragment.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\lady_facing_the_wall.dm"
