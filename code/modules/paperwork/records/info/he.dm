@@ -393,4 +393,11 @@
 		"A baseless accusation will reduce the Qliphoth counter by 1.",
 		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")
 
-
+//Missed Reaper
+/obj/item/paper/fluff/info/he/missed_reaper
+	abno_type = /mob/living/simple_animal/hostile/abnormality/missed_reaper
+	abno_code = "O-01-13"
+	abno_info = list(
+		"When an employee panicked during work or had a Temperance level lower than 3, they were hypnotized and killed by the abnormality.",
+		"When an employee with Justice Level of 4 or higher completed the work, Missed Reaper's Qliphoth Counter lowered by 1.",
+		"When the Qliphoth counter reached 0, shadows covered an area near certain employees, dealing pale damage to those in contact with it.")
