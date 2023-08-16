@@ -170,8 +170,8 @@
 
 	//Hiteffect stuff
 
-	for(var/turf/T in range(1, T))
-		var/list/new_hits = HurtInTurf(T, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+	for(var/turf/U in range(1, T))
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			L.visible_message("<span class='boldwarning'>[src] crunches [L]!</span>","<span class='userdanger'>[src] rends you with its teeth!</span>")
