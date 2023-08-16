@@ -100,6 +100,7 @@
 /datum/outfit/job/raven/support
 	name = "R-Corp Support Raven"
 	jobtype = /datum/job/raven/support
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravensup
 	backpack_contents = list(
 		/obj/item/wrench = 1,
 		/obj/item/powered_gadget/slowingtrapmk1 = 1,
