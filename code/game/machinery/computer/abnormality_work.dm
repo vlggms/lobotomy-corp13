@@ -40,13 +40,13 @@
 	. = ..()
 	if(!datum_reference)
 		return
-	. += "<span class='notice'>This console is connected to [datum_reference.name] containment zone.</span>"
+	. += "<span class='info'>This console is connected to [datum_reference.name]'s containment unit.</span>"
 	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
-	. += "<span class='notice'>Threat level:</span> [threat_level]<span class='notice'>.</span>" // Professionals have standards
+	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
-		. += "<span class='notice'>Current qliphoth level: [datum_reference.qliphoth_meter].</span>"
+		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
 	if(datum_reference.overload_chance != 0)
-		. += "<span class='warning'>Current success chance modifier: [datum_reference.overload_chance]%.</span>"
+		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
@@ -58,7 +58,7 @@
 				melt_text = " of Waves. Upon clearing the meltdown the dark waves will disappear"
 			if(MELTDOWN_CYAN)
 				melt_text = " of Pillars. Success rates reduced by 20%. Failing to clear it will cause Arbiter to perform their deadly attack"
-		. += "<span class='warning'>The chamber is currently in the process of meltdown[melt_text]. Time left: [meltdown_time].</span>"
+		. += "<span class='warning'>The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].</span>"
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
@@ -70,7 +70,7 @@
 	var/dat
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
 	if(datum_reference.overload_chance != 0)
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Success Rates are modified by [datum_reference.overload_chance]%.</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
@@ -99,17 +99,17 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
-			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN))
-				to_chat(usr, "<span class='warning'>Console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work training rabbit
+				to_chat(usr, "<span class='warning'>The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
 				return
 			if(datum_reference.working)
-				to_chat(usr, "<span class='warning'>Console is currently being operated!</span>")
+				to_chat(usr, "<span class='warning'>The console is currently being operated!</span>")
 				return
 			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
-				to_chat(usr, "<span class='warning'>Abnormality is currently in the process of revival!</span>")
+				to_chat(usr, "<span class='warning'>The Abnormality is currently in the process of revival!</span>")
 				return
 			if(!(datum_reference.current.status_flags & GODMODE))
-				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
+				to_chat(usr, "<span class='warning'>The Abnormality has breached containment!</span>")
 				return
 			var/work_attempt = datum_reference.current.AttemptWork(usr, href_list["do_work"])
 			if(!work_attempt)
