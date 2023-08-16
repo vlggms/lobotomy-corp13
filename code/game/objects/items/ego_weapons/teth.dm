@@ -323,8 +323,7 @@
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 0))
 		new /obj/effect/temp_visual/smash1(T)
-		for(var/mob/living/L in T.contents)
-			L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 
@@ -415,13 +414,11 @@
 	var/turf/T = get_turf(src)
 	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
-	for(var/mob/living/L in T)
-		if(creator.faction_check_mob(L))
-			continue
+
+	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
 		if(creator)
 			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
-		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
-		L.apply_damage(resonance_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()

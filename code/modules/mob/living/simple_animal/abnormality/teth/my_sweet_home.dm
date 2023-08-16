@@ -95,10 +95,7 @@
 	var/turf/target_turf = get_turf(src)
 	for(var/turf/open/T in view(target_turf, 3))
 		hit_turfs |= T
-		for(var/mob/living/L in T.contents)
-			if(L == src)
-				continue
-			L.apply_damage(ranged_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in HurtInTurf(T, list(), ranged_damage, RED_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)

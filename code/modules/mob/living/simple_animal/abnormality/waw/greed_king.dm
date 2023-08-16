@@ -169,24 +169,28 @@
 	forceMove(T)
 
 	//Hiteffect stuff
-	for(var/mob/living/L in range(1, T))
-		if((L in been_hit) || L == src)
-			continue
-		been_hit+=L
-		visible_message("<span class='boldwarning'>[src] crunches [L]!</span>")
-		to_chat(L, "<span class='userdanger'>[src] rends you with its teeth!</span>")
-		playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
-		playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
-		var/turf/LT = get_turf(L)
-		new /obj/effect/temp_visual/kinetic_blast(LT)
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		else
-			L.adjustRedLoss(80)
-		if(L.stat >= HARD_CRIT)
-			L.gib()
-			continue
+
+	for(var/turf/T in range(1, T))
+		var/list/new_hits = HurtInTurf(T, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			L.visible_message("<span class='boldwarning'>[src] crunches [L]!</span>","<span class='userdanger'>[src] rends you with its teeth!</span>")
+			playsound(L, attack_sound, 75, 1)
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			else
+				L.adjustRedLoss(80)
+			if(L.stat >= HARD_CRIT)
+				L.gib()
+			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
+		for(var/obj/vehicle/V in new_hits)
+			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
+			V.visible_message("<span class='boldwarning'>[src] crunches [V]!</span>")
+			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1)
 
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))

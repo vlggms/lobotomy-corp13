@@ -28,10 +28,7 @@
 		for(var/turf/T in view(aoe_range, target))
 			if(prob(30))
 				new /obj/effect/temp_visual/fire/fast(T)
-			for(var/mob/living/L in T)
-				if(L == user)
-					continue
-				L.apply_damage(force*0.2, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			user.HurtInTurf(T, list(), force*0.2, damtype, hurt_mechs = TRUE)
 	aoe_target = target
 
 //Philip's Sword
