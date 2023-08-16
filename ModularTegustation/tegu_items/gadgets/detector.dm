@@ -91,22 +91,6 @@
 	powered_overlay = null
 	update_icon()
 
-//Unsure if i should put this in _lists.dm helpers. -IP
-//Lowest number wins.
-/obj/item/powered_gadget/detector_gadget/proc/ReturnLowestValue(list/L)
-	if(!L || !L.len)
-		return null
-	var/current_lowest
-	for(var/i in L)
-		if(!current_lowest)
-			current_lowest = i
-			continue
-		if(L[i] <= L[current_lowest])
-			current_lowest = i
-	if(!current_lowest)
-		return null
-	return current_lowest
-
 	//Abnormality Detector
 /obj/item/powered_gadget/detector_gadget/abnormality
 	name = "Enkaphlin Drain Monitor"
