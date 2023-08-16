@@ -37,6 +37,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/aleph/smile 			= /obj/item/clothing/suit/armor/ego_gear/realization/laughter,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/mimicry 		= /obj/item/clothing/suit/armor/ego_gear/realization/shell,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/space 			= /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/combust 		= /obj/item/clothing/suit/armor/ego_gear/realization/desperation,
 		// Personal
 		/obj/item/managerbullet = /obj/item/clothing/suit/armor/ego_gear/realization/farmwatch,
 		/obj/item/storage/box/fireworks/dangerous = /obj/item/clothing/suit/armor/ego_gear/realization/spicebush,//from smuggler's satchels
