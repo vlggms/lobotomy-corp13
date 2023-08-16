@@ -750,3 +750,42 @@
 		L.adjustBruteLoss(-2)
 		var/mob/living/carbon/human/H = L
 		H.adjustSanityLoss(-2)
+
+/obj/effect/proc_holder/ability/overheat
+	name = "Overheat"
+	desc = "Burn yourself away in exchange for power."
+	action_icon_state = "overheat0"
+	base_icon_state = "overheat"
+	cooldown_time = 5 MINUTES
+
+/obj/effect/proc_holder/ability/overheat/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	to_chat(H, "<span class='userdanger'>Ashes to ashes!</span>")
+	H.apply_status_effect(/datum/status_effect/overheat)
+	return ..()
+
+/datum/status_effect/overheat
+	id = "overheat"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/overheat
+
+/atom/movable/screen/alert/status_effect/overheat
+	name = "Overheating"
+	desc = "You have full burn stacks in exchange for justice."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "mortis"
+
+/datum/status_effect/overheat/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 30)
+	H.apply_lc_burn(50)
+	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	B.safety = FALSE
+
+/datum/status_effect/overheat/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+	H.remove_status_effect(STATUS_EFFECT_LCBURN)

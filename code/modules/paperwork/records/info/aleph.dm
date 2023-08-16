@@ -180,5 +180,16 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphtoh Counter reached 0, last shot bred flesh until it was destroyed in it's containment.")
 
-
-
+// The Crying Children
+/obj/item/paper/fluff/info/aleph/crying_children
+	abno_type = /mob/living/simple_animal/hostile/abnormality/crying_children
+	abno_code = "O-01-430" // Philip's Birthday April 30th 
+	abno_info = list(
+		"When 2 employees died, the Qliphoth Counter decreased.",
+		"When Attachment work was completed, the Qliphoth Counter increased.",
+		"When the work result was Neutral, the employee has a chance to be cursed with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter decreased and the employee was cursed.",
+		"Employees who were cursed regained their lost senses after a while.",
+		"When the abnormality breached, it sets the whole facility ablaze over time. Reducing it's health seems to delay the process.",
+		"When the abnormality split up into 3 children, all employees were cursed. Killing the children seems to lift said curse.",
+		"When all of the children died, they unite again and become stronger.")
