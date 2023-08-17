@@ -29,8 +29,13 @@
 
 
 /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2
-	name = "Liu Association veteran combat coat"
+	name = "Liu Association section 2 combat coat"
 	desc = "Armor worn by the liu association section 2 director, as well as it's veterans."
+	icon_state = "liusection2"
+
+/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4
+	name = "Liu Association section 4 combat jacket"
+	desc = "Armor worn by the liu association section 4 director, as well as it's veterans."
 	icon_state = "liusection2"
 
 /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5

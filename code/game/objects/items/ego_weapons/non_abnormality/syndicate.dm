@@ -71,7 +71,6 @@
 	..()
 	force = initial(force)
 
-
 //Blade Lineage - Grade 4, use in hand to immobilize and give you a massive damage boost
 /obj/item/ego_weapon/city/bladelineage
 	name = "blade lineage katana"
