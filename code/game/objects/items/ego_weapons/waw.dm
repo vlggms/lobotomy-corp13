@@ -1491,3 +1491,57 @@
 		dodgelanding = locate(user.x - 5, user.y, user.z)
 	user.adjustStaminaLoss(20, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
+
+/obj/item/ego_weapon/grasp
+	name = "grasp"
+	desc = "I should’ve said that I'm sorry that I let go of your hand and apologized, even if it didn't mean anything."
+	special = "This weapon can be used to dash to a target."
+	icon_state = "grasp"
+	force = 16
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 SECONDS
+	var/dash_range = 4
+	var/charging = TRUE
+
+/obj/item/ego_weapon/grasp/attack_self(mob/user)
+	..()
+	if(charging)
+		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a dash towards enemies.</span>")
+		charging = FALSE
+		force = initial(force) + 2
+		return
+	if(!charging)
+		to_chat(user,"<span class='warning'>You change your stance, and will now perform a dash towards enemies.</span>")
+		charging =TRUE
+		force = initial(force)
+		return
+
+/obj/item/ego_weapon/grasp/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A) || !charging)
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")

@@ -518,3 +518,53 @@
 		poise = 0
 	..()
 	force = initial(force)
+
+/obj/item/ego_weapon/zauberhorn
+	name = "zauberhorn"
+	desc = "Falada, Falada, thou art dead, and all the joy in my life has fled."
+	special = "This E.G.O. functions as both a gun and a mele weapon."
+	icon_state = "zauberhorn"
+	force = 10
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_speed = 0.5
+	attack_verb_continuous = list("cuts", "slices")
+	attack_verb_simple = list("cuts", "slices")
+	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
+
+	var/gun_cooldown
+	var/blademark_cooldown
+	var/gunmark_cooldown
+	var/gun_cooldown_time = 1.2 SECONDS
+
+/obj/item/ego_weapon/zauberhorn/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	..()
+
+/obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/zauberhorn/G = new /obj/projectile/ego_bullet/zauberhorn(proj_turf)
+		G.fired_from = src //for signal check
+		playsound(user, 'sound/abnormalities/pagoda/throw.ogg', 100, TRUE) //yes im reusing a sound bite me
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+
+/obj/item/ego_weapon/zauberhorn/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	return TRUE
+
+/obj/projectile/ego_bullet/zauberhorn
+	name = "flying horseshoe"
+	icon_state = "horseshoe"
+	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
+	damage = 20
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE

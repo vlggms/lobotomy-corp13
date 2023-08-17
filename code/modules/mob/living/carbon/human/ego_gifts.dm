@@ -445,6 +445,22 @@
 	prudence_bonus = 4
 	slot = HAT
 
+/datum/ego_gifts/patriot
+	name = "Patriot"
+	icon_state = "patriot"
+	fortitude_bonus = 2
+	justice_bonus = 2
+	temperance_bonus = -1
+	slot = HAT
+
+/datum/ego_gifts/zauberhorn
+	name = "Zauberhorn"
+	icon_state = "zauberhorn"
+	fortitude_bonus = 2
+	prudence_bonus = 1
+	justice_bonus = 1
+	slot = HAND_1
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -710,6 +726,20 @@
 	temperance_bonus = -4
 	justice_bonus = 4
 	slot = EYE
+
+/datum/ego_gifts/split
+	name = "Split"
+	icon_state = "split"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = MOUTH_1
+
+/datum/ego_gifts/fluid_sac
+	name = "Fluid Sac"
+	icon_state = "fluid_sac"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = MOUTH_2
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -1004,6 +1034,15 @@
 	temperance_bonus = 5
 	slot = HAT
 
+/datum/ego_gifts/psychic
+	name = "Psychic Dagger"
+	icon_state = "psychic"
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	temperance_bonus = 4
+	justice_bonus = -1
+	slot = CHEEK
+
 //reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
 //so right now its 10 temp
 /datum/ego_gifts/swan
@@ -1118,6 +1157,12 @@
 	icon_state = "seasons"
 	prudence_bonus = 10
 	slot = HAND_2
+
+/datum/ego_gifts/pink
+	name = "Pink"
+	icon_state = "pink"
+	justice_bonus = 10
+	slot = HELMET
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight

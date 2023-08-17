@@ -888,7 +888,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
-	hitsound = 'sound/abnormalities/icthys/hammer1.ogg'
+	hitsound = 'sound/abnormalities/ichthys/hammer1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -921,7 +921,7 @@
 	..()
 	if(do_after(user, 5, src))
 		dash_cooldown = world.time + dash_cooldown_time
-		playsound(src, 'sound/abnormalities/icthys/jump.ogg', 50, FALSE, -1)
+		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
 		sleep(0.5 SECONDS)
@@ -1059,6 +1059,10 @@
 	desc = "The path is intent on thwarting all attempts to memorize it."
 	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 24
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
@@ -1094,6 +1098,10 @@
 
 /obj/item/ego_weapon/warp/attack_self(mob/user)
 	..()
+	if(activated == TRUE)
+		to_chat(user, "<span class='notice'>You are no longer prepared to release your charge.</span>")
+		activated = FALSE
+		return
 	if(charge>=charge_cost)
 		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
 		activated = TRUE
@@ -1145,48 +1153,13 @@
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
+	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
 	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
-
-/obj/item/ego_weapon/grasp
-	name = "grasp"
-	desc = "I should’ve said that I'm sorry that I let go of your hand and apologized, even if it didn't mean anything."
-	special = "This weapon can be used to dash to a target."
-	icon_state = "grasp"
-	force = 10
-	attack_speed = 0.5
-	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
-	attack_verb_continuous = list("cuts", "attacks", "slashes")
-	attack_verb_simple = list("cut", "attack", "slash")
-	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 40
-							)
-
-	var/dash_cooldown
-	var/dash_cooldown_time = 3 SECONDS
-	var/dash_range = 4
-
-/obj/item/ego_weapon/grasp/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(!isliving(A))
-		return
-	if(dash_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your dash is still recharging!")
-		return
-	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
-		return
-	..()
-	dash_cooldown = world.time + dash_cooldown_time
-	for(var/i in 2 to get_dist(user, A))
-		step_towards(user,A)
-	if((get_dist(user, A) < 2))
-		A.attackby(src,user)
-	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -1207,7 +1180,7 @@
 	name = "divinity"
 	desc = "The gods are always right, as they are just. Your sacrifice will please them."
 	icon_state = "divinity"
-	force = 60//it has no special effect. Just damage
+	force = 40//it has no special effect. Just damage
 	attack_speed = 2
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE

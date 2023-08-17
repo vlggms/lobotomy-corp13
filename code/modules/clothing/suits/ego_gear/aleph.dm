@@ -372,13 +372,11 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-
-//for testing, fix before merge
 /obj/item/clothing/suit/armor/ego_gear/aleph/willing
 	name = "flesh is willing"
 	desc = "Is it immoral if you want it to happen?"
 	icon_state = "willing"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 70
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 220
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -386,3 +384,14 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/aleph/pink
+	name = "Pink"
+	desc = "A pink military uniform. Its pockets allow the wearer to carry various types of ammunition. It soothes the wearer; they say pink provides psychological comfort to many people."
+	icon_state = "pink"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)//230
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
