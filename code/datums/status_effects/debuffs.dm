@@ -1123,8 +1123,10 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(C))
 		burn_res = 15
-	if(istype(D))
+	else if(istype(D))
 		burn_res = 25
+	else
+		burn_res = 0
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)

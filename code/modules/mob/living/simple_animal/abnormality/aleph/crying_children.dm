@@ -38,8 +38,8 @@
 	var/children = 0
 	var/charge = 0
 	var/maxcharge = 180
-	var/charge_cooldown
-	var/charge_cooldown_time = 1 SECONDS
+	var/desperation_cooldown
+	var/desperation_cooldown_time = 1 SECONDS
 	var/sorrow_cooldown
 	var/sorrow_cooldown_time = 5 SECONDS
 	var/courage_cooldown
@@ -75,9 +75,9 @@
 
 // DON'T IGNORE ME!!
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/Charge_Finale()
-	if(charge_cooldown <= world.time)
-		charge += 1
-		charge_cooldown = (world.time + charge_cooldown_time)
+	if(desperation_cooldown <= world.time)
+		charge += 2
+		desperation_cooldown = (world.time + desperation_cooldown_time)
 		if(charge == maxcharge - 10) // 10 Final Seconds, You can't reduce anymore, only kill!!
 			charge = 666
 			addtimer(CALLBACK(src, .proc/Scorching_Desperation), 10 SECONDS)
@@ -117,9 +117,6 @@
 	forceMove(T)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/crying_children/gib()
-	return FALSE
-
 /mob/living/simple_animal/hostile/abnormality/crying_children/Move()
 	if(!can_act)
 		return FALSE
@@ -156,7 +153,7 @@
 		return
 	if(sorrow_cooldown <= world.time && get_dist(src, target) > 2)
 		Wounds_Of_Sorrow(target)
-	if(desperate && courage_cooldown <= world.time && target in view(2, src) && prob(30)) // Make it less predictable
+	if(desperate && courage_cooldown <= world.time && (target in view(2, src)) && prob(30)) // Make it less predictable
 		Combusting_Courage()
 	return
 
@@ -362,7 +359,7 @@
 	burn_mod = 2
 	can_act = TRUE
 	charge = 0
-	maxcharge = 60 // Becomes 1 Minute
+	maxcharge = 90 // Becomes 1 Minute 30 sec
 	sound_to_playing_players_on_level('sound/abnormalities/crying_children/final_phase.ogg', 50, zlevel = z)
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
