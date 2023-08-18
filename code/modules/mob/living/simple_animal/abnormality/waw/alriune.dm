@@ -23,7 +23,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
 						)
-	work_damage_amount = 8 // Lower than average due to work rates and requirement to get neutral results
+	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	light_color = COLOR_PINK
