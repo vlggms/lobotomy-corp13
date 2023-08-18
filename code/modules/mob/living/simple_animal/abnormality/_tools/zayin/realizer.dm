@@ -30,6 +30,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/waw/lamp 			= /obj/item/clothing/suit/armor/ego_gear/realization/eyes,
 		/obj/item/clothing/suit/armor/ego_gear/waw/oppression 		= /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
 		/obj/item/clothing/suit/armor/ego_gear/waw/executive 		= /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,
+		/obj/item/clothing/suit/armor/ego_gear/waw/thirteen			= /obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls,
 		// ALEPH
 		/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo 		= /obj/item/clothing/suit/armor/ego_gear/realization/alcoda,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/justitia 		= /obj/item/clothing/suit/armor/ego_gear/realization/head,

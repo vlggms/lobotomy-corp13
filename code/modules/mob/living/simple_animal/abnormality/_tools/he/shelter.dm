@@ -148,6 +148,7 @@
 	icon_state = "transparent"
 	layer = TURF_LAYER
 	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/shelter_forcefield/Crossed(atom/movable/M)
 	. = ..()

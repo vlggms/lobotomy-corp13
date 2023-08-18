@@ -167,6 +167,7 @@
 	var/list/new_work_chances = modular_work_chance[current_season]
 	var/list/new_damage_coeff = modular_damage_coeff[current_season]
 	work_chances = new_work_chances.Copy()
+	datum_reference.available_work = work_chances
 	damage_coeff = new_damage_coeff.Copy()
 	work_damage_type = season_stats[current_season][2]
 	armortype = season_stats[current_season][2]
@@ -423,18 +424,20 @@
 	if(H.stat >= HARD_CRIT || H.health < 0)
 		switch(current_season)
 			if("summer")
+				H.adjustBruteLoss(H.maxHealth)
 				H.Drain()
 				H.adjust_fire_stacks(30)
 				H.IgniteMob()
 			if("fall")
+				H.adjustBruteLoss(H.maxHealth)
 				H.Drain()
 			if("winter") //turn them into an ice cube
 				if(HAS_TRAIT(H, TRAIT_HUSK))
 					return FALSE
-				H.Drain()
 				var/cube = icon('icons/effects/freeze.dmi', "ice_cube")
 				H.add_overlay(cube)
-				return FALSE
+				H.adjustBruteLoss(H.maxHealth)
+				H.Drain()
 		return TRUE
 	return FALSE
 
@@ -692,6 +695,7 @@
 	desc = "Looks like the terrain is being shifted by an abnormality."
 	layer = LYING_MOB_LAYER
 	alpha = 100
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/season_warn/Initialize()
 	. = ..()
@@ -761,6 +765,7 @@
 	icon_state = "vinespike"
 
 /obj/effect/season_effect/breath //subtype of season_effect that spawns turf way less often, for "breath" attacks that cover a lot of ground. also looks different.
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/season_effect/breath/pop()
 	if(prob(75))

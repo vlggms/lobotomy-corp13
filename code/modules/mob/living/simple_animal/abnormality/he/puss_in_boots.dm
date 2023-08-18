@@ -68,7 +68,7 @@
 	if(!IsContained(src))
 		return
 	if(user.stat != DEAD && !blessed_human && istype(user))
-		if(get_user_level(user) > 2)
+		if(get_user_level(user) >= 2)
 			say("I cannot teach you anything, human.")
 			return
 		blessed_human = user
@@ -129,7 +129,7 @@
 	if(!blessed_human)
 		return
 
-	if(get_user_level(blessed_human) > 2) //no buffing to get ahead
+	if(get_user_level(blessed_human) >= 2) //no buffing to get ahead
 		BlessedDeath(blessed_human)
 		return
 
