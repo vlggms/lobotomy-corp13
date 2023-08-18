@@ -447,3 +447,77 @@
 	if(!target)
 		can_patrol = TRUE
 		retreat_distance = 0
+
+//LOVE TOWN
+//mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
+
+/mob/living/simple_animal/hostile/lovetown
+	name = "love town resident"
+	desc = "A mass of flesh and bulbous growths, this thing is disgusting!"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "lovetown_suicidal"
+	icon_living = "lovetown_suicidal"
+	icon_dead = "lovetown_suicidal"
+	faction = list("hostile")
+	maxHealth = 50
+	health = 50
+	move_to_delay = 4
+	stat_attack = DEAD
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //Resitant to physical damage and to psychological attacks due to their origins.
+	blood_volume = BLOOD_VOLUME_NORMAL
+
+//Proc below is a modified crimson DeathExplosion()
+/mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal(mob_spawn_amount = 1) //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
+	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
+	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			valid_directions += d
+	for(var/i = 1 to mob_spawn_amount)
+		var/turf/T = get_step(get_turf(src), pick(valid_directions))
+		var/mob/living/simple_animal/hostile/lovetown/suicidal/s = new(T)
+	gib()
+
+/mob/living/simple_animal/hostile/lovetown/death(gibbed)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/SpawnSuicidal, mob_spawn_amount = 1), 5)
+	..()
+		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
+	addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+
+/mob/living/simple_animal/hostile/lovetown/proc/DeathExplosion()
+	if(QDELETED(src))
+		return
+	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	for(var/mob/living/L in view(5, src))
+		if(!faction_check_mob(L))
+			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	gib()
+
+/mob/living/simple_animal/hostile/lovetown/suicidal
+	name = "love town suicidal"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_suicidal"
+	icon_living = "lovetown_suicidal"
+	faction = list("hostile")
+	melee_damage_lower = 10
+	melee_damage_upper = 12
+
+/mob/living/simple_animal/hostile/lovetown/suicidal/SpawnSuicidal(mob_spawn_amount)
+	return ..() //no recursive shenanigans
+
+/mob/living/simple_animal/hostile/lovetown/suicidal/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/lovetown/suicidal/Move()
+	return FALSE
