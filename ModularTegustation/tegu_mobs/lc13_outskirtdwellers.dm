@@ -448,9 +448,13 @@
 		can_patrol = TRUE
 		retreat_distance = 0
 
-//LOVE TOWN
-//mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
-
+/*
+--LOVE TOWN--
+Mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
+ZAYIN = Suicidal
+TETH = Slasher, Stabber, Slammer
+HE = Slumberer, Shambler, Abomination(miniboss)
+*/
 /mob/living/simple_animal/hostile/lovetown
 	name = "love town resident"
 	desc = "A mass of flesh and bulbous growths, this thing is disgusting!"
@@ -459,6 +463,7 @@
 	icon_living = "lovetown_suicidal"
 	icon_dead = "lovetown_suicidal"
 	faction = list("hostile")
+	gender = NEUTER
 	maxHealth = 50
 	health = 50
 	move_to_delay = 4
@@ -469,9 +474,10 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //Resitant to physical damage and to psychological attacks due to their origins.
 	blood_volume = BLOOD_VOLUME_NORMAL
+	var/mob_spawn_amount = 1 //the weakest will spawn just one suicidal, higher tiers will spawn more
 
 //Proc below is a modified crimson DeathExplosion()
-/mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal(mob_spawn_amount = 1) //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
+/mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal() //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
 	if(QDELETED(src))
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
@@ -488,36 +494,75 @@
 		var/mob/living/simple_animal/hostile/lovetown/suicidal/s = new(T)
 	gib()
 
-/mob/living/simple_animal/hostile/lovetown/death(gibbed)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/SpawnSuicidal, mob_spawn_amount = 1), 5)
-	..()
-		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
-
-/mob/living/simple_animal/hostile/lovetown/proc/DeathExplosion()
-	if(QDELETED(src))
-		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
-	for(var/mob/living/L in view(5, src))
-		if(!faction_check_mob(L))
-			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
-	gib()
-
 /mob/living/simple_animal/hostile/lovetown/suicidal
 	name = "love town suicidal"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
 	faction = list("hostile")
-	melee_damage_lower = 10
-	melee_damage_upper = 12
-
-/mob/living/simple_animal/hostile/lovetown/suicidal/SpawnSuicidal(mob_spawn_amount)
-	return ..() //no recursive shenanigans
+	maxHealth = 50
+	health = 50
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/CanAttack(atom/the_target)
 	return FALSE
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/Move()
 	return FALSE
+
+/mob/living/simple_animal/hostile/lovetown/slasher
+	name = "love town slasher"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	faction = list("hostile")
+	maxHealth = 300
+	health = 300
+	melee_damage_lower = 20
+	melee_damage_upper = 24
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
+	mob_spawn_amount = 4
+
+/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+	..()
+
+/mob/living/simple_animal/hostile/lovetown/stabber
+	name = "love town stabber"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	faction = list("hostile")
+	maxHealth = 200 //weaker than slashers
+	health = 200
+	melee_damage_lower = 20 //..not only in health, though
+	melee_damage_upper = 24
+	move_to_delay = 3
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
+
+/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+	..()
+
+/mob/living/simple_animal/hostile/lovetown/slammer
+	name = "love town slammer"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	faction = list("hostile")
+	maxHealth = 300
+	health = 300
+	melee_damage_lower = 42 //much higher damage,
+	melee_damage_upper = 48
+	rapid_melee = 2 //much slower attack
+	move_to_delay = 5
+	attack_verb_continuous = "slams"
+	attack_verb_simple = "slam"
+
+/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+	..()
