@@ -464,8 +464,8 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	icon_dead = "lovetown_suicidal"
 	faction = list("hostile")
 	gender = NEUTER
-	maxHealth = 50
-	health = 50
+	maxHealth = 100
+	health = 100
 	move_to_delay = 4
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
@@ -494,14 +494,18 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 		var/mob/living/simple_animal/hostile/lovetown/suicidal/s = new(T)
 	gib()
 
+/mob/living/simple_animal/hostile/lovetown/death(gibbed)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+	..()
+
 /mob/living/simple_animal/hostile/lovetown/suicidal
 	name = "love town suicidal"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
-	faction = list("hostile")
-	maxHealth = 50
-	health = 50
+	maxHealth = 80
+	health = 800
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/CanAttack(atom/the_target)
 	return FALSE
@@ -509,60 +513,48 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 /mob/living/simple_animal/hostile/lovetown/suicidal/Move()
 	return FALSE
 
+/mob/living/simple_animal/hostile/lovetown/death(gibbed)
+	. = ..() //should overwrite the timer so that we dont recursively spawn suicidals
+
 /mob/living/simple_animal/hostile/lovetown/slasher
 	name = "love town slasher"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
 	icon_state = "lovetown_slasher"
 	icon_living = "lovetown_slasher"
-	faction = list("hostile")
 	maxHealth = 300
 	health = 300
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	mob_spawn_amount = 4
-
-/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
-	..()
 
 /mob/living/simple_animal/hostile/lovetown/stabber
 	name = "love town stabber"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon_state = "lovetown_slasher"
-	icon_living = "lovetown_slasher"
-	faction = list("hostile")
-	maxHealth = 200 //weaker than slashers
-	health = 200
-	melee_damage_lower = 20 //..not only in health, though
-	melee_damage_upper = 24
+	icon_state = "lovetown_stabber"
+	icon_living = "lovetown_stabber"
+	maxHealth = 220 //weaker than slashers...
+	health = 220
+	melee_damage_lower = 10 //...not only in health, though...
+	melee_damage_upper = 12
+	rapid_melee = 2 //... in turn it attacks much faster.
 	move_to_delay = 3
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 
-/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
-	..()
-
 /mob/living/simple_animal/hostile/lovetown/slammer
 	name = "love town slammer"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon_state = "lovetown_slasher"
-	icon_living = "lovetown_slasher"
-	faction = list("hostile")
+	icon_state = "lovetown_slammer"
+	icon_living = "lovetown_slammer"
 	maxHealth = 300
 	health = 300
-	melee_damage_lower = 42 //much higher damage,
+	melee_damage_lower = 42 //much higher damage...
 	melee_damage_upper = 48
-	rapid_melee = 2 //much slower attack
+	rapid_melee = 0.5 //...much slower attack.
+	melee_queue_distance = 2
 	move_to_delay = 5
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 
-/mob/living/simple_animal/hostile/lovetown/slasher/death(gibbed)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
-	..()
+
