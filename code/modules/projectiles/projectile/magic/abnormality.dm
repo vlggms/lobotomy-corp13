@@ -58,26 +58,27 @@
 	eyeblur = 5
 	stamina = 30
 
+/obj/projectile/melting_blob/prehit_pierce(atom/A)
+	if(isliving(A) && isliving(firer))
+		var/mob/living/mob_firer
+		var/mob/living/L = A
+		if(mob_firer.faction_check_mob(L))
+			return PROJECTILE_PIERCE_PHASE
+	return ..()
+
 /obj/projectile/melting_blob/on_hit(target)
-	if(ismob(target))
-		var/mob/living/H = target
-		var/mob/living/mob_firer = firer
-		if(istype(mob_firer) && mob_firer.faction_check_mob(H))
-			H.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
-			qdel(src)
-			return BULLET_ACT_BLOCK
-		if(H.stat == DEAD && ishuman(H))
-			var/turf/T = get_turf(H)
-			visible_message("<span class='danger'>[src] submerge in slime \the [H] and another Slime Pawn appears!</span>")
-			H.gib()
+	if(isliving(target))
+		var/mob/living/L = target
+		if(L.stat == DEAD && ishuman(L))
+			var/turf/T = get_turf(L)
+			visible_message("<span class='danger'>[L] is submerged in slime as another slime pawn appears!</span>")
+			L.gib()
 			new /mob/living/simple_animal/hostile/slime(T)
 			return BULLET_ACT_HIT
-		H.apply_damage(damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
-		H.adjustStaminaLoss(stamina)
-		if(!isbot(H) && isliving(H))
-			H.visible_message("<span class='warning'>[target] is hit by [src], they seem to wither away!</span>")
+		if(!isbot(L))
+			L.visible_message("<span class='warning'>[L] is hit by [src], they seem to wither away!</span>")
 			for(var/i = 1 to 10)
-				addtimer(CALLBACK(H, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
+				addtimer(CALLBACK(L, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
 			return BULLET_ACT_HIT
 	return ..()
 
@@ -194,7 +195,7 @@
 	damage_type = PALE_DAMAGE
 	flag = PALE_DAMAGE
 	damage = 35
-	
+
 //slow, dodgable, and make it hard to see and talk
 /obj/projectile/fleshblob
 	name = "blood blob"
