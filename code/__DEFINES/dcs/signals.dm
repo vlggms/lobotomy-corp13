@@ -1052,3 +1052,22 @@
 #define COMSIG_FEAR_EFFECT "fear_effect"
 ///Whenever the season is changed through god of the seasons or its E.G.O.
 #define COMSIG_GLOB_SEASON_CHANGE "!change_season"
+
+
+// Things used for the main menu
+
+
+///Called when the ticker enters the pre-game phase
+#define COMSIG_TICKER_ENTER_PREGAME "comsig_ticker_enter_pregame"
+
+///Called when the ticker sets up the game for start
+#define COMSIG_TICKER_ENTER_SETTING_UP "comsig_ticker_enter_setting_up"
+
+///Called when the ticker fails to set up the game for start
+#define COMSIG_TICKER_ERROR_SETTING_UP "comsig_ticker_error_setting_up"
+
+/// Sent from /atom/movable/screen/lobby/button/collapse/proc/collapse_buttons() : ()
+#define COMSIG_HUD_LOBBY_COLLAPSED "hud_lobby_collapsed"
+
+/// Sent from /atom/movable/screen/lobby/button/collapse/proc/expand_buttons() : ()
+#define COMSIG_HUD_LOBBY_EXPANDED "hud_lobby_expanded"
