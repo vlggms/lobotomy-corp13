@@ -568,6 +568,16 @@
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead OOC", "[GLOB.dooc_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/togglecrosscomms()
+	set category = "Server"
+	set desc="Toggle dis bitch"
+	set name="Toggle Cross-Server Communications"
+
+	GLOB.cross_comms_allowed = !GLOB.cross_comms_allowed
+	log_admin("[key_name(usr)] toggled cross-comms [GLOB.cross_comms_allowed ? "on" : "off"].")
+	message_admins("[key_name_admin(usr)] toggled cross-comms [GLOB.cross_comms_allowed ? "on" : "off"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle_cross_comms", 1, list("Toggle Cross-Comms", "[GLOB.cross_comms_allowed ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /datum/admins/proc/startnow()
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"

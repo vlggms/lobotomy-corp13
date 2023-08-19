@@ -540,25 +540,51 @@ SUBSYSTEM_DEF(ticker)
 	var/news_message
 	var/news_source = "Lobotomy Corporation News"
 	switch(news_report)
-		if(STATION_DESTROYED_NUKE)
-			news_message = "We would like to reassure all employees that the reports of a nuclear explosion on [station_name()] are, in fact, a hoax. Have a secure day!"
 		if(STATION_EVACUATED)
+			var/round_state = "has been successfuly finished"
+			if(SSlobotomy_corp.next_ordeal_level < 3)
+				round_state = "abruptly ended"
+			else if(SSlobotomy_corp.next_ordeal_level < 5 || (istype(SSlobotomy_corp.next_ordeal) && SSlobotomy_corp.next_ordeal.level < 5) || LAZYLEN(SSlobotomy_corp.current_ordeals))
+				round_state = "has finished early"
+
 			if(emergency_reason)
-				news_message = "[station_name()] has been evacuated after transmitting the following distress beacon:\n\n[emergency_reason]"
+				news_message = "A work shift on [station_name()] [round_state] after transmitting the following signal:\n\n[emergency_reason]"
 			else
-				news_message = "The employees of [station_name()] have been evacuated amid unconfirmed reports of enemy activity."
+				news_message = "A work shift on [station_name()] [round_state]. No additional data was transmitted."
+
+		if(STATION_DESTROYED_NUKE)
+			news_message = "We would like to reassure all personnel that the reports of a nuclear explosion on [station_name()] are, in fact, a hoax. Have a secure day!"
+
+		if(SHUTTLE_HIJACK)
+			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_STARTED)
+			news_message = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
 
 		if(CORE_SUPPRESSED)
-			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation."
+			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_CLAW_DEAD)
-			news_message = "The employees of [station_name()] have defeated the manifestation of a Claw, a formidable opponent, during a remote core suppression. We would like to congratulate them for their job!"
+			news_message = "The employees of [station_name()] have defeated the manifestation of a Claw, a formidable opponent, during a remote core suppression. We would like to congratulate them for their job\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_ARBITER_DEAD)
-			news_message = "A reminder that an 'Arbiter' found dead on [station_name()] during remote core suppression was not the real deal and that families of the employees responsible are not in any sort of danger. Have a nice day!"
+			news_message = "A reminder that an 'Arbiter' found dead on [station_name()] during remote core suppression was not the real deal and that families of the employees responsible are not in any sort of danger. Have a nice day!\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
 		if(CORE_SUPPRESSED_REDMIST_DEAD)
-			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, nonetheless a very powerful one. All employees were rewarded handsomely for their job."
+			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, but nonetheless a very powerful one. All employees were rewarded handsomely for their job.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
 
 	if(news_message)
-		send2otherserver(news_source, news_message,"News_Report")
+		var/list/payload = list()
+		var/network_name = CONFIG_GET(string/cross_comms_network)
+		if(network_name)
+			payload["network"] = network_name
+		send2otherserver(news_source, news_message, "News_Report", additional_data = payload)
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))
