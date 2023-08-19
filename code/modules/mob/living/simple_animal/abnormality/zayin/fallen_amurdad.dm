@@ -45,6 +45,9 @@
 		/obj/item/seeds/jupitercup
 		)
 
+	/// How many bombs are placed on breach.
+	var/max_bombs = 12
+
 //Start us off with some soil trays and grass
 /mob/living/simple_animal/hostile/abnormality/fallen_amurdad/PostSpawn()
 	..()
@@ -68,6 +71,57 @@
 		S.Fill(pick(seed_list))
 		if(prob(30))
 			break
+
+// Pink Midnight stuff
+/*
+	Will be implemented later, currently has the issue of spawning all projectiles below itself
+	This can allow for someone to be hit by all of the projectiles at once before it calls fire() on the projectile
+	This causes a runtime and makes it so the item does not trigger itself as if it had exploded.
+	It also makes it massively more effective than it should be.
+*/
+
+/mob/living/simple_animal/hostile/abnormality/fallen_amurdad/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		var/turf/DC = pick(GLOB.department_centers)
+		var/list/potential_area = spiral_range_turfs(15, DC)
+		var/list/remove_list = list()
+		for(var/turf/T in potential_area)
+			if(T.density)
+				remove_list += T
+				continue
+			if(T.z != z)
+				remove_list += T
+				continue
+			if(istype(T.loc, /area/containment_zone))
+				remove_list += T
+				continue
+			if(istype(T, /turf/open/floor/plating))
+				remove_list += T
+				continue
+			if(istype(T, /turf/open/floor/circuit))
+				remove_list += T
+				continue
+			for(var/obj/O in T)
+				if(O.density)
+					remove_list += T
+					break
+
+		potential_area -= remove_list
+		var/bombs = 0
+		while((bombs < max_bombs) && potential_area.len > 0)
+			var/turf/open/T = pick(potential_area)
+			var/list/seen_area = view(3, T)
+			var/loop = FALSE
+			for(var/obj/structure/amurdad_bomb/AB in seen_area)
+				potential_area -= seen_area
+				loop = TRUE
+				break
+			if(loop)
+				continue
+			new /obj/structure/amurdad_bomb(T)
+			bombs++
+		return
+	return ..()
 
 //Magic bullshit amurdad soil
 /obj/machinery/hydroponics/soil/amurdad
@@ -244,3 +298,141 @@
 	name = "jupiter-cup"
 	desc = "This has to be eaten carefully."
 	icon_state = "jupitercup"
+
+/obj/structure/amurdad_bomb
+	name = "Rising Amurdad"
+	desc = "A mound of soil growing something...\nIt reinforces nearby plants."
+	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon_state = "soil"
+	density = TRUE
+	anchored = TRUE
+	max_integrity = 300
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+	var/stage = 0
+	var/grow_interval = 5 SECONDS
+	var/list/protected_plants = list()
+
+/obj/structure/amurdad_bomb/Initialize()
+	. = ..()
+	Grow()
+	proximity_monitor = new(src, 1)
+
+/obj/structure/amurdad_bomb/proc/ProtectPlants()
+	for(var/obj/structure/spreading/apple_vine/AV in view(2, src))
+		if(AV in protected_plants)
+			AV.obj_integrity += 50
+			continue
+		protected_plants += AV
+		AV.max_integrity = 300
+		AV.obj_integrity = 300
+
+/obj/structure/amurdad_bomb/proc/Grow()
+	stage = stage + 1 > 5 ? 5 : stage + 1
+	UpdateStage()
+	ProtectPlants()
+	if(stage >= 5)
+		return
+	addtimer(CALLBACK(src, .proc/Grow), grow_interval)
+
+/obj/structure/amurdad_bomb/proc/UpdateStage()
+	cut_overlays()
+	if(stage == 0)
+		return
+	var/mutable_appearance/plant_overlay = mutable_appearance('icons/obj/hydroponics/growing.dmi', "deathnettle-grow[stage]", layer = OBJ_LAYER + 0.01)
+	add_overlay(plant_overlay)
+
+/obj/structure/amurdad_bomb/HasProximity(atom/movable/AM)
+	if(stage <= 4)
+		return
+	if(!isliving(AM))
+		return
+	if(isbot(AM))
+		return
+	var/mob/living/L = AM
+	if(("hostile" in L.faction))
+		return
+	Explode()
+
+/obj/structure/amurdad_bomb/bullet_act(obj/projectile/P)
+	. = ..()
+	if(stage <= 3)
+		return
+	Explode()
+
+/obj/structure/amurdad_bomb/proc/Explode()
+	var/list/all_the_turfs_were_gonna_lacerate = RANGE_TURFS(stage, src) - RANGE_TURFS(stage-1, src)
+	stage = 0
+	UpdateStage()
+	for(var/turf/shootat_turf in all_the_turfs_were_gonna_lacerate)
+		INVOKE_ASYNC(src, .proc/FireProjectile, shootat_turf)
+	addtimer(CALLBACK(src, .proc/Grow), grow_interval)
+
+/obj/structure/amurdad_bomb/proc/FireProjectile(atom/target)
+	var/obj/projectile/P = new /obj/projectile/needle(get_turf(src))
+
+	P.spread = 0
+	P.original = target
+	P.fired_from = src
+	P.firer = src
+	P.impacted = list(src = TRUE)
+	P.suppressed = SUPPRESSED_QUIET
+	P.preparePixelProjectile(target, src)
+	P.fire()
+
+/obj/projectile/needle
+	name = "venomous needle"
+	desc = "a venomous thorn from a plant"
+	icon_state = "needle"
+	ricochet_chance = 60
+	ricochets_max = 2
+	damage = 3
+	damage_type = RED_DAMAGE
+	eyeblur = 2
+	ricochet_ignore_flag = TRUE
+
+/obj/projectile/needle/can_hit_target(atom/target, direct_target, ignore_loc, cross_failed)
+	if(!fired)
+		return FALSE
+	return ..()
+
+/obj/projectile/needle/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.reagents.add_reagent(/datum/reagent/toxin/amurdad_poison, 10)
+
+/datum/reagent/toxin/amurdad_poison
+	name = "Fallen Nightshade"
+	description = "A poison that corrupts the blood and turns the stomach foul."
+	taste_description = "iron"
+	glass_name = "glass of fallen nightshade"
+	glass_desc = "It smells of roses and yet looks awful."
+	color = "#433748"
+	can_synth = FALSE
+	harmful = TRUE
+	toxpwr = 0
+	metabolization_rate = REAGENTS_METABOLISM * 4
+
+/datum/reagent/toxin/amurdad_poison/on_mob_metabolize(mob/living/L)
+	. = ..()
+	to_chat(L, "<span class='warning'>You feel nauseous...</span>")
+
+/datum/reagent/toxin/amurdad_poison/on_mob_end_metabolize(mob/living/L)
+	. = ..()
+	to_chat(L, "<span class='nicegreen'>You start to feel better.</span>")
+
+/datum/reagent/toxin/amurdad_poison/on_mob_life(mob/living/M)
+	var/damage_mod = 1
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/liver/LV = locate() in H.internal_organs
+		if(volume <= LV.toxTolerance)
+			return ..()
+		damage_mod = LV.toxLethality * 100
+	metabolization_rate = max(volume * REAGENTS_METABOLISM, REAGENTS_METABOLISM)
+	M.apply_damage(volume*REAGENTS_METABOLISM*damage_mod, RED_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(ishuman(M))
+		if(DT_PROB(3, 6))
+			var/mob/living/carbon/human/H = M
+			H.vomit(10, FALSE, FALSE, 2)
+	return ..()

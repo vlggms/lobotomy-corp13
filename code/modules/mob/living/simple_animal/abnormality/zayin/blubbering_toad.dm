@@ -37,6 +37,12 @@
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
+	// Petting
+	pet_bonus = TRUE
+	pet_bonus_emote = "Weh!"
+	response_help_simple = "pet"
+	response_help_continuous = "pets"
+
 	//work
 	var/pulse_healing = 15
 	var/healing_pulse_amount = 0
@@ -48,9 +54,10 @@
 	var/jump_cooldown_time = 6 SECONDS
 	var/can_act = TRUE
 	var/retreating = FALSE
-	var/idiot = null
+	var/mob/living/idiot = null
 	var/transformed = FALSE
 	var/broken = FALSE
+	var/persistant = FALSE
 
 	ego_list = list(
 	/datum/ego_datum/weapon/melty_eyeball,
@@ -86,13 +93,17 @@
 		H.adjustSanityLoss(-pulse_healing)
 
 //Attack or approach it directly and it attacks you!
-/mob/living/simple_animal/hostile/abnormality/blubbering_toad/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
-	..()
-	idiot = user
+/mob/living/simple_animal/hostile/abnormality/blubbering_toad/BreachEffect(mob/living/user, breach_type = BREACH_NORMAL)
+	if(breach_type == BREACH_PINK)
+		persistant = TRUE
+	SetIdiot(user)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(!IsContained())
+		return
+	if(user.a_intent == INTENT_HELP)
 		return
 	BreachEffect(user)
 
@@ -118,6 +129,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/ReturnCell()
 	QDEL_NULL(src)
+
+/mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/SetIdiot(mob/living/L)
+	idiot = L
+	if(idiot)
+		to_chat(src, "<span class='notice'>You current target is [idiot]!</span>")
+	else
+		to_chat(src, "<span class='notice'>Your work here is done, you should now return to your cell.</span>")
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/death() //EGG! just kidding no egg....
 	density = FALSE
@@ -151,14 +169,12 @@
 		for(var/turf/T in turfs_to_hit)
 			if(T.density)
 				break
-			for(var/mob/living/L in T)
-				if(L != idiot)
-					continue
-				L.apply_damage(tongue_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
-				if(!L.anchored)
+			if(idiot in T)
+				idiot.apply_damage(tongue_damage, BLACK_DAMAGE, null, idiot.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(idiot), pick(GLOB.alldirs))
+				if(!idiot.anchored)
 					var/whack_speed = (prob(60) ? 1 : 4)
-					L.throw_at(MT, rand(1, 2), whack_speed, src)
+					idiot.throw_at(MT, rand(1, 2), whack_speed, src)
 		sleep(5)
 		tongue_cooldown = world.time + tongue_cooldown_time
 		can_act = TRUE
@@ -203,19 +219,30 @@
 		melee_damage_type = BLACK_DAMAGE
 	if(H.health < 0)
 		H.gib()
-		addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+		if(!persistant)
+			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			return
+		idiot = null
+		for(var/mob/living/carbon/human/HU in GLOB.player_list)
+			if(HU.z != z)
+				continue
+			if(HU.stat == DEAD)
+				continue
+			if(isnull(idiot))
+				idiot = HU
+			if(idiot.health > HU.health)
+				idiot = HU
+		if(isnull(idiot))
+			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			return
+		SetIdiot(idiot)
+
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/ListTargets()
-	if(!idiot)
-		return list()
-	var/list/see = ..()
-	var/list/targeting = list()
-	targeting += idiot
-	see &= targeting // remove all entries except the idiot
-	if(!see)
-		if(!retreating)
-			retreating = TRUE
-	return see
+	. = ..()
+	if(idiot in .)
+		return list(idiot)
+	return
 
 //Transformation
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/adjustHealth(amount, updating_health = TRUE, forced = FALSE)

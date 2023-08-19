@@ -119,6 +119,9 @@
 				heal_factor = 0.25
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
 
+/mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
+	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
+
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"
 	description = "It\'s calming, even if you can\'t quite look at it straight."
