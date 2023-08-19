@@ -218,7 +218,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The ceramic surface is tough as if it had been glazed several times. \
 			It may crumble back into primal clay if it is exposed to a powerful mental attack."
 	icon_state = "aroma"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60

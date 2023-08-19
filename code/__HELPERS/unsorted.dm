@@ -1509,4 +1509,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	for(var/client/C in GLOB.clients)
 		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
 
+// Animates atom's color over time
+/proc/SetColorOverTime(atom/A, new_color = "#FFFFFF", new_time = 2)
+	animate(A, color = new_color, time = new_time)
+
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))

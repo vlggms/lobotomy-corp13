@@ -805,12 +805,31 @@
 	instinct_mod = 6
 	slot = HAND_1
 
+// Converts 10% of WHITE damage taken(before armor calculations!) as health
+// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 20 health, regardless of how much
+// damage you actually took
 /datum/ego_gifts/aroma
 	name = "Faint Aroma"
+	desc = "Restores 10% of WHITE damage taken as health. This effect ignores armor."
 	icon_state = "aroma"
 	prudence_bonus = 4
-	temperance_bonus = 2 // This is techincally a buff from base game.
+	temperance_bonus = 2
 	slot = HAT
+
+/datum/ego_gifts/aroma/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+
+/datum/ego_gifts/aroma/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	return ..()
+
+/datum/ego_gifts/aroma/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	if(!damage)
+		return
+	owner.adjustBruteLoss(-damage*0.1)
 
 /datum/ego_gifts/stem
 	name = "Green Stem"
