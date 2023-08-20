@@ -671,7 +671,8 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hit_list - A list containing all things hit by this proc.
  */
 /mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
-	. = hit_list
+	. = list()
+	. += hit_list
 	target = target ? target : get_turf(src)
 	armor_type = armor_type ? armor_type : damage_type
 	for(var/mob/living/L in target) // Hit living targets
@@ -682,13 +683,15 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(check_faction)
 			if(faction_check_mob(L, exact_faction_match))
 				continue
-		L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+		if(damage)
+			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 		. += L
 	if(hurt_mechs) // Hit Mechs
 		for(var/obj/vehicle/V in target)
 			if(V in .)
 				continue
-			V.take_damage(damage, damage_type, armor_type)
+			if(damage)
+				V.take_damage(damage, damage_type, armor_type)
 			. += V
 	if(hurt_hidden) // Hit living in closets (includes crates)
 		for(var/obj/structure/closet/C in target)
@@ -700,15 +703,17 @@ GLOBAL_LIST_EMPTY(species_list)
 				if(check_faction)
 					if(faction_check_mob(H, exact_faction_match))
 						continue
-				H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+				if(damage)
+					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 				. += H
 			. += C
 	if(hurt_structure) // Hits structures
 		for(var/obj/structure/S in target)
 			if(S in .)
 				continue
-			if(break_not_destroy && (S.obj_integrity - damage <= 0))
-				damage += (S.obj_integrity - damage) - 1
-			S.take_damage(damage, damage_type, armor_type)
+			if(damage)
+				if(break_not_destroy && (S.obj_integrity - damage <= 0))
+					damage += (S.obj_integrity - damage) - 1
+				S.take_damage(damage, damage_type, armor_type)
 			. += S
 	return
