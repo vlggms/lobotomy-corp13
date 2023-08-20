@@ -464,6 +464,7 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	icon_dead = "lovetown_suicidal"
 	faction = list("hostile")
 	gender = NEUTER
+	mob_biotypes = MOB_ORGANIC
 	maxHealth = 100
 	health = 100
 	move_to_delay = 4
