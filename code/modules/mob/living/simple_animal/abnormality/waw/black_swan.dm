@@ -88,6 +88,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/black_swan))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/black_swan/swan = owner
+	if(swan.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	swan.OpenUmbrella()
 	StartCooldown()
 	return TRUE

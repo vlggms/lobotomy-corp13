@@ -79,6 +79,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nosferatu))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/nosferatu/nosferatu = owner
+	if(nosferatu.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	StartCooldown()
 	nosferatu.Banquet()
 	return TRUE

@@ -59,6 +59,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/fragment))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/fragment/fragment = owner
+	if(fragment.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	StartCooldown()
 	fragment.song()
 	return TRUE

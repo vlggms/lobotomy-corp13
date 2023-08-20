@@ -126,11 +126,15 @@
 	cooldown_time = SEASONS_SLAM_COOLDOWN //20 seconds
 
 /datum/action/cooldown/seasons_slam/Trigger()
+//	if(A.IsContained()) // No more using cooldowns while contained
+//		return FALSE
 	if(!..())
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/seasons))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/seasons = owner
+	if(seasons.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	StartCooldown()
 	seasons.Slam()
 	return TRUE

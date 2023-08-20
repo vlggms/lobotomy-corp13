@@ -72,6 +72,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
+	if(big_bird.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	StartCooldown()
 	big_bird.hypnotize()
 	return TRUE

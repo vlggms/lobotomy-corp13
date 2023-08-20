@@ -81,6 +81,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sphinx))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	if(sphinx.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	StartCooldown()
 	sphinx.StoneVision(FALSE)
 	return TRUE

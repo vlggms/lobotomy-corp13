@@ -90,6 +90,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	servant.Smash()
 	StartCooldown()
 	return TRUE
@@ -108,6 +110,8 @@
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
 		return FALSE
 	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
 	servant.Dash()
 	StartCooldown()
 	return TRUE
