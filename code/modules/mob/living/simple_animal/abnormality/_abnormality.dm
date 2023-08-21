@@ -3,6 +3,7 @@
 	desc = "An abnormality..? You should report this to the Head!"
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
+	bubble_icon = "alienroyal"
 	stat_attack = HARD_CRIT
 	layer = LARGE_MOB_LAYER
 	a_intent = INTENT_HARM
