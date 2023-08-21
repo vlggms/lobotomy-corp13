@@ -755,6 +755,9 @@
 	if(pulling)
 		update_pull_movespeed()
 
+	if(typing_indicator)
+		set_typing_indicator(FALSE)
+
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.

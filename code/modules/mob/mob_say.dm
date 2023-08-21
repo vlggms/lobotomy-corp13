@@ -30,6 +30,8 @@
 	set name = "Me"
 	set category = "IC"
 
+	if(typing_indicator)
+		set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
