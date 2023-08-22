@@ -436,7 +436,7 @@
 //Apex Predator
 /obj/item/paper/fluff/info/waw/predator
 	abno_type = /mob/living/simple_animal/hostile/abnormality/apex_predator
-	name = "D-04-146"
+	abno_code = "D-04-146"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
