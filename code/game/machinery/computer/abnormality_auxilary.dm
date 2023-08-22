@@ -59,6 +59,7 @@
 				selected_core_type = null
 				return FALSE
 			SSlobotomy_corp.core_suppression = new selected_core_type
+			SSlobotomy_corp.available_core_suppressions = list()
 			to_chat(usr, "<span class='userdanger'>Good luck, Manager.</span>")
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()

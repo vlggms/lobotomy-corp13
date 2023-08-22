@@ -127,6 +127,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		cores -= core_type
 	if(!LAZYLEN(available_core_suppressions))
 		return
+	// This solution is hacky and extra dirty I hate it
+	if(extra_core)
+		addtimer(CALLBACK(src, .proc/WarnBeforeReset), (4 MINUTES))
 	if(announce)
 		var/announce_text = "[extra_core ? "Extra" : "Sephirah"] Core Suppressions have been made available via auxiliary managerial consoles."
 		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
@@ -137,7 +140,13 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 		A.updateUsrDialog()
 
-/datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions()
+/datum/controller/subsystem/lobotomy_corp/proc/WarnBeforeReset()
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
+		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+	addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, TRUE), (1 MINUTES))
+
+/datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
 		return
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
@@ -145,6 +154,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
 		A.updateUsrDialog()
 	available_core_suppressions = list()
+	if(announce)
+		priority_announce("Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
+						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
 
 /datum/controller/subsystem/lobotomy_corp/proc/NewAbnormality(datum/abnormality/new_abno)
 	if(!istype(new_abno))
