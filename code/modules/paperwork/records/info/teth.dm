@@ -290,3 +290,16 @@
 		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
 		"If too many yellow talismans attached to the employee, they also became purple talismans.",
 		"Purple talismans seem to sap the strength from whomever they are attached, reducing their Justice, and slowly vanished after several minutes.")
+
+//Red Blooded American
+/obj/item/paper/fluff/info/teth/redblooded
+	abno_type = /mob/living/simple_animal/hostile/abnormality/redblooded
+	abno_code = "C-01-165"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When Repression Work was performed, the Qliphoth Counter increased.",
+		"After Repression Work was performed, employees noted taking extra damage from the abnormality during work.",
+		"Repeated Repression works resulted in the abnormality becoming injured and causing excessive work damage.",
+		"When a non-repression work was completed, the abnormality calmed down, lowering the extra damage taken. Repeated non-repression works eventually healed any injuries on the abnormality.")
+	abno_breach_damage_count = "Moderate" // Has a gun

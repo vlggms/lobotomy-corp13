@@ -2733,6 +2733,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\penitent_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\ppodae.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\punishing_bird.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\teth\redblooded.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\scorched_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\shy_look.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\teth\simple_smile.dm"
