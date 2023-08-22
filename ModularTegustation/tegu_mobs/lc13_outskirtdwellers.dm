@@ -451,9 +451,6 @@
 /*
 --LOVE TOWN--
 Mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
-ZAYIN = Suicidal
-TETH = Slasher, Stabber, Slammer
-HE = Slumberer, Shambler, Abomination(miniboss)
 */
 /mob/living/simple_animal/hostile/lovetown
 	name = "love town resident"
@@ -473,7 +470,7 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	armortype = RED_DAMAGE
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //Resitant to physical damage and to psychological attacks due to their origins.
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 2) //Resitant to physical damage and to psychological attacks due to their origins.
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/mob_spawn_amount = 1 //the weakest will spawn just one suicidal, higher tiers will spawn more
 
@@ -496,27 +493,47 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	gib()
 
 /mob/living/simple_animal/hostile/lovetown/death(gibbed)
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+	if(mob_spawn_amount > 0)
+		animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
+		addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
 	..()
 
+//Love Town Suicidal - Weak, screams around itself occasionally, spawned by other enemies on death.
 /mob/living/simple_animal/hostile/lovetown/suicidal
 	name = "love town suicidal"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
 	maxHealth = 80
-	health = 800
+	health = 80
+	ranged = TRUE
+	mob_spawn_amount = 0
 
-/mob/living/simple_animal/hostile/lovetown/suicidal/CanAttack(atom/the_target)
-	return FALSE
+	var/scream_cooldown
+	var/scream_cooldown_time = 6 SECONDS
+
+/mob/living/simple_animal/hostile/lovetown/suicidal/AttackingTarget()
+	return OpenFire()
+
+/mob/living/simple_animal/hostile/lovetown/suicidal/OpenFire()
+	if(scream_cooldown <= world.time && prob(50))
+		Scream()
+	return
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/lovetown/death(gibbed)
-	. = ..() //should overwrite the timer so that we dont recursively spawn suicidals
+/mob/living/simple_animal/hostile/lovetown/suicidal/proc/Scream()
+	scream_cooldown = world.time + scream_cooldown_time
+	for(var/i = 1 to 2)
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
+		SLEEP_CHECK_DEATH(3)
+	for(var/mob/living/L in view(5, src))
+		if(!faction_check_mob(L))
+			L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 
+//Love Town Slasher - TETH goons, not much of a threat
 /mob/living/simple_animal/hostile/lovetown/slasher
 	name = "love town slasher"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
@@ -524,11 +541,13 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	icon_living = "lovetown_slasher"
 	maxHealth = 300
 	health = 300
-	melee_damage_lower = 20
-	melee_damage_upper = 24
+	move_to_delay = 4
+	melee_damage_lower = 18
+	melee_damage_upper = 22
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 
+//Love Town Stabber -
 /mob/living/simple_animal/hostile/lovetown/stabber
 	name = "love town stabber"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
@@ -536,10 +555,10 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	icon_living = "lovetown_stabber"
 	maxHealth = 220 //weaker than slashers...
 	health = 220
-	melee_damage_lower = 10 //...not only in health, though...
-	melee_damage_upper = 12
-	rapid_melee = 2 //... in turn it attacks much faster.
-	move_to_delay = 3
+	melee_damage_lower = 8 //...weaker damage too, though...
+	melee_damage_upper = 10
+	rapid_melee = 2 //... in turn it attacks much faster...
+	move_to_delay = 3 //...and it's faster.
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 
@@ -550,12 +569,129 @@ HE = Slumberer, Shambler, Abomination(miniboss)
 	icon_living = "lovetown_slammer"
 	maxHealth = 300
 	health = 300
-	melee_damage_lower = 42 //much higher damage...
-	melee_damage_upper = 48
-	rapid_melee = 0.5 //...much slower attack.
+	melee_damage_lower = 28 //much higher damage...
+	melee_damage_upper = 36
+	rapid_melee = 0.5 //...much slower attack...
 	melee_queue_distance = 2
-	move_to_delay = 5
+	move_to_delay = 6 //...and speed.
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
+
+//Love Town Shamber - HE level, screams around for a higher chunk of damage and spawns a lot of suicidals on death
+/mob/living/simple_animal/hostile/lovetown/shambler
+	name = "love town shambler"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	maxHealth = 900
+	health = 900
+	move_to_delay = 6
+	ranged = TRUE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	mob_spawn_amount = 4 //on death explodes into 4 suicidals
+
+	var/scream_cooldown
+	var/scream_cooldown_time = 10 SECONDS
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/lovetown/shambler/AttackingTarget()
+	return OpenFire()
+
+/mob/living/simple_animal/hostile/lovetown/shambler/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/lovetown/shambler/OpenFire()
+	if(scream_cooldown <= world.time && prob(85))
+		Scream()
+	return
+
+/mob/living/simple_animal/hostile/lovetown/shambler/proc/Scream()
+	can_act = FALSE
+	scream_cooldown = world.time + scream_cooldown_time
+	for(var/i = 1 to 3)
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
+		SLEEP_CHECK_DEATH(3)
+	for(var/mob/living/L in view(5, src))
+		if(!faction_check_mob(L))
+			L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+	can_act = TRUE
+
+// Love Town Slumberer - HE threat, deals WHITE (not actually hitting you, just grasping and mumbling), quite damaging and can grab you, stuns you for some time.
+/mob/living/simple_animal/hostile/lovetown/slumberer
+	name = "love town slumberer"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	maxHealth = 1000
+	health = 1000
+	melee_damage_lower = 30
+	melee_damage_upper = 35
+	melee_damage_type = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	rapid_melee = 0.5
+	attack_verb_continuous = "grasps"
+	attack_verb_simple = "grasp"
+	move_to_delay = 8 //Absurdly slow
+	ranged = TRUE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	mob_spawn_amount = 2
+
+	var/grab_cooldown
+	var/grab_cooldown_time = 28 SECONDS
+	var/grab_ready = FALSE
+	var/grabbing = FALSE
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableGrab()
+	icon_state = "lovetown_slasher"
+	grab_ready = FALSE
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/proc/Grab(target)
+	grabbing = TRUE
+	var/mob/living/carbon/human/H = target
+	H.Stun(6 SECONDS)//fuck you if you get hit by this
+	SLEEP_CHECK_DEATH(6)
+	DisableGrab()
+	grabbing = FALSE
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/Move()
+	if((!can_act) && (!grabbing))
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/AttackingTarget()
+	if((!can_act) && (!grabbing))
+		return
+	if(grab_ready)
+		if(!istype(target, /mob/living/carbon/human))
+			return
+		Grab(target)
+	if(grab_cooldown <= world.time)
+		icon_state = "lovetown_stabber"
+		grab_ready = TRUE
+		can_act = FALSE
+		grab_cooldown = world.time + grab_cooldown_time
+		addtimer(CALLBACK (src, .proc/DisableGrab), 6 SECONDS)
+	return ..()
+
+//HE miniboss, takes quite a lot of firepower to take down
+/mob/living/simple_animal/hostile/lovetown/abomination
+	name = "love town abomination"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	icon_state = "lovetown_slasher"
+	icon_living = "lovetown_slasher"
+	maxHealth = 4000 //CHONKY
+	health = 4000
+	move_to_delay = 6
+	melee_damage_lower = 44
+	melee_damage_upper = 24
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
+	mob_spawn_amount = 2
+
 
 
