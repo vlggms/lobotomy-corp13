@@ -405,10 +405,6 @@
 	var/chosen_message
 	var/chosen_attack_num = 0
 
-/datum/action/innate/abnormality_attack/Trigger()
-	if(A.IsContained()) // No more using cooldowns while contained
-		return FALSE
-
 /datum/action/innate/abnormality_attack/Grant(mob/living/L)
 	if(istype(L, /mob/living/simple_animal/hostile/abnormality))
 		A = L
