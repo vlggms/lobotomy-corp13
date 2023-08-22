@@ -4,7 +4,7 @@
 	/// This is displayed in auxiliary manager's console when selected
 	var/desc = "Normal effects of core suppression will apply. Yell at coders to fix description."
 	/// Same as above, but what facility has to do to win
-	var/goal_text = "Complete the Midnight of White."
+	var/goal_text = "Complete the Dusk ordeal."
 	/// Ditto, but for reward
 	var/reward_text = "N/A"
 	/// Announcement text. Self-explanatory
@@ -15,9 +15,11 @@
 	var/annonce_sound = 'sound/effects/suppression.ogg'
 	/// Sound to play on event end, if any
 	var/end_sound = null
+	/// If TRUE - will only show up after clearing midnight; Those suppressions are essentially the extra bossfight
+	var/after_midnight = FALSE
 
 // Runs the event itself
-/datum/suppression/proc/Run(run_white = TRUE)
+/datum/suppression/proc/Run(run_white = FALSE)
 	priority_announce(run_text, name, sound=annonce_sound)
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 1) // Started suppression
 	SSticker.news_report = max(SSticker.news_report, CORE_STARTED)

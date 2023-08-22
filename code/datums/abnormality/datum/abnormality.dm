@@ -187,7 +187,7 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
-	stored_boxes += pe
+	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
 
