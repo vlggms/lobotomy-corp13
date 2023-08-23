@@ -923,6 +923,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
+"fu" = (
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "fA" = (
 /obj/machinery/light/cold/no_nightlight,
 /obj/machinery/conveyor{
@@ -1797,6 +1803,10 @@
 /obj/item/powered_gadget/teleporter,
 /turf/open/floor/holofloor/white,
 /area/department_main/manager)
+"kn" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "kv" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -1884,6 +1894,12 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/holofloor/white,
 /area/department_main/control)
+"kL" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "kO" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -6232,6 +6248,10 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"GD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "GF" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 9
@@ -7109,28 +7129,7 @@
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
 "MH" = (
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 6
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
+/obj/structure/toolabnormality/clock,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
 "MN" = (
@@ -8923,7 +8922,10 @@
 	color = "#3234B9";
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/blue/corner{
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/blue{
 	color = "#3234B9"
 	},
 /turf/open/floor/plasteel/dark,
@@ -9520,6 +9522,12 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/west)
+"Yl" = (
+/obj/effect/turf_decal/siding/blue/corner{
+	color = "#3234B9"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/welfare)
 "Yn" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -29787,8 +29795,8 @@ zv
 Vo
 Vo
 Vo
-Vo
-Vs
+Yl
+pT
 pT
 pT
 tW
@@ -30015,7 +30023,7 @@ qV
 Vo
 Vo
 Vs
-MH
+jj
 jj
 jj
 jj
@@ -30241,11 +30249,11 @@ Xz
 Vk
 Vo
 Vo
-Aa
-jj
-jj
-ml
-ml
+jf
+GD
+Vo
+Vo
+fu
 jj
 jj
 jj
@@ -30469,10 +30477,10 @@ Vk
 Vo
 Vo
 jf
-jj
-ml
-ml
-ml
+kL
+Vo
+MH
+kn
 jj
 KR
 KR
@@ -30695,11 +30703,11 @@ jj
 zk
 Vo
 Vo
-vA
-jj
-ml
-ml
-ml
+jf
+GD
+Vo
+Vo
+Vo
 jj
 KR
 KR
@@ -30922,11 +30930,11 @@ jj
 Vk
 Vo
 Vo
-jf
+vA
 jj
-ml
-ml
-ml
+jj
+jj
+jj
 jj
 KR
 KR

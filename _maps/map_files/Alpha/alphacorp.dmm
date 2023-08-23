@@ -727,6 +727,10 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
+"fz" = (
+/obj/structure/chair/office,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "fB" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/facility,
@@ -1891,11 +1895,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "oM" = (
-/obj/structure/sign/departments/info{
-	pixel_x = -32
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
 	},
-/obj/structure/table/glass,
-/turf/open/floor/carpet/purple,
+/turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "oN" = (
 /obj/machinery/camera/autoname{
@@ -2419,7 +2422,7 @@
 "sK" = (
 /obj/structure/sign/poster/official/obey,
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/south)
+/area/department_main/information)
 "sN" = (
 /obj/item/target/alien,
 /obj/effect/turf_decal/box,
@@ -2667,6 +2670,9 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"uq" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "uu" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 4
@@ -2909,12 +2915,10 @@
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "wf" = (
-/obj/structure/table/glass,
-/obj/item/paper_bin,
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
-/obj/item/pen,
+/obj/structure/table/glass,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "wh" = (
@@ -3057,6 +3061,10 @@
 	},
 /obj/structure/table/glass,
 /turf/open/floor/carpet/purple,
+/area/department_main/information)
+"wX" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "wZ" = (
 /obj/effect/turf_decal/box/white,
@@ -3938,6 +3946,12 @@
 /obj/item/encryptionkey/headset_information,
 /obj/item/encryptionkey/headset_information,
 /obj/item/encryptionkey/headset_information,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
+"Ec" = (
+/obj/structure/table/glass,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Eg" = (
@@ -4858,6 +4872,9 @@
 "LI" = (
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"LL" = (
+/turf/closed/indestructible/reinforced,
+/area/space)
 "LN" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -4986,6 +5003,10 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"MT" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Na" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -5387,6 +5408,12 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"Qg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Qh" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
@@ -6358,6 +6385,10 @@
 "WW" = (
 /turf/open/floor/wood,
 /area/department_main/command)
+"Xd" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Xe" = (
 /obj/structure/table/glass,
 /obj/machinery/recharger{
@@ -36788,11 +36819,11 @@ Kn
 Nn
 Kw
 Uf
-Kn
-Kn
-Kn
-ZL
-ZL
+LX
+LX
+LX
+LX
+LX
 ZL
 ZL
 ZL
@@ -37046,10 +37077,10 @@ Nn
 Kw
 DQ
 sK
-ZL
-ZL
-ZL
-ZL
+Xd
+uq
+uq
+LX
 ZL
 ZL
 ZL
@@ -37302,14 +37333,14 @@ Kn
 Nn
 Kw
 DQ
-Kn
 LX
+Qg
+MT
+uq
 LX
-LX
-ZL
-ZL
-ZL
-ZL
+LL
+LL
+LL
 ZL
 ZL
 ZL
@@ -37559,14 +37590,14 @@ Kn
 DV
 PJ
 ai
-Kn
+LX
+uq
+uq
+uq
+LX
 Dt
 UV
 LX
-ZL
-ZL
-ZL
-ZL
 ZL
 ZL
 ZL
@@ -37816,14 +37847,14 @@ Kn
 Kn
 QP
 Kn
-Kn
+LX
+wX
+oM
+wX
+LX
 bb
 bb
 LX
-ZL
-ZL
-ZL
-ZL
 ZL
 Kn
 Kn
@@ -38074,12 +38105,12 @@ cv
 Sg
 YM
 wf
-bJ
-qD
-LX
-LX
-LX
-LX
+Lz
+YM
+YM
+cv
+pf
+pf
 LX
 Kn
 Kn
@@ -38330,13 +38361,13 @@ YM
 YM
 Sg
 YM
-cP
-Mg
+fz
+Ec
 YM
-oM
-pf
-bb
-SV
+YM
+YM
+fP
+xH
 LX
 Kn
 Mr
@@ -38587,13 +38618,13 @@ pR
 YM
 Sg
 YM
-Lz
+YM
+cP
 YM
 YM
-fP
-xH
-bb
-aB
+YM
+YM
+sf
 LX
 Kn
 bX
@@ -38848,9 +38879,9 @@ YM
 YM
 YM
 YM
-sf
-bb
-KB
+YM
+bJ
+qD
 LX
 Kn
 Bt
@@ -40393,7 +40424,7 @@ YM
 IT
 bb
 Iw
-LX
+SV
 Kn
 Mr
 Zb
@@ -40650,7 +40681,7 @@ YM
 Ur
 bb
 KF
-LX
+aB
 Kn
 bX
 Zb
@@ -40907,7 +40938,7 @@ Lt
 gv
 bb
 uP
-LX
+KB
 Kn
 Bt
 Zb

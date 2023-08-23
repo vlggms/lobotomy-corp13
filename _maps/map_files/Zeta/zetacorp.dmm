@@ -1251,6 +1251,9 @@
 "il" = (
 /turf/open/floor/wood,
 /area/department_main/training)
+"io" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "ip" = (
 /turf/open/water/deep/saltwater,
 /area/facility_hallway/south)
@@ -1476,6 +1479,9 @@
 	dir = 5
 	},
 /obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "ki" = (
@@ -2417,6 +2423,10 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
+"qb" = (
+/obj/machinery/door/airlock/centcom,
+/turf/open/floor/wood,
+/area/facility_hallway/information)
 "qj" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/effect/turf_decal/tile/green{
@@ -3048,6 +3058,10 @@
 "tJ" = (
 /turf/open/floor/wood,
 /area/facility_hallway/south)
+"tK" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "tM" = (
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/south)
@@ -3242,6 +3256,10 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"uU" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "uY" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/machinery/camera/autoname{
@@ -4592,6 +4610,12 @@
 /obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"Cu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Cw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/wiz,
@@ -4881,6 +4905,12 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/safety)
+"Ek" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "El" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -6372,6 +6402,17 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
+"MX" = (
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "MY" = (
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
@@ -6431,6 +6472,14 @@
 "Nu" = (
 /turf/closed/indestructible/fakeglass,
 /area/department_main/information)
+"Nv" = (
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "Nz" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/purple,
@@ -7153,9 +7202,6 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_x = 32
-	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "Rv" = (
@@ -7463,6 +7509,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
+"TO" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "TQ" = (
 /obj/effect/landmark/department_center,
 /obj/machinery/light/floor,
@@ -7523,6 +7573,12 @@
 /obj/machinery/grill,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
+"Ue" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Uh" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -8100,6 +8156,22 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
+"XK" = (
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 6;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/south)
 "XM" = (
 /obj/structure/table/reinforced{
 	max_integrity = 25
@@ -44547,13 +44619,13 @@ fM
 fM
 fM
 fM
-nJ
-nJ
-nJ
+NT
+qb
+NT
 yL
-yL
-yL
-yL
+uU
+Ue
+uU
 yL
 Nu
 Nu
@@ -44804,14 +44876,14 @@ mt
 mt
 Ui
 fM
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
+We
+tJ
+tJ
+yL
+io
+io
+io
+yL
 Hl
 Hl
 Hl
@@ -45061,14 +45133,14 @@ Id
 kQ
 Ui
 fM
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
+Og
+tJ
+tJ
+yL
+io
+tK
+io
+yL
 Hl
 Hl
 Hl
@@ -45318,14 +45390,14 @@ kQ
 kQ
 Ui
 fM
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
+TO
+tJ
+Zc
+yL
+Ek
+Cu
+io
+yL
 Hl
 Hl
 Hl
@@ -45575,14 +45647,14 @@ fM
 MJ
 fM
 fM
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
-Hl
+Nv
+MX
+XK
+yL
+yL
+yL
+yL
+yL
 Hl
 Hl
 Hl

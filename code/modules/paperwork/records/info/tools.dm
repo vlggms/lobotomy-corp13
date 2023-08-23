@@ -161,3 +161,16 @@
 	- A bomb shelter that completely protects its interior from all hazardous influences of the outside world, including light.	<br>
 	- Those who take refuge inside were perfectly shielded from physical and psychological attacks, even as far as being shielded from radio communications.	<br>
 	- However, this shelter, while perfectly safe on the inside, alters the reality of the outside to be even more hopeless. By keeping agents safely contained, it literally makes itself into the safest place on Earth."}
+
+//Backwards Clock
+/obj/item/paper/fluff/info/tool/clock
+	name = "D-09-104"
+	info = {"<h1><center>D-09-104</center></h1>	<br>
+	Name : Backwards Clock<br>
+	Risk Class : WAW	<br>
+	- Every time an employee at or above level 3 winds up the machine, a light turns on. Using an employee who has never touched the abnormality had the best results.	<br>
+	- When all four lights are turned on, the abnormality's ability is ready.	<br>
+	- When an employee at or above level 3 uses the machine when the abnormality's ability is ready, the abnormality's ability is triggered.	<br>
+	- When triggered, the abnormality deals heavy damage to every escaped abnormality and hostile entity in the facility, dealing more damage depending on the level of the employee.	<br>
+	- The employee who triggered the abnormality's ability crumbles into dust. In addition, the abnormality overheats, needing five minutes to cool down.	<br>
+	- Certain powerful beings are entirely immune to this abnormality's effect, and the mere presence of some creatures will prevent the abnormality from activating at all. If Don't Touch Me is pressed, the abnormality overheats."}
