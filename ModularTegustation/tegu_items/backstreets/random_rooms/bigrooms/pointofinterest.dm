@@ -14,3 +14,8 @@
 	template_height = 30
 	stock = 1
 	room_type = "backstreets_pointofinterest"
+
+/datum/map_template/random_room/backstreets/pointofinterest/scorp
+	name = "Scorp Vault - Point of Interest"
+	room_id = "scorp_poi"
+	mappath = "_maps/RandomRooms/backstreets/pointofinterest/scorp_vault.dmm"

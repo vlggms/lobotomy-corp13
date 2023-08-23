@@ -1,9 +1,10 @@
 /obj/item/ego_weapon/template/scythe
 	name = "scythe template"
 	desc = "An unfinished scythe template"
+	special = "This weapon has a short combo."
 	icon_state = "scythetemplate"
-	force = 20 // It attacks very fast
-	attack_speed = 0.9	//Needs to have one
+	force = 20
+	attack_speed = 0.9
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")

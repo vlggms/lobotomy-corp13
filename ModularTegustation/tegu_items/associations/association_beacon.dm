@@ -19,26 +19,21 @@
 
 
 
-//Seven Asso
-/obj/item/storage/box/association/seven
-	name = "Seven Association Section 6"
-	desc = "A kit from Section 1 containing Seven association gear."
+//Hana (Variety Pack)
+/obj/item/storage/box/association/hana
+	name = "Hana Intern and Misc Fixers"
+	desc = "A kit from Section 1 containing various association gear. The director must wear the hana turtleneck."
 
-/obj/item/storage/box/association/seven/PopulateContents()
-	new /obj/item/ego_weapon/city/seven(src)
-	new /obj/item/ego_weapon/city/seven(src)
-	new /obj/item/ego_weapon/city/seven_fencing(src)
-	new /obj/item/ego_weapon/city/seven/vet(src)
-	new /obj/item/ego_weapon/city/seven/director(src)
-	new /obj/item/ego_weapon/city/seven/cane(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
-	new /obj/item/binoculars(src)
-	new /obj/item/binoculars(src)
-
+/obj/item/storage/box/association/hana/PopulateContents()
+	new /obj/item/clothing/suit/armor/ego_gear/city/hana(src)
+	new /obj/item/ego_weapon/city/shi_assassin/serpent(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/shi(src)
+	new /obj/item/ego_weapon/city/liu/fire(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/liu(src)
+	new /obj/item/ego_weapon/city/cinq(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/cinq(src)
+	new /obj/item/ego_weapon/city/zweibaton(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/zweiriot(src)
 
 
 //Zwei Asso
@@ -75,3 +70,24 @@
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5(src)
+
+//Seven Asso
+/obj/item/storage/box/association/seven
+	name = "Seven Association Section 6"
+	desc = "A kit from Section 1 containing Seven association gear."
+
+/obj/item/storage/box/association/seven/PopulateContents()
+	new /obj/item/ego_weapon/city/seven(src)
+	new /obj/item/ego_weapon/city/seven(src)
+	new /obj/item/ego_weapon/city/seven_fencing(src)
+	new /obj/item/ego_weapon/city/seven/vet(src)
+	new /obj/item/ego_weapon/city/seven/director(src)
+	new /obj/item/ego_weapon/city/seven/cane(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
+	new /obj/item/binoculars(src)
+	new /obj/item/binoculars(src)
+

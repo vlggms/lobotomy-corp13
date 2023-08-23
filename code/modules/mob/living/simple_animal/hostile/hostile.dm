@@ -708,6 +708,8 @@
 	//Mobs should stay unpatroled on combat maps.
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return
+	if(!LAZYLEN(GLOB.department_centers))
+		return
 
 	var/turf/target_center
 	var/list/potential_centers = list()

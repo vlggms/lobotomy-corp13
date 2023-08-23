@@ -1,0 +1,523 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ci" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cx" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/flare/torch,
+/obj/item/storage/belt/ego,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cL" = (
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/structure/closet/crate/pcorp,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cS" = (
+/obj/structure/closet/secure_closet/personal/cabinet,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"dq" = (
+/obj/structure/table/reinforced,
+/obj/item/food/hotcrossbun,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eS" = (
+/obj/item/bodypart/head/robot{
+	anchored = 1;
+	pixel_y = 30
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/flashlight/flare/torch,
+/obj/item/storage/belt/ego,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eX" = (
+/obj/structure/curtain/cloth/fancy,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"hG" = (
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iw" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"jq" = (
+/obj/structure/closet/crate,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/ego_weapon/city/ncorp_brassnail,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/storage/belt/ego,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"kY" = (
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"lL" = (
+/obj/structure/bonfire/prelit,
+/obj/item/bodypart/chest/robot{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/bodypart/head/robot{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/bodypart/l_arm/robot{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/bodypart/r_arm/robot{
+	pixel_x = -15
+	},
+/obj/item/bodypart/r_leg/robot{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/organ/eyes/robotic{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/organ/tongue/robot{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"nE" = (
+/obj/structure/rack,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/storage/firstaid/revival,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"oM" = (
+/obj/machinery/door/airlock/wood{
+	name = "mittlehammer quarters";
+	req_access_txt = "150"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"qV" = (
+/obj/structure/table/wood,
+/obj/item/food/hotcrossbun,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"rb" = (
+/obj/item/bodypart/head/robot{
+	anchored = 1;
+	pixel_y = 30
+	},
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 5
+	},
+/obj/item/food/hotcrossbun,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"rB" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/organ/eyes/robotic{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/item/bodypart/r_leg/robot{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/effect/gibspawner/scrap_metal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"sd" = (
+/obj/machinery/door/airlock/wood{
+	name = "grand inquisitor's chambers";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"tG" = (
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/structure/closet/crate/pcorp,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"xm" = (
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"yG" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Aw" = (
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"BC" = (
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet,
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/ncorp_brassnail/big,
+/obj/item/ego_weapon/city/ncorp_hammer/big,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ch" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/hos,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"CK" = (
+/obj/machinery/door/airlock/wood{
+	name = "kleinhammer quarters";
+	req_access_txt = "150"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"CW" = (
+/obj/structure/table/reinforced,
+/obj/item/documents/ncorporation,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ia" = (
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/city/backstreets_room)
+"Jq" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/dresser,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"Kb" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/bodypart/head/robot{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/item/bodypart/chest/robot{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/bodypart/r_leg/robot{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/effect/gibspawner/scrap_metal,
+/obj/item/food/hotcrossbun,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"KW" = (
+/obj/structure/chair/comfy/black,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"La" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Na" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NB" = (
+/obj/item/bodypart/head/robot{
+	anchored = 1;
+	pixel_y = 30
+	},
+/obj/item/shears,
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NK" = (
+/obj/effect/mob_spawn/human/skeleton,
+/obj/item/bodypart/chest/robot{
+	pixel_x = -4;
+	pixel_y = 3
+	},
+/obj/item/bodypart/r_leg/robot{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/effect/gibspawner/scrap_metal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"QY" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/ncorp_brassnail/huge,
+/obj/item/ego_weapon/city/ncorp_hammer/grippy,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"RE" = (
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"RL" = (
+/obj/structure/bed/maint,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"SP" = (
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/food/canned/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/item/storage/box/pcorp,
+/obj/structure/closet/crate/pcorp,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/item/reagent_containers/food/drinks/waterbottle,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Vl" = (
+/obj/effect/gibspawner/scrap_metal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Wd" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Xc" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"XZ" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"YM" = (
+/obj/machinery/door/airlock/wood{
+	name = "equipment room";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Ia
+cL
+ci
+Ia
+Ia
+ci
+Ia
+Ia
+Ia
+nE
+xm
+"}
+(2,1,1) = {"
+Ia
+tG
+ci
+ci
+ci
+ci
+ci
+ci
+iw
+ci
+kY
+"}
+(3,1,1) = {"
+Ia
+SP
+ci
+ci
+ci
+ci
+ci
+Vl
+iw
+ci
+hG
+"}
+(4,1,1) = {"
+Ia
+Ia
+Ia
+ci
+qV
+qV
+yG
+ci
+YM
+ci
+RE
+"}
+(5,1,1) = {"
+RL
+RL
+Ia
+ci
+yG
+lL
+La
+ci
+Ia
+Ia
+Ia
+"}
+(6,1,1) = {"
+Na
+ci
+CK
+ci
+yG
+yG
+qV
+ci
+Ia
+Jq
+Ch
+"}
+(7,1,1) = {"
+jq
+jq
+Ia
+ci
+ci
+ci
+ci
+ci
+Ia
+cS
+Aw
+"}
+(8,1,1) = {"
+Ia
+Ia
+Ia
+oM
+Ia
+Ia
+Ia
+sd
+Ia
+eX
+eX
+"}
+(9,1,1) = {"
+Kb
+Ia
+BC
+ci
+cx
+Ia
+NB
+ci
+CW
+ci
+ci
+"}
+(10,1,1) = {"
+rB
+Ia
+Na
+ci
+Xc
+Ia
+eS
+KW
+QY
+Wd
+ci
+"}
+(11,1,1) = {"
+NK
+Ia
+RL
+ci
+dq
+Ia
+rb
+ci
+ci
+ci
+XZ
+"}
