@@ -1,11 +1,22 @@
 //Speech verbs.
 
+/mob/verb/say_wrapper()
+	set name = ".Say"
+	set hidden = TRUE
+
+	set_typing_indicator(TRUE)
+	var/message = stripped_input("", "Say \"text\"") as null|text
+	set_typing_indicator(FALSE)
+
+	if(message)
+		say_verb(message)
+
 ///Say verb
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	if(typing_indicator)
-		set_typing_indicator(FALSE)
+
+	set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
@@ -25,13 +36,22 @@
 /mob/proc/whisper(message, datum/language/language=null)
 	say(message, language) //only living mobs actually whisper, everything else just talks
 
+/mob/verb/me_wrapper()
+	set name = ".Me"
+	set hidden = TRUE
+
+	set_typing_indicator(TRUE)
+	var/message = stripped_input("", "Me \"text\"") as null|text
+	set_typing_indicator(FALSE)
+	if(message)
+		me_verb(message)
+
 ///The me emote verb
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
 
-	if(typing_indicator)
-		set_typing_indicator(FALSE)
+	set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return

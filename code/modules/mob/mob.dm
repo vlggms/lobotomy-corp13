@@ -1353,6 +1353,19 @@
 	if(. && slowdown_edit && isnum(diff))
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/admin_varedit, multiplicative_slowdown = diff)
 
-/// Used for typing indicator, relevant on /living level
+/// Used for setting typing indicator on/off.
 /mob/proc/set_typing_indicator(state)
-	return
+	if(state == typing_indicator)
+		return
+	typing_indicator = state
+	var/bubble = "default"
+	if(isliving(src))
+		var/mob/living/L = src
+		bubble = L.bubble_icon
+	bubble += "0"
+	var/mutable_appearance/bubble_overlay = mutable_appearance('icons/mob/talk.dmi', bubble, plane = RUNECHAT_PLANE)
+	bubble_overlay.appearance_flags = RESET_COLOR | RESET_TRANSFORM | TILE_BOUND | PIXEL_SCALE
+	if(typing_indicator)
+		add_overlay(bubble_overlay)
+	else
+		cut_overlay(bubble_overlay)
