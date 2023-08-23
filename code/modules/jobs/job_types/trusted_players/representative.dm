@@ -23,11 +23,11 @@
 								)
 
 /datum/job/representative/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	H.set_attribute_limit(0)
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are expected to roleplay as the representative for the corporation you chose. Feel free to ask any online admins to further any deals you make.</span>")
+	. = ..()
 
 /datum/outfit/job/representative
 	name = "Main Office Representative"

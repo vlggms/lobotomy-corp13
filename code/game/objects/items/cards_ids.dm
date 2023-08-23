@@ -340,6 +340,11 @@ update_label()
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
+/obj/item/card/id/silver/plastic
+	name = "plastic identification card"
+	id_type_name = "plastic identification card"
+	desc = "A plastic card which shows creme of the crop."
+
 /obj/item/card/id/silver/reaper
 	name = "Thirteen's ID Card (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
@@ -354,6 +359,18 @@ update_label()
 	inhand_icon_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/fixer
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	icon_state = "fixer"
+
+/obj/item/card/id/association
+	name = "association identification card"
+	id_type_name = "association identification card"
+	desc = "A blue card used by association fixers."
+	icon_state = "association"
 
 /obj/item/card/id/syndicate
 	name = "agent card"
@@ -625,6 +642,20 @@ update_label()
 	icon_state = "ert_commander"
 	registered_name = "Shield Captain"
 	assignment = "Shield Captain"
+
+/obj/item/card/id/fixerdirector
+	name = "fixer director identification card"
+	id_type_name = "fixer director identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_director"
+
+/obj/item/card/id/fixercard
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_id"
 
 /obj/item/card/id/debug
 	name = "\improper Debug ID"

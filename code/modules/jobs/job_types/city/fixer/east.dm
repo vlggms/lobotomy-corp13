@@ -78,7 +78,7 @@
 								JUSTICE_ATTRIBUTE = 60
 								)
 
-/datum/job/associate/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/fixer/east/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	//Not fear immune you're basically some goober
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation

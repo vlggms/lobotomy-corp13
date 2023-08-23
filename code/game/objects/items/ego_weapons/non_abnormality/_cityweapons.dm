@@ -137,7 +137,11 @@ Attack a corpse for heal (10%)
 Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.
 
 Brotherhood Of Iron
-Grade 6 weapons with grade 5 damage. Each of them has a durability that decreases on each hit, and when it reaches 0, all damage done is halved.
+Grade 6 weapons with grade 5 damage. Each of them has a durability that decreases on each hit, and when it reaches 0, all damage done is halved. Cannot repair
+
+Smiling Faces
+Build up charge on your blade, then hit a pipe with the blade for a gigantic burst of smoke.
+Without the charge, use the smoke pipe for an AOE of smoke
 
 T Corp
 Build Charge for a short timestop.

@@ -24,8 +24,8 @@ Workshop employee
 /datum/job/chef/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	H.set_attribute_limit(0)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	to_chat(M, "<span class='userdanger'>Your workshop is northwest, of the city. </span>")
-	to_chat(M, "<span class='userdanger'>Make weapons for the fixers who come asking in exchange for money. You cannot give away weapons for free </span>")
+	job_important = "Make weapons for the fixers who come asking in exchange for money. You cannot give away weapons for free."
+	job_notice = "Your workshop is northwest, of the city."
 
 
 /datum/outfit/job/workshop

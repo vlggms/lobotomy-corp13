@@ -1,0 +1,117 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"f" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"r" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/bed/maint,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/gibspawner/generic,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/closet/cabinet,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/structure/lootcrate/workshoprosespanner,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/table/reinforced,
+/obj/item/food/pizzaslice/moldy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Y" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+Y
+"}
+(2,1,1) = {"
+U
+P
+f
+U
+Y
+"}
+(3,1,1) = {"
+r
+X
+c
+U
+U
+"}
+(4,1,1) = {"
+r
+c
+f
+D
+U
+"}
+(5,1,1) = {"
+w
+f
+y
+c
+U
+"}
+(6,1,1) = {"
+U
+c
+e
+s
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}
