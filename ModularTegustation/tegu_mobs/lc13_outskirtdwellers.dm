@@ -450,7 +450,7 @@
 
 /*
 --LOVE TOWN--
-Mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
+Mobs that mostly focus on dealing RED damage, they are all a bit more frail than others on tier (one exception) but will spawn suicidal mobs on death that deal WHITE around themselves periodically.
 */
 /mob/living/simple_animal/hostile/lovetown
 	name = "love town resident"
@@ -462,15 +462,15 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	faction = list("hostile")
 	gender = NEUTER
 	mob_biotypes = MOB_ORGANIC
-	maxHealth = 100
-	health = 100
+	maxHealth = 80
+	health = 80
 	move_to_delay = 4
-	stat_attack = DEAD
+	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 2) //Resitant to physical damage and to psychological attacks due to their origins.
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/mob_spawn_amount = 1 //the weakest will spawn just one suicidal, higher tiers will spawn more
 
@@ -587,7 +587,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	health = 900
 	move_to_delay = 6
 	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	mob_spawn_amount = 4 //on death explodes into 4 suicidals
 
 	var/scream_cooldown
@@ -634,9 +634,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	rapid_melee = 0.5
 	attack_verb_continuous = "grasps"
 	attack_verb_simple = "grasp"
-	move_to_delay = 8 //Absurdly slow
-	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	move_to_delay = 10 //Absurdly slow
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	mob_spawn_amount = 2
 
 	var/grab_cooldown
@@ -646,17 +645,19 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableGrab()
-	icon_state = "lovetown_slasher"
-	grab_ready = FALSE
-	can_act = TRUE
+	if(!grabbing)
+		icon_state = "lovetown_slasher"
+		grab_ready = FALSE
+		can_act = TRUE
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/Grab(target)
 	grabbing = TRUE
 	var/mob/living/carbon/human/H = target
-	H.Stun(6 SECONDS)//fuck you if you get hit by this
-	SLEEP_CHECK_DEATH(6)
-	DisableGrab()
+	H.Stun(6 SECONDS)//easy to dodge, but fuck you if you get hit by this
+	SLEEP_CHECK_DEATH(6 SECONDS)
 	grabbing = FALSE
+	DisableGrab()
+
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/Move()
 	if((!can_act) && (!grabbing))
@@ -686,12 +687,106 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_living = "lovetown_slasher"
 	maxHealth = 4000 //CHONKY
 	health = 4000
+	melee_queue_distance = 2 //since our attacks are AoEs, this makes it harder to kite us
 	move_to_delay = 6
-	melee_damage_lower = 44
-	melee_damage_upper = 24
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
-	mob_spawn_amount = 2
+	ranged = TRUE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	melee_damage_lower = 80
+	melee_damage_upper = 80 //only relevant for the counter
+	attack_sound = 'sound/abnormalities/kqe/hitsound1.ogg'
+	attack_verb_continuous = "slams"
+	attack_verb_simple = "slam"
+	mob_spawn_amount = 2 //:(
 
+	var/can_act = TRUE
+	var/current_stage = 1
+	var/stage_threshold = 2000 // enters stage 2 at or below this threshold
+	var/attack_delay = 0.8 SECONDS //0.8 second at stage 1, 1.2 at stage 2
+	var/countering = FALSE
+	var/counter_threshold = 300 //200 at stage 2
+	var/counter_ready = FALSE
+	var/damage_taken
 
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/AoeAttack()
+	say("Aoe Attack")
+	can_act = FALSE
+	face_atom(target)
+	playsound(get_turf(src), attack_sound, 75, 0, 3)
+	icon_state = "lovetown_stabber"
+	SLEEP_CHECK_DEATH(attack_delay)
+	for(var/turf/T in view(current_stage, src))//scales with stage, at stage 2 hits 2 tiles around, but a bit slower
+		new /obj/effect/temp_visual/smash_effect(T)
+		HurtInTurf(T, list(), (melee_damage_upper/2), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //40 damage
+	icon_state = "lovetown_slammer"
+	SLEEP_CHECK_DEATH(0.4 SECONDS)
+	icon_state = icon_living
+	can_act = TRUE
 
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DashCounter()
+	say("Counter dash")
+	icon_state = "lovetown_stabber"
+	countering = TRUE
+	counter_ready = FALSE
+	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	if(client)
+		var/original_speed = speed
+		set_varspeed(-0.5)
+		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 7 SECONDS)
+		return
+	TemporarySpeedChange(-4, 7 SECONDS)
+	addtimer(CALLBACK(src, .proc/DisableCounter), 7 SECONDS)
+
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter()
+	say("Disable Counter")
+	icon_state = icon_living
+	countering = FALSE
+
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/LoveWhip() //Projectile that on hit throws the target towards us
+	say("Love Whip")
+	return
+
+/mob/living/simple_animal/hostile/lovetown/abomination/Initialize()
+	. = ..()
+	AddComponent(/datum/component/knockback, 4, FALSE, FALSE) //4 is distance thrown, CAN stun and damage you if it hits a wall, only relevant for counter hits.
+
+/mob/living/simple_animal/hostile/lovetown/abomination/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+
+	if(countering)
+		return ..()
+	if(counter_ready)
+		return OpenFire()
+	return AoeAttack()
+
+/mob/living/simple_animal/hostile/lovetown/abomination/OpenFire()
+	if(!can_act)
+		return
+
+	if(counter_ready)
+		switch(current_stage)
+			if(1)
+				return DashCounter()
+			if(2)
+				if(prob(80))
+					return LoveWhip()
+				return DashCounter()
+		return
+
+/mob/living/simple_animal/hostile/lovetown/abomination/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. > 0)
+		damage_taken += .
+	if(damage_taken >= counter_threshold && !counter_ready)
+		say("Counter ready")
+		counter_ready = TRUE
+		damage_taken = 0
+//	if(health <= stage_threshold)
+//		StageTransition()
+
+/*
+ISSUES
+slumberer not grabbing
+abomination cant counter properly
+CONVERT SLUMBERER GRAB INTO COUNTER
+*/
