@@ -16,7 +16,7 @@
 	icon_state = "ncorp_vet"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
+							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
