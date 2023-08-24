@@ -37,7 +37,7 @@
 
 /obj/effect/mine/Crossed(atom/movable/AM, datum/thrownthing/throwingdatum)
 	//Stops us for exploding more then once
-	if(safty_check())
+	if(safety_check())
 		return
 	. = ..()
 
@@ -64,19 +64,19 @@
 
 /obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
 	//Stops us for exploding more then once
-	if(safty_check())
+	if(safety_check())
 		return
 	. = ..()
 	triggermine()
 
 /obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	//Stops us for exploding more then once
-	if(safty_check())
+	if(safety_check())
 		return
 	. = ..()
 	triggermine()
 
-/obj/effect/mine/proc/safty_check()
+/obj/effect/mine/proc/safety_check()
 	//If we are already triggered, not ona  vaid turf or not armed, we dont explod!
 	if(triggered || !isturf(loc) || !armed)
 		return TRUE
