@@ -184,11 +184,11 @@
 	return
 
 /obj/structure/representative_console/proc/CustomizeOffice(obj/poster, obj/crate)
-	var/poster_place = locate(/obj/effect/landmark/custom_office/poster) in range(10,get_turf(src))
-	if(poster_place)
+	var/poster_place = get_turf(locate(/obj/effect/landmark/custom_office/poster) in GLOB.landmarks_list)
+	if(isturf(poster_place))
 		new poster(get_turf(poster_place))
 
-	var/crate_place = locate(/obj/effect/landmark/custom_office/crate) in range(10,get_turf(src))
+	var/crate_place = get_turf(locate(/obj/effect/landmark/custom_office/crate) in GLOB.landmarks_list)
 	if(!crate_place)
 		crate_place = get_turf(src)
 	new crate(get_turf(crate_place))
@@ -220,7 +220,8 @@
 	//for repeatable research cooldowns.
 	var/repeat_cooldown = 0
 	//research required for this to appear.
-	var/required_research = list()
+	//I tried making this a list but the methods i used didnt work. -IP
+	var/required_research
 
 //Pre loaded with making researched true since most researches will only happen once.
 /datum/data/lc13research/proc/ResearchEffect(obj/structure/representative_console/caller)
@@ -234,16 +235,11 @@
 	return TRUE
 
 //Proc that returns false if any of the research that is required is missing from the callers researched_stuff.
-/datum/data/lc13research/proc/ReqResearch(obj/structure/representative_console/caller, list/required_research = list())
-	var/req_research
-	for(var/i in required_research)
-		if(!istype(i, /datum/data/lc13research))
-			continue
-		//Locate the research and then if its not in the other list return false.
-		req_research = locate(i) in caller.research_list
-		if(!LAZYFIND(caller.researched_stuff, req_research))
-			return FALSE
-	return TRUE
+/datum/data/lc13research/proc/ReqResearch(obj/structure/representative_console/caller, research_needed)
+	var/req = locate(research_needed) in caller.research_list
+	if(!req || LAZYFIND(caller.researched_stuff, req))
+		return TRUE
+	return FALSE
 
 /* Generalized item unlock for the ahn section.
 	Override this section with a proc in order
@@ -357,7 +353,7 @@
 
 /datum/data/lc13research/mobspawner/rabbit
 	research_name = "4th Pack Rabbit Team"
-	research_desc = "Our contract with L corp garentees at least one rabbit call <br>per day in exchange for energy. <br>We can abuse a loophole in the contract and list you as the client if you remain descreet."
+	research_desc = "Our contract with L corp garentees at least one rabbit call <br>per day in exchange for energy. We can abuse a loophole in the contract <br>and list you as the client if you remain descreet."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call
@@ -368,7 +364,7 @@
 	cost = AVERAGE_RESEARCH_PRICE + 10
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
-	required_research = list(/datum/data/lc13research/mobspawner/rabbit)
+	required_research = /datum/data/lc13research/mobspawner/rabbit
 
 /datum/data/lc13research/mobspawner/rhino
 	research_name = "4th Pack Twin Rhinos"
@@ -376,7 +372,7 @@
 	cost = AVERAGE_RESEARCH_PRICE + 20
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
-	required_research = list(/datum/data/lc13research/mobspawner/rabbit, /datum/data/lc13research/mobspawner/raven)
+	required_research = /datum/data/lc13research/mobspawner/raven
 
 //-----W_CORP-----
 /datum/data/lc13research/teleporter
