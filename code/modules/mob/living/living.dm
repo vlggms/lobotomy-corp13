@@ -755,7 +755,6 @@
 	if(pulling)
 		update_pull_movespeed()
 
-
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.

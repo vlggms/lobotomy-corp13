@@ -98,7 +98,6 @@
 		CtrlClickOn(A)
 		return
 
-
 	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 		return
 

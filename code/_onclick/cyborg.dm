@@ -37,7 +37,6 @@
 		CtrlClickOn(A)
 		return
 
-
 	if(next_move >= world.time)
 		return
 
