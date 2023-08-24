@@ -285,29 +285,34 @@
 	addtimer(CALLBACK(src, .proc/do_roll, move_dir, (times_ran + 1)), 1.5)
 
 // Crimson midnight
+// Tent
 /mob/living/simple_animal/hostile/ordeal/crimson_tent
-	name = "a chorus of saliva"
+	name = "chorus of saliva"
 	desc = "A circus tent stitched together with sinew. It has a giant, gaping maw."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 15000
-	health = 15000
+	maxHealth = 10000
+	health = 10000
 	pixel_x = -16
 	base_pixel_x = -16
-	melee_damage_lower = 32
-	melee_damage_upper = 36
+	melee_damage_lower = 15
+	melee_damage_upper = 30
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
 
 	var/spawn_time
 	var/spawn_time_cooldown = 20 SECONDS
 	var/list/spawned_mobs = list()
+	var/can_act = TRUE
+	var/bite_width = 1
+	var/bite_length = 3
+	var/bite_damage = 30
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/Initialize()
 	. = ..()
@@ -362,6 +367,116 @@
 			L.apply_damage(700, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/AttackingTarget()
+	if(!can_act)
+		return FALSE
+	return Bite(target)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_tent/proc/Bite(target)
+	if (get_dist(src, target) > 3)
+		return
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+	var/turf/source_turf = get_turf(src)
+	var/turf/area_of_effect = list()
+	var/turf/middle_line = list()
+	switch(dir_to_target)
+		if(EAST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, EAST, bite_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, bite_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, bite_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(WEST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, WEST, bite_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, bite_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, bite_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(SOUTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, SOUTH, bite_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, bite_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, bite_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(NORTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, NORTH, bite_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, bite_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, bite_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		else
+			for(var/turf/T in view(1, src))
+				if (T.density)
+					break
+				if (T in area_of_effect)
+					continue
+				area_of_effect |= T
+	if (!LAZYLEN(area_of_effect))
+		return
+	can_act = FALSE
+	dir = dir_to_target
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/ball.ogg', 75, 0, 5)
+	for(var/turf/T in area_of_effect)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(0.8 SECONDS)
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/noon_bite.ogg', 100, 0, 5)
+	for(var/turf/T in area_of_effect)
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			if (L == src)
+				continue
+			L.apply_damage(bite_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	can_act = TRUE
+
+// Crimson Midnight
+// Clown
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight //oh god why
 	name = "pinnacle of thew"
 	desc = "A gargantuan clown with gigantic muscles."
@@ -370,8 +485,8 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 3000
+	health = 3000
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 48
@@ -380,7 +495,7 @@
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/effects/ordeals/crimson/midnight_slam.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	mob_spawn_amount = 2
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/Initialize()
@@ -436,8 +551,8 @@
 // Noon
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned //weaker variant that explodes into clowns if ignored
 	name = "moment of indulgence"
-	maxHealth = 500
-	health = 500
+	maxHealth = 650
+	health = 650
 	mob_spawn_amount = 1
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
@@ -476,8 +591,8 @@
 // Dusk
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned //weaker variant that explodes into clowns if ignored
 	name = "summit of trepidation"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 500
+	health = 500
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
 	. = ..()
