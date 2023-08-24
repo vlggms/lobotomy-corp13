@@ -29,7 +29,7 @@ Backstreets Butcher
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	job_important = "If there is an L-Corp facility nearby, do not enter it. Fixers are not inherently hostile to you, but they can and will find a reason to put you down. \
-			Your primary goal is to kill and cook people and make more money than HHPP. You own The Bistro in town."
+			Your primary goal is to kill and cook people and make more money than HHPP. You own The Bistro in the northeast of town."
 	..()
 
 /datum/outfit/job/butcher
@@ -43,6 +43,5 @@ Backstreets Butcher
 
 	backpack_contents = list(
 		/obj/item/clothing/mask/muzzle = 1,
-		/obj/item/kitchen/knife/butcher/deadly = 1,
-		/obj/item/restraints/legcuffs/bola/tactical = 1)
+		/obj/item/kitchen/knife/butcher/deadly = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)

@@ -18,6 +18,7 @@
 		Your goal is simple, kill and torture everyone with prosthetics, and anyone who defends them. \
 		You may kill or amputate, without warning, anyone with prosthetic limbs. \
 		Your presence must be known, do not wear disguises. \
+		You only start with Mittlehammers and a Grosshammer, you need to recruit new Kleinhammers. \
 		Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "You may kill anyone with prosthetics, or anyone sympathetic to prosthetics."
 
@@ -33,10 +34,10 @@
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
-		if(istype(processing, /datum/job/mittlehammer))
+		if(istype(processing, /datum/job/grosshammer))
 			processing.total_positions = 1
 
-		if(istype(processing, /datum/job/kleinhammer))
+		if(istype(processing, /datum/job/mittlehammer))
 			processing.total_positions = 2
 	. = ..()
 

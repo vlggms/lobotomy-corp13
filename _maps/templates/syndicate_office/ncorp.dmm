@@ -4,8 +4,8 @@
 /area/city/backstreets_room)
 "cx" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/flare/torch,
-/obj/item/storage/belt/ego,
+/obj/item/ego_weapon/city/ncorp_hammer/hand,
+/obj/item/ego_weapon/city/ncorp_brassnail/huge,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "cL" = (
@@ -32,11 +32,6 @@
 /obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
-"dq" = (
-/obj/structure/table/reinforced,
-/obj/item/food/hotcrossbun,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "eS" = (
 /obj/item/bodypart/head/robot{
 	anchored = 1;
@@ -55,11 +50,6 @@
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
 "hG" = (
-/obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/ego_weapon/city/ncorp_mark/white,
 /obj/structure/rack,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -70,25 +60,28 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"jq" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+"kY" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/ncorp_brassnail,
+/obj/item/ego_weapon/city/ncorp_brassnail,
+/obj/item/ego_weapon/city/ncorp_brassnail,
+/obj/item/ego_weapon/city/ncorp_brassnail,
+/obj/item/ego_weapon/city/ncorp_brassnail,
 /obj/item/ego_weapon/city/ncorp_brassnail,
 /obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_hammer,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/white,
 /obj/item/ego_weapon/city/ncorp_mark/white,
 /obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/storage/belt/ego,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"kY" = (
 /obj/item/ego_weapon/city/ncorp_mark/black,
 /obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/structure/rack,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "lL" = (
@@ -157,19 +150,6 @@
 /obj/item/food/hotcrossbun,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"rB" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/item/organ/eyes/robotic{
-	pixel_x = 7;
-	pixel_y = 6
-	},
-/obj/item/bodypart/r_leg/robot{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/effect/gibspawner/scrap_metal,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "sd" = (
 /obj/machinery/door/airlock/wood{
 	name = "grand inquisitor's chambers";
@@ -196,10 +176,13 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "xm" = (
-/obj/item/ego_weapon/city/ncorp_mark,
-/obj/item/ego_weapon/city/ncorp_mark,
-/obj/item/ego_weapon/city/ncorp_mark,
 /obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "yG" = (
@@ -215,6 +198,11 @@
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/ncorp_brassnail/big,
 /obj/item/ego_weapon/city/ncorp_hammer/big,
+/obj/item/storage/belt/ego,
+/obj/item/flashlight/flare/torch,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/food/hotcrossbun,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "Ch" = (
@@ -244,24 +232,6 @@
 /obj/structure/dresser,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
-"Kb" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/item/bodypart/head/robot{
-	pixel_x = 3;
-	pixel_y = -4
-	},
-/obj/item/bodypart/chest/robot{
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/obj/item/bodypart/r_leg/robot{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/effect/gibspawner/scrap_metal,
-/obj/item/food/hotcrossbun,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "KW" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/wood,
@@ -285,22 +255,8 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
-"NK" = (
-/obj/effect/mob_spawn/human/skeleton,
-/obj/item/bodypart/chest/robot{
-	pixel_x = -4;
-	pixel_y = 3
-	},
-/obj/item/bodypart/r_leg/robot{
-	pixel_x = -4;
-	pixel_y = -3
-	},
-/obj/effect/gibspawner/scrap_metal,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
 "QY" = (
 /obj/structure/table/reinforced,
-/obj/item/ego_weapon/city/ncorp_brassnail/huge,
 /obj/item/ego_weapon/city/ncorp_hammer/grippy,
 /obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander,
 /obj/item/ego_weapon/city/ncorp_mark,
@@ -310,16 +266,7 @@
 /obj/item/ego_weapon/city/ncorp_mark/black,
 /obj/item/ego_weapon/city/ncorp_mark/black,
 /obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/turf/open/floor/wood,
-/area/city/backstreets_room)
-"RE" = (
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
-/obj/structure/rack,
+/obj/item/ego_weapon/city/ncorp_brassnail/rose,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "RL" = (
@@ -358,11 +305,7 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "Xc" = (
-/obj/structure/table/reinforced,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/machinery/light/small,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "XZ" = (
@@ -379,9 +322,9 @@
 /area/city/backstreets_room)
 
 (1,1,1) = {"
+SP
+tG
 Ia
-cL
-ci
 Ia
 Ia
 ci
@@ -392,10 +335,10 @@ nE
 xm
 "}
 (2,1,1) = {"
+ci
+RL
 Ia
-tG
-ci
-ci
+cL
 ci
 ci
 ci
@@ -405,9 +348,9 @@ ci
 kY
 "}
 (3,1,1) = {"
-Ia
-SP
 ci
+RL
+Ia
 ci
 ci
 ci
@@ -418,8 +361,8 @@ ci
 hG
 "}
 (4,1,1) = {"
-Ia
-Ia
+Na
+RL
 Ia
 ci
 qV
@@ -428,10 +371,10 @@ yG
 ci
 YM
 ci
-RE
+hG
 "}
 (5,1,1) = {"
-RL
+ci
 RL
 Ia
 ci
@@ -444,9 +387,9 @@ Ia
 Ia
 "}
 (6,1,1) = {"
-Na
 ci
-CK
+RL
+Ia
 ci
 yG
 yG
@@ -457,9 +400,9 @@ Jq
 Ch
 "}
 (7,1,1) = {"
-jq
-jq
-Ia
+Na
+ci
+CK
 ci
 ci
 ci
@@ -483,8 +426,8 @@ eX
 eX
 "}
 (9,1,1) = {"
-Kb
 Ia
+BC
 BC
 ci
 cx
@@ -496,9 +439,9 @@ ci
 ci
 "}
 (10,1,1) = {"
-rB
 Ia
 Na
+ci
 ci
 Xc
 Ia
@@ -509,11 +452,11 @@ Wd
 ci
 "}
 (11,1,1) = {"
-NK
 Ia
 RL
+RL
 ci
-dq
+RL
 Ia
 rb
 ci
