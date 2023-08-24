@@ -206,7 +206,7 @@
 /obj/item/ego_weapon/city/ncorp_brassnail/attack(mob/living/target, mob/living/user)
 	..()
 	nails++
-	if(nails<=5)
+	if(nails>=5)
 		nails = 5
 
 /obj/item/ego_weapon/city/ncorp_brassnail/attackby(obj/item/I, mob/living/user, params)
@@ -214,6 +214,8 @@
 	if(!istype(I, /obj/item/ego_weapon/city/ncorp_hammer))
 		return
 	I.force += I.force* nails *0.1
+	nails = 0
+	to_chat(user, "<span class='notice'>You transfer [nails] nails to your hammer, increasing it's damage.</span>")
 
 /obj/item/ego_weapon/city/ncorp_brassnail/big
 	name = "Elektrumnagel"

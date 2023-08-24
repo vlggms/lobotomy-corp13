@@ -148,3 +148,8 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak
+	name = "nagel und hammer armor"
+	desc = "Armor worn by Nagel Und Hammer."
+	icon_state = "ncorp"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50)

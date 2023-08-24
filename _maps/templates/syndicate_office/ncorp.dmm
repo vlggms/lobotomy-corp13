@@ -6,6 +6,7 @@
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/ncorp_hammer/hand,
 /obj/item/ego_weapon/city/ncorp_brassnail/huge,
+/obj/item/clothing/suit/armor/ego_gear/city/grosshammmer,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "cL" = (
@@ -193,6 +194,16 @@
 "Aw" = (
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
+"Bm" = (
+/obj/structure/rack,
+/obj/item/radio/headset/syndicatecity,
+/obj/item/radio/headset/syndicatecity,
+/obj/item/radio/headset/syndicatecity,
+/obj/item/radio/headset/syndicatecity,
+/obj/item/radio/headset/syndicatecity,
+/obj/item/radio/headset/syndicatecity,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "BC" = (
 /obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet,
 /obj/structure/table/reinforced,
@@ -212,8 +223,7 @@
 /area/city/backstreets_room)
 "CK" = (
 /obj/machinery/door/airlock/wood{
-	name = "kleinhammer quarters";
-	req_access_txt = "150"
+	name = "kleinhammer quarters"
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -358,7 +368,7 @@ ci
 Vl
 iw
 ci
-hG
+Bm
 "}
 (4,1,1) = {"
 Na
