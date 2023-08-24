@@ -2,7 +2,7 @@
 /obj/item/food/fish
 	name = "generic looking aquarium fish"
 	desc = "very bland"
-	icon = 'icons/obj/aquarium.dmi'
+	icon = 'ModularTegustation/fishing/icons/fish_sprites.dmi'
 	icon_state = "bugfish"
 	microwaved_type = /obj/item/food/cooked_fish
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/nutriment/vile_fluid = 4)
