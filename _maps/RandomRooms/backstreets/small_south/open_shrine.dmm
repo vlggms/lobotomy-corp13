@@ -1,25 +1,138 @@
-"a" = (/obj/structure/railing{dir = 4},/turf/open/floor/plating/rust,/area/space)
-"c" = (/obj/structure/chair/pew{dir = 4},/obj/effect/decal/cleanable/glass,/turf/open/floor/plating,/area/space)
-"e" = (/obj/structure/chair/pew{dir = 4},/turf/open/floor/plating/rust,/area/space)
-"f" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/carpet/lone,/area/space)
-"g" = (/obj/structure/chair/pew{dir = 4},/turf/open/floor/plating,/area/space)
-"j" = (/obj/structure/chair/pew{dir = 8},/obj/effect/decal/cleanable/glass,/turf/open/floor/plating/rust,/area/space)
-"n" = (/obj/structure/railing,/turf/open/floor/plating,/area/space)
-"p" = (/obj/structure/chair/pew{dir = 8},/turf/open/floor/plating,/area/space)
-"s" = (/obj/structure/altar_of_gods,/obj/effect/decal/cleanable/dirt,/obj/item/storage/book/bible,/obj/structure/lootcrate/n_corp,/turf/open/floor/carpet/lone,/area/space)
-"t" = (/turf/closed/indestructible/reinforced,/area/space)
-"w" = (/obj/structure/railing{dir = 8},/turf/open/floor/plating,/area/space)
-"x" = (/obj/effect/decal/cleanable/glass,/turf/open/floor/carpet/lone,/area/space)
-"B" = (/turf/open/floor/carpet/lone,/area/space)
-"H" = (/obj/structure/window/reinforced/fulltile,/obj/structure/grille,/turf/open/floor/plating,/area/space)
-"T" = (/turf/open/floor/plating/rust,/area/space)
-"W" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/space)
-"Y" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bonfire/prelit,/obj/structure/kitchenspike,/turf/open/floor/plating,/area/space)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/space)
+"c" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/space)
+"e" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/space)
+"f" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/lone,
+/area/space)
+"g" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/space)
+"j" = (
+/obj/structure/chair/pew{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/rust,
+/area/space)
+"n" = (
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/space)
+"p" = (
+/obj/structure/chair/pew{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
+"s" = (
+/obj/structure/altar_of_gods,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/book/bible,
+/obj/structure/lootcrate/n_corp,
+/turf/open/floor/carpet/lone,
+/area/space)
+"t" = (
+/turf/closed/indestructible/reinforced,
+/area/space)
+"w" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
+"x" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/lone,
+/area/space)
+"B" = (
+/turf/open/floor/carpet/lone,
+/area/space)
+"H" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/space)
+"T" = (
+/turf/open/floor/plating/rust,
+/area/space)
+"W" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/space)
+"Y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit,
+/obj/structure/kitchenspike,
+/turf/open/floor/plating,
+/area/space)
 
 (1,1,1) = {"
-tHTnWHt
-tgaYwjt
-tcfxBpt
-teBsfjt
-ttttttt
+t
+t
+t
+t
+t
+"}
+(2,1,1) = {"
+H
+g
+c
+e
+t
+"}
+(3,1,1) = {"
+T
+a
+f
+B
+t
+"}
+(4,1,1) = {"
+n
+Y
+x
+s
+t
+"}
+(5,1,1) = {"
+W
+w
+B
+f
+t
+"}
+(6,1,1) = {"
+H
+j
+p
+j
+t
+"}
+(7,1,1) = {"
+t
+t
+t
+t
+t
 "}

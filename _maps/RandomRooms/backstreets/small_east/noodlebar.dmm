@@ -1,27 +1,124 @@
-"a" = (/obj/effect/decal/cleanable/blood/gibs/up,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"d" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/food/drinks/dry_ramen,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"e" = (/obj/effect/decal/cleanable/blood/gibs/old,/obj/effect/spawner/randomsnackvend,/turf/open/floor/wood,/area/city/backstreets_room)
-"g" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/wood,/area/city/backstreets_room)
-"j" = (/obj/machinery/grill,/obj/item/food/badrecipe/moldy,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"k" = (/obj/machinery/light/red,/turf/open/floor/wood,/area/city/backstreets_room)
-"s" = (/obj/structure/window/reinforced/fulltile,/obj/structure/grille,/turf/open/space/basic,/area/city/backstreets_room)
-"t" = (/obj/item/kitchen/knife,/obj/effect/decal/cleanable/blood/gibs/old,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"v" = (/obj/effect/decal/cleanable/blood/tracks,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"y" = (/obj/item/chair/stool/bar,/obj/item/food/breadslice/moldy,/turf/open/floor/wood,/area/city/backstreets_room)
-"D" = (/obj/structure/chair/stool/bar,/turf/open/floor/wood,/area/city/backstreets_room)
-"E" = (/obj/effect/decal/cleanable/blood/splatter,/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"M" = (/obj/structure/sink/kitchen,/turf/open/floor/plasteel,/area/city/backstreets_room)
-"T" = (/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned,/turf/open/floor/wood,/area/city/backstreets_room)
-"U" = (/turf/closed/indestructible/reinforced,/area/city/backstreets_room)
-"X" = (/obj/machinery/door/airlock/public/glass,/turf/open/floor/wood,/area/city/backstreets_room)
-"Z" = (/obj/structure/closet/secure_closet/freezer/kitchen,/obj/effect/decal/cleanable/blood/gibs,/obj/item/food/pizzaslice/moldy,/obj/item/food/breadslice/moldy,/turf/open/floor/plasteel,/area/city/backstreets_room)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/spawner/randomsnackvend,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/grill,
+/obj/item/food/badrecipe/moldy,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"k" = (
+/obj/machinery/light/red,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/space/basic,
+/area/city/backstreets_room)
+"t" = (
+/obj/item/kitchen/knife,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"y" = (
+/obj/item/chair/stool/bar,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/sink/kitchen,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"T" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/food/pizzaslice/moldy,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
 
 (1,1,1) = {"
-UUUUU
-sZMjU
-sEtaU
-UvddU
-XgyDU
-UekTU
-UUUUU
+U
+s
+s
+U
+X
+U
+U
+"}
+(2,1,1) = {"
+U
+Z
+E
+v
+g
+e
+U
+"}
+(3,1,1) = {"
+U
+M
+t
+d
+y
+k
+U
+"}
+(4,1,1) = {"
+U
+j
+a
+d
+D
+T
+U
+"}
+(5,1,1) = {"
+U
+U
+U
+U
+U
+U
+U
 "}
