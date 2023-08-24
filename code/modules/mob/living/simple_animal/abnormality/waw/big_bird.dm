@@ -123,7 +123,7 @@
 			continue
 		if(!CanAttack(C))
 			continue
-		if(ismoth(C) && isliving(C))
+		if(ismoth(C))
 			pick(C.emote("scream"), C.visible_message("<span class='boldwarning'>[C] lunges for the light!</span>"))
 			C.throw_at((src), 10, 2)
 		if(prob(66))
