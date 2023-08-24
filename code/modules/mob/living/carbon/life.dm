@@ -17,6 +17,8 @@
 		if (QDELETED(src))
 			return
 
+		typing_indicator_process()
+
 		if(.) //not dead
 			handle_blood()
 

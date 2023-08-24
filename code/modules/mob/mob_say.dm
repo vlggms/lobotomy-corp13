@@ -4,9 +4,13 @@
 	set name = ".Say"
 	set hidden = TRUE
 
-	set_typing_indicator(TRUE)
-	var/message = input("", "Say \"text\"")
-	set_typing_indicator(FALSE)
+	create_typing_indicator()
+	window_typing = TRUE
+	var/message = input("", "Say \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
 
 	if(message)
 		say_verb(message)
@@ -16,7 +20,6 @@
 	set name = "Say"
 	set category = "IC"
 
-	set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
@@ -40,9 +43,14 @@
 	set name = ".Me"
 	set hidden = TRUE
 
-	set_typing_indicator(TRUE)
-	var/message = input("", "Me \"text\"")
-	set_typing_indicator(FALSE)
+	create_typing_indicator()
+	window_typing = TRUE
+
+	var/message = input("", "Me \"text\"") as null|text
+
+	window_typing = FALSE
+	remove_typing_indicator()
+
 	if(message)
 		me_verb(message)
 
@@ -51,7 +59,6 @@
 	set name = "Me"
 	set category = "IC"
 
-	set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
@@ -170,3 +177,70 @@
 		if(!message)
 			return
 	return message
+
+#define TYPING_INDICATOR_RANGE 7
+
+/mob/proc/typing_indicator_process()
+	set waitfor = FALSE
+	if(client)
+		var/temp = winget(client, "input", "text")
+		if(temp != last_typed)
+			last_typed = temp
+			last_typed_time = world.time
+		if(world.time > last_typed_time + 10 SECONDS)
+			bar_typing = FALSE
+			remove_typing_indicator()
+			return
+		if(length(temp) > 5 && findtext(temp, "Say \"", 1, 7))
+			create_typing_indicator()
+			bar_typing = TRUE
+		else if(length(temp) > 3 && findtext(temp, "Me ", 1, 5))
+			//set_typing_indicator(1)
+		else
+			bar_typing = FALSE
+			remove_typing_indicator()
+
+
+/mob/proc/create_typing_indicator()
+	if(typing_overlay)
+		return
+	if(stat)
+		return
+	var/list/listening = get_hearers_in_view(TYPING_INDICATOR_RANGE, src)
+	speech_bubble_recipients = list()
+	for(var/mob/M in listening)
+		if(M.client && M.client?.prefs.see_typing_indicator)
+			speech_bubble_recipients.Add(M.client)
+	var/bubble = "default"
+	if(isliving(src))
+		var/mob/living/L = src
+		bubble = L.bubble_icon
+	typing_overlay = image('icons/mob/talk.dmi', src, "[bubble]0", FLY_LAYER)
+	typing_overlay.appearance_flags = APPEARANCE_UI
+	typing_overlay.invisibility = invisibility
+	typing_overlay.alpha = alpha
+	for(var/client/C in speech_bubble_recipients)
+		C.images += typing_overlay
+
+
+/mob/proc/remove_typing_indicator()
+	if(!typing_overlay)
+		return
+	if(window_typing || bar_typing)
+		return
+	for(var/client/C in speech_bubble_recipients)
+		C.images -= typing_overlay
+	typing_overlay = null
+	speech_bubble_recipients = list()
+
+/mob/camera/typing_indicator_process() //RIP in piece camera mobs
+	return
+
+/mob/camera/create_typing_indicator() //NGL, it'd be pretty fuckin terrifying to see a random speech bubble pop up
+	return
+
+/mob/camera/remove_typing_indicator()
+	return
+
+
+#undef TYPING_INDICATOR_RANGE

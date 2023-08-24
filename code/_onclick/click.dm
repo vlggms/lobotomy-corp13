@@ -98,7 +98,6 @@
 		CtrlClickOn(A)
 		return
 
-	set_typing_indicator(FALSE)
 
 	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 		return

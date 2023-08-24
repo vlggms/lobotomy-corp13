@@ -755,7 +755,6 @@
 	if(pulling)
 		update_pull_movespeed()
 
-	set_typing_indicator(FALSE)
 
 	. = ..()
 
