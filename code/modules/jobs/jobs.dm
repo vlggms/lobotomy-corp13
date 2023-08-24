@@ -97,6 +97,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Blade Lineage Salsu",
 
 	"Grand Inquisitor",
+	"N Corp Grosshammer",
 	"N Corp Mittlehammer",
 	"N Corp Kleinhammer",
 
