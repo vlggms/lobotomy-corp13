@@ -20,4 +20,9 @@
 	room_id = "opensweeper_sn"
 	mappath = "_maps/RandomRooms/backstreets/small_south/open_sweeper.dmm"
 
+/datum/map_template/random_room/backstreets/small_south/open_shrine
+	name = "Open shrine - Small South"
+	room_id = "open_shrine_sn"
+	mappath = "_maps/RandomRooms/backstreets/small_south/open_shrine.dmm"
+
 
