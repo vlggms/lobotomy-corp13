@@ -104,10 +104,6 @@
 			if(photo_copy)
 				do_copy_loop(CALLBACK(src, .proc/make_photo_copy), usr)
 				return TRUE
-			// Copying Documents.
-			if(document_copy)
-				do_copy_loop(CALLBACK(src, .proc/make_document_copy), usr)
-				return TRUE
 			// ASS COPY. By Miauw
 			if(ass)
 				do_copy_loop(CALLBACK(src, .proc/make_ass_copy), usr)
