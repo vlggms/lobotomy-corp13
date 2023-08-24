@@ -46,12 +46,12 @@
 
 /datum/outfit/job/representative/rcorprepresentative
 	name = "R Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	uniform = /obj/item/clothing/under/suit/lobotomy/rcorp
 
 /datum/outfit/job/representative/wcorprepresentative
 	name = "W Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
+	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp_command
 
 /datum/outfit/job/representative/kcorprepresentative
 	name = "K Corp Representative"
-	uniform = /obj/item/clothing/under/rank/k_corporation/intern
+	uniform = /obj/item/clothing/under/suit/lobotomy/kcorp
