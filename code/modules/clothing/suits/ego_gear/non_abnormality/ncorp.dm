@@ -15,7 +15,6 @@
 	desc = "Armor worn by Nagel Und Hammer."
 	icon_state = "ncorp_vet"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
-	slowdown = 1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -26,6 +25,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/grosshammmer
 	name = "nagel und hammer grosshammer armor"
 	desc = "Armor worn by leaders of Nagel Und Hammer. offers excellent protection at the cost of a significant speed drop."
+	slowdown = 1
 	icon_state = "ncorp_captain"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 80)
 	attribute_requirements = list(
