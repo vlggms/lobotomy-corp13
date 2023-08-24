@@ -53,6 +53,8 @@
 		//Multicasting is too chaotic
 		if(isfishing == TRUE)
 			return
+		if(!BobberThrow(user, target))
+			return
 		StartFishing(user, target) //Maybe we can make it call something else with this proc.
 		return
 	. = ..()
@@ -98,6 +100,42 @@
 		//Fishing successful
 		FishLoot(pickweight(things_to_fish), user, get_turf(fishing_spot))
 	return StopFishing()
+
+/*Tgstation uses signals and projectiles for their fishing rods
+	but im not too familiar with signals so for now
+	Bobber throw for checking if there is anything blocking the turf we fish. */
+/obj/item/fishing_rod/proc/BobberThrow(mob/living/user, bobber_target)
+	var/turf/target_turf = get_turf(bobber_target)
+	var/fish_distance = get_dist_euclidian(get_turf(target_turf), get_turf(src))
+	if(fish_distance >= 7)
+		to_chat(user, "<span class='notice'>The bobber is [round(fish_distance - 7)] tiles short of its destination.</span>")
+		return FALSE
+	/*Cycles 7 times until it returns. Wallcheck checks the turf after
+		this turf and if that turf equals the target turf we return TRUE.
+		If the Wallcheck returns a false proc on ClearSky then we return FALSE.
+		Clearsky checks if the turf has a window in it or a solid wall. */
+	var/turf/this_turf = get_turf(src)
+	var/turf/wallcheck
+	for(var/i=0 to 7)
+		if(this_turf == target_turf)
+			return TRUE
+		wallcheck = get_step(this_turf, get_dir(this_turf, target_turf))
+		if(!ClearSky(wallcheck))
+			to_chat(user, "<span class='notice'>The bobber donks off of an obstacle.</span>")
+			return FALSE
+		this_turf = wallcheck
+
+/*For checking turf to where the bobber lands. Same check as
+	/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying. -IP */
+/obj/item/fishing_rod/proc/ClearSky(turf/T)
+	if(!T || isclosedturf(T) || T == loc)
+		return FALSE
+	if(locate(/obj/structure/window) in T.contents)
+		return FALSE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			return FALSE
+	return TRUE
 
 //Unique Fish Retrieval
 /obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/user, turf/fish_land)
