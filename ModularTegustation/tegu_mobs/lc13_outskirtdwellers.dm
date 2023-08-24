@@ -701,11 +701,18 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/can_act = TRUE
 	var/current_stage = 1
 	var/stage_threshold = 2000 // enters stage 2 at or below this threshold
-	var/attack_delay = 0.8 SECONDS //0.8 second at stage 1, 1.2 at stage 2
+	var/attack_delay = 0.5 SECONDS //0.5 seconds at stage 1, 1 second at stage 2
 	var/countering = FALSE
-	var/counter_threshold = 300 //200 at stage 2
+	var/counter_threshold = 400 //300 at stage 2
 	var/counter_ready = FALSE
 	var/damage_taken
+
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
+	icon_living = "lovetown_slammer"
+	move_to_delay = 4
+	current_stage = 2
+	attack_delay = 1 SECONDS
+	counter_threshold = 300
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/AoeAttack()
 	say("Aoe Attack")
@@ -733,7 +740,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		set_varspeed(-0.5)
 		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 7 SECONDS)
 		return
-	TemporarySpeedChange(-4, 7 SECONDS)
+	TemporarySpeedChange(-2, 7 SECONDS)
 	addtimer(CALLBACK(src, .proc/DisableCounter), 7 SECONDS)
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter()
@@ -754,6 +761,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		return FALSE
 
 	if(countering)
+		say("Counter Hit!")
+		DisableCounter()
 		return ..()
 	if(counter_ready)
 		return OpenFire()
@@ -781,12 +790,21 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		say("Counter ready")
 		counter_ready = TRUE
 		damage_taken = 0
-//	if(health <= stage_threshold)
-//		StageTransition()
+	if(health <= stage_threshold)
+		StageTransition()
 
 /*
-ISSUES
+TO DO
+LoveWhip AoE mode, with pull
 slumberer not grabbing
 abomination cant counter properly
 CONVERT SLUMBERER GRAB INTO COUNTER
+set a list of icons for phase 1-2 modes so we can use attacks with icons depending on the phase
+put movespeed changes on Counter and CounterDisable lmao also speed change on phase transitions
+self damage on attacks check
+Aoe with 2 size
+make defualt aoe faster
+double AoE for phase 2
+SPRIIIIIIIIITES GRAAAAH
+White damage execute with animation
 */
