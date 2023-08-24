@@ -22,7 +22,7 @@
 
 /datum/map_template/random_room/backstreets/small_north/smallarmory
 	name = "Small Armory - Small North"
-	room_id = "small armory"
+	room_id = "small_armory"
 	mappath = "_maps/RandomRooms/backstreets/small_north/smallarmory.dmm"
 
 
