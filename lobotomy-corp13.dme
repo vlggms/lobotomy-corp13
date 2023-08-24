@@ -2337,6 +2337,7 @@
 #include "code\modules\jobs\job_types\city\syndicate\kurokumo\enforcer.dm"
 #include "code\modules\jobs\job_types\city\syndicate\kurokumo\wakashu.dm"
 #include "code\modules\jobs\job_types\city\syndicate\ncorp\grandinquis.dm"
+#include "code\modules\jobs\job_types\city\syndicate\ncorp\grosshammer.dm"
 #include "code\modules\jobs\job_types\city\syndicate\ncorp\kleinhammer.dm"
 #include "code\modules\jobs\job_types\city\syndicate\ncorp\mittlehammer.dm"
 #include "code\modules\jobs\job_types\city\syndicate\thumb\capo.dm"

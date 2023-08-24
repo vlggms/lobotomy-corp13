@@ -239,3 +239,18 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+
+/obj/item/ego_weapon/city/ncorp_brassnail/rose
+	name = "RoseNagel"
+	desc = "A huge nail used by Ncorp grand inquisitors."
+	icon_state = "rosenagel"
+	force = 50
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+
