@@ -1,5 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/closet/cardboard,
+/turf/open/floor/wood,
+/area/city/fixers)
 "f" = (
+/obj/structure/closet/cardboard,
 /turf/open/floor/carpet/green,
 /area/city/fixers)
 "g" = (
@@ -21,6 +26,9 @@
 "w" = (
 /obj/structure/table/wood/bar,
 /obj/item/binoculars,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
 /turf/open/floor/carpet/green,
 /area/city/fixers)
 "D" = (
@@ -100,7 +108,7 @@ N
 (5,1,1) = {"
 f
 w
-Q
+a
 Q
 X
 "}

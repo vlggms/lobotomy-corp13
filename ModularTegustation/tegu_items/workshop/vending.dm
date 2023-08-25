@@ -30,8 +30,6 @@
 					)
 
 	premium = list(
-			//armor plates
-			/obj/item/armorplate = 1000,
 			//The pale stuff
 			/obj/item/workshop_mod/regular/pale = 5,
 			/obj/item/workshop_mod/fast/pale = 5,
