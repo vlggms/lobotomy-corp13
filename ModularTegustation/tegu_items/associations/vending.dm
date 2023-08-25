@@ -74,6 +74,7 @@
 	icon_state = "robotics"
 	icon_deny = null
 	products = list(
+			/obj/item/flashlight/seclite = 100,
 			/obj/item/attribute_increase_small = 1500,
 			/obj/item/radio/headset = 200,
 			/obj/item/crowbar = 100,
@@ -83,17 +84,17 @@
 			/obj/item/ego_weapon/city/fixerhammer = 20,
 			/obj/item/ego_weapon/city/zweibaton/protection = 20,
 			/obj/item/fishing_rod = 20,
-			/obj/item/flashlight/seclite = 100,
-			/obj/item/kitchen/knife/combat/survival =100
+			/obj/item/kitchen/knife/combat/survival =100,
+			/obj/item/reagent_containers/hypospray/medipen/mental = 100,
+			/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
 					)
 
 	premium = list(
 			/obj/item/storage/firstaid/regular = 100,
-			/obj/item/armorplate = 100
 			)
 
 	default_price = 300
-	extra_price = 2500
+	extra_price = 1000
 	input_display_header = "Fixer Equipment"
 
 
