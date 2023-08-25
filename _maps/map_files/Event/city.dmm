@@ -5060,6 +5060,9 @@
 	name = "Triage and Operating Room";
 	req_access_txt = "5"
 	},
+/obj/effect/mapping_helpers/airlock/unres{
+	dir = 1
+	},
 /turf/open/indestructible/white,
 /area/city/shop)
 "Yw" = (
