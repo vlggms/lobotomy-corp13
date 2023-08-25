@@ -18,24 +18,6 @@
 	to_chat(M, "<span class='hear'>Make sure you put the equipment in the armory.</span>")
 
 
-
-//Hana (Variety Pack)
-/obj/item/storage/box/association/hana
-	name = "Hana Intern and Misc Fixers"
-	desc = "A kit from Section 1 containing various association gear. The director must wear the hana turtleneck."
-
-/obj/item/storage/box/association/hana/PopulateContents()
-	new /obj/item/clothing/suit/armor/ego_gear/city/hana(src)
-	new /obj/item/ego_weapon/city/shi_assassin/serpent(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/shi(src)
-	new /obj/item/ego_weapon/city/liu/fire(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/liu(src)
-	new /obj/item/ego_weapon/city/cinq(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/cinq(src)
-	new /obj/item/ego_weapon/city/zweibaton(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/zweiriot(src)
-
-
 //Zwei Asso
 /obj/item/storage/box/association/zwei
 	name = "Zwei Association Section 6"
