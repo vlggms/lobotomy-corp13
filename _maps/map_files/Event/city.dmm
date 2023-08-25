@@ -380,6 +380,10 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"dh" = (
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city)
 "dp" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -4043,6 +4047,11 @@
 /obj/effect/mine/shrapnel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
+/area/city)
+"JG" = (
+/obj/effect/landmark/cityspawner,
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plating/ashplanet/rocky,
 /area/city)
 "JH" = (
 /obj/machinery/computer/card{
@@ -35650,7 +35659,7 @@ HA
 HA
 HA
 Hm
-Hm
+dh
 Hm
 Hm
 Hm
@@ -35669,6 +35678,7 @@ Hm
 zS
 Hm
 Hm
+dh
 Hm
 Hm
 Hm
@@ -35684,8 +35694,7 @@ Hm
 Hm
 Hm
 Hm
-Hm
-Hm
+dh
 Hm
 zS
 Hm
@@ -35699,7 +35708,7 @@ Hm
 gZ
 Hm
 Hm
-Hm
+dh
 Hm
 zr
 Xr
@@ -40042,7 +40051,7 @@ AE
 Bs
 EK
 Hm
-Hm
+dh
 Hm
 Zt
 Jo
@@ -42589,7 +42598,7 @@ Oq
 Oq
 zr
 Hm
-gZ
+JG
 Hm
 Rt
 Hm
@@ -45208,7 +45217,7 @@ Dq
 Hs
 Dq
 Hm
-Hm
+dh
 Hm
 zr
 Oq
@@ -46449,7 +46458,7 @@ Hm
 Hm
 gZ
 Hm
-Hm
+dh
 Hm
 Hm
 zS
@@ -46724,7 +46733,7 @@ Hm
 Hm
 Hm
 gZ
-Hm
+dh
 Hm
 Hm
 Hm
@@ -46737,7 +46746,7 @@ Hm
 Hm
 Hm
 Hm
-Hm
+dh
 Hm
 Hm
 Hm
