@@ -1,4 +1,5 @@
-//Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+/*Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+	Origin Procs are in code/module/awaymissions/corpse.dm */
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/human/seed_vault
@@ -859,7 +860,7 @@
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	faction = "nanotrasenprivate"
+	faction = list("nanotrasenprivate")
 	short_desc = "You are a Nanotrasen Private Security Officer!"
 
 /obj/effect/mob_spawn/human/commander/alive
@@ -1056,6 +1057,11 @@
 	outfit = /datum/outfit/centcom/ert/security/rabbit
 	assignedrole = "Specialist"
 
+/obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(60)
+
 //Raven Mobspawner
 /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
 	name = "raven teleport zone"
@@ -1063,6 +1069,12 @@
 	mob_name = "raven team scout"
 	outfit = /datum/outfit/job/raven
 	assignedrole = "SPC"
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/raven_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(40)
+	H.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
 
 //Rhino Mobspawner
 /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
@@ -1072,6 +1084,11 @@
 	outfit = /datum/outfit/centcom/ert/security/rhino
 	assignedrole = "Sergeant"
 	uses = 2
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(40)
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call/PrepareForHellDiving(mob/living/user)
 	var/obj/vehicle/sealed/mecha/combat/rhino/mech = new
