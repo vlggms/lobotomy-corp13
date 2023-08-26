@@ -6,6 +6,18 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
+	var/list/output = list(
+		// ZAYIN
+		/obj/item/documents 				= /obj/item/stack/spacecash/c1000,
+		/obj/item/folder/syndicate	 		= /obj/item/stack/spacecash/c1000,
+		/obj/item/raw_anomaly_core	 		= /obj/item/stack/spacecash/c1000,
+		/obj/item/ego_weapon	 			= /obj/item/stack/spacecash/c200,
+		/obj/item/food/meat/slab/robot		= /obj/item/stack/spacecash/c50,
+		/obj/item/food/meat/slab/sweeper	= /obj/item/stack/spacecash/c50,
+		/obj/item/food/meat/slab/worm		= /obj/item/stack/spacecash/c50,
+		/obj/item/food/fish					= /obj/item/stack/spacecash/c10,
+		)
+
 
 /obj/structure/itemselling/examine(mob/user)
 	. = ..()
@@ -20,29 +32,12 @@
 /obj/structure/itemselling/attackby(obj/item/I, mob/living/user, params)
 	var/spawntype
 
-	if(istype(I, /obj/item/documents))
-		spawntype = /obj/item/stack/spacecash/c1000
+	if(I.type == /obj/item/ego_weapon/template)
+		return
 
-	if(istype(I, /obj/item/folder/syndicate))
-		spawntype = /obj/item/stack/spacecash/c1000
-
-	else if(istype(I, /obj/item/raw_anomaly_core))
-		spawntype = /obj/item/stack/spacecash/c1000
-
-	else if(istype(I, /obj/item/ego_weapon))
-		spawntype = /obj/item/stack/spacecash/c200
-
-	else if(istype(I, /obj/item/food/meat/slab/robot))
-		spawntype = /obj/item/stack/spacecash/c50
-
-	else if(istype(I, /obj/item/food/meat/slab/sweeper))
-		spawntype = /obj/item/stack/spacecash/c50
-
-	else if(istype(I, /obj/item/food/meat/slab/worm))
-		spawntype = /obj/item/stack/spacecash/c50
-
-	else if(istype(I, /obj/item/food/fish))
-		spawntype = /obj/item/stack/spacecash/c10
+	if(!(I.type in output))
+		to_chat(user, "<span class='warning'>This cannot be sold.</span>")
+		return
 
 	if(spawntype)
 		qdel(I)
@@ -50,6 +45,11 @@
 	if(prob(5))
 		new /obj/structure/lootcrate/tres (get_turf(src))
 
+	var/atom/item_out = output[I.type]
+	to_chat(user, "<span class='notice'>The input accepts your item.</span>")
+
+	qdel(I)
+	new item_out(get_turf(user))
 
 
 /obj/structure/potential
