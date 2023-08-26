@@ -552,6 +552,10 @@
 "eL" = (
 /turf/open/floor/facility/dark,
 /area/city/backstreets_checkpoint)
+"eM" = (
+/obj/machinery/vending/custom/unbreakable,
+/turf/open/floor/plasteel,
+/area/city/shop)
 "eY" = (
 /obj/machinery/vending/donksofttoyvendor,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -38260,8 +38264,8 @@ Dj
 sH
 dU
 Zv
-OT
-px
+eM
+rP
 Gh
 Gh
 Zt
@@ -38518,7 +38522,7 @@ OT
 dU
 Fj
 OT
-lk
+px
 zp
 zp
 Zt
