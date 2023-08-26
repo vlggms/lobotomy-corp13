@@ -120,9 +120,9 @@
 		/obj/item/food/fish/fresh_water/yang = FISH_RARITY_VERY_RARE,
 		/obj/item/food/fish/emulsijack = FISH_RARITY_GOOD_LUCK_FINDING_THIS,
 		//random things
-		/obj/item/food/dough = 800,
 		/obj/item/stack/spacecash/c1 = 700,
 		/obj/item/stack/fish_points = 600,
+		/obj/item/food/dough = 500,
 		/obj/item/stack/sheet/leather = 500,
 		/obj/item/food/canned/peaches = 300,
 		/obj/item/food/breadslice/moldy = 300,

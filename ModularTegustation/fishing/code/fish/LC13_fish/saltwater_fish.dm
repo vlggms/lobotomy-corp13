@@ -45,7 +45,7 @@
 	habitat = "Saltwater"
 	icon_state = "mermaid"
 	show_in_catalog = FALSE
-	random_case_rarity = FISH_RARITY_VERY_RARE
+	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	sprite_width = 8
 	sprite_height = 8
