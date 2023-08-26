@@ -84,7 +84,8 @@
 			/obj/item/ego_weapon/city/fixerhammer = 20,
 			/obj/item/ego_weapon/city/zweibaton/protection = 20,
 			/obj/item/fishing_rod = 20,
-			/obj/item/kitchen/knife/combat/survival =100,
+			/obj/item/kitchen/knife/combat/survival = 100,
+			/obj/item/weldingtool/mini = 100,
 			/obj/item/reagent_containers/hypospray/medipen/mental = 100,
 			/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
 					)
