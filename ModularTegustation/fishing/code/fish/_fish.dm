@@ -6,6 +6,7 @@
 	icon_state = "bugfish"
 	microwaved_type = /obj/item/food/cooked_fish
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/nutriment/vile_fluid = 4)
+	remove_reagents_on_cooked = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/consumable/nutriment/vile_fluid)
 	bite_consumption = 10
 	foodtypes = MEAT | RAW | GROSS
 	tastes = list("fish" = 1)

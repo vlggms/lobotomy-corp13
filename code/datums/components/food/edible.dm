@@ -236,6 +236,13 @@ Behavior that's still missing from this component that original food items had t
 /datum/component/edible/proc/OnMicrowaveCooked(datum/source, obj/item/source_item, cooking_efficiency = 1)
 	SIGNAL_HANDLER
 
+	/*I had to choose if i have the purge toxin be on the
+		ingredient being cooked or the cooked thing.
+		I went with the thing being cooked having the list. -IP*/
+	if(istype(source_item, /obj/item/food))
+		var/obj/item/food/F = source_item
+		F.PurgeToxins()
+
 	var/atom/this_food = parent
 
 	this_food.reagents.multiply_reagents(cooking_efficiency * CRAFTED_FOOD_BASE_REAGENT_MODIFIER)
