@@ -535,6 +535,7 @@
 		/obj/item/ego_weapon/city/liu/fire/sword,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5,

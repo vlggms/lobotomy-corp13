@@ -21,11 +21,12 @@ Workshop employee
 
 
 //My guy you work in a workshop
-/datum/job/chef/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+/datum/job/workshop/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	H.set_attribute_limit(0)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	job_important = "Make weapons for the fixers who come asking in exchange for money. You cannot give away weapons for free."
 	job_notice = "Your workshop is northwest, of the city."
+	..()
 
 
 /datum/outfit/job/workshop

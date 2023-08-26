@@ -58,6 +58,11 @@
 	icon_state = "tcorp_syringe"
 
 /obj/item/attribute_increase_small/attack_self(mob/living/carbon/human/user)
+	//max stats can't gain stats
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=130)
+		to_chat(user, "<span class='danger'>You feel like you won't gain anything.</span>")
+		return
+
 	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
 	//Guarantee one
 	user.adjust_all_attribute_levels(1)
@@ -69,5 +74,6 @@
 	//And one more under level 3
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=60)
 		user.adjust_all_attribute_levels(1)
+
 
 	qdel(src)

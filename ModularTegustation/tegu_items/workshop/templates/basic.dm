@@ -168,31 +168,6 @@ Katana - Use in hand to dash
 /obj/item/ego_weapon/template/club
 	name = "club template"
 	desc = "A blank club workshop template."
-	icon_state = "clubtemplate"
-	force = 20
-	attack_speed =  1.6
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-	attack_verb_continuous = list("pounds", "crushes", "smashes", "whacks", "smacks")
-	attack_verb_simple = list("pound", "crush", "smash", "whack", "smack")
-
-	finishedicon = list("finishedclub")
-	finishedname = list("club")
-	finisheddesc = "A finished club, ready for use."
-
-/obj/item/ego_weapon/template/club/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	. = ..()
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
-
-
-/obj/item/ego_weapon/template/club
-	name = "club template"
-	desc = "A blank club workshop template."
 	special = "This weapon has knockback."
 	icon_state = "clubtemplate"
 	force = 20

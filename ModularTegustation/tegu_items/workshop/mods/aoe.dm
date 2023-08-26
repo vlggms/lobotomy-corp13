@@ -1,7 +1,6 @@
 //AOE L1
 /obj/item/workshop_mod/aoe
 	icon_state = "aoecore"
-	specialmod = "sanity healing"
 	overlay = "aoe"
 	aoemod = 1
 	attackspeedmod = 1.3

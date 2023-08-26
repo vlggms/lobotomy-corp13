@@ -39,7 +39,7 @@
 			HealSanity(target, user)
 		if("curing")
 			Cure(target, user)
-		if("split")
+		if("split damage")
 			Split(target, user)
 		if("sharp")		//Uses Special Count for poise.
 			sharp(target, user)
@@ -135,9 +135,8 @@
 /obj/item/ego_weapon/template/proc/sharp(mob/living/target,mob/living/carbon/human/user)
 	if(target.status_flags & GODMODE || target.stat == DEAD)
 		return
-	special_count+=1
-	if(special_count>=10)
-	else if(special_count>= 20)
+
+	if(special_count>= 20)
 		special_count = 20
 
 	//Crit itself.

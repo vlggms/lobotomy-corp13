@@ -10,10 +10,9 @@
 	finishedicon = list("finisheddice")
 	finishedname = list("dice")
 	finisheddesc = "A finished dice, ready for use."
-	var/realforce	//Holds onto force
 
 /obj/item/ego_weapon/template/dice/attack(mob/living/target, mob/living/user)
-	realforce = force
-	force = rand(realforce*0.10, realforce)
+	forceholder = force
+	force = rand(forceholder*0.10, forceholder)
 	..()
-	force = realforce
+	force = forceholder

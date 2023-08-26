@@ -62,6 +62,10 @@
 /obj/item/clothing/under/rank/cargo/miner,
 /obj/item/clothing/under/rank/cargo/miner,
 /obj/item/clothing/under/rank/cargo/miner,
+/obj/item/forginghammer,
+/obj/item/forginghammer,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c200,
 /turf/open/floor/facility/dark,
 /area/city/fixers)
 "N" = (
