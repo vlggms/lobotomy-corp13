@@ -1,8 +1,8 @@
 /obj/item/reagent_containers/hypospray/emais
-	name = "E.M.A.I.S"
-	desc = "The Emergency Medical Aid Injector and Synthesiser is a lobotomy corp favored medical device, used by the safety department to keep all employe's healthy and happy in emergency cases."
-	reagent_flags = DRAINABLE
+	name = "\improper E.M.A.I.S"
+	desc = "The Emergency Medical Aid Injector and Synthesiser is a medical device often used in L-Corp to quickly administer drugs during emergencies."
 	icon_state = "clerkhypo"
+	reagent_flags = NONE
 	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
 	var/chem_capacity = 30
@@ -11,7 +11,7 @@
 	var/list/modes = list()
 	var/mode = 1
 	var/bypass_protection = FALSE
-	var/recharge_time = 10
+	var/recharge_time = 15
 	var/charge_timer = 0
 	var/locked = TRUE //clerks only
 
@@ -29,8 +29,11 @@
 	return ..()
 
 /obj/item/reagent_containers/hypospray/emais/process(delta_time) //Every [recharge_time] seconds, recharge some reagents for the cyborg
-	regenerate_reagents()
-	return TRUE
+	charge_timer += delta_time
+	if(charge_timer >= recharge_time)
+		regenerate_reagents()
+		charge_timer = 0
+	return 1
 
 /obj/item/reagent_containers/hypospray/emais/proc/add_reagent(datum/reagent/reagent)
 	reagent_ids |= reagent
@@ -69,20 +72,19 @@
 
 /obj/item/reagent_containers/hypospray/emais/attack(mob/living/carbon/M, mob/user)
 	if(!clerk_check(user))
-		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
 	if(GetCoreSuppression(/datum/suppression/safety))
 		to_chat(user,"<span class='warning'>[src] seems to be remotely disabled.</span>")
 		return
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
-		to_chat(user, "<span class='warning'>The injector is empty!</span>")
+		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
 	if(!istype(M))
 		return
 	if(R.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
-		to_chat(user, "<span class='notice'>You inject [M] with the injector.</span>")
+		to_chat(user, "<span class='notice'>You inject [M] with [src].</span>")
 		if(M.reagents)
 			var/trans = R.trans_to(M, amount_per_transfer_from_this, transfered_by = user, methods = INJECT)
 			to_chat(user, "<span class='notice'>[trans] unit\s injected. [R.total_volume] unit\s remaining.</span>")
@@ -174,4 +176,5 @@
 		return FALSE
 	if(istype(H) && (H?.mind?.assigned_role in allowed_roles))
 		return TRUE
+	to_chat(H,"<span class='warning'>You don't know how to use this.</span>")
 	return FALSE
