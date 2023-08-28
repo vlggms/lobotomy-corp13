@@ -102,7 +102,7 @@ export const Sleeper = (props, context) => {
           <Section
             title="Reagents"
             minHeight="50px"
-              >
+          >
             {occupant.reagents.map(reagent => (
               <Box key={reagent.name}>
                 {reagent.name} -
