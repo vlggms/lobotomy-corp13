@@ -114,7 +114,7 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
-		/datum/action/innate/abnormality_attack/seasons_cone_toggle
+		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
 		)
 
 /datum/action/cooldown/seasons_slam
@@ -137,23 +137,15 @@
 	seasons.Slam()
 	return TRUE
 
-/datum/action/innate/abnormality_attack/seasons_cone_toggle
+/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
 	name = "Toggle Breath"
 	button_icon_state = "generic_toggle0"
-
-/datum/action/innate/abnormality_attack/seasons_cone_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You won't use your breath anymore.</span>")
-		button_icon_state = "generic_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/seasons_cone_toggle/Deactivate()
-		to_chat (A, "<span class='colossus'>You will now breath a cone of elemental energy.</span>")
-		button_icon_state = "generic_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't use your breath anymore.</span>"
+	button_icon_toggle_activated = "generic_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
+	button_icon_toggle_deactivated = "generic_toggle0"
 
 
 //Spawning

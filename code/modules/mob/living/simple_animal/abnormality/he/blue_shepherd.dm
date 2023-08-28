@@ -106,25 +106,17 @@
 				)
 
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/sheperd_spin_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)
 
-/datum/action/innate/abnormality_attack/sheperd_spin_toggle
-	name = "Toggle Spin"
-	button_icon_state = "bluesheperd_toggle0"
-
-/datum/action/innate/abnormality_attack/sheperd_spin_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You won't spin anymore.</span>")
-		button_icon_state = "sheperd_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/sheperd_spin_toggle/Deactivate()
-		to_chat (A, "<span class='colossus'>You will now execute a spinning slash when ready.</span>")
-		button_icon_state = "sheperd_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
+	name = "Toggle Spinning Slash"
+	button_icon_state = "sheperd_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't spin anymore.</span>"
+	button_icon_toggle_activated = "sheperd_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now execute a spinning slash when ready.</span>"
+	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
@@ -195,18 +187,32 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
+	. = ..()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(isliving(target))
+					slash_current-=1
+				return OpenFire()
+			if(2)
+				return
+		return
+
 	slash_current-=1
 	if(slash_current == 0)
-
-		if(client && chosen_attack == 2)
-			return
-
 		slash_current = slash_cooldown
 		say(pick(combat_lines))
 		slashing = TRUE
 		slash()
 	if(awakened_buddy)
 		awakened_buddy.GiveTarget(target)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
+	if(slash_current == 0)
+		slash_current = slash_cooldown
+		say(pick(combat_lines))
+		slashing = TRUE
+		slash()
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/death(gibbed)

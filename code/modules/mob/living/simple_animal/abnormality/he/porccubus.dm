@@ -51,25 +51,18 @@
 	var/damage_taken = FALSE
 
 	//PLAYABLE ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/porccubus_dash_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
 
-/datum/action/innate/abnormality_attack/porccubus_dash_toggle
+/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle
 	name = "Toggle Dash"
 	button_icon_state = "porccubus_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	button_icon_toggle_activated = "porccubus_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
+	button_icon_toggle_deactivated = "porccubus_toggle0"
 
-/datum/action/innate/abnormality_attack/porccubus_dash_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You won't dash anymore.</span>")
-		button_icon_state = "porccubus_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/porccubus_dash_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You will now dash when possible.</span>")
-		button_icon_state = "porccubus_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)

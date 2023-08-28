@@ -414,3 +414,24 @@
 /datum/action/innate/abnormality_attack/Activate()
 	A.chosen_attack = chosen_attack_num
 	to_chat(A, chosen_message)
+
+/datum/action/innate/abnormality_attack/toggle
+	name = "Toggle Attack"
+	var/toggle_message
+	var/toggle_attack_num = 1
+	var/button_icon_toggle_activated = ""
+	var/button_icon_toggle_deactivated = ""
+
+/datum/action/innate/abnormality_attack/toggle/Activate()
+	. = ..()
+	button_icon_state = button_icon_toggle_activated
+	UpdateButtonIcon()
+	active = TRUE
+
+
+/datum/action/innate/abnormality_attack/toggle/Deactivate()
+	A.chosen_attack = toggle_attack_num
+	to_chat(A, toggle_message)
+	button_icon_state = button_icon_toggle_deactivated
+	UpdateButtonIcon()
+	active = FALSE

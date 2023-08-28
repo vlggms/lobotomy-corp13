@@ -53,26 +53,18 @@
 	var/heart_list = list()
 
 	//PLAYABLE ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/kqe_grab_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle)
 
-/datum/action/innate/abnormality_attack/kqe_grab_toggle
-	name = "Claw Toggle"
+/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle
+	name = "Toggle Claw Attack"
 	button_icon_state = "kqe_toggle0"
 	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't grab visitors anymore.</span>"
+	button_icon_toggle_activated = "kqe_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will attempt to grab visitors.</span>"
+	button_icon_toggle_deactivated = "kqe_toggle0"
 
-/datum/action/innate/abnormality_attack/kqe_grab_toggle/Activate()
-		to_chat (A, "<span class='colossus'>You will attempt to grab a visitor.</span>")
-		button_icon_state = "kqe_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 1
-
-/datum/action/innate/abnormality_attack/kqe_grab_toggle/Deactivate()
-		to_chat(A, "<span class='colossus'>You won't grab visitors anymore.</span>")
-		button_icon_state = "kqe_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 0
 
 /*** Basic Procs ***/
 /mob/living/simple_animal/hostile/abnormality/kqe/Initialize()

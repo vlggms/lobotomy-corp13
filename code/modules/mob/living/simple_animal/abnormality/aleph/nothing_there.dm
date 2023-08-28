@@ -70,7 +70,7 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/nt_goodbye,
-		/datum/action/innate/abnormality_attack/nt_hello_toggle
+		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
 	)
 
 /datum/action/cooldown/nt_goodbye
@@ -93,23 +93,15 @@
 	nothing_there.Goodbye()
 	return TRUE
 
-/datum/action/innate/abnormality_attack/nt_hello_toggle
+/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
 	name = "Toggle Hello"
 	button_icon_state = "nt_toggle0"
-
-/datum/action/innate/abnormality_attack/nt_hello_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You won't shoot anymore.</span>")
-		button_icon_state = "nt_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/nt_hello_toggle/Deactivate()
-		to_chat (A, "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>")
-		button_icon_state = "nt_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't shoot anymore.</span>"
+	button_icon_toggle_activated = "nt_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>"
+	button_icon_toggle_deactivated = "nt_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()

@@ -56,25 +56,17 @@
 	var/can_act = TRUE
 
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/funeral_butterfly_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/funeral_butterfly_toggle)
 
-/datum/action/innate/abnormality_attack/funeral_butterfly_toggle
+/datum/action/innate/abnormality_attack/toggle/funeral_butterfly_toggle
 	name = "Toggle Casket Swarm"
 	button_icon_state = "funeral_toggle0"
-
-/datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You will now unleash a swarm of butterflies.</span>")
-		button_icon_state = "funeral_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/funeral_butterfly_toggle/Deactivate()
-		to_chat (A,"<span class='colossus'>You will now fire butterflies from your hands.</span>")
-		button_icon_state = "funeral_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You will now unleash a swarm of butterflies.</span>"
+	button_icon_toggle_activated = "funeral_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now fire butterflies from your hands.</span>"
+	button_icon_toggle_deactivated = "funeral_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)

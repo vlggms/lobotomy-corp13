@@ -49,25 +49,17 @@
 	var/can_act = TRUE
 
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/innate/abnormality_attack/woodsman_flurry_toggle)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
 
-/datum/action/innate/abnormality_attack/woodsman_flurry_toggle
-	name = "Deforestation"
+/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle
+	name = "Toggle Deforestation"
 	button_icon_state = "woodsman_toggle0"
-
-/datum/action/innate/abnormality_attack/woodsman_flurry_toggle/Activate()
-		to_chat(A, "<span class='colossus'>You won't fell hearts anymore.</span>")
-		button_icon_state = "woodsman_toggle1"
-		UpdateButtonIcon()
-		A.chosen_attack = 2
-		active = 1
-
-/datum/action/innate/abnormality_attack/woodsman_flurry_toggle/Deactivate()
-		to_chat (A, "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>")
-		button_icon_state = "woodsman_toggle0"
-		UpdateButtonIcon()
-		A.chosen_attack = 1
-		active = 0
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't fell hearts anymore.</span>"
+	button_icon_toggle_activated = "woodsman_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
+	button_icon_toggle_deactivated = "woodsman_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Move()
