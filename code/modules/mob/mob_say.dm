@@ -202,6 +202,7 @@
 
 
 /mob/proc/create_typing_indicator()
+	set waitfor = FALSE
 	if(typing_overlay)
 		return
 	if(stat)
