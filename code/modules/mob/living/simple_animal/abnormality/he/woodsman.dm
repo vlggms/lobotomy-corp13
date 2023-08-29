@@ -216,16 +216,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
-				if(faction_check_mob(L) || (L in been_hit))
-					continue
-				if (L == src)
-					continue
-				been_hit += L
-				if (i > 6)
-					L.apply_damage(flurry_big, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				else
-					L.apply_damage(flurry_small, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			been_hit = HurtInTurf(T, been_hit, i > 6 ? flurry_big : flurry_small, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		if (i > 6)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 100, 0, 8) // BAM
 		else

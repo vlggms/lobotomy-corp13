@@ -20,7 +20,6 @@
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = DEAD
-	speed = 2
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -65,10 +64,10 @@
 /mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user)
 	..()
 	update_icon()
+	pixel_y = 0
 	AddElement(/datum/element/waddling)
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 	GiveTarget(user)
-	src.pixel_y = 0
 
 /mob/living/simple_animal/hostile/abnormality/clown/Moved()
 	. = ..()

@@ -107,6 +107,20 @@
 	description = "Natural tissues that make up the bulk of organs, providing many vitamins and minerals."
 	taste_description = "rich earthy pungent"
 
+/datum/reagent/consumable/nutriment/vile_fluid
+	name = "vile fluid"
+	description = "This fluid contains a microbiome of pathogens that reproduce through the raw consumption of its host."
+	taste_description = "popping and wriggling"
+	metabolization_rate = 1
+	var/list/microbiome = list(/datum/disease/parasite)
+
+/datum/reagent/consumable/nutriment/vile_fluid/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(15 + (current_cycle * 5)))
+		var/datum/disease/D = pick(microbiome)
+		var/datum/disease/worms = new D()
+		M.ForceContractDisease(worms, FALSE, TRUE)
+
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
 	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
@@ -808,13 +822,6 @@
 	color = "#C8C8C8"
 	taste_mult = 6
 	taste_description = "smoke"
-	overdose_threshold = 15
-
-/datum/reagent/consumable/char/overdose_process(mob/living/M)
-	if(prob(25))
-		M.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/char)
-	..()
-	return
 
 /datum/reagent/consumable/bbqsauce
 	name = "BBQ Sauce"

@@ -28,7 +28,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	//suppression info
 	maxHealth = 2000
 	health = 2000
-	speed = 2
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 

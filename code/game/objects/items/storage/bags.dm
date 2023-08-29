@@ -213,7 +213,10 @@
 		/obj/item/reagent_containers/honeycomb,
 		/obj/item/graft,
 		))
-////////
+
+// -----------------------------
+//          Plant bag
+// -----------------------------
 
 /obj/item/storage/bag/plants/portaseeder
 	name = "portable seed extractor"

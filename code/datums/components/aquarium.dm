@@ -70,7 +70,7 @@
 	if(animation_update_signals)
 		RegisterSignal(parent, animation_update_signals, .proc/generate_animation)
 
-	if(istype(parent,/obj/item/fish))
+	if(istype(parent,/obj/item/food/fish))
 		InitializeFromFish()
 	else if(istype(parent,/obj/item/aquarium_prop))
 		InitializeFromProp()
@@ -87,7 +87,7 @@
 
 /// Sets visuals properties for fish
 /datum/component/aquarium_content/proc/InitializeFromFish()
-	var/obj/item/fish/fish = parent
+	var/obj/item/food/fish/fish = parent
 
 	icon = fish.icon
 	sprite_height = fish.sprite_height

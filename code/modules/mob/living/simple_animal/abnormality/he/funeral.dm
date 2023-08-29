@@ -221,17 +221,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L) || L.stat == DEAD)
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE))
+			if(H.stat == DEAD)
 				continue
-			if (L == src)
-				continue
-			L.apply_damage(swarm_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			if(ishuman(L))
-				var/mob/living/carbon/human/cooler_L = L
-				if(cooler_L.sanity_lost)
-					cooler_L.death()
-					KillAnimation(cooler_L)
+			if(H.sanity_lost)
+				H.death()
+				KillAnimation(H)
 		SLEEP_CHECK_DEATH(0.25 SECONDS) //10 seconds
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/KillAnimation(mob/living/carbon/human/killed)

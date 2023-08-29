@@ -17,7 +17,6 @@
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE
-	speed = 2
 	move_to_delay = 2
 	generic_canpass = FALSE
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -227,15 +226,16 @@
 					return
 
 				icon_living = "mosb_breach2"
-				speed = 4
+				speed = 1
 				move_to_delay = 5
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				speed = 3
+				speed = 0.5
 				move_to_delay = 4
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
+			update_simplemob_varspeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -249,17 +249,18 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		speed = 2
+		speed = -0.5
 		move_to_delay = 2
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		speed = 3
+		speed = 0.5
 		move_to_delay = 4
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
+	update_simplemob_varspeed()
 	return TRUE
 
 /* Special attacks */
@@ -271,12 +272,9 @@
 	visible_message("<span class='danger'>[src] screams wildly!</span>")
 	new /obj/effect/temp_visual/voidout(get_turf(src))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/scream.ogg', 75, 1, 5)
-	for(var/mob/living/L in view(7, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.apply_damage(scream_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	var/list/been_hit = list()
+	for(var/turf/T in view(7, src))
+		HurtInTurf(T, been_hit, scream_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Slam(range)
 	if(slam_cooldown > world.time)
@@ -284,12 +282,10 @@
 	slam_cooldown = world.time + slam_cooldown_time
 	visible_message("<span class='danger'>[src] slams on the ground!</span>")
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 1)
+	var/list/been_hit = list()
 	for(var/turf/open/T in view(2, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(slam_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, been_hit, slam_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Spit(atom/target)
 	if(spit_cooldown > world.time)

@@ -106,7 +106,7 @@
 	if(exchange_cooldown > world.time)
 		to_chat(user, "<span class='notice'>Your gloves are still recharging, keep hitting enemies to charge it faster.</span>")
 		return
-	
+
 	var/list/display_names = list()
 	var/list/armament_icons = list()
 	for(var/arms in typesof(/obj/item/ego_weapon/black_silence_gloves))
@@ -187,7 +187,7 @@
 	desc = "Mace and Axe once belonged to the Black Silence."
 	special = "SHIFT+CLICK to attack with mace. Simultaneously switching your attacks will increase attack speed. Resets if you fail to do so"
 	icon_state = "zelkova"
-	
+
 	special_cooldown_time = 12
 	force = 90
 	var/weapon
@@ -446,14 +446,7 @@
 		playsound(T, 'sound/weapons/black_silence/longsword_atk.ogg', 50, 1)
 		for (var/i = 0; i < 3; i++)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
-				if(iff)
-					if(user.faction_check_mob(L))
-						continue
-				else
-					if(L == user)
-						continue
-				L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+			for(var/mob/living/L in user.HurtInTurf(T, list(), 50, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 				exchange_cooldown -= 10
 			sleep(0.25 SECONDS)
 
@@ -574,20 +567,12 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(iff)
-				if(user.faction_check_mob(L))
-					continue
-			else
-				if(L == user)
-					continue
-			if(L in been_hit)
-				continue
+		var/list/new_hits = user.HurtInTurf(T, been_hit, 100, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
 				L.throw_at(throw_target, 1, whack_speed, user)
-			been_hit += L
-			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			exchange_cooldown -= 30
 
 /obj/item/ego_weapon/black_silence_gloves/logic/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
@@ -611,7 +596,7 @@
 
 /obj/item/ego_weapon/black_silence_gloves/logic/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
-	
+
 	if(isliving(target))
 		exchange_cooldown -= 10
 		if(combo_count < 2 && special_cooldown > world.time)
@@ -741,7 +726,7 @@
 			D.alpha = min(150 + i*15, 255)
 			animate(D, alpha = 0, time = 2 + i*2)
 			playsound(user, 'sound/weapons/black_silence/evasion.ogg', 50, 1)
-	
+
 /obj/item/ego_weapon/black_silence_gloves/crystal/proc/dash_attack(mob/living/user, atom/target)
 	user.dir = get_dir(user, target)
 	var/turf/target_turf = get_step(get_turf(target), get_dir(src, target))
@@ -883,7 +868,9 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
+			var/list/new_hits = user.HurtInTurf(T, been_hit, 300, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+			been_hit += new_hits
+			for(var/mob/living/L in new_hits)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(user, L))
 				if(iff)
 					if(user.faction_check_mob(L))
@@ -896,8 +883,6 @@
 				if(!L.anchored)
 					var/whack_speed = (prob(60) ? 1 : 4)
 					L.throw_at(throw_target, 2, whack_speed, user)
-				been_hit += L
-				L.apply_damage(300, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				exchange_cooldown -= 50
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
@@ -930,7 +915,6 @@
 			target.Move(target_turf)
 		playsound(user, 'sound/weapons/black_silence/revolver.ogg', 100, 1)
 		sleep(3.5)
-	
 	//Spear
 	icon_state = "allas"
 	target_turf = get_step(get_turf(target), get_dir(user, target))
@@ -949,7 +933,6 @@
 	if(!target.anchored)
 		target.Move(target_turf)
 	sleep(4)
-	
 	//LongSword
 	icon_state = "mook"
 	playsound(user, 'sound/weapons/black_silence/longsword_start.ogg', 100, 1)
@@ -977,7 +960,6 @@
 		if(i == 2)
 			playsound(user, 'sound/weapons/black_silence/shortsword.ogg', 100, 1)
 			sleep(3)
-			
 	//Mace & Axe
 	icon_state = "zelkova"
 	user.dir = get_dir(user, target)
@@ -1017,7 +999,6 @@
 	if(!target.anchored)
 		target.Move(target_turf)
 	sleep(4)
-	
 	//Durandal
 	icon_state = "durandal"
 	target_turf = get_step(get_turf(target), get_dir(target, user))
@@ -1040,7 +1021,7 @@
 		target.Move(target_turf)
 	L.apply_damage(1500, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 5 sec, so 300 DPS as the final attack
 	sleep(10)
-	
+
 	furioso_end(user, target)
 
 /obj/item/ego_weapon/black_silence_gloves/proc/furioso_start(mob/living/user, mob/living/target)

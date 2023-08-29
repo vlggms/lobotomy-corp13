@@ -294,3 +294,20 @@
 /area/city/backstreets_room
 	name = "Backstreets Room"
 	icon_state = "hallA"
+
+//Miscellaneous Areas
+/area/shelter
+	name = "Shelter"
+	icon_state = "shelter"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/shelter/Entered(atom/movable/M)
+	. = ..()
+	if(!ishostile(M)) // kick out any hostile mobs
+		return
+	var/list/potential_locs = shuffle(GLOB.department_centers)
+	var/turf/T = pick(potential_locs)
+	M.forceMove(T)

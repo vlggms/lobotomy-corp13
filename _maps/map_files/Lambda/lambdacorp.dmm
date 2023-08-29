@@ -354,6 +354,10 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"bd" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "be" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "managerlockdown";
@@ -369,6 +373,10 @@
 "bg" = (
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
+"bj" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "bk" = (
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25
@@ -3825,6 +3833,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
+"nq" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "ns" = (
 /obj/docking_port/stationary{
 	dwidth = 3;
@@ -4164,6 +4175,10 @@
 /obj/effect/landmark/abnormality_spawn/training_rabbit,
 /turf/open/floor/facility/dark,
 /area/department_main/training)
+"oQ" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "oR" = (
 /obj/structure/chair/office{
 	dir = 8
@@ -7432,6 +7447,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
+"Bl" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Bm" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -8168,6 +8187,10 @@
 	},
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "DL" = (
@@ -8778,6 +8801,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
+"FP" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "FV" = (
 /obj/effect/turf_decal/siding/blue{
 	color = "#3234B9";
@@ -9484,6 +9511,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
+"IZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "Jc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -9502,6 +9535,10 @@
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/discipline)
+"Je" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Jf" = (
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
@@ -9997,9 +10034,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "KK" = (
-/obj/item/records/timestop,
-/obj/item/records/information,
-/obj/item/records/abnodelay,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
@@ -10359,6 +10393,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
+"Mn" = (
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Mp" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -10750,10 +10790,20 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
+"NJ" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "NM" = (
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
+"NN" = (
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "NP" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
@@ -11781,6 +11831,10 @@
 	},
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
+/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "Rq" = (
@@ -12037,9 +12091,6 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "Sb" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4;
 	color = "#000000"
@@ -12055,14 +12106,6 @@
 	dir = 8;
 	color = "#000000"
 	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 9
-	},
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "Sg" = (
@@ -12428,6 +12471,9 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
+"Tz" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "TA" = (
 /obj/structure/bed/pod,
 /turf/open/floor/plasteel/sepia,
@@ -12659,7 +12705,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral,
-/obj/structure/closet/secure_closet/record,
+/obj/structure/closet{
+	icon_state = "records"
+	},
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff"
 	},
@@ -13649,7 +13697,6 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4;
 	color = "#000000"
@@ -13666,6 +13713,14 @@
 	color = "#000000"
 	},
 /obj/item/toy/plush/bigbird,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
+	},
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "XW" = (
@@ -49894,11 +49949,11 @@ xQ
 nT
 nT
 nT
-nT
-nT
 lZ
-nT
-nT
+FP
+NN
+FP
+lZ
 nT
 kq
 nT
@@ -50151,11 +50206,11 @@ xQ
 sI
 sI
 sI
-sI
-sI
-sI
-sI
-sI
+nT
+NJ
+nq
+nq
+nT
 sI
 RG
 uk
@@ -50408,11 +50463,11 @@ xQ
 sI
 sI
 sI
-sI
-sI
-sI
-sI
-sI
+nT
+IZ
+bj
+nq
+nT
 sI
 sI
 xy
@@ -50665,11 +50720,11 @@ xQ
 sI
 sI
 sI
-sI
-sI
-sI
-sI
-sI
+nT
+nq
+nq
+nq
+nT
 sI
 sI
 xy
@@ -50925,7 +50980,7 @@ aF
 aF
 aF
 aF
-Ds
+xy
 Ds
 Ds
 Ds
@@ -54799,9 +54854,9 @@ sd
 ke
 sd
 qW
-qW
-qW
-qW
+bd
+Mn
+bd
 qW
 sI
 Ds
@@ -55056,10 +55111,10 @@ Lt
 QM
 fg
 xy
-sI
-sI
-sI
-sI
+Bl
+Tz
+Tz
+qW
 sI
 Ds
 yX
@@ -55313,10 +55368,10 @@ wE
 Kc
 qY
 xy
-sI
-sI
-sI
-sI
+Tz
+Je
+oQ
+qW
 sI
 Ds
 yX
@@ -55570,10 +55625,10 @@ wE
 Kc
 qY
 xy
-sI
-sI
-sI
-sI
+Tz
+Tz
+Tz
+qW
 sI
 Ds
 Ds
@@ -55827,10 +55882,10 @@ wE
 Kc
 qY
 xy
-sI
-sI
-sI
-sI
+qW
+qW
+qW
+qW
 sI
 sI
 sI

@@ -19,7 +19,6 @@
 	threat_level = WAW_LEVEL
 	fear_level = 0
 	start_qliphoth = 2
-	speed = 5
 	move_to_delay = 6
 
 	work_chances = list(

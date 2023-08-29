@@ -23,8 +23,13 @@
 			to_chat(user, "<span class='notice'>Please wait for extraction to prepare the next abnormality.</span>")
 
 	//PE stuff. He doesn't really need to know this but information and all that
-	if(SSlobotomy_corp.box_goal != INFINITY)	//Make sure it's not infinity
-		to_chat(user, "<span class='notice'>PE Goal: [SSlobotomy_corp.current_box] / [SSlobotomy_corp.box_goal].</span>")
+	if(SSlobotomy_corp.box_goal != 0)	//Make sure it's not infinity
+		if(SSlobotomy_corp.goal_reached)
+			to_chat(user, "<span class='notice'>PE Quota Reached!</span><br><span class='notice'>Current PE: [SSlobotomy_corp.available_box]</span>")
+		else
+			to_chat(user, "<span class='notice'>PE Goal: [SSlobotomy_corp.goal_boxes + SSlobotomy_corp.available_box] / [SSlobotomy_corp.box_goal].</span>")
+	else
+		to_chat(user, "<span class='notice'>PE Quota is still being calculated, please hold.</span>")
 
 	//Ordeal stuff
 	to_chat(user, "<span class='notice'>Current qliphoth meter: [SSlobotomy_corp.qliphoth_meter] / [SSlobotomy_corp.qliphoth_max].</span>")

@@ -9,6 +9,16 @@
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 
+/obj/item/ego_weapon/city/kcorp/axe
+	name = "K corp axe"
+	desc = "A green axe used by K corp employees."
+	icon_state = "kaxe"
+	inhand_icon_state = "kaxe"
+	force = 35
+	attack_speed = 1.7
+	attack_verb_continuous = list("bashes", "crushes", "cleaves")
+	attack_verb_simple = list("bash", "crush", "cleave")
+
 //High level Kcorp weapons are grade 5
 /obj/item/ego_weapon/city/kcorp/spear
 	name = "K corp spear"

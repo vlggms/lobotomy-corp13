@@ -125,3 +125,9 @@
 	if(user.faction_check_mob(H)) // Our faction
 		H.adjustBruteLoss(-10)
 		return BULLET_ACT_BLOCK
+
+/obj/projectile/ego_bullet/ego_patriot
+	name = "patriot"
+	damage = 15
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

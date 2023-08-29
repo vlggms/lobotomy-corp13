@@ -20,6 +20,7 @@
 /datum/suppression/proc/Run(run_white = TRUE)
 	priority_announce(run_text, name, sound=annonce_sound)
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 1) // Started suppression
+	SSticker.news_report = max(SSticker.news_report, CORE_STARTED)
 	if(run_white)
 		SSlobotomy_corp.next_ordeal_level = 6 // White dawn
 		SSlobotomy_corp.RollOrdeal()
@@ -30,5 +31,6 @@
 	priority_announce(end_text, name, sound=end_sound)
 	SSlobotomy_corp.core_suppression = null
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 2) // Finished core suppression
+	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED)
 	qdel(src)
 	return

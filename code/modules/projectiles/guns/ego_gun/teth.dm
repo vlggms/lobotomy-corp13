@@ -147,3 +147,18 @@
 		H.adjustBruteLoss(3)
 	..()
 	return
+
+/obj/item/gun/ego_gun/patriot
+	name = "patriot"
+	desc = "Are you willing to do what it takes to protect your country?"
+	icon_state = "patriot"
+	inhand_icon_state = "patriot"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	special = "This weapon fires 4 pellets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_patriot
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 25
+	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'

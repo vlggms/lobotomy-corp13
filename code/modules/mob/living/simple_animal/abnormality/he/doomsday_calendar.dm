@@ -331,7 +331,6 @@
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 12
 	melee_damage_upper = 15
-	speed = 5
 	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT

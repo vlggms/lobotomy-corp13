@@ -404,6 +404,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
+"cr" = (
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "cv" = (
 /obj/structure/bed,
 /obj/item/bedsheet/syndie,
@@ -806,9 +812,6 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/record,
-/obj/item/records/abnodelay,
-/obj/item/records/information,
-/obj/item/records/timestop,
 /obj/item/clothing/accessory/armband/lobotomy/records,
 /obj/item/clothing/accessory/armband/lobotomy/records,
 /obj/item/clothing/accessory/armband/lobotomy/records,
@@ -1179,7 +1182,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "hK" = (
-/turf/closed/indestructible/rock,
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
 "hN" = (
 /obj/effect/turf_decal/siding/wood{
@@ -1614,6 +1618,10 @@
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
+"lc" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "lf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -1737,9 +1745,6 @@
 /turf/open/floor/wood,
 /area/department_main/control)
 "lz" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
 /obj/structure/sign/ordealmonitor{
 	pixel_x = 32
 	},
@@ -3252,6 +3257,10 @@
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/carpet/black,
 /area/department_main/command)
+"vb" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "vc" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -3945,7 +3954,7 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/light/cold/no_nightlight{
-	dir = 1
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
@@ -4200,6 +4209,9 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
+"Ad" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "Af" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -4261,8 +4273,8 @@
 /obj/structure/table/wood,
 /obj/item/fish_feed,
 /obj/item/fish_feed,
-/obj/item/ramshackle_fishing_rod,
-/obj/item/ramshackle_fishing_rod,
+/obj/item/simple_fishing_rod,
+/obj/item/simple_fishing_rod,
 /obj/item/storage/fish_case,
 /obj/item/storage/fish_case,
 /turf/open/floor/carpet/stellar,
@@ -4491,6 +4503,12 @@
 	},
 /turf/closed/indestructible/rock,
 /area/space)
+"Bx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "BL" = (
 /obj/machinery/fat_sucker,
 /obj/effect/turf_decal/siding/green{
@@ -4740,6 +4758,12 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
+"Dm" = (
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "Dp" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/wood,
@@ -5128,8 +5152,27 @@
 	dir = 6
 	},
 /obj/machinery/light/cold/no_nightlight,
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
+"FB" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/machinery/camera/autoname{
+	dir = 10
+	},
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/east)
 "FG" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/safety)
@@ -5792,6 +5835,10 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
+"JL" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "JV" = (
 /obj/structure/railing{
 	dir = 6;
@@ -5920,23 +5967,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/control)
 "Kz" = (
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/plasteel/sepia,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
 "KA" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -6199,6 +6230,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/facility_hallway/training)
+"Mt" = (
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "Mw" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Central Command Department"
@@ -6896,7 +6933,7 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
 	},
-/obj/structure/aquarium,
+/obj/machinery/fish_market,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "PC" = (
@@ -6977,6 +7014,10 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/command)
+"Qv" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "Qy" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -7067,6 +7108,10 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
+"QW" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/east)
 "QY" = (
 /turf/open/floor/wood,
 /area/department_main/safety)
@@ -7876,6 +7921,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
+"WR" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "WT" = (
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
@@ -37025,10 +37076,10 @@ Tz
 TE
 MI
 pH
-Tz
-hK
-hK
-hK
+Qv
+Ad
+Ad
+Dm
 Tz
 TE
 MI
@@ -37282,9 +37333,9 @@ Tz
 TE
 MI
 pH
-Tz
-hK
-hK
+cr
+Ad
+vb
 hK
 Tz
 TE
@@ -37539,10 +37590,10 @@ Tz
 yV
 Ii
 Fu
-Tz
-hK
-hK
-hK
+Qv
+Ad
+Ad
+Ad
 Tz
 Gx
 rm
@@ -42962,7 +43013,7 @@ Bp
 MH
 MH
 gu
-Nz
+WR
 lL
 MH
 MH
@@ -43716,10 +43767,10 @@ yH
 MS
 ue
 vO
-uw
-uw
-uw
-uw
+JL
+Kz
+Kz
+fM
 NT
 ag
 ag
@@ -43973,10 +44024,10 @@ KS
 PC
 bw
 vO
-uw
-uw
-uw
-uw
+Bx
+QW
+Kz
+fM
 NT
 ag
 ag
@@ -44230,10 +44281,10 @@ vO
 vO
 vO
 vO
-uw
-uw
-uw
-uw
+Kz
+Kz
+Kz
+fM
 NT
 NT
 NT
@@ -44487,9 +44538,9 @@ qT
 qT
 fM
 fM
-fM
-fM
-fM
+lc
+Mt
+lc
 fM
 fM
 fM
@@ -44745,7 +44796,7 @@ Wd
 pz
 js
 mE
-Kz
+mP
 mE
 js
 fM
@@ -45004,7 +45055,7 @@ mP
 HD
 HD
 HD
-mP
+FB
 fM
 Id
 kQ

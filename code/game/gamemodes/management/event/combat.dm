@@ -13,7 +13,8 @@
 	..()
 	//No more OOC
 	GLOB.ooc_allowed = FALSE
-	to_chat(world, "<B>Due to gamemode, the OOC channel has been globally disabled.</B>")
+	CONFIG_SET(flag/norespawn, 1)
+	to_chat(world, "<B>Due to gamemode, Respawn and the OOC channel has been globally disabled.</B>")
 	to_chat(world, "<span class='userdanger'>Round will end in 40 minutes.</span>")
 
 	//Breach all

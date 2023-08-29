@@ -1,4 +1,4 @@
-#define STATUS_EFFECT_FRIENDSHIP /datum/status_effect/friendship
+#define STATUS_EFFECT_FRIENDSHIP /datum/status_effect/display/friendship
 /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	name = "Child of the Galaxy"
 	desc = "A young, lost child."
@@ -52,7 +52,6 @@
 		heal_amount += heal_mod
 		damage_amount += damage_mod
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/FriendDeath)
-		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/ZeroQliphoth(mob/living/carbon/human/user)
 	if(LAZYLEN(galaxy_friend))
@@ -61,7 +60,6 @@
 			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 			new /obj/effect/temp_visual/revenant/cracks(get_turf(L))
 			to_chat(L, "<span class='userdanger'>The pact made is over. The Order of the Galaxy is broken, and all involved have been punished.</span>")
-			L.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 
 	//reset everything
 	heal_amount = 0
@@ -83,11 +81,12 @@
 
 //FRIEND
 //For now, just a notification. If we ever want to do anything with it, it's here.
-/datum/status_effect/friendship
+/datum/status_effect/display/friendship
 	id = "friend"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1		//Lasts basically forever
 	alert_type = /atom/movable/screen/alert/status_effect/friendship
+	display_name = "galaxy"
 
 /atom/movable/screen/alert/status_effect/friendship
 	name = "Order of the Galaxy"

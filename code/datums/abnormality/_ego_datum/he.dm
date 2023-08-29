@@ -4,7 +4,7 @@
 	cost = 35
 
 /datum/ego_datum/armor/grinder
-	item_path = /obj/item/clothing/suit/armor/ego_gear/grinder
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/grinder
 	cost = 35
 
 // Scarecrow searching for wisdom - Harvest
@@ -13,7 +13,7 @@
 	cost = 35
 
 /datum/ego_datum/armor/harvest
-	item_path = /obj/item/clothing/suit/armor/ego_gear/harvest
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/harvest
 	cost = 35
 
 //Red Queen - Blind Fury
@@ -22,7 +22,7 @@
 	cost = 40
 
 /datum/ego_datum/armor/fury
-	item_path = /obj/item/clothing/suit/armor/ego_gear/fury
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/fury
 	cost = 40
 
 // Happy Teddy Bear - Bear Paw
@@ -31,22 +31,22 @@
 	cost = 35
 
 /datum/ego_datum/armor/paw
-	item_path = /obj/item/clothing/suit/armor/ego_gear/paw
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/paw
 	cost = 35
 
 // White Lake - Torn Off Wings
 /datum/ego_datum/armor/wings
-	item_path = /obj/item/clothing/suit/armor/ego_gear/wings
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/wings
 	cost = 35
 
 // Silent Girl - Remorse
 /datum/ego_datum/armor/remorse
-	item_path = /obj/item/clothing/suit/armor/ego_gear/remorse
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/remorse
 	cost = 35
 
 // Der Freischutz - Magic Bullet
 /datum/ego_datum/armor/magicbullet
-	item_path = /obj/item/clothing/suit/armor/ego_gear/magicbullet
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/magicbullet
 	cost = 35
 
 // Crumbling Armor - Life for a Daredevil
@@ -60,7 +60,7 @@
 	cost = 35
 
 /datum/ego_datum/armor/christmas
-	item_path = /obj/item/clothing/suit/armor/ego_gear/christmas
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/christmas
 	cost = 35
 
 // Warm-Hearted Woodsman - Logging
@@ -69,7 +69,7 @@
 	cost = 35
 
 /datum/ego_datum/armor/logging
-	item_path = /obj/item/clothing/suit/armor/ego_gear/logging
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/logging
 	cost = 35
 
 // Laetitia - Funny Prank
@@ -78,17 +78,17 @@
 	cost = 35
 
 /datum/ego_datum/armor/prank
-	item_path = /obj/item/clothing/suit/armor/ego_gear/prank
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/prank
 	cost = 35
 
 //Funeral of the Dead Butterflies - Solemn Lament
 /datum/ego_datum/armor/solemnlament
-	item_path = /obj/item/clothing/suit/armor/ego_gear/solemnlament
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/solemnlament
 	cost = 35
 
 //Scaredy Cat - Courage
 /datum/ego_datum/armor/courage
-	item_path = /obj/item/clothing/suit/armor/ego_gear/courage
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/courage
 	cost = 35
 
 /datum/ego_datum/weapon/courage
@@ -101,7 +101,7 @@
 
 //Porccubus - Pleasure
 /datum/ego_datum/armor/pleasure
-	item_path = /obj/item/clothing/suit/armor/ego_gear/pleasure
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/pleasure
 	cost = 35
 
 /datum/ego_datum/weapon/pleasure
@@ -110,7 +110,7 @@
 
 //Child of the Galaxy - Galaxy
 /datum/ego_datum/armor/galaxy
-	item_path = /obj/item/clothing/suit/armor/ego_gear/galaxy
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/galaxy
 	cost = 35
 
 /datum/ego_datum/weapon/galaxy
@@ -119,7 +119,7 @@
 
 //Piscine Mermaid - Unrequited Love
 /datum/ego_datum/armor/unrequited
-	item_path = /obj/item/clothing/suit/armor/ego_gear/unrequited
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/unrequited
 	cost = 35
 
 /datum/ego_datum/weapon/unrequited
@@ -128,20 +128,22 @@
 
 //Singing Machine - Harmony
 /datum/ego_datum/armor/harmony
-	item_path = /obj/item/clothing/suit/armor/ego_gear/harmony
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/harmony
 	cost = 35
 
 /datum/ego_datum/weapon/harmony
+	item_category = "Weapon (LMG)"
 	item_path = /obj/item/gun/ego_gun/harmony
 	cost = 35
 
 /datum/ego_datum/weapon/rhythm
+	item_category = "Weapon (Guitar)"
 	item_path = /obj/item/ego_weapon/rhythm
 	cost = 35
 
 //The Watchman - Alleyway
 /datum/ego_datum/armor/alleyway
-	item_path = /obj/item/clothing/suit/armor/ego_gear/alley
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/alley
 	cost = 35
 
 /datum/ego_datum/weapon/alleyway
@@ -150,7 +152,7 @@
 
 //Schadenfreude - Gaze
 /datum/ego_datum/armor/gaze
-	item_path = /obj/item/clothing/suit/armor/ego_gear/gaze
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/gaze
 	cost = 35
 
 /datum/ego_datum/weapon/gaze
@@ -159,7 +161,7 @@
 
 //F.A.N - Bare Metal
 /datum/ego_datum/armor/metal
-	item_path = /obj/item/clothing/suit/armor/ego_gear/metal
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/metal
 	cost = 35
 
 /datum/ego_datum/weapon/metal
@@ -168,7 +170,7 @@
 
 //680 KHz - Transmission
 /datum/ego_datum/armor/transmission
-	item_path = /obj/item/clothing/suit/armor/ego_gear/transmission
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/transmission
 	cost = 35
 
 /datum/ego_datum/weapon/transmission
@@ -177,12 +179,13 @@
 
 //Beanstalk without Jack - Giant
 /datum/ego_datum/weapon/giant
+	item_category = "Weapon (Shield)"
 	item_path = /obj/item/ego_weapon/shield/giant
 	cost = 35
 
 //Homing Instinct - The Road Home
 /datum/ego_datum/armor/homing_instinct
-	item_path = /obj/item/clothing/suit/armor/ego_gear/homing_instinct
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/homing_instinct
 	cost = 35
 
 /datum/ego_datum/weapon/homing_instinct
@@ -190,12 +193,12 @@
 	cost = 35
 
 /datum/ego_datum/armor/homing_instinct_old
-	item_path = /obj/item/clothing/suit/armor/ego_gear/brick
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/brick
 	cost = 35  // Unused, available from the well.
 
 //Jangsan Tiger - Maneater
 /datum/ego_datum/armor/maneater
-	item_path = /obj/item/clothing/suit/armor/ego_gear/maneater
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/maneater
 	cost = 35
 
 /datum/ego_datum/weapon/maneater
@@ -209,7 +212,7 @@
 
 //Puss in Boots - Inheritance
 /datum/ego_datum/armor/inheritance
-	item_path = /obj/item/clothing/suit/armor/ego_gear/inheritance
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/inheritance
 	cost = 35
 
 /datum/ego_datum/weapon/inheritance
@@ -218,7 +221,7 @@
 
 //Siren - Song of the Past
 /datum/ego_datum/armor/song
-	item_path = /obj/item/clothing/suit/armor/ego_gear/song
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/song
 	cost = 35
 
 /datum/ego_datum/weapon/song
@@ -231,7 +234,7 @@
 
 //Golden False Apple - Legerdemain
 /datum/ego_datum/armor/legerdemain
-	item_path = /obj/item/clothing/suit/armor/ego_gear/legerdemain
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/legerdemain
 	cost = 35
 
 /datum/ego_datum/weapon/legerdemain
@@ -249,21 +252,21 @@
 	cost = 35
 
 /datum/ego_datum/armor/get_strong
-	item_path = /obj/item/clothing/suit/armor/ego_gear/get_strong
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/get_strong
 	cost = 35
 
 //Doomsday Calendar- Impending Day
 /datum/ego_datum/armor/impending_day
-	item_path = /obj/item/clothing/suit/armor/ego_gear/impending_day
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/impending_day
 	cost = 35
 
 /datum/ego_datum/weapon/impending_day
 	item_path = /obj/item/ego_weapon/impending_day
 	cost = 35
 
-//Headless Icthys - Fluid Sac
+//Headless Ichthys - Fluid Sac
 /datum/ego_datum/armor/fluid_sac
-	item_path = /obj/item/clothing/suit/armor/ego_gear/fluid_sac
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/fluid_sac
 	cost = 35
 
 /datum/ego_datum/weapon/fluid_sac
@@ -272,7 +275,7 @@
 
 //Nameless Fetus - Syrinx
 /datum/ego_datum/armor/syrinx
-	item_path = /obj/item/clothing/suit/armor/ego_gear/syrinx
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/syrinx
 	cost = 35
 
 /datum/ego_datum/weapon/syrinx
@@ -285,7 +288,7 @@
 
 //Red Shoes - Sanguine Desire
 /datum/ego_datum/armor/sanguine
-	item_path = /obj/item/clothing/suit/armor/ego_gear/sanguine
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sanguine
 	cost = 35
 
 /datum/ego_datum/weapon/sanguine
@@ -294,7 +297,7 @@
 
 //For Your Eyes Only - Window to the World
 /datum/ego_datum/armor/window
-	item_path = /obj/item/clothing/suit/armor/ego_gear/window
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/window
 	cost = 35
 
 /*/datum/ego_datum/weapon/window
@@ -303,25 +306,16 @@
 
 //Jackalope - Jackrabbit
 /datum/ego_datum/armor/jackrabbit
-	item_path = /obj/item/clothing/suit/armor/ego_gear/jackrabbit
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/jackrabbit
 	cost = 35
 
 /*/datum/ego_datum/weapon/jackrabbit
 	item_path = /obj/item/ego_weapon/jackrabbit
 	cost = 35*/
 
-//Til the Last Shot - Flesh Is Willing
-/datum/ego_datum/armor/willing
-	item_path = /obj/item/clothing/suit/armor/ego_gear/willing
-	cost = 35
-/*
-/datum/ego_datum/weapon/flesh
-	item_path = /obj/item/ego_weapon/flesh
-	cost = 35*/
-
 //KQE-1J-23 - Replica
 /datum/ego_datum/armor/replica
-	item_path = /obj/item/clothing/suit/armor/ego_gear/replica
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/replica
 	cost = 35
 
 /datum/ego_datum/weapon/replica
@@ -330,7 +324,7 @@
 
 //Wayward Passenger - Dimension Shredder
 /datum/ego_datum/armor/warp
-	item_path = /obj/item/clothing/suit/armor/ego_gear/warp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/warp
 	cost = 35
 
 /datum/ego_datum/weapon/warp
@@ -343,63 +337,41 @@
 
 //Missed Reaper - Grasp
 /datum/ego_datum/armor/grasp
-	item_path = /obj/item/clothing/suit/armor/ego_gear/grasp
-	cost = 35
-
-/datum/ego_datum/weapon/grasp
-	item_path = /obj/item/ego_weapon/grasp
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/grasp
 	cost = 35
 
 //Pinnochio - Marionette
 /datum/ego_datum/armor/marionette
-	item_path = /obj/item/clothing/suit/armor/ego_gear/marionette
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/marionette
 	cost = 35
 
 /datum/ego_datum/weapon/marionette
 	item_path = /obj/item/ego_weapon/marionette
 	cost = 35
 
-//All-Natural Snake Oil - Swindle
-/datum/ego_datum/armor/swindle
-	item_path = /obj/item/clothing/suit/armor/ego_gear/swindle
+//Pink Shoes - Roseate Desire
+/datum/ego_datum/armor/roseate
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/roseate
 	cost = 35
 
-/datum/ego_datum/weapon/swindle
-	item_path = /obj/item/gun/ego_gun/pistol/swindle
+/datum/ego_datum/weapon/roseate
+	item_path = /obj/item/ego_weapon/roseate
 	cost = 35
 
-//Viva Voce - Ringing
-/datum/ego_datum/armor/ringing
-	item_path = /obj/item/clothing/suit/armor/ego_gear/ringing
+//Shock Centipede - AEDD
+/datum/ego_datum/armor/aedd
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/aedd
 	cost = 35
 
-/datum/ego_datum/weapon/ringing
-	item_path = /obj/item/gun/ego_gun/ringing
+/datum/ego_datum/weapon/aedd
+	item_path = /obj/item/ego_weapon/aedd
 	cost = 35
 
-//Theonite Slab - Divinity
-/datum/ego_datum/armor/divinity
-	item_path = /obj/item/clothing/suit/armor/ego_gear/divinity
+//Norinori - Split
+/datum/ego_datum/armor/split
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/split
 	cost = 35
 
-/datum/ego_datum/weapon/divinity
-	item_path = /obj/item/ego_weapon/divinity
-	cost = 35
-
-//Dr.Jekyll's Formula - Hyde
-/datum/ego_datum/armor/hyde
-	item_path = /obj/item/clothing/suit/armor/ego_gear/hyde
-	cost = 35
-
-/datum/ego_datum/weapon/hyde
-	item_path = /obj/item/ego_weapon/hyde
-	cost = 35
-
-//Third Fate's Loom - Destiny
-/datum/ego_datum/armor/destiny
-	item_path = /obj/item/clothing/suit/armor/ego_gear/destiny
-	cost = 35
-
-/datum/ego_datum/weapon/destiny
-	item_path = /obj/item/ego_weapon/destiny
+/datum/ego_datum/weapon/split
+	item_path = /obj/item/ego_weapon/lance/split
 	cost = 35

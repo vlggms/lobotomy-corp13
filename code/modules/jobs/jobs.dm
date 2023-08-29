@@ -66,7 +66,8 @@ GLOBAL_LIST_INIT(security_positions, list(
 
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
-	"R-Corp Reindeer",
+	"R-Corp Medical Reindeer",
+	"R-Corp Berserker Reindeer",
 	"R-Corp Gunner Rhino",
 	"R-Corp Hammer Rhino",
 	"R-Corp Scout Raven",

@@ -91,6 +91,7 @@
 	jobtype = /datum/job/rabbit/assault
 
 	suit_store = /obj/item/gun/energy/e_gun/rabbitdash
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/assault
 	belt = /obj/item/ego_weapon/city/rabbit_rush
 
 

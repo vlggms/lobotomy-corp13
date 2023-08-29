@@ -79,6 +79,23 @@
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
+	//Speed is checked before everything else.
+	//This has literally no easy calculation I could find so I will be doing it manually
+	switch(move_to_delay)
+		if(5 to INFINITY)
+			speed = 1.5
+		if(4 to 5)
+			speed = 1
+		if(3 to 4)
+			speed = 0.5
+		if(-INFINITY to 2)
+			speed = -1
+		if(2 to 3)
+			speed = -0.5
+		if(3)	//3 is the default
+			speed = 0
+
+
 	. = ..()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
@@ -375,7 +392,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
-	if(SSmaptype.maptype in  SSmaptype.combatmaps)
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
 

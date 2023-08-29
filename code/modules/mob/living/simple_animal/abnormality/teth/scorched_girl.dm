@@ -10,7 +10,6 @@
 	threat_level = TETH_LEVEL
 	stat_attack = HARD_CRIT
 	ranged = TRUE
-	speed = 3
 	vision_range = 12
 	aggro_vision_range = 24
 	work_chances = list(

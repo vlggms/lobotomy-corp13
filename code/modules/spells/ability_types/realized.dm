@@ -673,3 +673,80 @@
 		L.physiology.white_mod /= 2
 		L.physiology.black_mod /= 2
 		L.physiology.pale_mod /= 2
+
+/mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
+	name = "Tree of Desires"
+	desc = "The growing results of your research."
+	health = 60
+	maxHealth = 60
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "farmwatch_tree"
+	icon_living = "farmwatch_tree"
+	icon_dead = "farmwatch_tree"
+	faction = list("neutral")
+	del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/Initialize()
+	. = ..()
+	QDEL_IN(src, 15 SECONDS)
+
+/mob/living/simple_animal/hostile/farmwatch_plant/death()
+	density = FALSE
+	animate(src, alpha = 0, time = 1)
+	QDEL_IN(src, 1)
+	..()
+
+/mob/living/simple_animal/hostile/spicebush_plant
+	name = "Soon-to-bloom flower"
+	desc = "The reason you bloomed, sowing seeds of nostalgia, was to set your heart upon our new beginning."
+	health = 1
+	maxHealth = 1
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "spicebush_tree"
+	icon_living = "spicebush_tree"
+	icon_dead = "spicebush_tree"
+	faction = list("neutral")
+	del_on_death = FALSE
+	var/pulse_cooldown
+	var/pulse_cooldown_time = 1.8 SECONDS
+	var/pulse_damage = -2
+
+/mob/living/simple_animal/hostile/spicebush_plant/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/spicebush_plant/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/spicebush_plant/Initialize()
+	. = ..()
+	QDEL_IN(src, 20 SECONDS)
+
+/mob/living/simple_animal/hostile/spicebush_plant/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
+		HealPulse()
+
+/mob/living/simple_animal/hostile/spicebush_plant/death()
+	density = FALSE
+	playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 100, 1)
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
+	pulse_cooldown = world.time + pulse_cooldown_time
+	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
+	for(var/mob/living/L in livinginview(8, src))
+		if(faction_check_mob(L))
+			continue
+		L.adjustBruteLoss(-2)
+		var/mob/living/carbon/human/H = L
+		H.adjustSanityLoss(-2)

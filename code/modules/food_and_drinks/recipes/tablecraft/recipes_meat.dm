@@ -94,8 +94,6 @@
 /datum/crafting_recipe/food/sashimi
 	name = "Sashimi"
 	reqs = list(
-		/datum/reagent/consumable/soysauce = 5,
-		/obj/item/food/spidereggs = 1,
 		/obj/item/food/carpmeat = 1
 	)
 	result = /obj/item/food/sashimi

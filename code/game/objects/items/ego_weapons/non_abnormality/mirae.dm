@@ -1,7 +1,7 @@
 //Grade 3. They're pretty strong
 /obj/item/ego_weapon/city/mirae
 	name = "mirae cane"
-	desc = "A cane used by mirae life insurance."
+	desc = "An elegant cane. There's the logo of a life insurance company on the top."
 	special = "On kill, heal yourself and get a small payday. 20% of the force is done as pale."
 	icon_state = "miraecane"
 	force = 50

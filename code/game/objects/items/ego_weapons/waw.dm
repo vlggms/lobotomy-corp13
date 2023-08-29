@@ -456,8 +456,7 @@
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/thornspike(T)
-			for(var/mob/living/L in T.contents)
-				L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE)
 
 /obj/item/ego_weapon/wings // Is this overcomplicated? Yes. But I'm finally happy with what I want to make of this weapon.
 	name = "torn off wings"
@@ -1077,22 +1076,14 @@
 		if(prob(10))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
 		return
+	var/damage = aoe_damage * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	if(attacks == 0)
+		damage *= 3
 	for(var/turf/open/T in range(aoe_range, M))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		for(var/mob/living/L in T)
-			if(L == user)
-				continue
-			if(L.stat == DEAD)
-				continue
-			var/damage = aoe_damage
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			damage *= justicemod
-			if(attacks == 0)
-				damage *= 3
-			L.apply_damage(damage, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
-			L.apply_damage(damage, aoe_damage_type, null, L.run_armor_check(null, aoe_damage_type), spread_damage = TRUE)
+		user.HurtInTurf(T, list(), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
 
@@ -1153,13 +1144,13 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 45		//Does more damage for being harder to use.
+	force = 30	//Does more damage for being harder to use.
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
 
@@ -1167,13 +1158,14 @@
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
+	..()
 	if(do_after(user, 4, src))
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		target.visible_message("<span class='danger'>[user] markes [target]!</span>", \
 						"<span class='userdanger'>[user] marks you!</span>", COMBAT_MESSAGE_RANGE, user)
 		to_chat(user, "<span class='danger'>You enscribe a code on [target]!</span>")
 
-		mark_damage = force
+		mark_damage = force*2
 		//I gotta grab  justice here
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
@@ -1357,7 +1349,6 @@
 	desc = "But why is it about ‘innocence’? After countless assumptions and careful research, we learned that it could be defined as \[REDACTED\]."
 	icon_state = "innocence"
 	force = 72
-	attack_speed = 3
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
@@ -1449,3 +1440,108 @@
 		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#a2d2df"
+
+/obj/item/ego_weapon/animalism
+	name = "animalism"
+	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
+	special = "This weapon hits 4 times for every hit"
+	icon_state = "animalism"
+	force = 20
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "saws", "rips")
+	attack_verb_simple = list("slice", "saw", "rip")
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
+	if(!..())
+		return
+	sleep(2)
+	for(var/i = 1 to 3)
+		sleep(2)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/psychic
+	name = "psychic dagger"
+	desc = "A saber from the deepest sea, meant for a groom's mortality."
+	special = "Use this weapon in hand to dodgeroll."
+	icon_state = "psychic"
+	force = 13
+	attack_speed = 0.3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	hitsound = 'sound/weapons/fixer/generic/knife4.ogg'
+	var/dodgelanding
+
+/obj/item/ego_weapon/psychic/attack_self(mob/living/carbon/user)
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
+
+/obj/item/ego_weapon/grasp
+	name = "grasp"
+	desc = "I should’ve said that I'm sorry that I let go of your hand and apologized, even if it didn't mean anything."
+	special = "This weapon can be used to dash to a target."
+	icon_state = "grasp"
+	force = 16
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("cuts", "attacks", "slashes")
+	attack_verb_simple = list("cut", "attack", "slash")
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
+							)
+
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 SECONDS
+	var/dash_range = 4
+	var/charging = TRUE
+
+/obj/item/ego_weapon/grasp/attack_self(mob/user)
+	..()
+	if(charging)
+		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a dash towards enemies.</span>")
+		charging = FALSE
+		force = initial(force) + 2
+		return
+	if(!charging)
+		to_chat(user,"<span class='warning'>You change your stance, and will now perform a dash towards enemies.</span>")
+		charging =TRUE
+		force = initial(force)
+		return
+
+/obj/item/ego_weapon/grasp/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A) || !charging)
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")

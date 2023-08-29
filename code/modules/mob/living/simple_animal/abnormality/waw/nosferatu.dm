@@ -10,7 +10,6 @@
 	base_pixel_x = -16
 	maxHealth = 2000
 	health = 2000
-	speed = 4
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
@@ -188,12 +187,8 @@
 	for(var/turf/T in view(2, src))
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(banquet_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			if(L.health < 0 && ishuman(L))
-				var/mob/living/carbon/human/H = L
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(3)

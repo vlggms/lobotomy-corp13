@@ -101,3 +101,9 @@
 		color = pick("#36454F", "#818589")
 	damage_type = pick(damage_list)
 	flag = damage_type
+
+/obj/projectile/ego_bullet/pink
+	name = "pink"
+	damage = 150
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE

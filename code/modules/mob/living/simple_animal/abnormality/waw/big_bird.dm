@@ -18,7 +18,6 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	speed = 4
 	move_to_delay = 5
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
@@ -124,6 +123,9 @@
 			continue
 		if(!CanAttack(C))
 			continue
+		if(ismoth(C))
+			pick(C.emote("scream"), C.visible_message("<span class='boldwarning'>[C] lunges for the light!</span>"))
+			C.throw_at((src), 10, 2)
 		if(prob(66))
 			to_chat(C, "<span class='warning'>You feel tired...</span>")
 			C.blur_eyes(5)

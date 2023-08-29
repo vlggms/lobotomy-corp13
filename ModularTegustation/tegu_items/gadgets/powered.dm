@@ -8,13 +8,17 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	force = 5
-	var/default_icon = "gadget1" //roundabout way of making update item easily changed. Used in updateicon proc.
-	var/opened = FALSE
-	var/cell_type = /obj/item/stock_parts/cell/high //maxcharge = 10000
+	//roundabout way of making update item easily changed. Used in updateicon proc.
+	var/default_icon
+	//maxcharge = 10000
+	var/cell_type = /obj/item/stock_parts/cell/high
 	var/obj/item/stock_parts/cell/cell
-	var/batterycost = 2000 //5 uses before requires recharge
+	//5 uses before requires recharge
+	var/batterycost = 2000
 	var/turned_on = 0
 	var/chosen_target_type = 1
+	//unique overlays for powered state. This is so that a overlay can be put on instead of changing the entire sprite.
+	var/powered_overlay = null
 
 /obj/item/powered_gadget/Initialize()
 	. = ..()
@@ -32,6 +36,61 @@
 		return
 
 	return ..()
+
+/obj/item/powered_gadget/attackby(obj/item/W, mob/user)
+	if(W.tool_behaviour == TOOL_SCREWDRIVER)
+		if(cell)
+			W.play_tool_sound(src)
+			to_chat(user, "<span class='notice'>You undo the safety lock and remove the [cell].</span>")
+			user.put_in_hands(cell)
+			ReplacePowerCell()
+	if(istype(W, /obj/item/stock_parts/cell))
+		if(!cell)
+			if(ReplacePowerCell(W, user))
+				to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
+			return
+		else
+			user.dropItemToGround(cell)
+			if(ReplacePowerCell(W, user))
+				to_chat(user, "<span class='notice'>You preform what could be called a tactical reload on the [src].</span>")
+			return
+
+	if(cantbeused(user))
+		return
+
+	return ..()
+
+/obj/item/powered_gadget/examine(mob/living/M)
+	. = ..()
+	if(cell)
+		. += "<span class='notice'>Its display shows: [DisplayEnergy(cell.charge)].</span>"
+	else
+		. += "<span class='notice'>Its display is dark.</span>"
+
+/obj/item/powered_gadget/update_icon_state()
+	if(default_icon)
+		if(!cell)
+			icon_state = "[default_icon]-nobat"
+		else
+			icon_state = "[default_icon]"
+
+/obj/item/powered_gadget/update_overlays()
+	. = ..()
+	if(powered_overlay)
+		. += "[powered_overlay]"
+
+//replaces battery and defines cell as battery so that you wont end up having the battery be outside the thing that it is powering.
+/obj/item/powered_gadget/proc/ReplacePowerCell(obj/item/stock_parts/cell/power_cell = null, mob/user)
+	if(!isnull(power_cell))
+		//Also functions as a way to define battery as null when removed
+		//if there is no battery replacing it. However if the replacement battery is not put inside it will fail.
+		if(user)
+			if(!user.transferItemToLoc(power_cell, src))
+				return FALSE
+	cell = power_cell
+	update_icon_state()
+	update_icon()
+	return TRUE
 
 /obj/item/powered_gadget/proc/toggle_on(mob/user)
 	if(cell && cell.charge >= batterycost)
@@ -60,64 +119,6 @@
 		return TRUE
 	return FALSE
 
-
-/obj/item/powered_gadget/attackby(obj/item/W, mob/user)
-	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		W.play_tool_sound(src)
-		if(!opened)
-			to_chat(user, "<span class='notice'>You unscrew the battery compartment.</span>")
-			opened = TRUE
-			update_icon()
-			return
-		else
-			to_chat(user, "<span class='notice'>You close the battery compartment.</span>")
-			opened = FALSE
-			update_icon()
-			return
-	if(istype(W, /obj/item/stock_parts/cell))
-		if(opened)
-			if(!cell)
-				if(!user.transferItemToLoc(W, src))
-					return
-				to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
-				cell = W
-				update_icon()
-				return
-			else
-				to_chat(user, "<span class='warning'>[src] already has a [cell] installed!</span>")
-				return
-
-	if(cantbeused(user))
-		return
-
-	return ..()
-
-/obj/item/powered_gadget/attack_self(mob/user)
-	if(opened && cell)
-		user.visible_message("<span class='notice'>[user] removes [cell] from [src]!</span>", "<span class='notice'>You remove [cell].</span>")
-		cell.update_icon()
-		user.put_in_hands(cell)
-		cell = null
-	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
-
-
-/obj/item/powered_gadget/examine(mob/living/M)
-	. = ..()
-	if(cell)
-		. += "<span class='notice'>Its display shows: [DisplayEnergy(cell.charge)].</span>"
-	else
-		. += "<span class='notice'>Its display is dark.</span>"
-	if(opened)
-		. += "<span class='notice'>Its battery compartment is open.</span>"
-
-/obj/item/powered_gadget/update_overlays()
-	. = ..()
-	if(opened)
-		if(!cell)
-			. += "[default_icon]-nobat"
-		else
-			. += "[default_icon]"
-
 /obj/item/powered_gadget/proc/target_check(target)
 	switch(chosen_target_type)
 		if(1)
@@ -136,6 +137,7 @@
 /obj/item/powered_gadget/slowingtrapmk1
 	name = "Qliphoth Field Projector"
 	desc = "This device places traps that reduces the mobility of Abnormalities for a limited time when used in hand. The Movement Speed of an Abnormality will be reduced via overloading the Qliphoth control"
+	default_icon = "gadget1"
 	var/placed_structure = /obj/structure/slowingmk1
 
 /obj/item/powered_gadget/slowingtrapmk1/attack_self(mob/user)
@@ -152,6 +154,7 @@
 	desc = "A device that delivers a burst of energy designed to overload the Qliphoth Control of abnormalities."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "oddity2"
+	anchored = TRUE
 
 /obj/structure/slowingmk1/Initialize()
 	. = ..()
@@ -176,18 +179,25 @@
 	var/inuse
 	default_icon = "teleporter"
 
+/obj/item/powered_gadget/teleporter/update_icon_state()
+	if(cell && cell.charge >= batterycost)
+		icon_state = default_icon
+	else if (cell && cell.charge < batterycost)
+		icon_state = "[default_icon]-empty"
+	else if (!cell)
+		icon_state = "[default_icon]-nobat"
+
 /obj/item/powered_gadget/teleporter/attack_self(mob/user)
 	..()
-
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
 		icon_state = default_icon
 	else if (cell && cell.charge < batterycost)
-		icon_state = "[default_icon]-empty"
 		to_chat(user, "<span class='notice'>The batteries are dead.</span>")
+		update_icon()
 		return
 	else if (!cell)
-		icon_state = "[default_icon]-nobat"
+		update_icon()
 		return
 
 	if(inuse)
@@ -203,19 +213,18 @@
 		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
 		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 	inuse = FALSE
+	update_icon()
 
 /obj/item/powered_gadget/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
 	icon_state = "clerkbot2_deactivated"
-	default_icon = "clerkbot2_deactivated"
 	batterycost = 10000
 
 /obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
 	..()
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
-		icon_state = default_icon
 		if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
 			to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 			return
@@ -308,33 +317,39 @@
 /obj/item/powered_gadget/vitals_projector
 	name = "vitals projector"
 	desc = "Point this device at a enemy and use it to project the current vitals of its target. A wrench can change its target type."
-	icon_state = "gadgetmod_projector"
-	default_icon = "gadgetmod" //roundabout way of making update item easily changed. Used in updateicon proc.
-	var/current_target_overlay
+	icon_state = "gadgetmod"
+	 //roundabout way of making update item easily changed. Used in updateicon proc.
+	default_icon = "gadgetmod"
 
 /obj/item/powered_gadget/vitals_projector/attackby(obj/item/W, mob/user)
 	if(W.tool_behaviour == TOOL_WRENCH)
 		var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
 		batterycost = initial(batterycost)
 		if(do_after(user, 5 SECONDS, target = user))
-			cut_overlay(current_target_overlay)
 			switch(mod1_ask)
 				if("cancel")
 					return
 				if("Human")
 					chosen_target_type = 1
-					current_target_overlay = mutable_appearance(icon, "gadgetmod_gadd")
 				if("Ordeal")
 					chosen_target_type = 2
 					batterycost += round(cell.maxcharge * 0.15)
-					current_target_overlay = mutable_appearance(icon, "gadgetmod_padd")
 				if("Abnormality")
 					chosen_target_type = 3
 					batterycost += round(cell.maxcharge * 0.25)
-					current_target_overlay = mutable_appearance(icon, "gadgetmod_radd")
-			add_overlay(current_target_overlay)
+			update_icon()
 			return
 	return ..()
+
+/obj/item/powered_gadget/vitals_projector/update_overlays()
+	. = ..()
+	switch(chosen_target_type)
+		if(1)
+			. += "gadgetmod_gadd"
+		if(2)
+			. += "gadgetmod_padd"
+		if(3)
+			. += "gadgetmod_radd"
 
 /obj/item/powered_gadget/vitals_projector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
@@ -343,7 +358,11 @@
 	if(cell && cell.charge >= batterycost && target_check(target))
 		cell.charge -= batterycost
 		var/mob/living/L = target
+		to_chat(user, "<span class='notice'>Projection of [target] Vitals Initializing.</span>")
 		L.apply_status_effect(/datum/status_effect/visualize_vitals)
+	else if(!cell || cell.charge <= batterycost)
+		to_chat(user, "<span class='warning'>Insufficent Energy for Projection.</span>")
+		update_icon()
 
 /obj/item/powered_gadget/vitals_projector/examine(mob/living/M)
 	. = ..()
@@ -426,11 +445,13 @@
 			H.target = user
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
+			update_icon()
 			return
 		else
 			to_chat(user, "<span class='warning'>[T] is already targetting you.</span>")
 			return
 	if (!cell || cell.charge < batterycost)
 		to_chat(user, "<span class='notice'>The Gadget buzzes. Battery charge too low.</span>")
+		update_icon()
 		return
 	to_chat(user, "<span class='notice'>You can't use this on [T].</span>")

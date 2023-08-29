@@ -19,7 +19,6 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_breach = TRUE

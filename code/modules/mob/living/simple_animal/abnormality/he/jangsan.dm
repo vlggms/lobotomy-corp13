@@ -15,7 +15,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 7
 	threat_level = HE_LEVEL
 	can_breach = TRUE

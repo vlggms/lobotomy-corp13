@@ -10,7 +10,6 @@
 	base_pixel_x = -16
 	maxHealth = 15000
 	health = 15000
-	speed = 3
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = ALEPH_LEVEL

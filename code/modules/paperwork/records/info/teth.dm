@@ -159,7 +159,7 @@
 //Penitent Girl
 /obj/item/paper/fluff/info/teth/penitent
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
-	abno_code = "F-01-115"
+	abno_code = "T-01-115"
 	abno_info = list(
 		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
 		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
@@ -247,7 +247,7 @@
 //Pale Horse
 /obj/item/paper/fluff/info/teth/palehorse
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pale_horse
-	abno_code = "T-02-14"
+	abno_code = "M-02-14"
 	abno_info = list(
 		"When the work result was Good, the Qliphoth Counter increased.",
 		"After an employee died within the facility, the Qliphoth Counter decreased.",
@@ -257,3 +257,49 @@
 		"When the abnormality found a corpse while breaching, it blessed a small area and destroyed the corpse. In this area, every employee recieved high PALE damage and every abnormality's Qliphoth Counter was lowered by 1.")
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Moderate"
+
+//Fairy Gentleman
+/obj/item/paper/fluff/info/teth/fairy_gentleman
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_gentleman
+	abno_code = "F-01-161"
+	abno_info = list(
+		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
+		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
+		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
+
+//Fairy-Long-Legs
+/obj/item/paper/fluff/info/teth/fairy_longlegs
+	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_longlegs
+	abno_code = "F-01-162"
+	abno_info = list(
+		"When an employee with Fortitude Level 1 completed the work, the Qliphoth Counter lowered to 0",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Every few works, rain started pouring in the containment cell, and the abnormality offered cover from the rain to the agent.",
+		"Taking cover is not advised, as it would expose the employee's back to the abnormality.",
+		"Refusing his offer exposed the agent to the rain's effects and angered the abnormality, lowering the Qliphoth Counter to 0.",
+		"Upon attacking, Fairy-Long-Legs scrapped off the skin of the victim and inserted it inside their chest's cavity, healing themselves in the process.")
+
+//So That No One Will Cry
+/obj/item/paper/fluff/info/teth/so_that_no_cry
+	abno_type = /mob/living/simple_animal/hostile/abnormality/so_that_no_cry
+	abno_code = "T-04-193"
+	abno_info = list(
+		"When Insight Work was performed with So That No One Will Cry, a yellow talisman attached to the employee's body",
+		"Physical contact through performing Instinct work seemed to get rid of all the yellow talismans.",
+		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their Justice.",
+		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
+		"If too many yellow talismans attached to the employee, they also became purple talismans.",
+		"Purple talismans seem to sap the strength from whomever they are attached, reducing their Justice, and slowly vanished after several minutes.")
+
+//Red Blooded American
+/obj/item/paper/fluff/info/teth/redblooded
+	abno_type = /mob/living/simple_animal/hostile/abnormality/redblooded
+	abno_code = "C-01-165"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When Repression Work was performed, the Qliphoth Counter increased.",
+		"After Repression Work was performed, employees noted taking extra damage from the abnormality during work.",
+		"Repeated Repression works resulted in the abnormality becoming injured and causing excessive work damage.",
+		"When a non-repression work was completed, the abnormality calmed down, lowering the extra damage taken. Repeated non-repression works eventually healed any injuries on the abnormality.")
+	abno_breach_damage_count = "Moderate" // Has a gun
