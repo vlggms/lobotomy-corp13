@@ -311,5 +311,5 @@
 	new /obj/item/records/timestop(src)
 	new /obj/item/records/information(src)
 	new /obj/item/records/abnodelay(src)
-	new /obj/item/records/meltdown_exstender(src)
+	new /obj/item/records/meltdown_extend(src)
 

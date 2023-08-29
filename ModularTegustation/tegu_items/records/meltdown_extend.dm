@@ -1,6 +1,6 @@
 //Meltdown Exstender Watch
 //Unlike other watches this is used on an object directly thus its calls and procs are working differently
-/obj/item/records/meltdown_exstender
+/obj/item/records/meltdown_extend
 	name = "records wood watch"
 	desc = "A treaded wooden watch for that when next to a abnormality console and wound will give additional time before meltdown."
 	icon_state = "watch_wood"
@@ -15,7 +15,7 @@
 	*/
 	var/meltdowntimer_increase = 30
 
-/obj/item/records/meltdown_exstender/watch_action(mob/user)
+/obj/item/records/meltdown_extend/watch_action(mob/user)
 	//Shadow var to count if we were successful in getting a computer in are view
 	var/CA_count = 0
 	//Gather every console in are tile and its connected 8
