@@ -238,7 +238,7 @@
 					controller.pathing_attempts = 0
 				else
 					controller.pathing_attempts++
-			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
+			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0
@@ -343,7 +343,7 @@
 					controller.pathing_attempts = 0
 				else
 					controller.pathing_attempts++
-			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
+			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
 			addtimer(CALLBACK(src, .proc/MoveInPath, living_pawn), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0

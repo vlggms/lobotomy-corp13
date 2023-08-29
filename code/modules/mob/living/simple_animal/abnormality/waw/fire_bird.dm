@@ -254,7 +254,7 @@
 		var/mob/living/carbon/human/L = owner
 		cantsee += L
 		cantsee[L] = get_attribute_level(L, TEMPERANCE_ATTRIBUTE)/2
-		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -cantsee[L])
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[L])
 		to_chat(L, "<span class='userdanger'>The light of the bird burns your eyes!")
 		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
@@ -262,7 +262,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, cantsee[L])
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[L])
 		cantsee -= L
 		to_chat(L, "<span class='nicegreen'>The blinding light fades...")
 		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)

@@ -151,7 +151,7 @@
 		var/user_attribute_level = max(1, user_attribute.level)
 		if (user_attribute_level > PRUDENCE_CAP)
 			missing_prudence = user_attribute_level - PRUDENCE_CAP
-			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
+			src.sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
 			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
 
 	if (!IsContained() && protect_cooldown < world.time)
@@ -169,7 +169,7 @@
 	var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
 	var/user_attribute_level = max(1, user_attribute.level)
 	if (user_attribute_level < missing_prudence + PRUDENCE_CAP)
-		sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence + PRUDENCE_CAP - user_attribute_level)
+		sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, missing_prudence + PRUDENCE_CAP - user_attribute_level)
 	missing_prudence = null
 	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
 

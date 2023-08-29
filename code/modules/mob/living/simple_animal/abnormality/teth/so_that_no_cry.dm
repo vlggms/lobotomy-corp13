@@ -73,13 +73,13 @@
 /datum/status_effect/stacking/talisman/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5)
 	return ..()
 
 /datum/status_effect/stacking/talisman/add_stacks(stacks_added)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5 * stacks_added)//max of 25
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5 * stacks_added)//max of 25
 	return ..()
 
 /datum/status_effect/stacking/talisman/threshold_cross_effect()
@@ -93,7 +93,7 @@
 /datum/status_effect/stacking/talisman/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -5 * stacks)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5 * stacks)
 		if(safe_removal == TRUE)
 			safe_removal = FALSE
 			return ..()
@@ -124,19 +124,19 @@
 /datum/status_effect/stacking/curse_talisman/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks)
 	return ..()
 
 /datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of -42
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of -42
 	return ..()
 
 /datum/status_effect/stacking/curse_talisman/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 7 * stacks)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 7 * stacks)
 	return ..()
 
 /atom/movable/screen/alert/status_effect/curse_talisman

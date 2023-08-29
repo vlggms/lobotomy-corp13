@@ -90,10 +90,10 @@
 	for(var/attribute in H.attributes)
 		AttributeCalc(attribute, H)
 
-	H.adjust_attribute_buff(lowest, 2 * level_mod)
-	H.adjust_attribute_buff(low, 1 * level_mod)
-	H.adjust_attribute_buff(high, -1 * level_mod)
-	H.adjust_attribute_buff(highest, -2 * level_mod)
+	H.adjust_attribute_bonus(lowest, 2 * level_mod)
+	H.adjust_attribute_bonus(low, 1 * level_mod)
+	H.adjust_attribute_bonus(high, -1 * level_mod)
+	H.adjust_attribute_bonus(highest, -2 * level_mod)
 	if(H.sanityhealth > (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to go away
 		H.sanityhealth = (H.maxSanity * 0.45)
 
@@ -120,10 +120,10 @@
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, "<span class='nicegreen'>The strange feeling goes away.</span>")
 	takeover = FALSE
-	H.adjust_attribute_buff(lowest, -2 * level_mod)
-	H.adjust_attribute_buff(low, -1 * level_mod)
-	H.adjust_attribute_buff(high, 1 * level_mod)
-	H.adjust_attribute_buff(highest, 2 * level_mod)
+	H.adjust_attribute_bonus(lowest, -2 * level_mod)
+	H.adjust_attribute_bonus(low, -1 * level_mod)
+	H.adjust_attribute_bonus(high, 1 * level_mod)
+	H.adjust_attribute_bonus(highest, 2 * level_mod)
 	if(H.sanityhealth < (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to return
 		H.sanityhealth = (H.maxSanity * 0.55)
 	highest = 0

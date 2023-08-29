@@ -207,9 +207,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
-		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5)
+		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
 		H.physiology.white_mod *= 1.1
 
 /datum/status_effect/display/singing_machine/tick()
@@ -221,9 +221,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 5)
-		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 5)
-		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
+		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
+		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10)
 		H.physiology.white_mod /= 1.1
 
 #undef STATUS_EFFECT_MUSIC

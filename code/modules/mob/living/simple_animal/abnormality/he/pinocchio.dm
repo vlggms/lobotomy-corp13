@@ -131,7 +131,7 @@
 	realboy.InitializeAIController()
 	realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
 	realboy.adjust_all_attribute_levels(100)
-	realboy.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 400) // 600 health
+	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 400) // 600 health
 	realboy.health = realboy.maxHealth
 	realboy.alpha = 0
 	realboy.pixel_z = 16

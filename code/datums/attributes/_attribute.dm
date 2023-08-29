@@ -16,17 +16,29 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	var/level_lower_limit = 0
 	/// A buff to the level, separate from it. Allows attributes to get higher than the limit.
 	var/level_buff = 0
+	/// A buff to the raw stat, does not affect work rates, mechanics, etc.
+	var/level_bonus = 0
+	/// What it affects
+	var/list/affected_stats = list()
+	/// The initial value of the affected stat. 100 in the case of health/sanity
+	var/initial_stat_value = 0
 
 // Procs
 
 /datum/attribute/proc/get_level() // Returns current level of attribute + buff
 	return level + level_buff
 
+/datum/attribute/proc/get_modified_level() // Returns current level of attribute + buff + bonus
+	return level + level_buff + level_bonus
+
 /datum/attribute/proc/get_raw_level() // Returns current level of attribute
 	return level
 
 /datum/attribute/proc/get_level_buff() // Returns current level of buff
 	return level_buff
+
+/datum/attribute/proc/get_level_bonus() // Returns current level of bonus
+	return level_bonus
 
 /datum/attribute/proc/on_update(mob/living/carbon/user)
 	return
@@ -42,6 +54,13 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	if(!istype(user))
 		return FALSE
 	level_buff += addition
+	on_update(user)
+	return TRUE
+
+/datum/attribute/proc/adjust_bonus(mob/living/carbon/human/user, addition)
+	if(!istype(user))
+		return FALSE
+	level_bonus += addition
 	on_update(user)
 	return TRUE
 
@@ -65,6 +84,7 @@ GLOBAL_LIST_INIT(attribute_types, list(
 		atr.adjust_level(src, addition)
 	return TRUE
 
+//Getting level, which is level + buff
 /proc/get_attribute_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
@@ -72,6 +92,15 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_level())
+
+//Getting modified level, which is level + buff + bonus
+/proc/get_modified_attribute_level(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
+		return 1
+	var/datum/attribute/atr = user.attributes[attribute]
+	if(!istype(atr))
+		return 1
+	return max(1, atr.get_modified_level())
 
 //Getting raw level, mostly for tools.
 /proc/get_raw_level(mob/living/carbon/human/user, attribute)
@@ -91,8 +120,15 @@ GLOBAL_LIST_INIT(attribute_types, list(
 		return 1
 	return max(1, atr.get_level_buff())
 
-// Attribute buffs
+/proc/get_level_bonus(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
+		return 1
+	var/datum/attribute/atr = user.attributes[attribute]
+	if(!istype(atr))
+		return 1
+	return max(1, atr.get_level_bonus())
 
+// Attribute buffs
 /mob/living/carbon/human/proc/adjust_attribute_buff(attribute, addition)
 	if(!attribute)
 		return 0
@@ -107,6 +143,23 @@ GLOBAL_LIST_INIT(attribute_types, list(
 		if(!istype(atr))
 			continue
 		atr.adjust_buff(src, addition)
+	return TRUE
+
+// Attribute Bonuses
+/mob/living/carbon/human/proc/adjust_attribute_bonus(attribute, addition)
+	if(!attribute)
+		return 0
+	var/datum/attribute/atr = attributes[attribute]
+	if(!istype(atr))
+		return 0
+	return atr.adjust_bonus(src, addition)
+
+/mob/living/carbon/human/proc/adjust_all_attribute_bonuses(addition)
+	for(var/atr_type in attributes)
+		var/datum/attribute/atr = attributes[atr_type]
+		if(!istype(atr))
+			continue
+		atr.adjust_bonus(src, addition)
 	return TRUE
 
 //Set attribute levels
