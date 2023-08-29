@@ -1,0 +1,89 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"f" = (
+/obj/structure/chair/stool/bar,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp/green,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/lootcrate/workshopleaf,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/chair/stool/bar,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"R" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"W" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+R
+W
+W
+U
+"}
+(3,1,1) = {"
+U
+M
+u
+W
+P
+"}
+(4,1,1) = {"
+U
+M
+f
+W
+U
+"}
+(5,1,1) = {"
+U
+M
+u
+W
+U
+"}
+(6,1,1) = {"
+U
+k
+W
+q
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

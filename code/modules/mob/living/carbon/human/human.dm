@@ -48,12 +48,18 @@
 /mob/living/carbon/human/verb/show_attributes_self()
 	set category = "IC"
 	set name = "Show Attributes"
-
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 	show_attributes()
 
 /mob/living/carbon/human/verb/show_attributes_to(mob/living/L in oview(1))
 	set category = "IC"
 	set name = "Show Attributes To"
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 
 	if(istype(L))
 		if(do_after(src, 1 SECONDS, L))

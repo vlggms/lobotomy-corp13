@@ -14,6 +14,12 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
+"cY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
 "dL" = (
 /obj/effect/turf_decal/siding/thinplating/light{
 	dir = 4
@@ -64,11 +70,6 @@
 	name = "floor"
 	},
 /area/city/backstreets_room)
-"ji" = (
-/obj/structure/barricade/wooden,
-/obj/structure/barricade/wooden/crude,
-/turf/closed/indestructible/fakeglass,
-/area/city/backstreets_room)
 "jJ" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/plasteel/shuttle{
@@ -102,9 +103,6 @@
 	name = "bench"
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
-/area/city/backstreets_room)
-"vI" = (
-/turf/closed/indestructible/rock,
 /area/city/backstreets_room)
 "xh" = (
 /turf/closed/indestructible/fakedoor{
@@ -155,6 +153,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"AJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
 /area/city/backstreets_room)
 "Co" = (
 /obj/machinery/light/broken{
@@ -207,6 +212,14 @@
 /obj/structure/grille/broken,
 /obj/item/shard,
 /turf/open/floor/plating,
+/area/city/backstreets_room)
+"HR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/tresmetal,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
 /area/city/backstreets_room)
 "Jg" = (
 /obj/effect/spawner/lootdrop/garbage_spawner,
@@ -371,11 +384,11 @@ Xo
 Hf
 zI
 zI
-ji
-vI
-vI
-vI
-vI
+cY
+ZO
+eD
+eD
+HR
 ZV
 "}
 (3,1,1) = {"
@@ -388,11 +401,11 @@ kl
 Hf
 zI
 zI
-ji
-vI
-vI
-vI
-vI
+cY
+ZO
+xx
+ZO
+AJ
 ZV
 "}
 (4,1,1) = {"
@@ -405,11 +418,11 @@ kl
 Hf
 zI
 zI
-ji
-vI
-vI
-vI
-vI
+cY
+ZO
+ZO
+ZO
+HR
 ZV
 "}
 (5,1,1) = {"
@@ -423,8 +436,8 @@ Hf
 zI
 zI
 ZV
-ji
-ji
+cY
+cY
 xh
 ZV
 ZV

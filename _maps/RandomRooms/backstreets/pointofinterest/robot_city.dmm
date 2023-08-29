@@ -22,12 +22,7 @@
 /area/city/backstreets_room)
 "cL" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/hos,
-/turf/open/floor/engine,
-/area/city/backstreets_room)
-"dD" = (
-/obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/nuclear,
+/obj/item/gun/ego_gun/city/fullstop/assault,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "dN" = (
@@ -137,8 +132,7 @@
 /area/city/backstreets_room)
 "kW" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/armory_contraband,
-/obj/effect/spawner/lootdrop/armory_contraband,
+/obj/item/gun/ego_gun/city/fullstop/deagle,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "lB" = (
@@ -181,7 +175,7 @@
 /area/city/backstreets_room)
 "oG" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/sniper,
+/obj/item/gun/energy/e_gun/rabbitdash,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "oY" = (
@@ -204,8 +198,7 @@
 /area/city/backstreets_room)
 "pC" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
+/obj/item/gun/ego_gun/city/fullstop/sniper,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "pP" = (
@@ -242,14 +235,6 @@
 /area/city/backstreets_room)
 "tl" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
 /obj/effect/spawner/lootdrop/space/cashmoney,
 /obj/effect/spawner/lootdrop/space/cashmoney,
 /obj/effect/spawner/lootdrop/space/cashmoney,
@@ -368,9 +353,8 @@
 	},
 /turf/open/floor/engine,
 /area/city/backstreets_room)
-"ye" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/firingpins,
+"xw" = (
+/obj/item/folder/syndicate/mining,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "yB" = (
@@ -442,13 +426,6 @@
 	name = "ecash register";
 	pixel_y = 10
 	},
-/turf/open/floor/engine,
-/area/city/backstreets_room)
-"Ft" = (
-/obj/structure/table/reinforced,
-/obj/item/dnainjector/thermal,
-/obj/item/dnainjector/thermal,
-/obj/item/dnainjector/thermal,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "FH" = (
@@ -629,6 +606,7 @@
 /obj/item/screwdriver/nuke{
 	pixel_y = 10
 	},
+/obj/item/firing_pin,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Qq" = (
@@ -669,7 +647,7 @@
 /area/city/backstreets_room)
 "SS" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/sniper_rifle/syndicate,
+/obj/item/gun/ego_gun/city/thumb/weak,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "TM" = (
@@ -693,10 +671,7 @@
 	dir = 6
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/documents/photocopy{
-	desc = "A messy stack of corporate documents pertaining to the inventory of illegal weaponry. The Head would have a field day with this one.";
-	name = "Corporate Documents"
-	},
+/obj/item/folder/syndicate/mining,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "TX" = (
@@ -714,8 +689,6 @@
 /area/city/backstreets_room)
 "UG" = (
 /obj/structure/closet/ammunitionlocker,
-/obj/item/storage/belt/grenade/full,
-/obj/item/storage/belt/grenade/full,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "VO" = (
@@ -726,10 +699,7 @@
 /area/city/backstreets_room)
 "WP" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/rabbit{
-	desc = "An energy gun found within the ranks of the R-Corporation's Rabbit Team. How it got here is a mystery.";
-	name = "Smuggled R-Corp Lawnmower"
-	},
+/obj/item/gun/energy/e_gun/rabbitdash/sniper,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "WU" = (
@@ -763,12 +733,7 @@
 /area/city/backstreets_room)
 "Ya" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
-/obj/effect/spawner/lootdrop/space/fancytool,
+/obj/item/gun/ego_gun/city/fullstop/pistol,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "YL" = (
@@ -787,8 +752,7 @@
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "Zv" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
-/turf/open/floor/plating,
+/turf/closed/indestructible/fakeglass,
 /area/city/backstreets_room)
 "Zw" = (
 /turf/open/floor/engine,
@@ -1249,7 +1213,7 @@ Zw
 GO
 zZ
 Zw
-Zw
+xw
 Zw
 Be
 zZ
@@ -1294,7 +1258,7 @@ wu
 hi
 hi
 zZ
-ye
+Ya
 oG
 Qg
 zZ
@@ -1490,7 +1454,7 @@ WP
 Zw
 Zw
 Ya
-Ft
+SS
 Zw
 Zw
 SS
@@ -1518,7 +1482,7 @@ wu
 hi
 hi
 zZ
-dD
+Ya
 Zw
 Zw
 Zw

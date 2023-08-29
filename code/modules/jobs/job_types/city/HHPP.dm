@@ -16,7 +16,7 @@ HHPP Employee
 	exp_requirements = 60
 
 	allow_bureaucratic_error = FALSE
-	maptype = "wonderlabs"
+	maptype = list("wonderlabs", "city")
 
 
 //Why would you work as a HHPP chef is beyond me.

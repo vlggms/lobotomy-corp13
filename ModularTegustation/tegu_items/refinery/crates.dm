@@ -454,6 +454,9 @@
 	/obj/item/workshop_mod/throwforce/red,
 	/obj/item/workshop_mod/throwforce/white,
 	/obj/item/workshop_mod/throwforce/black,
+	/obj/item/workshop_mod/aoe/red,
+	/obj/item/workshop_mod/aoe/white,
+	/obj/item/workshop_mod/aoe/black,
 		)
 
 	veryrareloot =	list(
@@ -461,14 +464,30 @@
 	/obj/item/workshop_mod/fast/pale,
 	/obj/item/workshop_mod/slow/pale,
 	/obj/item/workshop_mod/throwforce/pale,
+	/obj/item/workshop_mod/aoe/pale,
 	/obj/item/workshop_mod/healing/red,
 	/obj/item/workshop_mod/healing/white,
 	/obj/item/workshop_mod/healing/black,
 	/obj/item/workshop_mod/healing/pale,
+	/obj/item/workshop_mod/curing/red,
+	/obj/item/workshop_mod/curing/white,
+	/obj/item/workshop_mod/curing/black,
+	/obj/item/workshop_mod/curing/pale,
 	/obj/item/workshop_mod/sapping/red,
 	/obj/item/workshop_mod/sapping/white,
 	/obj/item/workshop_mod/sapping/black,
 	/obj/item/workshop_mod/sapping/pale,
+	/obj/item/workshop_mod/aoelarge/red,
+	/obj/item/workshop_mod/aoelarge/white,
+	/obj/item/workshop_mod/aoelarge/black,
+	/obj/item/workshop_mod/aoelarge/pale,
+	/obj/item/workshop_mod/sharp/red,
+	/obj/item/workshop_mod/sharp/white,
+	/obj/item/workshop_mod/sharp/black,
+	/obj/item/workshop_mod/sharp/pale,
+	/obj/item/workshop_mod/split/redpale,
+	/obj/item/workshop_mod/split/whiteblack,
+
 	)
 
 
@@ -516,6 +535,7 @@
 		/obj/item/ego_weapon/city/liu/fire/sword,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5,
@@ -559,24 +579,30 @@
 	rarechance = 30
 	veryrarechance = 5
 	lootlist =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
 		/obj/item/ego_weapon/city/mariachi,
 		/obj/item/ego_weapon/city/mariachi/dual,
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage,
 		/obj/item/gun/ego_gun/city/thumb,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+		/obj/item/clothing/suit/armor/ego_gear/city/index,
 	)
 
 	rareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
+		/obj/item/clothing/suit/armor/ego_gear/city/index_proxy,
 		/obj/item/ego_weapon/city/index,
 		/obj/item/ego_weapon/city/awl,
 		/obj/item/ego_weapon/city/kurokumo,
 		/obj/item/ego_weapon/city/bladelineage,
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
 		/obj/item/gun/ego_gun/city/thumb/capo,
 		/obj/item/ego_weapon/city/thumbmelee,
 		)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
+		/obj/item/clothing/suit/armor/ego_gear/city/index_mess,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
 		/obj/item/ego_weapon/city/index/proxy,
 		/obj/item/ego_weapon/city/index/proxy/spear,
 		/obj/item/ego_weapon/city/index/yan,
