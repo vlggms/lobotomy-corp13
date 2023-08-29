@@ -14,22 +14,38 @@
 	. += "Secret Documents Folders - 1000 Ahn"
 	. += "Raw Anomaly Core - 1000 Ahn"
 	. += "Melee weapons - 200 Ahn"
+	. += "Ranged weapons - 200 Ahn"
+	. += "Armor - 200 Ahn"
 	. += "Sweeper/Robot/Worm Meat - 50 Ahn"
 	. += "Fish - 10 Ahn"
 
 /obj/structure/itemselling/attackby(obj/item/I, mob/living/user, params)
 	var/spawntype
 
+	if(istype(I, /obj/item/ego_weapon/template))
+		to_chat(user, "<span class='warning'>You cannot sell this.</span>")
+		return
+
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/city/misc))
+		to_chat(user, "<span class='warning'>You cannot sell this.</span>")
+		return
+
 	if(istype(I, /obj/item/documents))
 		spawntype = /obj/item/stack/spacecash/c1000
 
-	if(istype(I, /obj/item/folder/syndicate))
+	else if(istype(I, /obj/item/folder/syndicate))
 		spawntype = /obj/item/stack/spacecash/c1000
 
 	else if(istype(I, /obj/item/raw_anomaly_core))
 		spawntype = /obj/item/stack/spacecash/c1000
 
 	else if(istype(I, /obj/item/ego_weapon))
+		spawntype = /obj/item/stack/spacecash/c200
+
+	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear))
+		spawntype = /obj/item/stack/spacecash/c200
+
+	else if(istype(I, /obj/item/gun/ego_gun/city))
 		spawntype = /obj/item/stack/spacecash/c200
 
 	else if(istype(I, /obj/item/food/meat/slab/robot))
@@ -45,10 +61,10 @@
 		spawntype = /obj/item/stack/spacecash/c10
 
 	if(spawntype)
+		new spawntype (get_turf(src))
 		qdel(I)
-	new spawntype (get_turf(src))
-	if(prob(5))
-		new /obj/structure/lootcrate/tres (get_turf(src))
+		if(prob(5))
+			new /obj/structure/lootcrate/tres (get_turf(src))
 
 
 
