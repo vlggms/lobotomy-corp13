@@ -188,7 +188,7 @@
 			to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
 	user.adjust_attribute_level(attribute_type, attribute_given)
 
-/datum/abnormality/proc/qliphoth_change(amount, user, always_give_feedback = FALSE)
+/datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
@@ -208,11 +208,6 @@
 		current?.OnQliphothChange(user, amount)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
-	//Feedback if your action has not lead to a change in Qlevel, mostly used for debugging at the moment
-	if(pre_qlip == qliphoth_meter && always_give_feedback)
-		current?.visible_message("<span class='notice'>Qliphoth level unchanged.</span>")
-		playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
-
 
 /datum/abnormality/proc/get_work_chance(workType, mob/living/carbon/human/user)
 	if(!istype(user))
