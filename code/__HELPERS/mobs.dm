@@ -671,6 +671,7 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hit_list - A list containing all things hit by this proc.
  */
 /mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
+	var/list/exclude = list(/obj/structure/disposalpipe) // Types that should never be hit by HurtInTurf
 	. = list()
 	. += hit_list
 	target = target ? target : get_turf(src)
@@ -679,6 +680,8 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(L == src)
 			continue
 		if(L in .)
+			continue
+		if(L.type in exclude)
 			continue
 		if(check_faction)
 			if(faction_check_mob(L, exact_faction_match))
@@ -690,12 +693,16 @@ GLOBAL_LIST_EMPTY(species_list)
 		for(var/obj/vehicle/V in target)
 			if(V in .)
 				continue
+			if(V.type in exclude)
+				continue
 			if(damage)
 				V.take_damage(damage, damage_type, armor_type)
 			. += V
 	if(hurt_hidden) // Hit living in closets (includes crates)
 		for(var/obj/structure/closet/C in target)
 			if(C in .)
+				continue
+			if(C.type in exclude)
 				continue
 			for(var/mob/living/H in C)
 				if(H in .)
@@ -710,6 +717,8 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(hurt_structure) // Hits structures
 		for(var/obj/structure/S in target)
 			if(S in .)
+				continue
+			if(S.type in exclude)
 				continue
 			if(damage)
 				if(break_not_destroy && (S.obj_integrity - damage <= 0))
