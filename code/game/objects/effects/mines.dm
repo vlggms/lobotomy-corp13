@@ -37,7 +37,7 @@
 
 /obj/effect/mine/Crossed(atom/movable/AM, datum/thrownthing/throwingdatum)
 	//Stops us for exploding more then once
-	if(safety_check())
+	if(safety_check(AM))
 		return
 	. = ..()
 
@@ -71,14 +71,14 @@
 
 /obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	//Stops us for exploding more then once
-	if(safety_check())
+	if(safety_check(AM))
 		return
 	. = ..()
 	triggermine()
 
-/obj/effect/mine/proc/safety_check()
+/obj/effect/mine/proc/safety_check(atom/movable/on_who)
 	//If we are already triggered, not ona  vaid turf or not armed, we dont explod!
-	if(triggered || !isturf(loc) || !armed)
+	if(triggered || !isturf(loc) || !armed || on_who && iseffect(on_who))
 		return TRUE
 	return FALSE
 
