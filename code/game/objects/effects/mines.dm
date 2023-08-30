@@ -35,7 +35,7 @@
 	playsound(src, 'sound/machines/nuke/angry_beep.ogg', 40, FALSE, -2)
 	visible_message("<span class='danger'>\The [src] beeps softly, indicating it is now active.<span>", vision_distance = COMBAT_MESSAGE_RANGE)
 
-/obj/effect/mine/Crossed(atom/movable/AM, datum/thrownthing/throwingdatum)
+/obj/effect/mine/Crossed(atom/movable/AM)
 	//Stops us for exploding more then once
 	if(safety_check(AM))
 		return
