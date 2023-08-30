@@ -1,5 +1,5 @@
 //Golden Watch
-//Casts Timestop for 10 seconds
+//Casts Timestop for 11 seconds (jojoke)
 //Making everything that passes into the area freeze in place untill the 10 seconds are up.
 /obj/item/records/timestop
 	name = "records golden watch"
