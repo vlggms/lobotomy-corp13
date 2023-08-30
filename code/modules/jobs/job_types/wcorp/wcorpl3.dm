@@ -25,7 +25,7 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 	                            )
-	rank_title = "L3 Captain"
+	rank_title = "L3 CPT"
 	job_important = "You are a Captain of W-Corp's frontline infantry."
 	job_notice = "You are an agent deigned to lead one of three squadrons during the clean-up opeartion. Serve W-Corp's best interests and carry your squadron to victory."
 
