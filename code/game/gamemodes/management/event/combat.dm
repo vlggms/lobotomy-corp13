@@ -24,7 +24,6 @@
 		A.AddSpell(bloodspell)
 		A.faction += "hostile"
 	if(SSmaptype.maptype in SSmaptype.autoend)
-		var/autoend_timer
 		switch(SSmaptype.maptype)
 			if("rcorp")
 				addtimer(CALLBACK(src, .proc/loseround), 30 MINUTES)
