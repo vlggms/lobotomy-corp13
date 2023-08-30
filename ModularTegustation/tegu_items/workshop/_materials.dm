@@ -5,7 +5,7 @@
 	icon_state = "tresmetal"
 	w_class = WEIGHT_CLASS_BULKY
 	var/quality = 0
-	var/resource_type = null
+	var/resource_type = /obj/item/tresmetal
 	var/heated_type = /obj/item/hot_tresmetal
 
 /obj/item/tresmetal/Initialize()
@@ -15,8 +15,23 @@
 /obj/item/tresmetal/attack_self(mob/user)
 	if(!resource_type)
 		return ..()
+	if(type == resource_type && quality == 0)
+		return ..()
 	to_chat(user, "<span class='notice'>You break [src] down into it's original parts.</span>")
-	new resource_type(get_turf(user))
+	var/make_amount = quality > 0 ? quality * 10 : 1
+	if(make_amount > 1)
+		var/obj/item/storage/box/materials_disposable/MD = new(get_turf(src))
+		var/datum/component/storage/ST = MD.GetComponent(/datum/component/storage)
+		for(var/I = 1 to make_amount)
+			var/obj/item/D = new resource_type(get_turf(user))
+			if(ST.can_be_inserted(D, TRUE, null)) // Try to put in the current one
+				ST.handle_item_insertion(D, TRUE, null)
+				continue
+			MD = new(get_turf(src)) // Make a new one if full
+			ST = MD.GetComponent(/datum/component/storage)
+			ST.handle_item_insertion(D, TRUE, null)
+	else
+		new resource_type(get_turf(user))
 	qdel(src)
 	return
 
