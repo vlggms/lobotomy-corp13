@@ -246,3 +246,36 @@
 		var/mob/living/simple_animal/M = owner
 		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
+/obj/item/ego_weapon/city/wcorp/shieldmace
+	name = "w-corp shield projector rod"
+	desc = "A glowing blue W-Corp device used to project barriers. It wasn't really meant to be used as a mace like this, but you know what they say about necessity."
+	icon_state = "wbatong"
+	inhand_icon_state = "wbatong"
+	force = 35 //Meant originally as a support device, used as a mace in a pinch.
+	attack_speed = 1.5
+	attack_verb_continuous = list("smashes", "bashes", "whacks", "smacks")
+	attack_verb_simple = list("smash", "bash", "whack", "smack")
+	charge_cost = 16
+	release_message = "You release your charge, projecting shields upon your allies!"
+	charge_effect = "grant shields to nearby allies on hit."
+	attribute_requirements = list(
+						FORTITUDE_ATTRIBUTE = 80,
+						PRUDENCE_ATTRIBUTE = 100,
+						TEMPERANCE_ATTRIBUTE = 80,
+						JUSTICE_ATTRIBUTE = 80
+	)
+
+/obj/item/ego_weapon/city/wcorp/shieldmace/release_charge(mob/living/target, mob/living/user)
+	to_chat(user, "<span class='notice'>[release_message].</span>")
+	sleep(2)
+	for(var/mob/living/L in range(1, src))
+		var/aoe = 25
+		var/userprud = (get_attribute_level(user, PRUDENCE_ATTRIBUTE))
+		var/prudencemod = 1 + userprud/100
+		aoe*=prudencemod
+		if(L != user || !ishuman(L))
+			continue
+		L.apply_status_effect(/datum/status_effect/interventionshield)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
