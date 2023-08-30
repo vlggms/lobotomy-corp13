@@ -53,6 +53,7 @@
 "rX" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/suit/armor/ego_gear/city/kurokumo,
+/obj/item/clothing/suit/armor/ego_gear/city/kurokumo,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "yD" = (
@@ -119,10 +120,23 @@
 /obj/item/bedsheet/blue,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"Wj" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/blue,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "Xq" = (
 /obj/structure/bed/pod,
-/obj/machinery/light/small,
 /obj/item/bedsheet/blue,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"XB" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/kurokumo/weak,
+/obj/item/ego_weapon/city/kurokumo/weak,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "XK" = (
@@ -159,7 +173,7 @@ Ei
 YO
 YO
 cr
-YO
+XB
 rX
 "}
 (2,1,1) = {"
@@ -171,9 +185,9 @@ hv
 YO
 YO
 YO
-cr
-Ei
-YG
+Bo
+YO
+YO
 "}
 (3,1,1) = {"
 cr
@@ -184,8 +198,8 @@ hv
 YO
 YO
 YO
-Bo
-YO
+cr
+Wj
 Xq
 "}
 (4,1,1) = {"
@@ -211,7 +225,7 @@ Ei
 YO
 YO
 cr
-Ei
+XB
 rX
 "}
 (6,1,1) = {"
@@ -225,7 +239,7 @@ YO
 YO
 Bo
 YO
-YG
+YO
 "}
 (7,1,1) = {"
 yD
@@ -237,7 +251,7 @@ SO
 SO
 YO
 cr
-Ei
+Wj
 Xq
 "}
 (8,1,1) = {"
@@ -262,9 +276,9 @@ pT
 Fm
 pT
 SO
-Bo
-YO
-rX
+cr
+Ei
+EN
 "}
 (10,1,1) = {"
 YG
@@ -275,8 +289,8 @@ pT
 pT
 pT
 SO
-cr
-Ei
+MO
+YO
 YG
 "}
 (11,1,1) = {"

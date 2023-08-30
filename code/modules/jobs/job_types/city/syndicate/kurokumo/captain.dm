@@ -35,10 +35,13 @@
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/kuroenforcer))
-			processing.total_positions = 1
+			processing.total_positions = 2
 
 		if(istype(processing, /datum/job/kurowakashu))
-			processing.total_positions = 3
+			processing.total_positions = 4
+
+		if(istype(processing, /datum/job/ronin))
+			processing.total_positions = 2
 	. = ..()
 
 
