@@ -22,7 +22,7 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 	                            )
-	rank_title = "L1 Agent"
+	rank_title = "L1"
 	job_important = "You take the role of frontline infantry."
 	job_notice = "You are a agent armed with a w-corp baton with charge capabilities. You form the first line of offense during cleanup operations."
 
