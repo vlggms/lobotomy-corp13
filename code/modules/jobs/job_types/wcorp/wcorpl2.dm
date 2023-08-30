@@ -24,7 +24,7 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 	                            )
-	rank_title = "L2-C Specialist"
+	rank_title = "L2-C"
 	job_important = "You take the role of frontline infantry."
 	job_notice = "You are a agent armed with a specialized w-corp weapon, as well as heavier armor. Support your squadron with your equipment."
 
@@ -53,7 +53,7 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 	                            )
-	rank_title = "L2-B Specialist"
+	rank_title = "L2-B"
 	job_important = "You take the role of backline support."
 	job_notice = "You are a agent armed with a specialized w-corp weapon that mends the wounds of your allies when fully charged. Support your squadron with your equipment."
 
