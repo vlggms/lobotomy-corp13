@@ -183,7 +183,7 @@
 /obj/structure/ordeal_extractor/proc/ProcessContents(material_type, quality)
 	var/take_count = quality > 0 ? quality * 10 : 1
 	if(to_process[material_type] - take_count < 0)
-		say("Tried to remove [take_count] from [to_process[material_type]] items.")
+		message_admins("[src] tried to take [take_count] [material_type] from [to_process[material_type]]!")
 		playsound(src, 'sound/machines/terminal_error.ogg', 70)
 		return FinishProcessing()
 
@@ -197,9 +197,6 @@
 			take_count--
 		if(take_count <= 0)
 			break
-
-	if(take_count > 0)
-		WARNING("Not enough instances of [material_type] in Ordeal Extractor to pay for item.")
 
 	if(to_process[material_type] <= 0)
 		to_process -= material_type
