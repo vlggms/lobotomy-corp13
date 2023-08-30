@@ -203,8 +203,8 @@
 /obj/item/ego_weapon/city/wcorp/hammer
 	name = "w-corp warhammer"
 	desc = "A glowing blue W-Corp warhammer once used by senior W-Corp staff. This one's seen some after-market modifications."
-	icon_state = "wcorp_spear"
-	inhand_icon_state = "wcorp_fist"
+	icon_state = "wcorp_hammer"
+	inhand_icon_state = "wcorp_hammer"
 	force = 80
 	attack_speed = 2
 	attack_verb_continuous = list("smashes", "crushes", "shatters")

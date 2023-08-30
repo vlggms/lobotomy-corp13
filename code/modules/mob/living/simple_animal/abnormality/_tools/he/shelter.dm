@@ -154,6 +154,9 @@
 	. = ..()
 	if(!ishostile(M)) // kick out any hostile mobs
 		return
+	var/mob/living/simple_animal/hostile/G = M
+	if("neutral" in G.faction) //This should prevent an exploit with clerkbots and any other friendly summon teleporting
+		return
 	var/list/potential_locs = shuffle(GLOB.department_centers)
 	var/turf/T = pick(potential_locs)
 	M.forceMove(T) //send them to brazil

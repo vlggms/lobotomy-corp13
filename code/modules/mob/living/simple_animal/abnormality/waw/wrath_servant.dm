@@ -1,4 +1,6 @@
 #define STATUS_EFFECT_ACIDIC_GOO  /datum/status_effect/wrath_burning
+#define SERVANT_SMASH_COOLDOWN (30 SECONDS)
+#define SERVANT_DASH_COOLDOWN (15 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/servant_wrath
 	name = "\proper Servant of Wrath"
 	desc = "A small girl in a puffy green magical girl outfit. \
@@ -68,20 +70,51 @@
 	var/ending = FALSE
 	var/hunted_target
 
+	//PLAYABLES ACTIONS
+	attack_action_types = list(
+		/datum/action/cooldown/wrath_smash,
+		/datum/action/cooldown/wrath_dash
+		)
 
-/datum/action/innate/abnormality_attack/wrath_smash
+/datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "blind_rage"
-	chosen_message = "<span class='colossus'>You will now smash everything around you.</span>"
-	chosen_attack_num = 1
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "wrath_smash"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SERVANT_SMASH_COOLDOWN //30 seconds
 
-/datum/action/innate/abnormality_attack/wrath_dash
+/datum/action/cooldown/wrath_smash/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	servant.Smash()
+	StartCooldown()
+	return TRUE
+
+/datum/action/cooldown/wrath_dash
 	name = "Dash"
-	desc = "Rapidly speed up for a short duration."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
-	chosen_attack_num = 2
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "wrath_dash"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SERVANT_DASH_COOLDOWN //15 seconds
+
+/datum/action/cooldown/wrath_dash/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	servant.Dash()
+	StartCooldown()
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/Initialize(mapload)
 	. = ..()
@@ -96,13 +129,6 @@
 	if(!can_act || stunned)
 		return
 	if(client)
-		switch(chosen_attack)
-			if(1)
-				if(COOLDOWN_FINISHED(src, smash))
-					Smash()
-			if(2)
-				if(COOLDOWN_FINISHED(src, dash))
-					Dash()
 		return
 
 	if(get_dist(src, target) >= 3 && COOLDOWN_FINISHED(src, dash))
@@ -364,6 +390,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	if(client)
+		var/original_speed = speed
+		set_varspeed(-0.5)
+		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 1.5 SECONDS) //bigger duration since delay makes things wacky for the player
+		return
 	TemporarySpeedChange(-4, 1 SECONDS)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
@@ -828,3 +859,5 @@
 		new /mob/living/simple_animal/hostile/azure_stave(T)
 
 #undef STATUS_EFFECT_ACIDIC_GOO
+#undef SERVANT_SMASH_COOLDOWN
+#undef SERVANT_DASH_COOLDOWN

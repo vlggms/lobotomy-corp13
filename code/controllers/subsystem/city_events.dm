@@ -7,11 +7,15 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/itemdrops = list()
 	var/list/lights = list()
 	var/daystatus = TRUE	//True to darken lights, false to lighten them
-	var/globalillumination = 20
+	var/globalillumination = 1
 	var/list/total_events = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
-	var/harmful_events = list("sweepers", "scouts", "bots")
+	var/harmful_events = list("drones", "beaks", "shrimp")
+	var/ordeal_events = list("sweepers", "scouts", "bots")
 	var/neutral_events = list("swag")
+	var/list/generated = list()	//Which ckeys have generated stats
+	var/failrate = 70 	//On hybrid maps, fail 70% of the time, Fires roughtly every 15 minutes, This just adds some RNG.
+	var/wavetime 		//How many waves have spawned? each wave increases the # of enemies by about 5%. One wave is every 5 minutes
 
 /datum/controller/subsystem/cityevents/Initialize(timeofday)
 
@@ -21,6 +25,7 @@ SUBSYSTEM_DEF(cityevents)
 	if(!can_fire)
 		return
 	addtimer(CALLBACK(src, .proc/Event), 15 MINUTES)	//Start doing events in 15 minutes
+	addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
 
 ///Ran on initialize, slap these puppies in a new list.
 /datum/controller/subsystem/cityevents/proc/InitializeLandmarks()
@@ -42,42 +47,62 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(helpful_events)
 	total_events += pick(harmful_events)
-	total_events += pick(harmful_events)
-	total_events += pick(harmful_events)
+	total_events += pick(ordeal_events)
+	total_events += pick(ordeal_events)
+	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
+	if(SSmaptype.maptype == "city")
+		failrate = 30
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
 	addtimer(CALLBACK(src, .proc/Event), 5 MINUTES)
-	if(prob(70))	//70% of the time to not fire. Fires roughtly every 15 minutes This just adds some RNG
+	if(prob(failrate))
 		return
 	var/chosen_event = pick(total_events)
+	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
+		Boss()
+		wavetime+=1
+		return
+
 	switch (chosen_event)
 		if("sweepers")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 40)
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
 		if("scouts")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_dawn, 60)
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_dawn, 40)
 		if("bots")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/green_bot, 30)
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
+
+		//Harmful events
 		if("shrimp")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
+		if("beaks")
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
+		if("drones")
+			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
+
+		//Good events
 		if("chickens")
 			spawnatlandmark(/mob/living/simple_animal/chick, 20)
 		if("money")
 			spawnitem(/obj/item/stack/spacecash/c50, 50)
 		if("tresmetal")
 			spawnitem(/obj/item/tresmetal, 10)	//very rare, could fetch you a good price.
-		if("swag")
-			spawnitem(/obj/item/clothing/shoes/swagshoes, 2)	// Swag out, man
 		if("hppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
 		if("sppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/mental, 50)
 
+		//Neutral events
+		if("swag")
+			spawnitem(/obj/item/clothing/shoes/swagshoes, 2)	// Swag out, man
+	wavetime+=1
+
 //Spawning Mobs, always spawns 3.
 /datum/controller/subsystem/cityevents/proc/spawnatlandmark(mob/living/L, chance)
+	chance += wavetime*5
 	for(var/J in spawners)
 		if(!prob(chance))
 			continue
@@ -94,3 +119,33 @@ SUBSYSTEM_DEF(cityevents)
 		if(prob(chance))
 			new I (get_turf(J))
 
+/datum/controller/subsystem/cityevents/proc/Boss()
+	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)
+	var/T = pick(spawners)
+	new /obj/effect/bloodpool(get_turf(T))
+	sleep(10)
+	new /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red (get_turf(T))
+
+//Daynight stuff
+/datum/controller/subsystem/cityevents/proc/Daynight()
+	for(var/obj/effect/light_emitter/L in lights)
+		L.set_light(25, globalillumination)
+
+	if(globalillumination <= -0.2)	//Go back up
+		addtimer(CALLBACK(src, .proc/Daynight), 5 MINUTES)
+		daystatus = FALSE
+		globalillumination = -0.18	//Ship it back up
+		return
+
+	if(globalillumination >= 1.1)	//Go back down.
+		addtimer(CALLBACK(src, .proc/Daynight), 5 MINUTES)
+		daystatus = TRUE
+		globalillumination = 1.08	//Ship it back down
+		return
+
+	if(daystatus)	//After noon
+		globalillumination -= 0.02
+		addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
+	else		//before noon
+		globalillumination += 0.02
+		addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)

@@ -52,6 +52,20 @@
 	var/heart_threshold = 700
 	var/heart_list = list()
 
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle
+	name = "Toggle Claw Attack"
+	button_icon_state = "kqe_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't grab visitors anymore.</span>"
+	button_icon_toggle_activated = "kqe_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will attempt to grab visitors.</span>"
+	button_icon_toggle_deactivated = "kqe_toggle0"
+
+
 /*** Basic Procs ***/
 /mob/living/simple_animal/hostile/abnormality/kqe/Initialize()
 	. = ..()
@@ -160,7 +174,7 @@
 /mob/living/simple_animal/hostile/abnormality/kqe/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if ((grab_cooldown <= world.time) && prob(35))
+	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
 		var/turf/target_turf = get_turf(target)
 		return ClawGrab(target_turf)
 	return Whip_Attack()
@@ -182,6 +196,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/kqe/OpenFire()
 	if(!can_act)
+		return
+	if(client)
+		switch (chosen_attack)
+			if (1)
+				ClawGrab(target)
+			if (2)
+				return
 		return
 	if(grab_cooldown <= world.time)
 		ClawGrab(target)

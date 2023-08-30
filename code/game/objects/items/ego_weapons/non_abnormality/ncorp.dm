@@ -129,6 +129,7 @@
 		armortype = initial(damtype)
 		to_chat(user, "<span class='notice'>Your hammer has run out of charges.</span>")
 		charged = FALSE
+	force = initial(force)
 
 /obj/item/ego_weapon/city/ncorp_hammer/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -137,7 +138,7 @@
 	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing its damage type.</span>")
 	damtype = I.damtype
 	armortype = I.damtype
-	charges = 5
+	charges = 10
 	charged = TRUE
 	qdel(I)
 
@@ -185,4 +186,73 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 							)
+
+
+//Brass Nail set
+/obj/item/ego_weapon/city/ncorp_brassnail
+	name = "MessingNagel"
+	desc = "A small brass nail used by junior Ncorp inquisitors."
+	special = "Hit an enemy with this weapon to gain nails. \
+		Hit this weapon with an N-Corp hammer to increase the damage of it's next attack by 10% for each nail on this weapon."
+	icon_state = "messingnagel"
+	force = 18
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("jabs", "stabs")
+	attack_verb_simple = list("jab", "stab")
+	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
+	var/nails
+
+/obj/item/ego_weapon/city/ncorp_brassnail/attack(mob/living/target, mob/living/user)
+	..()
+	nails++
+	if(nails>=5)
+		nails = 5
+
+/obj/item/ego_weapon/city/ncorp_brassnail/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/ego_weapon/city/ncorp_hammer))
+		return
+	I.force += I.force* nails *0.1
+	nails = 0
+	to_chat(user, "<span class='notice'>You transfer [nails] nails to your hammer, increasing it's damage.</span>")
+
+/obj/item/ego_weapon/city/ncorp_brassnail/big
+	name = "Elektrumnagel"
+	desc = "A large electrum nail used by senior Ncorp inquisitors."
+	icon_state = "elektrumnagel"
+	force = 37
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/city/ncorp_brassnail/huge
+	name = "GoldNagel"
+	desc = "A huge nail used by Ncorp captains."
+	icon_state = "goldnagel"
+	force = 50
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+
+/obj/item/ego_weapon/city/ncorp_brassnail/rose
+	name = "RoseNagel"
+	desc = "A huge nail used by Ncorp grand inquisitors."
+	icon_state = "rosenagel"
+	force = 50
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
 

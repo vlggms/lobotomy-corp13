@@ -140,14 +140,6 @@
 	power_timer = 180 	//Takes a long fucking time
 	crate_timer = 540	//Very expensive stuff. Takes 10 minutes to get 1 box.
 
-/obj/structure/pe_sales/hana
-	name = "Syndicate Workshop Power Input"
-	desc = "A machine used to send PE to the hana association"
-	icon_state = "machinehana"
-	crate = /obj/structure/lootcrate/hana
-	power_timer = 180 	//Takes a long fucking time
-	crate_timer = 540	//Very expensive stuff. Takes 10 minutes to get 1 box.
-
 /obj/structure/pe_sales/zwei
 	name = "Zwei Association Power Input"
 	desc = "A machine used to send PE to the zwei association."

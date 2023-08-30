@@ -21,3 +21,11 @@
 /obj/effect/bloodpool/Initialize()
 	. = ..()
 	QDEL_IN(src, 10)
+
+/obj/effect/landmark/fixerbase
+	name = "fixer base landmark"
+	icon_state = "x"
+
+/obj/effect/landmark/syndicatebase
+	name = "syndicate base landmark"
+	icon_state = "x"

@@ -20,4 +20,9 @@
 	room_id = "opensweeper_sn"
 	mappath = "_maps/RandomRooms/backstreets/small_south/open_sweeper.dmm"
 
+/datum/map_template/random_room/backstreets/small_south/jumpscare_closet
+	name = "15 Worms in a closet"
+	room_id = "jumpscare_closet"
+	mappath = "_maps/RandomRooms/backstreets/small_south/jumpscare_closet.dmm"
+
 

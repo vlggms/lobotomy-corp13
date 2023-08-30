@@ -18,8 +18,6 @@
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/helper_dash)
-
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
@@ -45,12 +43,19 @@
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
 
-/datum/action/innate/abnormality_attack/helper_dash
-	name = "Helper Dash"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "helper"
-	chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
-	chosen_attack_num = 1
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle
+	name = "Toggle Dash"
+	button_icon_state = "helper_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	button_icon_toggle_activated = "helper_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now dash in that direction.</span>"
+	button_icon_toggle_deactivated = "helper_toggle0"
+
 
 /mob/living/simple_animal/hostile/abnormality/helper/AttackingTarget()
 	if(charging)

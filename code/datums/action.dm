@@ -756,6 +756,13 @@
 	small_icon = 'icons/mob/alien.dmi'
 	small_icon_state = "alienq"
 
+/datum/action/small_sprite/abnormality
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "abnormality"
+	background_icon_state = "bg_abnormality"
+	small_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	small_icon_state = "abnormality"
+
 /datum/action/small_sprite/megafauna
 	icon_icon = 'icons/mob/actions/actions_xeno.dmi'
 	button_icon_state = "smallqueen"

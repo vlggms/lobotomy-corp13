@@ -18,29 +18,6 @@
 	to_chat(M, "<span class='hear'>Make sure you put the equipment in the armory.</span>")
 
 
-
-//Seven Asso
-/obj/item/storage/box/association/seven
-	name = "Seven Association Section 6"
-	desc = "A kit from Section 1 containing Seven association gear."
-
-/obj/item/storage/box/association/seven/PopulateContents()
-	new /obj/item/ego_weapon/city/seven(src)
-	new /obj/item/ego_weapon/city/seven(src)
-	new /obj/item/ego_weapon/city/seven_fencing(src)
-	new /obj/item/ego_weapon/city/seven/vet(src)
-	new /obj/item/ego_weapon/city/seven/director(src)
-	new /obj/item/ego_weapon/city/seven/cane(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
-	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
-	new /obj/item/binoculars(src)
-	new /obj/item/binoculars(src)
-
-
-
 //Zwei Asso
 /obj/item/storage/box/association/zwei
 	name = "Zwei Association Section 6"
@@ -75,3 +52,24 @@
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5(src)
+
+//Seven Asso
+/obj/item/storage/box/association/seven
+	name = "Seven Association Section 6"
+	desc = "A kit from Section 1 containing Seven association gear."
+
+/obj/item/storage/box/association/seven/PopulateContents()
+	new /obj/item/ego_weapon/city/seven(src)
+	new /obj/item/ego_weapon/city/seven(src)
+	new /obj/item/ego_weapon/city/seven_fencing(src)
+	new /obj/item/ego_weapon/city/seven/vet(src)
+	new /obj/item/ego_weapon/city/seven/director(src)
+	new /obj/item/ego_weapon/city/seven/cane(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/seven(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
+	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
+	new /obj/item/binoculars(src)
+	new /obj/item/binoculars(src)
+
