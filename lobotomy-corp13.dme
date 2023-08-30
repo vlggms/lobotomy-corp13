@@ -2333,6 +2333,7 @@
 #include "code\modules\jobs\job_types\city\syndicate\index\messenger.dm"
 #include "code\modules\jobs\job_types\city\syndicate\index\proselyte.dm"
 #include "code\modules\jobs\job_types\city\syndicate\index\proxy.dm"
+#include "code\modules\jobs\job_types\city\syndicate\kurokumo\blade_ronin.dm"
 #include "code\modules\jobs\job_types\city\syndicate\kurokumo\captain.dm"
 #include "code\modules\jobs\job_types\city\syndicate\kurokumo\enforcer.dm"
 #include "code\modules\jobs\job_types\city\syndicate\kurokumo\wakashu.dm"

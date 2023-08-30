@@ -14,7 +14,8 @@
 	paycheck = 200
 	maptype = list("city")
 	job_important = "You are an enforcer in the Kurokumo clan. You are to be respectful and follow orders from the Kashira. Not doing either will result in death. \
-		Unlike the Kashira and their Wakashu, your main goal is to enforce the law among the Wakashu and your territory, and are not really made for defending it."
+		Unlike the Kashira and their Wakashu, your main goal is to enforce the law among the Wakashu and your territory, and are not really made for defending it. \
+		Enforce the Kurokumo law on the civilians."
 	job_notice = "Avoid killing other players for no reason. Multilation is on the table. "
 
 	roundstart_attributes = list(
