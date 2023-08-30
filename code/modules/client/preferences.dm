@@ -589,6 +589,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>[TeguTranslate("tgui Window Mode", src)]:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
 			dat += "<b>[TeguTranslate("tgui Window Placement", src)]:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
 			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>[TeguTranslate("Enable Radio Static", src)]:</b> <a href='?_src_=prefs;preference=radio_static'>[(toggles & SOUND_RADIO_STATIC) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
@@ -1892,6 +1893,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("income_pings")
 					chat_toggles ^= CHAT_BANKCARD
+
+				if("radio_static")
+					toggles ^= SOUND_RADIO_STATIC
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
