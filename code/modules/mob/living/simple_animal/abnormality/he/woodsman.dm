@@ -17,7 +17,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/woodsman_flurry)
 	can_buckle = TRUE
 	can_breach = TRUE
 	threat_level = HE_LEVEL
@@ -49,12 +48,19 @@
 	var/flurry_width = 2
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/woodsman_flurry
-	name = "Deforestation"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "training_rabbit"
-	chosen_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
-	chosen_attack_num = 1
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle
+	name = "Toggle Deforestation"
+	button_icon_state = "woodsman_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't fell hearts anymore.</span>"
+	button_icon_toggle_activated = "woodsman_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
+	button_icon_toggle_deactivated = "woodsman_toggle0"
+
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Move()
 	if(!can_act)
@@ -117,6 +123,8 @@
 		switch(chosen_attack)
 			if(1)
 				Woodsman_Flurry(target)
+			if(2)
+				return
 		return
 
 	if(flurry_cooldown <= world.time)

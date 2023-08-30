@@ -1,3 +1,5 @@
+#define NT_GOODBYE_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there
 	name = "Nothing There"
 	desc = "A wicked creature that consists of various human body parts and organs."
@@ -65,6 +67,43 @@
 	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+		/datum/action/cooldown/nt_goodbye,
+		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
+	)
+
+/datum/action/cooldown/nt_goodbye
+	name = "Goodbye"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nt_goodbye"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = NT_GOODBYE_COOLDOWN //20 seconds
+
+/datum/action/cooldown/nt_goodbye/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nothing_there))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/nothing_there/nothing_there = owner
+	if(nothing_there.current_stage != 3)
+		return FALSE
+	StartCooldown()
+	nothing_there.Goodbye()
+	return TRUE
+
+/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
+	name = "Toggle Hello"
+	button_icon_state = "nt_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't shoot anymore.</span>"
+	button_icon_toggle_activated = "nt_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>"
+	button_icon_toggle_deactivated = "nt_toggle0"
+
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -106,20 +145,27 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
-		return Goodbye()
-	if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
-		var/turf/target_turf = get_turf(target)
-		for(var/i = 1 to 3)
-			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
-		return Hello(target_turf)
+	if(!client)
+		if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
+			return Goodbye()
+		if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to 3)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			return Hello(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/OpenFire()
 	if(!can_act)
 		return
-
 	if(current_stage == 3)
+
+		if(client)
+			switch(chosen_attack)
+				if(1)
+					Hello(target)
+			return
+
 		if(hello_cooldown <= world.time)
 			Hello(target)
 		if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
@@ -361,3 +407,5 @@
 		new /obj/effect/temp_visual/flesh(T)
 	forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
+
+#undef NT_GOODBYE_COOLDOWN

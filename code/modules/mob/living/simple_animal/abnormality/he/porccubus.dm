@@ -50,6 +50,20 @@
 	var/teleport_cooldown
 	var/damage_taken = FALSE
 
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle
+	name = "Toggle Dash"
+	button_icon_state = "porccubus_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	button_icon_toggle_activated = "porccubus_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
+	button_icon_toggle_deactivated = "porccubus_toggle0"
+
+
 /mob/living/simple_animal/hostile/abnormality/porccubus/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 	var/datum/status_effect/porccubus_addiction/PA = user.has_status_effect(STATUS_EFFECT_ADDICTION)
@@ -129,6 +143,12 @@
 		damage_taken = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/OpenFire()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				PorcDash(target)
+		return
+
 	if(!target)
 		return
 	PorcDash(target)

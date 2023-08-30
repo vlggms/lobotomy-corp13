@@ -1,5 +1,7 @@
 #define STATUS_EFFECT_FREEZING /datum/status_effect/freezing
 #define STATUS_EFFECT_FOGBOUND /datum/status_effect/fogbound
+#define SEASONS_SLAM_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/seasons
 	name = "God of the Seasons"
 	desc = "By jove, what is that?!?"
@@ -108,6 +110,43 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 15
+
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+		/datum/action/cooldown/seasons_slam,
+		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
+		)
+
+/datum/action/cooldown/seasons_slam
+	name = "Slam"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "generic_slam"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SEASONS_SLAM_COOLDOWN //20 seconds
+
+/datum/action/cooldown/seasons_slam/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/seasons))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/seasons/seasons = owner
+	if(seasons.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	seasons.Slam()
+	return TRUE
+
+/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
+	name = "Toggle Breath"
+	button_icon_state = "generic_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't use your breath anymore.</span>"
+	button_icon_toggle_activated = "generic_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
+	button_icon_toggle_deactivated = "generic_toggle0"
+
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
@@ -281,10 +320,11 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if((cone_attack_cooldown <= world.time) && prob(35))
-		return ConeAttack(target)
-	if((slam_cooldown <= world.time) && prob(35))
-		return Slam()
+	if(!client)
+		if((cone_attack_cooldown <= world.time) && prob(35))
+			return ConeAttack(target)
+		if((slam_cooldown <= world.time) && prob(35))
+			return Slam()
 	if(ishuman(target))
 		if(Finisher(target))
 			return
@@ -293,6 +333,14 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/OpenFire()
 	if(!can_act)
 		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(cone_attack_cooldown <= world.time)
+					ConeAttack(target)
+		return ..()
+
 	if(cone_attack_cooldown <= world.time)
 		ConeAttack(target)
 		return
@@ -800,3 +848,5 @@
 /obj/effect/season_effect/breath/spring/Initialize()
 	. = ..()
 	icon_state = pick("Light1", "Light1", "Light3")
+
+#undef SEASONS_SLAM_COOLDOWN

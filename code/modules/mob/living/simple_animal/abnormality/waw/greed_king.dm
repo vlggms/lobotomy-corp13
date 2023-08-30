@@ -16,7 +16,6 @@
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/kog_dash, /datum/action/innate/abnormality_attack/kog_teleport)
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 60	//Shouldn't really attack unless a player in controlling it, I guess.
 	melee_damage_upper = 80
@@ -46,17 +45,21 @@
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+	/datum/action/innate/abnormality_attack/kog_dash,
+	/datum/action/innate/abnormality_attack/kog_teleport
+	)
+
 /datum/action/innate/abnormality_attack/kog_dash
 	name = "Ravenous Charge"
-	icon_icon = 'ModularTegustation/Teguicons/64x48.dmi'
-	button_icon_state = "kog"
+	button_icon_state = "kog_charge"
 	chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/kog_teleport
 	name = "Teleport"
-	icon_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "sparks"
+	button_icon_state = "kog_teleport"
 	chosen_message = "<span class='warning'>You will now teleport to a random area in the facility's halls.</span>"
 	chosen_attack_num = 2
 
