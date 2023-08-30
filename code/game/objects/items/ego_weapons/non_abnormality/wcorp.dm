@@ -246,3 +246,31 @@
 		var/mob/living/simple_animal/M = owner
 		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
+/obj/item/ego_weapon/city/wcorp/shield
+	name = "w-corp type C shieldblade"
+	desc = "A glowing blue W-Corp blade used to project barriers. The glowing end is dangerous, and can slice through about anything"
+	icon_state = "wcorp_sword"
+	inhand_icon_state = "wcorp_sword"
+	force = 35 //Meant originally as a support device, used as a mace in a pinch.
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleave", "cut")
+	charge_cost = 16
+	release_message = "You release your charge, projecting shields upon your allies!"
+	charge_effect = "grant shields to nearby allies on hit."
+	attribute_requirements = list(
+						FORTITUDE_ATTRIBUTE = 80,
+						PRUDENCE_ATTRIBUTE = 100,
+						TEMPERANCE_ATTRIBUTE = 80,
+						JUSTICE_ATTRIBUTE = 80
+	)
+
+/obj/item/ego_weapon/city/wcorp/shield/release_charge(mob/living/target, mob/living/user)
+	to_chat(user, "<span class='notice'>[release_message].</span>")
+	sleep(2)
+	for(var/mob/living/L in view(7, src))
+		if(L != user || !ishuman(L))
+			continue
+		L.apply_status_effect(/datum/status_effect/interventionshield)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
