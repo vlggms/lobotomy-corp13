@@ -24,8 +24,17 @@
 		A.AddSpell(bloodspell)
 		A.faction += "hostile"
 	if(SSmaptype.maptype in SSmaptype.autoend)
-		addtimer(CALLBACK(src, .proc/loseround), 40 MINUTES)
+		var/autoend_timer
+		switch(SSmaptype.maptype)
+			if("rcorp")
+				addtimer(CALLBACK(src, .proc/loseround), 30 MINUTES)
+			if("wcorp")
+				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
 
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>Players have taken too long! Round automatically ending.</span>")
+
+/datum/game_mode/combat/proc/winround()
+	SSticker.force_ending = 1
+	to_chat(world, "<span class='userdanger'>Players have survived! Round automatically ending.</span>")
