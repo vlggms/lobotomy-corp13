@@ -37,7 +37,7 @@
 			processing.total_positions = 2
 
 		if(istype(processing, /datum/job/proselyte))
-			processing.total_positions = 3
+			processing.total_positions = 6
 	. = ..()
 
 
