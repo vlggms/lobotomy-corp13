@@ -47,7 +47,7 @@
 	assignedrole = "SPC"
 	spawn_level = 40
 
-/obj/effect/mob_spawn/human/supplypod/r_corp/raven_call/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/human/supplypod/r_corp/raven_call/special(mob/living/carbon/human/new_spawn)
 	..()
 	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
 
