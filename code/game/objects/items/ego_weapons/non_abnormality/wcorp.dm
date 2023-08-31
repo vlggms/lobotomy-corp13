@@ -246,8 +246,10 @@
 		var/mob/living/simple_animal/M = owner
 		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
+
+//Type C weapons
 /obj/item/ego_weapon/city/wcorp/shield
-	name = "w-corp type C shieldblade"
+	name = "w-corp type-C shieldblade"
 	desc = "A glowing blue W-Corp blade used to project barriers. The glowing end is dangerous, and can slice through about anything"
 	icon_state = "wcorp_sword"
 	inhand_icon_state = "wcorp_sword"
@@ -274,3 +276,38 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+
+//Type C Spear
+/obj/item/ego_weapon/city/wcorp/shield/spear
+	name = "w-corp type-C shieldglaive"
+	desc = "A glowing blue W-Corp glaive used to project barriers."
+	icon_state = "wcorp_glaive"
+	inhand_icon_state = "wcorp_glaive"
+	reach = 2
+	attack_speed = 1.2
+
+//Type C club
+/obj/item/ego_weapon/city/wcorp/shield/club
+	name = "w-corp type-C shieldclub"
+	desc = "A glowing blue W-Corp club used to project barriers."
+	icon_state = "wcorp_club"
+	inhand_icon_state = "wcorp_club"
+	attack_speed = 1.5
+
+/obj/item/ego_weapon/city/wcorp/shield/club/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+//Type C axe
+/obj/item/ego_weapon/city/wcorp/shield/axe
+	name = "w-corp type-C shieldaxe"
+	desc = "A glowing blue W-Corp battleaxe used to project barriers."
+	icon_state = "wcorp_battleaxe"
+	inhand_icon_state = "wcorp_battleaxe"
+	force = 45
+	attack_speed = 1.5
