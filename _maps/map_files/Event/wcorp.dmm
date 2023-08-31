@@ -270,6 +270,10 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
+"ws" = (
+/obj/machinery/telecomms/allinone/indestructable,
+/turf/open/indestructible/hotelwood,
+/area/city/outskirts)
 "wv" = (
 /obj/structure/window/reinforced/unanchored{
 	dir = 8
@@ -17775,11 +17779,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+tb
+tb
+tb
+tb
+tb
 iP
 iP
 iP
@@ -22003,11 +22007,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+tb
+tb
+tb
+tb
+tb
 iP
 iP
 iP
@@ -34687,11 +34691,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+UQ
+UQ
+UQ
+UQ
+UQ
 iP
 iP
 iP
@@ -38915,11 +38919,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+UV
+UV
+UV
+UV
+UV
 iP
 iP
 iP
@@ -41027,7 +41031,7 @@ pt
 pt
 pt
 rh
-UV
+ws
 UV
 FS
 FS
