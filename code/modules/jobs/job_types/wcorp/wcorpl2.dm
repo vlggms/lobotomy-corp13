@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 	)
-	rank_title = "L2-A"
+	rank_title = "L2-LT"
 	job_important = "You take the role of frontline infantry."
 	job_notice = "You are a agent tasked with assisting with communications and coordination between your squad and other squads. Support your squadron with your equipment."
 
