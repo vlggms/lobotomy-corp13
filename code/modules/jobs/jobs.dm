@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 
 	//Wcorp stuff
 	"W-Corp Representative",
-	"W-Corp L3 Cleanup Captain",
+	"W-Corp L3 Squad Captain",
 	))
 
 
@@ -92,9 +92,11 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Scout Raven",
 	"R-Corp Support Raven",
 
+	"W-Corp L2 Type A Lieutenant"
 	"W-Corp L2 Type B Support Agent",
 	"W-Corp L2 Type C Weapon Specialist",
 	"W-Corp L1 Cleanup Agent",
+	"W-Corp L2 Type A Lieutenant",
 
 
 	//Syndicates
