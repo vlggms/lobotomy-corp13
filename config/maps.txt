@@ -81,6 +81,9 @@ endmap
 map rcorp_test
 endmap
 
+map wcorp
+endmap
+
 map limbus
 endmap
 
