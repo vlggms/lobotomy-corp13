@@ -88,6 +88,7 @@
 	var/uses_overlays = TRUE
 	var/icon/cached_flat_icon
 	var/registered_age = 13 // default age for ss13 players
+	var/override_id_icon	//Do we want a different ID icon than normal? Usually used for jobs with strange, or long names.
 
 /obj/item/card/id/Initialize(mapload)
 	. = ..()
@@ -298,6 +299,9 @@
 	if(registered_name && registered_name != "Captain")
 		. += mutable_appearance(icon, "assigned")
 	if(job)
+		if(override_id_icon)
+			. += mutable_appearance(icon, "[override_id_icon]")
+			return
 		. += mutable_appearance(icon, "id[job]")
 
 /obj/item/card/id/proc/update_in_wallet()

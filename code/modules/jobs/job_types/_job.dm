@@ -97,6 +97,7 @@
 	//Mostly used for military stuff.
 	var/rank_title
 
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -164,6 +165,8 @@
 		H.name = H.real_name
 		for(var/obj/item/card/id/Y in H.contents)
 			Y.registered_name = H.name
+	//		if(id_override)
+	//			Y.override_id_icon = id_override
 			Y.update_label()
 
 
@@ -296,6 +299,7 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/pda_slot = ITEM_SLOT_BELT
+	var/id_override
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	switch(H.backpack)
@@ -345,6 +349,8 @@
 		// Tegu end
 		if(H.age)
 			C.registered_age = H.age
+		if(id_override)
+			C.override_id_icon = id_override
 		C.update_label()
 		var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[H.account_id]"]
 		if(B && B.account_id == H.account_id)

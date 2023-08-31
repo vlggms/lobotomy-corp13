@@ -36,6 +36,7 @@
 
 /datum/outfit/job/doctor
 	name = "Doctor"
+	id_override = "doctor"
 	jobtype = /datum/job/doctor
 
 	belt = /obj/item/pda/medical
@@ -72,6 +73,7 @@
 
 /datum/outfit/job/doctor/nurse
 	name = "Nurse"
+	id_override = "nurse"
 	jobtype = /datum/job/doctor/nurse
 
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
@@ -97,6 +99,7 @@
 
 /datum/outfit/job/doctor/medic
 	name = "Paramedic"
+	id_override = "paramedic"
 	jobtype = /datum/job/doctor/medic
 
 	uniform = /obj/item/clothing/under/rank/medical/paramedic
