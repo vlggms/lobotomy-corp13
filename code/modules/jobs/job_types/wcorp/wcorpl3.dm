@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(l3squads, list("Axe", "Buckler", "Cleaver"))
+
 //These are the captains for W-Corp. - Angela
 /datum/job/wcorpl3
 	title = "W-Corp L3 Squad Captain"
@@ -27,28 +29,58 @@
 	)
 	rank_title = "L3 CPT"
 	job_important = "You are a Captain of W-Corp's frontline infantry."
-	job_notice = "You are an agent deigned to lead one of three squadrons during the clean-up opeartion. Serve W-Corp's best interests and carry your squadron to victory."
+	job_notice = "You are an agent deigned to lead one of three squads during the clean-up opeartion. Serve W-Corp's best interests and carry your squadron to victory."
 
 //no fear!!!
 /datum/job/wcorpl3/after_spawn(mob/living/carbon/human/H, mob/M)
+	var/squad = pick_n_take(GLOB.l3squads)
 	.=..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	to_chat(M, "<span class='userdanger'>You are the leader of the [squad] squad. </span>")
+
+	//Headset stuff
+	var/ears = null
+	var/head = null
+	switch(squad)
+		if("Axe")
+			ears = /obj/item/radio/headset/wcorp/safety/head
+			head = /obj/item/clothing/head/beret/tegu/lobotomy/wcorpaxe
+		if("Buckler")
+			ears = /obj/item/radio/headset/wcorp/discipline/head
+			head = /obj/item/clothing/head/beret/sec/wcorpbuckler
+		if("Cleaver")
+			ears = /obj/item/radio/headset/wcorp/welfare/head
+			head = /obj/item/clothing/head/beret/tegu/lobotomy/wcorpcleaver
+	if(ears)
+		if(H.ears)
+			qdel(H.ears)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
+
+	if(head)
+		if(H.head)
+			qdel(H.head)
+		H.equip_to_slot_or_del(new head(H),ITEM_SLOT_HEAD)
+
 
 /datum/outfit/job/wcorpl3
 	name = "W-Corp L3 Cleanup Captain"
 	jobtype = /datum/job/wcorpl3
 
-	ears = /obj/item/radio/headset/heads/manager/alt
+	ears = null
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp //wonder how we differentiate these guys gonna figure it out later
 	belt = null
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	head = /obj/item/clothing/head/wcorp
+	head = null
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/flashlight/seclite
+
+	backpack_contents = list(/obj/item/storage/box/pcorp)
+
+
 
 /datum/outfit/job/wcorpl3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -59,3 +91,5 @@
 		/obj/item/ego_weapon/city/wcorp/hatchet,
 		/obj/item/ego_weapon/city/wcorp/hammer)
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+
+

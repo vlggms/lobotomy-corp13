@@ -21,7 +21,6 @@
 
 /obj/effect/landmark/wavespawn/Initialize()
 	..()
-//	addtimer(CALLBACK(src, .proc/tryspawn), 3 MINUTES, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, .proc/tryspawn), 3 MINUTES, TIMER_STOPPABLE)
 
 //Wave increases.
@@ -33,20 +32,20 @@
 		if(1 to 4)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-		if(5 to 20)
+		if(5 to INFINITY)
 			if(prob(30))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
 
 		if(5 to 9)
 			if(prob(10))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 
-		if(10 to 20)
+		if(10 to INFINITY)
 			if(prob(30))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 
-		if(15 to 20)
-			if(prob(5))
+		if(15 to INFINITY)
+			if(prob(40))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
