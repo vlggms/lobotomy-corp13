@@ -250,7 +250,7 @@
 //Type C weapons
 
 /datum/status_effect/interventionshield/wcorp
-	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
 
 /obj/item/ego_weapon/city/wcorp/shield
 	name = "w-corp type-C shieldblade"
