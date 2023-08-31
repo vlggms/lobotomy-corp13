@@ -115,6 +115,10 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
+"is" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
 "iP" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
@@ -270,6 +274,10 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
+"ws" = (
+/obj/machinery/telecomms/allinone/indestructable,
+/turf/open/indestructible/hotelwood,
+/area/city/outskirts)
 "wv" = (
 /obj/structure/window/reinforced/unanchored{
 	dir = 8
@@ -308,6 +316,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/bluespace,
 /turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"zq" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
 "zz" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -605,6 +617,10 @@
 	},
 /obj/effect/landmark/department_center,
 /turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"Ts" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/carpet/blue,
 /area/city/outskirts)
 "UQ" = (
 /turf/open/floor/carpet/blue,
@@ -17775,11 +17791,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+tb
+tb
+tb
+tb
+tb
 iP
 iP
 iP
@@ -21096,13 +21112,13 @@ pt
 pt
 iP
 FV
-tb
+is
 UQ
 tb
 UQ
 UQ
 tb
-tb
+is
 UQ
 iP
 pt
@@ -22003,11 +22019,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+tb
+tb
+tb
+tb
+tb
 iP
 iP
 iP
@@ -25626,13 +25642,13 @@ pt
 pt
 rh
 UQ
+Ts
 UQ
 UQ
 UQ
 UQ
 UQ
-UQ
-tb
+is
 tb
 rh
 pt
@@ -31364,13 +31380,13 @@ pt
 pt
 rh
 FS
-FS
+zq
 UQ
 UQ
 UQ
 UQ
 UQ
-FS
+zq
 rh
 rh
 pt
@@ -34687,11 +34703,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+UQ
+UQ
+UQ
+UQ
+UQ
 iP
 iP
 iP
@@ -34989,12 +35005,12 @@ pt
 rh
 rh
 rh
+Ts
 UQ
 UQ
 UQ
 UQ
-UQ
-UQ
+Ts
 UQ
 rh
 pt
@@ -38915,11 +38931,11 @@ ny
 iP
 iP
 iP
-Km
-rh
-Km
-rh
-eX
+UV
+UV
+UV
+UV
+UV
 iP
 iP
 iP
@@ -41027,7 +41043,7 @@ pt
 pt
 pt
 rh
-UV
+ws
 UV
 FS
 FS
