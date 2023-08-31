@@ -1,12 +1,14 @@
+GLOBAL_LIST_INIT(l3squads, list("Axe", "Buckler", "Cleaver"))
+
 //These are the captains for W-Corp. - Angela
 /datum/job/wcorpl3
-    title = "W-Corp L3 Cleanup Captain"
+	title = "W-Corp L3 Squad Captain"
 	faction = "Station"
 	department_head = list("W-Corp Representative")
 	total_positions = 3
 	spawn_positions = 3
 	supervisors = "The W-Corp Representative"
-	selection_color = "#1b7ced"
+	selection_color = "#3434b3"
 	exp_requirements = 240
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
@@ -20,33 +22,74 @@
 	minimal_access = list()
 
 	roundstart_attributes = list(
-		                        FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
-	                            )
+								FORTITUDE_ATTRIBUTE = 100,
+								PRUDENCE_ATTRIBUTE = 100,
+								TEMPERANCE_ATTRIBUTE = 100,
+								JUSTICE_ATTRIBUTE = 100
+	)
 	rank_title = "L3 CPT"
 	job_important = "You are a Captain of W-Corp's frontline infantry."
-	job_notice = "You are an agent deigned to lead one of three squadrons during the clean-up opeartion. Serve W-Corp's best interests and carry your squadron to victory."
+	job_notice = "You are an agent deigned to lead one of three squads during the clean-up opeartion. Serve W-Corp's best interests and carry your squadron to victory."
 
 //no fear!!!
 /datum/job/wcorpl3/after_spawn(mob/living/carbon/human/H, mob/M)
-        .=..()
-		ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	var/squad = pick_n_take(GLOB.l3squads)
+	.=..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	to_chat(M, "<span class='userdanger'>You are the leader of the [squad] squad. </span>")
+
+	//Headset stuff
+	var/ears = null
+	var/head = null
+	switch(squad)
+		if("Axe")
+			ears = /obj/item/radio/headset/wcorp/safety/head
+			head = /obj/item/clothing/head/beret/tegu/lobotomy/wcorpaxe
+		if("Buckler")
+			ears = /obj/item/radio/headset/wcorp/discipline/head
+			head = /obj/item/clothing/head/beret/sec/wcorpbuckler
+		if("Cleaver")
+			ears = /obj/item/radio/headset/wcorp/welfare/head
+			head = /obj/item/clothing/head/beret/tegu/lobotomy/wcorpcleaver
+	if(ears)
+		if(H.ears)
+			qdel(H.ears)
+		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
+
+	if(head)
+		if(H.head)
+			qdel(H.head)
+		H.equip_to_slot_or_del(new head(H),ITEM_SLOT_HEAD)
+
 
 /datum/outfit/job/wcorpl3
-    name = "W-Corp L3 Cleanup Captain"
+	name = "W-Corp L3 Cleanup Captain"
 	jobtype = /datum/job/wcorpl3
 
-	ears = /obj/item/radio/headset/heads/manager/alt
+	ears = null
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp //wonder how we differentiate these guys gonna figure it out later
-	belt = /obj/item/ego_weapon/city/wcorp
+	belt = null
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	head = /obj/item/clothing/head/wcorp
-	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp
-	suit_store = /obj/item/ego_weapon/city/wcorp_fist //need to change this/make it randomize between the type A weapons
+	head = null
+	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/flashlight/seclite
+
+	backpack_contents = list(/obj/item/storage/box/pcorp)
+
+
+
+/datum/outfit/job/wcorpl3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	var/belt = pick(/obj/item/ego_weapon/city/wcorp/fist,
+		/obj/item/ego_weapon/city/wcorp/axe,
+		/obj/item/ego_weapon/city/wcorp/spear,
+		/obj/item/ego_weapon/city/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/hatchet,
+		/obj/item/ego_weapon/city/wcorp/hammer)
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+
+

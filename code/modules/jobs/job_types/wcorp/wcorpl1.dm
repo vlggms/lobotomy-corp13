@@ -1,10 +1,10 @@
 //These are the chaff of W-Corp. Like Rabbits, but cooler looking. - Angela
 /datum/job/wcorpl1
-    title = "W-Corp L1 Agent"
+	title = "W-Corp L1 Cleanup Agent"
 	faction = "Station"
 	department_head = list("W-Corp L3 Cleanup Captain, W-Corp Representative")
-	total_positions = 18
-	spawn_positions = 10
+	total_positions = -1 //18
+	spawn_positions = -1 //10
 	supervisors = "Your assigned W-Corp L3 Agent and the W-Corp Representative"
 	selection_color = "#1b7ced"
 

@@ -15,7 +15,6 @@
 	GLOB.ooc_allowed = FALSE
 	CONFIG_SET(flag/norespawn, 1)
 	to_chat(world, "<B>Due to gamemode, Respawn and the OOC channel has been globally disabled.</B>")
-	to_chat(world, "<span class='userdanger'>Round will end in 40 minutes.</span>")
 
 	//Breach all
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
@@ -27,8 +26,10 @@
 		switch(SSmaptype.maptype)
 			if("rcorp")
 				addtimer(CALLBACK(src, .proc/loseround), 30 MINUTES)
+				to_chat(world, "<span class='userdanger'>Round will end in 30 minutes.</span>")
 			if("wcorp")
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
+				to_chat(world, "<span class='userdanger'>Players will be victorius 20 minutes.</span>")
 
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
