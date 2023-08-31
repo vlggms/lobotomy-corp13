@@ -19,10 +19,10 @@
 	minimal_access = list()
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 60,
-								PRUDENCE_ATTRIBUTE = 60,
-								TEMPERANCE_ATTRIBUTE = 60,
-								JUSTICE_ATTRIBUTE = 60
+								FORTITUDE_ATTRIBUTE = 80,
+								PRUDENCE_ATTRIBUTE = 80,
+								TEMPERANCE_ATTRIBUTE = 80,
+								JUSTICE_ATTRIBUTE = 80
 	)
 	rank_title = "L2-C"
 	job_important = "You take the role of frontline infantry."

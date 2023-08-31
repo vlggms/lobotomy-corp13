@@ -20,10 +20,10 @@
 	minimal_access = list()
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
+								FORTITUDE_ATTRIBUTE = 100,
+								PRUDENCE_ATTRIBUTE = 100,
+								TEMPERANCE_ATTRIBUTE = 100,
+								JUSTICE_ATTRIBUTE = 100
 	)
 	rank_title = "L3 CPT"
 	job_important = "You are a Captain of W-Corp's frontline infantry."
