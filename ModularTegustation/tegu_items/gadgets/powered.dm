@@ -165,7 +165,7 @@
 
 /obj/structure/slowingmk1/Crossed(atom/movable/AM)
 	. = ..()
-	if(isabnormalitymob(AM))
+	if(ishostile(AM))
 		var/mob/living/simple_animal/hostile/L = AM
 		L.apply_status_effect(/datum/status_effect/qliphothoverload)
 		QDEL_IN(src, 2)
@@ -296,7 +296,7 @@
 		user.visible_message(hit_message)
 		return
 	hit_message = "<span class='userdanger'>[user] smashes the taser into [T].</span>"
-	if(isabnormalitymob(T) && cell.charge >= batterycost_slow)
+	if(ishostile(T) && cell.charge >= batterycost_slow)
 		cell.charge = cell.charge - batterycost_slow
 		user.visible_message(hit_message)
 		T.apply_status_effect(/datum/status_effect/qliphothoverload)

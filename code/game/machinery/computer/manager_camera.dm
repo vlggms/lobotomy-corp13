@@ -104,7 +104,7 @@
 	if(ishuman(clicked_atom))
 		clickedemployee(source, clicked_atom)
 		return
-	if(isabnormalitymob(clicked_atom))
+	if(ishostile(clicked_atom))
 		clickedabno(source, clicked_atom)
 		return
 
@@ -124,6 +124,12 @@
 				H.apply_status_effect(/datum/status_effect/interventionshield/black)
 			if(PALE_BULLET)
 				H.apply_status_effect(/datum/status_effect/interventionshield/pale)
+			if(YELLOW_BULLET)
+				if(!owner.faction_check_mob(H))
+					H.apply_status_effect(/datum/status_effect/qliphothoverload)
+				else
+					to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
+					return
 			else
 				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 				return

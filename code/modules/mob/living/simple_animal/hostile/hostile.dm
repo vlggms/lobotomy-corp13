@@ -130,9 +130,11 @@
 /mob/living/simple_animal/hostile/update_stamina()
 	. = ..()
 	move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
+	UpdateSpeed()
 
 /mob/living/simple_animal/hostile/proc/SpeedChange(amount = 0)
 	move_to_delay += amount
+	UpdateSpeed()
 
 /mob/living/simple_animal/hostile/proc/TemporarySpeedChange(amount = 0, time = 0)
 	if(time <= 0)
@@ -170,6 +172,21 @@
 			FindTarget(list(P.firer), 1)
 		Goto(P.starting, move_to_delay, 3)
 	return ..()
+
+/*Used in LC13 abnormality calculations.
+	Moved here so we can use it for all hostiles.
+	So this took me a while to figure out,
+	player controlled mob speed is default
+	2 when in running mode. The "speed" variable
+	isnt actually adding it up from 0. Its a
+	multiplication of a 1 that is added to the 2.
+	move_to_delay is the lag in deciseconds. So
+	to fix this the speed should be move_to_delay -2.
+	Also this doesnt fix Stamina Update since it uses
+	initial - IP*/
+//Also is it frowned upon to make a proc just a single proc but with a unique var
+/mob/living/simple_animal/hostile/proc/UpdateSpeed()
+	set_varspeed(move_to_delay - 2)
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
