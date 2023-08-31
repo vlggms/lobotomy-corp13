@@ -51,6 +51,8 @@
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.z != z)
+			continue
 		if(H.stat != DEAD)
 			return
 	SSticker.force_ending = 1
