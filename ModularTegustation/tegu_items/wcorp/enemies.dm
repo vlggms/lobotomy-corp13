@@ -30,14 +30,23 @@
 	waveno += 1
 	spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
 	switch(waveno)
+		if(1 to 4)
+			if(prob(10))
+				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
 		if(5 to 20)
 			if(prob(30))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-		if(10 to 20)
-			if(prob(15))
+
+		if(5 to 9)
+			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+
+		if(10 to 20)
+			if(prob(30))
+				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+
 		if(15 to 20)
-			if(prob(3))
+			if(prob(5))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
