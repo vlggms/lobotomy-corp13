@@ -25,6 +25,11 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
+
+
+	//Wcorp stuff
+	"W-Corp Representative",
+	"W-Corp L3 Cleanup Captain",
 	))
 
 
@@ -87,6 +92,10 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Scout Raven",
 	"R-Corp Support Raven",
 
+	"W-Corp L2 Type B Support Agent",
+	"W-Corp L2 Type C Weapon Specialist",
+	"W-Corp L1 Cleanup Agent",
+
 
 	//Syndicates
 	"Index Messenger",
@@ -108,7 +117,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
-
 	))
 
 
