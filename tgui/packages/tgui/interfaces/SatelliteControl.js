@@ -13,7 +13,7 @@ export const SatelliteControl = (props, context) => {
         {data.meteor_shield && (
           <Section>
             <LabeledList>
-            <LabeledList.Item label="Coverage">
+              <LabeledList.Item label="Coverage">
                 <ProgressBar
                   value={data.meteor_shield_coverage
                     / data.meteor_shield_coverage_max}
