@@ -246,8 +246,14 @@
 		var/mob/living/simple_animal/M = owner
 		M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
+
+//Type C weapons
+
+/datum/status_effect/interventionshield/wcorp
+	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+
 /obj/item/ego_weapon/city/wcorp/shield
-	name = "w-corp type C shieldblade"
+	name = "w-corp type-C shieldblade"
 	desc = "A glowing blue W-Corp blade used to project barriers. The glowing end is dangerous, and can slice through about anything"
 	icon_state = "wcorp_sword"
 	inhand_icon_state = "wcorp_sword"
@@ -258,19 +264,54 @@
 	release_message = "You release your charge, projecting shields upon your allies!"
 	charge_effect = "grant shields to nearby allies on hit."
 	attribute_requirements = list(
-						FORTITUDE_ATTRIBUTE = 80,
-						PRUDENCE_ATTRIBUTE = 100,
-						TEMPERANCE_ATTRIBUTE = 80,
-						JUSTICE_ATTRIBUTE = 80
-	)
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60
+							)
 
 /obj/item/ego_weapon/city/wcorp/shield/release_charge(mob/living/target, mob/living/user)
 	to_chat(user, "<span class='notice'>[release_message].</span>")
 	sleep(2)
-	for(var/mob/living/L in view(7, src))
-		if(L != user || !ishuman(L))
+	for(var/mob/living/carbon/human/L in range(7, user))
+		if(!ishuman(L))
 			continue
-		L.apply_status_effect(/datum/status_effect/interventionshield)
+		L.apply_status_effect(/datum/status_effect/interventionshield/wcorp)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
+
+//Type C Spear
+/obj/item/ego_weapon/city/wcorp/shield/spear
+	name = "w-corp type-C shieldglaive"
+	desc = "A glowing blue W-Corp glaive used to project barriers."
+	icon_state = "wcorp_glaive"
+	inhand_icon_state = "wcorp_glaive"
+	reach = 2
+	attack_speed = 1.2
+
+//Type C club
+/obj/item/ego_weapon/city/wcorp/shield/club
+	name = "w-corp type-C shieldclub"
+	desc = "A glowing blue W-Corp club used to project barriers."
+	icon_state = "wcorp_club"
+	inhand_icon_state = "wcorp_club"
+	attack_speed = 1.5
+
+/obj/item/ego_weapon/city/wcorp/shield/club/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+//Type C axe
+/obj/item/ego_weapon/city/wcorp/shield/axe
+	name = "w-corp type-C shieldaxe"
+	desc = "A glowing blue W-Corp battleaxe used to project barriers."
+	icon_state = "wcorp_battleaxe"
+	inhand_icon_state = "wcorp_battleaxe"
+	force = 45
+	attack_speed = 1.5
