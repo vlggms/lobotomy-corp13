@@ -29,7 +29,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 
 	//Wcorp stuff
 	"W-Corp Representative",
-	"W-Corp L3 Cleanup Captain",
+	"W-Corp L3 Squad Captain",
 	))
 
 
