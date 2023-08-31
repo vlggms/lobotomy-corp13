@@ -229,8 +229,7 @@
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
-		"When Ebony Queen's Apple escaped from its containment, it began attack with its roots with extremely violent intent.",
-		"F-04-141 primarily attacks through her roots and branches. It is suggested agents avoid extentions of the entity when in combat.")
+		"Ebony Queen’s Apple primarily attacks through her roots. Employees should avoid standing on extentions of the Abnormality during suppressions.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Very High"
 
