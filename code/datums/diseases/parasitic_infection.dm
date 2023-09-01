@@ -13,16 +13,31 @@
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	required_organs = list(/obj/item/organ/liver)
 	bypasses_immunity = TRUE
+	var/obj/item/organ/liver/affected_liver
 
 
 /datum/disease/parasite/stage_act()
 	. = ..()
 	if(!.)
 		return
-
-	var/obj/item/organ/liver/affected_liver = affected_mob.getorgan(/obj/item/organ/liver)
+	//If no liver check the organ slot.
 	if(!affected_liver)
+		affected_liver = affected_mob.getorganslot(ORGAN_SLOT_LIVER)
+	/* If still no liver cure ourselves.
+		Check twice cut once. */
+	if(!affected_liver)
+		cure()
+		return FALSE
+	//We have a liver. Cool. Is that liver inside the person who has the parasite?
+	if(affected_liver.owner != affected_mob)
 		affected_mob.visible_message("<span class='notice'><B>[affected_mob]'s liver is covered in tiny larva! They quickly shrivel and die after being exposed to the open air.</B></span>")
+		cure()
+		return FALSE
+	//Thats not a liver thats a hunk of plastic.
+	if(affected_liver.organ_flags & ORGAN_SYNTHETIC)
+		to_chat(affected_mob, "<span class='nicegreen'>Your liver starts whirring and making noises like someone threw popcorn into a blender.</span>")
+		//That cant be good for your liver.
+		affected_mob.adjustOrganLoss(ORGAN_SLOT_LIVER, 20, 200)
 		cure()
 		return FALSE
 
