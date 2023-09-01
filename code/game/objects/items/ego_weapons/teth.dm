@@ -522,7 +522,7 @@
 /obj/item/ego_weapon/zauberhorn
 	name = "zauberhorn"
 	desc = "Falada, Falada, thou art dead, and all the joy in my life has fled."
-	special = "This E.G.O. functions as both a gun and a mele weapon."
+	special = "This E.G.O. functions as both a gun and a melee weapon."
 	icon_state = "zauberhorn"
 	force = 10
 	damtype = BLACK_DAMAGE
