@@ -114,7 +114,7 @@
 
 //-----K_CORP-----
 //K Corp sells mostly healing gear.
-
+///Healing Items Line
 /datum/data/lc13research/syringe
 	research_name = "Ampule Runoff Permit"
 	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level hp ampules at a 90% discount."
@@ -125,6 +125,40 @@
 	ItemUnlock(caller.order_list, "K Corp Ampule ",	/obj/item/ksyringe, 300)
 	..()
 
+/datum/data/lc13research/krevival
+	research_name = "K Corp Experimental Ampule "
+	research_desc = "Hey, listen buddy, it's Joe from research. <br>The supply team went home for the night, and I'm tired, but I need this tested. <br>It'll revive one guy, once. It's a major breakthrough, give it a shot."
+	cost = AVERAGE_RESEARCH_PRICE+5
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/syringe
+
+/datum/data/lc13research/krevival/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/krevive(get_turf(caller))
+	..()
+
+/datum/data/lc13research/krevival2
+	research_name = "K Corp Experimental Ampule II "
+	research_desc = "Hey, listen buddy, it's Joe from research. <br>The supply team greenlit our last one, but they REALLY want to get their money back on this one. <br>It'll revive one guy, once. These are forbidden however, so I can't give you any more."
+	cost = HIGH_RESEARCH_PRICE+5
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/krevival
+
+/datum/data/lc13research/krevival2/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/krevive(get_turf(caller))
+	..()
+
+/datum/data/lc13research/medbeam
+	research_name = "K Corp Experimental Beamgun "
+	research_desc = "L Corp Branch Representative. <br>I have a new breakthrough in our technology regarding the nanomachines. <br>This item will fire a stream of continuous Kcorp syringe fluid at a distance.  <br>Use it wisely.  <br>- Jill, from research."
+	cost = AVERAGE_RESEARCH_PRICE+10
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/krevival
+
+/datum/data/lc13research/krevival2/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/gun/medbeam(get_turf(caller))
+	..()
+
+//Misc stuff.
 /datum/data/lc13research/bullets
 	research_name = "Manager Bullet Permits "
 	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level hp ampules at a 90% discount."
@@ -147,15 +181,11 @@
 	ItemUnlock(caller.order_list, "K Corp Chem Implant ",	/obj/item/implantcase/chem, 300)
 	..()
 
-/datum/data/lc13research/krevival
-	research_name = "K Corp Experimental Ampule "
-	research_desc = "Hey, listen buddy, it's Joe from research. <br>The supply team went home for the night, and I'm tired, but I need this tested. <br>It'll revive one guy, once. It's a major breakthrough, give it a shot."
-	cost = AVERAGE_RESEARCH_PRICE+5
+/datum/data/lc13research/regenerator_overcharge/kcorp
+	research_name = "Repeatable: RAK the Regenerator System "
+	research_desc = "KCorp made this system for LCorp. <br>All you need to do is enter the following code into the machine, 9887. <br>Don't let LCorp know or they'll use it all the time and they'll break it; they have warranty."
 	corp = K_CORP_REP
 
-/datum/data/lc13research/krevival/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/krevive(get_turf(caller))
-	..()
 
 //-----L_CORP-----
 //L Corp generally makes your life a lot easier with L-Corp related things.
@@ -179,7 +209,7 @@
 
 /datum/data/lc13research/redroll/ResearchEffect(obj/structure/representative_console/caller)
 	SSabnormality_queue.hardcore_roll_enabled = TRUE
-	minor_announce("Extraction has given you another choice of 3 abnos", "Extraction Alert:", TRUE)
+	minor_announce("Extraction has given you access to red rolls.", "Extraction Alert:", TRUE)
 	..()
 
 //RAKS overcharge
@@ -260,6 +290,18 @@
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
 	required_research = /datum/data/lc13research/mobspawner/raven
 
+//This one is free as a kill team
+/datum/data/lc13research/mobspawner/rabbit/kill
+	research_name = "Rabbit Kill Team"
+	research_desc = "This summons your personal Rabbit team to kill all LCorp agents. <br>Use this in case of LCorp stealing our equipment for their own use. <br>Do check that they are not selling power in exchange for our gear first, however."
+	cost = 0
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call/kill
+
+/datum/data/lc13research/mobspawner/rabbit/kill/ResearchEffect(obj/structure/representative_console/caller)
+	minor_announce("Attention. Unauthorized use of R Corp Equipment. Rabbit kill team authorize and enroute.", "R Corp HQ Update:", TRUE)
+	..()
+
+
 //-----W_CORP-----
 //W-Corp has movement technology, and upgraded weapons.
 
@@ -285,14 +327,15 @@
 	corp = W_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call
 
-/datum/data/lc13research/mobspawner/wcorpl3
+/datum/data/lc13research/mobspawner/wcorpl2
 	research_name = "W-Corp L2 Cleanup Team"
 	research_desc = "The nearby L2 staff are looking for their monthly bonus. <br>They're at the ready should you need them."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = W_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call
-	required_research = /datum/data/lc13research/mobspawner/wcorp
+	required_research = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level2
 
+//Teleporters
 /datum/data/lc13research/teleporter
 	research_name = "Prototype Quantum Pads"
 	research_desc = "Our cleanup crew found one half of these pads and a <br>instruction manual in one of our trains. Our researchers managed to reverse engineer <br>a replica with a copy of the book. We would like you to test <br>these pads in the facility your currently working in and <br>report back if its function threatens our buisness."
@@ -309,6 +352,12 @@
 	//and a box with 2 quantum pads
 	new /obj/item/package_quantumpad(place_to_place)
 	..()
+
+/datum/data/lc13research/teleporter/setb
+	research_name = "Prototype Quantum Pads II"
+	research_desc = "We've decided to ship out more of those Quantum Pads. You can have this set for the same price."
+	required_research = /datum/data/lc13research/teleporter
+
 
 #undef LOW_RESEARCH_PRICE
 #undef AVERAGE_RESEARCH_PRICE

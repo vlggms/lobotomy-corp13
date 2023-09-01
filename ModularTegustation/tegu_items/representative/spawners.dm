@@ -73,6 +73,13 @@
 	mech.mob_enter(user)
 
 
+//Hostile Rabbits
+/obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call/kill
+	short_desc = "You are part of the 4th pack. A subsidiary of the miliaristic R corp which is assigned to handle requests from their long time client L corp."
+	flavour_text = "There is new information that LCorp is stealing your equipment. Graze them all."
+	uses = 20
+
+
 //Wcorp Mobspawners
 /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call
 	name = "Wcorp L1 teleport zone"
@@ -87,7 +94,7 @@
 	icon_state = "Warp"
 	uses = 10	//More because they suck
 
-/obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level3
+/obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level2
 	name = "Wcorp L2 teleport zone"
 	desc = "A authorized zone for teleporting in wcorp L2 agents."
 	flavour_text = "Your team is new to assisting L-Corp, you're just looking for that monthly bonus. Fight out as long as you can."
@@ -104,7 +111,7 @@
 	short_desc = "You are part of the Zwei Association, stick together and assist the people of htis station."
 	flavour_text = "You've been paid to assist L-Corp today. Be their shield"
 	mob_name = "Zwei Fixer"
-	outfit = /datum/antagonist/ert/zwei_shield
+	outfit = /datum/outfit/zwei_shield
 	assignedrole = "Z6"
 	spawn_level = 60
 	faction = list("neutral", "zwei")
