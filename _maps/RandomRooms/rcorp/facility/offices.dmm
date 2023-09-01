@@ -186,6 +186,10 @@
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/facility,
 /area/city/outskirts)
+"qF" = (
+/obj/structure/toolabnormality/touch,
+/turf/open/floor/facility/dark,
+/area/city/outskirts)
 "qT" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/machinery/light,
@@ -13597,7 +13601,7 @@ WS
 WS
 Fl
 Ke
-gG
+qF
 Ke
 Fl
 aM
