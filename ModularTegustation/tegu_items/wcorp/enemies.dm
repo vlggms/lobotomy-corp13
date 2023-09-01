@@ -38,6 +38,9 @@
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
 				if(75 to 100)
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+				else
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
+
 
 		if(15 to INFINITY)
 			switch(rand(1, 100))
@@ -47,6 +50,8 @@
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 				if(90 to 100)
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
+				else
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
 
 
 	new spawntype(get_turf(src))
