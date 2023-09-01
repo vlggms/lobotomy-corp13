@@ -32,21 +32,15 @@
 		if(1 to 4)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-		if(5 to INFINITY)
-			if(prob(30))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+		if(10 to INFINITY)
+			switch(rand(1, 100))
+				if(50 to 75)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				if(75 to 90)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+				if(90 to 100)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
 
-		if(5 to 9)
-			if(prob(10))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
-
-		if(5 to INFINITY)
-			if(prob(30))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
-
-		if(5 to INFINITY)
-			if(prob(40))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
