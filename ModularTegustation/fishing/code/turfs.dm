@@ -36,7 +36,8 @@
 		/obj/effect/light_emitter/tendril,
 		/obj/effect/collapse,
 		/obj/effect/particle_effect/ion_trails,
-		/obj/effect/dummy/phased_mob
+		/obj/effect/dummy/phased_mob,
+		/obj/effect/yinyang_dragon
 		))
 
 /turf/open/water/deep/Initialize()
