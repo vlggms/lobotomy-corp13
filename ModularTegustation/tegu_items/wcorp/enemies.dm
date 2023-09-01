@@ -16,7 +16,6 @@
 	desc = "It spawns an enemy wave. Notify a coder. Thanks!"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x3"
-	var/waveno
 	var/spawntype
 
 /obj/effect/landmark/wavespawn/Initialize()
@@ -26,9 +25,10 @@
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
 	addtimer(CALLBACK(src, .proc/tryspawn), 1 MINUTES, TIMER_STOPPABLE)
-	waveno += 1
+	if(GLOB.combat_counter == 0)
+		return
 	spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
-	switch(waveno)
+	switch(GLOB.combat_counter)
 		if(1 to 4)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
@@ -40,11 +40,11 @@
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 
-		if(10 to INFINITY)
+		if(5 to INFINITY)
 			if(prob(30))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 
-		if(15 to INFINITY)
+		if(5 to INFINITY)
 			if(prob(40))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
 	new spawntype(get_turf(src))
