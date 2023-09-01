@@ -458,7 +458,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
-	icon_dead = "lovetown_suicidal"
+	icon_dead = "lovetown_dead"
 	faction = list("hostile")
 	gender = NEUTER
 	mob_biotypes = MOB_ORGANIC
@@ -484,7 +484,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal() //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message("<span class='danger'>[src] flesh rips apart!</span>")
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -495,7 +495,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			valid_directions += d
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
-		var/mob/living/simple_animal/hostile/lovetown/suicidal/s = new(T)
+		new/mob/living/simple_animal/hostile/lovetown/suicidal(T)
 	gib()
 
 /mob/living/simple_animal/hostile/lovetown/death(gibbed)
@@ -512,9 +512,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_living = "lovetown_suicidal"
 	maxHealth = 80
 	health = 80
+	move_to_delay = 4
 	ranged = TRUE
 	mob_spawn_amount = 0
 
+	var/can_act = TRUE
 	var/scream_cooldown
 	var/scream_cooldown_time = 4 SECONDS
 
@@ -527,17 +529,21 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	return
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/Move()
-	return FALSE
+	if(!can_act)
+		return FALSE
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/proc/Scream()
 	scream_cooldown = world.time + scream_cooldown_time
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, 0, 3)
 	for(var/i = 1 to 2)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
 		SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in view(5, src))
+	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+	can_act = TRUE
 
 //Love Town Slasher - TETH goons, not much of a threat
 /mob/living/simple_animal/hostile/lovetown/slasher
@@ -550,6 +556,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_to_delay = 4
 	melee_damage_lower = 18
 	melee_damage_upper = 22
+	attack_sound = 'sound/effects/hit_kick.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 
@@ -565,9 +572,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	melee_damage_upper = 10
 	rapid_melee = 2 //... in turn it attacks much faster...
 	move_to_delay = 3 //...and it's faster.
+	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 
+//Love Town Slammer -
 /mob/living/simple_animal/hostile/lovetown/slammer
 	name = "love town slammer"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
@@ -580,15 +589,21 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	rapid_melee = 0.5 //...much slower attack...
 	melee_queue_distance = 2
 	move_to_delay = 6 //...and speed.
+	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 
-//Love Town Shamber - HE level, screams around for a higher chunk of damage and spawns a lot of suicidals on death
+/mob/living/simple_animal/hostile/lovetown/slammer/Initialize()
+	. = ..()
+	AddComponent(/datum/component/knockback, 1, FALSE, TRUE) //1 is distance thrown, CAN'T stun and damage you if it hits a wall.
+
+//Love Town Shambler - HE level, screams around for a higher chunk of damage and spawns a lot of suicidals on death
 /mob/living/simple_animal/hostile/lovetown/shambler
 	name = "love town shambler"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon_state = "lovetown_slasher"
-	icon_living = "lovetown_slasher"
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "lovetown_shambler"
+	icon_living = "lovetown_shambler"
 	maxHealth = 900
 	health = 900
 	move_to_delay = 6
@@ -616,30 +631,33 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/shambler/proc/Scream()
 	can_act = FALSE
 	scream_cooldown = world.time + scream_cooldown_time
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, 0, 3)
 	for(var/i = 1 to 3)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
 		SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in view(5, src))
+	for(var/mob/living/L in view(6, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	can_act = TRUE
 
-// Love Town Slumberer - HE threat, deals WHITE (not actually hitting you, just grasping and mumbling), quite damaging and can grab you, stuns you for some time.
+// Love Town Slumberer - HE threat,, quite damaging and can grab you, stuns you for some time.
 /mob/living/simple_animal/hostile/lovetown/slumberer
 	name = "love town slumberer"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon_state = "lovetown_slasher"
-	icon_living = "lovetown_slasher"
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "lovetown_slumberer"
+	icon_living = "lovetown_slumberer"
 	maxHealth = 1000
 	health = 1000
 	melee_damage_lower = 30
 	melee_damage_upper = 35
-	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+	melee_damage_type = RED_DAMAGE
+	armortype = RED_DAMAGE
 	rapid_melee = 0.5
-	attack_verb_continuous = "grasps"
-	attack_verb_simple = "grasp"
+	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
+	attack_verb_continuous = "grasps, grapples"
+	attack_verb_simple = "grasp, grapple"
 	move_to_delay = 10 //Absurdly slow
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	mob_spawn_amount = 2
@@ -647,7 +665,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/counter_ready = FALSE
 	var/grab_ready = FALSE
 	var/grabbing = FALSE
-	var/counter_threshold = 250 //3 counters at most
+	var/counter_threshold = 350 //2 counters at most
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableCounter()
@@ -656,7 +674,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		grab_ready = FALSE
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/CounterGrab(target)
-	icon_state = "lovetown_slasher"
+//	icon_state = "lovetown_slasher"
 	grabbing = TRUE
 	grab_ready = FALSE
 	var/mob/living/carbon/human/H = target
@@ -666,7 +684,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	DisableCounter()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/Move()
-	if((grab_ready) || (grabbing))
+	if((grabbing))
 		return FALSE
 	return ..()
 
@@ -679,7 +697,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		CounterGrab(target)
 	if(counter_ready)
 		counter_ready = FALSE
-		icon_state = "lovetown_stabber"
+//		icon_state = "lovetown_stabber"
 		grab_ready = TRUE
 		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
 	return ..()
@@ -697,8 +715,9 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/abomination
 	name = "love town abomination"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon_state = "lovetown_slasher"
-	icon_living = "lovetown_slasher"
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "lovetown_abomination"
+	icon_living = "lovetown_abomination"
 	maxHealth = 6000 //CHONKY
 	health = 6000
 	melee_queue_distance = 2 //since our attacks are AoEs, this makes it harder to kite us
@@ -707,7 +726,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 60
 	melee_damage_upper = 80 //only relevant for the counter
-	attack_sound = 'sound/abnormalities/kqe/hitsound1.ogg'
+	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 	mob_spawn_amount = 2 //:(
@@ -725,33 +744,33 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
-	icon_living = "lovetown_slammer"
+//	icon_living = "lovetown_slammer"
 	current_stage = 2
 	move_to_delay = 4
 	counter_speed = -2
 	original_speed = 4
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/AoeAttack()
-	say("Aoe Attack")
 	can_act = FALSE
 	face_atom(target)
-	playsound(get_turf(src), attack_sound, 75, 0, 3)
-	icon_state = "lovetown_stabber"
+	playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
+//	icon_state = "lovetown_stabber"
 	SLEEP_CHECK_DEATH(attack_delay)
 	for(var/turf/T in view(current_stage, src))//scales with stage, at stage 2 hits 2 tiles around, but a bit slower
 		new /obj/effect/temp_visual/smash_effect(T)
 		HurtInTurf(T, list(), (rand(melee_damage_upper, melee_damage_upper/2)), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
-	icon_state = "lovetown_slammer"
+//	icon_state = "lovetown_slammer"
+	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
-	icon_state = icon_living
+//	icon_state = icon_living
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/DashCounter()
-
-	say("Counter dash")
-	icon_state = "lovetown_stabber"
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_start.ogg', 75, 0, 3)
+//	icon_state = "lovetown_stabber"
 	countering = TRUE
 	counter_ready = FALSE
 	move_to_delay += counter_speed
@@ -760,17 +779,17 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter(original_speed)
 	if(countering)
-		say("Disable Counter")
 		move_to_delay = original_speed
 		icon_state = icon_living
 		countering = FALSE
+		playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_end.ogg', 75, 0, 3)
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/LoveWhip(target) //loosely conical AoE that on hit throws the target towards us, stolen and modified from Ppodae
 	counter_ready = FALSE
 	countering = TRUE
 	can_act = FALSE
-	say("Love Whip")
 	face_atom(target)
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_lovewhip_start.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	var/smash_width = 1 //we change this to 2 later
 	var/smash_length = 3 //we change this to 4 later
@@ -882,11 +901,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, src))
 			L.throw_at(throw_target, 200, 4)
 
-	playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
-	playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_lovewhip_hit.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
-	DisableCounter(original_speed)
+	if(prob(20))
+		DashCounter()
+	else
+		DisableCounter(original_speed)
 	return
 
 /mob/living/simple_animal/hostile/lovetown/abomination/Initialize()
@@ -906,7 +927,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		adjustBruteLoss(-40) //self damages at stage 2
 
 	if(countering)
-		say("Counter Hit!")
 		DisableCounter(original_speed)
 		return ..()
 	if(counter_ready)
@@ -933,14 +953,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= counter_threshold && !counter_ready)
-		say("Counter ready")
 		counter_ready = TRUE
 		damage_taken = 0
-	if(health <= stage_threshold)
+	if((health <= stage_threshold) && (current_stage == 1))
 		StageTransition()
-
-/*
-TO DO
-set a list of icons for phase 1-2 modes so we can use attacks with icons depending on the phase
-SPRIIIIIIIIITES GRAAAAH
-*/
