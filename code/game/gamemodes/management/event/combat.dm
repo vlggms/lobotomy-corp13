@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(combat_counter, 0)
+
 //This should ONLY be used for events.
 /datum/game_mode/combat
 	name = "Combat Mode"
@@ -29,6 +31,7 @@
 				to_chat(world, "<span class='userdanger'>Round will end in 30 minutes.</span>")
 			if("wcorp")
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
+				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
 				to_chat(world, "<span class='userdanger'>Players will be victorius 20 minutes.</span>")
 
 /datum/game_mode/combat/proc/loseround()
@@ -38,3 +41,7 @@
 /datum/game_mode/combat/proc/winround()
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>Players have survived! Round automatically ending.</span>")
+
+/datum/game_mode/combat/proc/counterincrease()
+	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
+	GLOB.combat_counter+=1

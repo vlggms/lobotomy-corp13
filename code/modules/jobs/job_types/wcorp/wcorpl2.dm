@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 	maptype = "wcorp"
 
 	outfit = /datum/outfit/job/wcorpl2
-	display_order = 5
+	display_order = 2.1
 
 
 	access = list() //add accesses as necessary
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 								JUSTICE_ATTRIBUTE = 80
 	)
 	rank_title = "L2-LT"
-	job_important = "You take the role of frontline infantry."
+	job_important = "You take the role of inter-squad communication."
 	job_notice = "You are a agent tasked with assisting with communications and coordination between your squad and other squads. Support your squadron with your equipment."
 
 /datum/job/wcorpl2recon/after_spawn(mob/living/carbon/human/H, mob/M)
@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 
 	ears = /obj/item/radio/headset/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
+	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior
 	belt = /obj/item/ego_weapon/city/wcorp
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black

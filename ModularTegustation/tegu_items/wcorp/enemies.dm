@@ -16,7 +16,6 @@
 	desc = "It spawns an enemy wave. Notify a coder. Thanks!"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x3"
-	var/waveno
 	var/spawntype
 
 /obj/effect/landmark/wavespawn/Initialize()
@@ -26,27 +25,36 @@
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
 	addtimer(CALLBACK(src, .proc/tryspawn), 1 MINUTES, TIMER_STOPPABLE)
-	waveno += 1
+	if(GLOB.combat_counter == 0)
+		return
 	spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
-	switch(waveno)
-		if(1 to 4)
+	switch(GLOB.combat_counter)
+		if(1 to 5)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-		if(5 to INFINITY)
-			if(prob(30))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
 
-		if(5 to 9)
-			if(prob(10))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+		if(6 to 14)
+			switch(rand(1, 100))
+				if(50 to 75)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				if(75 to 100)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+				else
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
 
-		if(10 to INFINITY)
-			if(prob(30))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 
 		if(15 to INFINITY)
-			if(prob(40))
-				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
+			switch(rand(1, 100))
+				if(50 to 75)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				if(75 to 90)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+				if(90 to 100)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
+				else
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
+
+
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
 	for(var/mob/living/carbon/human/H in GLOB.player_list)

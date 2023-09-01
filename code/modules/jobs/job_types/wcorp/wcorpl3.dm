@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(l3squads, list("Axe", "Buckler", "Cleaver"))
 
 	ears = null
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp //wonder how we differentiate these guys gonna figure it out later
+	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior //wonder how we differentiate these guys gonna figure it out later
 	belt = null
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black

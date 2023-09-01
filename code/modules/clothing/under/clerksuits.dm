@@ -92,6 +92,11 @@
 	desc = "A blue and black uniform worn by w-corp employees."
 	icon_state = "wuniform"
 
+/obj/item/clothing/under/suit/lobotomy/wsenior
+	name = "\improper w-corp jumpsuit"
+	desc = "A blue and black uniform worn by senior w-corp employees."
+	icon_state = "wsenior"
+
 /obj/item/clothing/under/suit/lobotomy/kcorp
 	name = "k-corp officer uniform"
 	desc = "A plain black suit with green tie. Used by K-corp non-combat staff."
