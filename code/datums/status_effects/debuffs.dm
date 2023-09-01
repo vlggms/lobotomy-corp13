@@ -981,21 +981,23 @@
 
 
 //~~~LC13 General Debuffs~~~
-
+#define CARBON_HALFSPEED /datum/movespeed_modifier/qliphothoverload
 /datum/status_effect/qliphothoverload
 	id = "qliphoth intervention field"
 	duration = 10 SECONDS
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH
 	var/statuseffectvisual
-	var/originalstamina = 0
 
 /datum/status_effect/qliphothoverload/on_apply()
 	. = ..()
-	var/mob/living/simple_animal/hostile/L = owner
-	L.adjustStaminaLoss(160, TRUE, TRUE)
-	L.stamina_recovery *= 0.01 //anything with below 10 stamina recovery will continue to lose stamina
-	L.update_stamina()
+	if(ishostile(owner))
+		var/mob/living/simple_animal/hostile/L = owner
+		L.TemporarySpeedChange(4, duration)
+	if(iscarbon(owner))
+		var/mob/living/carbon/M = owner
+		M.add_movespeed_modifier(CARBON_HALFSPEED)
+
 	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "vanguard")
 	effectvisual.pixel_x = -owner.pixel_x
 	effectvisual.pixel_y = -owner.pixel_y
@@ -1003,15 +1005,12 @@
 	owner.add_overlay(statuseffectvisual)
 
 /datum/status_effect/qliphothoverload/on_remove()
-	var/mob/living/simple_animal/hostile/L = owner
-	L.adjustStaminaLoss(-160, TRUE, TRUE)
-	L.stamina_recovery /= 0.01
-	L.update_stamina()
+	if(iscarbon(owner))
+		var/mob/living/carbon/M = owner
+		M.remove_movespeed_modifier(CARBON_HALFSPEED)
+
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
-
-//update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
-// 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
 
 /datum/status_effect/sunder_red
 	id = "sunder red armor"
@@ -1068,3 +1067,5 @@
 	. = ..()
 	var/mob/living/simple_animal/M = owner
 	M.damage_coeff[BLACK_DAMAGE] /= 1.2
+
+#undef CARBON_HALFSPEED
