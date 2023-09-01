@@ -32,6 +32,7 @@
 		if(1 to 5)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+
 		if(6 to 14)
 			switch(rand(1, 100))
 				if(50 to 75)
