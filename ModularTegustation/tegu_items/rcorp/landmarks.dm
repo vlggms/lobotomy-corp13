@@ -13,7 +13,8 @@ GLOBAL_LIST_INIT(easysupport, list(/mob/living/simple_animal/hostile/abnormality
 
 GLOBAL_LIST_INIT(easytank, list(/mob/living/simple_animal/hostile/abnormality/jangsan,
 	/mob/living/simple_animal/hostile/abnormality/scarecrow,
-	/mob/living/simple_animal/hostile/abnormality/warden,))
+	/mob/living/simple_animal/hostile/abnormality/warden,
+	/mob/living/simple_animal/hostile/abnormality/black_swan,))
 
 GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
