@@ -29,10 +29,17 @@
 		return
 	spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
 	switch(GLOB.combat_counter)
-		if(1 to 4)
+		if(1 to 5)
 			if(prob(10))
 				spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-		if(10 to INFINITY)
+		if(6 to 14)
+			switch(rand(1, 100))
+				if(50 to 75)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
+				if(75 to 100)
+					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
+
+		if(15 to INFINITY)
 			switch(rand(1, 100))
 				if(50 to 75)
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
@@ -40,6 +47,7 @@
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
 				if(90 to 100)
 					spawntype = /mob/living/simple_animal/hostile/ordeal/steel_dusk
+
 
 	new spawntype(get_turf(src))
 	//If no one is alive, End round
