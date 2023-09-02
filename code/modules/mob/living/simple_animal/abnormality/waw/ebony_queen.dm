@@ -142,12 +142,12 @@
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/TryTeleport() //stolen from knight of despair
 	if(!can_act)
 		return
-	can_act = FALSE
 	var/list/teleport_potential = list()
 	for(var/turf/T in GLOB.xeno_spawn)
 		teleport_potential += T
 	if(!LAZYLEN(teleport_potential))
 		return FALSE
+	can_act = FALSE
 	var/turf/teleport_target = pick(teleport_potential)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
