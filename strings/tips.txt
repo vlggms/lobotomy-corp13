@@ -1,4 +1,4 @@
-You can view your current attributes in the IC tab by using "Show Attributes" verb.
+You can view your current attributes in the IC tab by using "View Attributes" verb.
 Red damage is physical, whereas White is mental. Black is a combination of physical and mental, while Pale is done in percents of the max health.
 Different abnormalities have different weaknesses. Pick the best weapon to fight them when they breach!
 Working on higher level abnormalities will provide more attribute gains. Just make sure your character can survive the process.

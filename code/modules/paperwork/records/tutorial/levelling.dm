@@ -11,7 +11,7 @@
 	Attachment - Temperance (Better work)	<br>
 	Repression - Justice (Speed and melee damage)	<br>
 	Gain a stat	level every 20 points. Important for stat checks.	<br>
-	Check your stats in the IC tab > Show Attributes."}
+	Check your stats in the IC tab > View Attributes."}
 
 //Abnormality levels
 /obj/item/paper/fluff/tutorial/risk

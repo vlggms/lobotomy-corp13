@@ -3,10 +3,10 @@
 
 /datum/quirk/nerd
 	name = "Nerd"
-	desc = "You take 5% less white damage, but take 10% more red damage in return. You gained this superpower by spending all your free time reading anime comics instead of training to not be killed."
+	desc = "You take 5% less WHITE damage, but take 10% more RED damage. You spend all your free time playing niche video games and reading Korean light novels."
 	value = 0
-	gain_text = "<span class='notice'>You feel nervous about leaving your anime books home.</span>"
-	medical_record_text = "This patient is a NEEEEEEEEEEEEEEEEERD, feel free to take a tooth or two outta their jaw if they annoy you. - Dr. Bright"
+	gain_text = "<span class='notice'>You feel nervous about touching grass.</span>"
+	medical_record_text = "Patient displays severe socially avoidant behaviours."
 
 /datum/quirk/nerd/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -15,10 +15,10 @@
 
 /datum/quirk/brawler
 	name = "Brawler"
-	desc = "You take 5% less red damage, but take 10% more white damage in return. You never went to school but instead chose to train to be the best fixer in the future that you could be."
+	desc = "You take 5% less RED damage, but take 10% more WHITE damage. Instead of getting an education, you chose to train and become the best Fixer in the City."
 	value = 0
-	gain_text = "<span class='notice'>You feel ready to chew ass and kick bubblegum.</span>"
-	medical_record_text = "This patient is a little bit tougher physically than average people."
+	gain_text = "<span class='notice'>Time to chew ass and kick bubblegum.</span>"
+	medical_record_text = "Patient is more physically fit than the average person."
 
 /datum/quirk/brawler/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -26,12 +26,12 @@
 	H.physiology.white_mod += 0.1
 
 /datum/quirk/family_heirloom // re-naming the quirk in the code causes a lot of problems, so leaving it as-is
-	name = "Plushie lover"
-	desc = "You love plushies so much that you take them to work with you, you start with 1 plushie that changes depending on your job"
+	name = "Plushie Lover"
+	desc = "You love plushies so much that you take them to work with you. You start with one plushie that changes based on your job."
 	value = 0
 	var/obj/item/heirloom
 	var/where
-	medical_record_text = "This patient takes their plushies everywhere."
+	medical_record_text = "Patient is highly dependent on a plushie for mental stability."
 
 /datum/quirk/family_heirloom/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -83,9 +83,9 @@
 
 /datum/quirk/artist
 	name = "Artist"
-	desc = "You are an artist and constantly seek out inspiration in your enviroment, you carry art supplies with you"
+	desc = "You are an artist who constantly seek out inspiration in your enviroment. You always carry some art supplies on you."
 	value = 0
-	medical_record_text = "The patient always has painting supplies with them, do not ask them why else they might become aggresive"
+	medical_record_text = "Patient demonstrates violent tendencies when painting supplies are removed from their possession."
 
 /datum/quirk/artist/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder

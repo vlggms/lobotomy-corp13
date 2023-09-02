@@ -54,6 +54,11 @@
 	jackpot_loop = new(list(src), FALSE)
 	wires = new /datum/wires/roulette(src)
 
+/obj/machinery/roulette/Destroy()
+	QDEL_NULL(jackpot_loop)
+	my_card = null
+	. = ..()
+
 /obj/machinery/roulette/obj_break(damage_flag)
 	prize_theft(0.05)
 	. = ..()
@@ -71,16 +76,18 @@
 	data["IsAnchored"] = anchored
 	data["BetAmount"] = chosen_bet_amount
 	data["BetType"] = chosen_bet_type
-	data["HouseBalance"] = my_card?.registered_account.account_balance
+	data["HouseBalance"] = my_card?.registered_account?.account_balance || 0
 	data["LastSpin"] = last_spin
 	data["Spinning"] = playing
-	var/mob/living/carbon/human/H = user
-	var/obj/item/card/id/C = H.get_idcard(TRUE)
-	if(C)
-		data["AccountBalance"] = C.registered_account.account_balance
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		var/obj/item/card/id/id_card = human_user.get_idcard(TRUE)
+		data["AccountBalance"] = id_card?.registered_account?.account_balance || 0
+		data["CanUnbolt"] = (id_card == my_card)
 	else
 		data["AccountBalance"] = 0
-	data["CanUnbolt"] = (C == my_card)
+		data["CanUnbolt"] = FALSE
 
 	return data
 
@@ -108,17 +115,29 @@
 		return
 	if(playing)
 		return ..()
-	if(istype(W, /obj/item/card/id))
-		playsound(src, 'sound/machines/card_slide.ogg', 50, TRUE)
+	var/obj/item/card/id/player_card = W.GetID()
+	if(player_card)
+		if(istype(W, /obj/item/card/id))
+			playsound(src, 'sound/machines/card_slide.ogg', 50, TRUE)
+		else
+			playsound(src, 'sound/machines/terminal_success.ogg', 50, TRUE)
 
 		if(machine_stat & MAINT || !on || locked)
 			to_chat(user, "<span class='notice'>The machine appears to be disabled.</span>")
 			return FALSE
 
+		if(!player_card.registered_account)
+			say("You don't have a bank account!")
+			playsound(src, 'sound/machines/buzz-two.ogg', 30, TRUE)
+			return FALSE
+
 		if(my_card)
-			var/obj/item/card/id/player_card = W
+			if(istype(player_card, /obj/item/card/id/departmental_budget)) // Are they using a department ID
+				say("You cannot gamble with the department budget!")
+				playsound(src, 'sound/machines/buzz-two.ogg', 30, TRUE)
+				return FALSE
 			if(player_card.registered_account.account_balance < chosen_bet_amount) //Does the player have enough funds
-				audible_message("<span class='warning'>You do not have the funds to play! Lower your bet or get more money.</span>")
+				say("You do not have the funds to play! Lower your bet or get more money.")
 				playsound(src, 'sound/machines/buzz-two.ogg', 30, TRUE)
 				return FALSE
 			if(!chosen_bet_amount || isnull(chosen_bet_type))
@@ -145,8 +164,8 @@
 					potential_payout_mult = ROULETTE_SIMPLE_PAYOUT
 			var/potential_payout = chosen_bet_amount * potential_payout_mult
 
-			if(!check_bartender_funds(potential_payout))
-				return FALSE	 //bartender is too poor
+			if(!check_owner_funds(potential_payout))
+				return FALSE  //owner is too poor
 
 			if(last_anti_spam > world.time) //do not cheat me
 				return FALSE
@@ -161,21 +180,30 @@
 			addtimer(CALLBACK(src, .proc/play, user, player_card, chosen_bet_type, chosen_bet_amount, potential_payout), 4) //Animation first
 			return TRUE
 		else
-			var/obj/item/card/id/new_card = W
-			if(new_card.registered_account)
-				var/msg = stripped_input(user, "Name of your roulette wheel:", "Roulette Naming", "Roulette Machine")
-				if(!msg)
-					return
-				name = msg
-				desc = "Owned by [new_card.registered_account.account_holder], draws directly from [user.p_their()] account."
-				my_card = new_card
-				to_chat(user, "<span class='notice'>You link the wheel to your account.</span>")
-				power_change()
+			var/msg = stripped_input(user, "Name of your roulette wheel:", "Roulette Naming", "Roulette Machine")
+			if(!msg)
 				return
+			name = msg
+			desc = "Owned by [player_card.registered_account.account_holder], draws directly from [user.p_their()] account."
+			my_card = player_card
+			RegisterSignal(my_card, COMSIG_PARENT_QDELETING, .proc/on_my_card_deleted)
+			to_chat(user, "<span class='notice'>You link the wheel to your account.</span>")
+			power_change()
+			return
 	return ..()
+
+///deletes the my_card ref to prevent harddels
+/obj/machinery/roulette/proc/on_my_card_deleted(datum/source)
+	SIGNAL_HANDLER
+	my_card = null
 
 ///Proc called when player is going to try and play
 /obj/machinery/roulette/proc/play(mob/user, obj/item/card/id/player_id, bet_type, bet_amount, potential_payout)
+	if(!my_card?.registered_account) // Something happened to my_card during the 0.4 seconds delay of the timed callback.
+		icon_state = "idle"
+		flick("flick_down", src)
+		playsound(src, 'sound/machines/piston_lower.ogg', 70)
+		return
 
 	var/payout = potential_payout
 
@@ -204,24 +232,30 @@
 	var/color = numbers["[rolled_number]"] //Weird syntax, but dict uses strings.
 	var/result = "[rolled_number] [color]" //e.g. 31 black
 
-	audible_message("<span class='notice'>The result is: [result]</span>")
+	say("The result is: [result]")
 
 	playing = FALSE
 	update_icon(potential_payout, color, rolled_number, is_winner)
 	handle_color_light(color)
 
 	if(!is_winner)
-		audible_message("<span class='warning'>You lost! Better luck next time</span>")
+		say("You lost! Better luck next time")
 		playsound(src, 'sound/machines/synth_no.ogg', 50)
 		return FALSE
 
-	audible_message("<span class='notice'>You have won [potential_payout] ahn! Congratulations!</span>")
+	// Prevents money generation exploits. Doesn't prevent the owner being a scrooge and running away with the money.
+	var/account_balance = my_card?.registered_account?.account_balance
+	potential_payout = (account_balance >= potential_payout) ? potential_payout : account_balance
+
+	say("You have won [potential_payout] ahn! Congratulations!")
 	playsound(src, 'sound/machines/synth_yes.ogg', 50)
 
 	dispense_prize(potential_payout)
 
 ///Fills a list of coins that should be dropped.
 /obj/machinery/roulette/proc/dispense_prize(payout)
+	if(!payout)
+		return
 
 	if(payout >= ROULETTE_JACKPOT_AMOUNT)
 		jackpot_loop.start()
@@ -270,7 +304,7 @@
 	if(locked)
 		return
 	locked = TRUE
-	var/stolen_cash = my_card.registered_account.account_balance * percentage
+	var/stolen_cash = my_card?.registered_account?.account_balance * percentage //Byond evaluates nulls as 0 in numeric contexts (such as math operations)
 	dispense_prize(stolen_cash)
 
 
@@ -284,7 +318,7 @@
 		if(ROULETTE_BET_ODD)
 			return ISODD(rolled_number)
 		if(ROULETTE_BET_EVEN)
-			return ISEVEN(rolled_number)
+			return (ISEVEN(rolled_number) && rolled_number != 0)
 		if(ROULETTE_BET_1TO18)
 			return (rolled_number >= 1 && rolled_number <= 18) //between 1 to 18
 		if(ROULETTE_BET_19TO36)
@@ -315,10 +349,10 @@
 
 
 ///Returns TRUE if the owner has enough funds to payout
-/obj/machinery/roulette/proc/check_bartender_funds(payout)
+/obj/machinery/roulette/proc/check_owner_funds(payout)
 	if(my_card.registered_account.account_balance >= payout)
 		return TRUE //We got the betting amount
-	audible_message("<span class='warning'>The bank account of [my_card.registered_account.account_holder] does not have enough funds to pay out the potential prize, contact them to fill up their account or lower your bet!</span>")
+	say("The bank account of [my_card.registered_account.account_holder] does not have enough funds to pay out the potential prize, contact them to fill up their account or lower your bet!")
 	playsound(src, 'sound/machines/buzz-two.ogg', 30, TRUE)
 	return FALSE
 
@@ -391,7 +425,7 @@
 
 /obj/item/roulette_wheel_beacon
 	name = "roulette wheel beacon"
-	desc = "N.T. approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
+	desc = "City approved roulette wheel beacon, toss it down and you will have a complementary roulette wheel delivered to you."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_beacon"
 	var/used
