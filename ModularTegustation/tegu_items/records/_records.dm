@@ -32,7 +32,7 @@
 //This is used to make sure that are records watch is able to be used by the player
 /obj/item/records/proc/watch_checks(mob/user)
 	//First we check if they are a Records Officer
-	if(user.mind.assigned_role != "Records Officer")
+	if(user?.mind?.assigned_role != "Records Officer")
 		//We were not the RO so give feedback and fail the check
 		to_chat(user, "<span class='warning'>You cannot use this!")
 		return FALSE
