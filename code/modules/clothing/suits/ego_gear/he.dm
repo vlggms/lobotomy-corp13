@@ -400,3 +400,21 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/lifestew
+	name = "lifetime stew"
+	desc = "A soup fit for a king - and all from a few stones. It seemed like magic!"
+	icon_state = "lifestew"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 60, PALE_DAMAGE = -20) // 40
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/faelantern
+	name = "midwinter nightmare"
+	desc = "Some things are too good to be true."
+	icon_state = "faelantern"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 40
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

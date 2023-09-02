@@ -21,7 +21,7 @@
 		/datum/ego_datum/weapon/sloshing,
 		/datum/ego_datum/armor/sloshing
 	)
-	//gift_type = /datum/ego_gifts/sloshing
+	gift_type = /datum/ego_gifts/sloshing
 	gift_message = "This wine tastes quite well..."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/list/give_drink = list(

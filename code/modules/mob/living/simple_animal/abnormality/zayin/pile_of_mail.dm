@@ -20,7 +20,7 @@
 	work_damage_type = RED_DAMAGE
 
 	gift_type =  /datum/ego_gifts/mail
-	gift_message = "An empty envelope slowly makes its way into your hands."
+	gift_message = "A postage stamp makes its way to your hands. Without thinking, you stick it on your cheek."
 
 	max_boxes = 12
 
