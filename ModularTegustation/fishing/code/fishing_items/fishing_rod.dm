@@ -108,7 +108,7 @@
 	var/turf/target_turf = get_turf(bobber_target)
 	var/fish_distance = get_dist_euclidian(get_turf(target_turf), get_turf(src))
 	if(fish_distance >= 7)
-		to_chat(user, "<span class='notice'>The bobber is [round(fish_distance - 7)] tiles short of its destination.</span>")
+		to_chat(user, "<span class='notice'>The bobber is [round(fish_distance - 7) + 1] tiles short of its destination.</span>")
 		return FALSE
 	/*Cycles 7 times until it returns. Wallcheck checks the turf after
 		this turf and if that turf equals the target turf we return TRUE.
@@ -139,14 +139,15 @@
 
 //Unique Fish Retrieval
 /obj/item/fishing_rod/proc/FishLoot(obj/item/fished_thing, mob/living/user, turf/fish_land)
-	if(istype(fished_thing, /obj/item/food/fish))
-		var/obj/item/food/fish/fishie = new fished_thing(get_turf(user))
-		fishie.randomize_weight_and_size(2)
-		to_chat(user, "<span class='nicegreen'>You caught [initial(fishie.name)].</span>")
+	var/obj/item/potential_fishie = new fished_thing(get_turf(user))
+	if(istype(potential_fishie, /obj/item/food/fish))
+		var/obj/item/food/fish/fishie = potential_fishie
+		var/size_modifier = rand(1, 4) * 0.1
+		//Size modifier has to be a decimal in order to keep it from making massive fish.
+		fishie.randomize_weight_and_size(size_modifier)
+		to_chat(user, "<span class='nicegreen'>You caught [fishie.name].</span>")
 		if(user.mind)
 			FISHSKILLEXP(10)
-	else
-		new fished_thing(get_turf(user))
 	playsound(fish_land, 'sound/effects/fish_splash.ogg', 18, 0, 3)
 
 #undef FISHSKILLEXP

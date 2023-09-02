@@ -56,7 +56,7 @@
 	desc = "This mass attempts to bite onto detris and living organisms in order to increase its size. If it wasnt for the uncanny resemblence to T-01-75 this would be written off as a product of nature, but this is clearly a mutation brought upon by exposure."
 	icon_state = "mosb"
 	show_in_catalog = FALSE
-	random_case_rarity = FISH_RARITY_VERY_RARE
+	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
 	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
 	sprite_width = 8
 	sprite_height = 8
