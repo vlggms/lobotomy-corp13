@@ -37,8 +37,7 @@
 	// Death upon you
 	target.Paralyze(25)
 	target.Jitter(25)
-	target.adjustBruteLoss(20)
-	target.adjustFireLoss(20)
+	target.adjustBruteLoss(40)
 	playsound(target, 'sound/effects/curseattack.ogg', 70, 1)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(target))
 
