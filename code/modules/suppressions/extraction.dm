@@ -7,6 +7,7 @@
 	run_text = "The core suppression of Extraction department has begun. The Arbiter has returned."
 	annonce_sound = 'sound/effects/combat_suppression_start.ogg'
 	end_sound = 'sound/effects/combat_suppression_end.ogg'
+	after_midnight = TRUE
 
 /datum/suppression/extraction/Run(run_white = FALSE)
 	..()

@@ -34,6 +34,9 @@
 	start_time = ROUNDTIME
 	SSlobotomy_corp.current_ordeals += src
 	priority_announce(annonce_text, name, sound='sound/effects/meltdownAlert.ogg')
+	/// If dawn started - clear suppression options
+	if(level == 1 && !istype(SSlobotomy_corp.core_suppression))
+		SSlobotomy_corp.ResetPotentialSuppressions()
 	if(annonce_sound)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
@@ -50,11 +53,14 @@
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.playsound_local(get_turf(M), end_sound, 35, 0)
-	/// If it was a midnight and we got to it before time limit
-	if(level == 4 && !istype(SSlobotomy_corp.core_suppression) && \
-	!LAZYLEN(SSlobotomy_corp.available_core_suppressions) && \
+	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
+	if(level == 4 && SSlobotomy_corp.core_suppression_state == 2 && \
 	start_time <= CONFIG_GET(number/suppression_time_limit))
-		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions), 20 SECONDS)
+		// Extra cores, and announced!
+		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
+	/// If it was a dusk - we end running core suppression
+	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
 	qdel(src)
 	return
 
