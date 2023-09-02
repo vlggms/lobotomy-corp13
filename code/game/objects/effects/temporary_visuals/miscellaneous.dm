@@ -920,3 +920,13 @@
 	name = "scattered pages"
 	icon_state = "turn_book"
 	duration = 6
+
+/obj/effect/temp_visual/lovetown_shapes
+	name = "shapes"
+	icon_state = "lovetown_shapes"
+	duration = 4
+
+/obj/effect/temp_visual/lovetown_whip
+	name = "whip"
+	icon_state = "lovetown_whip"
+	duration = 4

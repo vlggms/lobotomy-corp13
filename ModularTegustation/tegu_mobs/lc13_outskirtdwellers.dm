@@ -461,7 +461,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_dead = "lovetown_dead"
 	faction = list("hostile")
 	gender = NEUTER
-	mob_biotypes = MOB_ORGANIC
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	robust_searching = TRUE
 	see_in_dark = 7
 	vision_range = 12
@@ -472,8 +472,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
-	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	mob_size = MOB_SIZE_HUGE
@@ -507,14 +507,14 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 //Love Town Suicidal - Weak, screams around itself occasionally, spawned by other enemies on death.
 /mob/living/simple_animal/hostile/lovetown/suicidal
 	name = "love town suicidal"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly."
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
-	maxHealth = 80
+	maxHealth = 80 //very weak
 	health = 80
-	move_to_delay = 4
+	move_to_delay = 8 //very slow
 	ranged = TRUE
-	mob_spawn_amount = 0
+	mob_spawn_amount = 0 //so we dont recursively spawn more
 
 	var/can_act = TRUE
 	var/scream_cooldown
@@ -531,11 +531,12 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/suicidal/Move()
 	if(!can_act)
 		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/proc/Scream()
 	scream_cooldown = world.time + scream_cooldown_time
 	can_act = FALSE
-	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, 0, 3)
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 50, TRUE, 3)
 	for(var/i = 1 to 2)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
@@ -548,7 +549,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 //Love Town Slasher - TETH goons, not much of a threat
 /mob/living/simple_animal/hostile/lovetown/slasher
 	name = "love town slasher"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A mass of flesh and teeth, it has a destroyed appendage with pure muscle coming out of it, sharpened by wicked design."
 	icon_state = "lovetown_slasher"
 	icon_living = "lovetown_slasher"
 	maxHealth = 300
@@ -556,14 +557,14 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_to_delay = 4
 	melee_damage_lower = 18
 	melee_damage_upper = 22
-	attack_sound = 'sound/effects/hit_kick.ogg'
+	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 
 //Love Town Stabber -
 /mob/living/simple_animal/hostile/lovetown/stabber
 	name = "love town stabber"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A mass of flesh and bulbous growths with a protusion on top, flailing aggressively."
 	icon_state = "lovetown_stabber"
 	icon_living = "lovetown_stabber"
 	maxHealth = 220 //weaker than slashers...
@@ -579,7 +580,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 //Love Town Slammer -
 /mob/living/simple_animal/hostile/lovetown/slammer
 	name = "love town slammer"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A hunk of flesh that ends in a gigantic fist at the top."
 	icon_state = "lovetown_slammer"
 	icon_living = "lovetown_slammer"
 	maxHealth = 300
@@ -600,15 +601,17 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 //Love Town Shambler - HE level, screams around for a higher chunk of damage and spawns a lot of suicidals on death
 /mob/living/simple_animal/hostile/lovetown/shambler
 	name = "love town shambler"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A mass of flesh and bulbous growths that doesnt stop mumbling and screaming."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "lovetown_shambler"
 	icon_living = "lovetown_shambler"
+	icon_dead = "lovetown_shambler"
 	maxHealth = 900
 	health = 900
 	move_to_delay = 6
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 4 //on death explodes into 4 suicidals
 
 	var/scream_cooldown
@@ -631,7 +634,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/shambler/proc/Scream()
 	can_act = FALSE
 	scream_cooldown = world.time + scream_cooldown_time
-	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, 0, 3)
+	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, TRUE, 3)
 	for(var/i = 1 to 3)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
@@ -644,10 +647,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 // Love Town Slumberer - HE threat,, quite damaging and can grab you, stuns you for some time.
 /mob/living/simple_animal/hostile/lovetown/slumberer
 	name = "love town slumberer"
-	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
+	desc = "A muscular mass of flesh that has two very long arms capable of reaching far"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "lovetown_slumberer"
 	icon_living = "lovetown_slumberer"
+	icon_dead = "lovetown_slumberer"
+	base_pixel_x = -16
+	pixel_x = -16
 	maxHealth = 1000
 	health = 1000
 	melee_damage_lower = 30
@@ -656,154 +662,198 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	armortype = RED_DAMAGE
 	rapid_melee = 0.5
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
-	attack_verb_continuous = "grasps, grapples"
-	attack_verb_simple = "grasp, grapple"
+	attack_verb_continuous = "grapples"
+	attack_verb_simple = "grapple"
 	move_to_delay = 10 //Absurdly slow
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
+	ranged = TRUE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2
 
-	var/counter_ready = FALSE
-	var/grab_ready = FALSE
-	var/grabbing = FALSE
-	var/counter_threshold = 350 //2 counters at most
+	var/grab_ready = FALSE //are we ready to grab
+	var/countering = FALSE //are we grabbing them right now
+	var/counter_threshold = 400 //2 counters at most
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableCounter()
-	if(!grabbing)
-		icon_state = "lovetown_slasher"
+	if(!countering)
+		icon_state = icon_living
 		grab_ready = FALSE
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/CounterGrab(target)
-//	icon_state = "lovetown_slasher"
-	grabbing = TRUE
+	countering = TRUE
 	grab_ready = FALSE
+	playsound(get_turf(src), attack_sound , 10, 3, 3)
 	var/mob/living/carbon/human/H = target
-	H.Stun(6 SECONDS)//easy to dodge, but fuck you if you get hit by this
+	H.forceMove(get_turf(src))
+	H.Stun(6 SECONDS) //easy to dodge, but fuck you if you get hit by this
 	SLEEP_CHECK_DEATH(6 SECONDS)
-	grabbing = FALSE
+	countering = FALSE
 	DisableCounter()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/Move()
-	if((grabbing))
+	if(countering || grab_ready)
 		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/AttackingTarget()
-	if(grabbing)
+	if(countering)
 		return
 	if(grab_ready)
 		if(!istype(target, /mob/living/carbon/human))
 			return ..()
 		CounterGrab(target)
-	if(counter_ready)
-		counter_ready = FALSE
-//		icon_state = "lovetown_stabber"
-		grab_ready = TRUE
-		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/CheckAndAttack() //stolen and modified from porccubus
+	if(!target)
+		return
+
+	var/distance = get_dist(target, src)
+	if(targets_from && isturf(targets_from.loc) && distance <= 2 && !incapacitated())
+		if (distance == 2 && !grab_ready)
+			return
+		AttackingTarget()
+		return
+
+/mob/living/simple_animal/hostile/lovetown/slumberer/RangedAttack(atom/A, params) //Ranged melee code for a client
+	if(!client)
+		return ..()
+	CheckAndAttack(A)
+	if(ismob(A))
+		changeNext_move(CLICK_CD_MELEE)
 	return ..()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
-	if(damage_taken >= counter_threshold && !counter_ready)
-		say("Counter ready")
-		counter_ready = TRUE
+	if(damage_taken >= counter_threshold && !grab_ready)
+		icon_state = "lovetown_slumberer_grab"
+		playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
+		grab_ready = TRUE
+		SLEEP_CHECK_DEATH(1 SECONDS) //so you dont instantly get grabbed
+		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
 		damage_taken = 0
 
 //WAW(?) miniboss, takes quite a lot of firepower to take down
 /mob/living/simple_animal/hostile/lovetown/abomination
 	name = "love town abomination"
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly, this thing is disgusting!"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "lovetown_abomination"
 	icon_living = "lovetown_abomination"
+	icon_dead = "lovetown_abomination"
+	base_pixel_x = -32
+	pixel_x = -32
 	maxHealth = 6000 //CHONKY
 	health = 6000
 	melee_queue_distance = 2 //since our attacks are AoEs, this makes it harder to kite us
 	move_to_delay = 6
 	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 60
-	melee_damage_upper = 80 //only relevant for the counter
+	melee_damage_upper = 80
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
+	footstep_type = FOOTSTEP_MOB_HEAVY
+	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2 //:(
 
 	var/can_act = TRUE
-	var/current_stage = 1
+	var/current_stage = 1 //changes behaviour slightly on phase 2
 	var/stage_threshold = 3000 // enters stage 2 at or below this threshold
 	var/attack_delay = 0.5 SECONDS //0.5 seconds at stage 1, 1 second at stage 2
-	var/countering = FALSE
+	var/countering = FALSE //are we
+
 	var/counter_threshold = 500 //300 at stage 2
-	var/counter_ready = FALSE
-	var/counter_speed = -3
-	var/original_speed = 6
+	var/counter_ready = FALSE //are we ready to counter?
+
+	var/counter_speed = -2 //subtracted from the movedelay when dashing
+	var/original_speed = 6 //used to reset speed after dashing
+
 	var/lovewhip_damage = 100
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/StageTransition()
-//	icon_living = "lovetown_slammer"
+	icon_living = "lovetown_abomination2"
+	if(!countering && can_act)
+		icon_state = icon_living
 	current_stage = 2
 	move_to_delay = 4
-	counter_speed = -2
+	counter_speed = -1
 	original_speed = 4
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/AoeAttack()
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/AoeAttack() //all attacks are an AoE when not dashing
 	can_act = FALSE
 	face_atom(target)
 	playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
-//	icon_state = "lovetown_stabber"
-	SLEEP_CHECK_DEATH(attack_delay)
-	for(var/turf/T in view(current_stage, src))//scales with stage, at stage 2 hits 2 tiles around, but a bit slower
-		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), (rand(melee_damage_upper, melee_damage_upper/2)), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
-//	icon_state = "lovetown_slammer"
+	switch(current_stage)
+		if(1)
+			icon_state = "lovetown_abomination_slamwindup"
+		if(2)
+			icon_state = "lovetown_abomination_slamwindup2"
+	SLEEP_CHECK_DEATH(attack_delay) //takes longer to slam on phase 2
+	for(var/turf/T in view(current_stage, src))//scales with stage, at stage 2 hits 2 tiles around
+		new /obj/effect/temp_visual/lovetown_shapes(T)
+		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)/2), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
+	switch(current_stage)
+		if(1)
+			icon_state = "lovetown_abomination_slam"
+		if(2)
+			icon_state = "lovetown_abomination_slam2"
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
-//	icon_state = icon_living
+	icon_state = icon_living
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/DashCounter()
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DashCounter() //increases move speed and hits with a powerful attack that knocks back far away
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_start.ogg', 75, 0, 3)
-//	icon_state = "lovetown_stabber"
+	switch(current_stage)
+		if(1)
+			icon_state = "lovetown_abomination_dash"
+		if(2)
+			icon_state = "lovetown_abomination_dash2"
 	countering = TRUE
 	counter_ready = FALSE
 	move_to_delay += counter_speed
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
-	addtimer(CALLBACK(src, .proc/DisableCounter, original_speed), 4 SECONDS)
+	addtimer(CALLBACK(src, .proc/DisableCounter, original_speed), 4 SECONDS) //disables the counter after 4 seconds
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter(original_speed)
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter(original_speed) //resets the speed
 	if(countering)
 		move_to_delay = original_speed
-		icon_state = icon_living
 		countering = FALSE
 		playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_end.ogg', 75, 0, 3)
+		SLEEP_CHECK_DEATH(10)
+		icon_state = icon_living
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/LoveWhip(target) //loosely conical AoE that on hit throws the target towards us, stolen and modified from Ppodae
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/LoveWhip(target) //loosely conical AoE that on hit throws the target towards us, stolen and modified from Ppodae, hits in a 3x3 + 5x5 for a total range of 8 tiles
+	icon_state = "lovetown_abomination_whipwind"
 	counter_ready = FALSE
 	countering = TRUE
 	can_act = FALSE
 	face_atom(target)
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_lovewhip_start.ogg', 75, 0, 3)
-	SLEEP_CHECK_DEATH(2 SECONDS)
 	var/smash_width = 1 //we change this to 2 later
 	var/smash_length = 3 //we change this to 4 later
-	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target)) //takes your src and target and sees which cardinal direction they are in
-	var/turf/source_turf = get_turf(src) //source turf
-	var/turf/area_of_effect = list() //area being hit
-	var/turf/middle_line = list() //the middle line, for checks
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+	var/turf/source_turf = get_turf(src)
+	var/turf/area_of_effect = list()
+	var/turf/middle_line = list()
 	var/second_line = get_ranged_target_turf(source_turf, dir_to_target, smash_length-2)
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	icon_state = "lovetown_abomination_whip"
 	switch(dir_to_target)
 		if(EAST)
-			for(var/i = 0, i<2, i++) //repeat twice,second time we get
-				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length)) //puts every turn in the middle lane in the list
+			for(var/i = 0, i<2, i++)
+				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length))
 				for(var/turf/T in middle_line)
-					if(T.density) //if wall, we return
+					if(T.density)
 						break
 					for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, smash_width)))
 						if (Y.density)
@@ -818,13 +868,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 							continue
 						area_of_effect += U
 				source_turf = get_ranged_target_turf(second_line, EAST, smash_length)
-				smash_length ++
+				smash_length += 2
 				smash_width ++
 		if(WEST)
-			for(var/i = 0, i<2, i++) //repeat twice,second time we get
-				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length)) //puts every turn in the middle lane in the list
+			for(var/i = 0, i<2, i++)
+				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length))
 				for(var/turf/T in middle_line)
-					if(T.density) //if wall, we return
+					if(T.density)
 						break
 					for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, smash_width)))
 						if (Y.density)
@@ -839,13 +889,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 							continue
 						area_of_effect += U
 				source_turf = get_ranged_target_turf(second_line, WEST, smash_length)
-				smash_length ++
+				smash_length += 2
 				smash_width ++
 		if(NORTH)
-			for(var/i = 0, i<2, i++) //repeat twice,second time we get
-				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length)) //puts every turn in the middle lane in the list
+			for(var/i = 0, i<2, i++)
+				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length))
 				for(var/turf/T in middle_line)
-					if(T.density) //if wall, we return
+					if(T.density)
 						break
 					for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, smash_width)))
 						if (Y.density)
@@ -860,13 +910,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 							continue
 						area_of_effect += U
 				source_turf = get_ranged_target_turf(second_line, NORTH, smash_length)
-				smash_length ++
+				smash_length += 2
 				smash_width ++
 		if(SOUTH)
-			for(var/i = 0, i<2, i++) //repeat twice,second time we get
-				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length)) //puts every turn in the middle lane in the list
+			for(var/i = 0, i<2, i++)
+				middle_line = getline(source_turf, get_ranged_target_turf(source_turf, dir_to_target, smash_length))
 				for(var/turf/T in middle_line)
-					if(T.density) //if wall, we return
+					if(T.density)
 						break
 					for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, smash_width)))
 						if (Y.density)
@@ -881,7 +931,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 							continue
 						area_of_effect += U
 				source_turf = get_ranged_target_turf(second_line, SOUTH, smash_length)
-				smash_length ++
+				smash_length += 2
 				smash_width ++
 
 		else
@@ -895,20 +945,45 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if (!LAZYLEN(area_of_effect))
 		return
 	for(var/turf/T in area_of_effect)
-		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/temp_visual/lovetown_whip(T)
 		HurtInTurf(T, list(), lovewhip_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		for(var/mob/living/L in T)
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, src))
 			L.throw_at(throw_target, 200, 4)
 
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_lovewhip_hit.ogg', 75, 0, 3)
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	icon_state = icon_living
 	can_act = TRUE
-	if(prob(20))
+	if(prob(20)) //small chance to go into a dash after
 		DashCounter()
 	else
 		DisableCounter(original_speed)
 	return
+
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/Finisher(mob/living/carbon/human/TH) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
+	if(TH.stat >= HARD_CRIT || TH.health < 0)
+		switch(current_stage)
+			if(1)
+				icon_state = "lovetown_abomination_execute"
+			if(2)
+				icon_state = "lovetown_abomination_execute2"
+		can_act = FALSE
+		TH.Stun(4 SECONDS)
+		forceMove(get_turf(TH))
+//		var/pixel_y_before = TH.pixel_y
+		animate(TH, pixel_y = 16, time = 15, easing = SINE_EASING | EASE_IN)
+		SLEEP_CHECK_DEATH(25)
+		for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
+			H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/lovetown_shapes(get_turf(TH))
+		TH.gib()
+//		animate(TH, pixel_y = pixel_y_before, time = 10, , easing = BACK_EASING | EASE_OUT, flags = ANIMATION_END_NOW) //animate the shape back when you add it Mel
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		icon_state = icon_living
+		can_act = TRUE
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/lovetown/abomination/Initialize()
 	. = ..()
@@ -919,19 +994,28 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/lovetown/abomination/AttackingTarget(target)
+/mob/living/simple_animal/hostile/lovetown/abomination/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 
 	if(current_stage == 2)
 		adjustBruteLoss(-40) //self damages at stage 2
 
+	if(ishuman(target))
+		if(Finisher(target))
+			return
+
 	if(countering)
+		switch(current_stage)
+			if(1)
+				icon_state = "lovetown_abomination_dashhit"
+			if(2)
+				icon_state = "lovetown_abomination_dashhit2"
+		. = ..()
 		DisableCounter(original_speed)
-		return ..()
+		return
 	if(counter_ready)
-		if(isliving(target))
-			return OpenFire(target)
+		return OpenFire(target)
 	return AoeAttack()
 
 /mob/living/simple_animal/hostile/lovetown/abomination/OpenFire(target)
@@ -944,7 +1028,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 				return DashCounter()
 			if(2)
 				if(prob(80))
-					return LoveWhip(target)
+					if(isliving(target))
+						return LoveWhip(target)
 				return DashCounter()
 		return
 
@@ -952,7 +1037,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	. = ..()
 	if(. > 0)
 		damage_taken += .
-	if(damage_taken >= counter_threshold && !counter_ready)
+	if(damage_taken >= counter_threshold && !counter_ready && !countering)
 		counter_ready = TRUE
 		damage_taken = 0
 	if((health <= stage_threshold) && (current_stage == 1))
