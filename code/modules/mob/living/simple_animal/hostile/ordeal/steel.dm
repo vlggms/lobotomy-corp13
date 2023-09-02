@@ -199,8 +199,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	ranged_cooldown_time = 15 SECONDS
 	a_intent = INTENT_HELP
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1300
+	health = 1300
 	melee_damage_lower = 40
 	melee_damage_upper = 57
 	vision_range = 12
@@ -208,7 +208,7 @@
 	ranged = TRUE
 	retreat_distance = 2
 	minimum_distance = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
 	can_patrol = TRUE
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
