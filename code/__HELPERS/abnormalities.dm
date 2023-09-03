@@ -2,21 +2,21 @@
 /proc/SimpleResistanceToText(resist = 1)
 	switch(resist)
 		if(0 to 0) //Just putting 0 doesn't work.
-			return "Immune (0.0)"
+			return "Immune"
 		if(1 to 1)
-			return "Normal (1.0)"
+			return "Normal"
 		if(-INFINITY to 0)
-			return "Absorbed ([resist])"
-		if(0.1 to 0.4)
-			return "Ineffective ([resist])"
-		if(0.5 to 0.9)
-			return "Endured ([resist])"
-		if(1.1 to 1.5)
-			return "Weak ([resist])"
+			return "Absorbed"
+		if(0 to 0.5)
+			return "Resistant"
+		if(0.5 to 1)
+			return "Endured"
+		if(1 to 1.5)
+			return "Weak"
 		if(2 to INFINITY)
-			return "Fatal ([resist])"
-		if(1.6 to 1.9)
-			return "Vulnerable ([resist])"
+			return "Fatal"
+		if(1.5 to 2)
+			return "Vulnerable"
 	return "Unknown ([resist])"
 
 /// Returns text description for combat damage
