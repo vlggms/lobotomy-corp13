@@ -188,7 +188,7 @@
 
 /obj/item/sign/afterattack(atom/target, mob/user, proximity)
 	. = ..()
-	if(!iswallturf(target) || !proximity)
+	if(!(iswallturf(target) || isindestructiblewall(target)) || !proximity)
 		return
 	var/turf/target_turf = target
 	var/turf/user_turf = get_turf(user)
