@@ -672,7 +672,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/grab_ready = FALSE //are we ready to grab
 	var/countering = FALSE //are we grabbing them right now
-	var/counter_threshold = 400 //2 counters at most
+	var/counter_threshold = 350 //2 counters at most
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableCounter()
@@ -680,16 +680,22 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		icon_state = icon_living
 		grab_ready = FALSE
 
-/mob/living/simple_animal/hostile/lovetown/slumberer/proc/CounterGrab(target)
-	countering = TRUE
-	grab_ready = FALSE
-	playsound(get_turf(src), attack_sound , 10, 3, 3)
-	var/mob/living/carbon/human/H = target
-	H.forceMove(get_turf(src))
-	H.Stun(6 SECONDS) //easy to dodge, but fuck you if you get hit by this
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	countering = FALSE
+/mob/living/simple_animal/hostile/lovetown/slumberer/proc/CounterGrab(mob/living/carbon/human/H)
+	if(!istype(H))
+		return
 	DisableCounter()
+	countering = TRUE
+	playsound(get_turf(src), attack_sound , 10, 3, 3)
+	H.Stun(3.5 SECONDS) //easy to dodge, but fuck you if you get hit by this
+	step_towards(H, src)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	H.forceMove(get_turf(src))
+	SLEEP_CHECK_DEATH(2.5 SECONDS)
+	if(!targets_from.Adjacent(H) || QDELETED(H)) //if someone drags you away, you can cut the duration in half
+		return
+	H.Stun(3 SECONDS)
+	SLEEP_CHECK_DEATH(3 SECONDS)
+	countering = FALSE
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/Move()
 	if(countering || grab_ready)
@@ -702,37 +708,24 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(grab_ready)
 		if(!istype(target, /mob/living/carbon/human))
 			return ..()
-		CounterGrab(target)
+		return CounterGrab(target)
 	return ..()
 
-/mob/living/simple_animal/hostile/lovetown/slumberer/CheckAndAttack() //stolen and modified from porccubus
-	if(!target)
+/mob/living/simple_animal/hostile/lovetown/slumberer/OpenFire(target)
+	if(countering)
 		return
-
-	var/distance = get_dist(target, src)
-	if(targets_from && isturf(targets_from.loc) && distance <= 2 && !incapacitated())
-		if (distance == 2 && !grab_ready)
-			return
-		AttackingTarget()
-		return
-
-/mob/living/simple_animal/hostile/lovetown/slumberer/RangedAttack(atom/A, params) //Ranged melee code for a client
-	if(!client)
-		return ..()
-	CheckAndAttack(A)
-	if(ismob(A))
-		changeNext_move(CLICK_CD_MELEE)
-	return ..()
+	if(get_dist(target, src) <= 2 && grab_ready)
+		return AttackingTarget()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= counter_threshold && !grab_ready)
-		icon_state = "lovetown_slumberer_grab"
+		icon_state = "lovetown_slumberer_ready"
 		playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
+		SLEEP_CHECK_DEATH(1.5 SECONDS) //so we  dont instantly grab people
 		grab_ready = TRUE
-		SLEEP_CHECK_DEATH(1 SECONDS) //so you dont instantly get grabbed
 		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
 		damage_taken = 0
 
@@ -822,9 +815,9 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	counter_ready = FALSE
 	move_to_delay += counter_speed
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
-	addtimer(CALLBACK(src, .proc/DisableCounter, original_speed), 4 SECONDS) //disables the counter after 4 seconds
+	addtimer(CALLBACK(src, .proc/DisableCounter), 4 SECONDS) //disables the counter after 4 seconds
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter(original_speed) //resets the speed
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the speed
 	if(countering)
 		move_to_delay = original_speed
 		countering = FALSE
@@ -846,7 +839,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/turf/area_of_effect = list()
 	var/turf/middle_line = list()
 	var/second_line = get_ranged_target_turf(source_turf, dir_to_target, smash_length-2)
-	SLEEP_CHECK_DEATH(2 SECONDS)
+	SLEEP_CHECK_DEATH(2.5 SECONDS)
 	icon_state = "lovetown_abomination_whip"
 	switch(dir_to_target)
 		if(EAST)
@@ -943,6 +936,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 				area_of_effect |= T
 
 	if (!LAZYLEN(area_of_effect))
+		icon_state = icon_living
+		can_act = TRUE
 		return
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/lovetown_whip(T)
@@ -958,7 +953,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(prob(20)) //small chance to go into a dash after
 		DashCounter()
 	else
-		DisableCounter(original_speed)
+		DisableCounter()
 	return
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/Finisher(mob/living/carbon/human/TH) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
@@ -969,11 +964,16 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			if(2)
 				icon_state = "lovetown_abomination_execute2"
 		can_act = FALSE
-		TH.Stun(4 SECONDS)
+		TH.Stun(8 SECONDS)
 		forceMove(get_turf(TH))
-//		var/pixel_y_before = TH.pixel_y
+		var/pixel_y_before = TH.pixel_y
 		animate(TH, pixel_y = 16, time = 15, easing = SINE_EASING | EASE_IN)
 		SLEEP_CHECK_DEATH(25)
+		if(!targets_from.Adjacent(TH) || QDELETED(TH)) //Can save the target if you move them away
+			animate(TH, pixel_y = pixel_y_before, time = 10, , easing = BACK_EASING | EASE_OUT, flags = ANIMATION_END_NOW)
+			icon_state = icon_living
+			can_act = TRUE
+			return
 		for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
 			H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/lovetown_shapes(get_turf(TH))
@@ -1012,7 +1012,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			if(2)
 				icon_state = "lovetown_abomination_dashhit2"
 		. = ..()
-		DisableCounter(original_speed)
+		DisableCounter()
 		return
 	if(counter_ready)
 		return OpenFire(target)
