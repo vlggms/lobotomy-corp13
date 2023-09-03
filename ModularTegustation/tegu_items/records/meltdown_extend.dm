@@ -2,7 +2,7 @@
 //Unlike other watches this is used on an object directly thus its calls and procs are working differently
 /obj/item/records/meltdown_extend
 	name = "records wood watch"
-	desc = "A treaded wooden watch for that when next to a abnormality console and wound will give additional time before meltdown."
+	desc = "A treaded wooden watch the records officer can use to give additional time to meltdowns of nearby abnormality consoles."
 	icon_state = "watch_wood"
 	//Default cooldown is 5 Minutes
 	records_cooldown_timer = 5 MINUTES
