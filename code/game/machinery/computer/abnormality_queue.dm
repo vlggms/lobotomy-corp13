@@ -98,7 +98,7 @@
 		locked = TRUE
 		// PE awarded for yellow roll - just as kirie had wanted.
 		SSlobotomy_corp.available_box += 250
-		to_chat(usr, "<span class='boldnotice'>A random Abnormality has been selected. LobCorp HQ has reimbursed you for the costs of extracting a specific Abnormality.</span>")
+		to_chat(usr, "<span class='boldnotice'>A random Abnormality has been selected. L Corp HQ has reimbursed you for the costs of extracting a specific Abnormality.</span>")
 		SSabnormality_queue.AnnounceLock()
 		SSabnormality_queue.ClearChoices()
 		SStgui.close_uis(src) // Hacky solution but I don't care
