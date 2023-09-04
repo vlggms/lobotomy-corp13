@@ -87,11 +87,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/wayward/Life()
 	. = ..()
+	if(!.)
+		return
 	if(IsContained())
 		return
 	if(client)
 		return
-	if((teleport_cooldown <= world.time) && can_act == TRUE)
+	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
 	return
 
@@ -109,7 +111,7 @@
 				Dash(target)
 		return
 
-	if(dash_cooldown <= world.time && can_dash == TRUE)
+	if(dash_cooldown <= world.time && can_dash)
 		Dash(target)
 
 //*** Work mechanics ***
