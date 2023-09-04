@@ -1,10 +1,14 @@
 // Ping Chiemi for bugs, suffering
 /mob/living/simple_animal/hostile/abnormality/crying_children
 	name = "\proper The Crying Children"
-	desc = "A wax statue of an ...angel? It creepily floats around the containment room. You feel like you shouldn't be here for too long"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "unspeaking_child"
-	icon_living = "unspeaking_child"
+	desc = "A towering angel statue, setting everything on it's path ablaze"
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_living = "crying_idle"
+	icon_state = "crying_idle"
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -15
+	base_pixel_y = -15
 	is_flying_animal = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -35,7 +39,7 @@
 	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
 	gift_type =  /datum/ego_gifts/inconsolable
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK // I HAVE NO IDEA LOR ORIGIN CODE
-	var/children = 0
+	var/list/children_list = list()
 	var/charge = 0
 	var/maxcharge = 180
 	var/desperation_cooldown
@@ -49,10 +53,25 @@
 	var/death_counter = 0
 	var/burn_mod = 1
 	var/icon_phase = "crying"
+	
+	// Does not spawn on normal game modes
+	can_spawn = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
+
+// Silly multi icons, lets fix that! This is called each time it's spawned in containment, so it has normal sprite on adminbus spawn
+/mob/living/simple_animal/hostile/abnormality/crying_children/PostSpawn()
+	desc = "A wax statue of an ...angel? It creepily floats around the containment room. You feel like you shouldn't be here for too long"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "unspeaking_child"
+	icon_living = "unspeaking_child"
+	pixel_x = 0
+	base_pixel_x = 0
+	pixel_y = 0
+	base_pixel_y = 0
+	return
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
@@ -122,8 +141,15 @@
 		return FALSE
 	return ..()
 
+// Gibbing just change phases
+/mob/living/simple_animal/hostile/abnormality/crying_children/gib()
+	if(!desperate)
+		death()
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/crying_children/death(gibbed)
-	if(!desperate && children <= 0)
+	if(!desperate && children_list.len <= 0)
 		SpawnChildren()
 		can_act = FALSE
 		charge = 0
@@ -146,6 +172,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+
+	// If for some reason admeme deletes it
+	for(var/mob/living/L in children_list)
+		L.death()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/OpenFire()
@@ -328,21 +358,21 @@
 
 	//I tried using subtype loop for this, but it ends a bit buggy
 	var/mob/living/simple_animal/hostile/child/unseeing/SE = new(teleport_target)
-	RegisterSignal(SE, COMSIG_LIVING_DEATH, .proc/DeadChild)
+	RegisterSignal(SE, COMSIG_LIVING_DEATH, .proc/DeadChild, SE)
 	teleport_potential -= teleport_target
 	teleport_target = pick(teleport_potential)
 	var/mob/living/simple_animal/hostile/child/unhearing/HE = new(teleport_target)
-	RegisterSignal(HE, COMSIG_LIVING_DEATH, .proc/DeadChild)
+	RegisterSignal(HE, COMSIG_LIVING_DEATH, .proc/DeadChild, HE)
 	teleport_potential -= teleport_target
 	teleport_target = pick(teleport_potential)
 	var/mob/living/simple_animal/hostile/child/unspeaking/PE = new(teleport_target)
-	RegisterSignal(PE, COMSIG_LIVING_DEATH, .proc/DeadChild)
-	children = 3
+	RegisterSignal(PE, COMSIG_LIVING_DEATH, .proc/DeadChild, PE)
+	children_list = list(SE, HE, PE)
 
-/mob/living/simple_animal/hostile/abnormality/crying_children/proc/DeadChild()
-	children -= 1
+/mob/living/simple_animal/hostile/abnormality/crying_children/proc/DeadChild(mob/living/deadchild)
+	children_list -= deadchild
 	charge = max(0, charge - 30) // Extra 30 Sec Per Kill
-	if(children <= 0)
+	if(children_list.len <= 0)
 		SLEEP_CHECK_DEATH(50)
 		FinalPhase()
 
