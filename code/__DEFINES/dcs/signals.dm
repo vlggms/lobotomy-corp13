@@ -560,6 +560,9 @@
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
 	#define COMPONENT_HOSTILE_NO_ATTACK (1<<0)
+/// a hostile has started their patrol (datum/source, mob/living/simple_animal/hostile/mover, turf/target_location)
+#define COMSIG_GLOB_PATROL_START "!patrol_start"
+#define COMSIG_PATROL_START "patrol_start"
 
 // /obj signals
 

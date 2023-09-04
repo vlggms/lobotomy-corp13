@@ -738,6 +738,8 @@
 		target_center = pick(potential_centers)
 	else
 		target_center = pick(GLOB.department_centers)
+	SEND_SIGNAL(src, COMSIG_PATROL_START, src, target_center)
+	SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, target_center)
 	patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
 
 /mob/living/simple_animal/hostile/proc/patrol_reset()
