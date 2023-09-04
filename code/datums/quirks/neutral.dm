@@ -97,7 +97,6 @@
 	desc = "You always carry a stick of lipstick with you. Wouldn't want to get caught not looking beautiful."
 	value = 0
 	medical_record_text = "The patient always has has always shown up to their appointments wearing lipstick"
-	var/where
 
 /datum/quirk/lipstick/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -107,7 +106,7 @@
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
-	where = H.equip_in_one_of_slots(lipstick, slots, FALSE) || "at your feet"
+	H.equip_in_one_of_slots(lipstick, slots, FALSE)
 // Special quirks end
 
 /datum/quirk/nearsighted //t. errorage
