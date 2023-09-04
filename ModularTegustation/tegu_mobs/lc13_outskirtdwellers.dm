@@ -422,7 +422,7 @@
 
 	var/can_act = TRUE //If flashing, turns FALSE so we don't attack/move
 	var/flash_cooldown
-	var/flash_cooldown_time = 8 SECONDS
+	var/flash_cooldown_time = 10 SECONDS
 	var/flash_range = 5 //Range that the flash hits
 
 /mob/living/simple_animal/hostile/kcorp/drone/proc/Flash()
