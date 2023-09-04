@@ -4,88 +4,88 @@
 	dir = 4
 	},
 /turf/open/floor/plating/rust,
-/area/space)
+/area/city/outskirts)
 "c" = (
 /obj/structure/chair/pew{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "e" = (
 /obj/structure/chair/pew{
 	dir = 4
 	},
 /turf/open/floor/plating/rust,
-/area/space)
+/area/city/outskirts)
 "f" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet/lone,
-/area/space)
+/area/city/outskirts)
 "g" = (
 /obj/structure/chair/pew{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "j" = (
 /obj/structure/chair/pew{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/rust,
-/area/space)
+/area/city/outskirts)
 "n" = (
 /obj/structure/railing,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "p" = (
 /obj/structure/chair/pew{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "s" = (
 /obj/structure/altar_of_gods,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/storage/book/bible,
 /obj/structure/lootcrate/n_corp,
 /turf/open/floor/carpet/lone,
-/area/space)
+/area/city/outskirts)
 "t" = (
 /turf/closed/indestructible/reinforced,
-/area/space)
+/area/city/outskirts)
 "w" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "x" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/carpet/lone,
-/area/space)
+/area/city/outskirts)
 "B" = (
 /turf/open/floor/carpet/lone,
-/area/space)
+/area/city/outskirts)
 "H" = (
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "T" = (
 /turf/open/floor/plating/rust,
-/area/space)
+/area/city/outskirts)
 "W" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 "Y" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bonfire/prelit,
 /obj/structure/kitchenspike,
 /turf/open/floor/plating,
-/area/space)
+/area/city/outskirts)
 
 (1,1,1) = {"
 t
