@@ -1,4 +1,5 @@
 GLOBAL_VAR_INIT(combat_counter, 0)
+GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be up against, so all spawners stay consistent
 
 //This should ONLY be used for events.
 /datum/game_mode/combat
@@ -33,6 +34,12 @@ GLOBAL_VAR_INIT(combat_counter, 0)
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
 				to_chat(world, "<span class='userdanger'>Players will be victorius 20 minutes.</span>")
+
+				switch(rand(1,2))
+					if(1)
+						GLOB.wcorp_enemy_faction = "lovetown"
+					if(2)
+						GLOB.wcorp_enemy_faction = "gcorp"
 
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
