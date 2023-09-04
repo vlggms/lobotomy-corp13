@@ -687,7 +687,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(faction_check_mob(L, exact_faction_match))
 				continue
 		if(damage)
-			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE, source = src)
 		. += L
 	if(hurt_mechs) // Hit Mechs
 		for(var/obj/vehicle/V in target)
@@ -711,7 +711,7 @@ GLOBAL_LIST_EMPTY(species_list)
 					if(faction_check_mob(H, exact_faction_match))
 						continue
 				if(damage)
-					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE, source = src)
 				. += H
 			. += C
 	if(hurt_structure) // Hits structures
