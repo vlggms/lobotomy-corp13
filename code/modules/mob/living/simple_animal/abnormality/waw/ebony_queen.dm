@@ -117,20 +117,24 @@
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()
-	if(can_act)
-		..()
+	if(!can_act)
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Goto(target, delay, minimum_distance)
-	if(can_act)
-		..()
+	if(!can_act)
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/MoveToTarget(list/possible_targets)
-	if(can_act)
-		..()
+	if(!can_act)
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/DestroySurroundings()
-	if(can_act)
-		..()
+	if(!can_act)
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/death(gibbed)
 	density = FALSE
