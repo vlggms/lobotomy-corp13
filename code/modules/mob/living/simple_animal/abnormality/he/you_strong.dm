@@ -195,7 +195,7 @@
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
-	M.apply_damage(50, BRUTE, null, M.run_armor_check(null, BRUTE), spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
+	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
 	to_chat(M, "<span class='notice'>Your [old_part.name] has been replaced!</span>")
 	qdel(old_part)
 	M.regenerate_icons()
@@ -265,7 +265,7 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(50, BRUTE, null, src.run_armor_check(null, BRUTE), spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)

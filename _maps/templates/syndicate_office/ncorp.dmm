@@ -52,6 +52,12 @@
 /area/city/backstreets_room)
 "hG" = (
 /obj/structure/rack,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "iw" = (
@@ -275,7 +281,6 @@
 /obj/item/ego_weapon/city/ncorp_mark/black,
 /obj/item/ego_weapon/city/ncorp_mark/black,
 /obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
 /obj/item/ego_weapon/city/ncorp_brassnail/rose,
 /turf/open/floor/wood,
 /area/city/backstreets_room)

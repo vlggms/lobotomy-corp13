@@ -25,6 +25,7 @@
 	STR.max_items = 100
 	STR.set_holdable(list(
 		/obj/item/food/fish,
+		/obj/item/fishing_component/hook/bone,
 		/obj/item/stack/fish_points,
 		))
 

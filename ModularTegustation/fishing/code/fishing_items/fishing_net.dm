@@ -37,6 +37,8 @@
 
 /obj/structure/destructible/fishing_net/AltClick(mob/user)
 	. = ..()
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
 	EmptyNet(get_turf(user))
 
 /obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff)

@@ -59,7 +59,7 @@
 
 /obj/item/attribute_increase_small/attack_self(mob/living/carbon/human/user)
 	//max stats can't gain stats
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=130)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)>=130)
 		to_chat(user, "<span class='danger'>You feel like you won't gain anything.</span>")
 		return
 

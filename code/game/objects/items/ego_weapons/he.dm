@@ -1074,7 +1074,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/release_message = "You release your charge, opening a rift!"
-	var/charge_effect = "create a temporary two-way portal."
+	var/charge_effect = "create a temporary two-way portal on a living target."
 	var/current_holder
 	var/charge_cost = 10
 	var/charge
@@ -1092,9 +1092,18 @@
 	current_holder = user
 
 /obj/item/ego_weapon/warp/Destroy(mob/user)
+	if(!user)
+		return
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	current_holder = null
 	return ..()
+
+/obj/item/ego_weapon/warp/dropped(mob/user)
+	. = ..()
+	if(!user)
+		return
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
 
 /obj/item/ego_weapon/warp/attack_self(mob/user)
 	..()
@@ -1115,6 +1124,7 @@
 
 /obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
+		to_chat(user, "<span class='notice'>You cannot use this!</span>")
 		return
 	if(!activated)
 		return

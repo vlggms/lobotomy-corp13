@@ -12,15 +12,15 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
-"c" = (
-/obj/effect/turf_decal/box/red,
-/turf/open/floor/facility/white,
-/area/city/backstreets_room)
 "d" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/structure/table/greyscale,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/chair/sofa/corp/right,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "f" = (
@@ -51,10 +51,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
-"k" = (
-/obj/structure/chair/comfy/black,
-/turf/open/floor/facility/white,
-/area/city/backstreets_room)
 "l" = (
 /obj/machinery/smartfridge/survival_pod,
 /turf/open/floor/facility/white,
@@ -75,6 +71,10 @@
 	name = "general area";
 	req_access_txt = "150"
 	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"p" = (
+/obj/machinery/vending/cola,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "q" = (
@@ -118,30 +118,11 @@
 /obj/item/bedsheet/blue,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
-"y" = (
-/obj/machinery/door/airlock/grunge{
-	name = "proxy quarters";
-	req_access_txt = "150"
-	},
-/turf/open/floor/facility/white,
-/area/city/backstreets_room)
-"z" = (
-/obj/structure/closet/crate,
-/obj/item/clothing/suit/armor/ego_gear/city/index_proxy,
-/obj/item/ego_weapon/city/fakeindex/proxy,
-/turf/open/floor/facility/white,
-/area/city/backstreets_room)
 "A" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /obj/machinery/light/small{
 	dir = 1
-	},
-/turf/open/floor/facility/white,
-/area/city/backstreets_room)
-"B" = (
-/obj/structure/chair/plastic{
-	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
@@ -216,7 +197,7 @@
 "Q" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/suit/armor/ego_gear/city/index_proxy,
-/obj/item/ego_weapon/city/fakeindex/proxy/spear,
+/obj/effect/spawner/lootdrop/proxy,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
 "R" = (
@@ -244,8 +225,15 @@
 /obj/item/ego_weapon/city/fakeindex,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
-"W" = (
-/obj/structure/chair/plastic{
+"V" = (
+/obj/machinery/door/airlock/grunge{
+	name = "proxy quarters";
+	req_access_txt = "151"
+	},
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/chair/sofa/corp/left{
 	dir = 8
 	},
 /turf/open/floor/facility/white,
@@ -253,12 +241,19 @@
 "Y" = (
 /turf/closed/indestructible/oldshuttle,
 /area/city/backstreets_room)
+"Z" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/chair/sofa/corp/corner,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
 
 (1,1,1) = {"
-a
-B
-L
-c
+G
+U
+U
+U
 h
 a
 H
@@ -268,10 +263,10 @@ S
 u
 "}
 (2,1,1) = {"
-k
-s
-L
-c
+U
+m
+m
+U
 h
 L
 H
@@ -281,10 +276,10 @@ F
 w
 "}
 (3,1,1) = {"
-a
-W
+m
 L
-c
+L
+L
 o
 L
 b
@@ -294,9 +289,9 @@ L
 L
 "}
 (4,1,1) = {"
-Y
-Y
-Y
+T
+m
+m
 Y
 Y
 u
@@ -307,9 +302,9 @@ L
 q
 "}
 (5,1,1) = {"
-G
-U
-U
+Y
+Y
+Y
 Y
 t
 L
@@ -320,7 +315,7 @@ Y
 Y
 "}
 (6,1,1) = {"
-L
+e
 L
 L
 n
@@ -333,14 +328,14 @@ s
 S
 "}
 (7,1,1) = {"
-T
-m
-m
+Z
+X
+p
 Y
 a
 L
 L
-y
+Y
 L
 j
 Q
@@ -356,7 +351,7 @@ J
 Y
 a
 L
-z
+Q
 "}
 (9,1,1) = {"
 P
@@ -366,7 +361,7 @@ l
 L
 L
 L
-h
+V
 L
 L
 L

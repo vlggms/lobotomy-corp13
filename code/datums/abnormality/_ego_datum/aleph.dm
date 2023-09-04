@@ -160,3 +160,12 @@
 /datum/ego_datum/weapon/pink
 	item_path = /obj/item/gun/ego_gun/pink
 	cost = 100
+
+// The Crying Children - Combusting Courage
+/datum/ego_datum/weapon/shield/combust
+	item_path = /obj/item/ego_weapon/shield/combust
+	cost = 100
+
+/datum/ego_datum/armor/combust
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/combust
+	cost = 100

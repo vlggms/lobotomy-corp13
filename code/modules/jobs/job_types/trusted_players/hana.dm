@@ -74,3 +74,34 @@
 
 	ears = /obj/item/radio/headset/heads/headset_association
 	l_hand = /obj/item/clothing/suit/armor/ego_gear/city/hanacombat/paperwork
+
+//Hana
+/datum/job/hana/intern
+	title = "Hana Intern"
+	outfit = /datum/outfit/job/hana/intern
+	total_positions = 4
+	spawn_positions = 4
+	display_order = JOB_DISPLAY_ORDER_INTERN
+	paycheck = 1000
+	trusted_only = FALSE
+
+
+	//Mostly for armor.
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
+								)
+
+	job_important = "You are a Intern for the Hana association, Your only job is to assist the higher ups with their duities. \
+		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
+		All new fixer offices MUST be announced upon creation, including office name and director name. "
+	job_notice = null
+
+
+/datum/outfit/job/hana/intern
+	name = "Hana Intern"
+	jobtype = /datum/job/hana/intern
+
+	l_hand = null

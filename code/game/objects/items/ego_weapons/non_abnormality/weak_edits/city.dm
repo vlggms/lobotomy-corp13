@@ -16,7 +16,7 @@
 	desc = "A sheathed sword used by index recruits."
 	icon_state = "index"
 	inhand_icon_state = "index"
-	force = 12
+	force = 20
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")
@@ -28,6 +28,17 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
+//proxy randomizer
+/obj/effect/spawner/lootdrop/proxy
+	name = "proxy weapon spawner"
+	lootdoubles = FALSE
+
+	loot = list(
+			/obj/item/ego_weapon/city/fakeindex/proxy = 1,
+			/obj/item/ego_weapon/city/fakeindex/proxy/spear = 1,
+			/obj/item/ego_weapon/city/fakeindex/proxy/knife = 1,
+		)
+
 /obj/item/ego_weapon/city/fakeindex/proxy
 	name = "index longsword"
 	desc = "A long sword used by index proxies."
@@ -36,7 +47,7 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 20
+	force = 35
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -54,6 +65,15 @@
 	attack_speed = 1.2
 	reach = 2
 
+/obj/item/ego_weapon/city/fakeindex/proxy/knife
+	name = "index dagger"
+	desc = "A dagger used by index proxies."
+	icon_state = "indexdagger"
+	inhand_icon_state = "indexdagger"
+	force = 20
+	attack_speed = 0.5
+
+
 //Fockin massive sword
 /obj/item/ego_weapon/city/fakeindex/yan
 	name = "index greatsword"
@@ -63,7 +83,7 @@
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
-	force = 50
+	force = 55
 	attack_speed = 2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -97,8 +117,8 @@
 
 //Thumb
 /obj/item/gun/ego_gun/city/thumb/weak
-	force = 15
-	projectile_damage_multiplier = 1.5		//15 damage per bullet
+	force = 20
+	projectile_damage_multiplier = 2		//20 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -108,8 +128,8 @@
 
 //Capo
 /obj/item/gun/ego_gun/city/thumb/capo/weak
-	force = 20
-	projectile_damage_multiplier = 2.5		//25 damage per bullet
+	force = 25
+	projectile_damage_multiplier = 3		//30 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -120,8 +140,8 @@
 //Sottoacpo
 /obj/item/gun/ego_gun/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
-	projectile_damage_multiplier = 0.5		//5 damage per bullet
-	ammo_type = /obj/item/ammo_casing/caseless/thumbshell	//Does 8 shells at 5 damage, total 40
+	projectile_damage_multiplier = 0.7		//5 damage per bullet
+	ammo_type = /obj/item/ammo_casing/caseless/thumbshell	//Does 8 shells at 7 damage, total 56
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -131,7 +151,7 @@
 
 //wepaons are kinda uninteresting
 /obj/item/ego_weapon/city/thumbmelee/weak
-	force = 30
+	force = 35
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -140,7 +160,7 @@
 							)
 
 /obj/item/ego_weapon/city/thumbcane/weak
-	force = 40
+	force = 45
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,

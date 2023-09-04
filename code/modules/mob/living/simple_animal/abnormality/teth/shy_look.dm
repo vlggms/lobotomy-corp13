@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/shy_look
 	name = "Today's Shy Look"
-	desc = "A humanoid abnormality that's hiding behind what appears to be human skin that's ecthed with 5 different expressions.  \
+	desc = "A humanoid abnormality that's hiding behind what appears to be human skin that's etched with 5 different expressions.  \
 	You have a strange urge to look behind the net of skin. But getting a bad feeling, you decide to stop."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "todayshylook_neutral"

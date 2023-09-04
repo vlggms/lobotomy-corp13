@@ -88,8 +88,8 @@
 	return ..()
 
 /obj/item/toy/plush/carpplushie
-	name = "space carp plushie"
-	desc = "An adorable stuffed toy that resembles a space carp."
+	name = "carp plushie"
+	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
 	inhand_icon_state = "carp_plushie"
 	attack_verb_continuous = list("bites", "eats", "fin slaps")
@@ -231,7 +231,7 @@
 
 /obj/item/toy/plush/nukeplushie
 	name = "operative plushie"
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
+	desc = "A stuffed toy that resembles a syndicate nuclear operative from a popular video game"
 	icon_state = "plushie_nuke"
 	inhand_icon_state = "plushie_nuke"
 	attack_verb_continuous = list("shoots", "nukes", "detonates")

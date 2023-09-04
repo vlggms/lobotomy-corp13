@@ -5,25 +5,26 @@
 	department_head = list("the will of the prescript")
 	faction = "Station"
 	supervisors = "the will of the prescript"
-	selection_color = "#aaaaaa"
+	selection_color = "#cccccc"
 	total_positions = 0
 	spawn_positions = 0
-	display_order = JOB_DISPLAY_ORDER_SYNDICATEVET
-	access = list(ACCESS_SYNDICATE)
-	minimal_access = list(ACCESS_SYNDICATE)
+	display_order = JOB_DISPLAY_ORDER_SYNDICATEHEAD
+	trusted_only = TRUE
+	access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
+	minimal_access = list(ACCESS_SYNDICATE, ACCESS_SYNDICATE_LEADER)
 	paycheck = 200
 	maptype = list("city")
 	job_important = "You are a veteran in the Index syndicate. You are not inherently hostile. \
-			Your goal is mainly to follow the will of prescripts you are given, your secondary goal is to follow the messenger. \
+			Your goal is mainly to follow the will of prescripts you are given, and exert the will of the index. \
 			Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "Avoid killing other players without a reason. Killing a player for stopping your prescripts is a valid reason."
 
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
+								FORTITUDE_ATTRIBUTE = 100,
+								PRUDENCE_ATTRIBUTE = 100,
+								TEMPERANCE_ATTRIBUTE = 100,
+								JUSTICE_ATTRIBUTE = 100
 								)
 
 /datum/job/proxy/after_spawn(mob/living/carbon/human/H, mob/M)

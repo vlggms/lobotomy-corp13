@@ -402,3 +402,22 @@
 		"When an employee panicked during work or had a Temperance level lower than 3, they were hypnotized and killed by the abnormality.",
 		"When an employee with Justice Level of 4 or higher completed the work, Missed Reaper's Qliphoth Counter lowered by 1.",
 		"When the Qliphoth counter reached 0, shadows covered an area near certain employees, dealing pale damage to those in contact with it.")
+
+//Headless Ichthys
+/obj/item/paper/fluff/info/he/headless_ichthys
+	abno_type = /mob/living/simple_animal/hostile/abnormality/headless_ichthys
+	abno_code = "O-02-159"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
+
+//Wayward Passenger
+/obj/item/paper/fluff/info/he/wayward
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
+	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
+		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
+		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
+		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
