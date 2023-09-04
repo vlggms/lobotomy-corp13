@@ -117,8 +117,8 @@
 
 //Thumb
 /obj/item/gun/ego_gun/city/thumb/weak
-	force = 15
-	projectile_damage_multiplier = 1.5		//15 damage per bullet
+	force = 20
+	projectile_damage_multiplier = 2		//20 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -128,8 +128,8 @@
 
 //Capo
 /obj/item/gun/ego_gun/city/thumb/capo/weak
-	force = 20
-	projectile_damage_multiplier = 2.5		//25 damage per bullet
+	force = 25
+	projectile_damage_multiplier = 3		//30 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -140,8 +140,8 @@
 //Sottoacpo
 /obj/item/gun/ego_gun/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
-	projectile_damage_multiplier = 0.5		//5 damage per bullet
-	ammo_type = /obj/item/ammo_casing/caseless/thumbshell	//Does 8 shells at 5 damage, total 40
+	projectile_damage_multiplier = 0.7		//5 damage per bullet
+	ammo_type = /obj/item/ammo_casing/caseless/thumbshell	//Does 8 shells at 7 damage, total 56
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -151,7 +151,7 @@
 
 //wepaons are kinda uninteresting
 /obj/item/ego_weapon/city/thumbmelee/weak
-	force = 30
+	force = 35
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -160,7 +160,7 @@
 							)
 
 /obj/item/ego_weapon/city/thumbcane/weak
-	force = 40
+	force = 45
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
