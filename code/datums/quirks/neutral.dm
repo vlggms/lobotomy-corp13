@@ -92,6 +92,24 @@
 	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
 	H.put_in_hands(art)
 
+/datum/quirk/lipstick
+	name = "Glossy"
+	desc = "You always carry a stick of lipstick with you. Wouldn't want to get caught not looking beautiful."
+	value = 0
+	medical_record_text = "The patient always has has always shown up to their appointments wearing lipstick"
+	var/obj/item/lipstickobj
+	var/where
+
+/datum/quirk/lipstick/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/lipstick/random/lipstick = new(get_turf(H))
+	//lipstickobj = new lipstick(get_turf(quirk_holder))
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	where = H.equip_in_one_of_slots(lipstick, slots, FALSE) || "at your feet"
 // Special quirks end
 
 /datum/quirk/nearsighted //t. errorage
