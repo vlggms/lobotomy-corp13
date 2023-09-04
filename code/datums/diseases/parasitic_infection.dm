@@ -2,7 +2,7 @@
 	form = "Parasite"
 	name = "Parasitic Infection"
 	max_stages = 4
-	cure_text = "Surgical replacement of the liver."
+	cure_text = "Surgical removal of the liver."
 	agent = "Consuming Live Parasites"
 	spread_text = "Intermediate Parasite"
 	viable_mobtypes = list(/mob/living/carbon/human)
@@ -13,26 +13,16 @@
 	spread_flags = DISEASE_SPREAD_NON_CONTAGIOUS
 	required_organs = list(/obj/item/organ/liver)
 	bypasses_immunity = TRUE
-	var/obj/item/organ/liver/affected_liver
 
 
 /datum/disease/parasite/stage_act()
 	. = ..()
 	if(!.)
 		return
+
+	var/obj/item/organ/liver/affected_liver = affected_mob.getorgan(/obj/item/organ/liver)
 	if(!affected_liver)
-		affected_liver = affected_mob.getorganslot(ORGAN_SLOT_LIVER)
-	if(!affected_liver)
-		cure()
-		return FALSE
-	if(!affected_liver.owner)
 		affected_mob.visible_message("<span class='notice'><B>[affected_mob]'s liver is covered in tiny larva! They quickly shrivel and die after being exposed to the open air.</B></span>")
-		cure()
-		return FALSE
-	if(affected_liver.organ_flags & ORGAN_SYNTHETIC)
-		to_chat(affected_mob, "<span class='nicegreen'>Your liver starts whirring and making noises like someone threw popcorn into a blender.</span>")
-		//That cant be good for your liver.
-		affected_mob.adjustOrganLoss(ORGAN_SLOT_LIVER, 20, 200)
 		cure()
 		return FALSE
 
