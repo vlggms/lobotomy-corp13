@@ -60,11 +60,19 @@
 			heirloom_type = pick(/obj/item/toy/plush/myo)
 		if("Rabbit Team")
 			heirloom_type = pick(/obj/item/toy/plush/rabbit)
-	if(!heirloom_type) // we fucked up, give them whatever
+	if(!heirloom_type) // non Lobotomy corp gamemode
 		heirloom_type = pick(
-		/obj/item/toy/cards/deck,
-		/obj/item/lighter,
-		/obj/item/dice/d20)
+		/obj/item/toy/plush/carpplushie,
+		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/snakeplushie,
+		/obj/item/toy/plush/nukeplushie,
+		/obj/item/toy/plush/slimeplushie,
+		/obj/item/toy/plush/beeplushie,
+		/obj/item/toy/plush/moth,
+		/obj/item/toy/plush/rabbit, //some Lobotomy Corp plushes
+		/obj/item/toy/plush/bigbird,
+		/obj/item/toy/plush/big_bad_wolf,
+		/obj/item/toy/plush/fumo)
 	heirloom = new heirloom_type(get_turf(quirk_holder))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
