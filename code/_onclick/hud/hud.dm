@@ -8,7 +8,9 @@
 GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Lobotomite" = 'icons/hud/screen_lobotomy.dmi',
 	"Limboid (Gloom)" = 'icons/hud/screen_limboid.dmi',
+	"Limboid (Envy)" = 'icons/hud/screen_limboidenvy.dmi',
 	"Midnight" = 'icons/hud/screen_midnight.dmi',
+	"Slimecore" = 'icons/hud/screen_slimecore.dmi',
 	"Glass" = 'icons/hud/screen_glass.dmi'
 ))
 
