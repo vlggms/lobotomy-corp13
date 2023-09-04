@@ -234,7 +234,7 @@
 		return
 	if(QDELETED(caster) || caster?.stat == DEAD)
 		return
-	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 0, 8)
+	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 40, 0, 8)
 	new /obj/effect/temp_visual/thornspike(target_turf)
 	for(var/mob/living/L in target_turf)
 		if(caster?.faction_check_mob(L) || L.stat == DEAD || L.throwing)
@@ -244,7 +244,7 @@
 		if(L.health < 0) //limbus has no negative death
 			L.death() //death animation needed
 		var/turf/thrownat = get_ranged_target_turf(src, pick(GLOB.alldirs), 2)
-		L.throw_at(thrownat, 2, 1, spin = TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
+		L.throw_at(thrownat, 1, 1, spin = TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 	for(var/obj/vehicle/sealed/mecha/M in target_turf) //also damage mechs.
 		for(var/O in M.occupants)
 			var/mob/living/occupant = O
@@ -261,10 +261,11 @@
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/creatures/venus_trap_hurt.ogg', 75, 0, 5)
 	icon_state = "ebonyqueen_attack2"
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(1)
 	new /obj/effect/temp_visual/root(get_turf(target), src)
-	SLEEP_CHECK_DEATH(6)
+	SLEEP_CHECK_DEATH(4)
 	icon_state = icon_living
+	SLEEP_CHECK_DEATH(2)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/thornBarrier(target) //barrier of thorns
@@ -279,8 +280,9 @@
 	SLEEP_CHECK_DEATH(0.25) //slight offset
 	for(var/turf/T in RANGE_TURFS(1, target_turf))
 		new /obj/effect/temp_visual/root(T, src)
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_DEATH(7)
 	icon_state = icon_living
+	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/thornBurst() //expanding square in melee
@@ -302,8 +304,9 @@
 			last_dist = dist
 			SLEEP_CHECK_DEATH(1 + min(2 - last_dist, 12) * 0.25) //gets faster as it gets further out
 		new /obj/effect/temp_visual/root(T, src)
-	SLEEP_CHECK_DEATH(11)
+	SLEEP_CHECK_DEATH(8)
 	icon_state = icon_living
+	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/proc/rootBarrage(target) //line attack
@@ -322,7 +325,7 @@
 		count = count + 1
 		if(get_dist(src, T) < 2)
 			continue
-		addtimer(CALLBACK(src, .proc/stabHit, T), (3 * ((count*0.50)+1)) + 0.28 SECONDS)
+		addtimer(CALLBACK(src, .proc/stabHit, T), (3 * ((count*0.50)+1)) + 0.25 SECONDS)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(3)
