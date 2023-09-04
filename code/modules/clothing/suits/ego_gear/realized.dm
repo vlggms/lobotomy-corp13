@@ -331,3 +331,10 @@
 	desc = "I've always wished to be a bud. Soon to bloom, bearing a scent within."
 	icon_state = "spicebush"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 90, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/desperation
+	name = "Scorching Desperation"
+	desc = "Those feelings only become more dull over time."
+	icon_state = "desperation"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
+	realized_ability = /obj/effect/proc_holder/ability/overheat

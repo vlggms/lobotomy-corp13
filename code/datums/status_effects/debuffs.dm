@@ -1069,3 +1069,89 @@
 	M.damage_coeff[BLACK_DAMAGE] /= 1.2
 
 #undef CARBON_HALFSPEED
+
+#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_burn
+	id = "lc_burn"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_burn
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/burn_res = 0
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_burn
+	name = "Burning"
+	desc = "You're on fire!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lc_burn"
+
+/datum/status_effect/stacking/lc_burn/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_burn/add_stacks(stacks_added)
+	..()
+	Update_Burn_Overlay(owner)
+	new_stack = TRUE
+
+//Deals true damage
+/datum/status_effect/stacking/lc_burn/tick()
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
+	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 50, TRUE)
+	Check_Resist(owner)
+	if(ishuman(owner))
+		owner.adjustBruteLoss(max(0, stacks - burn_res))
+	else
+		owner.adjustBruteLoss(stacks*4) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+	
+	//Deletes itself after 2 tick if no new burn stack was given
+	if(safety)
+		if(new_stack)
+			stacks = round(stacks/2)
+			new_stack = FALSE
+			Update_Burn_Overlay(owner)
+		else
+			qdel(src)
+
+//Check armor
+/datum/status_effect/stacking/lc_burn/proc/Check_Resist(mob/living/owner)
+	//I was hesistant to put a new var for this check in suit.dm, so I just check for each armor instead
+	var/mob/living/carbon/human/H = owner
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(C))
+		burn_res = 15
+	else if(istype(D))
+		burn_res = 25
+	else
+		burn_res = 0
+
+//Update burn appearance
+/datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
+	Check_Resist(owner)
+	if(stacks > burn_res && !(owner.on_fire) && ishuman(owner))
+		if(stacks >= 50)
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+		else
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+
+/datum/status_effect/stacking/lc_burn/on_remove()
+	if(!(owner.on_fire) && ishuman(owner))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+	..()
+
+//Mob Proc
+/mob/living/proc/apply_lc_burn(stacks)
+	var/datum/status_effect/stacking/lc_burn/B = src.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
+	else
+		B.add_stacks(stacks)
