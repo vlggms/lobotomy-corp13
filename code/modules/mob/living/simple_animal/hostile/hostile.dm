@@ -24,6 +24,7 @@
 
 	var/rapid_melee = 1			 //Number of melee attacks between each npc pool tick. Spread evenly.
 	var/melee_queue_distance = 4 //If target is close enough start preparing to hit them if we have rapid_melee enabled
+	var/melee_reach = 1			 // The range at which a mob can make melee attacks
 
 	var/ranged_message = "fires" //Fluff text for ranged mobs
 	var/ranged_cooldown = 0 //What the current cooldown on ranged attacks is, generally world.time + ranged_cooldown_time
@@ -323,8 +324,11 @@
 		GainPatience()
 
 /mob/living/simple_animal/hostile/proc/CheckAndAttack()
-	if(target && targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from) && !incapacitated())
+	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
+	if(target && targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
 		AttackingTarget()
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/proc/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
 	stop_automated_movement = 1
@@ -337,8 +341,9 @@
 			LoseTarget()
 			return 0
 		var/target_distance = get_dist(targets_from,target)
+		var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
 		if(ranged) //We ranged? Shoot at em
-			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
+			if(!in_range && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
 				OpenFire(target)
 		if(charger && (target_distance > minimum_distance) && (target_distance <= charge_distance))//Attempt to close the distance with a charge.
 			enter_charge(target)
@@ -354,7 +359,7 @@
 		else
 			Goto(target,move_to_delay,minimum_distance)
 		if(target)
-			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
+			if(targets_from && isturf(targets_from.loc) && in_range) //If they're next to us, attack
 				MeleeAction()
 			else
 				if(rapid_melee > 1 && target_distance <= melee_queue_distance)
@@ -399,6 +404,10 @@
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
 	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
 	in_melee = TRUE
+	if(ismob(target))
+		changeNext_move(SSnpcpool.wait / rapid_melee)
+		// Wow! that's a really weird variable to base attack speed on! Yes.
+		// It's because mobs typically attack once per this duration, because the subsystem calls handle_automated_movement() which then calls the attacking procs.
 	return target.attack_animal(src)
 
 /mob/living/simple_animal/hostile/proc/Aggro()
@@ -563,12 +572,16 @@
 		return 1
 
 
-/mob/living/simple_animal/hostile/RangedAttack(atom/A, params) //Player firing
+/mob/living/simple_animal/hostile/RangedAttack(atom/A, params) //Player firing and Player reach melee handling
+	. = ..()
+	if(!client)
+		return
+	target = A
+	if(CheckAndAttack(A))
+		return
 	if(ranged && ranged_cooldown <= world.time)
-		target = A
 		OpenFire(A)
-	return ..()
-
+	return
 
 ////// AI Status ///////
 /mob/living/simple_animal/hostile/proc/AICanContinue(list/possible_targets)
