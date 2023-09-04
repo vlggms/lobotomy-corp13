@@ -97,8 +97,6 @@
 	desc = "You always carry a stick of lipstick with you. Wouldn't want to get caught not looking beautiful."
 	value = 0
 	medical_record_text = "The patient always has has always shown up to their appointments wearing lipstick"
-	var/obj/item/lipstickobj
-	var/where
 
 /datum/quirk/lipstick/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
