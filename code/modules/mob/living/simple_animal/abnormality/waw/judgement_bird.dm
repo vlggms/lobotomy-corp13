@@ -42,9 +42,10 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
-	var/judgement_damage = 65
+	var/judgement_damage = 45
 	var/judgement_range = 12
 	var/judging = FALSE
+	var/list/birdlist = list()
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -89,6 +90,14 @@
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+
+		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
+			if(!CheckCombat())
+				var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(L))
+				birdlist+=V
+				V = new(get_turf(L))
+				birdlist+=V
+
 	icon_state = icon_living
 	judging = FALSE
 
@@ -103,3 +112,74 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user)
+	..()
+	if(CheckCombat())
+		judgement_damage = 65
+		return
+
+	var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(src))
+	birdlist+=V
+	V = new(get_turf(src))
+	birdlist+=V
+	V = new(get_turf(src))
+	birdlist+=V
+
+//Kill all burds
+//Burd down
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/death(gibbed)
+	for(var/mob/living/V in birdlist)
+		V.death()
+	..()
+
+//Runaway birds - Mini Simple Smile, 2 spawned after Jbird kills a player, and 2 on spawn.
+/mob/living/simple_animal/hostile/runawaybird
+	name = "runaway crow"
+	desc = "A crow that has a menacing appearance.."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "runaway_bird"
+	icon_living = "runaway_bird"
+	pass_flags = PASSTABLE
+	is_flying_animal = TRUE
+	density = FALSE
+	health = 100
+	maxHealth = 100
+	melee_damage_lower = 5
+	melee_damage_upper = 8
+	armortype = PALE_DAMAGE
+	melee_damage_type = PALE_DAMAGE
+	obj_damage = 0
+	environment_smash = ENVIRONMENT_SMASH_NONE
+	attack_verb_continuous = "pecks"
+	attack_verb_simple = "peck"
+	attack_sound = 'sound/weapons/fixer/generic/nail1.ogg'
+	mob_size = MOB_SIZE_TINY
+	del_on_death = TRUE
+	a_intent = INTENT_HELP
+	can_patrol = TRUE
+	ranged = 1
+	retreat_distance = 3
+	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/runawaybird/AttackingTarget()
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/L = target
+		L.Knockdown(20)
+		var/obj/item/held = L.get_active_held_item()
+		L.dropItemToGround(held) //Drop weapon
+
+/mob/living/simple_animal/hostile/runawaybird/patrol_select()
+	var/list/target_turfs = list()
+	for(var/mob/living/simple_animal/hostile/abnormality/judgement_bird/J in GLOB.mob_list)
+		if(J.z != z) // Not on our level
+			continue
+		if(get_dist(src, J) < 6) // Unnecessary for this distance
+			continue
+		target_turfs += get_turf(J)
+
+	var/turf/target_turf = pick(target_turfs)
+	if(istype(target_turf))
+		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		return
+	return ..()
