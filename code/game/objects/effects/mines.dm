@@ -36,18 +36,51 @@
 	visible_message("<span class='danger'>\The [src] beeps softly, indicating it is now active.<span>", vision_distance = COMBAT_MESSAGE_RANGE)
 
 /obj/effect/mine/Crossed(atom/movable/AM)
-	if(triggered || !isturf(loc) || !armed)
+	//Stops us for exploding more then once
+	if(safety_check(AM))
 		return
 	. = ..()
 
+	//If are atom is being thrown we have to check it futher
+	if(AM.throwing)
+		//Grab a dummy datum for its vars and match the throwing datum of are item
+		var/datum/thrownthing/T = AM.throwing
+		//We need to know are landmines location, so grab it
+		var/myturf = get_turf(src)
+		//Check are throwing datum's goal tile and see if its the same as are landmines tile.
+		if(T.target_turf == myturf)
+			//Both match up so trigger the landmine
+			triggermine()
+
+	//If are atom is flying over the mine, we dont trigger
 	if(AM.movement_type & FLYING)
+		return
+
+	//If the crossed atom isnt a mob, and has gotton this far, then we dont trigger are mine
+	if(!ismob(AM))
 		return
 
 	triggermine(AM)
 
 /obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+	//Stops us for exploding more then once
+	if(safety_check())
+		return
 	. = ..()
 	triggermine()
+
+/obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	//Stops us for exploding more then once
+	if(safety_check(AM))
+		return
+	. = ..()
+	triggermine()
+
+/obj/effect/mine/proc/safety_check(atom/movable/on_who)
+	//If we are already triggered, not ona  vaid turf or not armed, we dont explod!
+	if(triggered || !isturf(loc) || !armed || on_who && iseffect(on_who))
+		return TRUE
+	return FALSE
 
 /// When something sets off a mine
 /obj/effect/mine/proc/triggermine(atom/movable/triggerer)

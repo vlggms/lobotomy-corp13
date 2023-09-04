@@ -51,13 +51,6 @@
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
 
-	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/qoh_beam,
-		/datum/action/innate/abnormality_attack/qoh_beats,
-		/datum/action/innate/abnormality_attack/qoh_teleport,
-		/datum/action/innate/abnormality_attack/qoh_normal
-		)
-
 	var/chance_modifier = 1
 	var/death_counter = 0
 	/// Reduce qliphoth if not enough people have died for too long
@@ -84,31 +77,35 @@
 	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+		/datum/action/innate/abnormality_attack/qoh_beam,
+		/datum/action/innate/abnormality_attack/qoh_beats,
+		/datum/action/innate/abnormality_attack/qoh_teleport,
+		/datum/action/innate/abnormality_attack/qoh_normal
+		)
+
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
+	button_icon_state = "qoh_beam"
 	chosen_message = "<span class='colossus'>You will now charge up a giant magic beam.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/qoh_beats
 	name = "Arcana Beats"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "arrow"
+	button_icon_state = "qoh_beats"
 	chosen_message = "<span class='colossus'>You will now fire a wave of energy.</span>"
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/qoh_teleport
 	name = "Teleport"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "scroll"
+	button_icon_state = "qoh_teleport"
 	chosen_message = "<span class='colossus'>You will now teleport to a random enemy.</span>"
 	chosen_attack_num = 3
 
 /datum/action/innate/abnormality_attack/qoh_normal
 	name = "Normal Attack"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "lovestone"
+	button_icon_state = "qoh_normal"
 	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
 	chosen_attack_num = 5
 
@@ -160,7 +157,7 @@
 				BeamAttack(target)
 			if(2)
 				if(friendly)
-					ArcanaBeats(target)
+					ArcanaBeats(target)//only able to use beats if passive
 			if(3)
 				TryTeleport()
 			if(5)

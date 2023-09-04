@@ -50,19 +50,23 @@
 	var/list/fighting_quotes = list(
 				"Go ahead, freakshit! Do your best!",
 				"Pft. Go ahead and try, freakshit.",
-				"Good, something fun for one. Go ahead, freakshit.",
+				"Good, something fun for once. Go ahead, freakshit.",
 				"One of you finally has some balls.",
 				"Pathetic. You're too weak for this, you know?")
 
 	var/list/bored_quotes = list(
 				"Boring. C'mon, we both know a little roughhousing would be better.",
 				"Aw, what a wimp. Alright, you do your thing, pansy.",
-				"Yawn. Damn, you freakshits are lame.")
+				"Yawn. Damn, you freakshits are lame.",
+				"Commies. None of them have any fight in them, do they?",
+				"Why was I sent here if I was just going to sit around waiting all day?")
 
 	var/list/breach_quotes = list(
 				"Time to wipe you freakshits out!",
 				"HA! It's over for you freaks!",
-				"You're outmatched! Just drop dead already!")
+				"You're outmatched! Just drop dead already!",
+				"Eat shit, you fucking commies!",
+				"This is going to be fun!")
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = 6 + bloodlust

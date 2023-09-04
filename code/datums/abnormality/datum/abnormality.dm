@@ -187,7 +187,7 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
-	stored_boxes += pe
+	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
 
@@ -209,7 +209,7 @@
 		else
 			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
-		current?.OnQliphothChange(user, amount)
+		current?.OnQliphothChange(user, amount, pre_qlip)
 	if(console?.recorded)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"

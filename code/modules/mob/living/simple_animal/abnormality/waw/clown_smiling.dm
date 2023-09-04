@@ -65,6 +65,7 @@
 	..()
 	update_icon()
 	pixel_y = 0
+	base_pixel_y = 0
 	AddElement(/datum/element/waddling)
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 	GiveTarget(user)

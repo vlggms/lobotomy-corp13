@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(queued_abnormality)
 		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
-			Q.audible_message("<span class='notice'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
+			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
 			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 			Q.updateUsrDialog()
 		queued_abnormality = null
@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		SpawnAbno()
 	message_admins("[i] round-start abnormalities have been spawned.")
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
-		Q.visible_message("<span class='notice'>All the initial abnormalities have arrived. Have a nice day.</span>")
+		Q.audible_message("<span class='announce'>All the initial Abnormalities have arrived. Have a nice day Manager.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()

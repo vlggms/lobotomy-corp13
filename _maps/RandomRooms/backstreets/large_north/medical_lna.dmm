@@ -169,6 +169,7 @@
 "V" = (
 /obj/structure/table/glass,
 /obj/item/dnainjector/activator,
+/obj/item/disk/surgery,
 /turf/open/floor/holofloor/white,
 /area/city/backstreets_room)
 "X" = (

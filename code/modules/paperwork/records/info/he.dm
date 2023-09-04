@@ -177,10 +177,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	abno_code = "O-01-55"
 	abno_info = list(
-		"Successful work completion will cause a healing Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of people holding a token.",
-		"The Qliphoth Counter increased when an employee completed their work with the Token.",
+		"Successful work completion will cause a healing (HP/SP) Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of employees with the Token.",
+		"The Qliphoth Counter increased by 2 when an employee completed their work with the Token.",
 		"When an employee with Child of the Galaxy’s Token of Friendship died, the Qliphoth Counter lowered by 4.",
-		"When the Qliphoth Counter reached 0, all employees with the Token took massive BLACK damage.")
+		"When the Qliphoth Counter reached 0, all employees with the Token took BLACK damage proportional to the number of employees with the Token. If at least 2 employees had the Token, Child of the Galaxy will enter a state designated as \"Depressed\".",
+		"When he was Depressed, the work success rate was high, and the first employee who completed work with Child of the Galaxy received his E.G.O. Gift.")
 
 //Piscine Mermaid
 /obj/item/paper/fluff/info/he/pisc_mermaid
@@ -401,3 +402,22 @@
 		"When an employee panicked during work or had a Temperance level lower than 3, they were hypnotized and killed by the abnormality.",
 		"When an employee with Justice Level of 4 or higher completed the work, Missed Reaper's Qliphoth Counter lowered by 1.",
 		"When the Qliphoth counter reached 0, shadows covered an area near certain employees, dealing pale damage to those in contact with it.")
+
+//Headless Ichthys
+/obj/item/paper/fluff/info/he/headless_ichthys
+	abno_type = /mob/living/simple_animal/hostile/abnormality/headless_ichthys
+	abno_code = "O-02-159"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
+
+//Wayward Passenger
+/obj/item/paper/fluff/info/he/wayward
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
+	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
+		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
+		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
+		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")

@@ -24,5 +24,10 @@
 	name = "Open shrine - Small South"
 	room_id = "open_shrine_sn"
 	mappath = "_maps/RandomRooms/backstreets/small_south/open_shrine.dmm"
+  
+/datum/map_template/random_room/backstreets/small_south/jumpscare_closet
+	name = "15 Worms in a closet"
+	room_id = "jumpscare_closet"
+	mappath = "_maps/RandomRooms/backstreets/small_south/jumpscare_closet.dmm"
 
 

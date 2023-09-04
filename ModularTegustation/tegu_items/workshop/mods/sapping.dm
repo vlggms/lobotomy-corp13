@@ -7,7 +7,7 @@
 /obj/item/workshop_mod/sapping/red
 	name = "sapping red damage mod"
 	desc = "A workshop mod to turn a weapon into red damage"
-	modname = "releaving"
+	modname = "relieving"
 	color = "#FF0000"
 	weaponcolor = "#FF0000"
 	damagetype = RED_DAMAGE

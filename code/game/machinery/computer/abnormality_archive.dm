@@ -14,6 +14,7 @@
 	var/papermax = 10 //Recycle more paper
 	var/list/note_list
 	var/list/abno_data = list()
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/machinery/computer/abnormality_archive/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

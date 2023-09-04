@@ -301,7 +301,6 @@
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)
 	new /obj/item/flashlight/seclite(src)
 
-
 /obj/structure/closet/secure_closet/record
 	name = "\proper record officer's locker"
 	req_access = list(ACCESS_COMMAND)
@@ -309,6 +308,8 @@
 
 /obj/structure/closet/secure_closet/record/PopulateContents()
 	..()
-	new /obj/item/records/timestop (src)
-	new /obj/item/records/information (src)
-	new /obj/item/records/abnodelay (src)
+	new /obj/item/records/timestop(src)
+	new /obj/item/records/information(src)
+	new /obj/item/records/abnodelay(src)
+	new /obj/item/records/meltdown_extend(src)
+

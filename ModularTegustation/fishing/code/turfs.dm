@@ -1,4 +1,5 @@
-/turf/open/water/deep //you will sink in this. collective branch for both saltwater and freshwater turfs.
+//you will sink in this. collective branch for both saltwater and freshwater turfs.
+/turf/open/water/deep
 	name = "water"
 	desc = "Deep Water."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -8,8 +9,12 @@
 	density = TRUE
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = 'sound/effects/footstep/water1.ogg'
-	//Turf that living mobs like hostiles and humans are dropped off at.
+	/*Turf that living mobs like hostiles and humans are dropped off at.
+		This is a variable because some people may want water to work as
+		a portal to somewhere.*/
 	var/turf/target_turf
+	//If the target_turf is randomized.
+	var/static_target = FALSE
 	//Sound delay so we dont get splash spam.
 	var/sound_delay = 0
 	//Lootlist of things for fishing.
@@ -31,17 +36,19 @@
 		/obj/effect/light_emitter/tendril,
 		/obj/effect/collapse,
 		/obj/effect/particle_effect/ion_trails,
-		/obj/effect/dummy/phased_mob
+		/obj/effect/dummy/phased_mob,
+		/obj/effect/yinyang_dragon
 		))
 
 /turf/open/water/deep/Initialize()
 	. = ..()
-	target_turf = pick(GLOB.department_centers)
+	WashedOnTheShore()
 
 /turf/open/water/deep/CanAllowThrough(atom/movable/AM, turf/target)
 	. = ..()
 	return TRUE
 
+//For fishing nets.
 /turf/open/water/deep/attackby(obj/item/C, mob/user, params)
 	if(istype(C, /obj/item/fishing_net) && params)
 		to_chat(user, "<span class='notice'>You start setting up the [C].</span>")
@@ -78,7 +85,16 @@
 	if(sound_delay <= world.time)
 		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 		sound_delay = world.time + (3 SECONDS)
+		WashedOnTheShore()
 	thing.forceMove(target_turf)
+
+//Proc to randomize target_turf
+/turf/open/water/deep/proc/WashedOnTheShore()
+	if(!static_target)
+		if(GLOB.department_centers.len > 0)
+			target_turf = pick(GLOB.department_centers)
+		else
+			target_turf = get_turf(src)
 
 	//How this works is that it returns a list with a divided chance for anything lower than the maximum
 /turf/open/water/deep/proc/ReturnChanceList(maximum = FISH_RARITY_BASIC)
@@ -105,9 +121,9 @@
 		/obj/item/food/fish/fresh_water/yang = FISH_RARITY_VERY_RARE,
 		/obj/item/food/fish/emulsijack = FISH_RARITY_GOOD_LUCK_FINDING_THIS,
 		//random things
-		/obj/item/food/dough = 800,
 		/obj/item/stack/spacecash/c1 = 700,
 		/obj/item/stack/fish_points = 600,
+		/obj/item/food/dough = 500,
 		/obj/item/stack/sheet/leather = 500,
 		/obj/item/food/canned/peaches = 300,
 		/obj/item/food/breadslice/moldy = 300,

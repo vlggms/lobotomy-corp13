@@ -15,6 +15,8 @@
 	break_message = "<span class='notice'>The net falls apart!</span>"
 	break_sound = 'sound/items/wirecutter.ogg'
 	debris = list(/obj/item/fishing_net = 1)
+	var/fishin_cooldown = 25 SECONDS
+	var/fishin_cooldown_delay = 1 SECONDS
 	var/list/stuff_to_catch
 	var/turf/open/water/deep/open_waters
 
@@ -25,15 +27,18 @@
 		qdel(src)
 		return
 	stuff_to_catch = open_waters.ReturnChanceList()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/CatchFish)
+	//will proc at least 5 times before the loop stops.
+	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
 
 /obj/structure/destructible/fishing_net/examine(mob/user)
 	. = ..()
-	if(contents.len >= 5)
+	if(contents.len > 0)
 		. += "<span class='notice'>[contents.len]/5 things are caught in the [src].</span>"
 
 /obj/structure/destructible/fishing_net/AltClick(mob/user)
 	. = ..()
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
 	EmptyNet(get_turf(user))
 
 /obj/structure/destructible/fishing_net/proc/EmptyNet(turf/dropoff)
@@ -43,10 +48,11 @@
 	qdel(src)
 
 /obj/structure/destructible/fishing_net/proc/CatchFish()
-	SIGNAL_HANDLER
 	if(contents.len >= 5 || !open_waters)
 		return
 	var/atom/thing_caught = pickweight(stuff_to_catch)
 	new thing_caught(src)
 	icon_state = "trawling_net_full"
 	update_icon()
+	fishin_cooldown_delay = rand(0, 5) SECONDS
+	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)

@@ -621,7 +621,7 @@
 	DELAY 10
 	SAY At Lobotomy Corporation, we are primarily concerned with 4 key attributes of employees. They are Fortitude, Prudence, Temperance, and Justice.
 	DELAY 50
-	SAY To view your stats, open the IC tab in the upper-right corner and click "Show Attributes".
+	SAY To view your stats, open the IC tab in the upper-right corner and click "View Attributes".
 	DELAY 50
 	SAY Fortitude increases your maximum health (HP), and Prudence increases your maximum sanity (SP).
 	DELAY 40
@@ -776,7 +776,7 @@
 	DELAY 55
 	SAY If need be, you may utilize this feature if you find yourself in immediate danger due to external threats.
 	DELAY 40
-	SAY Completing works will raises your Stats, which you can view through "IC" Tab > "Show Attributes".
+	SAY Completing works will raises your Stats, which you can view through "IC" Tab > "View Attributes".
 	DELAY 40
 	SAY Don't forget to wear the appropriate EGO while working to minimize injury. Return them to the racks when you are finished.
 	DELAY 45"}

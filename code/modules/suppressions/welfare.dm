@@ -22,7 +22,7 @@
 		PALE_DAMAGE = 1,
 		)
 
-/datum/suppression/welfare/Run(run_white = TRUE)
+/datum/suppression/welfare/Run(run_white = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
@@ -219,7 +219,7 @@
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
 
-/datum/suppression/welfare/Destroy()
+/datum/welfare_reward_tracker/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	return ..()
 
