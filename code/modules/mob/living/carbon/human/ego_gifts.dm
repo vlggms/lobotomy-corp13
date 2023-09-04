@@ -1184,6 +1184,14 @@
 	justice_bonus = 10
 	slot = HELMET
 
+/datum/ego_gifts/inconsolable
+	name = "Inconsolable Grief"
+	icon_state = "inconsolable"
+	fortitude_bonus = 10
+	prudence_bonus = -5
+	justice_bonus = 5
+	slot = EYE
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
