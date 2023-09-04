@@ -742,6 +742,13 @@
 	temperance_bonus = 2
 	slot = MOUTH_2
 
+/datum/ego_gifts/warp
+	name = "Blue Zippo Lighter"
+	icon_state = "warp"
+	fortitude_bonus  = 4
+	justice_bonus = 2
+	slot = HAND_2
+
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
 	name = "Correctional"

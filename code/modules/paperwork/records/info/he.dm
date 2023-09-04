@@ -410,3 +410,14 @@
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
+
+//Wayward Passenger
+/obj/item/paper/fluff/info/he/wayward
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
+	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
+		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
+		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
+		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
