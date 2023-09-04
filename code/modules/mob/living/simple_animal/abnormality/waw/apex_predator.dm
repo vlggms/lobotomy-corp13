@@ -10,6 +10,7 @@
 
 	maxHealth = 1600
 	health = 1600
+	density = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	ranged = TRUE
 	melee_damage_lower = 30
@@ -132,10 +133,12 @@
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Cloak()
 	alpha = 10
 	revealed = FALSE
+	density = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Decloak()
 	alpha = 255
 	revealed = TRUE
+	density = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/OpenFire()
 	if(!revealed)
