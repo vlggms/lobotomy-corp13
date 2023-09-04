@@ -257,6 +257,7 @@
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
 	move_to_delay = 5 - FLOOR(gear / 3, 1)
+	UpdateSpeed()
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()

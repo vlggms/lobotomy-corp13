@@ -302,6 +302,7 @@
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
 	move_to_delay = 3
+	UpdateSpeed()
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
@@ -351,6 +352,7 @@
 	med_hud_set_status()
 	update_health_hud()
 	move_to_delay = 2.5//same as awakened blue smock
+	UpdateSpeed()
 	revive(full_heal = TRUE, admin_revive = FALSE)
 	if(H)
 		desc = "The apple ruptured and a swarm of maggots crawled inside.. wait a minute, that's [H.real_name]'s face."

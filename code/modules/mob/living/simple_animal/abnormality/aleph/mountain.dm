@@ -236,6 +236,7 @@
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
 			update_simplemob_varspeed()
+		UpdateSpeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -260,6 +261,7 @@
 		move_to_delay = 4
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
+	UpdateSpeed()
 	update_simplemob_varspeed()
 	return TRUE
 
