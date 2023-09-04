@@ -656,11 +656,10 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	pixel_x = -16
 	maxHealth = 1000
 	health = 1000
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
 	armortype = RED_DAMAGE
-	rapid_melee = 0.5
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "grapples"
 	attack_verb_simple = "grapple"
@@ -706,16 +705,17 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(countering)
 		return
 	if(grab_ready)
-		if(!istype(target, /mob/living/carbon/human))
-			return ..()
-		return CounterGrab(target)
+		return OpenFire(target)
 	return ..()
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/OpenFire(target)
 	if(countering)
 		return
+	if(!istype(target, /mob/living/carbon/human))
+		return
 	if(get_dist(target, src) <= 2 && grab_ready)
-		return AttackingTarget()
+		CounterGrab(target)
+		return
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
