@@ -1,11 +1,11 @@
 /obj/item/reagent_containers/hypospray/emais
 	name = "\improper E.M.A.I.S"
-	desc = "The Emergency Medical Aid Injector and Synthesiser is a medical device used in L-Corp to quickly administer drugs during emergencies."
+	desc = "The Emergency Medical Aid Injector and Synthesiser is a medical device used by L Corp to quickly administer drugs during emergencies."
 	icon_state = "clerkhypo"
 	reagent_flags = NONE
 	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
-	var/chem_capacity = 30
+	var/chem_capacity = 15
 	var/list/datum/reagents/reagent_list = list()
 	var/list/datum/hypo_upgrade/upgrades = list()
 	var/list/modes = list()
