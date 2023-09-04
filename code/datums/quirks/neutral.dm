@@ -103,7 +103,6 @@
 /datum/quirk/lipstick/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/lipstick/random/lipstick = new(get_turf(H))
-	//lipstickobj = new lipstick(get_turf(quirk_holder))
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
