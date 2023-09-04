@@ -38,8 +38,7 @@
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-		for(var/mob/living/L in T.contents)
-			L.apply_damage(ranged_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, PALE_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
@@ -95,12 +94,7 @@
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
-			for(var/mob/living/L in T.contents)
-				if(L == user)
-					continue
-				if(L.stat >= DEAD)
-					continue
-				L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			user.HurtInTurf(T, list(), 50, PALE_DAMAGE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -613,7 +607,7 @@
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
 /obj/item/ego_weapon/seasons
-	name = "Season's Greetings"
+	name = "Seasons Greetings"
 	desc = "If you are reading this let a developer know."
 	special = "This E.G.O. will transform to match the seasons."
 	icon_state = "spring"
@@ -629,12 +623,13 @@
 		"spring" = list(80, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
 		"A gigantic, thorny bouquet of roses."),
 		"summer" = list(120, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
-		"Looks some sort of axe or bladed mace. An unbearable amount of head comes off of it."),
+		"Looks some sort of axe or bladed mace. An unbearable amount of heat comes off of it."),
 		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
 		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
 		"winter" = list(60, 1.2, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
 		"This odd weapon is akin to the biting cold of the north.")
 		)
+	var/transforming = TRUE
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -645,7 +640,8 @@
 /obj/item/ego_weapon/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	ChangeSeasons()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	Transform()
 
 /obj/item/ego_weapon/seasons/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -657,20 +653,23 @@
 	. = ..()
 	current_holder = null
 
-/obj/item/ego_weapon/seasons/proc/ChangeSeasons()
-	switch(current_season)
-		if("spring")
-			current_season = "summer"
-		if("summer")
-			current_season = "fall"
-		if("fall")
-			current_season = "winter"
-		if("winter")
-			current_season = "spring"
-	addtimer(CALLBACK(src, .proc/ChangeSeasons), 10 MINUTES) //this is hacky but it will work until the abnormality is released
-	Transform()
+/obj/item/ego_weapon/seasons/attack_self(mob/user)
+	..()
+	if(transforming)
+		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		transforming = FALSE
+		special = "This E.G.O. will not transform to match the seasons."
+		return
+	if(!transforming)
+		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		transforming = TRUE
+		special = "This E.G.O. will transform to match the seasons."
+		return
 
 /obj/item/ego_weapon/seasons/proc/Transform()
+	if(!transforming)
+		return
+	current_season = SSlobotomy_events.current_season
 	icon_state = current_season
 	if(current_season == "summer")
 		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -716,7 +715,7 @@
 	desc = "The fragile human mind is fated to twist and distort."
 	special = "This weapon requires two hands to use and always blocks ranged attacks."
 	icon_state = "distortion"
-	force = 210 //Just make sure you don't hit anyone!
+	force = 180 //Just make sure you don't hit anyone!
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -930,3 +929,36 @@
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "spicebush"
 	duration = 10
+
+
+//temporary
+/obj/item/ego_weapon/willing
+	name = "the flesh is willing"
+	desc = "And really nothing will stop it."
+	special = "This weapon has knockback."
+	icon_state = "willing"
+	force = 105	//Still lower DPS
+	attack_speed = 1.4
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+
+/obj/item/ego_weapon/willing/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+

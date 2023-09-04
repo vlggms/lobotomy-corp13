@@ -20,7 +20,6 @@
 	var/short_desc = "The mapper forgot to set this!"
 	var/flavour_text = ""
 	var/important_info = ""
-	var/faction = null
 	var/permanent = FALSE	//If true, the spawner will not disappear upon running out of uses.
 	var/random = FALSE		//Don't set a name or gender, just go random
 	var/antagonist_type
@@ -35,6 +34,7 @@
 	var/show_flavour = TRUE
 	var/banType = ROLE_LAVALAND
 	var/ghost_usable = TRUE
+	var/list/faction
 
 /obj/effect/mob_spawn/proc/spawn_user_as_role(mob/user)
 	if(!SSticker.HasRoundStarted() || !loc)
@@ -102,7 +102,12 @@
 			var/mob/living/carbon/human/hoomie = M
 			hoomie.body_type = mob_gender
 	if(faction)
-		M.faction = list(faction)
+		/*This used to be list(faction) replacing the entire mob faction
+			with ONE faction, but now the faction is a list...
+			I considered making this a LAZYADD(M.faction, faction)
+			but there may be some roles that dont want a mob to be
+			neutral automatically. -IP */
+		M.faction = faction
 	if(disease)
 		M.ForceContractDisease(new disease)
 	if(death)

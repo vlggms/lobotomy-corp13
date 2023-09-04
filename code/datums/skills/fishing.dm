@@ -8,7 +8,7 @@
 /datum/skill/fishing/New()
 	. = ..() //may have to change these to be Lobotomy Corp lore later instead of general mythology
 	levelUpMessages[1] = "<span class='nicegreen'>You understand the stillness that calms your prey...</span>"
-	levelUpMessages[2] = "<span class='nicegreen'>Your fishing mastery seems to give you some insight into the aquatic world...</span>"
+	levelUpMessages[2] = "<span class='nicegreen'>Your fishing mastery gives you some insight into the aquatic world...</span>"
 	levelUpMessages[3] = "<span class='nicegreen'>For a moment you swear you saw a large shrimp head watching you from the water...</span>"
 	levelUpMessages[4] = "<span class='nicegreen'>One of the fish you catch tells you about how a signet ring that could command demons was once swallowed by a fish...</span>"
 	levelUpMessages[5] = "<span class='nicegreen'>Your recent catch tells you of Nyami Nyami and how they cared for the Tonga people...</span>"

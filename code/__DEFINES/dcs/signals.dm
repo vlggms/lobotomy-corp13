@@ -1036,8 +1036,15 @@
 ///from mob/living/carbon/human/UnarmedAttack(): (atom/target, proximity)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"
 
+/* moved to code/__DEFINES/dcs/signals_fish.dm
+// Aquarium related signals
+#define COMSIG_AQUARIUM_BEFORE_INSERT_CHECK "aquarium_about_to_be_inserted"
+#define COMSIG_AQUARIUM_SURFACE_CHANGED "aquarium_surface_changed"
+#define COMSIG_AQUARIUM_FLUID_CHANGED "aquarium_fluid_changed"
+*/
+
 /// generally called before temporary non-parallel animate()s on the atom (animation_duration)
-#define COMSIG_ATOM_TEMPORARY_ANIMATION_START "atom_temp_animate_start"
+#define COMSIG_ATOM_TEMPORARY_ANIMATION_START "atom_temp_animate_start" // LC13 addition: MODULE ID: FISHING
 
 // Abnormality Work Signals
 #define COMSIG_WORK_STARTED "work_started" // Work Start/Attempt
@@ -1050,3 +1057,5 @@
 
 ///Whenever FearEffect() is called on a human
 #define COMSIG_FEAR_EFFECT "fear_effect"
+///Whenever the season is changed through god of the seasons or its E.G.O.
+#define COMSIG_GLOB_SEASON_CHANGE "!change_season"

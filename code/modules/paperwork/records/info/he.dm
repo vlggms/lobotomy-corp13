@@ -177,10 +177,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	abno_code = "O-01-55"
 	abno_info = list(
-		"Successful work completion will cause a healing Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of people holding a token.",
-		"The Qliphoth Counter increased when an employee completed their work with the Token.",
+		"Successful work completion will cause a healing (HP/SP) Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of employees with the Token.",
+		"The Qliphoth Counter increased by 2 when an employee completed their work with the Token.",
 		"When an employee with Child of the Galaxy’s Token of Friendship died, the Qliphoth Counter lowered by 4.",
-		"When the Qliphoth Counter reached 0, all employees with the Token took massive BLACK damage.")
+		"When the Qliphoth Counter reached 0, all employees with the Token took BLACK damage proportional to the number of employees with the Token. If at least 2 employees had the Token, Child of the Galaxy will enter a state designated as \"Depressed\".",
+		"When he was Depressed, the work success rate was high, and the first employee who completed work with Child of the Galaxy received his E.G.O. Gift.")
 
 //Piscine Mermaid
 /obj/item/paper/fluff/info/he/pisc_mermaid
@@ -380,3 +381,32 @@
 		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
 		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
+
+//Pinocchio
+/obj/item/paper/fluff/info/he/pinocchio
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pinocchio
+	abno_code = "F-04-160"
+	abno_info = list(
+		"When work was completed, the abnormality would attempt to decieve the next employee at a small chance.",
+		"The abnormality's trick involved changing the abnormality console to display invalid types of work.",
+		"When the employee was successfully decieved, the Qliphoth counter was reduced by 1.",
+		"When the abnormality was caught telling lies successfully, the abnormality console returned to normal.",
+		"A baseless accusation will reduce the Qliphoth counter by 1.",
+		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")
+
+//Missed Reaper
+/obj/item/paper/fluff/info/he/missed_reaper
+	abno_type = /mob/living/simple_animal/hostile/abnormality/missed_reaper
+	abno_code = "O-01-13"
+	abno_info = list(
+		"When an employee panicked during work or had a Temperance level lower than 3, they were hypnotized and killed by the abnormality.",
+		"When an employee with Justice Level of 4 or higher completed the work, Missed Reaper's Qliphoth Counter lowered by 1.",
+		"When the Qliphoth counter reached 0, shadows covered an area near certain employees, dealing pale damage to those in contact with it.")
+
+//Headless Ichthys
+/obj/item/paper/fluff/info/he/headless_ichthys
+	abno_type = /mob/living/simple_animal/hostile/abnormality/headless_ichthys
+	abno_code = "O-02-159"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")

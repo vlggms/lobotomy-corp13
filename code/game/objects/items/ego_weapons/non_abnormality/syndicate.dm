@@ -71,7 +71,6 @@
 	..()
 	force = initial(force)
 
-
 //Blade Lineage - Grade 4, use in hand to immobilize and give you a massive damage boost
 /obj/item/ego_weapon/city/bladelineage
 	name = "blade lineage katana"
@@ -92,6 +91,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/ready = TRUE
+	var/multiplier = 5
 
 
 /obj/item/ego_weapon/city/bladelineage/attack_self(mob/living/carbon/human/user)
@@ -104,7 +104,7 @@
 	ready = FALSE
 	user.Immobilize(3 SECONDS)
 	to_chat(user, "<span class='userdanger'>Yield my flesh.</span>")
-	force*=5
+	force*=multiplier
 
 	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
 

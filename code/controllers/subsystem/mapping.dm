@@ -122,6 +122,13 @@ SUBSYSTEM_DEF(mapping)
 	if (space_ruins.len)
 		seedRuins(space_ruins, CONFIG_GET(number/space_budget), list(/area/space), space_ruins_templates)
 	loading_ruins = FALSE
+
+	//Load Tutorial
+	var/list/errorList = list()
+	SSmapping.LoadGroup(errorList, "Tutorial", "map_files/generic", "Tutorial_Zone.dmm", default_traits = ZTRAITS_TUTORIAL, silent = TRUE)
+	if(errorList.len)	//tutorial failed to load
+		message_admins("The tutorial failed to load!")
+		log_game("The tutorial failed to load!")
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))

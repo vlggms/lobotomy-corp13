@@ -91,6 +91,14 @@
 	result = /obj/item/food/fishfry
 	subcategory = CAT_MEAT
 
+/datum/crafting_recipe/food/sashimi
+	name = "Sashimi"
+	reqs = list(
+		/obj/item/food/carpmeat = 1
+	)
+	result = /obj/item/food/sashimi
+	subcategory = CAT_MEAT
+
 ////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
 
 /datum/crafting_recipe/food/spidereggsham

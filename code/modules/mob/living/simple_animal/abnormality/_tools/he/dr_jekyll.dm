@@ -5,6 +5,11 @@
 	icon_state = "dr_jekyll"
 	var/list/users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/hyde,
+		/datum/ego_datum/armor/hyde
+		)
+
 /obj/structure/toolabnormality/dr_jekyll/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 10, user))

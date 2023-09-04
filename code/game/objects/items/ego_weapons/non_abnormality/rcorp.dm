@@ -70,7 +70,7 @@
 	name = "R-corp reindeer staff"
 	desc = "A staff used by the reindeer team. The ranged attack does black damage."
 	icon_state = "rcorp_staff"
-	inhand_icon_state = "staffofanimation"
+	inhand_icon_state = "staffofstorms"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	force = 40
@@ -100,8 +100,7 @@
 	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
 	for(var/turf/open/T in range(target_turf, 0))
 		new /obj/effect/temp_visual/smash1(T)
-		for(var/mob/living/L in T)
-			L.apply_damage(force, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		user.HurtInTurf(T, list(), force, BLACK_DAMAGE)
 
 /obj/item/ego_weapon/city/reindeer/captain
 	name = "R-corp reindeer captain staff"
@@ -145,7 +144,7 @@
 	pin = /obj/item/firing_pin/implant/mindshield
 	//None of these fucking guys can use Rcorp guns
 	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
-		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbit/Initialize()
 	. = ..()
@@ -209,8 +208,8 @@
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin
 	//None of these fucking guys can use Rcorp guns
-	var/list/banned_roles = list("Raven Squad Captain", "Reindeer Squad Captain","Rhino Squad Captain",
-		"R-Corp Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+	var/list/banned_roles = list("Reindeer Squad Captain","Rhino Squad Captain",
+		"R-Corp Berserker Reindeer","R-Corp Medical Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
 
 /obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(user.mind)
@@ -296,8 +295,7 @@
 
 	var/targetfound
 	playsound(target_turf, 'sound/weapons/rapierhit.ogg', 100, TRUE)
-	for(var/mob/living/L in target_turf.contents)
-		L.apply_damage(force*2, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(LAZYLEN(user.HurtInTurf(target_turf, list(), force*2, PALE_DAMAGE)))
 		targetfound = TRUE
 	//So you can't fucking teleport into a place where you are immune to all damage
 	if(!targetfound)

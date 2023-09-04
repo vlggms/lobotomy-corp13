@@ -10,7 +10,6 @@
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800
 	move_to_delay = 7
-	speed = 7
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8
@@ -170,10 +169,7 @@
 			if(get_dist(src, T) > i)
 				continue
 			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			for(var/mob/living/L in T)
-				if(L == src)
-					continue
-				L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			HurtInTurf(T, list(), explosion_damage, WHITE_DAMAGE, hurt_mechs = TRUE)
 			all_turfs -= T
 		SLEEP_CHECK_DEATH(1)
 

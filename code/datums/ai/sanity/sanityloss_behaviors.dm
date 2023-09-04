@@ -1,32 +1,17 @@
-/datum/ai_behavior/say_line/insanity_murder
-	lines = list(
-				"I won't die alone...",
-				"You left me behind!",
-				"You are the problem, YOU!!",
-				"I'll destroy everything...",
-				"It will end quickly, so relax. I’ll free you from this prison we call flesh."
-				)
+/datum/ai_behavior/say_line/insanity_lines
+	var/line_type = "murder"
 
-/datum/ai_behavior/say_line/insanity_suicide
-	lines = list(
-				"It's all my fault. It’s my responsibility...",
-				"I can hear someone. It’s the sound of back home. I just can’t stop hearing it",
-				"There’s no hope left. My mind’s collapsing. Everything’s collapsing...",
-				"We will all sink and perish, devoured by madness...",
-				"There is no hope left...",
-				"It will all end, soon..."
-				)
+/datum/ai_behavior/say_line/insanity_lines/New()
+	. = ..()
+	lines = strings("insanity.json", line_type)
 
-/datum/ai_behavior/say_line/insanity_wander
-	lines = list(
-				"Manager?! Manager! Open the emergency door! PLEASE LET ME OUT!!",
-				"HELP ME!!",
-				"DON'T SEND ME IN THERE! DON’T KILL ME!!",
-				"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
-				"I will never get out of here..."
-				)
+/datum/ai_behavior/say_line/insanity_lines/insanity_suicide
+	line_type = "suicide"
 
-/datum/ai_behavior/say_line/insanity_wander/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/say_line/insanity_lines/insanity_wander
+	line_type = "wander"
+
+/datum/ai_behavior/say_line/insanity_lines/insanity_wander/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
 	var/sanity_damage = get_user_level(living_pawn) * 10
@@ -37,14 +22,8 @@
 			continue
 		H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 
-/datum/ai_behavior/say_line/insanity_release
-	lines = list(
-				"Let us find peace from them.",
-				"I’m so sorry dear friends, I’ll let you out now.",
-				"We will find our redemption through the Abnormalities.",
-				"Let us reach the paradise beyond death, together with the Abnormalities.",
-				"Let me introduce you to my imaginary friends! They asked me to! They’re screaming to be let out!"
-				)
+/datum/ai_behavior/say_line/insanity_lines/insanity_release
+	line_type = "release"
 
 /datum/ai_behavior/insanity_attack_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
@@ -55,7 +34,7 @@
 	var/mob/living/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	var/mob/living/living_pawn = controller.pawn
 
-	if(!target || target.stat == DEAD)
+	if(!target || target.stat == DEAD || target.status_flags & GODMODE)
 		finish_action(controller, TRUE) //Target == owned
 
 	if(isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))

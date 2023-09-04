@@ -235,7 +235,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	obj_damage = 400
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	speed = 4
 	move_to_delay = 5
 	pixel_x = -8
 	base_pixel_x = -8
@@ -319,12 +318,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(L.stat == DEAD)
-				continue
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
+		HurtInTurf(T, list(), scythe_damage, scythe_damage_type, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/scythe_spell.ogg', 75, FALSE, 5)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
@@ -333,7 +327,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	name = "guardian apostle"
 	health = 3000
 	maxHealth = 3000
-	speed = 5
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
 	armortype = PALE_DAMAGE
@@ -371,7 +364,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/gibbed = FALSE
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
+		for(var/mob/living/L in T) // Not changing this one because it notable does not gib pre-dead bodies, only living ones.
 			if(L.stat == DEAD)
 				continue
 			if(faction_check_mob(L))
@@ -458,15 +451,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-		for(var/mob/living/L in TF)
-			if(!faction_check_mob(L))
-				if(L in been_hit)
-					continue
-				visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-				L.apply_damage(spear_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/cleave(get_turf(L))
-				if(!(L in been_hit))
-					been_hit += L
+		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>", "<span class='nicegreen'>You impaled heretic [L]!</span>")
+			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/apostle/staff

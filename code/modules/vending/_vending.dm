@@ -302,8 +302,6 @@ GLOBAL_LIST_EMPTY(vending_products)
  * * startempty - should we set vending_product record amount from the product list (so it's prefilled at roundstart)
  */
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
-	default_price = round(initial(default_price) * SSeconomy.inflation_value())
-	extra_price = round(initial(extra_price) * SSeconomy.inflation_value())
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		if(isnull(amount))

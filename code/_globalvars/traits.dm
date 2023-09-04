@@ -182,7 +182,8 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		"TRAIT_ARTIST" = TRAIT_ARTIST,
 		"TRAIT_GUNS" = TRAIT_GUNS,               // used for the "no guns" challenge
 		"TRAIT_HEALING" = TRAIT_HEALING,          // used for the "no medipens" challenge
-		"TRAIT_FLUFFY_TONGUE" = TRAIT_FLUFFY_TONGUE
+		"TRAIT_FLUFFY_TONGUE" = TRAIT_FLUFFY_TONGUE,
+		"TRAIT_GRAB_IMMUNE" = TRAIT_GRAB_IMMUNE //used to prevent grab-related exploits
 	),
 	/obj/item/bodypart = list(
 		"TRAIT_PARALYSIS" = TRAIT_PARALYSIS

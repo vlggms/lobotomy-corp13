@@ -58,7 +58,7 @@
 				/obj/item/gun/ego_gun/sodasmg,
 				/obj/item/gun/ego_gun/sodashotty,
 				/obj/item/gun/ego_gun/sodarifle,
-				/obj/item/clothing/suit/armor/ego_gear/soda,
+				/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
 				)
@@ -104,11 +104,15 @@
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/proc/pissed()
 	var/turf/W = pick(GLOB.department_centers)
 	for(var/turf/T in orange(1, W))
-		new /obj/effect/temp_visual/dir_setting/cult/phase
+		var/obj/structure/closet/supplypod/extractionpod/pod = new()
+		pod.explosionSize = list(0,0,0,0)
 		if(prob(70))
-			new /mob/living/simple_animal/hostile/shrimp(T)
+			new /mob/living/simple_animal/hostile/shrimp(pod)
 		else
-			new /mob/living/simple_animal/hostile/shrimp_soldier(T)
+			new /mob/living/simple_animal/hostile/shrimp_soldier(pod)
+
+		new /obj/effect/pod_landingzone(T, pod)
+		stoplag(2)
 
 //repeat lines
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/funpet()

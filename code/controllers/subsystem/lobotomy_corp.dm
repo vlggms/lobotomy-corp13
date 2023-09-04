@@ -72,6 +72,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/box_goal = 0 // Initialized later
 	// Where we reached our goal
 	var/goal_reached = FALSE
+	/// Multiplier to PE earned from working on abnormalities
+	var/box_work_multiplier = 1
 	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
 	/// Amount of abnormalities that agents achieved full understanding on
@@ -83,6 +85,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
+	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.15
@@ -101,13 +104,21 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	return TRUE
 
 // Called when any normal midnight ends
-/datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions()
+/datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
 	if(istype(core_suppression))
 		return
 	if(!LAZYLEN(GLOB.abnormality_auxiliary_consoles)) // There's no consoles, for some reason
 		message_admins("Tried to pick potential core suppressions, but there was no auxiliary consoles! Fix it!")
 		return
 	var/list/cores = subtypesof(/datum/suppression)
+	// Remove cores that don't fit requirements
+	for(var/core_type in cores)
+		var/datum/suppression/C = core_type
+		if(!extra_core && initial(C.after_midnight))
+			cores -= core_type
+			continue
+		if(extra_core && !initial(C.after_midnight))
+			cores -= core_type
 	for(var/i = 1 to max_core_options)
 		if(!LAZYLEN(cores))
 			break
@@ -116,26 +127,36 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		cores -= core_type
 	if(!LAZYLEN(available_core_suppressions))
 		return
-	priority_announce("Sephirah Core Suppressions have been made available via auxiliary managerial consoles.", \
-					"Sephirah Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
+	// This solution is hacky and extra dirty I hate it
+	if(extra_core)
+		addtimer(CALLBACK(src, .proc/WarnBeforeReset), (4 MINUTES))
+	if(announce)
+		var/announce_text = "[extra_core ? "Extra" : "Sephirah"] Core Suppressions have been made available via auxiliary managerial consoles."
+		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
+		priority_announce(announce_text, \
+						announce_title, sound = 'sound/machines/dun_don_alert.ogg')
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
-		A.audible_message("<span class='notice'>Core Suppressions are now available!</span>")
+		A.audible_message("<span class='notice'>[extra_core ? "Extra " : ""]Core Suppressions are now available!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 		A.updateUsrDialog()
-	addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, FALSE), 4 MINUTES)
 
-/datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(for_real = FALSE)
-	if(istype(core_suppression))
+/datum/controller/subsystem/lobotomy_corp/proc/WarnBeforeReset()
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
+		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+	addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, TRUE), (1 MINUTES))
+
+/datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
+	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
 		return
-	if(!for_real) // Just a warning for manager to pick one fast
-		for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
-			A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
-			playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
-		addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, TRUE), 1 MINUTES)
-		return
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='userdanger'>Core Suppression options have been disabled for this shift!</span>")
+		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+		A.updateUsrDialog()
 	available_core_suppressions = list()
-	priority_announce("Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
-					"Sephirah Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
+	if(announce)
+		priority_announce("Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
+						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
 
 /datum/controller/subsystem/lobotomy_corp/proc/NewAbnormality(datum/abnormality/new_abno)
 	if(!istype(new_abno))
@@ -202,9 +223,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
-		if(isliving(player))
+		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
 			player_count += 1
-	qliphoth_max = 3 + round(player_count * 0.65)
+	qliphoth_max = (player_count > 1 ? 4 : 3) + round(player_count * 0.8) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))

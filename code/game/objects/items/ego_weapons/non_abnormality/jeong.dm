@@ -3,7 +3,7 @@
 /obj/item/ego_weapon/city/jeong
 	name = "jeong's office wakizashi"
 	desc = "A small blade, easy to keep with you. It would be nice to have on hand in a casino brawl."
-	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 5x damage. This weapon fits in an EGO belt."
+	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 3x damage. This weapon fits in an EGO belt."
 	icon_state = "jeong_fixer"
 	force = 30
 	attack_speed = 0.7
@@ -30,8 +30,8 @@
 		return
 	ready = FALSE
 	to_chat(user, "<span class='userdanger'>Low at Night.</span>")
-	force*=5
-	user.adjustBruteLoss(user.maxHealth*0.2)
+	force*=3
+	user.adjustBruteLoss(user.maxHealth*0.4)
 	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/jeong/attack(mob/living/target, mob/living/carbon/human/user)

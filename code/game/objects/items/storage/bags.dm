@@ -218,26 +218,6 @@
 //          Plant bag
 // -----------------------------
 
-/obj/item/storage/bag/fish
-	name = "fish bag"
-	desc = "A weird plastic bag that can hold upto 100 fish or brass pebbles."
-	icon = 'icons/obj/fishing.dmi'
-	icon_state = "bag"
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
-	resistance_flags = FLAMMABLE
-
-/obj/item/storage/bag/fish/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_combined_w_class = 1000
-	STR.max_items = 100
-	STR.set_holdable(list(
-		/obj/item/food/fish,
-		/obj/item/stack/fish_points,
-		))
-////////
-
 /obj/item/storage/bag/plants/portaseeder
 	name = "portable seed extractor"
 	desc = "For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant."

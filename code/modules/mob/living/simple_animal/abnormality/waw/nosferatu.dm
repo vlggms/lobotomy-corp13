@@ -1,3 +1,4 @@
+#define NOSFERATU_BANQUET_COOLDOWN (12 SECONDS)
 //Coded by Coxswain, sprited by crabby
 /mob/living/simple_animal/hostile/abnormality/nosferatu
 	name = "Nosferatu"
@@ -10,7 +11,6 @@
 	base_pixel_x = -16
 	maxHealth = 2000
 	health = 2000
-	speed = 4
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
@@ -60,6 +60,30 @@
 	var/summon_cooldown_time = 60 SECONDS
 	var/bat_spawn_limit = 6
 	var/bat_spawn_number = 3
+
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/nosferatu_banquet)
+
+//Playables buttons
+/datum/action/cooldown/nosferatu_banquet
+	name = "Banquet"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nosferatu"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = NOSFERATU_BANQUET_COOLDOWN //12 seconds
+
+/datum/action/cooldown/nosferatu_banquet/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nosferatu))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/nosferatu/nosferatu = owner
+	if(nosferatu.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	nosferatu.Banquet()
+	return TRUE
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -141,6 +165,10 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/OpenFire()
 	if(!can_act)
 		return
+
+	if(client)
+		return
+
 	if((banquet_cooldown < world.time) && (get_dist(src, target) < 4))
 		Banquet()
 		return
@@ -188,12 +216,8 @@
 	for(var/turf/T in view(2, src))
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(banquet_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			if(L.health < 0 && ishuman(L))
-				var/mob/living/carbon/human/H = L
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(3)
@@ -234,3 +258,5 @@
 			B = new /obj/effect/decal/cleanable/blood(get_turf(src))
 			B.bloodiness = 100
 	return ..()
+
+#undef NOSFERATU_BANQUET_COOLDOWN

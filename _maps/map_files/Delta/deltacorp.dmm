@@ -373,6 +373,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"ba" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "bd" = (
 /obj/effect/turf_decal/siding/red/corner,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1331,6 +1335,10 @@
 /obj/structure/sign/departments/control,
 /turf/closed/indestructible/reinforced,
 /area/department_main/safety)
+"dK" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "dM" = (
 /obj/machinery/blackbox_recorder,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -1453,6 +1461,10 @@
 "eg" = (
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
+"eh" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "ej" = (
 /obj/structure/table/reinforced,
 /obj/item/choice_beacon/ingredient,
@@ -3190,6 +3202,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/control)
+"jY" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "ka" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -4466,13 +4481,22 @@
 /turf/open/floor/plating,
 /area/department_main/discipline)
 "np" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/mimicry{
-	armor = null
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
 	},
-/obj/structure/lattice/catwalk,
-/turf/open/floor/plating,
-/area/department_main/discipline)
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 10
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/extraction)
 "ns" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/carpet/orange,
@@ -4867,9 +4891,6 @@
 /area/facility_hallway/east)
 "ov" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/mockery{
-	armor = null
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -4893,15 +4914,6 @@
 	},
 /obj/item/book/fish_catalog{
 	pixel_x = -5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
 	},
 /obj/item/fish_feed,
 /obj/machinery/status_display{
@@ -5392,6 +5404,10 @@
 	},
 /turf/open/floor/engine,
 /area/facility_hallway/east)
+"pZ" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "qa" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
@@ -5855,9 +5871,6 @@
 /area/facility_hallway/control)
 "rn" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/goldrush{
-	armor = 0
-	},
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating,
 /area/department_main/discipline)
@@ -7347,6 +7360,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
+"vJ" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/extraction)
 "vL" = (
 /obj/machinery/light/cold/no_nightlight,
 /obj/effect/turf_decal/tile/purple{
@@ -8149,11 +8166,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/siding/red,
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = -32
+/obj/effect/turf_decal/siding/red/corner,
+/obj/effect/turf_decal/siding/red/corner{
+	dir = 8
 	},
-/obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
 "yd" = (
@@ -8175,6 +8191,9 @@
 	},
 /obj/effect/turf_decal/siding/red{
 	dir = 6
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
@@ -8269,6 +8288,10 @@
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
+"yq" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/extraction)
 "yr" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
@@ -12129,17 +12152,7 @@
 /turf/open/floor/carpet/green,
 /area/facility_hallway/safety)
 "Kj" = (
-/obj/machinery/light/cold/no_nightlight,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = -32
-	},
+/obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
 "Kk" = (
@@ -13773,7 +13786,7 @@
 	name = "Extraction Hallway"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/halls,
+/turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "OK" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -14632,6 +14645,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"QX" = (
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/extraction)
 "QY" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/carpet,
@@ -14651,6 +14670,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"Rb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/extraction)
 "Rc" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/carpet/purple,
@@ -15185,6 +15208,9 @@
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 6
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
@@ -16963,6 +16989,22 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/command)
+"WV" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/red{
+	dir = 10
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/control)
 "WW" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -18025,9 +18067,6 @@
 /obj/item/storage/box/aquarium_props{
 	pixel_y = 10
 	},
-/obj/item/storage/fish_case/random,
-/obj/item/storage/fish_case/random,
-/obj/item/storage/fish_case/random,
 /obj/item/fish_feed,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -18038,15 +18077,6 @@
 	},
 /obj/item/book/fish_catalog{
 	pixel_x = -5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
-	},
-/obj/item/storage/fish_case/random/freshwater{
-	pixel_x = 5
 	},
 /obj/item/fish_feed,
 /turf/open/floor/carpet/royalblue,
@@ -18084,6 +18114,12 @@
 /obj/structure/lootcrate/l_corp,
 /turf/open/floor/carpet,
 /area/department_main/control)
+"ZW" = (
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
+	},
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/control)
 "ZX" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -35451,10 +35487,10 @@ lo
 tn
 je
 je
-JB
-JB
-JB
-JB
+je
+je
+je
+je
 JB
 JB
 JB
@@ -35706,12 +35742,12 @@ mo
 mo
 Jl
 KU
-nC
+WV
+dK
+ba
+jY
+jY
 je
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -35964,11 +36000,11 @@ mn
 mn
 lL
 yc
+ZW
+jY
+eh
+pZ
 je
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -36221,11 +36257,11 @@ Dg
 CT
 Le
 yf
+dK
+jY
+jY
+jY
 je
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -36479,10 +36515,10 @@ mT
 tn
 je
 je
-JB
-JB
-JB
-JB
+je
+je
+je
+je
 JB
 JB
 JB
@@ -56984,7 +57020,7 @@ lq
 ac
 ac
 ac
-np
+rn
 ov
 rn
 cP
@@ -63466,10 +63502,10 @@ RB
 Sb
 OP
 OP
-JB
-JB
-JB
-JB
+OP
+OP
+OP
+OP
 JB
 JB
 JB
@@ -63721,12 +63757,12 @@ QM
 Rp
 RC
 QM
-Sq
+np
+Rb
+vJ
+Ql
+Ql
 OP
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -63978,12 +64014,12 @@ RG
 RG
 RG
 qK
+Sb
+QX
+Ql
+yq
 Kj
 OP
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -64236,11 +64272,11 @@ Nx
 Px
 QS
 Sr
+Rb
+Ql
+Ql
+Ql
 OP
-JB
-JB
-JB
-JB
 JB
 JB
 JB
@@ -64494,10 +64530,10 @@ RH
 Sb
 OP
 OP
-JB
-JB
-JB
-JB
+OP
+OP
+OP
+OP
 JB
 JB
 JB

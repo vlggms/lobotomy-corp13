@@ -33,10 +33,22 @@
 	name = "fixer greatsword"
 	desc = "A heftier variant of the more common fixer blade."
 	icon_state = "fixer_greatsword"
-	force = 32
-	attack_speed = 1.4
+	force = 38
+	attack_speed = 2
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/genhit3.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
+
+/obj/item/ego_weapon/city/fixerhammer
+	name = "fixer hammer"
+	desc = "A poorly balanced hammer used by many fixers."
+	icon_state = "fixer_hammer"
+	force = 32
+	attack_speed = 1.4
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'

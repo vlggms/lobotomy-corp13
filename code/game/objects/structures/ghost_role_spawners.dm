@@ -1,4 +1,5 @@
-//Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+/*Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+	Origin Procs are in code/module/awaymissions/corpse.dm */
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/human/seed_vault
@@ -859,7 +860,7 @@
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	faction = "nanotrasenprivate"
+	faction = list("nanotrasenprivate")
 	short_desc = "You are a Nanotrasen Private Security Officer!"
 
 /obj/effect/mob_spawn/human/commander/alive
@@ -906,6 +907,8 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
+//LC13 Mobspawners~~~
+
 //Tutorial spawn
 /obj/effect/mob_spawn/human/tutorial
 	uses = -1
@@ -920,7 +923,7 @@
 	outfit = /datum/outfit/tutorial
 	short_desc = "Welcome to Lobotomy Corporation! In the onboarding process you will get to see exactly how our company works."
 	flavour_text = "Be sure to read the tutorial sheets, \
-	experiment, and have fun. When you are done, Cryo and respawn to join the game. \
+	experiment, and have fun. When you are done, Cryo and Respawn to join the game. \
 	Try out the mechanics, and maybe breach some abnormalities to get a feel for the combat."
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
@@ -941,8 +944,6 @@
 
 	back = /obj/item/storage/backpack
 
-
-
 //Library spawn
 /obj/effect/mob_spawn/human/library
 	uses = -1
@@ -950,13 +951,13 @@
 	roundstart = FALSE
 	random = FALSE
 	name = "records librarian sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. It's just a front, stored underground are many librarians."
+	desc = "A humming sleeper with a silhouetted occupant inside. It's connected to a vast underground network storing countless people."
 	mob_name = "Records Librarian"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/librarian
-	short_desc = "A place for players to read up on lore and information while not affecting the actual round \
-	When you are done, Cryo and respawn to join the game."
+	short_desc = "A place for players to read up on lore and information while also observing the current round. \
+	When you are done, Cryo and Respawn to join the game."
 	assignedrole = "Lobotomy Corporation Records Librarian"
 
 //Tutorial agent
@@ -971,3 +972,132 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 	back = /obj/item/storage/backpack/satchel
+
+//Supplypod Mobspawner
+/obj/effect/mob_spawn/human/supplypod
+	invisibility = 49
+	anchored = TRUE
+	roundstart = FALSE
+	death = FALSE
+	density = FALSE
+	var/list/acceptable_turf = list()
+		//Keeps track of players who have spawned using this point.
+	var/players_spawned = list()
+
+/obj/effect/mob_spawn/human/supplypod/Initialize(mapload, datum/team/ert/rabbit_team)
+	. = ..()
+	acceptable_turf = LandingZone(get_turf(src))
+
+/obj/effect/mob_spawn/human/supplypod/special(mob/living/new_spawn)
+	PrepareForHellDiving(new_spawn)
+
+		//Creates pod and prepares the user for being inside it.
+/obj/effect/mob_spawn/human/supplypod/proc/PrepareForHellDiving(mob/living/user)
+		//Step 1 pick a acceptable turf to land. No dense turf or tables.
+	var/turf/LZ = pick(acceptable_turf)
+		//Step 2 spawn the pod we land in.
+	var/obj/structure/closet/supplypod/centcompod/pod = new
+		//Step 3 learn that the landing zone is actually a effect that requires a defined landing turf and pod.
+	new /obj/effect/pod_landingzone(get_turf(LZ), pod)
+		//Step 4 INSERT INTO POD!
+	user.forceMove(pod)
+	players_spawned += (user.key)
+
+		//this is in order to randomize the landing turf and make sure it is a safe zone.
+/obj/effect/mob_spawn/human/supplypod/proc/LandingZone(turf/landin_zone)
+	var/list/good_turf = list()
+	for(var/turf/T in range(6, get_turf(landin_zone)))
+		if(locate(/obj/machinery) in T)
+			continue
+		if(locate(/obj/structure) in T)
+			continue
+		if(isclosedturf(T))
+			continue
+		if(!isfloorturf(T))
+			continue
+		good_turf += T
+	if(!good_turf.len)
+		return list(get_turf(src))
+	return good_turf
+
+//R CORP Mobspawners
+/obj/effect/mob_spawn/human/supplypod/r_corp
+	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
+	icon_state = "rabbit_logo"
+	short_desc = "You are part of the 4th pack. A subsidiary of the miliaristic R corp which is assigned to handle requests from their long time client L corp."
+	flavour_text = "Your team is regularly sent in to L corp in order to handle hostile elements. \
+	Use your gun in hand to change its damage type. L corp is supplying us these special bullets for whatever they are holding in there. \
+	Teleport in, graze the grass, then teleport out for debriefing."
+	//This is the size of the team.
+	uses = 6
+	faction = list("neutral", "rabbit")
+	var/team_name = "rabbit team"
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/Initialize(mapload, datum/team/ert/rabbit_team)
+	. = ..()
+	notify_ghosts("A [team_name] has been requested at [get_area(src)]!", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/allow_spawn(mob/user)
+	if(!(user.key in players_spawned))//one per person
+		return TRUE
+	to_chat(user, "<span class='warning'><b>Fourth Pack HQ: Sending in another team would cost more energy from our hatcheries than we are being paid.</b>.</span>")
+	return FALSE
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/special(mob/living/new_spawn)
+	..()
+	new_spawn.fully_replace_character_name(null, "[assignedrole] [new_spawn.real_name]([rand(1,999)])")
+	ADD_TRAIT(new_spawn, TRAIT_COMBATFEAR_IMMUNE, type)
+	ADD_TRAIT(new_spawn, TRAIT_WORK_FORBIDDEN, type)
+
+//Rabbit Mobspawner
+/obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call
+	name = "rabbit teleport zone"
+	desc = "A authorized zone for teleporting in rabbits."
+	mob_name = "rabbit team assault member"
+	outfit = /datum/outfit/centcom/ert/security/rabbit
+	assignedrole = "Specialist"
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(60)
+
+//Raven Mobspawner
+/obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
+	name = "raven teleport zone"
+	desc = "A authorized zone for teleporting in ravens."
+	mob_name = "raven team scout"
+	outfit = /datum/outfit/job/raven
+	assignedrole = "SPC"
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/raven_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(40)
+	H.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
+
+//Rhino Mobspawner
+/obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
+	name = "rhino teleport zone"
+	desc = "A authorized zone for teleporting in rhinos."
+	mob_name = "twin rhino mech unit"
+	outfit = /datum/outfit/centcom/ert/security/rhino
+	assignedrole = "Sergeant"
+	uses = 2
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call/special(mob/living/new_spawn)
+	..()
+	var/mob/living/carbon/human/H = new_spawn
+	H.adjust_all_attribute_levels(40)
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call/PrepareForHellDiving(mob/living/user)
+	var/obj/vehicle/sealed/mecha/combat/rhino/mech = new
+		//Step 1 pick a acceptable turf to land. No dense turf or tables.
+	var/turf/LZ = pick(acceptable_turf)
+		//Step 2 spawn the pod we land in.
+	var/obj/structure/closet/supplypod/centcompod/pod = new
+		//Step 3 learn that the landing zone is actually a effect that requires a defined landing turf and pod.
+	new /obj/effect/pod_landingzone(get_turf(LZ), pod)
+		//Step 4 INSERT INTO POD!
+	mech.forceMove(pod)
+	mech.mob_enter(user)

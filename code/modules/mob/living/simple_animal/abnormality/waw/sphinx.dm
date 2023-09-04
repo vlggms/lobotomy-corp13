@@ -1,4 +1,6 @@
 //Coded by Coxswain
+#define SPHINX_GAZE_COOLDOWN (12 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/sphinx
 	name = "Sphinx"
 	desc = "A gigantic stone feline."
@@ -14,11 +16,11 @@
 	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 100
 	attack_sound = 'sound/abnormalities/sphinx/attack.ogg'
+	attack_action_types = list(/datum/action/cooldown/sphinx_gaze)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
@@ -63,6 +65,28 @@
 	var/can_act = TRUE
 	var/curse_cooldown
 	var/curse_cooldown_time = 12 SECONDS
+
+//Playables buttons
+/datum/action/cooldown/sphinx_gaze
+	name = "Sphinx's Gaze"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "sphinx"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
+
+/datum/action/cooldown/sphinx_gaze/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sphinx))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	if(sphinx.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	sphinx.StoneVision(FALSE)
+	return TRUE
+
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/Initialize() //1 in 100 chance for cringe aah aah sphinx by popular demand
 	. = ..()
@@ -235,7 +259,7 @@
 	LoseTarget(H)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/OpenFire()
-	if(!can_act)
+	if(!can_act || client)
 		return
 
 	if((curse_cooldown <= world.time))
@@ -524,3 +548,5 @@
 		insert_showpiece(W, user)
 	else
 		return ..()
+
+#undef SPHINX_GAZE_COOLDOWN

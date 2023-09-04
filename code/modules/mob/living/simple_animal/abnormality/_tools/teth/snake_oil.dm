@@ -5,6 +5,11 @@
 	icon_state = "snake_oil"
 	var/list/users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/swindle,
+		/datum/ego_datum/armor/swindle
+		)
+
 /obj/structure/toolabnormality/snake_oil/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 6, user))

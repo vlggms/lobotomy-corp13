@@ -505,7 +505,10 @@
 	belt = /obj/item/storage/belt/utility/full
 	l_pocket = null
 	r_pocket = null
-	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+	backpack_contents = list(
+		/obj/item/storage/box/survival/engineer=1,
+		/obj/item/clothing/glasses/welding=1
+		)
 
 /datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)

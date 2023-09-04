@@ -1,4 +1,6 @@
 #define STATUS_EFFECT_ACIDIC_GOO  /datum/status_effect/wrath_burning
+#define SERVANT_SMASH_COOLDOWN (30 SECONDS)
+#define SERVANT_DASH_COOLDOWN (15 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/servant_wrath
 	name = "\proper Servant of Wrath"
 	desc = "A small girl in a puffy green magical girl outfit. \
@@ -68,20 +70,51 @@
 	var/ending = FALSE
 	var/hunted_target
 
+	//PLAYABLES ACTIONS
+	attack_action_types = list(
+		/datum/action/cooldown/wrath_smash,
+		/datum/action/cooldown/wrath_dash
+		)
 
-/datum/action/innate/abnormality_attack/wrath_smash
+/datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
-	icon_icon = 'icons/obj/ego_weapons.dmi'
-	button_icon_state = "blind_rage"
-	chosen_message = "<span class='colossus'>You will now smash everything around you.</span>"
-	chosen_attack_num = 1
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "wrath_smash"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SERVANT_SMASH_COOLDOWN //30 seconds
 
-/datum/action/innate/abnormality_attack/wrath_dash
+/datum/action/cooldown/wrath_smash/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	servant.Smash()
+	StartCooldown()
+	return TRUE
+
+/datum/action/cooldown/wrath_dash
 	name = "Dash"
-	desc = "Rapidly speed up for a short duration."
-	icon_icon = 'icons/mob/actions/actions_items.dmi'
-	button_icon_state = "jetboot"
-	chosen_attack_num = 2
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "wrath_dash"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SERVANT_DASH_COOLDOWN //15 seconds
+
+/datum/action/cooldown/wrath_dash/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	if(servant.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	servant.Dash()
+	StartCooldown()
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/Initialize(mapload)
 	. = ..()
@@ -96,13 +129,6 @@
 	if(!can_act || stunned)
 		return
 	if(client)
-		switch(chosen_attack)
-			if(1)
-				if(COOLDOWN_FINISHED(src, smash))
-					Smash()
-			if(2)
-				if(COOLDOWN_FINISHED(src, dash))
-					Dash()
 		return
 
 	if(get_dist(src, target) >= 3 && COOLDOWN_FINISHED(src, dash))
@@ -125,6 +151,7 @@
 			L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
+			to_chat(L, "<span class='warning'>The Azure hermit's magic being channeled through [src] racks your mind!</span>")
 		COOLDOWN_START(src, stun, stunned_cooldown)
 	if(stunned)
 		return
@@ -362,6 +389,12 @@
 		break
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
+	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	if(client)
+		var/original_speed = speed
+		set_varspeed(-0.5)
+		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 1.5 SECONDS) //bigger duration since delay makes things wacky for the player
+		return
 	TemporarySpeedChange(-4, 1 SECONDS)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
@@ -398,13 +431,7 @@
 			else
 				hit_turfs = (view(i, src) - range(i-1, src)) // Respects walls for last 2
 			for(var/turf/T in hit_turfs)
-				for(var/mob/living/L in T)
-					if(L in been_hit)
-						continue
-					if(faction_check_mob(L) || L == src)
-						continue
-					been_hit += L
-					L.apply_damage(smash_damage, smash_damage_type, null, L.run_armor_check(null, smash_damage_type), spread_damage = TRUE)
+				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, null, TRUE, FALSE, TRUE, FALSE, TRUE)
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					if(friendly)
@@ -609,13 +636,7 @@
 			var/list/been_hit = list()
 			for(var/i = 1 to 3)
 				for(var/turf/T in (view(i, SW)-view(i-1,SW)))
-					for(var/mob/living/L in T)
-						if(L in been_hit)
-							continue
-						if(faction_check_mob(L))
-							continue
-						been_hit += L
-						L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					been_hit = HurtInTurf(T, been_hit, 10, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 				SLEEP_CHECK_DEATH(3)
 		else
@@ -838,3 +859,5 @@
 		new /mob/living/simple_animal/hostile/azure_stave(T)
 
 #undef STATUS_EFFECT_ACIDIC_GOO
+#undef SERVANT_SMASH_COOLDOWN
+#undef SERVANT_DASH_COOLDOWN

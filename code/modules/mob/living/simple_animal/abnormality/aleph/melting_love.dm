@@ -16,14 +16,14 @@
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 30
-	melee_damage_upper = 50
+	melee_damage_lower = 55
+	melee_damage_upper = 60 // AOE damage increases it drastically
 	projectiletype = /obj/projectile/melting_blob
 	ranged = TRUE
+	stat_attack = DEAD
 	minimum_distance = 0
 	ranged_cooldown_time = 5 SECONDS
-	speed = 2
-	move_to_delay = 4
+	move_to_delay = 3.5
 	/* Works */
 	start_qliphoth = 3
 	can_breach = TRUE
@@ -36,41 +36,35 @@
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 	/* Sounds */
-	projectilesound = 'sound/effects/attackblob.ogg'
-	attack_sound = 'sound/effects/attackblob.ogg'
-	deathsound = 'sound/effects/blobattack.ogg'
+	projectilesound = 'sound/abnormalities/meltinglove/ranged.ogg'
+	attack_sound = 'sound/abnormalities/meltinglove/attack.ogg'
+	deathsound = 'sound/abnormalities/meltinglove/death.ogg'
 	/*Vars and others */
 	loot = list(/obj/item/reagent_containers/glass/bucket/melting)
 	del_on_death = FALSE
-	var/mob/living/carbon/human/gifted_human = null
-	var/sanityheal_cooldown = 15 SECONDS
-	var/sanityheal_cooldown_base = 15 SECONDS
 	ego_list = list(/datum/ego_datum/weapon/adoration, /datum/ego_datum/armor/adoration)
 	gift_type =  /datum/ego_gifts/adoration
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	var/mob/living/carbon/human/gifted_human = null
+	/// When FALSE - cannot attack or move
+	var/can_act = TRUE
+	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
+	var/radius_damage = 30
+
+	var/sanityheal_cooldown = 15 SECONDS
+	var/sanityheal_cooldown_base = 15 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Life()
 	. = ..()
 	if(gifted_human)
 		sanityheal()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user)
-	..()
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_living = "melting_breach"
-	icon_state = icon_living
-	icon_dead = "melting_breach_dead"
-	pixel_x = -32
-	base_pixel_x = -32
-	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
-	return
-
-
 /mob/living/simple_animal/hostile/abnormality/melting_love/death(gibbed)
 	density = FALSE
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
-	..()
+	animate(src, alpha = 0, time = (5 SECONDS))
+	QDEL_IN(src, (5 SECONDS))
+	return ..()
 
 /* Attacks */
 /mob/living/simple_animal/hostile/abnormality/melting_love/CanAttack(atom/the_target)
@@ -78,35 +72,61 @@
 		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
+		if(L.type == /mob/living/simple_animal/hostile/slime && health <= maxHealth * 0.8) // We need healing
+			return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/MoveToTarget(list/possible_targets)
-	if(ranged_cooldown <= world.time)
-		OpenFire(target)
+/mob/living/simple_animal/hostile/abnormality/melting_love/OpenFire(atom/A)
+	if(get_dist(src, A) < 2) // We can't fire normal ranged attack that close
+		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/AttackingTarget()
-	. = ..()
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target
-	if(H.stat != DEAD)
-		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-			slimeconv(H)
-	else
-		slimeconv(H)
+	if(!can_act)
+		return FALSE
+
+	// Convert
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
+			return SlimeConvert(H)
+
+	// Consume a slime. Cannot work on the big one, so the check is not istype()
+	if(target.type == /mob/living/simple_animal/hostile/slime)
+		var/mob/living/simple_animal/hostile/slime/S = target
+		visible_message("<span class='warning'>[src] consumes \the [S], restoring its own health.</span>")
+		. = ..() // We do a normal attack without AOE and then consume the slime to restore HP
+		adjustBruteLoss(-maxHealth * 0.2)
+		S.adjustBruteLoss(S.maxHealth) // To make sure it dies
+		return .
+
+	// AOE attack
+	if(isliving(target))
+		for(var/turf/open/T in view(1, target))
+			var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
+			S.color = "#FF0081"
+		for(var/mob/living/L in view(1, target))
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(radius_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+	return ..()
 
 /* Slime Conversion */
-/mob/living/simple_animal/hostile/proc/slimeconv(mob/living/H)
-	if(!H)
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeConvert(mob/living/carbon/human/H)
+	if(!istype(H))
 		return FALSE
-	var/turf/T = get_turf(H)
-	visible_message("<span class='danger'>[src] glomps on \the [H] as another Slime Pawn appears!</span>")
+	visible_message("<span class='danger'>[src] glomps on \the [H] as another slime pawn appears!</span>")
+	new /mob/living/simple_animal/hostile/slime(get_turf(H))
 	H.gib()
-	new /mob/living/simple_animal/hostile/slime(T)
 	return TRUE
 
 /* Qliphoth things */
+/mob/living/simple_animal/hostile/abnormality/melting_love/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(33) && user == gifted_human && pe >= datum_reference?.max_boxes)
+		datum_reference.qliphoth_change(1)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
@@ -116,25 +136,27 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/ZeroQliphoth(mob/living/carbon/human/user)
-	if(gifted_human)
+/mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user)
+	. = ..()
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_living = "melting_breach"
+	icon_state = icon_living
+	icon_dead = "melting_breach_dead"
+	pixel_x = -32
+	base_pixel_x = -32
+	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
+	if(istype(gifted_human))
 		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
 		gifted_human.emote("scream")
 		gifted_human.gib()
+	else
+		Empower()
 	UnregisterSignal(gifted_human, COMSIG_LIVING_DEATH)
 	UnregisterSignal(gifted_human, COMSIG_WORK_COMPLETED)
-	BreachEffect()
-	return
 
 /* Gift */
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
-	SIGNAL_HANDLER
-	SpawnBigSlime()
-	datum_reference.qliphoth_change(-9)
-	return TRUE
-
 /mob/living/simple_animal/hostile/abnormality/melting_love/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
-	if (GODMODE in user.status_flags)
+	if(GODMODE in user.status_flags)
 		return
 	if(!gifted_human && istype(user) && work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
 		gifted_human = user
@@ -143,17 +165,23 @@
 		to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
 		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 		user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
-		playsound(get_turf(user), 'sound/effects/footstep/slime1.ogg', 50, 0, 2)
+		playsound(get_turf(user), 'sound/abnormalities/meltinglove/gift.ogg', 50, 0, 2)
 		return
 	if(istype(user) && user == gifted_human)
 		to_chat(gifted_human, "<span class='nicegreen'>Melting Love was happy to see you!</span>")
 		gifted_human.adjustSanityLoss(rand(-25,-35))
 		return
 
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedDeath(datum/source, gibbed)
+	SIGNAL_HANDLER
+	SpawnBigSlime()
+	datum_reference.qliphoth_change(-9)
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedAnger(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
-	if (work_type == ABNORMALITY_WORK_REPRESSION)
-		to_chat(gifted_human, "<span class='userdanger'>Melting Love didn't like that!</span>")
+	if(work_type == ABNORMALITY_WORK_REPRESSION)
+		to_chat(gifted_human, "<span class='userdanger'>[src] didn't like that!</span>")
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
@@ -169,28 +197,33 @@
 /* Checking if bigslime is dead or not and apply a damage buff if yes */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
-	melee_damage_lower = 40
-	melee_damage_upper = 64
-	projectiletype = /obj/projectile/melting_blob/enraged
-	adjustBruteLoss(-maxHealth)
+	Empower()
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			to_chat(M, "<span class='userdanger'>You can hear a gooey cry !</span>")
-			SEND_SOUND(M, 'sound/creatures/legion_death_far.ogg')
+			SEND_SOUND(M, 'sound/abnormalities/meltinglove/empower.ogg')
 			flash_color(M, flash_color = "#FF0081", flash_time = 50)
 	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
+	move_to_delay -= 0.5
+	melee_damage_lower = 80
+	melee_damage_upper = 85
+	projectiletype = /obj/projectile/melting_blob/enraged
+	adjustBruteLoss(-maxHealth)
+	desc += " It looks angry."
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime()
 	var/turf/T = get_turf(gifted_human)
 	gifted_human.gib()
 	gifted_human = null
-	var /mob/living/simple_animal/hostile/slime/big/S = new(T)
+	var/mob/living/simple_animal/hostile/slime/big/S = new(T)
 	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
 
 
 /* Slimes (HE) */
 /mob/living/simple_animal/hostile/slime
-	name = "Slime Pawn"
+	name = "slime pawn"
 	desc = "The skeletal remains of a former employee is floating in it..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "little_slime"
@@ -204,48 +237,54 @@
 	obj_damage = 200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 12
-	melee_damage_upper = 24
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	rapid_melee = 2
 	speed = 2
-	move_to_delay = 3
+	move_to_delay = 2.5
 	/* Sounds */
-	deathsound = 'sound/effects/blobattack.ogg'
-	attack_sound = 'sound/effects/attackblob.ogg'
+	deathsound = 'sound/abnormalities/meltinglove/pawn_death.ogg'
+	attack_sound = 'sound/abnormalities/meltinglove/pawn_attack.ogg'
 	/* Vars and others */
 	robust_searching = TRUE
 	stat_attack = DEAD
 	del_on_death = TRUE
+	var/spawn_sound = 'sound/abnormalities/meltinglove/pawn_convert.ogg'
 
 /mob/living/simple_animal/hostile/slime/Initialize()
 	. = ..()
-	playsound(get_turf(src), 'sound/effects/footstep/slime1.ogg', 50, 1)
+	playsound(get_turf(src), spawn_sound, 50, 1)
 	var/matrix/init_transform = transform
 	transform *= 0.1
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
+	if(isliving(the_target) && !ishuman(the_target))
+		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/slime/AttackingTarget()
-	. = ..()
-	if(!ishuman(target))
-		return
-	var/mob/living/carbon/human/H = target
-	if(H.stat != DEAD)
-		if(H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH))
-			slimeconv(H)
-	else
-		slimeconv(H)
+	// Convert
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD || H.health <= HEALTH_THRESHOLD_DEAD)
+			return SlimeConvert(H)
+	return ..()
+
+/mob/living/simple_animal/hostile/slime/proc/SlimeConvert(mob/living/carbon/human/H)
+	if(!istype(H))
+		return FALSE
+	visible_message("<span class='danger'>[src] glomps on \the [H] as another slime pawn appears!</span>")
+	new /mob/living/simple_animal/hostile/slime(get_turf(H))
+	H.gib()
+	return TRUE
 
 /* Big Slimes (WAW) */
 /mob/living/simple_animal/hostile/slime/big
-	name = "Big Slime"
+	name = "big slime"
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "big_slime"
@@ -255,14 +294,6 @@
 	/* Stats */
 	health = 2000
 	maxHealth = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2.0, PALE_DAMAGE = 0.8)
-	melee_damage_lower = 24
+	melee_damage_lower = 35
 	melee_damage_upper = 40
-
-/mob/living/simple_animal/hostile/slime/big/Initialize()
-	. = ..()
-	playsound(get_turf(src), 'sound/effects/footstep/slime1.ogg', 50, 1)
-	var/matrix/init_transform = transform
-	transform *= 0.1
-	alpha = 25
-	animate(src, alpha = 255, transform = init_transform, time = 5)
+	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'

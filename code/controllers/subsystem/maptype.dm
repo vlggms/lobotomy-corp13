@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(maptype)
 	var/maptype = "lc13"//for the love of god, do not change the default we will all die -Bootlegbow
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp")
+	var/list/clearmaps = list("rcorp", "city")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
 	var/list/combatmaps = list("rcorp")
@@ -22,6 +22,9 @@ SUBSYSTEM_DEF(maptype)
 	//These end after 40 minutes.
 	var/list/autoend = list("rcorp")
 
+	//This map is city stuff
+	var/list/citymaps = list("wonderlabs", "city")
+
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
 
@@ -30,7 +33,7 @@ SUBSYSTEM_DEF(maptype)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
-		if("wonderlabs")
+		if("wonderlabs", "city")
 			departments = list("Command", "Security", "Service", "Science")
 		if("rcorp")
 			departments = list("Command", "Security")

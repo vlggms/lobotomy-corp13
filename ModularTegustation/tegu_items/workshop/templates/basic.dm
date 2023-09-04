@@ -17,7 +17,7 @@ Katana - Use in hand to dash
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 
-	finishedicon = list("finishedspear", "finishedheavyspear")
+	finishedicon = list("finishedspear", "finishedheavyspear", "finishedglaive")
 	finishedname = list("spear", "glaive", "partizan")
 	finisheddesc = "A finished spear, ready for use."
 
@@ -70,6 +70,24 @@ Katana - Use in hand to dash
 	finishedicon = list("finishedaxe")
 	finishedname = list("hand axe", "axe", "battleaxe")
 	finisheddesc = "A finished axe, ready for use."
+
+
+/obj/item/ego_weapon/template/hammer
+	name = "hammer template"
+	desc = "A blank hammer workshop template."
+	icon_state = "hammertemplate"
+	force = 26
+	attack_speed = 1.8
+	aoe_range = 1
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
+	attack_verb_continuous = list("bashes", "beats")
+	attack_verb_simple = list("bash", "beat")
+
+	finishedicon = list("finishedhammer")
+	finishedname = list("hammer")
+	finisheddesc = "A finished hammer, ready for use."
 
 
 /obj/item/ego_weapon/template/javelin
@@ -150,6 +168,7 @@ Katana - Use in hand to dash
 /obj/item/ego_weapon/template/club
 	name = "club template"
 	desc = "A blank club workshop template."
+	special = "This weapon has knockback."
 	icon_state = "clubtemplate"
 	force = 20
 	attack_speed =  1.6
@@ -170,3 +189,4 @@ Katana - Use in hand to dash
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+

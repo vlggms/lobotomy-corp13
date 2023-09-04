@@ -176,18 +176,14 @@
 		var/list/potential_colors = list(COLOR_LIGHT_GRAYISH_RED, COLOR_SOFT_RED, COLOR_YELLOW, \
 			COLOR_VIBRANT_LIME, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PINK, COLOR_PURPLE)
 		S.add_atom_colour(pick(potential_colors), FIXED_COLOUR_PRIORITY)
-		for(var/mob/living/L in TF)
-			if(!faction_check_mob(L))
-				if(L in been_hit)
-					continue
-				visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
-				L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/cleave(get_turf(L))
-				playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
-				if(L.health < 0)
-					L.gib()
-				if(!QDELETED(L))
-					been_hit += L
+		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
+			new /obj/effect/temp_visual/cleave(get_turf(L))
+			playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
+			if(L.health < 0)
+				L.gib()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)

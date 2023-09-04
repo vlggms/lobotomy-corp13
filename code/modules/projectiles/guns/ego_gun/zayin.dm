@@ -24,7 +24,7 @@
 	if(pulse_cooldown > world.time)
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/tough/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/tough/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(T))
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return
@@ -92,7 +92,7 @@
 	shrimp_chosen = null
 
 /obj/item/gun/ego_gun/pistol/soda/proc/ShrimpFuneral(mob/user)
-	var/obj/item/clothing/suit/armor/ego_gear/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(S))
 		var/shrimpcount
 		while(shrimpcount < 2)
@@ -192,7 +192,7 @@
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
 	pulse_startup = world.time + pulse_startup_time
-	var/obj/item/clothing/suit/armor/ego_gear/nostalgia/N = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/nostalgia/N = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(N))
 		pulse_enabled = TRUE
 		to_chat(H, "<span class='warning'>You use the [src] to emit sanity healing pulses!</span>")
@@ -235,7 +235,7 @@
 	fire_sound_volume = 50
 
 /obj/item/gun/ego_gun/pistol/nightshade/process_fire(atom/target, mob/living/user)
-	var/obj/item/clothing/suit/armor/ego_gear/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade/healing)
 			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
@@ -266,7 +266,7 @@
 	if(ability_cooldown > world.time)
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/tools/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(T))
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return

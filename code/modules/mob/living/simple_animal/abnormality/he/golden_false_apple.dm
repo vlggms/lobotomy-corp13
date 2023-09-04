@@ -61,7 +61,7 @@
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
 	chem_type = /datum/reagent/abnormality/ambrosia
 	harvest_phrase = "<span class='notice'>You score %ABNO and it bleeds a golden syrup into %VESSEL.</span>"
-	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syruo into %VESSEL."
+	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
 	var/is_maggot = FALSE
 	var/smash_length = 2
 	var/smash_width = 2
@@ -141,8 +141,8 @@
 	stacks = 1
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/golden_sheen
-	var/glow
 	consumed_on_threshold = FALSE
+	var/obj/item/glow_object/glowstuff
 
 /atom/movable/screen/alert/status_effect/golden_sheen
 	name = "Golden Sheen"
@@ -151,17 +151,15 @@
 	icon_state = "golden_sheen"
 
 /datum/status_effect/stacking/golden_sheen/on_apply()
-	var/mob/living/carbon/human/H = owner
-	H.set_light(3, (stacks * 2), "D4FAF37")//you actually can glow brighter
-	H.set_light_on(TRUE)
-	H.update_light()
+	glowstuff = new /obj/item/glow_object(owner)
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/on_remove()
-	var/mob/living/carbon/human/H = owner
-	H.set_light()//sets it to false
-	H.set_light_on(FALSE)
-	H.update_light()
+	qdel(glowstuff)
+	return ..()
+
+/datum/status_effect/stacking/golden_sheen/add_stacks()
+	glowstuff.set_light(3, (stacks * 2), "D4FAF37")
 	return ..()
 
 /datum/status_effect/stacking/golden_sheen/tick()//TODO:change this to golden apple's life tick for less lag
@@ -171,6 +169,14 @@
 	owner.adjustBruteLoss(stacks * -0.5)
 	var/mob/living/carbon/human/H = owner
 	H.adjustSanityLoss(stacks * -0.5)
+
+/obj/item/glow_object
+	name = "golden apple core"
+	desc = "You shouldn't be able to see this."
+	light_range = 3
+	light_power = 2
+	light_color = "D4FAF37"
+	light_on = TRUE
 
 //debuff definition
 
@@ -327,10 +333,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/goldenapple/False_Attack2.ogg', 100, 0, 5)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//as powerful as goodbye, but only a 1-tile radius
+		for(var/mob/living/L in HurtInTurf(T, list(), 200, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			if(L.health < 0)
 				L.gib()
 				if(!last_target)//only the last person killed counts
@@ -446,18 +449,13 @@
 	dir = dir_to_target
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			if (L == src)
-				continue
+		for(var/mob/living/L in HurtInTurf(T, list(), smash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			var/datum/status_effect/stacking/maggots/G = L.has_status_effect(/datum/status_effect/stacking/maggots)
 			if(!G)
 				L.apply_status_effect(STATUS_EFFECT_MAGGOTS)
 			else
 				G.add_stacks(1)
 				G.refresh()
-			L.apply_damage(smash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			playsound(get_turf(src), 'sound/abnormalities/goldenapple/False_Attack2.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE

@@ -5,6 +5,11 @@
 	icon_state = "vivavoce"
 	var/list/users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/ringing,
+		/datum/ego_datum/armor/ringing
+		)
+
 /obj/structure/toolabnormality/vivavoce/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 6, user))

@@ -397,6 +397,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"dn" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "do" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/hub/preset,
@@ -515,6 +519,10 @@
 /obj/structure/chair/comfy/teal,
 /turf/open/floor/wood,
 /area/department_main/command)
+"dU" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "dX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/chair/stool/bar,
@@ -1777,6 +1785,10 @@
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/wood,
 /area/department_main/command)
+"nU" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "nY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1848,12 +1860,9 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "oE" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/safety)
+/obj/effect/spawner/structure/window/reinforced,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/north)
 "oF" = (
 /obj/structure/table/glass,
 /obj/structure/lootcrate/l_corp,
@@ -2260,6 +2269,10 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"ry" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "rB" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -2979,6 +2992,9 @@
 	id = "cremawheat"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "wB" = (
@@ -3951,6 +3967,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"Es" = (
+/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
+/obj/effect/turf_decal/siding/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "Ex" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
@@ -4019,6 +4042,9 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"Fk" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Fs" = (
 /obj/machinery/light/cold{
 	dir = 4
@@ -4316,9 +4342,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Ib" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = -32
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -4547,6 +4572,10 @@
 /obj/item/reagent_containers/hypospray/medipen/mental,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"JB" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "JC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -5050,6 +5079,10 @@
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/wood,
 /area/department_main/command)
+"Nw" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "ND" = (
 /obj/structure/sign/warning,
 /turf/closed/indestructible/reinforced,
@@ -5109,6 +5142,12 @@
 /obj/item/papercutter,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"Od" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "Oi" = (
 /obj/structure/chair/comfy/beige,
 /obj/item/toy/plush/hod,
@@ -5570,6 +5609,12 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
+"RQ" = (
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "RU" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -28463,11 +28508,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+cu
+cu
+cu
+cu
+cu
 ZL
 ZL
 ZL
@@ -28720,11 +28765,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+cu
+nU
+Fk
+Fk
+cu
 ZL
 ZL
 ZL
@@ -28977,11 +29022,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+cu
+Od
+dU
+Fk
+cu
 ZL
 ZL
 ZL
@@ -29234,11 +29279,11 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+cu
+Fk
+Fk
+Fk
+cu
 ZL
 ZL
 ZL
@@ -29492,9 +29537,9 @@ ZL
 ZL
 cu
 cu
-cu
-cu
-cu
+JB
+Ib
+JB
 cu
 cu
 ZL
@@ -29750,8 +29795,8 @@ ZL
 cu
 wz
 CC
-Ib
-oE
+CC
+CC
 cO
 cu
 cu
@@ -37955,7 +38000,7 @@ rg
 rg
 rg
 hl
-ve
+Es
 rg
 ng
 ve
@@ -39007,7 +39052,7 @@ vs
 vs
 vs
 vs
-vs
+oE
 ru
 oA
 PR
@@ -42588,9 +42633,9 @@ BA
 Iq
 Iq
 rg
-ZL
-ZL
-ZL
+rg
+rg
+rg
 vs
 mA
 mA
@@ -42844,10 +42889,10 @@ ZL
 BA
 Iq
 Iq
-rg
-ZL
-ZL
-ZL
+ry
+hc
+Iq
+Iq
 vs
 mA
 mA
@@ -43101,10 +43146,10 @@ ZL
 BA
 Iq
 Iq
-rg
-ZL
-ZL
-ZL
+RQ
+Iq
+dn
+Nw
 vs
 mA
 mA
@@ -43358,10 +43403,10 @@ ZL
 BA
 Iq
 RA
-rg
-ZL
-ZL
-ZL
+ry
+Iq
+Iq
+Iq
 vs
 vs
 vs
@@ -43616,10 +43661,10 @@ rg
 rg
 rg
 rg
-ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
+rg
 ZL
 ZL
 ZL

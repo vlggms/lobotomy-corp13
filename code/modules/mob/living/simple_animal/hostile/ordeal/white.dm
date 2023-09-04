@@ -119,13 +119,7 @@
 			break
 		for(var/turf/open/TT in range(1, T))
 			new /obj/effect/temp_visual/small_smoke/halfsecond(TT)
-			for(var/mob/living/L in TT)
-				if(L in been_hit)
-					continue
-				if(faction_check_mob(L))
-					continue
-				been_hit += L
-				L.apply_damage(hammer_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			been_hit = HurtInTurf(TT, been_hit, hammer_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 		sleep(1)
 	SLEEP_CHECK_DEATH(4)
 	busy = FALSE
@@ -246,23 +240,15 @@
 			continue
 		affected_turfs += TT
 		new /obj/effect/temp_visual/small_smoke/fixer_w(TT) // Lasts for 5 seconds
-		for(var/mob/living/L in TT) // Direct hit
-			if(L in been_hit)
-				continue
-			if(faction_check_mob(L))
-				continue
-			been_hit += L
-			L.apply_damage(beam_direct_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 	for(var/turf/TT in affected_turfs) // Remaining damage effect
-		addtimer(CALLBACK(src, .proc/BeamTurfEffect, TT, beam_overtime_damage))
+		BeamTurfEffect(TT, beam_overtime_damage)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/BeamTurfEffect(turf/T, damage = 10)
+	set waitfor = FALSE
 	for(var/i = 1 to 5)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 		sleep(5)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/CircleBeam()
@@ -439,22 +425,16 @@
 	SLEEP_CHECK_DEATH(4)
 	forceMove(slash_end)
 	for(var/turf/T in hitline)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
+		for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
 			to_chat(L, "<span class='userdanger'>[src] slashes you at a high speed!</span>")
-			L.apply_damage(multislash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	var/datum/beam/B1 = slash_start.Beam(slash_end, "volt_ray", time=3)
 	B1.visuals.color = COLOR_YELLOW
 	playsound(src, attack_sound, 50, FALSE, 4)
 	SLEEP_CHECK_DEATH(3)
 	forceMove(slash_start)
 	for(var/turf/T in hitline)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
+		for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
 			to_chat(L, "<span class='userdanger'>[src] slashes you at a high speed!</span>")
-			L.apply_damage(multislash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	var/datum/beam/B2 = slash_start.Beam(slash_end, "volt_ray", time=6)
 	B2.visuals.color = COLOR_RED
 	playsound(src, attack_sound, 75, FALSE, 8)
@@ -613,11 +593,8 @@
 			S.pixel_x = rand(-8, 8)
 			S.pixel_y = rand(-8, 8)
 			animate(S, alpha = 0, time = 1.5)
-			for(var/mob/living/L in T)
-				if(faction_check_mob(L))
-					continue
+			for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
 				to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
-				L.apply_damage(multislash_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
 		playsound(src, attack_sound, 50, TRUE, 3)
 		SLEEP_CHECK_DEATH(multislash_speed)
@@ -662,14 +639,10 @@
 	B.visuals.transform = M
 	var/list/been_hit = list()
 	for(var/turf/T in hitline)
-		for(var/mob/living/L in T)
-			if(L in been_hit)
-				continue
-			if(faction_check_mob(L))
-				continue
+		var/list/new_hits = HurtInTurf(T, been_hit, tentacle_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			to_chat(L, "<span class='userdanger'>A pale beam passes right through you!</span>")
-			L.apply_damage(tentacle_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
-			been_hit |= L
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	SLEEP_CHECK_DEATH(8)
 	case.FadeOut()

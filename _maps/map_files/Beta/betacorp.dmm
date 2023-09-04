@@ -61,11 +61,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "ap" = (
-/obj/machinery/computer/operating,
-/obj/machinery/smartfridge/organ{
-	pixel_y = 32
-	},
-/turf/open/floor/plasteel/white,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "ar" = (
 /obj/structure/disposalpipe/segment{
@@ -78,9 +75,10 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
 "as" = (
-/obj/item/clothing/suit/apron/surgical,
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "at" = (
 /obj/effect/turf_decal/siding/green{
@@ -372,9 +370,8 @@
 /turf/open/floor/wood,
 /area/facility_hallway/south)
 "bG" = (
-/obj/item/stack/medical/bone_gel,
-/obj/item/stack/sticky_tape/surgical,
 /obj/structure/table/reinforced,
+/obj/item/clothing/suit/apron/surgical,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "bI" = (
@@ -407,12 +404,14 @@
 /turf/open/floor/facility,
 /area/facility_hallway/north)
 "bV" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
 /obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/surgery,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "bW" = (
-/obj/machinery/iv_drip,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "bY" = (
@@ -599,11 +598,13 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "di" = (
-/obj/machinery/camera/autoname,
-/obj/structure/chair/sofa/corp,
-/obj/effect/turf_decal/siding{
+/obj/effect/turf_decal/siding/white/corner{
 	color = "#440000";
 	dir = 1
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#440000";
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
@@ -1064,11 +1065,7 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "fg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/vending/snack/green,
-/turf/open/floor/carpet/green,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "fh" = (
 /obj/effect/turf_decal/siding/blue{
@@ -1350,6 +1347,12 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
+"gX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "gY" = (
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
@@ -1489,6 +1492,12 @@
 	},
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
+"hP" = (
+/obj/machinery/door/airlock/vault{
+	name = "Shelter From The 27th Of March containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "hU" = (
 /obj/machinery/computer/med_data{
 	dir = 1;
@@ -1498,11 +1507,11 @@
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "hV" = (
-/obj/structure/chair/sofa/corp/left,
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 5
 	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
 "hW" = (
@@ -3416,6 +3425,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"qR" = (
+/obj/structure/toolabnormality/shelter/entrance,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "qS" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -3758,6 +3771,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"sC" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "sD" = (
 /obj/structure/sign/poster/lobotomycorp/random,
 /turf/closed/indestructible/reinforced,
@@ -3820,6 +3837,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet,
 /area/department_main/control)
+"sU" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "sV" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -4528,8 +4551,8 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "vO" = (
-/obj/structure/sign/poster/lobotomycorp/bearbeer,
-/turf/closed/indestructible/reinforced,
+/obj/effect/turf_decal/siding/green,
+/turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "vP" = (
 /obj/effect/landmark/salesspawn,
@@ -4804,6 +4827,10 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
+"xE" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "xF" = (
 /obj/structure/sign/departments/records{
 	pixel_y = -32
@@ -6611,13 +6638,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
 "Ho" = (
-/obj/structure/chair/sofa/corp/right,
-/obj/effect/turf_decal/siding{
-	color = "#440000";
-	dir = 9
+/obj/machinery/door/airlock/vault{
+	name = "Wishing Well containment zone"
 	},
-/turf/open/floor/plasteel,
-/area/facility_hallway/discipline)
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "Hr" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -7509,6 +7534,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"LT" = (
+/obj/effect/turf_decal/siding/green{
+	dir = 8
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/facility/white,
+/area/department_main/safety)
 "LW" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -7607,6 +7639,10 @@
 "Mz" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/south)
+"MA" = (
+/obj/structure/toolabnormality/wishwell,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "MD" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -8063,6 +8099,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"OL" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "OM" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -8812,6 +8852,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/discipline)
+"Sy" = (
+/obj/machinery/vending/snack/green,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "Sz" = (
 /obj/structure/sign/poster/official/we_watch,
 /turf/closed/indestructible/reinforced,
@@ -8840,6 +8884,12 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"SM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/safety)
 "SO" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility,
@@ -9558,6 +9608,12 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"Wv" = (
+/obj/machinery/smartfridge/organ{
+	pixel_y = 32
+	},
+/turf/closed/indestructible/reinforced,
+/area/department_main/safety)
 "Ww" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -34391,11 +34447,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-cQ
+rS
+rS
+rS
+rS
+rS
 cQ
 St
 qA
@@ -34648,12 +34704,12 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-cQ
-Ho
+rS
+OL
+PG
+PG
+sC
+ZD
 RY
 qA
 lU
@@ -34905,11 +34961,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-Bl
+rS
+sU
+MA
+PG
+Ho
 di
 ot
 qA
@@ -35162,11 +35218,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-cQ
+rS
+PG
+PG
+PG
+sC
 hV
 ba
 qA
@@ -35419,11 +35475,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-cQ
+rS
+rS
+rS
+rS
+rS
 cQ
 St
 qA
@@ -40241,9 +40297,9 @@ JB
 JB
 an
 ai
-bV
+bW
 Cc
-dz
+LT
 dz
 dz
 bC
@@ -40749,13 +40805,13 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 an
-ap
-bW
+an
+an
+an
+an
+an
+Wv
 Cc
 eG
 at
@@ -41006,14 +41062,14 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 an
-as
-ca
-an
+xE
+fg
+fg
+ap
+cu
+SM
+vO
 eY
 Pe
 bw
@@ -41263,18 +41319,18 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 an
-an
-an
-vO
+as
+qR
 fg
+hP
+cu
+cu
+vO
+Pe
 Pe
 oB
-Pe
+Sy
 am
 Tz
 jn
@@ -41520,14 +41576,14 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 an
-as
-ca
-an
+fg
+fg
+fg
+ap
+cu
+gX
+vO
 fo
 Pe
 vu
@@ -41777,13 +41833,13 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 an
-ap
-bW
+an
+an
+an
+an
+an
+an
 Cc
 fy
 dz
@@ -42039,7 +42095,7 @@ JB
 JB
 JB
 an
-al
+ca
 cu
 dv
 cu

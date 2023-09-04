@@ -135,3 +135,30 @@
 			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing black damage!</span>")
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
+
+/obj/item/gun/ego_gun/pink
+	name = "pink"
+	desc = "Pink is considered to be the color of warmth and love, but is that true? \
+			Can guns really bring peace and love?"
+	icon_state = "pink"
+	inhand_icon_state = "pink"
+	special = "This weapon fires faster when the corresponding suit is worn."
+	ammo_type = /obj/item/ammo_casing/caseless/pink
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
+	fire_delay = 18
+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/gun/ego_gun/pink/before_firing(atom/target, mob/user)
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/pink/Y = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		fire_delay = 12//FIXME: change it to 15% damage. Or keep it this way, whatever people like
+	..()

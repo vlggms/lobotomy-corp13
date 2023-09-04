@@ -39,6 +39,10 @@
 	desc = "A fillet of unspecified fish meat."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2) //No carpotoxin
 
+/obj/item/food/carpmeat/icantbeliveitsnotcarp/Initialize()
+	. = ..()
+	AddComponent(/datum/component/grillable, /obj/item/food/carpmeat/icantbeliveitsnotcarp, rand(30 SECONDS, 40 SECONDS), TRUE)
+
 /obj/item/food/fishfingers
 	name = "fish fingers"
 	desc = "A finger of fish."
@@ -75,14 +79,12 @@
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/cooked_fish/MakeProcessable()
-	AddElement(/datum/element/processable, TOOL_KNIFE, /obj/item/food/sashimi, 6, 30)
-
+//For some reason Sashimi cant be consumed if created from processing. So there has to be a recipes. -IP
 /obj/item/food/sashimi
 	name = "sashimi"
 	desc = "Its just cut up fish right?"
 	icon_state = "sashimi"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 4)
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("fish" = 1, "hot peppers" = 1)
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_TINY

@@ -15,7 +15,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	speed = 2
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -24
@@ -52,6 +51,20 @@
 	var/heart = FALSE
 	var/heart_threshold = 700
 	var/heart_list = list()
+
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle
+	name = "Toggle Claw Attack"
+	button_icon_state = "kqe_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't grab visitors anymore.</span>"
+	button_icon_toggle_activated = "kqe_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will attempt to grab visitors.</span>"
+	button_icon_toggle_deactivated = "kqe_toggle0"
+
 
 /*** Basic Procs ***/
 /mob/living/simple_animal/hostile/abnormality/kqe/Initialize()
@@ -161,7 +174,7 @@
 /mob/living/simple_animal/hostile/abnormality/kqe/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if ((grab_cooldown <= world.time) && prob(35))
+	if ((grab_cooldown <= world.time) && prob(35) && (!client))//checks for client since you can still use the claw if you click nearby
 		var/turf/target_turf = get_turf(target)
 		return ClawGrab(target_turf)
 	return Whip_Attack()
@@ -174,10 +187,7 @@
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(melee_damage_upper, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	icon_state = "kqe_prepare2"
 	SLEEP_CHECK_DEATH(3)
 	icon_state = icon_living
@@ -186,6 +196,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/kqe/OpenFire()
 	if(!can_act)
+		return
+	if(client)
+		switch (chosen_attack)
+			if (1)
+				ClawGrab(target)
+			if (2)
+				return
 		return
 	if(grab_cooldown <= world.time)
 		ClawGrab(target)

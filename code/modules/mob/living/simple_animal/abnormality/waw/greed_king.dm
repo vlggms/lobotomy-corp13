@@ -14,13 +14,12 @@
 	attack_verb_simple = "chomps"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	speak_emote = list("states")
-	speed = 4
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/kog_dash, /datum/action/innate/abnormality_attack/kog_teleport)
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 60	//Shouldn't really attack unless a player in controlling it, I guess.
 	melee_damage_upper = 80
+	attack_sound = 'sound/abnormalities/kog/GreedHit1.ogg'
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
@@ -46,17 +45,21 @@
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+	/datum/action/innate/abnormality_attack/kog_dash,
+	/datum/action/innate/abnormality_attack/kog_teleport
+	)
+
 /datum/action/innate/abnormality_attack/kog_dash
 	name = "Ravenous Charge"
-	icon_icon = 'ModularTegustation/Teguicons/64x48.dmi'
-	button_icon_state = "kog"
+	button_icon_state = "kog_charge"
 	chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/kog_teleport
 	name = "Teleport"
-	icon_icon = 'icons/effects/effects.dmi'
-	button_icon_state = "sparks"
+	button_icon_state = "kog_teleport"
 	chosen_message = "<span class='warning'>You will now teleport to a random area in the facility's halls.</span>"
 	chosen_attack_num = 2
 
@@ -169,23 +172,28 @@
 	forceMove(T)
 
 	//Hiteffect stuff
-	for(var/mob/living/L in range(1, T))
-		if(L in been_hit || L == src)
-			continue
-		been_hit+=L
-		visible_message("<span class='boldwarning'>[src] crunches [L]!</span>")
-		to_chat(L, "<span class='userdanger'>[src] rends you with its teeth!</span>")
-		playsound(L, attack_sound, 75, 1)
-		var/turf/LT = get_turf(L)
-		new /obj/effect/temp_visual/kinetic_blast(LT)
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		else
-			L.adjustRedLoss(80)
-		if(L.stat >= HARD_CRIT)
-			L.gib()
-			continue
+
+	for(var/turf/U in range(1, T))
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			L.visible_message("<span class='boldwarning'>[src] crunches [L]!</span>","<span class='userdanger'>[src] rends you with its teeth!</span>")
+			playsound(L, attack_sound, 75, 1)
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			else
+				L.adjustRedLoss(80)
+			if(L.stat >= HARD_CRIT)
+				L.gib()
+			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
+			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
+		for(var/obj/vehicle/V in new_hits)
+			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
+			V.visible_message("<span class='boldwarning'>[src] crunches [V]!</span>")
+			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
 
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
