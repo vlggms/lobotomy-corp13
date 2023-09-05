@@ -431,10 +431,8 @@
 	SLEEP_CHECK_DEATH(2 SECONDS) //Enough to run away, but not easily
 	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
 
-	for (var/mob/living/L in viewers(src, null)) //The actual flashing
+	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
 		if (!ishuman(L))
-			continue
-		if (get_dist(src, L) > flash_range)
 			continue
 		L.Paralyze(5 SECONDS) //you better dodge it
 		var/obj/item/held = L.get_active_held_item()
