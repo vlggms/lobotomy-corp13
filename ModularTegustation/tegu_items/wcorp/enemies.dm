@@ -133,7 +133,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 				if(13 to 14)
 					if(!GLOB.wcorp_boss_spawn)
 						GLOB.wcorp_boss_spawn = TRUE
-							spawntype = /mob/living/simple_animal/hostile/lovetown/abomination/patrol
+						spawntype = /mob/living/simple_animal/hostile/lovetown/abomination/patrol
 					else
 						switch(rand(1,100))
 							if(60 to 80)
