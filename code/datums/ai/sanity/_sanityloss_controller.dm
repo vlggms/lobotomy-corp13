@@ -30,7 +30,8 @@
 /datum/ai_controller/insane/SelectBehaviors(delta_time)
 	current_behaviors = list()
 	var/mob/living/living_pawn = pawn
-
+	if(living_pawn.stat < UNCONSCIOUS) // Don't even check if we're KO'd. No point.
+		return
 	if(SHOULD_RESIST(living_pawn) && DT_PROB(resist_chance, delta_time))
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/resist)
 		return
@@ -73,7 +74,7 @@
 /datum/ai_controller/insane/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
 	SIGNAL_HANDLER
 	var/mob/living/living_pawn = pawn
-	if(!living_pawn.stat)
+	if(living_pawn.stat < UNCONSCIOUS) // Soft-Crit + Conscious
 		INVOKE_ASYNC(living_pawn, .mob/living/verb/resist)
 		return TRUE
 	return FALSE
