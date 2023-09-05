@@ -15,8 +15,9 @@
 /obj/structure/ordeal_extractor
 	name = "tres association material extractor"
 	desc = "A device made by the Tres Association to extract materials from irregular 'organic' material. \
-		\nMultiple of the same material has a chance to produce better quality materials.\
-		\nAlt-Click to start the machine.\nCtrl-Click to empty the machine in manageable boxes."
+		\nCan condense 10/20/30 units of a material into a denser form. \
+		\nAccepts input from hand-held storage containers.\
+		\nAlt-Click to select and produce materials from the machine.\nCtrl-Click to empty the machine in manageable boxes."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "smoke0"
 	anchored = TRUE
@@ -254,7 +255,7 @@
 
 /obj/item/storage/box/materials_disposable
 	name = "temporary material storage box"
-	desc = "a box designed to hold forging materials"
+	desc = "A box designed to hold forging materials. Can be used to pick up piles of materials."
 	foldable = FALSE
 
 /obj/item/storage/box/materials_disposable/Initialize(mapload)
