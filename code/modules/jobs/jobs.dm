@@ -93,9 +93,12 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Scout Raven",
 	"R-Corp Support Raven",
 
+
+	//W-Corp agents
 	"W-Corp L2 Type A Lieutenant",
 	"W-Corp L2 Type B Support Agent",
 	"W-Corp L2 Type C Weapon Specialist",
+	"W-Corp L2 Type D Spear Agent",
 	"W-Corp L1 Cleanup Agent",
 
 
