@@ -3899,6 +3899,8 @@
 #include "ModularTegustation\tegu_items\wcorp\berets.dm"
 #include "ModularTegustation\tegu_items\wcorp\enemies.dm"
 #include "ModularTegustation\tegu_items\wcorp\headsets.dm"
+#include "ModularTegustation\tegu_items\wcorp\mapping.dm"
+#include "ModularTegustation\tegu_items\wcorp\storage.dm"
 #include "ModularTegustation\tegu_items\workshop\_materials.dm"
 #include "ModularTegustation\tegu_items\workshop\_mods.dm"
 #include "ModularTegustation\tegu_items\workshop\_templates.dm"
