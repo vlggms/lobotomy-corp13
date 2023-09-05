@@ -35,6 +35,10 @@
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
+"de" = (
+/obj/effect/spawner/room/wcorp,
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
 "df" = (
 /turf/open/floor/plasteel/bluespace,
 /area/space)
@@ -78,10 +82,6 @@
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"fJ" = (
-/obj/structure/barricade/security,
-/turf/open/floor/carpet/royalblue,
-/area/city/outskirts)
 "gm" = (
 /obj/structure/window/reinforced/spawner{
 	dir = 8
@@ -115,10 +115,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
-"is" = (
-/obj/effect/landmark/department_center,
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "iP" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
@@ -132,10 +128,10 @@
 /turf/open/floor/carpet/blue,
 /area/space)
 "jo" = (
-/obj/structure/window/reinforced/unanchored{
+/obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
-/obj/structure/chair/comfy/shuttle{
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/open/floor/plasteel/bluespace,
@@ -223,10 +219,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"rN" = (
-/obj/structure/holosign/barrier/cyborg,
-/turf/open/floor/carpet/royalblue,
-/area/city/outskirts)
 "rO" = (
 /obj/effect/decal/cleanable/glass/plasma,
 /obj/effect/decal/cleanable/glass/plasma,
@@ -253,10 +245,6 @@
 "tb" = (
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"tM" = (
-/obj/structure/barricade/security,
-/turf/open/floor/carpet/blue,
-/area/city/outskirts)
 "ub" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/closed/wall/material,
@@ -277,12 +265,6 @@
 "ws" = (
 /obj/machinery/telecomms/allinone/indestructable,
 /turf/open/indestructible/hotelwood,
-/area/city/outskirts)
-"wv" = (
-/obj/structure/window/reinforced/unanchored{
-	dir = 8
-	},
-/turf/open/floor/carpet/blue,
 /area/city/outskirts)
 "xH" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
@@ -317,10 +299,6 @@
 /turf/open/floor/plasteel/bluespace,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"zq" = (
-/obj/effect/landmark/department_center,
-/turf/open/floor/carpet/royalblue,
-/area/city/outskirts)
 "zz" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/bluespace,
@@ -342,15 +320,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"CC" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/carpet/blue,
-/area/city/outskirts)
 "Dh" = (
 /obj/effect/decal/cleanable/glass,
 /obj/effect/light_emitter{
@@ -364,13 +333,6 @@
 "DX" = (
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
 /turf/closed/wall/r_wall/syndicate,
-/area/city/outskirts)
-"Ei" = (
-/obj/structure/window/reinforced/unanchored{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "Es" = (
 /obj/structure/chair/comfy/shuttle{
@@ -391,12 +353,6 @@
 "FS" = (
 /turf/open/floor/carpet/royalblue,
 /area/city/outskirts)
-"FV" = (
-/obj/structure/window/reinforced/unanchored{
-	dir = 8
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "Ga" = (
 /turf/open/floor/mineral/plastitanium/red,
 /area/space)
@@ -416,10 +372,6 @@
 	dir = 8
 	},
 /turf/closed/wall/mineral/plastitanium,
-/area/city/outskirts)
-"GP" = (
-/obj/structure/holosign/barrier/cyborg,
-/turf/open/floor/carpet/blue,
 /area/city/outskirts)
 "GW" = (
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
@@ -475,16 +427,6 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"KW" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/obj/effect/landmark/department_center,
-/turf/open/floor/carpet/blue,
-/area/city/outskirts)
 "Lk" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/carpet/red,
@@ -500,12 +442,6 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/carpet/red,
-/area/city/outskirts)
-"LK" = (
-/obj/structure/window/reinforced/spawner{
-	dir = 8
-	},
-/turf/open/floor/carpet/blue,
 /area/city/outskirts)
 "LN" = (
 /obj/effect/decal/cleanable/blood,
@@ -570,10 +506,10 @@
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
 "PO" = (
-/obj/structure/window/reinforced/unanchored{
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "Qs" = (
@@ -581,13 +517,13 @@
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
 "Qw" = (
-/obj/structure/window/reinforced/unanchored{
-	dir = 8
-	},
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "Rm" = (
@@ -608,31 +544,11 @@
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/carpet/red,
 /area/city/outskirts)
-"SQ" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/obj/effect/landmark/department_center,
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
-"Ts" = (
-/obj/effect/landmark/department_center,
-/turf/open/floor/carpet/blue,
-/area/city/outskirts)
 "UQ" = (
 /turf/open/floor/carpet/blue,
 /area/city/outskirts)
 "UV" = (
 /turf/open/indestructible/hotelwood,
-/area/city/outskirts)
-"Vu" = (
-/obj/structure/window/reinforced/spawner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "Vw" = (
 /obj/structure/chair/sofa/corp/right{
@@ -670,11 +586,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
-"Wh" = (
-/obj/effect/decal/cleanable/blood/gibs/bubblegum,
-/obj/effect/decal/cleanable/blood/gibs/bubblegum,
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "Ws" = (
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
 /obj/effect/landmark/observer_start,
@@ -695,11 +606,11 @@
 /turf/open/floor/carpet/red,
 /area/city/outskirts)
 "YO" = (
-/obj/structure/window/reinforced/unanchored{
-	dir = 8
-	},
 /obj/effect/decal/cleanable/blood/gibs/core,
 /obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "ZX" = (
@@ -18090,17 +18001,17 @@ pt
 pt
 pt
 pt
-iP
-Qs
-XO
-vS
+rh
 tb
-ot
 tb
-ot
-ot
-mN
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+de
 pt
 pt
 pt
@@ -18392,17 +18303,17 @@ pt
 pt
 pt
 pt
-iP
-XO
-tb
-ot
+rh
 tb
 tb
 tb
 tb
 tb
 tb
-iP
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -18694,17 +18605,17 @@ pt
 pt
 pt
 pt
-iP
-cI
-Es
-cI
+rh
 tb
-vS
-ot
-cI
-Qw
-jo
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -18996,17 +18907,17 @@ pt
 pt
 pt
 pt
-iP
-Ei
-FV
-tb
-vS
+rh
 tb
 tb
-vS
-vS
 tb
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -19298,17 +19209,17 @@ pt
 pt
 pt
 pt
-iP
-tb
-tb
-vS
+rh
 tb
 tb
 tb
 tb
-vS
 tb
-iP
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -19600,17 +19511,17 @@ pt
 pt
 pt
 pt
-iP
-Es
-Es
-Es
-Wh
-Wh
+rh
 tb
-Qw
-jo
-Es
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -19902,17 +19813,17 @@ pt
 pt
 pt
 pt
-iP
-tb
-vS
-tb
-vS
-SQ
+rh
 tb
 tb
 tb
 tb
-iP
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -20204,17 +20115,17 @@ pt
 pt
 pt
 pt
-iP
-tb
-vS
-vS
+rh
 tb
 tb
 tb
 tb
 tb
-ot
-iP
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -20506,17 +20417,17 @@ pt
 pt
 pt
 pt
-iP
-Xp
-Es
-jo
-Ei
+rh
 tb
 tb
-Es
-cI
-Xp
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -20808,17 +20719,17 @@ pt
 pt
 pt
 pt
-iP
-UQ
-UQ
-tb
-tb
-ot
+rh
 tb
 tb
 tb
-wv
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -21110,17 +21021,17 @@ pt
 pt
 pt
 pt
-iP
-FV
-is
-UQ
+rh
 tb
-UQ
-UQ
 tb
-is
-UQ
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -21412,17 +21323,17 @@ pt
 pt
 pt
 pt
-iP
-Xp
-Es
-Es
+rh
 tb
 tb
 tb
-Xp
-Xp
-Xp
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -21714,17 +21625,17 @@ pt
 pt
 pt
 pt
-iP
-UQ
-tb
-UQ
+rh
 tb
 tb
-UQ
-UQ
 tb
-UQ
-iP
+tb
+tb
+tb
+tb
+tb
+tb
+rh
 pt
 pt
 pt
@@ -22325,10 +22236,10 @@ tb
 tb
 tb
 tb
-UQ
 tb
 tb
-rh
+tb
+de
 pt
 pt
 pt
@@ -22622,12 +22533,12 @@ pt
 pt
 rh
 tb
-Vu
-Vu
 tb
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
 tb
 tb
 rh
@@ -22923,15 +22834,15 @@ pt
 pt
 pt
 rh
-UQ
-UQ
 tb
-UQ
-CC
-UQ
 tb
-Vu
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -23227,13 +23138,13 @@ pt
 rh
 tb
 tb
-UQ
-tb
-UQ
-UQ
 tb
 tb
-UQ
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -23527,15 +23438,15 @@ pt
 pt
 pt
 rh
-Es
-Xp
-UQ
-UQ
-UQ
 tb
-UQ
-Es
-Es
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -23829,12 +23740,12 @@ pt
 pt
 pt
 rh
-rh
 tb
 tb
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
 tb
 tb
 tb
@@ -24131,15 +24042,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-LK
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -24433,15 +24344,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-UQ
-tb
-UQ
 tb
 tb
-LK
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -24735,14 +24646,14 @@ pt
 pt
 pt
 rh
-rh
-rh
-Vu
-UQ
 tb
 tb
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
 tb
 rh
 pt
@@ -25037,15 +24948,15 @@ pt
 pt
 pt
 rh
-rh
 tb
 tb
-UQ
-UQ
 tb
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -25339,15 +25250,15 @@ pt
 pt
 pt
 rh
-Es
-Xp
-UQ
 tb
-ZY
-UQ
-UQ
-Es
-Es
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -25641,14 +25552,14 @@ pt
 pt
 pt
 rh
-UQ
-Ts
-UQ
-UQ
-UQ
-UQ
-UQ
-is
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 tb
 rh
 pt
@@ -25949,9 +25860,9 @@ tb
 tb
 tb
 tb
-UQ
-UQ
-UQ
+tb
+tb
+tb
 rh
 pt
 pt
@@ -30775,16 +30686,16 @@ pt
 pt
 pt
 rh
-FS
-rN
-GP
-UQ
-UQ
-UQ
-UQ
-rN
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+de
 pt
 pt
 pt
@@ -31077,15 +30988,15 @@ pt
 pt
 pt
 rh
-rN
-rN
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -31379,15 +31290,15 @@ pt
 pt
 pt
 rh
-FS
-zq
-UQ
-UQ
-UQ
-UQ
-UQ
-zq
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -31681,15 +31592,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -31983,15 +31894,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-GP
-GP
-UQ
-UQ
-GP
-rN
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -32285,15 +32196,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -32587,15 +32498,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-UQ
-UQ
-CC
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -32889,15 +32800,15 @@ pt
 pt
 pt
 rh
-rh
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -33191,15 +33102,15 @@ pt
 pt
 pt
 rh
-rh
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -33493,15 +33404,15 @@ pt
 pt
 pt
 rh
-rh
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -33795,15 +33706,15 @@ pt
 pt
 pt
 rh
-rh
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -34097,15 +34008,15 @@ pt
 pt
 cp
 rh
-rh
-rh
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -34399,15 +34310,15 @@ pt
 pt
 cp
 rh
-rh
-rh
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -34703,11 +34614,11 @@ ny
 iP
 iP
 iP
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
 iP
 iP
 iP
@@ -35003,16 +34914,16 @@ pt
 pt
 pt
 rh
-rh
-rh
-Ts
-UQ
-UQ
-UQ
-UQ
-Ts
-UQ
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+de
 pt
 pt
 pt
@@ -35305,15 +35216,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -35607,15 +35518,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -35909,15 +35820,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-tM
-tM
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -36211,15 +36122,15 @@ pt
 pt
 pt
 rh
-rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-tM
-tM
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -36513,15 +36424,15 @@ pt
 pt
 pt
 rh
-UQ
-UQ
-UQ
-UQ
-KW
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -36815,15 +36726,15 @@ pt
 pt
 pt
 rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -37117,15 +37028,15 @@ pt
 pt
 pt
 rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-tM
-tM
-tM
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -37419,15 +37330,15 @@ pt
 pt
 pt
 rh
-tM
-tM
-tM
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -37721,15 +37632,15 @@ pt
 pt
 pt
 rh
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
-UQ
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -38023,15 +37934,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-UQ
-UQ
-UQ
-UQ
-UQ
-FS
-FS
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -38325,15 +38236,15 @@ pt
 pt
 pt
 rh
-FS
-FS
-FS
-FS
-FS
-FS
-fJ
-fJ
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
@@ -38627,15 +38538,15 @@ pt
 pt
 pt
 rh
-rh
-rh
-FS
-FS
-FS
-FS
-FS
-FS
-rh
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
 rh
 pt
 pt
