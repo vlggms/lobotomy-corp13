@@ -70,7 +70,7 @@
 	if(!living_pawn.Adjacent(target))
 		return
 
-	if(controller.next_attack_time > world.time)
+	if(living_pawn.next_move > world.time)
 		return
 
 	var/obj/item/weapon = null
@@ -97,13 +97,13 @@
 	if(weapon)
 		if(istype(weapon, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/EGO = weapon
-			controller.next_attack_time = world.time + (CLICK_CD_MELEE * EGO.attack_speed)
+			living_pawn.changeNext_move(CLICK_CD_MELEE * EGO.attack_speed)
 		else
-			controller.next_attack_time = world.time + CLICK_CD_MELEE
+			living_pawn.changeNext_move(CLICK_CD_MELEE)
 		weapon.melee_attack_chain(living_pawn, target)
 	else
 		living_pawn.UnarmedAttack(target)
-		controller.next_attack_time = world.time + CLICK_CD_MELEE
+		living_pawn.changeNext_move(CLICK_CD_MELEE)
 
 /datum/ai_behavior/insane_equip
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT

@@ -81,11 +81,7 @@
 
 /datum/ai_controller/insane/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
 	SIGNAL_HANDLER
-	var/mob/living/living_pawn = pawn
-	if(living_pawn.stat < UNCONSCIOUS) // Soft-Crit + Conscious
-		current_behaviors |= GET_AI_BEHAVIOR(/datum/ai_behavior/resist)
-		return TRUE
-	return FALSE
+	return
 
 /datum/ai_controller/insane/proc/ResistCheck()
 	var/mob/living/living_pawn = pawn
@@ -98,7 +94,6 @@
 	resist_chance = 80 // Anger powered break out attempts
 	var/list/currently_scared = list()
 	var/timerid = null
-	var/next_attack_time
 	var/interest = 3
 
 /datum/ai_controller/insane/murder/PerformMovement(delta_time)
@@ -166,6 +161,7 @@
 	if(!LAZYLEN(potential_enemies)) // We aint see shit!
 		return
 
+	var/attempt_count = 0
 	for(var/mob/living/L in potential_enemies) // Oh the CHOICES!
 		if(L == living_pawn)
 			continue
@@ -173,7 +169,8 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		if(prob(33) || potential_enemies.len == 1) // Target spotted (bold)
+		attempt_count++
+		if(DT_PROB(33, attempt_count) || potential_enemies.len == 1) // Target spotted (bold)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
 			return
 
