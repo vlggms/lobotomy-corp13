@@ -1,12 +1,11 @@
-GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", "Cleaver"))	//There's two per squad
+GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 
-//These are proper agents for W-Corp, and not the chaff you're familiar with. - Angela
-/datum/job/wcorpl2
-	title = "W-Corp L2 Type C Weapon Specialist"
+/datum/job/wcorpl2recon
+	title = "W-Corp L2 Type A Lieutenant"
 	faction = "Station"
 	department_head = list("W-Corp L3 Cleanup Captain, W-Corp Representative")
-	total_positions = 6
-	spawn_positions = 6
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "Your assigned W-Corp L3 Agent and the W-Corp Representative"
 	selection_color = "#1b7ced"
 	exp_requirements = 120
@@ -14,7 +13,7 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 	maptype = "wcorp"
 
 	outfit = /datum/outfit/job/wcorpl2
-	display_order = 4.5
+	display_order = 3
 
 
 	access = list() //add accesses as necessary
@@ -26,13 +25,13 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 	)
-	rank_title = "L2-C"
-	job_important = "You take the role of frontline infantry."
-	job_notice = "You are a agent armed with a specialized w-corp weapon, as well as heavier armor. Support your squadron with your equipment."
+	rank_title = "L2-LT"
+	job_important = "You take the role of inter-squad communication."
+	job_notice = "You are a agent tasked with assisting with communications and coordination between your squad and other squads. Support your squadron with your equipment."
 
-/datum/job/wcorpl2/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/wcorpl2recon/after_spawn(mob/living/carbon/human/H, mob/M)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	var/squad = pick_n_take(GLOB.l2csquads)
+	var/squad = pick_n_take(GLOB.l2asquads)
 	.=..()
 	var/ears = null
 	to_chat(M, "<span class='userdanger'>You have been assigned to the [squad] squad. </span>")
@@ -48,29 +47,19 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 			qdel(H.ears)
 		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 
-
-//Outfits
-/datum/outfit/job/wcorpl2
-	name = "W-Corp L2 Type C Weapon Specialist"
-	jobtype = /datum/job/wcorpl2
+/datum/outfit/job/wcorpl2recon
+	name = "W-Corp L2 Type A Lieutenant"
+	jobtype = /datum/job/wcorpl2support
 
 	ears = /obj/item/radio/headset/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
-	belt = null
+	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior
+	belt = /obj/item/ego_weapon/city/wcorp
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
-	l_pocket = /obj/item/flashlight/seclite
-	backpack_contents = list(/obj/item/storage/box/pcorp)
-
-/datum/outfit/job/wcorpl2/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	..()
-	var/belt = pick(/obj/item/ego_weapon/city/wcorp/fist,
-		/obj/item/ego_weapon/city/wcorp/axe,
-		/obj/item/ego_weapon/city/wcorp/dagger,
-		/obj/item/ego_weapon/city/wcorp/hatchet,
-		/obj/item/ego_weapon/city/wcorp/hammer)
-	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+	l_pocket = /obj/item/commandprojector
+	r_pocket = /obj/item/storage/packet
+	backpack_contents = list(/obj/item/storage/box/pcorp, /obj/item/binoculars)
