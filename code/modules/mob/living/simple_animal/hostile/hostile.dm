@@ -497,6 +497,23 @@
 	else
 		return ..()
 
+/mob/living/simple_animal/hostile/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if(target == mover) // "I'm KILLING YOU, I'm KILLING YOU" - Jerma985
+		return FALSE
+	if(ishostile(mover))
+		var/mob/living/simple_animal/hostile/H = mover
+		if(LAZYLEN(H.patrol_path)) // Don't block patrolling guys
+			return TRUE
+		return
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.sanity_lost) // Don't block crazy people
+			return TRUE
+	return
+
 /mob/living/simple_animal/hostile/proc/dodge(moving_to,move_direction)
 	//Assuming we move towards the target we want to swerve toward them to get closer
 	var/cdir = turn(move_direction,45)
