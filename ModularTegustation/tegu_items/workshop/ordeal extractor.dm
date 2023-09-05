@@ -16,7 +16,6 @@
 	name = "tres association material extractor"
 	desc = "A device made by the Tres Association to extract materials from irregular 'organic' material. \
 		\nCan condense 10/20/30 units of a material into a denser form. \
-		\nAccepts input from hand-held storage containers.\
 		\nAlt-Click to select and produce materials from the machine.\nCtrl-Click to empty the machine in manageable boxes."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "smoke0"
@@ -49,6 +48,12 @@
 /obj/structure/ordeal_extractor/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
+
+/obj/structure/ordeal_extractor/Initialize()
+	. = ..()
+	new /obj/item/paper/fluff/extractor_notes(loc)
+	new /obj/item/storage/box/materials_disposable(loc)
+	new /obj/item/storage/box/materials_disposable(loc)
 
 /obj/structure/ordeal_extractor/attacked_by(obj/item/I, mob/living/user)
 	if(user.a_intent != INTENT_HELP)
@@ -275,6 +280,22 @@
 	ST.max_combined_w_class = 80 // Max 20 Bulky Items
 	ST.max_items = 21 // Rows of 7, so 21 for 3 rows.
 	ST.click_gather = TRUE
+
+/obj/item/paper/fluff/extractor_notes
+	name = "T.A.M.E. user guide"
+	desc = "A guide to all (or most of) your questions about the T.A.M.E."
+	info = @{"The tres association material extractor is a device designed to take irregular inorganic material and turn it into useful material for workshops.
+		It also serves as a way of condensing existing material down into denser ingots to allow for the creation of stronger equipment.<br>
+		Density increases stats by 10%/20%/40% depending on how dense the ingot is.<br><br>
+
+		<b>Materials Accepted:</b><br>
+		[Source]	-	[Ingot]	-	[Effect]<br>
+		Vender	-	Tressium	-	None<br><br>
+		Sweepers	-	Sweepium	-	Faster attacks, small flat force increase, forced Black Damage.<br><br>
+		Robots	-	Sentium	-	Large flat force increase.<br><br>
+		Worms	-	Hungium	-	Edible weapon, 10% force increase, small flat force increase.<br><br>
+		???	-	???	-	5% force increase, tiny flat force increase, attacks slightly faster, forced Pale Damage.
+		"}
 
 
 #undef TRES
