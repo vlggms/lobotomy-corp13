@@ -499,6 +499,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	mob_size = MOB_SIZE_HUGE
 	a_intent = INTENT_HARM
 	var/mob_spawn_amount = 1 //the weakest will spawn just one suicidal, higher tiers will spawn more
+	var/spawn_prob = 66 //chance to spawn suicials on death, default is 33%
 
 //Proc below is a modified crimson DeathExplosion()
 /mob/living/simple_animal/hostile/lovetown/proc/SpawnSuicidal() //all mobs spawn at least 1 suicidal on death, except the suicidals themselves
@@ -514,6 +515,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		if(!TF.is_blocked_turf(TRUE))
 			valid_directions += d
 	for(var/i = 1 to mob_spawn_amount)
+		if(prob(spawn_prob))
+			continue
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		new/mob/living/simple_animal/hostile/lovetown/suicidal(T)
 	gib()
@@ -538,7 +541,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/can_act = TRUE
 	var/scream_cooldown
-	var/scream_cooldown_time = 4 SECONDS
+	var/scream_cooldown_time = 6 SECONDS
 
 /mob/living/simple_animal/hostile/lovetown/suicidal/AttackingTarget()
 	return OpenFire()
@@ -557,13 +560,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	scream_cooldown = world.time + scream_cooldown_time
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 50, TRUE, 3)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to 3)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
-		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
-		SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in view(4, src))
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 4)
+		SLEEP_CHECK_DEATH(6)
+	for(var/mob/living/L in view(3, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	can_act = TRUE
 
 //Love Town Slasher - TETH goons, not much of a threat
@@ -633,6 +636,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 4 //on death explodes into 4 suicidals
+	spawn_prob = 33 //66% chance to spawn suicidals, higher than normal
 
 	var/scream_cooldown
 	var/scream_cooldown_time = 7 SECONDS
@@ -655,13 +659,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	can_act = FALSE
 	scream_cooldown = world.time + scream_cooldown_time
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/scream.ogg', 75, TRUE, 3)
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 4)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
-		animate(D, alpha = 0, transform = matrix()*1.5, time = 2)
-		SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in view(6, src))
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 3)
+		SLEEP_CHECK_DEATH(6)
+	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	can_act = TRUE
 
 // Love Town Slumberer - HE threat,, quite damaging and can grab you, stuns you for some time.
@@ -773,6 +777,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	move_resist = MOVE_FORCE_OVERPOWERING
 	mob_spawn_amount = 2 //:(
+	spawn_prob = 0 //100%, always spawn them
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
