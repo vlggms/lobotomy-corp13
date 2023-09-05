@@ -41,6 +41,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK // I HAVE NO IDEA LOR ORIGIN CODE
 	var/list/children_list = list()
 	var/charge = 0
+	var/can_charge = FALSE // Prevents charging the map wide attack
 	var/maxcharge = 180
 	var/desperation_cooldown
 	var/desperation_cooldown_time = 1 SECONDS
@@ -89,7 +90,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/Life()
 	. = ..()
-	if(!(status_flags & GODMODE))
+	if(can_charge)
 		Charge_Finale()
 
 // DON'T IGNORE ME!!
@@ -107,7 +108,7 @@
 				flash_color(L, flash_color = COLOR_SOFT_RED, flash_time = 150)
 				SEND_SOUND(L, sound('sound/ambience/acidrain_mid.ogg'))
 
-// 400 Red + 75 Pure damage
+// 300 Red + 75 Pure damage
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/Scorching_Desperation()
 	if(charge < maxcharge) // Cancels if he change phases or dies
 		return
@@ -117,7 +118,7 @@
 			continue
 		to_chat(L, "<span class='userdanger'>You're boiling alive from the heat of a miniature sun!</span>")
 		playsound(L, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
-		L.apply_damage(400, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(300, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		L.apply_lc_burn(50)
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
@@ -132,6 +133,7 @@
 	base_pixel_x = -32
 	pixel_y = -15
 	base_pixel_y = -15
+	can_charge = TRUE
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 	return
@@ -167,6 +169,7 @@
 		base_pixel_y = 0
 		animate(src, alpha = 0, time = 10 SECONDS)
 		charge = 0
+		can_charge = FALSE 
 		QDEL_IN(src, 10 SECONDS)
 		return ..()
 
@@ -202,8 +205,9 @@
 	can_act = FALSE
 	icon_state = "[icon_phase]_salvador"
 	. = ..()
-	var/mob/living/L = target
-	L.apply_lc_burn(5*burn_mod)
+	if(isliving(target))
+		var/mob/living/L = target
+		L.apply_lc_burn(5*burn_mod)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = "[icon_phase]_idle"
 	can_act = TRUE
@@ -231,13 +235,11 @@
 		S.pixel_x = rand(-8, 8)
 		S.pixel_y = rand(-8, 8)
 		animate(S, alpha = 0, time = 1.5)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L) || (L in been_hit))
-				continue
+		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
-			been_hit += L
 			L.apply_lc_burn(4*burn_mod)
-			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = "[icon_phase]_idle"
@@ -250,8 +252,6 @@
 	can_act = FALSE
 	icon_state = "[icon_phase]_sorrow"
 	var/list/targets_to_hit = list()
-	playsound(src, 'sound/abnormalities/crying_children/sorrow_charge.ogg', 50, FALSE)
-	SLEEP_CHECK_DEATH(10)
 	if(desperate)
 		for(var/mob/living/L in view(8, src))
 			if(faction_check_mob(L))
@@ -259,13 +259,19 @@
 			if(istype(L, /mob/living/simple_animal/bot))
 				continue
 			targets_to_hit += L
+		for(var/obj/vehicle/V in view(8, src))
+			if(V.occupants.len <= 0)
+				continue
+			targets_to_hit += V
 	else
 		targets_to_hit += target
-	for(var/mob/living/L in targets_to_hit)
+	playsound(src, 'sound/abnormalities/crying_children/sorrow_charge.ogg', 50, FALSE)
+	SLEEP_CHECK_DEATH(10)
+	for(var/targets in targets_to_hit)
 		var/obj/projectile/beam/sorrow_beam/P = new(get_turf(src))
 		P.firer = src
 		P.fired_from = src
-		P.preparePixelProjectile(L, src)
+		P.preparePixelProjectile(targets, src)
 		P.fire()
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE)
 	icon_state = "[icon_phase]_idle"
@@ -287,19 +293,17 @@
 	playsound(src, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, FALSE)
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/fire/fast(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L) || (L in been_hit))
-				continue
+		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			to_chat(L, "<span class='userdanger'>You were scorched by [src]'s flames!</span>")
-			been_hit += L
 			L.apply_lc_burn(20)
-			L.apply_damage(250, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
 
 // Work Stuff
 /mob/living/simple_animal/hostile/abnormality/crying_children/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(30))
+	if(prob(20))
 		Curse(user)
 	return
 
@@ -375,6 +379,8 @@
 	if(children_list.len <= 0)
 		SLEEP_CHECK_DEATH(50)
 		FinalPhase()
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/FinalPhase()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 20, "I don’t want to hear anything. I don’t want to see anything, or speak anything…", 25))
@@ -391,8 +397,6 @@
 	charge = 0
 	maxcharge = 90 // Becomes 1 Minute 30 sec
 	sound_to_playing_players_on_level('sound/abnormalities/crying_children/final_phase.ogg', 50, zlevel = z)
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
 
 /* The Children */
 /mob/living/simple_animal/hostile/child
