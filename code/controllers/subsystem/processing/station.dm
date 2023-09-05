@@ -16,7 +16,7 @@ PROCESSING_SUBSYSTEM_DEF(station)
 
 	//If doing unit tests we don't do none of that trait shit ya know?
 	#ifndef UNIT_TESTS
-	SetupTraits()
+	//SetupTraits() [Disabled due to runtimes as certain areas aren't defined. Is otherwise irrelevant to gameplay.]
 	#endif
 
 	announcer = new announcer() //Initialize the station's announcer datum

@@ -1430,9 +1430,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/danger/misc/show_icon()
 	var/list/chosen = pick(objects)
-	name = chosen[0]
-	image = image(chosen[1], src, chosen[2], chosen[3], pixel_x = chosen[5], pixel_y = chosen[6])
-	damage = chosen[4]
+	name = chosen[1]
+	image = image(chosen[2], src, chosen[3], chosen[4], pixel_x = chosen[6], pixel_y = chosen[7])
+	damage = chosen[5]
 	if(target.client)
 		target.client.images += image
 

@@ -269,6 +269,9 @@
 /datum/ai_controller/insane/wander/PossessPawn(atom/new_pawn)
 	. = ..()
 	suicide_enter = world.time + 60 SECONDS
+	if(SSmaptype.maptype == "city")
+		total_locations |= SScityevents.spawners
+		return
 	total_locations |= GLOB.department_centers
 	total_locations |= GLOB.xeno_spawn
 
