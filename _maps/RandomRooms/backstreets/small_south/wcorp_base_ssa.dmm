@@ -1,0 +1,87 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"m" = (
+/obj/machinery/light/red,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"t" = (
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"x" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/suit/lobotomy/wcorp,
+/obj/item/clothing/head/wcorp,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"y" = (
+/obj/item/ego_weapon/city/wcorp,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"M" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"P" = (
+/obj/machinery/door/airlock/shuttle,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"R" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_alley)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+P
+M
+a
+t
+U
+"}
+(3,1,1) = {"
+m
+a
+R
+x
+U
+"}
+(4,1,1) = {"
+U
+a
+R
+y
+U
+"}
+(5,1,1) = {"
+m
+a
+R
+x
+U
+"}
+(6,1,1) = {"
+P
+M
+a
+t
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

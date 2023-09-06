@@ -24,3 +24,6 @@
 	name = "G-Corp - Small West"
 	room_id = "gcorp_swa"
 	mappath = "_maps/RandomRooms/backstreets/small_west/gcorp_swa.dmm"
+
+
+

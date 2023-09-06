@@ -1,0 +1,96 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/lootcrate/k_corp,
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"r" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"t" = (
+/mob/living/simple_animal/hostile/kcorp/drone,
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"Q" = (
+/obj/machinery/light,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/rack,
+/obj/item/ksyringe,
+/obj/item/ksyringe,
+/obj/item/ksyringe,
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"S" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+r
+U
+"}
+(2,1,1) = {"
+U
+R
+a
+x
+U
+"}
+(3,1,1) = {"
+U
+a
+a
+x
+U
+"}
+(4,1,1) = {"
+Q
+x
+x
+x
+P
+"}
+(5,1,1) = {"
+U
+t
+t
+x
+U
+"}
+(6,1,1) = {"
+U
+t
+t
+x
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+S
+U
+"}

@@ -76,10 +76,6 @@
 	pixel_y = 8
 	},
 /obj/item/storage/toolbox/electrical,
-/obj/item/multitool{
-	pixel_x = 2;
-	pixel_y = -4
-	},
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "l" = (

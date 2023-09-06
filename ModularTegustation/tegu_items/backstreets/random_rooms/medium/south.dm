@@ -15,7 +15,7 @@
 	stock = 3
 	room_type = "backstreets_medium_south"
 
-/datum/map_template/random_room/backstreets/medium_south
+/datum/map_template/random_room/backstreets/medium_south/bar_msa
 	name = "Bar - Medium south A"
 	room_id = "bar_msa"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/bar_msa.dmm"
@@ -24,3 +24,14 @@
 	name = "Eyes Temple"
 	room_id = "eyes_temple"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/eyes_temple.dmm"
+
+/datum/map_template/random_room/backstreets/medium_south/seven_office_msa
+	name = "Seven Office - Medium South A"
+	room_id = "seven_office_msa"
+	mappath = "_maps/RandomRooms/backstreets/medium_south/seven_office_msa.dmm"
+
+
+
+
+
+

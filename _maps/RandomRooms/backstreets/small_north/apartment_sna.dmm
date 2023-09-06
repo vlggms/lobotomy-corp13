@@ -3,7 +3,7 @@
 "g" = (/turf/open/floor/wood,/area/city/backstreets_room)
 "j" = (/obj/item/bedsheet/chaplain,/obj/structure/bed{dir = 3},/obj/structure/spider/stickyweb,/turf/open/floor/wood,/area/city/backstreets_room)
 "m" = (/obj/structure/table/wood,/obj/item/food/cake/holy_cake,/turf/open/floor/wood,/area/city/backstreets_room)
-"p" = (/obj/structure/spider/stickyweb,/mob/living/simple_animal/hostile/poison/giant_spider,/turf/open/floor/wood,/area/city/backstreets_room)
+"p" = (/obj/structure/spider/stickyweb,/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,/turf/open/floor/wood,/area/city/backstreets_room)
 "w" = (/obj/structure/dresser,/obj/item/reagent_containers/food/drinks/bottle/holywater,/obj/structure/spider/stickyweb,/turf/open/floor/wood,/area/city/backstreets_room)
 "F" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/hooded/chaplain_hoodie/leader,/obj/item/clothing/head/helmet/plate/crusader,/obj/structure/spider/stickyweb,/turf/open/floor/wood,/area/city/backstreets_room)
 "H" = (/obj/structure/barricade/wooden/crude,/obj/structure/barricade/wooden,/turf/open/floor/wood,/area/city/backstreets_room)
@@ -12,9 +12,9 @@
 (1,1,1) = {"
 aaaaa
 aFwja
-agggH
-Zgggf
-agggf
-apmpH
-aaaaa
+apgpa
+Zggga
+aggga
+agmga
+aHffa
 "}

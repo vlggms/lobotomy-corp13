@@ -18,8 +18,18 @@
 /datum/map_template/random_room/backstreets/medium_north/workshop_mn
 	name = "Workshop - Medium North"
 	room_id = "workshop_mn"
-	mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn.dmm"
 
+/datum/map_template/random_room/backstreets/medium_north/cirno_mn
+	name = "Cirno Room - Medium North"
+	room_id = "cirno_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/cirno_mn.dmm"
+	stock = 1
+	weight = 5	//Half as common
 
+/datum/map_template/random_room/backstreets/medium_north/hana_office_mn
+	name = "Hana Office - Medium North"
+	room_id = "hana_office_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/hana_office_mn.dmm"
 
 

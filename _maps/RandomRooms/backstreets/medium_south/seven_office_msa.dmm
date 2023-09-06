@@ -1,0 +1,161 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/space/basic,
+/area/city/backstreets_room)
+"c" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/table/wood/fancy/green,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"l" = (
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/binoculars,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/filingcabinet,
+/obj/item/folder/syndicate/blue{
+	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
+	name = "Highly Confidential Folder"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"x" = (
+/obj/machinery/door/window/westleft,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/closed/indestructible/fakedoor,
+/area/city/backstreets_room)
+"z" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/lootcrate/seven,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"B" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Z" = (
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+a
+l
+l
+c
+l
+Q
+"}
+(3,1,1) = {"
+a
+z
+z
+m
+x
+Q
+"}
+(4,1,1) = {"
+r
+B
+C
+p
+l
+Q
+"}
+(5,1,1) = {"
+y
+C
+c
+k
+S
+Q
+"}
+(6,1,1) = {"
+j
+Z
+c
+k
+t
+Q
+"}
+(7,1,1) = {"
+a
+l
+Z
+m
+k
+Q
+"}
+(8,1,1) = {"
+a
+l
+C
+A
+A
+Q
+"}
+(9,1,1) = {"
+Q
+l
+Z
+A
+A
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

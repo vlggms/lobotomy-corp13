@@ -20,4 +20,10 @@
 	room_id = "opensweeper_sn"
 	mappath = "_maps/RandomRooms/backstreets/small_south/open_sweeper.dmm"
 
+/datum/map_template/random_room/backstreets/small_south/wcorp_base_ssa
+	name = "W Corp Base - Small South A"
+	room_id = "wcorp_base_ssa"
+	mappath = "_maps/RandomRooms/backstreets/small_south/wcorp_base_ssa.dmm"
+
+
 
