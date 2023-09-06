@@ -61,7 +61,7 @@
 	cooldown_time = 30 SECONDS
 
 	var/debuff_range = 8
-	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
+	var/debuff_slowdown = 0.2 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
@@ -149,6 +149,7 @@
 				L.gib()
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	return ..()
+
 /* Mosb - Laughter */
 /obj/effect/proc_holder/ability/screach
 	name = "Screach"
@@ -551,7 +552,7 @@
 	id = "EGO_P2"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/punishment
-	duration = 2 SECONDS
+	duration = 5 SECONDS
 
 /atom/movable/screen/alert/status_effect/punishment
 	name = "Ready to punish"
@@ -570,7 +571,7 @@
 	H.remove_status_effect(/datum/status_effect/punishment)
 	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	for(var/turf/T in view(1, H))
+	for(var/turf/T in view(2, H))
 		new /obj/effect/temp_visual/beakbite(T)
 		for(var/mob/living/L in T)
 			if(H.faction_check_mob(L, FALSE))
@@ -585,7 +586,7 @@
 	id = "EGO_PBIRD"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/pbird
-	duration = 15 SECONDS
+	duration = 20 SECONDS
 
 /atom/movable/screen/alert/status_effect/pbird
 	name = "Punishment"
@@ -609,7 +610,7 @@
 	desc = "Creates a big area of healing at the cost of double damage taken for a short period of time."
 	action_icon_state = "petalblizzard0"
 	base_icon_state = "petalblizzard"
-	cooldown_time = 45 SECONDS
+	cooldown_time = 30 SECONDS
 	var/healing_amount = 70 // Amount of healing to plater per "pulse".
 	var/healing_range = 8
 
@@ -789,3 +790,87 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
+	
+/* Yang - Duality */
+/obj/effect/proc_holder/ability/tranquility
+	name = "Tranquility"
+	desc = "An ability that does massive white damage in an area and heals people's health and sanity. \
+	Healing someone that's wearing harmony of duality will grant them huge buffs to their defenses and stats."
+	action_icon_state = "yangform0"
+	base_icon_state = "yangform"
+	cooldown_time = 60 SECONDS
+
+	var/damage_amount = 400 // Amount of explosion damage
+	var/explosion_range = 15
+
+/obj/effect/proc_holder/ability/tranquility/Perform(target, mob/user)
+	cooldown = world.time + (1.5 SECONDS)
+	if(!do_after(user, 1 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
+		return
+	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+	var/turf/orgin = get_turf(user)
+	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
+	var/mob/living/carbon/human/H = user
+	for(var/i = 0 to explosion_range)
+		for(var/turf/T in all_turfs)
+			if(get_dist(user, T) > i)
+				continue
+			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
+			for(var/mob/living/L in T)
+				if(H.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					continue
+				L.apply_damage(damage_amount, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			for(var/mob/living/carbon/human/L in T)
+				if(!H.faction_check_mob(L, FALSE))
+					continue
+				if(L.status_flags & GODMODE)
+					continue
+				if(L.stat == DEAD)
+					continue
+				if(L.is_working) //no work heal :(
+					continue
+				L.adjustBruteLoss(-120)
+				L.adjustSanityLoss(-120)
+				var/obj/item/clothing/suit/armor/ego_gear/realization/duality_yin/Z = L.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+				if(istype(Z))
+					H.apply_status_effect(/datum/status_effect/duality_yang)
+					new /obj/effect/temp_visual/healing(get_turf(L))
+			all_turfs -= T
+		sleep(1)
+	playsound(src, 'sound/effects/magic.ogg', 60)
+	return ..()
+
+/datum/status_effect/duality_yang
+	id = "EGO_YANG"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/duality_yang
+	duration = 90 SECONDS
+
+/atom/movable/screen/alert/status_effect/duality_yang
+	name = "Duality of harmony"
+	desc = "Decrese white and pale damage taken by 25%. \
+		All your stats are increased by 10."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "duality"
+
+/datum/status_effect/duality_yang/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.white_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/duality_yang/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.white_mod /= 0.75
+	H.physiology.pale_mod /= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
