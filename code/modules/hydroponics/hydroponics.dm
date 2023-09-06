@@ -58,6 +58,9 @@
 	//SO HERE LIES THE "nutrilevel" VAR. IT'S DEAD AND I PUT IT OUT OF IT'S MISERY. USE "reagents" INSTEAD. ~ArcaneMusic, accept no substitutes.
 	create_reagents(20)
 	reagents.add_reagent(/datum/reagent/plantnutriment/eznutriment, 10) //Half filled nutrient trays for dirt trays to have more to grow with in prison/lavaland.
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)	//Fuck your LC13 botany. This is so that admins don't add botany back
+		qdel(src)
 	. = ..()
 
 

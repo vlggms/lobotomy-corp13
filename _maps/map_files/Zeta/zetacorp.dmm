@@ -150,20 +150,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/training)
-"be" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/biogenerator,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "bf" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "fcorpdisposal"
@@ -1697,44 +1683,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/wood,
 /area/department_main/command)
-"lw" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "ly" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -2857,25 +2805,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
-"st" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2
-	},
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "su" = (
 /obj/effect/spawner/structure/window/reinforced{
 	max_integrity = 250
@@ -3633,19 +3562,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
-"xd" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "xe" = (
 /obj/machinery/button/door{
 	id = "i corp disc cell two";
@@ -4033,23 +3949,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/command)
-"zg" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/vending/hydronutrients,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "zl" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -4273,8 +4172,8 @@
 /obj/structure/table/wood,
 /obj/item/fish_feed,
 /obj/item/fish_feed,
-/obj/item/simple_fishing_rod,
-/obj/item/simple_fishing_rod,
+/obj/item/fishing_rod,
+/obj/item/fishing_rod,
 /obj/item/storage/fish_case,
 /obj/item/storage/fish_case,
 /turf/open/floor/carpet/stellar,
@@ -4294,23 +4193,6 @@
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
-"Ax" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Ay" = (
 /obj/structure/sign/departments/command,
 /turf/closed/indestructible/reinforced,
@@ -5341,27 +5223,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/wood,
 /area/department_main/command)
-"GP" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25;
-	pixel_x = 3
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "GR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -5805,23 +5666,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
-"JE" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/seed_extractor,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "JG" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/training)
@@ -6284,32 +6128,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
-"MG" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25;
-	pixel_x = 3
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1;
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "MH" = (
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -6331,9 +6149,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/north)
 "MN" = (
-/obj/structure/window/reinforced/spawner{
-	max_integrity = 25
-	},
 /obj/effect/turf_decal/siding/wood{
 	pixel_y = 6
 	},
@@ -7202,20 +7017,6 @@
 /obj/machinery/bookbinder,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
-"RJ" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/vending/hydroseeds,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "RK" = (
 /obj/machinery/iv_drip,
 /obj/item/reagent_containers/blood,
@@ -7875,23 +7676,6 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/command)
-"Wp" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/sink/kitchen{
-	dir = 8;
-	pixel_x = 11
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Wt" = (
 /obj/structure/mirror{
 	pixel_y = 34
@@ -7976,21 +7760,6 @@
 /obj/machinery/griddle,
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"Xd" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/machinery/hydroponics/constructable,
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Xe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -8056,22 +7825,6 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/wood,
 /area/facility_hallway/information)
-"Xy" = (
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/training)
 "Xz" = (
 /obj/structure/disposalpipe/junction/flip{
 	dir = 8
@@ -31177,7 +30930,7 @@ Gu
 bd
 En
 lJ
-lJ
+vZ
 vZ
 vZ
 vZ
@@ -31433,9 +31186,9 @@ ir
 Gu
 ca
 MN
-Xd
 lJ
-lJ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -31690,10 +31443,10 @@ ir
 Gu
 ca
 LE
-xd
-st
 lJ
-lJ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -31947,11 +31700,11 @@ ir
 Gu
 ca
 gg
-xd
-xd
-st
 lJ
-lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -32204,11 +31957,11 @@ ir
 BN
 ca
 MN
-GP
-Ax
-xd
-st
 lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -32461,11 +32214,11 @@ fW
 Bb
 XA
 MN
-be
-MG
-Ax
-xd
-ZM
+lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -32718,11 +32471,11 @@ vM
 vM
 aP
 LE
-xd
-lw
-MG
-Ax
-ZM
+lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -32975,11 +32728,11 @@ il
 il
 il
 gg
-xd
-xd
-xd
-Xy
-ZM
+lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ
@@ -33232,11 +32985,11 @@ hN
 Zv
 FH
 Rv
-zg
-RJ
-Wp
-JE
-ZM
+lJ
+vZ
+vZ
+vZ
+vZ
 vZ
 vZ
 vZ

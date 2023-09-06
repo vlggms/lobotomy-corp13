@@ -4500,12 +4500,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
-"Fl" = (
-/obj/effect/turf_decal/siding/brown,
-/obj/machinery/biogenerator,
-/obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor/facility,
-/area/department_main/training)
 "Fr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -5630,13 +5624,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"MO" = (
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/obj/machinery/vending/hydronutrients,
-/turf/open/floor/facility,
-/area/department_main/training)
 "MQ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -5908,13 +5895,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
-"Oh" = (
-/obj/machinery/seed_extractor,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/facility,
-/area/department_main/training)
 "Ol" = (
 /obj/structure/table/wood/poker,
 /obj/item/toy/cards/deck,
@@ -6157,20 +6137,6 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
-"Qp" = (
-/obj/structure/table,
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/turf/open/floor/facility,
-/area/department_main/training)
 "Qq" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 10
@@ -6584,22 +6550,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
-"SP" = (
-/obj/structure/table,
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/suit/apron,
-/turf/open/floor/facility,
-/area/department_main/training)
 "SR" = (
 /obj/structure/rack,
 /obj/machinery/camera/autoname{
@@ -7129,10 +7079,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
-"Wm" = (
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/facility,
-/area/department_main/training)
 "Wo" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -7210,41 +7156,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/seeds/aloe,
-/obj/item/seeds/apple,
-/obj/item/seeds/banana,
-/obj/item/seeds/berry,
-/obj/item/seeds/cabbage,
-/obj/item/seeds/carrot,
-/obj/item/seeds/chanter,
-/obj/item/seeds/cherry,
-/obj/item/seeds/chili,
-/obj/item/seeds/cocoapod,
-/obj/item/seeds/corn,
-/obj/item/seeds/coffee,
-/obj/item/seeds/cotton,
-/obj/item/seeds/eggplant,
-/obj/item/seeds/garlic,
-/obj/item/seeds/grape,
-/obj/item/seeds/grape/green,
-/obj/item/seeds/grass,
-/obj/item/seeds/lemon,
-/obj/item/seeds/lime,
-/obj/item/seeds/onion,
-/obj/item/seeds/orange,
-/obj/item/seeds/peas,
-/obj/item/seeds/pineapple,
-/obj/item/seeds/plump,
-/obj/item/seeds/poppy,
-/obj/item/seeds/potato,
-/obj/item/seeds/pumpkin,
-/obj/item/seeds/soya,
-/obj/item/seeds/sunflower,
-/obj/item/seeds/tomato,
-/obj/item/seeds/wheat,
-/obj/item/seeds/wheat/meat,
-/obj/item/seeds/wheat/rice,
-/obj/structure/closet/crate/hydroponics,
 /turf/open/floor/facility,
 /area/department_main/training)
 "WN" = (
@@ -7475,18 +7386,6 @@
 "YK" = (
 /obj/structure/sign/poster/official/obey,
 /turf/closed/indestructible/reinforced,
-/area/department_main/training)
-"YM" = (
-/obj/structure/table,
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/reagent_containers/glass/bottle/nutrient/ez,
-/turf/open/floor/facility,
 /area/department_main/training)
 "YN" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -31478,13 +31377,13 @@ Hd
 Bz
 Wo
 IG
-MO
-Oh
+aC
+WL
 Er
 Er
 ry
 WL
-Fl
+zW
 ZQ
 ZQ
 ZQ
@@ -31994,9 +31893,9 @@ dG
 dG
 dG
 aC
-Wm
-Wm
-Wm
+Er
+Er
+Er
 zW
 SB
 SB
@@ -32251,9 +32150,9 @@ AH
 dG
 dG
 NY
-YM
-SP
-Qp
+ND
+ND
+ND
 Sl
 Lc
 SB
