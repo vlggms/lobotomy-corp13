@@ -20,6 +20,11 @@
 	room_id = "sweeper_solo"
 	mappath = "_maps/RandomRooms/backstreets/small_north/sweeper_solo.dmm"
 
+/datum/map_template/random_room/backstreets/small_north/smallarmory
+	name = "Small Armory - Small North"
+	room_id = "smallarmory"
+	mappath = "_maps/RandomRooms/backstreets/small_north/smallarmory.dmm"
+
 /datum/map_template/random_room/backstreets/small_north/coffee_break
 	name = "Gcorp Coffee"
 	room_id = "coffee_break"
