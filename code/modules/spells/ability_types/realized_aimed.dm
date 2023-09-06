@@ -449,7 +449,6 @@
 	for(var/obj/effect/FX in spawned_effects)
 		qdel(FX)
 	qdel(beam)
-	return .. ()
 
 /obj/effect/temp_visual/revenant/cracks/yinfriend
 	icon_state = "yincracks"

@@ -54,10 +54,6 @@
 		/obj/item/toy/plush/angela = /obj/item/toy/plush/carmen,
 		)
 
-	var yang_armor = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
-
-	var yin_armor = /obj/item/clothing/suit/armor/ego_gear/waw/discord
-
 /obj/structure/toolabnormality/realization/proc/YinYangCheck()
 	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums)
 		if(AD.abno_path == /mob/living/simple_animal/hostile/abnormality/yang)
@@ -68,6 +64,8 @@
 
 /obj/structure/toolabnormality/realization/attackby(obj/item/I, mob/living/carbon/human/user)
 	. = ..()
+	var yang_armor = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
+	var yin_armor = /obj/item/clothing/suit/armor/ego_gear/waw/discord
 	if(!ishuman(user))
 		return
 
