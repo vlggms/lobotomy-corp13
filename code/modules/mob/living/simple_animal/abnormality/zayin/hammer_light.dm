@@ -11,6 +11,7 @@
 	pixel_y = -8
 	base_pixel_y = -8
 	threat_level = ZAYIN_LEVEL
+	can_breach = FALSE
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 70,
 						ABNORMALITY_WORK_INSIGHT = 70,
@@ -39,7 +40,7 @@
 	var/points
 	var/points_threshold = 150
 	var/usable_cooldown
-	var/usable_cooldown_time = 10 SECONDS //change to 5m
+	var/usable_cooldown_time = 5 MINUTES
 
 	var/list/lock_sounds = list(
 	'sound/abnormalities/lighthammer/hammer_filterOut1.ogg','sound/abnormalities/lighthammer/hammer_filterOut2.ogg'
@@ -172,21 +173,24 @@
 	hammer_present = FALSE
 	sealed = FALSE
 	update_icon()
+	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/mob_to_copy = null
 	var/turf/destination
 	for(var/mob/living/simple_animal/hostile/ordeal/pink_midnight/P in GLOB.ordeal_list)
 		destination = get_turf(P)
+		mob_to_copy = P
+	if(!mob_to_copy)
+		return
 	var/turf/W = pick(GLOB.department_centers) //spawn hammers at a random department
 	for(var/turf/T in orange(1, W))
 		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(50))
 			var/mob/living/simple_animal/hostile/lighthammer/V = new(T)
 			new /obj/effect/temp_visual/beam_in(T)
-			V.faction = src.faction.Copy()
+			V.faction = mob_to_copy.faction.Copy()
 			if(!destination)
 				continue
 			if(!V.patrol_to(destination)) //Move them to pink midnight
 				V.forceMove(destination)
-
 	addtimer(CALLBACK(src, .proc/UserDeath), usable_cooldown_time)
 
 //Item version
@@ -370,7 +374,7 @@
 	attack_sound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
 	health = 1000
 	maxHealth = 1000
-	faction = list("lighthammer", "pink_midnight") //Overridden in summoning code, evil during pink midnight
+	faction = list("neutral") //Should always be overridden
 	obj_damage = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	melee_damage_type = PALE_DAMAGE

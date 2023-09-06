@@ -87,7 +87,7 @@
 
 // Breach
 /mob/living/simple_animal/hostile/abnormality/missed_reaper/ZeroQliphoth(mob/living/carbon/human/user)
-	datum_reference.qliphoth_change(1) //no need for qliphoth to be stuck at 0
+	datum_reference.qliphoth_change(2) //no need for qliphoth to be stuck at 0
 	if(meltdown_cooldown > world.time)
 		return
 	meltdown_cooldown = world.time + meltdown_cooldown_time

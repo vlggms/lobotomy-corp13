@@ -278,9 +278,9 @@
 		"When the Qliphoth Counter reached 0, a strange sound came from the abnormality.",
 		"Other abnormalities became agitated if the sound did not cease.",
 		"When the abnormality was turned off manually, the Qliphoth counter raised.",
-		"When work was performed on the abnormality, the Qliphoth counter raised higher.",
-		"When insight work was performed on the abnormality, time seemed to distort.",
-		"Performing insight work multiple times, the employee occasionally perished inexplicably.",
+		"When work was performed on the abnormality, the Qliphoth counter was raised to its maximum.",
+		"When insight work was performed on the abnormality while the Qliphoth counter was below 2, a mentally soothing song was played.",
+		"Insight work was ineffective when the Qliphoth counter was high. If the Qliphoth counter was at 5, the employee performing work was turned into dust.",
 		"Some agents have reported relief from certain symptoms after performing insight work.")
 
 //Jangsan Tiger
@@ -292,6 +292,7 @@
 		"When powerful employees performed work, the Qliphoth Counter increased.",
 		"For every stat at or above level 3, the work chance was reduced.",
 		"When all stats were at level 1, the Qliphoth counter decreased upon completion of work.",
+		"This abnormality has a thick hide that only high-impact projectiles or melee attacks can penetrate.",
 		"Agents with all stats below level 2 perish with alarming frequency near this abnormality.")
 
 //Golden False Apple

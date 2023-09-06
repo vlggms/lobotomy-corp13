@@ -266,7 +266,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/bullet_act(obj/projectile/P)
-	if(prob(90)) //guns are ineffective
+	if(P.damage <= 40)
 		visible_message("<span class='userdanger'>[P] is caught in [src]'s thick fur!</span>")
 		P.Destroy()
 		return

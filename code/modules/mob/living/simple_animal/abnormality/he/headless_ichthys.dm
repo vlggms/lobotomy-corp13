@@ -153,6 +153,8 @@
 					continue
 				if(L.stat == DEAD)
 					continue
+				if(faction_check_mob(L))
+					continue
 				if(!(is_A_facing_B(src,L))) //so it doesn't hit people behind the mob
 					continue
 				already_hit += L
