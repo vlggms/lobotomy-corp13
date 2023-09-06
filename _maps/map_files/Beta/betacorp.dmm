@@ -165,12 +165,8 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/information)
 "aG" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 5
-	},
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/plasteel,
-/area/facility_hallway/information)
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/discipline)
 "aI" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/ntnet_relay,
@@ -2847,6 +2843,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/discipline)
+"nN" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "nT" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 8;
@@ -3774,7 +3776,7 @@
 "sC" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/facility_hallway/discipline)
 "sD" = (
 /obj/structure/sign/poster/lobotomycorp/random,
 /turf/closed/indestructible/reinforced,
@@ -3842,7 +3844,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/facility_hallway/discipline)
 "sV" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -3866,10 +3868,12 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "sZ" = (
-/obj/effect/turf_decal/siding/purple{
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
 	},
-/obj/structure/chair/sofa/corp,
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/information)
 "ta" = (
@@ -5642,6 +5646,10 @@
 /obj/structure/reagent_dispensers/watertank/high,
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
+"Cj" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Cl" = (
 /obj/structure/curtain/cloth/fancy{
 	pixel_x = -32
@@ -6224,6 +6232,9 @@
 /obj/item/clothing/accessory/armband/lobotomy/welfare,
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
+"Fg" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Fh" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/wood,
@@ -6642,7 +6653,7 @@
 	name = "Wishing Well containment zone"
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/facility_hallway/discipline)
 "Hr" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -6797,11 +6808,8 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "Ir" = (
-/obj/effect/turf_decal/siding/purple{
-	dir = 9
-	},
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/plasteel,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "It" = (
 /obj/effect/turf_decal/siding/purple,
@@ -7440,6 +7448,10 @@
 "Lt" = (
 /turf/open/floor/plating,
 /area/facility_hallway/south)
+"Lx" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Ly" = (
 /obj/structure/sign/departments/extraction{
 	pixel_x = -32;
@@ -7642,7 +7654,7 @@
 "MA" = (
 /obj/structure/toolabnormality/wishwell,
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/facility_hallway/discipline)
 "MD" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -8102,7 +8114,7 @@
 "OL" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
+/area/facility_hallway/discipline)
 "OM" = (
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -8545,6 +8557,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"Rs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Ru" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -34447,11 +34465,11 @@ JB
 JB
 JB
 JB
-rS
-rS
-rS
-rS
-rS
+cQ
+cQ
+cQ
+cQ
+cQ
 cQ
 St
 qA
@@ -34704,10 +34722,10 @@ JB
 JB
 JB
 JB
-rS
+cQ
 OL
-PG
-PG
+aG
+aG
 sC
 ZD
 RY
@@ -34961,10 +34979,10 @@ JB
 JB
 JB
 JB
-rS
+cQ
 sU
 MA
-PG
+aG
 Ho
 di
 ot
@@ -35218,10 +35236,10 @@ JB
 JB
 JB
 JB
-rS
-PG
-PG
-PG
+cQ
+aG
+aG
+aG
 sC
 hV
 ba
@@ -35475,11 +35493,11 @@ JB
 JB
 JB
 JB
-rS
-rS
-rS
-rS
-rS
+cQ
+cQ
+cQ
+cQ
+cQ
 cQ
 St
 qA
@@ -47297,10 +47315,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+ZQ
+ZQ
+ZQ
+ZQ
 ZQ
 ZQ
 CS
@@ -47554,12 +47572,12 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 ZQ
+Lx
+Fg
+Fg
 Ir
+KT
 iJ
 FK
 wp
@@ -47811,11 +47829,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 ZQ
+Rs
+Cj
+Fg
+nN
 sZ
 vK
 FK
@@ -48068,12 +48086,12 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
 ZQ
-aG
+Fg
+Fg
+Fg
+Ir
+jc
 pC
 FK
 yk
@@ -48325,10 +48343,10 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
+ZQ
+ZQ
+ZQ
+ZQ
 ZQ
 yd
 bl

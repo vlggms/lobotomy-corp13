@@ -3288,6 +3288,14 @@
 /obj/structure/railing,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
+"lw" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/light/cold/no_nightlight,
+/turf/open/floor/carpet/purple,
+/area/facility_hallway/information)
 "lx" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -5651,6 +5659,9 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
+"tS" = (
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "tT" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -7384,6 +7395,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
+"zU" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "zV" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/grass{
@@ -8056,6 +8071,12 @@
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"Cl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Cm" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -9148,6 +9169,12 @@
 /obj/structure/chair/comfy/brown,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"FJ" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "FK" = (
 /obj/structure/table/wood/poker,
 /obj/effect/turf_decal/siding/blue{
@@ -12745,6 +12772,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/records)
+"SI" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "SJ" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -13461,6 +13494,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
+"UW" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "UX" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -14704,6 +14741,14 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/training)
+"ZX" = (
+/obj/effect/turf_decal/siding/purple,
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_y = -32
+	},
+/obj/machinery/light/cold/no_nightlight,
+/turf/open/floor/carpet/purple,
+/area/facility_hallway/information)
 
 (1,1,1) = {"
 wd
@@ -41166,10 +41211,10 @@ To
 vq
 QN
 hH
-aB
+lw
 vq
-wd
-wd
+vq
+vq
 mj
 mj
 VI
@@ -41394,10 +41439,10 @@ vq
 QN
 hH
 JZ
-vq
-wd
-wd
-wd
+zU
+tS
+Cl
+FJ
 mj
 GR
 cM
@@ -41620,11 +41665,11 @@ To
 vq
 bf
 Fp
-UR
-vq
-wd
-wd
-wd
+JZ
+SI
+tS
+UW
+tS
 mj
 mj
 Yk
@@ -41847,12 +41892,12 @@ To
 vq
 QN
 hH
-jd
+JZ
+zU
+tS
+tS
+tS
 vq
-wd
-wd
-wd
-wd
 mj
 mj
 fm
@@ -42074,12 +42119,12 @@ vq
 vq
 QN
 hH
-JZ
+ZX
 vq
-wd
-wd
-wd
-wd
+vq
+vq
+vq
+vq
 wd
 mj
 mj

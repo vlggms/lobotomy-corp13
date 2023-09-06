@@ -61,6 +61,8 @@
 /obj/structure/toolabnormality/touch/proc/BreachEffect(mob/living/carbon/human/user)
 	breaching_bastards += user.ckey
 	if(do_after(user, 45 SECONDS))
+		for(var/obj/structure/toolabnormality/clock/backclock in world.contents) //prevents an exploit
+			backclock.clock_cooldown = backclock.clock_cooldown_time + world.time
 		for(var/mob/M in GLOB.player_list)
 			if(isnewplayer(M))
 				continue

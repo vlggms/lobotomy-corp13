@@ -3768,6 +3768,13 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
 	},
+/obj/structure/sign/poster/lobotomycorp/random{
+	pixel_y = -32
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "lv" = (
@@ -6421,6 +6428,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"sN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "sO" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8822,6 +8835,12 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/facility,
 /area/department_main/records)
+"Af" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Ag" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -12213,14 +12232,11 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Kw" = (
-/obj/machinery/light/cold/no_nightlight{
-	dir = 8
+/obj/effect/turf_decal/siding/purple/corner{
+	dir = 1
 	},
-/obj/effect/turf_decal/siding/purple{
+/obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
-	},
-/obj/structure/sign/poster/lobotomycorp/random{
-	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
@@ -12484,6 +12500,10 @@
 /obj/effect/turf_decal/siding/red/corner,
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
+"Lg" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Li" = (
 /obj/structure/chair/wood,
 /obj/effect/turf_decal/siding/yellow,
@@ -14586,12 +14606,11 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
-/obj/machinery/camera/autoname{
-	dir = 4;
-	pixel_y = -23
-	},
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
@@ -14731,6 +14750,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
+"Rn" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Ro" = (
 /obj/structure/table,
 /obj/item/modular_computer/laptop/preset/civilian,
@@ -14926,6 +14949,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/safety)
+"RK" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "RL" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -18118,7 +18145,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "Shelter From The 27th Of March containment zone"
 	},
-/turf/closed/indestructible/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
 "ZX" = (
 /obj/effect/turf_decal/tile/blue{
@@ -40120,11 +40147,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+LQ
+LQ
+LQ
+LQ
+LQ
 JB
 JB
 JB
@@ -40377,11 +40404,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+LQ
+RK
+ON
+ON
+LQ
 JB
 JB
 JB
@@ -40634,11 +40661,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+LQ
+sN
+Lg
+ON
+LQ
 JB
 JB
 JB
@@ -40891,11 +40918,11 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+LQ
+ON
+ON
+ON
+LQ
 JB
 JB
 JB
@@ -41149,9 +41176,9 @@ LQ
 LQ
 LQ
 PV
-LQ
-LQ
-LQ
+Rn
+Af
+Rn
 LQ
 JB
 JB

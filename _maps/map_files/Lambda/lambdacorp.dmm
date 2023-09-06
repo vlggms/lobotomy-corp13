@@ -4655,6 +4655,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
+"qJ" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "qL" = (
 /obj/machinery/door/window/eastright,
 /obj/machinery/door/poddoor/shutters/window/preopen{
@@ -4926,7 +4930,6 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
@@ -6039,22 +6042,10 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "vX" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/structure/window/reinforced/spawner/north,
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/purple,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
+/obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/item/toy/plush/binah,
-/turf/open/floor/plasteel/sepia,
+/turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "vY" = (
 /obj/structure/window/reinforced/spawner{
@@ -8191,6 +8182,7 @@
 	dir = 4
 	},
 /obj/item/storage/belt/ego,
+/obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "DL" = (
@@ -9512,8 +9504,8 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "IZ" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -10792,7 +10784,9 @@
 /area/department_main/welfare)
 "NJ" = (
 /obj/machinery/camera/autoname,
-/turf/open/floor/plasteel/dark,
+/turf/closed/indestructible/iron{
+	opacity = 1
+	},
 /area/department_main/information)
 "NM" = (
 /obj/effect/turf_decal/tile/green,
@@ -10880,15 +10874,37 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "Oa" = (
+/obj/structure/rack{
+	pixel_x = -1
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = -8
+	},
+/obj/item/toy/crayon/spraycan/infinite{
+	pixel_x = 8
+	},
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
+	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 1
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/information)
@@ -11324,28 +11340,10 @@
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "Pw" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/structure/window/reinforced/spawner/north,
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/item/toy/crayon/spraycan/infinite,
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = -8
-	},
-/obj/item/toy/crayon/spraycan/infinite{
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/sepia,
+/turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Px" = (
 /obj/structure/window/reinforced/spawner{
@@ -11835,6 +11833,7 @@
 	dir = 4
 	},
 /obj/item/storage/belt/ego,
+/obj/structure/window/reinforced/spawner/north,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "Rq" = (
@@ -12091,20 +12090,24 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "Sb" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+/obj/structure/rack{
+	pixel_x = -1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#000000"
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+/obj/effect/turf_decal/tile/purple,
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+/obj/effect/turf_decal/tile/purple{
+	dir = 8
+	},
+/obj/item/toy/plush/binah,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2;
+	dir = 2
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -13713,11 +13716,6 @@
 	color = "#000000"
 	},
 /obj/item/toy/plush/bigbird,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2;
-	dir = 2
-	},
 /obj/machinery/camera/autoname{
 	dir = 9
 	},
@@ -49691,11 +49689,11 @@ Mj
 xQ
 xw
 Oa
-Pw
+tb
 Rp
 XT
 Sb
-vX
+tb
 DK
 rS
 iN
@@ -49947,13 +49945,13 @@ xm
 LO
 xQ
 nT
-nT
-nT
-lZ
 FP
 NN
 FP
 lZ
+FP
+IZ
+FP
 nT
 kq
 nT
@@ -50203,15 +50201,15 @@ Fv
 xm
 Ri
 xQ
-sI
-sI
-sI
 nT
+nq
+nq
+nq
 NJ
 nq
 nq
+nq
 nT
-sI
 RG
 uk
 uk
@@ -50460,15 +50458,15 @@ xD
 xm
 xl
 xQ
-sI
-sI
-sI
 nT
-IZ
+nq
 bj
 nq
 nT
-sI
+nq
+qJ
+nq
+nT
 sI
 xy
 xy
@@ -50717,15 +50715,15 @@ xD
 xm
 yx
 xQ
-sI
-sI
-sI
 nT
-nq
-nq
+vX
+Pw
 nq
 nT
-sI
+vX
+Pw
+nq
+nT
 sI
 xy
 uu

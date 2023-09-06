@@ -482,6 +482,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"hJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "hK" = (
 /obj/structure/closet/crate,
 /obj/machinery/camera/autoname,
@@ -925,6 +931,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"od" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "of" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -2247,6 +2257,12 @@
 "IE" = (
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"IU" = (
+/obj/machinery/door/airlock/vault{
+	name = "Backwards Clock containment zone"
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "IX" = (
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/armband/lobotomy/training,
@@ -2421,6 +2437,10 @@
 "LJ" = (
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/safety)
+"LK" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "LR" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -3207,6 +3227,10 @@
 "WH" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/welfare)
+"WL" = (
+/obj/structure/toolabnormality/clock,
+/turf/open/floor/plasteel/dark,
+/area/space)
 "WS" = (
 /turf/open/floor/plating,
 /area/facility_hallway/training)
@@ -39836,10 +39860,10 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
+Yb
+Yb
+Yb
+Yb
 Yb
 SW
 SW
@@ -40093,10 +40117,10 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
+Yb
+od
+Yq
+Yq
 Yb
 SW
 SW
@@ -40350,10 +40374,10 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
+Yb
+hJ
+WL
+Yq
 Yb
 SW
 SW
@@ -40607,10 +40631,10 @@ QD
 QD
 QD
 QD
-QD
-QD
-QD
-QD
+Yb
+Yq
+Yq
+Yq
 Yb
 Yb
 Yb
@@ -40865,9 +40889,9 @@ DM
 DM
 DM
 Yb
-Yb
-Yb
-Yb
+LK
+IU
+LK
 Yb
 yb
 fU
