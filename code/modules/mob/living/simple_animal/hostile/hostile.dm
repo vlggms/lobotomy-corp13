@@ -505,6 +505,8 @@
 		return FALSE
 	if(ishostile(mover))
 		var/mob/living/simple_animal/hostile/H = mover
+		if(H.target)
+			return
 		if(LAZYLEN(H.patrol_path)) // Don't block patrolling guys
 			return TRUE
 		return
