@@ -3,13 +3,15 @@ GLOBAL_LIST_INIT(easycombat, list(
 	/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
 	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
-	/mob/living/simple_animal/hostile/abnormality/helper))
+	/mob/living/simple_animal/hostile/abnormality/helper,
+	/mob/living/simple_animal/hostile/abnormality/apex_predator))
 
 GLOBAL_LIST_INIT(easysupport, list(/mob/living/simple_animal/hostile/abnormality/fragment,
 	/mob/living/simple_animal/hostile/abnormality/funeral,
 	/mob/living/simple_animal/hostile/abnormality/voiddream,
 	/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
-	/mob/living/simple_animal/hostile/abnormality/rudolta,))
+	/mob/living/simple_animal/hostile/abnormality/rudolta,
+	/mob/living/simple_animal/hostile/abnormality/redblooded))
 
 GLOBAL_LIST_INIT(easytank, list(/mob/living/simple_animal/hostile/abnormality/jangsan,
 	/mob/living/simple_animal/hostile/abnormality/schadenfreude,
@@ -26,7 +28,8 @@ GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality
 	/mob/living/simple_animal/hostile/abnormality/judgement_bird,
 	/mob/living/simple_animal/hostile/abnormality/ebony_queen,
 	/mob/living/simple_animal/hostile/abnormality/thunder_bird,
-	/mob/living/simple_animal/hostile/abnormality/despair_knight,))
+	/mob/living/simple_animal/hostile/abnormality/despair_knight,
+	/mob/living/simple_animal/hostile/abnormality/alriune))
 
 GLOBAL_LIST_INIT(hardtank, list(/mob/living/simple_animal/hostile/abnormality/melting_love,
 	/mob/living/simple_animal/hostile/abnormality/nothing_there,

@@ -49,6 +49,8 @@
 /* Combat */
 
 /mob/living/simple_animal/hostile/abnormality/alriune/Move()
+	if(CheckCombat())
+		return ..()
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/alriune/Life()
@@ -96,6 +98,8 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/alriune/proc/TeleportAway()
+	if(CheckCombat())
+		return
 	var/list/potential_turfs = list()
 	for(var/turf/T in GLOB.xeno_spawn)
 		if(get_dist(src, T) < 7)
