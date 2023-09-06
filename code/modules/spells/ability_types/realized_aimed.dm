@@ -453,7 +453,7 @@
 /obj/effect/temp_visual/revenant/cracks/yinfriend
 	icon_state = "yincracks"
 	duration = 9
-	var/damage = 1000  // Amount of black damage dealt to enemies from the laser.
+	var/damage = 500  // Amount of black damage dealt to enemies from the laser.
 	var/list/faction = list("neutral")
 
 /obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()
@@ -512,7 +512,7 @@
 
 /atom/movable/screen/alert/status_effect/duality_yin
 	name = "Harmony of duality"
-	desc = "Decrese red and black damage taken by 25%. \
+	desc = "Decreases red and black damage taken by 25%. \
 		All your stats are increased by 10."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "duality"

@@ -790,7 +790,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
-	
+
 /* Yang - Duality */
 /obj/effect/proc_holder/ability/tranquility
 	name = "Tranquility"
@@ -800,7 +800,7 @@
 	base_icon_state = "yangform"
 	cooldown_time = 60 SECONDS
 
-	var/damage_amount = 400 // Amount of explosion damage
+	var/damage_amount = 300 // Amount of explosion damage
 	var/explosion_range = 15
 
 /obj/effect/proc_holder/ability/tranquility/Perform(target, mob/user)
@@ -851,7 +851,7 @@
 
 /atom/movable/screen/alert/status_effect/duality_yang
 	name = "Duality of harmony"
-	desc = "Decrese white and pale damage taken by 25%. \
+	desc = "Decreases white and pale damage taken by 25%. \
 		All your stats are increased by 10."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "duality"
