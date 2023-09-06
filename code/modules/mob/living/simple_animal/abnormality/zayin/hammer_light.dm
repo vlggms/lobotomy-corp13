@@ -11,7 +11,6 @@
 	pixel_y = -8
 	base_pixel_y = -8
 	threat_level = ZAYIN_LEVEL
-	can_breach = TRUE //Pink Midnight only
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 70,
 						ABNORMALITY_WORK_INSIGHT = 70,
