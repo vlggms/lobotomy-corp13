@@ -353,8 +353,6 @@
 	//goonchem_vortex(get_turf(src), 1, 3)
 	if(!canSUCC)
 		return
-	if(user.is_working)
-		return
 	canSUCC = FALSE
 	addtimer(CALLBACK(src, .proc/Reset), 2 SECONDS)
 	for(var/turf/T in view(3, user))
