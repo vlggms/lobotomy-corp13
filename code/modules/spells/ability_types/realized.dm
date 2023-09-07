@@ -873,3 +873,4 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
