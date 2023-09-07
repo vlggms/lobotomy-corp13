@@ -711,51 +711,6 @@
 		. = 1
 	..()
 
-/datum/reagent/medicine/strange_reagent
-	name = "Strange Reagent"
-	description = "A miracle drug capable of bringing the dead back to life. Works topically unless anotamically complex, in which case works orally. Only works if the target has less than 200 total brute and burn damage and hasn't been husked and requires more reagent depending on damage inflicted. Causes damage to the living."
-	reagent_state = LIQUID
-	color = "#A0E85E"
-	metabolization_rate = 1.25 * REAGENTS_METABOLISM
-	taste_description = "magnets"
-	harmful = TRUE
-
-
-// FEED ME SEYMOUR
-/datum/reagent/medicine/strange_reagent/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray, mob/user)
-	. = ..()
-	if(chems.has_reagent(type, 1))
-		mytray.spawnplant()
-
-/datum/reagent/medicine/strange_reagent/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	if(exposed_mob.stat != DEAD)
-		return ..()
-	if(exposed_mob.suiciding) //they are never coming back
-		exposed_mob.visible_message("<span class='warning'>[exposed_mob]'s body does not react...</span>")
-		return
-	if(iscarbon(exposed_mob) && !(methods & INGEST)) //simplemobs can still be splashed
-		return ..()
-	var/amount_to_revive = round((exposed_mob.getBruteLoss()+exposed_mob.getFireLoss())/20)
-	if(exposed_mob.getBruteLoss()+exposed_mob.getFireLoss() >= 200 || HAS_TRAIT(exposed_mob, TRAIT_HUSK) || reac_volume < amount_to_revive) //body will die from brute+burn on revive or you haven't provided enough to revive.
-		exposed_mob.visible_message("<span class='warning'>[exposed_mob]'s body convulses a bit, and then falls still once more.</span>")
-		exposed_mob.do_jitter_animation(10)
-		return
-	exposed_mob.visible_message("<span class='warning'>[exposed_mob]'s body starts convulsing!</span>")
-	exposed_mob.notify_ghost_cloning("Your body is being revived with Strange Reagent!")
-	exposed_mob.do_jitter_animation(10)
-	var/excess_healing = 5*(reac_volume-amount_to_revive) //excess reagent will heal blood and organs across the board
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-	addtimer(CALLBACK(exposed_mob, /mob/living.proc/revive, FALSE, FALSE, excess_healing), 79)
-	..()
-
-/datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/M)
-	var/damage_at_random = rand(0,250)/100 //0 to 2.5
-	M.adjustBruteLoss(damage_at_random*REM, FALSE)
-	M.adjustFireLoss(damage_at_random*REM, FALSE)
-	..()
-	. = TRUE
-
 /datum/reagent/medicine/mannitol
 	name = "Mannitol"
 	description = "Efficiently restores brain damage."
