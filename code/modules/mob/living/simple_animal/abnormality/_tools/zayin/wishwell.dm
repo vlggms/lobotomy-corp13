@@ -64,7 +64,8 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
 		/obj/item/clothing/neck/tie/horrible,
-		/obj/item/clothing/mask/cigarette/cigar/havana
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/mob/living/carbon/human/species/shrimp
 		)
 	var/list/normalitem = list(
 		/obj/item/reagent_containers/hypospray/medipen/salacid,
