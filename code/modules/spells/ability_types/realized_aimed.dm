@@ -91,13 +91,13 @@
 
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
-	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
-		Each sword deals damage equal to 2% of the target's max HP as Pale, to a minimum of 40."
+	desc = "An ability that summons 3 swords to attack and slow nearby enemies. \
+		Each sword deals damage equal to 2% of the target's max HP as Pale, to a minimum of 150."
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 2
+	var/swords = 3
 
 /obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
 	var/turf/target_turf = get_turf(target)
@@ -116,6 +116,8 @@
 		RP.original = target_turf
 		RP.preparePixelProjectile(target_turf, T)
 		addtimer(CALLBACK (RP, .obj/projectile/proc/fire), 3)
+	sleep(3)
+	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return ..()
 
 /obj/projectile/despair_rapier/ego
@@ -131,7 +133,7 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		H.TemporarySpeedChange(1, 10 SECONDS)
-		damage = max(0.02*H.maxHealth, 40)
+		damage = max(0.02*H.maxHealth, 150)
 	..()
 	qdel(src)
 
@@ -338,8 +340,8 @@
 	icon_state = "cocoon_large2"
 	icon_living = "cocoon_large2"
 	faction = list("neutral")
-	health = 300	//They're here to help
-	maxHealth = 300
+	health = 250	//They're here to help
+	maxHealth = 250
 	speed = 0
 	turns_per_move = 10000000000000
 	generic_canpass = FALSE
@@ -351,10 +353,8 @@
 /mob/living/simple_animal/cocoonability/Initialize()
 	. = ..()
 	QDEL_IN(src, (30 SECONDS))
-
-/mob/living/simple_animal/cocoonability/Life()
-	if(..())
-		SplashEffect()
+	for(var/i = 1 to 10)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 3 SECONDS)
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
@@ -367,7 +367,7 @@
 		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(damage_slowdown, 2 SECONDS) // Slow down
+			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
 
 
 /obj/effect/proc_holder/ability/aimed/blackhole
@@ -397,7 +397,7 @@
 	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
-	var/damage_amount = 100 // Amount of black damage dealt to enemies in the epicenter.
+	var/damage_amount = 200 // Amount of black damage dealt to enemies in the epicenter.
 	var/damage_range = 3
 
 /obj/projectile/black_hole_realized/Initialize()
@@ -411,7 +411,7 @@
 	for(var/turf/T in view(damage_range, src))
 		new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in view(damage_range, src))
-		var/distance_decrease = get_dist(src, L) * 30
+		var/distance_decrease = get_dist(src, L) * 40
 		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
 		L.throw_at(throw_target, 1, 2)
