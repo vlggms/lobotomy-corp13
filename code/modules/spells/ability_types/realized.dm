@@ -61,7 +61,7 @@
 	cooldown_time = 30 SECONDS
 
 	var/debuff_range = 8
-	var/debuff_slowdown = 0.2 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
+	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
@@ -149,7 +149,6 @@
 				L.gib()
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	return ..()
-
 /* Mosb - Laughter */
 /obj/effect/proc_holder/ability/screach
 	name = "Screach"
@@ -552,7 +551,7 @@
 	id = "EGO_P2"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/punishment
-	duration = 5 SECONDS
+	duration = 2 SECONDS
 
 /atom/movable/screen/alert/status_effect/punishment
 	name = "Ready to punish"
@@ -571,7 +570,7 @@
 	H.remove_status_effect(/datum/status_effect/punishment)
 	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	for(var/turf/T in view(2, H))
+	for(var/turf/T in view(1, H))
 		new /obj/effect/temp_visual/beakbite(T)
 		for(var/mob/living/L in T)
 			if(H.faction_check_mob(L, FALSE))
@@ -586,7 +585,7 @@
 	id = "EGO_PBIRD"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/pbird
-	duration = 20 SECONDS
+	duration = 15 SECONDS
 
 /atom/movable/screen/alert/status_effect/pbird
 	name = "Punishment"
@@ -610,7 +609,7 @@
 	desc = "Creates a big area of healing at the cost of double damage taken for a short period of time."
 	action_icon_state = "petalblizzard0"
 	base_icon_state = "petalblizzard"
-	cooldown_time = 30 SECONDS
+	cooldown_time = 45 SECONDS
 	var/healing_amount = 70 // Amount of healing to plater per "pulse".
 	var/healing_range = 8
 
