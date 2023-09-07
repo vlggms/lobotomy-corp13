@@ -27,9 +27,9 @@
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "s" = (
-/obj/structure/window/reinforced/fulltile,
 /obj/structure/grille,
-/turf/open/space/basic,
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
 /area/city/backstreets_room)
 "t" = (
 /obj/item/kitchen/knife,
