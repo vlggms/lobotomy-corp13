@@ -61,7 +61,8 @@
 	cooldown_time = 30 SECONDS
 
 	var/debuff_range = 8
-	var/debuff_slowdown = 0.2 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
+	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
+
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
@@ -76,7 +77,8 @@
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
+			H.apply_status_effect(/datum/status_effect/salvation)
+			H.TemporarySpeedChange(H.move_to_delay*debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
 	return ..()
 
 /datum/status_effect/salvation
