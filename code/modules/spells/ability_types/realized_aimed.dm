@@ -91,13 +91,13 @@
 
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
-	desc = "An ability that summons 3 swords to attack and slow nearby enemies. \
+	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
 		Each sword deals damage equal to 5% of the target's max HP as Pale, to a minimum of 120."
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 3
+	var/swords = 2
 
 /obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
 	var/turf/target_turf = get_turf(target)
