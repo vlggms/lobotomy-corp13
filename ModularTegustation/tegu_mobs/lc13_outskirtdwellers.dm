@@ -380,7 +380,6 @@
 	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
 	density = TRUE
 	search_objects = 1
-	var/current_size = RESIZE_DEFAULT_SIZE
 	del_on_death = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/bigBirdEye/Life()
@@ -400,6 +399,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "kcorp_drone_idle"
 	icon_living = "kcorp_drone_idle"
+	icon_dead = "kcorp_drone_idle"
 	faction = list("hostile") // should target humanoids only and annoy them to no end
 	response_disarm_continuous = "pushes aside"
 	response_disarm_simple = "push aside"
@@ -416,25 +416,45 @@
 	butcher_difficulty = 3
 	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1)
 	deathmessage = "buzzes as he falls out of the air."
-	density = TRUE
+	density = FALSE
 	search_objects = 1
-	var/current_size = RESIZE_DEFAULT_SIZE
 	del_on_death = TRUE
 
-/mob/living/simple_animal/hostile/kcorp/drone/AttackingTarget()
-	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/L = target
-		icon_state = "kcorp_drone_angry"
-		icon_living = "kcorp_drone_angry"
-		animate(src, time = 1, loop = 0)
-		playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
-		L.Paralyze(3 SECONDS)
+	var/can_act = TRUE //If flashing, turns FALSE so we don't attack/move
+	var/flash_cooldown
+	var/flash_cooldown_time = 10 SECONDS
+	var/flash_range = 5 //Range that the flash hits
+
+/mob/living/simple_animal/hostile/kcorp/drone/proc/Flash()
+	icon_state = "kcorp_drone_angry"
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(2 SECONDS) //Enough to run away, but not easily
+	playsound(src, 'sound/weapons/flash.ogg', 100, TRUE)
+
+	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
+		if (!ishuman(L))
+			continue
+		L.Paralyze(5 SECONDS) //you better dodge it
 		var/obj/item/held = L.get_active_held_item()
-		L.dropItemToGround(held)
-		SLEEP_CHECK_DEATH(10)
-		icon_state = "kcorp_drone_idle"
-		icon_living = "kcorp_drone_idle"
+		L.dropItemToGround(held) //Drops everyone's weapons
+		to_chat(L, "<span class='danger'>[src] shines a blinding light!</span>")
+
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	icon_state = "kcorp_drone_idle"
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/kcorp/drone/Move()
+	if (!can_act)
+		return FALSE
+	. = ..()
+
+/mob/living/simple_animal/hostile/kcorp/drone/AttackingTarget(target)
+	if (!can_act)
+		return
+	. = ..()
+	if(flash_cooldown <= world.time)
+		flash_cooldown = world.time + flash_cooldown_time
+		Flash()
 
 /mob/living/simple_animal/hostile/kcorp/drone/Aggro() //flash and push people, then run away |FLASH IS ANIMATED|
 	..()
