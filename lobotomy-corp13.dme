@@ -2771,6 +2771,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\teth\void_dream.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\alriune.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\apex_predator.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\babayaga.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\big_bird.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\black_swan.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\clouded_monk.dm"

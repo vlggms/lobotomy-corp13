@@ -445,3 +445,16 @@
 		"DANGER - When Apex Predator breached, it should be located immediately.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Very High"
+
+//Baba Yaga
+/obj/item/paper/fluff/info/waw/babayaga
+	abno_type = /mob/living/simple_animal/hostile/abnormality/babayaga
+	name = "M-04-166"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered. In addition, the employee was attacked by a group of frozen slaves.",
+		"When an employee, who had both Fortitude Levels and Temperance Levels below 4, completed the work process, the Qliphoth Counter lowered. In addition, the employee was attacked by a group of frozen slaves.",
+		"When Baba Yaga breached, it caused incredibly powerful shock-waves, causing nearby employees to take extreme RED damage proportionally to how close they were to the source.",
+		"Every time Baba Yaga landed, a small group of frozen slaves arrived from the scene to attack nearby employees.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Extreme"
