@@ -157,7 +157,9 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						else
 							spawntype = /mob/living/simple_animal/hostile/lovetown/slumberer/patrol
 
-	new spawntype(get_turf(src))
+	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
+	H.can_patrol = TRUE
+	H.patrol_cooldown_time = 10 SECONDS
 	//If no one is alive, End round
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.z != z)
