@@ -425,3 +425,12 @@
 /datum/ego_datum/weapon/grasp
 	item_path = /obj/item/ego_weapon/grasp
 	cost = 50
+
+// Big and Will be Bad Wolf - Cobalt Scar
+/datum/ego_datum/armor/cobalt
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/cobalt
+	cost = 50
+
+/datum/ego_datum/weapon/cobalt
+	item_path = /obj/item/ego_weapon/cobalt
+	cost = 50
