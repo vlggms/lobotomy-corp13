@@ -48,3 +48,10 @@
 	mappath = "_maps/RandomRooms/rcorp/facility/beaches.dmm"
 	weight = 5
 
+//Office Types
+/datum/map_template/random_room/rcorp/office
+	name = "Rcorp - Offices"
+	room_id = "rcorp_inside_office"
+	mappath = "_maps/RandomRooms/rcorp/facility/offices.dmm"
+	weight = 5
+

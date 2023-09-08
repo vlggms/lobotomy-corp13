@@ -117,13 +117,13 @@
 				return FALSE
 		for(var/obj/effect/ebeam/medical/B in turf)// Don't cross the str-beams!
 			if(B.owner.origin != current_beam.origin)
-				explosion(B.loc,0,3,5,8)
+				explosion(B.loc,0,0,5,8)
 				qdel(dummy)
 				return FALSE
 
 		for(var/obj/effect/ebeam/mindwhip/B in turf)// Don't cross the str-beams!
 			if(B.owner.origin != current_beam.origin)
-				explosion(B.loc,0,3,5,8)
+				explosion(B.loc,0,0,5,8)
 				qdel(dummy)
 				return FALSE
 	qdel(dummy)

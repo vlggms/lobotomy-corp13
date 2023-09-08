@@ -46,7 +46,6 @@
 /obj/structure/table/abductor,
 /obj/item/storage/firstaid/revival,
 /obj/item/gun/medbeam,
-/obj/item/clothing/glasses/hud/health,
 /obj/item/gun/mindwhip,
 /turf/open/floor/pod,
 /area/city/outskirts)
@@ -664,7 +663,6 @@
 "IU" = (
 /obj/structure/table/abductor,
 /obj/item/clothing/under/suit/lobotomy/rabbit,
-/obj/item/ego_weapon/city/rabbit_blade,
 /obj/item/clothing/head/beret/tegu/captain{
 	armor = list()
 	},
