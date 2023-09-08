@@ -1504,3 +1504,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/species/shrimp //for the funnies only
+	race = /datum/species/shrimp
