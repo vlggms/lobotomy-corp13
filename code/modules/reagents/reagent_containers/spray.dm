@@ -77,12 +77,17 @@
 /obj/item/reagent_containers/spray/proc/do_spray(atom/A, wait_step, obj/effect/decal/chempuff/D, range, puff_reagent_left, mob/user)
 	set waitfor = FALSE
 	var/range_left = range
+	var/cleaned_wall = FALSE
 	for(var/i=0, i<range, i++)
 		range_left--
-		step_towards(D,A)
+		if(!step_towards(D,A))
+			if(isclosedturf(A))
+				cleaned_wall = TRUE
 		sleep(wait_step)
 
-		for(var/atom/T in get_turf(D))
+		var/turf/clean_turf = cleaned_wall ? get_step_towards(D, A) : get_turf(D)
+
+		for(var/atom/T in clean_turf)
 			if(T == D || T.invisibility) //we ignore the puff itself and stuff below the floor
 				continue
 			if(puff_reagent_left <= 0)
@@ -108,6 +113,9 @@
 		if(puff_reagent_left > 0 && (!stream_mode || !range_left))
 			D.reagents.expose(get_turf(D), VAPOR)
 			puff_reagent_left -= 1
+
+		if(cleaned_wall)
+			break
 
 		if(puff_reagent_left <= 0) // we used all the puff so we delete it.
 			qdel(D)
