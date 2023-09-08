@@ -286,10 +286,10 @@
 	abno_info = list(
 		"When Insight Work was performed with So That No One Will Cry, a yellow talisman attached to the employee's body",
 		"Physical contact through performing Instinct work seemed to get rid of all the yellow talismans.",
-		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their Justice.",
+		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their movement speed and attack power.",
 		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
 		"If too many yellow talismans attached to the employee, they also became purple talismans.",
-		"Purple talismans seem to sap the strength from whomever they are attached, reducing their Justice, and slowly vanished after several minutes.")
+		"Purple talismans seem to sap the strength from whomever they are attached, reducing their movement speed and attack power. The talismans slowly vanished after several minutes.")
 
 //Red Blooded American
 /obj/item/paper/fluff/info/teth/redblooded

@@ -23,7 +23,7 @@
 	. = ..()
 	for(var/mob/living/L in view(1, M))
 		var/aoe = 25
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
 		if(L == user || ishuman(L))
@@ -349,7 +349,7 @@
 	combo_time = world.time + combo_wait
 	if(combo >= 13)
 		combo = 0
-		force = get_attribute_level(user, JUSTICE_ATTRIBUTE)
+		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
 		playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	..()
@@ -554,7 +554,7 @@
 	for(var/turf/T in orange(1, user)) // Most of this code was jacked from Harvest tbh
 		new /obj/effect/temp_visual/smash_effect(T)
 	var/aoe = special_force * (1 + special_combo_mult * special_combo)
-	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	aoe*=justicemod
 	for(var/mob/living/L in range(1, user))
@@ -582,7 +582,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 			for(var/mob/living/L in T.contents)
 				var/aoe = special_force * 1 + (special_combo_mult * special_combo)
-				var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 				var/justicemod = 1 + userjust/100
 				aoe*=justicemod
 				if(L == user)
@@ -1076,7 +1076,7 @@
 		if(prob(10))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
 		return
-	var/damage = aoe_damage * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	var/damage = aoe_damage * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
 	if(attacks == 0)
 		damage *= 3
 	for(var/turf/open/T in range(aoe_range, M))
@@ -1167,7 +1167,7 @@
 
 		mark_damage = force*2
 		//I gotta grab  justice here
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		mark_damage *= justicemod
 
@@ -1248,7 +1248,7 @@
 	can_spin = FALSE
 	if(do_after(user, 13, src))
 		var/aoe = force
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		var/firsthit = TRUE //One target takes full damage
 		can_spin = TRUE
@@ -1432,7 +1432,7 @@
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 25
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
 		if(L == user || ishuman(L))
