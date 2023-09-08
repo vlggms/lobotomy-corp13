@@ -61,4 +61,4 @@
 	boss_type = list(/mob/living/simple_animal/hostile/ordeal/crimson_tent)
 	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight)
 	boss_amount = 2
-	grunt_amount = 2
+	grunt_amount = 1
