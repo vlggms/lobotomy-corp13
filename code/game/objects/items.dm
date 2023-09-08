@@ -192,6 +192,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/canMouseDown = FALSE
 
+	///No item attack animation, only person tilt.
+	var/run_item_attack_animation = TRUE
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
