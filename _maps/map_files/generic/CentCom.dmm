@@ -247,12 +247,12 @@
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
 "aY" = (
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
+	},
+/obj/effect/landmark/custom_office/poster{
+	pixel_y = 32
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
@@ -1030,6 +1030,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
+"fi" = (
+/obj/effect/landmark/custom_office/crate,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/manager)
 "fj" = (
 /obj/structure/curtain,
 /obj/machinery/shower,
@@ -2756,6 +2760,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"lx" = (
+/obj/effect/landmark/custom_office/poster{
+	pixel_x = -32
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "lA" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/chair/sofa/corp/left{
@@ -3219,6 +3229,9 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/effect/landmark/custom_office/poster{
+	pixel_y = 32
+	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "nW" = (
@@ -3400,9 +3413,6 @@
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
 "oC" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
 /obj/item/kirbyplants/random,
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -3544,6 +3554,13 @@
 /obj/machinery/smartfridge,
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
+"pz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/structure/representative_console,
+/turf/open/floor/wood,
+/area/facility_hallway/manager)
 "pA" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -6142,10 +6159,6 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"zC" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "zD" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -17486,7 +17499,7 @@ uQ
 dY
 Ez
 nY
-zC
+qp
 bn
 OX
 ew
@@ -17736,14 +17749,14 @@ pE
 OX
 ew
 Xc
-qp
+fi
 oC
 RL
 tL
 tL
 tL
-TK
-zC
+pz
+qp
 aH
 cO
 nH
@@ -18251,11 +18264,11 @@ OX
 ew
 Xc
 Xc
-Xc
+lx
 Xc
 Ps
 Qn
-Xc
+lx
 aS
 nk
 qp
