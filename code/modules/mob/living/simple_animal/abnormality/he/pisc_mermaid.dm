@@ -153,16 +153,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostSpawn()
 	..()
-	for(var/turf/open/O in range(1, src))
-		var/water_filled = FALSE
-		for(var/obj/effect/mermaid_water/MW in O.contents)
-			water_filled = TRUE
-			break
-		if(water_filled) //this solution is pretty inelegant but it avoids pisc mermaid spamming water on top of water every spawn.
-			continue
-		var/obj/effect/mermaid_water/MW = new(O) //we basically flood her cell so that her water looks more natural
-		var/water_dir = get_cardinal_dir(get_turf(MW), get_turf(src)) //this is so buckled people face mermaid, face_atom doesn't work on effects
-		MW.dir = water_dir
+	for(var/turf/open/T in range(1, src)) // fill her cell with safe water
+		T.TerraformTurf(/turf/open/water/deep/saltwater/safe, flags = CHANGETURF_INHERIT_AIR)
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/bullet_act(obj/projectile/P)
 	. = ..()
@@ -193,23 +185,34 @@
 	playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/bigsplash.ogg', 50, 1)
 	UC.mermaid = src
 
-//this is basically just teddy bear hugging but you're buckled to the water and the death is much much slower, you can technically survive it if a clerk is giving CPR
+//this is basically just teddy bear hugging but you're NOT buckled and the death is much much slower, you can technically survive it if a clerk is giving CPR... maybe
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/ExcessiveLove()
-	if(!petter)
+	if(!petter) // safety check
 		pet_count = 0
 		return
-	var/turf/T = get_turf(petter)
-	var/drowning = FALSE
-	for(var/obj/effect/mermaid_water/MW in T)
-		to_chat(petter, "<span class='userdanger'>Something is pulling you into the water!</span>")
-		MW.buckle_mob(petter, force=TRUE, check_loc=FALSE)
-		drowning = TRUE
-	if(!drowning)
-		return //the most likely scenario is that someone is already buckled here and currently dying
-	petter.losebreath += 500
+	// here, we talk to them whilst they are dying, just a tiny bit
+	to_chat(petter, "<span class='userdanger'>Something is pulling you into the water!</span>")
 	FluffSpeak("I'm really sorry, but it's fine, right? Isn't it wonderful to be loved?")
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "You can breath underwater right?"), 30 SECONDS)
+	// here, we murder them whilst we are talking
+	petter.Stun(2 MINUTES)
+	petter.move_resist = MOVE_FORCE_VERY_STRONG
+	petter.pull_force = MOVE_FORCE_VERY_STRONG
+	var/time_strangled = 0
+	while(petter.stat != DEAD)
+		if(time_strangled > 2 MINUTES) // if they live for 2 minutes, make sure they are not alive and reset them
+			petter.losebreath += 500
+			petter.move_resist = MOVE_RESIST_DEFAULT
+			petter.pull_force = PULL_FORCE_DEFAULT
+			break
+		if(petter.stat == DEAD)
+			petter.move_resist = MOVE_RESIST_DEFAULT
+			petter.pull_force = PULL_FORCE_DEFAULT
+			break
+		petter.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+		time_strangled++
+		SLEEP_CHECK_DEATH(1 SECONDS)
 
 //This is a dating sim now fuck you
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/funpet(mob/living/carbon/human/current_petter)
@@ -285,19 +288,6 @@
 	if(loved)
 		loved.physiology.work_success_mod /= success_mod
 	return ..()
-
-//Mermaid bath water
-/obj/effect/mermaid_water
-	name = "Lovely water"
-	desc = "This water is as desperate for love as the one that resides in it"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "mermaid_water"
-	layer = BELOW_OBJ_LAYER
-	anchored = TRUE
-
-/obj/effect/mermaid_water/unbuckle_mob(mob/living/carbon/human/buckled_mob, force)
-	if(buckled_mob.stat == DEAD || buckled_mob.losebreath <= 0) //you can only unbuckle yourself if you somehow survive the oxyloss long enough, or you're dead
-		. = ..()
 
 ///the loved's movespeed is nerfed by a LOT while she's out, meaning if you're in the process of being chased by big bird, I have bad news for you.
 /datum/movespeed_modifier/unrequited_slowdown
