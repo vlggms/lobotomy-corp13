@@ -285,7 +285,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
-	var/attack_damage = 300 // Dealt once if hit
+	var/attack_damage = 299 // Dealt once if hit
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/Retaliation()
