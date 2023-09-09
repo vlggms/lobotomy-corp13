@@ -422,3 +422,14 @@
 		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
 		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
 		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
+
+// Drifting Fox
+/obj/item/paper/fluff/info/he/drifting_fox
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
+	abno_code = "" // Need to get this and not sure how, ask for help later.
+	abno_info = list(
+		"When employees of Attachment Level 2 or lower finished working with Drifting Fox, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		)
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "High"
