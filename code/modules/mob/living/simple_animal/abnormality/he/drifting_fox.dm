@@ -1,10 +1,10 @@
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
-	desc = "A large shaggy fox with yellow eyes and torn umbrellas lodged in its back."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "fox"
-	icon_living = "fox"
-	icon_dead = "fox_dead"
+	desc = "A large fox with torn umbrellas lodged in its back."
+	icon = 'placeholder'
+	icon_state = "fox_placeholder"
+	icon_living = "fox_placeholder"
+	icon_dead = "fox_placeholder_dead"
 	deathmessage = "collapses into a puddle of water"
 	deathsound = "sound/abnormalities/drifting_fox/placeholdersplash.ogg" // Need to make a sound file for this.
 	del_on_death = FALSE
@@ -20,7 +20,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = "sound/abnormalities/drifting_fox/placeholderthwack.ogg" // Need to make a sound file for this as well.
+	attack_sound = "fox_placeholder_attack" // Need to make a sound file for this as well.
 	attack_verb_simple = "thwack"
 	attack_verb_continuous = "thwacks"
 	speak_chance = 2
@@ -75,5 +75,5 @@ if(status_flags & GODMODE)
 	else if(stat == DEAD)
 		icon_state = icon_dead
 	else
-		icon_living = "fox_breached"
+		icon_living = "drifting_fox_breached"
 		icon_state = icon_living

@@ -1405,4 +1405,3 @@ slot = LEFTBACK
 	prudence_bonus = 1
 	temperance_bonus = 1
 	slot = HAND_1
-
