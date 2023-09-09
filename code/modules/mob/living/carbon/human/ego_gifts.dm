@@ -1333,6 +1333,22 @@
 /**
  * Event EGO Gifts
  */
+/datum/ego_gifts/sunshower
+name = "Ruined Umbrella"
+icon_state = "sunshower"
+temperance_bonus = 10
+justice_bonus = -5
+slot = LEFTBACK
+
+/// All Event EGO Gifts
+/datum/ego_gifts/twilight
+	name = "Twilight"
+	icon_state = "twilight"
+	fortitude_bonus = 7
+	prudence_bonus = 7
+	temperance_bonus = 7
+	justice_bonus = 7
+	slot = RIGHTBACK
 
 /datum/ego_gifts/blessing
 	name = "Blessing"
@@ -1384,3 +1400,9 @@
 	temperance_bonus = 7
 	justice_bonus = 7
 	slot = RIGHTBACK
+/datum/ego_gifts/mail
+	name = "Empty Envelope"
+	prudence_bonus = 1
+	temperance_bonus = 1
+	slot = HAND_1
+

@@ -490,3 +490,13 @@
 		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
 		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
 		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
+// Drifting Fox
+/obj/item/paper/fluff/info/he/drifting_fox
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
+	abno_code = "" // Need to get this and not sure how, ask for help later.
+	abno_info = list(
+		"When employees of Attachment Level 2 or lower finished working with Drifting Fox, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		)
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "High"

@@ -1748,3 +1748,17 @@
 
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
+/obj/item/ego_weapon/sunshower
+	name = "Sunshower"
+	desc = "A tattered and worn umbrella, the tip is quite sharp."
+	icon_state = "sunshower"
+	force = 35
+	attack_speed = 1
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("Thwacks", "Stabs", "Bashes")
+	attack_verb_simple = list("Thwack", "Stab")
+	hitsound = 'placeholder'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
