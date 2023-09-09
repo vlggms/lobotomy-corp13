@@ -92,7 +92,7 @@
 
 	// Second disarm, victim was against wall and should be down
 	victim.attack_hand(attacker)
-		if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype == "city")
 		return
 	TEST_ASSERT_EQUAL(victim.loc.x, run_loc_floor_bottom_left.x + 2, "Victim was moved after being pushed against a wall")
 	TEST_ASSERT(victim.has_status_effect(STATUS_EFFECT_KNOCKDOWN), "Victim was not knocked down after being pushed against a wall")
