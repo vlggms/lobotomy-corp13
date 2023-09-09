@@ -199,7 +199,7 @@
 	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 
 	var/ability_cooldown
-	var/ability_cooldown_time = 18 SECONDS
+	var/ability_cooldown_time = 14 SECONDS
 	var/retaliation_health = 10 // Initialized later
 	/// List of datums and objects that will be deleted on death/destruction
 	var/list/created_objects = list()
@@ -285,7 +285,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
-	var/attack_damage = 299 // Dealt once if hit
+	var/attack_damage = 220 // Dealt once if hit
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/Retaliation()
@@ -367,7 +367,7 @@
 	icon_dead = "violet_midnightw_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
 
-	var/attack_damage = 200
+	var/attack_damage = 150
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/Retaliation()
@@ -457,7 +457,7 @@
 	icon_dead = "violet_midnightb_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
 
-	var/attack_damage = 300
+	var/attack_damage = 220
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/Retaliation()
