@@ -1199,13 +1199,6 @@
 	justice_bonus = 5
 	slot = EYE
 
-/datum/ego_gifts/sunshower
-name = "Ruined Umbrella"
-icon_state = "sunshower"
-temperance_bonus = 10
-justice_bonus = -5
-slot = LEFTBACK
-
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
@@ -1239,4 +1232,3 @@ slot = LEFTBACK
 	prudence_bonus = 1
 	temperance_bonus = 1
 	slot = HAND_1
-
