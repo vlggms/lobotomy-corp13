@@ -2715,7 +2715,6 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\happy_teddy_bear.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\headless_ichthys.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\helper.dm"
-#include "code\modules\mob\living\simple_animal\abnormality\he\drifting_fox.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\jangsan.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\KHz.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\KQE.dm"
