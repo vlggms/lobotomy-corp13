@@ -86,6 +86,7 @@
 	extra_range = 40
 	falloff_distance = 35 //minimal falloff due to being a long sound
 	end_sound = 'sound/abnormalities/siren/needle2.ogg'
+	channel = CHANNEL_SIREN
 
 /datum/looping_sound/clown_ambience
 	mid_sounds = 'sound/abnormalities/clownsmiling/clownloop.ogg'

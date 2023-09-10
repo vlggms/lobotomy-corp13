@@ -74,9 +74,12 @@
 		if("hide")
 			Refresh_Gift_Sprite(visible) //for uniquely colored gifts
 		if("dissolve")
-			var/datum/ego_gifts/empty/E = new
-			E.slot = src.slot
 			if(tgui_alert(owner, "Are you sure you want to dissolve the [src]?", "Dissolve Gift", list("Yes", "No"), 0) == "Yes") // We only go if they hit "Yes" specifically.
+				if(locked)
+					to_chat(owner, "<span class='warning'>[src] is locked and cannot be dissolved! Phew!</span>")
+					return
+				var/datum/ego_gifts/empty/E = new
+				E.slot = src.slot
 				if(datum_reference)
 					var/PE = 0
 					PE += (datum_reference.threat_level * datum_reference.threat_level)
@@ -420,6 +423,44 @@
 	prudence_bonus = -1
 	slot = NECKWEAR
 
+/datum/ego_gifts/revelation
+	name = "Revelation"
+	icon_state = "revelation"
+	temperance_bonus = -2
+	justice_bonus = 4
+	slot = EYE
+
+/datum/ego_gifts/sloshing
+	name = "Green Spirit"
+	icon_state = "sloshing"
+	fortitude_bonus = 3
+	prudence_bonus = -1
+	justice_bonus = 1
+	slot = CHEEK
+
+/datum/ego_gifts/fourleaf_clover
+	name = "Four-Leaf Clover"
+	icon_state = "fourleaf_clover"
+	fortitude_bonus = -2
+	prudence_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/patriot
+	name = "Patriot"
+	icon_state = "patriot"
+	fortitude_bonus = 2
+	justice_bonus = 2
+	temperance_bonus = -1
+	slot = HAT
+
+/datum/ego_gifts/zauberhorn
+	name = "Zauberhorn"
+	icon_state = "zauberhorn"
+	fortitude_bonus = 2
+	prudence_bonus = 1
+	justice_bonus = 1
+	slot = HAND_1
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -575,7 +616,8 @@
 /datum/ego_gifts/galaxy
 	name = "Galaxy"
 	icon_state = "galaxy"
-	prudence_bonus = 2
+	fortitude_bonus = 1
+	prudence_bonus = 1
 	temperance_bonus = 3
 	slot = NECKWEAR
 
@@ -627,14 +669,6 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/harmony
-	name = "Harmony"
-	icon_state = "harmony"
-	prudence_bonus = 5
-	temperance_bonus = -5
-	justice_bonus = 5
-	slot = MOUTH_2
-
 /datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
 	icon_state = "homing_instinct"
@@ -670,6 +704,50 @@
 	temperance_bonus = 2
 	justice_bonus = 4
 	slot = BROOCH
+
+/datum/ego_gifts/grasp
+	name = "Grasp"
+	icon_state = "grasp"
+	temperance_bonus = 3
+	justice_bonus = 1
+	slot = NECKWEAR
+
+/datum/ego_gifts/marionette
+	name = "Marionette"
+	icon_state = "marionette"
+	fortitude_bonus = 3
+	prudence_bonus = 3
+	justice_bonus = -2
+	slot = FACE
+
+/datum/ego_gifts/roseate_desire
+	name = "Roseate Desire"
+	icon_state = "roseate_desire"
+	prudence_bonus = 2
+	temperance_bonus = -4
+	justice_bonus = 4
+	slot = EYE
+
+/datum/ego_gifts/split
+	name = "Split"
+	icon_state = "split"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = MOUTH_1
+
+/datum/ego_gifts/fluid_sac
+	name = "Fluid Sac"
+	icon_state = "fluid_sac"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = MOUTH_2
+
+/datum/ego_gifts/warp
+	name = "Blue Zippo Lighter"
+	icon_state = "warp"
+	fortitude_bonus  = 4
+	justice_bonus = 2
+	slot = HAND_2
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -735,12 +813,31 @@
 	instinct_mod = 6
 	slot = HAND_1
 
+// Converts 10% of WHITE damage taken(before armor calculations!) as health
+// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 20 health, regardless of how much
+// damage you actually took
 /datum/ego_gifts/aroma
 	name = "Faint Aroma"
+	desc = "Restores 10% of WHITE damage taken as health. This effect ignores armor."
 	icon_state = "aroma"
 	prudence_bonus = 4
-	temperance_bonus = 2 // This is techincally a buff from base game.
+	temperance_bonus = 2
 	slot = HAT
+
+/datum/ego_gifts/aroma/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+
+/datum/ego_gifts/aroma/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	return ..()
+
+/datum/ego_gifts/aroma/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	if(!damage)
+		return
+	owner.adjustBruteLoss(-damage*0.1)
 
 /datum/ego_gifts/stem
 	name = "Green Stem"
@@ -853,7 +950,15 @@
 	prudence_bonus = 2
 	temperance_bonus = 2
 	justice_bonus = 2
-	slot = NECKWEAR
+	slot = HAT
+
+/datum/ego_gifts/discord
+	name = "Discord"
+	icon_state = "discord"
+	fortitude_bonus = -10
+	prudence_bonus = -10
+	justice_bonus = 20
+	slot = HELMET
 
 /datum/ego_gifts/diffraction
 	name = "Diffraction"
@@ -948,12 +1053,31 @@
 	fortitude_bonus = 4
 	temperance_bonus = 2
 	slot = NECKWEAR
-	
+
 /datum/ego_gifts/bride
 	name = "Bride"
 	icon_state = "bride"
 	prudence_bonus = 2
 	temperance_bonus = 5
+	slot = HAT
+
+/datum/ego_gifts/psychic
+	name = "Psychic Dagger"
+	icon_state = "psychic"
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	temperance_bonus = 4
+	justice_bonus = -1
+	slot = CHEEK
+
+//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
+//so right now its 10 temp
+/datum/ego_gifts/swan
+	name = "Black Swan"
+	icon_state = "swan"
+	fortitude_bonus = -4
+	prudence_bonus = -4
+	temperance_bonus = 10
 	slot = HAT
 
 /// All ALEPH EGO Gifts
@@ -1054,6 +1178,26 @@
 	temperance_bonus = 10
 	justice_bonus = 10
 	slot = HAT
+
+/datum/ego_gifts/seasons
+	name = "season's greetings"
+	icon_state = "seasons"
+	prudence_bonus = 10
+	slot = HAND_2
+
+/datum/ego_gifts/pink
+	name = "Pink"
+	icon_state = "pink"
+	justice_bonus = 10
+	slot = HELMET
+
+/datum/ego_gifts/inconsolable
+	name = "Inconsolable Grief"
+	icon_state = "inconsolable"
+	fortitude_bonus = 10
+	prudence_bonus = -5
+	justice_bonus = 5
+	slot = EYE
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight

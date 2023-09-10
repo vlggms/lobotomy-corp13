@@ -7,12 +7,10 @@
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
 	"Lobotomite" = 'icons/hud/screen_lobotomy.dmi',
+	"Limboid (Gloom)" = 'icons/hud/screen_limboid.dmi',
+	"Limboid (Envy)" = 'icons/hud/screen_limboidenvy.dmi',
 	"Midnight" = 'icons/hud/screen_midnight.dmi',
-	"Retro" = 'icons/hud/screen_retro.dmi',
-	"Plasmafire" = 'icons/hud/screen_plasmafire.dmi',
 	"Slimecore" = 'icons/hud/screen_slimecore.dmi',
-	"Operative" = 'icons/hud/screen_operative.dmi',
-	"Clockwork" = 'icons/hud/screen_clockwork.dmi',
 	"Glass" = 'icons/hud/screen_glass.dmi'
 ))
 

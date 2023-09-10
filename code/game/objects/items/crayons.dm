@@ -669,8 +669,7 @@
 	post_noise = FALSE
 
 /obj/item/toy/crayon/spraycan/isValidSurface(surface)
-	return (istype(surface, /turf/open/floor) || istype(surface, /turf/closed/wall))
-
+	return (istype(surface, /turf/open/floor) || istype(surface, /turf/closed/wall) || istype(surface, /turf/closed/indestructible))
 
 /obj/item/toy/crayon/spraycan/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user

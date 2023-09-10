@@ -297,7 +297,6 @@
 				return
 		if(target.mind && !target.mind.has_antag_datum(/datum/antagonist/heretic))
 			to_chat(user,"<span class='warning'>[target.name] has been cursed!</span>")
-			SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/proc_holder/spell/pointed/ash_final
 	name = "Nightwatcher's Rite"
@@ -705,7 +704,6 @@
 		for(var/mob/living/carbon/human/humie in view(9,outside)-target)
 			if(IS_HERETIC(humie) || IS_HERETIC_MONSTER(humie))
 				continue
-			SEND_SIGNAL(humie, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 			///They see the very reality uncoil before their eyes.
 			if(prob(25))
 				var/trauma = pick(subtypesof(BRAIN_TRAUMA_MILD) + subtypesof(BRAIN_TRAUMA_SEVERE))

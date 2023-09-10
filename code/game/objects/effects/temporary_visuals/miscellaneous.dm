@@ -561,6 +561,8 @@
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
 
+//LC13 EFFECTS
+
 /obj/effect/temp_visual/bee_gas
 	icon_state = "mustard"
 	alpha = 0
@@ -657,6 +659,21 @@
 	. = ..()
 	animate(src, alpha = 0, transform = transform*3, time = 5)
 
+
+/obj/effect/temp_visual/cherry_aura
+	name = "petal blizzard"
+	icon_state = "cherry_aura"
+	duration = 16
+
+/obj/effect/temp_visual/cherry_aura2
+	name = "petal blizzard2"
+	icon_state = "cherry_aura2"
+	duration = 16
+
+/obj/effect/temp_visual/cherry_aura3
+	name = "petal blizzard3"
+	icon_state = "cherry_aura3"
+	duration = 16
 /obj/effect/temp_visual/saw_effect
 	name = "saw"
 	icon_state = "claw"
@@ -883,3 +900,33 @@
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cloud_swirl"
 	duration = 10
+
+/obj/effect/temp_visual/nt_goodbye
+	name = "goodbye"
+	icon_state = "nt_goodbye"
+	duration = 5
+
+/obj/effect/temp_visual/talisman
+	name = "talisman"
+	icon_state = "talisman"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 10
+
+/obj/effect/temp_visual/talisman/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = 10)
+
+/obj/effect/temp_visual/turn_book
+	name = "scattered pages"
+	icon_state = "turn_book"
+	duration = 6
+
+/obj/effect/temp_visual/lovetown_shapes
+	name = "shapes"
+	icon_state = "lovetown_shapes"
+	duration = 4
+
+/obj/effect/temp_visual/lovetown_whip
+	name = "whip"
+	icon_state = "lovetown_whip"
+	duration = 4

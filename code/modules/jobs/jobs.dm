@@ -6,9 +6,21 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Department Head",
 	"Agent Captain",
 
+	//City heads
+	"Doctor",
+	"Hana Administrator",
+	"Association Section Director",
+	"Index Messenger",
+	"Blade Lineage Cutthroat",
+	"Grand Inquisitor",
+	"Thumb Sottocapo",
+	"Kurokumo Kashira",
+
 
 	//Rcorp stuff
 	"Ground Commander",
+	"Lieutenant Commander",
+	"Operations Officer",
 	"Rabbit Squad Captain",
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
@@ -25,10 +37,16 @@ GLOBAL_LIST_INIT(medical_positions, list(
 
 
 GLOBAL_LIST_INIT(science_positions, list(
-//	"Fixer",
+	"Hana Administrator",
+	"Hana Representative",
+	"Hana Intern",
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
+	"East Office Director",
+	"East Office Fixer",
+	"North Office Director",
+	"North Office Fixer",
 	))
 
 
@@ -37,12 +55,17 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Doctor",
+	"Nurse",
+	"Paramedic",
 	"Clerk",
 	"HHPP Chef",
-	"Scavenger",
+	"Civilian",
 	"Backstreets Butcher",
-	"Doctor",
+	"Workshop Attendant",
 	"Main Office Representative",
+	"Fishhook Office Fixer",
+	"Rat",
 	))
 
 
@@ -58,9 +81,34 @@ GLOBAL_LIST_INIT(security_positions, list(
 
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
-	"R-Corp Reindeer",
-	"R-Corp Rhino",
-	"R-Corp Raven",
+	"R-Corp Medical Reindeer",
+	"R-Corp Berserker Reindeer",
+	"R-Corp Gunner Rhino",
+	"R-Corp Hammer Rhino",
+	"R-Corp Scout Raven",
+	"R-Corp Support Raven",
+
+
+	//Syndicates
+	"Index Messenger",
+	"Index Proxy",
+	"Index Proselyte",
+
+	"Blade Lineage Cutthroat",
+	"Blade Lineage Salsu",
+
+	"Grand Inquisitor",
+	"N Corp Grosshammer",
+	"N Corp Mittlehammer",
+	"N Corp Kleinhammer",
+
+	"Thumb Sottocapo",
+	"Thumb Capo",
+	"Thumb Soldato",
+
+	"Kurokumo Kashira",
+	"Kurokumo Hosa",
+	"Kurokumo Wakashu",
 
 	))
 

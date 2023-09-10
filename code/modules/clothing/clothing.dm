@@ -333,7 +333,7 @@
 		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and beside it is the same <a href='?src=[REF(src)];list_lobotomy=1'>tag</a> written out for foreign agents.</span>"
+		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and a <a href='?src=[REF(src)];explain=1'>tag</a> explaining the armor system.</span>"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -354,13 +354,13 @@
 
 		to_chat(usr, "[readout.Join()]")
 
-	if(href_list["list_lobotomy"])
-		var/list/readout = list("<span class='notice'><u><b>EGO DEFENSE VALUES</u></b>")
-		if(LAZYLEN(armor_list))
-			for(var/dam_type in armor_list)
-				var/armor_amount = armor_list[dam_type]
-				readout += "\n[dam_type] [armor_to_LC_protection(armor_amount)]" //e.g. BOMB IV
-		readout += "</span>"
+	if(href_list["explain"])
+		var/list/readout = list("<span class='notice'><u><b>ROMAN NUMERAL ARMOR SYSTEM</u></b>")
+		readout += "\nThis system is a % of damage resisted, multiplied by 10. Each 1 armor is 10% resisted."
+		readout += "\nThe Roman numeral system uses only seven symbols: I, V, X, L, C, D, and M. To read the armor values, you need to know: I represents the number 1, V represents 5, X is 10."
+		readout += "\nYou can add numbers together by putting the symbols in descending order from left to right. You’d add all of the symbols’ individual values together to get the total value. For example, VI is 5 + 1 or 6."
+		readout += "\nYou can also subtract numbers from each other by placing a symbol with a smaller value to the left of one with a larger value. The value of the smaller symbol is subtracted from that of the larger symbol to get the total value, so IV is 5 - 1, or 4."
+		readout += "\nExamples: \nIX = 10-1 = 9. \nVI = 5+1 = 6. \nVIII = 5+1+1+1 = 8."
 		to_chat(usr, "[readout.Join()]")
 
 /**
@@ -415,12 +415,6 @@
 		if (10 to INFINITY)
 			. = "X"
 	return .
-
-/obj/item/clothing/proc/armor_to_LC_protection(armor_value)
-	armor_value = round(armor_value,10) / 100
-	armor_value = 1 - armor_value
-
-	return armor_value
 
 /obj/item/clothing/obj_break(damage_flag)
 	update_clothes_damaged_state(CLOTHING_DAMAGED)

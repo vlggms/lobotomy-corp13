@@ -89,11 +89,11 @@
 						"<span class='userdanger'>You're hit by [thrown_item]!</span>")
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
+		var/armor = run_armor_check(zone, thrown_item.armortype, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
 		var/justice_mod = 1
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
-			justice_mod += get_attribute_level(H, JUSTICE_ATTRIBUTE)/100
+			justice_mod += get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100
 		apply_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
@@ -124,6 +124,9 @@
 
 //proc to upgrade a simple pull into a more aggressive grab.
 /mob/living/proc/grippedby(mob/living/carbon/user, instant = FALSE)
+	if(HAS_TRAIT(src, TRAIT_GRAB_IMMUNE))
+		visible_message("<span class='warning'>[user] tries to grab [src], but [src] won't stop squirming around!</span>")
+		return
 	if(user.grab_state < GRAB_KILL)
 		user.changeNext_move(CLICK_CD_GRABBING)
 		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'

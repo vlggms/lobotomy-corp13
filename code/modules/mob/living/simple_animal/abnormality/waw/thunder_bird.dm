@@ -9,6 +9,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	icon_dead = "thunderbird_dead"
 	del_on_death = FALSE
 	speak_emote = list("intones")
+	gender = NEUTER
 	var/list/thunder_bird_lines = list(
 				"Prostrate yourself! Harder!",
 				"Do you think I am happy, feather? Think again!",
@@ -27,7 +28,6 @@ GLOBAL_LIST_EMPTY(zombies)
 	//suppression info
 	maxHealth = 2000
 	health = 2000
-	speed = 2
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 
@@ -166,10 +166,12 @@ GLOBAL_LIST_EMPTY(zombies)
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)//FIXME: Still opens the "poddoor" secure shutters; lines 148-150 are still executed.
+	for(var/obj/machinery/door/poddoor/P in T.contents)
 		stop_charge = TRUE
 		continue
 	for(var/obj/machinery/door/D in T.contents)
+		if(istype(D, /obj/machinery/door/poddoor))	//Should fix.
+			continue
 		if(D.density)
 			D.open(2)
 	if(stop_charge)
@@ -277,14 +279,13 @@ GLOBAL_LIST_EMPTY(zombies)
 		return
 	can_act = FALSE
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
-	for(var/i = 1 to 4)
-		new /obj/effect/temp_visual/sparks(get_turf(src))
 	var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
 	if(!QDELETED(H))
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 		C.icon_state = "human_thunderbolt"
 		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
+		C.gender = H.gender
 		H.gib()
 	can_act = TRUE
 
@@ -312,6 +313,7 @@ GLOBAL_LIST_EMPTY(zombies)
 	icon_living = "human_thunderbolt"
 	icon_dead = "human_thunderbolt_dead"
 	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
+	gender = NEUTER
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
@@ -341,21 +343,21 @@ GLOBAL_LIST_EMPTY(zombies)
 		return
 	can_act = FALSE
 	forceMove(get_turf(H))
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
 	SLEEP_CHECK_DEATH(3)
 	for(var/i = 1 to 4)
 		new /obj/effect/temp_visual/sparks(get_turf(src))
 		SLEEP_CHECK_DEATH(5.5)
-	var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
 	if(!QDELETED(H))
+		if(!H.real_name)
+			return FALSE
+		var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 		C.icon_state = "human_thunderbolt"
 		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
+		C.gender = H.gender
 		H.gib()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
-	adjustBruteLoss(-(maxHealth*0.1))
 	can_act = TRUE
 
 //Zombie conversion from zombie kills

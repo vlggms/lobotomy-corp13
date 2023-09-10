@@ -27,3 +27,24 @@
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
+
+//Grade 6, still junk
+/obj/item/ego_weapon/city/yun/fist
+	name = "yun office gloves"
+	desc = "Gloves used by the lead of the yun office. "
+	icon_state = "yun_fist"
+	force = 32
+	attack_verb_continuous = list("punches", "jabs", "slaps")
+	attack_verb_simple = list("punches", "jabs", "slaps")
+	hitsound = 'sound/weapons/punch1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/city/yun/fist/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	hitsound = "sound/weapons/punch[pick(1,2,3,4)].ogg"
+

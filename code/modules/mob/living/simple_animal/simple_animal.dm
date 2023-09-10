@@ -169,7 +169,7 @@
 	///Generic flags
 	var/simple_mob_flags = NONE
 
-	/// Used for making mobs show a heart emoji and give a mood boost when pet.
+	/// Used for making mobs show a heart emoji when pet.
 	var/pet_bonus = FALSE
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
@@ -705,13 +705,6 @@
 /mob/living/simple_animal/proc/consider_wakeup()
 	if (pulledby || shouldwakeup)
 		toggle_ai(AI_ON)
-
-/mob/living/simple_animal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(!ckey && !stat)//Not unconscious
-		if(AIStatus == AI_IDLE)
-			toggle_ai(AI_ON)
-
 
 /mob/living/simple_animal/onTransitZ(old_z, new_z)
 	..()

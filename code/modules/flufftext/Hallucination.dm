@@ -1,27 +1,17 @@
 #define HAL_LINES_FILE "hallucination.json"
+#define INSANITY_LINES_FILE "insanity.json"
 
 GLOBAL_LIST_INIT(hallucination_list, list(
-	/datum/hallucination/chat = 100,
-	/datum/hallucination/message = 60,
-	/datum/hallucination/sounds = 50,
+	/datum/hallucination/chat = 70,
+	/datum/hallucination/message = 50,
+	/datum/hallucination/sounds = 30,
 	/datum/hallucination/battle = 20,
 	/datum/hallucination/dangerflash = 15,
 	/datum/hallucination/hudscrew = 12,
 	/datum/hallucination/fake_alert = 12,
-	/datum/hallucination/weird_sounds = 8,
-	/datum/hallucination/stationmessage = 7,
-	/datum/hallucination/fake_flood = 7,
-	/datum/hallucination/stray_bullet = 7,
-	/datum/hallucination/bolts = 7,
-	/datum/hallucination/items_other = 7,
-	/datum/hallucination/husks = 7,
-	/datum/hallucination/items = 4,
-	/datum/hallucination/fire = 3,
-	/datum/hallucination/self_delusion = 2,
-	/datum/hallucination/delusion = 2,
-	/datum/hallucination/shock = 1,
-	/datum/hallucination/death = 1,
-	/datum/hallucination/oh_yeah = 1
+	/datum/hallucination/delusion = 7,
+	/datum/hallucination/stationmessage = 2,
+	/datum/hallucination/self_delusion = 2
 	))
 
 
@@ -417,30 +407,18 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 	battle_type = new_battle_type
 	if (isnull(battle_type))
-		battle_type = pick("laser", "disabler", "esword", "gun", "stunprod", "harmbaton", "bomb")
+		battle_type = pick("gun","harmbaton")
 	feedback_details += "Type: [battle_type]"
 	var/process = TRUE
 
 	switch(battle_type)
-		if("disabler", "laser")
-			iterations_left = rand(5, 10)
-		if("esword")
-			iterations_left = rand(4, 8)
-			target.playsound_local(source, 'sound/weapons/saberon.ogg',15, 1)
 		if("gun")
 			iterations_left = rand(3, 6)
-		if("stunprod") //Stunprod + cablecuff
-			process = FALSE
-			target.playsound_local(source, 'sound/weapons/egloves.ogg', 40, 1)
-			target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/cablecuff.ogg', 15, 1), 20)
 		if("harmbaton") //zap n slap
 			iterations_left = rand(5, 12)
 			target.playsound_local(source, 'sound/weapons/egloves.ogg', 40, 1)
 			target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
 			next_action = 2 SECONDS
-		if("bomb") // Tick Tock
-			iterations_left = rand(3, 11)
 
 	if (process)
 		START_PROCESSING(SSfastprocess, src)
@@ -629,11 +607,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/delusion
 	var/list/image/delusions = list()
 
-/datum/hallucination/delusion/New(mob/living/carbon/C, forced, force_kind = null , duration = 300,skip_nearby = TRUE, custom_icon = null, custom_icon_file = null, custom_name = null)
+/datum/hallucination/delusion/New(mob/living/carbon/C, forced, force_kind = null , duration = 300,skip_nearby = FALSE, custom_icon = null, custom_icon_file = null, custom_name = null)
 	set waitfor = FALSE
 	. = ..()
 	var/image/A = null
-	var/kind = force_kind ? force_kind : pick("nothing","monkey","corgi","carp","skeleton","demon","zombie")
+	var/kind = force_kind ? force_kind : pick("slime", "nakednest","bigbee","witchfriend","witch","censored","fairy","thunderbird")
 	feedback_details += "Type: [kind]"
 	var/list/nearby
 	if(skip_nearby)
@@ -665,6 +643,38 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if("demon")//Demon
 				A = image('icons/mob/mob.dmi',H,"daemon")
 				A.name = "Demon"
+			if("slime")
+				A = image('ModularTegustation/Teguicons/32x32.dmi', H, "little_slime")
+				A.name = "Slime Pawn"
+				A.desc = "The skeletal remains of a former employee is floating in it..."
+			if("nakednest")
+				A = image('ModularTegustation/Teguicons/tegumobs.dmi', H, "nakednest_minion")
+				A.name = "Naked Nest"
+				A.desc = "A humanoid form covered in scales with numerous holes. It looks like it has reinforced itself with its hosts armor."
+			if("bigbee")
+				A = image('ModularTegustation/Teguicons/48x96.dmi', H, "artillerysergeant")
+				A.name = "Artillery Bee"
+				A.desc = "A disfigured creature with nasty fangs, and an oversized thorax."
+			if("witchfriend")
+				A = image('ModularTegustation/Teguicons/64x48.dmi', H, "witchfriend")
+				A.name = "Little Witch's Friend"
+				A.desc = "It's a horrifying amalgamation of flesh and eyes."
+			if("witch")
+				A = image('ModularTegustation/Teguicons/tegumobs.dmi', H, "laetitia")
+				A.name = "Laetitia"
+				A.desc = "A wee witch."
+			if("censored")
+				A = image('ModularTegustation/Teguicons/32x32.dmi', H, "censored_mini")
+				A.name = H.name
+				A.desc = "What the hell is this? It shouldn't exist..."
+			if("fairy")
+				A = image('ModularTegustation/Teguicons/tegumobs.dmi', H, "fairyswarm")
+				A.name = "Fairy"
+				A.desc = "A tiny, extremely hungry fairy."
+			if("thunderbird")
+				A = image('ModularTegustation/Teguicons/32x32.dmi', H, "human_thunderbolt")
+				A.name = H.name
+				A.desc = "What appears to be human, only charred and screaming incoherently..."
 			if("custom")
 				A = image(custom_icon_file, H, custom_icon)
 				A.name = custom_name
@@ -688,7 +698,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	var/image/A = null
-	var/kind = force_kind ? force_kind : pick("monkey","corgi","carp","skeleton","demon","zombie","robot")
+	var/kind = force_kind ? force_kind : pick("slime", "nakednest","bigbee","witchfriend","witch","censored","fairy","thunderbird")
 	feedback_details += "Type: [kind]"
 	switch(kind)
 		if("monkey")//Monkey
@@ -706,13 +716,35 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("robot")//Cyborg
 			A = image('icons/mob/robots.dmi',target,"robot")
 			target.playsound_local(target,'sound/voice/liveagain.ogg', 75, 1)
+		if("slime")
+			A = image('ModularTegustation/Teguicons/32x32.dmi', target, "little_slime")
+			target.playsound_local(target,'sound/creatures/legion_death_far.ogg', 65, 1)
+		if("nakednest")
+			A = image('ModularTegustation/Teguicons/tegumobs.dmi', target, "nakednest_minion")
+			target.playsound_local(target,'sound/misc/moist_impact.ogg', 60, 1)
+		if("bigbee")
+			A = image('ModularTegustation/Teguicons/48x96.dmi', target, "artillerysergeant")
+		if("witchfriend")
+			A = image('ModularTegustation/Teguicons/64x48.dmi', target, "witchfriend")
+			target.playsound_local(target,'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+		if("witch")
+			A = image('ModularTegustation/Teguicons/tegumobs.dmi', target, "laetitia")
+		if("censored")
+			A = image('ModularTegustation/Teguicons/32x32.dmi', target, "censored_mini")
+			target.playsound_local(target, 'sound/abnormalities/censored/mini_born.ogg', 50, 1, 4)
+		if("fairy")
+			A = image('ModularTegustation/Teguicons/tegumobs.dmi', target, "fairyswarm")
+		if("thunderbird")
+			A = image('ModularTegustation/Teguicons/32x32.dmi', target, "human_thunderbolt")
 		if("custom")
 			A = image(custom_icon_file, target, custom_icon)
 	A.override = 1
 	if(target.client)
+		/*
 		if(wabbajack)
 			to_chat(target, "<span class='hear'>...wabbajack...wabbajack...</span>")
 			target.playsound_local(target,'sound/magic/staff_change.ogg', 50, 1)
+		*/
 		delusion = A
 		target.client.images |= A
 	QDEL_IN(src, duration)
@@ -806,29 +838,46 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	var/target_name = target.first_name()
-	var/speak_messages = list("[pick_list_replacements(HAL_LINES_FILE, "suspicion")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "conversation")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "greetings")][target.first_name()]!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "getout")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "weird")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",\
-		"[pick_list_replacements(HAL_LINES_FILE, "help")]!!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "escape")]",\
-		"I'm infected, [pick_list_replacements(HAL_LINES_FILE, "infection_advice")]!")
+	var/speak_messages = list(
+			pick_list_replacements(HAL_LINES_FILE, "sick"),
+			pick_list(HAL_LINES_FILE, "nothing"),
+			pick_list(INSANITY_LINES_FILE, "murder"),
+			pick_list(INSANITY_LINES_FILE, "suicide"),
+			pick_list(INSANITY_LINES_FILE, "wander"),
+			pick_list(INSANITY_LINES_FILE, "release")
+		)
+	var/radio_messages = list(
+		pick_list_replacements(HAL_LINES_FILE, "sick"),
+		pick_list(HAL_LINES_FILE, "combat"),
+		pick_list(HAL_LINES_FILE, "clerk")
+		)
+	if(SSlobotomy_corp.all_abnormality_datums.len)
+		var/list/abno_list = SSlobotomy_corp.all_abnormality_datums.Copy()
+		for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums)
+			if(!istype(AD.current) || QDELETED(AD.current) || AD.current.stat == DEAD)
+				continue
+			if(AD.qliphoth_meter_max <= 0)
+				abno_list -= AD
+		if(abno_list.len)
+			var/datum/abnormality/qliphoth_abno = pick(abno_list)
+			if(istype(qliphoth_abno))
+				speak_messages += qliphoth_abno.name+"[pick_list_replacements(HAL_LINES_FILE, "breach")][get_area(C)][prob(50) ? "" : "!"]"
+				speak_messages += "[pick_list_replacements(HAL_LINES_FILE, "meltdown")]"+qliphoth_abno.name
+				radio_messages += qliphoth_abno.name+"[pick_list_replacements(HAL_LINES_FILE, "breach")][get_area(C)][prob(50) ? "" : "!"]"
+				radio_messages += "[pick_list_replacements(HAL_LINES_FILE, "meltdown")]"+qliphoth_abno.name
+			speak_messages += pick_list(HAL_LINES_FILE, "work")
+			radio_messages += pick_list(HAL_LINES_FILE, "work")
 
-	var/radio_messages = list("[pick_list_replacements(HAL_LINES_FILE, "people")] is [pick_list_replacements(HAL_LINES_FILE, "accusations")]!",\
-		"Help!",\
-		"[pick_list_replacements(HAL_LINES_FILE, "threat")] in [pick_list_replacements(HAL_LINES_FILE, "location")][prob(50)?"!":"!!"]",\
-		"[pick("Where's [target.first_name()]?", "Set [target.first_name()] to arrest!")]",\
-		"[pick("C","Ai, c","Someone c","Rec")]all the shuttle!",\
-		"AI [pick("rogue", "is dead")]!!")
+	if(SSlobotomy_corp.qliphoth_meter + 3 >= SSlobotomy_corp.qliphoth_max)
+		speak_messages += pick_list(HAL_LINES_FILE, "ordeal")
+		radio_messages += pick_list(HAL_LINES_FILE, "ordeal")
 
 	var/mob/living/carbon/person = null
 	var/datum/language/understood_language = target.get_random_understood_language()
 	for(var/mob/living/carbon/H in view(target))
 		if(H == target)
+			continue
+		if(H == C)
 			continue
 		if(!person)
 			person = H
@@ -841,14 +890,24 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if (is_radio)
 		var/list/humans = list()
 		for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+			if(H == C)
+				continue
+			if(H == target)
+				continue
 			humans += H
+		if(humans.len <= 0)
+			qdel(src)
+			return
 		person = pick(humans)
 
+	if(isnull(person))
+		qdel(src)
+		return
 	// Generate message
 	var/spans = list(person.speech_span)
-	var/chosen = !specific_message ? capitalize(pick(is_radio ? speak_messages : radio_messages)) : specific_message
+	var/chosen = !specific_message ? capitalize(pick(is_radio ? radio_messages : speak_messages)) : specific_message
 	chosen = replacetext(chosen, "%TARGETNAME%", target_name)
-	var/message = target.compose_message(person, understood_language, chosen, is_radio ? "[FREQ_COMMON]" : null, spans, face_name = TRUE)
+	var/message = target.compose_message(person, understood_language, chosen, is_radio ? FREQ_COMMON : null, spans, face_name = TRUE)
 	feedback_details += "Type: [is_radio ? "Radio" : "Talk"], Source: [person.real_name], Message: [message]"
 
 	// Display message
@@ -880,36 +939,39 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/list/message_pool = list()
 	if(other)
 		if(close_other) //increase the odds
-			for(var/i in 1 to 5)
-				message_pool.Add("<span class='warning'>You feel a tiny prick!</span>")
-		var/obj/item/storage/equipped_backpack = other.get_item_by_slot(ITEM_SLOT_BACK)
-		if(istype(equipped_backpack))
-			for(var/i in 1 to 5) //increase the odds
-				message_pool.Add("<span class='notice'>[other] puts the [pick(\
-					"revolver","energy sword","cryptographic sequencer","power sink","energy bow",\
-					"hybrid taser","stun baton","flash","syringe gun","circular saw","tank transfer valve",\
-					"ritual dagger","spellbook",\
-					"Codex Cicatrix", "Living Heart",\
-					"pulse rifle","captain's spare ID","hand teleporter","hypospray","antique laser gun","X-01 MultiPhase Energy Gun","station's blueprints"\
-					)] into [equipped_backpack].</span>")
+			var/obj/item/clothing/suit/armor/ego_gear/EG = C.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+			if(istype(EG))
+				for(var/i in 1 to 3)
+					message_pool.Add("<span class='warning'>[other] tries to remove your [EG].</span>")
 
 		message_pool.Add("<B>[other]</B> [pick("sneezes","coughs")].")
 
-	message_pool.Add("<span class='notice'>You hear something squeezing through the ducts...</span>", \
-		"<span class='notice'>Your [pick("arm", "leg", "back", "head")] itches.</span>",\
-		"<span class='warning'>You feel [pick("hot","cold","dry","wet","woozy","faint")].</span>",
-		"<span class='warning'>Your stomach rumbles.</span>",
-		"<span class='warning'>Your head hurts.</span>",
-		"<span class='warning'>You hear a faint buzz in your head.</span>",
-		"<B>[target]</B> sneezes.")
+	message_pool.Add(
+		"<span class='notice'>You feel something cold touch the back of your leg.</span>",
+		"<span class='warning'>You feel a gurgling inside of you...</span>",
+		"<span class='warning'>A sudden spasming headache overtakes you...</span>",
+		"<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>",
+		"<span class='userdanger'>You feel your head begin to split!</span>",
+		"<span class='userdanger'>Funeral of the Dead Butterflies levels one of its arms at [C]!</span>",
+		"<span class='nicegreen'>There's something about that sound...</span>",
+		"<span class='warning'>That terrible grinding noise...</span>",
+		"<span class='warning'>You can hear it again... it needs more...</span>",
+		"<span class='warning'>The abnormalities seem restless...</span>",
+		"<span class='warning'>The abnormalities stir as the music plays...</span>",
+		"<span class='warning'>The petals are falling. They're so beautiful...</span>",
+		"<span class='userdanger'><i>You can feel yourself wilting away like a delicate rose.</i></span>",
+		"<span class='boldannounce'>The last of the petals are falling. You'll never forget it.</span>",
+		"<span class='danger'>Your HP is too high! Decrease it or perish!.</span>",
+		"<span class='danger'>Your HP is too low! Increase it or perish.</span>",
+		"<span class='warning'>You feel tired...</span>",
+		"<span class='danger'>Your heart-shaped present begins to crack...</span>"
+		)
 	if(prob(10))
-		message_pool.Add("<span class='warning'>Behind you.</span>",\
-			"<span class='warning'>You hear a faint laughter.</span>",
-			"<span class='warning'>You see something move.</span>",
-			"<span class='warning'>You hear skittering on the ceiling.</span>",
-			"<span class='warning'>You see an inhumanly tall silhouette moving in the distance.</span>")
-	if(prob(10))
-		message_pool.Add("[pick_list_replacements(HAL_LINES_FILE, "advice")]")
+		message_pool.Add(
+			"<span class='userdanger'>[uppertext(pick(GLOB.player_list))] WILL PUSH DON'T TOUCH ME TO BREACH ABNORMALITIES.</span>",
+			"<span class='userdanger'>[uppertext(pick(GLOB.player_list))] WILL PUSH DON'T TOUCH ME.</span>"
+			)
+
 	var/chosen = pick(message_pool)
 	feedback_details += "Message: [chosen]"
 	to_chat(target, chosen)
@@ -922,41 +984,78 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	..()
 	var/turf/source = random_far_turf()
 	if(!sound_type)
-		sound_type = pick("airlock","airlock pry","console","explosion","far explosion","mech","glass","alarm","beepsky","mech","wall decon","door hack")
+		sound_type = pick("nothing there", "scorched","gbee", "alriune", "clown","kog","silent orchestra","home","bluestar","rose","price","judgement", "breach", "train")
 	feedback_details += "Type: [sound_type]"
 	//Strange audio
 	switch(sound_type)
-		if("airlock")
-			target.playsound_local(source,'sound/machines/airlock.ogg', 30, 1)
-		if("airlock pry")
-			target.playsound_local(source,'sound/machines/airlock_alien_prying.ogg', 100, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/machines/airlockforced.ogg', 30, 1), 50)
-		if("console")
-			target.playsound_local(source,'sound/machines/terminal_prompt.ogg', 25, 1)
-		if("explosion")
-			if(prob(50))
-				target.playsound_local(source,'sound/effects/explosion1.ogg', 50, 1)
+		if("nothing there")
+			switch(rand(1,12))
+				if(1 to 2)
+					target.playsound_local(source,'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3)
+					for(var/i = 1 to rand(1, 4))
+						if(prob(10))
+							continue
+						addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3), 3*i)
+				if(3 to 5)
+					target.playsound_local(source,'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
+					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7), 5)
+					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3), 5)
+				if(6 to 8)
+					target.playsound_local(source,'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
+					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5), 8)
+				if(9)
+					target.playsound_local(source,'sound/abnormalities/nothingthere/breach.ogg', 50, 0, 5)
+				if(10 to 12)
+					target.playsound_local(source,'sound/abnormalities/nothingthere/attack.ogg', 75, 0, 3)
+		if("sorched")
+			target.playsound_local(source, 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
+			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4), 1.5 SECONDS)
+			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8), 3 SECONDS)
+		if("gbee")
+			target.playsound_local(source, 'sound/effects/explosion2.ogg', 50, 0, 8)
+		if("alriune")
+			for(var/i = 0 to 2)
+				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/alriune/timer.ogg', 50, FALSE), (6*i) SECONDS)
+		if("clown")
+			switch(rand(1, 6))
+				if(1 to 3)
+					for(var/i = 1 to rand(2, 8))
+						if(i % 2 == 0)
+							addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/clownstep2.ogg', 30, 0, 3), 2*i)
+						else
+							addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/clownstep1.ogg', 30, 0, 3), 2*i)
+				if(4)
+					target.playsound_local(source,'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
+				if(5 to 6)
+					target.playsound_local(source,'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
+		if("kog")
+			for(var/i = 0 to get_dist(source, target))
+				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/bamf.ogg', 70, TRUE, 20), 2*i)
+				source = get_step_towards(source, target)
+				if(prob(5))
+					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1), 2*i)
+					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1), 2*i)
+		if("silent orchestra")
+			target.playsound_local(target,'sound/abnormalities/silentorchestra/movement0.ogg', 50, FALSE)
+		if("home")
+			target.playsound_local(source,'sound/abnormalities/roadhome/House_MakeRoad.ogg', 100, FALSE, 8)
+		if("bluestar")
+			target.playsound_local(source,'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 40, falloff_distance = 10)
+		if("rose")
+			target.playsound_local(target, 'sound/abnormalities/rose/meltdown.ogg')
+		if("price")
+			if(prob(60))
+				target.playsound_local(target,'sound/abnormalities/silence/ambience.ogg', 50)
 			else
-				target.playsound_local(source, 'sound/effects/explosion2.ogg', 50, 1)
-		if("far explosion")
-			target.playsound_local(source, 'sound/effects/explosionfar.ogg', 50, 1)
-		if("glass")
-			target.playsound_local(source, pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg'), 50, 1)
-		if("alarm")
-			target.playsound_local(source, 'sound/machines/alarm.ogg', 100, 0)
-		if("beepsky")
-			target.playsound_local(source, 'sound/voice/beepsky/freeze.ogg', 35, 0)
-		if("mech")
-			new /datum/hallucination/mech_sounds(C, forced, sound_type)
-		//Deconstructing a wall
-		if("wall decon")
-			target.playsound_local(source, 'sound/items/welder.ogg', 50, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/items/welder2.ogg', 50, 1), 105)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/items/ratchet.ogg', 50, 1), 120)
-		//Hacking a door
-		if("door hack")
-			target.playsound_local(source, 'sound/items/screwdriver.ogg', 50, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/machines/airlockforced.ogg', 30, 1), rand(40, 80))
+				target.playsound_local(target,'sound/abnormalities/silence/price.ogg', 50)
+		if("judgement")
+			target.playsound_local(source, 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
+			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7), 2 SECONDS)
+		if("breach")
+			target.playsound_local(source, 'sound/effects/alertbeep.ogg', 50, FALSE)
+		if("train")
+			target.playsound_local(target, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50)
+
 	qdel(src)
 
 /datum/hallucination/mech_sounds
@@ -1038,43 +1137,21 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	if(!message)
-		message = pick("ratvar","shuttle dock","blob alert","malf ai","meteors","supermatter")
+		message = pick("no alert","first","second","third")
 	feedback_details += "Type: [message]"
 	switch(message)
-		if("blob alert")
-			to_chat(target, "<h1 class='alert'>Biohazard Alert</h1>")
-			to_chat(target, "<br><br><span class='alert'>Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.</span><br><br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_OUTBREAK5])
-		if("ratvar")
-			target.playsound_local(target, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
-			target.playsound_local(target, 'sound/effects/clockcult_gateway_disrupted.ogg', 50, FALSE, pressure_affected = FALSE)
-			addtimer(CALLBACK(
-				target,
-				/mob/.proc/playsound_local,
-				target,
-				'sound/effects/explosion_distant.ogg',
-				50,
-				FALSE,
-				/* frequency = */ null,
-				/* falloff_exponential = */ null,
-				/* channel = */ null,
-				/* pressure_affected = */ FALSE
-			), 27)
-		if("shuttle dock")
-			to_chat(target, "<h1 class='alert'>Priority Announcement</h1>")
-			to_chat(target, "<br><br><span class='alert'>The Emergency Shuttle has docked with the station. You have 3 minutes to board the Emergency Shuttle.</span><br><br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_SHUTTLEDOCK])
-		if("malf ai") //AI is doomsdaying!
-			to_chat(target, "<h1 class='alert'>Anomaly Alert</h1>")
-			to_chat(target, "<br><br><span class='alert'>Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.</span><br><br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_AIMALF])
-		if("meteors") //Meteors inbound!
-			to_chat(target, "<h1 class='alert'>Meteor Alert</h1>")
-			to_chat(target, "<br><br><span class='alert'>Meteors have been detected on collision course with the station.</span><br><br>")
-			SEND_SOUND(target, SSstation.announcer.event_sounds[ANNOUNCER_METEORS])
-		if("supermatter")
-			SEND_SOUND(target, 'sound/magic/charge.ogg')
-			to_chat(target, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+		if("no alert")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention!</font color><BR>Warning level has been reset. All dangerous abnormalities have been re-contained and situation is under control.</span><BR>")
+			SEND_SOUND(target, sound('sound/misc/notice2.ogg'))
+		if("first")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! First warning!</font color><BR>First warning level achieved. Few dangerous abnormalities have breached the containment.</span><BR>")
+			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
+		if("second")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Second warning!</font color><BR>Second warning level achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control.</span><BR>")
+			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
+		if("third")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Third warning!</font color><BR>Warning level three achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost.</span><BR>")
+			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
 
 /datum/hallucination/hudscrew
 
@@ -1099,52 +1176,32 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
 	set waitfor = FALSE
 	..()
-	alert_type = pick("not_enough_oxy","not_enough_tox","not_enough_co2","too_much_oxy","too_much_co2","too_much_tox","newlaw","nutrition","charge","gravity","fire","locked","hacked","temphot","tempcold","pressure")
+	alert_type = pick("rose 1", "rose 2", "silent girl 1", "firebird 1", "firebird 2", "porccubus", "galaxy child", "luna", "apple")
 	if(specific)
 		alert_type = specific
 	feedback_details += "Type: [alert_type]"
 	switch(alert_type)
-		if("not_enough_oxy")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_oxy, override = TRUE)
-		if("not_enough_tox")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_tox, override = TRUE)
-		if("not_enough_co2")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/not_enough_co2, override = TRUE)
-		if("too_much_oxy")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_oxy, override = TRUE)
-		if("too_much_co2")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_co2, override = TRUE)
-		if("too_much_tox")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/too_much_tox, override = TRUE)
-		if("nutrition")
-			if(prob(50))
-				target.throw_alert(alert_type, /atom/movable/screen/alert/fat, override = TRUE)
-			else
-				target.throw_alert(alert_type, /atom/movable/screen/alert/starving, override = TRUE)
-		if("gravity")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/weightless, override = TRUE)
-		if("fire")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/fire, override = TRUE)
-		if("temphot")
-			alert_type = "temp"
-			target.throw_alert(alert_type, /atom/movable/screen/alert/hot, 3, override = TRUE)
-		if("tempcold")
-			alert_type = "temp"
-			target.throw_alert(alert_type, /atom/movable/screen/alert/cold, 3, override = TRUE)
-		if("pressure")
-			if(prob(50))
-				target.throw_alert(alert_type, /atom/movable/screen/alert/highpressure, 2, override = TRUE)
-			else
-				target.throw_alert(alert_type, /atom/movable/screen/alert/lowpressure, 2, override = TRUE)
-		//BEEP BOOP I AM A ROBOT
-		if("newlaw")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/newlaw, override = TRUE)
-		if("locked")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/locked, override = TRUE)
-		if("hacked")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/hacked, override = TRUE)
-		if("charge")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/emptycell, override = TRUE)
+		if("rose 1")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/sacrifice, override = TRUE)
+		if("rose 2")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/schismatic, override = TRUE)
+		if("silent girl 1")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/sg_guilty, override = TRUE)
+		if("firebird 1")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/FireRegen, override = TRUE)
+		if("firebird 2")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/OwMyEyes, override = TRUE)
+		if("porccubus")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/porccubus_addiction, override = TRUE)
+		if("galaxy child")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/friendship, override = TRUE)
+		if("luna")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/lunar, override = TRUE)
+		if("apple")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/golden_sheen, override = TRUE)
+		if("crumbling")
+			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/cowardice, override = TRUE)
+
 
 	addtimer(CALLBACK(src, .proc/cleanup), duration)
 
@@ -1228,7 +1285,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(possible_points.len)
 		var/turf/open/floor/danger_point = pick(possible_points)
 		if(!danger_type)
-			danger_type = pick("lava","chasm","anomaly")
+			danger_type = pick("abnormality", "misc")
 		switch(danger_type)
 			if("lava")
 				new /obj/effect/hallucination/danger/lava(danger_point, target)
@@ -1236,6 +1293,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				new /obj/effect/hallucination/danger/chasm(danger_point, target)
 			if("anomaly")
 				new /obj/effect/hallucination/danger/anomaly(danger_point, target)
+			if("abnormality")
+				var/A_path = pick(subtypesof(/mob/living/simple_animal/hostile/abnormality))
+				var/mob/living/simple_animal/hostile/abnormality/A = new A_path(target)
+				new /obj/effect/hallucination/danger/abnormality(danger_point, target, A.icon, (A.icon_living == "" ? A.icon_state : A.icon_living), A.attack_sound, A.attack_verb_continuous, A.name, A.threat_level, A.pixel_x, A.pixel_y)
+				qdel(A)
+			if("misc")
+				new /obj/effect/hallucination/danger/misc(danger_point, target)
 
 	qdel(src)
 
@@ -1316,6 +1380,67 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	if(AM == target)
 		new /datum/hallucination/shock(target)
+
+/obj/effect/hallucination/danger/abnormality
+	var/sound
+	var/damage_text
+	var/state
+	var/file
+	var/pixel = list()
+	var/damage
+
+/obj/effect/hallucination/danger/abnormality/Initialize(mapload, _target, _file, _state, _sound, _damage_text, _name, _damage, pixel_x = 0, pixel_y = 0)
+	file = _file
+	state = _state
+	damage_text = _damage_text
+	sound = _sound
+	name = _name
+	damage = 5*_damage // 5-25 damage, more if WN/CENSORED
+	pixel = list(pixel_x, pixel_y)
+	. = ..()
+
+/obj/effect/hallucination/danger/abnormality/show_icon()
+	image = image(file, src, state, LARGE_MOB_LAYER, pixel[1], pixel[2])
+	if(target.client)
+		target.client.images += image
+
+/obj/effect/hallucination/danger/abnormality/Crossed(atom/movable/AM, oldloc)
+	. = ..()
+	if(AM != target)
+		return
+	if(!isnull(sound))
+		target.playsound_local(get_turf(src), sound, 60, 0, 3)
+	else
+		target.playsound_local(get_turf(src), 'sound/weapons/slash.ogg', 60, 0, 3)
+	to_chat(target, "<span class='warning'>[src] [damage_text] you!</span>")
+	if(damage)
+		target.apply_damage(damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE))
+	new /datum/hallucination/hudscrew(target, TRUE, SCREWYHUD_CRIT)
+	qdel(src)
+
+/obj/effect/hallucination/danger/misc
+	name = "a totally real thing"
+	var/list/objects = list(
+		list("justitia", 'icons/obj/ego_weapons.dmi', "justitia", OBJ_LAYER, 5, 0, 0),
+		list("bee shell", 'icons/effects/effects.dmi', "beetillery", POINT_LAYER, 0, 0, 0),
+		list("blood", 'icons/effects/blood.dmi', "floor1", ABOVE_NORMAL_TURF_LAYER, 0, 0, 0),
+		list("Meat Lantern", 'ModularTegustation/Teguicons/64x32.dmi', "lantern_breach", LARGE_MOB_LAYER, 20, -16, 0)
+		)
+	var/damage = 0
+
+/obj/effect/hallucination/danger/misc/show_icon()
+	var/list/chosen = pick(objects)
+	name = chosen[1]
+	image = image(chosen[2], src, chosen[3], chosen[4], pixel_x = chosen[6], pixel_y = chosen[7])
+	damage = chosen[5]
+	if(target.client)
+		target.client.images += image
+
+/obj/effect/hallucination/danger/misc/Crossed(atom/movable/AM)
+	. = ..()
+	if(AM == target && damage)
+		target.apply_damage(damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE))
+
 
 /datum/hallucination/death
 

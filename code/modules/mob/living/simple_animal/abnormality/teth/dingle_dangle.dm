@@ -32,7 +32,7 @@
 
 		//But here's the twist: You get a better ego.
 		var/location = get_turf(user)
-		new /obj/item/clothing/suit/armor/ego_gear/lutemis(location)
+		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))

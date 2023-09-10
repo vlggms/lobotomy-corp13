@@ -1,3 +1,5 @@
+#define BIGBIRD_HYPNOSIS_COOLDOWN (16 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/big_bird
 	name = "Big Bird"
 	desc = "A large, many-eyed bird that patrols the dark forest with an everlasting lamp. \
@@ -18,7 +20,6 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	speed = 4
 	move_to_delay = 5
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
@@ -42,8 +43,6 @@
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 
-	attack_action_types = list(/datum/action/innate/abnormality_attack/hypnosis)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
 		/datum/ego_datum/armor/lamp
@@ -56,18 +55,32 @@
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
 
-/datum/action/innate/abnormality_attack/hypnosis
-	name = "Hypnosis"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now stun random humans near you.</span>"
-	chosen_attack_num = 1
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
+
+/datum/action/cooldown/big_bird_hypnosis
+	name = "Dazzle"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "big_bird"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = BIGBIRD_HYPNOSIS_COOLDOWN //16 seconds
+
+/datum/action/cooldown/big_bird_hypnosis/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
+	if(big_bird.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	big_bird.hypnotize()
+	return TRUE
+
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()
 	if(client)
-		switch(chosen_attack)
-			if(1)
-				hypnotize()
 		return
 
 	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time)
@@ -124,6 +137,9 @@
 			continue
 		if(!CanAttack(C))
 			continue
+		if(ismoth(C))
+			pick(C.emote("scream"), C.visible_message("<span class='boldwarning'>[C] lunges for the light!</span>"))
+			C.throw_at((src), 10, 2)
 		if(prob(66))
 			to_chat(C, "<span class='warning'>You feel tired...</span>")
 			C.blur_eyes(5)
@@ -153,3 +169,5 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 	return
+
+#undef BIGBIRD_HYPNOSIS_COOLDOWN

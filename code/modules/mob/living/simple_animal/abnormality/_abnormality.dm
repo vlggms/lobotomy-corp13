@@ -39,7 +39,7 @@
 	/// Attack actions, sets chosen_attack to the number in the action
 	var/list/attack_action_types = list()
 	/// If there is a small sprite icon for players controlling the mob to use
-	var/small_sprite_type
+	var/small_sprite_type = /datum/action/small_sprite/abnormality
 	/// Work types and chances
 	var/list/work_chances = list(
 							ABNORMALITY_WORK_INSTINCT = list(50, 55, 60, 65, 70),
@@ -53,6 +53,10 @@
 	var/work_damage_type = RED_DAMAGE
 	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
 	var/max_boxes = null
+	/// How much PE you have to produce for good result, if not null or 0.
+	var/success_boxes = null
+	/// How much PE you have to produce for neutral result, if not null or 0.
+	var/neutral_boxes = null
 	/// List of ego equipment datums
 	var/list/ego_list = list()
 	/// EGO Gifts
@@ -76,6 +80,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
+	UpdateSpeed()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
 	if(!(type in GLOB.cached_abno_resistances))
@@ -264,11 +269,11 @@
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(pe >= datum_reference.success_boxes)
-		SuccessEffect(user, work_type, pe)
+		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
-		NeutralEffect(user, work_type, pe)
+		NeutralEffect(user, work_type, pe, work_time, canceled)
 	else
-		FailureEffect(user, work_type, pe)
+		FailureEffect(user, work_type, pe, work_time, canceled)
 	PostWorkEffect(user, work_type, pe, work_time, canceled)
 	GiftUser(user, pe)
 	return
@@ -278,15 +283,15 @@
 	return
 
 // Additional effects on good work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Additional effects on neutral work result, if any
-/mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Additional effects on work failure
-/mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	return
 
 // Giving an EGO gift to the user after work is complete
@@ -355,7 +360,7 @@
 		datum_reference.overload_chance = 0
 	return
 
-/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0)
+/mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)
 	return
 
 ///implants the abno with a slime radio implant, only really relevant during admeme or sentient abno rounds
@@ -365,16 +370,22 @@
 	datum_reference.abno_radio = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
-//Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR It has qliphoth remaining
-	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter))
+//Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR has qliphoth remaining OR no qliphoth but can't breach
+	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter || (!datum_reference.qliphoth_meter && !can_breach)))
+		return TRUE
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
 
 // Actions
 /datum/action/innate/abnormality_attack
-	name = "Megafauna Attack"
-	icon_icon = 'icons/mob/actions/actions_animal.dmi'
+	name = "Abnormality Attack"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = ""
+	background_icon_state = "bg_abnormality"
 	var/mob/living/simple_animal/hostile/abnormality/A
 	var/chosen_message
 	var/chosen_attack_num = 0
@@ -388,3 +399,24 @@
 /datum/action/innate/abnormality_attack/Activate()
 	A.chosen_attack = chosen_attack_num
 	to_chat(A, chosen_message)
+
+/datum/action/innate/abnormality_attack/toggle
+	name = "Toggle Attack"
+	var/toggle_message
+	var/toggle_attack_num = 1
+	var/button_icon_toggle_activated = ""
+	var/button_icon_toggle_deactivated = ""
+
+/datum/action/innate/abnormality_attack/toggle/Activate()
+	. = ..()
+	button_icon_state = button_icon_toggle_activated
+	UpdateButtonIcon()
+	active = TRUE
+
+
+/datum/action/innate/abnormality_attack/toggle/Deactivate()
+	A.chosen_attack = toggle_attack_num
+	to_chat(A, toggle_message)
+	button_icon_state = button_icon_toggle_deactivated
+	UpdateButtonIcon()
+	active = FALSE

@@ -19,7 +19,6 @@
 		C.visible_message("<span class='danger'><B>[C]'s [name] is violently dismembered!</B></span>")
 	INVOKE_ASYNC(C, /mob.proc/emote, "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	drop_limb()
 
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
@@ -116,7 +115,6 @@
 		I.forceMove(src)
 	if(!phantom_owner.has_embedded_objects())
 		phantom_owner.clear_alert("embeddedobject")
-		SEND_SIGNAL(phantom_owner, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 	if(!special)
 		if(phantom_owner.dna)

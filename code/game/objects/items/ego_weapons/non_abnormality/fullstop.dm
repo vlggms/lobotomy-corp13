@@ -57,6 +57,21 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
+/obj/item/gun/ego_gun/city/fullstop/pistol
+	name = "fullstop pistol"
+	desc = "A fullstop pistol. Looks familiar."
+	icon_state = "fullstoppistol"
+	inhand_icon_state = "fullstopsniper"
+	shotsleft = 17
+	fire_delay = 5
+	reloadtime = 2 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
 /obj/item/gun/ego_gun/city/fullstop/sniper
 	name = "fullstop sniper"
 	desc = "A sniper rifle. Despite the cost and heavy regulations, you could still kill someone stealthily from a good distance with this."
@@ -77,7 +92,7 @@
 							)
 
 /obj/item/gun/ego_gun/city/fullstop/deagle
-	name = "fullstop pistol"
+	name = "fullstop magnum"
 	desc = "An expensive pistol. Keep your hands steady. It's not over yet."
 	icon_state = "fullstopdeagle"
 	inhand_icon_state = "fullstopdeagle"

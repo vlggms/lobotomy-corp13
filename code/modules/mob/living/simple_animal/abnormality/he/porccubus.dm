@@ -18,9 +18,11 @@
 			) //for some reason all its work rates are uniform through attribute levels in LC
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
+	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	rapid_melee = 3 //you can withdraw out of its range very easily so it needs to be a little harder to melee it
+	melee_reach = 2
 	work_damage_amount = 12
 	can_patrol = FALSE //it can't move anyway but why not
 	stat_attack = HARD_CRIT
@@ -44,11 +46,33 @@
 
 	//the agent that started work on porccubus
 	var/agent_ckey
-	var/dash_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
-	var/dash_cooldown
 	var/teleport_cooldown_time = 5 MINUTES
 	var/teleport_cooldown
 	var/damage_taken = FALSE
+
+	//PLAYABLE ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/porccubus_dash_toggle
+	name = "Toggle Dash"
+	button_icon_state = "porccubus_toggle0"
+	chosen_attack_num = 2
+	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	button_icon_toggle_activated = "porccubus_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
+	button_icon_toggle_deactivated = "porccubus_toggle0"
+
+//Work Code
+/mob/living/simple_animal/hostile/abnormality/porccubus/AttemptWork(mob/living/carbon/human/user, work_type)
+	. = ..()
+	if(.)
+		agent_ckey = user //just in case the agent goes insane midwork
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(user.sanity_lost) //if the person is driven insane mid work
+		DrugOverdose(user, agent_ckey)
+	agent_ckey = null
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
@@ -63,19 +87,20 @@
 		user.apply_status_effect(STATUS_EFFECT_ADDICTION) //psst, you want some happiness?
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(user.sanity_lost) //if the person is driven insane mid work
-		DrugOverdose(user, agent_ckey)
-	agent_ckey = null
+/mob/living/simple_animal/hostile/abnormality/porccubus/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
 
-///apply 3 drugs at once and speedruns the withdrawal process, if nirvana is false then they will barely get any buffs. bypass ckey restrictions
-/mob/living/simple_animal/hostile/abnormality/porccubus/proc/DrugOverdose(mob/living/carbon/human/addict, ckey, nirvana = FALSE)
+//Drug-related Code
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/DrugOverdose(mob/living/carbon/human/addict, ckey, nirvana = FALSE)//apply 3 drugs at once and speedruns the withdrawal process,
 	var/previous_addict = FALSE
 	var/datum/status_effect/porccubus_addiction/PA = addict.has_status_effect(STATUS_EFFECT_ADDICTION)
 	if(PA)
-		OverdoseEffect(PA,nirvana)
+		OverdoseEffect(PA,nirvana)//if nirvana is false then they will barely get any buffs. bypass ckey restrictions
 		return
 
+	if(!datum_reference)
+		return
 	if(LAZYFIND(datum_reference.transferable_var, ckey))
 		previous_addict = TRUE
 	LAZYREMOVE(datum_reference.transferable_var, ckey) //otherwise they will just puke it out
@@ -91,15 +116,7 @@
 	if(nirvana)
 		PA.sanity_gain = 60 //this basically instantly snaps them out of insanity and they get to play god for like 2 minute
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/porccubus/AttemptWork(mob/living/carbon/human/user, work_type)
-	. = ..()
-	if(.)
-		agent_ckey = user //just in case the agent goes insane midwork
-
+//Breach Code
 //Porccubus can't actually move so it's more of a "bring your friend to beat it to death it isn't going anywhere" type of thing.
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
 /mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
@@ -109,7 +126,7 @@
 	icon_state = icon_living
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
-	dash_cooldown = world.time + dash_cooldown_time
+	ranged_cooldown = world.time + ranged_cooldown_time
 	teleport_cooldown = world.time + teleport_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Move()
@@ -128,31 +145,34 @@
 		forceMove(T)
 		damage_taken = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/OpenFire()
-	if(!target)
-		return
-	PorcDash(target)
-
-/mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount)
+/mob/living/simple_animal/hostile/abnormality/porccubus/adjustHealth(amount, updating_health, forced)
 	..()
 	if(amount > 0)
 		damage_taken = TRUE
 
-//we give porccubus a 2 tile range because it can't move and doesn't really have any AOE to make up for it other than its ranged immunity
-//additionally, it can dash to its target every 15 seconds if it's out of range, the dash itself doesn't hurt them but it does bring porccubus into melee range
-/mob/living/simple_animal/hostile/abnormality/porccubus/CheckAndAttack()
+/mob/living/simple_animal/hostile/abnormality/porccubus/bullet_act(obj/projectile/P)
+	visible_message("<span class='warning'>Porccubus playfully swat [P] projectile away!</span>")
+	return FALSE //COME CLOSER AND GET DRUGGED COWARD
+
+//Breach Code Attacks
+/mob/living/simple_animal/hostile/abnormality/porccubus/OpenFire(atom/A)
+	if(client)
+		if(ranged_cooldown > world.time || chosen_attack != 1)
+			RangedAttack(A)
+		switch(chosen_attack)
+			if(1)
+				PorcDash(target)
+		return
+
 	if(!target)
 		return
+	PorcDash(target)
 
-	if(targets_from && isturf(targets_from.loc) && get_dist(target, src) <= 2 && !incapacitated()) //a slightly modified check that includes people on a 2 tile radius
-		AttackingTarget()
-		return
-
-/mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(mob/living/target)
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(mob/living/target)//additionally, it can dash to its target every 15 seconds if it's out of range
 	if(!istype(target))
 		return
 	var/dist = get_dist(target, src)
-	if(dist > 2 && dash_cooldown < world.time)
+	if(dist > 2 && ranged_cooldown < world.time)
 		var/list/dash_line = getline(src, target)
 		for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
 			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
@@ -160,7 +180,7 @@
 			forceMove(line_turf)
 			SLEEP_CHECK_DEATH(0.8)
 		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
-		dash_cooldown = world.time + dash_cooldown_time
+		ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H
@@ -179,10 +199,7 @@
 		LoseTarget()
 		H.faction += "porccubus" //that guy's already fucked, even if they can kill porccubus safely now, porccubus has done its job of being a cunt
 
-/mob/living/simple_animal/hostile/abnormality/porccubus/bullet_act(obj/projectile/P)
-	visible_message("<span class='warning'>Porccubus playfully swat [P] projectile away!</span>")
-	return FALSE //COME CLOSER AND GET DRUGGED COWARD
-
+//Drug Item
 //this is only obtainable if someone else dies from the addiction, but it's the only way to get drugged without working on porccubus
 /obj/item/porccubus_drug
 	name = "Porccubus stinger"

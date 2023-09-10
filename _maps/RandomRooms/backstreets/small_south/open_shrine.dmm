@@ -1,0 +1,138 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/city/outskirts)
+"c" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/city/outskirts)
+"e" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/city/outskirts)
+"f" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet/lone,
+/area/city/outskirts)
+"g" = (
+/obj/structure/chair/pew{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/city/outskirts)
+"j" = (
+/obj/structure/chair/pew{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating/rust,
+/area/city/outskirts)
+"n" = (
+/obj/structure/railing,
+/turf/open/floor/plating,
+/area/city/outskirts)
+"p" = (
+/obj/structure/chair/pew{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/city/outskirts)
+"s" = (
+/obj/structure/altar_of_gods,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/book/bible,
+/obj/structure/lootcrate/n_corp,
+/turf/open/floor/carpet/lone,
+/area/city/outskirts)
+"t" = (
+/turf/closed/indestructible/reinforced,
+/area/city/outskirts)
+"w" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/city/outskirts)
+"x" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/lone,
+/area/city/outskirts)
+"B" = (
+/turf/open/floor/carpet/lone,
+/area/city/outskirts)
+"H" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/city/outskirts)
+"T" = (
+/turf/open/floor/plating/rust,
+/area/city/outskirts)
+"W" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/outskirts)
+"Y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bonfire/prelit,
+/obj/structure/kitchenspike,
+/turf/open/floor/plating,
+/area/city/outskirts)
+
+(1,1,1) = {"
+t
+t
+t
+t
+t
+"}
+(2,1,1) = {"
+H
+g
+c
+e
+t
+"}
+(3,1,1) = {"
+T
+a
+f
+B
+t
+"}
+(4,1,1) = {"
+n
+Y
+x
+s
+t
+"}
+(5,1,1) = {"
+W
+w
+B
+f
+t
+"}
+(6,1,1) = {"
+H
+j
+p
+j
+t
+"}
+(7,1,1) = {"
+t
+t
+t
+t
+t
+"}

@@ -45,8 +45,6 @@
 /area/shuttle/sbc/bay
 	name = "Syndicate Battle Cruiser Shuttle Bay"
 	icon_state = "cargo_bay"
-	mood_bonus = 3
-	mood_message = "<span class='nicegreen'>This place feels so spacious!\n</span>"
 
 /area/shuttle/sbc/armory
 	name = "Syndicate Battle Cruiser Armory"
@@ -55,14 +53,10 @@
 /area/shuttle/sbc/crew
 	name = "Syndicate Battle Cruiser Crew Area"
 	icon_state = "bar"
-	mood_bonus = 5
-	mood_message = "<span class='nicegreen'>I love this place!\n</span>"
 
 /area/shuttle/sbc/supermatter
 	name = "Syndicate Battle Cruiser Engine"
 	icon_state = "engine_sm"
-	mood_bonus = -5
-	mood_message = "<span class='warning'>I feel in constant danger, being near the unstable crystal.\n</span>"
 
 /area/shuttle/sbc/fighter1
 	name = "SBC Fighter 1"

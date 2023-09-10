@@ -37,6 +37,12 @@
 	desc = "A red tracksuit with athletic white lines worn by clerks from the discipline department."
 	icon_state = "disciplinary"
 
+/obj/item/clothing/under/suit/lobotomy/discipline/alternative
+	name = "discipline department uniform"
+	desc = "A black tracksuit with athletic white lines worn by clerks from the old discipline department."
+	icon_state = "disciplinary_alt"
+
+
 /obj/item/clothing/under/suit/lobotomy/welfare
 	name = "welfare department uniform"
 	desc = "An old fashioned gray sailor outfit with a blue necktie, worn by clerks from the welfare department."
@@ -61,24 +67,51 @@
 	desc = "A black-and-white suit. Worn by clerks from the architecture department."
 	icon_state = "architecture"
 
+//Fixersuit
+/obj/item/clothing/under/suit/lobotomy/plain
+	name = "plain suit"
+	desc = "A plain white button down with black pants."
+	icon_state = "shirt"
+
+/obj/item/clothing/under/suit/lobotomy/fishhook
+	name = "fishhook office uniform"
+	desc = "A uniform worn by the fishhook office."
+	icon_state = "fishing"
+
 /obj/item/clothing/under/suit/lobotomy/rabbit
 	name = "\improper r-corp uniform"
 	desc = "A black uniform with a orange line worn by R-corps mercenaries."
 	icon_state = "rabbit"
+
+/obj/item/clothing/under/suit/lobotomy/rabbit/officer
+	name = "\improper officer's uniform"
+	desc = "A black uniform with a orange line worn by R-corps lieutenants. The rank boards on this are bronze."
+	icon_state = "rabbitofficer"
+
+/obj/item/clothing/under/suit/lobotomy/rabbit/lcdr
+	name = "\improper lieutenant commander's uniform"
+	desc = "A black uniform with a orange line worn by R-corps lieutenant commanders. The rank boards on this are silver."
+	icon_state = "rabbitlcdr"
 
 /obj/item/clothing/under/suit/lobotomy/wcorp
 	name = "\improper w-corp uniform"
 	desc = "A blue and black uniform worn by w-corp employees."
 	icon_state = "wuniform"
 
+//Rep Suits
+/obj/item/clothing/under/suit/lobotomy/wcorp_command
+	name = "\improper w-corp office uniform"
+	desc = "A blue and black uniform worn by w-corp employees."
+	icon_state = "wcorp"
+
+/obj/item/clothing/under/suit/lobotomy/rcorp
+	name = "r-corp uniform"
+	desc = "A black suit and orange tie worn by rcorp."
+	icon_state = "rcorp"
+
 /obj/item/clothing/under/suit/lobotomy/kcorp
 	name = "k-corp officer uniform"
 	desc = "A plain black suit with green tie. Used by K-corp non-combat staff."
 	icon_state = "kcorp"
-
-/obj/item/clothing/under/suit/lobotomy/plain
-	name = "plain suit"
-	desc = "A plain white button down with black pants."
-	icon_state = "shirt"
 
 

@@ -173,7 +173,6 @@
 	if(!possible_takers) // in case we tried high-fiving with only a dead body around or something
 		owner.visible_message("<span class='danger'>[owner] realizes no one within range is actually capable of high-fiving, lowering [owner.p_their()] arm in shame...</span>", \
 			"<span class='warning'>You realize a moment too late that no one within range is actually capable of high-fiving you, oof...</span>", null, 2)
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_five_alone)
 		qdel(src)
 		return
 
@@ -208,7 +207,6 @@
 /datum/status_effect/high_fiving/proc/fail()
 	owner.visible_message("<span class='danger'>[owner] slowly lowers [owner.p_their()] arm, realizing no one will high-five [owner.p_them()]! How embarassing...</span>", \
 		"<span class='warning'>You realize the futility of continuing to wait for a high-five, and lower your arm...</span>", null, 2)
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/left_hanging)
 	qdel(src)
 
 /// Yeah broh! This is where we do the high-fiving (or high-tenning :o)
@@ -221,7 +219,6 @@
 
 	if(!open_hands_taker)
 		to_chat(successful_taker, "<span class='warning'>You can't high-five [owner] with no open hands!</span>")
-		SEND_SIGNAL(successful_taker, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_five_full_hand) // not so successful now!
 		return
 
 	for(var/i in owner.held_items)
@@ -237,14 +234,10 @@
 		owner.visible_message("<span class='notice'>[successful_taker] enthusiastically high-tens [owner]!</span>", "<span class='nicegreen'>Wow! You're high-tenned [successful_taker]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", ignored_mobs=successful_taker)
 		to_chat(successful_taker, "<span class='nicegreen'>You give high-tenning [owner] your all!</span>")
 		playsound(owner, 'sound/weapons/slap.ogg', 100, TRUE, 1)
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_ten)
-		SEND_SIGNAL(successful_taker, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_ten)
 	else
 		owner.visible_message("<span class='notice'>[successful_taker] high-fives [owner]!</span>", "<span class='nicegreen'>All right! You're high-fived by [successful_taker]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", ignored_mobs=successful_taker)
 		to_chat(successful_taker, "<span class='nicegreen'>You high-five [owner]!</span>")
 		playsound(owner, 'sound/weapons/slap.ogg', 50, TRUE, -1)
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_five)
-		SEND_SIGNAL(successful_taker, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/high_five)
 	qdel(src)
 
 /// If we don't have any slappers in hand when someone goes to high-five us, we prank the hell out of them
@@ -263,8 +256,6 @@
 	to_chat(rube, "<span class='userdanger'>[all_caps_for_emphasis]</span>")
 	playsound(owner, 'sound/weapons/thudswoosh.ogg', 100, TRUE, 1)
 	rube.Knockdown(1 SECONDS)
-	SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/down_low)
-	SEND_SIGNAL(rube, COMSIG_ADD_MOOD_EVENT, "high_five", /datum/mood_event/too_slow)
 	qdel(src)
 
 /// If someone examine_more's us while we don't have a slapper in hand, it'll tip them off to our trickster ways

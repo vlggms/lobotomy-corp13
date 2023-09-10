@@ -2,7 +2,8 @@
 	name = "Fixers"
 	annonce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
 	can_run = FALSE
-	delay = 1
+	delay = 1 // Goes back-to-back
+	random_delay = FALSE
 	reward_percent = 0.1
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
@@ -78,6 +79,7 @@
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
 	level = 9
 	delay = 1
+	random_delay = FALSE
 	reward_percent = 0.25
 	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
@@ -93,5 +95,6 @@
 /datum/ordeal/white_midnight/End()
 	if(istype(SSlobotomy_corp.core_suppression)) // If it all was a part of core suppression
 		SSlobotomy_corp.core_suppression_state = 3
-		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
+		SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_CLAW_DEAD)
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 10 SECONDS)
 	return ..()

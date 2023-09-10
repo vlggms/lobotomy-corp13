@@ -202,16 +202,12 @@
 	STR.max_items = 10
 
 /obj/item/storage/toolbox/artistic/PopulateContents()
-	new /obj/item/storage/crayons(src)
 	new /obj/item/crowbar(src)
-	new /obj/item/stack/pipe_cleaner_coil/red(src)
-	new /obj/item/stack/pipe_cleaner_coil/yellow(src)
-	new /obj/item/stack/pipe_cleaner_coil/blue(src)
-	new /obj/item/stack/pipe_cleaner_coil/green(src)
-	new /obj/item/stack/pipe_cleaner_coil/pink(src)
-	new /obj/item/stack/pipe_cleaner_coil/orange(src)
-	new /obj/item/stack/pipe_cleaner_coil/cyan(src)
-	new /obj/item/stack/pipe_cleaner_coil/white(src)
+	new /obj/item/wirecutters(src)
+	new /obj/item/soap(src)
+	new /obj/item/toy/crayon/spraycan/infinite(src)
+	new /obj/item/stack/pipe_cleaner_coil/random(src)
+	new /obj/item/rcl/pre_loaded(src)
 
 /obj/item/storage/toolbox/ammo
 	name = "ammo box"

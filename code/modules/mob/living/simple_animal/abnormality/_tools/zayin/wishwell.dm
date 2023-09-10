@@ -6,14 +6,19 @@
 	max_buckled_mobs = 1
 	var/list/bastards = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/bucket,
+		/datum/ego_datum/armor/bucket
+		)
+
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
-		/obj/item/clothing/suit/armor/ego_gear/twilight,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight,
 		/obj/item/ego_weapon/twilight
 		)
 	var/list/alephitem = list(//less junk items at higher risk levels
-		/obj/item/clothing/suit/armor/ego_gear/praetorian,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian,
 		/obj/item/toy/plush/mosb,
 		/obj/item/toy/plush/melt
 		)
@@ -34,7 +39,7 @@
 		/obj/item/gun/ego_gun/sodashotty,
 		/obj/item/gun/ego_gun/sodarifle,
 		/obj/item/gun/ego_gun/sodasmg,
-		/obj/item/clothing/suit/armor/ego_gear/lutemis,
+		/obj/item/clothing/suit/armor/ego_gear/he/lutemis,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,
 		/obj/item/clothing/glasses/sunglasses/reagent,
@@ -42,7 +47,7 @@
 		/obj/item/clothing/neck/necklace/dope,
 		)
 	var/list/tethitem = list(
-		/obj/item/clothing/suit/armor/ego_gear/training,
+		/obj/item/clothing/suit/armor/ego_gear/teth/training,
 		/obj/item/ego_weapon/training,
 		/obj/item/clothing/suit/armor/ego_gear/rookie,
 		/obj/item/clothing/suit/armor/ego_gear/fledgling,
@@ -59,7 +64,8 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
 		/obj/item/clothing/neck/tie/horrible,
-		/obj/item/clothing/mask/cigarette/cigar/havana
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/mob/living/carbon/human/species/shrimp
 		)
 	var/list/normalitem = list(
 		/obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -77,6 +83,7 @@
 		/obj/item/clothing/under/suit/lobotomy/training,
 		/obj/item/clothing/under/suit/lobotomy/command,
 		/obj/item/clothing/under/suit/lobotomy/discipline,
+		/obj/item/clothing/under/suit/lobotomy/discipline/alternative,
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
 		/obj/item/clothing/under/suit/lobotomy/records,
@@ -275,12 +282,19 @@
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(M != user)
-		return FALSE
-
 	if (!istype(M, /mob/living/carbon/human))
 		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
 		return FALSE // Can only extract from humans.
+
+	if(M != user)
+		to_chat(user, "<span class='warning'>You start pulling [M] into the well.</span>")
+		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
+			if(M.stat == DEAD)
+				to_chat(user, "<span class='notice'>You throw [M] in the well!</span>")
+				buckle_mob(M, check_loc = check_loc)
+			else
+				to_chat(user, "<span class='warning'>How could you be so cruel? [M] is still alive!</span>")
+		return
 
 	to_chat(user, "<span class='warning'>You start climbing into the well.</span>")
 	if(!do_after(user, 7 SECONDS))
@@ -289,6 +303,7 @@
 
 	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
 	return ..(M, user, check_loc = FALSE) //it just works
+
 
 /obj/structure/toolabnormality/wishwell/post_buckle_mob(mob/living/carbon/human/M)
 	if(!ishuman(M))

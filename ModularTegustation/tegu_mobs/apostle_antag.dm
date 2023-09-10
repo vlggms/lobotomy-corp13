@@ -8,7 +8,6 @@
 	job_rank = "Apostle Heretic"
 	antag_hud_type = ANTAG_HUD_SHADOW
 	antag_hud_name = "shadowling"
-	antag_moodlet = /datum/mood_event/focused
 	var/betrayed = FALSE // For one-sin interaction
 	show_to_ghosts = TRUE
 

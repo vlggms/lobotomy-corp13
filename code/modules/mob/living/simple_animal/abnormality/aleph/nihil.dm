@@ -10,7 +10,6 @@
 	base_pixel_x = -16
 	maxHealth = 15000
 	health = 15000
-	speed = 3
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = ALEPH_LEVEL
@@ -135,19 +134,19 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
 
 /datum/status_effect/stacking/void/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
 		to_chat(owner, "<span class='nicegreen'>You feel normal again.</span>")
 		if(owner.client)
 			owner.remove_client_colour(/datum/client_colour/monochrome)
@@ -155,25 +154,32 @@
 //items
 /obj/item/nihil
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	desc = "A playing card that seems to resonate with certain E.G.O."
+	var/special
+
+/obj/item/nihil/examine(mob/user)
+	. = ..()
+	if(special)
+		. += "<span class='notice'>[special]</span>"
 
 /obj/item/nihil/heart
 	name = "ace of hearts"
-	desc = "She vowed to love everything in the world, but all that was left was a collapsing heart."
 	icon_state = "nihil_heart"
+	special = "Someone has to be the villain..."
 
 /obj/item/nihil/spade
 	name = "ace of spades"
-	desc = "As with sorrow, perhaps sharing the burden will blunt the edge."
 	icon_state = "nihil_spade"
+	special = "If I can't protect others, I may as well disappear..."
 
 /obj/item/nihil/diamond
 	name = "ace of diamonds"
-	desc = "Now, only visceral greed remains."
 	icon_state = "nihil_diamond"
+	special = "I feel empty inside... Hungry. I want more things!"
 
 /obj/item/nihil/club
 	name = "ace of clubs"
-	desc = "Now, she is dominated by the anger towards herself for what she had done."
 	icon_state = "nihil_club"
+	special = "Sinners of the otherworlds! Embodiments of evil!!!"
 
 #undef STATUS_EFFECT_VOID

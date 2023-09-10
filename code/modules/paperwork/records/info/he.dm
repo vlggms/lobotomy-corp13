@@ -177,10 +177,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	abno_code = "O-01-55"
 	abno_info = list(
-		"Successful work completion will cause a healing Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of people holding a token.",
-		"The Qliphoth Counter increased when an employee completed their work with the Token.",
+		"Successful work completion will cause a healing (HP/SP) Token of Friendship to be bestowed upon the employee. The amount of healing will vary in relation to the number of employees with the Token.",
+		"The Qliphoth Counter increased by 2 when an employee completed their work with the Token.",
 		"When an employee with Child of the Galaxy’s Token of Friendship died, the Qliphoth Counter lowered by 4.",
-		"When the Qliphoth Counter reached 0, all employees with the Token took massive BLACK damage.")
+		"When the Qliphoth Counter reached 0, all employees with the Token took BLACK damage proportional to the number of employees with the Token. If at least 2 employees had the Token, Child of the Galaxy will enter a state designated as \"Depressed\".",
+		"When he was Depressed, the work success rate was high, and the first employee who completed work with Child of the Galaxy received his E.G.O. Gift.")
 
 //Piscine Mermaid
 /obj/item/paper/fluff/info/he/pisc_mermaid
@@ -277,9 +278,9 @@
 		"When the Qliphoth Counter reached 0, a strange sound came from the abnormality.",
 		"Other abnormalities became agitated if the sound did not cease.",
 		"When the abnormality was turned off manually, the Qliphoth counter raised.",
-		"When work was performed on the abnormality, the Qliphoth counter raised higher.",
-		"When insight work was performed on the abnormality, time seemed to distort.",
-		"Performing insight work multiple times, the employee occasionally perished inexplicably.",
+		"When work was performed on the abnormality, the Qliphoth counter was raised to its maximum.",
+		"When insight work was performed on the abnormality while the Qliphoth counter was below 2, a mentally soothing song was played.",
+		"Insight work was ineffective when the Qliphoth counter was high. If the Qliphoth counter was at 5, the employee performing work was turned into dust.",
 		"Some agents have reported relief from certain symptoms after performing insight work.")
 
 //Jangsan Tiger
@@ -291,6 +292,7 @@
 		"When powerful employees performed work, the Qliphoth Counter increased.",
 		"For every stat at or above level 3, the work chance was reduced.",
 		"When all stats were at level 1, the Qliphoth counter decreased upon completion of work.",
+		"This abnormality has a thick hide that only high-impact projectiles or melee attacks can penetrate.",
 		"Agents with all stats below level 2 perish with alarming frequency near this abnormality.")
 
 //Golden False Apple
@@ -340,7 +342,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
 	abno_info = list(
-		"Performing any work on three other abnormalities reduced the Qliphoth Counter.",
+		"Performing any work on other abnormalities slowly reduced the Qliphoth Counter.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"This abnormality generates additional PE-boxes when the Qliphoth Counter is lower.",
 		"When an employee performed Instinct work, the Qliphoth Counter rose to the maximum.",
@@ -348,7 +350,8 @@
 		"Instinct work was more successful at lower Qliphoth counters.",
 		"When the Qliphoth Counter reached 0, Doomsday Calendar appeared at a department center with an entourage of clay dolls, dubbed M-04-145-A.",
 		"Offering human remains or the remains of M-04-145-A to Doomsday Calendar during suppression work aided in suppression.",
-		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.")
+		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.",
+		"Failure to complete suppression work led to the reduction of Qliphoth Counters near the location of Doomsday Calendar.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
@@ -367,3 +370,55 @@
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
 		"Suppression of O-06-154-1 will immediately suppress KQE-1J-23.")
 	abno_breach_damage_count = "High"
+
+//Puss in Boots
+/obj/item/paper/fluff/info/he/puss_in_boots
+	abno_type = /mob/living/simple_animal/hostile/abnormality/puss_in_boots
+	abno_code = "F-02-24"
+	abno_info = list(
+		"When a level one employee comes in close contact with this abnormality, they may recieve a blessing. (From then on, the employee will be referred to as F-02-24-1).",
+		"Thanks to the blessing, F-02-24-1 experienced an increase in attributes as well as a small increase in resistance to all damage types.",
+		"F-02-24-1 found themselves incapable of using certain items that provide an unfair advantage in battle.",
+		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
+		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
+		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
+
+//Pinocchio
+/obj/item/paper/fluff/info/he/pinocchio
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pinocchio
+	abno_code = "F-04-160"
+	abno_info = list(
+		"When work was completed, the abnormality would attempt to decieve the next employee at a small chance.",
+		"The abnormality's trick involved changing the abnormality console to display invalid types of work.",
+		"When the employee was successfully decieved, the Qliphoth counter was reduced by 1.",
+		"When the abnormality was caught telling lies successfully, the abnormality console returned to normal.",
+		"A baseless accusation will reduce the Qliphoth counter by 1.",
+		"During a breach, the abnormality was capable of stealing and arming itself with E.G.O., potentially becoming incredibly dangerous.")
+
+//Missed Reaper
+/obj/item/paper/fluff/info/he/missed_reaper
+	abno_type = /mob/living/simple_animal/hostile/abnormality/missed_reaper
+	abno_code = "O-01-13"
+	abno_info = list(
+		"When an employee panicked during work or had a Temperance level lower than 3, they were hypnotized and killed by the abnormality.",
+		"When an employee with Justice Level of 4 or higher completed the work, Missed Reaper's Qliphoth Counter lowered by 1.",
+		"When the Qliphoth counter reached 0, shadows covered an area near certain employees, dealing pale damage to those in contact with it.")
+
+//Headless Ichthys
+/obj/item/paper/fluff/info/he/headless_ichthys
+	abno_type = /mob/living/simple_animal/hostile/abnormality/headless_ichthys
+	abno_code = "O-02-159"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
+
+//Wayward Passenger
+/obj/item/paper/fluff/info/he/wayward
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
+	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
+		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
+		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
+		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")

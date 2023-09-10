@@ -215,15 +215,6 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
-	//These maps need all abnos breached.
-	//Fucking Maptype initializes before Ticker so I need to do this here
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		if(!(istype(mode, /datum/game_mode/combat)))
-			mode = new /datum/game_mode/combat
-	else
-		if(istype(mode, /datum/game_mode/combat))
-			mode = new /datum/game_mode/management/classic
-
 	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
 
@@ -253,7 +244,17 @@ SUBSYSTEM_DEF(ticker)
 			SSjob.ResetOccupations()
 			return FALSE
 
+	//These maps need all abnos breached.
+	//Fucking Maptype initializes before Ticker so I need to do this here
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		if(!(istype(mode, /datum/game_mode/combat)))
+			mode = new /datum/game_mode/combat
+	else
+		if(istype(mode, /datum/game_mode/combat))
+			mode = new /datum/game_mode/management/classic
+
 	CHECK_TICK
+
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = 0
 	can_continue = src.mode.pre_setup()		//Choose antagonists
@@ -537,58 +538,53 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
-	var/news_source = "Nanotrasen News Network"
+	var/news_source = "Lobotomy Corporation News"
 	switch(news_report)
-		if(NUKE_SYNDICATE_BASE)
-			news_message = "In a daring raid, the heroic crew of [station_name()] detonated a nuclear device in the heart of a terrorist base."
-		if(STATION_DESTROYED_NUKE)
-			news_message = "We would like to reassure all employees that the reports of a Syndicate backed nuclear attack on [station_name()] are, in fact, a hoax. Have a secure day!"
 		if(STATION_EVACUATED)
+			var/round_state = "has been successfuly finished"
+			if(SSlobotomy_corp.next_ordeal_level < 3)
+				round_state = "abruptly ended"
+			else if(SSlobotomy_corp.next_ordeal_level < 5 || (istype(SSlobotomy_corp.next_ordeal) && SSlobotomy_corp.next_ordeal.level < 5) || LAZYLEN(SSlobotomy_corp.current_ordeals))
+				round_state = "has finished early"
+
 			if(emergency_reason)
-				news_message = "[station_name()] has been evacuated after transmitting the following distress beacon:\n\n[emergency_reason]"
+				news_message = "A work shift on [station_name()] [round_state] after transmitting the following signal:\n\n[emergency_reason]"
 			else
-				news_message = "The crew of [station_name()] has been evacuated amid unconfirmed reports of enemy activity."
-		if(BLOB_WIN)
-			news_message = "[station_name()] was overcome by an unknown biological outbreak, killing all crew on board. Don't let it happen to you! Remember, a clean work station is a safe work station."
-		if(BLOB_NUKE)
-			news_message = "[station_name()] is currently undergoing decontanimation after a controlled burst of radiation was used to remove a biological ooze. All employees were safely evacuated prior, and are enjoying a relaxing vacation."
-		if(BLOB_DESTROYED)
-			news_message = "[station_name()] is currently undergoing decontamination procedures after the destruction of a biological hazard. As a reminder, any crew members experiencing cramps or bloating should report immediately to security for incineration."
-		if(CULT_ESCAPE)
-			news_message = "Security Alert: A group of religious fanatics have escaped from [station_name()]."
-		if(CULT_FAILURE)
-			news_message = "Following the dismantling of a restricted cult aboard [station_name()], we would like to remind all employees that worship outside of the Chapel is strictly prohibited, and cause for termination."
-		if(CULT_SUMMON)
-			news_message = "Company officials would like to clarify that [station_name()] was scheduled to be decommissioned following meteor damage earlier this year. Earlier reports of an unknowable eldritch horror were made in error."
-		if(NUKE_MISS)
-			news_message = "The Syndicate have bungled a terrorist attack [station_name()], detonating a nuclear weapon in empty space nearby."
-		if(OPERATIVES_KILLED)
-			news_message = "Repairs to [station_name()] are underway after an elite Syndicate death squad was wiped out by the crew."
-		if(OPERATIVE_SKIRMISH)
-			news_message = "A skirmish between security forces and Syndicate agents aboard [station_name()] ended with both sides bloodied but intact."
-		if(REVS_WIN)
-			news_message = "Company officials have reassured investors that despite a union led revolt aboard [station_name()] there will be no wage increases for workers."
-		if(REVS_LOSE)
-			news_message = "[station_name()] quickly put down a misguided attempt at mutiny. Remember, unionizing is illegal!"
-		if(WIZARD_KILLED)
-			news_message = "Tensions have flared with the Space Wizard Federation following the death of one of their members aboard [station_name()]."
-		if(STATION_NUKED)
-			news_message = "[station_name()] activated its self-destruct device for unknown reasons. Attempts to clone the Captain so he can be arrested and executed are underway."
-		if(CLOCK_SUMMON)
-			news_message = "The garbled messages about hailing a mouse and strange energy readings from [station_name()] have been discovered to be an ill-advised, if thorough, prank by a clown."
-		if(CLOCK_SILICONS)
-			news_message = "The project started by [station_name()] to upgrade their silicon units with advanced equipment have been largely successful, though they have thus far refused to release schematics in a violation of company policy."
-		if(CLOCK_PROSELYTIZATION)
-			news_message = "The burst of energy released near [station_name()] has been confirmed as merely a test of a new weapon. However, due to an unexpected mechanical error, their communications system has been knocked offline."
+				news_message = "A work shift on [station_name()] [round_state]. No additional data was transmitted."
+
+		if(STATION_DESTROYED_NUKE)
+			news_message = "We would like to reassure all personnel that the reports of a nuclear explosion on [station_name()] are, in fact, a hoax. Have a secure day!"
+
 		if(SHUTTLE_HIJACK)
-			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after."
-		if(GANG_OPERATING)
-			news_message = "The company would like to state that any rumors of criminal organizing on board stations such as [station_name()] are falsehoods, and not to be emulated."
-		if(GANG_DESTROYED)
-			news_message = "The crew of [station_name()] would like to thank the Spinward Stellar Coalition Police Department for quickly resolving a minor terror threat to the station."
+			news_message = "During routine evacuation procedures, the emergency shuttle of [station_name()] had its navigation protocols corrupted and went off course, but was recovered shortly after.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_STARTED)
+			news_message = "The employees of [station_name()] attempted a remote core suppression of one of the corporation's sephirots, but did not finish it. Disciplinary actions were taken for wasting company resources.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_SUPPRESSED)
+			news_message = "During its daily routine [station_name()] managed to remotely suppress the core of one of the sephirots of the corporation. The employees were rewarded with paid vacation.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_SUPPRESSED_CLAW_DEAD)
+			news_message = "The employees of [station_name()] have defeated the manifestation of a Claw, a formidable opponent, during a remote core suppression. We would like to congratulate them for their job\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_SUPPRESSED_ARBITER_DEAD)
+			news_message = "A reminder that an 'Arbiter' found dead on [station_name()] during remote core suppression was not the real deal and that families of the employees responsible are not in any sort of danger. Have a nice day!\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
+
+		if(CORE_SUPPRESSED_REDMIST_DEAD)
+			news_message = "An entity known as 'Red Mist' that was defeated on [station_name()] is speculated to be a simulation, but nonetheless a very powerful one. All employees were rewarded handsomely for their job.\
+				[emergency_reason ? "\n\nThe following signal was transmitted upon shift's end: [emergency_reason]" : ""]"
 
 	if(news_message)
-		send2otherserver(news_source, news_message,"News_Report")
+		var/list/payload = list()
+		var/network_name = CONFIG_GET(string/cross_comms_network)
+		if(network_name)
+			payload["network"] = network_name
+		send2otherserver(news_source, news_message, "News_Report", additional_data = payload)
 
 /datum/controller/subsystem/ticker/proc/GetTimeLeft()
 	if(isnull(SSticker.timeLeft))

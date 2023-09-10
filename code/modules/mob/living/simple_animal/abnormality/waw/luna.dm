@@ -151,12 +151,7 @@
 /mob/living/simple_animal/hostile/luna/proc/AOE()
 	for(var/turf/T in view(aoerange, src))
 		new /obj/effect/temp_visual/revenant(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.apply_damage(aoedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	aoeactive = FALSE
 
 /mob/living/simple_animal/hostile/luna/proc/Reset()

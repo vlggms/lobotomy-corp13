@@ -1,0 +1,1735 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ba" = (
+/obj/structure/closet/crate/wooden,
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"bC" = (
+/obj/structure/closet/crate/large,
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"co" = (
+/obj/structure/closet/crate/large,
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"cL" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/fullstop/assault,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"dN" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"eR" = (
+/obj/structure/table/reinforced,
+/obj/structure/showcase/machinery/tv{
+	desc = "Guess robots can't fix their lesser machinery.";
+	name = "\improper Broken TV"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"fx" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 5
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"fy" = (
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"gq" = (
+/obj/structure/chair/office{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	desc = "Looks like it went haywire along with the other robots.";
+	health = 750;
+	name = "Stoff"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"hi" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"hp" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/fancytech,
+/obj/effect/spawner/lootdrop/space/fancytech,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"iv" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/obj/item/chair/plastic,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"iB" = (
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"jh" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/item/modular_computer/laptop/preset/civilian{
+	desc = "A laptop belonging to a robotic director. It's contents appear to be insubstantial to you.";
+	name = "Stoff's Laptop"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"ji" = (
+/obj/machinery/door/airlock/survival_pod,
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"jR" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/mug{
+	desc = "You would think that robots can't drink anything."
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"kc" = (
+/obj/structure/fence/corner{
+	dir = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"kG" = (
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"kW" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/fullstop/deagle,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"lB" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"mn" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/item/clipboard,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"mA" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"mP" = (
+/obj/structure/table/reinforced,
+/obj/item/binoculars,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"np" = (
+/obj/effect/turf_decal{
+	dir = 9
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"nU" = (
+/obj/structure/lootcrate/r_corp,
+/obj/structure/lootcrate/r_corp{
+	pixel_y = 15
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"oG" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/e_gun/rabbitdash,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"oY" = (
+/obj/structure/lootcrate/k_corp,
+/obj/structure/lootcrate/k_corp{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/structure/lootcrate/k_corp{
+	pixel_x = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"po" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ps" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"pC" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/fullstop/sniper,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"pP" = (
+/obj/item/target/clown,
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"qn" = (
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"rg" = (
+/obj/structure/plaque/static_plaque/golden{
+	desc = "A certificate indicating the legal standing of the establishment.";
+	name = "Corporation Certificate of Approval";
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"sP" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"tl" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"tF" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"uh" = (
+/obj/structure/lootcrate/r_corp,
+/obj/structure/lootcrate/r_corp{
+	pixel_x = -5;
+	pixel_y = 15
+	},
+/obj/structure/lootcrate/r_corp{
+	pixel_x = 13;
+	pixel_y = 30
+	},
+/obj/structure/lootcrate/r_corp{
+	pixel_x = 10;
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"uk" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/machinery/computer/libraryconsole{
+	desc = "For a store in the backstreets, quite progressive.";
+	name = "ecash register";
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"us" = (
+/obj/structure/table/wood/fancy/green,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 9
+	},
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"vo" = (
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"vH" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"vQ" = (
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"wa" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"we" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	desc = "A big robot tasked to oversee the range.";
+	name = "Robotic Range Master"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"wu" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wF" = (
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"wG" = (
+/obj/structure/fence/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"xb" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"xt" = (
+/obj/structure/tutorialbox,
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"xw" = (
+/obj/item/folder/syndicate/mining,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"yB" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"yU" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"zZ" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Av" = (
+/obj/effect/turf_decal/siding/wideplating/light{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"AX" = (
+/obj/machinery/door/airlock/grunge,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Be" = (
+/obj/machinery/porta_turret/syndicate/energy,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"BJ" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Dd" = (
+/obj/structure/fence/corner,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Ej" = (
+/obj/structure/lootcrate/k_corp,
+/obj/structure/lootcrate/k_corp{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"EK" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Fj" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/computer/libraryconsole{
+	desc = "For a store in the backstreets, quite progressive.";
+	name = "ecash register";
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"FH" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"FQ" = (
+/obj/machinery/door/poddoor{
+	id = "armoryouterinterest";
+	name = "Outer Armory Door"
+	},
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Gd" = (
+/obj/item/chair,
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"GH" = (
+/obj/structure/closet/crate/large,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"GO" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"GS" = (
+/obj/item/target/clown,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"GV" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Hb" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Hf" = (
+/obj/structure/fence/cut,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Hm" = (
+/obj/structure/barricade/sandbags,
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Hw" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"HA" = (
+/obj/effect/turf_decal/siding{
+	dir = 4
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"Ih" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Ii" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/door/indestructible{
+	id = "armoryouterinterest";
+	name = "Outer Armory Lockdown Button"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Jp" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"KF" = (
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"KZ" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Lx" = (
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"LT" = (
+/obj/effect/turf_decal/siding/wideplating/light{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Mm" = (
+/obj/item/chair/plastic,
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ME" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"NP" = (
+/obj/structure/table/wood,
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"NX" = (
+/obj/structure/tutorialbox,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Or" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gunbot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"OW" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Pf" = (
+/obj/structure/table/reinforced,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Pm" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"Po" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"PC" = (
+/obj/machinery/porta_turret/syndicate/energy,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Qg" = (
+/obj/structure/table/reinforced,
+/obj/item/screwdriver/nuke{
+	pixel_y = 10
+	},
+/obj/item/firing_pin,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Qq" = (
+/obj/structure/table/reinforced,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/armory_contraband/cybersun,
+/obj/effect/spawner/lootdrop/armory_contraband/cybersun,
+/obj/effect/spawner/lootdrop/armory_contraband/cybersun,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Qy" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"QC" = (
+/obj/structure/table/greyscale,
+/obj/structure/showcase/machinery/microwave{
+	desc = "These robots really gotta be careful.";
+	name = "\improper Broken Microwave";
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"RF" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"SJ" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"SS" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/thumb/weak,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"TM" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/machinery/modular_computer/console{
+	desc = "A corporate computer for private communications between persons of interest. This one appears to have its memory reset, however.";
+	dir = 8;
+	name = "communications console"
+	},
+/obj/machinery/button/door/indestructible{
+	id = "armoryinnerinterest";
+	name = "Inner Armory Lockdown Button";
+	pixel_x = 28
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"TN" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 6
+	},
+/obj/structure/table/wood/fancy/green,
+/obj/item/folder/syndicate/mining,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"TX" = (
+/obj/structure/table/greyscale,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/plasteel/checker,
+/area/city/backstreets_room)
+"Uk" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"UG" = (
+/obj/structure/closet/ammunitionlocker,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"VO" = (
+/obj/structure/sign/warning/firingrange{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"WP" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"WU" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Xo" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Xq" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"XH" = (
+/obj/machinery/door/poddoor{
+	id = "armoryinnerinterest";
+	name = "Inner Armory Door"
+	},
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Ya" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/fullstop/pistol,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"YL" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Zn" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Zt" = (
+/obj/item/chair/plastic,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Zv" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"Zw" = (
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ZS" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/showcase/machinery/tv{
+	desc = "Guess robots can't fix their lesser machinery.";
+	name = "\improper Broken TV"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ZW" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Hb
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+sP
+"}
+(2,1,1) = {"
+wu
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+yB
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+yB
+hi
+wu
+"}
+(3,1,1) = {"
+wu
+yB
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+Ih
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+wu
+"}
+(4,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+hi
+hi
+wu
+"}
+(5,1,1) = {"
+wu
+hi
+hi
+zZ
+YL
+Pf
+YL
+zZ
+QC
+wF
+SJ
+Pm
+zZ
+Zw
+GV
+lB
+VO
+mP
+Hm
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+GS
+zZ
+Ih
+hi
+wu
+"}
+(6,1,1) = {"
+wu
+hi
+hi
+zZ
+Zw
+Or
+Zw
+zZ
+TX
+wF
+NP
+NP
+zZ
+Zw
+wa
+lB
+lB
+vH
+Hm
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+GS
+zZ
+hi
+hi
+wu
+"}
+(7,1,1) = {"
+wu
+hi
+Ih
+zZ
+Zw
+Zw
+Zw
+zZ
+HA
+HA
+iB
+vQ
+zZ
+Uk
+wa
+lB
+lB
+mP
+Hm
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+GS
+zZ
+hi
+hi
+wu
+"}
+(8,1,1) = {"
+wu
+hi
+hi
+zZ
+Zw
+Zw
+Zw
+KF
+lB
+lB
+lB
+lB
+zZ
+Zw
+wa
+lB
+lB
+vH
+Hm
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+GS
+zZ
+hi
+hi
+wu
+"}
+(9,1,1) = {"
+wu
+hi
+hi
+Zv
+LT
+LT
+LT
+zZ
+lB
+lB
+lB
+lB
+zZ
+xb
+EK
+lB
+lB
+mP
+yU
+xb
+xb
+xb
+xb
+xb
+xb
+pP
+zZ
+hi
+hi
+wu
+"}
+(10,1,1) = {"
+wu
+hi
+hi
+Zv
+po
+po
+po
+zZ
+lB
+lB
+lB
+lB
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+zZ
+hi
+hi
+wu
+"}
+(11,1,1) = {"
+mA
+yB
+hi
+zZ
+us
+jh
+qn
+zZ
+lB
+lB
+lB
+lB
+zZ
+lB
+lB
+lB
+lB
+zZ
+Qy
+Qy
+Qy
+zZ
+Qy
+Qy
+Qy
+zZ
+zZ
+hi
+hi
+wu
+"}
+(12,1,1) = {"
+wu
+hi
+hi
+Zv
+rg
+gq
+fy
+zZ
+lB
+lB
+lB
+lB
+vo
+lB
+lB
+lB
+lB
+zZ
+eR
+Zt
+jR
+zZ
+Zw
+Zw
+Zw
+Be
+zZ
+hi
+hi
+wu
+"}
+(13,1,1) = {"
+wu
+hi
+hi
+Zv
+ME
+kG
+fy
+zZ
+lB
+lB
+lB
+lB
+zZ
+lB
+lB
+lB
+lB
+vo
+Zw
+we
+Zw
+KF
+Zw
+Zw
+Zw
+Ii
+zZ
+hi
+hi
+wu
+"}
+(14,1,1) = {"
+wu
+hi
+hi
+zZ
+fx
+TM
+TN
+zZ
+Jp
+mn
+Jp
+Av
+zZ
+lB
+lB
+lB
+lB
+zZ
+Zn
+Zw
+GO
+zZ
+Zw
+xw
+Zw
+Be
+zZ
+hi
+hi
+wu
+"}
+(15,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+Zn
+Gd
+Zw
+Zw
+zZ
+zZ
+ZW
+ZW
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+hi
+hi
+wu
+"}
+(16,1,1) = {"
+wu
+hi
+hi
+zZ
+Ya
+oG
+Qg
+zZ
+YL
+Zw
+Zw
+Zw
+zZ
+FH
+lB
+lB
+Hw
+zZ
+GH
+ba
+lB
+lB
+lB
+lB
+lB
+vH
+zZ
+yB
+hi
+Dd
+"}
+(17,1,1) = {"
+wu
+hi
+hi
+zZ
+Zw
+Zw
+Zw
+zZ
+dN
+Zw
+Zw
+dN
+zZ
+tF
+lB
+lB
+Xo
+zZ
+NX
+co
+lB
+lB
+lB
+lB
+lB
+lB
+AX
+KZ
+KZ
+BJ
+"}
+(18,1,1) = {"
+wu
+Ih
+hi
+zZ
+oY
+Zw
+Zw
+zZ
+zZ
+FQ
+FQ
+zZ
+zZ
+FH
+lB
+lB
+Hw
+zZ
+bC
+xt
+lB
+lB
+lB
+lB
+lB
+lB
+AX
+WU
+WU
+RF
+"}
+(19,1,1) = {"
+wu
+yB
+hi
+zZ
+Ej
+Zw
+Zw
+zZ
+PC
+Zw
+Zw
+PC
+zZ
+FH
+lB
+lB
+Hw
+zZ
+lB
+lB
+lB
+lB
+lB
+lB
+lB
+vH
+zZ
+yB
+hi
+sP
+"}
+(20,1,1) = {"
+wu
+hi
+hi
+zZ
+Zw
+Zw
+Zw
+zZ
+PC
+Zw
+Zw
+PC
+zZ
+FH
+lB
+lB
+Hw
+zZ
+lB
+lB
+lB
+lB
+zZ
+uk
+Jp
+Jp
+zZ
+hi
+hi
+wu
+"}
+(21,1,1) = {"
+wu
+hi
+hi
+zZ
+cL
+Zw
+Zw
+zZ
+zZ
+XH
+XH
+zZ
+zZ
+FH
+lB
+lB
+Hw
+zZ
+lB
+lB
+lB
+lB
+ZS
+Zw
+iv
+Zw
+zZ
+hi
+hi
+wu
+"}
+(22,1,1) = {"
+wu
+hi
+hi
+zZ
+WP
+Zw
+Zw
+Ya
+SS
+Zw
+Zw
+SS
+zZ
+FH
+lB
+lB
+Hw
+zZ
+lB
+lB
+lB
+lB
+Po
+Mm
+Zw
+Zw
+zZ
+hi
+hi
+wu
+"}
+(23,1,1) = {"
+wu
+hi
+hi
+zZ
+Ya
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+zZ
+FH
+lB
+lB
+Lx
+zZ
+OW
+lB
+lB
+lB
+Fj
+Zw
+Zw
+Zw
+zZ
+hi
+hi
+wu
+"}
+(24,1,1) = {"
+wu
+hi
+hi
+zZ
+tl
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+zZ
+FH
+lB
+lB
+lB
+ps
+lB
+lB
+lB
+lB
+zZ
+Zw
+Zw
+Zw
+zZ
+hi
+hi
+wu
+"}
+(25,1,1) = {"
+wu
+hi
+hi
+zZ
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+uh
+zZ
+FH
+lB
+lB
+lB
+ps
+lB
+lB
+lB
+lB
+ji
+Xq
+Zw
+Zw
+zZ
+hi
+hi
+wu
+"}
+(26,1,1) = {"
+wu
+hi
+hi
+zZ
+UG
+Zw
+hp
+Qq
+pC
+kW
+Zw
+nU
+zZ
+FH
+lB
+lB
+np
+zZ
+OW
+lB
+lB
+lB
+zZ
+dN
+YL
+dN
+zZ
+hi
+hi
+wu
+"}
+(27,1,1) = {"
+wu
+hi
+hi
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+Zv
+Zv
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+hi
+hi
+wu
+"}
+(28,1,1) = {"
+wu
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+wu
+"}
+(29,1,1) = {"
+wu
+yB
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+Ih
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+hi
+yB
+wu
+"}
+(30,1,1) = {"
+wG
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+Hf
+kc
+"}

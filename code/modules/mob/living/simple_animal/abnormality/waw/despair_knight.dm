@@ -22,7 +22,6 @@
 	del_on_death = FALSE
 	deathsound = 'sound/abnormalities/despairknight/dead.ogg'
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE
@@ -98,6 +97,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/TryTeleport()
+	if(CheckCombat())
+		return FALSE
 	if(teleport_cooldown > world.time)
 		return FALSE
 	if(target) // Actively fighting

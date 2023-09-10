@@ -9,6 +9,16 @@
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 
+/obj/item/ego_weapon/city/kcorp/axe
+	name = "K corp axe"
+	desc = "A green axe used by K corp employees."
+	icon_state = "kaxe"
+	inhand_icon_state = "kaxe"
+	force = 35
+	attack_speed = 1.7
+	attack_verb_continuous = list("bashes", "crushes", "cleaves")
+	attack_verb_simple = list("bash", "crush", "cleave")
+
 //High level Kcorp weapons are grade 5
 /obj/item/ego_weapon/city/kcorp/spear
 	name = "K corp spear"
@@ -65,8 +75,8 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(60, 60, 60, 20)
-	projectile_block_cooldown = 5 SECONDS
+	reductions = list(50, 40, 40, 20) // 150, WAW?
+	projectile_block_duration = 5 SECONDS
 	block_cooldown = 4 SECONDS
 	block_duration = 2 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND

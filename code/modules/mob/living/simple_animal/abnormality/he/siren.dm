@@ -12,7 +12,7 @@
 	start_qliphoth = 5
 	minimum_distance = 3 //runs away during pink midnight
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 15, //you can't spam insight so 0 is a bit much
+		ABNORMALITY_WORK_INSTINCT = 25,
 		ABNORMALITY_WORK_INSIGHT = 80,
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 50
@@ -37,97 +37,106 @@
 	pet_bonus = "beeps" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/meltdown = FALSE
 //Post-work effect
-	var/list/unsafe = list()
+	var/musictimer
 //SFX
 	var/datum/looping_sound/siren_musictime/musictime
 	var/playstatus = FALSE
 	var/playrange = 40
 
+//Spawn/music stuff
 /mob/living/simple_animal/hostile/abnormality/siren/Initialize()
 	. = ..()
 	musictime = new(list(src), FALSE)
 
-/mob/living/simple_animal/hostile/abnormality/siren/Life()
+/mob/living/simple_animal/hostile/abnormality/siren/Life() //todo : rewrite this is a more concise way
 	. = ..()
-	if(meltdown_cooldown < world.time && !datum_reference.working && !playstatus) // Doesn't decrease while working but will afterwards
+	if(meltdown_cooldown < world.time && !datum_reference.working && !playstatus) // Doesn't decrease while working or playing music but will afterwards
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		datum_reference.qliphoth_change(-1)
 		meltdown_imminent = FALSE
 
-	if(datum_reference.qliphoth_meter == 1 && !meltdown_imminent)
+	if(datum_reference.qliphoth_meter == 1 && !meltdown_imminent) // Is qliphoth 1? Have we not run this yet? If true, play warning sound
 		meltdown_imminent = TRUE
-		playsound(src, 'sound/abnormalities/siren/burningmemory.ogg', 100, FALSE, 40, falloff_distance = 20)
+		playsound(src, 'sound/abnormalities/siren/burningmemory.ogg', 100, FALSE, 40, falloff_distance = 20, channel = CHANNEL_SIREN)
 		playstatus = TRUE
-		addtimer(CALLBACK(src, .proc/stopPlaying), 52 SECONDS)
+		musictimer = addtimer(CALLBACK(src, .proc/stopPlaying), 55 SECONDS, TIMER_STOPPABLE)
 		icon_state = "siren_breach"
 		warning()
 
-	if(song_cooldown < world.time && !datum_reference.qliphoth_meter)
+	if(song_cooldown < world.time && !datum_reference.qliphoth_meter) // 0 Qliphoth, time to start waking up the abnormalities
 		musictime.start()
 		SSlobotomy_corp.InitiateMeltdown(round(SSlobotomy_corp.qliphoth_meltdown_amount/3)+1, TRUE)
 		song_cooldown = world.time + song_cooldown_time
 		playstatus = TRUE
-	if(playstatus && !datum_reference.qliphoth_meter)
+
+	if(playstatus && !datum_reference.qliphoth_meter) // Abnormality wake-up on cooldown? Play a warning instead.
 		warning()
 
-//All it takes is someone to turn it off, either manually
-/mob/living/simple_animal/hostile/abnormality/siren/funpet()
+	else if(playstatus && datum_reference.qliphoth_meter >= 2) //O h, we're at a high qliphoth and still playing music for some reason? let's heal people instead
+		blessing()
+
+/mob/living/simple_animal/hostile/abnormality/siren/proc/stopPlaying() // This does exactly what it says on the tin.
+	for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
+		H.stop_sound_channel(CHANNEL_SIREN)
+	if(!datum_reference.qliphoth_meter)
+		musictime.stop()
+		for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
+			to_chat(H, "<span class='warning'>The music begins to trail off.</span>") // This is specifically to let players know that abnormalities are no longer breaching
+	playstatus = 0
+	icon_state = "siren"
+
+//Work-related
+/mob/living/simple_animal/hostile/abnormality/siren/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
+	if(work_type != ABNORMALITY_WORK_INSIGHT)
+		return chance
+	var/chance_modifier = (datum_reference.qliphoth_meter * 20)
+	return chance - chance_modifier
+
+/mob/living/simple_animal/hostile/abnormality/siren/proc/turnBackTime(mob/living/carbon/human/user) //Insight work does a bunch of whacky stuff
+	var/mob/living/carbon/human/H = user
+	var/currentage = H.age
+	var/message
+	if(datum_reference.qliphoth_meter >= 5) //If we're at max qliphoth, die!
+		to_chat(user, "<span class='danger'>The last thing you remember is your heart stopping.</span>")
+		playsound(loc, 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE, channel = CHANNEL_SIREN)
+		user.dust()
+		return
+	H.age = rand(17 , 85) //minimum age is 17, max is 85. We do a funny and change the user's age to something random.
+	if (H.age > currentage)
+		message += "You feel older and lucid."
+		user.adjustSanityLoss(-user.maxSanity * 0.3) // It's healing
+	else if (H.age < currentage)
+		message += "You feel younger and vigorous."
+		user.adjustBruteLoss(-user.maxHealth * 0.3)
+	else
+		message += "Doesn't seem like it did anything this time."
+
+	to_chat(H, "<span class='warning'>[message]</span>")
+
+	if(!playstatus && datum_reference.qliphoth_meter <= 1) //Qlihphoth is at or below 1 and insight work was performed? play the healing song!
+		playsound(loc, 'sound/abnormalities/siren/backtherebenjamin.ogg', 50, FALSE,40, falloff_distance = 20, channel = CHANNEL_SIREN)
+		playstatus = TRUE //prevents song overlap
+		if(musictimer)
+			deltimer(musictimer)
+		musictimer = addtimer(CALLBACK(src, .proc/stopPlaying), 60 SECONDS, TIMER_STOPPABLE)
+		icon_state = "siren_breach"
+
+//Breach
+/mob/living/simple_animal/hostile/abnormality/siren/funpet() //All it takes is someone to turn it off, either manually
 	if(playstatus && !datum_reference.qliphoth_meter)
 		stopPlaying()
 		datum_reference.qliphoth_change(3)
 		return
 
-//Or by working
-/mob/living/simple_animal/hostile/abnormality/siren/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
-	if(!datum_reference.qliphoth_meter)
+/mob/living/simple_animal/hostile/abnormality/siren/PostWorkEffect(mob/living/carbon/human/user, work_type, pe) //Or by working
+	if(datum_reference.qliphoth_meter <= 1)
 		stopPlaying()
-	datum_reference.qliphoth_change(5)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		turnBackTime(user)
-		return
-	stopPlaying()
+	datum_reference.qliphoth_change(5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/siren/proc/turnBackTime(mob/living/carbon/human/user)
-	var/mob/living/carbon/human/H = user
-	var/currentage = H.age
-	var/message
-	if((user in unsafe) && prob(50)) //first work is a freebie, subsequent works are risky.
-		to_chat(user, "<span class='danger'>The last thing you remember is your heart stopping.</span>")
-		playsound(loc, 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
-		user.dust()
-		return
-	H.age = rand(17 , 85) //minimum age is 17, max is 85
-	if (H.age > currentage)
-		message += "You feel older and lucid."
-		user.adjustSanityLoss(-user.maxSanity * 0.8) // It's healing
-	else if (H.age < currentage)
-		message += "You feel younger and vigorous."
-		user.adjustBruteLoss(-user.maxHealth * 0.8)
-	else
-		to_chat(H, "<span class='warning'>Doesn't seem like it did anything this time.</span>")
-		return
-
-	to_chat(H, "<span class='warning'>[message]</span>")
-	unsafe += user
-
-	if(!playstatus)
-		playsound(loc, 'sound/abnormalities/siren/backtherebenjamin.ogg', 50, FALSE)
-		playstatus = TRUE //prevents song overlap
-		addtimer(CALLBACK(src, .proc/stopPlaying), 59 SECONDS)
-		icon_state = "siren_breach"
-
-/mob/living/simple_animal/hostile/abnormality/siren/proc/stopPlaying()
-	if(!datum_reference.qliphoth_meter)
-		musictime.stop()
-		for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
-			to_chat(H, "<span class='warning'>The music begins to trail off.</span>")
-	playstatus = 0
-	icon_state = "siren"
-
-
-//Stolen from singing machine
-/mob/living/simple_animal/hostile/abnormality/siren/proc/warning()
+/mob/living/simple_animal/hostile/abnormality/siren/proc/warning() //A bunch of messages for various occasions
 	if(datum_reference.qliphoth_meter > 0)
 		for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
 			to_chat(H, "<span class='warning'>The abnormalities seem restless...</span>")
@@ -136,3 +145,9 @@
 	for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
 		to_chat(H, "<span class='warning'>The abnormalities stir as the music plays...</span>")
 	icon_state = "siren_breach"
+
+/mob/living/simple_animal/hostile/abnormality/siren/proc/blessing()
+	for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
+		to_chat(H, "<span class='nicegreen'>The music calms your nerves.</span>")
+		H.adjustSanityLoss(-3) // It's healing
+	return

@@ -152,10 +152,29 @@
 	abno_code = "O-05-103"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work took longer than 30 seconds, O-05-102's Qliphoth Counter lowered.",
 		"When the Qliphoth Counter reached 0, Yang assisted in Abnormality suppression and healed the SP of nearby employees.",
-		"WARNING: Upon Yang’s death, immediately evacuate the area surrounding Yang's corpse.")
+		"When struck, Yang's attacker took an equal amount of White Damage.",
+		"WARNING: Upon Yang’s death, immediately evacuate the area surrounding Yang's corpse.",
+		"WARNING: When Yang breached while O-05-102 was in the facility, O-05-102 breached and tried to meet with Yang.",
+		"WARNING: Both Yang and O-05-102 must be suppressed at the same time or they will revive and continue their journey.",
+		"When Yang and O-05-102 met, all that was became all which wasn't.",
+		"When Yang and O-05-102 are in the facility together, both their work rates and maximum PE improved.")
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "High"
+
+//Yin
+/obj/item/paper/fluff/info/waw/yin
+	abno_type = /mob/living/simple_animal/hostile/abnormality/yin
+	abno_code = "O-05-102"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work took longer than 30 seconds, O-05-103's Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached 0, Yin roamed the facility, dealing Black Damage to nearby employees.",
+		"WARNING: When Yin breached while O-05-103 was in the facility, O-05-103 breached and tried to meet with Yin.",
+		"WARNING: Both Yin and O-05-103 must be suppressed at the same time or they will revive and continue their journey.",
+		"When Yin and O-05-103 met, all that was not became all that was.",
+		"When Yin and O-05-103 are in the facility together, both their work rates and maximum PE improved.")
 
 //Alriune
 /obj/item/paper/fluff/info/waw/alriune
@@ -287,7 +306,7 @@
 		"When work was complete, everyone in the facility was healed.",
 		"During work, the employee took random damage continuously.",
 		"When work was completed 4 times, The Qliphoth counter lowered.",
-		"When the Qliphoth counter reached 0, two abnormalities breached containment.")
+		"When the Qliphoth counter reached 0, one abnormality breached containment.")
 	abno_work_damage_type = "Random"
 
 //Dimensional Refraction
@@ -305,6 +324,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/contract
 	abno_code = "C-03-140"
 	abno_info = list(
+		"When the work result was Good, C-03-140 signed a contract with the employee, raising the respective stats slightly, but reducing their workchance on subsequent works.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.")
@@ -348,6 +368,7 @@
 	abno_info = list(
 		"When the work was complete, the Qliphoth Counter lowered depending on the abnormality's mood. The abnormality's mood improved after an offering was successfully made.",
 		"When an employee performed riddle work, the abnormality posed a question in a strange language. Agents are then provided with a cipher.",
+		"When the employee performed offering work, an item placed on the nearby offering table was inspected by the abnormality. If the table was empty, the abnormality checked the employee's hands.",
 		"When the abnormality was disappointed with an offering, the offender had one of their senses taken away.",
 		"When the riddle was successfully solved with an offering, the Qliphoth counter raised to its maximum. In addition, the abnormality willingly parted with an anomalous object referred to henceforth as a gift.",
 		"When agent bong bong used the canopic jar gift, she was cured of permanent blindness. Effects may differ but are usually beneficial.",
@@ -375,14 +396,75 @@
 		"The infection was potentially cured if the infected received RED damage at a very small chance, with the provided flamethrowers being a far more effective deterrent.",
 		"When the SP of an infested employee had depleted, the employee in question would panic, spreading the infection rapidly.")
 
+//Pygmalion
 /obj/item/paper/fluff/info/waw/pygmalion
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pygmalion
-	abno_code = "T-03-157"
+	abno_code = "M-03-157"
 	abno_info = list(
 		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
 		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
 		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health." ,
 		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
-		"The “Sculptor” will have their prudence reduced to level 3 while Pygmalion is breaching." ,
+		"The “Sculptor” will have their maximum sanity reduced while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
 
+//Parasite Tree
+/obj/item/paper/fluff/info/waw/parasite_tree
+	abno_type = /mob/living/simple_animal/hostile/abnormality/parasite_tree
+	abno_code = "D-04-108"
+	abno_info = list(
+		"When an employee finished work with D-04-10 the employee was blessed with increased temperance and prudence.",
+		"Every time an employee was blessed by D-04-108 it sprouted a glowing flower bud.",
+		"When another abnormality escaped, a healing leaf from D-04-108 flew out of containment and seeked out the employee with the least sanity and health.",
+		"When D-04-108's flowers bloomed, blessed employees suffered heavy mental corruption until the flowers were destroyed with repression work.",
+		"D-04-108-1 secretes a contagious and highly fatal toxin, the area was easily decontaminated on removal of D-04-108-1.",
+		"NOTICE: Employees preforming repression work to destroy D-04-108's flowers prevented the transformation of employees who were transforming into D-04-108-1.") //yes i did put this hint in twice.
+
+//Dream of Black Swan
+//Parasite Tree
+/obj/item/paper/fluff/info/waw/black_swan
+	abno_type = /mob/living/simple_animal/hostile/abnormality/black_swan
+	abno_code = "F-02-70"
+	abno_info = list(
+		"When 5 employees died F-02-70-1 eyes suddenly melted.",
+		"When 5 employees panicked F-02-70-2 arms vanished.",
+		"When 3 abnormalities breached F-02-70-3 legs were reduced to a sludge.",
+		"When work result was bad F-02-70-4 lost their ears and cheeks.",
+		"When work result was normal F-02-70-5 lost the entire lower half of their face.",
+		"When the abnormality had its Qliphoth Counter decreased due to a meltdown or sabotage one of the brothers was wounded.")
+
+//Apex Predator
+/obj/item/paper/fluff/info/waw/predator
+	abno_type = /mob/living/simple_animal/hostile/abnormality/apex_predator
+	abno_code = "D-04-146"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the employee working with Apex predator started work with less than max health, the work damage was drastically increased.",
+		"When the employee working with Apex predator died, or went unconcious during work, the Qliphoth Counter lowered.",
+		"DANGER - When Apex Predator breached, it should be located immediately.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Very High"
+
+//Baba Yaga
+/obj/item/paper/fluff/info/waw/babayaga
+	abno_type = /mob/living/simple_animal/hostile/abnormality/babayaga
+	name = "M-04-166"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered. In addition, the employee was attacked by a group of frozen slaves.",
+		"When an employee, who had both Fortitude Levels and Temperance Levels below 4, completed the work process, the Qliphoth Counter lowered. In addition, the employee was attacked by a group of frozen slaves.",
+		"When Baba Yaga breached, it caused incredibly powerful shock-waves, causing nearby employees to take extreme RED damage proportionally to how close they were to the source.",
+		"Every time Baba Yaga landed, a small group of frozen slaves arrived from the scene to attack nearby employees.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Extreme"
+
+//Big and Will be Bad Wolf
+/obj/item/paper/fluff/info/waw/big_wolf
+	abno_type = /mob/living/simple_animal/hostile/abnormality/big_wolf
+	name = "F-02-58"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered and the employee working on F-02-58 was consumed.",
+		"When the employee had a good result while preforming instinct work F-02-58 vomited all of the previously consumed employees.",
+		"When F-02-58 is below 50% health their howl will weaken the containment of nearby abnormalities."
+		)

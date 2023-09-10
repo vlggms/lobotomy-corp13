@@ -282,13 +282,6 @@
 	. = ..()
 	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS ENHANCEMENT")
 
-/datum/nanite_program/good_mood/enable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_happy", /datum/mood_event/nanite_happiness, get_extra_setting_value(NES_MOOD_MESSAGE))
-
-/datum/nanite_program/good_mood/disable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_happy")
 
 /datum/nanite_program/bad_mood
 	name = "Happiness Suppressor"
@@ -300,10 +293,3 @@
 	. = ..()
 	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS SUPPRESSION")
 
-/datum/nanite_program/bad_mood/enable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_sadness", /datum/mood_event/nanite_sadness, get_extra_setting_value(NES_MOOD_MESSAGE))
-
-/datum/nanite_program/bad_mood/disable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_sadness")

@@ -1,3 +1,5 @@
+#define FRAGMENT_SONG_COOLDOWN (14 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/fragment
 	name = "Fragment of the Universe"
 	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
@@ -29,9 +31,6 @@
 						)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
-
-	attack_action_types = list(/datum/action/innate/abnormality_attack/fragment_song)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/fragment
@@ -43,12 +42,29 @@
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/fragment_song
-	name = "An Echo From Beyond"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now deal white damage to all enemies around you.</span>"
-	chosen_attack_num = 1
+	//PLAYABLES ACTIONS
+	attack_action_types = list(/datum/action/cooldown/fragment_song)
+
+/datum/action/cooldown/fragment_song
+	name = "Sing"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "fragment"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = FRAGMENT_SONG_COOLDOWN //14 seconds
+
+/datum/action/cooldown/fragment_song/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/fragment))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/fragment/fragment = owner
+	if(fragment.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	fragment.song()
+	return TRUE
+
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -56,13 +72,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/OpenFire()
-	if(!can_act)
-		return
-
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				song()
+	if(!can_act || client)
 		return
 
 	if(song_cooldown <= world.time)
@@ -111,3 +121,5 @@
 	else // Breaching
 		icon_state = "fragment_breach"
 	icon_living = icon_state
+
+#undef FRAGMENT_SONG_COOLDOWN

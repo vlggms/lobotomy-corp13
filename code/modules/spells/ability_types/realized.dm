@@ -31,6 +31,187 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
 
+/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp
+	name = "wellcheers corp liquidation officer"
+
+/mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
+	.=..()
+	QDEL_IN(src, (90 SECONDS))
+
+/obj/effect/proc_holder/ability/shrimp
+	name = "Backup Shrimp"
+	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
+	action_icon_state = "shrimp0"
+	base_icon_state = "shrimp"
+	cooldown_time = 90 SECONDS
+
+
+
+/obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
+	for(var/i = 1 to 4)
+		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
+	return ..()
+
+/* Big Bird - Eyes of God */
+/obj/effect/proc_holder/ability/lamp
+	name = "Lamp of Salvation"
+	desc = "An ability that slows and weakens all enemies around the user."
+	action_icon_state = "lamp0"
+	base_icon_state = "lamp"
+	cooldown_time = 30 SECONDS
+
+	var/debuff_range = 8
+	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
+/obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
+	cooldown = world.time + (2 SECONDS)
+	if(!do_after(user, 1.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to see!</span>")
+		return
+	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
+	for(var/mob/living/L in view(debuff_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		new /obj/effect/temp_visual/revenant(get_turf(L))
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
+	return ..()
+
+/datum/status_effect/salvation
+	id = "salvation"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/salvation
+
+/datum/status_effect/salvation/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[RED_DAMAGE] > 0)
+		M.damage_coeff[RED_DAMAGE] *= 1.1
+	if(M.damage_coeff[WHITE_DAMAGE] > 0)
+		M.damage_coeff[WHITE_DAMAGE] *= 1.1
+	if(M.damage_coeff[BLACK_DAMAGE] > 0)
+		M.damage_coeff[BLACK_DAMAGE] *= 1.1
+	if(M.damage_coeff[PALE_DAMAGE] > 0)
+		M.damage_coeff[PALE_DAMAGE] *= 1.1
+
+/datum/status_effect/salvation/on_remove()
+	. = ..()
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[RED_DAMAGE] > 0)
+		M.damage_coeff[RED_DAMAGE] /= 1.1
+	if(M.damage_coeff[WHITE_DAMAGE] > 0)
+		M.damage_coeff[WHITE_DAMAGE] /= 1.1
+	if(M.damage_coeff[BLACK_DAMAGE] > 0)
+		M.damage_coeff[BLACK_DAMAGE] /= 1.1
+	if(M.damage_coeff[PALE_DAMAGE] > 0)
+		M.damage_coeff[PALE_DAMAGE] /= 1.1
+
+/atom/movable/screen/alert/status_effect/salvation
+	name = "Salvation"
+	desc = "You will be saved... Also makes you to be more vulnerable to all attacks."
+	icon = 'icons/mob/actions/actions_ability.dmi'
+	icon_state = "salvation"
+
+/* Nothing There - Shell */
+/obj/effect/proc_holder/ability/goodbye
+	name = "Goodbye"
+	desc = "An ability that does massive damage in an area and heals you."
+	action_icon_state = "goodbye0"
+	base_icon_state = "goodbye"
+	cooldown_time = 30 SECONDS
+
+	var/damage_amount = 400 // Amount of good bye damage
+
+/obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	cooldown = world.time + (1.5 SECONDS)
+	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
+	if(!do_after(user, 1 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
+		return
+	for(var/turf/T in view(2, user))
+		new /obj/effect/temp_visual/nt_goodbye(T)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			H.adjustBruteLoss(-10)
+			L.apply_damage(damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(L.health < 0)
+				L.gib()
+	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
+	return ..()
+/* Mosb - Laughter */
+/obj/effect/proc_holder/ability/screach
+	name = "Screach"
+	desc = "An ability that damages all enemies around the user and increases their weakness to black damage."
+	action_icon_state = "screach0"
+	base_icon_state = "screach"
+	cooldown_time = 20 SECONDS
+
+	var/damage_amount = 175 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_range = 7
+
+/obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
+	cooldown = world.time + (2 SECONDS)
+	playsound(get_turf(user), 'sound/abnormalities/mountain/bite.ogg', 50, 0)
+	if(!do_after(user, 1.5 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to screach!</span>")
+		return
+	var/mob/living/carbon/human/H = user
+	playsound(get_turf(user), 'sound/abnormalities/mountain/scream.ogg', 75, 0, 2)
+	visible_message("<span class='danger'>[H] screams wildly!</span>")
+	new /obj/effect/temp_visual/voidout(get_turf(H))
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_status_effect(/datum/status_effect/mosb_black_debuff)
+	return ..()
+
+/datum/status_effect/mosb_black_debuff
+	id = "mosb_black_debuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/mosb_black_debuff
+
+/datum/status_effect/mosb_black_debuff/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod *= 1.5
+		return
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[BLACK_DAMAGE] *= 1.5
+
+/datum/status_effect/mosb_black_debuff/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.black_mod /= 1.5
+		return
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[BLACK_DAMAGE] /= 1.5
+
+/atom/movable/screen/alert/status_effect/mosb_black_debuff
+	name = "Dread"
+	desc = "Your fear is causing you to be more vulnerable to BLACK attacks."
+	icon = 'icons/mob/actions/actions_ability.dmi'
+	icon_state = "screach"
+
 /* Judgement Bird - Head of God */
 /obj/effect/proc_holder/ability/judgement
 	name = "Soul Judgement"
@@ -354,3 +535,257 @@
 		return FALSE
 	return TRUE
 
+/obj/effect/proc_holder/ability/punishment
+	name = "Punishment"
+	desc = "Causes massive damage in a small area only when you take a blow."
+	action_icon_state = "bird0"
+	base_icon_state = "bird"
+	cooldown_time = 25 SECONDS
+
+/obj/effect/proc_holder/ability/punishment/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	H.apply_status_effect(/datum/status_effect/punishment)
+	return ..()
+
+/datum/status_effect/punishment
+	id = "EGO_P2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/punishment
+	duration = 2 SECONDS
+
+/atom/movable/screen/alert/status_effect/punishment
+	name = "Ready to punish"
+	desc = "You're ready to punish."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "punishment"
+
+/datum/status_effect/punishment/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/Rage)
+
+/datum/status_effect/punishment/proc/Rage(mob/living/sorce, obj/item/thing, mob/living/attacker)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/H = owner
+	H.apply_status_effect(/datum/status_effect/pbird)
+	H.remove_status_effect(/datum/status_effect/punishment)
+	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
+	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
+	for(var/turf/T in view(1, H))
+		new /obj/effect/temp_visual/beakbite(T)
+		for(var/mob/living/L in T)
+			if(H.faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			L.apply_damage(500, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			if(L.health < 0)
+				L.gib()
+
+/datum/status_effect/pbird
+	id = "EGO_PBIRD"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/pbird
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/pbird
+	name = "Punishment"
+	desc = "Their wrong doing brings you rage. \
+		Your Justice is increased by 10."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "punishment"
+
+/datum/status_effect/pbird/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/pbird/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+
+/obj/effect/proc_holder/ability/petal_blizzard
+	name = "Petal Blizzard"
+	desc = "Creates a big area of healing at the cost of double damage taken for a short period of time."
+	action_icon_state = "petalblizzard0"
+	base_icon_state = "petalblizzard"
+	cooldown_time = 45 SECONDS
+	var/healing_amount = 70 // Amount of healing to plater per "pulse".
+	var/healing_range = 8
+
+/obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
+	H.apply_status_effect(/datum/status_effect/bloomdebuff)
+	playsound(get_turf(user), 'sound/weapons/fixer/generic/sword3.ogg', 75, 0, 7)
+	for(var/turf/T in view(healing_range, user))
+		pick(new /obj/effect/temp_visual/cherry_aura(T), new /obj/effect/temp_visual/cherry_aura2(T), new /obj/effect/temp_visual/cherry_aura3(T))
+		for(var/mob/living/carbon/human/L in T)
+			if(!user.faction_check_mob(L, FALSE))
+				continue
+			if(L.status_flags & GODMODE)
+				continue
+			if(L.stat == DEAD)
+				continue
+			if(L.is_working) //no work heal :(
+				continue
+			L.adjustBruteLoss(-healing_amount)
+			L.adjustSanityLoss(-healing_amount)
+	return ..()
+
+/datum/status_effect/bloomdebuff
+	id = "bloomdebuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS		//Lasts 30 seconds
+	alert_type = /atom/movable/screen/alert/status_effect/bloomdebuff
+
+/atom/movable/screen/alert/status_effect/bloomdebuff
+	name = "Blooming Sakura"
+	desc = "You Take Double Damage."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "marked_for_death"
+
+/datum/status_effect/bloomdebuff/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.red_mod *= 2
+		L.physiology.white_mod *= 2
+		L.physiology.black_mod *= 2
+		L.physiology.pale_mod *= 2
+
+/datum/status_effect/bloomdebuff/tick()
+	var/mob/living/carbon/human/Y = owner
+	if(Y.sanity_lost)
+		Y.death()
+	if(owner.stat == DEAD)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(H.stat != DEAD)
+				H.adjustBruteLoss(-100) // It heals everyone to full
+				H.adjustSanityLoss(-100) // It heals everyone to full
+
+/datum/status_effect/bloomdebuff/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(L, "<span class='userdanger'>You feel normal!</span>")
+		L.physiology.red_mod /= 2
+		L.physiology.white_mod /= 2
+		L.physiology.black_mod /= 2
+		L.physiology.pale_mod /= 2
+
+/mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
+	name = "Tree of Desires"
+	desc = "The growing results of your research."
+	health = 60
+	maxHealth = 60
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "farmwatch_tree"
+	icon_living = "farmwatch_tree"
+	icon_dead = "farmwatch_tree"
+	faction = list("neutral")
+	del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/farmwatch_plant/Initialize()
+	. = ..()
+	QDEL_IN(src, 15 SECONDS)
+
+/mob/living/simple_animal/hostile/farmwatch_plant/death()
+	density = FALSE
+	animate(src, alpha = 0, time = 1)
+	QDEL_IN(src, 1)
+	..()
+
+/mob/living/simple_animal/hostile/spicebush_plant
+	name = "Soon-to-bloom flower"
+	desc = "The reason you bloomed, sowing seeds of nostalgia, was to set your heart upon our new beginning."
+	health = 1
+	maxHealth = 1
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "spicebush_tree"
+	icon_living = "spicebush_tree"
+	icon_dead = "spicebush_tree"
+	faction = list("neutral")
+	del_on_death = FALSE
+	var/pulse_cooldown
+	var/pulse_cooldown_time = 1.8 SECONDS
+	var/pulse_damage = -2
+
+/mob/living/simple_animal/hostile/spicebush_plant/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/spicebush_plant/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/spicebush_plant/Initialize()
+	. = ..()
+	QDEL_IN(src, 20 SECONDS)
+
+/mob/living/simple_animal/hostile/spicebush_plant/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
+		HealPulse()
+
+/mob/living/simple_animal/hostile/spicebush_plant/death()
+	density = FALSE
+	playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 100, 1)
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
+	pulse_cooldown = world.time + pulse_cooldown_time
+	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
+	for(var/mob/living/L in livinginview(8, src))
+		if(faction_check_mob(L))
+			continue
+		L.adjustBruteLoss(-2)
+		var/mob/living/carbon/human/H = L
+		H.adjustSanityLoss(-2)
+
+/obj/effect/proc_holder/ability/overheat
+	name = "Overheat"
+	desc = "Burn yourself away in exchange for power."
+	action_icon_state = "overheat0"
+	base_icon_state = "overheat"
+	cooldown_time = 5 MINUTES
+
+/obj/effect/proc_holder/ability/overheat/Perform(target, mob/user)
+	var/mob/living/carbon/human/H = user
+	to_chat(H, "<span class='userdanger'>Ashes to ashes!</span>")
+	H.apply_status_effect(/datum/status_effect/overheat)
+	return ..()
+
+/datum/status_effect/overheat
+	id = "overheat"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/overheat
+
+/atom/movable/screen/alert/status_effect/overheat
+	name = "Overheating"
+	desc = "You have full burn stacks in exchange for justice."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "mortis"
+
+/datum/status_effect/overheat/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 30)
+	H.apply_lc_burn(50)
+	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	B.safety = FALSE
+
+/datum/status_effect/overheat/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+	H.remove_status_effect(STATUS_EFFECT_LCBURN)

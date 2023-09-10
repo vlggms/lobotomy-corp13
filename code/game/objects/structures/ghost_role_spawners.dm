@@ -1,4 +1,5 @@
-//Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+/*Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+	Origin Procs are in code/module/awaymissions/corpse.dm */
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/human/seed_vault
@@ -859,7 +860,7 @@
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	faction = "nanotrasenprivate"
+	faction = list("nanotrasenprivate")
 	short_desc = "You are a Nanotrasen Private Security Officer!"
 
 /obj/effect/mob_spawn/human/commander/alive
@@ -906,6 +907,8 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
+//LC13 Mobspawners~~~
+
 //Tutorial spawn
 /obj/effect/mob_spawn/human/tutorial
 	uses = -1
@@ -920,7 +923,7 @@
 	outfit = /datum/outfit/tutorial
 	short_desc = "Welcome to Lobotomy Corporation! In the onboarding process you will get to see exactly how our company works."
 	flavour_text = "Be sure to read the tutorial sheets, \
-	experiment, and have fun. When you are done, Cryo and respawn to join the game. \
+	experiment, and have fun. When you are done, Cryo and Respawn to join the game. \
 	Try out the mechanics, and maybe breach some abnormalities to get a feel for the combat."
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
@@ -941,8 +944,6 @@
 
 	back = /obj/item/storage/backpack
 
-
-
 //Library spawn
 /obj/effect/mob_spawn/human/library
 	uses = -1
@@ -950,13 +951,13 @@
 	roundstart = FALSE
 	random = FALSE
 	name = "records librarian sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. It's just a front, stored underground are many librarians."
+	desc = "A humming sleeper with a silhouetted occupant inside. It's connected to a vast underground network storing countless people."
 	mob_name = "Records Librarian"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/librarian
-	short_desc = "A place for players to read up on lore and information while not affecting the actual round \
-	When you are done, Cryo and respawn to join the game."
+	short_desc = "A place for players to read up on lore and information while also observing the current round. \
+	When you are done, Cryo and Respawn to join the game."
 	assignedrole = "Lobotomy Corporation Records Librarian"
 
 //Tutorial agent
@@ -971,3 +972,50 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 	back = /obj/item/storage/backpack/satchel
+
+//Supplypod Mobspawner
+/obj/effect/mob_spawn/human/supplypod
+	invisibility = 49
+	anchored = TRUE
+	roundstart = FALSE
+	death = FALSE
+	density = FALSE
+	var/list/acceptable_turf = list()
+		//Keeps track of players who have spawned using this point.
+	var/players_spawned = list()
+
+/obj/effect/mob_spawn/human/supplypod/Initialize(mapload, datum/team/ert/rabbit_team)
+	. = ..()
+	acceptable_turf = LandingZone(get_turf(src))
+
+/obj/effect/mob_spawn/human/supplypod/special(mob/living/new_spawn)
+	PrepareForHellDiving(new_spawn)
+
+		//Creates pod and prepares the user for being inside it.
+/obj/effect/mob_spawn/human/supplypod/proc/PrepareForHellDiving(mob/living/user)
+		//Step 1 pick a acceptable turf to land. No dense turf or tables.
+	var/turf/LZ = pick(acceptable_turf)
+		//Step 2 spawn the pod we land in.
+	var/obj/structure/closet/supplypod/centcompod/pod = new
+		//Step 3 learn that the landing zone is actually a effect that requires a defined landing turf and pod.
+	new /obj/effect/pod_landingzone(get_turf(LZ), pod)
+		//Step 4 INSERT INTO POD!
+	user.forceMove(pod)
+	players_spawned += (user.key)
+
+		//this is in order to randomize the landing turf and make sure it is a safe zone.
+/obj/effect/mob_spawn/human/supplypod/proc/LandingZone(turf/landin_zone)
+	var/list/good_turf = list()
+	for(var/turf/T in range(6, get_turf(landin_zone)))
+		if(locate(/obj/machinery) in T)
+			continue
+		if(locate(/obj/structure) in T)
+			continue
+		if(isclosedturf(T))
+			continue
+		if(!isfloorturf(T))
+			continue
+		good_turf += T
+	if(!good_turf.len)
+		return list(get_turf(src))
+	return good_turf

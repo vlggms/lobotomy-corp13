@@ -5,6 +5,8 @@
 	var/level = 0
 	/// Added meltdown delay. The higher it is - the longer it'll take for the ordeal to occur. If null - uses level.
 	var/delay = null
+	/// If TRUE - delay will always be adjusted by random number(1-2).
+	var/random_delay = TRUE
 	/// Announcement text. Self-explanatory
 	var/annonce_text = "Oh my god we're going to die!"
 	/// Sound to play on announcement, if any
@@ -19,15 +21,22 @@
 	var/color = COLOR_VERY_LIGHT_GRAY
 	/// If ordeal can be normally chosen
 	var/can_run = TRUE
+	/// World.time when ordeal started
+	var/start_time
 
 /datum/ordeal/New()
 	..()
 	if(delay == null)
-		delay = level
+		delay = level * 2
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
+	start_time = ROUNDTIME
+	SSlobotomy_corp.current_ordeals += src
 	priority_announce(annonce_text, name, sound='sound/effects/meltdownAlert.ogg')
+	/// If dawn started - clear suppression options
+	if(level == 1 && !istype(SSlobotomy_corp.core_suppression))
+		SSlobotomy_corp.ResetPotentialSuppressions()
 	if(annonce_sound)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
@@ -36,15 +45,22 @@
 
 // Ends the event
 /datum/ordeal/proc/End()
-	var/total_reward = SSlobotomy_corp.box_goal * reward_percent
-	SSlobotomy_corp.AdjustBoxes(total_reward)
+	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
+	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
+	SSlobotomy_corp.current_ordeals -= src
 	if(end_sound)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.playsound_local(get_turf(M), end_sound, 35, 0)
-	if(level == 4 && !istype(SSlobotomy_corp.core_suppression) && !LAZYLEN(SSlobotomy_corp.available_core_suppressions))
-		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions), 5 SECONDS)
+	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
+	if(level == 4 && SSlobotomy_corp.core_suppression_state == 2 && \
+	start_time <= CONFIG_GET(number/suppression_time_limit))
+		// Extra cores, and announced!
+		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
+	/// If it was a dusk - we end running core suppression
+	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
 	qdel(src)
 	return
 

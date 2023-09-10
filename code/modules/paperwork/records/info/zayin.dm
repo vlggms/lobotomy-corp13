@@ -65,7 +65,7 @@
 //Quiet Day
 /obj/item/paper/fluff/info/zayin/quiet
 	abno_type = /mob/living/simple_animal/hostile/abnormality/quiet_day
-	abno_code = "T-01-145"
+	abno_code = "D-01-145"
 	abno_info = list(
 		"When work with T-01-145 was completed, it started to speak.",
 		"If the agent working with T-01-145 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")
@@ -94,3 +94,14 @@
 	abno_info = list(
 		"When the abnormality was approached outside of work, it suddenly became extremely hostile to that specific employee.",
 		"Employees report the toad's cries having a soothing effect while in containment, recovering SP.")
+
+//Hammer of Light
+/obj/item/paper/fluff/info/zayin/hammer_light
+	abno_type = /mob/living/simple_animal/hostile/abnormality/hammer_light
+	abno_code = "O-05-48"
+	abno_info = list(
+		"Hammer of Light's room cannot be accessed when the facility is in peace, the seal is broken during an emergency.",
+		"When the seal is broken, an employee can simply walk up to the abnormality and pick up the hammer.",
+		"When a level 1 employee tried to pick up the hammer, they were reduced to ashes by its power.",
+		"When agent YumYum picked up the unsealed hammer, they were granted the immense power required to resolve the emergency situation.",
+		"However, once the situation began to settle down, YumYum disappeared.")

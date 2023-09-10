@@ -1,8 +1,8 @@
 /obj/item/gun/medbeam
-	name = "Medical Beamgun"
-	desc = "Don't cross the streams!"
+	name = "k-corp experimental healing device"
+	desc = "Warning: Crossing the streams will result in detonation and death."
 	icon = 'icons/obj/chronos.dmi'
-	icon_state = "chronogun"
+	icon_state = "healgun"
 	inhand_icon_state = "chronogun"
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -56,6 +56,11 @@
 	LoseTarget()
 
 /obj/item/gun/medbeam/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+	var/list/banned_roles = list("R-Corp Scout Raven", "R-Corp Support Raven", "Raven Squad Captain", "R-Corp Suppressive Rabbit", "R-Corp Assault Rabbit", "R-Corp Suppressive Rabbit", "R-Corp Berserker Reindeer")
+	if(istype(user) && (user?.mind?.assigned_role in banned_roles))
+		to_chat(user, "<span class='notice'>You don't know how to use this.</span>")
+		return
+
 	if(isliving(user))
 		add_fingerprint(user)
 
@@ -112,7 +117,13 @@
 				return FALSE
 		for(var/obj/effect/ebeam/medical/B in turf)// Don't cross the str-beams!
 			if(B.owner.origin != current_beam.origin)
-				explosion(B.loc,0,3,5,8)
+				explosion(B.loc,0,0,5,8)
+				qdel(dummy)
+				return FALSE
+
+		for(var/obj/effect/ebeam/mindwhip/B in turf)// Don't cross the str-beams!
+			if(B.owner.origin != current_beam.origin)
+				explosion(B.loc,0,0,5,8)
 				qdel(dummy)
 				return FALSE
 	qdel(dummy)
@@ -123,7 +134,7 @@
 
 /obj/item/gun/medbeam/proc/on_beam_tick(mob/living/target)
 	if(target.health != target.maxHealth)
-		new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
+		new /obj/effect/temp_visual/heal(get_turf(target), "#E02D2D")
 	target.adjustBruteLoss(-4)
 	target.adjustFireLoss(-4)
 	target.adjustToxLoss(-1)

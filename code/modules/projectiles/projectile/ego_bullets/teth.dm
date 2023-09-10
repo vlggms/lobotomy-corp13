@@ -102,3 +102,32 @@
 	damage = 10
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_aspiration
+	name = "aspiration"
+	icon_state = "lava"
+	damage = 25
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/laser/aspiration
+
+/obj/effect/projectile/tracer/laser/aspiration
+	name = "aspiration"
+	icon_state = "aspiration"
+
+/obj/projectile/ego_bullet/ego_aspiration/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/carbon/human/H = target
+	var/mob/living/user = firer
+	if(firer==target)
+		return BULLET_ACT_BLOCK
+	if(user.faction_check_mob(H)) // Our faction
+		H.adjustBruteLoss(-10)
+		return BULLET_ACT_BLOCK
+
+/obj/projectile/ego_bullet/ego_patriot
+	name = "patriot"
+	damage = 15
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

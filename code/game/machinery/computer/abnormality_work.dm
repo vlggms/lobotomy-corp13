@@ -11,6 +11,10 @@
 	var/meltdown_time = 0
 	/// Can the abnormality even meltdown?
 	var/can_meltdown = TRUE
+	/// Will works send signals and be logged?
+	var/recorded = TRUE
+	/// Special tutorial abnormality behaviors
+	var/tutorial = FALSE
 	/// Work types will instead redirect to those, if listed
 	var/list/scramble_list = list()
 	///Linked Panel
@@ -36,13 +40,13 @@
 	. = ..()
 	if(!datum_reference)
 		return
-	. += "<span class='notice'>This console is connected to [datum_reference.name] containment zone.</span>"
+	. += "<span class='info'>This console is connected to [datum_reference.name]'s containment unit.</span>"
 	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
-	. += "<span class='notice'>Threat level:</span> [threat_level]<span class='notice'>.</span>" // Professionals have standards
+	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
-		. += "<span class='notice'>Current qliphoth level: [datum_reference.qliphoth_meter].</span>"
+		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
 	if(datum_reference.overload_chance != 0)
-		. += "<span class='warning'>Current success chance modifier: [datum_reference.overload_chance]%.</span>"
+		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
@@ -54,7 +58,7 @@
 				melt_text = " of Waves. Upon clearing the meltdown the dark waves will disappear"
 			if(MELTDOWN_CYAN)
 				melt_text = " of Pillars. Success rates reduced by 20%. Failing to clear it will cause Arbiter to perform their deadly attack"
-		. += "<span class='warning'>The chamber is currently in the process of meltdown[melt_text]. Time left: [meltdown_time].</span>"
+		. += "<span class='warning'>The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].</span>"
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
 	. = ..()
@@ -66,18 +70,18 @@
 	var/dat
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
 	if(datum_reference.overload_chance != 0)
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Current success chance is modified by [datum_reference.overload_chance]%</span><br>"
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Success Rates are modified by [datum_reference.overload_chance]%.</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
 	var/list/work_list = datum_reference.available_work
-	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
 	for(var/wt in work_list)
 		var/work_display = "[wt] Work"
 		if(scramble_list[wt] != null)
 			work_display += "?"
-		if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+		if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 			work_display = Gibberish(work_display, TRUE, 60)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
@@ -95,17 +99,17 @@
 	if(ishuman(usr))
 		usr.set_machine(src)
 		if(href_list["do_work"] in datum_reference.available_work)
-			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN))
-				to_chat(usr, "<span class='warning'>Console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work training rabbit
+				to_chat(usr, "<span class='warning'>The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!</span>")
 				return
 			if(datum_reference.working)
-				to_chat(usr, "<span class='warning'>Console is currently being operated!</span>")
+				to_chat(usr, "<span class='warning'>The console is currently being operated!</span>")
 				return
 			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
-				to_chat(usr, "<span class='warning'>Abnormality is currently in the process of revival!</span>")
+				to_chat(usr, "<span class='warning'>The Abnormality is currently in the process of revival!</span>")
 				return
 			if(!(datum_reference.current.status_flags & GODMODE))
-				to_chat(usr, "<span class='warning'>Abnormality has escaped containment!</span>")
+				to_chat(usr, "<span class='warning'>The Abnormality has breached containment!</span>")
 				return
 			var/work_attempt = datum_reference.current.AttemptWork(usr, href_list["do_work"])
 			if(!work_attempt)
@@ -117,7 +121,7 @@
 	add_fingerprint(usr)
 	updateUsrDialog()
 
-/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type, training = FALSE)
+/obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
 	var/sanity_damage = 0
 	switch(sanity_result)
@@ -132,11 +136,11 @@
 	var/work_time = datum_reference.max_boxes
 	if(work_type in scramble_list)
 		work_type = scramble_list[work_type]
-	if(!training)
+	if(recorded)
 		SEND_SIGNAL(user, COMSIG_WORK_STARTED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_STARTED, datum_reference, user, work_type)
-		if(linked_panel)
-			linked_panel.console_working()
+	if(linked_panel)
+		linked_panel.console_working()
 	if(!HAS_TRAIT(user, TRAIT_WORKFEAR_IMMUNE))
 		user.adjustSanityLoss(sanity_damage)
 	if(user.stat == DEAD || user.sanity_lost)
@@ -155,15 +159,16 @@
 			to_chat(user, "<span class='userdanger'>I'm not ready for this!</span>")
 	var/was_melting = meltdown //to remember if it was melting down before the work started
 	meltdown = FALSE // Reset meltdown
-	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, TRUE)
+	if(was_melting)
+		SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, TRUE)
 	update_icon()
 	datum_reference.working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
-	if(meltdown == MELTDOWN_GRAY)
+	if(was_melting == MELTDOWN_GRAY)
 		work_chance -= 10
-	if(meltdown == MELTDOWN_CYAN)
+	if(was_melting == MELTDOWN_CYAN)
 		work_chance -= 20
-	var/work_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
+	var/work_speed = 2 SECONDS / (1 + ((get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	work_speed /= user.physiology.work_speed_mod
 	var/success_boxes = 0
 	var/total_boxes = 0
@@ -208,7 +213,7 @@
 	user.density = TRUE
 	user.set_anchored(FALSE)
 	user.is_working = FALSE
-	finish_work(user, work_type, success_boxes, work_speed, training, was_melting, canceled)
+	finish_work(user, work_type, success_boxes, work_speed, was_melting, canceled)
 
 /obj/machinery/computer/abnormality/proc/CheckStatus(mob/living/carbon/human/user)
 	if(user.sanity_lost)
@@ -226,12 +231,12 @@
 	playsound(src, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return FALSE
 
-/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, training = FALSE, was_melting, canceled = FALSE)
-	if(!training)
+/obj/machinery/computer/abnormality/proc/finish_work(mob/living/carbon/human/user, work_type, pe = 0, work_speed = 2 SECONDS, was_melting, canceled = FALSE)
+	if(recorded)
 		SEND_SIGNAL(user, COMSIG_WORK_COMPLETED, datum_reference, user, work_type)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_WORK_COMPLETED, datum_reference, user, work_type)
-		if(linked_panel)
-			linked_panel.console_status(src)
+	if(linked_panel)
+		linked_panel.console_status(src)
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(datum_reference.max_boxes != 0)
@@ -243,11 +248,9 @@
 		else
 			visible_message("<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
-		if(!training)
-			datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
+		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
+		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-		else
-			datum_reference.current.WorkComplete(user, work_type, pe, work_speed*datum_reference.max_boxes)
 	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
 	if(attachment)
 		chem_charges += 1
@@ -294,13 +297,19 @@
 //special console just for training rabbit
 /obj/machinery/computer/abnormality/training_rabbit
 	can_meltdown = FALSE
+	recorded = FALSE
 
-/obj/machinery/computer/abnormality/training_rabbit/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
-	..(user, work_type, training = training)
-
-//No meltdown console for tutorials
+//special tutorial console: similar to training rabbit but actually give stats and not affected by suppressions
 /obj/machinery/computer/abnormality/tutorial
 	can_meltdown = FALSE
+	recorded = FALSE
+	tutorial = TRUE
 
-/obj/machinery/computer/abnormality/tutorial/start_work(mob/living/carbon/human/user, work_type, training = TRUE)
-	..(user, work_type, training = training)
+//Don't add tutorial consoles to global list, prevents them from being affected by Control suppression or other effects
+/obj/machinery/computer/abnormality/tutorial/Initialize()
+	. = ..()
+	GLOB.abnormality_consoles -= src
+
+//don't scramble our poor interns
+/obj/machinery/computer/abnormality/tutorial/Scramble()
+	return

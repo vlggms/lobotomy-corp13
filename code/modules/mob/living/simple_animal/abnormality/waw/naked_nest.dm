@@ -50,12 +50,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(30 + ((user.health / user.maxHealth)*100)) && !NAKED_NESTED)
+	if(prob(30 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(60 + ((user.health / user.maxHealth)*100)) && !NAKED_NESTED)
+	if(prob(60 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
@@ -155,7 +155,6 @@
 	maxHealth = 5
 	health = 5 //STOMP THEM STOMP THEM NOW.
 	move_to_delay = 3
-	speed = 3
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	density = FALSE //they are worms.

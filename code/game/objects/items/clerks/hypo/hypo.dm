@@ -2,6 +2,7 @@
 	name = "E.M.A.I.S"
 	desc = "The Emergency Medical Aid Injector and Synthesiser is a lobotomy corp favored medical device, used by the safety department to keep all employe's healthy and happy in emergency cases."
 	reagent_flags = DRAINABLE
+	icon_state = "clerkhypo"
 	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
 	var/chem_capacity = 30
@@ -139,6 +140,11 @@
 
 
 /obj/item/reagent_containers/hypospray/emais/proc/clerk_check(mob/living/carbon/human/H)
-	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
+	var/list/allowed_roles = list("Clerk", "Operations Officer")
+	var/datum/status_effect/chosen/C = H.has_status_effect(/datum/status_effect/chosen)
+	if(C)
+		to_chat(H, "<span class='notice'>A mysterious force prevents you from using this!</span>")
+		return FALSE
+	if(istype(H) && (H?.mind?.assigned_role in allowed_roles))
 		return TRUE
 	return FALSE

@@ -47,13 +47,19 @@
 
 /mob/living/carbon/human/verb/show_attributes_self()
 	set category = "IC"
-	set name = "Show Attributes"
-
+	set name = "View Attributes"
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 	show_attributes()
 
 /mob/living/carbon/human/verb/show_attributes_to(mob/living/L in oview(1))
 	set category = "IC"
 	set name = "Show Attributes To"
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 
 	if(istype(L))
 		if(do_after(src, 1 SECONDS, L))
@@ -74,7 +80,13 @@
 		var/datum/attribute/atr = attributes[atrname]
 		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
 
-	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
+	dat += ""
+	for(var/atrname in attributes) //raw stats (health, sanity etc)
+		var/datum/attribute/atr = attributes[atrname]
+		for(var/stat in atr.affected_stats)
+			dat += "[stat] : [round(atr.get_level()) + atr.initial_stat_value] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+
+	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -123,10 +135,6 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
-/mob/living/carbon/human/ComponentInitialize()
-	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
-		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
@@ -779,7 +787,6 @@
 			return FALSE
 
 		visible_message("<span class='notice'>[src] performs CPR on [target.name]!</span>", "<span class='notice'>You perform CPR on [target.name].</span>")
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		log_combat(src, target, "CPRed")
 
 		if (HAS_TRAIT(target, TRAIT_NOBREATH))
@@ -1231,8 +1238,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
-		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
+		maxHealth = 100 + round(get_modified_attribute_level(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = 100 + round(get_modified_attribute_level(src, PRUDENCE_ATTRIBUTE))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss
@@ -1497,3 +1504,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/species/shrimp //for the funnies only
+	race = /datum/species/shrimp

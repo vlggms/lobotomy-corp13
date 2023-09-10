@@ -27,3 +27,8 @@
 	name = "9mm clerk casing"
 	desc = "A 9mm clerk casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_clerk
+
+/obj/item/ammo_casing/caseless/ego_bucket
+	name = "bucket casing"
+	desc = "bucket casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_bucket

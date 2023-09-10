@@ -53,6 +53,39 @@
 	gift_type =  /datum/ego_gifts/ebony_stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+	/datum/action/innate/abnormality_attack/ebony_root,
+	/datum/action/innate/abnormality_attack/ebony_barrier,
+	/datum/action/innate/abnormality_attack/ebony_barrage,
+	/datum/action/innate/abnormality_attack/ebony_melee
+	)
+
+/datum/action/innate/abnormality_attack/ebony_root
+	name = "Root Spike"
+	button_icon_state = "ebony_root"
+	chosen_message = "<span class='colossus'>You will now shoot a devastating line of roots.</span>"
+	chosen_attack_num = 1
+
+/datum/action/innate/abnormality_attack/ebony_barrier
+	name = "Thorn Barrier"
+	button_icon_state = "ebony_barrier"
+	chosen_message = "<span class='colossus'>You will now create a barrier of thorns.</span>"
+	chosen_attack_num = 2
+
+/datum/action/innate/abnormality_attack/ebony_barrage
+	name = "Root Barrage"
+	button_icon_state = "ebony_barrage"
+	chosen_message = "<span class='colossus'>You will now shoot your roots from the ground.</span>"
+	chosen_attack_num = 3
+
+/datum/action/innate/abnormality_attack/ebony_melee
+	name = "Normal attacks"
+	button_icon_state = "ebony_melee"
+	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	chosen_attack_num = 4
+
+
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
@@ -105,6 +138,17 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/OpenFire()
 	if(!can_act)
+		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				rootStab(target)
+				icon_state = icon_aggro
+			if(2)
+				thornBarrier(target)
+			if(3)
+				rootBarrage(target) //if at 4 (normal attacks) will simply continue
 		return
 
 	if((stab_cooldown <= world.time) && prob(50))

@@ -41,14 +41,15 @@
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
 	force = 22
+	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 0 SECONDS //No ranged parry
-	block_duration = 0.5 SECONDS
+	reductions = list(10, 30, 20, 0) // 60
+	projectile_block_duration = 0 SECONDS //No ranged parry
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
 	block_message = "You attempt to parry the attack!"
@@ -111,8 +112,13 @@
 		break
 	force = 20 + fortitude_mod + extra_mod
 	if(extra_mod > 0)
+		var/resistance = target.run_armor_check(null, damtype)
 		icon_state = "eyeball2"				// Cool sprite
-		if(target.run_armor_check(null, BLACK_DAMAGE) <= 0) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] <= 0)
+				resistance = 100
+		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
 			force *= 0.1
 			damtype = BRUTE
 	else
@@ -306,7 +312,7 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 5))
+	if((get_dist(user, target_turf) < 2) || !(target_turf in view(5, user)))
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -317,8 +323,7 @@
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 0))
 		new /obj/effect/temp_visual/smash1(T)
-		for(var/mob/living/L in T.contents)
-			L.apply_damage(ranged_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 
@@ -409,13 +414,11 @@
 	var/turf/T = get_turf(src)
 	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
-	for(var/mob/living/L in T)
-		if(creator.faction_check_mob(L))
-			continue
+
+	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
 		if(creator)
 			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
-		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
-		L.apply_damage(resonance_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()
@@ -423,3 +426,145 @@
 
 #undef LANTERN_MODE_REMOTE
 #undef LANTERN_MODE_AUTO
+
+/obj/item/ego_weapon/sloshing
+	name = "sloshing"
+	desc = "It hits just right! Let's help ourselves to some wine when we come back!"
+	icon_state = "sloshing"
+	force = 38
+	attack_speed = 2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	hitsound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
+	attack_verb_continuous = list("smacks", "strikes", "beats")
+	attack_verb_simple = list("smack", "strike", "beat")
+
+/obj/item/ego_weapon/red_sheet
+	name = "red sheet"
+	desc = "A bo staff covered in talismans. Despite being tightly glued to the weapon, they flutter about as you strike."
+	special = "Attacking an enemy multiple times will attach a talisman to them, raising their BLACK vulnerability."
+	icon_state = "red_sheet"
+	force = 22
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	hitsound = 'sound/abnormalities/nocry/ego_redsheet.ogg'
+	var/hit_count = 0
+
+/obj/item/ego_weapon/red_sheet/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(isliving(target))
+		++hit_count
+		if(hit_count >= 4)
+			var/mob/living/simple_animal/M = target
+			if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_black))
+				playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
+				to_chat(user, "A talisman from [src] sticks onto [target]!")
+				new /obj/effect/temp_visual/talisman(get_turf(M))
+				M.apply_status_effect(/datum/status_effect/rend_black)
+				hit_count = 0
+
+/obj/item/ego_weapon/shield/capote
+	name = "capote"
+	desc = "Charge me with all your strength! Your horns cannot pierce my soul!"//yes this is a SMT quote
+	icon_state = "capote"
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "capote"
+	force = 22
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	reductions = list(20, 20, 20, 0)
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/fixer/generic/dodge.ogg'
+	block_message = "You attempt to dodge the attack!"
+	hit_message = "avoids a direct hit!"
+	block_cooldown_message = "You catch your breath."
+
+/obj/item/ego_weapon/mini/fourleaf_clover
+	name = "four-leaf clover"
+	desc = "A weapon fit for those that would backstab someone after gaining their trust."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	icon_state = "fourleaf_clover"
+	force = 12
+	attack_speed = 0.5
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
+	var/poise = 0
+
+/obj/item/ego_weapon/mini/fourleaf_clover/examine(mob/user)
+	. = ..()
+	. += "Current Poise: [poise]/20."
+
+/obj/item/ego_weapon/mini/fourleaf_clover/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	poise+=1
+	if(poise>= 20)
+		poise = 20
+
+	//Crit itself.
+	if(prob(poise*2))
+		force*=3
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		poise = 0
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/zauberhorn
+	name = "zauberhorn"
+	desc = "Falada, Falada, thou art dead, and all the joy in my life has fled."
+	special = "This E.G.O. functions as both a gun and a melee weapon."
+	icon_state = "zauberhorn"
+	force = 10
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_speed = 0.5
+	attack_verb_continuous = list("cuts", "slices")
+	attack_verb_simple = list("cuts", "slices")
+	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
+
+	var/gun_cooldown
+	var/blademark_cooldown
+	var/gunmark_cooldown
+	var/gun_cooldown_time = 1.2 SECONDS
+
+/obj/item/ego_weapon/zauberhorn/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	..()
+
+/obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/zauberhorn/G = new /obj/projectile/ego_bullet/zauberhorn(proj_turf)
+		G.fired_from = src //for signal check
+		playsound(user, 'sound/abnormalities/pagoda/throw.ogg', 100, TRUE) //yes im reusing a sound bite me
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+
+/obj/item/ego_weapon/zauberhorn/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	return TRUE
+
+/obj/projectile/ego_bullet/zauberhorn
+	name = "flying horseshoe"
+	icon_state = "horseshoe"
+	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
+	damage = 20
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE

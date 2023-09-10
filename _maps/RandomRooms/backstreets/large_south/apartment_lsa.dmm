@@ -1,0 +1,577 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bS" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"cf" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"cw" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	dir = 1;
+	name = "Prost"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cX" = (
+/obj/structure/table/greyscale,
+/obj/item/kitchen/knife/butcher,
+/obj/item/ego_weapon/city/rats/knife,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"dh" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"dR" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ef" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ga" = (
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/obj/structure/curtain/cloth{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"gZ" = (
+/obj/structure/table/wood,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"hx" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"hE" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"hI" = (
+/obj/structure/table/greyscale,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"hQ" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/sandal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iL" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iM" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"jR" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"jU" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"kw" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"lJ" = (
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/obj/structure/curtain/cloth{
+	pixel_x = -32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"mN" = (
+/obj/structure/table/wood,
+/obj/item/trash/candle,
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ni" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/item/stack/sheet/mineral/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"qG" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/costume,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"sI" = (
+/obj/machinery/computer/security/wooden_tv{
+	desc = "An old television that does not seem to work as intended.";
+	name = "television"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"uU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"zv" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"zT" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/food/meat/slab/xeno{
+	desc = "You wouldn't.";
+	name = "disgusting looking meat"
+	},
+/obj/item/food/meat/slab/xeno{
+	desc = "You wouldn't.";
+	name = "disgusting looking meat"
+	},
+/obj/item/food/meat/slab/xeno{
+	desc = "You wouldn't.";
+	name = "disgusting looking meat"
+	},
+/obj/item/food/meat/slab/xeno{
+	desc = "You wouldn't.";
+	name = "disgusting looking meat"
+	},
+/obj/item/food/meat/slab/xeno{
+	desc = "You wouldn't.";
+	name = "disgusting looking meat"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Ak" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ar" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	dir = 1;
+	name = "Lex"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"BI" = (
+/obj/structure/chair/sofa/corp{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	dir = 1;
+	name = "Willy"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Cl" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Cx" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"CK" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"CM" = (
+/obj/structure/table/greyscale,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/machinery/light/broken,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Fn" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ir" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 3
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"IG" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/cane,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"KS" = (
+/obj/structure/bed/maint,
+/obj/item/bedsheet/dorms,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/mouse,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Le" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Lg" = (
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/armory_contraband,
+/obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/swagshoes,
+/obj/item/clothing/under/costume/swagoutfit,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NE" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ov" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maint_drugs,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"PM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"PN" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Qb" = (
+/obj/item/storage/secure/safe{
+	pixel_x = 30
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"QG" = (
+/obj/structure/curtain/cloth{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Rl" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/maint_drugs,
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Rp" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"SZ" = (
+/obj/structure/closet/crate/wooden,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Tx" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"Vw" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/prison_contraband,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Wm" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/effect/spawner/lootdrop/minor/bowler_or_that,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"WL" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Xw" = (
+/obj/structure/dresser,
+/obj/item/reagent_containers/syringe/contraband/space_drugs{
+	pixel_y = 13
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Yf" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"YJ" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Zp" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/structure/curtain/cloth{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+zv
+zv
+zv
+CK
+CK
+zv
+zv
+zv
+"}
+(2,1,1) = {"
+CK
+Ir
+uU
+ga
+lJ
+Cx
+hQ
+zv
+"}
+(3,1,1) = {"
+dh
+bS
+YJ
+jR
+hx
+Cx
+Wm
+zv
+"}
+(4,1,1) = {"
+CK
+Zp
+Le
+gZ
+iM
+Yf
+IG
+zv
+"}
+(5,1,1) = {"
+zv
+zv
+zv
+zv
+zv
+ni
+zv
+zv
+"}
+(6,1,1) = {"
+zv
+ef
+kw
+iL
+Cx
+Yf
+Cx
+zv
+"}
+(7,1,1) = {"
+CK
+Rl
+NE
+Ar
+Fn
+Cl
+cX
+zv
+"}
+(8,1,1) = {"
+CK
+sI
+Cx
+BI
+Cx
+Tx
+CM
+zv
+"}
+(9,1,1) = {"
+CK
+mN
+jU
+cw
+Cx
+Tx
+hI
+zv
+"}
+(10,1,1) = {"
+CK
+dR
+PN
+Cx
+NE
+cn
+zT
+zv
+"}
+(11,1,1) = {"
+zv
+WL
+Cx
+Cx
+Cx
+Cx
+PM
+zv
+"}
+(12,1,1) = {"
+zv
+zv
+hE
+zv
+zv
+zv
+zv
+zv
+"}
+(13,1,1) = {"
+zv
+Xw
+Cx
+SZ
+qG
+Ov
+Vw
+zv
+"}
+(14,1,1) = {"
+zv
+KS
+Cx
+Cx
+Cx
+Rp
+cf
+zv
+"}
+(15,1,1) = {"
+zv
+Lg
+PM
+QG
+QG
+Qb
+Ak
+zv
+"}
+(16,1,1) = {"
+zv
+zv
+zv
+CK
+CK
+zv
+zv
+zv
+"}

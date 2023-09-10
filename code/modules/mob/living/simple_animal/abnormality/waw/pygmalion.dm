@@ -23,7 +23,6 @@
 
 	del_on_death = FALSE
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 
@@ -49,6 +48,14 @@
 	var/protect_cooldown
 	var/retaliation = 10
 	var/PRUDENCE_CAP = 60
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAttack(atom/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		if (human_target.sanity_lost)
+			return FALSE
+
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -127,8 +134,12 @@
 	UnregisterSignal(sculptor, COMSIG_HUMAN_INSANE)
 	remove_status_effect(STATUS_EFFECT_SCULPTOR)
 	threat_level = WAW_LEVEL
-	sculptor = null
+	if (sculptor)
+		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
+	if (missing_prudence)
+		restorePrudence()
 	faction = list()
+	sculptor = null
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
@@ -140,7 +151,7 @@
 		var/user_attribute_level = max(1, user_attribute.level)
 		if (user_attribute_level > PRUDENCE_CAP)
 			missing_prudence = user_attribute_level - PRUDENCE_CAP
-			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
+			src.sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
 			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
 
 	if (!IsContained() && protect_cooldown < world.time)
@@ -155,7 +166,10 @@
 		restorePrudence()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/restorePrudence()
-	sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence)
+	var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
+	var/user_attribute_level = max(1, user_attribute.level)
+	if (user_attribute_level < missing_prudence + PRUDENCE_CAP)
+		sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, missing_prudence + PRUDENCE_CAP - user_attribute_level)
 	missing_prudence = null
 	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
 

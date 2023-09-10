@@ -136,6 +136,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
 	..()
 	ability_cooldown = world.time + 4 SECONDS
+	if(CheckCombat())
+		return
 	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
 
 // Projectile code

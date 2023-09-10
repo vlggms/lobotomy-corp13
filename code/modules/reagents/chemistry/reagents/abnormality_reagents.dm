@@ -194,5 +194,6 @@
 	new /obj/item/paper/guides/jobs/abnochem(src)
 	new /obj/item/paper/guides/jobs/abnochem_effects_generic(src)
 	new /obj/item/paper/guides/jobs/abnochem_effects_zayin(src)
+	new /obj/item/paper/guides/jobs/abnochem_effects_he(src)
 	new /obj/item/storage/box/beakers(src)
 	new /obj/item/storage/box/beakers(src)

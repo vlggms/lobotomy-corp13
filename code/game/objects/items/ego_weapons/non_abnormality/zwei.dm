@@ -1,7 +1,6 @@
 //This one will get messy.
 //Anything Zwei related goes here. That's Zwei, Streetlight and anything else under Zwei.
 //Base Zwei is Grade 6, Vet is Grade 5.
-//Fixer garbo is Grade 7.
 
 /obj/item/ego_weapon/city/zweihander
 	name = "zweihander"
@@ -94,6 +93,14 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+//Mini Zwei
+/obj/item/ego_weapon/city/zweihander/knife
+	name = "einhander"
+	desc = "A shortsword used by some zwei personnel."
+	icon_state = "zwei_mini"
+	force = 32
+	attack_speed = 1
 
 //Noreqs for the ERT
 /obj/item/ego_weapon/city/zweihander/noreq

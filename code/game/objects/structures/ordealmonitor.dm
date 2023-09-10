@@ -1,9 +1,10 @@
 /obj/structure/sign/ordealmonitor
 	name = "ordeal monitor"
-	desc = "A screen with information regarding qliphoth meltdowns and ordeals that will happen soon."
+	desc = "A screen with information regarding Qliphoth Meltdowns and Ordeals that will happen soon."
 	icon = 'icons/obj/ordeal_monitor.dmi'
 	icon_state = "ordeal_monitor"
 	buildable_sign = FALSE
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/structure/sign/ordealmonitor/Initialize()
 	. = ..()
@@ -15,9 +16,9 @@
 
 /obj/structure/sign/ordealmonitor/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Current qliphoth meter: [SSlobotomy_corp.qliphoth_meter] / [SSlobotomy_corp.qliphoth_max].</span>"
+	. += "<span class='notice'>Current Qliphoth Meter: [SSlobotomy_corp.qliphoth_meter] / [SSlobotomy_corp.qliphoth_max].</span>"
 	if(SSlobotomy_corp.next_ordeal && (SSlobotomy_corp.qliphoth_state + 1 >= SSlobotomy_corp.next_ordeal_time))
-		. += "<span class='warning'>[SSlobotomy_corp.next_ordeal.name] will trigger on the next meltdown.</span>"
+		. += "<span class='warning'>[SSlobotomy_corp.next_ordeal.name] will be summoned for the next Qliphoth Meltdown.</span>"
 
 /obj/structure/sign/ordealmonitor/update_overlays()
 	. = ..()

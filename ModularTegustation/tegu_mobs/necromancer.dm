@@ -1,11 +1,12 @@
 /mob/living/simple_animal/hostile/megafauna/necromancer
 	name = "necromancer"
 	desc = "A powerful mage in a dark armor. Legends say that he has sold his and countless souls of other mages for this power."
-	health = 5500
-	maxHealth = 5500
+	health = 3500
+	maxHealth = 3500
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 55
 	melee_damage_upper = 55
+	rapid_melee = 2
 	icon_state = "necromancer"
 	icon_living = "necromancer"
 	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
@@ -84,11 +85,11 @@
 	var/storm_cooldown
 	var/storm_cooldown_time = 10 SECONDS
 	var/storm_amount = 200 // How many times the lightning strikes.
+	// Damage vars
+	var/lightning_damage = 120
 
-/obj/item/necromancer_sword/mob // OP pls nerf
-	force = 85
-	wound_bonus = -200
-	bare_wound_bonus = -200
+/obj/item/necromancer_sword/mob
+	force = 45
 
 /mob/living/simple_animal/hostile/megafauna/necromancer/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
 	if(!used_item && !isturf(A) && has_sword)
@@ -293,7 +294,7 @@
 	for(var/mob/living/L in T)
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(lightning_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.electrocution_animation(4)
@@ -327,7 +328,7 @@
 			if(isliving(AM))
 				var/mob/living/M = AM
 				if(!faction_check_mob(M))
-					M.Paralyze(5)
+					M.Knockdown(1)
 					M.apply_damage(50, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 					to_chat(M, "<span class='userdanger'>You're slammed into the floor by [src]!</span>")
 		else
@@ -337,7 +338,7 @@
 				if(!faction_check_mob(M))
 					M.apply_damage(25, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 					to_chat(M, "<span class='userdanger'>You're thrown back by [src]!</span>")
-			AM.safe_throw_at(throwtarget, ((clamp((5 - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, 5))), 1,src, force = MOVE_FORCE_VERY_STRONG)
+			AM.safe_throw_at(throwtarget, ((clamp((5 - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, 5))), 1, src, force = MOVE_FORCE_VERY_STRONG, gentle = TRUE)
 
 
 /* Stage two stuff */
@@ -523,7 +524,7 @@
 /obj/item/clothing/head/wizard/magus/necromancer
 	name = "\improper Necromancer helm"
 	desc = "A helmet that was once worn by a powerful mage that delved way too far into the dark magic techniques."
-	armor = list(MELEE = 70, BULLET = 50, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 100, RAD = 70, FIRE = 100, ACID = 100,  WOUND = 30)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 100)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
@@ -559,7 +560,7 @@
 	desc = "A set of dark armored robes that seem to be emitting the power of its previous owner."
 	icon_state = "magusdark"
 	inhand_icon_state = "magusdark"
-	armor = list(MELEE = 70, BULLET = 50, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 100, RAD = 70, FIRE = 100, ACID = 100,  WOUND = 30)
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 100)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
@@ -594,7 +595,7 @@
 	icon_state = "hfrequency0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 48
+	force = 66
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "slices", "dices")

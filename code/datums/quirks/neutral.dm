@@ -3,10 +3,10 @@
 
 /datum/quirk/nerd
 	name = "Nerd"
-	desc = "You take 5% less white damage, but take 10% more red damage in return. You gained this superpower by spending all your free time reading anime comics instead of training to not be killed."
+	desc = "You take 5% less WHITE damage, but take 10% more RED damage. You spend all your free time playing niche video games and reading Korean light novels."
 	value = 0
-	gain_text = "<span class='notice'>You feel nervous about leaving your anime books home.</span>"
-	medical_record_text = "This patient is a NEEEEEEEEEEEEEEEEERD, feel free to take a tooth or two outta their jaw if they annoy you. - Dr. Bright"
+	gain_text = "<span class='notice'>You feel nervous about touching grass.</span>"
+	medical_record_text = "Patient displays severe socially avoidant behaviours."
 
 /datum/quirk/nerd/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -15,16 +15,106 @@
 
 /datum/quirk/brawler
 	name = "Brawler"
-	desc = "You take 5% less red damage, but take 10% more white damage in return. You never went to school but instead chose to train to be the best fixer in the future that you could be."
+	desc = "You take 5% less RED damage, but take 10% more WHITE damage. Instead of getting an education, you chose to train and become the best Fixer in the City."
 	value = 0
-	gain_text = "<span class='notice'>You feel ready to chew ass and kick bubblegum.</span>"
-	medical_record_text = "This patient is a little bit tougher physically than average people."
+	gain_text = "<span class='notice'>Time to chew ass and kick bubblegum.</span>"
+	medical_record_text = "Patient is more physically fit than the average person."
 
 /datum/quirk/brawler/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.physiology.red_mod -= 0.05
 	H.physiology.white_mod += 0.1
 
+/datum/quirk/family_heirloom // re-naming the quirk in the code causes a lot of problems, so leaving it as-is
+	name = "Plushie Lover"
+	desc = "You love plushies so much that you take them to work with you. You start with one plushie that changes based on your job."
+	value = 0
+	var/obj/item/heirloom
+	var/where
+	medical_record_text = "Patient is highly dependent on a plushie for mental stability."
+
+/datum/quirk/family_heirloom/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/heirloom_type
+	switch(quirk_holder.mind.assigned_role)
+		// Command
+		if("Manager")
+			heirloom_type = pick(/obj/item/toy/plush/angela)
+		if("Extraction Officer")
+			heirloom_type = pick(/obj/item/toy/plush/binah)
+		if("Records Officer")
+			heirloom_type = pick(/obj/item/toy/plush/hokma)
+		if("Agent Captain")
+			heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt)
+		if("Sephirah") //Today im NOT giving a GUN to HOD
+			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
+		// Common folk
+		if("Agent")
+			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf)
+		if("Agent Intern")
+			heirloom_type = pick(/obj/item/toy/plush/scorched)
+		if("Clerk")
+			heirloom_type = pick(/obj/item/toy/plush/moth)
+		// Ruins test
+		if("Rabbit Team Leader")
+			heirloom_type = pick(/obj/item/toy/plush/myo)
+		if("Rabbit Team")
+			heirloom_type = pick(/obj/item/toy/plush/rabbit)
+	if(!heirloom_type) // non Lobotomy corp gamemode
+		heirloom_type = pick(
+		/obj/item/toy/plush/carpplushie,
+		/obj/item/toy/plush/lizardplushie,
+		/obj/item/toy/plush/snakeplushie,
+		/obj/item/toy/plush/nukeplushie,
+		/obj/item/toy/plush/slimeplushie,
+		/obj/item/toy/plush/beeplushie,
+		/obj/item/toy/plush/moth,
+		/obj/item/toy/plush/rabbit, //some Lobotomy Corp plushes
+		/obj/item/toy/plush/bigbird,
+		/obj/item/toy/plush/big_bad_wolf,
+		/obj/item/toy/plush/fumo)
+	heirloom = new heirloom_type(get_turf(quirk_holder))
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
+
+/datum/quirk/family_heirloom/post_add()
+	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
+
+	var/list/names = splittext(quirk_holder.real_name, " ")
+	var/family_name = names[names.len]
+
+	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
+
+/datum/quirk/artist
+	name = "Artist"
+	desc = "You are an artist who constantly seek out inspiration in your enviroment. You always carry some art supplies on you."
+	value = 0
+	medical_record_text = "Patient demonstrates violent tendencies when painting supplies are removed from their possession."
+
+/datum/quirk/artist/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
+	H.put_in_hands(art)
+
+/datum/quirk/lipstick
+	name = "Glossy"
+	desc = "You always carry a stick of lipstick with you. Wouldn't want to get caught not looking beautiful."
+	value = 0
+	medical_record_text = "The patient always has has always shown up to their appointments wearing lipstick"
+
+/datum/quirk/lipstick/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/lipstick/random/lipstick = new(get_turf(H))
+	var/list/slots = list(
+		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
+		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
+		LOCATION_HANDS = ITEM_SLOT_HANDS
+	)
+	H.equip_in_one_of_slots(lipstick, slots, FALSE)
 // Special quirks end
 
 /datum/quirk/nearsighted //t. errorage
@@ -52,72 +142,6 @@
 	gain_text = "<span class='danger'>You feel like a pushover.</span>"
 	lose_text = "<span class='notice'>You feel like standing up for yourself.</span>"
 	medical_record_text = "Patient presents a notably unassertive personality and is easy to manipulate."
-
-/datum/quirk/family_heirloom
-	name = "Family Heirloom"
-	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
-	value = 0
-	var/obj/item/heirloom
-	var/where
-	medical_record_text = "This patient takes their family heirloom everywhere."
-
-/datum/quirk/family_heirloom/on_spawn()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/obj/item/heirloom_type
-
-	if(ismoth(H) && prob(50))
-		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
-	else
-		switch(quirk_holder.mind.assigned_role)
-			//Command
-			if("Manager")
-				heirloom_type = pick(/obj/item/toy/plush/angela)
-			if("Extraction Officer")
-				heirloom_type = pick(/obj/item/toy/plush/binah)
-			if("Records Officer")
-				heirloom_type = pick(/obj/item/toy/plush/hokma)
-			if("Agent Captain")
-				heirloom_type = pick(/obj/item/reagent_containers/food/drinks/soda_cans/outskirts_wind)
-			//Common folk
-			if("Veteran Agent")
-				heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt, /obj/item/toy/plush/moth)
-			if("Senior Agent")
-				heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
-			if("Agent")
-				heirloom_type = pick(/obj/item/clothing/accessory/armband/lobotomy, /obj/item/clothing/accessory/armband/lobotomy/training, /obj/item/clothing/accessory/armband/lobotomy/safety, /obj/item/clothing/accessory/armband/lobotomy/command, /obj/item/clothing/accessory/armband/lobotomy/info, /obj/item/clothing/accessory/armband/lobotomy/discipline)
-			if("Agent Intern")
-				heirloom_type = pick(/obj/item/paper/guides/jobs/zayin/guide)
-			if("Clerk")
-				heirloom_type = pick(/obj/item/toy/crayon/spraycan/infinite)
-			//Technically un-obtainable, but im adding them anyway because why not.
-			if("Rabbit Team Leader")
-				heirloom_type = pick(/obj/item/toy/plush/myo)
-			if("Rabbit Team")
-				heirloom_type = pick(/obj/item/toy/plush/rabbit)
-			//Today im giving a GUN to HOD, lets see what happens :)
-			if("Sephirah")
-				heirloom_type = pick(/obj/item/gun/ego_gun/clerk)
-
-	if(!heirloom_type)
-		heirloom_type = pick(
-		/obj/item/toy/cards/deck,
-		/obj/item/lighter,
-		/obj/item/dice/d20)
-	heirloom = new heirloom_type(get_turf(quirk_holder))
-	var/list/slots = list(
-		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
-		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
-		LOCATION_HANDS = ITEM_SLOT_HANDS
-	)
-	where = H.equip_in_one_of_slots(heirloom, slots, FALSE) || "at your feet"
-
-/datum/quirk/family_heirloom/post_add()
-	to_chat(quirk_holder, "<span class='boldnotice'>There is a precious family [heirloom.name] [where], passed down from generation to generation. Keep it safe!</span>")
-
-	var/list/names = splittext(quirk_holder.real_name, " ")
-	var/family_name = names[names.len]
-
-	heirloom.AddComponent(/datum/component/heirloom, quirk_holder.mind, family_name)
 
 /datum/quirk/empath
 	name = "Empath"
@@ -147,22 +171,6 @@
 	lose_text = "<span class='notice'>You could use a big hug.</span>"
 	medical_record_text = "Patient has disdain for being touched. Potentially has undiagnosed haphephobia."
 
-/datum/quirk/bad_touch/add()
-	RegisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT), .proc/uncomfortable_touch)
-
-/datum/quirk/bad_touch/remove()
-	UnregisterSignal(quirk_holder, list(COMSIG_LIVING_GET_PULLED, COMSIG_CARBON_HUGGED, COMSIG_CARBON_HEADPAT))
-
-/datum/quirk/bad_touch/proc/uncomfortable_touch()
-	SIGNAL_HANDLER
-
-	new /obj/effect/temp_visual/annoyed(quirk_holder.loc)
-	var/datum/component/mood/mood = quirk_holder.GetComponent(/datum/component/mood)
-	if(mood.sanity <= SANITY_NEUTRAL)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/very_bad_touch)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_touch", /datum/mood_event/bad_touch)
-
 /datum/quirk/friendly
 	name = "Friendly"
 	desc = "You give the best hugs, even if they dont matter in this bloodshed enviroment."
@@ -172,20 +180,6 @@
 	lose_text = "<span class='danger'>You no longer feel compelled to hug others.</span>"
 	medical_record_text = "Patient demonstrates low-inhibitions for physical contact and well-developed arms. Requesting another doctor take over this case."
 
-/datum/quirk/badback
-	name = "Bad Back"
-	desc = "Thanks to your poor posture, backpacks and other bags never sit right on your back. More evently weighted objects are fine, though."
-	value = 0
-	gain_text = "<span class='danger'>Your back REALLY hurts!</span>"
-	lose_text = "<span class='notice'>Your back feels better.</span>"
-	medical_record_text = "Patient scans indicate severe and chronic back pain."
-
-/datum/quirk/badback/on_process()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H.back && istype(H.back, /obj/item/storage/backpack))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "back_pain", /datum/mood_event/back_pain)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "back_pain")
 
 /datum/quirk/extrovert
 	name = "Extrovert"
@@ -409,15 +403,11 @@
 	old_hair = H.hairstyle
 	H.hairstyle = "Bald"
 	H.update_hair()
-	RegisterSignal(H, COMSIG_CARBON_EQUIP_HAT, .proc/equip_hat)
-	RegisterSignal(H, COMSIG_CARBON_UNEQUIP_HAT, .proc/unequip_hat)
 
 /datum/quirk/bald/remove()
 	var/mob/living/carbon/human/H = quirk_holder
 	H.hairstyle = old_hair
 	H.update_hair()
-	UnregisterSignal(H, list(COMSIG_CARBON_EQUIP_HAT, COMSIG_CARBON_UNEQUIP_HAT))
-	SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day")
 
 /datum/quirk/bald/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -433,21 +423,6 @@
 		"hands" = ITEM_SLOT_HANDS,
 	)
 	H.equip_in_one_of_slots(W, slots , qdel_on_fail = TRUE)
-
-///Checks if the headgear equipped is a wig and sets the mood event accordingly
-/datum/quirk/bald/proc/equip_hat(mob/user, obj/item/hat)
-	SIGNAL_HANDLER
-
-	if(istype(hat, /obj/item/clothing/head/wig))
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/confident_mane) //Our head is covered, but also by a wig so we're happy.
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "bad_hair_day") //Our head is covered
-
-///Applies a bad moodlet for having an uncovered head
-/datum/quirk/bald/proc/unequip_hat(mob/user, obj/item/clothing, force, newloc, no_move, invdrop, silent)
-	SIGNAL_HANDLER
-
-	SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "bad_hair_day", /datum/mood_event/bald)
 
 
 /datum/quirk/tongue_tied

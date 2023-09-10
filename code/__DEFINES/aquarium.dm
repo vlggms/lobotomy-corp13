@@ -14,7 +14,9 @@
 #define FISH_DEAD "dead"
 
 #define MIN_AQUARIUM_TEMP T0C
-#define MAX_AQUARIUM_TEMP T0C + 100
+// #define MAX_AQUARIUM_TEMP (T0C + 100) // LC13 EDIT: old line
+#define MAX_AQUARIUM_TEMP (T0C + 100) // LC13 EDIT: new line, MODULE ID: FISHING
+#define DEFAULT_AQUARIUM_TEMP 300 // LC13 addition: MODULE ID: FISHING
 
 #define FISH_RARITY_BASIC 1000
 #define FISH_RARITY_RARE 400
@@ -23,5 +25,8 @@
 
 #define AQUARIUM_FLUID_FRESHWATER "Freshwater"
 #define AQUARIUM_FLUID_SALTWATER "Saltwater"
-#define AQUARIUM_FLUID_SULPHWATEVER "Sulphuric Water"
+#define AQUARIUM_FLUID_SULPHWATEVER "Sulfuric Water"
 #define AQUARIUM_FLUID_AIR "Air"
+#define AQUARIUM_FLUID_ANADROMOUS "Adaptive to both Freshwater and Saltwater" // LC13 addition: MODULE ID: FISHING
+
+#define AQUARIUM_COMPANY "Aquatech Ltd." // LC13 addition: MODULE ID: FISHING

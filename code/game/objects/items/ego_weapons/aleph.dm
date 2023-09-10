@@ -29,7 +29,7 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
+	if((get_dist(user, target_turf) < 2) || !(target_turf in view(10, user)))
 		return
 	..()
 	var/mob/living/carbon/human/H = user
@@ -38,8 +38,7 @@
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-		for(var/mob/living/L in T.contents)
-			L.apply_damage(ranged_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, PALE_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				damage_dealt += ranged_damage
 	if(damage_dealt > 0)
@@ -95,12 +94,7 @@
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
-			for(var/mob/living/L in T.contents)
-				if(L == user)
-					continue
-				if(L.stat >= DEAD)
-					continue
-				L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			user.HurtInTurf(T, list(), 50, PALE_DAMAGE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -249,12 +243,16 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/goldrush_damage = 140
+	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
+		return
+	if(!finisher_on)
+		..()
 		return
 	if(do_after(user, 5, target))
 
@@ -263,7 +261,7 @@
 		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
 		goldrush_damage = force
 		//I gotta regrab  justice here
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		goldrush_damage *= justicemod
 
@@ -272,7 +270,7 @@
 
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
-		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
+		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback. You are punching someone with a glove of GOLD
@@ -280,6 +278,16 @@
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
+
+/obj/item/ego_weapon/goldrush/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/diamond))
+		return
+	new /obj/item/ego_weapon/goldrush/nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
 
 /obj/item/ego_weapon/smile
 	name = "smile"
@@ -427,7 +435,7 @@
 	desc = "The course of true love never did run smooth."
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
-	force = 50
+	force = 40
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_speed = 0.8
@@ -455,27 +463,9 @@
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	..()
 
-/obj/item/ego_weapon/soulmate/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
-	if(!CanUseEgo(user))
-		return
-	if(!proximity_flag && gun_cooldown <= world.time)
-		var/turf/proj_turf = user.loc
-		if(!isturf(proj_turf))
-			return
-		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
-		if(gunbuff)
-			G.damage = 80
-			G.icon_state = "red_laser"
-			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
-		else
-			G.fired_from = src //for signal check
-			playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
-		G.firer = user
-		G.preparePixelProjectile(target, user, clickparams)
-		G.fire()
-		gun_cooldown = world.time + gun_cooldown_time
-		return
-	if(proximity_flag && isliving(target) && !(gunbuff))
+/obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
+	..()
+	if(isliving(target) && !(gunbuff))
 		if(target in gunmark_targets)
 			gunmark_targets = list()
 			bladebuff = TRUE
@@ -486,7 +476,28 @@
 			addtimer(CALLBACK(src, .proc/BladeRevert), 50)
 			return
 		if(!(bladebuff) && blademark_cooldown <= world.time)
-			blademark_targets |= target
+			blademark_targets += target
+
+/obj/item/ego_weapon/soulmate/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
+		if(gunbuff)
+			G.damage = 90
+			G.icon_state = "red_laser"
+			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
+		else
+			G.fired_from = src //for signal check
+			playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+		return
 
 /obj/item/ego_weapon/soulmate/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -500,7 +511,7 @@
 			addtimer(CALLBACK(src, .proc/GunRevert), 80)
 			return TRUE
 		if(!(gunbuff) && gunmark_cooldown <= world.time)
-			gunmark_targets |= target
+			gunmark_targets += target
 	return TRUE
 
 /obj/item/ego_weapon/soulmate/proc/BladeRevert()
@@ -522,7 +533,6 @@
 	damage_type = RED_DAMAGE
 	flag = RED_DAMAGE
 	icon_state = "ice_1"
-
 
 /obj/item/ego_weapon/space
 	name = "out of space"
@@ -583,7 +593,7 @@
 
 		for(var/mob/living/L in livinginrange(1, user))
 			var/aoe = force
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			if(L == user || ishuman(L))
@@ -596,21 +606,516 @@
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
-/obj/item/ego_weapon/nihil
-	name = "nihil"
-	desc = "I don’t know what awaits me ahead. Could it be a cliff, or a ditch?"
-	special = "This weapon can absorb certain other weapons to gain new abilities. Or can it? Who knows, this is really just a placeholder."
-	icon_state = "nihil"
+/obj/item/ego_weapon/seasons
+	name = "Seasons Greetings"
+	desc = "If you are reading this let a developer know."
+	special = "This E.G.O. will transform to match the seasons."
+	icon_state = "spring"
 	force = 80
-	attack_speed = 1
-	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("slams", "attacks")
-	attack_verb_simple = list("slam", "attack")
-	hitsound = 'sound/weapons/ego/twilight.ogg'
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs")
+	attack_verb_simple = list("poke", "jab")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	var/current_season = "winter"
+	var/mob/current_holder
+	var/list/season_list = list(
+		"spring" = list(80, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
+		"A gigantic, thorny bouquet of roses."),
+		"summer" = list(120, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
+		"Looks some sort of axe or bladed mace. An unbearable amount of heat comes off of it."),
+		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
+		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
+		"winter" = list(60, 1.2, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
+		"This odd weapon is akin to the biting cold of the north.")
+		)
+	var/transforming = TRUE
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/seasons/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	Transform()
+
+/obj/item/ego_weapon/seasons/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/seasons/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/seasons/attack_self(mob/user)
+	..()
+	if(transforming)
+		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		transforming = FALSE
+		special = "This E.G.O. will not transform to match the seasons."
+		return
+	if(!transforming)
+		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		transforming = TRUE
+		special = "This E.G.O. will transform to match the seasons."
+		return
+
+/obj/item/ego_weapon/seasons/proc/Transform()
+	if(!transforming)
+		return
+	current_season = SSlobotomy_events.current_season
+	icon_state = current_season
+	if(current_season == "summer")
+		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+		inhand_x_dimension = 64
+		inhand_y_dimension = 64
+	else
+		lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+		inhand_x_dimension = 32
+		inhand_y_dimension = 32
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		current_holder.update_inv_hands()
+		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
+	force = season_list[current_season][1]
+	attack_speed = season_list[current_season][2]
+	reach = season_list[current_season][3]
+	attack_verb_continuous = season_list[current_season][4]
+	attack_verb_simple = season_list[current_season][5]
+	hitsound = season_list[current_season][6]
+	name = season_list[current_season][7]
+	damtype = season_list[current_season][8]
+	armortype = season_list[current_season][9]
+	desc = season_list[current_season][10]
+
+/obj/item/ego_weapon/seasons/attack(mob/living/target, mob/living/user) //other forms could probably use something. Probably.
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(current_season == "summer")
+		var/atom/throw_target = get_edge_target_turf(target, user.dir)
+		if(!target.anchored)
+			var/whack_speed = (prob(60) ? 1 : 4)
+			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/seasons/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/shield/distortion
+	name = "distortion"
+	desc = "The fragile human mind is fated to twist and distort."
+	special = "This weapon requires two hands to use and always blocks ranged attacks."
+	icon_state = "distortion"
+	force = 180 //Just make sure you don't hit anyone!
+	attack_speed = 3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
+	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
+	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
+	reductions = list(60, 60, 60, 60)
+	projectile_block_duration = 3 SECONDS
+	block_duration = 4.5 SECONDS
+	block_cooldown = 2.5 SECONDS
+	block_sound = 'sound/weapons/ego/heavy_guard.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
 							)
+
+	attacking = TRUE //ALWAYS blocking ranged attacks
+
+/obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 4 : 8)
+		target.throw_at(throw_target, rand(3, 4), whack_speed, user)
+
+/obj/item/ego_weapon/shield/distortion/CanUseEgo(mob/living/user)
+	. = ..()
+	if(user.get_inactive_held_item())
+		to_chat(user, "<span class='notice'>You cannot use [src] with only one hand!</span>")
+		return FALSE
+
+/obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	if(src != source.get_active_held_item() || !CanUseEgo(source))
+		DisableBlock(source)
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
+	if(!block)
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/shield/distortion/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	if(!CanUseEgo(owner)) //No blocking with one hand
+		return
+	..()
+
+/obj/item/ego_weapon/shield/distortion/DropStance() //ALWAYS blocking ranged attacks, NEVER drop your stance!
+	return
+
+/obj/item/ego_weapon/farmwatch
+	name = "farmwatch"
+	desc = "What use is technology that cannot change the world?"
+	special = "Activate this weapon in your hand to plant 4 trees of desire. Killing them with this weapon restores HP and sanity."
+	icon_state = "farmwatch"
+	force = 84
+	attack_speed = 1.3
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts", "reaps")
+	attack_verb_simple = list("slash", "slice", "rip", "cut", "reap")
+	hitsound = 'sound/weapons/ego/farmwatch.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ability_cooldown
+	var/ability_cooldown_time = 20 SECONDS
+
+/obj/item/ego_weapon/farmwatch/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(istype(target, /mob/living/simple_animal/hostile/farmwatch_plant))
+		if (force <= (initial(force) * 2))
+			force += 22//this is a bit over one fourth of 84. Keeps nice whole numbers on examine text
+		playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 200, 1)
+		user.adjustBruteLoss(-10)
+		user.adjustSanityLoss(-15)
+		to_chat(user, "<span class='notice'>You reap the fruits of your labor!</span>")
+		..()
+		return
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/farmwatch/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(ability_cooldown > world.time)
+		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		return FALSE
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE)
+	to_chat(user, "You cultivate seeds of desires.")
+	ability_cooldown = world.time + ability_cooldown_time
+	spawn_plant(user, EAST, NORTH)
+	spawn_plant(user, WEST, NORTH)
+	spawn_plant(user, EAST, SOUTH)
+	spawn_plant(user, WEST, SOUTH)
+	..()
+
+/obj/item/ego_weapon/farmwatch/proc/spawn_plant(mob/user, dir1, dir2)
+	var/turf/T = get_turf(user)
+	T = get_ranged_target_turf(T, dir1, 2)//spawns one spicebush plant 2 tiles away in each corner
+	T = get_ranged_target_turf(T, dir2, 2)
+	new /mob/living/simple_animal/hostile/farmwatch_plant(get_turf(T))//mob located at ability_types/realized.dm
+
+/obj/item/ego_weapon/spicebush//TODO: actually code this
+	name = "spicebush"
+	desc = "and the scent of the grave was in full bloom."
+	special = "Activate this weapon in your hand to plant 4 soon-to-bloom flowers. While fragile, they will restore the HP and sanity of nearby humans."
+	icon_state = "spicebush"
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "spicebush"
+	force = 70
+	reach = 2
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slashes", "slices", "pokes", "cuts", "stabs")
+	attack_verb_simple = list("slash", "slice", "poke", "cut", "stab")
+	hitsound = 'sound/weapons/ego/spicebush.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ability_cooldown
+	var/ability_cooldown_time = 30 SECONDS
+
+/obj/item/ego_weapon/spicebush/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(ability_cooldown > world.time)
+		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		return FALSE
+	if(do_after(user, 20))
+		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
+		to_chat(user, "You plant some flower buds.")
+		spawn_plant(user, EAST, NORTH)//spawns one spicebush plant 2 tiles away in each corner
+		spawn_plant(user, WEST, NORTH)
+		spawn_plant(user, EAST, SOUTH)
+		spawn_plant(user, WEST, SOUTH)
+	ability_cooldown = world.time + ability_cooldown_time
+	..()
+
+/obj/item/ego_weapon/spicebush/proc/spawn_plant(mob/user, dir1, dir2)
+	var/turf/T = get_turf(user)
+	T = get_ranged_target_turf(T, dir1, 2)
+	T = get_ranged_target_turf(T, dir2, 2)
+	new /mob/living/simple_animal/hostile/spicebush_plant(get_turf(T))//mob located at ability_types/realized.dm
+
+/obj/item/ego_weapon/spicebush/get_clamped_volume()
+	return 30
+
+/obj/item/ego_weapon/spicebush/fan
+	desc = "I will leave behind a morrow, strong and fertile like fallen petals."
+	icon_state = "spicebush_2"
+	reach = 1
+	attack_speed = 1
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "spicebush_2"
+	hitsound = 'sound/weapons/slap.ogg'
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 1 SECONDS
+	var/ranged_damage = 70
+
+/obj/item/ego_weapon/spicebush/fan/proc/ResetIcons()
+	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
+	icon_state = "spicebush_2"
+
+/obj/item/ego_weapon/spicebush/fan/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
+	icon_state = "spicebush_2a"
+	addtimer(CALLBACK(src, .proc/ResetIcons), 30 SECONDS)
+	..()
+
+/obj/item/ego_weapon/spicebush/fan/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/weapons/ego/spicebush_fan.ogg', 50, TRUE)
+	var/damage_dealt = 0
+	if(do_after(user, 5))
+		for(var/turf/open/T in range(target_turf, 1))
+			new /obj/effect/temp_visual/spicebloom(T)
+			for(var/mob/living/L in T.contents)
+				L.apply_damage(ranged_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+					damage_dealt += ranged_damage
+
+/obj/effect/temp_visual/spicebloom
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "spicebush"
+	duration = 10
+
+
+//temporary
+/obj/item/ego_weapon/willing
+	name = "the flesh is willing"
+	desc = "And really nothing will stop it."
+	special = "This weapon has knockback."
+	icon_state = "willing"
+	force = 105	//Still lower DPS
+	attack_speed = 1.4
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+
+/obj/item/ego_weapon/willing/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/shield/combust
+	name = "Combusting Courage"
+	desc = "A searing blade, setting the world ablaze to eradicate evil. \
+			Using this E.G.O will eventually reduce you to ashes."
+	special = "Activate again during block to perform Blazing Strike. This weapon becomes stronger the more burn stacks you have."
+	icon_state = "combust"
+	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
+	worn_icon_state = "combust"
+	force = 80 // Quite high with passive buffs, but deals pure damage to yourself
+	attack_speed = 0.8
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("slash", "stab", "scorch")
+	attack_verb_simple = list("slashes", "stabs", "scorches")
+	hitsound = 'sound/weapons/ego/burn_sword.ogg'
+	reductions = list(30, 30, 30, 30) // 120 with no corresponding armor
+	projectile_block_duration = 0.8 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 9 SECONDS
+	block_sound = 'sound/weapons/ego/burn_guard.ogg'
+	hit_message = "softened the blow by expelling some heat!"
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/special_attack = FALSE
+	var/special_damage = 100
+	var/special_cooldown
+	var/special_cooldown_time = 10 SECONDS
+	var/special_checks_faction = TRUE
+	var/burn_self = 2
+	var/burn_enemy = 2
+	var/burn_stack = 0
+
+/obj/item/ego_weapon/shield/combust/proc/Check_Ego(mob/living/user)
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)	
+	if(istype(C) || istype(D))
+		reductions = list(30, 50, 40, 30) // 150 with combust/desperation
+		projectile_block_message = "The heat from your wing melted the projectile!"
+		block_message = "You cover yourself with your wing!"
+		block_cooldown_message = "You streched your wing."
+		if(istype(C))
+			burn_self = 3
+			burn_enemy = 3
+		if(istype(D))
+			burn_self = 4
+			burn_enemy = 4
+	else
+		reductions = list(30, 30, 30, 30)
+		projectile_block_message ="You swat the projectile away!"
+		block_message = "You attempt to parry the attack!"
+		block_cooldown_message = "You rearm your blade."
+		burn_self = 2
+		burn_enemy = 2
+
+/obj/item/ego_weapon/shield/combust/proc/Check_Burn(mob/living/user)
+	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(B)
+		burn_stack = B.stacks
+	else
+		burn_stack = 0
+	force = (80 + round(burn_stack/2))
+	burn_enemy = burn_enemy + round(burn_stack/10)
+
+/obj/item/ego_weapon/shield/combust/CanUseEgo(mob/living/user)
+	. = ..()
+	if(user.get_inactive_held_item())
+		to_chat(user, "<span class='notice'>You cannot use [src] with only one hand!</span>")
+		return FALSE
+
+/obj/item/ego_weapon/shield/combust/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	Check_Ego(user)
+	Check_Burn(user)
+
+	if (block && !special_attack && special_cooldown < world.time)
+		special_attack = TRUE
+		to_chat(user, "<span class='notice'>You prepare to perform a blazing strike.</span>")
+	..()
+
+// Counter
+/obj/item/ego_weapon/shield/combust/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+	source.apply_lc_burn(2)
+	for(var/turf/T in view(1, source))
+		new /obj/effect/temp_visual/fire/fast(T)
+		for(var/mob/living/L in T)
+			if(L == source)
+				continue
+			if(special_checks_faction && source.faction_check_mob(L))
+				continue
+			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_lc_burn(2)
+	..()
+
+/obj/item/ego_weapon/shield/combust/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	Check_Ego(user)
+	Check_Burn(user)
+	..()
+	user.apply_lc_burn(burn_self)
+	if(user != target)
+		target.apply_lc_burn(burn_enemy)
+
+// Blazing Strike
+/obj/item/ego_weapon/shield/combust/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(!special_attack)
+		return
+
+	special_attack = FALSE
+	special_cooldown = world.time + special_cooldown_time
+	
+	Check_Burn(user)
+	var/extra_damage = 10 // Extra damage each 10 stacks, maxed at 320
+	for(var/i = 0, i < round(burn_stack/10), i++)
+		extra_damage = extra_damage * 2
+
+	// Movement
+	var/list/been_hit = list()
+	var/turf/target_turf = get_turf(user)
+	var/list/line_turfs = list(target_turf)
+	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, A, 6)))
+		if(T.density)
+			break
+		for(var/obj/machinery/door/D in T.contents)
+			if(D.density)
+				addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+		target_turf = T
+		line_turfs += T
+	user.dir = get_dir(user, A)
+	user.forceMove(target_turf)
+	playsound(target_turf, 'sound/abnormalities/firebird/Firebird_Hit.ogg', 50, TRUE)
+	
+	// Damage
+	for(var/turf/T in line_turfs)
+		for(var/turf/TF in view(1, T))
+			new /obj/effect/temp_visual/fire/fast(TF)
+			for(var/mob/living/L in TF)
+				if(special_checks_faction && user.faction_check_mob(L))
+					continue
+				if(L in been_hit || L == user)
+					continue
+				user.visible_message("<span class='boldwarning'>[user] blazes through [L]!</span>")
+				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				been_hit += L
+	
+	// Remove burn if it's safety is on
+	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(B.safety)
+		user.remove_status_effect(STATUS_EFFECT_LCBURN)

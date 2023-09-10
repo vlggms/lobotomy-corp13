@@ -100,8 +100,14 @@
 		max_boxes = threat_level * 6
 	else
 		max_boxes = current.max_boxes
-	success_boxes = round(max_boxes * 0.7)
-	neutral_boxes = round(max_boxes * 0.4)
+	if(!current.success_boxes)
+		success_boxes = round(max_boxes * 0.7)
+	else
+		success_boxes = current.success_boxes
+	if(!current.neutral_boxes)
+		neutral_boxes = round(max_boxes * 0.4)
+	else
+		neutral_boxes = current.neutral_boxes
 	available_work = current.work_chances
 	switch(threat_level)
 		if(ZAYIN_LEVEL)
@@ -135,6 +141,37 @@
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
 	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
+	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
+		return
+	if(pe > 0) // Work did not fail
+		var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
+		var/maximum_attribute_level = 0
+		switch(threat_level)
+			if(ZAYIN_LEVEL)
+				maximum_attribute_level = 40
+			if(TETH_LEVEL)
+				maximum_attribute_level = 60
+			if(HE_LEVEL)
+				maximum_attribute_level = 80
+			if(WAW_LEVEL)
+				maximum_attribute_level = 100
+			if(ALEPH_LEVEL)
+				maximum_attribute_level = 130
+		var/datum/attribute/user_attribute = user.attributes[attribute_type]
+		if(!user_attribute) //To avoid runtime if it's a custom work type like "Release".
+			return
+		var/user_attribute_level = max(1, user_attribute.level)
+		var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
+		if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
+			attribute_given = max(0, maximum_attribute_level - user_attribute_level)
+		if(attribute_given == 0)
+			if(was_melting)
+				attribute_given = threat_level //pity stats on meltdowns
+			else
+				to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
+		user.adjust_attribute_level(attribute_type, attribute_given)
+	if(console?.tutorial) //don't run logging-related code if tutorial console
+		return
 	var/user_job_title = "Unidentified Employee"
 	var/obj/item/card/id/W = user.get_idcard()
 	if(istype(W))
@@ -150,37 +187,9 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
-	stored_boxes += pe
+	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	if(overload_chance > overload_chance_limit)
 		overload_chance += overload_chance_amount
-	if(pe <= 0) // Work failure
-		return
-	var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
-	var/maximum_attribute_level = 0
-	switch(threat_level)
-		if(ZAYIN_LEVEL)
-			maximum_attribute_level = 40
-		if(TETH_LEVEL)
-			maximum_attribute_level = 60
-		if(HE_LEVEL)
-			maximum_attribute_level = 80
-		if(WAW_LEVEL)
-			maximum_attribute_level = 100
-		if(ALEPH_LEVEL)
-			maximum_attribute_level = 130
-	var/datum/attribute/user_attribute = user.attributes[attribute_type]
-	if(!user_attribute) //To avoid runtime if it's a custom work type like "Release".
-		return
-	var/user_attribute_level = max(1, user_attribute.level)
-	var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
-	if((user_attribute_level + attribute_given) >= maximum_attribute_level) // Already/Will be at maximum.
-		attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-	if(attribute_given == 0)
-		if(was_melting)
-			attribute_given = 2 //pity stats on meltdowns
-		else
-			to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
-	user.adjust_attribute_level(attribute_type, attribute_given)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
@@ -190,7 +199,8 @@
 		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter reduced to 0!"
-		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter reduced to 0!"
+		if(console?.recorded)
+			SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter reduced to 0!"
 		return
 	if(pre_qlip != qliphoth_meter)
 		if(pre_qlip < qliphoth_meter) // Alerts on change of counter. It's just nice to know instead of inspecting the console every time. Also helps for those nearby if something goes to shit.
@@ -199,7 +209,8 @@
 		else
 			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
-		current?.OnQliphothChange(user, amount)
+		current?.OnQliphothChange(user, amount, pre_qlip)
+	if(console?.recorded)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 		SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: Qliphoth counter [pre_qlip < qliphoth_meter ? "increased" : "reduced"] to [qliphoth_meter]!"
 
@@ -222,7 +233,7 @@
 		if (ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	acquired_chance += overload_chance
 	return clamp(acquired_chance, 0, 100)

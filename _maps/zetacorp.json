@@ -1,6 +1,6 @@
 {
 	"version": 1,
-	"map_name": "Facility F-321",
+	"map_name": "Facility F-321 AQUATIC",
 	"map_path": "map_files/Zeta",
 	"map_file": [
 		"zetacorp.dmm"
@@ -11,5 +11,5 @@
 		"emergency": "emergency_alpha"
 	},
 	"minetype": "none",
-	"maptype": "standard"
+	"maptype": "fishing"
 }

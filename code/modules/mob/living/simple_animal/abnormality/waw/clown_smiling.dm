@@ -7,6 +7,8 @@
 	icon_living = "clown_smiling"
 	var/icon_aggro = "clown_breach"
 	icon_dead = "clown_breach"
+	pixel_y = 64
+	base_pixel_y = 64
 	speak_emote = list("honks")
 	maxHealth = 1800
 	health = 1800
@@ -17,8 +19,7 @@
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
-	stat_attack = HARD_CRIT
-	speed = 2
+	stat_attack = DEAD
 	move_to_delay = 3
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -63,6 +64,8 @@
 /mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user)
 	..()
 	update_icon()
+	pixel_y = 0
+	base_pixel_y = 0
 	AddElement(/datum/element/waddling)
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 	GiveTarget(user)
@@ -83,10 +86,17 @@
 		icon_state = icon_aggro
 
 //Execution code from green dawn with inflated damage numbers
+/mob/living/simple_animal/hostile/abnormality/clown/CanAttack(atom/the_target)
+	if(isliving(the_target) && !ishuman(the_target))
+		var/mob/living/L = the_target
+		if(L.stat == DEAD)
+			return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget()
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living/carbon/human))
+		if(!ishuman(target))
 			return
 		var/mob/living/carbon/human/TH = target
 		if(TH.health < 0)
@@ -167,7 +177,6 @@
 	..()
 	if(locate(/obj/structure/clown_picture) in get_turf(src))
 		return
-	icon_state = "clown_smiling"
 	new /obj/structure/clown_picture(get_turf(src))
 
 /obj/structure/clown_picture
@@ -177,9 +186,10 @@
 	icon_state = "clown_picture"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
+	layer = WALL_OBJ_LAYER
 	resistance_flags = INDESTRUCTIBLE
+	pixel_y = 64
+	base_pixel_y = 64
 	var/datum/looping_sound/clown_ambience/circustime
 
 /obj/structure/clown_picture/Initialize()

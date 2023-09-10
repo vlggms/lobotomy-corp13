@@ -368,11 +368,13 @@
 /*
 	Vault Airlocks
 */
+//Edited to LC13
 
 /obj/machinery/door/airlock/vault
 	name = "vault door"
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
+	note_overlay_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
@@ -562,6 +564,19 @@
 	assemblytype = null
 	glass = TRUE
 	bound_width = 64 // 2x1
+
+/obj/machinery/door/airlock/snowqueen
+	name = "Snow Queen's Gate"
+	desc = "Are you ready for what lies ahead?"
+	icon = 'icons/obj/doors/snowqueendoor.dmi'
+	overlays_file = VV_NULL
+	opacity = TRUE
+	plane = 0
+	assemblytype = null
+	glass = TRUE
+	bound_width = 128
+	bound_height = 128
+	hackProof = TRUE
 
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return

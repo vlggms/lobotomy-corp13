@@ -1,0 +1,270 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/flora/rock/pile,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"h" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/hatchet/wooden{
+	pixel_x = -10;
+	pixel_y = -4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/bed/maint,
+/obj/item/bedsheet/brown,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/crumpled{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/table/rolling,
+/obj/item/spear,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/rolling,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/documents{
+	desc = "What was once considered important documents, now stained with the words \"HELP ME\" on the front, among other gibberish.";
+	name = "useless documents"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/flora/rock/pile,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"B" = (
+/obj/item/food/deadmouse{
+	desc = "Looks like roadkill."
+	},
+/obj/item/stack/sheet/cotton/cloth{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/stack/sheet/silk,
+/obj/item/weaponcrafting/silkstring,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"G" = (
+/obj/structure/closet/crate/trashcart/laundry,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"H" = (
+/obj/item/stack/sheet/mineral/wood,
+/obj/item/stack/sheet/mineral/wood{
+	pixel_x = -5
+	},
+/obj/item/stack/sheet/mineral/wood{
+	pixel_x = 7
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/table/rolling,
+/obj/item/ego_weapon/city/rats/knife,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/item/chair/plastic,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paperslip{
+	pixel_x = -8;
+	pixel_y = 5
+	},
+/obj/item/paperslip{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = 15
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"R" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paperslip{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"T" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/paper/crumpled{
+	pixel_x = 5;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Y" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+a
+B
+f
+a
+i
+x
+G
+b
+x
+"}
+(3,1,1) = {"
+x
+D
+Y
+x
+l
+Y
+x
+Y
+Y
+x
+"}
+(4,1,1) = {"
+x
+T
+o
+x
+s
+P
+v
+U
+o
+x
+"}
+(5,1,1) = {"
+x
+R
+N
+x
+h
+q
+x
+a
+p
+x
+"}
+(6,1,1) = {"
+x
+H
+x
+x
+w
+x
+x
+r
+x
+x
+"}

@@ -15,7 +15,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 7
 	threat_level = HE_LEVEL
 	can_breach = TRUE
@@ -267,7 +266,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/bullet_act(obj/projectile/P)
-	if(prob(90)) //guns are ineffective
+	if(P.damage <= 40)
 		visible_message("<span class='userdanger'>[P] is caught in [src]'s thick fur!</span>")
 		P.Destroy()
 		return

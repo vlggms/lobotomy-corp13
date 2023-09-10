@@ -43,7 +43,7 @@
 		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white
 		)
-	grunttype = /mob/living/simple_animal/hostile/ordeal/indigo_noon
+	grunttype = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon)
 
 // Midnight
 /datum/ordeal/boss/indigo_midnight

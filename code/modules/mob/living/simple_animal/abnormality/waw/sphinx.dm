@@ -1,4 +1,6 @@
 //Coded by Coxswain
+#define SPHINX_GAZE_COOLDOWN (12 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/sphinx
 	name = "Sphinx"
 	desc = "A gigantic stone feline."
@@ -14,11 +16,11 @@
 	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 100
 	attack_sound = 'sound/abnormalities/sphinx/attack.ogg'
+	attack_action_types = list(/datum/action/cooldown/sphinx_gaze)
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
@@ -64,12 +66,40 @@
 	var/curse_cooldown
 	var/curse_cooldown_time = 12 SECONDS
 
+//Playables buttons
+/datum/action/cooldown/sphinx_gaze
+	name = "Sphinx's Gaze"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "sphinx"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
+
+/datum/action/cooldown/sphinx_gaze/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sphinx))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sphinx/sphinx = owner
+	if(sphinx.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	sphinx.StoneVision(FALSE)
+	return TRUE
+
+
 /mob/living/simple_animal/hostile/abnormality/sphinx/Initialize() //1 in 100 chance for cringe aah aah sphinx by popular demand
 	. = ..()
 	if(prob(1)) // Why do we live, just to suffer?
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		icon_state = "sphonx"
 		icon_aggro = "sphonx_eye"
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/PostSpawn()
+	..()
+	if((locate(/obj/structure/sacrifice_table) in range(1, src)))
+		return
+	new /obj/structure/sacrifice_table(get_step(src, SOUTH))
 
 // Work
 /mob/living/simple_animal/hostile/abnormality/sphinx/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -89,11 +119,17 @@
 		return FALSE
 	else
 		var/I = null
-		if(user.get_active_held_item())
+		for(var/obj/structure/sacrifice_table/S in range(1, src))
+			if(S.showpiece)
+				I = S.showpiece
+				S.dump()
+		if(I)
+			to_chat(user, "<span class='warning'>[src] seems to be looking at the [I]!</span>")
+		else if(user.get_active_held_item())
 			I = user.get_active_held_item()
 		else if(user.get_inactive_held_item())
 			I = user.get_inactive_held_item()
-		if(!I) //both hands are empty
+		if(!I) //both hands are empty and there is no table
 			to_chat(user, "<span class='warning'>You have nothing to offer to [src]!</span>")
 			return FALSE
 		QuestHandler(I,user) //quest item must be either the active hand, or the other hand if active is empty. No guessing.
@@ -223,7 +259,7 @@
 	LoseTarget(H)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/OpenFire()
-	if(!can_act)
+	if(!can_act || client)
 		return
 
 	if((curse_cooldown <= world.time))
@@ -457,3 +493,60 @@
 /datum/movespeed_modifier/petrify_partial
 	variable = TRUE
 	multiplicative_slowdown = 2
+
+// Objects - Structures
+/obj/structure/sacrifice_table
+	name = "sacrificial altar"
+	desc = "It looks impossibly ancient."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "altar"
+	anchored = TRUE
+	density = TRUE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
+	var/obj/item/showpiece = null
+
+/obj/structure/sacrifice_table/examine(mob/user)
+	. = ..()
+	if(showpiece)
+		. += "<span class='notice'>There's \a [showpiece] inside.</span>"
+
+/obj/structure/sacrifice_table/update_overlays()
+	. = ..()
+	if(showpiece)
+		var/mutable_appearance/showpiece_overlay = mutable_appearance(showpiece.icon, showpiece.icon_state)
+		showpiece_overlay.copy_overlays(showpiece)
+		showpiece_overlay.transform *= 0.7
+		. += showpiece_overlay
+
+/obj/structure/sacrifice_table/proc/insert_showpiece(obj/item/wack, mob/user)
+	if(user.transferItemToLoc(wack, src))
+		showpiece = wack
+		to_chat(user, "<span class='notice'>You put [wack] on display.</span>")
+		update_icon()
+
+/obj/structure/sacrifice_table/proc/dump()
+	if(!QDELETED(showpiece))
+		showpiece.forceMove(drop_location())
+	showpiece = null
+	update_icon()
+
+/obj/structure/sacrifice_table/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	if (showpiece)
+		to_chat(user, "<span class='notice'>You remove [showpiece].</span>")
+		dump()
+		add_fingerprint(user)
+		return
+
+/obj/structure/sacrifice_table/attackby(obj/item/W, mob/user, params)
+	if(!showpiece)
+		insert_showpiece(W, user)
+	else
+		return ..()
+
+#undef SPHINX_GAZE_COOLDOWN

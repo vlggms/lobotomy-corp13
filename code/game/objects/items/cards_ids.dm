@@ -250,7 +250,7 @@
 /obj/item/card/id/examine(mob/user)
 	. = ..()
 	if(registered_account)
-		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] cr."
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] ahn."
 	. += "<span class='notice'><i>There's more information below, you can look again to take a closer look...</i></span>"
 
 /obj/item/card/id/examine_more(mob/user)
@@ -261,11 +261,11 @@
 	if(mining_points)
 		msg += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 	if(registered_account)
-		msg += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] cr."
+		msg += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] ahn."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				msg += "The [D.account_holder] reports a balance of [D.account_balance] cr."
+				msg += "The [D.account_holder] reports a balance of [D.account_balance] ahn."
 		msg += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
 		msg += "<span class='info'>You can insert ahn into the linked account by pressing holochips, cash, or coins against the ID.</span>"
 		if(registered_account.civilian_bounty)
@@ -340,6 +340,11 @@ update_label()
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
+/obj/item/card/id/silver/plastic
+	name = "plastic identification card"
+	id_type_name = "plastic identification card"
+	desc = "A plastic card which shows creme of the crop."
+
 /obj/item/card/id/silver/reaper
 	name = "Thirteen's ID Card (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
@@ -354,6 +359,18 @@ update_label()
 	inhand_icon_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/fixer
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	icon_state = "fixer"
+
+/obj/item/card/id/association
+	name = "association identification card"
+	id_type_name = "association identification card"
+	desc = "A blue card used by association fixers."
+	icon_state = "association"
 
 /obj/item/card/id/syndicate
 	name = "agent card"
@@ -625,6 +642,20 @@ update_label()
 	icon_state = "ert_commander"
 	registered_name = "Shield Captain"
 	assignment = "Shield Captain"
+
+/obj/item/card/id/fixerdirector
+	name = "fixer director identification card"
+	id_type_name = "fixer director identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_director"
+
+/obj/item/card/id/fixercard
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_id"
 
 /obj/item/card/id/debug
 	name = "\improper Debug ID"

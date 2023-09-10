@@ -1,25 +1,19 @@
 //RO meltdown watch
-//Slows meltdown
+//Gives by default 5 additional minutes before the next abnormality spawns
 /obj/item/records/abnodelay
 	name = "records bronze watch"
 	desc = "A bronze watch the records officer can use to increase the time it takes for the next abnormality to arrive."
 	icon_state = "watch_bronze"
-	var/usable = TRUE
+	//Its cooldown is 30 minutes
+	records_cooldown_timer = 30 MINUTES
+	//How much time we offset the next abnormality spawn
+	var/next_abno_spawn_offset = 5 MINUTES
 
-/obj/item/records/abnodelay/attack_self(mob/user)
-	if(!usable)
-		to_chat(user, "<span class='notice'>It's not ready yet.</span>")
-		return
-	if(user.mind.assigned_role != "Records Officer")
-		to_chat(user, "<span class='warning'>You cannot use this!")
-		return
-
-	usable = FALSE
+/obj/item/records/abnodelay/watch_action(mob/user)
+	//We succesfully used are watch, give the player feedback and some fluff
 	to_chat(user, "<span class='notice'>You check your watch. It's not time for the next abnormality to arrive yet.</span>")
-	SSabnormality_queue.next_abno_spawn += 5 MINUTES
-	addtimer(CALLBACK(src, .proc/reset), 30 MINUTES)
+	//We grab are SubSystem for abnormality spawning and go to the spawn timer, and add the offset time to it directly.
+	SSabnormality_queue.next_abno_spawn += next_abno_spawn_offset
+	//Next we move back to are parrent, so that we give are stopwatch cooldowns.
+	..()
 
-/obj/item/records/abnodelay/proc/reset()
-	usable = TRUE
-	audible_message("<span class='notice'>[src] is ready to use!</span>")
-	playsound(get_turf(src), 'sound/machines/dun_don_alert.ogg', 50, TRUE)

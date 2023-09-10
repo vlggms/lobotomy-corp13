@@ -1,0 +1,224 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/table/wood,
+/obj/item/clothing/head/beret/sec/k_corporation,
+/obj/item/stamp,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/lootcrate/k_corp,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/kcorp/drone,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"u" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/chair/office,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 6
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"F" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 10
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/right{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/machinery/light/broken{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"L" = (
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plasteel/sepia,
+/area/city/backstreets_room)
+"O" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Q" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/turf_decal/siding/yellow,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/kcorp/drone,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Y" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/paper_bin/carbon,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+u
+F
+x
+x
+"}
+(2,1,1) = {"
+x
+X
+K
+f
+x
+Q
+Q
+I
+j
+x
+"}
+(3,1,1) = {"
+x
+f
+P
+P
+x
+L
+c
+S
+J
+x
+"}
+(4,1,1) = {"
+x
+p
+P
+C
+M
+v
+Z
+S
+i
+x
+"}
+(5,1,1) = {"
+x
+g
+H
+l
+x
+Y
+a
+A
+O
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

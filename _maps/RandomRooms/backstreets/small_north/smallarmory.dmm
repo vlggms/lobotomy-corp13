@@ -1,0 +1,124 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing,
+/obj/machinery/door/poddoor/shutters/window,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"g" = (
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/rack,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"u" = (
+/obj/item/wallframe/button{
+	anchored = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/item/chair,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/rack,
+/obj/item/gun/ego_gun/clerk,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/rack,
+/obj/item/clothing/head/papersack,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"J" = (
+/obj/machinery/door/airlock/grunge,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"T" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/rack,
+/obj/structure/lootcrate/backstreets,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"X" = (
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+B
+V
+c
+J
+"}
+(3,1,1) = {"
+u
+X
+U
+g
+d
+"}
+(4,1,1) = {"
+a
+b
+g
+y
+d
+"}
+(5,1,1) = {"
+a
+T
+X
+g
+d
+"}
+(6,1,1) = {"
+a
+z
+q
+c
+J
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+"}

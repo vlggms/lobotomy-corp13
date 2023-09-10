@@ -15,18 +15,14 @@
 							)
 
 /obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
-	..()
+	if(!..())
+		return FALSE
 	var/turf/T = get_turf(target)
 	//damage calculations
-	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	force*=justicemod
-	for(var/mob/living/L in T.contents)
-		if(L == user || L == target)
-			continue
-		if(L.stat >= DEAD)
-			continue
-		L.apply_damage(force, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	user.HurtInTurf(T, list(target), force, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	force = 30
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
@@ -74,7 +70,7 @@
 
 		for(var/mob/living/L in range(1, user))
 			var/aoe = 30
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			if(L == user || ishuman(L))
@@ -142,14 +138,15 @@
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
 	force = 12
+	attack_speed = 0.5
 	damtype = PALE_DAMAGE
 	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(90, 90, 90, 30)
-	projectile_block_cooldown = 0.5 SECONDS
-	block_duration = 0.5 SECONDS
+	reductions = list(40, 20, 20, 0) // 80
+	projectile_block_duration = 0.5 SECONDS
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/crumbling_parry.ogg'
 	projectile_block_message ="A God does not fear death!"
@@ -160,27 +157,38 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/naked_parry
+	var/realized_parry
 
 /obj/item/ego_weapon/shield/daredevil/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
+		force = 12
 		attack_speed = 0.33
-		projectile_block_cooldown = 0.33 SECONDS
+		projectile_block_duration = 0.33 SECONDS
 	else
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if (istype(Z))
+			force = 32
+		else
+			force = 12
 		attack_speed = 0.5
-		projectile_block_cooldown = 0.5 SECONDS
+		projectile_block_duration = 0.5 SECONDS
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
 	if (block == 0)
 		var/mob/living/carbon/human/cooler_user = user
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		realized_parry = istype(Z)
+		if (realized_parry)
+			reductions = list(40, 30, 20, 60) // 150
 		if(naked_parry)
-			reductions = list(95, 95, 95, 100)
+			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
-			reductions = list(90, 90, 90, 30)
+			reductions = list(40, 20, 20, 0)
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
@@ -191,11 +199,14 @@
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	force = 12
+	if (realized_parry)
+		force = 32
+	else
+		force = 12
 	..()
 
 /obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	if (naked_parry)
+	if (naked_parry || realized_parry)
 		debuff_duration = 2 SECONDS
 	else
 		debuff_duration = 3 SECONDS
@@ -205,6 +216,9 @@
 	if(naked_parry)
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
+	else if(realized_parry)
+		force = 48 // bonus damage for like, 2 seconds.
+		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
 	..()
@@ -344,20 +358,12 @@
 					area_of_effect += U
 	smashing = TRUE
 	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
-	for (var/i = 0; i < 3; i++)
+	for(var/i = 0; i < 3; i++)
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
-				if(L in been_hit)
-					continue
-				if (L == user)
-					continue
-				been_hit += L
-				if (i > 2)
-					L.apply_damage(40*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				else
-					L.apply_damage(10*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			var/smash_damage = (i > 2 ? 40 : 10)*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
+			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE)
 		if (i > 2)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 75, 0, 5) // BAM
 		else
@@ -407,15 +413,14 @@
 	special = "This weapon has a slow attack speed and deals atrocious damage.	\
 			Block for longer when surrounded by allies."
 	icon_state = "bravery"
-	force = 20
-	attack_speed = 3
+	force = 54
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
-	reductions = list(60, 30, 30, 20)
-	projectile_block_cooldown = 3 SECONDS
+	reductions = list(60, 30, 50, 20) // 160
+	projectile_block_duration = 3 SECONDS
 	block_duration = 1 SECONDS //1 second of block time when alone like a buckler, up to 3 seconds with allies
 	block_cooldown = 5 SECONDS //always 6 seconds total before blocking again
 	block_sound = 'sound/abnormalities/scaredycat/cateleport.ogg'
@@ -470,7 +475,7 @@
 	var/original_force = force
 	if(M == user && !happy && istype(user))
 		var/mob/living/carbon/human/H = user
-		var/justice_mod = 1 + (get_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
+		var/justice_mod = 1 + (get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
 		H.adjustSanityLoss(force * justice_mod) //we artificially inflict the justice + force damage so it bypass armor. the sanity damage should always feel like a gamble even with armor.
 		missing_sanity = (1 - (H.sanityhealth / H.maxSanity)) * 40 //the weapon gets 40% of your missing % of sanity as force so 90% missing sanity means +36 force.
 		force = 0
@@ -525,17 +530,17 @@
 	desc = "I'll grind your bones to make my bread!"
 	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
-	force = 20
-	attack_speed = 3
+	force = 54
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(40, 20, 40, 20)
-	projectile_block_cooldown = 3 SECONDS
+	reductions = list(40, 20, 40, 20) // 120
+	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
+	block_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -589,13 +594,14 @@
 	desc = "If friends were flowers, I'd pick you!"
 	icon_state = "maneater"
 	force = 30
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
-	reductions = list(10, 20, 30, 10) //longer parry, lower values; not a proper shield
-	projectile_block_cooldown = 1 SECONDS
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
@@ -696,8 +702,8 @@
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
-	reductions = list(10, 20, 20, 0)
-	projectile_block_cooldown = 0.5 SECONDS
+	reductions = list(30, 20, 30, 0) // 80
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
@@ -860,7 +866,7 @@
 			sacrifice = FALSE
 		for(var/mob/living/L in livinginrange(1, target))
 			var/aoe = 50
-			var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			if(L == user || ishuman(L))
@@ -882,7 +888,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
-	hitsound = 'sound/abnormalities/icthys/hammer1.ogg'
+	hitsound = 'sound/abnormalities/ichthys/hammer1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -915,7 +921,7 @@
 	..()
 	if(do_after(user, 5, src))
 		dash_cooldown = world.time + dash_cooldown_time
-		playsound(src, 'sound/abnormalities/icthys/jump.ogg', 50, FALSE, -1)
+		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
 		sleep(0.5 SECONDS)
@@ -937,7 +943,7 @@
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 25
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
 		if(L == user || ishuman(L))
@@ -1053,6 +1059,10 @@
 	desc = "The path is intent on thwarting all attempts to memorize it."
 	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 24
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
@@ -1064,7 +1074,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/release_message = "You release your charge, opening a rift!"
-	var/charge_effect = "create a temporary two-way portal."
+	var/charge_effect = "create a temporary two-way portal on a living target."
 	var/current_holder
 	var/charge_cost = 10
 	var/charge
@@ -1082,12 +1092,25 @@
 	current_holder = user
 
 /obj/item/ego_weapon/warp/Destroy(mob/user)
+	if(!user)
+		return
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	current_holder = null
 	return ..()
 
+/obj/item/ego_weapon/warp/dropped(mob/user)
+	. = ..()
+	if(!user)
+		return
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+
 /obj/item/ego_weapon/warp/attack_self(mob/user)
 	..()
+	if(activated == TRUE)
+		to_chat(user, "<span class='notice'>You are no longer prepared to release your charge.</span>")
+		activated = FALSE
+		return
 	if(charge>=charge_cost)
 		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
 		activated = TRUE
@@ -1101,6 +1124,7 @@
 
 /obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
+		to_chat(user, "<span class='notice'>You cannot use this!</span>")
 		return
 	if(!activated)
 		return
@@ -1139,6 +1163,269 @@
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
+	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
 	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
+
+/obj/item/ego_weapon/marionette
+	name = "marionette"
+	desc = "People lie all the time. Why is that a bad thing?"
+	icon_state = "marionette"
+	force = 40
+	attack_speed = 1.5
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/abnormalities/pinocchio/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/divinity
+	name = "divinity"
+	desc = "The gods are always right, as they are just. Your sacrifice will please them."
+	icon_state = "divinity"
+	force = 40//it has no special effect. Just damage
+	attack_speed = 2
+	damtype = PALE_DAMAGE
+	armortype = PALE_DAMAGE
+	attack_verb_continuous = list("stabs", "slashes", "attacks")
+	attack_verb_simple = list("stab", "slash", "attack")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/hyde
+	name = "hyde"
+	desc = "The most racking pangs succeeded: a grinding in the bones, deadly nausea, and a horror of the spirit that cannot be exceeded at the hour of birth or death."
+	icon_state = "hyde"
+	force = 25
+	attack_speed = 2
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("punches", "slaps", "scratches")
+	attack_verb_simple = list("punch", "slap", "scratch")
+	hitsound = 'sound/effects/hit_kick.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+	var/list/attack_styles = list("red", "white", "black")
+	var/chosen_style
+	var/init_force = 25
+	var/transformed = FALSE
+
+/obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
+	if(transformed)
+		return
+	if(!CanUseEgo(user))
+		return
+	chosen_style = input(user, "Which syringe will you use?") as null|anything in attack_styles
+	if(!chosen_style)
+		return
+	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
+		user.emote("scream")
+		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)//YEOWCH!
+		icon_state = ("hyde_" + chosen_style)
+		force = 60
+		switch(chosen_style)
+			if("red")
+				user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				damtype = RED_DAMAGE
+				to_chat(user, "<span class='notice'>Your bones are painfully sculpted to fit a muscular claw.</span>")
+			if("white")
+				user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				damtype = WHITE_DAMAGE
+				to_chat(user, "<span class='notice'>Your angst is plastered onto your arm.</span>")
+			if("black")
+				user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				damtype = BLACK_DAMAGE
+				to_chat(user, "<span class='notice'>Bristles are painfully ejected from your arm, filled with hate.</span>")
+		transformed = TRUE
+		addtimer(CALLBACK(src, .proc/Reset_Timer), 600)
+	return
+
+/obj/item/ego_weapon/hyde/proc/Reset_Timer(mob/living/carbon/human/user)
+	if(!transformed)
+		return
+	icon_state = "hyde"
+	force = init_force
+	damtype = RED_DAMAGE
+	transformed = FALSE
+	if(user)
+		to_chat(user, "<span class='notice'>Your arm returns to normal.</span>")
+
+/obj/item/ego_weapon/destiny
+	name = "destiny"
+	desc = "The elderly man showed a red thread connecting the young boy with his future lover. Disgusted at the sight, he ordered her to be executed."
+	special = "This weapon deals 20% additional damage when attacking the same target repeatedly."
+	icon_state = "destiny"
+	force = 30
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("stabs", "slashes", "attacks")
+	attack_verb_simple = list("stab", "slash", "attack")
+	hitsound = 'sound/abnormalities/fateloom/garrote_bloody.ogg'//it's a bit loud
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/stored_target = FALSE
+
+/obj/item/ego_weapon/destiny/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(target == stored_target)
+		force*=1.2//36 damage
+	..()
+	force = initial(force)
+	if(target != stored_target)
+		stored_target = target
+		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
+
+/obj/item/ego_weapon/rhythm
+	name = "rhythm"
+	desc = "Nothing makes as fascinating music as a human can."
+	special = "Use this weapon in hand to deal a small portion of damage to yourself to heal the sanity of people around you."
+	icon_state = "rhythm"
+	force = 25
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "saws", "rips")
+	attack_verb_simple = list("slice", "saw", "rip")
+	hitsound = 'sound/abnormalities/singingmachine/crunch.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/rhythm/attack_self(mob/living/carbon/human/user)
+	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms you
+		playsound(src, 'sound/abnormalities/singingmachine/music.ogg', 100, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(3, get_turf(user)))
+			user.adjustBruteLoss(user.maxHealth*0.15)
+			L.adjustSanityLoss(-20)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/rhythm/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/shield/trachea
+	name = "trachea"
+	desc = "As if everything else were hollow and pointless, the wailing numbs even the brain, making it impossible to think."
+	special = "This weapon deals atrocious damage."
+	icon_state = "trachea"
+	force = 54
+	attack_speed = 3
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("shoves", "bashes")
+	attack_verb_simple = list("shove", "bash")
+	hitsound = 'sound/weapons/bite.ogg'
+	reductions = list(30, 40, 30, 20)
+	projectile_block_duration = 3 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/misc/moist_impact.ogg'
+	block_sound_volume = 200
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/roseate
+	name = "roseate desire"
+	desc = "A salacious cat o' nine tails made from pink ribbons. Merely touching it ushers a primal excitement."
+	special = "The damage of this weapon is significantly lowered depending on the user's temperance attribute."
+	icon_state = "roseate_desire"
+	force = 35
+	attack_speed = 0.8//about 44 dps
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "slaps", "flicks")
+	attack_verb_simple = list("whip", "slap", "flick")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/roseate/attack(mob/living/M, mob/living/user)//negative temperance multiplier
+	force = 35
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperancemod = 1 + usertemp/200
+	force /= temperancemod
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
+	name = "AEDD"
+	desc = "A nasty-looking bat covered with nails."
+	special = "Activating the weapon in your hand prepares an attack with additional black damage."
+	icon_state = "aedd"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 25
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "crushes")
+	attack_verb_simple = list("bash", "crush")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/charged
+
+/obj/item/ego_weapon/aedd/attack_self(mob/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(do_after(user, 30, src))//3 seconds
+		to_chat(user, "<span class='notice'>You hoist [src] over your shoulder.</span>")
+		charged = TRUE
+
+/obj/item/ego_weapon/aedd/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charged)
+		power_attack(target, user)
+		charged = FALSE
+
+/obj/item/ego_weapon/aedd/proc/power_attack(mob/living/target, mob/living/user)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	target.apply_damage((force * justicemod), BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
+	var/turf/T = get_turf(target)
+	new /obj/effect/temp_visual/justitia_effect(T)
+
+/obj/item/ego_weapon/lance/split
+	name = "split"
+	desc = "They existed everywhere, but we were the ones to first discover their existence. We were the first to encounter them. We were faced with fear. They were - are fear itself."
+	icon_state = "split"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 33
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.8// really slow
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
+/obj/item/ego_weapon/lance/split/LowerLance(mob/user)
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/RaiseLance(mob/user)
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	..()
+
+/obj/item/ego_weapon/lance/split/get_clamped_volume()
+	return 40

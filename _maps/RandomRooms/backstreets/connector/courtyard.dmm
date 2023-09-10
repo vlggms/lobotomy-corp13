@@ -1,0 +1,580 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ao" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"az" = (
+/obj/structure/chair/pew/right{
+	dir = 8;
+	name = "bench"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"cY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"dL" = (
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eD" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"eI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"fu" = (
+/obj/effect/spawner/randomsnackvend,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"gQ" = (
+/obj/structure/chair/office/light{
+	dir = 1
+	},
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/smartfridge/food{
+	pixel_y = 30
+	},
+/obj/machinery/door/window/northright,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"jJ" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"kl" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"oD" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"rp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"sH" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"us" = (
+/obj/structure/chair/pew/left{
+	desc = "For resting your legs.";
+	dir = 8;
+	name = "bench"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"xh" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Malfunctioned Door"
+	},
+/area/city/backstreets_room)
+"xx" = (
+/obj/item/shard,
+/obj/item/stack/rods,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"yp" = (
+/obj/structure/fluff/broken_flooring,
+/obj/machinery/smartfridge/drinks{
+	pixel_y = 30
+	},
+/obj/machinery/door/window/northleft,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"zi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"zw" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"zI" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Af" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"AJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Co" = (
+/obj/machinery/light/broken{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Cy" = (
+/obj/machinery/light/dim{
+	dir = 8;
+	pixel_x = null;
+	pixel_y = null
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"CJ" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/item/gun/ego_gun/clerk{
+	desc = "A pistol that looks to be loaded with 9mm rounds. Fit and comforms to the Heads regulations.";
+	name = "9mm Pistol";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"GS" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Hf" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Hg" = (
+/obj/structure/grille/broken,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"HR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/tresmetal,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Jg" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"Jw" = (
+/obj/effect/turf_decal/weather/dirt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"KU" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Lt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"MT" = (
+/obj/item/rack_parts,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"OG" = (
+/obj/structure/table/greyscale,
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 4
+	},
+/obj/structure/curtain/bounty{
+	pixel_y = -30
+	},
+/obj/item/kirbyplants/dead{
+	desc = "A sad, dead plant";
+	name = "dead potted plant";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"PU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/food_packaging,
+/obj/effect/spawner/lootdrop/food_packaging,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"QO" = (
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"RD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Uj" = (
+/obj/structure/table/greyscale,
+/obj/machinery/computer/libraryconsole{
+	desc = "For a store in the backstreets, quite progressive.";
+	name = "ecash register";
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Vd" = (
+/obj/structure/table/greyscale,
+/obj/effect/turf_decal/siding/thinplating/light{
+	dir = 4
+	},
+/obj/item/flashlight/lamp{
+	pixel_x = -5;
+	pixel_y = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Vf" = (
+/obj/structure/chair/pew/left{
+	desc = "For resting your legs.";
+	dir = 1;
+	name = "bench"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"VI" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 8
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 4
+	},
+/obj/effect/turf_decal/weather/dirt{
+	dir = 7
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_room)
+"WH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/structure/table/greyscale,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Xo" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"XN" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ZO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"ZV" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+Hf
+zI
+Jw
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+"}
+(2,1,1) = {"
+ZV
+WH
+Cy
+CJ
+ZV
+Xo
+Hf
+zI
+zI
+cY
+ZO
+eD
+eD
+HR
+ZV
+"}
+(3,1,1) = {"
+ZV
+Lt
+Lt
+XN
+ZV
+kl
+Hf
+zI
+zI
+cY
+ZO
+xx
+ZO
+AJ
+ZV
+"}
+(4,1,1) = {"
+ZV
+Lt
+Uj
+gQ
+Hg
+kl
+Hf
+zI
+zI
+cY
+ZO
+ZO
+ZO
+HR
+ZV
+"}
+(5,1,1) = {"
+ZV
+dL
+Vd
+OG
+RD
+zw
+Hf
+zI
+zI
+ZV
+cY
+cY
+xh
+ZV
+ZV
+"}
+(6,1,1) = {"
+ZV
+rp
+QO
+ZO
+ZV
+Co
+Hf
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+"}
+(7,1,1) = {"
+ZV
+QO
+xx
+QO
+jJ
+VI
+Hf
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+zI
+"}
+(8,1,1) = {"
+ZV
+zi
+ao
+eD
+ZV
+Co
+Hf
+zI
+zI
+zI
+sH
+sH
+sH
+sH
+sH
+"}
+(9,1,1) = {"
+ZV
+GS
+ZO
+rp
+RD
+kl
+Hf
+zI
+zI
+KU
+kl
+zw
+kl
+Xo
+ZV
+"}
+(10,1,1) = {"
+ZV
+PU
+MT
+ZO
+RD
+kl
+Hf
+zI
+Jw
+kl
+kl
+kl
+kl
+Vf
+ZV
+"}
+(11,1,1) = {"
+ZV
+yp
+Jg
+ZO
+ZV
+kl
+Hf
+zI
+Jw
+kl
+kl
+kl
+zw
+Af
+ZV
+"}
+(12,1,1) = {"
+ZV
+iJ
+eI
+ZO
+ZV
+oD
+Hf
+zI
+Jw
+zw
+us
+az
+fu
+kl
+ZV
+"}
+(13,1,1) = {"
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+zI
+zI
+zI
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+"}

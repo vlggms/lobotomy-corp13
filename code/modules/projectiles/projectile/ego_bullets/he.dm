@@ -124,3 +124,30 @@
 		H.Knockdown(50)//trip the target
 		return BULLET_ACT_BLOCK
 	qdel(src)
+
+/obj/projectile/ego_bullet/ego_swindle
+	name = "swindle"
+	damage = 1
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE
+
+/obj/projectile/ego_bullet/ego_swindle/Initialize()
+	. = ..()
+	damage = pick(5, 10, 25, 30, 35, 45)
+
+/obj/projectile/ego_bullet/ego_ringing
+	name = "ringing"
+	icon_state = "energy2"
+	damage = 7
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/ego_syrinx
+	name = "syrinx"
+	icon_state = "ecstasy"
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	color = COLOR_GREEN
+	damage = 7
+	speed = 1.3
+	range = 6

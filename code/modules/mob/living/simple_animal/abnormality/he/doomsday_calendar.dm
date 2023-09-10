@@ -180,6 +180,7 @@
 	SpawnAdds()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AnnounceBreach()
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5, "The day of the apocalypse has arrived.", 25))
 	for(var/mob/living/carbon/human/H in livinginrange(20, src))//same range as universe aflame when fully charged
 		if(H.z != z)
 			return
@@ -244,14 +245,17 @@
 			for(var/turf/T in range(aflame_range, src))
 				new /obj/effect/temp_visual/doomsday(T)
 				for(var/mob/living/H in T)
+					for(var/mob/living/simple_animal/hostile/abnormality/A in T)
+						if(!(A.IsContained()))
+							continue
+						A.datum_reference.qliphoth_change(-1)
 					if(faction_check_mob(H))
 						continue
 					H.apply_damage(aflame_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
-						//H.add_overlay(mutable_appearance('icons/mob/onfire.dmi', "Standing", -ABOVE_OBJ_LAYER))
-			adjustBruteLoss(500)
+			adjustBruteLoss(1000)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AoeBurn()
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -320,14 +324,13 @@
 	attack_verb_simple = "claw"
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
 	/*Stats*/
-	health = 100
-	maxHealth = 100
+	health = 200
+	maxHealth = 200
 	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 4
-	melee_damage_upper = 5
-	speed = 5
+	melee_damage_lower = 12
+	melee_damage_upper = 15
 	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT

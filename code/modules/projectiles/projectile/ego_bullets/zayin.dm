@@ -43,3 +43,10 @@
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	..()
+
+/obj/projectile/ego_bullet/ego_bucket
+	name = "stone"
+	icon_state = "wishing_rock"
+	damage = 20
+	damage_type = RED_DAMAGE
+	flag = RED_DAMAGE

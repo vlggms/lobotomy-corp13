@@ -558,3 +558,33 @@
 			return FALSE
 
 	return TRUE
+
+//LC13 return based on numerical values.
+//Lowest number wins. -IP
+/proc/ReturnLowestValue(list/L)
+	if(!L || !L.len)
+		return null
+	var/current_lowest
+	for(var/i in L)
+		if(!current_lowest)
+			current_lowest = i
+			continue
+		if(L[i] <= L[current_lowest])
+			current_lowest = i
+	if(!current_lowest)
+		return null
+	return current_lowest
+
+/proc/ReturnHighestValue(list/L)
+	if(!L || !L.len)
+		return null
+	var/current_highest
+	for(var/i in L)
+		if(!current_highest)
+			current_highest = i
+			continue
+		if(L[i] >= L[current_highest])
+			current_highest = i
+	if(!current_highest)
+		return null
+	return current_highest

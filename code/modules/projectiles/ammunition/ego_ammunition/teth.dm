@@ -54,3 +54,15 @@
 	name = "wishing casing"
 	desc = "A wishing casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_wishing2
+
+/obj/item/ammo_casing/caseless/ego_aspiration
+	name = "aspiration casing"
+	desc = "A aspiration casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_aspiration
+
+/obj/item/ammo_casing/caseless/ego_patriot
+	name = "patriot casing"
+	desc = "A patriot casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_patriot
+	pellets = 4
+	variance = 25

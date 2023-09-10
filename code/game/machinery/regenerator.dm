@@ -145,13 +145,17 @@
 	colored_overlay.color = Icon_Color
 	add_overlay(colored_overlay)
 
-	//Safety Plant Regenerator
+//Safety Plant Regenerator
 /obj/machinery/regenerator/safety
-	name = "Regenerator"
-	desc = "A machine responsible for slowly restoring health and sanity of employees in the area."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "regen"
 	broken_icon = "regen_dull"
 	alert_icon = "regen_alert"
 	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
 
+//Don't add tutorial regenerators to global list, prevents them from being affected by Safety suppression
+/obj/machinery/regenerator/tutorial
+
+/obj/machinery/regenerator/tutorial/Initialize()
+	. = ..()
+	GLOB.regenerators -= src

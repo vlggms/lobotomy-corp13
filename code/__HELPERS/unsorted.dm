@@ -979,10 +979,10 @@ rough example of the "cone" made by the 3 dirs checked
 
 	var/list/mobs = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
-		var/check_place = L
+		var/atom/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(get_dist(center, check_place) <= dist)
+		if(get_dist(center, check_place) <= dist && center.z == check_place.z)
 			mobs += L
 
 	return mobs
@@ -993,11 +993,12 @@ rough example of the "cone" made by the 3 dirs checked
 		return list()
 
 	var/list/mobs = list()
+	var/list/my_view = view(dist, center)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(check_place in view(dist, center))
+		if(check_place in my_view)
 			mobs += L
 
 	return mobs
@@ -1507,5 +1508,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 /proc/show_global_blurb(duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
 	for(var/client/C in GLOB.clients)
 		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
+
+// Animates atom's color over time
+/proc/SetColorOverTime(atom/A, new_color = "#FFFFFF", new_time = 2)
+	animate(A, color = new_color, time = new_time)
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))

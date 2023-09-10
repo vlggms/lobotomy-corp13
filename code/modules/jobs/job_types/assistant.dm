@@ -8,8 +8,9 @@ Assistant
 	spawn_positions = -1
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
-	access = list()			//See /datum/job/assistant/get_access()
-	minimal_access = list()	//See /datum/job/assistant/get_access()
+	access = list(ACCESS_ROBOTICS)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_ROBOTICS)	//See /datum/job/assistant/get_access()
+	// Let their be bot maintenance!
 	outfit = /datum/outfit/job/assistant
 	antag_rep = 7 //persistant currency but currently unusable
 	display_order = JOB_DISPLAY_ORDER_CLERK
@@ -18,7 +19,7 @@ Assistant
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
 	allow_bureaucratic_error = FALSE
-	loadalways = TRUE
+//	loadalways = TRUE
 	job_important = "You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."
 
 

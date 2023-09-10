@@ -192,6 +192,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/canMouseDown = FALSE
 
+	///No item attack animation, only person tilt.
+	var/run_item_attack_animation = TRUE
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
@@ -612,8 +615,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	else
 		M.take_bodypart_damage(7)
-
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "eye_stab", /datum/mood_event/eye_stab)
 
 	log_combat(user, M, "attacked", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
 
