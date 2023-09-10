@@ -44,6 +44,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/indigo = 1)
 	wanted_objects = list(/obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	var/current_size = RESIZE_DEFAULT_SIZE
