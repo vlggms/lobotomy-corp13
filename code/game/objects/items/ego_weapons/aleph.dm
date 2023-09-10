@@ -1000,7 +1000,7 @@
 /obj/item/ego_weapon/shield/combust/proc/Check_Ego(mob/living/user)
 	var/mob/living/carbon/human/H = user
 	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)	
+	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(C) || istype(D))
 		reductions = list(30, 50, 40, 30) // 150 with combust/desperation
 		projectile_block_message = "The heat from your wing melted the projectile!"
@@ -1080,7 +1080,7 @@
 
 	special_attack = FALSE
 	special_cooldown = world.time + special_cooldown_time
-	
+
 	Check_Burn(user)
 	var/extra_damage = 10 // Extra damage each 10 stacks, maxed at 320
 	for(var/i = 0, i < round(burn_stack/10), i++)
@@ -1101,7 +1101,7 @@
 	user.dir = get_dir(user, A)
 	user.forceMove(target_turf)
 	playsound(target_turf, 'sound/abnormalities/firebird/Firebird_Hit.ogg', 50, TRUE)
-	
+
 	// Damage
 	for(var/turf/T in line_turfs)
 		for(var/turf/TF in view(1, T))
@@ -1114,31 +1114,42 @@
 				user.visible_message("<span class='boldwarning'>[user] blazes through [L]!</span>")
 				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				been_hit += L
-	
+
 	// Remove burn if it's safety is on
 	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	if(B.safety)
 		user.remove_status_effect(STATUS_EFFECT_LCBURN)
+
 /obj/item/ego_weapon/iron_maiden
 	name = "iron maiden"
-	desc = "It’s quite simple. Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
-	special = "This weapon builds up attack speed and the amount of times it hits as you attack, at maximum speed it will damage you per hit."
+	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
+	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
 	icon_state = "iron_maiden"
-	force = 25
+	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = "clamps"
 	attack_verb_simple = "clamp"
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 0
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
 							)
-	var/ramping = 1.15 //maximum of 0.25
+	var/ramping_speed = 0 //maximum of 20
+	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
 	sleep(1)
 	for(var/i = 1 to attack_amount)
-		sleep(1.6)
+		switch(attack_amount)
+			if(1)
+				sleep(5)
+			if(2)
+				sleep(3)
+			if(3)
+				sleep(2)
 		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 		user.do_attack_animation(target)
 		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
@@ -1148,35 +1159,37 @@
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
 	if (isliving(target))
-		user.changeNext_move(CLICK_CD_MELEE * ramping) // Starts slow, but....
-		if (ramping > 0.25)
-			ramping -= 0.05
+		if (ramping_speed < 20)
+			ramping_speed += 1
 		else
-			user.adjustBruteLoss(user.maxHealth*0.075) //hits 4 times so 0.3% hp per hit, may be too little?
-	else
-		user.changeNext_move(CLICK_CD_MELEE * 1.15)
+			ramping_damage += 0.02
+			user.adjustBruteLoss(user.maxHealth*ramping_damage)
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	if (ramping > 0.6 && ramping <= 1) //4 hits to get here
-		Multihit(target, user, 1)
-		return
-	if (ramping > 0.25 && ramping <= 0.6)
-		Multihit(target, user, 2)
-		return
-	if (ramping  <= 0.25)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		Multihit(target, user, 3)
+	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	switch(ramping_speed)
+		if(5 to 10)
+			Multihit(target, user, 1)
+		if(10 to 15)
+			Multihit(target, user, 2)
+		if(15 to 20)
+			if(icon_state != "iron_maiden_open")
+				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+				icon_state = "iron_maiden_open"
+			Multihit(target, user, 3)
 	return
 
 /obj/item/ego_weapon/iron_maiden/attack_self(mob/user)
+	if(ramping_speed == 0)
+		to_chat(user,"<span class='notice'>It is already revved down!</span>")
+		return
 	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
 	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 	if(do_after(user, 2.5 SECONDS, src))
-		if(ramping == 1.15)
-			to_chat(user,"<span class='notice'>It was already revved down!</span>")
-			return
+		icon_state = "iron_maiden"
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
-		ramping = 1.15
+		ramping_speed = 0
+		ramping_damage = 0
 		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")
