@@ -161,10 +161,10 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 	H.can_patrol = TRUE
 	H.patrol_cooldown_time = 10 SECONDS
 	//If no one is alive, End round
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.z != z)
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		if(L.z != z)
 			continue
-		if(H.stat != DEAD)
+		if(L.stat != DEAD)
 			return
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>All W-Corp staff is dead! Round automatically ending.</span>")
