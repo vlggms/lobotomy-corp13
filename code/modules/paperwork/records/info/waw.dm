@@ -426,9 +426,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/black_swan
 	abno_code = "F-02-70"
 	abno_info = list(
-		"When 5 employees died F-02-70-1 eyes suddenly melted.",
-		"When 5 employees panicked F-02-70-2 arms vanished.",
-		"When 3 abnormalities breached F-02-70-3 legs were reduced to a sludge.",
+		"When 2 employees died F-02-70-1 eyes suddenly melted.",
+		"When 2 employees panicked F-02-70-2 arms vanished.",
+		"When 2 abnormalities breached F-02-70-3 legs were reduced to a sludge.",
 		"When work result was bad F-02-70-4 lost their ears and cheeks.",
 		"When work result was normal F-02-70-5 lost the entire lower half of their face.",
 		"When the abnormality had its Qliphoth Counter decreased due to a meltdown or sabotage one of the brothers was wounded.")
