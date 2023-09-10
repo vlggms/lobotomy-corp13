@@ -23,6 +23,10 @@
 		/obj/item/clothing/suit/armor/ego_gear/he/solemnlament 		= /obj/item/clothing/suit/armor/ego_gear/realization/eulogy,
 		/obj/item/clothing/suit/armor/ego_gear/he/galaxy    		= /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy,
 		/obj/item/clothing/suit/armor/ego_gear/he/unrequited 		= /obj/item/clothing/suit/armor/ego_gear/realization/forever,
+		/obj/item/clothing/suit/armor/ego_gear/he/harvest 			= /obj/item/clothing/suit/armor/ego_gear/realization/wisdom,
+		/obj/item/clothing/suit/armor/ego_gear/he/logging		    = /obj/item/clothing/suit/armor/ego_gear/realization/empathy,
+		//obj/item/clothing/suit/armor/ego_gear/he/courage           = /obj/item/clothing/suit/armor/ego_gear/realization/valor,
+		/obj/item/clothing/suit/armor/ego_gear/he/homing_instinct   = /obj/item/clothing/suit/armor/ego_gear/realization/home,
 		// WAW
 		/obj/item/clothing/suit/armor/ego_gear/waw/goldrush 		= /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience,
 		/obj/item/clothing/suit/armor/ego_gear/waw/despair 			= /obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood,
