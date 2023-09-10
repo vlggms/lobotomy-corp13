@@ -449,7 +449,7 @@
 //Baba Yaga
 /obj/item/paper/fluff/info/waw/babayaga
 	abno_type = /mob/living/simple_animal/hostile/abnormality/babayaga
-	name = "M-04-166"
+	abno_code = "M-04-166"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered. In addition, the employee was attacked by a group of frozen slaves.",
@@ -462,7 +462,7 @@
 //Big and Will be Bad Wolf
 /obj/item/paper/fluff/info/waw/big_wolf
 	abno_type = /mob/living/simple_animal/hostile/abnormality/big_wolf
-	name = "F-02-58"
+	abno_code = "F-02-58"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered and the employee working on F-02-58 was consumed.",
 		"When the employee had a good result while preforming instinct work F-02-58 vomited all of the previously consumed employees.",
