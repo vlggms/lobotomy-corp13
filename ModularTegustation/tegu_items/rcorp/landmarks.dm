@@ -22,7 +22,8 @@ GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
 	/mob/living/simple_animal/hostile/abnormality/clown,
 	/mob/living/simple_animal/hostile/abnormality/nosferatu,
-	/mob/living/simple_animal/hostile/abnormality/big_bird,))
+	/mob/living/simple_animal/hostile/abnormality/big_bird,
+	/mob/living/simple_animal/hostile/abnormality/big_wolf))
 
 GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality/sphinx,
 	/mob/living/simple_animal/hostile/abnormality/judgement_bird,

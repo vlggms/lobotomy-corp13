@@ -46,7 +46,7 @@
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 
 	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/wolf_dash,
+		/datum/action/innate/abnormality_attack/toggle/wolf_dash_toggle,
 		/datum/action/cooldown/wolf_howl
 		)
 
@@ -68,18 +68,21 @@
 	var/howl_cooldown_time = BIGWOLF_COOLDOWN_HOWL
 
 //Obligatory ability buttons for the dreaded player.
-/datum/action/innate/abnormality_attack/wolf_dash
-	name = "Dash"
+/datum/action/innate/abnormality_attack/toggle/wolf_dash_toggle
+	name = "Toggle Dash"
 	desc = "Prepare to dash at the enemy dealing 50 RED damage to all in your way."
-	icon_icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
-	button_icon_state = "wolf_dash"
-	chosen_message = "<span class='notice'>You prepare your dash.</span>"
-	chosen_attack_num = 1
+	button_icon_state = "wolf_toggle0"
+	chosen_message = "<span class='notice'>You won't dash anymore.</span>"
+	chosen_attack_num = 2
+	button_icon_toggle_activated = "wolf_toggle1"
+	toggle_attack_num = 1
+	toggle_message = "<span class='colossus'>You prepare your dash.</span>"
+	button_icon_toggle_deactivated = "wolf_toggle0"
 
 /datum/action/cooldown/wolf_howl
 	name = "Howl"
 	desc = "Prepare to howl, dealing WHITE damage to nearby humans and weaken abnormality containment when below 50% health."
-	icon_icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = "wolf_howl"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
