@@ -2043,6 +2043,12 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/city/house)
+"ua" = (
+/obj/machinery/button/door{
+	id = "Garage"
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/shop)
 "ub" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -4786,6 +4792,12 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
+"Sf" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "Garage"
+	},
+/turf/open/floor/wood,
+/area/city/shop)
 "Sg" = (
 /obj/structure/fence{
 	dir = 4
@@ -35191,7 +35203,7 @@ lk
 lk
 lk
 Gz
-OT
+ua
 pg
 qy
 OT
@@ -35445,9 +35457,9 @@ NJ
 NJ
 NJ
 OT
-OT
-OT
-OT
+Sf
+Sf
+Sf
 OT
 OT
 OT
