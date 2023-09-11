@@ -1,0 +1,616 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/riveted/boss,
+/area/lor/arena)
+"b" = (
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"c" = (
+/obj/structure/mecha_wreckage/phazon,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"d" = (
+/obj/structure/mecha_wreckage/marauder,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"e" = (
+/obj/structure/mecha_wreckage/seraph,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"f" = (
+/obj/structure/mecha_wreckage/gygax,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"g" = (
+/obj/structure/mecha_wreckage/mauler,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"h" = (
+/obj/structure/mecha_wreckage/clarke,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"i" = (
+/obj/structure/mecha_wreckage/ripley,
+/turf/open/floor/plating/ice{
+	density = 1;
+	desc = "a blue haze covering the entire city";
+	name = "blue haze"
+	},
+/area/lor/arena)
+"j" = (
+/turf/open/floor/mineral/plastitanium,
+/area/lor/arena)
+"k" = (
+/turf/open/floor/fakepit,
+/area/lor/arena)
+"l" = (
+/obj/effect/landmark/library_reception_humans,
+/turf/open/floor/mineral/plastitanium,
+/area/lor/arena)
+"m" = (
+/obj/effect/landmark/library_reception_abno,
+/turf/open/floor/mineral/plastitanium,
+/area/lor/arena)
+"n" = (
+/turf/open/floor/wood{
+	density = 1
+	},
+/area/lor/arena)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+j
+k
+j
+j
+j
+n
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+k
+j
+j
+j
+j
+j
+j
+n
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+f
+b
+b
+j
+j
+j
+k
+j
+j
+j
+j
+j
+j
+j
+n
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+l
+j
+j
+j
+l
+j
+k
+j
+n
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+d
+b
+b
+b
+j
+j
+k
+j
+j
+l
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+k
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+b
+h
+b
+j
+j
+j
+l
+j
+j
+j
+l
+j
+j
+j
+n
+n
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+k
+j
+j
+j
+j
+j
+j
+k
+n
+n
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+j
+k
+j
+j
+j
+n
+n
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+e
+b
+b
+b
+j
+j
+k
+j
+j
+j
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+k
+j
+j
+j
+k
+j
+n
+n
+b
+a
+"}
+(15,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+m
+j
+j
+j
+m
+j
+j
+j
+n
+n
+b
+a
+"}
+(16,1,1) = {"
+a
+b
+b
+b
+i
+b
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(17,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+k
+j
+j
+j
+m
+j
+j
+k
+j
+j
+n
+n
+b
+a
+"}
+(18,1,1) = {"
+a
+c
+b
+b
+b
+b
+j
+j
+j
+j
+k
+j
+j
+j
+j
+j
+j
+n
+n
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+m
+j
+j
+j
+m
+j
+k
+j
+n
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+k
+j
+j
+j
+j
+n
+b
+b
+a
+"}
+(21,1,1) = {"
+a
+b
+b
+g
+b
+b
+j
+k
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+b
+b
+a
+"}
+(22,1,1) = {"
+a
+b
+b
+b
+b
+b
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+b
+b
+a
+"}
+(23,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -12,3 +12,5 @@
 #define is_away_level(z) SSmapping.level_trait(z, ZTRAIT_AWAY)
 
 #define is_tutorial_level(z) SSmapping.level_trait(z, ZTRAIT_TUTORIAL)
+
+#define is_library_level(z) SSmapping.level_trait(z, ZTRAIT_LIBRARY)

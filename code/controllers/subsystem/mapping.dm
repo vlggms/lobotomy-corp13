@@ -129,6 +129,13 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	//tutorial failed to load
 		message_admins("The tutorial failed to load!")
 		log_game("The tutorial failed to load!")
+
+	//Load The Library
+	var/list/libraryErrors = list()
+	SSmapping.LoadGroup(libraryErrors, "Library", "map_files/generic", "Library.dmm", default_traits = ZTRAITS_LIBRARY, silent = TRUE)
+	if(libraryErrors.len)	//tutorial failed to load
+		message_admins("The library failed to load!")
+		log_game("The library failed to load!")
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
