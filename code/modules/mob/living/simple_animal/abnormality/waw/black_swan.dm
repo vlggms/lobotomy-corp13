@@ -281,7 +281,7 @@
 	if(!IsContained() || family_status[3] == TRUE) // If it's breaching right now
 		return FALSE
 	abnos_breached += 1
-	if(abnos_breached > 3)
+	if(abnos_breached > 2)
 		family_status[3] = TRUE
 		BrotherOverlays()
 		abnos_breached = 0
@@ -297,7 +297,7 @@
 	if(died.z != z)
 		return FALSE
 	dead_humans += 1
-	if(dead_humans >= 5)
+	if(dead_humans >= 2)
 		family_status[1] = TRUE
 		BrotherOverlays()
 		dead_humans = 0
@@ -313,7 +313,7 @@
 	if(H.z != z)
 		return FALSE
 	insane_humans += 1
-	if(insane_humans >= 5)
+	if(insane_humans >= 2)
 		family_status[2] = TRUE
 		BrotherOverlays()
 		insane_humans = 0
