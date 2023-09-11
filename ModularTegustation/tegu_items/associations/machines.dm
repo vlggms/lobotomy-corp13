@@ -161,7 +161,7 @@
 			TEMPERANCE_ATTRIBUTE,
 			JUSTICE_ATTRIBUTE)
 
-/obj/structure/potential/attack_hand(mob/user)
+/obj/structure/potential/attack_hand(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/stattotal
