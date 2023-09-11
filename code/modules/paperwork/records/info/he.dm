@@ -422,3 +422,12 @@
 		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
 		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
 		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
+
+//Drifting Fox
+/obj/item/paper/fluff/info/he/drifting_fox
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
+	abno_code = "Placeholder"//No idea how to get this, I know there is a schtick to it but gonna need assistance.
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered."
+		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the qaulity of their work."
+		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered.")
