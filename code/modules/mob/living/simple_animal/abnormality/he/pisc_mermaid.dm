@@ -231,8 +231,8 @@
 		if(12)
 			FluffSpeak("I swear I'll be nice, you can just stay with me, even if I'm a monster...")
 		if(15)
-			response_help_continuous = "hold hands"
-			response_help_simple = "hold hands"
+			response_help_continuous = "hold hands with"
+			response_help_simple = "hold hands with"
 		if(17)
 			FluffSpeak("Are you sure you want to stay? I love you so much, I can't- I don't want to see you go.")
 		if(20)

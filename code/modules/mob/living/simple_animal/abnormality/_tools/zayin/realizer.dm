@@ -21,6 +21,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/he/grinder 			= /obj/item/clothing/suit/armor/ego_gear/realization/grinder,
 		/obj/item/clothing/suit/armor/ego_gear/he/magicbullet		= /obj/item/clothing/suit/armor/ego_gear/realization/bigiron,
 		/obj/item/clothing/suit/armor/ego_gear/he/solemnlament 		= /obj/item/clothing/suit/armor/ego_gear/realization/eulogy,
+		/obj/item/clothing/suit/armor/ego_gear/he/galaxy    		= /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy,
 		/obj/item/clothing/suit/armor/ego_gear/he/unrequited 		= /obj/item/clothing/suit/armor/ego_gear/realization/forever,
 		// WAW
 		/obj/item/clothing/suit/armor/ego_gear/waw/goldrush 		= /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience,
