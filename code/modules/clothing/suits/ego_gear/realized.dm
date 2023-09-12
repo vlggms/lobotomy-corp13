@@ -145,6 +145,39 @@
 	icon_state = "forever"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 90, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 
+/obj/item/clothing/suit/armor/ego_gear/realization/wisdom
+	name = "endless wisdom"
+	desc = "Poor stuffing of straw. I'll give you the wisdom to ponder over anything."
+	icon_state = "wisdom"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 90, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
+	flags_inv = HIDESHOES
+	hat = /obj/item/clothing/head/ego_hat/wisdom_hat
+
+/obj/item/clothing/head/ego_hat/wisdom_hat
+	name = "endless wisdom"
+	desc = "I was left with nothing, nothing but empty brains and rotting bodies."
+	icon_state = "wisdom"
+
+/obj/item/clothing/suit/armor/ego_gear/realization/empathy
+	name = "boundless empathy"
+	desc = "Tin-cold woodsman. I'll give you the heart to forgive and love anyone."
+	icon_state = "empathy"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
+	flags_inv = HIDEGLOVES|HIDESHOES
+
+/obj/item/clothing/suit/armor/ego_gear/realization/valor
+	name = "unbroken valor"
+	desc = "Cowardly kitten, I'll give you the courage to stand up to anything and everything."
+	icon_state = "valor"
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 90)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/home //This name would SO much easier if we didnt aleady USE HOMING INSTINCT AHHHHHHHHHHHHHHHHHHH
+	name = "forever home"
+	desc = "Last of all, road that is lost. I will send you home."
+	icon_state = "home"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 70)
+	flags_inv = HIDEGLOVES|HIDESHOES
+
 /* WAW Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience
@@ -249,6 +282,21 @@
 	icon_state = "capitalism"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
 	realized_ability = /obj/effect/proc_holder/ability/shrimp
+
+/obj/item/clothing/suit/armor/ego_gear/realization/duality_yang
+	name = "duality of harmony"
+	desc = "When good and evil meet discord and assonance will be quelled."
+	icon_state = "duality_yang"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)
+	realized_ability = /obj/effect/proc_holder/ability/tranquility
+
+/obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
+	name = "harmony of duality"
+	desc = "All that isn't shall become all that is."
+	icon_state = "duality_yin"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
+
 
 /* ALEPH Realizations */
 

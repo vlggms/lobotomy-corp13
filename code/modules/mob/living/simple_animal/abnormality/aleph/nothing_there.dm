@@ -260,6 +260,7 @@
 		return
 	next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
 	move_to_delay = initial(move_to_delay)
+	UpdateSpeed()
 	appearance = saved_appearance
 	disguise.forceMove(get_turf(src))
 	disguise.gib()
@@ -294,6 +295,7 @@
 			move_to_delay = 4.5
 			heartbeat.stop()
 			breachloop.start()
+	UpdateSpeed()
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
@@ -390,6 +392,7 @@
 	// Teleport us somewhere where nobody will see us at first
 	fear_level = 0 // So it doesn't inflict fear to those around them
 	move_to_delay = 1.2 // This will make them move at a speed similar to normal players
+	UpdateSpeed()
 	var/list/priority_list = list()
 	for(var/turf/T in GLOB.xeno_spawn)
 		var/people_in_range = 0
