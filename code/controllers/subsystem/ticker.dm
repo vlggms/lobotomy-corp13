@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
-			send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
+			DiscordAnnounce()
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned
 			create_observers()
@@ -209,6 +209,14 @@ SUBSYSTEM_DEF(ticker)
 				check_maprotate()
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
+
+/datum/controller/subsystem/ticker/proc/DiscordAnnounce()
+	send2chat("New round starting on [SSmapping.config.map_name]!", CONFIG_GET(string/chat_announce_new_game))
+	switch(SSmaptype.maptype)
+		if("rcorp")
+			send2chat("@rcorpping R-Corp Round starting!")
+		if("city")
+			send2chat("@cityping City Round starting!")
 
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
