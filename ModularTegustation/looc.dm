@@ -65,9 +65,9 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#e597e8")
 
 		if(C.prefs.chat_toggles & CHAT_OOC)
 			if(GLOB.LOOC_COLOR)
-				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b><span class='prefix'>LOOC:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>")
+				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b><span class='prefix'>LOOC:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>", type = MESSAGE_TYPE_LOOC)
 			else
-				to_chat(C, "<span class='looc'><span class='prefix'>LOOC:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]</span></span>")
+				to_chat(C, "<span class='looc'><span class='prefix'>LOOC:</span> <EM>[src.mob.name]:</EM> <span class='message'>[msg]</span></span>", type = MESSAGE_TYPE_LOOC)
 
 	for(var/client/C in GLOB.admins)
 		if(C.prefs.chat_toggles & CHAT_OOC)
@@ -75,9 +75,9 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#e597e8")
 			if (C.mob in heard)
 				prefix = "LOOC"
 			if(GLOB.LOOC_COLOR)
-				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>")
+				to_chat(C, "<font color='[GLOB.LOOC_COLOR]'><b>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></b></font>", type = MESSAGE_TYPE_LOOC)
 			else
-				to_chat(C, "<span class='looc'>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></span>")
+				to_chat(C, "<span class='looc'>[ADMIN_FLW(usr)] <span class='prefix'>[prefix]:</span> <EM>[src.key]/[src.mob.name]:</EM> <span class='message'>[msg]</span></span>", type = MESSAGE_TYPE_LOOC)
 
 
 /mob/proc/get_top_level_mob()
