@@ -18,3 +18,9 @@
 	name = "Me"
 	full_name = "Custom Emote (/Me)"
 	keybind_signal = COMSIG_KB_CLIENT_ME_DOWN
+
+/datum/keybinding/client/communication
+	hotkey_keys = list("P")
+	name = "LOOC"
+	full_name = "Local Out Of Character Say (LOOC)"
+	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
