@@ -89,7 +89,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOOC,
     name: 'LOOC',
     description: 'The pink wall of local OOC messages',
-    selector: '.looc'
+    selector: '.looc',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
