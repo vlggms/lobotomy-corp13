@@ -449,7 +449,7 @@
 /obj/effect/temp_visual/revenant/cracks/yinfriend
 	icon_state = "yincracks"
 	duration = 9
-	var/damage = 250  // Amount of black damage dealt to enemies from the laser.
+	var/damage = 175  // Amount of black damage dealt to enemies from the laser.
 	var/list/faction = list("neutral")
 
 /obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()

@@ -71,7 +71,7 @@
 		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized.</span>")
 		return
 
-	if(istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/discord) || istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/assonance) && !YinYangCheck())
+	if((istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/discord) || istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/assonance)) && !YinYangCheck())
 		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized without the other half.</span>")
 		return
 
