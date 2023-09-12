@@ -415,3 +415,112 @@
 		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
 		L.throw_at(throw_target, 1, 2)
+
+/obj/effect/proc_holder/ability/aimed/yin_laser
+	name = "Anarchy"
+	desc = "An ability that summons a devastating laser. \
+		If another player gets hit by the laser they get +20 justice for a period of time. \
+		If the person that gets hit is wearing duality of harmony, they will get huge buffs to their defenses and stats."
+	action_icon_state = "yinform0"
+	base_icon_state = "yinform"
+	cooldown_time = 60 SECONDS
+	var/laser_range = 20
+
+/obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
+	var/turf/t_turf = get_turf(target)
+	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
+	user.face_atom(target)
+	var/turf/my_turf = get_turf(user)
+	var/turf/target_turf = get_ranged_target_turf_direct(user, target, laser_range)
+	var/list/to_hit = getline(user, target_turf)
+	var/datum/beam/beam  = my_turf.Beam(target_turf, "volt_ray")
+	for(var/turf/open/OT in to_hit)
+		if(!istype(OT) || OT.density)
+			break
+		beam.target = OT
+		beam.redrawing()
+		sleep(1)
+		new /obj/effect/temp_visual/revenant/cracks/yinfriend(OT)
+	qdel(beam)
+
+/obj/effect/temp_visual/revenant/cracks/yinfriend
+	icon_state = "yincracks"
+	duration = 9
+	var/damage = 175  // Amount of black damage dealt to enemies from the laser.
+	var/list/faction = list("neutral")
+
+/obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()
+	for(var/turf/T in range(1, src))
+		if(T.z != z)
+			continue
+		for(var/mob/living/L in T)
+			if(faction_check(L.faction, src.faction))
+				continue
+			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/carbon/human/L in T)
+			if(!faction_check(L.faction, src.faction))
+				continue
+			L.apply_status_effect(/datum/status_effect/yinboost)
+			if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang))
+				L.apply_status_effect(/datum/status_effect/duality_yin)
+		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)
+	return ..()
+
+/datum/status_effect/yinboost
+	id = "EGO_YIN"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/yinboost
+	duration = 90 SECONDS
+
+/atom/movable/screen/alert/status_effect/yinboost
+	name = "Yin Boost"
+	desc = "Anarchy reigns supreme. \
+		Your Justice is increased by 20."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "yinbuff"
+
+/datum/status_effect/yinboost/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
+
+/datum/status_effect/yinboost/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
+
+/datum/status_effect/duality_yin
+	id = "EGO_YIN2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/duality_yin
+	duration = 90 SECONDS
+
+/atom/movable/screen/alert/status_effect/duality_yin
+	name = "Harmony of duality"
+	desc = "Decreases red and black damage taken by 25%. \
+		All your stats are increased by 10."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "duality"
+
+/datum/status_effect/duality_yin/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 0.75
+	H.physiology.black_mod *= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/duality_yin/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 0.75
+	H.physiology.black_mod /= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)

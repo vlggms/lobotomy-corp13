@@ -789,3 +789,76 @@
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
+
+/* Yang - Duality */
+/obj/effect/proc_holder/ability/tranquility
+	name = "Tranquility"
+	desc = "An ability that does massive white damage in an area and heals people's health and sanity. \
+	Healing someone that's wearing harmony of duality will grant them huge buffs to their defenses and stats."
+	action_icon_state = "yangform0"
+	base_icon_state = "yangform"
+	cooldown_time = 60 SECONDS
+
+	var/damage_amount = 300 // Amount of explosion damage
+	var/explosion_range = 15
+
+/obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
+	cooldown = world.time + (1.5 SECONDS)
+	if(!do_after(user, 1 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
+		return
+	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+	var/turf/orgin = get_turf(user)
+	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
+	for(var/i = 0 to explosion_range)
+		for(var/turf/T in all_turfs)
+			if(get_dist(user, T) > i)
+				continue
+			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
+			user.HurtInTurf(damage_amount, list(), WHITE_DAMAGE)
+			for(var/mob/living/carbon/human/L in T)
+				if(!user.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					continue
+				if(L.is_working) //no work heal :(
+					continue
+				L.adjustBruteLoss(-120)
+				L.adjustSanityLoss(-120)
+				new /obj/effect/temp_visual/healing(get_turf(L))
+				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
+					L.apply_status_effect(/datum/status_effect/duality_yang)
+			all_turfs -= T
+
+/datum/status_effect/duality_yang
+	id = "EGO_YANG"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/duality_yang
+	duration = 90 SECONDS
+
+/atom/movable/screen/alert/status_effect/duality_yang
+	name = "Duality of harmony"
+	desc = "Decreases white and pale damage taken by 25%. \
+		All your stats are increased by 10."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "duality"
+
+/datum/status_effect/duality_yang/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.white_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/datum/status_effect/duality_yang/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.white_mod /= 0.75
+	H.physiology.pale_mod /= 0.75
+	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
