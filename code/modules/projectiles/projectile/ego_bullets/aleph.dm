@@ -41,8 +41,8 @@
 	name = "dark energy"
 	icon_state = "nihil"
 	desc = "Just looking at it seems to suck the life out of you..."
-	damage = 40	//Fires 3 +10 damage per upgrade, up to 80
-	speed = 0.8
+	damage = 35	//Fires 4 +10 damage per upgrade, up to 75
+	speed = 0.7
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
 	hitsound = 'sound/abnormalities/nihil/filter.ogg'
