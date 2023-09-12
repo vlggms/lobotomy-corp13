@@ -803,6 +803,14 @@
 	var/explosion_range = 15
 
 /obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
+	cooldown = world.time + (1.5 SECONDS)
+	if(!do_after(user, 1 SECONDS))
+		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
+		return
+	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
+	var/turf/orgin = get_turf(user)
+	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
+	var/mob/living/carbon/human/H = user
 	for(var/i = 0 to explosion_range)
 		for(var/turf/T in all_turfs)
 			if(get_dist(user, T) > i)
@@ -820,7 +828,7 @@
 				L.adjustSanityLoss(-120)
 				new /obj/effect/temp_visual/healing(get_turf(L))
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
-					H.apply_status_effect(/datum/status_effect/duality_yang)
+					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
 
 /datum/status_effect/duality_yang
