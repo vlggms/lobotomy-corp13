@@ -243,11 +243,18 @@
 	prudence_bonus = 2
 	slot = EYE
 
-/datum/ego_gifts/mail //needs a sprite
+/datum/ego_gifts/mail
 	name = "Empty Envelope"
+	icon_state = "mail"
 	prudence_bonus = 1
 	temperance_bonus = 1
-	slot = HAND_1
+	slot = CHEEK
+
+/datum/ego_gifts/evening
+	name = "Evening Twilight"
+	icon_state = "evening"
+	justice_bonus = 2
+	slot = FACE
 
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
@@ -595,8 +602,9 @@
 /datum/ego_gifts/maneater
 	name = "Man Eater"
 	icon_state = "maneater"
-	temperance_bonus = 4
-	slot = HELMET
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = NECKWEAR
 
 /datum/ego_gifts/legerdemain
 	name = "Legerdemain"
@@ -748,6 +756,13 @@
 	fortitude_bonus  = 4
 	justice_bonus = 2
 	slot = HAND_2
+
+/datum/ego_gifts/lifestew
+	name = "Lifetime Stew"
+	icon_state = "lifestew"
+	fortitude_bonus = 1
+	temperance_bonus = 3
+	slot = HELMET
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -1070,6 +1085,14 @@
 	justice_bonus = -1
 	slot = CHEEK
 
+/datum/ego_gifts/scene
+	name = "As Written in the Scenario"
+	icon_state = "scene"
+	temperance_bonus = -2
+	prudence_bonus = 4
+	justice_bonus = 4
+	slot = FACE
+
 //reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
 //so right now its 10 temp
 /datum/ego_gifts/swan
@@ -1180,7 +1203,7 @@
 	slot = HAT
 
 /datum/ego_gifts/seasons
-	name = "season's greetings"
+	name = "Season's Greetings"
 	icon_state = "seasons"
 	prudence_bonus = 10
 	slot = HAND_2
@@ -1198,6 +1221,15 @@
 	prudence_bonus = -5
 	justice_bonus = 5
 	slot = EYE
+
+/datum/ego_gifts/distortion
+	name = "Distortion"
+	icon_state = "distortion"
+	fortitude_bonus = 3
+	prudence_bonus = 3
+	temperance_bonus = 2
+	justice_bonus = 2
+	slot = BROOCH
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
@@ -1226,9 +1258,3 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
-
-/datum/ego_gifts/mail
-	name = "Empty Envelope"
-	prudence_bonus = 1
-	temperance_bonus = 1
-	slot = HAND_1
