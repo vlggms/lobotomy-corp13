@@ -425,17 +425,15 @@
 	base_icon_state = "yinform"
 	cooldown_time = 60 SECONDS
 	var/laser_range = 20
-	var/list/spawned_effects = list()
 
 /obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
 	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
 	return ..()
 
-/obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/user)
+/obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
 	user.face_atom(target)
-	var/mob/living/carbon/human/H = user
-	var/turf/my_turf = get_turf(H)
+	var/turf/my_turf = get_turf(user)
 	var/turf/target_turf = get_ranged_target_turf_direct(user, target, laser_range)
 	var/list/to_hit = getline(user, target_turf)
 	var/datum/beam/beam  = my_turf.Beam(target_turf, "volt_ray")
@@ -446,14 +444,12 @@
 		beam.redrawing()
 		sleep(1)
 		new /obj/effect/temp_visual/revenant/cracks/yinfriend(OT)
-	for(var/obj/effect/FX in spawned_effects)
-		qdel(FX)
 	qdel(beam)
 
 /obj/effect/temp_visual/revenant/cracks/yinfriend
 	icon_state = "yincracks"
 	duration = 9
-	var/damage = 500  // Amount of black damage dealt to enemies from the laser.
+	var/damage = 250  // Amount of black damage dealt to enemies from the laser.
 	var/list/faction = list("neutral")
 
 /obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()
@@ -467,17 +463,9 @@
 		for(var/mob/living/carbon/human/L in T)
 			if(!faction_check(L.faction, src.faction))
 				continue
-			if(L.status_flags & GODMODE)
-				continue
-			if(L.stat == DEAD)
-				continue
-			if(L.is_working) //no work heal :(
-				continue
 			L.apply_status_effect(/datum/status_effect/yinboost)
-			var/obj/item/clothing/suit/armor/ego_gear/realization/duality_yang/Z = L.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-			if(istype(Z))
+			if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang))
 				L.apply_status_effect(/datum/status_effect/duality_yin)
-				new /obj/effect/temp_visual/healing(get_turf(L))
 		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)
 	return ..()
 

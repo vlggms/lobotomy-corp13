@@ -64,8 +64,6 @@
 
 /obj/structure/toolabnormality/realization/attackby(obj/item/I, mob/living/carbon/human/user)
 	. = ..()
-	var yang_armor = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
-	var yin_armor = /obj/item/clothing/suit/armor/ego_gear/waw/discord
 	if(!ishuman(user))
 		return
 
@@ -73,7 +71,7 @@
 		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized.</span>")
 		return
 
-	if(I.type == yang_armor && !YinYangCheck() || I.type == yin_armor && !YinYangCheck())
+	if((istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/discord) || istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/assonance) && !YinYangCheck())
 		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized without the other half.</span>")
 		return
 

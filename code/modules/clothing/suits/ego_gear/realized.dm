@@ -285,7 +285,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang
 	name = "duality of harmony"
-	desc = "When good an evil meet discord and assonance will be quelled."
+	desc = "When good and evil meet discord and assonance will be quelled."
 	icon_state = "duality_yang"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)
 	realized_ability = /obj/effect/proc_holder/ability/tranquility

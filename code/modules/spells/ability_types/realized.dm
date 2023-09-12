@@ -802,30 +802,15 @@
 	var/damage_amount = 300 // Amount of explosion damage
 	var/explosion_range = 15
 
-/obj/effect/proc_holder/ability/tranquility/Perform(target, mob/user)
-	cooldown = world.time + (1.5 SECONDS)
-	if(!do_after(user, 1 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
-		return
-	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
-	var/turf/orgin = get_turf(user)
-	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
-	var/mob/living/carbon/human/H = user
+/obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
 	for(var/i = 0 to explosion_range)
 		for(var/turf/T in all_turfs)
 			if(get_dist(user, T) > i)
 				continue
 			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			for(var/mob/living/L in T)
-				if(H.faction_check_mob(L, FALSE))
-					continue
-				if(L.stat == DEAD)
-					continue
-				L.apply_damage(damage_amount, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			user.HurtInTurf(damage_amount, list(), WHITE_DAMAGE)
 			for(var/mob/living/carbon/human/L in T)
-				if(!H.faction_check_mob(L, FALSE))
-					continue
-				if(L.status_flags & GODMODE)
+				if(!user.faction_check_mob(L, FALSE))
 					continue
 				if(L.stat == DEAD)
 					continue
@@ -833,14 +818,10 @@
 					continue
 				L.adjustBruteLoss(-120)
 				L.adjustSanityLoss(-120)
-				var/obj/item/clothing/suit/armor/ego_gear/realization/duality_yin/Z = L.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-				if(istype(Z))
+				new /obj/effect/temp_visual/healing(get_turf(L))
+				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					H.apply_status_effect(/datum/status_effect/duality_yang)
-					new /obj/effect/temp_visual/healing(get_turf(L))
 			all_turfs -= T
-		sleep(1)
-	playsound(src, 'sound/effects/magic.ogg', 60)
-	return ..()
 
 /datum/status_effect/duality_yang
 	id = "EGO_YANG"
