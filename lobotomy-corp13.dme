@@ -3774,6 +3774,7 @@
 #include "ModularTegustation\engineering_bounties.dm"
 #include "ModularTegustation\languagebooks.dm"
 #include "ModularTegustation\lc13_machinery.dm"
+#include "ModularTegustation\looc.dm"
 #include "ModularTegustation\resindoor.dm"
 #include "ModularTegustation\t5_parts.dm"
 #include "ModularTegustation\tegu_boxes.dm"
