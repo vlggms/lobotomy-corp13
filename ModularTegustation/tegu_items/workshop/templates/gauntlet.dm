@@ -16,7 +16,8 @@
 		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
 		return
 
-	specialcheck()
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
 
 	if(do_after(user, attack_speed*5, target))
 
@@ -35,7 +36,7 @@
 
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
+		if(target && !target?.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback.
 
 	else
